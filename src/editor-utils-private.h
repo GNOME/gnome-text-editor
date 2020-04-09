@@ -1,0 +1,42 @@
+/* editor-utils-private.h
+ *
+ * Copyright 2020 Christian Hergert <chergert@redhat.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
+#pragma once
+
+#include "editor-types.h"
+
+G_BEGIN_DECLS
+
+gchar    *_editor_font_description_to_css    (const PangoFontDescription *font_desc);
+void      _editor_widget_hide_with_fade      (GtkWidget                  *widget);
+gboolean  _editor_gchararray_to_boolean      (GBinding                   *binding,
+                                              const GValue               *from_value,
+                                              GValue                     *to_value,
+                                              gpointer                    user_data);
+gboolean  _editor_gboolean_to_wrap_mode      (GBinding                   *binding,
+                                              const GValue               *from_value,
+                                              GValue                     *to_value,
+                                              gpointer                    user_data);
+gboolean  _editor_gchararray_to_style_scheme (GBinding                   *binding,
+                                              const GValue               *from_value,
+                                              GValue                     *to_value,
+                                              gpointer                    user_data);
+
+G_END_DECLS

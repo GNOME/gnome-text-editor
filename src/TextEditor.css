@@ -1,0 +1,52 @@
+/* EditorPreferencesWindow */
+
+.org-gnome-TextEditor.preferences frame {
+  border-radius: 5px;
+  background: @content_view_bg;
+}
+.org-gnome-TextEditor.preferences list {
+  background: transparent;
+}
+.org-gnome-TextEditor.preferences list row {
+  border-bottom: 1px solid alpha(@borders, .4);
+}
+.org-gnome-TextEditor.preferences list row:last-child {
+  border-bottom: none;
+}
+
+.org-gnome-TextEditor.preferences .horizontal.linked .radio.text-button {
+  padding: 0;
+}
+.org-gnome-TextEditor.preferences .horizontal.linked .radio.text-button label {
+  padding: 4px 12px 4px 12px;
+}
+
+
+/* EditorWindow */
+
+.org-gnome-TextEditor label.position-label {
+  margin: 6px 8px;
+  padding: 6px 12px;
+  background-color: @borders;
+  border-radius: 14px;
+  color: alpha(currentColor, 0.9);
+  font-size: 0.8333em;
+  font-feature-settings: "tnum";
+}
+.org-gnome-TextEditor label.position-label:backdrop {
+  background-color: alpha(@borders, 0.2);
+}
+
+
+/* EditorSidebar */
+
+.org-gnome-TextEditor sidebar,
+.org-gnome-TextEditor sidebar list {
+  background: transparent;
+}
+.org-gnome-TextEditor sidebar list row {
+  border-bottom: 1px solid alpha(@borders, 0.4);
+}
+.org-gnome-TextEditor sidebar list row:last-child {
+  border-bottom: 1px solid transparent;
+}

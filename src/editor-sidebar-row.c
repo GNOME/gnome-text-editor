@@ -1,0 +1,168 @@
+/* editor-sidebar-row.c
+ *
+ * Copyright 2020 Christian Hergert <chergert@redhat.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
+#define G_LOG_DOMAIN "editor-sidebar-row"
+
+#include "config.h"
+
+#include <glib/gi18n.h>
+
+#include "editor-path-private.h"
+#include "editor-sidebar-item-private.h"
+#include "editor-sidebar-row-private.h"
+
+struct _EditorSidebarRow
+{
+  GtkListBoxRow      parent_instance;
+
+  EditorSidebarItem *item;
+
+  GtkLabel          *title;
+  GtkLabel          *subtitle;
+  GtkLabel          *is_modified;
+};
+
+enum {
+  PROP_0,
+  PROP_ITEM,
+  N_PROPS
+};
+
+G_DEFINE_TYPE (EditorSidebarRow, editor_sidebar_row, GTK_TYPE_LIST_BOX_ROW)
+
+static GParamSpec *properties [N_PROPS];
+
+static void
+editor_sidebar_row_constructed (GObject *object)
+{
+  EditorSidebarRow *self = (EditorSidebarRow *)object;
+
+  g_assert (EDITOR_IS_SIDEBAR_ROW (self));
+
+  G_OBJECT_CLASS (editor_sidebar_row_parent_class)->constructed (object);
+
+  if (self->item == NULL)
+    {
+      g_warning ("%s created without an item. This is a programmer error.",
+                 G_OBJECT_TYPE_NAME (self));
+      return;
+    }
+
+  g_object_bind_property (self->item, "title", self->title, "label", G_BINDING_SYNC_CREATE);
+  g_object_bind_property (self->item, "subtitle", self->subtitle, "label", G_BINDING_SYNC_CREATE);
+  g_object_bind_property (self->item, "is-modified", self->is_modified, "visible", G_BINDING_SYNC_CREATE);
+  g_object_bind_property (self->item, "empty", self, "visible", G_BINDING_SYNC_CREATE | G_BINDING_INVERT_BOOLEAN);
+}
+
+static void
+editor_sidebar_row_finalize (GObject *object)
+{
+  EditorSidebarRow *self = (EditorSidebarRow *)object;
+
+  g_clear_object (&self->item);
+
+  G_OBJECT_CLASS (editor_sidebar_row_parent_class)->finalize (object);
+}
+
+static void
+editor_sidebar_row_get_property (GObject    *object,
+                                 guint       prop_id,
+                                 GValue     *value,
+                                 GParamSpec *pspec)
+{
+  EditorSidebarRow *self = EDITOR_SIDEBAR_ROW (object);
+
+  switch (prop_id)
+    {
+    case PROP_ITEM:
+      g_value_set_object (value, _editor_sidebar_row_get_item (self));
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+    }
+}
+
+static void
+editor_sidebar_row_set_property (GObject      *object,
+                                 guint         prop_id,
+                                 const GValue *value,
+                                 GParamSpec   *pspec)
+{
+  EditorSidebarRow *self = EDITOR_SIDEBAR_ROW (object);
+
+  switch (prop_id)
+    {
+    case PROP_ITEM:
+      self->item = g_value_dup_object (value);
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+    }
+}
+
+static void
+editor_sidebar_row_class_init (EditorSidebarRowClass *klass)
+{
+  GObjectClass *object_class = G_OBJECT_CLASS (klass);
+  GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+
+  object_class->constructed = editor_sidebar_row_constructed;
+  object_class->finalize = editor_sidebar_row_finalize;
+  object_class->get_property = editor_sidebar_row_get_property;
+  object_class->set_property = editor_sidebar_row_set_property;
+
+  gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-sidebar-row.ui");
+  gtk_widget_class_bind_template_child (widget_class, EditorSidebarRow, title);
+  gtk_widget_class_bind_template_child (widget_class, EditorSidebarRow, subtitle);
+  gtk_widget_class_bind_template_child (widget_class, EditorSidebarRow, is_modified);
+
+  properties [PROP_ITEM] =
+    g_param_spec_object ("item",
+                         "Item",
+                         "The item to be displayed",
+                         EDITOR_TYPE_SIDEBAR_ITEM,
+                         (G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
+  
+  g_object_class_install_properties (object_class, N_PROPS, properties);
+}
+
+static void
+editor_sidebar_row_init (EditorSidebarRow *self)
+{
+  gtk_widget_init_template (GTK_WIDGET (self));
+}
+
+EditorSidebarItem *
+_editor_sidebar_row_get_item (EditorSidebarRow *self)
+{
+  g_return_val_if_fail (EDITOR_IS_SIDEBAR_ROW (self), NULL);
+
+  return self->item;
+}
+
+GtkWidget *
+_editor_sidebar_row_new (EditorSidebarItem *item)
+{
+  return g_object_new (EDITOR_TYPE_SIDEBAR_ROW,
+                       "item", item,
+                       NULL);
+}

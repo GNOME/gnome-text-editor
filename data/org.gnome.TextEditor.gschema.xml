@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="gnome-text-editor">
+	<schema id="org.gnome.TextEditor" path="/org/gnome/TextEditor/">
+    <key name="dark-mode" type="b">
+      <default>false</default>
+      <summary>Dark Mode</summary>
+      <description>Use the dark variant of the GTK theme.</description>
+    </key>
+    <key name="indent-style" type="s">
+      <choices>
+        <choice value="tab"/>
+        <choice value="space"/>
+      </choices>
+      <default>'tab'</default>
+      <summary>Indentation Style</summary>
+      <description>If the editor should insert multiple spaces characters instead of tabs.</description>
+    </key>
+    <key name="tab-width" type="u">
+      <default>8</default>
+      <summary>Tab Width</summary>
+      <description>The number of spaces represented by a tab.</description>
+    </key>
+    <key name="show-line-numbers" type="b">
+      <default>false</default>
+      <summary>Show Line Numbers</summary>
+      <description>If line numbers should be displayed next to each line.</description>
+    </key>
+    <key name="show-right-margin" type="b">
+      <default>false</default>
+      <summary>Show Right Margin</summary>
+      <description>If a margin line should be displayed on the right of the editor.</description>
+    </key>
+    <key name="right-margin-position" type="u">
+      <range min="1" max="1000"/>
+      <default>80</default>
+      <summary>Right Margin Position</summary>
+      <description>The position in characters at which the right margin should be displayed.</description>
+    </key>
+    <key name="wrap-text" type="b">
+      <default>true</default>
+      <summary>Text Wrapping</summary>
+      <description>If text should be wrapped.</description>
+    </key>
+    <key name="use-system-font" type="b">
+      <default>true</default>
+      <summary>Use System Font</summary>
+      <description>If the default system monospace font should be used.</description>
+    </key>
+    <key name="custom-font" type="s">
+      <default>'Monospace 11'</default>
+      <summary>Custom Font</summary>
+      <description>A custom font to use in the editor.</description>
+    </key>
+    <key name="style-scheme" type="s">
+      <default>'builder'</default>
+      <summary>Style Scheme</summary>
+      <description>The style scheme to use by the editor. It may translate this into a dark format when available.</description>
+    </key>
+	</schema>
+</schemalist>
