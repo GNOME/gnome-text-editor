@@ -50,13 +50,15 @@ typedef struct
 
 typedef struct
 {
-  GFile *file;
-  GFile *draft_file;
-  gchar *content_type;
-  guint  n_active;
-  guint  highlight_syntax : 1;
-  guint  has_draft : 1;
-  guint  has_file : 1;
+  GFile  *file;
+  GFile  *draft_file;
+  gchar  *content_type;
+  gint64  draft_modified_at;
+  gint64  modified_at;
+  guint   n_active;
+  guint   highlight_syntax : 1;
+  guint   has_draft : 1;
+  guint   has_file : 1;
 } Load;
 
 G_DEFINE_TYPE (EditorDocument, editor_document, GTK_SOURCE_TYPE_BUFFER)
@@ -836,7 +838,10 @@ editor_document_load_draft_info_cb (GObject      *object,
   load = g_task_get_task_data (task);
 
   if ((info = g_file_query_info_finish (file, result, &error)))
-    load->has_draft = TRUE;
+    {
+      load->modified_at = g_file_info_get_attribute_uint64 (info, G_FILE_ATTRIBUTE_TIME_MODIFIED);
+      load->has_draft = TRUE;
+    }
 
   load->n_active--;
 
@@ -871,6 +876,7 @@ editor_document_load_file_info_cb (GObject      *object,
 
       load->has_file = TRUE;
       load->content_type = g_strdup (content_type);
+      load->modified_at = g_file_info_get_attribute_uint64 (info, G_FILE_ATTRIBUTE_TIME_MODIFIED);
     }
 
   load->n_active--;
@@ -916,7 +922,8 @@ _editor_document_load_async (EditorDocument      *self,
   load->n_active++;
   g_file_query_info_async (load->draft_file,
                            G_FILE_ATTRIBUTE_ACCESS_CAN_READ","
-                           G_FILE_ATTRIBUTE_STANDARD_SIZE,
+                           G_FILE_ATTRIBUTE_STANDARD_SIZE","
+                           G_FILE_ATTRIBUTE_TIME_MODIFIED,
                            G_FILE_QUERY_INFO_NONE,
                            G_PRIORITY_DEFAULT,
                            cancellable,
@@ -929,7 +936,8 @@ _editor_document_load_async (EditorDocument      *self,
       g_file_query_info_async (load->file,
                                G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE","
                                G_FILE_ATTRIBUTE_ACCESS_CAN_READ","
-                               G_FILE_ATTRIBUTE_STANDARD_SIZE,
+                               G_FILE_ATTRIBUTE_STANDARD_SIZE","
+                               G_FILE_ATTRIBUTE_TIME_MODIFIED,
                                G_FILE_QUERY_INFO_NONE,
                                G_PRIORITY_DEFAULT,
                                cancellable,
