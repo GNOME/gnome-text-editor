@@ -125,6 +125,7 @@ editor_window_notify_current_page_cb (EditorWindow *self,
   gtk_label_set_label (self->subtitle, NULL);
   gtk_widget_set_visible (GTK_WIDGET (self->is_modified), FALSE);
   gtk_widget_set_visible (GTK_WIDGET (self->position_label), page != NULL);
+  gtk_widget_set_visible (GTK_WIDGET (self->subtitle), FALSE);
 
   self->visible_page = page;
 
