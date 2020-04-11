@@ -220,3 +220,11 @@ editor_sidebar_init (EditorSidebar *self)
                            self,
                            NULL);
 }
+
+void
+editor_sidebar_focus_search (EditorSidebar *self)
+{
+  g_return_if_fail (EDITOR_IS_SIDEBAR (self));
+
+  gtk_widget_grab_focus (GTK_WIDGET (self->search_entry));
+}

@@ -28,6 +28,7 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (EditorSidebar, editor_sidebar, EDITOR, SIDEBAR, GtkBin)
 
-EditorSidebar *editor_sidebar_new (void);
+EditorSidebar *editor_sidebar_new          (void);
+void           editor_sidebar_focus_search (EditorSidebar *self);
 
 G_END_DECLS

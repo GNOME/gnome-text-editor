@@ -854,3 +854,12 @@ _editor_page_discard_changes (EditorPage *self)
                        editor_page_delete_draft_cb,
                        g_object_ref (self));
 }
+
+void
+editor_page_grab_focus (EditorPage *self)
+{
+  g_return_if_fail (EDITOR_IS_PAGE (self));
+
+  _editor_page_raise (self);
+  gtk_widget_grab_focus (GTK_WIDGET (self->view));
+}
