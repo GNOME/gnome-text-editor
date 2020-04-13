@@ -473,8 +473,6 @@ editor_session_add_page (EditorSession *self,
   g_assert (window != NULL);
   g_assert (EDITOR_IS_WINDOW (window));
 
-  g_signal_emit (self, signals [PAGE_ADDED], 0, window, page);
-
   g_ptr_array_add (self->pages, g_object_ref (page));
 
   _editor_window_add_page (window, page);
@@ -483,6 +481,8 @@ editor_session_add_page (EditorSession *self,
   gtk_window_present (GTK_WINDOW (window));
 
   editor_page_grab_focus (page);
+
+  g_signal_emit (self, signals [PAGE_ADDED], 0, window, page);
 }
 
 /**
