@@ -28,42 +28,49 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (EditorSession, editor_session, EDITOR, SESSION, GObject)
 
-void           editor_session_add_window      (EditorSession        *self,
-                                               EditorWindow         *window);
-EditorWindow  *editor_session_create_window   (EditorSession        *self);
-void           editor_session_open            (EditorSession        *self,
-                                               EditorWindow         *window,
-                                               GFile                *file);
-void           editor_session_open_files      (EditorSession        *self,
-                                               GFile               **files,
-                                               gint                  n_files);
-void           editor_session_add_page        (EditorSession        *self,
-                                               EditorWindow         *window,
-                                               EditorPage           *page);
-void           editor_session_add_document    (EditorSession        *self,
-                                               EditorWindow         *window,
-                                               EditorDocument       *document);
-void           editor_session_add_draft       (EditorSession        *self,
-                                               EditorWindow         *window);
-void           editor_session_remove_page     (EditorSession        *self,
-                                               EditorPage           *page);
-void           editor_session_remove_document (EditorSession        *self,
-                                               EditorDocument       *document);
-void           editor_session_remove_window   (EditorSession        *self,
-                                               EditorWindow         *window);
-void           editor_session_restore_async   (EditorSession        *self,
-                                               GCancellable         *cancellable,
-                                               GAsyncReadyCallback   callback,
-                                               gpointer              user_data);
-gboolean       editor_session_restore_finish  (EditorSession        *self,
-                                               GAsyncResult         *result,
-                                               GError              **error);
-void           editor_session_save_async      (EditorSession        *self,
-                                               GCancellable         *cancellable,
-                                               GAsyncReadyCallback   callback,
-                                               gpointer              user_data);
-gboolean       editor_session_save_finish     (EditorSession        *self,
-                                               GAsyncResult         *result,
-                                               GError              **error);
+void          editor_session_add_window         (EditorSession        *self,
+                                                 EditorWindow         *window);
+EditorWindow *editor_session_create_window      (EditorSession        *self);
+void          editor_session_open               (EditorSession        *self,
+                                                 EditorWindow         *window,
+                                                 GFile                *file);
+void          editor_session_open_files         (EditorSession        *self,
+                                                 GFile               **files,
+                                                 gint                  n_files);
+void          editor_session_add_page           (EditorSession        *self,
+                                                 EditorWindow         *window,
+                                                 EditorPage           *page);
+void          editor_session_add_document       (EditorSession        *self,
+                                                 EditorWindow         *window,
+                                                 EditorDocument       *document);
+void          editor_session_add_draft          (EditorSession        *self,
+                                                 EditorWindow         *window);
+void          editor_session_remove_page        (EditorSession        *self,
+                                                 EditorPage           *page);
+void          editor_session_remove_document    (EditorSession        *self,
+                                                 EditorDocument       *document);
+void          editor_session_remove_window      (EditorSession        *self,
+                                                 EditorWindow         *window);
+void          editor_session_restore_async      (EditorSession        *self,
+                                                 GCancellable         *cancellable,
+                                                 GAsyncReadyCallback   callback,
+                                                 gpointer              user_data);
+gboolean      editor_session_restore_finish     (EditorSession        *self,
+                                                 GAsyncResult         *result,
+                                                 GError              **error);
+void          editor_session_save_async         (EditorSession        *self,
+                                                 GCancellable         *cancellable,
+                                                 GAsyncReadyCallback   callback,
+                                                 gpointer              user_data);
+gboolean      editor_session_save_finish        (EditorSession        *self,
+                                                 GAsyncResult         *result,
+                                                 GError              **error);
+void          editor_session_load_recent_async  (EditorSession        *self,
+                                                 GCancellable         *cancellable,
+                                                 GAsyncReadyCallback   callback,
+                                                 gpointer              user_data);
+GPtrArray    *editor_session_load_recent_finish (EditorSession        *self,
+                                                 GAsyncResult         *result,
+                                                 GError              **error);
 
 G_END_DECLS

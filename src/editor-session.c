@@ -1232,3 +1232,91 @@ _editor_session_get_pages (EditorSession *self)
 
   return self->pages;
 }
+
+static void
+editor_session_load_recent_worker (GTask        *task,
+                                   gpointer      source_object,
+                                   gpointer      task_data,
+                                   GCancellable *cancellable)
+{
+  GBookmarkFile *bookmarks = task_data;
+  g_autoptr(GError) error = NULL;
+  g_autoptr(GPtrArray) files = NULL;
+  g_autofree gchar *filename = NULL;
+  g_auto(GStrv) uris = NULL;
+  gsize len;
+
+  g_assert (G_IS_TASK (task));
+  g_assert (!cancellable || G_IS_CANCELLABLE (cancellable));
+  g_assert (bookmarks != NULL);
+
+  filename = g_build_filename (g_get_user_data_dir (),
+                               APP_ID,
+                               "recently-used.xbel",
+                               NULL);
+
+  if (!g_bookmark_file_load_from_file (bookmarks, filename, &error))
+    {
+      g_task_return_error (task, g_steal_pointer (&error));
+      return;
+    }
+
+  files = g_ptr_array_new_with_free_func (g_object_unref);
+  uris = g_bookmark_file_get_uris (bookmarks, &len);
+
+  for (gsize i = 0; i < len; i++)
+    g_ptr_array_add (files, g_file_new_for_uri (uris[0]));
+
+  g_task_return_pointer (task,
+                         g_steal_pointer (&files),
+                         (GDestroyNotify) g_ptr_array_unref);
+}
+
+void
+editor_session_load_recent_async (EditorSession       *self,
+                                  GCancellable        *cancellable,
+                                  GAsyncReadyCallback  callback,
+                                  gpointer             user_data)
+{
+  g_autoptr(GTask) task = NULL;
+
+  g_return_if_fail (EDITOR_IS_SESSION (self));
+  g_return_if_fail (!cancellable || G_IS_CANCELLABLE (cancellable));
+
+  task = g_task_new (self, cancellable, callback, user_data);
+  g_task_set_source_tag (task, editor_session_load_recent_async);
+  g_task_set_task_data (task,
+                        g_bookmark_file_new (),
+                        (GDestroyNotify) g_bookmark_file_free);
+  g_task_run_in_thread (task, editor_session_load_recent_worker);
+}
+
+/**
+ * editor_session_load_recent_finish:
+ * @self: an #EditorSession
+ * @result: a #GAsyncResult provided to callback
+ * @error: a location for a #GError, or %NULL
+ *
+ * Completes an asynchronous request to load the recently opened
+ * files. This uses a private #GBookmarkFile stored in the
+ * text-editor's user-data dir and is kept seperate from the
+ * application state to simplify removal of the file.
+ *
+ * Returns: (transfer full) (element-type GFile): a #GPtrArray of #GFile or
+ *   %NULL and @error is set.
+ */
+GPtrArray *
+editor_session_load_recent_finish (EditorSession  *self,
+                                   GAsyncResult   *result,
+                                   GError        **error)
+{
+  GPtrArray *ar;
+
+  g_return_val_if_fail (EDITOR_IS_SESSION (self), NULL);
+  g_return_val_if_fail (G_IS_TASK (result), NULL);
+
+  if ((ar = g_task_propagate_pointer (G_TASK (result), error)))
+    g_ptr_array_set_free_func (ar, NULL);
+
+  return g_steal_pointer (&ar);
+}
