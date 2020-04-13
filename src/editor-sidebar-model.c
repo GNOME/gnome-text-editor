@@ -114,6 +114,7 @@ editor_sidebar_model_page_added_cb (EditorSidebarModel *self,
   EditorDocument *document;
   GSequenceIter *iter;
   GFile *file;
+  gint page_num;
 
   g_assert (EDITOR_IS_SIDEBAR_MODEL (self));
   g_assert (EDITOR_IS_WINDOW (window));
@@ -122,15 +123,13 @@ editor_sidebar_model_page_added_cb (EditorSidebarModel *self,
 
   document = editor_page_get_document (page);
   file = editor_document_get_file (document);
+  page_num = _editor_page_position (page);
 
-  /* TODO: file vs draft, document, etc */
+  g_return_if_fail (page_num >= 0);
 
-  iter = g_sequence_append (self->seq, _editor_sidebar_item_new (file, page));
-
-  g_list_model_items_changed (G_LIST_MODEL (self),
-                              g_sequence_iter_get_position (iter),
-                              0,
-                              1);
+  iter = g_sequence_get_iter_at_pos (self->seq, page_num);
+  g_sequence_insert_before (iter, _editor_sidebar_item_new (file, page));
+  g_list_model_items_changed (G_LIST_MODEL (self), page_num, 0, 1);
 }
 
 static void
