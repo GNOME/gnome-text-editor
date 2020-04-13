@@ -35,6 +35,7 @@ struct _EditorSession
   GPtrArray *pages;
   GFile     *state_file;
   GPtrArray *seen;
+  GArray    *drafts;
 
   guint      did_restore : 1;
 };
@@ -60,6 +61,12 @@ typedef struct
   Position end;
 } Selection;
 
+typedef struct
+{
+  gchar *draft_id;
+  gchar *title;
+} Draft;
+
 G_DEFINE_TYPE (EditorSession, editor_session, G_TYPE_OBJECT)
 
 enum {
@@ -76,6 +83,13 @@ static void
 selection_free (Selection *selection)
 {
   g_slice_free (Selection, selection);
+}
+
+static void
+clear_draft (Draft *draft)
+{
+  g_clear_pointer (&draft->draft_id, g_free);
+  g_clear_pointer (&draft->title, g_free);
 }
 
 static GVariant *
@@ -297,6 +311,7 @@ editor_session_finalize (GObject *object)
   g_clear_pointer (&self->pages, g_ptr_array_unref);
   g_clear_pointer (&self->windows, g_ptr_array_unref);
   g_clear_pointer (&self->seen, g_ptr_array_unref);
+  g_clear_pointer (&self->drafts, g_array_unref);
   g_clear_object (&self->state_file);
 
   G_OBJECT_CLASS (editor_session_parent_class)->finalize (object);
@@ -392,6 +407,8 @@ editor_session_init (EditorSession *self)
                                                 APP_ID,
                                                 "session.gvariant",
                                                 NULL);
+  self->drafts = g_array_new (FALSE, FALSE, sizeof (Draft));
+  g_array_set_clear_func (self->drafts, (GDestroyNotify) clear_draft);
 }
 
 EditorSession *
