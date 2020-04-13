@@ -832,7 +832,7 @@ editor_session_open (EditorSession *self,
 
   if (editor_window_get_n_pages (window) == 1 &&
       (page = editor_window_get_nth_page (window, 0)) &&
-      editor_page_is_draft (page))
+      editor_page_get_can_discard (page))
     remove = page;
 
   document = editor_document_new_for_file (file);
