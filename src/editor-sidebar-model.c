@@ -105,6 +105,30 @@ find_by_document (EditorSidebarModel *self,
   return NULL;
 }
 
+static GSequenceIter *
+find_by_file (EditorSidebarModel *self,
+              GFile              *file)
+{
+  GSequenceIter *iter;
+
+  g_assert (EDITOR_IS_SIDEBAR_MODEL (self));
+  g_assert (G_IS_FILE (file));
+
+  for (iter = g_sequence_get_begin_iter (self->seq);
+       !g_sequence_iter_is_end (iter);
+       iter = g_sequence_iter_next (iter))
+    {
+      EditorSidebarItem *item = g_sequence_get (iter);
+      GFile *this_file = _editor_sidebar_item_get_file (item);
+
+      if (this_file != NULL && g_file_equal (file, this_file))
+        return iter;
+    }
+
+  return NULL;
+}
+
+
 static void
 editor_sidebar_model_page_added_cb (EditorSidebarModel *self,
                                     EditorWindow       *window,
@@ -175,6 +199,7 @@ editor_sidebar_model_load_recent_cb (GObject      *object,
   g_autoptr(GPtrArray) files = NULL;
   g_autoptr(GError) error = NULL;
   guint position;
+  guint count = 0;
 
   g_assert (EDITOR_IS_SESSION (session));
   g_assert (G_IS_ASYNC_RESULT (result));
@@ -194,15 +219,16 @@ editor_sidebar_model_load_recent_cb (GObject      *object,
   for (guint i = 0; i < files->len; i++)
     {
       GFile *file = g_ptr_array_index (files, i);
-      g_autoptr(EditorSidebarItem) item = _editor_sidebar_item_new (file, NULL);
-      g_sequence_append (self->seq, g_steal_pointer (&item));
+
+      if (!find_by_file (self, file))
+        {
+          g_sequence_append (self->seq, _editor_sidebar_item_new (file, NULL));
+          count++;
+        }
     }
 
-  if (files->len > 0)
-    g_list_model_items_changed (G_LIST_MODEL (self),
-                                position,
-                                0,
-                                files->len);
+  if (count > 0)
+    g_list_model_items_changed (G_LIST_MODEL (self), position, 0, count);
 }
 
 static void
