@@ -201,6 +201,7 @@ editor_application_startup (GApplication *application)
   gtk_style_context_add_provider_for_display (gdk_display_get_default (),
                                               GTK_STYLE_PROVIDER (font_css_provider),
                                               GTK_STYLE_PROVIDER_PRIORITY_APPLICATION+1);
+  editor_application_update_font_cb (self->settings, NULL, font_css_provider);
 }
 
 static void
