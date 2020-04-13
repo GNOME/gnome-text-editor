@@ -34,6 +34,7 @@ struct _EditorSession
   GPtrArray *windows;
   GPtrArray *pages;
   GFile     *state_file;
+  GPtrArray *seen;
 
   guint      did_restore : 1;
 };
@@ -43,6 +44,7 @@ typedef struct
   GApplication *app;
   GFile        *state_file;
   GBytes       *state_bytes;
+  GPtrArray    *seen;
   guint         n_active;
 } EditorSessionSave;
 
@@ -108,12 +110,22 @@ selection_from_variant (Selection *selection,
 
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (Selection, selection_free);
 
+static gchar *
+get_bookmarks_filename (void)
+{
+  return g_build_filename (g_get_user_data_dir (),
+                           APP_ID,
+                           "recently-used.xbel",
+                           NULL);
+}
+
 static void
 editor_session_save_free (EditorSessionSave *state)
 {
   g_clear_pointer (&state->state_bytes, g_bytes_unref);
   g_clear_object (&state->state_file);
   g_clear_pointer (&state->app, g_application_release);
+  g_clear_pointer (&state->seen, g_ptr_array_unref);
   g_slice_free (EditorSessionSave, state);
 }
 
@@ -271,6 +283,9 @@ editor_session_dispose (GObject *object)
   if (self->pages->len > 0)
     g_ptr_array_remove_range (self->pages, 0, self->pages->len);
 
+  if (self->seen->len > 0)
+    g_ptr_array_remove_range (self->seen, 0, self->seen->len);
+
   G_OBJECT_CLASS (editor_session_parent_class)->dispose (object);
 }
 
@@ -281,6 +296,7 @@ editor_session_finalize (GObject *object)
 
   g_clear_pointer (&self->pages, g_ptr_array_unref);
   g_clear_pointer (&self->windows, g_ptr_array_unref);
+  g_clear_pointer (&self->seen, g_ptr_array_unref);
   g_clear_object (&self->state_file);
 
   G_OBJECT_CLASS (editor_session_parent_class)->finalize (object);
@@ -661,6 +677,52 @@ editor_session_remove_window (EditorSession *self,
 }
 
 static void
+editor_session_update_recent_worker (GTask        *task,
+                                     gpointer      source_object,
+                                     gpointer      task_data,
+                                     GCancellable *cancellable)
+{
+  EditorSessionSave *save = task_data;
+
+  g_assert (G_IS_TASK (task));
+  g_assert (EDITOR_IS_SESSION (source_object));
+  g_assert (save != NULL);
+  g_assert (!cancellable || G_IS_CANCELLABLE (cancellable));
+
+  if (save->seen != NULL)
+    {
+      g_autoptr(GBookmarkFile) bookmarks = g_bookmark_file_new ();
+      g_autofree gchar *filename = get_bookmarks_filename ();
+      g_autoptr(GError) error = NULL;
+
+      if (!g_bookmark_file_load_from_file (bookmarks, filename, &error))
+        {
+          if (!g_error_matches (error, G_FILE_ERROR, G_FILE_ERROR_NOENT))
+            g_warning ("Failed to load bookmarks file: %s", error->message);
+          g_clear_error (&error);
+        }
+
+      for (guint i = 0; i < save->seen->len; i++)
+        {
+          GFile *file = g_ptr_array_index (save->seen, i);
+          g_autofree gchar *uri = g_file_get_uri (file);
+
+          g_assert (G_IS_FILE (file));
+
+          g_bookmark_file_add_application (bookmarks, uri, NULL, NULL);
+        }
+
+      if (!g_bookmark_file_to_file (bookmarks, filename, &error))
+        {
+          g_task_return_error (task, g_steal_pointer (&error));
+          return;
+        }
+    }
+
+  g_task_return_boolean (task, TRUE);
+}
+
+static void
 editor_session_save_unlink_cb (GObject      *object,
                                GAsyncResult *result,
                                gpointer      user_data)
@@ -680,7 +742,7 @@ editor_session_save_unlink_cb (GObject      *object,
                    error->message);
     }
 
-  g_task_return_boolean (task, TRUE);
+  g_task_run_in_thread (task, editor_session_update_recent_worker);
 }
 
 static void
@@ -699,7 +761,7 @@ editor_session_save_replace_contents_cb (GObject      *object,
   if (!g_file_replace_contents_finish (file, result, NULL, &error))
     g_task_return_error (task, g_steal_pointer (&error));
   else
-    g_task_return_boolean (task, TRUE);
+    g_task_run_in_thread (task, editor_session_update_recent_worker);
 }
 
 static void
@@ -757,6 +819,11 @@ editor_session_save_async (EditorSession       *self,
   state->state_file = g_file_dup (self->state_file);
   state->state_bytes = g_variant_get_data_as_bytes (vstate);
   state->app = g_application_get_default ();
+
+  if (self->seen != NULL && self->seen->len > 0)
+    state->seen = g_ptr_array_copy (self->seen,
+                                    (GCopyFunc) g_object_ref,
+                                    NULL);
 
   g_application_hold (state->app);
 
@@ -1250,10 +1317,7 @@ editor_session_load_recent_worker (GTask        *task,
   g_assert (!cancellable || G_IS_CANCELLABLE (cancellable));
   g_assert (bookmarks != NULL);
 
-  filename = g_build_filename (g_get_user_data_dir (),
-                               APP_ID,
-                               "recently-used.xbel",
-                               NULL);
+  filename = get_bookmarks_filename ();
 
   if (!g_bookmark_file_load_from_file (bookmarks, filename, &error))
     {
@@ -1319,4 +1383,26 @@ editor_session_load_recent_finish (EditorSession  *self,
     g_ptr_array_set_free_func (ar, NULL);
 
   return g_steal_pointer (&ar);
+}
+
+void
+_editor_session_document_seen (EditorSession  *self,
+                               EditorDocument *document)
+{
+  GFile *file;
+
+  g_return_if_fail (EDITOR_IS_SESSION (self));
+  g_return_if_fail (EDITOR_IS_DOCUMENT (document));
+
+  if (self->seen == NULL)
+    self->seen = g_ptr_array_new_with_free_func (g_object_unref);
+
+  if ((file = editor_document_get_file (document)))
+    {
+      if (!g_ptr_array_find_with_equal_func (self->seen,
+                                             file,
+                                             (GEqualFunc) g_file_equal,
+                                             NULL))
+        g_ptr_array_add (self->seen, g_file_dup (file));
+    }
 }

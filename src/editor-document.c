@@ -24,7 +24,9 @@
 
 #include <string.h>
 
+#include "editor-application.h"
 #include "editor-document-private.h"
+#include "editor-session-private.h"
 
 #define METATDATA_CURSOR "metadata::gnome-text-editor-cursor"
 
@@ -93,6 +95,20 @@ save_free (Save *save)
 {
   g_clear_pointer (&save->position, g_free);
   g_slice_free (Save, save);
+}
+
+static void
+editor_document_task_notify_completed_cb (EditorDocument *self,
+                                          GParamSpec     *pspec,
+                                          GTask          *task)
+{
+  EditorSession *session;
+
+  g_assert (EDITOR_IS_DOCUMENT (self));
+  g_assert (G_IS_TASK (task));
+
+  session = editor_application_get_session (EDITOR_APPLICATION_DEFAULT);
+  _editor_session_document_seen (session, self);
 }
 
 static void
@@ -540,6 +556,12 @@ editor_document_save_async (EditorDocument      *self,
   g_task_set_source_tag (task, editor_document_save_draft_async);
   g_task_set_task_data (task, save, (GDestroyNotify)save_free);
 
+  g_signal_connect_object (task,
+                           "notify::completed",
+                           G_CALLBACK (editor_document_task_notify_completed_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+
   if (editor_document_get_busy (self))
     {
       g_task_return_new_error (task,
@@ -910,6 +932,12 @@ _editor_document_load_async (EditorDocument      *self,
   task = g_task_new (self, cancellable, callback, user_data);
   g_task_set_source_tag (task, _editor_document_load_async);
   g_task_set_task_data (task, load, (GDestroyNotify) load_free);
+
+  g_signal_connect_object (task,
+                           "notify::completed",
+                           G_CALLBACK (editor_document_task_notify_completed_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
 
   _editor_document_mark_busy (self);
 

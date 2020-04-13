@@ -25,8 +25,10 @@
 G_BEGIN_DECLS
 
 EditorSession *_editor_session_new                    (void);
-EditorWindow  *_editor_session_create_window_no_draft (EditorSession *self);
-gboolean       _editor_session_did_restore            (EditorSession *self);
-GPtrArray     *_editor_session_get_pages              (EditorSession *self);
+EditorWindow  *_editor_session_create_window_no_draft (EditorSession  *self);
+gboolean       _editor_session_did_restore            (EditorSession  *self);
+GPtrArray     *_editor_session_get_pages              (EditorSession  *self);
+void           _editor_session_document_seen          (EditorSession  *self,
+                                                       EditorDocument *document);
 
 G_END_DECLS
