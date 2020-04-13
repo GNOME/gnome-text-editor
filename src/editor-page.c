@@ -863,3 +863,12 @@ editor_page_grab_focus (EditorPage *self)
   _editor_page_raise (self);
   gtk_widget_grab_focus (GTK_WIDGET (self->view));
 }
+
+gboolean
+editor_page_get_can_discard (EditorPage *self)
+{
+  g_return_val_if_fail (EDITOR_IS_PAGE (self), FALSE);
+
+  return editor_page_is_draft (self) &&
+         !gtk_text_buffer_get_modified (GTK_TEXT_BUFFER (self->document));
+}

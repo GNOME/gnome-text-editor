@@ -172,8 +172,7 @@ add_window_state (EditorSession   *self,
            * there are no modifications, we should ignore this page as we don't
            * want to restore it.
            */
-          if (editor_page_is_draft (page) &&
-              !gtk_text_buffer_get_modified (GTK_TEXT_BUFFER (document)))
+          if (editor_page_get_can_discard (page))
             continue;
 
           gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (document), &begin, insert);
