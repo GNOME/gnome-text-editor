@@ -34,5 +34,6 @@ void          _editor_page_discard_changes    (EditorPage      *self);
 void          _editor_page_print              (EditorPage      *self);
 void          _editor_page_copy_all           (EditorPage      *self);
 void          _editor_page_discard_changes    (EditorPage      *self);
+gint          _editor_page_position           (EditorPage      *self);
 
 G_END_DECLS

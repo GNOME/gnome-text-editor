@@ -872,3 +872,18 @@ editor_page_get_can_discard (EditorPage *self)
   return editor_page_is_draft (self) &&
          !gtk_text_buffer_get_modified (GTK_TEXT_BUFFER (self->document));
 }
+
+gint
+_editor_page_position (EditorPage *self)
+{
+  GtkWidget *notebook;
+
+  g_return_val_if_fail (EDITOR_IS_PAGE (self), -1);
+
+  if ((notebook = gtk_widget_get_ancestor (GTK_WIDGET (self), GTK_TYPE_NOTEBOOK)))
+    return gtk_notebook_page_num (GTK_NOTEBOOK (notebook), GTK_WIDGET (self));
+
+  g_print ("Womp\n");
+
+  return -1;
+}
