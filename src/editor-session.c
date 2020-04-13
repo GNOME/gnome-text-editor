@@ -897,8 +897,7 @@ editor_session_open (EditorSession *self,
   if (window == NULL)
     window = find_or_create_window (self);
 
-  if (editor_window_get_n_pages (window) == 1 &&
-      (page = editor_window_get_nth_page (window, 0)) &&
+  if ((page = editor_window_get_visible_page (window)) &&
       editor_page_get_can_discard (page))
     remove = page;
 
