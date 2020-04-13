@@ -144,10 +144,38 @@ editor_session_save_free (EditorSessionSave *state)
 }
 
 static void
+add_draft_state (EditorSession   *self,
+                 GVariantBuilder *builder)
+{
+  g_assert (EDITOR_IS_SESSION (self));
+  g_assert (builder != NULL);
+
+  g_variant_builder_open (builder, G_VARIANT_TYPE ("{sv}"));
+  g_variant_builder_add (builder, "s", "drafts");
+  g_variant_builder_open (builder, G_VARIANT_TYPE ("v"));
+  g_variant_builder_open (builder, G_VARIANT_TYPE ("aa{sv}"));
+  for (guint i = 0; i < self->drafts->len; i++)
+    {
+      const Draft *draft = &g_array_index (self->drafts, Draft, i);
+
+      g_variant_builder_open (builder, G_VARIANT_TYPE ("aa{sv}"));
+      g_variant_builder_open (builder, G_VARIANT_TYPE ("a{sv}"));
+      g_variant_builder_add_parsed (builder, "{'draft-id', <%s>}", draft->draft_id);
+      g_variant_builder_add_parsed (builder, "{'title', <%s>}", draft->title);
+      g_variant_builder_close (builder);
+      g_variant_builder_close (builder);
+    }
+  g_variant_builder_close (builder);
+  g_variant_builder_close (builder);
+  g_variant_builder_close (builder);
+}
+
+static void
 add_window_state (EditorSession   *self,
                   GVariantBuilder *builder)
 {
   g_assert (EDITOR_IS_SESSION (self));
+  g_assert (builder != NULL);
 
   g_variant_builder_open (builder, G_VARIANT_TYPE ("{sv}"));
   g_variant_builder_add (builder, "s", "windows");
@@ -829,6 +857,7 @@ editor_session_save_async (EditorSession       *self,
 
   g_variant_builder_init (&builder, G_VARIANT_TYPE ("a{sv}"));
   g_variant_builder_add_parsed (&builder, "{'version', <%u>}", 1);
+  add_draft_state (self, &builder);
   add_window_state (self, &builder);
   vstate = g_variant_builder_end (&builder);
 
