@@ -25,6 +25,7 @@
 #include <glib/gi18n.h>
 
 #include "editor-application.h"
+#include "editor-document-private.h"
 #include "editor-page-private.h"
 #include "editor-path-private.h"
 #include "editor-session.h"
@@ -38,6 +39,8 @@ struct _EditorSidebarItem
   GFile      *file;
   EditorPage *page;
   gchar      *search_text;
+  gchar      *draft_id;
+  gchar      *title;
 };
 
 enum {
@@ -98,6 +101,10 @@ editor_sidebar_item_notify_title_cb (EditorSidebarItem *self,
   g_assert (EDITOR_IS_PAGE (page));
 
   g_clear_pointer (&self->search_text, g_free);
+
+  g_clear_pointer (&self->title, g_free);
+  self->title = editor_page_dup_title (page);
+
   g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_TITLE]);
 }
 
@@ -124,6 +131,12 @@ _editor_sidebar_item_set_page (EditorSidebarItem *self,
     {
       if (page != NULL)
         {
+          EditorDocument *document = editor_page_get_document (page);
+          const gchar *draft_id = _editor_document_get_draft_id (document);
+
+          g_clear_pointer (&self->draft_id, g_free);
+          self->draft_id = g_strdup (draft_id);
+
           g_signal_connect_object (page,
                                    "notify::is-modified",
                                    G_CALLBACK (editor_sidebar_item_notify_is_modified_cb),
@@ -153,6 +166,7 @@ editor_sidebar_item_finalize (GObject *object)
   g_clear_object (&self->file);
   g_clear_object (&self->page);
   g_clear_pointer (&self->search_text, g_free);
+  g_clear_pointer (&self->draft_id, g_free);
 
   G_OBJECT_CLASS (editor_sidebar_item_parent_class)->finalize (object);
 }
@@ -184,7 +198,10 @@ editor_sidebar_item_get_property (GObject    *object,
       break;
 
     case PROP_TITLE:
-      g_value_take_string (value, _editor_sidebar_item_dup_title (self));
+      if (self->title != NULL)
+        g_value_set_string (value, self->title);
+      else
+        g_value_take_string (value, _editor_sidebar_item_dup_title (self));
       break;
 
     case PROP_SUBTITLE:
@@ -312,7 +329,8 @@ _editor_sidebar_item_get_is_modified (EditorSidebarItem *self)
 {
   g_return_val_if_fail (EDITOR_IS_SIDEBAR_ITEM (self), FALSE);
 
-  /* TODO: _editor_session_has_draft (session, file) */
+  if (self->page == NULL && self->file == NULL)
+    return TRUE;
 
   return self->page != NULL &&
          editor_page_get_is_modified (self->page);
@@ -348,7 +366,8 @@ _editor_sidebar_item_dup_subtitle (EditorSidebarItem *self)
       return g_steal_pointer (&ret);
     }
 
-  g_return_val_if_fail (G_IS_FILE (self->file), NULL);
+  if (self->file == NULL)
+    return g_strdup (_("Draft"));
 
   dir = g_file_get_parent (self->file);
 
