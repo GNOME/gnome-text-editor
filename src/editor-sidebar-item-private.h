@@ -38,7 +38,9 @@ void               _editor_sidebar_item_set_page        (EditorSidebarItem *self
 gboolean           _editor_sidebar_item_get_is_modified (EditorSidebarItem *self);
 gchar             *_editor_sidebar_item_dup_title       (EditorSidebarItem *self);
 gchar             *_editor_sidebar_item_dup_subtitle    (EditorSidebarItem *self);
-void               _editor_sidebar_item_open            (EditorSidebarItem *self);
+void               _editor_sidebar_item_open            (EditorSidebarItem *self,
+                                                         EditorSession     *session,
+                                                         EditorWindow      *window);
 gboolean           _editor_sidebar_item_matches         (EditorSidebarItem *self,
                                                          GPatternSpec      *spec);
 

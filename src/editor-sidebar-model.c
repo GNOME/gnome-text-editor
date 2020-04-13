@@ -166,6 +166,46 @@ editor_sidebar_model_page_removed_cb (EditorSidebarModel *self,
 }
 
 static void
+editor_sidebar_model_load_recent_cb (GObject      *object,
+                                     GAsyncResult *result,
+                                     gpointer      user_data)
+{
+  EditorSession *session = (EditorSession *)object;
+  g_autoptr(EditorSidebarModel) self = user_data;
+  g_autoptr(GPtrArray) files = NULL;
+  g_autoptr(GError) error = NULL;
+  guint position;
+
+  g_assert (EDITOR_IS_SESSION (session));
+  g_assert (G_IS_ASYNC_RESULT (result));
+  g_assert (EDITOR_IS_SIDEBAR_MODEL (self));
+
+  if (!(files = editor_session_load_recent_finish (session, result, &error)))
+    {
+      if (!g_error_matches (error, G_FILE_ERROR, G_FILE_ERROR_NOENT))
+        g_warning ("%s", error->message);
+      return;
+    }
+
+  g_ptr_array_set_free_func (files, g_object_unref);
+
+  position = g_sequence_get_length (self->seq);
+
+  for (guint i = 0; i < files->len; i++)
+    {
+      GFile *file = g_ptr_array_index (files, i);
+      g_autoptr(EditorSidebarItem) item = _editor_sidebar_item_new (file, NULL);
+      g_sequence_append (self->seq, g_steal_pointer (&item));
+    }
+
+  if (files->len > 0)
+    g_list_model_items_changed (G_LIST_MODEL (self),
+                                position,
+                                0,
+                                files->len);
+}
+
+static void
 editor_sidebar_model_constructed (GObject *object)
 {
   EditorSidebarModel *self = (EditorSidebarModel *)object;
@@ -197,6 +237,11 @@ editor_sidebar_model_constructed (GObject *object)
 
       editor_sidebar_model_page_added_cb (self, window, page, session);
     }
+
+  editor_session_load_recent_async (session,
+                                    NULL,
+                                    editor_sidebar_model_load_recent_cb,
+                                    g_object_ref (self));
 }
 
 static void

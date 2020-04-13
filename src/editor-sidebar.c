@@ -90,13 +90,18 @@ editor_sidebar_row_activated_cb (EditorSidebar    *self,
                                  GtkListBox       *list_box)
 {
   EditorSidebarItem *item;
+  EditorSession *session;
+  GtkWidget *window;
 
   g_assert (EDITOR_IS_SIDEBAR (self));
   g_assert (EDITOR_IS_SIDEBAR_ROW (row));
   g_assert (GTK_IS_LIST_BOX (list_box));
 
+  window = gtk_widget_get_ancestor (GTK_WIDGET (self), EDITOR_TYPE_WINDOW);
+  session = editor_application_get_session (EDITOR_APPLICATION_DEFAULT);
   item = _editor_sidebar_row_get_item (row);
-  _editor_sidebar_item_open (item);
+
+  _editor_sidebar_item_open (item, session, EDITOR_WINDOW (window));
 }
 
 static gboolean

@@ -286,7 +286,7 @@ editor_sidebar_item_class_init (EditorSidebarItemClass *klass)
                          "The subtitle for the row",
                          NULL,
                          (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
-  
+
   g_object_class_install_properties (object_class, N_PROPS, properties);
 }
 
@@ -378,20 +378,18 @@ _editor_sidebar_item_dup_subtitle (EditorSidebarItem *self)
 }
 
 void
-_editor_sidebar_item_open (EditorSidebarItem *self)
+_editor_sidebar_item_open (EditorSidebarItem *self,
+                           EditorSession     *session,
+                           EditorWindow      *window)
 {
   g_return_if_fail (EDITOR_IS_SIDEBAR_ITEM (self));
+  g_return_if_fail (EDITOR_IS_SESSION (session));
+  g_return_if_fail (EDITOR_IS_WINDOW (window));
 
-  if (self->page)
-    {
-      _editor_page_raise (self->page);
-    }
+  if (self->page == NULL)
+    editor_session_open (session, window, self->file);
   else
-    {
-      EditorWindow *window = EDITOR_WINDOW (gtk_widget_get_ancestor (GTK_WIDGET (self), EDITOR_TYPE_WINDOW));
-      EditorSession *session = editor_application_get_session (EDITOR_APPLICATION_DEFAULT);
-      editor_session_open (session, window, self->file);
-    }
+    _editor_page_raise (self->page);
 }
 
 gboolean
