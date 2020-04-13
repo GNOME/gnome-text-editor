@@ -151,12 +151,18 @@ editor_sidebar_model_page_removed_cb (EditorSidebarModel *self,
 
   if ((iter = find_by_document (self, document)))
     {
+      EditorSidebarItem *item = g_sequence_get (iter);
       guint position = g_sequence_iter_get_position (iter);
-      g_sequence_remove (iter);
-      g_list_model_items_changed (G_LIST_MODEL (self),
-                                  position,
-                                  1,
-                                  0);
+
+      if (editor_page_get_can_discard (page))
+        {
+          g_sequence_remove (iter);
+          g_list_model_items_changed (G_LIST_MODEL (self), position, 1, 0);
+          return;
+        }
+
+      _editor_sidebar_item_set_page (item, NULL);
+      g_list_model_items_changed (G_LIST_MODEL (self), position, 1, 1);
     }
 }
 

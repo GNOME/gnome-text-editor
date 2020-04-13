@@ -33,6 +33,8 @@ EditorSidebarItem *_editor_sidebar_item_new             (GFile             *file
 gboolean           _editor_sidebar_item_get_empty       (EditorSidebarItem *self);
 GFile             *_editor_sidebar_item_get_file        (EditorSidebarItem *self);
 EditorPage        *_editor_sidebar_item_get_page        (EditorSidebarItem *self);
+void               _editor_sidebar_item_set_page        (EditorSidebarItem *self,
+                                                         EditorPage        *page);
 gboolean           _editor_sidebar_item_get_is_modified (EditorSidebarItem *self);
 gchar             *_editor_sidebar_item_dup_title       (EditorSidebarItem *self);
 gchar             *_editor_sidebar_item_dup_subtitle    (EditorSidebarItem *self);

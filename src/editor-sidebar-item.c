@@ -113,9 +113,9 @@ editor_sidebar_item_notify_subtitle_cb (EditorSidebarItem *self,
   g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_SUBTITLE]);
 }
 
-static void
-editor_sidebar_item_set_page (EditorSidebarItem *self,
-                              EditorPage        *page)
+void
+_editor_sidebar_item_set_page (EditorSidebarItem *self,
+                               EditorPage        *page)
 {
   g_return_if_fail (EDITOR_IS_SIDEBAR_ITEM (self));
   g_return_if_fail (!page || EDITOR_IS_PAGE (page));
@@ -211,7 +211,7 @@ editor_sidebar_item_set_property (GObject      *object,
       break;
 
     case PROP_PAGE:
-      editor_sidebar_item_set_page (self, g_value_get_object (value));
+      _editor_sidebar_item_set_page (self, g_value_get_object (value));
       break;
 
     default:
