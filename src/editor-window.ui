@@ -10,12 +10,14 @@
         <property name="show-title-buttons">True</property>
         <child type="title">
           <object class="GtkBox">
+            <property name="hexpand">true</property>
             <property name="valign">center</property>
             <property name="orientation">vertical</property>
             <property name="margin-start">12</property>
             <property name="margin-end">12</property>
             <child>
               <object class="GtkCenterBox">
+                <property name="hexpand">true</property>
                 <child type="start">
                   <object class="GtkLabel" id="is_modified">
                     <property name="halign">end</property>
@@ -27,7 +29,7 @@
                 </child>
                 <child type="center">
                   <object class="GtkLabel" id="title">
-                    <property name="hexpand">false</property>
+                    <property name="hexpand">true</property>
                     <property name="ellipsize">end</property>
                     <property name="width-chars">5</property>
                     <property name="max-width-chars">20</property>
