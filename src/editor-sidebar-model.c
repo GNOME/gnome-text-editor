@@ -318,6 +318,7 @@ editor_sidebar_model_constructed (GObject *object)
 
           _editor_sidebar_item_set_title (item, draft->title);
           _editor_sidebar_item_set_is_modified (item, TRUE, TRUE);
+          _editor_sidebar_item_set_draft_id (item, draft->draft_id);
 
           g_sequence_append (self->seq, g_steal_pointer (&item));
           g_list_model_items_changed (G_LIST_MODEL (self), position, 0, 1);
