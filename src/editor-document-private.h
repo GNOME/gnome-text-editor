@@ -30,6 +30,8 @@ const gchar    *_editor_document_get_draft_id   (EditorDocument       *self);
 void            _editor_document_set_draft_id   (EditorDocument       *self,
                                                  const gchar          *draft_id);
 GFile          *_editor_document_get_draft_file (EditorDocument       *self);
+gchar          *_editor_document_dup_title      (EditorDocument       *self);
+gchar          *_editor_document_dup_uri        (EditorDocument       *self);
 void            _editor_document_mark_busy      (EditorDocument       *self);
 void            _editor_document_unmark_busy    (EditorDocument       *self);
 void            _editor_document_load_async     (EditorDocument       *self,

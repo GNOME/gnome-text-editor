@@ -1112,3 +1112,51 @@ _editor_document_get_draft_file (EditorDocument *self)
                                     self->draft_id,
                                     NULL);
 }
+
+gchar *
+_editor_document_dup_title (EditorDocument *self)
+{
+  g_autofree gchar *slice = NULL;
+  GFile *file;
+  GtkTextIter begin;
+  GtkTextIter end;
+  guint i;
+
+  g_return_val_if_fail (EDITOR_IS_DOCUMENT (self), NULL);
+
+  file = editor_document_get_file (self);
+
+  if (file != NULL)
+    return g_file_get_basename (file);
+
+  gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (self), &begin);
+
+  for (end = begin, i = 0; i < TITLE_MAX_LEN; i++)
+    {
+      if (gtk_text_iter_ends_line (&end))
+        break;
+
+      if (!gtk_text_iter_forward_char (&end))
+        break;
+    }
+
+  slice = g_strstrip (gtk_text_iter_get_slice (&begin, &end));
+
+  if (slice[0] == '\0')
+    return NULL;
+
+  return g_steal_pointer (&slice);
+}
+
+gchar *
+_editor_document_dup_uri (EditorDocument *self)
+{
+  GFile *file;
+
+  g_return_val_if_fail (EDITOR_IS_DOCUMENT (self), NULL);
+
+  if ((file = editor_document_get_file (self)))
+    return g_file_get_uri (file);
+
+  return NULL;
+}

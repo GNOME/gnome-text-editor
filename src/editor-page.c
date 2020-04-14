@@ -34,8 +34,6 @@
 #include "editor-utils-private.h"
 #include "editor-window.h"
 
-#define TITLE_MAX_LEN 20
-
 struct _EditorPage
 {
   GtkBin              parent_instance;
@@ -528,36 +526,9 @@ editor_page_is_active (EditorPage *self)
 gchar *
 _editor_page_dup_title_no_i18n (EditorPage *self)
 {
-  g_autofree gchar *slice = NULL;
-  GFile *file;
-  GtkTextIter begin;
-  GtkTextIter end;
-  guint i;
-
   g_return_val_if_fail (EDITOR_IS_PAGE (self), NULL);
 
-  file = editor_document_get_file (self->document);
-
-  if (file != NULL)
-    return g_file_get_basename (file);
-
-  gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (self->document), &begin);
-
-  for (end = begin, i = 0; i < TITLE_MAX_LEN; i++)
-    {
-      if (gtk_text_iter_ends_line (&end))
-        break;
-
-      if (!gtk_text_iter_forward_char (&end))
-        break;
-    }
-
-  slice = g_strstrip (gtk_text_iter_get_slice (&begin, &end));
-
-  if (slice[0] == '\0')
-    return NULL;
-
-  return g_steal_pointer (&slice);
+  return _editor_document_dup_title (self->document);
 }
 
 gchar *
