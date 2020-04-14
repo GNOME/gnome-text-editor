@@ -983,12 +983,38 @@ editor_session_save_finish (EditorSession  *self,
   return g_task_propagate_boolean (G_TASK (result), error);
 }
 
+static const gchar *
+get_draft_id_for_file (EditorSession *self,
+                       GFile         *file)
+{
+  g_autofree gchar *uri = NULL;
+
+  g_assert (EDITOR_IS_SESSION (self));
+  g_assert (!file || G_IS_FILE (file));
+
+  if (file == NULL)
+    return NULL;
+
+  uri = g_file_get_uri (file);
+
+  for (guint i = 0; i < self->drafts->len; i++)
+    {
+      const EditorSessionDraft *draft = &g_array_index (self->drafts, EditorSessionDraft, i);
+
+      if (g_strcmp0 (uri, draft->uri) == 0)
+        return draft->draft_id;
+    }
+
+  return NULL;
+}
+
 void
 editor_session_open (EditorSession *self,
                      EditorWindow  *window,
                      GFile         *file)
 {
   g_autoptr(EditorDocument) document = NULL;
+  const gchar *draft_id;
   EditorPage *remove = NULL;
   EditorPage *page;
 
@@ -1010,6 +1036,10 @@ editor_session_open (EditorSession *self,
     remove = page;
 
   document = editor_document_new_for_file (file);
+
+  if ((draft_id = get_draft_id_for_file (self, file)))
+    _editor_document_set_draft_id (document, draft_id);
+
   page = editor_page_new_for_document (document);
   editor_session_add_page (self, window, page);
 
