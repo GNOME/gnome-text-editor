@@ -202,6 +202,8 @@ editor_application_startup (GApplication *application)
                                               GTK_STYLE_PROVIDER (font_css_provider),
                                               GTK_STYLE_PROVIDER_PRIORITY_APPLICATION+1);
   editor_application_update_font_cb (self->settings, NULL, font_css_provider);
+
+  gtk_window_set_default_icon_name (PACKAGE_ICON_NAME);
 }
 
 static void
