@@ -579,10 +579,14 @@ editor_page_dup_subtitle (EditorPage *self)
 void
 _editor_page_raise (EditorPage *self)
 {
+  g_autofree gchar *title = NULL;
   GtkWidget *notebook;
   gint page_num;
 
   g_return_if_fail (EDITOR_IS_PAGE (self));
+
+  title = editor_page_dup_title (self);
+  g_debug ("Attempting to raise page: \"%s\"", title);
 
   if (!(notebook = gtk_widget_get_ancestor (GTK_WIDGET (self), GTK_TYPE_NOTEBOOK)))
     return;

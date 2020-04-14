@@ -23,7 +23,7 @@
 #include "config.h"
 
 #include "editor-application.h"
-#include "editor-document.h"
+#include "editor-document-private.h"
 #include "editor-page-private.h"
 #include "editor-session-private.h"
 #include "editor-sidebar-item-private.h"
@@ -78,17 +78,13 @@ find_by_document (EditorSidebarModel *self,
                   EditorDocument     *document)
 {
   GSequenceIter *iter;
+  const gchar *draft_id;
   GFile *file;
 
   g_assert (EDITOR_IS_SIDEBAR_MODEL (self));
   g_assert (EDITOR_IS_DOCUMENT (document));
 
-  /* TODO: Once these are sorted, we can binary search, however
-   *       we'll probably keep the open documents at the head
-   *       and just linearly search them (but stop at NULL
-   *       document).
-   */
-
+  draft_id = _editor_document_get_draft_id (document);
   file = editor_document_get_file (document);
 
   for (iter = g_sequence_get_begin_iter (self->seq);
@@ -98,8 +94,13 @@ find_by_document (EditorSidebarModel *self,
       EditorSidebarItem *item = g_sequence_get (iter);
       GFile *item_file = _editor_sidebar_item_get_file (item);
       EditorPage *page = _editor_sidebar_item_get_page (item);
+      const gchar *item_draft_id = _editor_sidebar_item_get_draft_id (item);
 
       if (file != NULL && item_file != NULL && g_file_equal (file, item_file))
+        return iter;
+
+      /* Maybe the draft-id match (for documents without a file yet) */
+      if (item_draft_id != NULL && g_strcmp0 (item_draft_id, draft_id) == 0)
         return iter;
 
       if (page == NULL)
@@ -318,6 +319,7 @@ editor_sidebar_model_constructed (GObject *object)
 
           _editor_sidebar_item_set_title (item, draft->title);
           _editor_sidebar_item_set_is_modified (item, TRUE, TRUE);
+          _editor_sidebar_item_set_draft_id (item, draft->draft_id);
 
           g_sequence_append (self->seq, g_steal_pointer (&item));
           g_list_model_items_changed (G_LIST_MODEL (self), position, 0, 1);

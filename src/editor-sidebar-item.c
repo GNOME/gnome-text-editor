@@ -28,7 +28,7 @@
 #include "editor-document-private.h"
 #include "editor-page-private.h"
 #include "editor-path-private.h"
-#include "editor-session.h"
+#include "editor-session-private.h"
 #include "editor-sidebar-item-private.h"
 #include "editor-window.h"
 
@@ -48,12 +48,13 @@ struct _EditorSidebarItem
 
 enum {
   PROP_0,
-  PROP_FILE,
-  PROP_PAGE,
+  PROP_DRAFT_ID,
   PROP_EMPTY,
+  PROP_FILE,
   PROP_IS_MODIFIED,
-  PROP_TITLE,
+  PROP_PAGE,
   PROP_SUBTITLE,
+  PROP_TITLE,
   N_PROPS
 };
 
@@ -140,10 +141,10 @@ _editor_sidebar_item_set_page (EditorSidebarItem *self,
           EditorDocument *document = editor_page_get_document (page);
           const gchar *draft_id = _editor_document_get_draft_id (document);
 
-          g_clear_pointer (&self->draft_id, g_free);
-          self->draft_id = g_strdup (draft_id);
+          _editor_sidebar_item_set_draft_id (self, draft_id);
 
-          self->is_modified_set = FALSE;
+          self->is_modified = editor_page_get_is_modified (page);
+          self->is_modified_set = TRUE;
 
           g_signal_connect_object (page,
                                    "notify::is-modified",
@@ -191,6 +192,10 @@ editor_sidebar_item_get_property (GObject    *object,
 
   switch (prop_id)
     {
+    case PROP_DRAFT_ID:
+      g_value_set_string (value, self->draft_id);
+      break;
+
     case PROP_EMPTY:
       g_value_set_boolean (value, _editor_sidebar_item_get_empty (self));
       break;
@@ -233,6 +238,10 @@ editor_sidebar_item_set_property (GObject      *object,
 
   switch (prop_id)
     {
+    case PROP_DRAFT_ID:
+      _editor_sidebar_item_set_draft_id (self, g_value_get_string (value));
+      break;
+
     case PROP_FILE:
       editor_sidebar_item_set_file (self, g_value_get_object (value));
       break;
@@ -254,6 +263,13 @@ editor_sidebar_item_class_init (EditorSidebarItemClass *klass)
   object_class->finalize = editor_sidebar_item_finalize;
   object_class->get_property = editor_sidebar_item_get_property;
   object_class->set_property = editor_sidebar_item_set_property;
+
+  properties [PROP_DRAFT_ID] =
+    g_param_spec_string ("draft-id",
+                         "Draft ID",
+                         "The identifier for a draft",
+                         NULL,
+                         (G_PARAM_READWRITE | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_STRINGS));
 
   properties [PROP_EMPTY] =
     g_param_spec_boolean ("empty",
@@ -404,11 +420,27 @@ _editor_sidebar_item_open (EditorSidebarItem *self,
   g_return_if_fail (EDITOR_IS_SIDEBAR_ITEM (self));
   g_return_if_fail (EDITOR_IS_SESSION (session));
   g_return_if_fail (EDITOR_IS_WINDOW (window));
+  g_return_if_fail (self->page || self->file || self->draft_id);
 
-  if (self->page == NULL)
-    editor_session_open (session, window, self->file);
-  else
-    _editor_page_raise (self->page);
+  if (self->page != NULL)
+    {
+      _editor_page_raise (self->page);
+      return;
+    }
+
+  if (self->file != NULL)
+    {
+      editor_session_open (session, window, self->file);
+      return;
+    }
+
+  if (self->draft_id != NULL)
+    {
+      _editor_session_open_draft (session, window, self->draft_id);
+      return;
+    }
+
+  g_warn_if_reached ();
 }
 
 gboolean
@@ -465,5 +497,27 @@ _editor_sidebar_item_set_title (EditorSidebarItem *self,
       g_free (self->title);
       self->title = g_strdup (title);
       g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_TITLE]);
+    }
+}
+
+const gchar *
+_editor_sidebar_item_get_draft_id (EditorSidebarItem *self)
+{
+  g_return_val_if_fail (EDITOR_IS_SIDEBAR_ITEM (self), NULL);
+
+  return self->draft_id;
+}
+
+void
+_editor_sidebar_item_set_draft_id (EditorSidebarItem *self,
+                                   const gchar       *draft_id)
+{
+  g_return_if_fail (EDITOR_IS_SIDEBAR_ITEM (self));
+
+  if (g_strcmp0 (draft_id, self->draft_id) != 0)
+    {
+      g_free (self->draft_id);
+      self->draft_id = g_strdup (draft_id);
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_DRAFT_ID]);
     }
 }

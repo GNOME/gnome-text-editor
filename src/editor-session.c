@@ -321,7 +321,7 @@ editor_session_dispose (GObject *object)
   if (self->pages->len > 0)
     g_ptr_array_remove_range (self->pages, 0, self->pages->len);
 
-  if (self->seen->len > 0)
+  if (self->seen != NULL && self->seen->len > 0)
     g_ptr_array_remove_range (self->seen, 0, self->seen->len);
 
   G_OBJECT_CLASS (editor_session_parent_class)->dispose (object);
@@ -1014,6 +1014,7 @@ editor_session_open (EditorSession *self,
                      GFile         *file)
 {
   g_autoptr(EditorDocument) document = NULL;
+  g_autofree gchar *uri = NULL;
   const gchar *draft_id;
   EditorPage *remove = NULL;
   EditorPage *page;
@@ -1021,6 +1022,9 @@ editor_session_open (EditorSession *self,
   g_return_if_fail (EDITOR_IS_SESSION (self));
   g_return_if_fail (!window || EDITOR_IS_WINDOW (window));
   g_return_if_fail (G_IS_FILE (file));
+
+  uri = g_file_get_uri (file);
+  g_debug ("Attempting to open file: \"%s\"", uri);
 
   if ((page = find_page_for_file (self, file)))
     {
@@ -1058,6 +1062,41 @@ editor_session_open_files (EditorSession  *self,
 
   for (guint i = 0; i < n_files; i++)
     editor_session_open (self, NULL, files[i]);
+}
+
+void
+_editor_session_open_draft (EditorSession *self,
+                            EditorWindow  *window,
+                            const gchar   *draft_id)
+{
+  g_autoptr(EditorDocument) new_document = NULL;
+
+  g_return_if_fail (EDITOR_IS_SESSION (self));
+  g_return_if_fail (!window || EDITOR_IS_WINDOW (window));
+  g_return_if_fail (draft_id != NULL);
+
+  g_debug ("Attempting to open draft \"%s\"", draft_id);
+
+  if (window == NULL)
+    window = find_or_create_window (self);
+
+  for (guint i = 0; i < self->pages->len; i++)
+    {
+      EditorPage *page = g_ptr_array_index (self->pages, i);
+      EditorDocument *document = editor_page_get_document (page);
+      const gchar *doc_draft_id = _editor_document_get_draft_id (document);
+
+      /* If this document matches the draft-id, short-circuit. */
+      if (g_strcmp0 (doc_draft_id, draft_id) == 0)
+        {
+          _editor_page_raise (page);
+          return;
+        }
+    }
+
+  new_document = _editor_document_new (NULL, draft_id);
+  editor_session_add_document (self, window, new_document);
+  _editor_document_load_async (new_document, NULL, NULL, NULL);
 }
 
 static void

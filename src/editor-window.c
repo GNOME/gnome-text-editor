@@ -121,7 +121,7 @@ editor_window_notify_current_page_cb (EditorWindow *self,
 
   g_assert (!page || EDITOR_IS_PAGE (page));
 
-  gtk_label_set_label (self->title, _("Text Editor"));
+  gtk_label_set_label (self->title, _(PACKAGE_NAME));
   gtk_label_set_label (self->subtitle, NULL);
   gtk_widget_set_visible (GTK_WIDGET (self->is_modified), FALSE);
   gtk_widget_set_visible (GTK_WIDGET (self->position_label), page != NULL);
@@ -349,6 +349,7 @@ editor_window_init (EditorWindow *self)
 {
   gtk_widget_init_template (GTK_WIDGET (self));
 
+  gtk_window_set_title (GTK_WINDOW (self), _(PACKAGE_NAME));
   gtk_window_set_default_size (GTK_WINDOW (self), 700, 520);
 
   g_signal_connect_swapped (self->notebook,
