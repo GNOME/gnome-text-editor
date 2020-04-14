@@ -195,6 +195,8 @@ editor_window_actions_open_cb (GtkWidget   *widget,
                                GVariant    *param)
 {
   EditorWindow *self = (EditorWindow *)widget;
+  g_autoptr(GtkFileFilter) all_files = NULL;
+  g_autoptr(GtkFileFilter) text_files = NULL;
   GtkFileChooserNative *native;
   EditorDocument *document;
   EditorPage *page;
@@ -218,6 +220,17 @@ editor_window_actions_open_cb (GtkWidget   *widget,
       if (dir != NULL)
         gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (native), dir, NULL);
     }
+
+  all_files = gtk_file_filter_new ();
+  gtk_file_filter_set_name (all_files, _("All Files"));
+  gtk_file_filter_add_pattern (all_files, "*");
+  gtk_file_chooser_add_filter (GTK_FILE_CHOOSER (native), all_files);
+
+  text_files = gtk_file_filter_new ();
+  gtk_file_filter_set_name (text_files, _("Text Files"));
+  gtk_file_filter_add_mime_type (text_files, "text/plain");
+  gtk_file_chooser_add_filter (GTK_FILE_CHOOSER (native), text_files);
+  gtk_file_chooser_set_filter (GTK_FILE_CHOOSER (native), text_files);
 
   ret = gtk_native_dialog_run (GTK_NATIVE_DIALOG (native));
 
