@@ -65,6 +65,7 @@ typedef struct
 {
   gchar *draft_id;
   gchar *title;
+  gchar *uri;
 } Draft;
 
 G_DEFINE_TYPE (EditorSession, editor_session, G_TYPE_OBJECT)
@@ -90,6 +91,7 @@ clear_draft (Draft *draft)
 {
   g_clear_pointer (&draft->draft_id, g_free);
   g_clear_pointer (&draft->title, g_free);
+  g_clear_pointer (&draft->uri, g_free);
 }
 
 static GVariant *
@@ -161,7 +163,10 @@ add_draft_state (EditorSession   *self,
       g_variant_builder_open (builder, G_VARIANT_TYPE ("aa{sv}"));
       g_variant_builder_open (builder, G_VARIANT_TYPE ("a{sv}"));
       g_variant_builder_add_parsed (builder, "{'draft-id', <%s>}", draft->draft_id);
-      g_variant_builder_add_parsed (builder, "{'title', <%s>}", draft->title);
+      if (draft->title != NULL)
+        g_variant_builder_add_parsed (builder, "{'title', <%s>}", draft->title);
+      if (draft->uri != NULL)
+        g_variant_builder_add_parsed (builder, "{'uri', <%s>}", draft->uri);
       g_variant_builder_close (builder);
       g_variant_builder_close (builder);
     }
@@ -610,6 +615,55 @@ editor_session_remove_page_cb (GObject      *object,
   _editor_window_remove_page (window, page);
 }
 
+static void
+editor_session_stash_draft (EditorSession *self,
+                            const gchar   *draft_id,
+                            const gchar   *title,
+                            GFile         *file)
+{
+  g_autofree gchar *draft_uri = NULL;
+  Draft d;
+
+  g_assert (EDITOR_IS_SESSION (self));
+  g_assert (draft_id != NULL);
+  g_assert (!file || G_IS_FILE (file));
+
+  for (guint i = 0; i < self->drafts->len; i++)
+    {
+      Draft *draft = &g_array_index (self->drafts, Draft, i);
+      g_autofree gchar *uri = NULL;
+
+      if (g_strcmp0 (draft->draft_id, draft_id) != 0)
+        continue;
+
+      if (g_strcmp0 (draft->title, title) != 0)
+        {
+          g_clear_pointer (&draft->title, g_free);
+          draft->title = g_strdup (title);
+        }
+
+      if (file != NULL)
+        uri = g_file_get_uri (file);
+
+      if (g_strcmp0 (draft->uri, uri) != 0)
+        {
+          g_clear_pointer (&draft->uri, g_free);
+          draft->uri = g_steal_pointer (&uri);
+        }
+
+      return;
+    }
+
+  if (file != NULL)
+    draft_uri = g_file_get_uri (file);
+
+  d.title = g_strdup (title);
+  d.uri = g_steal_pointer (&draft_uri);
+  d.draft_id = g_strdup (draft_id);
+
+  g_array_append_val (self->drafts, d);
+}
+
 /**
  * editor_session_remove_page:
  * @self: an #EditorSession
@@ -637,7 +691,24 @@ editor_session_remove_page (EditorSession *self,
   g_object_ref (page);
 
   if (g_ptr_array_remove (self->pages, page))
-    g_signal_emit (self, signals [PAGE_REMOVED], 0, window, page);
+    {
+      /* If this page contains modifications, we don't want
+       * to lose them when the page is removed. We want to
+       * keep track that there is modified state (and where
+       * to restore it from) so when the user clicks on it
+       * from the sidebar, the state is reloaded.
+       */
+      if (editor_page_get_is_modified (page))
+        {
+          g_autofree gchar *title = _editor_page_dup_title_no_i18n (page);
+          const gchar *draft_id = _editor_document_get_draft_id (document);
+          GFile *file = editor_document_get_file (document);
+
+          editor_session_stash_draft (self, draft_id, title, file);
+        }
+
+      g_signal_emit (self, signals [PAGE_REMOVED], 0, window, page);
+    }
 
   editor_document_save_draft_async (document,
                                     NULL,
@@ -1152,9 +1223,47 @@ editor_session_restore_v1_pages (EditorSession *self,
 }
 
 static void
+editor_session_restore_v1_drafts (EditorSession *self,
+                                  GVariant      *drafts)
+{
+  GVariantIter iter;
+  GVariant *draft;
+
+  g_assert (EDITOR_IS_SESSION (self));
+  g_assert (drafts != NULL);
+  g_assert (g_variant_is_of_type (drafts, G_VARIANT_TYPE ("aa{sv}")));
+
+  g_variant_iter_init (&iter, drafts);
+  while (g_variant_iter_loop (&iter, "@a{sv}", &draft))
+    {
+      const gchar *draft_id;
+
+      if (g_variant_lookup (draft, "draft-id", "&s", &draft_id))
+        {
+          const gchar *title;
+          const gchar *uri;
+          Draft d;
+
+          if (!g_variant_lookup (draft, "title", "&s", &title))
+            title = NULL;
+
+          if (!g_variant_lookup (draft, "uri", "&s", &uri))
+            uri = NULL;
+
+          d.draft_id = g_strdup (draft_id);
+          d.title = g_strdup (title);
+          d.uri = g_strdup (uri);
+
+          g_array_append_val (self->drafts, d);
+        }
+    }
+}
+
+static void
 editor_session_restore_v1 (EditorSession *self,
                            GVariant      *state)
 {
+  g_autoptr(GVariant) drafts = NULL;
   g_autoptr(GVariant) windows = NULL;
   GVariantIter iter;
   GVariant *window;
@@ -1163,6 +1272,9 @@ editor_session_restore_v1 (EditorSession *self,
   g_assert (EDITOR_IS_SESSION (self));
   g_assert (state != NULL);
   g_assert (g_variant_is_of_type (state, G_VARIANT_TYPE_VARDICT));
+
+  if ((drafts = g_variant_lookup_value (state, "drafts", G_VARIANT_TYPE ("aa{sv}"))))
+    editor_session_restore_v1_drafts (self, drafts);
 
   if (!(windows = g_variant_lookup_value (state, "windows", G_VARIANT_TYPE ("aa{sv}"))) ||
       g_variant_n_children (windows) == 0)
