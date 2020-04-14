@@ -500,6 +500,14 @@ _editor_sidebar_item_set_title (EditorSidebarItem *self,
     }
 }
 
+const gchar *
+_editor_sidebar_item_get_draft_id (EditorSidebarItem *self)
+{
+  g_return_val_if_fail (EDITOR_IS_SIDEBAR_ITEM (self), NULL);
+
+  return self->draft_id;
+}
+
 void
 _editor_sidebar_item_set_draft_id (EditorSidebarItem *self,
                                    const gchar       *draft_id)

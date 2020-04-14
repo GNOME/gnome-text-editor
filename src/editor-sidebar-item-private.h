@@ -35,6 +35,7 @@ GFile             *_editor_sidebar_item_get_file        (EditorSidebarItem *self
 EditorPage        *_editor_sidebar_item_get_page        (EditorSidebarItem *self);
 void               _editor_sidebar_item_set_page        (EditorSidebarItem *self,
                                                          EditorPage        *page);
+const gchar       *_editor_sidebar_item_get_draft_id    (EditorSidebarItem *self);
 void               _editor_sidebar_item_set_draft_id    (EditorSidebarItem *self,
                                                          const gchar       *draft_id);
 gboolean           _editor_sidebar_item_get_is_modified (EditorSidebarItem *self);
