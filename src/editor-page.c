@@ -822,7 +822,9 @@ editor_page_delete_draft_cb (GObject      *object,
       _editor_document_set_draft_id (self->document, NULL);
     }
 
-  _editor_document_load_async (self->document, NULL, NULL, NULL);
+  _editor_document_load_async (self->document,
+                               _editor_page_get_window (self),
+                               NULL, NULL, NULL);
 }
 
 void

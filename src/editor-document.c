@@ -27,6 +27,7 @@
 #include "editor-application.h"
 #include "editor-document-private.h"
 #include "editor-session-private.h"
+#include "editor-window.h"
 
 #define METATDATA_CURSOR "metadata::gnome-text-editor-cursor"
 #define TITLE_MAX_LEN    20
@@ -53,15 +54,16 @@ typedef struct
 
 typedef struct
 {
-  GFile  *file;
-  GFile  *draft_file;
-  gchar  *content_type;
-  gint64  draft_modified_at;
-  gint64  modified_at;
-  guint   n_active;
-  guint   highlight_syntax : 1;
-  guint   has_draft : 1;
-  guint   has_file : 1;
+  GFile           *file;
+  GFile           *draft_file;
+  gchar           *content_type;
+  GMountOperation *mount_operation;
+  gint64           draft_modified_at;
+  gint64           modified_at;
+  guint            n_active;
+  guint            highlight_syntax : 1;
+  guint            has_draft : 1;
+  guint            has_file : 1;
 } Load;
 
 G_DEFINE_TYPE (EditorDocument, editor_document, GTK_SOURCE_TYPE_BUFFER)
@@ -87,6 +89,7 @@ load_free (Load *load)
 {
   g_clear_object (&load->file);
   g_clear_object (&load->draft_file);
+  g_clear_object (&load->mount_operation);
   g_clear_pointer (&load->content_type, g_free);
   g_slice_free (Load, load);
 }
@@ -942,6 +945,7 @@ editor_document_load_file_info_cb (GObject      *object,
 
 void
 _editor_document_load_async (EditorDocument      *self,
+                             EditorWindow        *window,
                              GCancellable        *cancellable,
                              GAsyncReadyCallback  callback,
                              gpointer             user_data)
@@ -951,6 +955,7 @@ _editor_document_load_async (EditorDocument      *self,
   Load *load;
 
   g_return_if_fail (EDITOR_IS_DOCUMENT (self));
+  g_return_if_fail (!window || EDITOR_IS_WINDOW (window));
   g_return_if_fail (!cancellable || G_IS_CANCELLABLE (cancellable));
 
   file = editor_document_get_file (self);
@@ -958,6 +963,11 @@ _editor_document_load_async (EditorDocument      *self,
   load = g_slice_new0 (Load);
   load->file = file ? g_file_dup (file) : NULL;
   load->draft_file = editor_document_get_draft_file (self);
+
+  if (window != NULL)
+    load->mount_operation = gtk_mount_operation_new (GTK_WINDOW (window));
+  else
+    load->mount_operation = g_mount_operation_new ();
 
   if (gtk_source_buffer_get_highlight_syntax (GTK_SOURCE_BUFFER (self)))
     load->highlight_syntax = TRUE;

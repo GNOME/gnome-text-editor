@@ -35,6 +35,7 @@ gchar          *_editor_document_dup_uri        (EditorDocument       *self);
 void            _editor_document_mark_busy      (EditorDocument       *self);
 void            _editor_document_unmark_busy    (EditorDocument       *self);
 void            _editor_document_load_async     (EditorDocument       *self,
+                                                 EditorWindow         *window,
                                                  GCancellable         *cancellable,
                                                  GAsyncReadyCallback   callback,
                                                  gpointer              user_data);
