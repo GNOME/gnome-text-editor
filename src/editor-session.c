@@ -1129,6 +1129,7 @@ editor_session_restore_delete_unused (EditorSession *self)
 
   ar = g_ptr_array_new_with_free_func (g_free);
 
+  /* Add draft_id from known pages */
   for (guint i = 0; i < self->pages->len; i++)
     {
       EditorPage *page = g_ptr_array_index (self->pages, i);
@@ -1136,6 +1137,14 @@ editor_session_restore_delete_unused (EditorSession *self)
       const gchar *draft_id = _editor_document_get_draft_id (document);
 
       g_ptr_array_add (ar, g_strdup (draft_id));
+    }
+
+  /* Now add draft_id from unopened but known drafts */
+  for (guint i = 0; i < self->drafts->len; i++)
+    {
+      const Draft *draft = &g_array_index (self->drafts, Draft, i);
+
+      g_ptr_array_add (ar, g_strdup (draft->draft_id));
     }
 
   g_ptr_array_add (ar, NULL);
