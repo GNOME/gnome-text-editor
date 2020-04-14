@@ -179,6 +179,8 @@ editor_sidebar_model_page_added_cb (EditorSidebarModel *self,
 
       /* Now we want to add the item at the new position */
       g_list_model_items_changed (G_LIST_MODEL (self), page_num, 0, 1);
+
+      return;
     }
 
   iter = g_sequence_get_iter_at_pos (self->seq, page_num);
