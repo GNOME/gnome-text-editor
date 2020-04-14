@@ -526,7 +526,7 @@ editor_page_is_active (EditorPage *self)
 }
 
 gchar *
-editor_page_dup_title (EditorPage *self)
+_editor_page_dup_title_no_i18n (EditorPage *self)
 {
   g_autofree gchar *slice = NULL;
   GFile *file;
@@ -555,9 +555,22 @@ editor_page_dup_title (EditorPage *self)
   slice = g_strstrip (gtk_text_iter_get_slice (&begin, &end));
 
   if (slice[0] == '\0')
-    return g_strdup (_("New Document"));
+    return NULL;
 
   return g_steal_pointer (&slice);
+}
+
+gchar *
+editor_page_dup_title (EditorPage *self)
+{
+  g_autofree gchar *ret = NULL;
+
+  g_return_val_if_fail (EDITOR_IS_PAGE (self), NULL);
+
+  if (!(ret = _editor_page_dup_title_no_i18n (self)))
+    return g_strdup (_("New Document"));
+
+  return g_steal_pointer (&ret);
 }
 
 gchar *
