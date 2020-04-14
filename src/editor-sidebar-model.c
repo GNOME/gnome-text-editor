@@ -78,6 +78,7 @@ find_by_document (EditorSidebarModel *self,
                   EditorDocument     *document)
 {
   GSequenceIter *iter;
+  GFile *file;
 
   g_assert (EDITOR_IS_SIDEBAR_MODEL (self));
   g_assert (EDITOR_IS_DOCUMENT (document));
@@ -88,12 +89,18 @@ find_by_document (EditorSidebarModel *self,
    *       document).
    */
 
+  file = editor_document_get_file (document);
+
   for (iter = g_sequence_get_begin_iter (self->seq);
        !g_sequence_iter_is_end (iter);
        iter = g_sequence_iter_next (iter))
     {
       EditorSidebarItem *item = g_sequence_get (iter);
+      GFile *item_file = _editor_sidebar_item_get_file (item);
       EditorPage *page = _editor_sidebar_item_get_page (item);
+
+      if (file != NULL && item_file != NULL && g_file_equal (file, item_file))
+        return iter;
 
       if (page == NULL)
         continue;
@@ -150,6 +157,29 @@ editor_sidebar_model_page_added_cb (EditorSidebarModel *self,
   page_num = _editor_page_position (page);
 
   g_return_if_fail (page_num >= 0);
+
+  if ((iter = find_by_document (self, document)))
+    {
+      EditorSidebarItem *item = g_sequence_get (iter);
+      guint position = g_sequence_iter_get_position (iter);
+
+      g_object_ref (item);
+
+      /* First we want to remove the item since we'll be moving it
+       * to a higher location to match the page offset.
+       */
+      g_list_model_items_changed (G_LIST_MODEL (self), position, 1, 0);
+
+      /* Set our page for tracking */
+      _editor_sidebar_item_set_page (item, page);
+
+      /* Add our item with page set at the new position */
+      iter = g_sequence_get_iter_at_pos (self->seq, page_num);
+      g_sequence_insert_before (iter, g_steal_pointer (&item));
+
+      /* Now we want to add the item at the new position */
+      g_list_model_items_changed (G_LIST_MODEL (self), page_num, 0, 1);
+    }
 
   iter = g_sequence_get_iter_at_pos (self->seq, page_num);
   g_sequence_insert_before (iter, _editor_sidebar_item_new (file, page));
@@ -237,6 +267,7 @@ editor_sidebar_model_constructed (GObject *object)
   EditorSidebarModel *self = (EditorSidebarModel *)object;
   EditorSession *session;
   GPtrArray *pages;
+  GArray *drafts;
 
   G_OBJECT_CLASS (editor_sidebar_model_parent_class)->constructed (object);
 
@@ -262,6 +293,33 @@ editor_sidebar_model_constructed (GObject *object)
       EditorWindow *window = _editor_page_get_window (page);
 
       editor_sidebar_model_page_added_cb (self, window, page, session);
+    }
+
+  drafts = _editor_session_get_drafts (session);
+
+  for (guint i = 0; i < drafts->len; i++)
+    {
+      const EditorSessionDraft *draft = &g_array_index (drafts, EditorSessionDraft, i);
+      g_autoptr(GFile) file = NULL;
+      GSequenceIter *iter = NULL;
+
+      if (draft->uri != NULL)
+        {
+          file = g_file_new_for_uri (draft->uri);
+          iter = find_by_file (self, file);
+        }
+
+      if (iter == NULL)
+        {
+          g_autoptr(EditorSidebarItem) item = _editor_sidebar_item_new (file, NULL);
+          guint position = g_sequence_get_length (self->seq);
+
+          _editor_sidebar_item_set_title (item, draft->title);
+          _editor_sidebar_item_set_is_modified (item, TRUE, TRUE);
+
+          g_sequence_append (self->seq, g_steal_pointer (&item));
+          g_list_model_items_changed (G_LIST_MODEL (self), position, 0, 1);
+        }
     }
 
   editor_session_load_recent_async (session,
