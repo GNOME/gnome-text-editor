@@ -101,6 +101,18 @@ save_free (Save *save)
   g_slice_free (Save, save);
 }
 
+static GMountOperation *
+editor_document_mount_operation_factory (GtkSourceFile *file,
+                                         gpointer       user_data)
+{
+  GMountOperation *mount_operation = user_data;
+
+  g_assert (GTK_SOURCE_IS_FILE (file));
+  g_assert (!mount_operation || G_IS_MOUNT_OPERATION (mount_operation));
+
+  return mount_operation ? g_object_ref (mount_operation) : NULL;
+}
+
 static void
 editor_document_load_notify_completed_cb (EditorDocument *self,
                                           GParamSpec     *pspec,
@@ -807,6 +819,7 @@ editor_document_load_cb (GObject      *object,
 
   if (!gtk_source_file_loader_load_finish (loader, result, &error))
     {
+      g_warning ("Failed to load file: %s", error->message);
       g_task_return_error (task, g_steal_pointer (&error));
       _editor_document_unmark_busy (self);
       return;
@@ -858,6 +871,12 @@ editor_document_do_load (EditorDocument *self,
     }
 
   file = gtk_source_file_new ();
+
+  if (load->mount_operation != NULL)
+    gtk_source_file_set_mount_operation_factory (file,
+                                                 editor_document_mount_operation_factory,
+                                                 g_object_ref (load->mount_operation),
+                                                 g_object_unref);
 
   if (load->has_draft)
     gtk_source_file_set_location (file, load->draft_file);
@@ -926,14 +945,24 @@ editor_document_load_file_info_cb (GObject      *object,
   self = g_task_get_source_object (task);
   load = g_task_get_task_data (task);
 
-  if ((info = g_file_query_info_finish (file, result, &error)))
+  if (!(info = g_file_query_info_finish (file, result, &error)))
     {
-      const gchar *content_type;
-
-      content_type = g_file_info_get_attribute_string (info, G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE);
-
+      if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_NOT_SUPPORTED))
+        {
+          load->has_file = TRUE;
+          load->content_type = NULL;
+          load->modified_at = 0;
+        }
+      else
+        {
+          g_warning ("Failed to query information about file: %s",
+                     error->message);
+        }
+    }
+  else
+    {
       load->has_file = TRUE;
-      load->content_type = g_strdup (content_type);
+      load->content_type = g_strdup (g_file_info_get_attribute_string (info, G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE));
       load->modified_at = g_file_info_get_attribute_uint64 (info, G_FILE_ATTRIBUTE_TIME_MODIFIED);
     }
 
@@ -941,6 +970,52 @@ editor_document_load_file_info_cb (GObject      *object,
 
   if (load->n_active == 0)
     editor_document_do_load (self, task, load);
+}
+
+static void
+editor_document_load_file_mount_cb (GObject      *object,
+                                    GAsyncResult *result,
+                                    gpointer      user_data)
+{
+  GFile *file = (GFile *)object;
+  g_autoptr(GError) error = NULL;
+  g_autoptr(GTask) task = user_data;
+  Load *load;
+
+  g_assert (G_IS_FILE (file));
+  g_assert (G_IS_ASYNC_RESULT (result));
+  g_assert (G_IS_TASK (task));
+
+  if (!g_file_mount_enclosing_volume_finish (file, result, &error))
+    {
+      if (!g_error_matches (error, G_IO_ERROR, G_IO_ERROR_NOT_SUPPORTED) &&
+          !g_error_matches (error, G_IO_ERROR, G_IO_ERROR_ALREADY_MOUNTED))
+        {
+          /* Don't decrement n_active, since we don't want to
+           * race for completion of the task.
+           */
+          g_warning ("Failed to mount enclosing volume: %s", error->message);
+          g_task_return_error (task, g_steal_pointer (&error));
+          return;
+        }
+    }
+
+  load = g_task_get_task_data (task);
+
+  g_assert (load != NULL);
+  g_assert (G_IS_FILE (load->file));
+  g_assert (load->n_active > 0);
+
+  g_file_query_info_async (load->file,
+                           G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE","
+                           G_FILE_ATTRIBUTE_ACCESS_CAN_READ","
+                           G_FILE_ATTRIBUTE_STANDARD_SIZE","
+                           G_FILE_ATTRIBUTE_TIME_MODIFIED,
+                           G_FILE_QUERY_INFO_NONE,
+                           G_PRIORITY_DEFAULT,
+                           g_task_get_cancellable (task),
+                           editor_document_load_file_info_cb,
+                           g_object_ref (task));
 }
 
 void
@@ -1004,16 +1079,15 @@ _editor_document_load_async (EditorDocument      *self,
   if (load->file != NULL)
     {
       load->n_active++;
-      g_file_query_info_async (load->file,
-                               G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE","
-                               G_FILE_ATTRIBUTE_ACCESS_CAN_READ","
-                               G_FILE_ATTRIBUTE_STANDARD_SIZE","
-                               G_FILE_ATTRIBUTE_TIME_MODIFIED,
-                               G_FILE_QUERY_INFO_NONE,
-                               G_PRIORITY_DEFAULT,
-                               cancellable,
-                               editor_document_load_file_info_cb,
-                               g_object_ref (task));
+      /* First make sure we have the enclosing mount available
+       * before we start querying things.
+       */
+      g_file_mount_enclosing_volume (load->file,
+                                     G_MOUNT_MOUNT_NONE,
+                                     load->mount_operation,
+                                     cancellable,
+                                     editor_document_load_file_mount_cb,
+                                     g_object_ref (task));
     }
 }
 
