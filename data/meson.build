@@ -40,4 +40,14 @@ if compile_schemas.found()
   )
 endif
 
+# D-Bus service file.
+dbusconf = configuration_data()
+dbusconf.set('bindir', join_paths(get_option('prefix'), get_option('bindir')))
+configure_file(
+          input: 'org.gnome.TextEditor.service.in',
+         output: 'org.gnome.TextEditor.service',
+  configuration: dbusconf,
+   install_dir: join_paths(get_option('datadir'), 'dbus-1', 'services'),
+)
+
 subdir('styles')
