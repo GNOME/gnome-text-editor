@@ -321,7 +321,7 @@ editor_session_dispose (GObject *object)
   if (self->pages->len > 0)
     g_ptr_array_remove_range (self->pages, 0, self->pages->len);
 
-  if (self->seen->len > 0)
+  if (self->seen != NULL && self->seen->len > 0)
     g_ptr_array_remove_range (self->seen, 0, self->seen->len);
 
   G_OBJECT_CLASS (editor_session_parent_class)->dispose (object);
