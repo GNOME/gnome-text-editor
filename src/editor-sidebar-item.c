@@ -360,6 +360,9 @@ _editor_sidebar_item_dup_title (EditorSidebarItem *self)
   if (self->page != NULL)
     return editor_page_dup_title (self->page);
 
+  if (self->file == NULL)
+    return g_strdup (_("New Document"));
+
   g_return_val_if_fail (G_IS_FILE (self->file), NULL);
 
   return g_file_get_basename (self->file);
