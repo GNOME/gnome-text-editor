@@ -1060,6 +1060,39 @@ editor_session_open_files (EditorSession  *self,
     editor_session_open (self, NULL, files[i]);
 }
 
+void
+_editor_session_open_draft (EditorSession *self,
+                            EditorWindow  *window,
+                            const gchar   *draft_id)
+{
+  g_autoptr(EditorDocument) new_document = NULL;
+
+  g_return_if_fail (EDITOR_IS_SESSION (self));
+  g_return_if_fail (!window || EDITOR_IS_WINDOW (window));
+  g_return_if_fail (draft_id != NULL);
+
+  if (window == NULL)
+    window = find_or_create_window (self);
+
+  for (guint i = 0; i < self->pages->len; i++)
+    {
+      EditorPage *page = g_ptr_array_index (self->pages, i);
+      EditorDocument *document = editor_page_get_document (page);
+      const gchar *doc_draft_id = _editor_document_get_draft_id (document);
+
+      /* If this document matches the draft-id, short-circuit. */
+      if (g_strcmp0 (doc_draft_id, draft_id) == 0)
+        {
+          _editor_page_raise (page);
+          return;
+        }
+    }
+
+  new_document = _editor_document_new (NULL, draft_id);
+  editor_session_add_document (self, window, new_document);
+  _editor_document_load_async (new_document, NULL, NULL, NULL);
+}
+
 static void
 editor_session_load_cb (GObject      *object,
                         GAsyncResult *result,
