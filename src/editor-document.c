@@ -29,6 +29,7 @@
 #include "editor-session-private.h"
 
 #define METATDATA_CURSOR "metadata::gnome-text-editor-cursor"
+#define TITLE_MAX_LEN    20
 
 struct _EditorDocument
 {
@@ -98,7 +99,7 @@ save_free (Save *save)
 }
 
 static void
-editor_document_task_notify_completed_cb (EditorDocument *self,
+editor_document_load_notify_completed_cb (EditorDocument *self,
                                           GParamSpec     *pspec,
                                           GTask          *task)
 {
@@ -109,6 +110,29 @@ editor_document_task_notify_completed_cb (EditorDocument *self,
 
   session = editor_application_get_session (EDITOR_APPLICATION_DEFAULT);
   _editor_session_document_seen (session, self);
+}
+
+static void
+editor_document_save_notify_completed_cb (EditorDocument *self,
+                                          GParamSpec     *pspec,
+                                          GTask          *task)
+{
+  EditorSession *session;
+
+  g_assert (EDITOR_IS_DOCUMENT (self));
+  g_assert (G_IS_TASK (task));
+
+  session = editor_application_get_session (EDITOR_APPLICATION_DEFAULT);
+
+  _editor_session_document_seen (session, self);
+
+  /* If we saved successfully, we no longer need to track
+   * this draft-id as it will be loaded as part of the recent
+   * files. If future drafts are saved, it will be re-added
+   * back to the session.
+   */
+  if (!g_task_had_error (task))
+    _editor_session_remove_draft (session, self->draft_id);
 }
 
 static void
@@ -400,6 +424,9 @@ editor_document_save_draft_async (EditorDocument      *self,
   g_autoptr(GTask) task = NULL;
   g_autoptr(GFile) draft_file = NULL;
   g_autoptr(GFile) draft_dir = NULL;
+  g_autofree gchar *title = NULL;
+  g_autofree gchar *uri = NULL;
+  EditorSession *session;
 
   g_return_if_fail (EDITOR_IS_DOCUMENT (self));
   g_return_if_fail (!cancellable || G_IS_CANCELLABLE (cancellable));
@@ -407,6 +434,12 @@ editor_document_save_draft_async (EditorDocument      *self,
 
   task = g_task_new (self, cancellable, callback, user_data);
   g_task_set_source_tag (task, editor_document_save_draft_async);
+
+  /* First tell the session to track this draft */
+  session = editor_application_get_session (EDITOR_APPLICATION_DEFAULT);
+  title = _editor_document_dup_title (self);
+  uri = _editor_document_dup_uri (self);
+  _editor_session_add_draft (session, self->draft_id, title, uri);
 
   if (!gtk_text_buffer_get_modified (GTK_TEXT_BUFFER (self)))
     {
@@ -558,7 +591,7 @@ editor_document_save_async (EditorDocument      *self,
 
   g_signal_connect_object (task,
                            "notify::completed",
-                           G_CALLBACK (editor_document_task_notify_completed_cb),
+                           G_CALLBACK (editor_document_save_notify_completed_cb),
                            self,
                            G_CONNECT_SWAPPED);
 
@@ -935,7 +968,7 @@ _editor_document_load_async (EditorDocument      *self,
 
   g_signal_connect_object (task,
                            "notify::completed",
-                           G_CALLBACK (editor_document_task_notify_completed_cb),
+                           G_CALLBACK (editor_document_load_notify_completed_cb),
                            self,
                            G_CONNECT_SWAPPED);
 
