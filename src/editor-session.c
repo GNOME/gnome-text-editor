@@ -1014,6 +1014,7 @@ editor_session_open (EditorSession *self,
                      GFile         *file)
 {
   g_autoptr(EditorDocument) document = NULL;
+  g_autofree gchar *uri = NULL;
   const gchar *draft_id;
   EditorPage *remove = NULL;
   EditorPage *page;
@@ -1021,6 +1022,9 @@ editor_session_open (EditorSession *self,
   g_return_if_fail (EDITOR_IS_SESSION (self));
   g_return_if_fail (!window || EDITOR_IS_WINDOW (window));
   g_return_if_fail (G_IS_FILE (file));
+
+  uri = g_file_get_uri (file);
+  g_debug ("Attempting to open file: \"%s\"", uri);
 
   if ((page = find_page_for_file (self, file)))
     {
@@ -1070,6 +1074,8 @@ _editor_session_open_draft (EditorSession *self,
   g_return_if_fail (EDITOR_IS_SESSION (self));
   g_return_if_fail (!window || EDITOR_IS_WINDOW (window));
   g_return_if_fail (draft_id != NULL);
+
+  g_debug ("Attempting to open draft \"%s\"", draft_id);
 
   if (window == NULL)
     window = find_or_create_window (self);
