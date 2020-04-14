@@ -37,6 +37,11 @@ void               _editor_sidebar_item_set_page        (EditorSidebarItem *self
                                                          EditorPage        *page);
 gboolean           _editor_sidebar_item_get_is_modified (EditorSidebarItem *self);
 gchar             *_editor_sidebar_item_dup_title       (EditorSidebarItem *self);
+void               _editor_sidebar_item_set_title       (EditorSidebarItem *self,
+                                                         const gchar       *title);
+void               _editor_sidebar_item_set_is_modified (EditorSidebarItem *self,
+                                                         gboolean           is_modified_set,
+                                                         gboolean           is_modified);
 gchar             *_editor_sidebar_item_dup_subtitle    (EditorSidebarItem *self);
 void               _editor_sidebar_item_open            (EditorSidebarItem *self,
                                                          EditorSession     *session,

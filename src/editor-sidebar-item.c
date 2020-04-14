@@ -41,6 +41,9 @@ struct _EditorSidebarItem
   gchar      *search_text;
   gchar      *draft_id;
   gchar      *title;
+
+  guint       is_modified_set : 1;
+  guint       is_modified : 1;
 };
 
 enum {
@@ -87,6 +90,9 @@ editor_sidebar_item_notify_is_modified_cb (EditorSidebarItem *self,
 {
   g_assert (EDITOR_IS_SIDEBAR_ITEM (self));
   g_assert (EDITOR_IS_PAGE (page));
+
+  self->is_modified_set = TRUE;
+  self->is_modified = editor_page_get_is_modified (page);
 
   g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_IS_MODIFIED]);
   g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_EMPTY]);
@@ -137,6 +143,8 @@ _editor_sidebar_item_set_page (EditorSidebarItem *self,
           g_clear_pointer (&self->draft_id, g_free);
           self->draft_id = g_strdup (draft_id);
 
+          self->is_modified_set = FALSE;
+
           g_signal_connect_object (page,
                                    "notify::is-modified",
                                    G_CALLBACK (editor_sidebar_item_notify_is_modified_cb),
@@ -153,7 +161,9 @@ _editor_sidebar_item_set_page (EditorSidebarItem *self,
                                    self,
                                    G_CONNECT_SWAPPED);
         }
+
       g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_PAGE]);
+
       editor_sidebar_item_do_notify (self);
     }
 }
@@ -329,6 +339,9 @@ _editor_sidebar_item_get_is_modified (EditorSidebarItem *self)
 {
   g_return_val_if_fail (EDITOR_IS_SIDEBAR_ITEM (self), FALSE);
 
+  if (self->is_modified_set && self->is_modified)
+    return TRUE;
+
   if (self->page == NULL && self->file == NULL)
     return TRUE;
 
@@ -340,6 +353,9 @@ gchar *
 _editor_sidebar_item_dup_title (EditorSidebarItem *self)
 {
   g_return_val_if_fail (EDITOR_IS_SIDEBAR_ITEM (self), NULL);
+
+  if (self->title != NULL)
+    return g_strdup (self->title);
 
   if (self->page != NULL)
     return editor_page_dup_title (self->page);
@@ -422,4 +438,29 @@ _editor_sidebar_item_matches (EditorSidebarItem *self,
     }
 
   return g_pattern_match_string (spec, self->search_text);
+}
+
+void
+_editor_sidebar_item_set_is_modified (EditorSidebarItem *self,
+                                      gboolean           is_modified_set,
+                                      gboolean           is_modified)
+{
+  g_return_if_fail (EDITOR_IS_SIDEBAR_ITEM (self));
+
+  self->is_modified_set = !!is_modified_set;
+  self->is_modified = !!is_modified;
+}
+
+void
+_editor_sidebar_item_set_title (EditorSidebarItem *self,
+                                const gchar       *title)
+{
+  g_return_if_fail (EDITOR_IS_SIDEBAR_ITEM (self));
+
+  if (g_strcmp0 (title, self->title) != 0)
+    {
+      g_free (self->title);
+      self->title = g_strdup (title);
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_TITLE]);
+    }
 }
