@@ -160,14 +160,12 @@ add_draft_state (EditorSession   *self,
     {
       const Draft *draft = &g_array_index (self->drafts, Draft, i);
 
-      g_variant_builder_open (builder, G_VARIANT_TYPE ("aa{sv}"));
       g_variant_builder_open (builder, G_VARIANT_TYPE ("a{sv}"));
       g_variant_builder_add_parsed (builder, "{'draft-id', <%s>}", draft->draft_id);
       if (draft->title != NULL)
         g_variant_builder_add_parsed (builder, "{'title', <%s>}", draft->title);
       if (draft->uri != NULL)
         g_variant_builder_add_parsed (builder, "{'uri', <%s>}", draft->uri);
-      g_variant_builder_close (builder);
       g_variant_builder_close (builder);
     }
   g_variant_builder_close (builder);
