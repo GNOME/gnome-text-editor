@@ -33,27 +33,5 @@ EditorDocument *editor_document_new_for_file          (GFile                *fil
 gboolean        editor_document_get_busy              (EditorDocument       *self);
 gdouble         editor_document_get_busy_progress     (EditorDocument       *self);
 GFile          *editor_document_get_file              (EditorDocument       *self);
-void            editor_document_save_async            (EditorDocument       *self,
-                                                       GFile                *file,
-                                                       GCancellable         *cancellable,
-                                                       GAsyncReadyCallback   callback,
-                                                       gpointer              user_data);
-gboolean        editor_document_save_finish           (EditorDocument       *self,
-                                                       GAsyncResult         *result,
-                                                       GError              **error);
-void            editor_document_save_draft_async      (EditorDocument       *self,
-                                                       GCancellable         *cancellable,
-                                                       GAsyncReadyCallback   callback,
-                                                       gpointer              user_data);
-gboolean        editor_document_save_draft_finish     (EditorDocument       *self,
-                                                       GAsyncResult         *result,
-                                                       GError              **error);
-void            editor_document_guess_language_async  (EditorDocument       *self,
-                                                       GCancellable         *cancellable,
-                                                       GAsyncReadyCallback   callback,
-                                                       gpointer              user_data);
-gboolean        editor_document_guess_language_finish (EditorDocument       *self,
-                                                       GAsyncResult         *result,
-                                                       GError              **error);
 
 G_END_DECLS

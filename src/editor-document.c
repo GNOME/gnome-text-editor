@@ -430,10 +430,10 @@ editor_document_save_draft_cb (GObject      *object,
 }
 
 void
-editor_document_save_draft_async (EditorDocument      *self,
-                                  GCancellable        *cancellable,
-                                  GAsyncReadyCallback  callback,
-                                  gpointer             user_data)
+_editor_document_save_draft_async (EditorDocument      *self,
+                                   GCancellable        *cancellable,
+                                   GAsyncReadyCallback  callback,
+                                   gpointer             user_data)
 {
   g_autoptr(GtkSourceFileSaver) saver = NULL;
   g_autoptr(GTask) task = NULL;
@@ -448,7 +448,7 @@ editor_document_save_draft_async (EditorDocument      *self,
   g_return_if_fail (self->draft_id != NULL);
 
   task = g_task_new (self, cancellable, callback, user_data);
-  g_task_set_source_tag (task, editor_document_save_draft_async);
+  g_task_set_source_tag (task, _editor_document_save_draft_async);
 
   /* First tell the session to track this draft */
   session = editor_application_get_session (EDITOR_APPLICATION_DEFAULT);
@@ -490,9 +490,9 @@ editor_document_save_draft_async (EditorDocument      *self,
 }
 
 gboolean
-editor_document_save_draft_finish (EditorDocument  *self,
-                                   GAsyncResult    *result,
-                                   GError         **error)
+_editor_document_save_draft_finish (EditorDocument  *self,
+                                    GAsyncResult    *result,
+                                    GError         **error)
 {
   g_return_val_if_fail (EDITOR_IS_DOCUMENT (self), FALSE);
   g_return_val_if_fail (G_IS_TASK (result), FALSE);
@@ -575,11 +575,11 @@ editor_document_save_cb (GObject      *object,
 }
 
 void
-editor_document_save_async (EditorDocument      *self,
-                            GFile               *file,
-                            GCancellable        *cancellable,
-                            GAsyncReadyCallback  callback,
-                            gpointer             user_data)
+_editor_document_save_async (EditorDocument      *self,
+                             GFile               *file,
+                             GCancellable        *cancellable,
+                             GAsyncReadyCallback  callback,
+                             gpointer             user_data)
 {
   g_autoptr(GtkSourceFileSaver) saver = NULL;
   g_autoptr(GTask) task = NULL;
@@ -601,7 +601,7 @@ editor_document_save_async (EditorDocument      *self,
   save->position = g_strdup_printf ("%u:%u", save->line, save->line_offset);
 
   task = g_task_new (self, cancellable, callback, user_data);
-  g_task_set_source_tag (task, editor_document_save_draft_async);
+  g_task_set_source_tag (task, _editor_document_save_draft_async);
   g_task_set_task_data (task, save, (GDestroyNotify)save_free);
 
   g_signal_connect_object (task,
@@ -661,9 +661,9 @@ editor_document_save_async (EditorDocument      *self,
 }
 
 gboolean
-editor_document_save_finish (EditorDocument  *self,
-                             GAsyncResult    *result,
-                             GError         **error)
+_editor_document_save_finish (EditorDocument  *self,
+                              GAsyncResult    *result,
+                              GError         **error)
 {
   g_return_val_if_fail (EDITOR_IS_DOCUMENT (self), FALSE);
   g_return_val_if_fail (G_IS_TASK (result), FALSE);
@@ -1144,7 +1144,7 @@ editor_document_guess_language_query_cb (GObject      *object,
 }
 
 /**
- * editor_document_guess_language_async:
+ * _editor_document_guess_language_async:
  * @self: a #EditorDocument
  * @cancellable: (nullable): a #GCancellable
  * @callback: a #GAsyncReadyCallback
@@ -1154,10 +1154,10 @@ editor_document_guess_language_query_cb (GObject      *object,
  * and content-type of the file.
  */
 void
-editor_document_guess_language_async (EditorDocument      *self,
-                                      GCancellable        *cancellable,
-                                      GAsyncReadyCallback  callback,
-                                      gpointer             user_data)
+_editor_document_guess_language_async (EditorDocument      *self,
+                                       GCancellable        *cancellable,
+                                       GAsyncReadyCallback  callback,
+                                       gpointer             user_data)
 {
   g_autoptr(GTask) task = NULL;
   GFile *file;
@@ -1166,7 +1166,7 @@ editor_document_guess_language_async (EditorDocument      *self,
   g_return_if_fail (!cancellable || G_IS_CANCELLABLE (cancellable));
 
   task = g_task_new (self, cancellable, callback, user_data);
-  g_task_set_source_tag (task, editor_document_guess_language_async);
+  g_task_set_source_tag (task, _editor_document_guess_language_async);
 
   if (!(file = editor_document_get_file (self)))
     g_task_return_new_error (task,
@@ -1184,7 +1184,7 @@ editor_document_guess_language_async (EditorDocument      *self,
 }
 
 /**
- * editor_document_guess_language_finish:
+ * _editor_document_guess_language_finish:
  * @self: a #EditorDocument
  * @result: the #GAsyncResult provided to callback
  * @error: a location for a #GError, or %NULL
@@ -1192,9 +1192,9 @@ editor_document_guess_language_async (EditorDocument      *self,
  * Returns: %TRUE if successful; otherwise %FALSE and @error is set
  */
 gboolean
-editor_document_guess_language_finish (EditorDocument  *self,
-                                       GAsyncResult    *result,
-                                       GError         **error)
+_editor_document_guess_language_finish (EditorDocument  *self,
+                                        GAsyncResult    *result,
+                                        GError         **error)
 {
   g_return_val_if_fail (EDITOR_IS_DOCUMENT (self), FALSE);
   g_return_val_if_fail (G_IS_TASK (result), FALSE);

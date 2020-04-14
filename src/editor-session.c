@@ -599,7 +599,7 @@ editor_session_remove_page_cb (GObject      *object,
   g_assert (G_IS_ASYNC_RESULT (result));
   g_assert (EDITOR_IS_PAGE (page));
 
-  if (!editor_document_save_draft_finish (document, result, &error))
+  if (!_editor_document_save_draft_finish (document, result, &error))
     g_warning ("Failed to save draft: %s", error->message);
 
   window = _editor_page_get_window (page);
@@ -701,10 +701,10 @@ editor_session_remove_page (EditorSession *self,
       g_signal_emit (self, signals [PAGE_REMOVED], 0, window, page);
     }
 
-  editor_document_save_draft_async (document,
-                                    NULL,
-                                    editor_session_remove_page_cb,
-                                    g_object_ref (page));
+  _editor_document_save_draft_async (document,
+                                     NULL,
+                                     editor_session_remove_page_cb,
+                                     g_object_ref (page));
 
   g_object_unref (page);
 }
@@ -885,7 +885,7 @@ editor_session_save_draft_cb (GObject      *object,
   g_assert (G_IS_ASYNC_RESULT (result));
   g_assert (G_IS_TASK (task));
 
-  if (!editor_document_save_draft_finish (document, result, &error))
+  if (!_editor_document_save_draft_finish (document, result, &error))
     g_warning ("Failed to save draft: %s", error->message);
 
   state = g_task_get_task_data (task);
@@ -955,10 +955,10 @@ editor_session_save_async (EditorSession       *self,
 
       state->n_active++;
 
-      editor_document_save_draft_async (document,
-                                        NULL,
-                                        editor_session_save_draft_cb,
-                                        g_object_ref (task));
+      _editor_document_save_draft_async (document,
+                                         NULL,
+                                         editor_session_save_draft_cb,
+                                         g_object_ref (task));
     }
 
   /* If we haven't started any draft saving, then we have no

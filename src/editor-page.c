@@ -611,8 +611,8 @@ editor_page_save_cb (GObject      *object,
   g_assert (G_IS_ASYNC_RESULT (result));
   g_assert (EDITOR_IS_PAGE (self));
 
-  if (editor_document_save_finish (document, result, &error))
-    editor_document_guess_language_async (document, NULL, NULL, NULL);
+  if (_editor_document_save_finish (document, result, &error))
+    _editor_document_guess_language_async (document, NULL, NULL, NULL);
 }
 
 void
@@ -628,11 +628,11 @@ _editor_page_save (EditorPage *self)
       return;
     }
 
-  editor_document_save_async (self->document,
-                              NULL,
-                              NULL,
-                              editor_page_save_cb,
-                              g_object_ref (self));
+  _editor_document_save_async (self->document,
+                               NULL,
+                               NULL,
+                               editor_page_save_cb,
+                               g_object_ref (self));
 }
 
 void
@@ -662,11 +662,11 @@ _editor_page_save_as (EditorPage *self)
       g_autoptr(GFile) dest = NULL;
 
       if ((dest = gtk_file_chooser_get_file (GTK_FILE_CHOOSER (native))))
-        editor_document_save_async (self->document,
-                                    dest,
-                                    NULL,
-                                    editor_page_save_cb,
-                                    g_object_ref (self));
+        _editor_document_save_async (self->document,
+                                     dest,
+                                     NULL,
+                                     editor_page_save_cb,
+                                     g_object_ref (self));
     }
 
   gtk_native_dialog_destroy (GTK_NATIVE_DIALOG (native));
