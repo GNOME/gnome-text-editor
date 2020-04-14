@@ -141,10 +141,10 @@ _editor_sidebar_item_set_page (EditorSidebarItem *self,
           EditorDocument *document = editor_page_get_document (page);
           const gchar *draft_id = _editor_document_get_draft_id (document);
 
-          g_clear_pointer (&self->draft_id, g_free);
-          self->draft_id = g_strdup (draft_id);
+          _editor_sidebar_item_set_draft_id (self, draft_id);
 
-          self->is_modified_set = FALSE;
+          self->is_modified = editor_page_get_is_modified (page);
+          self->is_modified_set = TRUE;
 
           g_signal_connect_object (page,
                                    "notify::is-modified",
@@ -420,11 +420,27 @@ _editor_sidebar_item_open (EditorSidebarItem *self,
   g_return_if_fail (EDITOR_IS_SIDEBAR_ITEM (self));
   g_return_if_fail (EDITOR_IS_SESSION (session));
   g_return_if_fail (EDITOR_IS_WINDOW (window));
+  g_return_if_fail (self->page || self->file || self->draft_id);
 
-  if (self->page == NULL)
-    editor_session_open (session, window, self->file);
-  else
-    _editor_page_raise (self->page);
+  if (self->page != NULL)
+    {
+      _editor_page_raise (self->page);
+      return;
+    }
+
+  if (self->file != NULL)
+    {
+      editor_session_open (session, window, self->file);
+      return;
+    }
+
+  if (self->draft_id != NULL)
+    {
+      _editor_session_open_draft (session, window, self->draft_id);
+      return;
+    }
+
+  g_warn_if_reached ();
 }
 
 gboolean
