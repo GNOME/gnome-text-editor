@@ -61,13 +61,6 @@ typedef struct
   Position end;
 } Selection;
 
-typedef struct
-{
-  gchar *draft_id;
-  gchar *title;
-  gchar *uri;
-} Draft;
-
 G_DEFINE_TYPE (EditorSession, editor_session, G_TYPE_OBJECT)
 
 enum {
@@ -87,7 +80,7 @@ selection_free (Selection *selection)
 }
 
 static void
-clear_draft (Draft *draft)
+clear_draft (EditorSessionDraft *draft)
 {
   g_clear_pointer (&draft->draft_id, g_free);
   g_clear_pointer (&draft->title, g_free);
@@ -158,7 +151,7 @@ add_draft_state (EditorSession   *self,
   g_variant_builder_open (builder, G_VARIANT_TYPE ("aa{sv}"));
   for (guint i = 0; i < self->drafts->len; i++)
     {
-      const Draft *draft = &g_array_index (self->drafts, Draft, i);
+      const EditorSessionDraft *draft = &g_array_index (self->drafts, EditorSessionDraft, i);
 
       g_variant_builder_open (builder, G_VARIANT_TYPE ("a{sv}"));
       g_variant_builder_add_parsed (builder, "{'draft-id', <%s>}", draft->draft_id);
@@ -438,7 +431,7 @@ editor_session_init (EditorSession *self)
                                                 APP_ID,
                                                 "session.gvariant",
                                                 NULL);
-  self->drafts = g_array_new (FALSE, FALSE, sizeof (Draft));
+  self->drafts = g_array_new (FALSE, FALSE, sizeof (EditorSessionDraft));
   g_array_set_clear_func (self->drafts, (GDestroyNotify) clear_draft);
 }
 
@@ -620,7 +613,7 @@ editor_session_stash_draft (EditorSession *self,
                             GFile         *file)
 {
   g_autofree gchar *draft_uri = NULL;
-  Draft d;
+  EditorSessionDraft d;
 
   g_assert (EDITOR_IS_SESSION (self));
   g_assert (draft_id != NULL);
@@ -628,7 +621,7 @@ editor_session_stash_draft (EditorSession *self,
 
   for (guint i = 0; i < self->drafts->len; i++)
     {
-      Draft *draft = &g_array_index (self->drafts, Draft, i);
+      EditorSessionDraft *draft = &g_array_index (self->drafts, EditorSessionDraft, i);
       g_autofree gchar *uri = NULL;
 
       if (g_strcmp0 (draft->draft_id, draft_id) != 0)
@@ -1140,7 +1133,7 @@ editor_session_restore_delete_unused (EditorSession *self)
   /* Now add draft_id from unopened but known drafts */
   for (guint i = 0; i < self->drafts->len; i++)
     {
-      const Draft *draft = &g_array_index (self->drafts, Draft, i);
+      const EditorSessionDraft *draft = &g_array_index (self->drafts, EditorSessionDraft, i);
 
       g_ptr_array_add (ar, g_strdup (draft->draft_id));
     }
@@ -1249,7 +1242,6 @@ editor_session_restore_v1_drafts (EditorSession *self,
         {
           const gchar *title;
           const gchar *uri;
-          Draft d;
 
           if (!g_variant_lookup (draft, "title", "&s", &title))
             title = NULL;
@@ -1257,11 +1249,7 @@ editor_session_restore_v1_drafts (EditorSession *self,
           if (!g_variant_lookup (draft, "uri", "&s", &uri))
             uri = NULL;
 
-          d.draft_id = g_strdup (draft_id);
-          d.title = g_strdup (title);
-          d.uri = g_strdup (uri);
-
-          g_array_append_val (self->drafts, d);
+          _editor_session_add_draft (self, draft_id, title, uri);
         }
     }
 }
@@ -1568,5 +1556,72 @@ _editor_session_document_seen (EditorSession  *self,
                                              (GEqualFunc) g_file_equal,
                                              NULL))
         g_ptr_array_add (self->seen, g_file_dup (file));
+    }
+}
+
+GArray *
+_editor_session_get_drafts (EditorSession *self)
+{
+  g_return_val_if_fail (EDITOR_IS_SESSION (self), NULL);
+
+  return self->drafts;
+}
+
+void
+_editor_session_add_draft (EditorSession *self,
+                           const gchar   *draft_id,
+                           const gchar   *title,
+                           const gchar   *uri)
+{
+  EditorSessionDraft d;
+
+  g_return_if_fail (EDITOR_IS_SESSION (self));
+  g_return_if_fail (draft_id != NULL);
+
+  for (guint i = 0; i < self->drafts->len; i++)
+    {
+      EditorSessionDraft *draft = &g_array_index (self->drafts, EditorSessionDraft, i);
+
+      if (g_strcmp0 (draft->draft_id, draft_id) == 0)
+        {
+          if (g_strcmp0 (draft->title, title) != 0)
+            {
+              g_clear_pointer (&draft->title, g_free);
+              draft->title = g_strdup (title);
+            }
+
+          if (g_strcmp0 (draft->uri, uri) != 0)
+            {
+              g_clear_pointer (&draft->uri, g_free);
+              draft->uri = g_strdup (uri);
+            }
+
+          return;
+        }
+    }
+
+  d.draft_id = g_strdup (draft_id);
+  d.title = g_strdup (title);
+  d.uri = g_strdup (uri);
+
+  g_array_append_val (self->drafts, d);
+}
+
+void
+_editor_session_remove_draft (EditorSession *self,
+                              const gchar   *draft_id)
+{
+  g_return_if_fail (EDITOR_IS_SESSION (self));
+  g_return_if_fail (draft_id != NULL);
+
+  for (guint i = 0; i < self->drafts->len; i++)
+    {
+      const EditorSessionDraft *draft = &g_array_index (self->drafts, EditorSessionDraft, i);
+
+      if (g_strcmp0 (draft->draft_id, draft_id) == 0)
+        {
+          g_array_remove_index (self->drafts, i);
+          return;
+        }
     }
 }

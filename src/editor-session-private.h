@@ -24,11 +24,25 @@
 
 G_BEGIN_DECLS
 
+typedef struct
+{
+  gchar *draft_id;
+  gchar *title;
+  gchar *uri;
+} EditorSessionDraft;
+
 EditorSession *_editor_session_new                    (void);
 EditorWindow  *_editor_session_create_window_no_draft (EditorSession  *self);
 gboolean       _editor_session_did_restore            (EditorSession  *self);
 GPtrArray     *_editor_session_get_pages              (EditorSession  *self);
 void           _editor_session_document_seen          (EditorSession  *self,
                                                        EditorDocument *document);
+GArray        *_editor_session_get_drafts             (EditorSession  *self);
+void           _editor_session_add_draft              (EditorSession  *self,
+                                                       const gchar    *draft_id,
+                                                       const gchar    *title,
+                                                       const gchar    *uri);
+void           _editor_session_remove_draft           (EditorSession  *self,
+                                                       const gchar    *draft_id);
 
 G_END_DECLS
