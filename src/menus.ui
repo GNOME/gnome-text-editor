@@ -38,26 +38,18 @@
   </menu>
   <menu id="options-menu">
     <section>
-      <item>
-        <attribute name="label" translatable="yes">Text Wrapping</attribute>
-        <attribute name="action">settings.wrap-text</attribute>
-      </item>
+      <attribute name="label" translatable="yes">Show</attribute>
       <item>
         <attribute name="label" translatable="yes">Line Numbers</attribute>
         <attribute name="action">settings.show-line-numbers</attribute>
       </item>
-    </section>
-    <section>
       <item>
         <attribute name="label" translatable="yes">Right Margin</attribute>
         <attribute name="action">settings.show-right-margin</attribute>
       </item>
-      <item>
-        <attribute name="label" translatable="yes">Automatic Margin Position</attribute>
-        <attribute name="action">settings.auto-margin-position</attribute>
-      </item>
     </section>
     <section>
+      <attribute name="label" translatable="yes">Indentation</attribute>
       <item>
         <attribute name="label" translatable="yes">Tabs</attribute>
         <attribute name="action">settings.indent-style</attribute>
@@ -95,6 +87,14 @@
       </submenu>
     </section>
     <section>
+      <item>
+        <attribute name="label" translatable="yes">Text Wrapping</attribute>
+        <attribute name="action">settings.wrap-text</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Automatic Margin Position</attribute>
+        <attribute name="action">settings.auto-margin-position</attribute>
+      </item>
       <item>
         <attribute name="label" translatable="yes">Highlight Mode</attribute>
         <attribute name="action">page.change-language</attribute>
