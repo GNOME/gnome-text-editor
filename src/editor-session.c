@@ -1085,6 +1085,8 @@ _editor_session_open_draft (EditorSession *self,
                             const gchar   *draft_id)
 {
   g_autoptr(EditorDocument) new_document = NULL;
+  EditorPage *remove = NULL;
+  EditorPage *visible_page;
 
   g_return_if_fail (EDITOR_IS_SESSION (self));
   g_return_if_fail (!window || EDITOR_IS_WINDOW (window));
@@ -1094,6 +1096,10 @@ _editor_session_open_draft (EditorSession *self,
 
   if (window == NULL)
     window = find_or_create_window (self);
+
+  if ((visible_page = editor_window_get_visible_page (window)) &&
+      editor_page_get_can_discard (visible_page))
+    remove = visible_page;
 
   for (guint i = 0; i < self->pages->len; i++)
     {
@@ -1112,6 +1118,9 @@ _editor_session_open_draft (EditorSession *self,
   new_document = _editor_document_new (NULL, draft_id);
   editor_session_add_document (self, window, new_document);
   _editor_document_load_async (new_document, window, NULL, NULL, NULL);
+
+  if (remove)
+    editor_session_remove_page (self, remove);
 }
 
 static void
