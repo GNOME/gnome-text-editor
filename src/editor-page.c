@@ -317,11 +317,7 @@ editor_page_destroy (GtkWidget *widget)
 {
   EditorPage *self = (EditorPage *)widget;
 
-  if (self->progress_animation != NULL)
-    {
-      editor_animation_stop (self->progress_animation);
-      self->progress_animation = NULL;
-    }
+  g_clear_pointer (&self->progress_animation, editor_animation_stop);
 
   GTK_WIDGET_CLASS (editor_page_parent_class)->destroy (widget);
 }
