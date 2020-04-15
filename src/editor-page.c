@@ -87,8 +87,9 @@ editor_page_document_modified_changed_cb (EditorPage     *self,
 }
 
 static void
-editor_page_document_first_line_changed_cb (EditorPage     *self,
-                                            EditorDocument *document)
+editor_page_document_notify_title_cb (EditorPage     *self,
+                                      GParamSpec     *pspec,
+                                      EditorDocument *document)
 {
   g_assert (EDITOR_IS_PAGE (self));
   g_assert (EDITOR_IS_DOCUMENT (document));
@@ -199,8 +200,8 @@ editor_page_set_document (EditorPage     *self,
       gtk_text_view_set_buffer (GTK_TEXT_VIEW (self->view),
                                 GTK_TEXT_BUFFER (document));
       g_signal_connect_object (document,
-                               "first-line-changed",
-                               G_CALLBACK (editor_page_document_first_line_changed_cb),
+                               "notify::title",
+                               G_CALLBACK (editor_page_document_notify_title_cb),
                                self,
                                G_CONNECT_SWAPPED);
       g_signal_connect_object (document,

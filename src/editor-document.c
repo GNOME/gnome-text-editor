@@ -73,16 +73,11 @@ enum {
   PROP_BUSY,
   PROP_BUSY_PROGRESS,
   PROP_FILE,
+  PROP_TITLE,
   N_PROPS
 };
 
-enum {
-  FIRST_LINE_CHANGED,
-  N_SIGNALS
-};
-
 static GParamSpec *properties [N_PROPS];
-static guint signals [N_SIGNALS];
 
 static void
 load_free (Load *load)
@@ -157,18 +152,18 @@ editor_document_insert_text (GtkTextBuffer *buffer,
                              gint           new_text_length)
 {
   EditorDocument *self = (EditorDocument *)buffer;
-  gboolean is_first;
+  guint offset;
 
   g_assert (GTK_IS_TEXT_BUFFER (buffer));
   g_assert (pos != NULL);
   g_assert (new_text != NULL);
 
-  is_first = gtk_text_iter_get_line (pos) == 0;
+  offset = gtk_text_iter_get_offset (pos);
 
   GTK_TEXT_BUFFER_CLASS (editor_document_parent_class)->insert_text (buffer, pos, new_text, new_text_length);
 
-  if (is_first)
-    g_signal_emit (self, signals[FIRST_LINE_CHANGED], 0);
+  if (offset < TITLE_MAX_LEN && editor_document_get_file (self) == NULL)
+    g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_TITLE]);
 }
 
 static void
@@ -177,19 +172,18 @@ editor_document_delete_range (GtkTextBuffer *buffer,
                               GtkTextIter   *end)
 {
   EditorDocument *self = (EditorDocument *)buffer;
-  gboolean is_first;
+  guint offset;
 
   g_assert (GTK_IS_TEXT_BUFFER (buffer));
   g_assert (start != NULL);
   g_assert (end != NULL);
 
-  /* gtktextbuffer.c orders start/end so only check start */
-  is_first = gtk_text_iter_get_line (start) == 0;
+  offset = gtk_text_iter_get_offset (start);
 
   GTK_TEXT_BUFFER_CLASS (editor_document_parent_class)->delete_range (buffer, start, end);
 
-  if (is_first)
-    g_signal_emit (self, signals[FIRST_LINE_CHANGED], 0);
+  if (offset < TITLE_MAX_LEN && editor_document_get_file (self) == NULL)
+    g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_TITLE]);
 }
 
 static GFile *
@@ -279,6 +273,10 @@ editor_document_get_property (GObject    *object,
       g_value_set_object (value, editor_document_get_file (self));
       break;
 
+    case PROP_TITLE:
+      g_value_take_string (value, editor_document_dup_title (self));
+      break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
     }
@@ -337,14 +335,14 @@ editor_document_class_init (EditorDocumentClass *klass)
                          G_TYPE_FILE,
                          (G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
 
-  g_object_class_install_properties (object_class, N_PROPS, properties);
+  properties [PROP_TITLE] =
+    g_param_spec_string ("title",
+                         "Title",
+                         "The title for the document",
+                         NULL,
+                         (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
-  signals [FIRST_LINE_CHANGED] =
-    g_signal_new ("first-line-changed",
-                  G_TYPE_FROM_CLASS (klass),
-                  G_SIGNAL_RUN_LAST,
-                  0, NULL, NULL, NULL,
-                  G_TYPE_NONE, 0);
+  g_object_class_install_properties (object_class, N_PROPS, properties);
 }
 
 static void
@@ -483,7 +481,7 @@ _editor_document_save_draft_async (EditorDocument      *self,
 
   /* First tell the session to track this draft */
   session = editor_application_get_session (EDITOR_APPLICATION_DEFAULT);
-  title = _editor_document_dup_title (self);
+  title = editor_document_dup_title (self);
   uri = _editor_document_dup_uri (self);
   _editor_session_add_draft (session, self->draft_id, title, uri);
 
@@ -1275,11 +1273,9 @@ _editor_document_get_draft_file (EditorDocument *self)
 gchar *
 editor_document_dup_title (EditorDocument *self)
 {
-  g_autofree gchar *slice = NULL;
+  GtkTextIter iter;
+  GString *str;
   GFile *file;
-  GtkTextIter begin;
-  GtkTextIter end;
-  guint i;
 
   g_return_val_if_fail (EDITOR_IS_DOCUMENT (self), NULL);
 
@@ -1288,23 +1284,38 @@ editor_document_dup_title (EditorDocument *self)
   if (file != NULL)
     return g_file_get_basename (file);
 
-  gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (self), &begin);
+  str = g_string_new (NULL);
 
-  for (end = begin, i = 0; i < TITLE_MAX_LEN; i++)
+  gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (self), &iter);
+
+  if (!gtk_text_iter_is_end (&iter))
     {
-      if (gtk_text_iter_ends_line (&end))
-        break;
+      do
+        {
+          gunichar ch;
 
-      if (!gtk_text_iter_forward_char (&end))
-        break;
+          if (str->len >= TITLE_MAX_LEN)
+            break;
+
+          ch = gtk_text_iter_get_char (&iter);
+
+          if (g_unichar_isspace (ch))
+            {
+              if (str->len == 0 || !g_str_has_suffix (str->str, " "))
+                g_string_append_c (str, ' ');
+            }
+          else if (g_unichar_isalnum (ch))
+            {
+              g_string_append_unichar (str, ch);
+            }
+        }
+      while (gtk_text_iter_forward_char (&iter));
     }
 
-  slice = g_strstrip (gtk_text_iter_get_slice (&begin, &end));
+  if (str->len > 0 && str->str[str->len-1] == ' ')
+    g_string_truncate (str, str->len - 1);
 
-  if (slice[0] == '\0')
-    return NULL;
-
-  return g_steal_pointer (&slice);
+  return g_string_free (str, str->len == 0);
 }
 
 gchar *
