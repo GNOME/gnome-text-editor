@@ -168,18 +168,20 @@ editor_page_notify_busy_progress_cb (EditorPage     *self,
 
   busy_progress = editor_document_get_busy_progress (document);
 
-  if (self->progress_animation != NULL)
-    editor_animation_stop (self->progress_animation);
+  g_clear_pointer (&self->progress_animation, editor_animation_stop);
 
-  self->progress_animation =
-    editor_object_animate_full (self->progress_bar,
-                                EDITOR_ANIMATION_EASE_IN_OUT_CUBIC,
-                                300,
-                                NULL,
-                                (GDestroyNotify) g_nullify_pointer,
-                                &self->progress_animation,
-                                "fraction", busy_progress,
-                                NULL);
+  if (busy_progress == 0.0)
+    gtk_progress_bar_set_fraction (self->progress_bar, 0.0);
+  else
+    self->progress_animation =
+      editor_object_animate_full (self->progress_bar,
+                                  EDITOR_ANIMATION_EASE_IN_OUT_CUBIC,
+                                  300,
+                                  NULL,
+                                  (GDestroyNotify) g_nullify_pointer,
+                                  &self->progress_animation,
+                                  "fraction", busy_progress,
+                                  NULL);
 }
 
 static void
