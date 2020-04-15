@@ -10,13 +10,18 @@ gnome = import('gnome')
 i18n = import('i18n')
 
 config_h = configuration_data()
-config_h.set_quoted('APP_ID', 'org.gnome.TextEditor')
 config_h.set_quoted('PACKAGE_VERSION', meson.project_version())
 config_h.set_quoted('GETTEXT_PACKAGE', 'gnome-text-editor')
 config_h.set_quoted('LOCALEDIR', join_paths(get_option('prefix'), get_option('localedir')))
 config_h.set_quoted('PACKAGE_WEBSITE', 'https://gitlab.gnome.org/GNOME/gnome-text-editor')
 config_h.set_quoted('PACKAGE_ICON_NAME', 'accessories-text-editor')
 config_h.set_quoted('PACKAGE_NAME', 'Text Editor')
+if get_option('development')
+  config_h.set_quoted('APP_ID', 'org.gnome.TextEditor.Devel')
+  config_h.set10('DEVELOPMENT_BUILD', 1)
+else
+  config_h.set_quoted('APP_ID', 'org.gnome.TextEditor')
+endif
 
 global_c_args = []
 test_c_args = [
