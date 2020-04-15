@@ -450,18 +450,18 @@ _editor_document_save_draft_async (EditorDocument      *self,
   task = g_task_new (self, cancellable, callback, user_data);
   g_task_set_source_tag (task, _editor_document_save_draft_async);
 
-  /* First tell the session to track this draft */
-  session = editor_application_get_session (EDITOR_APPLICATION_DEFAULT);
-  title = _editor_document_dup_title (self);
-  uri = _editor_document_dup_uri (self);
-  _editor_session_add_draft (session, self->draft_id, title, uri);
-
   if (!gtk_text_buffer_get_modified (GTK_TEXT_BUFFER (self)))
     {
       /* Do nothing if we are already up to date */
       g_task_return_boolean (task, TRUE);
       return;
     }
+
+  /* First tell the session to track this draft */
+  session = editor_application_get_session (EDITOR_APPLICATION_DEFAULT);
+  title = _editor_document_dup_title (self);
+  uri = _editor_document_dup_uri (self);
+  _editor_session_add_draft (session, self->draft_id, title, uri);
 
   draft_file = editor_document_get_draft_file (self);
   saver = gtk_source_file_saver_new_with_target (GTK_SOURCE_BUFFER (self),
