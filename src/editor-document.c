@@ -1273,7 +1273,7 @@ _editor_document_get_draft_file (EditorDocument *self)
 }
 
 gchar *
-_editor_document_dup_title (EditorDocument *self)
+editor_document_dup_title (EditorDocument *self)
 {
   g_autofree gchar *slice = NULL;
   GFile *file;

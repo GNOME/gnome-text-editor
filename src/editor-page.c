@@ -564,7 +564,7 @@ _editor_page_dup_title_no_i18n (EditorPage *self)
 {
   g_return_val_if_fail (EDITOR_IS_PAGE (self), NULL);
 
-  return _editor_document_dup_title (self->document);
+  return editor_document_dup_title (self->document);
 }
 
 gchar *
