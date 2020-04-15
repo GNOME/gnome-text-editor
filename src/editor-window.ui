@@ -112,7 +112,7 @@
         <property name="position">250</property>
         <child>
           <object class="EditorSidebar" id="sidebar">
-            <property name="visible">false</property>
+            <property name="visible" bind-source="open_toggle_button" bind-property="active" bind-flags="bidirectional">false</property>
           </object>
         </child>
         <child>

@@ -102,6 +102,8 @@ editor_sidebar_row_activated_cb (EditorSidebar    *self,
   item = _editor_sidebar_row_get_item (row);
 
   _editor_sidebar_item_open (item, session, EDITOR_WINDOW (window));
+
+  gtk_widget_hide (GTK_WIDGET (self));
 }
 
 static gboolean
