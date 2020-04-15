@@ -215,7 +215,7 @@ editor_application_constructed (GObject *object)
 
   G_OBJECT_CLASS (editor_application_parent_class)->constructed (object);
 
-  g_application_set_application_id (G_APPLICATION (self), "org.gnome.TextEditor");
+  g_application_set_application_id (G_APPLICATION (self), APP_ID);
   g_application_set_resource_base_path (G_APPLICATION (self), "/org/gnome/TextEditor");
   g_application_set_flags (G_APPLICATION (self), G_APPLICATION_HANDLES_OPEN);
 }

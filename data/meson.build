@@ -1,9 +1,9 @@
 desktop_file = i18n.merge_file(
-  input: 'org.gnome.TextEditor.desktop.in',
-  output: 'org.gnome.TextEditor.desktop',
-  type: 'desktop',
-  po_dir: '../po',
-  install: true,
+        input: 'org.gnome.TextEditor.desktop.in',
+       output: '@0@.desktop'.format(app_id),
+         type: 'desktop',
+       po_dir: '../po',
+      install: true,
   install_dir: join_paths(get_option('datadir'), 'applications')
 )
 
@@ -14,12 +14,19 @@ if desktop_utils.found()
   )
 endif
 
+appconf = configuration_data()
+appconf.set('app_id', app_id)
+appstream_file_in = configure_file(
+          input: 'org.gnome.TextEditor.appdata.xml.in.in',
+         output: '@0@.appdata.xml.in'.format(app_id),
+  configuration: appconf,
+)
 appstream_file = i18n.merge_file(
-  input: 'org.gnome.TextEditor.appdata.xml.in',
-  output: 'org.gnome.TextEditor.appdata.xml',
-  po_dir: '../po',
-  install: true,
-  install_dir: join_paths(get_option('datadir'), 'appdata')
+          input: appstream_file_in,
+         output: '@0@.appdata.xml'.format(app_id),
+         po_dir: '../po',
+        install: true,
+    install_dir: join_paths(get_option('datadir'), 'appdata')
 )
 
 appstream_util = find_program('appstream-util', required: false)
@@ -43,14 +50,13 @@ endif
 # D-Bus service file.
 dbusconf = configuration_data()
 dbusconf.set('bindir', join_paths(get_option('prefix'), get_option('bindir')))
+dbusconf.set('app_id', app_id)
 configure_file(
           input: 'org.gnome.TextEditor.service.in',
-         output: 'org.gnome.TextEditor.service',
+         output: '@0@.service'.format(app_id),
   configuration: dbusconf,
    install_dir: join_paths(get_option('datadir'), 'dbus-1', 'services'),
 )
 
-
 subdir('icons')
 subdir('styles')
-

@@ -1,5 +1,5 @@
 {
-    "app-id" : "org.gnome.TextEditor",
+    "app-id" : "org.gnome.TextEditor.Devel",
     "runtime" : "org.gnome.Platform",
     "runtime-version" : "3.36",
     "sdk" : "org.gnome.Sdk",
@@ -122,6 +122,10 @@
             "name" : "gnome-text-editor",
             "builddir" : true,
             "buildsystem" : "meson",
+            "config-opts": [
+                "--libdir=/app/lib",
+                "-Ddevelopment=true"
+            ],
             "sources" : [
                 {
                     "type" : "git",
