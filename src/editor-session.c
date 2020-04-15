@@ -953,6 +953,9 @@ editor_session_save_async (EditorSession       *self,
       g_assert (EDITOR_IS_PAGE (page));
       g_assert (EDITOR_IS_DOCUMENT (document));
 
+      if (editor_page_get_can_discard (page))
+        continue;
+
       state->n_active++;
 
       _editor_document_save_draft_async (document,
