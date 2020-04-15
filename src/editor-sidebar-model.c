@@ -169,6 +169,7 @@ editor_sidebar_model_page_added_cb (EditorSidebarModel *self,
       /* First we want to remove the item since we'll be moving it
        * to a higher location to match the page offset.
        */
+      g_sequence_remove (iter);
       g_list_model_items_changed (G_LIST_MODEL (self), position, 1, 0);
 
       /* Set our page for tracking */
