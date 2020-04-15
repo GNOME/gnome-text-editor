@@ -968,11 +968,23 @@ editor_session_save_async (EditorSession       *self,
    * operations to restore and can just unlink the session file.
    */
   if (state->n_active == 0)
-    g_file_delete_async (self->state_file,
-                         G_PRIORITY_HIGH,
-                         NULL,
-                         editor_session_save_unlink_cb,
-                         g_steal_pointer (&task));
+    {
+      if (state->seen == NULL)
+        g_file_delete_async (self->state_file,
+                             G_PRIORITY_HIGH,
+                             NULL,
+                             editor_session_save_unlink_cb,
+                             g_steal_pointer (&task));
+      else
+        g_file_replace_contents_bytes_async (state->state_file,
+                                             state->state_bytes,
+                                             NULL,
+                                             FALSE,
+                                             G_FILE_CREATE_REPLACE_DESTINATION,
+                                             NULL,
+                                             editor_session_save_replace_contents_cb,
+                                             g_steal_pointer (&task));
+    }
 }
 
 gboolean
