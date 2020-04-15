@@ -889,10 +889,11 @@ editor_document_do_load (EditorDocument *self,
 
   if (load->has_draft == FALSE && load->has_file == FALSE)
     {
-      g_task_return_new_error (task,
-                               G_IO_ERROR,
-                               G_IO_ERROR_INVALID_FILENAME,
-                               "Failed to locate file or draft");
+      /* We are creating a new file. */
+      editor_document_set_busy_progress (self, 1, 2, 1.0);
+      _editor_document_unmark_busy (self);
+      gtk_source_buffer_set_highlight_syntax (GTK_SOURCE_BUFFER (self), TRUE);
+      g_task_return_boolean (task, TRUE);
       return;
     }
 
@@ -978,6 +979,12 @@ editor_document_load_file_info_cb (GObject      *object,
       if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_NOT_SUPPORTED))
         {
           load->has_file = TRUE;
+          load->content_type = NULL;
+          load->modified_at = 0;
+        }
+      else if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_NOT_FOUND))
+        {
+          load->has_file = FALSE;
           load->content_type = NULL;
           load->modified_at = 0;
         }
