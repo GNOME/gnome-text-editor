@@ -206,20 +206,44 @@ editor_document_get_draft_file (EditorDocument *self)
 }
 
 static void
+editor_document_set_busy_progress (EditorDocument *self,
+                                   guint           stage,
+                                   guint           n_stages,
+                                   gdouble         value)
+{
+  gdouble per_stage;
+
+  g_assert (EDITOR_IS_DOCUMENT (self));
+  g_assert (n_stages > 0);
+
+  value = CLAMP (value, 0.0, 1.0);
+  per_stage = 1.0 / n_stages;
+
+  value = (per_stage * stage) + (value * per_stage);
+
+  if (value != self->busy_progress)
+    {
+      self->busy_progress = value;
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_BUSY_PROGRESS]);
+    }
+}
+
+static void
 editor_document_progress (goffset  current_num_bytes,
                           goffset  total_num_bytes,
                           gpointer user_data)
 {
   EditorDocument *self = user_data;
+  gdouble value;
 
   g_assert (EDITOR_IS_DOCUMENT (self));
 
   if (total_num_bytes == 0 || current_num_bytes > total_num_bytes)
-    self->busy_progress = 1.0;
+    value = 1.0;
   else
-    self->busy_progress = (gdouble)current_num_bytes / (gdouble)total_num_bytes;
+    value = (gdouble)current_num_bytes / (gdouble)total_num_bytes;
 
-  g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_BUSY_PROGRESS]);
+  editor_document_set_busy_progress (self, 1, 2, value);
 }
 
 static void
@@ -650,6 +674,8 @@ _editor_document_save_async (EditorDocument      *self,
 
   _editor_document_mark_busy (self);
 
+  editor_document_set_busy_progress (self, 0, 2, .25);
+
   gtk_source_file_saver_save_async (saver,
                                     G_PRIORITY_DEFAULT,
                                     NULL,
@@ -870,6 +896,8 @@ editor_document_do_load (EditorDocument *self,
       return;
     }
 
+  editor_document_set_busy_progress (self, 0, 2, 1.0);
+
   file = gtk_source_file_new ();
 
   if (load->mount_operation != NULL)
@@ -980,6 +1008,7 @@ editor_document_load_file_mount_cb (GObject      *object,
   GFile *file = (GFile *)object;
   g_autoptr(GError) error = NULL;
   g_autoptr(GTask) task = user_data;
+  EditorDocument *self;
   Load *load;
 
   g_assert (G_IS_FILE (file));
@@ -1001,10 +1030,14 @@ editor_document_load_file_mount_cb (GObject      *object,
     }
 
   load = g_task_get_task_data (task);
+  self = g_task_get_source_object (task);
 
+  g_assert (EDITOR_IS_DOCUMENT (self));
   g_assert (load != NULL);
   g_assert (G_IS_FILE (load->file));
   g_assert (load->n_active > 0);
+
+  editor_document_set_busy_progress (self, 0, 2, .5);
 
   g_file_query_info_async (load->file,
                            G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE","
@@ -1050,6 +1083,8 @@ _editor_document_load_async (EditorDocument      *self,
   task = g_task_new (self, cancellable, callback, user_data);
   g_task_set_source_tag (task, _editor_document_load_async);
   g_task_set_task_data (task, load, (GDestroyNotify) load_free);
+
+  editor_document_set_busy_progress (self, 0, 2, .25);
 
   g_signal_connect_object (task,
                            "notify::completed",
