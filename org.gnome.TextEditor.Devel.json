@@ -93,7 +93,9 @@
             "buildsystem": "meson",
             "builddir": true,
             "cleanup" : [
-                "/bin"
+                "/bin",
+                "/share/icons/hicolor/scalable/apps",
+                "/share/icons/hicolor/symbolic/apps"
             ],
             "config-opts": [
                 "--libdir=/app/lib"
