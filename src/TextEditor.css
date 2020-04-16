@@ -39,7 +39,8 @@
 
 
 /* FIXME: Work around GTK :focus propagation issue */
-notebook:focus {
+notebook:focus,
+notebook:focus:backdrop {
   outline-color: transparent;
 }
 
