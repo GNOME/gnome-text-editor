@@ -658,18 +658,16 @@ void
 _editor_page_save_as (EditorPage *self)
 {
   GtkFileChooserNative *native;
-  GtkRoot *root;
+  EditorWindow *window;
   gint ret;
 
   g_return_if_fail (EDITOR_IS_PAGE (self));
 
   _editor_page_raise (self);
 
-  if ((root = gtk_widget_get_root (GTK_WIDGET (self))) && !GTK_IS_WINDOW (root))
-    root = NULL;
-
+  window = _editor_page_get_window (self);
   native = gtk_file_chooser_native_new (_("Save As"),
-                                        GTK_WINDOW (root),
+                                        GTK_WINDOW (window),
                                         GTK_FILE_CHOOSER_ACTION_SAVE,
                                         _("Save"),
                                         _("Cancel"));
