@@ -123,6 +123,7 @@
             </style>
             <child>
               <object class="GtkNotebook" id="notebook">
+                <signal name="page-reordered" handler="editor_window_notebook_page_reordered_cb" swapped="true" object="EditorWindow"/>
                 <property name="scrollable">true</property>
                 <property name="show-border">false</property>
                 <property name="show-tabs">false</property>

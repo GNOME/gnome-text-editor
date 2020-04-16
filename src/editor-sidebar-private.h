@@ -1,4 +1,4 @@
-/* editor-sidebar-model-private.h
+/* editor-sidebar-private.h
  *
  * Copyright 2020 Christian Hergert <chergert@redhat.com>
  *
@@ -20,17 +20,12 @@
 
 #pragma once
 
-#include "editor-types-private.h"
+#include "editor-sidebar.h"
 
 G_BEGIN_DECLS
 
-#define EDITOR_TYPE_SIDEBAR_MODEL (editor_sidebar_model_get_type())
-
-G_DECLARE_FINAL_TYPE (EditorSidebarModel, editor_sidebar_model, EDITOR, SIDEBAR_MODEL, GObject)
-
-EditorSidebarModel *_editor_sidebar_model_new            (void);
-void                _editor_sidebar_model_page_reordered (EditorSidebarModel *self,
-                                                          EditorPage         *page,
-                                                          guint               page_num);
+void _editor_sidebar_page_reordered (EditorSidebar *self,
+                                     EditorPage    *page,
+                                     guint          page_num);
 
 G_END_DECLS

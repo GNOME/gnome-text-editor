@@ -28,10 +28,9 @@
 #include "editor-document.h"
 #include "editor-page.h"
 #include "editor-session.h"
-#include "editor-session.h"
-#include "editor-sidebar.h"
 #include "editor-sidebar-item-private.h"
 #include "editor-sidebar-model-private.h"
+#include "editor-sidebar-private.h"
 #include "editor-sidebar-row-private.h"
 #include "editor-window.h"
 
@@ -234,4 +233,15 @@ editor_sidebar_focus_search (EditorSidebar *self)
   g_return_if_fail (EDITOR_IS_SIDEBAR (self));
 
   gtk_widget_grab_focus (GTK_WIDGET (self->search_entry));
+}
+
+void
+_editor_sidebar_page_reordered (EditorSidebar *self,
+                                EditorPage    *page,
+                                guint          page_num)
+{
+  g_return_if_fail (EDITOR_IS_SIDEBAR (self));
+  g_return_if_fail (EDITOR_IS_PAGE (page));
+
+  _editor_sidebar_model_page_reordered (self->model, page, page_num);
 }

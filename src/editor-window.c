@@ -28,7 +28,7 @@
 #include "editor-binding-group.h"
 #include "editor-page-private.h"
 #include "editor-session.h"
-#include "editor-sidebar.h"
+#include "editor-sidebar-private.h"
 #include "editor-signal-group.h"
 #include "editor-tab-private.h"
 #include "editor-utils-private.h"
@@ -191,6 +191,21 @@ editor_window_sidebar_toggled_cb (EditorWindow    *self,
     gtk_widget_hide (GTK_WIDGET (self->sidebar));
 }
 
+static void
+editor_window_notebook_page_reordered_cb (EditorWindow *self,
+                                          GtkWidget    *child,
+                                          guint         page_num,
+                                          GtkNotebook  *notebook)
+{
+  EditorPage *page = (EditorPage *)child;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+  g_assert (EDITOR_IS_PAGE (page));
+  g_assert (GTK_IS_NOTEBOOK (notebook));
+
+  _editor_sidebar_page_reordered (self->sidebar, page, page_num);
+}
+
 static gboolean
 editor_window_close_request (GtkWindow *window)
 {
@@ -319,6 +334,7 @@ editor_window_class_init (EditorWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, title);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, stack);
   gtk_widget_class_bind_template_callback (widget_class, editor_window_sidebar_toggled_cb);
+  gtk_widget_class_bind_template_callback (widget_class, editor_window_notebook_page_reordered_cb);
 
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_w, GDK_CONTROL_MASK, "win.close-current-page", NULL);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_o, GDK_CONTROL_MASK, "win.open", NULL);

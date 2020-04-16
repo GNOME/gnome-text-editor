@@ -363,3 +363,30 @@ _editor_sidebar_model_new (void)
 {
   return g_object_new (EDITOR_TYPE_SIDEBAR_MODEL, NULL);
 }
+
+void
+_editor_sidebar_model_page_reordered (EditorSidebarModel *self,
+                                      EditorPage         *page,
+                                      guint               page_num)
+{
+  g_autoptr(EditorSidebarItem) item = NULL;
+  EditorDocument *document;
+  GSequenceIter *iter;
+  guint position;
+
+  g_return_if_fail (EDITOR_IS_SIDEBAR_MODEL (self));
+  g_return_if_fail (EDITOR_IS_PAGE (page));
+
+  document = editor_page_get_document (page);
+  iter = find_by_document (self, document);
+  g_assert (iter != NULL);
+
+  item = g_object_ref (g_sequence_get (iter));
+  position = g_sequence_iter_get_position (iter);
+  g_sequence_remove (iter);
+  g_list_model_items_changed (G_LIST_MODEL (self), position, 1, 0);
+
+  iter = g_sequence_get_iter_at_pos (self->seq, page_num);
+  g_sequence_insert_before (iter, g_steal_pointer (&item));
+  g_list_model_items_changed (G_LIST_MODEL (self), page_num, 0, 1);
+}
