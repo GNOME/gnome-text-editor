@@ -12,11 +12,18 @@
         <property name="row-spacing">3</property>
         <property name="column-spacing">6</property>
         <child>
-          <object class="GtkLabel" id="is_modified">
-            <property name="halign">center</property>
-            <property name="valign">baseline</property>
-            <property name="label">•</property>
-            <property name="visible">false</property>
+          <object class="GtkStack" id="stack">
+            <property name="homogeneous">true</property>
+            <child>
+              <object class="GtkLabel" id="empty"/>
+            </child>
+            <child>
+              <object class="GtkLabel" id="is_modified">
+                <property name="halign">center</property>
+                <property name="valign">baseline</property>
+                <property name="label">•</property>
+              </object>
+            </child>
           </object>
         </child>
         <child>

@@ -37,6 +37,8 @@ struct _EditorSidebarRow
   GtkLabel          *title;
   GtkLabel          *subtitle;
   GtkLabel          *is_modified;
+  GtkLabel          *empty;
+  GtkStack          *stack;
 };
 
 enum {
@@ -48,6 +50,25 @@ enum {
 G_DEFINE_TYPE (EditorSidebarRow, editor_sidebar_row, GTK_TYPE_LIST_BOX_ROW)
 
 static GParamSpec *properties [N_PROPS];
+
+static gboolean
+modified_to_child (GBinding     *binding,
+                   const GValue *from_value,
+                   GValue       *to_value,
+                   gpointer      user_data)
+{
+  EditorSidebarRow *self = user_data;
+
+  g_assert (G_IS_BINDING (binding));
+  g_assert (EDITOR_IS_SIDEBAR_ROW (self));
+
+  if (g_value_get_boolean (from_value))
+    g_value_set_object (to_value, self->is_modified);
+  else
+    g_value_set_object (to_value, self->empty);
+
+  return TRUE;
+}
 
 static void
 editor_sidebar_row_constructed (GObject *object)
@@ -67,8 +88,12 @@ editor_sidebar_row_constructed (GObject *object)
 
   g_object_bind_property (self->item, "title", self->title, "label", G_BINDING_SYNC_CREATE);
   g_object_bind_property (self->item, "subtitle", self->subtitle, "label", G_BINDING_SYNC_CREATE);
-  g_object_bind_property (self->item, "is-modified", self->is_modified, "visible", G_BINDING_SYNC_CREATE);
   g_object_bind_property (self->item, "empty", self, "visible", G_BINDING_SYNC_CREATE | G_BINDING_INVERT_BOOLEAN);
+  g_object_bind_property_full (self->item, "is-modified",
+                               self->stack, "visible-child",
+                               G_BINDING_SYNC_CREATE,
+                               modified_to_child,
+                               NULL, self, NULL);
 }
 
 static void
@@ -131,9 +156,11 @@ editor_sidebar_row_class_init (EditorSidebarRowClass *klass)
   object_class->set_property = editor_sidebar_row_set_property;
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-sidebar-row.ui");
-  gtk_widget_class_bind_template_child (widget_class, EditorSidebarRow, title);
-  gtk_widget_class_bind_template_child (widget_class, EditorSidebarRow, subtitle);
+  gtk_widget_class_bind_template_child (widget_class, EditorSidebarRow, empty);
   gtk_widget_class_bind_template_child (widget_class, EditorSidebarRow, is_modified);
+  gtk_widget_class_bind_template_child (widget_class, EditorSidebarRow, stack);
+  gtk_widget_class_bind_template_child (widget_class, EditorSidebarRow, subtitle);
+  gtk_widget_class_bind_template_child (widget_class, EditorSidebarRow, title);
 
   properties [PROP_ITEM] =
     g_param_spec_object ("item",
@@ -141,7 +168,7 @@ editor_sidebar_row_class_init (EditorSidebarRowClass *klass)
                          "The item to be displayed",
                          EDITOR_TYPE_SIDEBAR_ITEM,
                          (G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
-  
+
   g_object_class_install_properties (object_class, N_PROPS, properties);
 }
 
