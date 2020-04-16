@@ -38,6 +38,12 @@
 }
 
 
+/* FIXME: Work around GTK :focus propagation issue */
+notebook:focus {
+  outline-color: transparent;
+}
+
+
 /* EditorSidebar */
 
 .org-gnome-TextEditor sidebar,
