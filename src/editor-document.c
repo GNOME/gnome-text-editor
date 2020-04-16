@@ -1299,12 +1299,12 @@ editor_document_dup_title (EditorDocument *self)
 
           ch = gtk_text_iter_get_char (&iter);
 
-          if (g_unichar_isspace (ch))
+          if (g_unichar_isspace (ch) || !g_unichar_isalnum (ch))
             {
               if (str->len == 0 || !g_str_has_suffix (str->str, " "))
                 g_string_append_c (str, ' ');
             }
-          else if (g_unichar_isalnum (ch))
+          else
             {
               g_string_append_unichar (str, ch);
             }
