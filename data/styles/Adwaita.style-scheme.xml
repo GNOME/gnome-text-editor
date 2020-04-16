@@ -23,66 +23,71 @@
   <author>Christian Hergert</author>
   <description>The default color scheme for TextEditor</description>
 
+  <!-- Adwaita Palette -->
+  <color name="blue1" value="#99c1f1"/>
+  <color name="blue2" value="#62a0ea"/>
+  <color name="blue3" value="#3584e4"/>
+  <color name="blue4" value="#1c71d8"/>
+  <color name="blue5" value="#1a5fb4"/>
+  <color name="dark1" value="#77767b"/>
+  <color name="dark2" value="#5e5c64"/>
+  <color name="dark3" value="#3d3846"/>
+  <color name="dark4" value="#241f31"/>
+  <color name="dark5" value="#000000"/>
+  <color name="green1" value="#8ff0a4"/>
+  <color name="green2" value="#57e389"/>
+  <color name="green3" value="#33d17a"/>
+  <color name="green4" value="#2ec27e"/>
+  <color name="green5" value="#26a269"/>
+  <color name="light1" value="#ffffff"/>
+  <color name="light2" value="#f6f5f4"/>
+  <color name="light3" value="#deddda"/>
+  <color name="light4" value="#c0bfbc"/>
+  <color name="light5" value="#9a9996"/>
+  <color name="orange1" value="#ffbe6f"/>
+  <color name="orange2" value="#ffa348"/>
+  <color name="orange3" value="#ff7800"/>
+  <color name="orange4" value="#e66100"/>
+  <color name="orange5" value="#c64600"/>
+  <color name="purple1" value="#dc8add"/>
+  <color name="purple2" value="#c061cb"/>
+  <color name="purple3" value="#9141ac"/>
+  <color name="purple4" value="#813d9c"/>
+  <color name="purple5" value="#613583"/>
+  <color name="red1" value="#f66151"/>
+  <color name="red2" value="#ed333b"/>
+  <color name="red3" value="#e01b24"/>
+  <color name="red4" value="#c01c28"/>
+  <color name="red5" value="#a51d2d"/>
+  <color name="yellow1" value="#f9f06b"/>
+  <color name="yellow2" value="#f8e45c"/>
+  <color name="yellow3" value="#f6d32d"/>
+  <color name="yellow4" value="#f5c211"/>
+  <color name="yellow5" value="#e5a50a"/>
+
+  <color name="pink1" value="#f66151"/>
+
   <!-- Tango Palette -->
   <color name="bg1"                         value="#edebe9"/>
   <color name="bg2"                         value="#dbd7d3"/>
   <color name="og1"                         value="#d75d1b"/>
-  <color name="gr1"                         value="#709831"/>
-  <color name="brown1"                      value="#a67f59"/>
-  <color name="blue1"                       value="#708090"/>
-  <color name="blue2"                       value="#0077aa"/>
-  <color name="purple1"                     value="#990055"/>
-  <color name="pink1"                       value="#dd4a68"/>
-  <color name="pink2"                       value="#EBCAD2"/>
-  <color name="green1"                      value="#669900"/>
   <color name="text1"                       value="#4d4e53"/>
   <color name="selection1"                  value="#b3d4fc"/>
-  <color name="line1"                       value="#a2a3a3"/>
   <color name="white"                       value="#ffffff"/>
-  <color name="yellow1"                     value="#fff9e5"/>
-  <color name="red1"                        value="#ff0000"/>
-
-  <color name="butter1"                     value="#fce94f"/>
-  <color name="butter2"                     value="#edd400"/>
-  <color name="butter3"                     value="#c4a000"/>
-  <color name="chameleon1"                  value="#8ae234"/>
-  <color name="chameleon2"                  value="#73d216"/>
-  <color name="chameleon3"                  value="#4e9a06"/>
-  <color name="orange1"                     value="#fcaf3e"/>
-  <color name="orange2"                     value="#f57900"/>
-  <color name="orange3"                     value="#ce5c00"/>
-  <color name="skyblue1"                    value="#729fcf"/>
-  <color name="skyblue2"                    value="#3465a4"/>
-  <color name="skyblue3"                    value="#204a87"/>
-  <color name="plum1"                       value="#ad7fa8"/>
-  <color name="plum2"                       value="#75507b"/>
-  <color name="plum3"                       value="#5c3566"/>
-  <color name="chocolate1"                  value="#e9b96e"/>
-  <color name="chocolate2"                  value="#c17d11"/>
-  <color name="chocolate3"                  value="#8f5902"/>
-  <color name="scarletred1"                 value="#ef2929"/>
-  <color name="scarletred2"                 value="#cc0000"/>
-  <color name="scarletred3"                 value="#a40000"/>
-  <color name="aluminium1"                  value="#eeeeec"/>
-  <color name="aluminium2"                  value="#d3d7cf"/>
-  <color name="aluminium3"                  value="#babdb6"/>
-  <color name="aluminium4"                  value="#888a85"/>
-  <color name="aluminium5"                  value="#555753"/>
-  <color name="aluminium6"                  value="#2e3436"/>
 
   <!-- Global Settings -->
   <style name="text"                        foreground="text1" background="white"/>
   <style name="selection"                   background="selection1"/>
   <style name="map-overlay"                 background="#rgba(193,203,210,0.55)"/>
-  <style name="cursor"                      foreground="aluminium4"/>
+  <style name="cursor"                      foreground="dark3"/>
   <style name="current-line"                background="#rgba(214,209,205,.35)"/>
   <style name="current-line-number"         background="#rgba(214,209,205,.35)" bold="true"/>
-  <style name="draw-spaces"                 foreground="aluminium3"/>
-  <style name="line-numbers"                foreground="line1" background="white"/>
-  <style name="background-pattern"          background="#e7e5e4"/>
+  <style name="draw-spaces"                 foreground="dark3"/>
+  <style name="line-numbers"                foreground="#a2a3a3" background="white"/>
+  <style name="background-pattern"          background="light2"/>
 
   <!-- Diagnostics Underlining -->
-  <style name="diagnostician::deprecated"   underline="error" underline-color="aluminium3"/>
+  <style name="diagnostician::deprecated"   underline="error" underline-color="dark3"/>
   <style name="diagnostician::error"        underline="error" underline-color="red1"/>
   <style name="diagnostician::note"         underline="error" underline-color="blue1"/>
   <style name="diagnostician::warning"      underline="error" underline-color="orange1"/>
@@ -98,11 +103,11 @@
   <style name="action::hover-definition"    background="#d2e0e8" underline="true"/>
 
   <!-- Bracket Matching -->
-  <style name="bracket-match"               foreground="text1" background="aluminium3" bold="true"/>
-  <style name="bracket-mismatch"            foreground="aluminium1" background="scarletred3" bold="true"/>
+  <style name="bracket-match"               foreground="text1" background="light3" bold="true"/>
+  <style name="bracket-mismatch"            foreground="dark1" background="red3" bold="true"/>
 
   <!-- Right Margin -->
-  <style name="right-margin"                foreground="aluminium3" background="bg2"/>
+  <style name="right-margin"                foreground="dark3" background="bg2"/>
 
   <!-- Search Matching -->
   <style name="search-match"                foreground="white" background="pink1"/>
@@ -134,16 +139,16 @@
   <style name="def:doc-comment-element"     italic="true"/>
   <style name="def:emphasis"                italic="true"/>
   <style name="def:error"                   line-background="#rgba(235,202,210,.4)" />
-  <style name="def:floating-point"          foreground="blue2"/>
-  <style name="def:function"                foreground="#4186A8"/>
+  <style name="def:floating-point"          foreground="purple1"/>
+  <style name="def:function"                foreground="blue4"/>
   <style name="def:decimal"                 foreground="purple1"/>
   <style name="def:base-n-integer"          foreground="blue2"/>
   <style name="def:boolean"                 foreground="pink1"/>
-  <style name="def:heading"                 foreground="gr1" bold="true"/>
+  <style name="def:heading"                 foreground="green1" bold="true"/>
   <style name="def:identifier"              foreground="purple1"/>
   <style name="def:inline-code"             foreground="purple1"/>
   <style name="def:insertion"               underline="single"/>
-  <style name="def:keyword"                 foreground="gr1" bold="true"/>
+  <style name="def:keyword"                 foreground="green1" bold="true"/>
   <style name="def:link-destination"        italic="true" underline="true"/>
   <style name="def:link-symbol"             foreground="blue1" bold="true"/>
   <style name="def:link-text"               foreground="blue1"/>
@@ -158,8 +163,8 @@
   <style name="def:statement"               foreground="green1" bold="true"/>
   <style name="def:string"                  foreground="blue2"/>
   <style name="def:strong-emphasis"         foreground="green1" bold="true"/>
-  <style name="def:thematic-break"          foreground="gr1" bold="true"/>
-  <style name="def:type"                    foreground="gr1" bold="true"/>
+  <style name="def:thematic-break"          foreground="green1" bold="true"/>
+  <style name="def:type"                    foreground="green1" bold="true"/>
   <style name="def:warning"                 background="yellow1"/>
   <style name="def:special-constant"        foreground="purple1"/>
 
@@ -172,7 +177,7 @@
 
   <style name="gutter:added-line"           foreground="chameleon1"/>
   <style name="gutter:changed-line"         foreground="orange1"/>
-  <style name="gutter:removed-line"         foreground="scarletred1"/>
+  <style name="gutter:removed-line"         foreground="red1"/>
 
   <style name="python:builtin-object"       foreground="og1"/>
   <style name="python:keyword"              foreground="green1" bold="false"/>
