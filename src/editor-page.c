@@ -244,22 +244,9 @@ boolean_to_left_margin (GBinding     *binding,
                         gpointer      user_data)
 {
   if (g_value_get_boolean (from_value))
-    g_value_set_int (to_value, 8);
+    g_value_set_int (to_value, 2);
   else
     g_value_set_int (to_value, 16);
-  return TRUE;
-}
-
-static gboolean
-boolean_to_margin_start (GBinding     *binding,
-                         const GValue *from_value,
-                         GValue       *to_value,
-                         gpointer      user_data)
-{
-  if (g_value_get_boolean (from_value))
-    g_value_set_int (to_value, 8);
-  else
-    g_value_set_int (to_value, 2);
   return TRUE;
 }
 
@@ -302,11 +289,6 @@ editor_page_constructed (GObject *object)
                                   self->view, "left-margin",
                                   G_BINDING_SYNC_CREATE,
                                   boolean_to_left_margin,
-                                  NULL, NULL, NULL);
-  editor_binding_group_bind_full (self->settings_bindings, "show-line-numbers",
-                                  self->view, "margin-start",
-                                  G_BINDING_SYNC_CREATE,
-                                  boolean_to_margin_start,
                                   NULL, NULL, NULL);
 
   editor_page_document_notify_busy_cb (self, NULL, self->document);
