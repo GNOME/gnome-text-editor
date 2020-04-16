@@ -28,24 +28,23 @@
 struct _EditorBindingGroup
 {
   GObject    parent_instance;
-
   GObject   *source;
   GPtrArray *lazy_bindings;
 };
 
 typedef struct
 {
-  EditorBindingGroup  *group;
-  const gchar      *source_property;
-  const gchar      *target_property;
-  GObject          *target;
-  GBinding         *binding;
-  gpointer          user_data;
-  GDestroyNotify    user_data_destroy;
-  gpointer          transform_to;
-  gpointer          transform_from;
-  GBindingFlags     binding_flags;
-  guint             using_closures : 1;
+  EditorBindingGroup *group;
+  const gchar        *source_property;
+  const gchar        *target_property;
+  GObject            *target;
+  GBinding           *binding;
+  gpointer            user_data;
+  GDestroyNotify      user_data_destroy;
+  gpointer            transform_to;
+  gpointer            transform_from;
+  GBindingFlags       binding_flags;
+  guint               using_closures : 1;
 } LazyBinding;
 
 G_DEFINE_TYPE (EditorBindingGroup, editor_binding_group, G_TYPE_OBJECT)
@@ -53,10 +52,10 @@ G_DEFINE_TYPE (EditorBindingGroup, editor_binding_group, G_TYPE_OBJECT)
 enum {
   PROP_0,
   PROP_SOURCE,
-  LAST_PROP
+  N_PROPS
 };
 
-static GParamSpec *properties [LAST_PROP];
+static GParamSpec *properties [N_PROPS];
 
 /*#define DEBUG_BINDINGS 1*/
 
@@ -89,7 +88,7 @@ _g_flags_to_string (GFlagsClass *flags_class,
 
 static void
 editor_binding_group_connect (EditorBindingGroup *self,
-                           LazyBinding     *lazy_binding)
+                              LazyBinding        *lazy_binding)
 {
   GBinding *binding;
 
@@ -163,7 +162,7 @@ editor_binding_group_disconnect (LazyBinding *lazy_binding)
 
 static void
 editor_binding_group__source_weak_notify (gpointer  data,
-                                       GObject  *where_object_was)
+                                          GObject  *where_object_was)
 {
   EditorBindingGroup *self = data;
   gsize i;
@@ -183,7 +182,7 @@ editor_binding_group__source_weak_notify (gpointer  data,
 
 static void
 editor_binding_group__target_weak_notify (gpointer  data,
-                                       GObject  *where_object_was)
+                                          GObject  *where_object_was)
 {
   EditorBindingGroup *self = data;
   gsize i;
@@ -274,9 +273,9 @@ editor_binding_group_finalize (GObject *object)
 
 static void
 editor_binding_group_get_property (GObject    *object,
-                                guint       prop_id,
-                                GValue     *value,
-                                GParamSpec *pspec)
+                                   guint       prop_id,
+                                   GValue     *value,
+                                   GParamSpec *pspec)
 {
   EditorBindingGroup *self = EDITOR_BINDING_GROUP (object);
 
@@ -293,9 +292,9 @@ editor_binding_group_get_property (GObject    *object,
 
 static void
 editor_binding_group_set_property (GObject      *object,
-                                guint         prop_id,
-                                const GValue *value,
-                                GParamSpec   *pspec)
+                                   guint         prop_id,
+                                   const GValue *value,
+                                   GParamSpec   *pspec)
 {
   EditorBindingGroup *self = EDITOR_BINDING_GROUP (object);
 
@@ -332,7 +331,7 @@ editor_binding_group_class_init (EditorBindingGroupClass *klass)
                          G_TYPE_OBJECT,
                          (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
-  g_object_class_install_properties (object_class, LAST_PROP, properties);
+  g_object_class_install_properties (object_class, N_PROPS, properties);
 }
 
 static void
@@ -372,7 +371,7 @@ editor_binding_group_get_source (EditorBindingGroup *self)
 
 static gboolean
 editor_binding_group_check_source (EditorBindingGroup *self,
-                                gpointer         source)
+                                   gpointer            source)
 {
   gsize i;
 
@@ -403,7 +402,7 @@ editor_binding_group_check_source (EditorBindingGroup *self,
  */
 void
 editor_binding_group_set_source (EditorBindingGroup *self,
-                              gpointer         source)
+                                 gpointer            source)
 {
   g_return_if_fail (EDITOR_IS_BINDING_GROUP (self));
   g_return_if_fail (!source || G_IS_OBJECT (source));
@@ -607,17 +606,17 @@ editor_binding_group_bind_full (EditorBindingGroup    *self,
  */
 void
 editor_binding_group_bind_with_closures (EditorBindingGroup *self,
-                                      const gchar     *source_property,
-                                      gpointer         target,
-                                      const gchar     *target_property,
-                                      GBindingFlags    flags,
-                                      GClosure        *transform_to,
-                                      GClosure        *transform_from)
+                                         const gchar        *source_property,
+                                         gpointer            target,
+                                         const gchar        *target_property,
+                                         GBindingFlags       flags,
+                                         GClosure           *transform_to,
+                                         GClosure           *transform_from)
 {
   editor_binding_group_bind_helper (self, source_property,
-                                 target, target_property,
-                                 flags,
-                                 transform_to, transform_from,
-                                 NULL, NULL,
-                                 TRUE);
+                                    target, target_property,
+                                    flags,
+                                    transform_to, transform_from,
+                                    NULL, NULL,
+                                    TRUE);
 }
