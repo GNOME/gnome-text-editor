@@ -435,9 +435,13 @@ _editor_window_add_page (EditorWindow *self,
 
   tab = _editor_tab_new (page);
 
-  gtk_notebook_append_page (GTK_NOTEBOOK (self->notebook),
+  gtk_notebook_append_page (self->notebook,
                             GTK_WIDGET (page),
                             GTK_WIDGET (tab));
+
+  g_object_set (gtk_notebook_get_page (self->notebook, GTK_WIDGET (page)),
+                "reorderable", TRUE,
+                NULL);
 }
 
 void
