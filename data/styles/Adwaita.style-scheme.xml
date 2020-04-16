@@ -71,13 +71,12 @@
   <color name="bg1"                         value="#edebe9"/>
   <color name="bg2"                         value="#dbd7d3"/>
   <color name="og1"                         value="#d75d1b"/>
-  <color name="text1"                       value="#4d4e53"/>
   <color name="selection1"                  value="#b3d4fc"/>
   <color name="white"                       value="#ffffff"/>
 
   <!-- Global Settings -->
-  <style name="text"                        foreground="text1" background="white"/>
-  <style name="selection"                   background="selection1"/>
+  <style name="text"                        foreground="dark3" background="white"/>
+  <style name="selection"                   background="blue3"/>
   <style name="map-overlay"                 background="#rgba(193,203,210,0.55)"/>
   <style name="cursor"                      foreground="dark3"/>
   <style name="current-line"                background="#rgba(214,209,205,.35)"/>
@@ -122,18 +121,28 @@
   <!-- Quick Highlight Plugin -->
   <style name="quick-highlight"             background="#rgba(221,74,104,.15)"/>
 
-  <style name="c:comment"                   foreground="#8b9eab"/>
   <style name="c:preprocessor"              foreground="#8194a6" bold="false"/>
   <style name="c:boolean"                   foreground="#0077aa"/>
   <style name="c:keyword"                   foreground="#0077aa" bold="true"/>
   <style name="c:string"                    foreground="#669900"/>
   <style name="c:included-file"             foreground="orange3"/>
   <style name="c:storage-class"             foreground="orange3" bold="true"/>
-  <style name="c:type"                      foreground="#669900" bold="true"/>
+  <style name="c:type"                      foreground="green5" bold="true"/>
   <style name="c:macro-name"                foreground="#677685" bold="false"/>
   <style name="c:enum-name"                 foreground="pink1" bold="false"/>
 
-  <style name="def:comment"                 foreground="blue1"/>
+  <style name="gtk-doc:function-name"       bold="true"/>
+  <style name="gtk-doc:function"            bold="true"/>
+  <style name="gtk-doc:parameter"           bold="true"/>
+  <style name="gtk-doc:constant"            bold="true"/>
+  <style name="gtk-doc:type"                bold="true"/>
+  <style name="gtk-doc:since"               bold="true"/>
+  <style name="gtk-doc:return"              bold="true"/>
+  <style name="gtk-doc:deprecated"          bold="true"/>
+  <style name="gtk-doc:signal-name"         bold="true"/>
+  <style name="gtk-doc:property-name"       bold="true"/>
+
+  <style name="def:comment"                 foreground="dark1"/>
   <style name="def:constant"                foreground="pink1"/>
   <style name="def:deletion"                strikethrough="true"/>
   <style name="def:doc-comment-element"     italic="true"/>
@@ -144,15 +153,15 @@
   <style name="def:decimal"                 foreground="purple1"/>
   <style name="def:base-n-integer"          foreground="blue2"/>
   <style name="def:boolean"                 foreground="pink1"/>
-  <style name="def:heading"                 foreground="green1" bold="true"/>
+  <style name="def:heading"                 foreground="green5" bold="true"/>
   <style name="def:identifier"              foreground="purple1"/>
   <style name="def:inline-code"             foreground="purple1"/>
   <style name="def:insertion"               underline="single"/>
-  <style name="def:keyword"                 foreground="green1" bold="true"/>
+  <style name="def:keyword"                 foreground="green5" bold="true"/>
   <style name="def:link-destination"        italic="true" underline="true"/>
   <style name="def:link-symbol"             foreground="blue1" bold="true"/>
   <style name="def:link-text"               foreground="blue1"/>
-  <style name="def:list-marker"             foreground="green1" bold="true"/>
+  <style name="def:list-marker"             foreground="green5" bold="true"/>
   <style name="def:net-address"             italic="true" underline="true"/>
   <style name="def:note"                    background="orange1" bold="true"/>
   <style name="def:operator"                foreground="#a67f59"/>
@@ -160,11 +169,11 @@
   <style name="def:preprocessor"            foreground="pink1"/>
   <style name="def:shebang"                 foreground="blue1" bold="true"/>
   <style name="def:special-char"            foreground="pink1"/>
-  <style name="def:statement"               foreground="green1" bold="true"/>
+  <style name="def:statement"               foreground="green5" bold="true"/>
   <style name="def:string"                  foreground="blue2"/>
-  <style name="def:strong-emphasis"         foreground="green1" bold="true"/>
-  <style name="def:thematic-break"          foreground="green1" bold="true"/>
-  <style name="def:type"                    foreground="green1" bold="true"/>
+  <style name="def:strong-emphasis"         foreground="green5" bold="true"/>
+  <style name="def:thematic-break"          foreground="green5" bold="true"/>
+  <style name="def:type"                    foreground="green5" bold="true"/>
   <style name="def:warning"                 background="yellow1"/>
   <style name="def:special-constant"        foreground="purple1"/>
 
@@ -180,7 +189,7 @@
   <style name="gutter:removed-line"         foreground="red1"/>
 
   <style name="python:builtin-object"       foreground="og1"/>
-  <style name="python:keyword"              foreground="green1" bold="false"/>
+  <style name="python:keyword"              foreground="green5" bold="false"/>
   <style name="python:module-handler"       foreground="purple1" bold="false"/>
   <style name="python:function-name"        foreground="pink1"/>
 
