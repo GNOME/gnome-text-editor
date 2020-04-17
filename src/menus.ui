@@ -145,4 +145,32 @@
       </item>
     </section>
   </menu>
+  <menu id="tab-menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Move _Left</attribute>
+        <attribute name="action">tab.move-left</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Move _Right</attribute>
+        <attribute name="action">tab.move-right</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Move to New Window</attribute>
+        <attribute name="action">tab.move-to-new-window</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Close _Other Tabs</attribute>
+        <attribute name="action">tab.close-other-tabs</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Close</attribute>
+        <attribute name="action">tab.close</attribute>
+      </item>
+    </section>
+  </menu>
 </interface>
