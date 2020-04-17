@@ -275,3 +275,25 @@ editor_page_settings_provider_get_tab_width (EditorPageSettingsProvider *self,
 
   return FALSE;
 }
+
+/**
+ * editor_page_settings_provider_get_right_margin_position:
+ * @self: a #EditorPageSettingsProvider
+ * @right_margin_position: (out) (optional): the position for the right margin
+ *
+ * Returns: %TRUE if @right_margin_position was set by the provider.
+ */
+gboolean
+editor_page_settings_provider_get_right_margin_position (EditorPageSettingsProvider *self,
+                                                         guint                      *right_margin_position)
+{
+  g_return_val_if_fail (EDITOR_IS_PAGE_SETTINGS_PROVIDER (self), FALSE);
+
+  if (right_margin_position != NULL)
+    *right_margin_position = 80;
+
+  if (EDITOR_PAGE_SETTINGS_PROVIDER_GET_IFACE (self)->get_right_margin_position)
+    return EDITOR_PAGE_SETTINGS_PROVIDER_GET_IFACE (self)->get_right_margin_position (self, right_margin_position);
+
+  return FALSE;
+}

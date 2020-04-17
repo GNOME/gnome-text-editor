@@ -36,6 +36,8 @@ struct _EditorPageSettings
 
   gchar *custom_font;
   gchar *style_scheme;
+
+  guint right_margin_position;
   guint tab_width;
 
   guint dark_mode : 1;
@@ -52,6 +54,7 @@ enum {
   PROP_DARK_MODE,
   PROP_DOCUMENT,
   PROP_INSERT_SPACES_INSTEAD_OF_TABS,
+  PROP_RIGHT_MARGIN_POSITION,
   PROP_SHOW_LINE_NUMBERS,
   PROP_SHOW_RIGHT_MARGIN,
   PROP_STYLE_SCHEME,
@@ -117,6 +120,7 @@ editor_page_settings_update (EditorPageSettings *self)
   UPDATE_SETTING (gboolean, use_system_font, USE_SYSTEM_FONT, cmp_boolean, (void), (gboolean));
   UPDATE_SETTING (gboolean, wrap_text, WRAP_TEXT, cmp_boolean, (void), (gboolean));
   UPDATE_SETTING (guint, tab_width, TAB_WIDTH, cmp_uint, (void), (guint));
+  UPDATE_SETTING (guint, right_margin_position, RIGHT_MARGIN_POSITION, cmp_uint, (void), (guint));
   UPDATE_SETTING (g_autofree gchar *, custom_font, CUSTOM_FONT, cmp_string, g_free, g_strdup);
   UPDATE_SETTING (g_autofree gchar *, style_scheme, STYLE_SCHEME, cmp_string, g_free, g_strdup);
 
@@ -198,6 +202,10 @@ editor_page_settings_get_property (GObject    *object,
       g_value_set_boolean (value, editor_page_settings_get_insert_spaces_instead_of_tabs (self));
       break;
 
+    case PROP_RIGHT_MARGIN_POSITION:
+      g_value_set_uint (value, editor_page_settings_get_right_margin_position (self));
+      break;
+
     case PROP_SHOW_LINE_NUMBERS:
       g_value_set_boolean (value, editor_page_settings_get_show_line_numbers (self));
       break;
@@ -240,6 +248,10 @@ editor_page_settings_set_property (GObject      *object,
     case PROP_CUSTOM_FONT:
       g_free (self->custom_font);
       self->custom_font = g_value_dup_string (value);
+      break;
+
+    case PROP_RIGHT_MARGIN_POSITION:
+      self->right_margin_position = g_value_get_uint (value);
       break;
 
     case PROP_STYLE_SCHEME:
@@ -325,6 +337,13 @@ editor_page_settings_class_init (EditorPageSettingsClass *klass)
                           FALSE,
                           (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
+  properties [PROP_RIGHT_MARGIN_POSITION] =
+    g_param_spec_uint ("right-margin-position",
+                       "Right Margin Position",
+                       "The position for the right margin",
+                       1, 1000, 80,
+                       (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+
   properties [PROP_SHOW_LINE_NUMBERS] =
     g_param_spec_boolean ("show-line-numbers",
                           "Show Line Numbers",
@@ -368,6 +387,7 @@ editor_page_settings_init (EditorPageSettings *self)
 {
   self->providers = g_ptr_array_new_with_free_func (g_object_unref);
   self->use_system_font = TRUE;
+  self->right_margin_position = 80;
   self->tab_width = 8;
 }
 
@@ -444,9 +464,17 @@ editor_page_settings_get_wrap_text (EditorPageSettings *self)
 }
 
 guint
+editor_page_settings_get_right_margin_position (EditorPageSettings *self)
+{
+  g_return_val_if_fail (EDITOR_IS_PAGE_SETTINGS (self), 0);
+
+  return self->right_margin_position;
+}
+
+guint
 editor_page_settings_get_tab_width (EditorPageSettings *self)
 {
-  g_return_val_if_fail (EDITOR_IS_PAGE_SETTINGS (self), FALSE);
+  g_return_val_if_fail (EDITOR_IS_PAGE_SETTINGS (self), 0);
 
   return self->tab_width;
 }

@@ -43,6 +43,8 @@ struct _EditorPageSettingsProviderInterface
                                                   gboolean                   *dark_mode);
   gboolean  (*get_insert_spaces_instead_of_tabs) (EditorPageSettingsProvider *self,
                                                   gboolean                   *insert_spaces_instead_of_tabs);
+  gboolean  (*get_right_margin_position)         (EditorPageSettingsProvider *self,
+                                                  guint                      *right_margin_position);
   gboolean  (*get_show_line_numbers)             (EditorPageSettingsProvider *self,
                                                   gboolean                   *show_line_numbers);
   gboolean  (*get_show_right_margin)             (EditorPageSettingsProvider *self,
@@ -66,6 +68,8 @@ gboolean editor_page_settings_provider_get_dark_mode                     (Editor
                                                                           gboolean                    *dark_mode);
 gboolean editor_page_settings_provider_get_insert_spaces_instead_of_tabs (EditorPageSettingsProvider  *self,
                                                                           gboolean                    *insert_spaces_instead_of_tabs);
+gboolean editor_page_settings_provider_get_right_margin_position         (EditorPageSettingsProvider  *self,
+                                                                          guint                       *right_margin_position);
 gboolean editor_page_settings_provider_get_show_line_numbers             (EditorPageSettingsProvider  *self,
                                                                           gboolean                    *show_line_numbers);
 gboolean editor_page_settings_provider_get_show_right_margin             (EditorPageSettingsProvider  *self,

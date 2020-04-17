@@ -264,6 +264,9 @@ editor_page_constructed (GObject *object)
   editor_binding_group_bind (self->settings_bindings, "insert-spaces-instead-of-tabs",
                              self->view, "insert-spaces-instead-of-tabs",
                              G_BINDING_SYNC_CREATE);
+  editor_binding_group_bind (self->settings_bindings, "right-margin-position",
+                             self->view, "right-margin-position",
+                             G_BINDING_SYNC_CREATE);
   editor_binding_group_bind (self->settings_bindings, "show-line-numbers",
                              self->view, "show-line-numbers",
                              G_BINDING_SYNC_CREATE);

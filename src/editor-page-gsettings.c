@@ -41,12 +41,13 @@ editor_page_gsettings_get_##name (EditorPageSettingsProvider *provider, \
   return TRUE;                                                          \
 }
 
-GSETTINGS_GETTER (guint, uint, tab_width, "tab-width");
-GSETTINGS_GETTER (gboolean, boolean, show_right_margin, "show-right-margin");
-GSETTINGS_GETTER (gboolean, boolean, show_line_numbers, "show-line-numbers");
-GSETTINGS_GETTER (gboolean, boolean, use_system_font, "use-system-font");
-GSETTINGS_GETTER (gboolean, boolean, dark_mode, "dark-mode");
-GSETTINGS_GETTER (gboolean, boolean, wrap_text, "wrap-text");
+GSETTINGS_GETTER (guint, uint, tab_width, "tab-width")
+GSETTINGS_GETTER (gboolean, boolean, show_right_margin, "show-right-margin")
+GSETTINGS_GETTER (gboolean, boolean, show_line_numbers, "show-line-numbers")
+GSETTINGS_GETTER (gboolean, boolean, use_system_font, "use-system-font")
+GSETTINGS_GETTER (gboolean, boolean, dark_mode, "dark-mode")
+GSETTINGS_GETTER (gboolean, boolean, wrap_text, "wrap-text")
+GSETTINGS_GETTER (guint, uint, right_margin_position, "right-margin-position")
 
 static gboolean
 editor_page_gsettings_get_insert_spaces_instead_of_tabs (EditorPageSettingsProvider *provider,
@@ -137,6 +138,7 @@ page_settings_provider_iface_init (EditorPageSettingsProviderInterface *iface)
 {
   iface->get_dark_mode = editor_page_gsettings_get_dark_mode;
   iface->get_insert_spaces_instead_of_tabs = editor_page_gsettings_get_insert_spaces_instead_of_tabs;
+  iface->get_right_margin_position = editor_page_gsettings_get_right_margin_position;
   iface->get_show_line_numbers = editor_page_gsettings_get_show_line_numbers;
   iface->get_show_right_margin = editor_page_gsettings_get_show_right_margin;
   iface->get_tab_width = editor_page_gsettings_get_tab_width;
