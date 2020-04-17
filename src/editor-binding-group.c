@@ -25,6 +25,20 @@
 
 #include "editor-binding-group.h"
 
+/**
+ * SECTION:editor-binding-group:
+ * @title: EditorBindingGroup
+ * @short_description: Binding multiple properties as a group
+ *
+ * The #EditorBindingGroup can be used to bind multiple properties
+ * from an object collectively.
+ *
+ * Use the various methods to bind properties from a single source
+ * object to multiple destination objects. Properties can be bound
+ * bidrectionally and are connected when the source object is set
+ * with editor_binding_group_set_source().
+ */
+
 struct _EditorBindingGroup
 {
   GObject    parent_instance;
@@ -35,8 +49,8 @@ struct _EditorBindingGroup
 typedef struct
 {
   EditorBindingGroup *group;
-  const gchar        *source_property;
-  const gchar        *target_property;
+  const char         *source_property;
+  const char         *target_property;
   GObject            *target;
   GBinding           *binding;
   gpointer            user_data;
@@ -60,7 +74,7 @@ static GParamSpec *properties [N_PROPS];
 /*#define DEBUG_BINDINGS 1*/
 
 #ifdef DEBUG_BINDINGS
-static gchar *
+static char *
 _g_flags_to_string (GFlagsClass *flags_class,
                     guint        value)
 {
@@ -123,27 +137,23 @@ editor_binding_group_connect (EditorBindingGroup *self,
 #endif
 
   if (!lazy_binding->using_closures)
-    {
-      binding = g_object_bind_property_full (self->source,
-                                             lazy_binding->source_property,
-                                             lazy_binding->target,
-                                             lazy_binding->target_property,
-                                             lazy_binding->binding_flags,
-                                             lazy_binding->transform_to,
-                                             lazy_binding->transform_from,
-                                             lazy_binding->user_data,
-                                             NULL);
-    }
+    binding = g_object_bind_property_full (self->source,
+                                           lazy_binding->source_property,
+                                           lazy_binding->target,
+                                           lazy_binding->target_property,
+                                           lazy_binding->binding_flags,
+                                           lazy_binding->transform_to,
+                                           lazy_binding->transform_from,
+                                           lazy_binding->user_data,
+                                           NULL);
   else
-    {
-      binding = g_object_bind_property_with_closures (self->source,
-                                                      lazy_binding->source_property,
-                                                      lazy_binding->target,
-                                                      lazy_binding->target_property,
-                                                      lazy_binding->binding_flags,
-                                                      lazy_binding->transform_to,
-                                                      lazy_binding->transform_from);
-    }
+    binding = g_object_bind_property_with_closures (self->source,
+                                                    lazy_binding->source_property,
+                                                    lazy_binding->target,
+                                                    lazy_binding->target_property,
+                                                    lazy_binding->binding_flags,
+                                                    lazy_binding->transform_to,
+                                                    lazy_binding->transform_from);
 
   lazy_binding->binding = binding;
 }
