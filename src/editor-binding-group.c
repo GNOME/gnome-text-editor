@@ -330,7 +330,7 @@ editor_binding_group_class_init (EditorBindingGroupClass *klass)
   object_class->set_property = editor_binding_group_set_property;
 
   /**
-   * EditorBindingGroup:source
+   * EditorBindingGroup:source:
    *
    * The source object used for binding properties.
    */
@@ -387,9 +387,7 @@ editor_binding_group_check_source (EditorBindingGroup *self,
 
   for (i = 0; i < self->lazy_bindings->len; i++)
     {
-      LazyBinding *lazy_binding;
-
-      lazy_binding = g_ptr_array_index (self->lazy_bindings, i);
+      LazyBinding *lazy_binding = g_ptr_array_index (self->lazy_bindings, i);
 
       g_return_val_if_fail (g_object_class_find_property (G_OBJECT_GET_CLASS (source),
                                                           lazy_binding->source_property) != NULL,
