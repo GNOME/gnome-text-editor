@@ -3,8 +3,39 @@
 	<id>@app_id@.desktop</id>
 	<metadata_license>CC0-1.0</metadata_license>
 	<project_license>GPL-3.0-or-later</project_license>
-	<description>
+  <developer_name>Christian Hergert, et al.</developer_name>
+  <launchable type="desktop-id">org.gnome.TextEditor.desktop</launchable>
+  <name>Text Editor</name>
+  <project_group>GNOME</project_group>
+  <summary>A Text Editor for GNOME</summary>
+  <description>
+    <p>GNOME Text Editor is a simple text editor focused on a pleasing default experience.</p>
 	</description>
+
+  <url type="homepage">https://gitlab.gnome.org/chergert/gnome-text-editor</url>
+  <url type="bugtracker">https://gitlab.gnome.org/chergert/gnome-text-editor/issues</url>
+  <url type="donation">http://www.gnome.org/friends/</url>
+
+  <screenshots>
+    <screenshot type="default">
+      <caption></caption>
+      <image width="752" height="619">https://gitlab.gnome.org/chergert/gnome-text-editor/raw/master/data/appdata/text-editor-1.png</image>
+    </screenshot>
+  </screenshots>
+
+  <releases>
+    <release version="3.37.1" date="2020-04-17">
+      <description>
+        <p>Initial release of Text Editor.</p>
+      </description>
+    </release>
+  </releases>
+
+  <kudos>
+    <kudo>HiDpiIcon</kudo>
+    <kudo>ModernToolkit</kudo>
+  </kudos>
+
   <content_rating type="oars-1.1">
     <content_attribute id="violence-cartoon">none</content_attribute>
     <content_attribute id="violence-fantasy">none</content_attribute>
