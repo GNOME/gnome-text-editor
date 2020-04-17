@@ -74,13 +74,13 @@ enum {
   PROP_FRAME_CLOCK,
   PROP_MODE,
   PROP_TARGET,
-  LAST_PROP
+  N_PROPS
 };
 
 
 enum {
   TICK,
-  LAST_SIGNAL
+  N_SIGNALS
 };
 
 
@@ -106,8 +106,8 @@ enum {
  */
 static AlphaFunc   alpha_funcs[EDITOR_ANIMATION_LAST];
 static gboolean    debug;
-static GParamSpec *properties[LAST_PROP];
-static guint       signals[LAST_SIGNAL];
+static GParamSpec *properties[N_PROPS];
+static guint       signals[N_SIGNALS];
 static TweenFunc   tween_funcs[LAST_FUNDAMENTAL];
 static guint       slow_down_factor = 1;
 
@@ -895,7 +895,7 @@ editor_animation_class_init (EditorAnimationClass *klass)
                           G_PARAM_CONSTRUCT_ONLY |
                           G_PARAM_STATIC_STRINGS));
 
-  g_object_class_install_properties (object_class, LAST_PROP, properties);
+  g_object_class_install_properties (object_class, N_PROPS, properties);
 
   /**
    * EditorAnimation::tick:
