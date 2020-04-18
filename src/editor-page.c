@@ -51,6 +51,7 @@ struct _EditorPage
 
 enum {
   PROP_0,
+  PROP_BUSY,
   PROP_CAN_SAVE,
   PROP_DOCUMENT,
   PROP_IS_MODIFIED,
@@ -116,6 +117,7 @@ editor_page_document_notify_busy_cb (EditorPage     *self,
   else
     gtk_widget_show (GTK_WIDGET (self->progress_bar));
 
+  g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_BUSY]);
   g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_CAN_SAVE]);
   g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_SUBTITLE]);
   g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_TITLE]);
@@ -332,6 +334,10 @@ editor_page_get_property (GObject    *object,
 
   switch (prop_id)
     {
+    case PROP_BUSY:
+      g_value_set_boolean (value, editor_page_get_busy (self));
+      break;
+
     case PROP_CAN_SAVE:
       g_value_set_boolean (value, editor_page_get_can_save (self));
       break;
@@ -392,6 +398,13 @@ editor_page_class_init (EditorPageClass *klass)
   object_class->set_property = editor_page_set_property;
 
   widget_class->destroy = editor_page_destroy;
+
+  properties [PROP_BUSY] =
+    g_param_spec_boolean ("busy",
+                          "Busy",
+                          "If the page is busy",
+                          FALSE,
+                          (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
   properties [PROP_CAN_SAVE] =
     g_param_spec_boolean ("can-save",
@@ -893,7 +906,13 @@ _editor_page_position (EditorPage *self)
   if ((notebook = gtk_widget_get_ancestor (GTK_WIDGET (self), GTK_TYPE_NOTEBOOK)))
     return gtk_notebook_page_num (GTK_NOTEBOOK (notebook), GTK_WIDGET (self));
 
-  g_print ("Womp\n");
-
   return -1;
+}
+
+gboolean
+editor_page_get_busy (EditorPage *self)
+{
+  g_return_val_if_fail (EDITOR_IS_PAGE (self), FALSE);
+
+  return editor_document_get_busy (self->document);
 }

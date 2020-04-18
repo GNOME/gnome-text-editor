@@ -40,6 +40,7 @@ struct _EditorTab
   GtkLabel   *is_modified;
   GtkLabel   *title;
   GtkLabel   *close_button;
+  GtkSpinner *spinner;
 };
 
 enum {
@@ -68,24 +69,47 @@ editor_tab_page_notify_title_cb (EditorTab  *self,
 }
 
 static void
+editor_tab_update_stack (EditorTab *self)
+{
+  GtkWidget *child;
+
+  g_assert (EDITOR_IS_TAB (self));
+
+  if (editor_page_get_busy (self->page))
+    child = GTK_WIDGET (self->spinner);
+  else if (editor_page_get_is_modified (self->page))
+    child = GTK_WIDGET (self->is_modified);
+  else
+    child = GTK_WIDGET (self->empty);
+
+  gtk_stack_set_visible_child (self->stack, child);
+  gtk_spinner_set_spinning (self->spinner,
+                            child == GTK_WIDGET (self->spinner));
+}
+
+static void
 editor_tab_page_notify_is_modified_cb (EditorTab  *self,
                                        GParamSpec *pspec,
                                        EditorPage *page)
 {
-  GtkWidget *child;
-
   g_assert (EDITOR_IS_TAB (self));
   g_assert (EDITOR_IS_PAGE (page));
   g_assert (GTK_IS_LABEL (self->empty));
   g_assert (GTK_IS_LABEL (self->is_modified));
   g_assert (GTK_IS_STACK (self->stack));
 
-  if (editor_page_get_is_modified (page))
-    child = GTK_WIDGET (self->is_modified);
-  else
-    child = GTK_WIDGET (self->empty);
+  editor_tab_update_stack (self);
+}
 
-  gtk_stack_set_visible_child (self->stack, child);
+static void
+editor_tab_page_notify_busy_cb (EditorTab  *self,
+                                GParamSpec *pspec,
+                                EditorPage *page)
+{
+  g_assert (EDITOR_IS_TAB (self));
+  g_assert (EDITOR_IS_PAGE (page));
+
+  editor_tab_update_stack (self);
 }
 
 static void
@@ -98,6 +122,11 @@ editor_tab_set_page (EditorTab  *self,
   if (g_set_weak_pointer (&self->page, page))
     {
       g_signal_connect_object (page,
+                               "notify::busy",
+                               G_CALLBACK (editor_tab_page_notify_busy_cb),
+                               self,
+                               G_CONNECT_SWAPPED);
+      g_signal_connect_object (page,
                                "notify::title",
                                G_CALLBACK (editor_tab_page_notify_title_cb),
                                self,
@@ -108,6 +137,7 @@ editor_tab_set_page (EditorTab  *self,
                                self,
                                G_CONNECT_SWAPPED);
 
+      editor_tab_page_notify_busy_cb (self, NULL, page);
       editor_tab_page_notify_title_cb (self, NULL, page);
       editor_tab_page_notify_is_modified_cb (self, NULL, page);
     }
@@ -398,6 +428,7 @@ editor_tab_class_init (EditorTabClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorTab, close_button);
   gtk_widget_class_bind_template_child (widget_class, EditorTab, empty);
   gtk_widget_class_bind_template_child (widget_class, EditorTab, is_modified);
+  gtk_widget_class_bind_template_child (widget_class, EditorTab, spinner);
   gtk_widget_class_bind_template_child (widget_class, EditorTab, stack);
   gtk_widget_class_bind_template_child (widget_class, EditorTab, title);
 

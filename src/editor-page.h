@@ -30,6 +30,7 @@ G_DECLARE_FINAL_TYPE (EditorPage, editor_page, EDITOR, PAGE, GtkBin)
 
 EditorPage     *editor_page_new_for_document    (EditorDocument *document);
 EditorDocument *editor_page_get_document        (EditorPage     *self);
+gboolean        editor_page_get_busy            (EditorPage     *self);
 gboolean        editor_page_get_can_discard     (EditorPage     *self);
 gboolean        editor_page_get_can_save        (EditorPage     *self);
 gboolean        editor_page_get_is_modified     (EditorPage     *self);
