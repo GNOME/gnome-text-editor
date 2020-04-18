@@ -23,16 +23,17 @@
 #include "config.h"
 
 #include "editor-application.h"
-#include "editor-page.h"
+#include "editor-page-private.h"
 #include "editor-session.h"
 #include "editor-tab-private.h"
-#include "editor-window.h"
+#include "editor-window-private.h"
 
 struct _EditorTab
 {
   GtkBin      parent_instance;
 
   EditorPage *page;
+  GtkPopover *menu_popover;
 
   GtkStack   *stack;
   GtkLabel   *empty;
@@ -118,25 +119,119 @@ editor_tab_close_cb (GtkWidget   *widget,
                      GVariant    *param)
 {
   EditorTab *self = (EditorTab *)widget;
-  EditorSession *session;
+
+  g_assert (EDITOR_IS_TAB (self));
+
+  if (self->page != NULL)
+    editor_session_remove_page (EDITOR_SESSION_DEFAULT, self->page);
+}
+
+static void
+editor_tab_close_other_tabs_cb (GtkWidget   *widget,
+                                const gchar *action_name,
+                                GVariant    *param)
+{
+  EditorTab *self = (EditorTab *)widget;
+  EditorWindow *window;
+  GList *pages;
 
   g_assert (EDITOR_IS_TAB (self));
 
   if (self->page == NULL)
     return;
 
-  session = editor_application_get_session (EDITOR_APPLICATION_DEFAULT);
-  editor_session_remove_page (session, self->page);
+  window = _editor_page_get_window (self->page);
+  pages = _editor_window_get_pages (window);
+
+  for (const GList *iter = pages; iter; iter = iter->next)
+    {
+      EditorPage *page = iter->data;
+
+      if (page == self->page)
+        continue;
+
+      editor_session_remove_page (EDITOR_SESSION_DEFAULT, page);
+    }
+
+  g_list_free (pages);
 }
 
 static void
-editor_tab_finalize (GObject *object)
+click_gesture_pressed_cb (EditorTab       *self,
+                          int              n_press,
+                          double           x,
+                          double           y,
+                          GtkGestureClick *click)
 {
-  EditorTab *self = (EditorTab *)object;
+  gint button;
+
+  g_assert (EDITOR_IS_TAB (self));
+  g_assert (GTK_IS_GESTURE_CLICK (click));
+
+  if (self->page == NULL)
+    return;
+
+  button = gtk_gesture_single_get_current_button (GTK_GESTURE_SINGLE (click));
+
+  switch (button)
+    {
+    case 2:
+      editor_session_remove_page (EDITOR_SESSION_DEFAULT, self->page);
+      break;
+
+    case 3:
+      if (self->menu_popover == NULL)
+        {
+          GtkApplication *app = GTK_APPLICATION (EDITOR_APPLICATION_DEFAULT);
+          GMenu *menu = gtk_application_get_menu_by_id (app, "tab-menu");
+          GtkWidget *popover = gtk_popover_menu_new_from_model (G_MENU_MODEL (menu));
+
+          self->menu_popover = GTK_POPOVER (popover);
+          gtk_widget_set_parent (GTK_WIDGET (self->menu_popover), GTK_WIDGET (self));
+          gtk_popover_set_position (self->menu_popover, GTK_POS_BOTTOM);
+          gtk_popover_set_has_arrow (self->menu_popover, TRUE);
+          gtk_widget_set_halign (GTK_WIDGET (self->menu_popover), GTK_ALIGN_CENTER);
+        }
+
+      gtk_popover_popup (GTK_POPOVER (self->menu_popover));
+
+      break;
+
+    default:
+      break;
+    }
+}
+
+static void
+editor_tab_size_allocate (GtkWidget *widget,
+                          int        widget_width,
+                          int        widget_height,
+                          int        baseline)
+{
+  EditorTab *self = (EditorTab *)widget;
+
+  g_assert (EDITOR_IS_TAB (self));
+
+  GTK_WIDGET_CLASS (editor_tab_parent_class)->size_allocate (widget, widget_width, widget_height, baseline);
+
+  if (self->menu_popover != NULL)
+    gtk_native_check_resize (GTK_NATIVE (self->menu_popover));
+}
+
+static void
+editor_tab_destroy (GtkWidget *widget)
+{
+  EditorTab *self = (EditorTab *)widget;
 
   g_clear_weak_pointer (&self->page);
 
-  G_OBJECT_CLASS (editor_tab_parent_class)->finalize (object);
+  if (self->menu_popover)
+    {
+      gtk_widget_unparent (GTK_WIDGET (self->menu_popover));
+      self->menu_popover = NULL;
+    }
+
+  GTK_WIDGET_CLASS (editor_tab_parent_class)->destroy (widget);
 }
 
 static void
@@ -183,9 +278,11 @@ editor_tab_class_init (EditorTabClass *klass)
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
-  object_class->finalize = editor_tab_finalize;
   object_class->get_property = editor_tab_get_property;
   object_class->set_property = editor_tab_set_property;
+
+  widget_class->destroy = editor_tab_destroy;
+  widget_class->size_allocate = editor_tab_size_allocate;
 
   properties [PROP_PAGE] =
     g_param_spec_object ("page",
@@ -203,15 +300,27 @@ editor_tab_class_init (EditorTabClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorTab, stack);
   gtk_widget_class_bind_template_child (widget_class, EditorTab, title);
 
-  gtk_widget_class_install_action (widget_class, "page.close", NULL, editor_tab_close_cb);
+  gtk_widget_class_install_action (widget_class, "tab.close", NULL, editor_tab_close_cb);
+  gtk_widget_class_install_action (widget_class, "tab.close-other-tabs", NULL, editor_tab_close_other_tabs_cb);
 }
 
 static void
 editor_tab_init (EditorTab *self)
 {
-  gtk_widget_init_template (GTK_WIDGET (self));
+  GtkGesture *gesture;
 
+  gtk_widget_init_template (GTK_WIDGET (self));
   gtk_widget_set_hexpand (GTK_WIDGET (self), TRUE);
+
+  gesture = gtk_gesture_click_new ();
+  gtk_gesture_single_set_button (GTK_GESTURE_SINGLE (gesture), 0);
+  gtk_event_controller_set_propagation_phase (GTK_EVENT_CONTROLLER (gesture), GTK_PHASE_CAPTURE);
+  g_signal_connect_object (gesture,
+                           "pressed",
+                           G_CALLBACK (click_gesture_pressed_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+  gtk_widget_add_controller (GTK_WIDGET (self), GTK_EVENT_CONTROLLER (gesture));
 }
 
 EditorTab *
