@@ -24,7 +24,7 @@
 
 #include "editor-application.h"
 #include "editor-page-private.h"
-#include "editor-session.h"
+#include "editor-session-private.h"
 #include "editor-tab-private.h"
 #include "editor-window-private.h"
 
@@ -111,6 +111,26 @@ editor_tab_set_page (EditorTab  *self,
       editor_tab_page_notify_title_cb (self, NULL, page);
       editor_tab_page_notify_is_modified_cb (self, NULL, page);
     }
+}
+
+static void
+editor_tab_move_to_new_window_cb (GtkWidget   *widget,
+                                  const gchar *action_name,
+                                  GVariant    *param)
+{
+  EditorTab *self = (EditorTab *)widget;
+  EditorWindow *window;
+
+  g_assert (EDITOR_IS_TAB (self));
+
+  if (self->page == NULL)
+    return;
+
+  window = _editor_session_create_window_no_draft (EDITOR_SESSION_DEFAULT);
+  _editor_session_move_page_to_window (EDITOR_SESSION_DEFAULT,
+                                       self->page,
+                                       window);
+  gtk_window_present (GTK_WINDOW (window));
 }
 
 static void
@@ -302,6 +322,7 @@ editor_tab_class_init (EditorTabClass *klass)
 
   gtk_widget_class_install_action (widget_class, "tab.close", NULL, editor_tab_close_cb);
   gtk_widget_class_install_action (widget_class, "tab.close-other-tabs", NULL, editor_tab_close_other_tabs_cb);
+  gtk_widget_class_install_action (widget_class, "tab.move-to-new-window", NULL, editor_tab_move_to_new_window_cb);
 }
 
 static void

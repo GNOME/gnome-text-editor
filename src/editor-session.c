@@ -1719,3 +1719,25 @@ _editor_session_remove_draft (EditorSession *self,
         }
     }
 }
+
+void
+_editor_session_move_page_to_window (EditorSession *self,
+                                     EditorPage    *page,
+                                     EditorWindow  *window)
+{
+  EditorWindow *old_window;
+
+  g_return_if_fail (EDITOR_IS_SESSION (self));
+  g_return_if_fail (EDITOR_IS_PAGE (page));
+  g_return_if_fail (EDITOR_IS_WINDOW (window));
+
+  old_window = _editor_page_get_window (page);
+
+  if (window != old_window)
+    {
+      g_object_ref (page);
+      _editor_window_remove_page (old_window, page);
+      _editor_window_add_page (window, page);
+      g_object_unref (page);
+    }
+}
