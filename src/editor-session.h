@@ -20,11 +20,13 @@
 
 #pragma once
 
+#include "editor-application.h"
 #include "editor-types.h"
 
 G_BEGIN_DECLS
 
-#define EDITOR_TYPE_SESSION (editor_session_get_type())
+#define EDITOR_TYPE_SESSION    (editor_session_get_type())
+#define EDITOR_SESSION_DEFAULT (editor_application_get_session (EDITOR_APPLICATION_DEFAULT))
 
 G_DECLARE_FINAL_TYPE (EditorSession, editor_session, EDITOR, SESSION, GObject)
 
