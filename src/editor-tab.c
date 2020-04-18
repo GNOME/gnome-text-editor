@@ -114,6 +114,62 @@ editor_tab_set_page (EditorTab  *self,
 }
 
 static void
+editor_tab_move_left_cb (GtkWidget   *widget,
+                         const gchar *action_name,
+                         GVariant    *param)
+{
+  EditorTab *self = (EditorTab *)widget;
+  GtkNotebook *notebook;
+  gint page_num;
+
+  g_assert (EDITOR_IS_TAB (self));
+
+  if (self->page == NULL)
+    return;
+
+  notebook = GTK_NOTEBOOK (gtk_widget_get_ancestor (widget, GTK_TYPE_NOTEBOOK));
+
+  if (notebook == NULL)
+    return;
+
+  page_num = gtk_notebook_page_num (notebook, GTK_WIDGET (self->page));
+
+  if (page_num > 0)
+    {
+      gtk_notebook_reorder_child (notebook,
+                                  GTK_WIDGET (self->page),
+                                  page_num - 1);
+      _editor_page_raise (self->page);
+    }
+}
+
+static void
+editor_tab_move_right_cb (GtkWidget   *widget,
+                          const gchar *action_name,
+                          GVariant    *param)
+{
+  EditorTab *self = (EditorTab *)widget;
+  GtkNotebook *notebook;
+  gint page_num;
+
+  g_assert (EDITOR_IS_TAB (self));
+
+  if (self->page == NULL)
+    return;
+
+  notebook = GTK_NOTEBOOK (gtk_widget_get_ancestor (widget, GTK_TYPE_NOTEBOOK));
+
+  if (notebook == NULL)
+    return;
+
+  page_num = gtk_notebook_page_num (notebook, GTK_WIDGET (self->page));
+  gtk_notebook_reorder_child (notebook,
+                              GTK_WIDGET (self->page),
+                              page_num + 1);
+  _editor_page_raise (self->page);
+}
+
+static void
 editor_tab_move_to_new_window_cb (GtkWidget   *widget,
                                   const gchar *action_name,
                                   GVariant    *param)
@@ -177,6 +233,30 @@ editor_tab_close_other_tabs_cb (GtkWidget   *widget,
 }
 
 static void
+editor_tab_update_actions (EditorTab *self)
+{
+  GtkWidget *notebook;
+  gboolean move_left = FALSE;
+  gboolean move_right = FALSE;
+
+  g_assert (EDITOR_IS_TAB (self));
+
+  notebook = gtk_widget_get_ancestor (GTK_WIDGET (self), GTK_TYPE_NOTEBOOK);
+
+  if (notebook != NULL && self->page != NULL)
+    {
+      gint n_pages = gtk_notebook_get_n_pages (GTK_NOTEBOOK (notebook));
+      gint page_num = gtk_notebook_page_num (GTK_NOTEBOOK (notebook), GTK_WIDGET (self->page));
+
+      move_left = page_num > 0;
+      move_right = page_num < (n_pages - 1);
+    }
+
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "tab.move-left", move_left);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "tab.move-right", move_right);
+}
+
+static void
 click_gesture_pressed_cb (EditorTab       *self,
                           int              n_press,
                           double           x,
@@ -213,6 +293,7 @@ click_gesture_pressed_cb (EditorTab       *self,
           gtk_widget_set_halign (GTK_WIDGET (self->menu_popover), GTK_ALIGN_CENTER);
         }
 
+      editor_tab_update_actions (self);
       gtk_popover_popup (GTK_POPOVER (self->menu_popover));
 
       break;
@@ -323,6 +404,8 @@ editor_tab_class_init (EditorTabClass *klass)
   gtk_widget_class_install_action (widget_class, "tab.close", NULL, editor_tab_close_cb);
   gtk_widget_class_install_action (widget_class, "tab.close-other-tabs", NULL, editor_tab_close_other_tabs_cb);
   gtk_widget_class_install_action (widget_class, "tab.move-to-new-window", NULL, editor_tab_move_to_new_window_cb);
+  gtk_widget_class_install_action (widget_class, "tab.move-left", NULL, editor_tab_move_left_cb);
+  gtk_widget_class_install_action (widget_class, "tab.move-right", NULL, editor_tab_move_right_cb);
 }
 
 static void
