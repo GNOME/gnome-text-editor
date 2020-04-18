@@ -150,10 +150,12 @@
       <item>
         <attribute name="label" translatable="yes">Move _Left</attribute>
         <attribute name="action">tab.move-left</attribute>
+        <attribute name="accel">&lt;control&gt;&lt;shift&gt;&lt;alt&gt;Page_Up</attribute>
       </item>
       <item>
         <attribute name="label" translatable="yes">Move _Right</attribute>
         <attribute name="action">tab.move-right</attribute>
+        <attribute name="accel">&lt;control&gt;&lt;shift&gt;&lt;alt&gt;Page_Down</attribute>
       </item>
     </section>
     <section>
@@ -170,6 +172,7 @@
       <item>
         <attribute name="label" translatable="yes">Close</attribute>
         <attribute name="action">tab.close</attribute>
+        <attribute name="accel">&lt;control&gt;w</attribute>
       </item>
     </section>
   </menu>
