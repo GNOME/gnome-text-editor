@@ -257,6 +257,56 @@ editor_window_actions_focus_search_cb (GtkWidget   *widget,
   _editor_window_focus_search (self);
 }
 
+static void
+editor_window_actions_move_left_cb (GtkWidget   *widget,
+                                    const gchar *action_name,
+                                    GVariant    *param)
+{
+  EditorWindow *self = (EditorWindow *)widget;
+  GtkNotebook *notebook;
+  EditorPage *page;
+  gint page_num;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+
+  if (!(page = editor_window_get_visible_page (self)))
+    return;
+
+  if (!(notebook = GTK_NOTEBOOK (gtk_widget_get_ancestor (GTK_WIDGET (page), GTK_TYPE_NOTEBOOK))))
+    return;
+
+  if ((page_num = gtk_notebook_page_num (notebook, GTK_WIDGET (page))) < 0)
+    return;
+
+  gtk_notebook_reorder_child (notebook, GTK_WIDGET (page), page_num - 1);
+  _editor_page_raise (page);
+}
+
+static void
+editor_window_actions_move_right_cb (GtkWidget   *widget,
+                                     const gchar *action_name,
+                                     GVariant    *param)
+{
+  EditorWindow *self = (EditorWindow *)widget;
+  GtkNotebook *notebook;
+  EditorPage *page;
+  gint page_num;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+
+  if (!(page = editor_window_get_visible_page (self)))
+    return;
+
+  if (!(notebook = GTK_NOTEBOOK (gtk_widget_get_ancestor (GTK_WIDGET (page), GTK_TYPE_NOTEBOOK))))
+    return;
+
+  if ((page_num = gtk_notebook_page_num (notebook, GTK_WIDGET (page))) < 0)
+    return;
+
+  gtk_notebook_reorder_child (notebook, GTK_WIDGET (page), page_num + 1);
+  _editor_page_raise (page);
+}
+
 void
 _editor_window_class_actions_init (EditorWindowClass *klass)
 {
@@ -306,6 +356,14 @@ _editor_window_class_actions_init (EditorWindowClass *klass)
                                    "page.copy-all",
                                    NULL,
                                    editor_window_actions_copy_all_cb);
+  gtk_widget_class_install_action (widget_class,
+                                   "page.move-left",
+                                   NULL,
+                                   editor_window_actions_move_left_cb);
+  gtk_widget_class_install_action (widget_class,
+                                   "page.move-right",
+                                   NULL,
+                                   editor_window_actions_move_right_cb);
 }
 
 void
