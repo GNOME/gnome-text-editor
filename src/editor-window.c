@@ -356,6 +356,7 @@ editor_window_class_init (EditorWindowClass *klass)
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_9, GDK_ALT_MASK, "page.change", "i", 9);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Page_Up, GDK_CONTROL_MASK | GDK_ALT_MASK | GDK_SHIFT_MASK, "page.move-left", NULL);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Page_Down, GDK_CONTROL_MASK | GDK_ALT_MASK | GDK_SHIFT_MASK, "page.move-right", NULL);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_n, GDK_CONTROL_MASK | GDK_SHIFT_MASK, "page.move-to-new-window", NULL);
 
   _editor_window_class_actions_init (klass);
 

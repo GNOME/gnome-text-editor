@@ -28,7 +28,7 @@
 #include "editor-document.h"
 #include "editor-language-dialog.h"
 #include "editor-page-private.h"
-#include "editor-session.h"
+#include "editor-session-private.h"
 #include "editor-window-private.h"
 
 static void
@@ -307,6 +307,26 @@ editor_window_actions_move_right_cb (GtkWidget   *widget,
   _editor_page_raise (page);
 }
 
+static void
+editor_window_actions_move_to_new_window_cb (GtkWidget   *widget,
+                                             const gchar *action_name,
+                                             GVariant    *param)
+{
+  EditorWindow *self = (EditorWindow *)widget;
+  EditorWindow *window;
+  EditorPage *page;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+
+  if (!(page = editor_window_get_visible_page (self)))
+    return;
+
+  window = _editor_session_create_window_no_draft (EDITOR_SESSION_DEFAULT);
+  _editor_session_move_page_to_window (EDITOR_SESSION_DEFAULT, page, window);
+  _editor_page_raise (page);
+  gtk_window_present (GTK_WINDOW (window));
+}
+
 void
 _editor_window_class_actions_init (EditorWindowClass *klass)
 {
@@ -364,6 +384,10 @@ _editor_window_class_actions_init (EditorWindowClass *klass)
                                    "page.move-right",
                                    NULL,
                                    editor_window_actions_move_right_cb);
+  gtk_widget_class_install_action (widget_class,
+                                   "page.move-to-new-window",
+                                   NULL,
+                                   editor_window_actions_move_to_new_window_cb);
 }
 
 void
