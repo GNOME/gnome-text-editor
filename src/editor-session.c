@@ -602,8 +602,8 @@ editor_session_remove_page_cb (GObject      *object,
   if (!_editor_document_save_draft_finish (document, result, &error))
     g_warning ("Failed to save draft: %s", error->message);
 
-  window = _editor_page_get_window (page);
-  _editor_window_remove_page (window, page);
+  if ((window = _editor_page_get_window (page)))
+    _editor_window_remove_page (window, page);
 }
 
 static void
