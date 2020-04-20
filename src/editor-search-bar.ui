@@ -2,5 +2,149 @@
 <interface>
   <requires lib="gtk+" version="3.98"/>
   <template class="EditorSearchBar" parent="GtkBin">
+    <child>
+      <object class="GtkGrid">
+        <property name="can-focus">false</property>
+        <property name="column-spacing">8</property>
+        <property name="row-spacing">8</property>
+        <child>
+          <object class="GtkEntry" id="search_entry">
+            <property name="can-focus">true</property>
+            <property name="primary-icon-name">edit-find-symbolic</property>
+            <property name="max-width-chars">20</property>
+            <property name="hexpand">true</property>
+            <layout>
+              <property name="top-attach">0</property>
+              <property name="left-attach">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="GtkEntry" id="replace_entry">
+            <property name="can-focus">true</property>
+            <property name="primary-icon-name">edit-find-replace-symbolic</property>
+            <property name="max-width-chars">20</property>
+            <property name="hexpand">true</property>
+            <layout>
+              <property name="top-attach">1</property>
+              <property name="left-attach">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="GtkBox">
+            <property name="can-focus">false</property>
+            <property name="homogeneous">true</property>
+            <property name="orientation">horizontal</property>
+            <style>
+              <class name="linked"/>
+            </style>
+            <child>
+              <object class="GtkButton">
+                <property name="action-name">search.previous</property>
+                <property name="icon-name">go-up-symbolic</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton">
+                <property name="action-name">search.next</property>
+                <property name="icon-name">go-down-symbolic</property>
+              </object>
+            </child>
+            <layout>
+              <property name="top-attach">0</property>
+              <property name="left-attach">1</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="GtkToggleButton">
+            <property name="action-name">search.show-replace</property>
+            <property name="icon-name">edit-find-replace-symbolic</property>
+            <layout>
+              <property name="top-attach">0</property>
+              <property name="left-attach">2</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="GtkToggleButton">
+            <property name="action-name">search.show-options</property>
+            <property name="icon-name">emblem-system-symbolic</property>
+            <layout>
+              <property name="top-attach">0</property>
+              <property name="left-attach">3</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton" id="close_button">
+            <property name="action-name">search.hide</property>
+            <property name="icon-name">window-close-symbolic</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+            <style>
+              <class name="flat"/>
+              <class name="small-button"/>
+              <class name="circular"/>
+            </style>
+            <layout>
+              <property name="top-attach">0</property>
+              <property name="left-attach">4</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton" id="replace_button">
+            <property name="action-name">search.replace</property>
+            <property name="use-underline">true</property>
+            <property name="label" translatable="yes">_Replace</property>
+            <layout>
+              <property name="top-attach">1</property>
+              <property name="left-attach">1</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton" id="replace_all_button">
+            <property name="action-name">search.replace-all</property>
+            <property name="use-underline">true</property>
+            <property name="label" translatable="yes">Replace _All</property>
+            <layout>
+              <property name="top-attach">1</property>
+              <property name="left-attach">2</property>
+              <property name="column-span">2</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="GtkBox" id="settings_box">
+            <property name="can-focus">false</property>
+            <property name="orientation">horizontal</property>
+            <property name="spacing">3</property>
+            <layout>
+              <property name="top-attach">2</property>
+              <property name="left-attach">0</property>
+              <property name="column-span">4</property>
+            </layout>
+            <child>
+              <object class="GtkCheckButton">
+                <property name="label" translatable="yes">Regular expressions</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkCheckButton">
+                <property name="label" translatable="yes">Case sensitive</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkCheckButton">
+                <property name="label" translatable="yes">Match whole word only</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
   </template>
 </interface>

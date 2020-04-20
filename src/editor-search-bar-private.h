@@ -26,6 +26,15 @@ G_BEGIN_DECLS
 
 #define EDITOR_TYPE_SEARCH_BAR (editor_search_bar_get_type())
 
+typedef enum
+{
+  EDITOR_SEARCH_BAR_MODE_SEARCH,
+  EDITOR_SEARCH_BAR_MODE_REPLACE,
+} EditorSearchBarMode;
+
 G_DECLARE_FINAL_TYPE (EditorSearchBar, editor_search_bar, EDITOR, SEARCH_BAR, GtkBin)
+
+void _editor_search_bar_set_mode (EditorSearchBar     *self,
+                                  EditorSearchBarMode  mode);
 
 G_END_DECLS

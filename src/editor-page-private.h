@@ -21,22 +21,24 @@
 #pragma once
 
 #include "editor-page.h"
+#include "editor-search-bar-private.h"
 
 G_BEGIN_DECLS
 
-void          _editor_page_class_actions_init (EditorPageClass *klass);
-void          _editor_page_actions_init       (EditorPage      *self);
-EditorWindow *_editor_page_get_window         (EditorPage      *self);
-void          _editor_page_save               (EditorPage      *self);
-void          _editor_page_save_as            (EditorPage      *self);
-void          _editor_page_raise              (EditorPage      *self);
-void          _editor_page_discard_changes    (EditorPage      *self);
-void          _editor_page_print              (EditorPage      *self);
-void          _editor_page_copy_all           (EditorPage      *self);
-void          _editor_page_discard_changes    (EditorPage      *self);
-gint          _editor_page_position           (EditorPage      *self);
-gchar        *_editor_page_dup_title_no_i18n  (EditorPage      *self);
-void          _editor_page_set_search_visible (EditorPage      *self,
-                                               gboolean         search_visible);
+void          _editor_page_class_actions_init (EditorPageClass     *klass);
+void          _editor_page_actions_init       (EditorPage          *self);
+EditorWindow *_editor_page_get_window         (EditorPage          *self);
+void          _editor_page_save               (EditorPage          *self);
+void          _editor_page_save_as            (EditorPage          *self);
+void          _editor_page_raise              (EditorPage          *self);
+void          _editor_page_discard_changes    (EditorPage          *self);
+void          _editor_page_print              (EditorPage          *self);
+void          _editor_page_copy_all           (EditorPage          *self);
+void          _editor_page_discard_changes    (EditorPage          *self);
+gint          _editor_page_position           (EditorPage          *self);
+gchar        *_editor_page_dup_title_no_i18n  (EditorPage          *self);
+void          _editor_page_set_search_visible (EditorPage          *self,
+                                               gboolean             search_visible,
+                                               EditorSearchBarMode  mode);
 
 G_END_DECLS

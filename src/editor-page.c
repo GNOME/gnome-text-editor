@@ -304,6 +304,18 @@ editor_page_constructed (GObject *object)
 }
 
 static void
+editor_page_notify_child_revealed_cb (EditorPage  *self,
+                                      GParamSpec  *pspec,
+                                      GtkRevealer *revealer)
+{
+  g_assert (EDITOR_IS_PAGE (self));
+  g_assert (GTK_IS_REVEALER (revealer));
+
+  if (gtk_revealer_get_child_revealed (revealer))
+    gtk_widget_grab_focus (GTK_WIDGET (self->search_bar));
+}
+
+static void
 editor_page_destroy (GtkWidget *widget)
 {
   EditorPage *self = (EditorPage *)widget;
@@ -462,8 +474,10 @@ editor_page_class_init (EditorPageClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorPage, search_bar);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, search_revealer);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, view);
+  gtk_widget_class_bind_template_callback (widget_class, editor_page_notify_child_revealed_cb);
 
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_f, GDK_CONTROL_MASK, "search.show", NULL);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_f, GDK_CONTROL_MASK, "search.begin-search", NULL);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_h, GDK_CONTROL_MASK, "search.begin-replace", NULL);
 
   g_type_ensure (EDITOR_TYPE_SEARCH_BAR);
 }
@@ -928,15 +942,24 @@ editor_page_get_busy (EditorPage *self)
 }
 
 void
-_editor_page_set_search_visible (EditorPage *self,
-                                 gboolean    search_visible)
+_editor_page_set_search_visible (EditorPage          *self,
+                                 gboolean             search_visible,
+                                 EditorSearchBarMode  mode)
 {
+  GtkWidget *widget;
+
   g_return_if_fail (EDITOR_IS_PAGE (self));
 
-  gtk_revealer_set_reveal_child (self->search_revealer, search_visible);
-
   if (search_visible)
-    gtk_widget_grab_focus (GTK_WIDGET (self->search_bar));
+    {
+      widget = GTK_WIDGET (self->search_bar);
+      _editor_search_bar_set_mode (self->search_bar, mode);
+    }
   else
-    gtk_widget_grab_focus (GTK_WIDGET (self->view));
+    {
+      widget = GTK_WIDGET (self->view);
+    }
+
+  gtk_revealer_set_reveal_child (self->search_revealer, search_visible);
+  gtk_widget_grab_focus (widget);
 }

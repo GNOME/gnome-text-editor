@@ -9,12 +9,13 @@
           <object class="GtkRevealer" id="search_revealer">
             <property name="can-focus">false</property>
             <property name="halign">end</property>
-            <property name="margin-end">24</property>
+            <property name="margin-end">6</property>
             <property name="hexpand">false</property>
             <property name="valign">start</property>
             <property name="vexpand">false</property>
             <property name="transition-type">slide-down</property>
             <property name="reveal-child">false</property>
+            <signal name="notify::child-revealed" handler="editor_page_notify_child_revealed_cb" swapped="true" object="EditorPage"/>
             <child>
               <object class="EditorSearchBar" id="search_bar">
                 <property name="can-focus">false</property>

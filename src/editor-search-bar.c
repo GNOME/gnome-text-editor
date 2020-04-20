@@ -26,7 +26,12 @@
 
 struct _EditorSearchBar
 {
-  GtkBin parent_instance;
+  GtkBin     parent_instance;
+
+  GtkEntry  *search_entry;
+  GtkEntry  *replace_entry;
+  GtkButton *replace_button;
+  GtkButton *replace_all_button;
 };
 
 enum {
@@ -86,6 +91,10 @@ editor_search_bar_class_init (EditorSearchBarClass *klass)
 
   gtk_widget_class_set_css_name (widget_class, "searchbar");
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-search-bar.ui");
+  gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, replace_all_button);
+  gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, replace_button);
+  gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, replace_entry);
+  gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, search_entry);
 
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Escape, 0, "search.hide", NULL);
 }
@@ -94,4 +103,19 @@ static void
 editor_search_bar_init (EditorSearchBar *self)
 {
   gtk_widget_init_template (GTK_WIDGET (self));
+}
+
+void
+_editor_search_bar_set_mode (EditorSearchBar     *self,
+                             EditorSearchBarMode  mode)
+{
+  gboolean is_replace;
+
+  g_return_if_fail (EDITOR_IS_SEARCH_BAR (self));
+
+  is_replace = mode == EDITOR_SEARCH_BAR_MODE_REPLACE;
+
+  gtk_widget_set_visible (GTK_WIDGET (self->replace_entry), is_replace);
+  gtk_widget_set_visible (GTK_WIDGET (self->replace_button), is_replace);
+  gtk_widget_set_visible (GTK_WIDGET (self->replace_all_button), is_replace);
 }

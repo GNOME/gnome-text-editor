@@ -46,15 +46,27 @@ editor_page_actions_search_hide (GtkWidget   *widget,
                                  const gchar *action_name,
                                  GVariant    *param)
 {
-  _editor_page_set_search_visible (EDITOR_PAGE (widget), FALSE);
+  _editor_page_set_search_visible (EDITOR_PAGE (widget), FALSE, 0);
 }
 
 static void
-editor_page_actions_search_show (GtkWidget   *widget,
-                                 const gchar *action_name,
-                                 GVariant    *param)
+editor_page_actions_begin_search (GtkWidget   *widget,
+                                  const gchar *action_name,
+                                  GVariant    *param)
 {
-  _editor_page_set_search_visible (EDITOR_PAGE (widget), TRUE);
+  _editor_page_set_search_visible (EDITOR_PAGE (widget),
+                                   TRUE,
+                                   EDITOR_SEARCH_BAR_MODE_SEARCH);
+}
+
+static void
+editor_page_actions_begin_replace (GtkWidget   *widget,
+                                   const gchar *action_name,
+                                   GVariant    *param)
+{
+  _editor_page_set_search_visible (EDITOR_PAGE (widget),
+                                   TRUE,
+                                   EDITOR_SEARCH_BAR_MODE_REPLACE);
 }
 
 void
@@ -64,7 +76,8 @@ _editor_page_class_actions_init (EditorPageClass *klass)
 
   gtk_widget_class_install_action (widget_class, "page.language", NULL, editor_page_actions_language);
   gtk_widget_class_install_action (widget_class, "search.hide", NULL, editor_page_actions_search_hide);
-  gtk_widget_class_install_action (widget_class, "search.show", NULL, editor_page_actions_search_show);
+  gtk_widget_class_install_action (widget_class, "search.begin-search", NULL, editor_page_actions_begin_search);
+  gtk_widget_class_install_action (widget_class, "search.begin-replace", NULL, editor_page_actions_begin_replace);
 }
 
 void
