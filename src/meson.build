@@ -20,6 +20,7 @@ editor_sources = [
   'editor-preferences-switch.c',
   'editor-preferences-window.c',
   'editor-print-operation.c',
+  'editor-search-bar.c',
   'editor-session.c',
   'editor-sidebar.c',
   'editor-sidebar-item.c',

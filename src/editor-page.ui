@@ -6,6 +6,23 @@
       <object class="GtkOverlay">
         <property name="can-focus">false</property>
         <child type="overlay">
+          <object class="GtkRevealer" id="search_revealer">
+            <property name="can-focus">false</property>
+            <property name="halign">end</property>
+            <property name="margin-end">24</property>
+            <property name="hexpand">false</property>
+            <property name="valign">start</property>
+            <property name="vexpand">false</property>
+            <property name="transition-type">slide-down</property>
+            <property name="reveal-child">false</property>
+            <child>
+              <object class="EditorSearchBar">
+                <property name="can-focus">false</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child type="overlay">
           <object class="GtkProgressBar" id="progress_bar">
             <style>
               <class name="osd"/>

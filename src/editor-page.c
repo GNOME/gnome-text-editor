@@ -31,6 +31,7 @@
 #include "editor-page-settings.h"
 #include "editor-path-private.h"
 #include "editor-print-operation.h"
+#include "editor-search-bar-private.h"
 #include "editor-utils-private.h"
 #include "editor-window.h"
 
@@ -452,10 +453,13 @@ editor_page_class_init (EditorPageClass *klass)
 
   _editor_page_class_actions_init (klass);
 
+  gtk_widget_class_set_css_name (widget_class, "page");
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-page.ui");
   gtk_widget_class_bind_template_child (widget_class, EditorPage, progress_bar);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, scroller);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, view);
+
+  g_type_ensure (EDITOR_TYPE_SEARCH_BAR);
 }
 
 static void
