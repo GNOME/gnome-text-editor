@@ -26,12 +26,15 @@
 
 struct _EditorSearchBar
 {
-  GtkBin     parent_instance;
+  GtkBin                   parent_instance;
 
-  GtkEntry  *search_entry;
-  GtkEntry  *replace_entry;
-  GtkButton *replace_button;
-  GtkButton *replace_all_button;
+  GtkSourceSearchContext  *context;
+  GtkSourceSearchSettings *settings;
+
+  GtkEntry                *search_entry;
+  GtkEntry                *replace_entry;
+  GtkButton               *replace_button;
+  GtkButton               *replace_all_button;
 };
 
 enum {
@@ -43,9 +46,42 @@ G_DEFINE_TYPE (EditorSearchBar, editor_search_bar, GTK_TYPE_BIN)
 
 static GParamSpec *properties [N_PROPS];
 
+static gboolean
+empty_to_null (GBinding     *binding,
+               const GValue *from_value,
+               GValue       *to_value,
+               gpointer      user_data)
+{
+  const gchar *str = g_value_get_string (from_value);
+  if (!str || !*str)
+    g_value_set_string (to_value, NULL);
+  else
+    g_value_set_string (to_value, str);
+  return TRUE;
+}
+
+static gboolean
+null_to_empty (GBinding     *binding,
+               const GValue *from_value,
+               GValue       *to_value,
+               gpointer      user_data)
+{
+  const gchar *str = g_value_get_string (from_value);
+  if (!str || !*str)
+    g_value_set_string (to_value, "");
+  else
+    g_value_set_string (to_value, str);
+  return TRUE;
+}
+
 static void
 editor_search_bar_finalize (GObject *object)
 {
+  EditorSearchBar *self = (EditorSearchBar *)object;
+
+  g_clear_object (&self->context);
+  g_clear_object (&self->settings);
+
   G_OBJECT_CLASS (editor_search_bar_parent_class)->finalize (object);
 }
 
@@ -103,6 +139,13 @@ static void
 editor_search_bar_init (EditorSearchBar *self)
 {
   gtk_widget_init_template (GTK_WIDGET (self));
+
+  self->settings = gtk_source_search_settings_new ();
+
+  g_object_bind_property_full (self->settings, "search-text",
+                               self->search_entry, "text",
+                               G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL,
+                               null_to_empty, empty_to_null, NULL, NULL);
 }
 
 void
@@ -118,4 +161,28 @@ _editor_search_bar_set_mode (EditorSearchBar     *self,
   gtk_widget_set_visible (GTK_WIDGET (self->replace_entry), is_replace);
   gtk_widget_set_visible (GTK_WIDGET (self->replace_button), is_replace);
   gtk_widget_set_visible (GTK_WIDGET (self->replace_all_button), is_replace);
+}
+
+void
+_editor_search_bar_attach (EditorSearchBar *self,
+                           EditorDocument  *document)
+{
+  g_return_if_fail (EDITOR_IS_SEARCH_BAR (self));
+
+  gtk_editable_set_text (GTK_EDITABLE (self->search_entry), "");
+  gtk_editable_set_text (GTK_EDITABLE (self->replace_entry), "");
+
+  if (self->context != NULL)
+    return;
+
+  self->context = gtk_source_search_context_new (GTK_SOURCE_BUFFER (document),
+                                                 self->settings);
+}
+
+void
+_editor_search_bar_detach (EditorSearchBar *self)
+{
+  g_return_if_fail (EDITOR_IS_SEARCH_BAR (self));
+
+  g_clear_object (&self->context);
 }

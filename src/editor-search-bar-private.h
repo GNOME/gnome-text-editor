@@ -34,6 +34,9 @@ typedef enum
 
 G_DECLARE_FINAL_TYPE (EditorSearchBar, editor_search_bar, EDITOR, SEARCH_BAR, GtkBin)
 
+void _editor_search_bar_attach   (EditorSearchBar     *self,
+                                  EditorDocument      *document);
+void _editor_search_bar_detach   (EditorSearchBar     *self);
 void _editor_search_bar_set_mode (EditorSearchBar     *self,
                                   EditorSearchBarMode  mode);
 

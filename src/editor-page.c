@@ -954,10 +954,12 @@ _editor_page_set_search_visible (EditorPage          *self,
     {
       widget = GTK_WIDGET (self->search_bar);
       _editor_search_bar_set_mode (self->search_bar, mode);
+      _editor_search_bar_attach (self->search_bar, self->document);
     }
   else
     {
       widget = GTK_WIDGET (self->view);
+      _editor_search_bar_detach (self->search_bar);
     }
 
   gtk_revealer_set_reveal_child (self->search_revealer, search_visible);
