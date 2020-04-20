@@ -86,6 +86,8 @@ editor_search_bar_class_init (EditorSearchBarClass *klass)
 
   gtk_widget_class_set_css_name (widget_class, "searchbar");
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-search-bar.ui");
+
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Escape, 0, "search.hide", NULL);
 }
 
 static void

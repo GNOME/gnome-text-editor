@@ -41,15 +41,30 @@ editor_page_actions_language (GtkWidget   *widget,
   gtk_window_present (GTK_WINDOW (dialog));
 }
 
+static void
+editor_page_actions_search_hide (GtkWidget   *widget,
+                                 const gchar *action_name,
+                                 GVariant    *param)
+{
+  _editor_page_set_search_visible (EDITOR_PAGE (widget), FALSE);
+}
+
+static void
+editor_page_actions_search_show (GtkWidget   *widget,
+                                 const gchar *action_name,
+                                 GVariant    *param)
+{
+  _editor_page_set_search_visible (EDITOR_PAGE (widget), TRUE);
+}
+
 void
 _editor_page_class_actions_init (EditorPageClass *klass)
 {
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
-  gtk_widget_class_install_action (widget_class,
-                                   "page.language",
-                                   NULL,
-                                   editor_page_actions_language);
+  gtk_widget_class_install_action (widget_class, "page.language", NULL, editor_page_actions_language);
+  gtk_widget_class_install_action (widget_class, "search.hide", NULL, editor_page_actions_search_hide);
+  gtk_widget_class_install_action (widget_class, "search.show", NULL, editor_page_actions_search_show);
 }
 
 void

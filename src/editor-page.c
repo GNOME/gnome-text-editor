@@ -48,6 +48,8 @@ struct _EditorPage
   GtkScrolledWindow  *scroller;
   GtkSourceView      *view;
   GtkProgressBar     *progress_bar;
+  GtkRevealer        *search_revealer;
+  EditorSearchBar    *search_bar;
 };
 
 enum {
@@ -457,7 +459,11 @@ editor_page_class_init (EditorPageClass *klass)
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-page.ui");
   gtk_widget_class_bind_template_child (widget_class, EditorPage, progress_bar);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, scroller);
+  gtk_widget_class_bind_template_child (widget_class, EditorPage, search_bar);
+  gtk_widget_class_bind_template_child (widget_class, EditorPage, search_revealer);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, view);
+
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_f, GDK_CONTROL_MASK, "search.show", NULL);
 
   g_type_ensure (EDITOR_TYPE_SEARCH_BAR);
 }
@@ -919,4 +925,18 @@ editor_page_get_busy (EditorPage *self)
   g_return_val_if_fail (EDITOR_IS_PAGE (self), FALSE);
 
   return editor_document_get_busy (self->document);
+}
+
+void
+_editor_page_set_search_visible (EditorPage *self,
+                                 gboolean    search_visible)
+{
+  g_return_if_fail (EDITOR_IS_PAGE (self));
+
+  gtk_revealer_set_reveal_child (self->search_revealer, search_visible);
+
+  if (search_visible)
+    gtk_widget_grab_focus (GTK_WIDGET (self->search_bar));
+  else
+    gtk_widget_grab_focus (GTK_WIDGET (self->view));
 }
