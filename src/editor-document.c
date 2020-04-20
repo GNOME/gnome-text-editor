@@ -22,6 +22,7 @@
 
 #include "config.h"
 
+#include <glib/gi18n.h>
 #include <string.h>
 
 #include "editor-application.h"
@@ -1314,6 +1315,12 @@ editor_document_dup_title (EditorDocument *self)
 
   if (str->len > 0 && str->str[str->len-1] == ' ')
     g_string_truncate (str, str->len - 1);
+
+  if (self->readonly)
+    {
+      g_string_append_c (str, ' ');
+      g_string_append (str, _("[Read-Only]"));
+    }
 
   return g_string_free (str, str->len == 0);
 }
