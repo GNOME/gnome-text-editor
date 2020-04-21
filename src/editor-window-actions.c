@@ -327,6 +327,34 @@ editor_window_actions_move_to_new_window_cb (GtkWidget   *widget,
   gtk_window_present (GTK_WINDOW (window));
 }
 
+static void
+editor_window_actions_begin_search_cb (GtkWidget   *widget,
+                                       const gchar *action_name,
+                                       GVariant    *param)
+{
+  EditorWindow *self = (EditorWindow *)widget;
+  EditorPage *page;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+
+  if ((page = editor_window_get_visible_page (self)))
+    _editor_page_begin_search (page);
+}
+
+static void
+editor_window_actions_begin_replace_cb (GtkWidget   *widget,
+                                        const gchar *action_name,
+                                        GVariant    *param)
+{
+  EditorWindow *self = (EditorWindow *)widget;
+  EditorPage *page;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+
+  if ((page = editor_window_get_visible_page (self)))
+    _editor_page_begin_replace (page);
+}
+
 void
 _editor_window_class_actions_init (EditorWindowClass *klass)
 {
@@ -388,6 +416,14 @@ _editor_window_class_actions_init (EditorWindowClass *klass)
                                    "page.move-to-new-window",
                                    NULL,
                                    editor_window_actions_move_to_new_window_cb);
+  gtk_widget_class_install_action (widget_class,
+                                   "page.begin-search",
+                                   NULL,
+                                   editor_window_actions_begin_search_cb);
+  gtk_widget_class_install_action (widget_class,
+                                   "page.begin-replace",
+                                   NULL,
+                                   editor_window_actions_begin_replace_cb);
 }
 
 void
@@ -447,4 +483,6 @@ _editor_window_actions_update (EditorWindow *self,
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.save", can_save);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.save-as", has_page);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.copy-all", has_page);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.begin-replace", has_page);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.begin-search", has_page);
 }

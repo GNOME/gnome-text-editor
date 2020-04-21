@@ -316,6 +316,16 @@ editor_page_notify_child_revealed_cb (EditorPage  *self,
 }
 
 static void
+editor_page_view_focus_enter_cb (EditorPage              *self,
+                                 GtkEventControllerFocus *focus)
+{
+  g_assert (EDITOR_IS_PAGE (self));
+  g_assert (GTK_IS_EVENT_CONTROLLER_FOCUS (focus));
+
+  _editor_page_hide_search (self);
+}
+
+static void
 editor_page_destroy (GtkWidget *widget)
 {
   EditorPage *self = (EditorPage *)widget;
@@ -476,18 +486,25 @@ editor_page_class_init (EditorPageClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorPage, view);
   gtk_widget_class_bind_template_callback (widget_class, editor_page_notify_child_revealed_cb);
 
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_f, GDK_CONTROL_MASK, "search.begin-search", NULL);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_h, GDK_CONTROL_MASK, "search.begin-replace", NULL);
-
   g_type_ensure (EDITOR_TYPE_SEARCH_BAR);
 }
 
 static void
 editor_page_init (EditorPage *self)
 {
+  GtkEventController *focus;
+
   gtk_widget_init_template (GTK_WIDGET (self));
 
   _editor_page_actions_init (self);
+
+  focus = gtk_event_controller_focus_new ();
+  g_signal_connect_object (focus,
+                           "enter",
+                           G_CALLBACK (editor_page_view_focus_enter_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+  gtk_widget_add_controller (GTK_WIDGET (self->view), focus);
 }
 
 /**
@@ -941,27 +958,46 @@ editor_page_get_busy (EditorPage *self)
   return editor_document_get_busy (self->document);
 }
 
-void
+static void
 _editor_page_set_search_visible (EditorPage          *self,
                                  gboolean             search_visible,
                                  EditorSearchBarMode  mode)
 {
-  GtkWidget *widget;
-
   g_return_if_fail (EDITOR_IS_PAGE (self));
 
   if (search_visible)
     {
-      widget = GTK_WIDGET (self->search_bar);
       _editor_search_bar_set_mode (self->search_bar, mode);
       _editor_search_bar_attach (self->search_bar, self->document);
     }
   else
     {
-      widget = GTK_WIDGET (self->view);
       _editor_search_bar_detach (self->search_bar);
     }
 
   gtk_revealer_set_reveal_child (self->search_revealer, search_visible);
-  gtk_widget_grab_focus (widget);
+}
+
+void
+_editor_page_begin_search (EditorPage *self)
+{
+  g_return_if_fail (EDITOR_IS_PAGE (self));
+
+  _editor_page_set_search_visible (self, TRUE, EDITOR_SEARCH_BAR_MODE_SEARCH);
+}
+
+void
+_editor_page_begin_replace (EditorPage *self)
+{
+  g_return_if_fail (EDITOR_IS_PAGE (self));
+
+  _editor_page_set_search_visible (self, TRUE, EDITOR_SEARCH_BAR_MODE_REPLACE);
+}
+
+void
+_editor_page_hide_search (EditorPage *self)
+{
+  g_return_if_fail (EDITOR_IS_PAGE (self));
+
+  _editor_page_set_search_visible (self, FALSE, 0);
 }
