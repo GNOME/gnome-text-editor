@@ -92,12 +92,19 @@ editor_application_actions_about_cb (GSimpleAction *action,
                                      gpointer       user_data)
 {
   EditorApplication *self = user_data;
+  g_autofree gchar *program_name = NULL;
   GtkAboutDialog *dialog;
 
   g_assert (EDITOR_IS_APPLICATION (self));
 
+#ifdef DEVELOPMENT_BUILD
+  program_name = g_strdup_printf ("%s (Development)", _("Text Editor"));
+#else
+  program_name = g_strdup (_("Text Editor"));
+#endif
+
   dialog = GTK_ABOUT_DIALOG (gtk_about_dialog_new ());
-  gtk_about_dialog_set_program_name (dialog, _(PACKAGE_NAME));
+  gtk_about_dialog_set_program_name (dialog, program_name);
   gtk_about_dialog_set_logo_icon_name (dialog, PACKAGE_ICON_NAME);
   gtk_about_dialog_set_authors (dialog, authors);
   gtk_about_dialog_set_artists (dialog, artists);
