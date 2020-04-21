@@ -304,18 +304,6 @@ editor_page_constructed (GObject *object)
 }
 
 static void
-editor_page_notify_child_revealed_cb (EditorPage  *self,
-                                      GParamSpec  *pspec,
-                                      GtkRevealer *revealer)
-{
-  g_assert (EDITOR_IS_PAGE (self));
-  g_assert (GTK_IS_REVEALER (revealer));
-
-  if (gtk_revealer_get_child_revealed (revealer))
-    gtk_widget_grab_focus (GTK_WIDGET (self->search_bar));
-}
-
-static void
 editor_page_view_focus_enter_cb (EditorPage              *self,
                                  GtkEventControllerFocus *focus)
 {
@@ -497,7 +485,6 @@ editor_page_class_init (EditorPageClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorPage, search_bar);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, search_revealer);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, view);
-  gtk_widget_class_bind_template_callback (widget_class, editor_page_notify_child_revealed_cb);
 
   g_type_ensure (EDITOR_TYPE_SEARCH_BAR);
 }
@@ -981,6 +968,9 @@ _editor_page_set_search_visible (EditorPage          *self,
     }
 
   gtk_revealer_set_reveal_child (self->search_revealer, search_visible);
+
+  if (search_visible)
+    gtk_widget_grab_focus (GTK_WIDGET (self->search_bar));
 }
 
 void

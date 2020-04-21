@@ -14,7 +14,6 @@
             <property name="transition-duration">300</property>
             <property name="transition-type">slide-down</property>
             <property name="reveal-child">false</property>
-            <signal name="notify::child-revealed" handler="editor_page_notify_child_revealed_cb" swapped="true" object="EditorPage"/>
             <child>
               <object class="EditorSearchBar" id="search_bar">
               </object>
