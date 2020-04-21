@@ -87,7 +87,8 @@ editor_search_bar_move_next_forward_cb (GObject      *object,
 
   if (!gtk_source_search_context_forward_finish (context, result, &begin, &end, &has_wrapped, &error))
     {
-      g_debug ("Search forward error: %s", error->message);
+      if (error != NULL)
+        g_debug ("Search forward error: %s", error->message);
       return;
     }
 
