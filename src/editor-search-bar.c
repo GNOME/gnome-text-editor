@@ -22,6 +22,7 @@
 
 #include "config.h"
 
+#include "editor-enums.h"
 #include "editor-page-private.h"
 #include "editor-search-bar-private.h"
 
@@ -41,10 +42,19 @@ struct _EditorSearchBar
   GtkCheckButton          *regex_button;
   GtkCheckButton          *word_button;
   GtkToggleButton         *options_button;
+  GtkToggleButton         *replace_mode_button;
   GtkBox                  *options_box;
 };
 
 G_DEFINE_TYPE (EditorSearchBar, editor_search_bar, GTK_TYPE_BIN)
+
+enum {
+  PROP_0,
+  PROP_MODE,
+  N_PROPS
+};
+
+static GParamSpec *properties [N_PROPS];
 
 static void
 editor_search_bar_scroll_to_insert (EditorSearchBar *self)
@@ -180,6 +190,32 @@ null_to_empty (GBinding     *binding,
 }
 
 static gboolean
+mode_to_boolean (GBinding     *binding,
+                 const GValue *from_value,
+                 GValue       *to_value,
+                 gpointer      user_data)
+{
+  if (g_value_get_enum (from_value) == EDITOR_SEARCH_BAR_MODE_REPLACE)
+    g_value_set_boolean (to_value, TRUE);
+  else
+    g_value_set_boolean (to_value, FALSE);
+  return TRUE;
+}
+
+static gboolean
+boolean_to_mode (GBinding     *binding,
+                 const GValue *from_value,
+                 GValue       *to_value,
+                 gpointer      user_data)
+{
+  if (g_value_get_boolean (from_value))
+    g_value_set_enum (to_value, EDITOR_SEARCH_BAR_MODE_REPLACE);
+  else
+    g_value_set_enum (to_value, EDITOR_SEARCH_BAR_MODE_SEARCH);
+  return TRUE;
+}
+
+static gboolean
 editor_search_bar_grab_focus (GtkWidget *widget)
 {
   EditorSearchBar *self = (EditorSearchBar *)widget;
@@ -202,32 +238,86 @@ editor_search_bar_finalize (GObject *object)
 }
 
 static void
+editor_search_bar_get_property (GObject    *object,
+                                guint       prop_id,
+                                GValue     *value,
+                                GParamSpec *pspec)
+{
+  EditorSearchBar *self = EDITOR_SEARCH_BAR (object);
+
+  switch (prop_id)
+    {
+    case PROP_MODE:
+      g_value_set_enum (value,
+                        gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (self->replace_mode_button)) ?
+                        EDITOR_SEARCH_BAR_MODE_REPLACE :
+                        EDITOR_SEARCH_BAR_MODE_SEARCH);
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+    }
+}
+
+static void
+editor_search_bar_set_property (GObject      *object,
+                                guint         prop_id,
+                                const GValue *value,
+                                GParamSpec   *pspec)
+{
+  EditorSearchBar *self = EDITOR_SEARCH_BAR (object);
+
+  switch (prop_id)
+    {
+    case PROP_MODE:
+      _editor_search_bar_set_mode (self, g_value_get_enum (value));
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+    }
+}
+
+static void
 editor_search_bar_class_init (EditorSearchBarClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
   object_class->finalize = editor_search_bar_finalize;
+  object_class->get_property = editor_search_bar_get_property;
+  object_class->set_property = editor_search_bar_set_property;
 
   widget_class->grab_focus = editor_search_bar_grab_focus;
 
   gtk_widget_class_set_css_name (widget_class, "searchbar");
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-search-bar.ui");
+  gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, case_button);
+  gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, options_box);
+  gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, options_button);
+  gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, regex_button);
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, replace_all_button);
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, replace_button);
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, replace_entry);
+  gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, replace_mode_button);
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, search_entry);
-  gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, case_button);
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, word_button);
-  gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, regex_button);
-  gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, options_box);
-  gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, options_button);
   gtk_widget_class_bind_template_callback (widget_class, editor_search_bar_search_activate_cb);
 
   gtk_widget_class_install_action (widget_class, "search.move-next", NULL, editor_search_bar_move_next_cb);
   gtk_widget_class_install_action (widget_class, "search.move-previous", NULL, editor_search_bar_move_previous_cb);
 
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Escape, 0, "search.hide", NULL);
+
+  properties [PROP_MODE] =
+    g_param_spec_enum ("mode",
+                       "Mode",
+                       "The mode for the search bar",
+                       EDITOR_TYPE_SEARCH_BAR_MODE,
+                       EDITOR_SEARCH_BAR_MODE_SEARCH,
+                       (G_PARAM_READWRITE | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_STRINGS));
+
+  g_object_class_install_properties (object_class, N_PROPS, properties);
 }
 
 static void
@@ -243,6 +333,10 @@ editor_search_bar_init (EditorSearchBar *self)
                                self->search_entry, "text",
                                G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL,
                                null_to_empty, empty_to_null, NULL, NULL);
+  g_object_bind_property_full (self->replace_mode_button, "active",
+                               self, "mode",
+                               G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL,
+                               boolean_to_mode, mode_to_boolean, NULL, NULL);
   g_object_bind_property (self->settings, "at-word-boundaries",
                           self->word_button, "active",
                           G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL);
@@ -271,6 +365,9 @@ _editor_search_bar_set_mode (EditorSearchBar     *self,
   gtk_widget_set_visible (GTK_WIDGET (self->replace_entry), is_replace);
   gtk_widget_set_visible (GTK_WIDGET (self->replace_button), is_replace);
   gtk_widget_set_visible (GTK_WIDGET (self->replace_all_button), is_replace);
+  gtk_toggle_button_set_active (self->replace_mode_button, is_replace);
+
+  g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_MODE]);
 }
 
 void

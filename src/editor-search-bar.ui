@@ -23,6 +23,7 @@
             <property name="primary-icon-name">edit-find-replace-symbolic</property>
             <property name="max-width-chars">20</property>
             <property name="hexpand">true</property>
+            <property name="visible">false</property>
             <layout>
               <property name="top-attach">1</property>
               <property name="left-attach">0</property>
@@ -55,8 +56,7 @@
           </object>
         </child>
         <child>
-          <object class="GtkToggleButton">
-            <property name="action-name">search.show-replace</property>
+          <object class="GtkToggleButton" id="replace_mode_button">
             <property name="icon-name">edit-find-replace-symbolic</property>
             <layout>
               <property name="top-attach">0</property>
@@ -95,6 +95,7 @@
             <property name="action-name">search.replace</property>
             <property name="use-underline">true</property>
             <property name="label" translatable="yes">_Replace</property>
+            <property name="visible">false</property>
             <layout>
               <property name="top-attach">1</property>
               <property name="left-attach">1</property>
@@ -106,10 +107,11 @@
             <property name="action-name">search.replace-all</property>
             <property name="use-underline">true</property>
             <property name="label" translatable="yes">Replace _All</property>
+            <property name="visible">false</property>
             <layout>
               <property name="top-attach">1</property>
               <property name="left-attach">2</property>
-              <property name="column-span">2</property>
+              <property name="column-span">3</property>
             </layout>
           </object>
         </child>
@@ -117,6 +119,7 @@
           <object class="GtkBox" id="options_box">
             <property name="orientation">horizontal</property>
             <property name="spacing">6</property>
+            <property name="visible">false</property>
             <layout>
               <property name="top-attach">2</property>
               <property name="left-attach">0</property>

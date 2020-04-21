@@ -46,7 +46,18 @@ editor_sources += gnome.compile_resources('editor-resources',
   c_name: 'editor'
 )
 
-editor = executable('gnome-text-editor', editor_sources,
+editor_enums_headers = [
+  'editor-search-bar-private.h',
+]
+
+editor_enums = gnome.mkenums_simple('editor-enums',
+     body_prefix: '#include "config.h"',
+   header_prefix: '#include "editor-types.h"',
+       decorator: 'extern',
+         sources: editor_enums_headers,
+)
+
+editor = executable('gnome-text-editor', editor_sources + editor_enums,
   include_directories: include_directories('..'),
          dependencies: editor_deps,
               install: true,
