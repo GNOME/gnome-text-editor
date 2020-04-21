@@ -46,7 +46,12 @@ editor_page_actions_search_hide (GtkWidget   *widget,
                                  const gchar *action_name,
                                  GVariant    *param)
 {
-  _editor_page_hide_search (EDITOR_PAGE (widget));
+  EditorPage *self = (EditorPage *)widget;
+
+  g_assert (EDITOR_IS_PAGE (self));
+
+  _editor_page_hide_search (self);
+  gtk_widget_grab_focus (GTK_WIDGET (self));
 }
 
 void
