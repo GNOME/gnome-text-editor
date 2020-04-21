@@ -107,7 +107,6 @@
     </child>
     <child>
       <object class="GtkPaned" id="paned">
-        <property name="can-focus">false</property>
         <property name="orientation">horizontal</property>
         <property name="position">250</property>
         <child>
@@ -117,7 +116,6 @@
         </child>
         <child>
           <object class="GtkStack" id="stack">
-            <property name="can-focus">false</property>
             <style>
               <class name="view"/>
             </style>
@@ -133,7 +131,6 @@
             </child>
             <child>
               <object class="GtkBox" id="empty">
-                <property name="can-focus">false</property>
                 <property name="hexpand">true</property>
                 <property name="vexpand">true</property>
                 <property name="halign">center</property>
@@ -145,7 +142,6 @@
                 <property name="margin-bottom">32</property>
                 <child>
                   <object class="GtkImage">
-                    <property name="can-focus">false</property>
                     <property name="icon-name">text-editor-symbolic</property>
                     <property name="pixel-size">128</property>
                     <property name="margin-start">24</property>
@@ -157,7 +153,6 @@
                 </child>
                 <child>
                   <object class="GtkLabel">
-                    <property name="can-focus">false</property>
                     <property name="label" translatable="yes">Start or Open a Document</property>
                     <property name="margin-bottom">16</property>
                     <style>
@@ -171,7 +166,6 @@
                 </child>
                 <child>
                   <object class="GtkLabel">
-                    <property name="can-focus">false</property>
                     <property name="halign">start</property>
                     <property name="label" translatable="yes">• Use the open sidebar</property>
                     <property name="margin-bottom">6</property>
@@ -182,7 +176,6 @@
                 </child>
                 <child>
                   <object class="GtkLabel">
-                    <property name="can-focus">false</property>
                     <property name="halign">start</property>
                     <property name="label" translatable="yes">• Press the new tab button</property>
                     <property name="margin-bottom">6</property>
@@ -193,7 +186,6 @@
                 </child>
                 <child>
                   <object class="GtkLabel">
-                    <property name="can-focus">false</property>
                     <property name="halign">start</property>
                     <property name="label" translatable="yes">• Press Ctrl+N to start a new document</property>
                     <property name="margin-bottom">6</property>
@@ -204,7 +196,6 @@
                 </child>
                 <child>
                   <object class="GtkLabel">
-                    <property name="can-focus">false</property>
                     <property name="halign">start</property>
                     <property name="label" translatable="yes">• Press Ctrl+O to browse for a document</property>
                     <style>

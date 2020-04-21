@@ -44,14 +44,7 @@ struct _EditorSearchBar
   GtkBox                  *options_box;
 };
 
-enum {
-  PROP_0,
-  N_PROPS
-};
-
 G_DEFINE_TYPE (EditorSearchBar, editor_search_bar, GTK_TYPE_BIN)
-
-static GParamSpec *properties [N_PROPS];
 
 static void
 editor_search_bar_scroll_to_insert (EditorSearchBar *self)
@@ -185,6 +178,16 @@ null_to_empty (GBinding     *binding,
   return TRUE;
 }
 
+static gboolean
+editor_search_bar_grab_focus (GtkWidget *widget)
+{
+  EditorSearchBar *self = (EditorSearchBar *)widget;
+
+  g_assert (EDITOR_IS_SEARCH_BAR (self));
+
+  return gtk_widget_grab_focus (GTK_WIDGET (self->search_entry));
+}
+
 static void
 editor_search_bar_finalize (GObject *object)
 {
@@ -198,44 +201,14 @@ editor_search_bar_finalize (GObject *object)
 }
 
 static void
-editor_search_bar_get_property (GObject    *object,
-                                guint       prop_id,
-                                GValue     *value,
-                                GParamSpec *pspec)
-{
-  EditorSearchBar *self = EDITOR_SEARCH_BAR (object);
-
-  switch (prop_id)
-    {
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-    }
-}
-
-static void
-editor_search_bar_set_property (GObject      *object,
-                                guint         prop_id,
-                                const GValue *value,
-                                GParamSpec   *pspec)
-{
-  EditorSearchBar *self = EDITOR_SEARCH_BAR (object);
-
-  switch (prop_id)
-    {
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-    }
-}
-
-static void
 editor_search_bar_class_init (EditorSearchBarClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
   object_class->finalize = editor_search_bar_finalize;
-  object_class->get_property = editor_search_bar_get_property;
-  object_class->set_property = editor_search_bar_set_property;
+
+  widget_class->grab_focus = editor_search_bar_grab_focus;
 
   gtk_widget_class_set_css_name (widget_class, "searchbar");
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-search-bar.ui");

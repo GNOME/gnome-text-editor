@@ -39,7 +39,6 @@ gboolean        editor_page_is_draft            (EditorPage     *self);
 gchar          *editor_page_dup_title           (EditorPage     *self);
 gchar          *editor_page_dup_subtitle        (EditorPage     *self);
 gchar          *editor_page_dup_position_label  (EditorPage     *self);
-void            editor_page_grab_focus          (EditorPage     *self);
 void            editor_page_get_visual_position (EditorPage     *self,
                                                  guint          *line,
                                                  guint          *column);

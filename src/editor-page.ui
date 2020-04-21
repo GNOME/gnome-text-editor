@@ -4,10 +4,8 @@
   <template class="EditorPage" parent="GtkBin">
     <child>
       <object class="GtkOverlay">
-        <property name="can-focus">false</property>
         <child type="overlay">
           <object class="GtkRevealer" id="search_revealer">
-            <property name="can-focus">false</property>
             <property name="halign">end</property>
             <property name="margin-end">6</property>
             <property name="hexpand">false</property>
@@ -19,7 +17,6 @@
             <signal name="notify::child-revealed" handler="editor_page_notify_child_revealed_cb" swapped="true" object="EditorPage"/>
             <child>
               <object class="EditorSearchBar" id="search_bar">
-                <property name="can-focus">false</property>
               </object>
             </child>
           </object>
@@ -38,7 +35,6 @@
         </child>
         <child>
           <object class="GtkScrolledWindow" id="scroller">
-            <property name="can-focus">false</property>
             <child>
               <object class="GtkSourceView" id="view">
                 <property name="auto-indent">true</property>

@@ -4,12 +4,10 @@
   <template class="EditorSearchBar" parent="GtkBin">
     <child>
       <object class="GtkGrid">
-        <property name="can-focus">false</property>
         <property name="column-spacing">8</property>
         <property name="row-spacing">8</property>
         <child>
           <object class="GtkEntry" id="search_entry">
-            <property name="can-focus">true</property>
             <property name="primary-icon-name">edit-find-symbolic</property>
             <property name="max-width-chars">20</property>
             <property name="hexpand">true</property>
@@ -22,7 +20,6 @@
         </child>
         <child>
           <object class="GtkEntry" id="replace_entry">
-            <property name="can-focus">true</property>
             <property name="primary-icon-name">edit-find-replace-symbolic</property>
             <property name="max-width-chars">20</property>
             <property name="hexpand">true</property>
@@ -34,7 +31,6 @@
         </child>
         <child>
           <object class="GtkBox">
-            <property name="can-focus">false</property>
             <property name="homogeneous">true</property>
             <property name="orientation">horizontal</property>
             <style>
@@ -119,7 +115,6 @@
         </child>
         <child>
           <object class="GtkBox" id="options_box">
-            <property name="can-focus">false</property>
             <property name="orientation">horizontal</property>
             <property name="spacing">3</property>
             <layout>

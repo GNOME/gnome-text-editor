@@ -135,7 +135,7 @@ editor_window_notify_current_page_cb (EditorWindow *self,
   _editor_window_actions_update (self, page);
 
   if (page != NULL)
-    editor_page_grab_focus (page);
+    gtk_widget_grab_focus (GTK_WIDGET (page));
 
   g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_VISIBLE_PAGE]);
 }
@@ -483,7 +483,7 @@ _editor_window_remove_page (EditorWindow *self,
       editor_window_notify_current_page_cb (self, NULL, self->notebook);
 
       if (self->visible_page != NULL)
-        editor_page_grab_focus (self->visible_page);
+        gtk_widget_grab_focus (GTK_WIDGET (self->visible_page));
     }
 }
 

@@ -537,7 +537,7 @@ editor_session_add_page (EditorSession *self,
 
   gtk_window_present (GTK_WINDOW (window));
 
-  editor_page_grab_focus (page);
+  gtk_widget_grab_focus (GTK_WIDGET (page));
 
   g_signal_emit (self, signals [PAGE_ADDED], 0, window, page);
 }
