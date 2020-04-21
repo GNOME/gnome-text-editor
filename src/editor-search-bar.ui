@@ -128,17 +128,17 @@
               <property name="column-span">4</property>
             </layout>
             <child>
-              <object class="GtkCheckButton">
+              <object class="GtkCheckButton" id="regex_button">
                 <property name="label" translatable="yes">Regular expressions</property>
               </object>
             </child>
             <child>
-              <object class="GtkCheckButton">
+              <object class="GtkCheckButton" id="case_button">
                 <property name="label" translatable="yes">Case sensitive</property>
               </object>
             </child>
             <child>
-              <object class="GtkCheckButton">
+              <object class="GtkCheckButton" id="word_button">
                 <property name="label" translatable="yes">Match whole word only</property>
               </object>
             </child>

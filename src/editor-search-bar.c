@@ -35,6 +35,9 @@ struct _EditorSearchBar
   GtkEntry                *replace_entry;
   GtkButton               *replace_button;
   GtkButton               *replace_all_button;
+  GtkCheckButton          *case_button;
+  GtkCheckButton          *regex_button;
+  GtkCheckButton          *word_button;
 };
 
 enum {
@@ -131,6 +134,9 @@ editor_search_bar_class_init (EditorSearchBarClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, replace_button);
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, replace_entry);
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, search_entry);
+  gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, case_button);
+  gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, word_button);
+  gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, regex_button);
 
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Escape, 0, "search.hide", NULL);
 }
@@ -142,10 +148,21 @@ editor_search_bar_init (EditorSearchBar *self)
 
   self->settings = gtk_source_search_settings_new ();
 
+  gtk_source_search_settings_set_wrap_around (self->settings, TRUE);
+
   g_object_bind_property_full (self->settings, "search-text",
                                self->search_entry, "text",
                                G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL,
                                null_to_empty, empty_to_null, NULL, NULL);
+  g_object_bind_property (self->settings, "at-word-boundaries",
+                          self->word_button, "active",
+                          G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL);
+  g_object_bind_property (self->settings, "regex-enabled",
+                          self->regex_button, "active",
+                          G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL);
+  g_object_bind_property (self->settings, "case-sensitive",
+                          self->case_button, "active",
+                          G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL);
 }
 
 void
