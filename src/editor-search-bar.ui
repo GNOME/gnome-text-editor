@@ -116,7 +116,7 @@
         <child>
           <object class="GtkBox" id="options_box">
             <property name="orientation">horizontal</property>
-            <property name="spacing">3</property>
+            <property name="spacing">6</property>
             <layout>
               <property name="top-attach">2</property>
               <property name="left-attach">0</property>
@@ -124,17 +124,20 @@
             </layout>
             <child>
               <object class="GtkCheckButton" id="regex_button">
-                <property name="label" translatable="yes">Regular expressions</property>
+                <property name="use-underline">true</property>
+                <property name="label" translatable="yes">Re_gular expressions</property>
               </object>
             </child>
             <child>
               <object class="GtkCheckButton" id="case_button">
-                <property name="label" translatable="yes">Case sensitive</property>
+                <property name="use-underline">true</property>
+                <property name="label" translatable="yes">_Case sensitive</property>
               </object>
             </child>
             <child>
               <object class="GtkCheckButton" id="word_button">
-                <property name="label" translatable="yes">Match whole word only</property>
+                <property name="use-underline">true</property>
+                <property name="label" translatable="yes">Match whole _word only</property>
               </object>
             </child>
           </object>
