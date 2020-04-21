@@ -22,6 +22,7 @@
 
 #include "config.h"
 
+#include "editor-page-private.h"
 #include "editor-search-bar-private.h"
 
 struct _EditorSearchBar
@@ -30,6 +31,7 @@ struct _EditorSearchBar
 
   GtkSourceSearchContext  *context;
   GtkSourceSearchSettings *settings;
+  GCancellable            *cancellable;
 
   GtkEntry                *search_entry;
   GtkEntry                *replace_entry;
@@ -50,6 +52,110 @@ enum {
 G_DEFINE_TYPE (EditorSearchBar, editor_search_bar, GTK_TYPE_BIN)
 
 static GParamSpec *properties [N_PROPS];
+
+static void
+editor_search_bar_scroll_to_insert (EditorSearchBar *self)
+{
+  GtkWidget *page;
+
+  g_assert (EDITOR_IS_SEARCH_BAR (self));
+
+  if ((page = gtk_widget_get_ancestor (GTK_WIDGET (self), EDITOR_TYPE_PAGE)))
+    _editor_page_scroll_to_insert (EDITOR_PAGE (page));
+}
+
+static void
+editor_search_bar_search_activate_cb (EditorSearchBar *self,
+                                      GtkEntry        *entry)
+{
+  g_assert (EDITOR_IS_SEARCH_BAR (self));
+  g_assert (GTK_IS_ENTRY (entry));
+
+  gtk_widget_activate_action (GTK_WIDGET (self), "search.move-next", NULL);
+  gtk_widget_activate_action (GTK_WIDGET (self), "search.hide", NULL);
+}
+
+static void
+editor_search_bar_move_next_forward_cb (GObject      *object,
+                                        GAsyncResult *result,
+                                        gpointer      user_data)
+{
+  GtkSourceSearchContext *context = (GtkSourceSearchContext *)object;
+  g_autoptr(EditorSearchBar) self = user_data;
+  g_autoptr(GError) error = NULL;
+  GtkSourceBuffer *buffer;
+  GtkTextIter begin;
+  GtkTextIter end;
+  gboolean has_wrapped = FALSE;
+
+  g_assert (EDITOR_IS_SEARCH_BAR (self));
+  g_assert (G_IS_ASYNC_RESULT (result));
+  g_assert (GTK_SOURCE_IS_SEARCH_CONTEXT (context));
+
+  if (!gtk_source_search_context_forward_finish (context, result, &begin, &end, &has_wrapped, &error))
+    {
+      g_debug ("Search forward error: %s", error->message);
+      return;
+    }
+
+  buffer = gtk_source_search_context_get_buffer (context);
+  gtk_text_buffer_select_range (GTK_TEXT_BUFFER (buffer), &begin, &end);
+}
+
+static void
+editor_search_bar_move_next_cb (GtkWidget   *widget,
+                                const gchar *action_name,
+                                GVariant    *parameter)
+{
+  EditorSearchBar *self = (EditorSearchBar *)widget;
+  GtkSourceBuffer *buffer;
+  GtkTextIter begin;
+  GtkTextIter end;
+
+  g_assert (EDITOR_IS_SEARCH_BAR (self));
+
+  if (self->context == NULL)
+    return;
+
+  buffer = gtk_source_search_context_get_buffer (self->context);
+  gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER (buffer), &begin, &end);
+  gtk_text_iter_order (&begin, &end);
+
+  gtk_source_search_context_forward_async (self->context,
+                                           &end,
+                                           self->cancellable,
+                                           editor_search_bar_move_next_forward_cb,
+                                           g_object_ref (self));
+
+  editor_search_bar_scroll_to_insert (self);
+}
+
+static void
+editor_search_bar_move_previous_cb (GtkWidget   *widget,
+                                    const gchar *action_name,
+                                    GVariant    *parameter)
+{
+  EditorSearchBar *self = (EditorSearchBar *)widget;
+  GtkSourceBuffer *buffer;
+  GtkTextIter begin;
+  GtkTextIter end;
+
+  g_assert (EDITOR_IS_SEARCH_BAR (self));
+
+  if (self->context == NULL)
+    return;
+
+  buffer = gtk_source_search_context_get_buffer (self->context);
+  gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER (buffer), &begin, &end);
+  gtk_text_iter_order (&begin, &end);
+
+  gtk_source_search_context_backward_async (self->context,
+                                            &begin,
+                                            self->cancellable,
+                                            /* XXX: fixme */
+                                            editor_search_bar_move_next_forward_cb,
+                                            g_object_ref (self));
+}
 
 static gboolean
 empty_to_null (GBinding     *binding,
@@ -84,6 +190,7 @@ editor_search_bar_finalize (GObject *object)
 {
   EditorSearchBar *self = (EditorSearchBar *)object;
 
+  g_clear_object (&self->cancellable);
   g_clear_object (&self->context);
   g_clear_object (&self->settings);
 
@@ -141,6 +248,10 @@ editor_search_bar_class_init (EditorSearchBarClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, regex_button);
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, options_box);
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, options_button);
+  gtk_widget_class_bind_template_callback (widget_class, editor_search_bar_search_activate_cb);
+
+  gtk_widget_class_install_action (widget_class, "search.move-next", NULL, editor_search_bar_move_next_cb);
+  gtk_widget_class_install_action (widget_class, "search.move-previous", NULL, editor_search_bar_move_previous_cb);
 
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Escape, 0, "search.hide", NULL);
 }
@@ -200,6 +311,7 @@ _editor_search_bar_attach (EditorSearchBar *self,
   if (self->context != NULL)
     return;
 
+  self->cancellable = g_cancellable_new ();
   self->context = gtk_source_search_context_new (GTK_SOURCE_BUFFER (document),
                                                  self->settings);
 }
@@ -209,5 +321,8 @@ _editor_search_bar_detach (EditorSearchBar *self)
 {
   g_return_if_fail (EDITOR_IS_SEARCH_BAR (self));
 
+  g_cancellable_cancel (self->cancellable);
+
   g_clear_object (&self->context);
+  g_clear_object (&self->cancellable);
 }

@@ -40,5 +40,6 @@ gchar        *_editor_page_dup_title_no_i18n  (EditorPage          *self);
 void          _editor_page_begin_search       (EditorPage          *self);
 void          _editor_page_begin_replace      (EditorPage          *self);
 void          _editor_page_hide_search        (EditorPage          *self);
+void          _editor_page_scroll_to_insert   (EditorPage          *self);
 
 G_END_DECLS

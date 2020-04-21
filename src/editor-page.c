@@ -1001,3 +1001,19 @@ _editor_page_hide_search (EditorPage *self)
 
   _editor_page_set_search_visible (self, FALSE, 0);
 }
+
+void
+_editor_page_scroll_to_insert (EditorPage *self)
+{
+  GtkTextMark *mark;
+
+  g_return_if_fail (EDITOR_IS_PAGE (self));
+
+  mark = gtk_text_buffer_get_insert (GTK_TEXT_BUFFER (self->document));
+  gtk_text_view_scroll_to_mark (GTK_TEXT_VIEW (self->view),
+                                mark,
+                                0.25,
+                                TRUE,
+                                0.75,
+                                0.5);
+}
