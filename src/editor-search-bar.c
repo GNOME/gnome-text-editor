@@ -38,6 +38,8 @@ struct _EditorSearchBar
   GtkCheckButton          *case_button;
   GtkCheckButton          *regex_button;
   GtkCheckButton          *word_button;
+  GtkToggleButton         *options_button;
+  GtkBox                  *options_box;
 };
 
 enum {
@@ -137,6 +139,8 @@ editor_search_bar_class_init (EditorSearchBarClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, case_button);
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, word_button);
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, regex_button);
+  gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, options_box);
+  gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, options_button);
 
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Escape, 0, "search.hide", NULL);
 }
@@ -163,6 +167,10 @@ editor_search_bar_init (EditorSearchBar *self)
   g_object_bind_property (self->settings, "case-sensitive",
                           self->case_button, "active",
                           G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL);
+
+  g_object_bind_property (self->options_button, "active",
+                          self->options_box, "visible",
+                          G_BINDING_SYNC_CREATE);
 }
 
 void

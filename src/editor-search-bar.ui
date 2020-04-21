@@ -68,8 +68,7 @@
           </object>
         </child>
         <child>
-          <object class="GtkToggleButton">
-            <property name="action-name">search.show-options</property>
+          <object class="GtkToggleButton" id="options_button">
             <property name="icon-name">emblem-system-symbolic</property>
             <layout>
               <property name="top-attach">0</property>
@@ -118,7 +117,7 @@
           </object>
         </child>
         <child>
-          <object class="GtkBox" id="settings_box">
+          <object class="GtkBox" id="options_box">
             <property name="can-focus">false</property>
             <property name="orientation">horizontal</property>
             <property name="spacing">3</property>
