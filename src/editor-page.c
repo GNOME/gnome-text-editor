@@ -861,7 +861,8 @@ editor_page_dup_position_label (EditorPage *self)
   g_return_val_if_fail (EDITOR_IS_PAGE (self), NULL);
 
   editor_page_get_visual_position (self, &line, &column);
-  return g_strdup_printf (_("Ln %u, Col %u"), line, column);
+
+  return g_strdup_printf (_("Ln %u, Col %u"), line + 1, column + 1);
 }
 
 gboolean
