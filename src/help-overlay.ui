@@ -11,8 +11,14 @@
             <property name="title" translatable="yes">Windows</property>
             <child>
               <object class="GtkShortcutsShortcut">
-                <property name="title" translatable="yes">New Window</property>
+                <property name="title" translatable="yes">New window</property>
                 <property name="accelerator">&lt;primary&gt;n</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="title" translatable="yes">Move document to new window</property>
+                <property name="accelerator">&lt;primary&gt;&lt;shift&gt;n</property>
               </object>
             </child>
           </object>
@@ -22,13 +28,19 @@
             <property name="title" translatable="yes">Documents</property>
             <child>
               <object class="GtkShortcutsShortcut">
-                <property name="title" translatable="yes">New Document</property>
+                <property name="title" translatable="yes">New document</property>
                 <property name="accelerator">&lt;primary&gt;t</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
-                <property name="title" translatable="yes">Find Document</property>
+                <property name="title" translatable="yes">Browse to open document</property>
+                <property name="accelerator">&lt;primary&gt;o</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="title" translatable="yes">Find document by name</property>
                 <property name="accelerator">&lt;primary&gt;k</property>
               </object>
             </child>
@@ -103,6 +115,24 @@
             <property name="title" translatable="yes">Editing</property>
             <child>
               <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;ctrl&gt;period</property>
+                <property name="title" translatable="yes">Insert emoji into document</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;ctrl&gt;f</property>
+                <property name="title" translatable="yes">Search within the document</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;ctrl&gt;h</property>
+                <property name="title" translatable="yes">Search and replace within the document</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
                 <property name="accelerator">&lt;ctrl&gt;&lt;shift&gt;a</property>
                 <property name="title" translatable="yes">Increment number at cursor</property>
               </object>
@@ -117,6 +147,111 @@
               <object class="GtkShortcutsShortcut">
                 <property name="accelerator">Insert</property>
                 <property name="title" translatable="yes">Toggle overwrite</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">F7</property>
+                <property name="title" translatable="yes">Toggle visibility of insertion caret</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkShortcutsGroup">
+            <property name="title" translatable="yes">Selections</property>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;ctrl&gt;a</property>
+                <property name="title" translatable="yes">Select all</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;ctrl&gt;&lt;shift&gt;a</property>
+                <property name="title" translatable="yes">Unselect all</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkShortcutsGroup">
+            <property name="title" translatable="yes">Movements</property>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;ctrl&gt;Home</property>
+                <property name="title" translatable="yes">Move to beginning of document</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;ctrl&gt;End</property>
+                <property name="title" translatable="yes">Move to end of document</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;ctrl&gt;Page_Down</property>
+                <property name="title" translatable="yes">Move to next horizontal page</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;ctrl&gt;Page_Up</property>
+                <property name="title" translatable="yes">Move to previous horizontal page</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;ctrl&gt;Up</property>
+                <property name="title" translatable="yes">Move to start of previous paragraph</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;ctrl&gt;Down</property>
+                <property name="title" translatable="yes">Move to end of next paragraph</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;alt&gt;Up</property>
+                <property name="title" translatable="yes">Move current or selected lines up</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;alt&gt;Down</property>
+                <property name="title" translatable="yes">Move current or selected lines down</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkShortcutsGroup">
+            <property name="title" translatable="yes">Deletion</property>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;ctrl&gt;BackSpace</property>
+                <property name="title" translatable="yes">Delete from cursor to word start</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;ctrl&gt;Delete</property>
+                <property name="title" translatable="yes">Delete from cursor to word end</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;ctrl&gt;&lt;shift&gt;BackSpace</property>
+                <property name="title" translatable="yes">Delete from cursor to paragraph start</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;ctrl&gt;&lt;shift&gt;Delete</property>
+                <property name="title" translatable="yes">Delete from cursor to paragraph end</property>
               </object>
             </child>
           </object>
