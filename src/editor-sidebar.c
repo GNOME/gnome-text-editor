@@ -175,6 +175,24 @@ editor_sidebar_search_entry_changed_cb (EditorSidebar *self,
 }
 
 static void
+editor_sidebar_hide_cb (GtkWidget   *widget,
+                        const gchar *action_name,
+                        GVariant    *param)
+{
+  GtkWidget *window;
+
+  g_assert (EDITOR_IS_SIDEBAR (widget));
+
+  gtk_widget_hide (widget);
+
+  if ((window = gtk_widget_get_ancestor (widget, EDITOR_TYPE_WINDOW)))
+    {
+      EditorPage *page = editor_window_get_visible_page (EDITOR_WINDOW (window));
+      gtk_widget_grab_focus (GTK_WIDGET (page));
+    }
+}
+
+static void
 editor_sidebar_destroy (GtkWidget *widget)
 {
   EditorSidebar *self = (EditorSidebar *)widget;
@@ -205,6 +223,10 @@ editor_sidebar_class_init (EditorSidebarClass *klass)
   gtk_widget_class_bind_template_callback (widget_class, editor_sidebar_row_activated_cb);
   gtk_widget_class_bind_template_callback (widget_class, editor_sidebar_search_entry_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, editor_sidebar_search_entry_changed_cb);
+
+  gtk_widget_class_install_action (widget_class, "sidebar.hide", NULL, editor_sidebar_hide_cb);
+
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Escape, 0, "sidebar.hide", NULL);
 }
 
 static void
