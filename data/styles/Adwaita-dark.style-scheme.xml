@@ -63,15 +63,19 @@
   <color name="yellow4"                     value="#f5c211"/>
   <color name="yellow5"                     value="#e5a50a"/>
 
+  <color name="content_bg"                  value="#101010"/>
+  <color name="content_bg_alt"              value="#6e6e6e"/>
+  <color name="content_alt"                 value="#3e3e3e"/>
+
 
   <!-- Global Settings -->
-  <style name="text"                        foreground="light4" background="dark5"/>
+  <style name="text"                        foreground="light4" background="content_bg"/>
   <style name="map-overlay"                 background="dark1"/>
   <style name="cursor"                      foreground="light4"/>
-  <style name="line-numbers"                foreground="dark2" background="dark5"/>
+  <style name="line-numbers"                foreground="content_alt" background="content_bg"/>
   <style name="current-line"                background="dark4"/>
   <style name="current-line-number"         foreground="dark1" background="dark4" bold="true"/>
-  <style name="right-margin"                foreground="light5" background="light5"/>
+  <style name="right-margin"                foreground="content_bg_alt" background="content_bg_alt"/>
   <style name="draw-spaces"                 foreground="dark1"/>
   <style name="background-pattern"          background="dark4"/>
 
