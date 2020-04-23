@@ -28,6 +28,8 @@
 #include "editor-session-private.h"
 #include "editor-window-private.h"
 
+#define AUTO_SAVE_TIMEOUT_SECONDS 20
+
 struct _EditorSession
 {
   GObject    parent_instance;
@@ -37,6 +39,9 @@ struct _EditorSession
   GPtrArray *seen;
   GArray    *drafts;
 
+  guint      auto_save_source;
+
+  guint      auto_save : 1;
   guint      did_restore : 1;
 };
 
@@ -64,6 +69,12 @@ typedef struct
 G_DEFINE_TYPE (EditorSession, editor_session, G_TYPE_OBJECT)
 
 enum {
+  PROP_0,
+  PROP_AUTO_SAVE,
+  N_PROPS
+};
+
+enum {
   PAGE_ADDED,
   PAGE_REMOVED,
   WINDOW_ADDED,
@@ -71,6 +82,7 @@ enum {
   N_SIGNALS
 };
 
+static GParamSpec *properties [N_PROPS];
 static guint signals[N_SIGNALS];
 
 static void
@@ -316,6 +328,8 @@ editor_session_dispose (GObject *object)
 
   g_assert (EDITOR_IS_SESSION (self));
 
+  g_clear_handle_id (&self->auto_save_source, g_source_remove);
+
   if (self->windows->len > 0)
     g_ptr_array_remove_range (self->windows, 0, self->windows->len);
 
@@ -343,12 +357,72 @@ editor_session_finalize (GObject *object)
 }
 
 static void
+editor_session_get_property (GObject    *object,
+                             guint       prop_id,
+                             GValue     *value,
+                             GParamSpec *pspec)
+{
+  EditorSession *self = EDITOR_SESSION (object);
+
+  switch (prop_id)
+    {
+    case PROP_AUTO_SAVE:
+      g_value_set_boolean (value, editor_session_get_auto_save (self));
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+    }
+}
+
+static void
+editor_session_set_property (GObject      *object,
+                             guint         prop_id,
+                             const GValue *value,
+                             GParamSpec   *pspec)
+{
+  EditorSession *self = EDITOR_SESSION (object);
+
+  switch (prop_id)
+    {
+    case PROP_AUTO_SAVE:
+      editor_session_set_auto_save (self, g_value_get_boolean (value));
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+    }
+}
+
+static void
 editor_session_class_init (EditorSessionClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
   object_class->dispose = editor_session_dispose;
   object_class->finalize = editor_session_finalize;
+  object_class->get_property = editor_session_get_property;
+  object_class->set_property = editor_session_set_property;
+
+  /**
+   * EditorSession:auto-save:
+   *
+   * The "auto-save" property denotes that the session should auto
+   * save it's state on a regular interval to ensure that little to
+   * no state is lost in the case of an application crash.
+   *
+   * Documents are saved to their draft files so enabling this option
+   * is safe in terms of mutating the original files as they are left
+   * untouched.
+   */
+  properties [PROP_AUTO_SAVE] =
+    g_param_spec_boolean ("auto-save",
+                          "Auto Save",
+                          "Auto Save",
+                          FALSE,
+                          (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+
+  g_object_class_install_properties (object_class, N_PROPS, properties);
 
   /**
    * EditorSession::page-added:
@@ -1740,5 +1814,68 @@ _editor_session_move_page_to_window (EditorSession *self,
       _editor_window_remove_page (old_window, page);
       _editor_window_add_page (window, page);
       g_object_unref (page);
+    }
+}
+
+static gboolean
+editor_session_auto_save_timeout_cb (gpointer user_data)
+{
+  EditorSession *self = user_data;
+
+  g_assert (EDITOR_IS_SESSION (self));
+
+  g_debug ("Performing auto-save of session state\n");
+  editor_session_save_async (self, NULL, NULL, NULL);
+
+  return G_SOURCE_CONTINUE;
+}
+
+/**
+ * editor_session_get_auto_save:
+ * @self: an #EditorSession
+ *
+ * Gets the #EditorSession:auto-save property.
+ *
+ * Returns: %TRUE if auto-save is enabled.
+ */
+gboolean
+editor_session_get_auto_save (EditorSession *self)
+{
+  g_return_val_if_fail (EDITOR_IS_SESSION (self), FALSE);
+
+  return self->auto_save;
+}
+
+/**
+ * editor_session_set_auto_save:
+ * @self: an #EditorSesion
+ * @auto_save: if session auto-save should be enabled
+ *
+ * Sets the #EditorSession:auto-save property.
+ *
+ * If set to %TRUE, then the session will auto-save it's state
+ * so that the session may be restored in case of a crash.
+ *
+ * This does not save documents to their backing files, but instead
+ * auto saves the drafts for the file.
+ */
+void
+editor_session_set_auto_save (EditorSession *self,
+                              gboolean       auto_save)
+{
+  g_return_if_fail (EDITOR_IS_SESSION (self));
+
+  auto_save = !!auto_save;
+
+  if (auto_save != self->auto_save)
+    {
+      self->auto_save = auto_save;
+      g_clear_handle_id (&self->auto_save_source, g_source_remove);
+      if (auto_save)
+        self->auto_save_source =
+          g_timeout_add_seconds (AUTO_SAVE_TIMEOUT_SECONDS,
+                                 editor_session_auto_save_timeout_cb,
+                                 self);
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_AUTO_SAVE]);
     }
 }

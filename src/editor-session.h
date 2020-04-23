@@ -74,5 +74,8 @@ void          editor_session_load_recent_async  (EditorSession        *self,
 GPtrArray    *editor_session_load_recent_finish (EditorSession        *self,
                                                  GAsyncResult         *result,
                                                  GError              **error);
+gboolean      editor_session_get_auto_save      (EditorSession        *self);
+void          editor_session_set_auto_save      (EditorSession        *self,
+                                                 gboolean              auto_save);
 
 G_END_DECLS
