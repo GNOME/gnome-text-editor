@@ -145,8 +145,6 @@ editor_sidebar_model_page_added_cb (EditorSidebarModel *self,
 {
   EditorDocument *document;
   GSequenceIter *iter;
-  GFile *file;
-  gint page_num;
 
   g_assert (EDITOR_IS_SIDEBAR_MODEL (self));
   g_assert (EDITOR_IS_WINDOW (window));
@@ -154,40 +152,21 @@ editor_sidebar_model_page_added_cb (EditorSidebarModel *self,
   g_assert (EDITOR_IS_SESSION (session));
 
   document = editor_page_get_document (page);
-  file = editor_document_get_file (document);
-  page_num = _editor_page_position (page);
 
-  g_return_if_fail (page_num >= 0);
+  /*
+   * If we find the page that was opened already in our sidebar model,
+   * then we want to remove that item. The sidebar is for recent files and
+   * we don't want it to be cluttered with already open files which can be
+   * opened from the tabs.
+   */
 
   if ((iter = find_by_document (self, document)))
     {
-      EditorSidebarItem *item = g_sequence_get (iter);
       guint position = g_sequence_iter_get_position (iter);
 
-      g_object_ref (item);
-
-      /* First we want to remove the item since we'll be moving it
-       * to a higher location to match the page offset.
-       */
       g_sequence_remove (iter);
       g_list_model_items_changed (G_LIST_MODEL (self), position, 1, 0);
-
-      /* Set our page for tracking */
-      _editor_sidebar_item_set_page (item, page);
-
-      /* Add our item with page set at the new position */
-      iter = g_sequence_get_iter_at_pos (self->seq, page_num);
-      g_sequence_insert_before (iter, g_steal_pointer (&item));
-
-      /* Now we want to add the item at the new position */
-      g_list_model_items_changed (G_LIST_MODEL (self), page_num, 0, 1);
-
-      return;
     }
-
-  iter = g_sequence_get_iter_at_pos (self->seq, page_num);
-  g_sequence_insert_before (iter, _editor_sidebar_item_new (file, page));
-  g_list_model_items_changed (G_LIST_MODEL (self), page_num, 0, 1);
 }
 
 static void
@@ -196,31 +175,35 @@ editor_sidebar_model_page_removed_cb (EditorSidebarModel *self,
                                       EditorPage         *page,
                                       EditorSession      *session)
 {
+  g_autoptr(EditorSidebarItem) item = NULL;
+  g_autofree gchar *title = NULL;
   EditorDocument *document;
-  GSequenceIter *iter;
+  const gchar *draft_id;
+  gboolean is_modified;
+  GFile *file;
 
   g_assert (EDITOR_IS_SIDEBAR_MODEL (self));
   g_assert (EDITOR_IS_WINDOW (window));
   g_assert (EDITOR_IS_PAGE (page));
   g_assert (EDITOR_IS_SESSION (session));
 
+  if (editor_page_get_can_discard (page))
+    return;
+
   document = editor_page_get_document (page);
+  file = editor_document_get_file (document);
+  title = editor_document_dup_title (document);
+  is_modified = gtk_text_buffer_get_modified (GTK_TEXT_BUFFER (document));
+  draft_id = _editor_document_get_draft_id (document);
 
-  if ((iter = find_by_document (self, document)))
-    {
-      EditorSidebarItem *item = g_sequence_get (iter);
-      guint position = g_sequence_iter_get_position (iter);
+  item = _editor_sidebar_item_new (file, NULL);
+  _editor_sidebar_item_set_title (item, title);
+  _editor_sidebar_item_set_is_modified (item, TRUE, is_modified);
+  _editor_sidebar_item_set_draft_id (item, draft_id);
 
-      if (editor_page_get_can_discard (page))
-        {
-          g_sequence_remove (iter);
-          g_list_model_items_changed (G_LIST_MODEL (self), position, 1, 0);
-          return;
-        }
+  g_sequence_prepend (self->seq, g_steal_pointer (&item));
 
-      _editor_sidebar_item_set_page (item, NULL);
-      g_list_model_items_changed (G_LIST_MODEL (self), position, 1, 1);
-    }
+  g_list_model_items_changed (G_LIST_MODEL (self), 0, 0, 1);
 }
 
 static void
@@ -253,6 +236,10 @@ editor_sidebar_model_load_recent_cb (GObject      *object,
   for (guint i = 0; i < files->len; i++)
     {
       GFile *file = g_ptr_array_index (files, i);
+
+      /* Skip this file if it is already open */
+      if (editor_session_find_page_by_file (EDITOR_SESSION_DEFAULT, file))
+        continue;
 
       if (!find_by_file (self, file))
         {
