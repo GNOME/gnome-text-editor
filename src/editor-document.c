@@ -449,6 +449,11 @@ editor_document_save_draft_cb (GObject      *object,
   else
     g_task_return_boolean (task, TRUE);
 
+  /* Remark the buffer as modified since the saver would have
+   * overwritten the value we had for that.
+   */
+  gtk_text_buffer_set_modified (GTK_TEXT_BUFFER (self), TRUE);
+
   _editor_document_unmark_busy (self);
 }
 
@@ -462,6 +467,7 @@ _editor_document_save_draft_async (EditorDocument      *self,
   g_autoptr(GTask) task = NULL;
   g_autoptr(GFile) draft_file = NULL;
   g_autoptr(GFile) draft_dir = NULL;
+  g_autoptr(GtkSourceFile) file = NULL;
   g_autofree gchar *title = NULL;
   g_autofree gchar *uri = NULL;
   EditorSession *session;
@@ -486,10 +492,13 @@ _editor_document_save_draft_async (EditorDocument      *self,
   uri = _editor_document_dup_uri (self);
   _editor_session_add_draft (session, self->draft_id, title, uri);
 
+  /* Create a new GtkSourceFile to save the document so we don't
+   * end up mutating what we have in self->file.
+   */
   draft_file = editor_document_get_draft_file (self);
-  saver = gtk_source_file_saver_new_with_target (GTK_SOURCE_BUFFER (self),
-                                                 self->file,
-                                                 draft_file);
+  file = gtk_source_file_new ();
+  gtk_source_file_set_location (file, draft_file);
+  saver = gtk_source_file_saver_new (GTK_SOURCE_BUFFER (self), file);
   gtk_source_file_saver_set_flags (saver,
                                    (GTK_SOURCE_FILE_SAVER_FLAGS_IGNORE_INVALID_CHARS |
                                     GTK_SOURCE_FILE_SAVER_FLAGS_IGNORE_MODIFICATION_TIME));
