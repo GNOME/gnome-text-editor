@@ -1641,6 +1641,7 @@ editor_session_load_recent_worker (GTask        *task,
   g_autoptr(GPtrArray) files = NULL;
   g_autofree gchar *filename = NULL;
   g_auto(GStrv) uris = NULL;
+  gboolean removed = FALSE;
   gsize len;
 
   g_assert (G_IS_TASK (task));
@@ -1660,16 +1661,25 @@ editor_session_load_recent_worker (GTask        *task,
 
   for (gsize i = 0; i < len; i++)
     {
-      g_autoptr(GFile) file = g_file_new_for_uri (uris[i]);
+      const gchar *uri = uris[i];
+      g_autoptr(GFile) file = g_file_new_for_uri (uri);
 
       if (g_file_is_native (file))
         {
           if (!g_file_query_exists (file, cancellable))
-            continue;
+            {
+              removed = TRUE;
+              g_bookmark_file_remove_item (bookmarks, uri, NULL);
+              continue;
+            }
         }
 
       g_ptr_array_add (files, g_steal_pointer (&file));
     }
+
+  /* Save pruned version if necessary */
+  if (removed)
+    g_bookmark_file_to_file (bookmarks, filename, NULL);
 
   g_task_return_pointer (task,
                          g_steal_pointer (&files),
