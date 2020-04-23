@@ -1,7 +1,7 @@
 {
     "app-id" : "org.gnome.TextEditor.Devel",
     "runtime" : "org.gnome.Platform",
-    "runtime-version" : "3.36",
+    "runtime-version" : "master",
     "sdk" : "org.gnome.Sdk",
     "command" : "gnome-text-editor",
     "finish-args" : [
@@ -28,86 +28,6 @@
         "*.a"
     ],
     "modules" : [
-        {
-            "name" : "wayland",
-            "buildsystem" : "autotools",
-            "builddir" : true,
-            "config-opts" : [
-                "--disable-documentation"
-            ],
-            "sources" : [
-                {
-                    "type" : "git",
-                    "url" : "https://github.com/wayland-project/wayland.git"
-                }
-            ]
-        },
-        {
-            "name": "graphene",
-            "buildsystem": "meson",
-            "builddir": true,
-            "config-opts": [
-                "--libdir=/app/lib",
-                "-Dtests=false",
-                "-Dbenchmarks=false"
-            ],
-            "sources": [
-                {
-                    "type": "git",
-                    "url": "https://github.com/ebassi/graphene.git"
-                }
-            ]
-        },
-        {
-            "name" : "libsass",
-            "buildsystem" : "meson",
-            "builddir" : true,
-            "config-opts": [
-                "--libdir=/app/lib"
-            ],
-            "sources" : [
-                {
-                    "type" : "git",
-                    "url" : "https://github.com/lazka/libsass.git",
-                    "branch" : "meson"
-                }
-            ]
-        },
-        {
-            "name" : "sassc",
-            "buildsystem" : "meson",
-            "builddir" : true,
-            "config-opts": [
-                "--libdir=/app/lib"
-            ],
-            "sources" : [
-                {
-                    "type" : "git",
-                    "url" : "https://github.com/lazka/sassc.git",
-                    "branch" : "meson"
-                }
-            ]
-        },
-        {
-            "name": "gtk",
-            "buildsystem": "meson",
-            "builddir": true,
-            "cleanup" : [
-                "/bin",
-                "/share/icons/hicolor/scalable/apps",
-                "/share/icons/hicolor/symbolic/apps"
-            ],
-            "config-opts": [
-                "--libdir=/app/lib"
-            ],
-            "sources": [
-                {
-                    "type": "git",
-                    "url": "https://gitlab.gnome.org/GNOME/gtk.git",
-                    "branch" : "master"
-                }
-            ]
-        },
         {
             "name" : "gtksourceview",
             "builddir" : true,
