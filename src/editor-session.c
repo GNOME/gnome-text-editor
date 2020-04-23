@@ -32,12 +32,12 @@
 
 struct _EditorSession
 {
-  GObject    parent_instance;
-  GPtrArray *windows;
-  GPtrArray *pages;
-  GFile     *state_file;
-  GPtrArray *seen;
-  GArray    *drafts;
+  GObject     parent_instance;
+  GPtrArray  *windows;
+  GPtrArray  *pages;
+  GFile      *state_file;
+  GHashTable *seen;
+  GArray     *drafts;
 
   guint      auto_save_source;
 
@@ -336,8 +336,7 @@ editor_session_dispose (GObject *object)
   if (self->pages->len > 0)
     g_ptr_array_remove_range (self->pages, 0, self->pages->len);
 
-  if (self->seen != NULL && self->seen->len > 0)
-    g_ptr_array_remove_range (self->seen, 0, self->seen->len);
+  g_hash_table_remove_all (self->seen);
 
   G_OBJECT_CLASS (editor_session_parent_class)->dispose (object);
 }
@@ -349,7 +348,7 @@ editor_session_finalize (GObject *object)
 
   g_clear_pointer (&self->pages, g_ptr_array_unref);
   g_clear_pointer (&self->windows, g_ptr_array_unref);
-  g_clear_pointer (&self->seen, g_ptr_array_unref);
+  g_clear_pointer (&self->seen, g_hash_table_unref);
   g_clear_pointer (&self->drafts, g_array_unref);
   g_clear_object (&self->state_file);
 
@@ -500,6 +499,9 @@ editor_session_class_init (EditorSessionClass *klass)
 static void
 editor_session_init (EditorSession *self)
 {
+  self->seen = g_hash_table_new_full ((GHashFunc) g_file_hash,
+                                      (GEqualFunc) g_file_equal,
+                                      g_object_unref, NULL);
   self->pages = g_ptr_array_new_with_free_func (g_object_unref);
   self->windows = g_ptr_array_new_with_free_func (g_object_unref);
   self->state_file = g_file_new_build_filename (g_get_user_data_dir (),
@@ -1003,10 +1005,17 @@ editor_session_save_async (EditorSession       *self,
   state->state_bytes = g_variant_get_data_as_bytes (vstate);
   state->app = g_application_get_default ();
 
-  if (self->seen != NULL && self->seen->len > 0)
-    state->seen = g_ptr_array_copy (self->seen,
-                                    (GCopyFunc) g_object_ref,
-                                    NULL);
+  if (g_hash_table_size (self->seen) > 0)
+    {
+      GHashTableIter iter;
+      GFile *file;
+
+      state->seen = g_ptr_array_new_with_free_func (g_object_unref);
+
+      g_hash_table_iter_init (&iter, self->seen);
+      while (g_hash_table_iter_next (&iter, (gpointer *)&file, NULL))
+        g_ptr_array_add (state->seen, g_file_dup (file));
+    }
 
   g_application_hold (state->app);
 
@@ -1715,16 +1724,10 @@ _editor_session_document_seen (EditorSession  *self,
   g_return_if_fail (EDITOR_IS_SESSION (self));
   g_return_if_fail (EDITOR_IS_DOCUMENT (document));
 
-  if (self->seen == NULL)
-    self->seen = g_ptr_array_new_with_free_func (g_object_unref);
-
   if ((file = editor_document_get_file (document)))
     {
-      if (!g_ptr_array_find_with_equal_func (self->seen,
-                                             file,
-                                             (GEqualFunc) g_file_equal,
-                                             NULL))
-        g_ptr_array_add (self->seen, g_file_dup (file));
+      if (!g_hash_table_contains (self->seen, file))
+        g_hash_table_insert (self->seen, g_file_dup (file), NULL);
     }
 }
 
