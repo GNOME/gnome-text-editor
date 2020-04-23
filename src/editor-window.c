@@ -270,7 +270,23 @@ editor_window_destroy (GtkWidget *widget)
 
   g_clear_object (&self->settings);
 
+  editor_binding_group_set_source (self->page_bindings, NULL);
+  editor_signal_group_set_target (self->page_signals, NULL);
+
   GTK_WIDGET_CLASS (editor_window_parent_class)->destroy (widget);
+}
+
+static void
+editor_window_finalize (GObject *object)
+{
+  EditorWindow *self = (EditorWindow *)object;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+
+  g_clear_object (&self->page_bindings);
+  g_clear_object (&self->page_signals);
+
+  G_OBJECT_CLASS (editor_window_parent_class)->finalize (object);
 }
 
 static void
@@ -319,6 +335,7 @@ editor_window_class_init (EditorWindowClass *klass)
   GtkWindowClass *window_class = GTK_WINDOW_CLASS (klass);
 
   object_class->constructed = editor_window_constructed;
+  object_class->finalize = editor_window_finalize;
   object_class->get_property = editor_window_get_property;
   object_class->set_property = editor_window_set_property;
 
