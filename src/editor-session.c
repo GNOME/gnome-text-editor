@@ -1659,7 +1659,7 @@ editor_session_load_recent_worker (GTask        *task,
   uris = g_bookmark_file_get_uris (bookmarks, &len);
 
   for (gsize i = 0; i < len; i++)
-    g_ptr_array_add (files, g_file_new_for_uri (uris[0]));
+    g_ptr_array_add (files, g_file_new_for_uri (uris[i]));
 
   g_task_return_pointer (task,
                          g_steal_pointer (&files),
