@@ -196,9 +196,10 @@ add_window_state (EditorSession   *self,
 
       /* Store the window size */
       gtk_window_get_size (GTK_WINDOW (window), &width, &height);
-      if (width > 0 && width < 10000 &&
-          height > 0 && height < 10000)
-        g_variant_builder_add_parsed (builder, "{'size', <(%u,%u)>}", width, height);
+      g_variant_builder_add_parsed (builder,
+                                    "{'size', <(%u,%u)>}",
+                                    CLAMP (width, 0, 10000),
+                                    CLAMP (height, 0, 10000));
 
       /* Add all of the pages from the window */
       g_variant_builder_open (builder, G_VARIANT_TYPE ("{sv}"));
