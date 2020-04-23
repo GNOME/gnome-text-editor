@@ -502,12 +502,13 @@ _editor_document_save_draft_async (EditorDocument      *self,
 
   _editor_document_mark_busy (self);
 
+  /* Ignore progress when saving the draft as it could confuse the
+   * user about what is going on in the background.
+   */
   gtk_source_file_saver_save_async (saver,
                                     G_PRIORITY_DEFAULT,
                                     cancellable,
-                                    editor_document_progress,
-                                    self,
-                                    NULL,
+                                    NULL, NULL, NULL,
                                     editor_document_save_draft_cb,
                                     g_steal_pointer (&task));
 }
