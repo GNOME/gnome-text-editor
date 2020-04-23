@@ -248,6 +248,7 @@ static void
 editor_application_init (EditorApplication *self)
 {
   self->session = _editor_session_new ();
+  editor_session_set_auto_save (self->session, TRUE);
 }
 
 EditorApplication *
