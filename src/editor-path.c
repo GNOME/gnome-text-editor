@@ -63,6 +63,10 @@ _editor_path_collapse (const gchar *path)
 
   expanded = _editor_path_expand (path);
 
+  /* Special case $HOME to ~/ instead of ~ */
+  if (g_str_equal (expanded, g_get_home_dir ()))
+    return g_strdup_printf ("~/");
+
   if (g_str_has_prefix (expanded, g_get_home_dir ()))
     return g_build_filename ("~",
                              expanded + strlen (g_get_home_dir ()),
