@@ -75,15 +75,19 @@
             <property name="halign">end</property>
             <property name="spacing">6</property>
             <child>
-              <object class="GtkLabel" id="position_label">
-                <property name="halign">end</property>
-                <property name="hexpand">false</property>
-                <property name="valign">center</property>
-                <property name="vexpand">false</property>
-                <property name="visible">false</property>
-                <style>
-                  <class name="position-label"/>
-                </style>
+              <object class="GtkBox" id="position_box">
+                <child>
+                  <object class="GtkLabel" id="position_label">
+                    <property name="halign">end</property>
+                    <property name="hexpand">false</property>
+                    <property name="valign">center</property>
+                    <property name="vexpand">false</property>
+                    <property name="visible">false</property>
+                    <style>
+                      <class name="position-label"/>
+                    </style>
+                  </object>
+                </child>
               </object>
             </child>
             <child>

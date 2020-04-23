@@ -41,6 +41,7 @@ struct _EditorWindow
   /* Template Widgets */
   GtkWidget            *empty;
   GtkNotebook          *notebook;
+  GtkBox               *position_box;
   GtkLabel             *title;
   GtkLabel             *subtitle;
   GtkLabel             *is_modified;
@@ -59,6 +60,7 @@ struct _EditorWindow
   /* Owned References */
   EditorBindingGroup   *page_bindings;
   EditorSignalGroup    *page_signals;
+  GSettings            *settings;
 };
 
 G_DEFINE_TYPE (EditorWindow, editor_window, GTK_TYPE_APPLICATION_WINDOW)
@@ -260,6 +262,18 @@ editor_window_constructed (GObject *object)
 }
 
 static void
+editor_window_destroy (GtkWidget *widget)
+{
+  EditorWindow *self = (EditorWindow *)widget;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+
+  g_clear_object (&self->settings);
+
+  GTK_WIDGET_CLASS (editor_window_parent_class)->destroy (widget);
+}
+
+static void
 editor_window_get_property (GObject    *object,
                             guint       prop_id,
                             GValue     *value,
@@ -308,6 +322,8 @@ editor_window_class_init (EditorWindowClass *klass)
   object_class->get_property = editor_window_get_property;
   object_class->set_property = editor_window_set_property;
 
+  widget_class->destroy = editor_window_destroy;
+
   window_class->close_request = editor_window_close_request;
 
   properties [PROP_VISIBLE_PAGE] =
@@ -327,6 +343,7 @@ editor_window_class_init (EditorWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, open_toggle_button);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, options_menu);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, paned);
+  gtk_widget_class_bind_template_child (widget_class, EditorWindow, position_box);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, position_label);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, primary_menu);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, sidebar);
@@ -372,6 +389,11 @@ editor_window_init (EditorWindow *self)
 
   gtk_window_set_title (GTK_WINDOW (self), _(PACKAGE_NAME));
   gtk_window_set_default_size (GTK_WINDOW (self), 700, 520);
+
+  self->settings = g_settings_new ("org.gnome.TextEditor");
+  g_settings_bind (self->settings, "show-line-numbers",
+                   self->position_box, "visible",
+                   G_SETTINGS_BIND_GET);
 
   g_signal_connect_swapped (self->notebook,
                             "page-added",
