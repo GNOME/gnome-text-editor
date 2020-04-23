@@ -53,6 +53,8 @@ void          editor_session_remove_document    (EditorSession        *self,
                                                  EditorDocument       *document);
 void          editor_session_remove_window      (EditorSession        *self,
                                                  EditorWindow         *window);
+EditorPage   *editor_session_find_page_by_file  (EditorSession        *self,
+                                                 GFile                *file);
 void          editor_session_restore_async      (EditorSession        *self,
                                                  GCancellable         *cancellable,
                                                  GAsyncReadyCallback   callback,

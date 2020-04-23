@@ -1902,3 +1902,32 @@ editor_session_set_auto_save (EditorSession *self,
       g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_AUTO_SAVE]);
     }
 }
+
+/**
+ * editor_session_find_page_by_file:
+ * @self: a #EditorSession
+ * @file: a #GFile
+ *
+ * Locates an existing #EditorPage for @file.
+ *
+ * Returns: (transfer none) (nullable): an #EditorPage or %NULL
+ */
+EditorPage *
+editor_session_find_page_by_file (EditorSession *self,
+                                  GFile         *file)
+{
+  g_return_val_if_fail (EDITOR_IS_SESSION (self), NULL);
+  g_return_val_if_fail (G_IS_FILE (file), NULL);
+
+  for (guint i = 0; i < self->pages->len; i++)
+    {
+      EditorPage *page = g_ptr_array_index (self->pages, i);
+      EditorDocument *document = editor_page_get_document (page);
+      GFile *document_file = editor_document_get_file (document);
+
+      if (document_file != NULL && g_file_equal (document_file, file))
+        return page;
+    }
+
+  return NULL;
+}
