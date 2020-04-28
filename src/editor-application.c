@@ -272,3 +272,31 @@ editor_application_get_session (EditorApplication *self)
 
   return self->session;
 }
+
+/**
+ * editor_application_get_current_window:
+ * @self: a #EditorApplication
+ *
+ * Gets the current #EditorWindow for the application if there is one.
+ *
+ * Returns: (transfer none) (nullable): an #EditorWindow or %NULL
+ */
+EditorWindow *
+editor_application_get_current_window (EditorApplication *self)
+{
+  const GList *windows;
+
+  g_return_val_if_fail (EDITOR_IS_APPLICATION (self), NULL);
+
+  windows = gtk_application_get_windows (GTK_APPLICATION (self));
+
+  for (const GList *iter = windows; iter; iter = iter->next)
+    {
+      GtkWindow *window = iter->data;
+
+      if (EDITOR_IS_WINDOW (window))
+        return EDITOR_WINDOW (window);
+    }
+
+  return NULL;
+}

@@ -29,6 +29,7 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (EditorApplication, editor_application, EDITOR, APPLICATION, GtkApplication)
 
-EditorSession *editor_application_get_session (EditorApplication *self);
+EditorSession *editor_application_get_session        (EditorApplication *self);
+EditorWindow  *editor_application_get_current_window (EditorApplication *self);
 
 G_END_DECLS
