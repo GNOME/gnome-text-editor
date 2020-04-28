@@ -87,12 +87,9 @@ editor_application_actions_new_window_cb (GSimpleAction *action,
   session = editor_application_get_session (self);
 
   if (current != NULL && !editor_window_get_visible_page (current))
-    {
-      editor_session_add_draft (session, current);
-      return;
-    }
-
-  editor_session_create_window (session);
+    editor_session_add_draft (session, current);
+  else
+    editor_session_create_window (session);
 }
 
 static void
