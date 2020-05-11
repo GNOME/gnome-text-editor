@@ -30,7 +30,7 @@
 
 struct _EditorTab
 {
-  GtkBin      parent_instance;
+  GtkWidget   parent_instance;
 
   EditorPage *page;
   GtkPopover *menu_popover;
@@ -49,7 +49,7 @@ enum {
   N_PROPS
 };
 
-G_DEFINE_TYPE (EditorTab, editor_tab, GTK_TYPE_BIN)
+G_DEFINE_TYPE (EditorTab, editor_tab, GTK_TYPE_WIDGET)
 
 static GParamSpec *properties [N_PROPS];
 
@@ -350,9 +350,9 @@ editor_tab_size_allocate (GtkWidget *widget,
 }
 
 static void
-editor_tab_destroy (GtkWidget *widget)
+editor_tab_dispose (GObject *object)
 {
-  EditorTab *self = (EditorTab *)widget;
+  EditorTab *self = (EditorTab *)object;
 
   g_clear_weak_pointer (&self->page);
 
@@ -362,7 +362,7 @@ editor_tab_destroy (GtkWidget *widget)
       self->menu_popover = NULL;
     }
 
-  GTK_WIDGET_CLASS (editor_tab_parent_class)->destroy (widget);
+  G_OBJECT_CLASS (editor_tab_parent_class)->dispose (object);
 }
 
 static void
@@ -409,10 +409,10 @@ editor_tab_class_init (EditorTabClass *klass)
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
+  object_class->dispose = editor_tab_dispose;
   object_class->get_property = editor_tab_get_property;
   object_class->set_property = editor_tab_set_property;
 
-  widget_class->destroy = editor_tab_destroy;
   widget_class->size_allocate = editor_tab_size_allocate;
 
   properties [PROP_PAGE] =
@@ -424,6 +424,7 @@ editor_tab_class_init (EditorTabClass *klass)
   
   g_object_class_install_properties (object_class, N_PROPS, properties);
 
+  gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-tab.ui");
   gtk_widget_class_bind_template_child (widget_class, EditorTab, close_button);
   gtk_widget_class_bind_template_child (widget_class, EditorTab, empty);

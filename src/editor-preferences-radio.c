@@ -245,7 +245,7 @@ editor_preferences_radio_init (EditorPreferencesRadio *self)
                       "margin-end", 20,
                       "spacing", 10,
                       NULL);
-  gtk_container_add (GTK_CONTAINER (self), GTK_WIDGET (box));
+  gtk_list_box_row_set_child (GTK_LIST_BOX_ROW (self), GTK_WIDGET (box));
 
   self->toggle = g_object_new (GTK_TYPE_RADIO_BUTTON,
                                "can-focus", FALSE,

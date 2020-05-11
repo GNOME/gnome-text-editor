@@ -28,12 +28,13 @@
 
 struct _EditorSearchBar
 {
-  GtkBin                   parent_instance;
+  GtkWidget                parent_instance;
 
   GtkSourceSearchContext  *context;
   GtkSourceSearchSettings *settings;
   GCancellable            *cancellable;
 
+  GtkGrid                 *grid;
   GtkEntry                *search_entry;
   GtkEntry                *replace_entry;
   GtkButton               *replace_button;
@@ -46,7 +47,7 @@ struct _EditorSearchBar
   GtkBox                  *options_box;
 };
 
-G_DEFINE_TYPE (EditorSearchBar, editor_search_bar, GTK_TYPE_BIN)
+G_DEFINE_TYPE (EditorSearchBar, editor_search_bar, GTK_TYPE_WIDGET)
 
 enum {
   PROP_0,
@@ -226,6 +227,16 @@ editor_search_bar_grab_focus (GtkWidget *widget)
 }
 
 static void
+editor_search_bar_dispose (GObject *object)
+{
+  EditorSearchBar *self = (EditorSearchBar *)object;
+
+  g_clear_pointer ((GtkWidget **)&self->grid, gtk_widget_unparent);
+
+  G_OBJECT_CLASS (editor_search_bar_parent_class)->dispose (object);
+}
+
+static void
 editor_search_bar_finalize (GObject *object)
 {
   EditorSearchBar *self = (EditorSearchBar *)object;
@@ -284,15 +295,18 @@ editor_search_bar_class_init (EditorSearchBarClass *klass)
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
+  object_class->dispose = editor_search_bar_dispose;
   object_class->finalize = editor_search_bar_finalize;
   object_class->get_property = editor_search_bar_get_property;
   object_class->set_property = editor_search_bar_set_property;
 
   widget_class->grab_focus = editor_search_bar_grab_focus;
 
+  gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
   gtk_widget_class_set_css_name (widget_class, "searchbar");
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-search-bar.ui");
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, case_button);
+  gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, grid);
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, options_box);
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, options_button);
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, regex_button);

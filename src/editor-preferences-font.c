@@ -272,7 +272,7 @@ editor_preferences_font_init (EditorPreferencesFont *self)
                       "margin-end", 20,
                       "spacing", 10,
                       NULL);
-  gtk_container_add (GTK_CONTAINER (self), GTK_WIDGET (box));
+  gtk_list_box_row_set_child (GTK_LIST_BOX_ROW (self), GTK_WIDGET (box));
 
   self->label = g_object_new (GTK_TYPE_LABEL,
                               "can-focus", FALSE,
@@ -304,5 +304,5 @@ editor_preferences_font_init (EditorPreferencesFont *self)
   gtk_widget_set_parent (GTK_WIDGET (self->popover), GTK_WIDGET (self));
 
   self->chooser = g_object_new (GTK_TYPE_FONT_CHOOSER_WIDGET, NULL);
-  gtk_container_add (GTK_CONTAINER (self->popover), GTK_WIDGET (self->chooser));
+  gtk_popover_set_child (self->popover, GTK_WIDGET (self->chooser));
 }

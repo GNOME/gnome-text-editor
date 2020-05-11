@@ -37,7 +37,7 @@
 
 struct _EditorPage
 {
-  GtkBin              parent_instance;
+  GtkWidget           parent_instance;
 
   EditorDocument     *document;
   EditorPageSettings *settings;
@@ -45,6 +45,7 @@ struct _EditorPage
 
   EditorAnimation    *progress_animation;
 
+  GtkOverlay         *overlay;
   GtkScrolledWindow  *scroller;
   GtkSourceView      *view;
   GtkProgressBar     *progress_bar;
@@ -64,7 +65,7 @@ enum {
   N_PROPS
 };
 
-G_DEFINE_TYPE (EditorPage, editor_page, GTK_TYPE_BIN)
+G_DEFINE_TYPE (EditorPage, editor_page, GTK_TYPE_WIDGET)
 
 static GParamSpec *properties [N_PROPS];
 
@@ -326,13 +327,14 @@ editor_page_grab_focus (GtkWidget *widget)
 }
 
 static void
-editor_page_destroy (GtkWidget *widget)
+editor_page_dispose (GObject *object)
 {
-  EditorPage *self = (EditorPage *)widget;
+  EditorPage *self = (EditorPage *)object;
 
   g_clear_pointer (&self->progress_animation, editor_animation_stop);
+  g_clear_pointer ((GtkWidget **)&self->overlay, gtk_widget_unparent);
 
-  GTK_WIDGET_CLASS (editor_page_parent_class)->destroy (widget);
+  G_OBJECT_CLASS (editor_page_parent_class)->dispose (object);
 }
 
 static void
@@ -417,12 +419,12 @@ editor_page_class_init (EditorPageClass *klass)
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
-  object_class->finalize = editor_page_finalize;
   object_class->constructed = editor_page_constructed;
+  object_class->dispose = editor_page_dispose;
+  object_class->finalize = editor_page_finalize;
   object_class->get_property = editor_page_get_property;
   object_class->set_property = editor_page_set_property;
 
-  widget_class->destroy = editor_page_destroy;
   widget_class->grab_focus = editor_page_grab_focus;
 
   properties [PROP_BUSY] =
@@ -478,6 +480,7 @@ editor_page_class_init (EditorPageClass *klass)
 
   _editor_page_class_actions_init (klass);
 
+  gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
   gtk_widget_class_set_css_name (widget_class, "page");
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-page.ui");
   gtk_widget_class_bind_template_child (widget_class, EditorPage, progress_bar);
@@ -485,6 +488,7 @@ editor_page_class_init (EditorPageClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorPage, search_bar);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, search_revealer);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, view);
+  gtk_widget_class_bind_template_child (widget_class, EditorPage, overlay);
 
   g_type_ensure (EDITOR_TYPE_SEARCH_BAR);
 }

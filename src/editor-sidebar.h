@@ -26,7 +26,7 @@ G_BEGIN_DECLS
 
 #define EDITOR_TYPE_SIDEBAR (editor_sidebar_get_type())
 
-G_DECLARE_FINAL_TYPE (EditorSidebar, editor_sidebar, EDITOR, SIDEBAR, GtkBin)
+G_DECLARE_FINAL_TYPE (EditorSidebar, editor_sidebar, EDITOR, SIDEBAR, GtkWidget)
 
 EditorSidebar *editor_sidebar_new          (void);
 void           editor_sidebar_focus_search (EditorSidebar *self);

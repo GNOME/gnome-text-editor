@@ -32,7 +32,7 @@ typedef enum
   EDITOR_SEARCH_BAR_MODE_REPLACE,
 } EditorSearchBarMode;
 
-G_DECLARE_FINAL_TYPE (EditorSearchBar, editor_search_bar, EDITOR, SEARCH_BAR, GtkBin)
+G_DECLARE_FINAL_TYPE (EditorSearchBar, editor_search_bar, EDITOR, SEARCH_BAR, GtkWidget)
 
 void _editor_search_bar_attach   (EditorSearchBar     *self,
                                   EditorDocument      *document);

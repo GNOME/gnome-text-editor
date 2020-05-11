@@ -36,7 +36,7 @@
 
 struct _EditorSidebar
 {
-  GtkBin              parent_instance;
+  GtkWidget           parent_instance;
 
   EditorSidebarModel *model;
 
@@ -46,7 +46,7 @@ struct _EditorSidebar
   GtkButton          *open_button;
 };
 
-G_DEFINE_TYPE (EditorSidebar, editor_sidebar, GTK_TYPE_BIN)
+G_DEFINE_TYPE (EditorSidebar, editor_sidebar, GTK_TYPE_WIDGET)
 
 static void
 editor_sidebar_notify_child_revealed_cb (EditorSidebar *self,
@@ -193,9 +193,9 @@ editor_sidebar_hide_cb (GtkWidget   *widget,
 }
 
 static void
-editor_sidebar_destroy (GtkWidget *widget)
+editor_sidebar_dispose (GObject *object)
 {
-  EditorSidebar *self = (EditorSidebar *)widget;
+  EditorSidebar *self = (EditorSidebar *)object;
 
   g_assert (EDITOR_IS_SIDEBAR (self));
 
@@ -203,17 +203,20 @@ editor_sidebar_destroy (GtkWidget *widget)
     gtk_list_box_bind_model (self->list_box, NULL, NULL, NULL, NULL);
 
   g_clear_object (&self->model);
+  g_clear_pointer ((GtkWidget **)&self->revealer, gtk_widget_unparent);
 
-  GTK_WIDGET_CLASS (editor_sidebar_parent_class)->destroy (widget);
+  G_OBJECT_CLASS (editor_sidebar_parent_class)->dispose (object);
 }
 
 static void
 editor_sidebar_class_init (EditorSidebarClass *klass)
 {
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+  GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-  widget_class->destroy = editor_sidebar_destroy;
+  object_class->dispose = editor_sidebar_dispose;
 
+  gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
   gtk_widget_class_set_css_name (widget_class, "sidebar");
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-sidebar.ui");
   gtk_widget_class_bind_template_child (widget_class, EditorSidebar, search_entry);

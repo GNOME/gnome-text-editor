@@ -227,7 +227,7 @@ editor_preferences_switch_init (EditorPreferencesSwitch *self)
                       "margin-end", 20,
                       "spacing", 10,
                       NULL);
-  gtk_container_add (GTK_CONTAINER (self), GTK_WIDGET (box));
+  gtk_list_box_row_set_child (GTK_LIST_BOX_ROW (self), GTK_WIDGET (box));
 
   self->label = g_object_new (GTK_TYPE_LABEL,
                               "can-focus", FALSE,

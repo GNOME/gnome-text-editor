@@ -539,7 +539,6 @@ editor_session_add_window (EditorSession *self,
 EditorWindow *
 _editor_session_create_window_no_draft (EditorSession *self)
 {
-  g_autoptr(EditorDocument) document = NULL;
   EditorWindow *window;
 
   g_return_val_if_fail (EDITOR_IS_SESSION (self), NULL);
@@ -833,7 +832,7 @@ editor_session_remove_window (EditorSession *self,
       EDITOR_WINDOW (g_ptr_array_index (self->windows, 0)) == window)
     {
       editor_session_save_async (self, NULL, NULL, NULL);
-      gtk_widget_destroy (GTK_WIDGET (window));
+      gtk_window_destroy (GTK_WINDOW (window));
       return;
     }
 
@@ -854,7 +853,7 @@ editor_session_remove_window (EditorSession *self,
 
       g_signal_emit (self, signals [WINDOW_REMOVED], 0, window);
 
-      gtk_widget_destroy (GTK_WIDGET (window));
+      gtk_window_destroy (GTK_WINDOW (window));
     }
 
   g_object_unref (window);
@@ -1478,7 +1477,7 @@ editor_session_restore_v1 (EditorSession *self,
           if (!editor_session_restore_v1_pages (self, ewin, pages))
             {
               had_failure = TRUE;
-              gtk_widget_destroy (GTK_WIDGET (ewin));
+              gtk_window_destroy (GTK_WINDOW (ewin));
               g_ptr_array_remove (self->windows, ewin);
               continue;
             }
