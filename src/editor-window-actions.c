@@ -190,6 +190,24 @@ editor_window_actions_copy_all_cb (GtkWidget   *widget,
 }
 
 static void
+editor_window_actions_open_response_cb (EditorWindow         *self,
+                                        gint                  response_id,
+                                        GtkFileChooserNative *native)
+{
+  g_assert (EDITOR_IS_WINDOW (self));
+  g_assert (GTK_IS_FILE_CHOOSER_NATIVE (native));
+
+  if (response_id == GTK_RESPONSE_ACCEPT)
+    {
+      g_autoptr(GFile) file = gtk_file_chooser_get_file (GTK_FILE_CHOOSER (native));
+
+      editor_session_open (EDITOR_SESSION_DEFAULT, self, file);
+    }
+
+  gtk_native_dialog_destroy (GTK_NATIVE_DIALOG (native));
+}
+
+static void
 editor_window_actions_open_cb (GtkWidget   *widget,
                                const gchar *action_name,
                                GVariant    *param)
@@ -201,7 +219,6 @@ editor_window_actions_open_cb (GtkWidget   *widget,
   EditorDocument *document;
   EditorPage *page;
   GFile *dfile;
-  gint ret;
 
   g_assert (EDITOR_IS_WINDOW (self));
 
@@ -232,17 +249,13 @@ editor_window_actions_open_cb (GtkWidget   *widget,
   gtk_file_chooser_add_filter (GTK_FILE_CHOOSER (native), text_files);
   gtk_file_chooser_set_filter (GTK_FILE_CHOOSER (native), text_files);
 
-  ret = gtk_native_dialog_run (GTK_NATIVE_DIALOG (native));
+  g_signal_connect_object (native,
+                           "response",
+                           G_CALLBACK (editor_window_actions_open_response_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
 
-  if (ret == GTK_RESPONSE_ACCEPT)
-    {
-      g_autoptr(GFile) file = gtk_file_chooser_get_file (GTK_FILE_CHOOSER (native));
-      EditorSession *session = editor_application_get_session (EDITOR_APPLICATION_DEFAULT);
-
-      editor_session_open (session, self, file);
-    }
-
-  gtk_native_dialog_destroy (GTK_NATIVE_DIALOG (native));
+  gtk_native_dialog_show (GTK_NATIVE_DIALOG (native));
 }
 
 static void

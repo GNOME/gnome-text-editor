@@ -715,27 +715,15 @@ _editor_page_save (EditorPage *self)
                                g_object_ref (self));
 }
 
-void
-_editor_page_save_as (EditorPage *self)
+static void
+editor_page_save_as_cb (EditorPage           *self,
+                        gint                  response_id,
+                        GtkFileChooserNative *native)
 {
-  GtkFileChooserNative *native;
-  EditorWindow *window;
-  gint ret;
+  g_assert (EDITOR_IS_PAGE (self));
+  g_assert (GTK_IS_FILE_CHOOSER_NATIVE (native));
 
-  g_return_if_fail (EDITOR_IS_PAGE (self));
-
-  _editor_page_raise (self);
-
-  window = _editor_page_get_window (self);
-  native = gtk_file_chooser_native_new (_("Save As"),
-                                        GTK_WINDOW (window),
-                                        GTK_FILE_CHOOSER_ACTION_SAVE,
-                                        _("Save"),
-                                        _("Cancel"));
-
-  ret = gtk_native_dialog_run (GTK_NATIVE_DIALOG (native));
-
-  if (ret == GTK_RESPONSE_ACCEPT)
+  if (response_id == GTK_RESPONSE_ACCEPT)
     {
       g_autoptr(GFile) dest = NULL;
 
@@ -748,6 +736,32 @@ _editor_page_save_as (EditorPage *self)
     }
 
   gtk_native_dialog_destroy (GTK_NATIVE_DIALOG (native));
+}
+
+void
+_editor_page_save_as (EditorPage *self)
+{
+  GtkFileChooserNative *native;
+  EditorWindow *window;
+
+  g_return_if_fail (EDITOR_IS_PAGE (self));
+
+  _editor_page_raise (self);
+
+  window = _editor_page_get_window (self);
+  native = gtk_file_chooser_native_new (_("Save As"),
+                                        GTK_WINDOW (window),
+                                        GTK_FILE_CHOOSER_ACTION_SAVE,
+                                        _("Save"),
+                                        _("Cancel"));
+
+  g_signal_connect_object (native,
+                           "response",
+                           G_CALLBACK (editor_page_save_as_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+
+  gtk_native_dialog_show (GTK_NATIVE_DIALOG (native));
 }
 
 gboolean

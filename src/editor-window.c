@@ -478,9 +478,20 @@ _editor_window_new (void)
 GList *
 _editor_window_get_pages (EditorWindow *self)
 {
+  GQueue queue = G_QUEUE_INIT;
+  guint n_pages;
+
   g_return_val_if_fail (EDITOR_IS_WINDOW (self), NULL);
 
-  return gtk_container_get_children (GTK_CONTAINER (self->notebook));
+  n_pages = gtk_notebook_get_n_pages (self->notebook);
+
+  for (guint i = 0; i < n_pages; i++)
+    {
+      GtkWidget *child = gtk_notebook_get_nth_page (self->notebook, i);
+      g_queue_push_tail (&queue, EDITOR_PAGE (child));
+    }
+
+  return g_steal_pointer (&queue.head);
 }
 
 void

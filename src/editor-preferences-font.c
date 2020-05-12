@@ -101,25 +101,6 @@ editor_preferences_font_activated (EditorPreferencesRow *row)
 }
 
 static void
-editor_preferences_font_remove (GtkContainer *container,
-                                GtkWidget    *widget)
-{
-  EditorPreferencesFont *self = (EditorPreferencesFont *)container;
-
-  g_assert (EDITOR_IS_PREFERENCES_FONT (self));
-  g_assert (GTK_IS_WIDGET (widget));
-
-  if (widget == GTK_WIDGET (self->popover))
-    {
-      self->popover = NULL;
-      gtk_widget_unparent (widget);
-      return;
-    }
-
-  GTK_CONTAINER_CLASS (editor_preferences_font_parent_class)->remove (container, widget);
-}
-
-static void
 editor_preferences_font_size_allocate (GtkWidget *widget,
                                        int        width,
                                        int        height,
@@ -219,7 +200,6 @@ editor_preferences_font_class_init (EditorPreferencesFontClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
-  GtkContainerClass *container_class = GTK_CONTAINER_CLASS (klass);
   EditorPreferencesRowClass *row_class = EDITOR_PREFERENCES_ROW_CLASS (klass);
 
   object_class->constructed = editor_preferences_font_constructed;
@@ -230,8 +210,6 @@ editor_preferences_font_class_init (EditorPreferencesFontClass *klass)
 
   widget_class->size_allocate = editor_preferences_font_size_allocate;
   widget_class->snapshot = editor_preferences_font_snapshot;
-
-  container_class->remove = editor_preferences_font_remove;
 
   row_class->activated = editor_preferences_font_activated;
 
@@ -255,7 +233,7 @@ editor_preferences_font_class_init (EditorPreferencesFontClass *klass)
                          "The key within the GSettings schema",
                          NULL,
                          (G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
-  
+
   g_object_class_install_properties (object_class, N_PROPS, properties);
 }
 
@@ -280,7 +258,7 @@ editor_preferences_font_init (EditorPreferencesFont *self)
                               "halign", GTK_ALIGN_START,
                               "hexpand", FALSE,
                               NULL);
-  gtk_container_add (GTK_CONTAINER (box), GTK_WIDGET (self->label));
+  gtk_box_append (box, GTK_WIDGET (self->label));
 
   self->font_label = g_object_new (GTK_TYPE_LABEL,
                                    "can-focus", FALSE,
@@ -289,14 +267,14 @@ editor_preferences_font_init (EditorPreferencesFont *self)
                                    "halign", GTK_ALIGN_END,
                                    "hexpand", TRUE,
                                    NULL);
-  gtk_container_add (GTK_CONTAINER (box), GTK_WIDGET (self->font_label));
+  gtk_box_append (box, GTK_WIDGET (self->font_label));
 
   image = g_object_new (GTK_TYPE_IMAGE,
                         "icon-name", "go-next-symbolic",
                         "hexpand", FALSE,
                         "margin-start", 12,
                         NULL);
-  gtk_container_add (GTK_CONTAINER (box), GTK_WIDGET (image));
+  gtk_box_append (box, GTK_WIDGET (image));
 
   self->popover = g_object_new (GTK_TYPE_POPOVER,
                                 "position", GTK_POS_RIGHT,

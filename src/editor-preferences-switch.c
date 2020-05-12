@@ -211,7 +211,7 @@ editor_preferences_switch_class_init (EditorPreferencesSwitchClass *klass)
                          "The key within the GSettings schema",
                          NULL,
                          (G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
-  
+
   g_object_class_install_properties (object_class, N_PROPS, properties);
 }
 
@@ -235,7 +235,7 @@ editor_preferences_switch_init (EditorPreferencesSwitch *self)
                               "halign", GTK_ALIGN_START,
                               "hexpand", TRUE,
                               NULL);
-  gtk_container_add (GTK_CONTAINER (box), GTK_WIDGET (self->label));
+  gtk_box_append (box, GTK_WIDGET (self->label));
 
   self->toggle = g_object_new (GTK_TYPE_SWITCH,
                                "can-focus", FALSE,
@@ -245,5 +245,5 @@ editor_preferences_switch_init (EditorPreferencesSwitch *self)
                            G_CALLBACK (editor_preferences_switch_notify_active_cb),
                            self,
                            G_CONNECT_SWAPPED);
-  gtk_container_add (GTK_CONTAINER (box), GTK_WIDGET (self->toggle));
+  gtk_box_append (box, GTK_WIDGET (self->toggle));
 }

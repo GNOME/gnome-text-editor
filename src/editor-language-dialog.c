@@ -106,22 +106,11 @@ editor_language_dialog_row_activated_cb (EditorLanguageDialog *self,
 }
 
 static void
-editor_language_dialog_filter_cb (EditorLanguageRow *row,
-                                  GPatternSpec      *spec)
-{
-  g_assert (EDITOR_IS_LANGUAGE_ROW (row));
-
-  if (_editor_language_row_match (row, spec))
-    gtk_widget_show (GTK_WIDGET (row));
-  else
-    gtk_widget_hide (GTK_WIDGET (row));
-}
-
-static void
 editor_language_dialog_filter (EditorLanguageDialog *self,
                                const gchar          *text)
 {
   g_autoptr(GPatternSpec) spec = NULL;
+  GtkWidget *child;
 
   g_assert (EDITOR_IS_LANGUAGE_DIALOG (self));
 
@@ -133,9 +122,17 @@ editor_language_dialog_filter (EditorLanguageDialog *self,
       spec = g_pattern_spec_new (glob);
     }
 
-  gtk_container_foreach (GTK_CONTAINER (self->list_box),
-                         (GtkCallback) editor_language_dialog_filter_cb,
-                         spec);
+  for (child = gtk_widget_get_first_child (GTK_WIDGET (self->list_box));
+       child != NULL;
+       child = gtk_widget_get_next_sibling (child))
+    {
+      EditorLanguageRow *row = EDITOR_LANGUAGE_ROW (child);
+
+      if (_editor_language_row_match (row, spec))
+        gtk_widget_show (GTK_WIDGET (row));
+      else
+        gtk_widget_hide (GTK_WIDGET (row));
+    }
 }
 
 static void
@@ -144,7 +141,6 @@ get_first_visible_row_cb (GtkWidget      *widget,
 {
   if (*result == NULL)
     {
-      if (gtk_widget_get_visible (widget))
         *result = GTK_LIST_BOX_ROW (widget);
     }
 }
@@ -152,15 +148,19 @@ get_first_visible_row_cb (GtkWidget      *widget,
 static GtkListBoxRow *
 get_first_visible_row (GtkListBox *list_box)
 {
-  GtkWidget *widget = NULL;
+  GtkWidget *child;
 
   g_assert (GTK_IS_LIST_BOX (list_box));
 
-  gtk_container_foreach (GTK_CONTAINER (list_box),
-                         (GtkCallback) get_first_visible_row_cb,
-                         &widget);
+  for (child = gtk_widget_get_first_child (GTK_WIDGET (list_box));
+       child != NULL;
+       child = gtk_widget_get_next_sibling (child))
+    {
+      if (gtk_widget_get_visible (child))
+        return GTK_LIST_BOX_ROW (child);
+    }
 
-  return GTK_LIST_BOX_ROW (widget);
+  return NULL;
 }
 
 static void
@@ -278,7 +278,7 @@ editor_language_dialog_class_init (EditorLanguageDialogClass *klass)
                          "The selected language",
                          GTK_SOURCE_TYPE_LANGUAGE,
                          (G_PARAM_READWRITE | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_STRINGS));
-  
+
   g_object_class_install_properties (object_class, N_PROPS, properties);
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-language-dialog.ui");
@@ -348,30 +348,25 @@ editor_language_dialog_get_language (EditorLanguageDialog *self)
     return NULL;
 }
 
-static void
-editor_language_dialog_set_language_cb (EditorLanguageRow *row,
-                                        GtkSourceLanguage *language)
-{
-  g_assert (EDITOR_IS_LANGUAGE_ROW (row));
-  g_assert (!language || GTK_SOURCE_IS_LANGUAGE (language));
-
-  if (language == _editor_language_row_get_language (row))
-    {
-      GtkWidget *self;
-
-      self = gtk_widget_get_ancestor (GTK_WIDGET (row), EDITOR_TYPE_LANGUAGE_DIALOG);
-      editor_language_dialog_select (EDITOR_LANGUAGE_DIALOG (self), row);
-    }
-}
-
 void
 editor_language_dialog_set_language (EditorLanguageDialog *self,
                                      GtkSourceLanguage    *language)
 {
+  GtkWidget *child;
+
   g_return_if_fail (EDITOR_IS_LANGUAGE_DIALOG (self));
   g_return_if_fail (!language || GTK_SOURCE_IS_LANGUAGE (language));
 
-  gtk_container_foreach (GTK_CONTAINER (self->list_box),
-                         (GtkCallback) editor_language_dialog_set_language_cb,
-                         language);
+  for (child = gtk_widget_get_first_child (GTK_WIDGET (self->list_box));
+       child != NULL;
+       child = gtk_widget_get_next_sibling (child))
+    {
+      EditorLanguageRow *row = EDITOR_LANGUAGE_ROW (child);
+
+      if (language == _editor_language_row_get_language (row))
+        {
+          editor_language_dialog_select (EDITOR_LANGUAGE_DIALOG (self), row);
+          break;
+        }
+    }
 }

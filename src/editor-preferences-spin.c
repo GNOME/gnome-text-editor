@@ -55,10 +55,7 @@ editor_preferences_spin_constructed (GObject *object)
   g_autoptr(GSettingsSchemaSource) source = NULL;
   g_autoptr(GSettingsSchemaKey) key = NULL;
   g_autoptr(GSettingsSchema) schema = NULL;
-  g_autoptr(GSimpleActionGroup) group = NULL;
   g_autoptr(GVariant) range = NULL;
-  g_autoptr(GAction) action = NULL;
-  g_autofree gchar *name = NULL;
   g_autofree gchar *kind = NULL;
   g_autoptr(GVariant) values = NULL;
   GtkAdjustment *adj;
@@ -232,7 +229,7 @@ editor_preferences_spin_class_init (EditorPreferencesSpinClass *klass)
                          "The key within the GSettings schema",
                          NULL,
                          (G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
-  
+
   g_object_class_install_properties (object_class, N_PROPS, properties);
 }
 
@@ -256,10 +253,10 @@ editor_preferences_spin_init (EditorPreferencesSpin *self)
                               "halign", GTK_ALIGN_START,
                               "hexpand", TRUE,
                               NULL);
-  gtk_container_add (GTK_CONTAINER (box), GTK_WIDGET (self->label));
+  gtk_box_append (box, GTK_WIDGET (self->label));
 
   self->spin = g_object_new (GTK_TYPE_SPIN_BUTTON,
                              "can-focus", TRUE,
                              NULL);
-  gtk_container_add (GTK_CONTAINER (box), GTK_WIDGET (self->spin));
+  gtk_box_append (box, GTK_WIDGET (self->spin));
 }

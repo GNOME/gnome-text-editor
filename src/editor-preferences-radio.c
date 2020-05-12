@@ -229,7 +229,7 @@ editor_preferences_radio_class_init (EditorPreferencesRadioClass *klass)
                          "The value for the key",
                          NULL,
                          (G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
-  
+
   g_object_class_install_properties (object_class, N_PROPS, properties);
 }
 
@@ -255,7 +255,7 @@ editor_preferences_radio_init (EditorPreferencesRadio *self)
                            G_CALLBACK (editor_preferences_radio_clicked_cb),
                            self,
                            G_CONNECT_SWAPPED);
-  gtk_container_add (GTK_CONTAINER (box), GTK_WIDGET (self->toggle));
+  gtk_box_append (box, GTK_WIDGET (self->toggle));
 
   self->label = g_object_new (GTK_TYPE_LABEL,
                               "can-focus", FALSE,
@@ -263,5 +263,5 @@ editor_preferences_radio_init (EditorPreferencesRadio *self)
                               "halign", GTK_ALIGN_START,
                               "hexpand", TRUE,
                               NULL);
-  gtk_container_add (GTK_CONTAINER (box), GTK_WIDGET (self->label));
+  gtk_box_append (box, GTK_WIDGET (self->label));
 }
