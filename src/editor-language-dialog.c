@@ -135,16 +135,6 @@ editor_language_dialog_filter (EditorLanguageDialog *self,
     }
 }
 
-static void
-get_first_visible_row_cb (GtkWidget      *widget,
-                          GtkListBoxRow **result)
-{
-  if (*result == NULL)
-    {
-        *result = GTK_LIST_BOX_ROW (widget);
-    }
-}
-
 static GtkListBoxRow *
 get_first_visible_row (GtkListBox *list_box)
 {
