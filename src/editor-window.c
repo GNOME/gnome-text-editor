@@ -27,7 +27,7 @@
 #include "editor-application.h"
 #include "editor-binding-group.h"
 #include "editor-page-private.h"
-#include "editor-session.h"
+#include "editor-session-private.h"
 #include "editor-sidebar-private.h"
 #include "editor-signal-group.h"
 #include "editor-tab-private.h"
@@ -212,7 +212,6 @@ static gboolean
 editor_window_close_request (GtkWindow *window)
 {
   EditorWindow *self = (EditorWindow *)window;
-  EditorSession *session;
 
   g_assert (EDITOR_IS_WINDOW (self));
 
@@ -226,14 +225,11 @@ editor_window_close_request (GtkWindow *window)
                                         G_CALLBACK (editor_window_notify_current_page_cb),
                                         self);
 
-  session = editor_application_get_session (EDITOR_APPLICATION_DEFAULT);
-  editor_session_remove_window (session, self);
+  _editor_session_remove_window (EDITOR_SESSION_DEFAULT, self);
 
   self->visible_page = NULL;
 
-  GTK_WINDOW_CLASS (editor_window_parent_class)->close_request (window);
-
-  return GDK_EVENT_PROPAGATE;
+  return GTK_WINDOW_CLASS (editor_window_parent_class)->close_request (window);
 }
 
 static void
@@ -267,6 +263,8 @@ editor_window_dispose (GObject *object)
   EditorWindow *self = (EditorWindow *)object;
 
   g_assert (EDITOR_IS_WINDOW (self));
+
+  _editor_session_remove_window (EDITOR_SESSION_DEFAULT, self);
 
   g_clear_object (&self->settings);
 

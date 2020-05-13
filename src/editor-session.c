@@ -328,15 +328,15 @@ editor_session_dispose (GObject *object)
 
   g_assert (EDITOR_IS_SESSION (self));
 
-  g_clear_handle_id (&self->auto_save_source, g_source_remove);
-
-  if (self->windows->len > 0)
-    g_ptr_array_remove_range (self->windows, 0, self->windows->len);
+  g_hash_table_remove_all (self->seen);
 
   if (self->pages->len > 0)
     g_ptr_array_remove_range (self->pages, 0, self->pages->len);
 
-  g_hash_table_remove_all (self->seen);
+  if (self->windows->len > 0)
+    g_ptr_array_remove_range (self->windows, 0, self->windows->len);
+
+  g_clear_handle_id (&self->auto_save_source, g_source_remove);
 
   G_OBJECT_CLASS (editor_session_parent_class)->dispose (object);
 }
@@ -531,7 +531,7 @@ editor_session_add_window (EditorSession *self,
   g_return_if_fail (EDITOR_IS_SESSION (self));
   g_return_if_fail (EDITOR_IS_WINDOW (window));
 
-  g_ptr_array_add (self->windows, g_object_ref (window));
+  g_ptr_array_add (self->windows, g_object_ref_sink (window));
 
   g_signal_emit (self, signals [WINDOW_ADDED], 0, window);
 }
@@ -810,17 +810,24 @@ editor_session_remove_document (EditorSession  *self,
     }
 }
 
-/**
- * editor_session_remove_window:
- * @self: an #EditorSession
- * @window: an #EditorWindow
- *
- * Removes @window from the session after removing all of the
- * pages from the window.
- */
+static void
+editor_session_save_for_shutdown_cb (GObject      *object,
+                                     GAsyncResult *result,
+                                     gpointer      user_data)
+{
+  EditorSession *self = (EditorSession *)object;
+  g_autoptr(GError) error = NULL;
+
+  g_assert (EDITOR_IS_SESSION (self));
+  g_assert (G_IS_ASYNC_RESULT (result));
+
+  if (!editor_session_save_finish (self, result, &error))
+    g_warning ("Failed to save session: %s", error->message);
+}
+
 void
-editor_session_remove_window (EditorSession *self,
-                              EditorWindow  *window)
+_editor_session_remove_window (EditorSession *self,
+                               EditorWindow  *window)
 {
   g_return_if_fail (EDITOR_IS_SESSION (self));
   g_return_if_fail (EDITOR_IS_WINDOW (window));
@@ -831,8 +838,11 @@ editor_session_remove_window (EditorSession *self,
   if (self->windows->len == 1 &&
       EDITOR_WINDOW (g_ptr_array_index (self->windows, 0)) == window)
     {
-      editor_session_save_async (self, NULL, NULL, NULL);
-      gtk_window_destroy (GTK_WINDOW (window));
+      editor_session_save_async (self,
+                                 NULL,
+                                 editor_session_save_for_shutdown_cb,
+                                 NULL);
+      g_ptr_array_remove_index (self->windows, 0);
       return;
     }
 
@@ -852,8 +862,6 @@ editor_session_remove_window (EditorSession *self,
       g_list_free (pages);
 
       g_signal_emit (self, signals [WINDOW_REMOVED], 0, window);
-
-      gtk_window_destroy (GTK_WINDOW (window));
     }
 
   g_object_unref (window);

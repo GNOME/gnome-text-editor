@@ -221,13 +221,13 @@ editor_application_constructed (GObject *object)
 }
 
 static void
-editor_application_finalize (GObject *object)
+editor_application_shutdown (GApplication *application)
 {
-  EditorApplication *self = (EditorApplication *)object;
+  EditorApplication *self = (EditorApplication *)application;
 
   g_clear_object (&self->session);
 
-  G_OBJECT_CLASS (editor_application_parent_class)->finalize (object);
+  G_APPLICATION_CLASS (editor_application_parent_class)->shutdown (application);
 }
 
 static void
@@ -237,11 +237,11 @@ editor_application_class_init (EditorApplicationClass *klass)
   GApplicationClass *application_class = G_APPLICATION_CLASS (klass);
 
   object_class->constructed = editor_application_constructed;
-  object_class->finalize = editor_application_finalize;
 
   application_class->activate = editor_application_activate;
   application_class->open = editor_application_open;
   application_class->startup = editor_application_startup;
+  application_class->shutdown = editor_application_shutdown;
 }
 
 static void

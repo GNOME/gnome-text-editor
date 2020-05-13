@@ -42,6 +42,8 @@ void           _editor_session_add_draft              (EditorSession  *self,
                                                        const gchar    *draft_id,
                                                        const gchar    *title,
                                                        const gchar    *uri);
+void           _editor_session_remove_window          (EditorSession  *self,
+                                                       EditorWindow   *window);
 void           _editor_session_remove_draft           (EditorSession  *self,
                                                        const gchar    *draft_id);
 void           _editor_session_open_draft             (EditorSession  *self,
