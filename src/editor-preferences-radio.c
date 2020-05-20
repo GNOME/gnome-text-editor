@@ -71,10 +71,7 @@ static void
 editor_preferences_radio_constructed (GObject *object)
 {
   EditorPreferencesRadio *self = (EditorPreferencesRadio *)object;
-  g_autoptr(GSimpleActionGroup) group = NULL;
-  g_autoptr(GAction) action = NULL;
   g_autofree gchar *changed = NULL;
-  g_autofree gchar *name = NULL;
 
   G_OBJECT_CLASS (editor_preferences_radio_parent_class)->constructed (object);
 

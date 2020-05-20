@@ -616,7 +616,6 @@ _editor_document_save_async (EditorDocument      *self,
 {
   g_autoptr(GtkSourceFileSaver) saver = NULL;
   g_autoptr(GTask) task = NULL;
-  g_autoptr(GFile) draft_file = NULL;
   GtkTextMark *insert;
   GtkTextIter iter;
   Save *save;
