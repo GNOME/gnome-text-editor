@@ -156,11 +156,12 @@ editor_sidebar_search_entry_changed_cb (EditorSidebar *self,
     {
       g_autofree gchar *text_fold = g_utf8_casefold (text, -1);
       g_autofree gchar *pattern = g_strdup_printf ("*%s*", g_strdelimit (text_fold, " \n\t", '*'));
+      g_autoptr(GtkFilter) custom = NULL;
 
-      filter = gtk_filter_list_model_new (G_LIST_MODEL (self->model),
-                                          editor_sidebar_filter_func_cb,
-                                          g_pattern_spec_new (pattern),
-                                          (GDestroyNotify) g_pattern_spec_free);
+      custom = gtk_custom_filter_new (editor_sidebar_filter_func_cb,
+                                      g_pattern_spec_new (pattern),
+                                      (GDestroyNotify) g_pattern_spec_free);
+      filter = gtk_filter_list_model_new (G_LIST_MODEL (self->model), custom);
       model = G_LIST_MODEL (filter);
     }
 
