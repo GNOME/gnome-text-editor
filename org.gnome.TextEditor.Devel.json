@@ -98,7 +98,10 @@
                 "/share/icons/hicolor/symbolic/apps"
             ],
             "config-opts": [
-                "--libdir=/app/lib"
+                "--libdir=/app/lib",
+                "-Dbuild-tests=false",
+                "-Dinstall-tests=false",
+                "-Ddemos=false"
             ],
             "sources": [
                 {
