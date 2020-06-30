@@ -100,6 +100,7 @@ editor_application_actions_about_cb (GSimpleAction *action,
   EditorApplication *self = user_data;
   g_autofree gchar *program_name = NULL;
   GtkAboutDialog *dialog;
+  EditorWindow *window;
 
   g_assert (EDITOR_IS_APPLICATION (self));
 
@@ -119,6 +120,10 @@ editor_application_actions_about_cb (GSimpleAction *action,
   gtk_about_dialog_set_license_type (dialog, GTK_LICENSE_GPL_3_0);
   gtk_about_dialog_set_website (dialog, PACKAGE_WEBSITE);
   gtk_about_dialog_set_website_label (dialog, _(PACKAGE_NAME " Website"));
+
+  window = editor_application_get_current_window (self);
+  gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (window));
+  gtk_window_set_modal (GTK_WINDOW (dialog), TRUE);
 
   gtk_window_present (GTK_WINDOW (dialog));
 }
