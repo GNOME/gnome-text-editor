@@ -10,3 +10,9 @@ flatpak:
         RUNTIME_REPO: "https://nightly.gnome.org/gnome-nightly.flatpakrepo"
         BUNDLE: "org.gnome.TextEditor.Devel.flatpak"
     extends: .flatpak
+
+nightly:
+    extends: '.publish_nightly'
+    needs: ['flatpak']
+    dependencies: ['flatpak']
+    
