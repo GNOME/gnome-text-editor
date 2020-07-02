@@ -159,6 +159,12 @@ editor_application_open (GApplication  *application,
                                     editor_application_restore_cb,
                                     g_steal_pointer (&ar));
     }
+  else if (ar->len > 0)
+    {
+      editor_session_open_files (self->session,
+                                 (GFile **)ar->pdata,
+                                 ar->len);
+    }
 }
 
 static void
