@@ -1,5 +1,14 @@
+desktop_file_in_config = configuration_data()
+desktop_file_in_config.set('app_id', app_id)
+desktop_file_in = configure_file(
+          input: 'org.gnome.TextEditor.desktop.in.in',
+         output: '@0@.desktop.in'.format(app_id),
+  configuration: desktop_file_in_config,
+)
+
+
 desktop_file = i18n.merge_file(
-        input: 'org.gnome.TextEditor.desktop.in',
+        input: desktop_file_in,
        output: '@0@.desktop'.format(app_id),
          type: 'desktop',
        po_dir: '../po',
