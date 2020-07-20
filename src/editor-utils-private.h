@@ -38,5 +38,12 @@ gboolean  _editor_gchararray_to_style_scheme (GBinding                   *bindin
                                               const GValue               *from_value,
                                               GValue                     *to_value,
                                               gpointer                    user_data);
+gboolean  _editor_activate_action            (GtkWidget                  *widget,
+                                              const gchar                *action_name,
+                                              GVariant                   *param);
+gboolean  _editor_action_with_string         (GtkWidget                  *widget,
+                                              const gchar                *group,
+                                              const gchar                *name,
+                                              const gchar                *param);
 
 G_END_DECLS

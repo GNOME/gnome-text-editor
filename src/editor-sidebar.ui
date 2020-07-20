@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <requires lib="gtk+" version="3.98"/>
-  <template class="EditorSidebar" parent="GtkWidget">
+  <requires lib="gtk+" version="3.24"/>
+  <template class="EditorSidebar" parent="GtkBin">
     <style>
       <class name="view"/>
     </style>
@@ -9,11 +9,14 @@
       <object class="GtkRevealer" id="revealer">
         <property name="transition-type">slide-right</property>
         <property name="reveal-child">true</property>
+        <property name="visible">true</property>
         <child>
           <object class="GtkBox">
+            <property name="visible">true</property>
             <property name="orientation">vertical</property>
             <child>
               <object class="GtkBox">
+                <property name="visible">true</property>
                 <property name="margin-bottom">6</property>
                 <property name="margin-end">6</property>
                 <property name="margin-start">6</property>
@@ -22,6 +25,7 @@
                 <property name="spacing">6</property>
                 <child>
                   <object class="GtkEntry" id="search_entry">
+                    <property name="visible">true</property>
                     <property name="primary-icon-name">edit-find-symbolic</property>
                     <property name="width-chars">5</property>
                     <property name="hexpand">true</property>
@@ -32,15 +36,22 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="open_button">
-                    <property name="icon-name">document-open-symbolic</property>
+                    <property name="visible">true</property>
                     <property name="action-name">win.open</property>
                     <property name="tooltip-text" translatable="yes">Open document (Ctrl+O)</property>
+                    <child>
+                      <object class="GtkImage">
+                        <property name="visible">true</property>
+                        <property name="icon-name">document-open-symbolic</property>
+                      </object>
+                    </child>
                   </object>
                 </child>
               </object>
             </child>
             <child>
               <object class="GtkLabel">
+                <property name="visible">true</property>
                 <property name="label" translatable="yes">Recent Documents</property>
                 <property name="margin-start">6</property>
                 <property name="margin-top">9</property>
@@ -54,15 +65,18 @@
             </child>
             <child>
               <object class="GtkSeparator">
+                <property name="visible">true</property>
                 <property name="orientation">horizontal</property>
               </object>
             </child>
             <child>
               <object class="GtkScrolledWindow">
+                <property name="visible">true</property>
                 <property name="hscrollbar-policy">never</property>
                 <property name="vexpand">true</property>
                 <child>
                   <object class="GtkListBox" id="list_box">
+                    <property name="visible">true</property>
                     <signal name="row-activated" handler="editor_sidebar_row_activated_cb" swapped="true" object="EditorSidebar"/>
                   </object>
                 </child>

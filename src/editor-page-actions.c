@@ -24,29 +24,28 @@
 #include "editor-language-dialog.h"
 
 static void
-editor_page_actions_language (GtkWidget   *widget,
-                              const gchar *action_name,
-                              GVariant    *param)
+editor_page_actions_language (GSimpleAction *action,
+                              GVariant      *param,
+                              gpointer       user_data)
 {
-  EditorPage *page = (EditorPage *)widget;
+  EditorPage *self = user_data;
   EditorLanguageDialog *dialog;
 
-  g_assert (EDITOR_IS_PAGE (page));
-  g_assert (g_str_equal (action_name, "page.language"));
+  g_assert (EDITOR_IS_PAGE (self));
 
   dialog = editor_language_dialog_new (NULL);
   g_object_bind_property (dialog, "language",
-                          page, "language",
+                          self, "language",
                           (G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL));
   gtk_window_present (GTK_WINDOW (dialog));
 }
 
 static void
-editor_page_actions_search_hide (GtkWidget   *widget,
-                                 const gchar *action_name,
-                                 GVariant    *param)
+editor_page_actions_search_hide (GSimpleAction *action,
+                                 GVariant      *param,
+                                 gpointer       user_data)
 {
-  EditorPage *self = (EditorPage *)widget;
+  EditorPage *self = user_data;
 
   g_assert (EDITOR_IS_PAGE (self));
 
@@ -57,13 +56,24 @@ editor_page_actions_search_hide (GtkWidget   *widget,
 void
 _editor_page_class_actions_init (EditorPageClass *klass)
 {
-  GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
-
-  gtk_widget_class_install_action (widget_class, "page.language", NULL, editor_page_actions_language);
-  gtk_widget_class_install_action (widget_class, "search.hide", NULL, editor_page_actions_search_hide);
 }
 
 void
 _editor_page_actions_init (EditorPage *self)
 {
+  static const GActionEntry page_actions[] = {
+    { "language", editor_page_actions_language, "s" },
+  };
+  static const GActionEntry search_actions[] = {
+    { "hide", editor_page_actions_search_hide },
+  };
+
+  g_autoptr(GSimpleActionGroup) page = g_simple_action_group_new ();
+  g_autoptr(GSimpleActionGroup) search = g_simple_action_group_new ();
+
+  g_action_map_add_action_entries (G_ACTION_MAP (page), page_actions, G_N_ELEMENTS (page_actions), self);
+  g_action_map_add_action_entries (G_ACTION_MAP (search), search_actions, G_N_ELEMENTS (search_actions), self);
+
+  gtk_widget_insert_action_group (GTK_WIDGET (self), "page", G_ACTION_GROUP (page));
+  gtk_widget_insert_action_group (GTK_WIDGET (self), "search", G_ACTION_GROUP (search));
 }

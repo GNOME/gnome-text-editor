@@ -22,13 +22,15 @@
 
 #include "config.h"
 
+#include "editor-bin-private.h"
 #include "editor-enums.h"
 #include "editor-page-private.h"
 #include "editor-search-bar-private.h"
+#include "editor-utils-private.h"
 
 struct _EditorSearchBar
 {
-  GtkWidget                parent_instance;
+  EditorBin                parent_instance;
 
   GtkSourceSearchContext  *context;
   GtkSourceSearchSettings *settings;
@@ -47,7 +49,7 @@ struct _EditorSearchBar
   GtkBox                  *options_box;
 };
 
-G_DEFINE_TYPE (EditorSearchBar, editor_search_bar, GTK_TYPE_WIDGET)
+G_DEFINE_TYPE (EditorSearchBar, editor_search_bar, EDITOR_TYPE_BIN)
 
 enum {
   PROP_0,
@@ -55,7 +57,15 @@ enum {
   N_PROPS
 };
 
+enum {
+  MOVE_NEXT_SEARCH,
+  MOVE_PREVIOUS_SEARCH,
+  HIDE_SEARCH,
+  N_SIGNALS
+};
+
 static GParamSpec *properties [N_PROPS];
+static guint signals [N_SIGNALS];
 
 static void
 editor_search_bar_scroll_to_insert (EditorSearchBar *self)
@@ -75,8 +85,8 @@ editor_search_bar_search_activate_cb (EditorSearchBar *self,
   g_assert (EDITOR_IS_SEARCH_BAR (self));
   g_assert (GTK_IS_ENTRY (entry));
 
-  gtk_widget_activate_action (GTK_WIDGET (self), "search.move-next", NULL);
-  gtk_widget_activate_action (GTK_WIDGET (self), "search.hide", NULL);
+  _editor_activate_action (GTK_WIDGET (self), "search.move-next", NULL);
+  _editor_activate_action (GTK_WIDGET (self), "search.hide", NULL);
 }
 
 static void
@@ -108,11 +118,8 @@ editor_search_bar_move_next_forward_cb (GObject      *object,
 }
 
 static void
-editor_search_bar_move_next_cb (GtkWidget   *widget,
-                                const gchar *action_name,
-                                GVariant    *parameter)
+editor_search_bar_move_next_cb (EditorSearchBar *self)
 {
-  EditorSearchBar *self = (EditorSearchBar *)widget;
   GtkSourceBuffer *buffer;
   GtkTextIter begin;
   GtkTextIter end;
@@ -136,11 +143,8 @@ editor_search_bar_move_next_cb (GtkWidget   *widget,
 }
 
 static void
-editor_search_bar_move_previous_cb (GtkWidget   *widget,
-                                    const gchar *action_name,
-                                    GVariant    *parameter)
+editor_search_bar_move_previous_cb (EditorSearchBar *self)
 {
-  EditorSearchBar *self = (EditorSearchBar *)widget;
   GtkSourceBuffer *buffer;
   GtkTextIter begin;
   GtkTextIter end;
@@ -160,6 +164,14 @@ editor_search_bar_move_previous_cb (GtkWidget   *widget,
                                             /* XXX: fixme */
                                             editor_search_bar_move_next_forward_cb,
                                             g_object_ref (self));
+}
+
+static void
+editor_search_bar_hide_search_cb (EditorSearchBar *self)
+{
+  g_assert (EDITOR_IS_SEARCH_BAR (self));
+
+  _editor_activate_action (GTK_WIDGET (self), "search.hide", NULL);
 }
 
 static gboolean
@@ -216,24 +228,14 @@ boolean_to_mode (GBinding     *binding,
   return TRUE;
 }
 
-static gboolean
+static void
 editor_search_bar_grab_focus (GtkWidget *widget)
 {
   EditorSearchBar *self = (EditorSearchBar *)widget;
 
   g_assert (EDITOR_IS_SEARCH_BAR (self));
 
-  return gtk_widget_grab_focus (GTK_WIDGET (self->search_entry));
-}
-
-static void
-editor_search_bar_dispose (GObject *object)
-{
-  EditorSearchBar *self = (EditorSearchBar *)object;
-
-  g_clear_pointer ((GtkWidget **)&self->grid, gtk_widget_unparent);
-
-  G_OBJECT_CLASS (editor_search_bar_parent_class)->dispose (object);
+  gtk_widget_grab_focus (GTK_WIDGET (self->search_entry));
 }
 
 static void
@@ -294,15 +296,14 @@ editor_search_bar_class_init (EditorSearchBarClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+  GtkBindingSet *bindings = gtk_binding_set_by_class (klass);
 
-  object_class->dispose = editor_search_bar_dispose;
   object_class->finalize = editor_search_bar_finalize;
   object_class->get_property = editor_search_bar_get_property;
   object_class->set_property = editor_search_bar_set_property;
 
   widget_class->grab_focus = editor_search_bar_grab_focus;
 
-  gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
   gtk_widget_class_set_css_name (widget_class, "searchbar");
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-search-bar.ui");
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, case_button);
@@ -318,10 +319,34 @@ editor_search_bar_class_init (EditorSearchBarClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, word_button);
   gtk_widget_class_bind_template_callback (widget_class, editor_search_bar_search_activate_cb);
 
-  gtk_widget_class_install_action (widget_class, "search.move-next", NULL, editor_search_bar_move_next_cb);
-  gtk_widget_class_install_action (widget_class, "search.move-previous", NULL, editor_search_bar_move_previous_cb);
+  signals [MOVE_NEXT_SEARCH] =
+    g_signal_new_class_handler ("move-next-search",
+                                G_TYPE_FROM_CLASS (klass),
+                                G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+                                G_CALLBACK (editor_search_bar_move_next_cb),
+                                NULL, NULL,
+                                NULL,
+                                G_TYPE_NONE, 0);
 
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Escape, 0, "search.hide", NULL);
+  signals [MOVE_PREVIOUS_SEARCH] =
+    g_signal_new_class_handler ("move-previous-search",
+                                G_TYPE_FROM_CLASS (klass),
+                                G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+                                G_CALLBACK (editor_search_bar_move_previous_cb),
+                                NULL, NULL,
+                                NULL,
+                                G_TYPE_NONE, 0);
+
+  signals [HIDE_SEARCH] =
+    g_signal_new_class_handler ("hide-search",
+                                G_TYPE_FROM_CLASS (klass),
+                                G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+                                G_CALLBACK (editor_search_bar_hide_search_cb),
+                                NULL, NULL,
+                                NULL,
+                                G_TYPE_NONE, 0);
+
+  gtk_binding_entry_add_signal (bindings, GDK_KEY_Escape, 0, "hide-search", 0);
 
   properties [PROP_MODE] =
     g_param_spec_enum ("mode",
@@ -390,8 +415,8 @@ _editor_search_bar_attach (EditorSearchBar *self,
 {
   g_return_if_fail (EDITOR_IS_SEARCH_BAR (self));
 
-  gtk_editable_set_text (GTK_EDITABLE (self->search_entry), "");
-  gtk_editable_set_text (GTK_EDITABLE (self->replace_entry), "");
+  gtk_entry_set_text (GTK_ENTRY (self->search_entry), "");
+  gtk_entry_set_text (GTK_ENTRY (self->replace_entry), "");
 
   if (self->context != NULL)
     return;

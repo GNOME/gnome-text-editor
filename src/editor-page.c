@@ -23,6 +23,7 @@
 #include "config.h"
 
 #include <glib/gi18n.h>
+#include <gtksourceview/gtksource.h>
 
 #include "editor-animation.h"
 #include "editor-binding-group.h"
@@ -37,20 +38,21 @@
 
 struct _EditorPage
 {
-  GtkWidget           parent_instance;
+  GtkBin                   parent_instance;
 
-  EditorDocument     *document;
-  EditorPageSettings *settings;
-  EditorBindingGroup *settings_bindings;
+  EditorDocument          *document;
+  EditorPageSettings      *settings;
+  EditorBindingGroup      *settings_bindings;
 
-  EditorAnimation    *progress_animation;
+  EditorAnimation         *progress_animation;
 
-  GtkOverlay         *overlay;
-  GtkScrolledWindow  *scroller;
-  GtkSourceView      *view;
-  GtkProgressBar     *progress_bar;
-  GtkRevealer        *search_revealer;
-  EditorSearchBar    *search_bar;
+  GtkOverlay              *overlay;
+  GtkScrolledWindow       *scroller;
+  GtkSourceView           *view;
+  GtkProgressBar          *progress_bar;
+  GtkRevealer             *search_revealer;
+  EditorSearchBar         *search_bar;
+  GtkSourceGutterRenderer *lines_renderer;
 };
 
 enum {
@@ -65,7 +67,7 @@ enum {
   N_PROPS
 };
 
-G_DEFINE_TYPE (EditorPage, editor_page, GTK_TYPE_WIDGET)
+G_DEFINE_TYPE (EditorPage, editor_page, GTK_TYPE_BIN)
 
 static GParamSpec *properties [N_PROPS];
 
@@ -250,7 +252,7 @@ boolean_to_left_margin (GBinding     *binding,
                         gpointer      user_data)
 {
   if (g_value_get_boolean (from_value))
-    g_value_set_int (to_value, 2);
+    g_value_set_int (to_value, 0);
   else
     g_value_set_int (to_value, 16);
   return TRUE;
@@ -274,7 +276,7 @@ editor_page_constructed (GObject *object)
                              self->view, "right-margin-position",
                              G_BINDING_SYNC_CREATE);
   editor_binding_group_bind (self->settings_bindings, "show-line-numbers",
-                             self->view, "show-line-numbers",
+                             self->lines_renderer, "visible",
                              G_BINDING_SYNC_CREATE);
   editor_binding_group_bind (self->settings_bindings, "show-right-margin",
                              self->view, "show-right-margin",
@@ -305,16 +307,17 @@ editor_page_constructed (GObject *object)
 }
 
 static void
-editor_page_view_focus_enter_cb (EditorPage              *self,
-                                 GtkEventControllerFocus *focus)
+editor_page_view_focus_enter_cb (EditorPage          *self,
+                                 const GdkEventFocus *event,
+                                 GtkSourceView       *view)
 {
   g_assert (EDITOR_IS_PAGE (self));
-  g_assert (GTK_IS_EVENT_CONTROLLER_FOCUS (focus));
+  g_assert (GTK_SOURCE_IS_VIEW (view));
 
   _editor_page_hide_search (self);
 }
 
-static gboolean
+static void
 editor_page_grab_focus (GtkWidget *widget)
 {
   EditorPage *self = (EditorPage *)widget;
@@ -323,7 +326,7 @@ editor_page_grab_focus (GtkWidget *widget)
 
   _editor_page_raise (self);
 
-  return gtk_widget_grab_focus (GTK_WIDGET (self->view));
+  gtk_widget_grab_focus (GTK_WIDGET (self->view));
 }
 
 static void
@@ -332,7 +335,6 @@ editor_page_dispose (GObject *object)
   EditorPage *self = (EditorPage *)object;
 
   g_clear_pointer (&self->progress_animation, editor_animation_stop);
-  g_clear_pointer ((GtkWidget **)&self->overlay, gtk_widget_unparent);
 
   G_OBJECT_CLASS (editor_page_parent_class)->dispose (object);
 }
@@ -480,7 +482,6 @@ editor_page_class_init (EditorPageClass *klass)
 
   _editor_page_class_actions_init (klass);
 
-  gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
   gtk_widget_class_set_css_name (widget_class, "page");
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-page.ui");
   gtk_widget_class_bind_template_child (widget_class, EditorPage, progress_bar);
@@ -496,19 +497,30 @@ editor_page_class_init (EditorPageClass *klass)
 static void
 editor_page_init (EditorPage *self)
 {
-  GtkEventController *focus;
+  GtkSourceGutter *gutter;
 
   gtk_widget_init_template (GTK_WIDGET (self));
 
-  _editor_page_actions_init (self);
-
-  focus = gtk_event_controller_focus_new ();
-  g_signal_connect_object (focus,
-                           "enter",
+  g_signal_connect_object (self->view,
+                           "focus-in-event",
                            G_CALLBACK (editor_page_view_focus_enter_cb),
                            self,
                            G_CONNECT_SWAPPED);
-  gtk_widget_add_controller (GTK_WIDGET (self->view), focus);
+
+  /* Force registration of GtkSourceGutterRendererLines private type */
+  gtk_source_view_set_show_line_numbers (self->view, TRUE);
+  gtk_source_view_set_show_line_numbers (self->view, FALSE);
+
+  self->lines_renderer = g_object_new (g_type_from_name ("GtkSourceGutterRendererLines"),
+                                       "alignment-mode", GTK_SOURCE_GUTTER_RENDERER_ALIGNMENT_MODE_FIRST,
+                                       "yalign", 0.5,
+                                       "xalign", 1.0,
+                                       "xpad", 12,
+                                       NULL);
+  gutter = gtk_source_view_get_gutter (self->view, GTK_TEXT_WINDOW_LEFT);
+  gtk_source_gutter_insert (gutter, self->lines_renderer, 0);
+
+  _editor_page_actions_init (self);
 }
 
 /**
@@ -549,6 +561,7 @@ editor_page_new_for_document (EditorDocument *document)
 
   return g_object_new (EDITOR_TYPE_PAGE,
                        "document", document,
+                       "visible", TRUE,
                        NULL);
 }
 
@@ -883,16 +896,14 @@ _editor_page_copy_all (EditorPage *self)
 {
   g_autofree gchar *text = NULL;
   GtkTextIter begin, end;
-  GdkClipboard *clipboard;
-  GdkDisplay *display;
+  GtkClipboard *clipboard;
 
   g_return_if_fail (EDITOR_IS_PAGE (self));
 
   gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (self->document), &begin, &end);
   text = gtk_text_iter_get_slice (&begin, &end);
-  display = gtk_widget_get_display (GTK_WIDGET (self));
-  clipboard = gdk_display_get_clipboard (display);
-  gdk_clipboard_set_text (clipboard, text);
+  clipboard = gtk_widget_get_clipboard (GTK_WIDGET (self), GDK_SELECTION_CLIPBOARD);
+  gtk_clipboard_set_text (clipboard, text, -1);
 }
 
 static void

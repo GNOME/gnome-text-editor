@@ -153,6 +153,7 @@ _editor_language_row_new (GtkSourceLanguage *language)
 
   return g_object_new (EDITOR_TYPE_LANGUAGE_ROW,
                        "language", language,
+                       "visible", TRUE,
                        NULL);
 }
 

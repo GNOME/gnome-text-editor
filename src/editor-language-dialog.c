@@ -106,11 +106,23 @@ editor_language_dialog_row_activated_cb (EditorLanguageDialog *self,
 }
 
 static void
+editor_language_dialog_filter_cb (EditorLanguageRow *row,
+                                  GPatternSpec      *spec)
+{
+  g_assert (EDITOR_IS_LANGUAGE_ROW (row));
+  g_assert (spec != NULL);
+
+  if (_editor_language_row_match (row, spec))
+    gtk_widget_show (GTK_WIDGET (row));
+  else
+    gtk_widget_hide (GTK_WIDGET (row));
+}
+
+static void
 editor_language_dialog_filter (EditorLanguageDialog *self,
                                const gchar          *text)
 {
   g_autoptr(GPatternSpec) spec = NULL;
-  GtkWidget *child;
 
   g_assert (EDITOR_IS_LANGUAGE_DIALOG (self));
 
@@ -122,35 +134,34 @@ editor_language_dialog_filter (EditorLanguageDialog *self,
       spec = g_pattern_spec_new (glob);
     }
 
-  for (child = gtk_widget_get_first_child (GTK_WIDGET (self->list_box));
-       child != NULL;
-       child = gtk_widget_get_next_sibling (child))
-    {
-      EditorLanguageRow *row = EDITOR_LANGUAGE_ROW (child);
+  gtk_container_foreach (GTK_CONTAINER (self->list_box),
+                         (GtkCallback) editor_language_dialog_filter_cb,
+                         spec);
+}
 
-      if (_editor_language_row_match (row, spec))
-        gtk_widget_show (GTK_WIDGET (row));
-      else
-        gtk_widget_hide (GTK_WIDGET (row));
-    }
+static void
+get_first_visible_row_cb (GtkWidget *child,
+                          GtkWidget **out_child)
+{
+  if (*out_child)
+    return;
+
+  if (gtk_widget_get_visible (child))
+    *out_child = child;
 }
 
 static GtkListBoxRow *
 get_first_visible_row (GtkListBox *list_box)
 {
-  GtkWidget *child;
+  GtkWidget *child = NULL;
 
   g_assert (GTK_IS_LIST_BOX (list_box));
 
-  for (child = gtk_widget_get_first_child (GTK_WIDGET (list_box));
-       child != NULL;
-       child = gtk_widget_get_next_sibling (child))
-    {
-      if (gtk_widget_get_visible (child))
-        return GTK_LIST_BOX_ROW (child);
-    }
+  gtk_container_foreach (GTK_CONTAINER (list_box),
+                         (GtkCallback) get_first_visible_row_cb,
+                         &child);
 
-  return NULL;
+  return GTK_LIST_BOX_ROW (child);
 }
 
 static void
@@ -175,7 +186,7 @@ editor_language_dialog_entry_changed_cb (EditorLanguageDialog *self,
   g_assert (EDITOR_IS_LANGUAGE_DIALOG (self));
   g_assert (GTK_IS_ENTRY (entry));
 
-  text = gtk_editable_get_text (GTK_EDITABLE (entry));
+  text = gtk_entry_get_text (entry);
   editor_language_dialog_filter (self, text);
 }
 
@@ -338,25 +349,28 @@ editor_language_dialog_get_language (EditorLanguageDialog *self)
     return NULL;
 }
 
+static void
+editor_language_dialog_set_language_cb (EditorLanguageRow *row,
+                                        GtkSourceLanguage *language)
+{
+  g_assert (EDITOR_IS_LANGUAGE_ROW (row));
+  g_assert (!language || GTK_SOURCE_IS_LANGUAGE (language));
+
+  if G_UNLIKELY (language == _editor_language_row_get_language (row))
+    {
+      GtkWidget *self = gtk_widget_get_ancestor (GTK_WIDGET (row), EDITOR_TYPE_LANGUAGE_DIALOG);
+      editor_language_dialog_select (EDITOR_LANGUAGE_DIALOG (self), row);
+    }
+}
+
 void
 editor_language_dialog_set_language (EditorLanguageDialog *self,
                                      GtkSourceLanguage    *language)
 {
-  GtkWidget *child;
-
   g_return_if_fail (EDITOR_IS_LANGUAGE_DIALOG (self));
   g_return_if_fail (!language || GTK_SOURCE_IS_LANGUAGE (language));
 
-  for (child = gtk_widget_get_first_child (GTK_WIDGET (self->list_box));
-       child != NULL;
-       child = gtk_widget_get_next_sibling (child))
-    {
-      EditorLanguageRow *row = EDITOR_LANGUAGE_ROW (child);
-
-      if (language == _editor_language_row_get_language (row))
-        {
-          editor_language_dialog_select (EDITOR_LANGUAGE_DIALOG (self), row);
-          break;
-        }
-    }
+  gtk_container_foreach (GTK_CONTAINER (self->list_box),
+                         (GtkCallback) editor_language_dialog_set_language_cb,
+                         language);
 }

@@ -26,7 +26,7 @@ G_BEGIN_DECLS
 
 #define EDITOR_TYPE_PAGE (editor_page_get_type())
 
-G_DECLARE_FINAL_TYPE (EditorPage, editor_page, EDITOR, PAGE, GtkWidget)
+G_DECLARE_FINAL_TYPE (EditorPage, editor_page, EDITOR, PAGE, GtkBin)
 
 EditorPage     *editor_page_new_for_document    (EditorDocument *document);
 EditorDocument *editor_page_get_document        (EditorPage     *self);

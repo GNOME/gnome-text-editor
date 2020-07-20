@@ -36,6 +36,13 @@ struct _EditorPreferencesWindow
 
 G_DEFINE_TYPE (EditorPreferencesWindow, editor_preferences_window, GTK_TYPE_WINDOW)
 
+enum {
+  CLOSE,
+  N_SIGNALS
+};
+
+static guint signals [N_SIGNALS];
+
 static void
 editor_preferences_window_row_activated_cb (EditorPreferencesWindow *self,
                                             EditorPreferencesRow    *row,
@@ -49,28 +56,32 @@ editor_preferences_window_row_activated_cb (EditorPreferencesWindow *self,
 }
 
 static void
-editor_preferences_window_close_cb (GtkWidget   *widget,
-                                    const gchar *action,
-                                    GVariant    *param)
+editor_preferences_window_close (EditorPreferencesWindow *self)
 {
-  gtk_window_close (GTK_WINDOW (widget));
+  g_assert (EDITOR_IS_PREFERENCES_WINDOW (self));
+
+  gtk_window_close (GTK_WINDOW (self));
 }
 
 static void
 editor_preferences_window_class_init (EditorPreferencesWindowClass *klass)
 {
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+  GtkBindingSet *bindings = gtk_binding_set_by_class (klass);
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-preferences-window.ui");
   gtk_widget_class_bind_template_callback (widget_class, editor_preferences_window_row_activated_cb);
 
-  gtk_widget_class_install_action (widget_class,
-                                   "win.close",
-                                   NULL,
-                                   editor_preferences_window_close_cb);
+  signals [CLOSE] = g_signal_new_class_handler ("close",
+                                                G_TYPE_FROM_CLASS (klass),
+                                                G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+                                                G_CALLBACK (editor_preferences_window_close),
+                                                NULL, NULL,
+                                                NULL,
+                                                G_TYPE_NONE, 0);
 
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_w, GDK_CONTROL_MASK, "win.close", NULL);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Escape, 0, "win.close", NULL);
+  gtk_binding_entry_add_signal (bindings, GDK_KEY_w, GDK_CONTROL_MASK, "close", 0);
+  gtk_binding_entry_add_signal (bindings, GDK_KEY_Escape, 0, "close", 0);
 
   g_type_ensure (EDITOR_TYPE_PREFERENCES_FONT);
   g_type_ensure (EDITOR_TYPE_PREFERENCES_ROW);

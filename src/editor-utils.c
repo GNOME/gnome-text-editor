@@ -22,6 +22,9 @@
 
 #include "config.h"
 
+#include <string.h>
+#include <math.h>
+
 #include "editor-animation.h"
 #include "editor-utils-private.h"
 
@@ -267,4 +270,119 @@ _editor_gboolean_to_wrap_mode (GBinding     *binding,
   else
     g_value_set_enum (to_value, GTK_WRAP_NONE);
   return TRUE;
+}
+
+static gboolean
+editor_action (GtkWidget   *widget,
+               const gchar *prefix,
+               const gchar *action_name,
+               GVariant    *parameter)
+{
+  GtkWidget *toplevel;
+  GApplication *app;
+  GActionGroup *group = NULL;
+
+  g_return_val_if_fail (GTK_IS_WIDGET (widget), FALSE);
+  g_return_val_if_fail (prefix, FALSE);
+  g_return_val_if_fail (action_name, FALSE);
+
+  app = g_application_get_default ();
+  toplevel = gtk_widget_get_toplevel (widget);
+
+  while ((group == NULL) && (widget != NULL))
+    {
+      group = gtk_widget_get_action_group (widget, prefix);
+
+      if G_UNLIKELY (GTK_IS_POPOVER (widget))
+        {
+          GtkWidget *relative_to;
+
+          relative_to = gtk_popover_get_relative_to (GTK_POPOVER (widget));
+
+          if (relative_to != NULL)
+            widget = relative_to;
+          else
+            widget = gtk_widget_get_parent (widget);
+        }
+      else
+        {
+          widget = gtk_widget_get_parent (widget);
+        }
+    }
+
+  if (!group && g_str_equal (prefix, "win") && G_IS_ACTION_GROUP (toplevel))
+    group = G_ACTION_GROUP (toplevel);
+
+  if (!group && g_str_equal (prefix, "app") && G_IS_ACTION_GROUP (app))
+    group = G_ACTION_GROUP (app);
+
+  if (group && g_action_group_has_action (group, action_name))
+    {
+      g_action_group_activate_action (group, action_name, parameter);
+      return TRUE;
+    }
+
+  if (parameter && g_variant_is_floating (parameter))
+    {
+      parameter = g_variant_ref_sink (parameter);
+      g_variant_unref (parameter);
+    }
+
+  g_warning ("Failed to locate action %s.%s", prefix, action_name);
+
+  return FALSE;
+}
+
+
+gboolean
+_editor_activate_action (GtkWidget   *widget,
+                         const gchar *full_action_name,
+                         GVariant    *param)
+{
+  g_autofree gchar *copy = NULL;
+  gchar *dot;
+
+  g_return_val_if_fail (GTK_IS_WIDGET (widget), FALSE);
+  g_return_val_if_fail (full_action_name != NULL, FALSE);
+
+  copy = g_strdup (full_action_name);
+  dot = strchr (copy, '.');
+  if (dot == NULL)
+    return FALSE;
+
+  *dot = 0;
+
+  return editor_action (widget, copy, dot + 1, param);
+}
+
+gboolean
+_editor_action_with_string (GtkWidget   *widget,
+                            const gchar *group,
+                            const gchar *name,
+                            const gchar *param)
+{
+  g_autoptr(GVariant) variant = NULL;
+
+  g_return_val_if_fail (GTK_IS_WIDGET (widget), FALSE);
+  g_return_val_if_fail (group != NULL, FALSE);
+  g_return_val_if_fail (name != NULL, FALSE);
+
+  if (param == NULL)
+    param = "";
+
+  if (*param != 0)
+    {
+      g_autoptr(GError) error = NULL;
+
+      variant = g_variant_parse (NULL, param, NULL, NULL, &error);
+
+      if (variant == NULL)
+        {
+          g_warning ("can't parse keybinding parameters \"%s\": %s",
+                     param, error->message);
+          return FALSE;
+        }
+    }
+
+  return editor_action (widget, group, name, variant);
 }

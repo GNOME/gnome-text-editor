@@ -1485,7 +1485,7 @@ editor_session_restore_v1 (EditorSession *self,
           if (!editor_session_restore_v1_pages (self, ewin, pages))
             {
               had_failure = TRUE;
-              gtk_window_destroy (GTK_WINDOW (ewin));
+              gtk_widget_destroy (GTK_WIDGET (ewin));
               g_ptr_array_remove (self->windows, ewin);
               continue;
             }

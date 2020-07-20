@@ -1,6 +1,6 @@
-/* editor-tab-private.h
+/* editor-bin-private.h
  *
- * Copyright 2020 Christian Hergert <chergert@redhat.com>
+ * Copyright 2017 Christian Hergert <chergert@redhat.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,30 +22,15 @@
 
 #include <gtk/gtk.h>
 
-#include "editor-tab.h"
-#include "editor-page-private.h"
-
 G_BEGIN_DECLS
 
-struct _EditorTab
+#define EDITOR_TYPE_BIN (editor_bin_get_type())
+
+G_DECLARE_DERIVABLE_TYPE (EditorBin, editor_bin, EDITOR, BIN, GtkBin)
+
+struct _EditorBinClass
 {
-  GtkBin       parent_instance;
-
-  EditorPage  *page;
-  GtkPopover  *menu_popover;
-
-  GtkEventBox *event_box;
-  GtkStack    *stack;
-  GtkLabel    *empty;
-  GtkLabel    *is_modified;
-  GtkLabel    *title;
-  GtkLabel    *close_button;
-  GtkSpinner  *spinner;
+  GtkBinClass parent_class;
 };
-
-void       _editor_tab_class_actions_init (EditorTabClass *klass);
-EditorTab *_editor_tab_new                (EditorPage     *page);
-void       _editor_tab_actions_init       (EditorTab      *self);
-void       _editor_tab_actions_update     (EditorTab      *self);
 
 G_END_DECLS

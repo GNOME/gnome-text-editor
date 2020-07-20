@@ -2,8 +2,10 @@ editor_sources = [
   'editor-animation.c',
   'editor-application.c',
   'editor-application-actions.c',
+  'editor-bin.c',
   'editor-binding-group.c',
   'editor-document.c',
+  'editor-filter-model.c',
   'editor-frame-source.c',
   'editor-language-dialog.c',
   'editor-language-row.c',
@@ -28,6 +30,7 @@ editor_sources = [
   'editor-sidebar-row.c',
   'editor-signal-group.c',
   'editor-tab.c',
+  'editor-tab-actions.c',
   'editor-utils.c',
   'editor-window.c',
   'editor-window-actions.c',
@@ -37,8 +40,8 @@ editor_sources = [
 editor_deps = [
   cc.find_library('m', required: false),
   dependency('gio-2.0', version: '>= 2.50'),
-  dependency('gtk4', version: '>= 3.98'),
-  dependency('gtksourceview-5', version: '>= 4.90'),
+  dependency('gtk+-3.0', version: '>= 3.24'),
+  dependency('gtksourceview-4', version: '>= 4.6'),
 ]
 
 editor_sources += gnome.compile_resources('editor-resources',

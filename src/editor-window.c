@@ -71,26 +71,32 @@ enum {
   N_PROPS
 };
 
+enum {
+  ACTIVATE_ACTION,
+  N_SIGNALS
+};
+
 static GParamSpec *properties[N_PROPS];
+static guint signals[N_SIGNALS];
 
 static void
 editor_window_page_bind_cb (EditorWindow      *self,
                             EditorPage        *page,
-                            EditorSignalGroup *signals)
+                            EditorSignalGroup *group)
 {
   g_assert (EDITOR_IS_WINDOW (self));
   g_assert (EDITOR_IS_PAGE (page));
-  g_assert (EDITOR_IS_SIGNAL_GROUP (signals));
+  g_assert (EDITOR_IS_SIGNAL_GROUP (group));
 
   _editor_window_actions_update (self, page);
 }
 
 static void
 editor_window_page_unbind_cb (EditorWindow      *self,
-                              EditorSignalGroup *signals)
+                              EditorSignalGroup *group)
 {
   g_assert (EDITOR_IS_WINDOW (self));
-  g_assert (EDITOR_IS_SIGNAL_GROUP (signals));
+  g_assert (EDITOR_IS_SIGNAL_GROUP (group));
 
   _editor_window_actions_update (self, NULL);
 }
@@ -209,9 +215,10 @@ editor_window_notebook_page_reordered_cb (EditorWindow *self,
 }
 
 static gboolean
-editor_window_close_request (GtkWindow *window)
+editor_window_delete_event (GtkWidget   *widget,
+                            GdkEventAny *event)
 {
-  EditorWindow *self = (EditorWindow *)window;
+  EditorWindow *self = (EditorWindow *)widget;
 
   g_assert (EDITOR_IS_WINDOW (self));
 
@@ -229,7 +236,7 @@ editor_window_close_request (GtkWindow *window)
 
   self->visible_page = NULL;
 
-  return GTK_WINDOW_CLASS (editor_window_parent_class)->close_request (window);
+  return GDK_EVENT_PROPAGATE;
 }
 
 static void
@@ -330,7 +337,7 @@ editor_window_class_init (EditorWindowClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
-  GtkWindowClass *window_class = GTK_WINDOW_CLASS (klass);
+  GtkBindingSet *bindings = gtk_binding_set_by_class (klass);
 
   object_class->constructed = editor_window_constructed;
   object_class->dispose = editor_window_dispose;
@@ -338,7 +345,7 @@ editor_window_class_init (EditorWindowClass *klass)
   object_class->get_property = editor_window_get_property;
   object_class->set_property = editor_window_set_property;
 
-  window_class->close_request = editor_window_close_request;
+  widget_class->delete_event = editor_window_delete_event;
 
   properties [PROP_VISIBLE_PAGE] =
     g_param_spec_object ("visible-page",
@@ -348,6 +355,19 @@ editor_window_class_init (EditorWindowClass *klass)
                          (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_properties (object_class, N_PROPS, properties);
+
+  signals [ACTIVATE_ACTION] =
+    g_signal_new_class_handler ("activate-action",
+                                G_TYPE_FROM_CLASS (klass),
+                                G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+                                G_CALLBACK (_editor_action_with_string),
+                                NULL, NULL,
+                                NULL,
+                                G_TYPE_NONE,
+                                3,
+                                G_TYPE_STRING,
+                                G_TYPE_STRING,
+                                G_TYPE_STRING);
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-window.ui");
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, empty);
@@ -367,29 +387,29 @@ editor_window_class_init (EditorWindowClass *klass)
   gtk_widget_class_bind_template_callback (widget_class, editor_window_sidebar_toggled_cb);
   gtk_widget_class_bind_template_callback (widget_class, editor_window_notebook_page_reordered_cb);
 
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_w, GDK_CONTROL_MASK, "win.close-current-page", NULL);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_o, GDK_CONTROL_MASK, "win.open", NULL);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_k, GDK_CONTROL_MASK, "win.focus-search", NULL);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_t, GDK_CONTROL_MASK, "session.new-draft", NULL);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_n, GDK_CONTROL_MASK, "app.new-window", NULL);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_s, GDK_CONTROL_MASK, "page.save", NULL);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_s, GDK_CONTROL_MASK | GDK_SHIFT_MASK, "page.save-as", NULL);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_p, GDK_CONTROL_MASK, "page.print", NULL);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_c, GDK_CONTROL_MASK | GDK_SHIFT_MASK, "page.copy-all", NULL);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_1, GDK_ALT_MASK, "page.change", "i", 1);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_2, GDK_ALT_MASK, "page.change", "i", 2);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_3, GDK_ALT_MASK, "page.change", "i", 3);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_4, GDK_ALT_MASK, "page.change", "i", 4);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_5, GDK_ALT_MASK, "page.change", "i", 5);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_6, GDK_ALT_MASK, "page.change", "i", 6);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_7, GDK_ALT_MASK, "page.change", "i", 7);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_8, GDK_ALT_MASK, "page.change", "i", 8);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_9, GDK_ALT_MASK, "page.change", "i", 9);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Page_Up, GDK_CONTROL_MASK | GDK_ALT_MASK | GDK_SHIFT_MASK, "page.move-left", NULL);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Page_Down, GDK_CONTROL_MASK | GDK_ALT_MASK | GDK_SHIFT_MASK, "page.move-right", NULL);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_n, GDK_CONTROL_MASK | GDK_SHIFT_MASK, "page.move-to-new-window", NULL);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_f, GDK_CONTROL_MASK, "page.begin-search", NULL);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_h, GDK_CONTROL_MASK, "page.begin-replace", NULL);
+  gtk_binding_entry_add_signal (bindings, GDK_KEY_w, GDK_CONTROL_MASK, "activate-action", 3, G_TYPE_STRING, "win", G_TYPE_STRING, "close-current-page", G_TYPE_STRING, "");
+  gtk_binding_entry_add_signal (bindings, GDK_KEY_o, GDK_CONTROL_MASK, "activate-action", 3, G_TYPE_STRING, "win", G_TYPE_STRING, "open", G_TYPE_STRING, "");
+  gtk_binding_entry_add_signal (bindings, GDK_KEY_k, GDK_CONTROL_MASK, "activate-action", 3, G_TYPE_STRING, "win", G_TYPE_STRING, "focus-search", G_TYPE_STRING, "");
+  gtk_binding_entry_add_signal (bindings, GDK_KEY_t, GDK_CONTROL_MASK, "activate-action", 3, G_TYPE_STRING, "session", G_TYPE_STRING, "new-draft", G_TYPE_STRING, "");
+  gtk_binding_entry_add_signal (bindings, GDK_KEY_n, GDK_CONTROL_MASK, "activate-action", 3, G_TYPE_STRING, "app", G_TYPE_STRING, "new-window", G_TYPE_STRING, "");
+  gtk_binding_entry_add_signal (bindings, GDK_KEY_s, GDK_CONTROL_MASK, "activate-action", 3, G_TYPE_STRING, "page", G_TYPE_STRING, "save", G_TYPE_STRING, "");
+  gtk_binding_entry_add_signal (bindings, GDK_KEY_s, GDK_CONTROL_MASK | GDK_SHIFT_MASK, "activate-action", 3, G_TYPE_STRING, "page", G_TYPE_STRING, "save-as", G_TYPE_STRING, "");
+  gtk_binding_entry_add_signal (bindings, GDK_KEY_p, GDK_CONTROL_MASK, "activate-action", 3, G_TYPE_STRING, "page", G_TYPE_STRING, "print", G_TYPE_STRING, "");
+  gtk_binding_entry_add_signal (bindings, GDK_KEY_c, GDK_CONTROL_MASK | GDK_SHIFT_MASK, "activate-action", 3, G_TYPE_STRING, "page", G_TYPE_STRING, "copy-all", G_TYPE_STRING, "");
+  gtk_binding_entry_add_signal (bindings, GDK_KEY_1, GDK_META_MASK, "activate-action", 3, G_TYPE_STRING, "page", G_TYPE_STRING, "change", G_TYPE_STRING, "1");
+  gtk_binding_entry_add_signal (bindings, GDK_KEY_2, GDK_META_MASK, "activate-action", 3, G_TYPE_STRING, "page", G_TYPE_STRING, "change", G_TYPE_STRING, "2");
+  gtk_binding_entry_add_signal (bindings, GDK_KEY_3, GDK_META_MASK, "activate-action", 3, G_TYPE_STRING, "page", G_TYPE_STRING, "change", G_TYPE_STRING, "3");
+  gtk_binding_entry_add_signal (bindings, GDK_KEY_4, GDK_META_MASK, "activate-action", 3, G_TYPE_STRING, "page", G_TYPE_STRING, "change", G_TYPE_STRING, "4");
+  gtk_binding_entry_add_signal (bindings, GDK_KEY_5, GDK_META_MASK, "activate-action", 3, G_TYPE_STRING, "page", G_TYPE_STRING, "change", G_TYPE_STRING, "5");
+  gtk_binding_entry_add_signal (bindings, GDK_KEY_6, GDK_META_MASK, "activate-action", 3, G_TYPE_STRING, "page", G_TYPE_STRING, "change", G_TYPE_STRING, "6");
+  gtk_binding_entry_add_signal (bindings, GDK_KEY_7, GDK_META_MASK, "activate-action", 3, G_TYPE_STRING, "page", G_TYPE_STRING, "change", G_TYPE_STRING, "7");
+  gtk_binding_entry_add_signal (bindings, GDK_KEY_8, GDK_META_MASK, "activate-action", 3, G_TYPE_STRING, "page", G_TYPE_STRING, "change", G_TYPE_STRING, "8");
+  gtk_binding_entry_add_signal (bindings, GDK_KEY_9, GDK_META_MASK, "activate-action", 3, G_TYPE_STRING, "page", G_TYPE_STRING, "change", G_TYPE_STRING, "9");
+  gtk_binding_entry_add_signal (bindings, GDK_KEY_Page_Up, GDK_CONTROL_MASK | GDK_META_MASK | GDK_SHIFT_MASK, "activate-action", 3, G_TYPE_STRING, "page", G_TYPE_STRING, "move-left", G_TYPE_STRING, "");
+  gtk_binding_entry_add_signal (bindings, GDK_KEY_Page_Down, GDK_CONTROL_MASK | GDK_META_MASK | GDK_SHIFT_MASK, "activate-action", 3, G_TYPE_STRING, "page", G_TYPE_STRING, "move-right", G_TYPE_STRING, "");
+  gtk_binding_entry_add_signal (bindings, GDK_KEY_n, GDK_CONTROL_MASK | GDK_SHIFT_MASK, "activate-action", 3, G_TYPE_STRING, "page", G_TYPE_STRING, "move-to-new-window", G_TYPE_STRING, "");
+  gtk_binding_entry_add_signal (bindings, GDK_KEY_f, GDK_CONTROL_MASK, "activate-action", 3, G_TYPE_STRING, "page", G_TYPE_STRING, "begin-search", G_TYPE_STRING, "");
+  gtk_binding_entry_add_signal (bindings, GDK_KEY_h, GDK_CONTROL_MASK, "activate-action", 3, G_TYPE_STRING, "page", G_TYPE_STRING, "begin-replace", G_TYPE_STRING, "");
 
   _editor_window_class_actions_init (klass);
 
@@ -507,9 +527,9 @@ _editor_window_add_page (EditorWindow *self,
                             GTK_WIDGET (page),
                             GTK_WIDGET (tab));
 
-  g_object_set (gtk_notebook_get_page (self->notebook, GTK_WIDGET (page)),
-                "reorderable", TRUE,
-                NULL);
+  gtk_container_child_set (GTK_CONTAINER (self->notebook), GTK_WIDGET (page),
+                           "reorderable", TRUE,
+                           NULL);
 }
 
 void

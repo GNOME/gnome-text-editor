@@ -241,24 +241,27 @@ editor_preferences_radio_init (EditorPreferencesRadio *self)
                       "margin-start", 20,
                       "margin-end", 20,
                       "spacing", 10,
+                      "visible", TRUE,
                       NULL);
-  gtk_list_box_row_set_child (GTK_LIST_BOX_ROW (self), GTK_WIDGET (box));
+  gtk_container_add (GTK_CONTAINER (self), GTK_WIDGET (box));
 
   self->toggle = g_object_new (GTK_TYPE_RADIO_BUTTON,
                                "can-focus", FALSE,
+                               "visible", TRUE,
                                NULL);
   g_signal_connect_object (self->toggle,
                            "clicked",
                            G_CALLBACK (editor_preferences_radio_clicked_cb),
                            self,
                            G_CONNECT_SWAPPED);
-  gtk_box_append (box, GTK_WIDGET (self->toggle));
+  gtk_container_add (GTK_CONTAINER (box), GTK_WIDGET (self->toggle));
 
   self->label = g_object_new (GTK_TYPE_LABEL,
                               "can-focus", FALSE,
                               "selectable", FALSE,
                               "halign", GTK_ALIGN_START,
                               "hexpand", TRUE,
+                              "visible", TRUE,
                               NULL);
-  gtk_box_append (box, GTK_WIDGET (self->label));
+  gtk_container_add (GTK_CONTAINER (box), GTK_WIDGET (self->label));
 }
