@@ -73,8 +73,8 @@
   <style name="map-overlay"                 background="dark1"/>
   <style name="cursor"                      foreground="light4"/>
   <style name="line-numbers"                foreground="content_alt" background="content_bg"/>
-  <style name="current-line"                background="dark4"/>
-  <style name="current-line-number"         foreground="dark1" background="dark4" bold="true"/>
+  <style name="current-line"                background="#222"/>
+  <style name="current-line-number"         foreground="dark1" background="#222" bold="true"/>
   <style name="right-margin"                foreground="content_bg_alt" background="content_bg_alt"/>
   <style name="draw-spaces"                 foreground="dark1"/>
   <style name="background-pattern"          background="dark4"/>
@@ -83,6 +83,13 @@
   <style name="bracket-mismatch"            background="red5" bold="true"/>
   <style name="search-match"                foreground="light1" background="orange3"/>
   <style name="misspelled-match"            foreground="light1" background="red3"/>
+
+  <!-- Diffs and VCS gutter -->
+  <style name="diff:added-line"             foreground="green5"/>
+  <style name="diff:removed-line"           foreground="red3"/>
+  <style name="gutter:added-line"           foreground="green5"/>
+  <style name="gutter:changed-line"         foreground="orange3"/>
+  <style name="gutter:removed-line"         foreground="red3"/>
 
   <style name="gtk-doc:function-name"       bold="true"/>
   <style name="gtk-doc:function"            bold="true"/>
