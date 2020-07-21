@@ -29,18 +29,6 @@
     ],
     "modules" : [
         {
-            "name" : "gtksourceview",
-            "builddir" : true,
-            "buildsystem" : "meson",
-            "sources" : [
-                {
-                    "type" : "git",
-                    "url" : "https://gitlab.gnome.org/GNOME/gtksourceview.git",
-                    "branch" : "wip/chergert/gsv-gtk4"
-                }
-            ]
-        },
-        {
             "name" : "gnome-text-editor",
             "builddir" : true,
             "buildsystem" : "meson",
