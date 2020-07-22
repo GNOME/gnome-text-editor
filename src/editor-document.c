@@ -471,6 +471,31 @@ _editor_document_set_draft_id (EditorDocument *self,
     }
 }
 
+static gboolean
+file_saver_save_finish (GtkSourceFileSaver  *saver,
+                        GAsyncResult        *result,
+                        GError             **error)
+{
+  g_assert (GTK_SOURCE_IS_FILE_SAVER (saver));
+  g_assert (G_IS_ASYNC_RESULT (result));
+
+  /*
+   * This method exists to work around GtkSourceFileSaver when used for
+   * saving to alternate files such as a draft. If we call
+   * gtk_source_file_saver_save_finish() it will set the externally
+   * modified flag and mess up our undo stack position.
+   *
+   * We don't care about any of those settings being propagated to the
+   * GSourceFile either, so we can just check for the error manually from
+   * the GTask instead of calling the GtkSourceView API.
+   */
+
+  if (G_IS_TASK (result))
+    return g_task_propagate_boolean (G_TASK (result), error);
+  else
+    return gtk_source_file_saver_save_finish (saver, result, error);
+}
+
 static void
 editor_document_save_draft_cb (GObject      *object,
                                GAsyncResult *result,
@@ -487,15 +512,10 @@ editor_document_save_draft_cb (GObject      *object,
 
   self = g_task_get_source_object (task);
 
-  if (!gtk_source_file_saver_save_finish (saver, result, &error))
+  if (!file_saver_save_finish (saver, result, &error))
     g_task_return_error (task, g_steal_pointer (&error));
   else
     g_task_return_boolean (task, TRUE);
-
-  /* Remark the buffer as modified since the saver would have
-   * overwritten the value we had for that.
-   */
-  gtk_text_buffer_set_modified (GTK_TEXT_BUFFER (self), TRUE);
 
   _editor_document_unmark_busy (self);
 }
