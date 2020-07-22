@@ -128,6 +128,42 @@ editor_application_actions_about_cb (GSimpleAction *action,
   gtk_window_present (GTK_WINDOW (dialog));
 }
 
+static void
+editor_application_actions_quit_cb (GObject      *object,
+                                    GAsyncResult *result,
+                                    gpointer      user_data)
+{
+  EditorSession *session = (EditorSession *)object;
+  g_autoptr(EditorApplication) self = user_data;
+  g_autoptr(GError) error = NULL;
+
+  g_assert (EDITOR_IS_APPLICATION (self));
+
+  if (!editor_session_save_finish (session, result, &error))
+    {
+      g_warning ("Failed to save session: %s", error->message);
+      return;
+    }
+
+  g_application_quit (G_APPLICATION (self));
+}
+
+static void
+editor_application_actions_quit (GSimpleAction *action,
+                                 GVariant      *param,
+                                 gpointer       user_data)
+{
+  EditorApplication *self = user_data;
+
+  g_assert (G_IS_SIMPLE_ACTION (action));
+  g_assert (EDITOR_IS_APPLICATION (self));
+
+  editor_session_save_async (EDITOR_SESSION_DEFAULT,
+                             NULL,
+                             editor_application_actions_quit_cb,
+                             g_object_ref (self));
+}
+
 void
 _editor_application_actions_init (EditorApplication *self)
 {
@@ -135,6 +171,7 @@ _editor_application_actions_init (EditorApplication *self)
     { "new-window", editor_application_actions_new_window_cb },
     { "preferences", editor_application_actions_preferences_cb },
     { "about", editor_application_actions_about_cb },
+    { "quit", editor_application_actions_quit },
   };
 
   g_action_map_add_action_entries (G_ACTION_MAP (self),
