@@ -378,6 +378,7 @@ _editor_window_actions_init (EditorWindow *self)
 {
   static const gchar *setting_keys[] = {
     "dark-mode",
+    "discover-settings",
     "indent-style",
     "show-line-numbers",
     "show-right-margin",

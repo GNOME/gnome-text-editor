@@ -172,17 +172,23 @@ editor_page_gsettings_class_init (EditorPageGsettingsClass *klass)
 static void
 editor_page_gsettings_init (EditorPageGsettings *self)
 {
-  self->settings = g_settings_new ("org.gnome.TextEditor");
+}
+
+EditorPageSettingsProvider *
+_editor_page_gsettings_new (GSettings *settings)
+{
+  EditorPageGsettings *self;
+
+  g_return_val_if_fail (G_IS_SETTINGS (settings), NULL);
+
+  self = g_object_new (EDITOR_TYPE_PAGE_GSETTINGS, NULL);
+  self->settings = g_object_ref (settings);
 
   g_signal_connect_object (self->settings,
                            "changed",
                            G_CALLBACK (editor_page_gsettings_changed_cb),
                            self,
                            G_CONNECT_SWAPPED);
-}
 
-EditorPageSettingsProvider *
-_editor_page_gsettings_new (void)
-{
-  return g_object_new (EDITOR_TYPE_PAGE_GSETTINGS, NULL);
+  return EDITOR_PAGE_SETTINGS_PROVIDER (self);
 }

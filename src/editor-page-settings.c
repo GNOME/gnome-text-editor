@@ -34,6 +34,7 @@ struct _EditorPageSettings
 {
   GObject parent_instance;
 
+  GSettings *settings;
   EditorDocument *document;
   GPtrArray *providers;
 
@@ -151,6 +152,36 @@ take_provider (EditorPageSettings         *self,
 }
 
 static void
+editor_page_settings_changed_discover_settings_cb (EditorPageSettings *self,
+                                                   GParamSpec         *pspec,
+                                                   GSettings          *settings)
+{
+  g_assert (EDITOR_IS_PAGE_SETTINGS (self));
+  g_assert (G_IS_SETTINGS (settings));
+
+  /* Remove all the providers */
+  for (guint i = self->providers->len; i > 0; i--)
+    {
+      EditorPageSettingsProvider *provider = g_ptr_array_index (self->providers, i - 1);
+      g_signal_handlers_disconnect_by_func (provider,
+                                            G_CALLBACK (editor_page_settings_update),
+                                            self);
+      g_ptr_array_remove_index (self->providers, i - 1);
+    }
+
+  /* Now add providers based on settings */
+  if (g_settings_get_boolean (settings, "discover-settings"))
+    {
+      take_provider (self, _editor_modeline_settings_provider_new ());
+      take_provider (self, _editor_page_editorconfig_new ());
+    }
+
+  take_provider (self, _editor_page_gsettings_new (self->settings));
+
+  editor_page_settings_update (self);
+}
+
+static void
 editor_page_settings_constructed (GObject *object)
 {
   EditorPageSettings *self = (EditorPageSettings *)object;
@@ -159,11 +190,7 @@ editor_page_settings_constructed (GObject *object)
 
   G_OBJECT_CLASS (editor_page_settings_parent_class)->constructed (object);
 
-  take_provider (self, _editor_modeline_settings_provider_new ());
-  take_provider (self, _editor_page_editorconfig_new ());
-  take_provider (self, _editor_page_gsettings_new ());
-
-  editor_page_settings_update (self);
+  editor_page_settings_changed_discover_settings_cb (self, NULL, self->settings);
 }
 
 static void
@@ -396,6 +423,13 @@ editor_page_settings_init (EditorPageSettings *self)
   self->use_system_font = TRUE;
   self->right_margin_position = 80;
   self->tab_width = 8;
+  self->settings = g_settings_new ("org.gnome.TextEditor");
+
+  g_signal_connect_object (self->settings,
+                           "changed::discover-settings",
+                           G_CALLBACK (editor_page_settings_changed_discover_settings_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
 }
 
 EditorPageSettings *

@@ -28,6 +28,6 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (EditorPageGsettings, editor_page_gsettings, EDITOR, PAGE_GSETTINGS, GObject)
 
-EditorPageSettingsProvider *_editor_page_gsettings_new (void);
+EditorPageSettingsProvider *_editor_page_gsettings_new (GSettings *settings);
 
 G_END_DECLS
