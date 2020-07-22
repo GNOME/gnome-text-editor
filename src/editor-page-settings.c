@@ -142,6 +142,8 @@ take_provider (EditorPageSettings         *self,
                            self,
                            G_CONNECT_SWAPPED);
 
+  editor_page_settings_provider_set_document (provider, self->document);
+
   editor_page_settings_update (self);
 }
 
