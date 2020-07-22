@@ -35,6 +35,9 @@ editor_sources = [
   'editor-window.c',
   'editor-window-actions.c',
   'main.c',
+
+  'modelines/modeline-parser.c',
+  'modelines/editor-modeline-settings-provider.c',
 ]
 
 editor_deps = [

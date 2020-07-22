@@ -27,6 +27,8 @@
 #include "editor-page-settings.h"
 #include "editor-page-settings-provider.h"
 
+#include "modelines/editor-modeline-settings-provider-private.h"
+
 struct _EditorPageSettings
 {
   GObject parent_instance;
@@ -156,6 +158,7 @@ editor_page_settings_constructed (GObject *object)
 
   G_OBJECT_CLASS (editor_page_settings_parent_class)->constructed (object);
 
+  take_provider (self, _editor_modeline_settings_provider_new ());
   take_provider (self, _editor_page_gsettings_new ());
 
   editor_page_settings_update (self);
