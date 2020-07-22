@@ -24,17 +24,19 @@
 
 /* EditorWindow */
 
-.org-gnome-TextEditor label.position-label {
+.org-gnome-TextEditor positionlabel {
   margin: 6px 8px;
   padding: 6px 12px;
   background-color: @borders;
   border-radius: 14px;
   color: alpha(currentColor, 0.9);
+}
+.org-gnome-TextEditor positionlabel:backdrop {
+  background-color: alpha(@borders, 0.2);
+}
+.org-gnome-TextEditor positionlabel label {
   font-size: 0.8333em;
   font-feature-settings: "tnum";
-}
-.org-gnome-TextEditor label.position-label:backdrop {
-  background-color: alpha(@borders, 0.2);
 }
 
 

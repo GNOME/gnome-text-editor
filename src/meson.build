@@ -15,6 +15,7 @@ editor_sources = [
   'editor-page-settings.c',
   'editor-page-settings-provider.c',
   'editor-path.c',
+  'editor-position-label.c',
   'editor-preferences-font.c',
   'editor-preferences-radio.c',
   'editor-preferences-row.c',

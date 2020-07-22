@@ -26,7 +26,9 @@
 
 #include "editor-application.h"
 #include "editor-binding-group.h"
+#include "editor-document.h"
 #include "editor-page-private.h"
+#include "editor-position-label-private.h"
 #include "editor-session-private.h"
 #include "editor-sidebar-private.h"
 #include "editor-signal-group.h"
@@ -41,11 +43,10 @@ struct _EditorWindow
   /* Template Widgets */
   GtkWidget            *empty;
   GtkNotebook          *notebook;
-  GtkBox               *position_box;
   GtkLabel             *title;
   GtkLabel             *subtitle;
   GtkLabel             *is_modified;
-  GtkLabel             *position_label;
+  EditorPositionLabel  *position_label;
   GtkPaned             *paned;
   GtkStack             *stack;
   GtkToggleButton      *open_toggle_button;
@@ -60,6 +61,7 @@ struct _EditorWindow
   /* Owned References */
   EditorBindingGroup   *page_bindings;
   EditorSignalGroup    *page_signals;
+  EditorSignalGroup    *document_signals;
   GSettings            *settings;
 };
 
@@ -80,13 +82,40 @@ static GParamSpec *properties[N_PROPS];
 static guint signals[N_SIGNALS];
 
 static void
+editor_window_cursor_moved_cb (EditorWindow   *self,
+                               EditorDocument *document)
+{
+  EditorPage *page;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+  g_assert (EDITOR_IS_DOCUMENT (document));
+
+  if ((page = editor_window_get_visible_page (self)))
+    {
+      guint line;
+      guint column;
+
+      editor_page_get_visual_position (page, &line, &column);
+
+      _editor_position_label_set_position (self->position_label, line + 1, column + 1);
+    }
+}
+
+static void
 editor_window_page_bind_cb (EditorWindow      *self,
                             EditorPage        *page,
                             EditorSignalGroup *group)
 {
+  EditorDocument *document;
+
   g_assert (EDITOR_IS_WINDOW (self));
   g_assert (EDITOR_IS_PAGE (page));
   g_assert (EDITOR_IS_SIGNAL_GROUP (group));
+
+  document = editor_page_get_document (page);
+
+  editor_signal_group_set_target (self->document_signals, document);
+  editor_window_cursor_moved_cb (self, document);
 
   _editor_window_actions_update (self, page);
 }
@@ -277,6 +306,7 @@ editor_window_dispose (GObject *object)
 
   editor_binding_group_set_source (self->page_bindings, NULL);
   editor_signal_group_set_target (self->page_signals, NULL);
+  editor_signal_group_set_target (self->document_signals, NULL);
 
   G_OBJECT_CLASS (editor_window_parent_class)->dispose (object);
 }
@@ -290,6 +320,7 @@ editor_window_finalize (GObject *object)
 
   g_clear_object (&self->page_bindings);
   g_clear_object (&self->page_signals);
+  g_clear_object (&self->document_signals);
 
   G_OBJECT_CLASS (editor_window_parent_class)->finalize (object);
 }
@@ -377,7 +408,6 @@ editor_window_class_init (EditorWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, open_toggle_button);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, options_menu);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, paned);
-  gtk_widget_class_bind_template_child (widget_class, EditorWindow, position_box);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, position_label);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, primary_menu);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, sidebar);
@@ -413,6 +443,8 @@ editor_window_class_init (EditorWindowClass *klass)
 
   _editor_window_class_actions_init (klass);
 
+  g_type_ensure (EDITOR_TYPE_BIN);
+  g_type_ensure (EDITOR_TYPE_POSITION_LABEL);
   g_type_ensure (EDITOR_TYPE_SIDEBAR);
 }
 
@@ -426,7 +458,7 @@ editor_window_init (EditorWindow *self)
 
   self->settings = g_settings_new ("org.gnome.TextEditor");
   g_settings_bind (self->settings, "show-line-numbers",
-                   self->position_box, "visible",
+                   self->position_label, "visible",
                    G_SETTINGS_BIND_GET);
 
   g_signal_connect_swapped (self->notebook,
@@ -462,11 +494,16 @@ editor_window_init (EditorWindow *self)
                                       self,
                                       G_CONNECT_SWAPPED);
 
+  self->document_signals = editor_signal_group_new (EDITOR_TYPE_DOCUMENT);
+
+  editor_signal_group_connect_object (self->document_signals,
+                                      "cursor-moved",
+                                      G_CALLBACK (editor_window_cursor_moved_cb),
+                                      self,
+                                      G_CONNECT_SWAPPED);
+
   self->page_bindings = editor_binding_group_new ();
 
-  editor_binding_group_bind (self->page_bindings, "position-label",
-                             self->position_label, "label",
-                             G_BINDING_SYNC_CREATE);
   editor_binding_group_bind (self->page_bindings, "title",
                              self->title, "label",
                              G_BINDING_SYNC_CREATE);

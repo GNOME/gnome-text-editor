@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk+" version="3.24"/>
+  <template class="EditorPositionLabel" parent="EditorBin">
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">horizontal</property>
+        <property name="visible">true</property>
+        <child>
+          <object class="GtkLabel">
+            <!-- translators: Ln is short for "Line Number" -->
+            <property name="label" translatable="yes">Ln</property>
+            <property name="margin-end">3</property>
+            <property name="visible">true</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel" id="line">
+            <property name="visible">true</property>
+            <property name="width-chars">2</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <!-- translators: Col is short for "Column" -->
+            <property name="label" translatable="yes">Col</property>
+            <property name="margin-end">3</property>
+            <property name="visible">true</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel" id="column">
+            <property name="visible">true</property>
+            <property name="width-chars">2</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>
