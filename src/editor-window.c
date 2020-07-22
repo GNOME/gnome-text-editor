@@ -25,45 +25,11 @@
 #include <glib/gi18n.h>
 
 #include "editor-application.h"
-#include "editor-binding-group.h"
 #include "editor-document.h"
-#include "editor-page-private.h"
-#include "editor-position-label-private.h"
 #include "editor-session-private.h"
-#include "editor-sidebar-private.h"
-#include "editor-signal-group.h"
 #include "editor-tab-private.h"
 #include "editor-utils-private.h"
 #include "editor-window-private.h"
-
-struct _EditorWindow
-{
-  GtkApplicationWindow  parent_instance;
-
-  /* Template Widgets */
-  GtkWidget            *empty;
-  GtkNotebook          *notebook;
-  GtkLabel             *title;
-  GtkLabel             *subtitle;
-  GtkLabel             *is_modified;
-  EditorPositionLabel  *position_label;
-  GtkPaned             *paned;
-  GtkStack             *stack;
-  GtkToggleButton      *open_toggle_button;
-  EditorSidebar        *sidebar;
-  GtkMenuButton        *primary_menu;
-  GtkMenuButton        *options_menu;
-  GtkMenuButton        *export_menu;
-
-  /* Borrowed References */
-  EditorPage           *visible_page;
-
-  /* Owned References */
-  EditorBindingGroup   *page_bindings;
-  EditorSignalGroup    *page_signals;
-  EditorSignalGroup    *document_signals;
-  GSettings            *settings;
-};
 
 G_DEFINE_TYPE (EditorWindow, editor_window, GTK_TYPE_APPLICATION_WINDOW)
 
