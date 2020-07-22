@@ -207,6 +207,7 @@ editor_page_set_document (EditorPage     *self,
 
       gtk_text_view_set_buffer (GTK_TEXT_VIEW (self->view),
                                 GTK_TEXT_BUFFER (document));
+
       g_signal_connect_object (document,
                                "notify::title",
                                G_CALLBACK (editor_page_document_notify_title_cb),
@@ -327,6 +328,74 @@ editor_page_grab_focus (GtkWidget *widget)
   _editor_page_raise (self);
 
   gtk_widget_grab_focus (GTK_WIDGET (self->view));
+}
+
+static gboolean
+editor_page_view_drag_motion_cb (EditorPage     *self,
+                                 GdkDragContext *context,
+                                 gint            x,
+                                 gint            y,
+                                 guint           time_,
+                                 GtkSourceView  *view)
+{
+  static GdkAtom uri_list;
+  GList *targets;
+
+  g_assert (EDITOR_IS_PAGE (self));
+  g_assert (GDK_IS_DRAG_CONTEXT (context));
+  g_assert (GTK_SOURCE_IS_VIEW (view));
+
+  if (!uri_list)
+    uri_list = gdk_atom_intern_static_string ("text/uri-list");
+
+  /* Ignore text/uri-list, we handle it elsewhere */
+  targets = gdk_drag_context_list_targets (context);
+  for (const GList *iter = targets; iter; iter = iter->next)
+    {
+      GdkAtom atom = iter->data;
+
+      if (atom == uri_list)
+        {
+          g_signal_stop_emission_by_name (view, "drag-motion");
+          break;
+        }
+    }
+
+  return FALSE;
+}
+
+static gboolean
+editor_page_view_drag_drop_cb (EditorPage       *self,
+                               GdkDragContext   *context,
+                               gint              x,
+                               gint              y,
+                               guint             time_,
+                               GtkSourceView    *view)
+{
+  static GdkAtom uri_list;
+  GList *targets;
+
+  g_assert (EDITOR_IS_PAGE (self));
+  g_assert (GDK_IS_DRAG_CONTEXT (context));
+  g_assert (GTK_SOURCE_IS_VIEW (view));
+
+  if (!uri_list)
+    uri_list = gdk_atom_intern_static_string ("text/uri-list");
+
+  /* Ignore text/uri-list, we handle it elsewhere */
+  targets = gdk_drag_context_list_targets (context);
+  for (const GList *iter = targets; iter; iter = iter->next)
+    {
+      GdkAtom atom = iter->data;
+
+      if (atom == uri_list)
+        {
+          g_signal_stop_emission_by_name (view, "drag-drop");
+          break;
+        }
+    }
+
+  return FALSE;
 }
 
 static void
@@ -504,6 +573,18 @@ editor_page_init (EditorPage *self)
   g_signal_connect_object (self->view,
                            "focus-in-event",
                            G_CALLBACK (editor_page_view_focus_enter_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+
+  g_signal_connect_object (self->view,
+                           "drag-motion",
+                           G_CALLBACK (editor_page_view_drag_motion_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+
+  g_signal_connect_object (self->view,
+                           "drag-drop",
+                           G_CALLBACK (editor_page_view_drag_drop_cb),
                            self,
                            G_CONNECT_SWAPPED);
 

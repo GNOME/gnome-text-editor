@@ -367,6 +367,7 @@ editor_window_class_init (EditorWindowClass *klass)
                                 G_TYPE_STRING);
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-window.ui");
+  gtk_widget_class_bind_template_child (widget_class, EditorWindow, drop_box);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, empty);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, export_menu);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, is_modified);
@@ -484,6 +485,8 @@ editor_window_init (EditorWindow *self)
   editor_binding_group_bind (self->page_bindings, "is-modified",
                              self->is_modified, "visible",
                              G_BINDING_SYNC_CREATE);
+
+  _editor_window_dnd_init (self);
 
   _editor_window_actions_init (self);
 }

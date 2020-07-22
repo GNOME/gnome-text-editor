@@ -34,6 +34,7 @@ struct _EditorWindow
   GtkApplicationWindow  parent_instance;
 
   /* Template Widgets */
+  GtkWidget            *drop_box;
   GtkWidget            *empty;
   GtkNotebook          *notebook;
   GtkLabel             *title;
@@ -63,6 +64,7 @@ void          _editor_window_class_actions_init   (EditorWindowClass *klass);
 void          _editor_window_actions_init         (EditorWindow      *self);
 void          _editor_window_actions_update       (EditorWindow      *self,
                                                    EditorPage        *page);
+void          _editor_window_dnd_init             (EditorWindow      *self);
 EditorWindow *_editor_window_new                  (void);
 gboolean      _editor_window_get_sidebar_revealed (EditorWindow      *self);
 void          _editor_window_set_sidebar_revealed (EditorWindow      *self,

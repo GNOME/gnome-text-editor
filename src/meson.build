@@ -35,6 +35,7 @@ editor_sources = [
   'editor-utils.c',
   'editor-window.c',
   'editor-window-actions.c',
+  'editor-window-dnd.c',
   'main.c',
 
   # modeline support
