@@ -152,13 +152,19 @@ G_DEFINE_TYPE_WITH_CODE (EditorPageGsettings, editor_page_gsettings, G_TYPE_OBJE
                                                 page_settings_provider_iface_init))
 
 static void
-editor_page_gsettings_finalize (GObject *object)
+editor_page_gsettings_dispose (GObject *object)
 {
   EditorPageGsettings *self = (EditorPageGsettings *)object;
 
-  g_clear_object (&self->settings);
+  if (self->settings != NULL)
+    {
+      g_signal_handlers_disconnect_by_func (self->settings,
+                                            G_CALLBACK (editor_page_gsettings_changed_cb),
+                                            self);
+      g_clear_object (&self->settings);
+    }
 
-  G_OBJECT_CLASS (editor_page_gsettings_parent_class)->finalize (object);
+  G_OBJECT_CLASS (editor_page_gsettings_parent_class)->dispose (object);
 }
 
 static void
@@ -166,7 +172,7 @@ editor_page_gsettings_class_init (EditorPageGsettingsClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-  object_class->finalize = editor_page_gsettings_finalize;
+  object_class->dispose = editor_page_gsettings_dispose;
 }
 
 static void

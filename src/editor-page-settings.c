@@ -194,6 +194,28 @@ editor_page_settings_constructed (GObject *object)
 }
 
 static void
+editor_page_settings_dispose (GObject *object)
+{
+  EditorPageSettings *self = (EditorPageSettings *)object;
+
+  g_assert (EDITOR_IS_PAGE_SETTINGS (self));
+
+  for (guint i = self->providers->len; i > 0; i--)
+    {
+      EditorPageSettingsProvider *provider = g_ptr_array_index (self->providers, i - 1);
+      g_signal_handlers_disconnect_by_func (provider,
+                                            G_CALLBACK (editor_page_settings_update),
+                                            self);
+      g_ptr_array_remove_index (self->providers, i - 1);
+    }
+
+  g_clear_object (&self->settings);
+  g_clear_weak_pointer (&self->document);
+
+  G_OBJECT_CLASS (editor_page_settings_parent_class)->dispose (object);
+}
+
+static void
 editor_page_settings_finalize (GObject *object)
 {
   EditorPageSettings *self = (EditorPageSettings *)object;
@@ -201,7 +223,6 @@ editor_page_settings_finalize (GObject *object)
   g_clear_pointer (&self->providers, g_ptr_array_unref);
   g_clear_pointer (&self->custom_font, g_free);
   g_clear_pointer (&self->style_scheme, g_free);
-  g_clear_weak_pointer (&self->document);
 
   G_OBJECT_CLASS (editor_page_settings_parent_class)->finalize (object);
 }
@@ -332,6 +353,7 @@ editor_page_settings_class_init (EditorPageSettingsClass *klass)
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
   object_class->constructed = editor_page_settings_constructed;
+  object_class->dispose = editor_page_settings_dispose;
   object_class->finalize = editor_page_settings_finalize;
   object_class->get_property = editor_page_settings_get_property;
   object_class->set_property = editor_page_settings_set_property;
