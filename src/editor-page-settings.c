@@ -27,6 +27,7 @@
 #include "editor-page-settings.h"
 #include "editor-page-settings-provider.h"
 
+#include "defaults/editor-page-defaults-private.h"
 #include "editorconfig/editor-page-editorconfig-private.h"
 #include "modelines/editor-modeline-settings-provider-private.h"
 
@@ -174,6 +175,7 @@ editor_page_settings_changed_discover_settings_cb (EditorPageSettings *self,
     {
       take_provider (self, _editor_modeline_settings_provider_new ());
       take_provider (self, _editor_page_editorconfig_new ());
+      take_provider (self, _editor_page_defaults_new ());
     }
 
   take_provider (self, _editor_page_gsettings_new (self->settings));

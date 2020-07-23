@@ -62,6 +62,7 @@ editor_enums = gnome.mkenums_simple('editor-enums',
          sources: editor_enums_headers,
 )
 
+subdir('defaults')
 subdir('modelines')
 subdir('editorconfig')
 
