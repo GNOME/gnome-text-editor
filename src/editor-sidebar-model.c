@@ -365,8 +365,13 @@ _editor_sidebar_model_page_reordered (EditorSidebarModel *self,
   g_return_if_fail (EDITOR_IS_PAGE (page));
 
   document = editor_page_get_document (page);
+
+  /* We really *shouldn't* find it there as we don't track open
+   * files in the sidebar any longer.
+   */
   iter = find_by_document (self, document);
-  g_assert (iter != NULL);
+  if (iter == NULL)
+    return;
 
   item = g_object_ref (g_sequence_get (iter));
   position = g_sequence_iter_get_position (iter);
