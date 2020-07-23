@@ -30,8 +30,9 @@
 #include "editor-session-private.h"
 #include "editor-window.h"
 
-#define METATDATA_CURSOR "metadata::gnome-text-editor-cursor"
-#define TITLE_MAX_LEN    20
+#define METATDATA_CURSOR    "metadata::gnome-text-editor-cursor"
+#define TITLE_LAST_WORD_POS 20
+#define TITLE_MAX_LEN       100
 
 struct _EditorDocument
 {
@@ -1363,22 +1364,31 @@ editor_document_dup_title (EditorDocument *self)
 
   if (!gtk_text_iter_is_end (&iter))
     {
+      guint count = 0;
+
       do
         {
           gunichar ch;
 
-          if (str->len >= TITLE_MAX_LEN)
+          if (count >= TITLE_MAX_LEN)
             break;
 
           ch = gtk_text_iter_get_char (&iter);
 
           if (g_unichar_isspace (ch) || !g_unichar_isalnum (ch))
             {
-              if (str->len == 0 || !g_str_has_suffix (str->str, " "))
-                g_string_append_c (str, ' ');
+              if (count > TITLE_LAST_WORD_POS)
+                break;
+
+              if (count == 0 || !g_str_has_suffix (str->str, " "))
+                {
+                  count++;
+                  g_string_append_c (str, ' ');
+                }
             }
           else
             {
+              count++;
               g_string_append_unichar (str, ch);
             }
         }
