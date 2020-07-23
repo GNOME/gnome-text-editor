@@ -241,12 +241,12 @@ editor_window_actions_open_cb (GSimpleAction *action,
   all_files = gtk_file_filter_new ();
   gtk_file_filter_set_name (all_files, _("All Files"));
   gtk_file_filter_add_pattern (all_files, "*");
-  gtk_file_chooser_add_filter (GTK_FILE_CHOOSER (native), all_files);
+  gtk_file_chooser_add_filter (GTK_FILE_CHOOSER (native), g_object_ref (all_files));
 
   text_files = gtk_file_filter_new ();
   gtk_file_filter_set_name (text_files, _("Text Files"));
   gtk_file_filter_add_mime_type (text_files, "text/plain");
-  gtk_file_chooser_add_filter (GTK_FILE_CHOOSER (native), text_files);
+  gtk_file_chooser_add_filter (GTK_FILE_CHOOSER (native), g_object_ref (text_files));
   gtk_file_chooser_set_filter (GTK_FILE_CHOOSER (native), text_files);
 
   g_signal_connect_object (native,
