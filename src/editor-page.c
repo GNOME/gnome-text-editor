@@ -399,6 +399,44 @@ editor_page_view_drag_drop_cb (EditorPage       *self,
 }
 
 static void
+editor_page_update_top_margin (EditorPage *self)
+{
+  GtkAdjustment *adj;
+  gint top_margin;
+  gint new_top_margin;
+  gint diff;
+  gint min, nat;
+
+  g_assert (EDITOR_IS_PAGE (self));
+
+  adj = gtk_scrollable_get_vadjustment (GTK_SCROLLABLE (self->view));
+  gtk_widget_get_preferred_height (GTK_WIDGET (self->search_bar), &min, &nat);
+
+  top_margin = gtk_text_view_get_top_margin (GTK_TEXT_VIEW (self->view));
+  if (gtk_revealer_get_reveal_child (self->search_revealer))
+    new_top_margin = min;
+  else
+    new_top_margin = 16;
+  diff = new_top_margin - top_margin;
+
+  gtk_text_view_set_top_margin (GTK_TEXT_VIEW (self->view), new_top_margin);
+
+  if (gtk_adjustment_get_value (adj) > new_top_margin)
+    gtk_adjustment_set_value (adj, gtk_adjustment_get_value (adj) + diff);
+}
+
+static void
+editor_page_search_revealer_notify_reveal_child_cb (EditorPage  *self,
+                                                    GParamSpec  *pspec,
+                                                    GtkRevealer *revealer)
+{
+  g_assert (EDITOR_IS_PAGE (self));
+  g_assert (GTK_IS_REVEALER (revealer));
+
+  editor_page_update_top_margin (self);
+}
+
+static void
 editor_page_dispose (GObject *object)
 {
   EditorPage *self = (EditorPage *)object;
@@ -585,6 +623,12 @@ editor_page_init (EditorPage *self)
   g_signal_connect_object (self->view,
                            "drag-drop",
                            G_CALLBACK (editor_page_view_drag_drop_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+
+  g_signal_connect_object (self->search_revealer,
+                           "notify::reveal-child",
+                           G_CALLBACK (editor_page_search_revealer_notify_reveal_child_cb),
                            self,
                            G_CONNECT_SWAPPED);
 
