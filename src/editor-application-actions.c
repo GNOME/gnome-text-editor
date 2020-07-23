@@ -69,6 +69,7 @@ editor_application_actions_preferences_cb (GSimpleAction *action,
 
   prefs = editor_preferences_window_new (self);
   gtk_window_set_transient_for (GTK_WINDOW (prefs), GTK_WINDOW (active));
+  gtk_window_set_position (GTK_WINDOW (prefs), GTK_WIN_POS_CENTER_ON_PARENT);
   gtk_window_present (GTK_WINDOW (prefs));
 }
 
@@ -124,6 +125,7 @@ editor_application_actions_about_cb (GSimpleAction *action,
   window = editor_application_get_current_window (self);
   gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (window));
   gtk_window_set_modal (GTK_WINDOW (dialog), TRUE);
+  gtk_window_set_position (GTK_WINDOW (dialog), GTK_WIN_POS_CENTER_ON_PARENT);
 
   gtk_window_present (GTK_WINDOW (dialog));
 }

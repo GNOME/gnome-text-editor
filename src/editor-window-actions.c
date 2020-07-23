@@ -118,6 +118,7 @@ editor_window_actions_change_language_cb (GSimpleAction *action,
 
   dialog = editor_language_dialog_new (EDITOR_APPLICATION_DEFAULT);
   gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (self));
+  gtk_window_set_position (GTK_WINDOW (dialog), GTK_WIN_POS_CENTER_ON_PARENT);
   gtk_window_set_destroy_with_parent (GTK_WINDOW (dialog), TRUE);
   gtk_window_set_modal (GTK_WINDOW (dialog), FALSE);
 
