@@ -84,6 +84,8 @@ enum {
 
 static GParamSpec *properties [N_PROPS];
 static guint signals[N_SIGNALS];
+static guint default_width;
+static guint default_height;
 
 static void
 selection_free (Selection *selection)
@@ -518,6 +520,32 @@ _editor_session_new (void)
   return g_object_new (EDITOR_TYPE_SESSION, NULL);
 }
 
+static gboolean
+get_default_size (EditorSession *self,
+                  guint         *width,
+                  guint         *height)
+{
+  GApplication *app;
+  GtkWindow *active;
+
+  g_assert (EDITOR_IS_SESSION (self));
+
+  app = g_application_get_default ();
+  active = gtk_application_get_active_window (GTK_APPLICATION (app));
+
+  if (active)
+    {
+      gtk_window_get_size (active, (gint *)width, (gint *)height);
+    }
+  else
+    {
+      *width = default_width;
+      *height = default_height;
+    }
+
+  return *width > 0 && *height > 0;
+}
+
 /**
  * editor_session_add_window:
  * @self: an #EditorSession
@@ -540,11 +568,19 @@ EditorWindow *
 _editor_session_create_window_no_draft (EditorSession *self)
 {
   EditorWindow *window;
+  gboolean resize;
+  guint width;
+  guint height;
 
   g_return_val_if_fail (EDITOR_IS_SESSION (self), NULL);
 
+  resize = get_default_size (self, &width, &height);
+
   window = _editor_window_new ();
   editor_session_add_window (self, window);
+
+  if (resize)
+    gtk_window_set_default_size (GTK_WINDOW (window), width, height);
 
   return window;
 }
@@ -563,11 +599,19 @@ editor_session_create_window (EditorSession *self)
 {
   g_autoptr(EditorDocument) document = NULL;
   EditorWindow *window;
+  gboolean resize;
+  guint width;
+  guint height;
 
   g_return_val_if_fail (EDITOR_IS_SESSION (self), NULL);
 
+  resize = get_default_size (self, &width, &height);
+
   window = _editor_window_new ();
   editor_session_add_window (self, window);
+
+  if (resize)
+    gtk_window_set_default_size (GTK_WINDOW (window), width, height);
 
   document = editor_document_new_draft ();
   editor_session_add_document (self, window, document);
@@ -1496,6 +1540,11 @@ editor_session_restore_v1 (EditorSession *self,
           _editor_window_set_sidebar_revealed (ewin, sidebar_revealed);
 
           gtk_window_present (GTK_WINDOW (ewin));
+        }
+      else
+        {
+          default_width = width;
+          default_height = height;
         }
     }
 
