@@ -110,13 +110,23 @@ editor_page_document_notify_busy_cb (EditorPage     *self,
                                      EditorDocument *document)
 {
   gboolean busy;
+  gboolean editable;
 
   g_assert (EDITOR_IS_PAGE (self));
   g_assert (EDITOR_IS_DOCUMENT (document));
 
   busy = editor_document_get_busy (document);
+  editable = !busy;
 
-  gtk_text_view_set_editable (GTK_TEXT_VIEW (self->view), !busy);
+  if (gtk_text_view_get_editable (GTK_TEXT_VIEW (self->view)) != editable)
+    {
+      gtk_text_view_set_editable (GTK_TEXT_VIEW (self->view), editable);
+
+      /* Force a resize or we risk having invalid font renderings
+       * lingering across editable changes.
+       */
+      gtk_widget_queue_resize (GTK_WIDGET (self->view));
+    }
 
   if (!busy)
     _editor_widget_hide_with_fade (GTK_WIDGET (self->progress_bar));
