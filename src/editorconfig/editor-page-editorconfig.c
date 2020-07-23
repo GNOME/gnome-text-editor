@@ -51,6 +51,8 @@ editor_page_editorconfig_reload (EditorPageEditorconfig *self)
 
   g_assert (EDITOR_IS_PAGE_EDITORCONFIG (self));
 
+  /* TODO: We probably want to do this all async from a thread. */
+
   if (self->document == NULL ||
       !(file = editor_document_get_file (self->document)) ||
       !(ht = editorconfig_glib_read (file, NULL, NULL)))
