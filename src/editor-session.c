@@ -958,29 +958,6 @@ editor_session_update_recent_worker (GTask        *task,
 }
 
 static void
-editor_session_save_unlink_cb (GObject      *object,
-                               GAsyncResult *result,
-                               gpointer      user_data)
-{
-  GFile *file = (GFile *)object;
-  g_autoptr(GTask) task = user_data;
-  g_autoptr(GError) error = NULL;
-
-  g_assert (G_IS_FILE (file));
-  g_assert (G_IS_ASYNC_RESULT (result));
-  g_assert (G_IS_TASK (task));
-
-  if (!g_file_delete_finish (file, result, &error))
-    {
-      if (!g_error_matches (error, G_IO_ERROR, G_IO_ERROR_NOT_FOUND))
-        g_warning ("Failed to unlink session file: %s",
-                   error->message);
-    }
-
-  g_task_run_in_thread (task, editor_session_update_recent_worker);
-}
-
-static void
 editor_session_save_replace_contents_cb (GObject      *object,
                                          GAsyncResult *result,
                                          gpointer      user_data)
@@ -1099,27 +1076,18 @@ editor_session_save_async (EditorSession       *self,
                                          g_object_ref (task));
     }
 
-  /* If we haven't started any draft saving, then we have no
-   * operations to restore and can just unlink the session file.
+  /* If we haven't started any draft saving, then we can jump
+   * to writing the state file immediately.
    */
   if (state->n_active == 0)
-    {
-      if (state->seen == NULL)
-        g_file_delete_async (self->state_file,
-                             G_PRIORITY_HIGH,
-                             NULL,
-                             editor_session_save_unlink_cb,
-                             g_steal_pointer (&task));
-      else
-        g_file_replace_contents_bytes_async (state->state_file,
-                                             state->state_bytes,
-                                             NULL,
-                                             FALSE,
-                                             G_FILE_CREATE_REPLACE_DESTINATION,
-                                             NULL,
-                                             editor_session_save_replace_contents_cb,
-                                             g_steal_pointer (&task));
-    }
+    g_file_replace_contents_bytes_async (state->state_file,
+                                         state->state_bytes,
+                                         NULL,
+                                         FALSE,
+                                         G_FILE_CREATE_REPLACE_DESTINATION,
+                                         NULL,
+                                         editor_session_save_replace_contents_cb,
+                                         g_steal_pointer (&task));
 }
 
 gboolean
