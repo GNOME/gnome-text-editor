@@ -37,10 +37,6 @@ editor_sources = [
   'editor-window-actions.c',
   'editor-window-dnd.c',
   'main.c',
-
-  # modeline support
-  'modelines/modeline-parser.c',
-  'modelines/editor-modeline-settings-provider.c',
 ]
 
 editor_deps = [
@@ -66,6 +62,7 @@ editor_enums = gnome.mkenums_simple('editor-enums',
          sources: editor_enums_headers,
 )
 
+subdir('modelines')
 subdir('editorconfig')
 
 editor = executable('gnome-text-editor', editor_sources + editor_enums,
