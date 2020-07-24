@@ -45,6 +45,7 @@ struct _EditorDocument
   gdouble          busy_progress;
 
   guint            readonly : 1;
+  guint            needs_autosave : 1;
 };
 
 typedef struct
@@ -164,6 +165,19 @@ editor_document_save_notify_completed_cb (EditorDocument *self,
    */
   if (!g_task_had_error (task))
     _editor_session_remove_draft (session, self->draft_id);
+}
+
+static void
+editor_document_changed (GtkTextBuffer *buffer)
+{
+  EditorDocument *self = (EditorDocument *)buffer;
+
+  g_assert (EDITOR_IS_DOCUMENT (self));
+
+  /* Track separately from :modified for drafts */
+  self->needs_autosave = TRUE;
+
+  GTK_TEXT_BUFFER_CLASS (editor_document_parent_class)->changed (buffer);
 }
 
 static void
@@ -349,6 +363,7 @@ editor_document_class_init (EditorDocumentClass *klass)
   object_class->get_property = editor_document_get_property;
   object_class->set_property = editor_document_set_property;
 
+  buffer_class->changed = editor_document_changed;
   buffer_class->insert_text = editor_document_insert_text;
   buffer_class->delete_range = editor_document_delete_range;
   buffer_class->mark_set = editor_document_mark_set;
@@ -543,12 +558,14 @@ _editor_document_save_draft_async (EditorDocument      *self,
   task = g_task_new (self, cancellable, callback, user_data);
   g_task_set_source_tag (task, _editor_document_save_draft_async);
 
-  if (!gtk_text_buffer_get_modified (GTK_TEXT_BUFFER (self)))
+  if (!self->needs_autosave)
     {
       /* Do nothing if we are already up to date */
       g_task_return_boolean (task, TRUE);
       return;
     }
+
+  self->needs_autosave = FALSE;
 
   /* First tell the session to track this draft */
   session = editor_application_get_session (EDITOR_APPLICATION_DEFAULT);
@@ -914,6 +931,7 @@ editor_document_load_cb (GObject      *object,
   g_assert (G_IS_TASK (task));
 
   self = g_task_get_source_object (task);
+  self->needs_autosave = FALSE;
 
   if (!gtk_source_file_loader_load_finish (loader, result, &error))
     {
