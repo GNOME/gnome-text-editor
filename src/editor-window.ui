@@ -1,258 +1,270 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <requires lib="gtk+" version="3.24"/>
-  <template class="EditorWindow" parent="GtkApplicationWindow">
+  <template class="EditorWindow" parent="HdyApplicationWindow">
     <style>
       <class name="org-gnome-TextEditor"/>
     </style>
-    <child type="titlebar">
-      <object class="GtkHeaderBar" id="header_bar">
-        <property name="visible">true</property>
-        <property name="show-close-button">True</property>
-        <child type="title">
-          <object class="GtkBox">
-            <property name="visible">true</property>
-            <property name="hexpand">true</property>
-            <property name="valign">center</property>
-            <property name="orientation">vertical</property>
-            <property name="margin-start">12</property>
-            <property name="margin-end">12</property>
-            <child>
-              <object class="GtkBox">
-                <property name="visible">true</property>
-                <property name="hexpand">true</property>
-                <child>
-                  <object class="GtkLabel" id="is_modified">
-                    <property name="visible">true</property>
-                    <property name="halign">end</property>
-                    <property name="hexpand">true</property>
-                    <property name="label">•</property>
-                    <property name="margin-end">6</property>
-                    <property name="visible">false</property>
-                  </object>
-                </child>
-                <child type="center">
-                  <object class="GtkLabel" id="title">
-                    <property name="visible">true</property>
-                    <property name="ellipsize">end</property>
-                    <property name="width-chars">3</property>
-                    <attributes>
-                      <attribute name="weight" value="bold"/>
-                    </attributes>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkLabel" id="subtitle">
-                <property name="ellipsize">middle</property>
-                <property name="visible">true</property>
-                <attributes>
-                  <attribute name="scale" value="0.8222"/>
-                  <attribute name="foreground-alpha" value="32767"/>
-                </attributes>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child>
-          <object class="GtkBox">
-            <property name="halign">start</property>
-            <property name="spacing">6</property>
-              <property name="visible">true</property>
-            <child>
-              <object class="GtkToggleButton" id="open_toggle_button">
-                <property name="label" translatable="yes">Open</property>
-                <signal name="toggled" handler="editor_window_sidebar_toggled_cb" swapped="true" object="EditorWindow"/>
-                  <property name="visible">true</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkButton" id="new_button">
-                <property name="action-name">session.new-draft</property>
-                <property name="has-tooltip">true</property>
-                <property name="tooltip-text" translatable="yes">Create new document in tab (Ctrl+T)</property>
-                  <property name="visible">true</property>
-                <child>
-                  <object class="GtkImage">
-                    <property name="icon-name">tab-new-symbolic</property>
-                    <property name="visible">True</property>
-                  </object>
-                </child>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child>
-          <object class="GtkBox">
-            <property name="margin-end">6</property>
-            <property name="halign">end</property>
-            <property name="spacing">6</property>
-            <property name="visible">true</property>
-            <child>
-              <object class="EditorPositionLabel" id="position_label">
-                <property name="visible">true</property>
-                <property name="halign">end</property>
-                <property name="hexpand">false</property>
-                <property name="valign">center</property>
-                <property name="vexpand">false</property>
-                <property name="visible">false</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkMenuButton" id="export_menu">
-                <property name="visible">true</property>
-                <child>
-                  <object class="GtkImage">
-                    <property name="visible">true</property>
-                    <property name="icon-name">document-save-symbolic</property>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkMenuButton" id="options_menu">
-                <property name="visible">True</property>
-                <child>
-                  <object class="GtkImage">
-                    <property name="icon-name">document-properties-symbolic</property>
-                    <property name="visible">True</property>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkMenuButton" id="primary_menu">
-                <property name="visible">True</property>
-                <child>
-                  <object class="GtkImage">
-                    <property name="icon-name">open-menu-symbolic</property>
-                    <property name="visible">True</property>
-                  </object>
-                </child>
-              </object>
-            </child>
-          </object>
-          <packing>
-            <property name="pack-type">end</property>
-          </packing>
-        </child>
-      </object>
-    </child>
     <child>
-      <object class="GtkEventBox" id="drop_box">
+      <object class="HdyLeaflet">
         <property name="visible">true</property>
-        <property name="visible-window">true</property>
         <child>
-          <object class="GtkPaned" id="paned">
-            <property name="orientation">horizontal</property>
-            <property name="position">250</property>
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
             <property name="visible">true</property>
             <child>
-              <object class="EditorSidebar" id="sidebar">
-                <property name="visible" bind-source="open_toggle_button" bind-property="active" bind-flags="bidirectional">false</property>
-              </object>
-              <packing>
-                <property name="resize">true</property>
-                <property name="shrink">false</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkStack" id="stack">
+              <object class="GtkHeaderBar" id="header_bar">
                 <property name="visible">true</property>
-                <style>
-                  <class name="view"/>
-                </style>
-                <child>
-                  <object class="GtkNotebook" id="notebook">
-                    <signal name="page-reordered" handler="editor_window_notebook_page_reordered_cb" swapped="true" object="EditorWindow"/>
-                    <property name="scrollable">true</property>
-                    <property name="show-border">false</property>
-                    <property name="show-tabs">false</property>
-                    <property name="hexpand">true</property>
-                    <property name="vexpand">true</property>
+                <property name="vexpand">false</property>
+                <property name="show-close-button">True</property>
+                <child type="title">
+                  <object class="GtkBox">
                     <property name="visible">true</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkBox" id="empty">
                     <property name="hexpand">true</property>
-                    <property name="vexpand">true</property>
-                    <property name="halign">center</property>
                     <property name="valign">center</property>
                     <property name="orientation">vertical</property>
-                    <property name="margin-top">32</property>
-                    <property name="margin-start">32</property>
-                    <property name="margin-end">32</property>
-                    <property name="margin-bottom">32</property>
-                    <property name="visible">true</property>
+                    <property name="margin-start">12</property>
+                    <property name="margin-end">12</property>
                     <child>
-                      <object class="GtkImage">
-                        <property name="icon-name">text-editor-symbolic</property>
-                        <property name="pixel-size">128</property>
-                        <property name="margin-start">24</property>
-                        <property name="margin-bottom">24</property>
+                      <object class="GtkBox">
                         <property name="visible">true</property>
-                        <style>
-                          <class name="dim-label"/>
-                        </style>
+                        <property name="hexpand">true</property>
+                        <child>
+                          <object class="GtkLabel" id="is_modified">
+                            <property name="visible">true</property>
+                            <property name="halign">end</property>
+                            <property name="hexpand">true</property>
+                            <property name="label">•</property>
+                            <property name="margin-end">6</property>
+                            <property name="visible">false</property>
+                          </object>
+                        </child>
+                        <child type="center">
+                          <object class="GtkLabel" id="title">
+                            <property name="visible">true</property>
+                            <property name="ellipsize">end</property>
+                            <property name="width-chars">3</property>
+                            <attributes>
+                              <attribute name="weight" value="bold"/>
+                            </attributes>
+                          </object>
+                        </child>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkLabel">
-                        <property name="label" translatable="yes">Start or Open a Document</property>
-                        <property name="margin-bottom">16</property>
+                      <object class="GtkLabel" id="subtitle">
+                        <property name="ellipsize">middle</property>
                         <property name="visible">true</property>
-                        <style>
-                          <class name="dim-label"/>
-                        </style>
                         <attributes>
-                          <attribute name="weight" value="bold"/>
-                          <attribute name="scale" value="1.4"/>
+                          <attribute name="scale" value="0.8222"/>
+                          <attribute name="foreground-alpha" value="32767"/>
                         </attributes>
                       </object>
                     </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkBox">
+                    <property name="halign">start</property>
+                    <property name="spacing">6</property>
+                      <property name="visible">true</property>
                     <child>
-                      <object class="GtkLabel">
-                        <property name="halign">start</property>
-                        <property name="label" translatable="yes">• Use the open sidebar</property>
-                        <property name="margin-bottom">6</property>
-                        <property name="visible">true</property>
-                        <style>
-                          <class name="dim-label"/>
-                        </style>
+                      <object class="GtkToggleButton" id="open_toggle_button">
+                        <property name="label" translatable="yes">Open</property>
+                        <signal name="toggled" handler="editor_window_sidebar_toggled_cb" swapped="true" object="EditorWindow"/>
+                          <property name="visible">true</property>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkLabel">
-                        <property name="halign">start</property>
-                        <property name="label" translatable="yes">• Press the new tab button</property>
-                        <property name="margin-bottom">6</property>
+                      <object class="GtkButton" id="new_button">
+                        <property name="action-name">session.new-draft</property>
+                        <property name="has-tooltip">true</property>
+                        <property name="tooltip-text" translatable="yes">Create new document in tab (Ctrl+T)</property>
+                          <property name="visible">true</property>
+                        <child>
+                          <object class="GtkImage">
+                            <property name="icon-name">tab-new-symbolic</property>
+                            <property name="visible">True</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkBox">
+                    <property name="margin-end">6</property>
+                    <property name="halign">end</property>
+                    <property name="spacing">6</property>
+                    <property name="visible">true</property>
+                    <child>
+                      <object class="EditorPositionLabel" id="position_label">
                         <property name="visible">true</property>
-                        <style>
-                          <class name="dim-label"/>
-                        </style>
+                        <property name="halign">end</property>
+                        <property name="hexpand">false</property>
+                        <property name="valign">center</property>
+                        <property name="vexpand">false</property>
+                        <property name="visible">false</property>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkLabel">
-                        <property name="halign">start</property>
-                        <property name="label" translatable="yes">• Press Ctrl+N to start a new document</property>
-                        <property name="margin-bottom">6</property>
+                      <object class="GtkMenuButton" id="export_menu">
                         <property name="visible">true</property>
-                        <style>
-                          <class name="dim-label"/>
-                        </style>
+                        <child>
+                          <object class="GtkImage">
+                            <property name="visible">true</property>
+                            <property name="icon-name">document-save-symbolic</property>
+                          </object>
+                        </child>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkLabel">
-                        <property name="halign">start</property>
-                        <property name="label" translatable="yes">• Press Ctrl+O to browse for a document</property>
+                      <object class="GtkMenuButton" id="options_menu">
+                        <property name="visible">True</property>
+                        <child>
+                          <object class="GtkImage">
+                            <property name="icon-name">document-properties-symbolic</property>
+                            <property name="visible">True</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuButton" id="primary_menu">
+                        <property name="visible">True</property>
+                        <child>
+                          <object class="GtkImage">
+                            <property name="icon-name">open-menu-symbolic</property>
+                            <property name="visible">True</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="pack-type">end</property>
+                  </packing>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkEventBox" id="drop_box">
+                <property name="visible">true</property>
+                <property name="visible-window">true</property>
+                <child>
+                  <object class="GtkPaned" id="paned">
+                    <property name="orientation">horizontal</property>
+                    <property name="position">250</property>
+                    <property name="visible">true</property>
+                    <child>
+                      <object class="EditorSidebar" id="sidebar">
+                        <property name="visible" bind-source="open_toggle_button" bind-property="active" bind-flags="bidirectional">false</property>
+                      </object>
+                      <packing>
+                        <property name="resize">true</property>
+                        <property name="shrink">false</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkStack" id="stack">
                         <property name="visible">true</property>
                         <style>
-                          <class name="dim-label"/>
+                          <class name="view"/>
                         </style>
+                        <child>
+                          <object class="GtkNotebook" id="notebook">
+                            <signal name="page-reordered" handler="editor_window_notebook_page_reordered_cb" swapped="true" object="EditorWindow"/>
+                            <property name="scrollable">true</property>
+                            <property name="show-border">false</property>
+                            <property name="show-tabs">false</property>
+                            <property name="hexpand">true</property>
+                            <property name="vexpand">true</property>
+                            <property name="visible">true</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkBox" id="empty">
+                            <property name="hexpand">true</property>
+                            <property name="vexpand">true</property>
+                            <property name="halign">center</property>
+                            <property name="valign">center</property>
+                            <property name="orientation">vertical</property>
+                            <property name="margin-top">32</property>
+                            <property name="margin-start">32</property>
+                            <property name="margin-end">32</property>
+                            <property name="margin-bottom">32</property>
+                            <property name="visible">true</property>
+                            <child>
+                              <object class="GtkImage">
+                                <property name="icon-name">text-editor-symbolic</property>
+                                <property name="pixel-size">128</property>
+                                <property name="margin-start">24</property>
+                                <property name="margin-bottom">24</property>
+                                <property name="visible">true</property>
+                                <style>
+                                  <class name="dim-label"/>
+                                </style>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="label" translatable="yes">Start or Open a Document</property>
+                                <property name="margin-bottom">16</property>
+                                <property name="visible">true</property>
+                                <style>
+                                  <class name="dim-label"/>
+                                </style>
+                                <attributes>
+                                  <attribute name="weight" value="bold"/>
+                                  <attribute name="scale" value="1.4"/>
+                                </attributes>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="halign">start</property>
+                                <property name="label" translatable="yes">• Use the open sidebar</property>
+                                <property name="margin-bottom">6</property>
+                                <property name="visible">true</property>
+                                <style>
+                                  <class name="dim-label"/>
+                                </style>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="halign">start</property>
+                                <property name="label" translatable="yes">• Press the new tab button</property>
+                                <property name="margin-bottom">6</property>
+                                <property name="visible">true</property>
+                                <style>
+                                  <class name="dim-label"/>
+                                </style>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="halign">start</property>
+                                <property name="label" translatable="yes">• Press Ctrl+N to start a new document</property>
+                                <property name="margin-bottom">6</property>
+                                <property name="visible">true</property>
+                                <style>
+                                  <class name="dim-label"/>
+                                </style>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="halign">start</property>
+                                <property name="label" translatable="yes">• Press Ctrl+O to browse for a document</property>
+                                <property name="visible">true</property>
+                                <style>
+                                  <class name="dim-label"/>
+                                </style>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
                       </object>
                     </child>
                   </object>

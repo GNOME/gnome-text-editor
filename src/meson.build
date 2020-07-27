@@ -44,6 +44,7 @@ editor_deps = [
   dependency('gio-2.0', version: '>= 2.50'),
   dependency('gtk+-3.0', version: '>= 3.24'),
   dependency('gtksourceview-4', version: '>= 4.6'),
+  dependency('libhandy-1'),
 ]
 
 editor_sources += gnome.compile_resources('editor-resources',
@@ -70,6 +71,7 @@ editor = executable('gnome-text-editor', editor_sources + editor_enums,
   include_directories: [include_directories('..'),
                         include_directories('editorconfig'),
                         include_directories('editorconfig/libeditorconfig')],
+               c_args: [ '-DHANDY_USE_UNSTABLE_API' ],
          dependencies: editor_deps,
               install: true,
 )

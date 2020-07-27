@@ -22,6 +22,8 @@
 
 #include "config.h"
 
+#include <libhandy-1/handy.h>
+
 #include "editor-application-private.h"
 #include "editor-session-private.h"
 #include "editor-utils-private.h"
@@ -179,6 +181,8 @@ editor_application_startup (GApplication *application)
   g_assert (EDITOR_IS_APPLICATION (self));
 
   G_APPLICATION_CLASS (editor_application_parent_class)->startup (application);
+
+  hdy_init ();
 
   gtk_application_set_accels_for_action (GTK_APPLICATION (self), "app.quit", quit_accels);
 

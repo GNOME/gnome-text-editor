@@ -23,6 +23,7 @@
 #include "config.h"
 
 #include <glib/gi18n.h>
+#include <libhandy-1/handy.h>
 
 #include "editor-application.h"
 #include "editor-document.h"
@@ -31,7 +32,7 @@
 #include "editor-utils-private.h"
 #include "editor-window-private.h"
 
-G_DEFINE_TYPE (EditorWindow, editor_window, GTK_TYPE_APPLICATION_WINDOW)
+G_DEFINE_TYPE (EditorWindow, editor_window, HDY_TYPE_APPLICATION_WINDOW)
 
 enum {
   PROP_0,

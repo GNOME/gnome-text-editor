@@ -31,7 +31,7 @@ G_BEGIN_DECLS
 
 struct _EditorWindow
 {
-  GtkApplicationWindow  parent_instance;
+  HdyApplicationWindow  parent_instance;
 
   /* Template Widgets */
   GtkWidget            *drop_box;
