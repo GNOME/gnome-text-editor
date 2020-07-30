@@ -110,7 +110,6 @@ editor_language_dialog_filter_cb (EditorLanguageRow *row,
                                   GPatternSpec      *spec)
 {
   g_assert (EDITOR_IS_LANGUAGE_ROW (row));
-  g_assert (spec != NULL);
 
   if (_editor_language_row_match (row, spec))
     gtk_widget_show (GTK_WIDGET (row));
