@@ -1393,12 +1393,22 @@ editor_document_dup_title (EditorDocument *self)
 
           ch = gtk_text_iter_get_char (&iter);
 
+          /* If we get double newlines, then assume we're at end of title */
+          if (ch == '\n' && str->len > 0)
+            {
+              GtkTextIter peek = iter;
+
+              if (gtk_text_iter_forward_char (&peek) &&
+                  gtk_text_iter_get_char (&peek) == '\n')
+                break;
+            }
+
           if (g_unichar_isspace (ch) || !g_unichar_isalnum (ch))
             {
               if (count > TITLE_LAST_WORD_POS)
                 break;
 
-              if (count == 0 || !g_str_has_suffix (str->str, " "))
+              if (str->len > 0 && str->str[str->len-1] != ' ')
                 {
                   count++;
                   g_string_append_c (str, ' ');
