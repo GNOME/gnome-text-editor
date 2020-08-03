@@ -118,8 +118,8 @@ editor_search_bar_move_next_forward_cb (GObject      *object,
   editor_search_bar_scroll_to_insert (self);
 }
 
-static void
-editor_search_bar_move_next_cb (EditorSearchBar *self)
+void
+_editor_search_bar_move_next (EditorSearchBar *self)
 {
   GtkSourceBuffer *buffer;
   GtkTextIter begin;
@@ -139,12 +139,10 @@ editor_search_bar_move_next_cb (EditorSearchBar *self)
                                            self->cancellable,
                                            editor_search_bar_move_next_forward_cb,
                                            g_object_ref (self));
-
-  editor_search_bar_scroll_to_insert (self);
 }
 
-static void
-editor_search_bar_move_previous_cb (EditorSearchBar *self)
+void
+_editor_search_bar_move_previous (EditorSearchBar *self)
 {
   GtkSourceBuffer *buffer;
   GtkTextIter begin;
@@ -324,7 +322,7 @@ editor_search_bar_class_init (EditorSearchBarClass *klass)
     g_signal_new_class_handler ("move-next-search",
                                 G_TYPE_FROM_CLASS (klass),
                                 G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
-                                G_CALLBACK (editor_search_bar_move_next_cb),
+                                G_CALLBACK (_editor_search_bar_move_next),
                                 NULL, NULL,
                                 NULL,
                                 G_TYPE_NONE, 0);
@@ -333,7 +331,7 @@ editor_search_bar_class_init (EditorSearchBarClass *klass)
     g_signal_new_class_handler ("move-previous-search",
                                 G_TYPE_FROM_CLASS (klass),
                                 G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
-                                G_CALLBACK (editor_search_bar_move_previous_cb),
+                                G_CALLBACK (_editor_search_bar_move_previous),
                                 NULL, NULL,
                                 NULL,
                                 G_TYPE_NONE, 0);
