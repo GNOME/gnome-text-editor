@@ -53,6 +53,7 @@ G_DEFINE_TYPE (EditorSearchBar, editor_search_bar, EDITOR_TYPE_BIN)
 
 enum {
   PROP_0,
+  PROP_CAN_MOVE,
   PROP_MODE,
   N_PROPS
 };
@@ -85,7 +86,7 @@ editor_search_bar_search_activate_cb (EditorSearchBar *self,
   g_assert (EDITOR_IS_SEARCH_BAR (self));
   g_assert (GTK_IS_ENTRY (entry));
 
-  _editor_activate_action (GTK_WIDGET (self), "search.move-next", NULL);
+  _editor_search_bar_move_next (self);
   _editor_activate_action (GTK_WIDGET (self), "search.hide", NULL);
 }
 
@@ -266,6 +267,10 @@ editor_search_bar_get_property (GObject    *object,
                         EDITOR_SEARCH_BAR_MODE_SEARCH);
       break;
 
+    case PROP_CAN_MOVE:
+      g_value_set_boolean (value, _editor_search_bar_get_can_move (self));
+      break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
     }
@@ -346,6 +351,14 @@ editor_search_bar_class_init (EditorSearchBarClass *klass)
                                 G_TYPE_NONE, 0);
 
   gtk_binding_entry_add_signal (bindings, GDK_KEY_Escape, 0, "hide-search", 0);
+  gtk_binding_entry_add_signal (bindings, GDK_KEY_g, GDK_CONTROL_MASK|GDK_SHIFT_MASK, "move-previous-search", 0);
+  gtk_binding_entry_add_signal (bindings, GDK_KEY_g, GDK_CONTROL_MASK, "move-next-search", 0);
+  gtk_binding_entry_add_signal (bindings, GDK_KEY_Down, 0, "move-next-search", 0);
+  gtk_binding_entry_add_signal (bindings, GDK_KEY_Up, 0, "move-previous-search", 0);
+  gtk_binding_entry_add_signal (bindings, GDK_KEY_Return, 0, "move-next-search", 0);
+  gtk_binding_entry_add_signal (bindings, GDK_KEY_KP_Enter, 0, "move-next-search", 0);
+  gtk_binding_entry_add_signal (bindings, GDK_KEY_Return, GDK_SHIFT_MASK, "move-previous-search", 0);
+  gtk_binding_entry_add_signal (bindings, GDK_KEY_KP_Enter, GDK_SHIFT_MASK, "move-previous-search", 0);
 
   properties [PROP_MODE] =
     g_param_spec_enum ("mode",
@@ -354,6 +367,13 @@ editor_search_bar_class_init (EditorSearchBarClass *klass)
                        EDITOR_TYPE_SEARCH_BAR_MODE,
                        EDITOR_SEARCH_BAR_MODE_SEARCH,
                        (G_PARAM_READWRITE | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_STRINGS));
+
+  properties [PROP_CAN_MOVE] =
+    g_param_spec_boolean ("can-move",
+                          "Can Move",
+                          "If there are search results",
+                          FALSE,
+                          (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_properties (object_class, N_PROPS, properties);
 }
@@ -408,6 +428,17 @@ _editor_search_bar_set_mode (EditorSearchBar     *self,
   g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_MODE]);
 }
 
+static void
+editor_search_bar_notify_occurrences_count_cb (EditorSearchBar        *self,
+                                               GParamSpec             *pspec,
+                                               GtkSourceSearchContext *context)
+{
+  g_assert (EDITOR_IS_SEARCH_BAR (self));
+  g_assert (GTK_SOURCE_IS_SEARCH_CONTEXT (context));
+
+  g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_CAN_MOVE]);
+}
+
 void
 _editor_search_bar_attach (EditorSearchBar *self,
                            EditorDocument  *document)
@@ -423,6 +454,11 @@ _editor_search_bar_attach (EditorSearchBar *self,
   self->cancellable = g_cancellable_new ();
   self->context = gtk_source_search_context_new (GTK_SOURCE_BUFFER (document),
                                                  self->settings);
+  g_signal_connect_object (self->context,
+                           "notify::occurrences-count",
+                           G_CALLBACK (editor_search_bar_notify_occurrences_count_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
 }
 
 void
@@ -434,4 +470,12 @@ _editor_search_bar_detach (EditorSearchBar *self)
 
   g_clear_object (&self->context);
   g_clear_object (&self->cancellable);
+}
+
+gboolean
+_editor_search_bar_get_can_move (EditorSearchBar *self)
+{
+  g_return_val_if_fail (EDITOR_IS_SEARCH_BAR (self), FALSE);
+
+  return gtk_source_search_context_get_occurrences_count (self->context) > 0;
 }

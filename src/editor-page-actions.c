@@ -77,6 +77,28 @@ editor_page_actions_search_move_previous (GSimpleAction *action,
   _editor_page_move_previous_search (self);
 }
 
+static void
+on_notify_can_move_cb (EditorPage      *self,
+                       GParamSpec      *pspec,
+                       EditorSearchBar *search_bar)
+{
+  GActionGroup *search;
+  GAction *action;
+  gboolean can_move;
+
+  g_assert (EDITOR_IS_PAGE (self));
+  g_assert (EDITOR_IS_SEARCH_BAR (search_bar));
+
+  search = gtk_widget_get_action_group (GTK_WIDGET (self), "search");
+  can_move = _editor_search_bar_get_can_move (search_bar);
+
+  action = g_action_map_lookup_action (G_ACTION_MAP (search), "move-next");
+  g_simple_action_set_enabled (G_SIMPLE_ACTION (action), can_move);
+
+  action = g_action_map_lookup_action (G_ACTION_MAP (search), "move-previous");
+  g_simple_action_set_enabled (G_SIMPLE_ACTION (action), can_move);
+}
+
 void
 _editor_page_class_actions_init (EditorPageClass *klass)
 {
@@ -102,4 +124,10 @@ _editor_page_actions_init (EditorPage *self)
 
   gtk_widget_insert_action_group (GTK_WIDGET (self), "page", G_ACTION_GROUP (page));
   gtk_widget_insert_action_group (GTK_WIDGET (self), "search", G_ACTION_GROUP (search));
+
+  g_signal_connect_object (self->search_bar,
+                           "notify::can-move",
+                           G_CALLBACK (on_notify_can_move_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
 }
