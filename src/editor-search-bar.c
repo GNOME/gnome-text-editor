@@ -115,6 +115,7 @@ editor_search_bar_move_next_forward_cb (GObject      *object,
 
   buffer = gtk_source_search_context_get_buffer (context);
   gtk_text_buffer_select_range (GTK_TEXT_BUFFER (buffer), &begin, &end);
+  editor_search_bar_scroll_to_insert (self);
 }
 
 static void
