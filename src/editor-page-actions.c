@@ -53,6 +53,30 @@ editor_page_actions_search_hide (GSimpleAction *action,
   gtk_widget_grab_focus (GTK_WIDGET (self));
 }
 
+static void
+editor_page_actions_search_move_next (GSimpleAction *action,
+                                      GVariant      *param,
+                                      gpointer       user_data)
+{
+  EditorPage *self = user_data;
+
+  g_assert (EDITOR_IS_PAGE (self));
+
+  _editor_page_move_next_search (self);
+}
+
+static void
+editor_page_actions_search_move_previous (GSimpleAction *action,
+                                          GVariant      *param,
+                                          gpointer       user_data)
+{
+  EditorPage *self = user_data;
+
+  g_assert (EDITOR_IS_PAGE (self));
+
+  _editor_page_move_previous_search (self);
+}
+
 void
 _editor_page_class_actions_init (EditorPageClass *klass)
 {
@@ -66,6 +90,8 @@ _editor_page_actions_init (EditorPage *self)
   };
   static const GActionEntry search_actions[] = {
     { "hide", editor_page_actions_search_hide },
+    { "move-next", editor_page_actions_search_move_next },
+    { "move-previous", editor_page_actions_search_move_previous },
   };
 
   g_autoptr(GSimpleActionGroup) page = g_simple_action_group_new ();
