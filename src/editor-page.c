@@ -23,37 +23,9 @@
 #include "config.h"
 
 #include <glib/gi18n.h>
-#include <gtksourceview/gtksource.h>
 
-#include "editor-animation.h"
-#include "editor-binding-group.h"
-#include "editor-document-private.h"
 #include "editor-page-private.h"
-#include "editor-page-settings.h"
-#include "editor-path-private.h"
-#include "editor-print-operation.h"
-#include "editor-search-bar-private.h"
 #include "editor-utils-private.h"
-#include "editor-window.h"
-
-struct _EditorPage
-{
-  GtkBin                   parent_instance;
-
-  EditorDocument          *document;
-  EditorPageSettings      *settings;
-  EditorBindingGroup      *settings_bindings;
-
-  EditorAnimation         *progress_animation;
-
-  GtkOverlay              *overlay;
-  GtkScrolledWindow       *scroller;
-  GtkSourceView           *view;
-  GtkProgressBar          *progress_bar;
-  GtkRevealer             *search_revealer;
-  EditorSearchBar         *search_bar;
-  GtkSourceGutterRenderer *lines_renderer;
-};
 
 enum {
   PROP_0,
