@@ -429,7 +429,13 @@ editor_page_update_top_margin (EditorPage *self)
     new_top_margin = 16;
   diff = new_top_margin - top_margin;
 
-  gtk_text_view_set_top_margin (GTK_TEXT_VIEW (self->view), new_top_margin);
+  if (new_top_margin != gtk_text_view_get_top_margin (GTK_TEXT_VIEW (self->view)))
+    editor_object_animate (self->view,
+                           EDITOR_ANIMATION_EASE_OUT_CUBIC,
+                           gtk_revealer_get_transition_duration (self->search_revealer),
+                           NULL,
+                           "top-margin", new_top_margin,
+                           NULL);
 
   if (gtk_adjustment_get_value (adj) > new_top_margin)
     gtk_adjustment_set_value (adj, gtk_adjustment_get_value (adj) + diff);
