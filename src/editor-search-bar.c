@@ -47,6 +47,10 @@ struct _EditorSearchBar
   GtkToggleButton         *options_button;
   GtkToggleButton         *replace_mode_button;
   GtkBox                  *options_box;
+
+  guint                    can_move : 1;
+  guint                    can_replace : 1;
+  guint                    can_replace_all : 1;
 };
 
 G_DEFINE_TYPE (EditorSearchBar, editor_search_bar, EDITOR_TYPE_BIN)
@@ -54,6 +58,8 @@ G_DEFINE_TYPE (EditorSearchBar, editor_search_bar, EDITOR_TYPE_BIN)
 enum {
   PROP_0,
   PROP_CAN_MOVE,
+  PROP_CAN_REPLACE,
+  PROP_CAN_REPLACE_ALL,
   PROP_MODE,
   N_PROPS
 };
@@ -67,6 +73,32 @@ enum {
 
 static GParamSpec *properties [N_PROPS];
 static guint signals [N_SIGNALS];
+
+static void
+update_properties (EditorSearchBar *self)
+{
+  gboolean can_move = _editor_search_bar_get_can_move (self);
+  gboolean can_replace = _editor_search_bar_get_can_replace (self);
+  gboolean can_replace_all = _editor_search_bar_get_can_replace_all (self);
+
+  if (can_move != self->can_move)
+    {
+      self->can_move = can_move;
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_CAN_MOVE]);
+    }
+
+  if (can_replace != self->can_replace)
+    {
+      self->can_replace = can_replace;
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_CAN_REPLACE]);
+    }
+
+  if (can_replace_all != self->can_replace_all)
+    {
+      self->can_replace_all = can_replace_all;
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_CAN_REPLACE_ALL]);
+    }
+}
 
 static void
 editor_search_bar_scroll_to_insert (EditorSearchBar *self)
@@ -239,6 +271,17 @@ editor_search_bar_grab_focus (GtkWidget *widget)
 }
 
 static void
+on_notify_replace_text_cb (EditorSearchBar *self,
+                           GParamSpec      *pspec,
+                           GtkEntry        *entry)
+{
+  g_assert (EDITOR_IS_SEARCH_BAR (self));
+  g_assert (GTK_IS_ENTRY (entry));
+
+  update_properties (self);
+}
+
+static void
 editor_search_bar_finalize (GObject *object)
 {
   EditorSearchBar *self = (EditorSearchBar *)object;
@@ -269,6 +312,14 @@ editor_search_bar_get_property (GObject    *object,
 
     case PROP_CAN_MOVE:
       g_value_set_boolean (value, _editor_search_bar_get_can_move (self));
+      break;
+
+    case PROP_CAN_REPLACE:
+      g_value_set_boolean (value, _editor_search_bar_get_can_replace (self));
+      break;
+
+    case PROP_CAN_REPLACE_ALL:
+      g_value_set_boolean (value, _editor_search_bar_get_can_replace_all (self));
       break;
 
     default:
@@ -375,6 +426,20 @@ editor_search_bar_class_init (EditorSearchBarClass *klass)
                           FALSE,
                           (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
+  properties [PROP_CAN_REPLACE] =
+    g_param_spec_boolean ("can-replace",
+                          "Can Replace",
+                          "If search is ready to replace a single result",
+                          FALSE,
+                          (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
+  properties [PROP_CAN_REPLACE_ALL] =
+    g_param_spec_boolean ("can-replace-all",
+                          "Can Replace All",
+                          "If search is ready to replace all results",
+                          FALSE,
+                          (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
   g_object_class_install_properties (object_class, N_PROPS, properties);
 }
 
@@ -382,6 +447,12 @@ static void
 editor_search_bar_init (EditorSearchBar *self)
 {
   gtk_widget_init_template (GTK_WIDGET (self));
+
+  g_signal_connect_object (self->replace_entry,
+                           "notify::text",
+                           G_CALLBACK (on_notify_replace_text_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
 
   self->settings = gtk_source_search_settings_new ();
 
@@ -436,7 +507,17 @@ editor_search_bar_notify_occurrences_count_cb (EditorSearchBar        *self,
   g_assert (EDITOR_IS_SEARCH_BAR (self));
   g_assert (GTK_SOURCE_IS_SEARCH_CONTEXT (context));
 
-  g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_CAN_MOVE]);
+  update_properties (self);
+}
+
+static void
+editor_search_bar_cursor_moved_cb (EditorSearchBar *self,
+                                   EditorDocument  *document)
+{
+  g_assert (EDITOR_IS_SEARCH_BAR (self));
+  g_assert (EDITOR_IS_DOCUMENT (document));
+
+  update_properties (self);
 }
 
 void
@@ -461,11 +542,17 @@ _editor_search_bar_attach (EditorSearchBar *self,
     }
 
   self->cancellable = g_cancellable_new ();
-  self->context = gtk_source_search_context_new (GTK_SOURCE_BUFFER (document),
-                                                 self->settings);
+  self->context = gtk_source_search_context_new (GTK_SOURCE_BUFFER (document), self->settings);
+
   g_signal_connect_object (self->context,
                            "notify::occurrences-count",
                            G_CALLBACK (editor_search_bar_notify_occurrences_count_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+
+  g_signal_connect_object (document,
+                           "cursor-moved",
+                           G_CALLBACK (editor_search_bar_cursor_moved_cb),
                            self,
                            G_CONNECT_SWAPPED);
 }
@@ -475,9 +562,22 @@ _editor_search_bar_detach (EditorSearchBar *self)
 {
   g_return_if_fail (EDITOR_IS_SEARCH_BAR (self));
 
-  g_cancellable_cancel (self->cancellable);
+  if (self->context != NULL)
+    {
+      EditorDocument *document;
 
-  g_clear_object (&self->context);
+      document = EDITOR_DOCUMENT (gtk_source_search_context_get_buffer (self->context));
+      g_signal_handlers_disconnect_by_func (self->context,
+                                            G_CALLBACK (editor_search_bar_notify_occurrences_count_cb),
+                                            self);
+      g_signal_handlers_disconnect_by_func (document,
+                                            G_CALLBACK (editor_search_bar_cursor_moved_cb),
+                                            self);
+
+      g_clear_object (&self->context);
+    }
+
+  g_cancellable_cancel (self->cancellable);
   g_clear_object (&self->cancellable);
 }
 
@@ -486,5 +586,75 @@ _editor_search_bar_get_can_move (EditorSearchBar *self)
 {
   g_return_val_if_fail (EDITOR_IS_SEARCH_BAR (self), FALSE);
 
-  return gtk_source_search_context_get_occurrences_count (self->context) > 0;
+  return self->context != NULL &&
+         gtk_source_search_context_get_occurrences_count (self->context) > 0;
+}
+
+gboolean
+_editor_search_bar_get_can_replace (EditorSearchBar *self)
+{
+  GtkTextIter begin, end;
+  GtkTextBuffer *buffer;
+
+  g_return_val_if_fail (EDITOR_IS_SEARCH_BAR (self), FALSE);
+
+  if (self->context == NULL)
+    return FALSE;
+
+  buffer = GTK_TEXT_BUFFER (gtk_source_search_context_get_buffer (self->context));
+
+  return _editor_search_bar_get_can_move (self) &&
+         g_strcmp0 (gtk_entry_get_text (self->replace_entry), "") != 0 &&
+         gtk_text_buffer_get_selection_bounds (buffer, &begin, &end) &&
+         gtk_source_search_context_get_occurrence_position (self->context, &begin, &end) > 0;
+}
+
+gboolean
+_editor_search_bar_get_can_replace_all (EditorSearchBar *self)
+{
+  g_return_val_if_fail (EDITOR_IS_SEARCH_BAR (self), FALSE);
+
+  return _editor_search_bar_get_can_move (self) &&
+         g_strcmp0 (gtk_entry_get_text (self->replace_entry), "") != 0;
+}
+
+void
+_editor_search_bar_replace (EditorSearchBar *self)
+{
+  g_autoptr(GError) error = NULL;
+  GtkSourceBuffer *buffer;
+  GtkTextIter begin, end;
+  const char *replace;
+
+  g_return_if_fail (EDITOR_IS_SEARCH_BAR (self));
+
+  if (!_editor_search_bar_get_can_replace (self))
+    return;
+
+  buffer = gtk_source_search_context_get_buffer (self->context);
+  replace = gtk_entry_get_text (self->replace_entry);
+
+  gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER (buffer), &begin, &end);
+
+  if (!gtk_source_search_context_replace (self->context, &begin, &end, replace, -1, &error))
+    g_warning ("Failed to replace match: %s", error->message);
+  else
+    gtk_text_buffer_select_range (GTK_TEXT_BUFFER (buffer), &begin, &begin);
+}
+
+void
+_editor_search_bar_replace_all (EditorSearchBar *self)
+{
+  g_autoptr(GError) error = NULL;
+  const char *replace;
+
+  g_return_if_fail (EDITOR_IS_SEARCH_BAR (self));
+
+  if (!_editor_search_bar_get_can_replace_all (self))
+    return;
+
+  replace = gtk_entry_get_text (self->replace_entry);
+
+  if (!gtk_source_search_context_replace_all (self->context, replace, -1, &error))
+    g_warning ("Failed to replace all matches: %s", error->message);
 }

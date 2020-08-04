@@ -78,6 +78,39 @@ editor_page_actions_search_move_previous (GSimpleAction *action,
 }
 
 static void
+editor_page_actions_replace_one (GSimpleAction *action,
+                                 GVariant      *param,
+                                 gpointer       user_data)
+{
+  EditorPage *self = user_data;
+
+  g_assert (EDITOR_IS_PAGE (self));
+
+  if (_editor_search_bar_get_can_replace (self->search_bar))
+    {
+      _editor_search_bar_replace (self->search_bar);
+      _editor_page_scroll_to_insert (self);
+      _editor_search_bar_move_next (self->search_bar);
+    }
+}
+
+static void
+editor_page_actions_replace_all (GSimpleAction *action,
+                                 GVariant      *param,
+                                 gpointer       user_data)
+{
+  EditorPage *self = user_data;
+
+  g_assert (EDITOR_IS_PAGE (self));
+
+  if (_editor_search_bar_get_can_replace_all (self->search_bar))
+    {
+      _editor_search_bar_replace_all (self->search_bar);
+      _editor_page_scroll_to_insert (self);
+    }
+}
+
+static void
 on_notify_can_move_cb (EditorPage      *self,
                        GParamSpec      *pspec,
                        EditorSearchBar *search_bar)
@@ -99,6 +132,28 @@ on_notify_can_move_cb (EditorPage      *self,
   g_simple_action_set_enabled (G_SIMPLE_ACTION (action), can_move);
 }
 
+static void
+on_notify_can_replace_cb (EditorPage      *self,
+                          GParamSpec      *pspec,
+                          EditorSearchBar *search_bar)
+{
+  GActionGroup *search;
+  GAction *action;
+
+  g_assert (EDITOR_IS_PAGE (self));
+  g_assert (EDITOR_IS_SEARCH_BAR (search_bar));
+
+  search = gtk_widget_get_action_group (GTK_WIDGET (self), "search");
+
+  action = g_action_map_lookup_action (G_ACTION_MAP (search), "replace-one");
+  g_simple_action_set_enabled (G_SIMPLE_ACTION (action),
+                               _editor_search_bar_get_can_replace (search_bar));
+
+  action = g_action_map_lookup_action (G_ACTION_MAP (search), "replace-all");
+  g_simple_action_set_enabled (G_SIMPLE_ACTION (action),
+                               _editor_search_bar_get_can_replace_all (search_bar));
+}
+
 void
 _editor_page_class_actions_init (EditorPageClass *klass)
 {
@@ -114,6 +169,8 @@ _editor_page_actions_init (EditorPage *self)
     { "hide", editor_page_actions_search_hide },
     { "move-next", editor_page_actions_search_move_next },
     { "move-previous", editor_page_actions_search_move_previous },
+    { "replace-one", editor_page_actions_replace_one },
+    { "replace-all", editor_page_actions_replace_all },
   };
 
   g_autoptr(GSimpleActionGroup) page = g_simple_action_group_new ();
@@ -128,6 +185,18 @@ _editor_page_actions_init (EditorPage *self)
   g_signal_connect_object (self->search_bar,
                            "notify::can-move",
                            G_CALLBACK (on_notify_can_move_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+
+  g_signal_connect_object (self->search_bar,
+                           "notify::can-replace",
+                           G_CALLBACK (on_notify_can_replace_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+
+  g_signal_connect_object (self->search_bar,
+                           "notify::can-replace-all",
+                           G_CALLBACK (on_notify_can_replace_cb),
                            self,
                            G_CONNECT_SWAPPED);
 }
