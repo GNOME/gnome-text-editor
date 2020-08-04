@@ -44,6 +44,7 @@
               <object class="GtkButton">
                 <property name="visible">true</property>
                 <property name="action-name">search.move-previous</property>
+                <property name="tooltip-text" translatable="yes">Move to previous match (Ctrl+Shift+g)</property>
                 <child>
                   <object class="GtkImage">
                     <property name="icon-name">go-up-symbolic</property>
@@ -56,6 +57,7 @@
               <object class="GtkButton">
                 <property name="visible">true</property>
                 <property name="action-name">search.move-next</property>
+                <property name="tooltip-text" translatable="yes">Move to next match (Ctrl+g)</property>
                 <child>
                   <object class="GtkImage">
                     <property name="icon-name">go-down-symbolic</property>
