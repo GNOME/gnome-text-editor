@@ -444,16 +444,17 @@ _editor_search_bar_attach (EditorSearchBar *self,
                            EditorDocument  *document)
 {
   GtkTextIter begin, end;
+  const gchar *search;
 
   g_return_if_fail (EDITOR_IS_SEARCH_BAR (self));
-
-  gtk_entry_set_text (GTK_ENTRY (self->search_entry), "");
-  gtk_entry_set_text (GTK_ENTRY (self->replace_entry), "");
 
   if (self->context != NULL)
     return;
 
-  if (gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER (document), &begin, &end))
+  search = gtk_entry_get_text (self->search_entry);
+
+  if ((search == NULL || g_strcmp0 (search, "") == 0) &&
+      gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER (document), &begin, &end))
     {
       g_autofree gchar *text = g_strstrip (gtk_text_iter_get_slice (&begin, &end));
       gtk_entry_set_text (self->search_entry, text);
