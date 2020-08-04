@@ -443,6 +443,8 @@ void
 _editor_search_bar_attach (EditorSearchBar *self,
                            EditorDocument  *document)
 {
+  GtkTextIter begin, end;
+
   g_return_if_fail (EDITOR_IS_SEARCH_BAR (self));
 
   gtk_entry_set_text (GTK_ENTRY (self->search_entry), "");
@@ -450,6 +452,12 @@ _editor_search_bar_attach (EditorSearchBar *self,
 
   if (self->context != NULL)
     return;
+
+  if (gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER (document), &begin, &end))
+    {
+      g_autofree gchar *text = g_strstrip (gtk_text_iter_get_slice (&begin, &end));
+      gtk_entry_set_text (self->search_entry, text);
+    }
 
   self->cancellable = g_cancellable_new ();
   self->context = gtk_source_search_context_new (GTK_SOURCE_BUFFER (document),
