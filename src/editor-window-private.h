@@ -40,6 +40,7 @@ struct _EditorWindow
   GtkLabel             *title;
   GtkLabel             *subtitle;
   GtkLabel             *is_modified;
+  GtkBox               *position_box;
   EditorPositionLabel  *position_label;
   GtkPaned             *paned;
   GtkStack             *stack;

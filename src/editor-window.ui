@@ -52,13 +52,52 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="subtitle">
-                        <property name="ellipsize">middle</property>
+                      <object class="GtkBox">
                         <property name="visible">true</property>
-                        <attributes>
-                          <attribute name="scale" value="0.8222"/>
-                          <attribute name="foreground-alpha" value="32767"/>
-                        </attributes>
+                        <property name="orientation">horizontal</property>
+                        <property name="halign">center</property>
+                        <property name="margin-top">3</property>
+                        <property name="spacing">6</property>
+                        <child>
+                          <object class="GtkLabel" id="subtitle">
+                            <property name="ellipsize">middle</property>
+                            <property name="visible">true</property>
+                            <style>
+                              <class name="dim-label"/>
+                            </style>
+                            <attributes>
+                              <attribute name="scale" value="0.8222"/>
+                            </attributes>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkBox" id="position_box">
+                            <property name="orientation">horizontal</property>
+                            <property name="spacing">6</property>
+                            <property name="visible">false</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="label">—</property>
+                                <property name="visible">true</property>
+                                <style>
+                                  <class name="dim-label"/>
+                                </style>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="EditorPositionLabel" id="position_label">
+                                <property name="visible">true</property>
+                                <property name="hexpand">false</property>
+                                <property name="valign">center</property>
+                                <property name="vexpand">false</property>
+                                <property name="visible">true</property>
+                                <style>
+                                  <class name="dim-label"/>
+                                </style>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
                       </object>
                     </child>
                   </object>
@@ -97,16 +136,6 @@
                     <property name="halign">end</property>
                     <property name="spacing">6</property>
                     <property name="visible">true</property>
-                    <child>
-                      <object class="EditorPositionLabel" id="position_label">
-                        <property name="visible">true</property>
-                        <property name="halign">end</property>
-                        <property name="hexpand">false</property>
-                        <property name="valign">center</property>
-                        <property name="vexpand">false</property>
-                        <property name="visible">false</property>
-                      </object>
-                    </child>
                     <child>
                       <object class="GtkMenuButton" id="export_menu">
                         <property name="visible">true</property>

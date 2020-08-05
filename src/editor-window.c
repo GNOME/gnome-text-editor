@@ -128,8 +128,9 @@ editor_window_notify_current_page_cb (EditorWindow *self,
   gtk_label_set_label (self->title, _(PACKAGE_NAME));
   gtk_label_set_label (self->subtitle, NULL);
   gtk_widget_set_visible (GTK_WIDGET (self->is_modified), FALSE);
-  gtk_widget_set_visible (GTK_WIDGET (self->position_label), page != NULL);
   gtk_widget_set_visible (GTK_WIDGET (self->subtitle), FALSE);
+  gtk_widget_set_visible (GTK_WIDGET (self->position_box),
+                          page && g_settings_get_boolean (self->settings, "show-line-numbers"));
 
   self->visible_page = page;
 
@@ -376,6 +377,7 @@ editor_window_class_init (EditorWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, open_toggle_button);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, options_menu);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, paned);
+  gtk_widget_class_bind_template_child (widget_class, EditorWindow, position_box);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, position_label);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, primary_menu);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, sidebar);
@@ -426,7 +428,7 @@ editor_window_init (EditorWindow *self)
 
   self->settings = g_settings_new ("org.gnome.TextEditor");
   g_settings_bind (self->settings, "show-line-numbers",
-                   self->position_label, "visible",
+                   self->position_box, "visible",
                    G_SETTINGS_BIND_GET);
 
   g_signal_connect_swapped (self->notebook,
