@@ -63,6 +63,8 @@ editor_page_document_modified_changed_cb (EditorPage     *self,
 
   g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_IS_MODIFIED]);
   g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_CAN_SAVE]);
+  g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_SUBTITLE]);
+  g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_TITLE]);
 }
 
 static void
@@ -769,19 +771,7 @@ editor_page_dup_subtitle (EditorPage *self)
   file = editor_document_get_file (self->document);
 
   if (file == NULL || !(dir = g_file_get_parent (file)))
-    {
-      GtkTextIter begin;
-      GtkTextIter end;
-
-      gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (self->document), &begin, &end);
-
-      /* No subtitle for initial state */
-      if (!gtk_text_buffer_get_modified (GTK_TEXT_BUFFER (self->document)) &&
-          gtk_text_iter_equal (&begin, &end))
-        return NULL;
-
-      return g_strdup (_("Draft"));
-    }
+    return g_strdup (_("Draft"));
 
   if (!g_file_is_native (dir))
     return g_file_get_uri (dir);

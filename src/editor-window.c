@@ -49,6 +49,33 @@ static GParamSpec *properties[N_PROPS];
 static guint signals[N_SIGNALS];
 
 static void
+update_subtitle_visibility_cb (EditorWindow *self)
+{
+  gboolean visible = FALSE;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+
+  if (self->visible_page != NULL)
+    {
+      EditorPage *page = self->visible_page;
+      EditorDocument *buffer = editor_page_get_document (page);
+
+      if (gtk_text_buffer_get_modified (GTK_TEXT_BUFFER (buffer)) ||
+          !editor_page_get_can_discard (page))
+        visible = TRUE;
+    }
+
+  gtk_widget_set_visible (GTK_WIDGET (self->subtitle), visible);
+
+  if (visible)
+    gtk_widget_set_visible (GTK_WIDGET (self->position_box),
+                            g_settings_get_boolean (self->settings, "show-line-numbers"));
+  else
+    gtk_widget_hide (GTK_WIDGET (self->position_box));
+
+}
+
+static void
 editor_window_cursor_moved_cb (EditorWindow   *self,
                                EditorDocument *document)
 {
@@ -85,6 +112,8 @@ editor_window_page_bind_cb (EditorWindow      *self,
   editor_window_cursor_moved_cb (self, document);
 
   _editor_window_actions_update (self, page);
+
+  update_subtitle_visibility_cb (self);
 }
 
 static void
@@ -427,9 +456,11 @@ editor_window_init (EditorWindow *self)
   gtk_window_set_default_size (GTK_WINDOW (self), 700, 520);
 
   self->settings = g_settings_new ("org.gnome.TextEditor");
-  g_settings_bind (self->settings, "show-line-numbers",
-                   self->position_box, "visible",
-                   G_SETTINGS_BIND_GET);
+  g_signal_connect_object (self->settings,
+                           "changed::show-line-numbers",
+                           G_CALLBACK (update_subtitle_visibility_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
 
   g_signal_connect_swapped (self->notebook,
                             "page-added",
@@ -463,6 +494,16 @@ editor_window_init (EditorWindow *self)
                                       G_CALLBACK (editor_window_update_actions),
                                       self,
                                       G_CONNECT_SWAPPED);
+  editor_signal_group_connect_object (self->page_signals,
+                                      "notify::can-discard",
+                                      G_CALLBACK (update_subtitle_visibility_cb),
+                                      self,
+                                      G_CONNECT_SWAPPED);
+  editor_signal_group_connect_object (self->page_signals,
+                                      "notify::subtitle",
+                                      G_CALLBACK (update_subtitle_visibility_cb),
+                                      self,
+                                      G_CONNECT_SWAPPED);
 
   self->document_signals = editor_signal_group_new (EDITOR_TYPE_DOCUMENT);
 
@@ -480,11 +521,6 @@ editor_window_init (EditorWindow *self)
   editor_binding_group_bind (self->page_bindings, "subtitle",
                              self->subtitle, "label",
                              G_BINDING_SYNC_CREATE);
-  editor_binding_group_bind_full (self->page_bindings, "subtitle",
-                                  self->subtitle, "visible",
-                                  G_BINDING_SYNC_CREATE,
-                                  _editor_gchararray_to_boolean,
-                                  NULL, NULL, NULL);
   editor_binding_group_bind (self->page_bindings, "is-modified",
                              self->is_modified, "visible",
                              G_BINDING_SYNC_CREATE);
