@@ -227,6 +227,10 @@ editor_page_set_document (EditorPage     *self,
                                G_CALLBACK (editor_page_notify_busy_progress_cb),
                                self,
                                G_CONNECT_SWAPPED);
+
+      g_object_bind_property (document, "externally-modified",
+                              self->changed_infobar, "revealed",
+                              G_BINDING_SYNC_CREATE);
     }
 }
 
