@@ -434,6 +434,20 @@ editor_page_search_revealer_notify_reveal_child_cb (EditorPage  *self,
 }
 
 static void
+on_changed_infobar_response_cb (EditorPage *self,
+                                int         response_id,
+                                GtkInfoBar *infobar)
+{
+  g_assert (EDITOR_IS_PAGE (self));
+  g_assert (GTK_IS_INFO_BAR (infobar));
+
+  if (response_id == GTK_RESPONSE_ACCEPT)
+    _editor_page_discard_changes (self);
+
+  gtk_info_bar_set_revealed (infobar, FALSE);
+}
+
+static void
 editor_page_dispose (GObject *object)
 {
   EditorPage *self = (EditorPage *)object;
@@ -588,6 +602,7 @@ editor_page_class_init (EditorPageClass *klass)
 
   gtk_widget_class_set_css_name (widget_class, "page");
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-page.ui");
+  gtk_widget_class_bind_template_child (widget_class, EditorPage, changed_infobar);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, progress_bar);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, scroller);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, search_bar);
@@ -628,6 +643,11 @@ editor_page_init (EditorPage *self)
                            G_CALLBACK (editor_page_search_revealer_notify_reveal_child_cb),
                            self,
                            G_CONNECT_SWAPPED);
+
+  g_signal_connect_swapped (self->changed_infobar,
+                            "response",
+                            G_CALLBACK (on_changed_infobar_response_cb),
+                            self);
 
   /* Force registration of GtkSourceGutterRendererLines private type */
   gtk_source_view_set_show_line_numbers (self->view, TRUE);
