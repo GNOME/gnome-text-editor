@@ -26,6 +26,7 @@
 #include <string.h>
 
 #include "editor-application.h"
+#include "editor-buffer-monitor-private.h"
 #include "editor-document-private.h"
 #include "editor-session-private.h"
 #include "editor-window.h"
@@ -36,16 +37,17 @@
 
 struct _EditorDocument
 {
-  GtkSourceBuffer  parent_instance;
+  GtkSourceBuffer      parent_instance;
 
-  GtkSourceFile   *file;
-  gchar           *draft_id;
+  EditorBufferMonitor *monitor;
+  GtkSourceFile       *file;
+  gchar               *draft_id;
 
-  guint            busy_count;
-  gdouble          busy_progress;
+  guint                busy_count;
+  gdouble              busy_progress;
 
-  guint            readonly : 1;
-  guint            needs_autosave : 1;
+  guint                readonly : 1;
+  guint                needs_autosave : 1;
 };
 
 typedef struct
@@ -75,6 +77,7 @@ enum {
   PROP_0,
   PROP_BUSY,
   PROP_BUSY_PROGRESS,
+  PROP_EXTERNALLY_MODIFIED,
   PROP_FILE,
   PROP_TITLE,
   N_PROPS
@@ -293,10 +296,22 @@ editor_document_progress (goffset  current_num_bytes,
 }
 
 static void
+editor_document_monitor_notify_changed_cb (EditorDocument      *self,
+                                           GParamSpec          *pspec,
+                                           EditorBufferMonitor *monitor)
+{
+  g_assert (EDITOR_IS_DOCUMENT (self));
+  g_assert (EDITOR_IS_BUFFER_MONITOR (monitor));
+
+  g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_EXTERNALLY_MODIFIED]);
+}
+
+static void
 editor_document_finalize (GObject *object)
 {
   EditorDocument *self = (EditorDocument *)object;
 
+  g_clear_object (&self->monitor);
   g_clear_object (&self->file);
   g_clear_pointer (&self->draft_id, g_free);
 
@@ -319,6 +334,10 @@ editor_document_get_property (GObject    *object,
 
     case PROP_BUSY_PROGRESS:
       g_value_set_double (value, editor_document_get_busy_progress (self));
+      break;
+
+    case PROP_EXTERNALLY_MODIFIED:
+      g_value_set_boolean (value, editor_document_get_externally_modified (self));
       break;
 
     case PROP_FILE:
@@ -382,6 +401,13 @@ editor_document_class_init (EditorDocumentClass *klass)
                          -G_MAXDOUBLE, G_MAXDOUBLE, 0.0,
                          (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
+  properties [PROP_EXTERNALLY_MODIFIED] =
+    g_param_spec_boolean ("externally-modified",
+                          "Externally Modified",
+                          "Externally Modified",
+                          FALSE,
+                          (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
   properties [PROP_FILE] =
     g_param_spec_object ("file",
                          "File",
@@ -410,6 +436,16 @@ editor_document_init (EditorDocument *self)
 {
   self->file = gtk_source_file_new ();
   self->draft_id = g_uuid_string_random ();
+
+  self->monitor = editor_buffer_monitor_new ();
+  g_signal_connect_object (self->monitor,
+                           "notify::changed",
+                           G_CALLBACK (editor_document_monitor_notify_changed_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+  g_object_bind_property (self->file, "location",
+                          self->monitor, "file",
+                          G_BINDING_SYNC_CREATE);
 }
 
 EditorDocument *
@@ -748,6 +784,20 @@ _editor_document_save_async (EditorDocument      *self,
 
   g_assert (G_IS_FILE (file));
 
+  /* If we're saving to the default document, we want to ignore
+   * changes to the underlying file during our save operation.
+   */
+  if (editor_document_get_file (self) &&
+      g_file_equal (editor_document_get_file (self), file))
+    {
+      editor_buffer_monitor_pause (self->monitor);
+      g_signal_connect_object (task,
+                               "notify::completed",
+                               G_CALLBACK (editor_buffer_monitor_unpause),
+                               self->monitor,
+                               G_CONNECT_SWAPPED);
+    }
+
   if (editor_document_get_file (self) == NULL)
     {
       gtk_source_file_set_location (self->file, file);
@@ -907,6 +957,8 @@ editor_document_query_info_cb (GObject      *object,
     }
 
   gtk_text_buffer_set_modified (GTK_TEXT_BUFFER (self), is_modified);
+
+  editor_buffer_monitor_reset (self->monitor);
 
   if (load->highlight_syntax)
     gtk_source_buffer_set_highlight_syntax (GTK_SOURCE_BUFFER (self), TRUE);
@@ -1446,4 +1498,12 @@ _editor_document_dup_uri (EditorDocument *self)
     return g_file_get_uri (file);
 
   return NULL;
+}
+
+gboolean
+editor_document_get_externally_modified (EditorDocument *self)
+{
+  g_return_val_if_fail (EDITOR_IS_DOCUMENT (self), FALSE);
+
+  return editor_buffer_monitor_get_changed (self->monitor);
 }
