@@ -223,6 +223,7 @@ editor_buffer_monitor_reset (EditorBufferMonitor *self)
       g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_CHANGED]);
     }
 
+  g_clear_handle_id (&self->changed_source, g_source_remove);
   g_clear_object (&self->monitor);
 
   if (self->file != NULL && self->pause_count == 0)
