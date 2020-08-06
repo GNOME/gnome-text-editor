@@ -59,14 +59,17 @@ editor_buffer_monitor_new (void)
 }
 
 static void
-editor_buffer_monitor_finalize (GObject *object)
+editor_buffer_monitor_dispose (GObject *object)
 {
   EditorBufferMonitor *self = (EditorBufferMonitor *)object;
 
+  g_clear_handle_id (&self->changed_source, g_source_remove);
+  if (self->monitor != NULL)
+    g_file_monitor_cancel (self->monitor);
   g_clear_object (&self->monitor);
   g_clear_object (&self->file);
 
-  G_OBJECT_CLASS (editor_buffer_monitor_parent_class)->finalize (object);
+  G_OBJECT_CLASS (editor_buffer_monitor_parent_class)->dispose (object);
 }
 
 static void
@@ -116,7 +119,7 @@ editor_buffer_monitor_class_init (EditorBufferMonitorClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-  object_class->finalize = editor_buffer_monitor_finalize;
+  object_class->dispose = editor_buffer_monitor_dispose;
   object_class->get_property = editor_buffer_monitor_get_property;
   object_class->set_property = editor_buffer_monitor_set_property;
 
@@ -151,7 +154,11 @@ notify_timeout_cb (gpointer user_data)
 
   self->changed_source = 0;
 
-  g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_CHANGED]);
+  if (!self->changed)
+    {
+      self->changed = TRUE;
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_CHANGED]);
+    }
 
   return G_SOURCE_REMOVE;
 }
@@ -168,18 +175,22 @@ editor_buffer_monitor_changed_cb (EditorBufferMonitor *self,
   g_assert (!other_file || G_IS_FILE (other_file));
   g_assert (G_IS_FILE_MONITOR (monitor));
 
+  if (monitor != self->monitor)
+    return;
+
+  if (self->pause_count > 0)
+    return;
+
   if (event == G_FILE_MONITOR_EVENT_CHANGED ||
       event == G_FILE_MONITOR_EVENT_DELETED ||
       event == G_FILE_MONITOR_EVENT_RENAMED)
     {
-      self->changed = TRUE;
-
       if (self->changed_source == 0)
-        g_timeout_add_full (G_PRIORITY_DEFAULT,
-                            500,
-                            notify_timeout_cb,
-                            g_object_ref (self),
-                            g_object_unref);
+        self->changed_source = g_timeout_add_full (G_PRIORITY_DEFAULT,
+                                                   100,
+                                                   notify_timeout_cb,
+                                                   g_object_ref (self),
+                                                   g_object_unref);
     }
 }
 
@@ -224,6 +235,9 @@ editor_buffer_monitor_reset (EditorBufferMonitor *self)
     }
 
   g_clear_handle_id (&self->changed_source, g_source_remove);
+
+  if (self->monitor != NULL)
+    g_file_monitor_cancel (self->monitor);
   g_clear_object (&self->monitor);
 
   if (self->file != NULL && self->pause_count == 0)
@@ -249,6 +263,16 @@ editor_buffer_monitor_pause (EditorBufferMonitor *self)
 
   self->pause_count++;
 
+  if (self->changed)
+    {
+      self->changed = FALSE;
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_CHANGED]);
+    }
+
+  g_clear_handle_id (&self->changed_source, g_source_remove);
+
+  if (self->monitor != NULL)
+    g_file_monitor_cancel (self->monitor);
   g_clear_object (&self->monitor);
 }
 
@@ -257,6 +281,7 @@ editor_buffer_monitor_unpause (EditorBufferMonitor *self)
 {
   g_return_if_fail (EDITOR_IS_BUFFER_MONITOR (self));
   g_return_if_fail (self->pause_count > 0);
+  g_return_if_fail (self->monitor == NULL);
 
   self->pause_count--;
 
