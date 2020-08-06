@@ -199,8 +199,8 @@ editor_buffer_monitor_set_file (EditorBufferMonitor *self,
 
   if (g_set_object (&self->file, file))
     {
-      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_FILE]);
       editor_buffer_monitor_reset (self);
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_FILE]);
     }
 }
 
