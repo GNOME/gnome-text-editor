@@ -36,6 +36,7 @@ static const gchar *authors[] = {
 
 static const gchar *artists[] = {
   "Allan Day",
+  "Jakub Steiner",
   NULL
 };
 
@@ -117,7 +118,7 @@ editor_application_actions_about_cb (GSimpleAction *action,
   gtk_about_dialog_set_authors (dialog, authors);
   gtk_about_dialog_set_artists (dialog, artists);
   gtk_about_dialog_set_version (dialog, PACKAGE_VERSION);
-  gtk_about_dialog_set_copyright (dialog, "© 2020 Christian Hergert");
+  gtk_about_dialog_set_copyright (dialog, "© 2020-2021 Christian Hergert");
   gtk_about_dialog_set_license_type (dialog, GTK_LICENSE_GPL_3_0);
   gtk_about_dialog_set_website (dialog, PACKAGE_WEBSITE);
   gtk_about_dialog_set_website_label (dialog, _(PACKAGE_NAME " Website"));
