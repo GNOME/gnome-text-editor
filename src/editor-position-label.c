@@ -26,21 +26,37 @@
 
 struct _EditorPositionLabel
 {
-  EditorBin parent_instance;
+  GtkWidget parent_instance;
 
+  GtkWidget *box;
   GtkLabel *column;
   GtkLabel *line;
 };
 
-G_DEFINE_TYPE (EditorPositionLabel, editor_position_label, EDITOR_TYPE_BIN)
+G_DEFINE_TYPE (EditorPositionLabel, editor_position_label, GTK_TYPE_WIDGET)
+
+static void
+editor_position_label_dispose (GObject *object)
+{
+  EditorPositionLabel *self = (EditorPositionLabel *)object;
+
+  g_clear_pointer (&self->box, gtk_widget_unparent);
+
+  G_OBJECT_CLASS (editor_position_label_parent_class)->dispose (object);
+}
 
 static void
 editor_position_label_class_init (EditorPositionLabelClass *klass)
 {
+  GObjectClass *object_class = G_OBJECT_CLASS (klass);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
+  object_class->dispose = editor_position_label_dispose;
+
+  gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-position-label.ui");
   gtk_widget_class_set_css_name (widget_class, "positionlabel");
+  gtk_widget_class_bind_template_child (widget_class, EditorPositionLabel, box);
   gtk_widget_class_bind_template_child (widget_class, EditorPositionLabel, column);
   gtk_widget_class_bind_template_child (widget_class, EditorPositionLabel, line);
 }

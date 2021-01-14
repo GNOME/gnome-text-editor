@@ -20,15 +20,13 @@
 
 #pragma once
 
-#include <libhandy-1/handy.h>
-
 #include "editor-types.h"
 
 G_BEGIN_DECLS
 
 #define EDITOR_TYPE_WINDOW (editor_window_get_type())
 
-G_DECLARE_FINAL_TYPE (EditorWindow, editor_window, EDITOR, WINDOW, HdyApplicationWindow)
+G_DECLARE_FINAL_TYPE (EditorWindow, editor_window, EDITOR, WINDOW, GtkApplicationWindow)
 
 EditorPage *editor_window_get_visible_page (EditorWindow *self);
 void        editor_window_set_visible_page (EditorWindow *self,

@@ -24,11 +24,11 @@
 #include "editor-language-dialog.h"
 
 static void
-editor_page_actions_language (GSimpleAction *action,
-                              GVariant      *param,
-                              gpointer       user_data)
+editor_page_actions_language (GtkWidget  *widget,
+                              const char *action_name,
+                              GVariant   *param)
 {
-  EditorPage *self = user_data;
+  EditorPage *self = (EditorPage *)widget;
   EditorLanguageDialog *dialog;
 
   g_assert (EDITOR_IS_PAGE (self));
@@ -41,11 +41,11 @@ editor_page_actions_language (GSimpleAction *action,
 }
 
 static void
-editor_page_actions_search_hide (GSimpleAction *action,
-                                 GVariant      *param,
-                                 gpointer       user_data)
+editor_page_actions_search_hide (GtkWidget  *widget,
+                                 const char *action_name,
+                                 GVariant   *param)
 {
-  EditorPage *self = user_data;
+  EditorPage *self = (EditorPage *)widget;
 
   g_assert (EDITOR_IS_PAGE (self));
 
@@ -54,11 +54,11 @@ editor_page_actions_search_hide (GSimpleAction *action,
 }
 
 static void
-editor_page_actions_search_move_next (GSimpleAction *action,
-                                      GVariant      *param,
-                                      gpointer       user_data)
+editor_page_actions_search_move_next (GtkWidget  *widget,
+                                      const char *action_name,
+                                      GVariant   *param)
 {
-  EditorPage *self = user_data;
+  EditorPage *self = (EditorPage *)widget;
 
   g_assert (EDITOR_IS_PAGE (self));
 
@@ -66,11 +66,11 @@ editor_page_actions_search_move_next (GSimpleAction *action,
 }
 
 static void
-editor_page_actions_search_move_previous (GSimpleAction *action,
-                                          GVariant      *param,
-                                          gpointer       user_data)
+editor_page_actions_search_move_previous (GtkWidget  *widget,
+                                          const char *action_name,
+                                          GVariant   *param)
 {
-  EditorPage *self = user_data;
+  EditorPage *self = (EditorPage *)widget;
 
   g_assert (EDITOR_IS_PAGE (self));
 
@@ -78,11 +78,11 @@ editor_page_actions_search_move_previous (GSimpleAction *action,
 }
 
 static void
-editor_page_actions_replace_one (GSimpleAction *action,
-                                 GVariant      *param,
-                                 gpointer       user_data)
+editor_page_actions_replace_one (GtkWidget  *widget,
+                                 const char *action_name,
+                                 GVariant   *param)
 {
-  EditorPage *self = user_data;
+  EditorPage *self = (EditorPage *)widget;
 
   g_assert (EDITOR_IS_PAGE (self));
 
@@ -95,11 +95,11 @@ editor_page_actions_replace_one (GSimpleAction *action,
 }
 
 static void
-editor_page_actions_replace_all (GSimpleAction *action,
-                                 GVariant      *param,
-                                 gpointer       user_data)
+editor_page_actions_replace_all (GtkWidget  *widget,
+                                 const char *action_name,
+                                 GVariant   *param)
 {
-  EditorPage *self = user_data;
+  EditorPage *self = (EditorPage *)widget;
 
   g_assert (EDITOR_IS_PAGE (self));
 
@@ -115,21 +115,15 @@ on_notify_can_move_cb (EditorPage      *self,
                        GParamSpec      *pspec,
                        EditorSearchBar *search_bar)
 {
-  GActionGroup *search;
-  GAction *action;
   gboolean can_move;
 
   g_assert (EDITOR_IS_PAGE (self));
   g_assert (EDITOR_IS_SEARCH_BAR (search_bar));
 
-  search = gtk_widget_get_action_group (GTK_WIDGET (self), "search");
   can_move = _editor_search_bar_get_can_move (search_bar);
 
-  action = g_action_map_lookup_action (G_ACTION_MAP (search), "move-next");
-  g_simple_action_set_enabled (G_SIMPLE_ACTION (action), can_move);
-
-  action = g_action_map_lookup_action (G_ACTION_MAP (search), "move-previous");
-  g_simple_action_set_enabled (G_SIMPLE_ACTION (action), can_move);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "search.move-next", can_move);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "search.move-previous", can_move);
 }
 
 static void
@@ -137,51 +131,37 @@ on_notify_can_replace_cb (EditorPage      *self,
                           GParamSpec      *pspec,
                           EditorSearchBar *search_bar)
 {
-  GActionGroup *search;
-  GAction *action;
-
   g_assert (EDITOR_IS_PAGE (self));
   g_assert (EDITOR_IS_SEARCH_BAR (search_bar));
 
-  search = gtk_widget_get_action_group (GTK_WIDGET (self), "search");
-
-  action = g_action_map_lookup_action (G_ACTION_MAP (search), "replace-one");
-  g_simple_action_set_enabled (G_SIMPLE_ACTION (action),
-                               _editor_search_bar_get_can_replace (search_bar));
-
-  action = g_action_map_lookup_action (G_ACTION_MAP (search), "replace-all");
-  g_simple_action_set_enabled (G_SIMPLE_ACTION (action),
-                               _editor_search_bar_get_can_replace_all (search_bar));
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "search.replace-one",
+                                 _editor_search_bar_get_can_replace (search_bar));
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "search.replace-all",
+                                 _editor_search_bar_get_can_replace_all (search_bar));
 }
 
 void
 _editor_page_class_actions_init (EditorPageClass *klass)
 {
+  GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+
+  gtk_widget_class_install_action (widget_class, "page.language", NULL,
+                                   editor_page_actions_language);
+  gtk_widget_class_install_action (widget_class, "search.hide", NULL,
+                                   editor_page_actions_search_hide);
+  gtk_widget_class_install_action (widget_class, "search.move-next", NULL,
+                                   editor_page_actions_search_move_next);
+  gtk_widget_class_install_action (widget_class, "search.move-previous", NULL,
+                                   editor_page_actions_search_move_previous);
+  gtk_widget_class_install_action (widget_class, "search.replace-one", NULL,
+                                   editor_page_actions_replace_one);
+  gtk_widget_class_install_action (widget_class, "search.replace-all", NULL,
+                                   editor_page_actions_replace_all);
 }
 
 void
 _editor_page_actions_init (EditorPage *self)
 {
-  static const GActionEntry page_actions[] = {
-    { "language", editor_page_actions_language, "s" },
-  };
-  static const GActionEntry search_actions[] = {
-    { "hide", editor_page_actions_search_hide },
-    { "move-next", editor_page_actions_search_move_next },
-    { "move-previous", editor_page_actions_search_move_previous },
-    { "replace-one", editor_page_actions_replace_one },
-    { "replace-all", editor_page_actions_replace_all },
-  };
-
-  g_autoptr(GSimpleActionGroup) page = g_simple_action_group_new ();
-  g_autoptr(GSimpleActionGroup) search = g_simple_action_group_new ();
-
-  g_action_map_add_action_entries (G_ACTION_MAP (page), page_actions, G_N_ELEMENTS (page_actions), self);
-  g_action_map_add_action_entries (G_ACTION_MAP (search), search_actions, G_N_ELEMENTS (search_actions), self);
-
-  gtk_widget_insert_action_group (GTK_WIDGET (self), "page", G_ACTION_GROUP (page));
-  gtk_widget_insert_action_group (GTK_WIDGET (self), "search", G_ACTION_GROUP (search));
-
   g_signal_connect_object (self->search_bar,
                            "notify::can-move",
                            G_CALLBACK (on_notify_can_move_cb),

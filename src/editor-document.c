@@ -83,13 +83,7 @@ enum {
   N_PROPS
 };
 
-enum {
-  CURSOR_MOVED,
-  N_SIGNALS
-};
-
 static GParamSpec *properties [N_PROPS];
-static guint signals [N_SIGNALS];
 
 static void
 load_free (Load *load)
@@ -118,19 +112,6 @@ editor_document_mount_operation_factory (GtkSourceFile *file,
   g_assert (!mount_operation || G_IS_MOUNT_OPERATION (mount_operation));
 
   return mount_operation ? g_object_ref (mount_operation) : NULL;
-}
-
-static void
-editor_document_emit_cursor_moved (EditorDocument *self)
-{
-  GtkTextMark *mark;
-  GtkTextIter iter;
-
-  g_assert (EDITOR_IS_DOCUMENT (self));
-
-  mark = gtk_text_buffer_get_insert (GTK_TEXT_BUFFER (self));
-  gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (self), &iter, mark);
-  g_signal_emit (self, signals [CURSOR_MOVED], 0);
 }
 
 static void
@@ -200,8 +181,6 @@ editor_document_insert_text (GtkTextBuffer *buffer,
 
   GTK_TEXT_BUFFER_CLASS (editor_document_parent_class)->insert_text (buffer, pos, new_text, new_text_length);
 
-  editor_document_emit_cursor_moved (self);
-
   if (offset < TITLE_MAX_LEN && editor_document_get_file (self) == NULL)
     g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_TITLE]);
 }
@@ -222,23 +201,8 @@ editor_document_delete_range (GtkTextBuffer *buffer,
 
   GTK_TEXT_BUFFER_CLASS (editor_document_parent_class)->delete_range (buffer, start, end);
 
-  editor_document_emit_cursor_moved (self);
-
   if (offset < TITLE_MAX_LEN && editor_document_get_file (self) == NULL)
     g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_TITLE]);
-}
-
-static void
-editor_document_mark_set (GtkTextBuffer     *buffer,
-                          const GtkTextIter *iter,
-                          GtkTextMark       *mark)
-{
-  g_assert (EDITOR_IS_DOCUMENT (buffer));
-  g_assert (iter != NULL);
-  g_assert (GTK_IS_TEXT_MARK (mark));
-
-  if (mark == gtk_text_buffer_get_insert (buffer))
-    editor_document_emit_cursor_moved (EDITOR_DOCUMENT (buffer));
 }
 
 static GFile *
@@ -385,7 +349,6 @@ editor_document_class_init (EditorDocumentClass *klass)
   buffer_class->changed = editor_document_changed;
   buffer_class->insert_text = editor_document_insert_text;
   buffer_class->delete_range = editor_document_delete_range;
-  buffer_class->mark_set = editor_document_mark_set;
 
   properties [PROP_BUSY] =
     g_param_spec_boolean ("busy",
@@ -423,12 +386,6 @@ editor_document_class_init (EditorDocumentClass *klass)
                          (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_properties (object_class, N_PROPS, properties);
-
-  signals [CURSOR_MOVED] =
-    g_signal_new ("cursor-moved",
-                  G_TYPE_FROM_CLASS (klass),
-                  G_SIGNAL_RUN_LAST,
-                  0, NULL, NULL, NULL, G_TYPE_NONE, 0);
 }
 
 static void

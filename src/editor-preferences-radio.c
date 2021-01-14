@@ -29,7 +29,7 @@ struct _EditorPreferencesRadio
   EditorPreferencesRow  row;
 
   GtkLabel             *label;
-  GtkRadioButton       *toggle;
+  GtkCheckButton       *toggle;
 
   GSettings            *settings;
   gchar                *schema_id;
@@ -105,7 +105,7 @@ editor_preferences_radio_activated (EditorPreferencesRow *row)
 
 static void
 editor_preferences_radio_clicked_cb (EditorPreferencesRadio *self,
-                                     GtkRadioButton         *button)
+                                     GtkCheckButton         *button)
 {
   editor_preferences_radio_activated (EDITOR_PREFERENCES_ROW (self));
   g_signal_stop_emission_by_name (button, "clicked");
@@ -241,27 +241,24 @@ editor_preferences_radio_init (EditorPreferencesRadio *self)
                       "margin-start", 20,
                       "margin-end", 20,
                       "spacing", 10,
-                      "visible", TRUE,
                       NULL);
-  gtk_container_add (GTK_CONTAINER (self), GTK_WIDGET (box));
+  gtk_list_box_row_set_child (GTK_LIST_BOX_ROW (self), GTK_WIDGET (box));
 
-  self->toggle = g_object_new (GTK_TYPE_RADIO_BUTTON,
+  self->toggle = g_object_new (GTK_TYPE_CHECK_BUTTON,
                                "can-focus", FALSE,
-                               "visible", TRUE,
                                NULL);
   g_signal_connect_object (self->toggle,
                            "clicked",
                            G_CALLBACK (editor_preferences_radio_clicked_cb),
                            self,
                            G_CONNECT_SWAPPED);
-  gtk_container_add (GTK_CONTAINER (box), GTK_WIDGET (self->toggle));
+  gtk_box_append (box, GTK_WIDGET (self->toggle));
 
   self->label = g_object_new (GTK_TYPE_LABEL,
                               "can-focus", FALSE,
                               "selectable", FALSE,
                               "halign", GTK_ALIGN_START,
                               "hexpand", TRUE,
-                              "visible", TRUE,
                               NULL);
-  gtk_container_add (GTK_CONTAINER (box), GTK_WIDGET (self->label));
+  gtk_box_append (box, GTK_WIDGET (self->label));
 }

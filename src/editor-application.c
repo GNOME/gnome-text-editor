@@ -22,8 +22,6 @@
 
 #include "config.h"
 
-#include <libhandy-1/handy.h>
-
 #include "editor-application-private.h"
 #include "editor-session-private.h"
 #include "editor-utils-private.h"
@@ -69,7 +67,7 @@ editor_application_update_font_cb (GSettings      *settings,
 
   g_string_append (css, "}\n");
 
-  gtk_css_provider_load_from_data (font_css_provider, css->str, css->len, NULL);
+  gtk_css_provider_load_from_data (font_css_provider, css->str, css->len);
 }
 
 static void
@@ -182,8 +180,6 @@ editor_application_startup (GApplication *application)
 
   G_APPLICATION_CLASS (editor_application_parent_class)->startup (application);
 
-  hdy_init ();
-
   gtk_application_set_accels_for_action (GTK_APPLICATION (self), "app.quit", quit_accels);
 
   _editor_application_actions_init (self);
@@ -197,9 +193,9 @@ editor_application_startup (GApplication *application)
   /* Setup CSS overrides */
   css_provider = gtk_css_provider_new ();
   gtk_css_provider_load_from_resource (css_provider, "/org/gnome/TextEditor/css/TextEditor.css");
-  gtk_style_context_add_provider_for_screen (gdk_screen_get_default (),
-                                             GTK_STYLE_PROVIDER (css_provider),
-                                             GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+  gtk_style_context_add_provider_for_display (gdk_display_get_default (),
+                                              GTK_STYLE_PROVIDER (css_provider),
+                                              GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
   /* Setup CSS for custom fonts */
   font_css_provider = gtk_css_provider_new ();
@@ -211,9 +207,9 @@ editor_application_startup (GApplication *application)
                            "changed::custom-font",
                            G_CALLBACK (editor_application_update_font_cb),
                            font_css_provider, 0);
-  gtk_style_context_add_provider_for_screen (gdk_screen_get_default (),
-                                             GTK_STYLE_PROVIDER (font_css_provider),
-                                             GTK_STYLE_PROVIDER_PRIORITY_APPLICATION+1);
+  gtk_style_context_add_provider_for_display (gdk_display_get_default (),
+                                              GTK_STYLE_PROVIDER (font_css_provider),
+                                              GTK_STYLE_PROVIDER_PRIORITY_APPLICATION+1);
   editor_application_update_font_cb (self->settings, NULL, font_css_provider);
 
   gtk_window_set_default_icon_name (PACKAGE_ICON_NAME);

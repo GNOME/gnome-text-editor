@@ -77,6 +77,16 @@ editor_preferences_font_constructed (GObject *object)
 }
 
 static void
+editor_preferences_font_dispose (GObject *object)
+{
+  EditorPreferencesFont *self = (EditorPreferencesFont *)object;
+
+  g_clear_pointer ((GtkWidget **)&self->popover, gtk_widget_unparent);
+
+  G_OBJECT_CLASS (editor_preferences_font_parent_class)->dispose (object);
+}
+
+static void
 editor_preferences_font_activated (EditorPreferencesRow *row)
 {
   EditorPreferencesFont *self = (EditorPreferencesFont *)row;
@@ -85,6 +95,36 @@ editor_preferences_font_activated (EditorPreferencesRow *row)
 
   gtk_popover_popup (GTK_POPOVER (self->popover));
   gtk_widget_grab_focus (GTK_WIDGET (self->chooser));
+}
+
+static void
+editor_preferences_font_size_allocate (GtkWidget *widget,
+                                       int        width,
+                                       int        height,
+                                       int        baseline)
+{
+  EditorPreferencesFont *self = (EditorPreferencesFont *)widget;
+
+  g_assert (EDITOR_IS_PREFERENCES_FONT (self));
+
+  GTK_WIDGET_CLASS (editor_preferences_font_parent_class)->size_allocate (widget, width, height, baseline);
+
+  gtk_popover_present (self->popover);
+}
+
+static void
+editor_preferences_font_snapshot (GtkWidget   *widget,
+                                  GtkSnapshot *snapshot)
+{
+  EditorPreferencesFont *self = (EditorPreferencesFont *)widget;
+
+  g_assert (EDITOR_IS_PREFERENCES_FONT (self));
+  g_assert (GTK_IS_SNAPSHOT (snapshot));
+
+  GTK_WIDGET_CLASS (editor_preferences_font_parent_class)->snapshot (widget, snapshot);
+
+  if (self->popover != NULL)
+    gtk_widget_snapshot_child (widget, GTK_WIDGET (self->popover), snapshot);
 }
 
 static void
@@ -157,12 +197,17 @@ static void
 editor_preferences_font_class_init (EditorPreferencesFontClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
+  GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
   EditorPreferencesRowClass *row_class = EDITOR_PREFERENCES_ROW_CLASS (klass);
 
   object_class->constructed = editor_preferences_font_constructed;
+  object_class->dispose = editor_preferences_font_dispose;
   object_class->finalize = editor_preferences_font_finalize;
   object_class->get_property = editor_preferences_font_get_property;
   object_class->set_property = editor_preferences_font_set_property;
+
+  widget_class->size_allocate = editor_preferences_font_size_allocate;
+  widget_class->snapshot = editor_preferences_font_snapshot;
 
   row_class->activated = editor_preferences_font_activated;
 
@@ -202,18 +247,16 @@ editor_preferences_font_init (EditorPreferencesFont *self)
                       "margin-start", 20,
                       "margin-end", 20,
                       "spacing", 10,
-                      "visible", TRUE,
                       NULL);
-  gtk_container_add (GTK_CONTAINER (self), GTK_WIDGET (box));
+  gtk_list_box_row_set_child (GTK_LIST_BOX_ROW (self), GTK_WIDGET (box));
 
   self->label = g_object_new (GTK_TYPE_LABEL,
                               "can-focus", FALSE,
                               "selectable", FALSE,
                               "halign", GTK_ALIGN_START,
                               "hexpand", FALSE,
-                              "visible", TRUE,
                               NULL);
-  gtk_container_add (GTK_CONTAINER (box), GTK_WIDGET (self->label));
+  gtk_box_append (box, GTK_WIDGET (self->label));
 
   self->font_label = g_object_new (GTK_TYPE_LABEL,
                                    "can-focus", FALSE,
@@ -221,28 +264,28 @@ editor_preferences_font_init (EditorPreferencesFont *self)
                                    "selectable", FALSE,
                                    "halign", GTK_ALIGN_END,
                                    "hexpand", TRUE,
-                                   "visible", TRUE,
                                    NULL);
-  gtk_container_add (GTK_CONTAINER (box), GTK_WIDGET (self->font_label));
+  gtk_box_append (box, GTK_WIDGET (self->font_label));
 
   image = g_object_new (GTK_TYPE_IMAGE,
                         "icon-name", "go-next-symbolic",
                         "hexpand", FALSE,
                         "margin-start", 12,
-                        "visible", TRUE,
                         NULL);
-  gtk_container_add (GTK_CONTAINER (box), GTK_WIDGET (image));
+  gtk_box_append (box, GTK_WIDGET (image));
 
   self->popover = g_object_new (GTK_TYPE_POPOVER,
-                                "relative-to", self,
                                 "position", GTK_POS_RIGHT,
                                 NULL);
+  gtk_widget_set_parent (GTK_WIDGET (self->popover), GTK_WIDGET (self));
 
   self->chooser = g_object_new (GTK_TYPE_FONT_CHOOSER_WIDGET,
-                                "margin", 12,
+                                "margin-start", 12,
+                                "margin-end", 12,
+                                "margin-top", 12,
+                                "margin-bottom", 12,
                                 "width-request", 400,
                                 "height-request", 300,
-                                "visible", TRUE,
                                 NULL);
-  gtk_container_add (GTK_CONTAINER (self->popover), GTK_WIDGET (self->chooser));
+  gtk_popover_set_child (self->popover, GTK_WIDGET (self->chooser));
 }

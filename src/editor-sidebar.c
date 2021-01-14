@@ -26,7 +26,6 @@
 
 #include "editor-application.h"
 #include "editor-document.h"
-#include "editor-filter-model-private.h"
 #include "editor-page.h"
 #include "editor-session.h"
 #include "editor-sidebar-item-private.h"
@@ -37,7 +36,7 @@
 
 struct _EditorSidebar
 {
-  GtkBin              parent_instance;
+  GtkWidget           parent_instance;
 
   EditorSidebarModel *model;
 
@@ -47,14 +46,7 @@ struct _EditorSidebar
   GtkButton          *open_button;
 };
 
-G_DEFINE_TYPE (EditorSidebar, editor_sidebar, GTK_TYPE_BIN)
-
-enum {
-  HIDE_SIDEBAR,
-  N_SIGNALS
-};
-
-static guint signals[N_SIGNALS];
+G_DEFINE_TYPE (EditorSidebar, editor_sidebar, GTK_TYPE_WIDGET)
 
 static void
 editor_sidebar_notify_child_revealed_cb (EditorSidebar *self,
@@ -114,10 +106,10 @@ editor_sidebar_row_activated_cb (EditorSidebar    *self,
 }
 
 static gboolean
-editor_sidebar_filter_func_cb (GObject  *object,
-                               gpointer  user_data)
+editor_sidebar_filter_func_cb (gpointer itemptr,
+                               gpointer user_data)
 {
-  EditorSidebarItem *item = (EditorSidebarItem *)object;
+  EditorSidebarItem *item = itemptr;
   GPatternSpec *spec = user_data;
 
   g_assert (EDITOR_IS_SIDEBAR_ITEM (item));
@@ -138,7 +130,7 @@ editor_sidebar_search_entry_activate_cb (EditorSidebar *self,
   /* Activate the first row in the list box (if any) */
   if ((row = gtk_list_box_get_row_at_index (self->list_box, 0)))
     {
-      gtk_entry_set_text (GTK_ENTRY (search_entry), "");
+      gtk_editable_set_text (GTK_EDITABLE (search_entry), "");
       gtk_widget_activate (GTK_WIDGET (row));
     }
 }
@@ -147,14 +139,14 @@ static void
 editor_sidebar_search_entry_changed_cb (EditorSidebar *self,
                                         GtkEntry      *search_entry)
 {
-  g_autoptr(EditorFilterModel) filter = NULL;
+  g_autoptr(GtkFilterListModel) filter = NULL;
   const gchar *text;
   GListModel *model;
 
   g_assert (EDITOR_IS_SIDEBAR (self));
   g_assert (GTK_IS_ENTRY (search_entry));
 
-  text = gtk_entry_get_text (GTK_ENTRY (search_entry));
+  text = gtk_editable_get_text (GTK_EDITABLE (search_entry));
 
   if (text == NULL || text[0] == 0)
     {
@@ -164,13 +156,12 @@ editor_sidebar_search_entry_changed_cb (EditorSidebar *self,
     {
       g_autofree gchar *text_fold = g_utf8_casefold (text, -1);
       g_autofree gchar *pattern = g_strdup_printf ("*%s*", g_strdelimit (text_fold, " \n\t", '*'));
+      g_autoptr(GtkCustomFilter) custom = NULL;
 
-      filter = _editor_filter_model_new (G_LIST_MODEL (self->model));
-      _editor_filter_model_set_filter_func (filter,
-                                            editor_sidebar_filter_func_cb,
-                                            g_pattern_spec_new (pattern),
-                                            (GDestroyNotify) g_pattern_spec_free);
-      _editor_filter_model_invalidate (filter);
+      custom = gtk_custom_filter_new (editor_sidebar_filter_func_cb,
+                                      g_pattern_spec_new (pattern),
+                                      (GDestroyNotify) g_pattern_spec_free);
+      filter = gtk_filter_list_model_new (G_LIST_MODEL (self->model), GTK_FILTER (custom));
       model = G_LIST_MODEL (filter);
     }
 
@@ -185,27 +176,21 @@ editor_sidebar_search_entry_changed_cb (EditorSidebar *self,
 }
 
 static void
-editor_sidebar_hide (EditorSidebar *self)
+editor_sidebar_hide_cb (GtkWidget  *widget,
+                        const char *action_name,
+                        GVariant   *param)
 {
   GtkWidget *window;
 
-  g_assert (EDITOR_IS_SIDEBAR (self));
+  g_assert (EDITOR_IS_SIDEBAR (widget));
 
-  gtk_widget_hide (GTK_WIDGET (self));
+  gtk_widget_hide (widget);
 
-  if ((window = gtk_widget_get_ancestor (GTK_WIDGET (self), EDITOR_TYPE_WINDOW)))
+  if ((window = gtk_widget_get_ancestor (widget, EDITOR_TYPE_WINDOW)))
     {
       EditorPage *page = editor_window_get_visible_page (EDITOR_WINDOW (window));
       gtk_widget_grab_focus (GTK_WIDGET (page));
     }
-}
-
-static void
-editor_sidebar_hide_cb (GSimpleAction *action,
-                        GVariant      *param,
-                        gpointer       user_data)
-{
-  editor_sidebar_hide (user_data);
 }
 
 static void
@@ -220,6 +205,8 @@ editor_sidebar_dispose (GObject *object)
 
   g_clear_object (&self->model);
 
+  g_clear_pointer ((GtkWidget **)&self->revealer, gtk_widget_unparent);
+
   G_OBJECT_CLASS (editor_sidebar_parent_class)->dispose (object);
 }
 
@@ -228,10 +215,10 @@ editor_sidebar_class_init (EditorSidebarClass *klass)
 {
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-  GtkBindingSet *bindings = gtk_binding_set_by_class (klass);
 
   object_class->dispose = editor_sidebar_dispose;
 
+  gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
   gtk_widget_class_set_css_name (widget_class, "sidebar");
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-sidebar.ui");
   gtk_widget_class_bind_template_child (widget_class, EditorSidebar, search_entry);
@@ -242,27 +229,14 @@ editor_sidebar_class_init (EditorSidebarClass *klass)
   gtk_widget_class_bind_template_callback (widget_class, editor_sidebar_search_entry_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, editor_sidebar_search_entry_changed_cb);
 
-  signals [HIDE_SIDEBAR] =
-    g_signal_new_class_handler ("hide-sidebar",
-                                G_TYPE_FROM_CLASS (klass),
-                                G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
-                                G_CALLBACK (editor_sidebar_hide),
-                                NULL, NULL,
-                                NULL,
-                                G_TYPE_NONE, 0);
+  gtk_widget_class_install_action (widget_class, "sidebar.hide", NULL, editor_sidebar_hide_cb);
 
-  gtk_binding_entry_add_signal (bindings, GDK_KEY_Escape, 0, "hide-sidebar", 0);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Escape, 0, "sidebar.hide", NULL);
 }
 
 static void
 editor_sidebar_init (EditorSidebar *self)
 {
-  static GActionEntry actions[] = {
-    { "hide", editor_sidebar_hide_cb },
-  };
-
-  g_autoptr(GSimpleActionGroup) group = g_simple_action_group_new ();
-
   gtk_widget_init_template (GTK_WIDGET (self));
 
   g_signal_connect_object (self->revealer,
@@ -278,9 +252,6 @@ editor_sidebar_init (EditorSidebar *self)
                            editor_sidebar_create_row_cb,
                            self,
                            NULL);
-
-  g_action_map_add_action_entries (G_ACTION_MAP (group), actions, G_N_ELEMENTS (actions), self);
-  gtk_widget_insert_action_group (GTK_WIDGET (self), "sidebar", G_ACTION_GROUP (group));
 }
 
 void

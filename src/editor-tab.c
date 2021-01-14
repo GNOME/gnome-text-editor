@@ -34,7 +34,7 @@ enum {
   N_PROPS
 };
 
-G_DEFINE_TYPE (EditorTab, editor_tab, GTK_TYPE_BIN)
+G_DEFINE_TYPE (EditorTab, editor_tab, GTK_TYPE_WIDGET)
 
 static GParamSpec *properties [N_PROPS];
 
@@ -68,11 +68,8 @@ editor_tab_update_stack (EditorTab *self)
     child = GTK_WIDGET (self->empty);
 
   gtk_stack_set_visible_child (self->stack, child);
-
-  if (child == GTK_WIDGET (self->spinner))
-    gtk_spinner_start (self->spinner);
-  else
-    gtk_spinner_stop (self->spinner);
+  gtk_spinner_set_spinning (self->spinner,
+                            child == GTK_WIDGET (self->spinner));
 }
 
 static void
@@ -132,16 +129,16 @@ editor_tab_set_page (EditorTab  *self,
 }
 
 static void
-click_gesture_pressed_cb (EditorTab            *self,
-                          int                   n_press,
-                          double                x,
-                          double                y,
-                          GtkGestureMultiPress *click)
+click_gesture_pressed_cb (EditorTab       *self,
+                          int              n_press,
+                          double           x,
+                          double           y,
+                          GtkGestureClick *click)
 {
   gint button;
 
   g_assert (EDITOR_IS_TAB (self));
-  g_assert (GTK_IS_GESTURE_MULTI_PRESS (click));
+  g_assert (GTK_IS_GESTURE_CLICK (click));
 
   if (self->page == NULL)
     return;
@@ -159,10 +156,12 @@ click_gesture_pressed_cb (EditorTab            *self,
         {
           GtkApplication *app = GTK_APPLICATION (EDITOR_APPLICATION_DEFAULT);
           GMenu *menu = gtk_application_get_menu_by_id (app, "tab-menu");
-          GtkWidget *popover = gtk_popover_new_from_model (GTK_WIDGET (self), G_MENU_MODEL (menu));
+          GtkWidget *popover = gtk_popover_menu_new_from_model (G_MENU_MODEL (menu));
 
           self->menu_popover = GTK_POPOVER (popover);
+          gtk_widget_set_parent (GTK_WIDGET (self->menu_popover), GTK_WIDGET (self));
           gtk_popover_set_position (self->menu_popover, GTK_POS_BOTTOM);
+          gtk_popover_set_has_arrow (self->menu_popover, TRUE);
           gtk_widget_set_halign (GTK_WIDGET (self->menu_popover), GTK_ALIGN_CENTER);
         }
 
@@ -177,11 +176,30 @@ click_gesture_pressed_cb (EditorTab            *self,
 }
 
 static void
+editor_tab_size_allocate (GtkWidget *widget,
+                          int        widget_width,
+                          int        widget_height,
+                          int        baseline)
+{
+  EditorTab *self = (EditorTab *)widget;
+
+  g_assert (EDITOR_IS_TAB (self));
+
+  GTK_WIDGET_CLASS (editor_tab_parent_class)->size_allocate (widget, widget_width, widget_height, baseline);
+
+  if (self->menu_popover != NULL &&
+      gtk_widget_get_visible (GTK_WIDGET (self->menu_popover)))
+    gtk_popover_present (GTK_POPOVER (self->menu_popover));
+}
+
+static void
 editor_tab_dispose (GObject *object)
 {
   EditorTab *self = (EditorTab *)object;
 
   g_clear_weak_pointer (&self->page);
+  g_clear_pointer ((GtkWidget **)&self->box, gtk_widget_unparent);
+  g_clear_pointer ((GtkWidget **)&self->menu_popover, gtk_widget_unparent);
 
   G_OBJECT_CLASS (editor_tab_parent_class)->dispose (object);
 }
@@ -234,6 +252,8 @@ editor_tab_class_init (EditorTabClass *klass)
   object_class->get_property = editor_tab_get_property;
   object_class->set_property = editor_tab_set_property;
 
+  widget_class->size_allocate = editor_tab_size_allocate;
+
   properties [PROP_PAGE] =
     g_param_spec_object ("page",
                          "Page",
@@ -243,10 +263,11 @@ editor_tab_class_init (EditorTabClass *klass)
   
   g_object_class_install_properties (object_class, N_PROPS, properties);
 
+  gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-tab.ui");
+  gtk_widget_class_bind_template_child (widget_class, EditorTab, box);
   gtk_widget_class_bind_template_child (widget_class, EditorTab, close_button);
   gtk_widget_class_bind_template_child (widget_class, EditorTab, empty);
-  gtk_widget_class_bind_template_child (widget_class, EditorTab, event_box);
   gtk_widget_class_bind_template_child (widget_class, EditorTab, is_modified);
   gtk_widget_class_bind_template_child (widget_class, EditorTab, spinner);
   gtk_widget_class_bind_template_child (widget_class, EditorTab, stack);
@@ -266,7 +287,7 @@ editor_tab_init (EditorTab *self)
 
   gtk_widget_set_hexpand (GTK_WIDGET (self), TRUE);
 
-  gesture = gtk_gesture_multi_press_new (GTK_WIDGET (self->event_box));
+  gesture = gtk_gesture_click_new ();
   gtk_gesture_single_set_button (GTK_GESTURE_SINGLE (gesture), 0);
   gtk_event_controller_set_propagation_phase (GTK_EVENT_CONTROLLER (gesture), GTK_PHASE_CAPTURE);
   g_signal_connect_object (gesture,
@@ -274,6 +295,7 @@ editor_tab_init (EditorTab *self)
                            G_CALLBACK (click_gesture_pressed_cb),
                            self,
                            G_CONNECT_SWAPPED);
+  gtk_widget_add_controller (GTK_WIDGET (self), GTK_EVENT_CONTROLLER (gesture));
 }
 
 EditorTab *
@@ -283,7 +305,6 @@ _editor_tab_new (EditorPage *page)
 
   return g_object_new (EDITOR_TYPE_TAB,
                        "page", page,
-                       "visible", TRUE,
                        NULL);
 }
 

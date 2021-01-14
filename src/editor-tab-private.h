@@ -29,12 +29,12 @@ G_BEGIN_DECLS
 
 struct _EditorTab
 {
-  GtkBin       parent_instance;
+  GtkWidget    parent_instance;
 
   EditorPage  *page;
   GtkPopover  *menu_popover;
 
-  GtkEventBox *event_box;
+  GtkBox      *box;
   GtkStack    *stack;
   GtkLabel    *empty;
   GtkLabel    *is_modified;

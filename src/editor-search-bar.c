@@ -22,7 +22,6 @@
 
 #include "config.h"
 
-#include "editor-bin-private.h"
 #include "editor-enums.h"
 #include "editor-page-private.h"
 #include "editor-search-bar-private.h"
@@ -30,7 +29,7 @@
 
 struct _EditorSearchBar
 {
-  EditorBin                parent_instance;
+  GtkWidget                parent_instance;
 
   GtkSourceSearchContext  *context;
   GtkSourceSearchSettings *settings;
@@ -53,7 +52,7 @@ struct _EditorSearchBar
   guint                    can_replace_all : 1;
 };
 
-G_DEFINE_TYPE (EditorSearchBar, editor_search_bar, EDITOR_TYPE_BIN)
+G_DEFINE_TYPE (EditorSearchBar, editor_search_bar, GTK_TYPE_WIDGET)
 
 enum {
   PROP_0,
@@ -119,7 +118,7 @@ editor_search_bar_search_activate_cb (EditorSearchBar *self,
   g_assert (GTK_IS_ENTRY (entry));
 
   _editor_search_bar_move_next (self);
-  _editor_activate_action (GTK_WIDGET (self), "search.hide", NULL);
+  gtk_widget_activate_action (GTK_WIDGET (self), "search.hide", NULL);
 }
 
 static void
@@ -203,7 +202,7 @@ editor_search_bar_hide_search_cb (EditorSearchBar *self)
 {
   g_assert (EDITOR_IS_SEARCH_BAR (self));
 
-  _editor_activate_action (GTK_WIDGET (self), "search.hide", NULL);
+  gtk_widget_activate_action (GTK_WIDGET (self), "search.hide", NULL);
 }
 
 static gboolean
@@ -260,14 +259,14 @@ boolean_to_mode (GBinding     *binding,
   return TRUE;
 }
 
-static void
+static gboolean
 editor_search_bar_grab_focus (GtkWidget *widget)
 {
   EditorSearchBar *self = (EditorSearchBar *)widget;
 
   g_assert (EDITOR_IS_SEARCH_BAR (self));
 
-  gtk_widget_grab_focus (GTK_WIDGET (self->search_entry));
+  return gtk_widget_grab_focus (GTK_WIDGET (self->search_entry));
 }
 
 static void
@@ -279,6 +278,16 @@ on_notify_replace_text_cb (EditorSearchBar *self,
   g_assert (GTK_IS_ENTRY (entry));
 
   update_properties (self);
+}
+
+static void
+editor_search_bar_dispose (GObject *object)
+{
+  EditorSearchBar *self = (EditorSearchBar *)object;
+
+  g_clear_pointer ((GtkWidget **)&self->grid, gtk_widget_unparent);
+
+  G_OBJECT_CLASS (editor_search_bar_parent_class)->dispose (object);
 }
 
 static void
@@ -351,14 +360,15 @@ editor_search_bar_class_init (EditorSearchBarClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
-  GtkBindingSet *bindings = gtk_binding_set_by_class (klass);
 
+  object_class->dispose = editor_search_bar_dispose;
   object_class->finalize = editor_search_bar_finalize;
   object_class->get_property = editor_search_bar_get_property;
   object_class->set_property = editor_search_bar_set_property;
 
   widget_class->grab_focus = editor_search_bar_grab_focus;
 
+  gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
   gtk_widget_class_set_css_name (widget_class, "searchbar");
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-search-bar.ui");
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, case_button);
@@ -401,15 +411,15 @@ editor_search_bar_class_init (EditorSearchBarClass *klass)
                                 NULL,
                                 G_TYPE_NONE, 0);
 
-  gtk_binding_entry_add_signal (bindings, GDK_KEY_Escape, 0, "hide-search", 0);
-  gtk_binding_entry_add_signal (bindings, GDK_KEY_g, GDK_CONTROL_MASK|GDK_SHIFT_MASK, "move-previous-search", 0);
-  gtk_binding_entry_add_signal (bindings, GDK_KEY_g, GDK_CONTROL_MASK, "move-next-search", 0);
-  gtk_binding_entry_add_signal (bindings, GDK_KEY_Down, 0, "move-next-search", 0);
-  gtk_binding_entry_add_signal (bindings, GDK_KEY_Up, 0, "move-previous-search", 0);
-  gtk_binding_entry_add_signal (bindings, GDK_KEY_Return, 0, "move-next-search", 0);
-  gtk_binding_entry_add_signal (bindings, GDK_KEY_KP_Enter, 0, "move-next-search", 0);
-  gtk_binding_entry_add_signal (bindings, GDK_KEY_Return, GDK_SHIFT_MASK, "move-previous-search", 0);
-  gtk_binding_entry_add_signal (bindings, GDK_KEY_KP_Enter, GDK_SHIFT_MASK, "move-previous-search", 0);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Escape, 0, "search.hide", NULL);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_g, GDK_CONTROL_MASK|GDK_SHIFT_MASK, "search.move-previous-search", 0);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_g, GDK_CONTROL_MASK, "search.move-next-search", 0);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Down, 0, "search.move-next-search", 0);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Up, 0, "search.move-previous-search", 0);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Return, 0, "search.move-next-search", 0);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_KP_Enter, 0, "search.move-next-search", 0);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Return, GDK_SHIFT_MASK, "search.move-previous-search", 0);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_KP_Enter, GDK_SHIFT_MASK, "search.move-previous-search", 0);
 
   properties [PROP_MODE] =
     g_param_spec_enum ("mode",
@@ -532,13 +542,13 @@ _editor_search_bar_attach (EditorSearchBar *self,
   if (self->context != NULL)
     return;
 
-  search = gtk_entry_get_text (self->search_entry);
+  search = gtk_editable_get_text (GTK_EDITABLE (self->search_entry));
 
   if ((search == NULL || g_strcmp0 (search, "") == 0) &&
       gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER (document), &begin, &end))
     {
       g_autofree gchar *text = g_strstrip (gtk_text_iter_get_slice (&begin, &end));
-      gtk_entry_set_text (self->search_entry, text);
+      gtk_editable_set_text (GTK_EDITABLE (self->search_entry), text);
     }
 
   self->cancellable = g_cancellable_new ();
@@ -604,7 +614,7 @@ _editor_search_bar_get_can_replace (EditorSearchBar *self)
   buffer = GTK_TEXT_BUFFER (gtk_source_search_context_get_buffer (self->context));
 
   return _editor_search_bar_get_can_move (self) &&
-         g_strcmp0 (gtk_entry_get_text (self->replace_entry), "") != 0 &&
+         g_strcmp0 (gtk_editable_get_text (GTK_EDITABLE (self->replace_entry)), "") != 0 &&
          gtk_text_buffer_get_selection_bounds (buffer, &begin, &end) &&
          gtk_source_search_context_get_occurrence_position (self->context, &begin, &end) > 0;
 }
@@ -615,7 +625,7 @@ _editor_search_bar_get_can_replace_all (EditorSearchBar *self)
   g_return_val_if_fail (EDITOR_IS_SEARCH_BAR (self), FALSE);
 
   return _editor_search_bar_get_can_move (self) &&
-         g_strcmp0 (gtk_entry_get_text (self->replace_entry), "") != 0;
+         g_strcmp0 (gtk_editable_get_text (GTK_EDITABLE (self->replace_entry)), "") != 0;
 }
 
 void
@@ -632,7 +642,7 @@ _editor_search_bar_replace (EditorSearchBar *self)
     return;
 
   buffer = gtk_source_search_context_get_buffer (self->context);
-  replace = gtk_entry_get_text (self->replace_entry);
+  replace = gtk_editable_get_text (GTK_EDITABLE (self->replace_entry));
 
   gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER (buffer), &begin, &end);
 
@@ -653,7 +663,7 @@ _editor_search_bar_replace_all (EditorSearchBar *self)
   if (!_editor_search_bar_get_can_replace_all (self))
     return;
 
-  replace = gtk_entry_get_text (self->replace_entry);
+  replace = gtk_editable_get_text (GTK_EDITABLE (self->replace_entry));
 
   if (!gtk_source_search_context_replace_all (self->context, replace, -1, &error))
     g_warning ("Failed to replace all matches: %s", error->message);

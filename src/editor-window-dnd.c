@@ -25,6 +25,7 @@
 #include "editor-session.h"
 #include "editor-window-private.h"
 
+#if 0
 static void
 editor_window_dnd_drag_data_received_cb (EditorWindow     *self,
                                          GdkDragContext   *context,
@@ -54,26 +55,29 @@ editor_window_dnd_drag_data_received_cb (EditorWindow     *self,
 
   gtk_window_present_with_time (GTK_WINDOW (self), time_);
 }
+#endif
 
 void
 _editor_window_dnd_init (EditorWindow *self)
 {
+#if 0
   static const GtkTargetEntry target_entries[] = {
     { (gchar *)"text/uri-list", 0, 0 },
   };
 
   gtk_drag_dest_unset (GTK_WIDGET (self->notebook));
 
-  gtk_drag_dest_set (GTK_WIDGET (self->drop_box),
+  gtk_drag_dest_set (GTK_WIDGET (self->paned),
                      GTK_DEST_DEFAULT_ALL,
                      target_entries,
                      G_N_ELEMENTS (target_entries),
                      GDK_ACTION_COPY);
 
-  g_signal_connect_object (self->drop_box,
+  g_signal_connect_object (self->paned,
                            "drag-data-received",
                            G_CALLBACK (editor_window_dnd_drag_data_received_cb),
                            self,
                            G_CONNECT_SWAPPED);
 
+#endif
 }

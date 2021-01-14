@@ -32,11 +32,11 @@
 #include "editor-window-private.h"
 
 static void
-editor_window_actions_new_draft_cb (GSimpleAction *action,
-                                    GVariant      *param,
-                                    gpointer       user_data)
+editor_window_actions_new_draft_cb (GtkWidget  *widget,
+                                    const char *action_name,
+                                    GVariant   *param)
 {
-  EditorWindow *self = user_data;
+  EditorWindow *self = (EditorWindow *)widget;
   EditorSession *session;
 
   g_assert (EDITOR_IS_WINDOW (self));
@@ -46,11 +46,11 @@ editor_window_actions_new_draft_cb (GSimpleAction *action,
 }
 
 static void
-editor_window_actions_close_page_cb (GSimpleAction *action,
-                                     GVariant      *param,
-                                     gpointer       user_data)
+editor_window_actions_close_page_cb (GtkWidget  *widget,
+                                     const char *action_name,
+                                     GVariant   *param)
 {
-  EditorWindow *self = user_data;
+  EditorWindow *self = (EditorWindow *)widget;
   EditorSession *session;
   EditorPage *page;
 
@@ -68,11 +68,11 @@ editor_window_actions_close_page_cb (GSimpleAction *action,
 }
 
 static void
-editor_window_actions_save_cb (GSimpleAction *action,
-                               GVariant      *param,
-                               gpointer       user_data)
+editor_window_actions_save_cb (GtkWidget  *widget,
+                               const char *action_name,
+                               GVariant   *param)
 {
-  EditorWindow *self = user_data;
+  EditorWindow *self = (EditorWindow *)widget;
   EditorPage *page;
 
   g_assert (EDITOR_IS_WINDOW (self));
@@ -84,11 +84,11 @@ editor_window_actions_save_cb (GSimpleAction *action,
 }
 
 static void
-editor_window_actions_save_as_cb (GSimpleAction *action,
-                                  GVariant      *param,
-                                  gpointer       user_data)
+editor_window_actions_save_as_cb (GtkWidget  *widget,
+                                  const char *action_name,
+                                  GVariant   *param)
 {
-  EditorWindow *self = user_data;
+  EditorWindow *self = (EditorWindow *)widget;
   EditorPage *page;
 
   g_assert (EDITOR_IS_WINDOW (self));
@@ -100,11 +100,11 @@ editor_window_actions_save_as_cb (GSimpleAction *action,
 }
 
 static void
-editor_window_actions_change_language_cb (GSimpleAction *action,
-                                          GVariant      *param,
-                                          gpointer       user_data)
+editor_window_actions_change_language_cb (GtkWidget  *widget,
+                                          const char *action_name,
+                                          GVariant   *param)
 {
-  EditorWindow *self = user_data;
+  EditorWindow *self = (EditorWindow *)widget;
   EditorLanguageDialog *dialog;
   EditorDocument *document;
   EditorPage *page;
@@ -118,7 +118,6 @@ editor_window_actions_change_language_cb (GSimpleAction *action,
 
   dialog = editor_language_dialog_new (EDITOR_APPLICATION_DEFAULT);
   gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (self));
-  gtk_window_set_position (GTK_WINDOW (dialog), GTK_WIN_POS_CENTER_ON_PARENT);
   gtk_window_set_destroy_with_parent (GTK_WINDOW (dialog), TRUE);
   gtk_window_set_modal (GTK_WINDOW (dialog), FALSE);
 
@@ -129,11 +128,11 @@ editor_window_actions_change_language_cb (GSimpleAction *action,
 }
 
 static void
-editor_window_actions_discard_changes_cb (GSimpleAction *action,
-                                          GVariant      *param,
-                                          gpointer       user_data)
+editor_window_actions_discard_changes_cb (GtkWidget  *widget,
+                                          const char *action_name,
+                                          GVariant   *param)
 {
-  EditorWindow *self = user_data;
+  EditorWindow *self = (EditorWindow *)widget;
   EditorPage *page;
 
   g_assert (EDITOR_IS_WINDOW (self));
@@ -143,11 +142,11 @@ editor_window_actions_discard_changes_cb (GSimpleAction *action,
 }
 
 static void
-editor_window_actions_print_cb (GSimpleAction *action,
-                                GVariant      *param,
-                                gpointer       user_data)
+editor_window_actions_print_cb (GtkWidget  *widget,
+                                const char *action_name,
+                                GVariant   *param)
 {
-  EditorWindow *self = user_data;
+  EditorWindow *self = (EditorWindow *)widget;
   EditorPage *page;
 
   g_assert (EDITOR_IS_WINDOW (self));
@@ -157,11 +156,11 @@ editor_window_actions_print_cb (GSimpleAction *action,
 }
 
 static void
-editor_window_actions_change_page_cb (GSimpleAction *action,
-                                      GVariant      *param,
-                                      gpointer       user_data)
+editor_window_actions_change_page_cb (GtkWidget  *widget,
+                                      const char *action_name,
+                                      GVariant   *param)
 {
-  EditorWindow *self = user_data;
+  EditorWindow *self = (EditorWindow *)widget;
   EditorPage *page;
   gint page_num;
 
@@ -177,11 +176,11 @@ editor_window_actions_change_page_cb (GSimpleAction *action,
 }
 
 static void
-editor_window_actions_copy_all_cb (GSimpleAction *action,
-                                   GVariant      *param,
-                                   gpointer       user_data)
+editor_window_actions_copy_all_cb (GtkWidget  *widget,
+                                   const char *action_name,
+                                   GVariant   *param)
 {
-  EditorWindow *self = user_data;
+  EditorWindow *self = (EditorWindow *)widget;
   EditorPage *page;
 
   g_assert (EDITOR_IS_WINDOW (self));
@@ -209,11 +208,11 @@ editor_window_actions_open_response_cb (EditorWindow         *self,
 }
 
 static void
-editor_window_actions_open_cb (GSimpleAction *action,
-                               GVariant      *param,
-                               gpointer       user_data)
+editor_window_actions_open_cb (GtkWidget  *widget,
+                               const char *action_name,
+                               GVariant   *param)
 {
-  EditorWindow *self = user_data;
+  EditorWindow *self = (EditorWindow *)widget;
   g_autoptr(GtkFileFilter) all_files = NULL;
   g_autoptr(GtkFileFilter) text_files = NULL;
   GtkFileChooserNative *native;
@@ -236,7 +235,7 @@ editor_window_actions_open_cb (GSimpleAction *action,
       g_autoptr(GFile) dir = g_file_get_parent (dfile);
 
       if (dir != NULL)
-        gtk_file_chooser_set_current_folder_file (GTK_FILE_CHOOSER (native), dir, NULL);
+        gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (native), dir, NULL);
     }
 
   all_files = gtk_file_filter_new ();
@@ -260,11 +259,11 @@ editor_window_actions_open_cb (GSimpleAction *action,
 }
 
 static void
-editor_window_actions_focus_search_cb (GSimpleAction *action,
-                                       GVariant      *param,
-                                       gpointer       user_data)
+editor_window_actions_focus_search_cb (GtkWidget  *widget,
+                                       const char *action_name,
+                                       GVariant   *param)
 {
-  EditorWindow *self = user_data;
+  EditorWindow *self = (EditorWindow *)widget;
 
   g_assert (EDITOR_IS_WINDOW (self));
 
@@ -272,11 +271,11 @@ editor_window_actions_focus_search_cb (GSimpleAction *action,
 }
 
 static void
-editor_window_actions_move_left_cb (GSimpleAction *action,
-                                    GVariant      *param,
-                                    gpointer       user_data)
+editor_window_actions_move_left_cb (GtkWidget  *widget,
+                                    const char *action_name,
+                                    GVariant   *param)
 {
-  EditorWindow *self = user_data;
+  EditorWindow *self = (EditorWindow *)widget;
   GtkNotebook *notebook;
   EditorPage *page;
   gint page_num;
@@ -297,11 +296,11 @@ editor_window_actions_move_left_cb (GSimpleAction *action,
 }
 
 static void
-editor_window_actions_move_right_cb (GSimpleAction *action,
-                                     GVariant      *param,
-                                     gpointer       user_data)
+editor_window_actions_move_right_cb (GtkWidget  *widget,
+                                     const char *action_name,
+                                     GVariant   *param)
 {
-  EditorWindow *self = user_data;
+  EditorWindow *self = (EditorWindow *)widget;
   GtkNotebook *notebook;
   EditorPage *page;
   gint page_num;
@@ -322,11 +321,11 @@ editor_window_actions_move_right_cb (GSimpleAction *action,
 }
 
 static void
-editor_window_actions_move_to_new_window_cb (GSimpleAction *action,
-                                             GVariant *param,
-                                             gpointer user_data)
+editor_window_actions_move_to_new_window_cb (GtkWidget  *widget,
+                                             const char *action_name,
+                                             GVariant   *param)
 {
-  EditorWindow *self = user_data;
+  EditorWindow *self = (EditorWindow *)widget;
   EditorWindow *window;
   EditorPage *page;
 
@@ -342,11 +341,11 @@ editor_window_actions_move_to_new_window_cb (GSimpleAction *action,
 }
 
 static void
-editor_window_actions_begin_search_cb (GSimpleAction *action,
-                                       GVariant      *param,
-                                       gpointer       user_data)
+editor_window_actions_begin_search_cb (GtkWidget  *widget,
+                                       const char *action_name,
+                                       GVariant   *param)
 {
-  EditorWindow *self = user_data;
+  EditorWindow *self = (EditorWindow *)widget;
   EditorPage *page;
 
   g_assert (EDITOR_IS_WINDOW (self));
@@ -356,11 +355,11 @@ editor_window_actions_begin_search_cb (GSimpleAction *action,
 }
 
 static void
-editor_window_actions_begin_replace_cb (GSimpleAction *action,
-                                        GVariant      *param,
-                                        gpointer       user_data)
+editor_window_actions_begin_replace_cb (GtkWidget  *widget,
+                                        const char *action_name,
+                                        GVariant   *param)
 {
-  EditorWindow *self = user_data;
+  EditorWindow *self = (EditorWindow *)widget;
   EditorPage *page;
 
   g_assert (EDITOR_IS_WINDOW (self));
@@ -372,11 +371,79 @@ editor_window_actions_begin_replace_cb (GSimpleAction *action,
 void
 _editor_window_class_actions_init (EditorWindowClass *klass)
 {
+  GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+
+  gtk_widget_class_install_action (widget_class,
+                                   "session.new-draft",
+                                   NULL,
+                                   editor_window_actions_new_draft_cb);
+  gtk_widget_class_install_action (widget_class,
+                                   "win.close-current-page",
+                                   NULL,
+                                   editor_window_actions_close_page_cb);
+  gtk_widget_class_install_action (widget_class,
+                                   "win.open",
+                                   NULL,
+                                   editor_window_actions_open_cb);
+  gtk_widget_class_install_action (widget_class,
+                                   "win.focus-search",
+                                   NULL,
+                                   editor_window_actions_focus_search_cb);
+  gtk_widget_class_install_action (widget_class,
+                                   "page.save",
+                                   NULL,
+                                   editor_window_actions_save_cb);
+  gtk_widget_class_install_action (widget_class,
+                                   "page.save-as",
+                                   NULL,
+                                   editor_window_actions_save_as_cb);
+  gtk_widget_class_install_action (widget_class,
+                                   "page.change-language",
+                                   NULL,
+                                   editor_window_actions_change_language_cb);
+  gtk_widget_class_install_action (widget_class,
+                                   "page.discard-changes",
+                                   NULL,
+                                   editor_window_actions_discard_changes_cb);
+  gtk_widget_class_install_action (widget_class,
+                                   "page.print",
+                                   NULL,
+                                   editor_window_actions_print_cb);
+  gtk_widget_class_install_action (widget_class,
+                                   "page.change",
+                                   "i",
+                                   editor_window_actions_change_page_cb);
+  gtk_widget_class_install_action (widget_class,
+                                   "page.copy-all",
+                                   NULL,
+                                   editor_window_actions_copy_all_cb);
+  gtk_widget_class_install_action (widget_class,
+                                   "page.move-left",
+                                   NULL,
+                                   editor_window_actions_move_left_cb);
+  gtk_widget_class_install_action (widget_class,
+                                   "page.move-right",
+                                   NULL,
+                                   editor_window_actions_move_right_cb);
+  gtk_widget_class_install_action (widget_class,
+                                   "page.move-to-new-window",
+                                   NULL,
+                                   editor_window_actions_move_to_new_window_cb);
+  gtk_widget_class_install_action (widget_class,
+                                   "page.begin-search",
+                                   NULL,
+                                   editor_window_actions_begin_search_cb);
+  gtk_widget_class_install_action (widget_class,
+                                   "page.begin-replace",
+                                   NULL,
+                                   editor_window_actions_begin_replace_cb);
 }
 
 void
 _editor_window_actions_init (EditorWindow *self)
 {
+  g_autoptr(GSimpleActionGroup) group = NULL;
+  g_autoptr(GSettings) settings = NULL;
   static const gchar *setting_keys[] = {
     "dark-mode",
     "discover-settings",
@@ -387,73 +454,21 @@ _editor_window_actions_init (EditorWindow *self)
     "wrap-text",
   };
 
-  static const GActionEntry win_actions[] = {
-    { "close-current-page", editor_window_actions_close_page_cb },
-    { "open", editor_window_actions_open_cb },
-    { "focus-search", editor_window_actions_focus_search_cb },
-  };
-
-  static const GActionEntry session_actions[] = {
-    { "new-draft", editor_window_actions_new_draft_cb },
-  };
-
-  static const GActionEntry page_actions[] = {
-    { "save", editor_window_actions_save_cb },
-    { "save-as", editor_window_actions_save_as_cb },
-    { "change-language", editor_window_actions_change_language_cb },
-    { "discard-changes", editor_window_actions_discard_changes_cb },
-    { "print", editor_window_actions_print_cb },
-    { "change", editor_window_actions_change_page_cb, "i" },
-    { "copy-all", editor_window_actions_copy_all_cb },
-    { "move-left", editor_window_actions_move_left_cb },
-    { "move-right", editor_window_actions_move_right_cb },
-    { "move-to-new-window", editor_window_actions_move_to_new_window_cb },
-    { "begin-search", editor_window_actions_begin_search_cb },
-    { "begin-replace", editor_window_actions_begin_replace_cb },
-  };
-
-  g_autoptr(GSimpleActionGroup) group = g_simple_action_group_new ();
-  g_autoptr(GSimpleActionGroup) session = g_simple_action_group_new ();
-  g_autoptr(GSimpleActionGroup) page = g_simple_action_group_new ();
-  g_autoptr(GSettings) settings = NULL;
-
   g_assert (EDITOR_IS_WINDOW (self));
 
-  /* Setup settings actions */
   settings = g_settings_new ("org.gnome.TextEditor");
+  group = g_simple_action_group_new ();
+
   for (guint i = 0; i < G_N_ELEMENTS (setting_keys); i++)
     {
       const gchar *key = setting_keys[i];
       g_autoptr(GAction) action = g_settings_create_action (settings, key);
       g_action_map_add_action (G_ACTION_MAP (group), action);
     }
+
   gtk_widget_insert_action_group (GTK_WIDGET (self),
                                   "settings",
                                   G_ACTION_GROUP (group));
-
-  /* Add window actions to window (which is an action map) */
-  g_action_map_add_action_entries (G_ACTION_MAP (self),
-                                   win_actions,
-                                   G_N_ELEMENTS (win_actions),
-                                   self);
-
-  /* Now add session actions */
-  g_action_map_add_action_entries (G_ACTION_MAP (session),
-                                   session_actions,
-                                   G_N_ELEMENTS (session_actions),
-                                   self);
-  gtk_widget_insert_action_group (GTK_WIDGET (self),
-                                  "session",
-                                  G_ACTION_GROUP (session));
-
-  /* Now add our page proxy actions */
-  g_action_map_add_action_entries (G_ACTION_MAP (page),
-                                   page_actions,
-                                   G_N_ELEMENTS (page_actions),
-                                   self);
-  gtk_widget_insert_action_group (GTK_WIDGET (self),
-                                  "page",
-                                  G_ACTION_GROUP (page));
 
   _editor_window_actions_update (self, NULL);
 }
@@ -462,7 +477,6 @@ void
 _editor_window_actions_update (EditorWindow *self,
                                EditorPage   *page)
 {
-  GActionGroup *group;
   gboolean has_page = FALSE;
   gboolean can_save = FALSE;
   gboolean modified = FALSE;
@@ -479,22 +493,12 @@ _editor_window_actions_update (EditorWindow *self,
       draft = editor_page_is_draft (page);
     }
 
-  group = gtk_widget_get_action_group (GTK_WIDGET (self), "page");
-
-#define ACTION_SET_ENABLED(name, enabled) \
-  G_STMT_START { \
-    GAction *action = g_action_map_lookup_action (G_ACTION_MAP (group), name); \
-    g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled); \
-  } G_STMT_END
-
-  ACTION_SET_ENABLED ("change-language", has_page);
-  ACTION_SET_ENABLED ("discard-changes", modified && !draft);
-  ACTION_SET_ENABLED ("print", has_page);
-  ACTION_SET_ENABLED ("save", can_save);
-  ACTION_SET_ENABLED ("save-as", has_page);
-  ACTION_SET_ENABLED ("copy-all", has_page);
-  ACTION_SET_ENABLED ("begin-replace", has_page);
-  ACTION_SET_ENABLED ("begin-search", has_page);
-
-#undef ACTION_SET_ENABLED
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "change-language", has_page);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "discard-changes", modified && !draft);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "print", has_page);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "save", can_save);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "save-as", has_page);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "copy-all", has_page);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "begin-replace", has_page);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "begin-search", has_page);
 }

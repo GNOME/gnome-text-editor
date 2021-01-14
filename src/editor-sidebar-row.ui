@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <requires lib="gtk+" version="3.24"/>
+  <requires lib="gtk+" version="4.0"/>
   <template class="EditorSidebarRow" parent="GtkListBoxRow">
     <property name="selectable">false</property>
     <child>
@@ -38,10 +38,10 @@
             <property name="halign">start</property>
             <property name="ellipsize">end</property>
             <property name="hexpand">true</property>
+            <layout>
+              <property name="column">1</property>
+            </layout>
           </object>
-          <packing>
-            <property name="left-attach">1</property>
-          </packing>
         </child>
         <child>
           <object class="GtkLabel" id="subtitle">
@@ -52,11 +52,11 @@
             <style>
               <class name="dim-label"/>
             </style>
+            <layout>
+              <property name="row">1</property>
+              <property name="column">1</property>
+            </layout>
           </object>
-          <packing>
-            <property name="top-attach">1</property>
-            <property name="left-attach">1</property>
-          </packing>
         </child>
       </object>
     </child>

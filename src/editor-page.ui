@@ -1,57 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <requires lib="gtk+" version="3.24"/>
-  <template class="EditorPage" parent="GtkBin">
+  <requires lib="gtk+" version="4.0"/>
+  <template class="EditorPage" parent="GtkWidget">
     <child>
-      <object class="GtkBox">
+      <object class="GtkBox" id="box">
         <property name="orientation">vertical</property>
-        <property name="visible">true</property>
         <child>
           <object class="GtkInfoBar" id="changed_infobar">
             <property name="message-type">warning</property>
             <property name="revealed">false</property>
-            <property name="visible">true</property>
             <property name="show-close-button">true</property>
-            <child internal-child="content_area">
+            <child>
               <object class="GtkBox">
+                <property name="orientation">vertical</property>
+                <property name="spacing">3</property>
                 <property name="hexpand">true</property>
                 <child>
-                  <object class="GtkBox">
-                    <property name="orientation">vertical</property>
-                    <property name="spacing">3</property>
-                    <property name="hexpand">true</property>
-                    <property name="visible">true</property>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="label" translatable="yes">File Has Changed on Disk</property>
-                        <property name="visible">true</property>
-                        <property name="xalign">0.0</property>
-                        <attributes>
-                          <attribute name="weight" value="bold"/>
-                        </attributes>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="label" translatable="yes">The file has been changed by another program.</property>
-                        <property name="visible">true</property>
-                        <property name="xalign">0.0</property>
-                      </object>
-                    </child>
+                  <object class="GtkLabel">
+                    <property name="label" translatable="yes">File Has Changed on Disk</property>
+                    <property name="xalign">0.0</property>
+                    <attributes>
+                      <attribute name="weight" value="bold"/>
+                    </attributes>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="label" translatable="yes">The file has been changed by another program.</property>
+                    <property name="xalign">0.0</property>
                   </object>
                 </child>
               </object>
             </child>
-            <child internal-child="action_area">
-              <object class="GtkButtonBox">
+            <child type="action">
+              <object class="GtkBox">
                 <property name="hexpand">false</property>
                 <property name="halign">end</property>
                 <property name="valign">center</property>
                 <child>
                   <object class="GtkButton" id="reload_button">
-                    <property name="visible">true</property>
                     <property name="use-underline">true</property>
-                    <property name="label" translatable="yes">Discard Changes &amp; _Reload</property>
+                    <property name="label" translatable="yes">Discard Changes and _Reload</property>
                   </object>
                 </child>
               </object>
@@ -64,10 +53,8 @@
         <child>
           <object class="GtkOverlay" id="overlay">
             <property name="vexpand">true</property>
-            <property name="visible">true</property>
             <child type="overlay">
               <object class="GtkRevealer" id="search_revealer">
-                <property name="visible">true</property>
                 <property name="halign">end</property>
                 <property name="margin-end">6</property>
                 <property name="hexpand">false</property>
@@ -78,7 +65,6 @@
                 <property name="reveal-child">false</property>
                 <child>
                   <object class="EditorSearchBar" id="search_bar">
-                    <property name="visible">true</property>
                   </object>
                 </child>
               </object>
@@ -93,12 +79,11 @@
                 <property name="hexpand">true</property>
                 <property name="valign">start</property>
                 <property name="vexpand">false</property>
-                <property name="visible">true</property>
+                <property name="visible">false</property>
               </object>
             </child>
             <child>
               <object class="GtkScrolledWindow" id="scroller">
-                <property name="visible">true</property>
                 <child>
                   <object class="GtkSourceView" id="view">
                     <property name="auto-indent">true</property>
@@ -107,7 +92,6 @@
                     <property name="left-margin">16</property>
                     <property name="right-margin">16</property>
                     <property name="monospace">true</property>
-                    <property name="visible">true</property>
                   </object>
                 </child>
               </object>

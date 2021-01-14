@@ -20,13 +20,13 @@
 
 #pragma once
 
-#include "editor-bin-private.h"
+#include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 
 #define EDITOR_TYPE_POSITION_LABEL (editor_position_label_get_type())
 
-G_DECLARE_FINAL_TYPE (EditorPositionLabel, editor_position_label, EDITOR, POSITION_LABEL, EditorBin)
+G_DECLARE_FINAL_TYPE (EditorPositionLabel, editor_position_label, EDITOR, POSITION_LABEL, GtkWidget)
 
 EditorPositionLabel *_editor_position_label_new          (void);
 void                 _editor_position_label_set_position (EditorPositionLabel *self,

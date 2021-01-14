@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <requires lib="gtk+" version="3.24"/>
+  <requires lib="gtk+" version="4.0"/>
   <template class="EditorPreferencesWindow" parent="GtkWindow">
     <property name="title" translatable="yes">Preferences</property>
     <style>
@@ -9,7 +9,6 @@
     </style>
     <child>
       <object class="GtkBox">
-        <property name="visible">true</property>
         <property name="orientation">vertical</property>
         <property name="margin-top">32</property>
         <property name="margin-start">32</property>
@@ -18,7 +17,6 @@
         <property name="spacing">10</property>
         <child>
           <object class="GtkLabel">
-            <property name="visible">true</property>
             <property name="label" translatable="yes">Font</property>
             <property name="halign">start</property>
             <style>
@@ -28,14 +26,11 @@
         </child>
         <child>
           <object class="GtkFrame">
-            <property name="visible">true</property>
             <child>
               <object class="GtkListBox">
-                <property name="visible">true</property>
                 <signal name="row-activated" handler="editor_preferences_window_row_activated_cb" swapped="true" object="EditorPreferencesWindow"/>
                 <child>
                   <object class="EditorPreferencesSwitch" id="use_system_font">
-                    <property name="visible">true</property>
                     <property name="height-request">46</property>
                     <property name="label" translatable="yes">Use System Font</property>
                     <property name="schema-key">use-system-font</property>
@@ -43,7 +38,6 @@
                 </child>
                 <child>
                   <object class="EditorPreferencesFont" id="custom_font">
-                    <property name="visible">true</property>
                     <property name="label" translatable="yes">Custom Font</property>
                     <property name="schema-key">custom-font</property>
                     <property name="sensitive" bind-source="use_system_font" bind-property="active" bind-flags="sync-create|invert-boolean"/>
@@ -55,7 +49,6 @@
         </child>
         <child>
           <object class="GtkLabel">
-            <property name="visible">true</property>
             <property name="label" translatable="yes">Right Margin</property>
             <property name="margin-top">10</property>
             <property name="halign">start</property>
@@ -66,14 +59,11 @@
         </child>
         <child>
           <object class="GtkFrame">
-            <property name="visible">true</property>
             <child>
               <object class="GtkListBox">
-                <property name="visible">true</property>
                 <signal name="row-activated" handler="editor_preferences_window_row_activated_cb" swapped="true" object="EditorPreferencesWindow"/>
                 <child>
                   <object class="EditorPreferencesSpin" id="right_margin">
-                    <property name="visible">true</property>
                     <property name="label" translatable="yes">Margin Position</property>
                     <property name="schema-key">right-margin-position</property>
                   </object>

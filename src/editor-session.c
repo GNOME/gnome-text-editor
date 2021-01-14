@@ -209,7 +209,8 @@ add_window_state (EditorSession   *self,
         g_variant_builder_add_parsed (builder, "{'sidebar-revealed', <%b>}", TRUE);
 
       /* Store the window size */
-      gtk_window_get_size (GTK_WINDOW (window), &width, &height);
+      width = gtk_widget_get_width (GTK_WIDGET (window));
+      height = gtk_widget_get_height (GTK_WIDGET (window));
       g_variant_builder_add_parsed (builder,
                                     "{'size', <(%u,%u)>}",
                                     CLAMP (width, 0, 10000),
@@ -535,7 +536,8 @@ get_default_size (EditorSession *self,
 
   if (active)
     {
-      gtk_window_get_size (active, (gint *)width, (gint *)height);
+      *width = gtk_widget_get_width (GTK_WIDGET (active));
+      *height = gtk_widget_get_height (GTK_WIDGET (active));
     }
   else
     {
@@ -1497,7 +1499,7 @@ editor_session_restore_v1 (EditorSession *self,
           if (!editor_session_restore_v1_pages (self, ewin, pages))
             {
               had_failure = TRUE;
-              gtk_widget_destroy (GTK_WIDGET (ewin));
+              gtk_window_destroy (GTK_WINDOW (ewin));
               g_ptr_array_remove (self->windows, ewin);
               continue;
             }

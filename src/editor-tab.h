@@ -26,7 +26,7 @@ G_BEGIN_DECLS
 
 #define EDITOR_TYPE_TAB (editor_tab_get_type())
 
-G_DECLARE_FINAL_TYPE (EditorTab, editor_tab, EDITOR, TAB, GtkBin)
+G_DECLARE_FINAL_TYPE (EditorTab, editor_tab, EDITOR, TAB, GtkWidget)
 
 EditorPage *editor_tab_get_page (EditorTab *self);
 

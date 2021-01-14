@@ -37,7 +37,7 @@ G_BEGIN_DECLS
 
 struct _EditorPage
 {
-  GtkBin                   parent_instance;
+  GtkWidget                parent_instance;
 
   EditorDocument          *document;
   EditorPageSettings      *settings;
@@ -45,6 +45,7 @@ struct _EditorPage
 
   EditorAnimation         *progress_animation;
 
+  GtkWidget               *box;
   GtkOverlay              *overlay;
   GtkScrolledWindow       *scroller;
   GtkSourceView           *view;
@@ -52,7 +53,6 @@ struct _EditorPage
   GtkRevealer             *search_revealer;
   EditorSearchBar         *search_bar;
   GtkInfoBar              *changed_infobar;
-  GtkSourceGutterRenderer *lines_renderer;
 };
 
 void          _editor_page_class_actions_init   (EditorPageClass     *klass);

@@ -174,7 +174,6 @@ _editor_tab_actions_init (EditorTab *self)
 void
 _editor_tab_actions_update (EditorTab *self)
 {
-  GActionGroup *group;
   GtkWidget *notebook;
   gboolean move_left = FALSE;
   gboolean move_right = FALSE;
@@ -192,17 +191,7 @@ _editor_tab_actions_update (EditorTab *self)
       move_right = page_num < (n_pages - 1);
     }
 
-  group = gtk_widget_get_action_group (GTK_WIDGET (self), "tab");
-
-#define SET_ACTION_ENABLED(name, enabled) \
-  G_STMT_START { \
-    GAction *action = g_action_map_lookup_action (G_ACTION_MAP (group), name); \
-    g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled); \
-  } G_STMT_END
-
-  SET_ACTION_ENABLED ("move-left", move_left);
-  SET_ACTION_ENABLED ("move-right", move_right);
-
-#undef SET_ACTION_ENABLED
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "tab.move-left", move_left);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "tab.move-right", move_right);
 }
 

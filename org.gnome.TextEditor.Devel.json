@@ -29,20 +29,6 @@
     ],
     "modules" : [
         {
-            "name": "libhandy",
-            "buildsystem": "meson",
-            "config-opts": [
-                "-Dglade_catalog=disabled"
-            ],
-            "sources": [
-                {
-                    "type": "git",
-                    "url": "https://gitlab.gnome.org/GNOME/libhandy.git",
-                    "branch": "master"
-                }
-            ]
-        },
-        {
             "name" : "gnome-text-editor",
             "builddir" : true,
             "buildsystem" : "meson",

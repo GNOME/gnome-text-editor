@@ -31,10 +31,9 @@ G_BEGIN_DECLS
 
 struct _EditorWindow
 {
-  HdyApplicationWindow  parent_instance;
+  GtkApplicationWindow  parent_instance;
 
   /* Template Widgets */
-  GtkWidget            *drop_box;
   GtkWidget            *empty;
   GtkNotebook          *notebook;
   GtkLabel             *title;
