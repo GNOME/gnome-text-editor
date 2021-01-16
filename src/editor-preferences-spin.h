@@ -20,12 +20,12 @@
 
 #pragma once
 
-#include "editor-preferences-row.h"
+#include "editor-types.h"
 
 G_BEGIN_DECLS
 
 #define EDITOR_TYPE_PREFERENCES_SPIN (editor_preferences_spin_get_type())
 
-G_DECLARE_FINAL_TYPE (EditorPreferencesSpin, editor_preferences_spin, EDITOR, PREFERENCES_SPIN, EditorPreferencesRow)
+G_DECLARE_FINAL_TYPE (EditorPreferencesSpin, editor_preferences_spin, EDITOR, PREFERENCES_SPIN, AdwActionRow)
 
 G_END_DECLS

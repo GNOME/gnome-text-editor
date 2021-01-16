@@ -22,16 +22,16 @@
 
 #include "config.h"
 
-#include "editor-preferences-row.h"
+#include "editor-types.h"
 
-G_DEFINE_TYPE (EditorPreferencesRow, editor_preferences_row, ADW_TYPE_ACTION_ROW)
+G_DEFINE_TYPE (AdwActionRow, editor_preferences_row, ADW_TYPE_ACTION_ROW)
 
 static void
-editor_preferences_row_class_init (EditorPreferencesRowClass *klass)
+editor_preferences_row_class_init (AdwActionRowClass *klass)
 {
 }
 
 static void
-editor_preferences_row_init (EditorPreferencesRow *self)
+editor_preferences_row_init (AdwActionRow *self)
 {
 }

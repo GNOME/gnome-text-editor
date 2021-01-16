@@ -24,7 +24,7 @@
 
 #include "editor-preferences-font.h"
 #include "editor-preferences-radio.h"
-#include "editor-preferences-row.h"
+#include "editor-types.h"
 #include "editor-preferences-spin.h"
 #include "editor-preferences-switch.h"
 #include "editor-preferences-window.h"
@@ -38,11 +38,11 @@ G_DEFINE_TYPE (EditorPreferencesWindow, editor_preferences_window, ADW_TYPE_PREF
 
 static void
 editor_preferences_window_row_activated_cb (EditorPreferencesWindow *self,
-                                            EditorPreferencesRow    *row,
+                                            AdwActionRow    *row,
                                             GtkListBox              *list_box)
 {
   g_assert (EDITOR_IS_PREFERENCES_WINDOW (self));
-  g_assert (EDITOR_IS_PREFERENCES_ROW (row));
+  g_assert (ADW_IS_ACTION_ROW (row));
   g_assert (GTK_IS_LIST_BOX (list_box));
 }
 
@@ -71,7 +71,7 @@ editor_preferences_window_class_init (EditorPreferencesWindowClass *klass)
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Escape, 0, "win.close", NULL);
 
   g_type_ensure (EDITOR_TYPE_PREFERENCES_FONT);
-  g_type_ensure (EDITOR_TYPE_PREFERENCES_ROW);
+  g_type_ensure (ADW_TYPE_ACTION_ROW);
   g_type_ensure (EDITOR_TYPE_PREFERENCES_RADIO);
   g_type_ensure (EDITOR_TYPE_PREFERENCES_SPIN);
   g_type_ensure (EDITOR_TYPE_PREFERENCES_SWITCH);

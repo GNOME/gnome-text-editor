@@ -26,7 +26,7 @@
 
 struct _EditorPreferencesSwitch
 {
-  EditorPreferencesRow  row;
+  AdwActionRow  row;
 
   GtkLabel             *label;
   GtkSwitch            *toggle;
@@ -45,7 +45,7 @@ enum {
   N_PROPS
 };
 
-G_DEFINE_TYPE (EditorPreferencesSwitch, editor_preferences_switch, EDITOR_TYPE_PREFERENCES_ROW)
+G_DEFINE_TYPE (EditorPreferencesSwitch, editor_preferences_switch, ADW_TYPE_ACTION_ROW)
 
 static GParamSpec *properties [N_PROPS];
 

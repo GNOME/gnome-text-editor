@@ -20,12 +20,12 @@
 
 #pragma once
 
-#include "editor-preferences-row.h"
+#include "editor-types.h"
 
 G_BEGIN_DECLS
 
 #define EDITOR_TYPE_PREFERENCES_SWITCH (editor_preferences_switch_get_type())
 
-G_DECLARE_FINAL_TYPE (EditorPreferencesSwitch, editor_preferences_switch, EDITOR, PREFERENCES_SWITCH, EditorPreferencesRow)
+G_DECLARE_FINAL_TYPE (EditorPreferencesSwitch, editor_preferences_switch, EDITOR, PREFERENCES_SWITCH, AdwActionRow)
 
 G_END_DECLS

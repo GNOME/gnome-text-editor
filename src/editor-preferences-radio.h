@@ -20,12 +20,12 @@
 
 #pragma once
 
-#include "editor-preferences-row.h"
+#include "editor-types.h"
 
 G_BEGIN_DECLS
 
 #define EDITOR_TYPE_PREFERENCES_RADIO (editor_preferences_radio_get_type())
 
-G_DECLARE_FINAL_TYPE (EditorPreferencesRadio, editor_preferences_radio, EDITOR, PREFERENCES_RADIO, EditorPreferencesRow)
+G_DECLARE_FINAL_TYPE (EditorPreferencesRadio, editor_preferences_radio, EDITOR, PREFERENCES_RADIO, AdwActionRow)
 
 G_END_DECLS

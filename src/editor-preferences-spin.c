@@ -26,7 +26,7 @@
 
 struct _EditorPreferencesSpin
 {
-  EditorPreferencesRow  row;
+  AdwActionRow  row;
 
   GtkLabel             *label;
   GtkSpinButton        *spin;
@@ -44,7 +44,7 @@ enum {
   N_PROPS
 };
 
-G_DEFINE_TYPE (EditorPreferencesSpin, editor_preferences_spin, EDITOR_TYPE_PREFERENCES_ROW)
+G_DEFINE_TYPE (EditorPreferencesSpin, editor_preferences_spin, ADW_TYPE_ACTION_ROW)
 
 static GParamSpec *properties [N_PROPS];
 
@@ -127,7 +127,7 @@ editor_preferences_spin_activated (AdwActionRow *row)
 {
   EditorPreferencesSpin *self = (EditorPreferencesSpin *)row;
 
-  g_assert (EDITOR_IS_PREFERENCES_ROW (self));
+  g_assert (ADW_IS_ACTION_ROW (self));
 
   gtk_widget_grab_focus (GTK_WIDGET (self->spin));
 }

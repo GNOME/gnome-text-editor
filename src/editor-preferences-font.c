@@ -28,7 +28,7 @@
 
 struct _EditorPreferencesFont
 {
-  EditorPreferencesRow  row;
+  AdwActionRow  row;
 
   GtkLabel             *font_label;
 
@@ -44,7 +44,7 @@ enum {
   N_PROPS
 };
 
-G_DEFINE_TYPE (EditorPreferencesFont, editor_preferences_font, EDITOR_TYPE_PREFERENCES_ROW)
+G_DEFINE_TYPE (EditorPreferencesFont, editor_preferences_font, ADW_TYPE_ACTION_ROW)
 
 static GParamSpec *properties [N_PROPS];
 
@@ -96,7 +96,7 @@ editor_preferences_font_activated (AdwActionRow *row)
   GtkWidget *dialog;
   GtkRoot *root;
 
-  g_assert (EDITOR_IS_PREFERENCES_ROW (self));
+  g_assert (ADW_IS_ACTION_ROW (self));
 
   root = gtk_widget_get_root (GTK_WIDGET (row));
   dialog = gtk_font_chooser_dialog_new (_("Select Font"), GTK_WINDOW (root));

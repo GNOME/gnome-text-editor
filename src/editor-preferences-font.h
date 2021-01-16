@@ -20,12 +20,12 @@
 
 #pragma once
 
-#include "editor-preferences-row.h"
+#include "editor-types.h"
 
 G_BEGIN_DECLS
 
 #define EDITOR_TYPE_PREFERENCES_FONT (editor_preferences_font_get_type())
 
-G_DECLARE_FINAL_TYPE (EditorPreferencesFont, editor_preferences_font, EDITOR, PREFERENCES_FONT, EditorPreferencesRow)
+G_DECLARE_FINAL_TYPE (EditorPreferencesFont, editor_preferences_font, EDITOR, PREFERENCES_FONT, AdwActionRow)
 
 G_END_DECLS

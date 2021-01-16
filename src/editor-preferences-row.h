@@ -1,4 +1,4 @@
-/* editor-preferences-row.h
+/* editor-types.h
  *
  * Copyright 2020 Christian Hergert <chergert@redhat.com>
  *
@@ -24,15 +24,15 @@
 
 G_BEGIN_DECLS
 
-#define EDITOR_TYPE_PREFERENCES_ROW (editor_preferences_row_get_type())
+#define ADW_TYPE_ACTION_ROW (editor_preferences_row_get_type())
 
-G_DECLARE_DERIVABLE_TYPE (EditorPreferencesRow, editor_preferences_row, EDITOR, PREFERENCES_ROW, AdwActionRow)
+G_DECLARE_DERIVABLE_TYPE (AdwActionRow, editor_preferences_row, EDITOR, PREFERENCES_ROW, AdwActionRow)
 
-struct _EditorPreferencesRowClass
+struct _AdwActionRowClass
 {
   AdwActionRowClass parent_class;
 };
 
-EditorPreferencesRow *editor_preferences_row_new            (void);
+AdwActionRow *editor_preferences_row_new            (void);
 
 G_END_DECLS

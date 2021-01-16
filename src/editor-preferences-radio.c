@@ -26,7 +26,7 @@
 
 struct _EditorPreferencesRadio
 {
-  EditorPreferencesRow  row;
+  AdwActionRow  row;
 
   GtkCheckButton       *toggle;
 
@@ -44,7 +44,7 @@ enum {
   N_PROPS
 };
 
-G_DEFINE_TYPE (EditorPreferencesRadio, editor_preferences_radio, EDITOR_TYPE_PREFERENCES_ROW)
+G_DEFINE_TYPE (EditorPreferencesRadio, editor_preferences_radio, ADW_TYPE_ACTION_ROW)
 
 static GParamSpec *properties [N_PROPS];
 
@@ -98,7 +98,7 @@ editor_preferences_radio_activated (AdwActionRow *row)
 {
   EditorPreferencesRadio *self = (EditorPreferencesRadio *)row;
 
-  g_assert (EDITOR_IS_PREFERENCES_ROW (self));
+  g_assert (ADW_IS_ACTION_ROW (self));
 
   g_settings_set_string (self->settings, self->schema_key, self->schema_value);
 }

@@ -35,7 +35,6 @@ typedef struct _EditorPage                 EditorPage;
 typedef struct _EditorPageSettings         EditorPageSettings;
 typedef struct _EditorPageSettingsProvider EditorPageSettingsProvider;
 typedef struct _EditorPreferencesRadio     EditorPreferencesRadio;
-typedef struct _EditorPreferencesRow       EditorPreferencesRow;
 typedef struct _EditorPreferencesSpin      EditorPreferencesSpin;
 typedef struct _EditorPreferencesSwitch    EditorPreferencesSwitch;
 typedef struct _EditorPreferencesWindow    EditorPreferencesWindow;

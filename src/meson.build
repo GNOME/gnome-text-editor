@@ -17,7 +17,6 @@ editor_sources = [
   'editor-position-label.c',
   'editor-preferences-font.c',
   'editor-preferences-radio.c',
-  'editor-preferences-row.c',
   'editor-preferences-spin.c',
   'editor-preferences-switch.c',
   'editor-preferences-window.c',
