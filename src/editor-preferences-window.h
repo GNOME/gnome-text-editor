@@ -26,7 +26,7 @@ G_BEGIN_DECLS
 
 #define EDITOR_TYPE_PREFERENCES_WINDOW (editor_preferences_window_get_type())
 
-G_DECLARE_FINAL_TYPE (EditorPreferencesWindow, editor_preferences_window, EDITOR, PREFERENCES_WINDOW, GtkWindow)
+G_DECLARE_FINAL_TYPE (EditorPreferencesWindow, editor_preferences_window, EDITOR, PREFERENCES_WINDOW, AdwPreferencesWindow)
 
 EditorPreferencesWindow *editor_preferences_window_new (EditorApplication *application);
 

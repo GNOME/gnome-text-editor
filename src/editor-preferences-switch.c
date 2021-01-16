@@ -88,16 +88,6 @@ editor_preferences_switch_constructed (GObject *object)
 }
 
 static void
-editor_preferences_switch_activated (EditorPreferencesRow *row)
-{
-  EditorPreferencesSwitch *self = (EditorPreferencesSwitch *)row;
-
-  g_assert (EDITOR_IS_PREFERENCES_ROW (self));
-
-  gtk_widget_activate (GTK_WIDGET (self->toggle));
-}
-
-static void
 editor_preferences_switch_finalize (GObject *object)
 {
   EditorPreferencesSwitch *self = (EditorPreferencesSwitch *)object;
@@ -175,14 +165,11 @@ static void
 editor_preferences_switch_class_init (EditorPreferencesSwitchClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-  EditorPreferencesRowClass *row_class = EDITOR_PREFERENCES_ROW_CLASS (klass);
 
   object_class->constructed = editor_preferences_switch_constructed;
   object_class->finalize = editor_preferences_switch_finalize;
   object_class->get_property = editor_preferences_switch_get_property;
   object_class->set_property = editor_preferences_switch_set_property;
-
-  row_class->activated = editor_preferences_switch_activated;
 
   properties [PROP_ACTIVE] =
     g_param_spec_boolean ("active",
@@ -218,32 +205,16 @@ editor_preferences_switch_class_init (EditorPreferencesSwitchClass *klass)
 static void
 editor_preferences_switch_init (EditorPreferencesSwitch *self)
 {
-  GtkBox *box;
-
-  box = g_object_new (GTK_TYPE_BOX,
-                      "can-focus", FALSE,
-                      "valign", GTK_ALIGN_CENTER,
-                      "margin-start", 20,
-                      "margin-end", 20,
-                      "spacing", 10,
-                      NULL);
-  gtk_list_box_row_set_child (GTK_LIST_BOX_ROW (self), GTK_WIDGET (box));
-
-  self->label = g_object_new (GTK_TYPE_LABEL,
-                              "can-focus", FALSE,
-                              "selectable", FALSE,
-                              "halign", GTK_ALIGN_START,
-                              "hexpand", TRUE,
-                              NULL);
-  gtk_box_append (box, GTK_WIDGET (self->label));
-
   self->toggle = g_object_new (GTK_TYPE_SWITCH,
                                "can-focus", FALSE,
+                               "valign", GTK_ALIGN_CENTER,
                                NULL);
   g_signal_connect_object (self->toggle,
                            "notify::active",
                            G_CALLBACK (editor_preferences_switch_notify_active_cb),
                            self,
                            G_CONNECT_SWAPPED);
-  gtk_box_append (box, GTK_WIDGET (self->toggle));
+
+  adw_action_row_add_suffix (ADW_ACTION_ROW (self), GTK_WIDGET (self->toggle));
+  adw_action_row_set_activatable_widget (ADW_ACTION_ROW (self), GTK_WIDGET (self->toggle));
 }

@@ -118,10 +118,12 @@ editor_preferences_spin_constructed (GObject *object)
   g_settings_bind (self->settings, self->schema_key,
                    adj, "value",
                    G_SETTINGS_BIND_DEFAULT);
+
+  gtk_list_box_row_set_activatable (GTK_LIST_BOX_ROW (object), TRUE);
 }
 
 static void
-editor_preferences_spin_activated (EditorPreferencesRow *row)
+editor_preferences_spin_activated (AdwActionRow *row)
 {
   EditorPreferencesSpin *self = (EditorPreferencesSpin *)row;
 
@@ -200,14 +202,14 @@ static void
 editor_preferences_spin_class_init (EditorPreferencesSpinClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-  EditorPreferencesRowClass *row_class = EDITOR_PREFERENCES_ROW_CLASS (klass);
+  AdwActionRowClass *row_class = ADW_ACTION_ROW_CLASS (klass);
 
   object_class->constructed = editor_preferences_spin_constructed;
   object_class->finalize = editor_preferences_spin_finalize;
   object_class->get_property = editor_preferences_spin_get_property;
   object_class->set_property = editor_preferences_spin_set_property;
 
-  row_class->activated = editor_preferences_spin_activated;
+  row_class->activate = editor_preferences_spin_activated;
 
   properties [PROP_LABEL] =
     g_param_spec_string ("label",
@@ -236,27 +238,9 @@ editor_preferences_spin_class_init (EditorPreferencesSpinClass *klass)
 static void
 editor_preferences_spin_init (EditorPreferencesSpin *self)
 {
-  GtkBox *box;
-
-  box = g_object_new (GTK_TYPE_BOX,
-                      "can-focus", FALSE,
-                      "valign", GTK_ALIGN_CENTER,
-                      "margin-start", 20,
-                      "margin-end", 20,
-                      "spacing", 10,
-                      NULL);
-  gtk_list_box_row_set_child (GTK_LIST_BOX_ROW (self), GTK_WIDGET (box));
-
-  self->label = g_object_new (GTK_TYPE_LABEL,
-                              "can-focus", FALSE,
-                              "selectable", FALSE,
-                              "halign", GTK_ALIGN_START,
-                              "hexpand", TRUE,
-                              NULL);
-  gtk_box_append (box, GTK_WIDGET (self->label));
-
   self->spin = g_object_new (GTK_TYPE_SPIN_BUTTON,
                              "can-focus", TRUE,
+                             "valign", GTK_ALIGN_CENTER,
                              NULL);
-  gtk_box_append (box, GTK_WIDGET (self->spin));
+  adw_action_row_add_suffix (ADW_ACTION_ROW (self), GTK_WIDGET (self->spin));
 }

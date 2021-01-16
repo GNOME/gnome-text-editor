@@ -30,7 +30,6 @@ struct _EditorPreferencesFont
 {
   EditorPreferencesRow  row;
 
-  GtkLabel             *label;
   GtkLabel             *font_label;
 
   GSettings            *settings;
@@ -40,7 +39,6 @@ struct _EditorPreferencesFont
 
 enum {
   PROP_0,
-  PROP_LABEL,
   PROP_SCHEMA_ID,
   PROP_SCHEMA_KEY,
   N_PROPS
@@ -68,6 +66,8 @@ editor_preferences_font_constructed (GObject *object)
   g_settings_bind (self->settings, self->schema_key,
                    self->font_label, "label",
                    G_SETTINGS_BIND_GET);
+
+  gtk_list_box_row_set_activatable (GTK_LIST_BOX_ROW (object), TRUE);
 }
 
 static void
@@ -88,7 +88,7 @@ editor_preferences_font_dialog_response_cb (EditorPreferencesFont *self,
 }
 
 static void
-editor_preferences_font_activated (EditorPreferencesRow *row)
+editor_preferences_font_activated (AdwActionRow *row)
 {
   EditorPreferencesFont *self = (EditorPreferencesFont *)row;
   PangoFontDescription *font_desc;
@@ -138,10 +138,6 @@ editor_preferences_font_get_property (GObject    *object,
 
   switch (prop_id)
     {
-    case PROP_LABEL:
-      g_value_set_string (value, gtk_label_get_label (self->label));
-      break;
-
     case PROP_SCHEMA_ID:
       g_value_set_string (value, self->schema_id);
       break;
@@ -165,10 +161,6 @@ editor_preferences_font_set_property (GObject      *object,
 
   switch (prop_id)
     {
-    case PROP_LABEL:
-      gtk_label_set_label (self->label, g_value_get_string (value));
-      break;
-
     case PROP_SCHEMA_ID:
       self->schema_id = g_value_dup_string (value);
       break;
@@ -186,21 +178,14 @@ static void
 editor_preferences_font_class_init (EditorPreferencesFontClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-  EditorPreferencesRowClass *row_class = EDITOR_PREFERENCES_ROW_CLASS (klass);
+  AdwActionRowClass *row_class = ADW_ACTION_ROW_CLASS (klass);
 
   object_class->constructed = editor_preferences_font_constructed;
   object_class->finalize = editor_preferences_font_finalize;
   object_class->get_property = editor_preferences_font_get_property;
   object_class->set_property = editor_preferences_font_set_property;
 
-  row_class->activated = editor_preferences_font_activated;
-
-  properties [PROP_LABEL] =
-    g_param_spec_string ("label",
-                         "Label",
-                         "The label for the row",
-                         NULL,
-                         (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+  row_class->activate = editor_preferences_font_activated;
 
   properties [PROP_SCHEMA_ID] =
     g_param_spec_string ("schema-id",
@@ -225,22 +210,8 @@ editor_preferences_font_init (EditorPreferencesFont *self)
   GtkBox *box;
   GtkImage *image;
 
-  box = g_object_new (GTK_TYPE_BOX,
-                      "can-focus", FALSE,
-                      "valign", GTK_ALIGN_CENTER,
-                      "margin-start", 20,
-                      "margin-end", 20,
-                      "spacing", 10,
-                      NULL);
-  gtk_list_box_row_set_child (GTK_LIST_BOX_ROW (self), GTK_WIDGET (box));
-
-  self->label = g_object_new (GTK_TYPE_LABEL,
-                              "can-focus", FALSE,
-                              "selectable", FALSE,
-                              "halign", GTK_ALIGN_START,
-                              "hexpand", FALSE,
-                              NULL);
-  gtk_box_append (box, GTK_WIDGET (self->label));
+  box = g_object_new (GTK_TYPE_BOX, "spacing", 12, NULL);
+  adw_action_row_add_suffix (ADW_ACTION_ROW (self), GTK_WIDGET (box));
 
   self->font_label = g_object_new (GTK_TYPE_LABEL,
                                    "can-focus", FALSE,

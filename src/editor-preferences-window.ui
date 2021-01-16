@@ -1,73 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <requires lib="gtk+" version="4.0"/>
-  <template class="EditorPreferencesWindow" parent="GtkWindow">
+  <template class="EditorPreferencesWindow" parent="AdwPreferencesWindow">
     <property name="title" translatable="yes">Preferences</property>
-    <style>
-      <class name="org-gnome-TextEditor"/>
-      <class name="preferences"/>
-    </style>
+    <property name="search-enabled">False</property>
     <child>
-      <object class="GtkBox">
-        <property name="orientation">vertical</property>
-        <property name="margin-top">32</property>
-        <property name="margin-start">32</property>
-        <property name="margin-end">32</property>
-        <property name="margin-bottom">32</property>
-        <property name="spacing">10</property>
+      <object class="AdwPreferencesPage">
         <child>
-          <object class="GtkLabel">
-            <property name="label" translatable="yes">Font</property>
-            <property name="halign">start</property>
-            <style>
-              <class name="heading"/>
-            </style>
-          </object>
-        </child>
-        <child>
-          <object class="GtkFrame">
+          <object class="AdwPreferencesGroup">
+            <property name="title" translatable="yes">Font</property>
             <child>
-              <object class="GtkListBox">
-                <signal name="row-activated" handler="editor_preferences_window_row_activated_cb" swapped="true" object="EditorPreferencesWindow"/>
-                <child>
-                  <object class="EditorPreferencesSwitch" id="use_system_font">
-                    <property name="height-request">46</property>
-                    <property name="label" translatable="yes">Use System Font</property>
-                    <property name="schema-key">use-system-font</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="EditorPreferencesFont" id="custom_font">
-                    <property name="label" translatable="yes">Custom Font</property>
-                    <property name="schema-key">custom-font</property>
-                    <property name="sensitive" bind-source="use_system_font" bind-property="active" bind-flags="sync-create|invert-boolean"/>
-                  </object>
-                </child>
+              <object class="EditorPreferencesSwitch" id="use_system_font">
+                <property name="title" translatable="yes">Use System Font</property>
+                <property name="schema-key">use-system-font</property>
+              </object>
+            </child>
+            <child>
+              <object class="EditorPreferencesFont" id="custom_font">
+                <property name="title" translatable="yes">Custom Font</property>
+                <property name="schema-key">custom-font</property>
+                <property name="sensitive" bind-source="use_system_font" bind-property="active" bind-flags="sync-create|invert-boolean"/>
               </object>
             </child>
           </object>
         </child>
         <child>
-          <object class="GtkLabel">
-            <property name="label" translatable="yes">Right Margin</property>
-            <property name="margin-top">10</property>
-            <property name="halign">start</property>
-            <style>
-              <class name="heading"/>
-            </style>
-          </object>
-        </child>
-        <child>
-          <object class="GtkFrame">
+          <object class="AdwPreferencesGroup">
+            <property name="title" translatable="yes">Right Margin</property>
             <child>
-              <object class="GtkListBox">
-                <signal name="row-activated" handler="editor_preferences_window_row_activated_cb" swapped="true" object="EditorPreferencesWindow"/>
-                <child>
-                  <object class="EditorPreferencesSpin" id="right_margin">
-                    <property name="label" translatable="yes">Margin Position</property>
-                    <property name="schema-key">right-margin-position</property>
-                  </object>
-                </child>
+              <object class="EditorPreferencesSpin" id="right_margin">
+                <property name="title" translatable="yes">Margin Position</property>
+                <property name="schema-key">right-margin-position</property>
               </object>
             </child>
           </object>
@@ -75,12 +38,4 @@
       </object>
     </child>
   </template>
-  <object class="GtkSizeGroup">
-    <property name="mode">vertical</property>
-    <widgets>
-      <widget name="use_system_font"/>
-      <widget name="custom_font"/>
-      <widget name="right_margin"/>
-    </widgets>
-  </object>
 </interface>

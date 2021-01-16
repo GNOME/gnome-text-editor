@@ -24,36 +24,14 @@
 
 #include "editor-preferences-row.h"
 
-G_DEFINE_TYPE (EditorPreferencesRow, editor_preferences_row, GTK_TYPE_LIST_BOX_ROW)
-
-enum {
-  ACTIVATED,
-  N_SIGNALS
-};
-
-static guint signals [N_SIGNALS];
+G_DEFINE_TYPE (EditorPreferencesRow, editor_preferences_row, ADW_TYPE_ACTION_ROW)
 
 static void
 editor_preferences_row_class_init (EditorPreferencesRowClass *klass)
 {
-  signals [ACTIVATED] =
-    g_signal_new ("activated",
-                  G_TYPE_FROM_CLASS (klass),
-                  G_SIGNAL_RUN_LAST,
-                  G_STRUCT_OFFSET (EditorPreferencesRowClass, activated),
-                  NULL, NULL, NULL, G_TYPE_NONE, 0);
 }
 
 static void
 editor_preferences_row_init (EditorPreferencesRow *self)
 {
-  gtk_list_box_row_set_selectable (GTK_LIST_BOX_ROW (self), FALSE);
-}
-
-void
-editor_preferences_row_emit_activated (EditorPreferencesRow *self)
-{
-  g_return_if_fail (EDITOR_IS_PREFERENCES_ROW (self));
-
-  g_signal_emit (self, signals [ACTIVATED], 0);
 }

@@ -34,7 +34,7 @@ struct _EditorPreferencesWindow
   GtkWindow parent_instance;
 };
 
-G_DEFINE_TYPE (EditorPreferencesWindow, editor_preferences_window, GTK_TYPE_WINDOW)
+G_DEFINE_TYPE (EditorPreferencesWindow, editor_preferences_window, ADW_TYPE_PREFERENCES_WINDOW)
 
 static void
 editor_preferences_window_row_activated_cb (EditorPreferencesWindow *self,
@@ -44,8 +44,6 @@ editor_preferences_window_row_activated_cb (EditorPreferencesWindow *self,
   g_assert (EDITOR_IS_PREFERENCES_WINDOW (self));
   g_assert (EDITOR_IS_PREFERENCES_ROW (row));
   g_assert (GTK_IS_LIST_BOX (list_box));
-
-  editor_preferences_row_emit_activated (row);
 }
 
 static void

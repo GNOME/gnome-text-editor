@@ -26,16 +26,13 @@ G_BEGIN_DECLS
 
 #define EDITOR_TYPE_PREFERENCES_ROW (editor_preferences_row_get_type())
 
-G_DECLARE_DERIVABLE_TYPE (EditorPreferencesRow, editor_preferences_row, EDITOR, PREFERENCES_ROW, GtkListBoxRow)
+G_DECLARE_DERIVABLE_TYPE (EditorPreferencesRow, editor_preferences_row, EDITOR, PREFERENCES_ROW, AdwActionRow)
 
 struct _EditorPreferencesRowClass
 {
-  GtkListBoxRowClass parent_class;
-
-  void (*activated) (EditorPreferencesRow *self);
+  AdwActionRowClass parent_class;
 };
 
 EditorPreferencesRow *editor_preferences_row_new            (void);
-void                  editor_preferences_row_emit_activated (EditorPreferencesRow *self);
 
 G_END_DECLS
