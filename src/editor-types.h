@@ -22,6 +22,7 @@
 
 #include <gio/gio.h>
 #include <gtk/gtk.h>
+#include <adwaita.h>
 #include <gtksourceview/gtksource.h>
 
 G_BEGIN_DECLS

@@ -149,90 +149,65 @@
               </object>
             </child>
             <child>
-              <object class="GtkBox" id="empty">
+              <object class="AdwStatusPage" id="empty">
+                <property name="halign">start</property>
                 <property name="hexpand">true</property>
                 <property name="vexpand">true</property>
-                <property name="halign">center</property>
-                <property name="valign">center</property>
-                <property name="orientation">vertical</property>
-                <property name="margin-top">32</property>
-                <property name="margin-start">32</property>
-                <property name="margin-end">32</property>
-                <property name="margin-bottom">32</property>
-                <child>
-                  <object class="GtkImage">
-                    <property name="icon-name">text-editor-symbolic</property>
-                    <property name="pixel-size">128</property>
-                    <property name="margin-start">24</property>
-                    <property name="margin-bottom">24</property>
-                    <style>
-                      <class name="dim-label"/>
-                    </style>
+                <property name="icon-name">text-editor-symbolic</property>
+                <property name="title" translatable="yes">Start or Open a Document</property>
+                <property name="child">
+                  <object class="GtkBox">
+                    <property name="halign">center</property>
+                    <property name="orientation">vertical</property>
+                    <property name="spacing">6</property>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="halign">start</property>
+                        <property name="label" translatable="yes">• Use the open sidebar</property>
+                        <style>
+                          <class name="dim-label"/>
+                        </style>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="halign">start</property>
+                        <property name="label" translatable="yes">• Press the new tab button</property>
+                        <style>
+                          <class name="dim-label"/>
+                        </style>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="halign">start</property>
+                        <property name="label" translatable="yes">• Press Ctrl+N to start a new document</property>
+                        <style>
+                          <class name="dim-label"/>
+                        </style>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="halign">start</property>
+                        <property name="label" translatable="yes">• Press Ctrl+O to browse for a document</property>
+                        <style>
+                          <class name="dim-label"/>
+                        </style>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="margin-top">24</property>
+                        <property name="halign">start</property>
+                        <property name="label" translatable="yes">Or, press Ctrl+W to close the window.</property>
+                        <style>
+                          <class name="dim-label"/>
+                        </style>
+                      </object>
+                    </child>
                   </object>
-                </child>
-                <child>
-                  <object class="GtkLabel">
-                    <property name="halign">start</property>
-                    <property name="label" translatable="yes">Start or Open a Document</property>
-                    <property name="margin-bottom">16</property>
-                    <style>
-                      <class name="dim-label"/>
-                    </style>
-                    <attributes>
-                      <attribute name="weight" value="bold"/>
-                      <attribute name="scale" value="1.4"/>
-                    </attributes>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkLabel">
-                    <property name="halign">start</property>
-                    <property name="label" translatable="yes">• Use the open button</property>
-                    <property name="margin-bottom">6</property>
-                    <style>
-                      <class name="dim-label"/>
-                    </style>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkLabel">
-                    <property name="halign">start</property>
-                    <property name="label" translatable="yes">• Press the new tab button</property>
-                    <property name="margin-bottom">6</property>
-                    <style>
-                      <class name="dim-label"/>
-                    </style>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkLabel">
-                    <property name="halign">start</property>
-                    <property name="label" translatable="yes">• Press Ctrl+N to start a new document</property>
-                    <property name="margin-bottom">6</property>
-                    <style>
-                      <class name="dim-label"/>
-                    </style>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkLabel">
-                    <property name="halign">start</property>
-                    <property name="label" translatable="yes">• Press Ctrl+O to browse for a document</property>
-                    <style>
-                      <class name="dim-label"/>
-                    </style>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkLabel">
-                    <property name="margin-top">24</property>
-                    <property name="halign">start</property>
-                    <property name="label" translatable="yes">Or, press Ctrl+W to close the window.</property>
-                    <style>
-                      <class name="dim-label"/>
-                    </style>
-                  </object>
-                </child>
+                </property>
               </object>
             </child>
           </object>

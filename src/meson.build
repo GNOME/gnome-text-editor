@@ -43,6 +43,7 @@ editor_deps = [
   cc.find_library('m', required: false),
   dependency('gtk4', version: '>= 4.0'),
   dependency('gtksourceview-5', version: '>= 4.90'),
+  dependency('libadwaita-1'),
 ]
 
 editor_sources += gnome.compile_resources('editor-resources',

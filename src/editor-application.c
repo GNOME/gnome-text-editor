@@ -189,6 +189,8 @@ editor_application_startup (GApplication *application)
 
   G_APPLICATION_CLASS (editor_application_parent_class)->startup (application);
 
+  adw_init ();
+
   gtk_application_set_accels_for_action (GTK_APPLICATION (self), "app.quit", quit_accels);
 
   _editor_application_actions_init (self);
