@@ -110,6 +110,7 @@
       <object class="GtkPaned" id="paned">
         <property name="orientation">horizontal</property>
         <property name="position">250</property>
+        <property name="shrink-end-child">false</property>
         <child>
           <object class="EditorSidebar" id="sidebar">
             <property name="visible" bind-source="open_toggle_button" bind-property="active" bind-flags="bidirectional">false</property>
