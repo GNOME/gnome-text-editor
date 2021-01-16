@@ -10,6 +10,7 @@
             <property name="message-type">warning</property>
             <property name="revealed">false</property>
             <property name="show-close-button">true</property>
+            <property name="visible">false</property>
             <child>
               <object class="GtkBox">
                 <property name="orientation">vertical</property>
@@ -53,6 +54,20 @@
         <child>
           <object class="GtkOverlay" id="overlay">
             <property name="vexpand">true</property>
+            <child>
+              <object class="GtkScrolledWindow" id="scroller">
+                <child>
+                  <object class="GtkSourceView" id="view">
+                    <property name="auto-indent">true</property>
+                    <property name="top-margin">16</property>
+                    <property name="bottom-margin">16</property>
+                    <property name="left-margin">16</property>
+                    <property name="right-margin">16</property>
+                    <property name="monospace">true</property>
+                  </object>
+                </child>
+              </object>
+            </child>
             <child type="overlay">
               <object class="GtkRevealer" id="search_revealer">
                 <property name="halign">end</property>
@@ -63,6 +78,9 @@
                 <property name="transition-duration">300</property>
                 <property name="transition-type">slide-down</property>
                 <property name="reveal-child">false</property>
+                <layout>
+                  <property name="measure">true</property>
+                </layout>
                 <child>
                   <object class="EditorSearchBar" id="search_bar">
                   </object>
@@ -79,21 +97,9 @@
                 <property name="hexpand">true</property>
                 <property name="valign">start</property>
                 <property name="vexpand">false</property>
-                <property name="visible">false</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkScrolledWindow" id="scroller">
-                <child>
-                  <object class="GtkSourceView" id="view">
-                    <property name="auto-indent">true</property>
-                    <property name="top-margin">16</property>
-                    <property name="bottom-margin">16</property>
-                    <property name="left-margin">16</property>
-                    <property name="right-margin">16</property>
-                    <property name="monospace">true</property>
-                  </object>
-                </child>
+                <layout>
+                  <property name="measure">true</property>
+                </layout>
               </object>
             </child>
           </object>
