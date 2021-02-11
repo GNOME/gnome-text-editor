@@ -168,7 +168,7 @@ editor_page_notify_busy_progress_cb (EditorPage     *self,
   else
     self->progress_animation =
       editor_object_animate_full (self->progress_bar,
-                                  EDITOR_ANIMATION_EASE_IN_OUT_CUBIC,
+                                  EDITOR_ANIMATION_EASE_OUT_CUBIC,
                                   300,
                                   NULL,
                                   (GDestroyNotify) g_nullify_pointer,
