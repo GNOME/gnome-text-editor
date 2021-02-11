@@ -406,12 +406,12 @@ editor_page_update_top_margin (EditorPage *self)
 
   top_margin = gtk_text_view_get_top_margin (GTK_TEXT_VIEW (self->view));
   if (gtk_revealer_get_reveal_child (self->search_revealer))
-    new_top_margin = min;
+    new_top_margin = 16 + min;
   else
     new_top_margin = 16;
   diff = new_top_margin - top_margin;
 
-  if (new_top_margin != gtk_text_view_get_top_margin (GTK_TEXT_VIEW (self->view)))
+  if (new_top_margin != top_margin)
     {
       guint duration = gtk_revealer_get_transition_duration (self->search_revealer);
 
