@@ -32,8 +32,6 @@ struct _EditorPreferencesFont
 
   GtkLabel             *label;
   GtkLabel             *font_label;
-  GtkPopover           *popover;
-  GtkFontChooserWidget *chooser;
 
   GSettings            *settings;
   gchar                *schema_id;
@@ -67,64 +65,55 @@ editor_preferences_font_constructed (GObject *object)
 
   self->settings = g_settings_new (self->schema_id);
 
-  g_settings_bind (self->settings, "custom-font",
+  g_settings_bind (self->settings, self->schema_key,
                    self->font_label, "label",
                    G_SETTINGS_BIND_GET);
-
-  g_settings_bind (self->settings, "custom-font",
-                   self->chooser, "font",
-                   G_SETTINGS_BIND_DEFAULT);
 }
 
 static void
-editor_preferences_font_dispose (GObject *object)
+editor_preferences_font_dialog_response_cb (EditorPreferencesFont *self,
+                                            int                    response,
+                                            GtkFontChooserDialog  *dialog)
 {
-  EditorPreferencesFont *self = (EditorPreferencesFont *)object;
+  g_assert (EDITOR_IS_PREFERENCES_FONT (self));
+  g_assert (GTK_IS_FONT_CHOOSER_DIALOG (dialog));
 
-  g_clear_pointer ((GtkWidget **)&self->popover, gtk_widget_unparent);
+  if (response == GTK_RESPONSE_OK)
+    {
+      g_autofree gchar *font = gtk_font_chooser_get_font (GTK_FONT_CHOOSER (dialog));
+      g_settings_set_string (self->settings, self->schema_key, font);
+    }
 
-  G_OBJECT_CLASS (editor_preferences_font_parent_class)->dispose (object);
+  gtk_window_destroy (GTK_WINDOW (dialog));
 }
 
 static void
 editor_preferences_font_activated (EditorPreferencesRow *row)
 {
   EditorPreferencesFont *self = (EditorPreferencesFont *)row;
+  PangoFontDescription *font_desc;
+  g_autofree gchar *font = NULL;
+  GtkWidget *dialog;
+  GtkRoot *root;
 
   g_assert (EDITOR_IS_PREFERENCES_ROW (self));
 
-  gtk_popover_popup (GTK_POPOVER (self->popover));
-  gtk_widget_grab_focus (GTK_WIDGET (self->chooser));
-}
+  root = gtk_widget_get_root (GTK_WIDGET (row));
+  dialog = gtk_font_chooser_dialog_new (_("Select Font"), GTK_WINDOW (root));
+  font = g_settings_get_string (self->settings, self->schema_key);
 
-static void
-editor_preferences_font_size_allocate (GtkWidget *widget,
-                                       int        width,
-                                       int        height,
-                                       int        baseline)
-{
-  EditorPreferencesFont *self = (EditorPreferencesFont *)widget;
+  font_desc = pango_font_description_from_string (font);
+  gtk_font_chooser_set_font_desc (GTK_FONT_CHOOSER (dialog), font_desc);
 
-  g_assert (EDITOR_IS_PREFERENCES_FONT (self));
+  g_signal_connect_object (dialog,
+                           "response",
+                           G_CALLBACK (editor_preferences_font_dialog_response_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
 
-  GTK_WIDGET_CLASS (editor_preferences_font_parent_class)->size_allocate (widget, width, height, baseline);
+  gtk_window_present (GTK_WINDOW (dialog));
 
-  gtk_popover_present (self->popover);
-}
-
-static void
-editor_preferences_font_snapshot (GtkWidget   *widget,
-                                  GtkSnapshot *snapshot)
-{
-  EditorPreferencesFont *self = (EditorPreferencesFont *)widget;
-
-  g_assert (EDITOR_IS_PREFERENCES_FONT (self));
-  g_assert (GTK_IS_SNAPSHOT (snapshot));
-
-  GTK_WIDGET_CLASS (editor_preferences_font_parent_class)->snapshot (widget, snapshot);
-
-  if (self->popover != NULL)
-    gtk_widget_snapshot_child (widget, GTK_WIDGET (self->popover), snapshot);
+  g_clear_pointer (&font_desc, pango_font_description_free);
 }
 
 static void
@@ -197,17 +186,12 @@ static void
 editor_preferences_font_class_init (EditorPreferencesFontClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-  GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
   EditorPreferencesRowClass *row_class = EDITOR_PREFERENCES_ROW_CLASS (klass);
 
   object_class->constructed = editor_preferences_font_constructed;
-  object_class->dispose = editor_preferences_font_dispose;
   object_class->finalize = editor_preferences_font_finalize;
   object_class->get_property = editor_preferences_font_get_property;
   object_class->set_property = editor_preferences_font_set_property;
-
-  widget_class->size_allocate = editor_preferences_font_size_allocate;
-  widget_class->snapshot = editor_preferences_font_snapshot;
 
   row_class->activated = editor_preferences_font_activated;
 
@@ -273,19 +257,4 @@ editor_preferences_font_init (EditorPreferencesFont *self)
                         "margin-start", 12,
                         NULL);
   gtk_box_append (box, GTK_WIDGET (image));
-
-  self->popover = g_object_new (GTK_TYPE_POPOVER,
-                                "position", GTK_POS_RIGHT,
-                                NULL);
-  gtk_widget_set_parent (GTK_WIDGET (self->popover), GTK_WIDGET (self));
-
-  self->chooser = g_object_new (GTK_TYPE_FONT_CHOOSER_WIDGET,
-                                "margin-start", 12,
-                                "margin-end", 12,
-                                "margin-top", 12,
-                                "margin-bottom", 12,
-                                "width-request", 400,
-                                "height-request", 300,
-                                NULL);
-  gtk_popover_set_child (self->popover, GTK_WIDGET (self->chooser));
 }
