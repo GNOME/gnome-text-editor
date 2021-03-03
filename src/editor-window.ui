@@ -155,6 +155,7 @@
                 </child>
                 <child>
                   <object class="GtkLabel">
+                    <property name="halign">start</property>
                     <property name="label" translatable="yes">Start or Open a Document</property>
                     <property name="margin-bottom">16</property>
                     <style>
@@ -169,7 +170,7 @@
                 <child>
                   <object class="GtkLabel">
                     <property name="halign">start</property>
-                    <property name="label" translatable="yes">• Use the open sidebar</property>
+                    <property name="label" translatable="yes">• Use the open button</property>
                     <property name="margin-bottom">6</property>
                     <style>
                       <class name="dim-label"/>
@@ -200,6 +201,16 @@
                   <object class="GtkLabel">
                     <property name="halign">start</property>
                     <property name="label" translatable="yes">• Press Ctrl+O to browse for a document</property>
+                    <style>
+                      <class name="dim-label"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="margin-top">24</property>
+                    <property name="halign">start</property>
+                    <property name="label" translatable="yes">Or, press Ctrl+W to close the window.</property>
                     <style>
                       <class name="dim-label"/>
                     </style>
