@@ -25,6 +25,7 @@
 #include <glib/gi18n.h>
 
 #include "editor-page-private.h"
+#include "editor-session-private.h"
 #include "editor-utils-private.h"
 
 enum {
@@ -307,75 +308,27 @@ editor_page_grab_focus (GtkWidget *widget)
   return gtk_widget_grab_focus (GTK_WIDGET (self->view));
 }
 
-#if 0
 static gboolean
-editor_page_view_drag_motion_cb (EditorPage     *self,
-                                 GdkDragContext *context,
-                                 gint            x,
-                                 gint            y,
-                                 guint           time_,
-                                 GtkSourceView  *view)
+editor_page_drop_target_drop (EditorPage     *self,
+                              const GValue   *value,
+                              gdouble         x,
+                              gdouble         y,
+                              GtkDropTarget  *dest)
 {
-  static GdkAtom uri_list;
-  GList *targets;
-
   g_assert (EDITOR_IS_PAGE (self));
-  g_assert (GDK_IS_DRAG_CONTEXT (context));
-  g_assert (GTK_SOURCE_IS_VIEW (view));
+  g_assert (GTK_IS_DROP_TARGET (dest));
 
-  if (!uri_list)
-    uri_list = gdk_atom_intern_static_string ("text/uri-list");
-
-  /* Ignore text/uri-list, we handle it elsewhere */
-  targets = gdk_drag_context_list_targets (context);
-  for (const GList *iter = targets; iter; iter = iter->next)
+  if (G_VALUE_HOLDS (value, G_TYPE_FILE))
     {
-      GdkAtom atom = iter->data;
+      GFile *file = g_value_get_object (value);
+      EditorSession *session = editor_application_get_session (EDITOR_APPLICATION_DEFAULT);
+      EditorWindow *window = EDITOR_WINDOW (gtk_widget_get_root (GTK_WIDGET (self)));
 
-      if (atom == uri_list)
-        {
-          g_signal_stop_emission_by_name (view, "drag-motion");
-          break;
-        }
+      editor_session_open (session, window, file);
     }
 
   return FALSE;
 }
-
-static gboolean
-editor_page_view_drag_drop_cb (EditorPage       *self,
-                               GdkDragContext   *context,
-                               gint              x,
-                               gint              y,
-                               guint             time_,
-                               GtkSourceView    *view)
-{
-  static GdkAtom uri_list;
-  GList *targets;
-
-  g_assert (EDITOR_IS_PAGE (self));
-  g_assert (GDK_IS_DRAG_CONTEXT (context));
-  g_assert (GTK_SOURCE_IS_VIEW (view));
-
-  if (!uri_list)
-    uri_list = gdk_atom_intern_static_string ("text/uri-list");
-
-  /* Ignore text/uri-list, we handle it elsewhere */
-  targets = gdk_drag_context_list_targets (context);
-  for (const GList *iter = targets; iter; iter = iter->next)
-    {
-      GdkAtom atom = iter->data;
-
-      if (atom == uri_list)
-        {
-          g_signal_stop_emission_by_name (view, "drag-drop");
-          break;
-        }
-    }
-
-  return FALSE;
-}
-#endif
 
 static void
 editor_page_update_top_margin (EditorPage *self)
@@ -635,6 +588,8 @@ editor_page_class_init (EditorPageClass *klass)
 static void
 editor_page_init (EditorPage *self)
 {
+  GtkDropTarget *dest;
+
   gtk_widget_init_template (GTK_WIDGET (self));
 
   g_signal_connect_object (self->view,
@@ -643,19 +598,13 @@ editor_page_init (EditorPage *self)
                             self,
                             G_CONNECT_SWAPPED);
 
-#if 0
-  g_signal_connect_object (self->view,
-                           "drag-motion",
-                           G_CALLBACK (editor_page_view_drag_motion_cb),
+  dest = gtk_drop_target_new (G_TYPE_FILE, GDK_ACTION_COPY);
+  g_signal_connect_object (dest,
+                           "drop",
+                           G_CALLBACK (editor_page_drop_target_drop),
                            self,
                            G_CONNECT_SWAPPED);
-
-  g_signal_connect_object (self->view,
-                           "drag-drop",
-                           G_CALLBACK (editor_page_view_drag_drop_cb),
-                           self,
-                           G_CONNECT_SWAPPED);
-#endif
+  gtk_widget_add_controller (GTK_WIDGET (self->view), GTK_EVENT_CONTROLLER (dest));
 
   g_signal_connect_object (self->search_revealer,
                            "notify::reveal-child",
