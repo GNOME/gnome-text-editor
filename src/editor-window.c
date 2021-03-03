@@ -32,7 +32,7 @@
 #include "editor-utils-private.h"
 #include "editor-window-private.h"
 
-G_DEFINE_TYPE (EditorWindow, editor_window, GTK_TYPE_APPLICATION_WINDOW)
+G_DEFINE_TYPE (EditorWindow, editor_window, ADW_TYPE_APPLICATION_WINDOW)
 
 enum {
   PROP_0,
