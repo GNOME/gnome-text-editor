@@ -30,6 +30,8 @@
 
 .org-gnome-TextEditor .empty-state image.dim-label { color: alpha(@theme_fg_color, 0.5); }
 .org-gnome-TextEditor .empty-state image:backdrop.dim-label { color: alpha(@theme_unfocused_fg_color, 0.5); }
+.org-gnome-TextEditor .empty-state .title { color: alpha(@theme_fg_color, 0.5); }
+.org-gnome-TextEditor .empty-state .title:backdrop { color: alpha(@theme_unfocused_fg_color, 0.5); }
 
 
 /* EditorThemeSelector */
