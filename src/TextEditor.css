@@ -29,6 +29,27 @@
 }
 
 
+/* EditorThemeSelector */
+
+.org-gnome-TextEditor checkbutton.theme-selector radio {
+  -gtk-icon-source: none;
+  background: none;
+  box-shadow: none;
+  min-height: 48px;
+  min-width: 48px;
+}
+.org-gnome-TextEditor checkbutton.theme-selector radio:checked {
+  border: 3px solid @theme_selected_bg_color;
+}
+.org-gnome-TextEditor checkbutton.theme-selector.light radio {
+  /* TODO: Use icons once they're ready */
+  background-color: #fff;
+}
+.org-gnome-TextEditor checkbutton.theme-selector.dark radio {
+  background-color: #2e3436;
+}
+
+
 /* FIXME: Work around GTK :focus propagation issue */
 notebook:focus,
 notebook:focus:backdrop {

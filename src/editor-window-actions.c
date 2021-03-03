@@ -445,7 +445,7 @@ _editor_window_actions_init (EditorWindow *self)
   g_autoptr(GSimpleActionGroup) group = NULL;
   g_autoptr(GSettings) settings = NULL;
   static const gchar *setting_keys[] = {
-    "dark-mode",
+    "style-variant",
     "discover-settings",
     "indent-style",
     "show-line-numbers",

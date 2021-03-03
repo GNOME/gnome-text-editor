@@ -167,6 +167,15 @@ editor_application_open (GApplication  *application,
     }
 }
 
+static gboolean
+style_variant_to_boolean (GValue   *value,
+                          GVariant *variant,
+                          gpointer  user_data)
+{
+  g_value_set_boolean (value, g_strcmp0 (g_variant_get_string (variant, NULL), "dark") == 0);
+  return TRUE;
+}
+
 static void
 editor_application_startup (GApplication *application)
 {
@@ -186,9 +195,11 @@ editor_application_startup (GApplication *application)
 
   gtk_settings = gtk_settings_get_default ();
   self->settings = g_settings_new ("org.gnome.TextEditor");
-  g_settings_bind (self->settings, "dark-mode",
-                   gtk_settings, "gtk-application-prefer-dark-theme",
-                   G_SETTINGS_BIND_GET);
+  g_settings_bind_with_mapping (self->settings, "style-variant",
+                                gtk_settings, "gtk-application-prefer-dark-theme",
+                                G_SETTINGS_BIND_GET,
+                                style_variant_to_boolean,
+                                NULL, NULL, NULL);
 
   /* Setup CSS overrides */
   css_provider = gtk_css_provider_new ();

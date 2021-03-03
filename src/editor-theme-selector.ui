@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="EditorThemeSelector" parent="GtkWidget">
+    <child>
+      <object class="GtkBox" id="box">
+        <property name="halign">center</property>
+        <property name="orientation">horizontal</property>
+        <property name="spacing">24</property>
+        <child>
+          <object class="GtkCheckButton" id="light">
+            <style>
+              <class name="theme-selector"/>
+              <class name="light"/>
+            </style>
+            <property name="can-focus">false</property>
+            <property name="action-name">settings.style-variant</property>
+            <property name="action-target">'light'</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkCheckButton" id="dark">
+            <style>
+              <class name="theme-selector"/>
+              <class name="dark"/>
+            </style>
+            <property name="can-focus">false</property>
+            <property name="action-name">settings.style-variant</property>
+            <property name="action-target">'dark'</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>

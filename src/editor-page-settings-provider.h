@@ -39,8 +39,8 @@ struct _EditorPageSettingsProviderInterface
                                                   gchar                      **custom_font);
   gboolean  (*get_style_scheme)                  (EditorPageSettingsProvider  *self,
                                                   gchar                      **style_scheme);
-  gboolean  (*get_dark_mode)                     (EditorPageSettingsProvider *self,
-                                                  gboolean                   *dark_mode);
+  gboolean  (*get_style_variant)                 (EditorPageSettingsProvider  *self,
+                                                  gchar                      **style_variant);
   gboolean  (*get_insert_spaces_instead_of_tabs) (EditorPageSettingsProvider *self,
                                                   gboolean                   *insert_spaces_instead_of_tabs);
   gboolean  (*get_right_margin_position)         (EditorPageSettingsProvider *self,
@@ -64,6 +64,8 @@ gboolean editor_page_settings_provider_get_custom_font                   (Editor
                                                                           gchar                      **custom_font);
 gboolean editor_page_settings_provider_get_style_scheme                  (EditorPageSettingsProvider  *self,
                                                                           gchar                      **style_scheme);
+gboolean editor_page_settings_provider_get_style_variant                 (EditorPageSettingsProvider  *self,
+                                                                          gchar                      **style_variant);
 gboolean editor_page_settings_provider_get_dark_mode                     (EditorPageSettingsProvider  *self,
                                                                           gboolean                    *dark_mode);
 gboolean editor_page_settings_provider_get_insert_spaces_instead_of_tabs (EditorPageSettingsProvider  *self,

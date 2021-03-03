@@ -31,6 +31,7 @@ editor_sources = [
   'editor-signal-group.c',
   'editor-tab.c',
   'editor-tab-actions.c',
+  'editor-theme-selector.c',
   'editor-utils.c',
   'editor-window.c',
   'editor-window-actions.c',

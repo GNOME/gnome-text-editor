@@ -41,11 +41,11 @@ struct _EditorPageSettings
 
   gchar *custom_font;
   gchar *style_scheme;
+  gchar *style_variant;
 
   guint right_margin_position;
   guint tab_width;
 
-  guint dark_mode : 1;
   guint insert_spaces_instead_of_tabs : 1;
   guint show_line_numbers : 1;
   guint show_right_margin : 1;
@@ -56,7 +56,7 @@ struct _EditorPageSettings
 enum {
   PROP_0,
   PROP_CUSTOM_FONT,
-  PROP_DARK_MODE,
+  PROP_STYLE_VARIANT,
   PROP_DOCUMENT,
   PROP_INSERT_SPACES_INSTEAD_OF_TABS,
   PROP_RIGHT_MARGIN_POSITION,
@@ -118,7 +118,6 @@ editor_page_settings_update (EditorPageSettings *self)
       }                                                                               \
   } G_STMT_END
 
-  UPDATE_SETTING (gboolean, dark_mode, DARK_MODE, cmp_boolean, (void), (gboolean));
   UPDATE_SETTING (gboolean, insert_spaces_instead_of_tabs, INSERT_SPACES_INSTEAD_OF_TABS, cmp_boolean, (void), (gboolean));
   UPDATE_SETTING (gboolean, show_line_numbers, SHOW_LINE_NUMBERS, cmp_boolean, (void), (gboolean));
   UPDATE_SETTING (gboolean, show_right_margin, SHOW_RIGHT_MARGIN, cmp_boolean, (void), (gboolean));
@@ -128,6 +127,7 @@ editor_page_settings_update (EditorPageSettings *self)
   UPDATE_SETTING (guint, right_margin_position, RIGHT_MARGIN_POSITION, cmp_uint, (void), (guint));
   UPDATE_SETTING (g_autofree gchar *, custom_font, CUSTOM_FONT, cmp_string, g_free, g_strdup);
   UPDATE_SETTING (g_autofree gchar *, style_scheme, STYLE_SCHEME, cmp_string, g_free, g_strdup);
+  UPDATE_SETTING (g_autofree gchar *, style_variant, STYLE_VARIANT, cmp_string, g_free, g_strdup);
 
 #undef UPDATE_SETTING_BOOL
 }
@@ -251,8 +251,8 @@ editor_page_settings_get_property (GObject    *object,
       g_value_set_string (value, editor_page_settings_get_style_scheme (self));
       break;
 
-    case PROP_DARK_MODE:
-      g_value_set_boolean (value, editor_page_settings_get_dark_mode (self));
+    case PROP_STYLE_VARIANT:
+      g_value_set_string (value, editor_page_settings_get_style_variant (self));
       break;
 
     case PROP_INSERT_SPACES_INSTEAD_OF_TABS:
@@ -316,8 +316,9 @@ editor_page_settings_set_property (GObject      *object,
       self->style_scheme = g_value_dup_string (value);
       break;
 
-    case PROP_DARK_MODE:
-      self->dark_mode = g_value_get_boolean (value);
+    case PROP_STYLE_VARIANT:
+      g_free (self->style_variant);
+      self->style_variant = g_value_dup_string (value);
       break;
 
     case PROP_INSERT_SPACES_INSTEAD_OF_TABS:
@@ -374,12 +375,12 @@ editor_page_settings_class_init (EditorPageSettingsClass *klass)
                          NULL,
                          (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
-  properties [PROP_DARK_MODE] =
-    g_param_spec_boolean ("dark-mode",
-                          "Dark Mode",
-                          "If dark mode should be used",
-                          FALSE,
-                          (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+  properties [PROP_STYLE_VARIANT] =
+    g_param_spec_string ("style-variant",
+                         "Style Variant",
+                         "The style variant to use (such as light or dark)",
+                         "light",
+                         (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
   properties [PROP_DOCUMENT] =
     g_param_spec_object ("document",
@@ -436,7 +437,7 @@ editor_page_settings_class_init (EditorPageSettingsClass *klass)
                           "If the text should wrap",
                           FALSE,
                           (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
-  
+
   g_object_class_install_properties (object_class, N_PROPS, properties);
 }
 
@@ -480,12 +481,12 @@ editor_page_settings_get_style_scheme (EditorPageSettings *self)
   return self->style_scheme;
 }
 
-gboolean
-editor_page_settings_get_dark_mode (EditorPageSettings *self)
+const gchar *
+editor_page_settings_get_style_variant (EditorPageSettings *self)
 {
   g_return_val_if_fail (EDITOR_IS_PAGE_SETTINGS (self), FALSE);
 
-  return self->dark_mode;
+  return self->style_variant;
 }
 
 gboolean

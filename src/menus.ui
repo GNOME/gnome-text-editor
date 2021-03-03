@@ -3,6 +3,11 @@
   <menu id="primary-menu">
     <section>
       <item>
+        <attribute name="custom">theme</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
         <attribute name="label" translatable="yes">_New Window</attribute>
         <attribute name="action">app.new-window</attribute>
         <attribute name="accel">&lt;primary&gt;n</attribute>
@@ -13,12 +18,6 @@
         <attribute name="label" translatable="yes">_Find/Replace…</attribute>
         <attribute name="action">page.begin-replace</attribute>
         <attribute name="accel">&lt;primary&gt;h</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">_Dark Mode</attribute>
-        <attribute name="action">settings.dark-mode</attribute>
       </item>
     </section>
     <section>

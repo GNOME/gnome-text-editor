@@ -31,7 +31,7 @@ G_DECLARE_FINAL_TYPE (EditorPageSettings, editor_page_settings, EDITOR, PAGE_SET
 EditorPageSettings *editor_page_settings_new_for_document                  (EditorDocument     *document);
 const gchar        *editor_page_settings_get_custom_font                   (EditorPageSettings *self);
 const gchar        *editor_page_settings_get_style_scheme                  (EditorPageSettings *self);
-gboolean            editor_page_settings_get_dark_mode                     (EditorPageSettings *self);
+const gchar        *editor_page_settings_get_style_variant                 (EditorPageSettings *self);
 gboolean            editor_page_settings_get_insert_spaces_instead_of_tabs (EditorPageSettings *self);
 guint               editor_page_settings_get_right_margin_position         (EditorPageSettings *self);
 gboolean            editor_page_settings_get_show_line_numbers             (EditorPageSettings *self);

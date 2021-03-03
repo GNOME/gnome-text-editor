@@ -123,23 +123,25 @@ editor_page_settings_provider_get_style_scheme (EditorPageSettingsProvider  *sel
 }
 
 /**
- * editor_page_settings_provider_get_dark_mode:
- * @self: a #EditorPageSettingsProvider
- * @dark_mode: (out) (optional): if the dark mode should be used
+ * editor_page_settings_provider_get_style_variant:
+ * @self: an #EditorPageSettingsProvider
+ * @style_variant: (out) (optional): a location for the style variant
  *
- * Returns: %TRUE if @dark_mode was set by the provider.
+ * Gets the variant for the GTK and GtkSourceView themes.
+ *
+ * Returns: %TRUE if @style_variant was set by the provider.
  */
 gboolean
-editor_page_settings_provider_get_dark_mode (EditorPageSettingsProvider *self,
-                                             gboolean                   *dark_mode)
+editor_page_settings_provider_get_style_variant (EditorPageSettingsProvider  *self,
+                                                 gchar                      **style_variant)
 {
   g_return_val_if_fail (EDITOR_IS_PAGE_SETTINGS_PROVIDER (self), FALSE);
 
-  if (dark_mode != NULL)
-    *dark_mode = FALSE;
+  if (style_variant != NULL)
+    *style_variant = FALSE;
 
-  if (EDITOR_PAGE_SETTINGS_PROVIDER_GET_IFACE (self)->get_dark_mode)
-    return EDITOR_PAGE_SETTINGS_PROVIDER_GET_IFACE (self)->get_dark_mode (self, dark_mode);
+  if (EDITOR_PAGE_SETTINGS_PROVIDER_GET_IFACE (self)->get_style_variant)
+    return EDITOR_PAGE_SETTINGS_PROVIDER_GET_IFACE (self)->get_style_variant (self, style_variant);
 
   return FALSE;
 }

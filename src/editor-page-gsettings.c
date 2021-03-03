@@ -45,7 +45,6 @@ GSETTINGS_GETTER (guint, uint, tab_width, "tab-width")
 GSETTINGS_GETTER (gboolean, boolean, show_right_margin, "show-right-margin")
 GSETTINGS_GETTER (gboolean, boolean, show_line_numbers, "show-line-numbers")
 GSETTINGS_GETTER (gboolean, boolean, use_system_font, "use-system-font")
-GSETTINGS_GETTER (gboolean, boolean, dark_mode, "dark-mode")
 GSETTINGS_GETTER (gboolean, boolean, wrap_text, "wrap-text")
 GSETTINGS_GETTER (guint, uint, right_margin_position, "right-margin-position")
 
@@ -74,6 +73,7 @@ editor_page_gsettings_get_style_scheme (EditorPageSettingsProvider  *provider,
   g_autofree gchar *light = NULL;
   g_autofree gchar *dark = NULL;
   g_autofree gchar *regular = NULL;
+  g_autofree gchar *style_variant = NULL;
 
   sm = gtk_source_style_scheme_manager_get_default ();
   regular = g_settings_get_string (self->settings, "style-scheme");
@@ -96,7 +96,9 @@ editor_page_gsettings_get_style_scheme (EditorPageSettingsProvider  *provider,
       light = g_strdup_printf ("%s-light", regular);
     }
 
-  if (g_settings_get_boolean (self->settings, "dark-mode"))
+  style_variant = g_settings_get_string (self->settings, "style-variant");
+
+  if (g_strcmp0 (style_variant, "dark") == 0)
     {
       if (!(scheme = gtk_source_style_scheme_manager_get_scheme (sm, dark)) &&
           !(scheme = gtk_source_style_scheme_manager_get_scheme (sm, regular)) &&
@@ -122,6 +124,14 @@ editor_page_gsettings_get_style_scheme (EditorPageSettingsProvider  *provider,
   return TRUE;
 }
 
+static gboolean
+editor_page_gsettings_get_style_variant (EditorPageSettingsProvider  *provider,
+                                         gchar                      **style_variant)
+{
+  *style_variant = g_settings_get_string (EDITOR_PAGE_GSETTINGS (provider)->settings, "style-variant");
+  return TRUE;
+}
+
 static void
 editor_page_gsettings_changed_cb (EditorPageGsettings *self,
                                   const gchar         *key,
@@ -136,7 +146,6 @@ editor_page_gsettings_changed_cb (EditorPageGsettings *self,
 static void
 page_settings_provider_iface_init (EditorPageSettingsProviderInterface *iface)
 {
-  iface->get_dark_mode = editor_page_gsettings_get_dark_mode;
   iface->get_insert_spaces_instead_of_tabs = editor_page_gsettings_get_insert_spaces_instead_of_tabs;
   iface->get_right_margin_position = editor_page_gsettings_get_right_margin_position;
   iface->get_show_line_numbers = editor_page_gsettings_get_show_line_numbers;
@@ -145,6 +154,7 @@ page_settings_provider_iface_init (EditorPageSettingsProviderInterface *iface)
   iface->get_use_system_font = editor_page_gsettings_get_use_system_font;
   iface->get_wrap_text = editor_page_gsettings_get_wrap_text;
   iface->get_style_scheme = editor_page_gsettings_get_style_scheme;
+  iface->get_style_variant = editor_page_gsettings_get_style_variant;
 }
 
 G_DEFINE_TYPE_WITH_CODE (EditorPageGsettings, editor_page_gsettings, G_TYPE_OBJECT,

@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist gettext-domain="gnome-text-editor">
 	<schema id="org.gnome.TextEditor" path="/org/gnome/TextEditor/">
-    <key name="dark-mode" type="b">
-      <default>false</default>
-      <summary>Dark Mode</summary>
-      <description>Use the dark variant of the GTK theme.</description>
+    <key name="style-variant" type="s">
+      <choices>
+        <choice value="light"/>
+        <choice value="dark"/>
+      </choices>
+      <default>'light'</default>
+      <summary>Style Variant</summary>
+      <description>Use the light or dark variant of the GTK theme and/or GtkSourceView style scheme.</description>
     </key>
     <key name="indent-style" type="s">
       <choices>
