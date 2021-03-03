@@ -2,6 +2,7 @@
 <interface>
   <requires lib="gtk+" version="4.0"/>
   <template class="EditorPreferencesWindow" parent="AdwPreferencesWindow">
+    <property name="resizable">false</property>
     <property name="title" translatable="yes">Preferences</property>
     <property name="search-enabled">False</property>
     <child>
