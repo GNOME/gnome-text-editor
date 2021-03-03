@@ -1,8 +1,10 @@
 project('gnome-text-editor', 'c',
-          version: '3.37.0',
+          version: '3.39.90',
     meson_version: '>= 0.50.0',
   default_options: [ 'warning_level=2', 'c_std=gnu18' ],
 )
+
+symbolic_version = '40.alpha1'
 
 cc = meson.get_compiler('c')
 
@@ -23,6 +25,7 @@ config_h.set_quoted('LOCALEDIR', join_paths(get_option('prefix'), get_option('lo
 config_h.set_quoted('PACKAGE_WEBSITE', 'https://gitlab.gnome.org/GNOME/gnome-text-editor')
 config_h.set_quoted('PACKAGE_ICON_NAME', app_id)
 config_h.set_quoted('PACKAGE_NAME', 'Text Editor')
+config_h.set_quoted('SYMBOLIC_VERSION', symbolic_version)
 config_h.set10('DEVELOPMENT_BUILD', get_option('development'))
 
 global_c_args = []
