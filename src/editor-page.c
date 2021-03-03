@@ -295,16 +295,6 @@ editor_page_constructed (GObject *object)
   editor_page_document_notify_language_cb (self, NULL, self->document);
 }
 
-static void
-editor_page_view_focus_enter_cb (EditorPage              *self,
-                                 GtkEventControllerFocus *focus)
-{
-  g_assert (EDITOR_IS_PAGE (self));
-  g_assert (GTK_IS_EVENT_CONTROLLER_FOCUS (focus));
-
-  _editor_page_hide_search (self);
-}
-
 static gboolean
 editor_page_grab_focus (GtkWidget *widget)
 {
@@ -645,17 +635,7 @@ editor_page_class_init (EditorPageClass *klass)
 static void
 editor_page_init (EditorPage *self)
 {
-  GtkEventController *focus;
-
   gtk_widget_init_template (GTK_WIDGET (self));
-
-  focus = gtk_event_controller_focus_new ();
-  g_signal_connect_object (focus,
-                           "enter",
-                           G_CALLBACK (editor_page_view_focus_enter_cb),
-                           self,
-                           G_CONNECT_SWAPPED);
-  gtk_widget_add_controller (GTK_WIDGET (self->view), focus);
 
   g_signal_connect_object (self->view,
                             "notify::top-margin",
