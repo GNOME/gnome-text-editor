@@ -152,8 +152,6 @@ _editor_theme_selector_set_theme (EditorThemeSelector *self,
 {
   g_return_if_fail (EDITOR_IS_THEME_SELECTOR (self));
 
-  g_print ("Setting to %s\n", theme);
-
   if (g_strcmp0 (theme, self->theme) != 0)
     {
       g_free (self->theme);
