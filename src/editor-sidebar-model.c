@@ -32,9 +32,18 @@
 
 struct _EditorSidebarModel
 {
-  GObject    parent_instance;
-  GSequence *seq;
+  GObject        parent_instance;
+  GSequence     *seq;
+  EditorSession *session;
 };
+
+enum {
+  PROP_0,
+  PROP_SESSION,
+  N_PROPS
+};
+
+static GParamSpec *properties [N_PROPS];
 
 static guint
 editor_sidebar_model_get_n_items (GListModel *model)
@@ -256,37 +265,41 @@ static void
 editor_sidebar_model_constructed (GObject *object)
 {
   EditorSidebarModel *self = (EditorSidebarModel *)object;
-  EditorSession *session;
   GPtrArray *pages;
   GArray *drafts;
 
   G_OBJECT_CLASS (editor_sidebar_model_parent_class)->constructed (object);
 
-  session = editor_application_get_session (EDITOR_APPLICATION_DEFAULT);
+  if (self->session == NULL)
+    {
+      g_warning ("Attempt to create %s without a session!",
+                 G_OBJECT_TYPE_NAME (self));
+      return;
+    }
 
-  g_signal_connect_object (session,
+  g_signal_connect_object (self->session,
                            "page-added",
                            G_CALLBACK (editor_sidebar_model_page_added_cb),
                            self,
                            G_CONNECT_SWAPPED);
 
-  g_signal_connect_object (session,
+  g_signal_connect_object (self->session,
                            "page-removed",
                            G_CALLBACK (editor_sidebar_model_page_removed_cb),
                            self,
                            G_CONNECT_SWAPPED);
 
-  pages = _editor_session_get_pages (session);
+  pages = _editor_session_get_pages (self->session);
 
   for (guint i = 0; i < pages->len; i++)
     {
       EditorPage *page = g_ptr_array_index (pages, i);
       EditorWindow *window = _editor_page_get_window (page);
 
-      editor_sidebar_model_page_added_cb (self, window, page, session);
+      editor_sidebar_model_page_added_cb (self, window, page, self->session);
     }
 
-  drafts = _editor_session_get_drafts (session);
+  drafts = _editor_session_get_drafts (self->session);
 
   for (guint i = 0; i < drafts->len; i++)
     {
@@ -314,7 +327,7 @@ editor_sidebar_model_constructed (GObject *object)
         }
     }
 
-  editor_session_load_recent_async (session,
+  editor_session_load_recent_async (self->session,
                                     NULL,
                                     editor_sidebar_model_load_recent_cb,
                                     g_object_ref (self));
@@ -325,9 +338,58 @@ editor_sidebar_model_finalize (GObject *object)
 {
   EditorSidebarModel *self = (EditorSidebarModel *)object;
 
+  if (self->session)
+    {
+      g_signal_handlers_disconnect_by_func (self->session,
+                                            G_CALLBACK (editor_sidebar_model_page_added_cb),
+                                            self);
+      g_signal_handlers_disconnect_by_func (self->session,
+                                            G_CALLBACK (editor_sidebar_model_page_removed_cb),
+                                            self);
+      g_clear_weak_pointer (&self->session);
+    }
+
   g_clear_pointer (&self->seq, g_sequence_free);
 
   G_OBJECT_CLASS (editor_sidebar_model_parent_class)->finalize (object);
+}
+
+static void
+editor_sidebar_model_get_property (GObject    *object,
+                                   guint       prop_id,
+                                   GValue     *value,
+                                   GParamSpec *pspec)
+{
+  EditorSidebarModel *self = EDITOR_SIDEBAR_MODEL (object);
+
+  switch (prop_id)
+    {
+    case PROP_SESSION:
+      g_value_set_object (value, self->session);
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+    }
+}
+
+static void
+editor_sidebar_model_set_property (GObject      *object,
+                                   guint         prop_id,
+                                   const GValue *value,
+                                   GParamSpec   *pspec)
+{
+  EditorSidebarModel *self = EDITOR_SIDEBAR_MODEL (object);
+
+  switch (prop_id)
+    {
+    case PROP_SESSION:
+      g_set_weak_pointer (&self->session, g_value_get_object (value));
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+    }
 }
 
 static void
@@ -337,6 +399,17 @@ editor_sidebar_model_class_init (EditorSidebarModelClass *klass)
 
   object_class->constructed = editor_sidebar_model_constructed;
   object_class->finalize = editor_sidebar_model_finalize;
+  object_class->get_property = editor_sidebar_model_get_property;
+  object_class->set_property = editor_sidebar_model_set_property;
+
+  properties [PROP_SESSION] =
+    g_param_spec_object ("session",
+                         "Session",
+                         "The EditorSession to be monitored",
+                         EDITOR_TYPE_SESSION,
+                         (G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
+
+  g_object_class_install_properties (object_class, N_PROPS, properties);
 }
 
 static void
@@ -346,9 +419,11 @@ editor_sidebar_model_init (EditorSidebarModel *self)
 }
 
 EditorSidebarModel *
-_editor_sidebar_model_new (void)
+_editor_sidebar_model_new (EditorSession *session)
 {
-  return g_object_new (EDITOR_TYPE_SIDEBAR_MODEL, NULL);
+  return g_object_new (EDITOR_TYPE_SIDEBAR_MODEL,
+                       "session", session,
+                       NULL);
 }
 
 void

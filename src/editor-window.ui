@@ -57,26 +57,12 @@
                 <property name="halign">start</property>
                 <property name="spacing">6</property>
                 <child>
-                  <object class="GtkToggleButton" id="open_toggle_button">
-                    <signal name="toggled" handler="editor_window_sidebar_toggled_cb" swapped="true" object="EditorWindow"/>
-                    <child>
-                      <object class="GtkBox">
-                        <property name="margin-start">3</property>
-                        <property name="margin-end">3</property>
-                        <property name="orientation">horizontal</property>
-                        <property name="spacing">3</property>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="label" translatable="yes">Open</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkImage">
-                            <property name="icon-name">pan-down-symbolic</property>
-                          </object>
-                        </child>
+                  <object class="GtkMenuButton" id="open_menu_button">
+                    <property name="label" translatable="yes">Open</property>
+                    <property name="popover">
+                      <object class="EditorOpenPopover" id="open_menu_popover">
                       </object>
-                    </child>
+                    </property>
                   </object>
                 </child>
                 <child>
@@ -127,126 +113,111 @@
           </object>
         </child>
         <child>
-          <object class="GtkPaned" id="paned">
-            <property name="orientation">horizontal</property>
-            <property name="position">250</property>
-            <property name="shrink-end-child">false</property>
+          <object class="GtkStack" id="stack">
+            <style>
+              <class name="view"/>
+            </style>
             <child>
-              <object class="EditorSidebar" id="sidebar">
-                <property name="visible" bind-source="open_toggle_button" bind-property="active" bind-flags="bidirectional">false</property>
+              <object class="GtkNotebook" id="notebook">
+                <property name="scrollable">true</property>
+                <property name="show-border">false</property>
+                <property name="show-tabs">false</property>
+                <property name="hexpand">true</property>
+                <property name="vexpand">true</property>
               </object>
             </child>
             <child>
-              <object class="GtkStack" id="stack">
+              <object class="GtkBox" id="empty">
                 <style>
-                  <class name="view"/>
+                  <class name="empty-state"/>
                 </style>
+                <property name="hexpand">true</property>
+                <property name="vexpand">true</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
+                <property name="orientation">vertical</property>
+                <property name="margin-top">32</property>
+                <property name="margin-start">32</property>
+                <property name="margin-end">32</property>
+                <property name="margin-bottom">32</property>
                 <child>
-                  <object class="GtkNotebook" id="notebook">
-                    <signal name="page-reordered" handler="editor_window_notebook_page_reordered_cb" swapped="true" object="EditorWindow"/>
-                    <property name="scrollable">true</property>
-                    <property name="show-border">false</property>
-                    <property name="show-tabs">false</property>
-                    <property name="hexpand">true</property>
-                    <property name="vexpand">true</property>
+                  <object class="GtkImage">
+                    <property name="icon-name">text-editor-symbolic</property>
+                    <property name="pixel-size">128</property>
+                    <property name="margin-start">24</property>
+                    <property name="margin-bottom">24</property>
+                    <style>
+                      <class name="dim-label"/>
+                    </style>
                   </object>
                 </child>
                 <child>
-                  <object class="GtkBox" id="empty">
+                  <object class="GtkLabel">
+                    <property name="label" translatable="yes">Start or Open a Document</property>
+                    <property name="margin-bottom">16</property>
+                    <property name="wrap">True</property>
+                    <property name="wrap-mode">word-char</property>
+                    <property name="justify">center</property>
                     <style>
-                      <class name="empty-state"/>
+                      <class name="title"/>
                     </style>
-                    <property name="hexpand">true</property>
-                    <property name="vexpand">true</property>
-                    <property name="halign">center</property>
-                    <property name="valign">center</property>
-                    <property name="orientation">vertical</property>
-                    <property name="margin-top">32</property>
-                    <property name="margin-start">32</property>
-                    <property name="margin-end">32</property>
-                    <property name="margin-bottom">32</property>
-                    <child>
-                      <object class="GtkImage">
-                        <property name="icon-name">text-editor-symbolic</property>
-                        <property name="pixel-size">128</property>
-                        <property name="margin-start">24</property>
-                        <property name="margin-bottom">24</property>
-                        <style>
-                          <class name="dim-label"/>
-                        </style>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="label" translatable="yes">Start or Open a Document</property>
-                        <property name="margin-bottom">16</property>
-                        <property name="wrap">True</property>
-                        <property name="wrap-mode">word-char</property>
-                        <property name="justify">center</property>
-                        <style>
-                          <class name="title"/>
-                        </style>
-                        <attributes>
-                          <attribute name="weight" value="bold"/>
-                          <attribute name="scale" value="1.8"/>
-                        </attributes>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="halign">start</property>
-                        <property name="label" translatable="yes">• Use the open button</property>
-                        <property name="margin-bottom">6</property>
-                        <style>
-                          <class name="dim-label"/>
-                        </style>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="halign">start</property>
-                        <property name="label" translatable="yes">• Press the new tab button</property>
-                        <property name="margin-bottom">6</property>
-                        <style>
-                          <class name="dim-label"/>
-                        </style>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="halign">start</property>
-                        <property name="label" translatable="yes">• Press Ctrl+N to start a new document</property>
-                        <property name="margin-bottom">6</property>
-                        <style>
-                          <class name="dim-label"/>
-                        </style>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="halign">start</property>
-                        <property name="label" translatable="yes">• Press Ctrl+O to browse for a document</property>
-                        <style>
-                          <class name="dim-label"/>
-                        </style>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="margin-top">24</property>
-                        <property name="halign">start</property>
-                        <property name="label" translatable="yes">Or, press Ctrl+W to close the window.</property>
-                        <style>
-                          <class name="dim-label"/>
-                        </style>
-                      </object>
-                    </child>
+                    <attributes>
+                      <attribute name="weight" value="bold"/>
+                      <attribute name="scale" value="1.8"/>
+                    </attributes>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="halign">start</property>
+                    <property name="label" translatable="yes">• Use the open button</property>
+                    <property name="margin-bottom">6</property>
+                    <style>
+                      <class name="dim-label"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="halign">start</property>
+                    <property name="label" translatable="yes">• Press the new tab button</property>
+                    <property name="margin-bottom">6</property>
+                    <style>
+                      <class name="dim-label"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="halign">start</property>
+                    <property name="label" translatable="yes">• Press Ctrl+N to start a new document</property>
+                    <property name="margin-bottom">6</property>
+                    <style>
+                      <class name="dim-label"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="halign">start</property>
+                    <property name="label" translatable="yes">• Press Ctrl+O to browse for a document</property>
+                    <style>
+                      <class name="dim-label"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="margin-top">24</property>
+                    <property name="halign">start</property>
+                    <property name="label" translatable="yes">Or, press Ctrl+W to close the window.</property>
+                    <style>
+                      <class name="dim-label"/>
+                    </style>
                   </object>
                 </child>
               </object>
             </child>
-            <property name="resize-start-child">true</property>
-            <property name="shrink-start-child">false</property>
           </object>
         </child>
       </object>

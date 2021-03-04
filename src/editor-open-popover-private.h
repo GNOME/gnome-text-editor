@@ -1,6 +1,6 @@
-/* editor-sidebar-model-private.h
+/* editor-open-popover-private.h
  *
- * Copyright 2020 Christian Hergert <chergert@redhat.com>
+ * Copyright 2021 Christian Hergert <chergert@redhat.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,17 +20,17 @@
 
 #pragma once
 
-#include "editor-types-private.h"
+#include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 
-#define EDITOR_TYPE_SIDEBAR_MODEL (editor_sidebar_model_get_type())
+#define EDITOR_TYPE_OPEN_POPOVER (editor_open_popover_get_type())
 
-G_DECLARE_FINAL_TYPE (EditorSidebarModel, editor_sidebar_model, EDITOR, SIDEBAR_MODEL, GObject)
+G_DECLARE_FINAL_TYPE (EditorOpenPopover, editor_open_popover, EDITOR, OPEN_POPOVER, GtkPopover)
 
-EditorSidebarModel *_editor_sidebar_model_new            (EditorSession      *session);
-void                _editor_sidebar_model_page_reordered (EditorSidebarModel *self,
-                                                          EditorPage         *page,
-                                                          guint               page_num);
+GtkWidget  *_editor_open_popover_new       (void);
+GListModel *_editor_open_popover_get_model (EditorOpenPopover *self);
+void        _editor_open_popover_set_model (EditorOpenPopover *self,
+                                            GListModel        *model);
 
 G_END_DECLS

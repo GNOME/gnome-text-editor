@@ -222,6 +222,8 @@ editor_window_actions_open_cb (GtkWidget  *widget,
 
   g_assert (EDITOR_IS_WINDOW (self));
 
+  gtk_menu_button_popdown (self->open_menu_button);
+
   native = gtk_file_chooser_native_new (_("Open File"),
                                         GTK_WINDOW (self),
                                         GTK_FILE_CHOOSER_ACTION_OPEN,

@@ -30,15 +30,21 @@
 
 struct _EditorSidebarRow
 {
-  GtkListBoxRow      parent_instance;
+  GtkWidget          parent_instance;
 
   EditorSidebarItem *item;
 
+  GtkWidget         *grid;
   GtkLabel          *title;
   GtkLabel          *subtitle;
   GtkLabel          *is_modified;
   GtkLabel          *empty;
   GtkStack          *stack;
+
+  GBinding          *title_binding;
+  GBinding          *subtitle_binding;
+  GBinding          *empty_binding;
+  GBinding          *modified_binding;
 };
 
 enum {
@@ -47,7 +53,7 @@ enum {
   N_PROPS
 };
 
-G_DEFINE_TYPE (EditorSidebarRow, editor_sidebar_row, GTK_TYPE_LIST_BOX_ROW)
+G_DEFINE_TYPE (EditorSidebarRow, editor_sidebar_row, GTK_TYPE_WIDGET)
 
 static GParamSpec *properties [N_PROPS];
 
@@ -71,39 +77,18 @@ modified_to_child (GBinding     *binding,
 }
 
 static void
-editor_sidebar_row_constructed (GObject *object)
+editor_sidebar_row_dispose (GObject *object)
 {
   EditorSidebarRow *self = (EditorSidebarRow *)object;
 
-  g_assert (EDITOR_IS_SIDEBAR_ROW (self));
-
-  G_OBJECT_CLASS (editor_sidebar_row_parent_class)->constructed (object);
-
-  if (self->item == NULL)
-    {
-      g_warning ("%s created without an item. This is a programmer error.",
-                 G_OBJECT_TYPE_NAME (self));
-      return;
-    }
-
-  g_object_bind_property (self->item, "title", self->title, "label", G_BINDING_SYNC_CREATE);
-  g_object_bind_property (self->item, "subtitle", self->subtitle, "label", G_BINDING_SYNC_CREATE);
-  g_object_bind_property (self->item, "empty", self, "visible", G_BINDING_SYNC_CREATE | G_BINDING_INVERT_BOOLEAN);
-  g_object_bind_property_full (self->item, "is-modified",
-                               self->stack, "visible-child",
-                               G_BINDING_SYNC_CREATE,
-                               modified_to_child,
-                               NULL, self, NULL);
-}
-
-static void
-editor_sidebar_row_finalize (GObject *object)
-{
-  EditorSidebarRow *self = (EditorSidebarRow *)object;
-
+  g_clear_pointer (&self->grid, gtk_widget_unparent);
+  g_clear_pointer (&self->title_binding, g_binding_unbind);
+  g_clear_pointer (&self->subtitle_binding, g_binding_unbind);
+  g_clear_pointer (&self->empty_binding, g_binding_unbind);
+  g_clear_pointer (&self->modified_binding, g_binding_unbind);
   g_clear_object (&self->item);
 
-  G_OBJECT_CLASS (editor_sidebar_row_parent_class)->finalize (object);
+  G_OBJECT_CLASS (editor_sidebar_row_parent_class)->dispose (object);
 }
 
 static void
@@ -136,7 +121,7 @@ editor_sidebar_row_set_property (GObject      *object,
   switch (prop_id)
     {
     case PROP_ITEM:
-      self->item = g_value_dup_object (value);
+      _editor_sidebar_row_set_item (self, g_value_get_object (value));
       break;
 
     default:
@@ -150,13 +135,14 @@ editor_sidebar_row_class_init (EditorSidebarRowClass *klass)
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
-  object_class->constructed = editor_sidebar_row_constructed;
-  object_class->finalize = editor_sidebar_row_finalize;
+  object_class->dispose = editor_sidebar_row_dispose;
   object_class->get_property = editor_sidebar_row_get_property;
   object_class->set_property = editor_sidebar_row_set_property;
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-sidebar-row.ui");
+  gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
   gtk_widget_class_bind_template_child (widget_class, EditorSidebarRow, empty);
+  gtk_widget_class_bind_template_child (widget_class, EditorSidebarRow, grid);
   gtk_widget_class_bind_template_child (widget_class, EditorSidebarRow, is_modified);
   gtk_widget_class_bind_template_child (widget_class, EditorSidebarRow, stack);
   gtk_widget_class_bind_template_child (widget_class, EditorSidebarRow, subtitle);
@@ -178,6 +164,12 @@ editor_sidebar_row_init (EditorSidebarRow *self)
   gtk_widget_init_template (GTK_WIDGET (self));
 }
 
+GtkWidget *
+_editor_sidebar_row_new (void)
+{
+  return g_object_new (EDITOR_TYPE_SIDEBAR_ROW, NULL);
+}
+
 EditorSidebarItem *
 _editor_sidebar_row_get_item (EditorSidebarRow *self)
 {
@@ -186,10 +178,47 @@ _editor_sidebar_row_get_item (EditorSidebarRow *self)
   return self->item;
 }
 
-GtkWidget *
-_editor_sidebar_row_new (EditorSidebarItem *item)
+void
+_editor_sidebar_row_set_item (EditorSidebarRow  *self,
+                              EditorSidebarItem *item)
 {
-  return g_object_new (EDITOR_TYPE_SIDEBAR_ROW,
-                       "item", item,
-                       NULL);
+  g_autoptr(EditorSidebarItem) previous = NULL;
+
+  g_return_if_fail (EDITOR_IS_SIDEBAR_ROW (self));
+
+  if (self->item == item)
+    return;
+
+  previous = g_steal_pointer (&self->item);
+  if (item != NULL)
+    g_object_ref (item);
+
+  g_clear_pointer (&self->title_binding, g_binding_unbind);
+  g_clear_pointer (&self->subtitle_binding, g_binding_unbind);
+  g_clear_pointer (&self->empty_binding, g_binding_unbind);
+  g_clear_pointer (&self->modified_binding, g_binding_unbind);
+
+  self->item = item;
+
+  if (item != NULL)
+    {
+      self->title_binding =
+        g_object_bind_property (self->item, "title",
+                                self->title, "label",
+                                G_BINDING_SYNC_CREATE);
+      self->subtitle_binding =
+        g_object_bind_property (self->item, "subtitle",
+                                self->subtitle, "label",
+                                G_BINDING_SYNC_CREATE);
+      self->empty_binding =
+        g_object_bind_property (self->item, "empty",
+                                self, "visible",
+                                G_BINDING_SYNC_CREATE | G_BINDING_INVERT_BOOLEAN);
+      self->modified_binding =
+        g_object_bind_property_full (self->item, "is-modified",
+                                     self->stack, "visible-child",
+                                     G_BINDING_SYNC_CREATE,
+                                     modified_to_child,
+                                     NULL, self, NULL);
+  }
 }

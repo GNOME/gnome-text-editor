@@ -26,6 +26,7 @@
 
 #include "editor-application.h"
 #include "editor-document.h"
+#include "editor-open-popover-private.h"
 #include "editor-session-private.h"
 #include "editor-tab-private.h"
 #include "editor-theme-selector-private.h"
@@ -208,34 +209,6 @@ editor_window_page_removed_cb (EditorWindow *self,
     gtk_stack_set_visible_child (self->stack, GTK_WIDGET (self->empty));
 }
 
-static void
-editor_window_sidebar_toggled_cb (EditorWindow    *self,
-                                  GtkToggleButton *button)
-{
-  g_assert (EDITOR_IS_WINDOW (self));
-  g_assert (GTK_IS_TOGGLE_BUTTON (button));
-
-  if (gtk_toggle_button_get_active (button))
-    gtk_widget_show (GTK_WIDGET (self->sidebar));
-  else
-    gtk_widget_hide (GTK_WIDGET (self->sidebar));
-}
-
-static void
-editor_window_notebook_page_reordered_cb (EditorWindow *self,
-                                          GtkWidget    *child,
-                                          guint         page_num,
-                                          GtkNotebook  *notebook)
-{
-  EditorPage *page = (EditorPage *)child;
-
-  g_assert (EDITOR_IS_WINDOW (self));
-  g_assert (EDITOR_IS_PAGE (page));
-  g_assert (GTK_IS_NOTEBOOK (notebook));
-
-  _editor_sidebar_page_reordered (self->sidebar, page, page_num);
-}
-
 static gboolean
 editor_window_close_request (GtkWindow *window)
 {
@@ -265,6 +238,7 @@ editor_window_constructed (GObject *object)
 {
   EditorWindow *self = (EditorWindow *)object;
   GtkApplication *app;
+  EditorSession *session;
   GtkPopover *popover;
   GMenu *export_menu;
   GMenu *options_menu;
@@ -275,6 +249,12 @@ editor_window_constructed (GObject *object)
   G_OBJECT_CLASS (editor_window_parent_class)->constructed (object);
 
   app = GTK_APPLICATION (EDITOR_APPLICATION_DEFAULT);
+  session = editor_application_get_session (EDITOR_APPLICATION_DEFAULT);
+
+  /* Set the recents list for the open popover */
+  g_object_bind_property (session, "recents",
+                          self->open_menu_popover, "model",
+                          G_BINDING_SYNC_CREATE);
 
   export_menu = gtk_application_get_menu_by_id (GTK_APPLICATION (app), "export-menu");
   gtk_menu_button_set_menu_model (self->export_menu, G_MENU_MODEL (export_menu));
@@ -391,18 +371,15 @@ editor_window_class_init (EditorWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, export_menu);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, is_modified);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, notebook);
-  gtk_widget_class_bind_template_child (widget_class, EditorWindow, open_toggle_button);
+  gtk_widget_class_bind_template_child (widget_class, EditorWindow, open_menu_button);
+  gtk_widget_class_bind_template_child (widget_class, EditorWindow, open_menu_popover);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, options_menu);
-  gtk_widget_class_bind_template_child (widget_class, EditorWindow, paned);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, position_box);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, position_label);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, primary_menu);
-  gtk_widget_class_bind_template_child (widget_class, EditorWindow, sidebar);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, subtitle);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, title);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, stack);
-  gtk_widget_class_bind_template_callback (widget_class, editor_window_sidebar_toggled_cb);
-  gtk_widget_class_bind_template_callback (widget_class, editor_window_notebook_page_reordered_cb);
 
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_w, GDK_CONTROL_MASK, "win.close-current-page", NULL);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_o, GDK_CONTROL_MASK, "win.open", NULL);
@@ -430,8 +407,8 @@ editor_window_class_init (EditorWindowClass *klass)
 
   _editor_window_class_actions_init (klass);
 
+  g_type_ensure (EDITOR_TYPE_OPEN_POPOVER);
   g_type_ensure (EDITOR_TYPE_POSITION_LABEL);
-  g_type_ensure (EDITOR_TYPE_SIDEBAR);
 }
 
 static void
@@ -661,28 +638,10 @@ editor_window_get_n_pages (EditorWindow *self)
   return gtk_notebook_get_n_pages (self->notebook);
 }
 
-gboolean
-_editor_window_get_sidebar_revealed (EditorWindow *self)
-{
-  g_return_val_if_fail (EDITOR_IS_WINDOW (self), FALSE);
-
-  return gtk_toggle_button_get_active (self->open_toggle_button);
-}
-
-void
-_editor_window_set_sidebar_revealed (EditorWindow *self,
-                                     gboolean      sidebar_revealed)
-{
-  g_return_if_fail (EDITOR_IS_WINDOW (self));
-
-  gtk_toggle_button_set_active (self->open_toggle_button, sidebar_revealed);
-}
-
 void
 _editor_window_focus_search (EditorWindow *self)
 {
   g_return_if_fail (EDITOR_IS_WINDOW (self));
 
-  gtk_toggle_button_set_active (self->open_toggle_button, TRUE);
-  editor_sidebar_focus_search (self->sidebar);
+  gtk_menu_button_popup (self->open_menu_button);
 }

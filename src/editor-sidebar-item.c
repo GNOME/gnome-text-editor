@@ -423,24 +423,13 @@ _editor_sidebar_item_open (EditorSidebarItem *self,
   g_return_if_fail (self->page || self->file || self->draft_id);
 
   if (self->page != NULL)
-    {
-      _editor_page_raise (self->page);
-      return;
-    }
-
-  if (self->file != NULL)
-    {
-      editor_session_open (session, window, self->file);
-      return;
-    }
-
-  if (self->draft_id != NULL)
-    {
-      _editor_session_open_draft (session, window, self->draft_id);
-      return;
-    }
-
-  g_warn_if_reached ();
+    _editor_page_raise (self->page);
+  else if (self->file != NULL)
+    editor_session_open (session, window, self->file);
+  else if (self->draft_id != NULL)
+    _editor_session_open_draft (session, window, self->draft_id);
+  else
+    g_warn_if_reached ();
 }
 
 gboolean

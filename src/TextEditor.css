@@ -70,14 +70,10 @@ notebook:focus:backdrop {
 
 /* EditorSidebar */
 
-.org-gnome-TextEditor sidebar,
-.org-gnome-TextEditor sidebar list {
-  background: transparent;
-}
-.org-gnome-TextEditor sidebar list row {
+.org-gnome-TextEditor .open-popover listview row {
   border-bottom: 1px solid alpha(@borders, 0.4);
 }
-.org-gnome-TextEditor sidebar list row:last-child {
+.org-gnome-TextEditor .open-popover listview row:last-child {
   border-bottom: 1px solid transparent;
 }
 

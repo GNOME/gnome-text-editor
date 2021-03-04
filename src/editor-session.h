@@ -33,7 +33,8 @@ G_DECLARE_FINAL_TYPE (EditorSession, editor_session, EDITOR, SESSION, GObject)
 void          editor_session_add_window         (EditorSession        *self,
                                                  EditorWindow         *window);
 EditorWindow *editor_session_create_window      (EditorSession        *self);
-void          editor_session_open               (EditorSession        *self,
+GListModel   *editor_session_get_recents        (EditorSession        *self);
+EditorPage   *editor_session_open               (EditorSession        *self,
                                                  EditorWindow         *window,
                                                  GFile                *file);
 void          editor_session_open_files         (EditorSession        *self,
@@ -42,10 +43,10 @@ void          editor_session_open_files         (EditorSession        *self,
 void          editor_session_add_page           (EditorSession        *self,
                                                  EditorWindow         *window,
                                                  EditorPage           *page);
-void          editor_session_add_document       (EditorSession        *self,
+EditorPage   *editor_session_add_document       (EditorSession        *self,
                                                  EditorWindow         *window,
                                                  EditorDocument       *document);
-void          editor_session_add_draft          (EditorSession        *self,
+EditorPage   *editor_session_add_draft          (EditorSession        *self,
                                                  EditorWindow         *window);
 void          editor_session_remove_page        (EditorSession        *self,
                                                  EditorPage           *page);

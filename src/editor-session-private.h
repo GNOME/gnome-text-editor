@@ -46,7 +46,7 @@ void           _editor_session_remove_window          (EditorSession  *self,
                                                        EditorWindow   *window);
 void           _editor_session_remove_draft           (EditorSession  *self,
                                                        const gchar    *draft_id);
-void           _editor_session_open_draft             (EditorSession  *self,
+EditorPage    *_editor_session_open_draft             (EditorSession  *self,
                                                        EditorWindow   *window,
                                                        const gchar    *draft_id);
 void           _editor_session_move_page_to_window    (EditorSession  *session,

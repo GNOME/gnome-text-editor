@@ -26,6 +26,7 @@
 #include "editor-document-private.h"
 #include "editor-page-private.h"
 #include "editor-session-private.h"
+#include "editor-sidebar-model-private.h"
 #include "editor-window-private.h"
 
 #define AUTO_SAVE_TIMEOUT_SECONDS 20
@@ -38,6 +39,7 @@ struct _EditorSession
   GFile      *state_file;
   GHashTable *seen;
   GArray     *drafts;
+  EditorSidebarModel *recents;
 
   guint      auto_save_source;
 
@@ -71,6 +73,7 @@ G_DEFINE_TYPE (EditorSession, editor_session, G_TYPE_OBJECT)
 enum {
   PROP_0,
   PROP_AUTO_SAVE,
+  PROP_RECENTS,
   N_PROPS
 };
 
@@ -205,9 +208,6 @@ add_window_state (EditorSession   *self,
       if (is_active)
         g_variant_builder_add_parsed (builder, "{'is-active', <%b>}", is_active);
 
-      if (_editor_window_get_sidebar_revealed (window))
-        g_variant_builder_add_parsed (builder, "{'sidebar-revealed', <%b>}", TRUE);
-
       /* Store the window size */
       width = gtk_widget_get_width (GTK_WIDGET (window));
       height = gtk_widget_get_height (GTK_WIDGET (window));
@@ -331,6 +331,12 @@ editor_session_dispose (GObject *object)
 
   g_assert (EDITOR_IS_SESSION (self));
 
+  if (self->recents != NULL)
+    {
+      g_object_run_dispose (G_OBJECT (self->recents));
+      g_clear_object (&self->recents);
+    }
+
   g_hash_table_remove_all (self->seen);
 
   if (self->pages->len > 0)
@@ -370,6 +376,10 @@ editor_session_get_property (GObject    *object,
     {
     case PROP_AUTO_SAVE:
       g_value_set_boolean (value, editor_session_get_auto_save (self));
+      break;
+
+    case PROP_RECENTS:
+      g_value_set_object (value, editor_session_get_recents (self));
       break;
 
     default:
@@ -423,6 +433,23 @@ editor_session_class_init (EditorSessionClass *klass)
                           "Auto Save",
                           FALSE,
                           (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+
+  /**
+   * EditorSession:recents:
+   *
+   * The "recents" property contains a #GListModel of recent documents that
+   * is updated as files are opened.
+   *
+   * It persists across uses of the application.
+   *
+   * This may not be available until the session has been restored.
+   */
+  properties [PROP_RECENTS] =
+    g_param_spec_object ("recents",
+                         "Recents",
+                         "A list of recent documents",
+                         G_TYPE_LIST_MODEL,
+                         (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_properties (object_class, N_PROPS, properties);
 
@@ -675,36 +702,45 @@ editor_session_add_page (EditorSession *self,
  * If @window is %NULL, then a new window is created.
  *
  * The window will be presented and raised as part of this operation.
+ *
+ * Returns: (transfer none): an #EditorPage
  */
-void
+EditorPage *
 editor_session_add_document (EditorSession  *self,
                              EditorWindow   *window,
                              EditorDocument *document)
 {
   EditorPage *page;
 
-  g_return_if_fail (EDITOR_IS_SESSION (self));
-  g_return_if_fail (!window || EDITOR_IS_WINDOW (window));
-  g_return_if_fail (EDITOR_IS_DOCUMENT (document));
+  g_return_val_if_fail (EDITOR_IS_SESSION (self), NULL);
+  g_return_val_if_fail (!window || EDITOR_IS_WINDOW (window), NULL);
+  g_return_val_if_fail (EDITOR_IS_DOCUMENT (document), NULL);
 
   if (window == NULL)
     window = find_or_create_window (self);
 
   page = editor_page_new_for_document (document);
   editor_session_add_page (self, window, page);
+
+  return page;
 }
 
-void
+/**
+ * editor_session_add_draft:
+ *
+ * Returns: (transfer none): an #EditorPage
+ */
+EditorPage *
 editor_session_add_draft (EditorSession *self,
                           EditorWindow  *window)
 {
   g_autoptr(EditorDocument) draft = NULL;
 
-  g_return_if_fail (EDITOR_IS_SESSION (self));
-  g_return_if_fail (!window || EDITOR_IS_WINDOW (window));
+  g_return_val_if_fail (EDITOR_IS_SESSION (self), NULL);
+  g_return_val_if_fail (!window || EDITOR_IS_WINDOW (window), NULL);
 
   draft = editor_document_new_draft ();
-  editor_session_add_document (self, window, draft);
+  return editor_session_add_document (self, window, draft);
 }
 
 static void
@@ -1128,7 +1164,7 @@ get_draft_id_for_file (EditorSession *self,
   return NULL;
 }
 
-void
+EditorPage *
 editor_session_open (EditorSession *self,
                      EditorWindow  *window,
                      GFile         *file)
@@ -1139,9 +1175,9 @@ editor_session_open (EditorSession *self,
   EditorPage *remove = NULL;
   EditorPage *page;
 
-  g_return_if_fail (EDITOR_IS_SESSION (self));
-  g_return_if_fail (!window || EDITOR_IS_WINDOW (window));
-  g_return_if_fail (G_IS_FILE (file));
+  g_return_val_if_fail (EDITOR_IS_SESSION (self), NULL);
+  g_return_val_if_fail (!window || EDITOR_IS_WINDOW (window), NULL);
+  g_return_val_if_fail (G_IS_FILE (file), NULL);
 
   uri = g_file_get_uri (file);
   g_debug ("Attempting to open file: \"%s\"", uri);
@@ -1149,7 +1185,7 @@ editor_session_open (EditorSession *self,
   if ((page = find_page_for_file (self, file)))
     {
       _editor_page_raise (page);
-      return;
+      return page;
     }
 
   if (window == NULL)
@@ -1171,6 +1207,8 @@ editor_session_open (EditorSession *self,
     editor_session_remove_page (self, remove);
 
   _editor_document_load_async (document, window, NULL, NULL, NULL);
+
+  return page;
 }
 
 void
@@ -1184,7 +1222,12 @@ editor_session_open_files (EditorSession  *self,
     editor_session_open (self, NULL, files[i]);
 }
 
-void
+/**
+ * editor_session_open_draft:
+ *
+ * Returns: (transfer none): an #EditorPage
+ */
+EditorPage *
 _editor_session_open_draft (EditorSession *self,
                             EditorWindow  *window,
                             const gchar   *draft_id)
@@ -1192,10 +1235,11 @@ _editor_session_open_draft (EditorSession *self,
   g_autoptr(EditorDocument) new_document = NULL;
   EditorPage *remove = NULL;
   EditorPage *visible_page;
+  EditorPage *new_page;
 
-  g_return_if_fail (EDITOR_IS_SESSION (self));
-  g_return_if_fail (!window || EDITOR_IS_WINDOW (window));
-  g_return_if_fail (draft_id != NULL);
+  g_return_val_if_fail (EDITOR_IS_SESSION (self), NULL);
+  g_return_val_if_fail (!window || EDITOR_IS_WINDOW (window), NULL);
+  g_return_val_if_fail (draft_id != NULL, NULL);
 
   g_debug ("Attempting to open draft \"%s\"", draft_id);
 
@@ -1216,16 +1260,18 @@ _editor_session_open_draft (EditorSession *self,
       if (g_strcmp0 (doc_draft_id, draft_id) == 0)
         {
           _editor_page_raise (page);
-          return;
+          return page;
         }
     }
 
   new_document = _editor_document_new (NULL, draft_id);
-  editor_session_add_document (self, window, new_document);
+  new_page = editor_session_add_document (self, window, new_document);
   _editor_document_load_async (new_document, window, NULL, NULL, NULL);
 
   if (remove)
     editor_session_remove_page (self, remove);
+
+  return new_page;
 }
 
 static void
@@ -1491,7 +1537,6 @@ editor_session_restore_v1 (EditorSession *self,
           g_variant_n_children (pages) > 0)
         {
           EditorWindow *ewin = _editor_session_create_window_no_draft (self);
-          gboolean sidebar_revealed;
 
           if (width > 0 && height > 0)
             gtk_window_set_default_size (GTK_WINDOW (ewin), width, height);
@@ -1503,11 +1548,6 @@ editor_session_restore_v1 (EditorSession *self,
               g_ptr_array_remove (self->windows, ewin);
               continue;
             }
-
-          if (!g_variant_lookup (window, "sidebar-revealed", "b", &sidebar_revealed))
-            sidebar_revealed = FALSE;
-
-          _editor_window_set_sidebar_revealed (ewin, sidebar_revealed);
 
           gtk_window_present (GTK_WINDOW (ewin));
         }
@@ -1553,10 +1593,14 @@ editor_session_restore (EditorSession *self,
   g_assert (state != NULL);
   g_assert (g_variant_is_of_type (state, G_VARIANT_TYPE_VARDICT));
 
+  self->recents = _editor_sidebar_model_new (self);
+
   if (g_variant_lookup (state, "version", "u", &version) && version == 1)
     editor_session_restore_v1 (self, state);
   else
     editor_session_create_window (self);
+
+  g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_RECENTS]);
 }
 
 static void
@@ -1956,4 +2000,20 @@ editor_session_find_page_by_file (EditorSession *self,
     }
 
   return NULL;
+}
+
+/**
+ * editor_session_get_recents:
+ * @self: an #EditorSession
+ *
+ * Gets a #GListModel of #EditorSidebarItem
+ *
+ * Returns: (transfer none): a #GListModel
+ */
+GListModel *
+editor_session_get_recents (EditorSession *self)
+{
+  g_return_val_if_fail (EDITOR_IS_SESSION (self), NULL);
+
+  return G_LIST_MODEL (self->recents);
 }

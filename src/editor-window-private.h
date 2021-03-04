@@ -21,8 +21,8 @@
 #pragma once
 
 #include "editor-window.h"
+#include "editor-open-popover-private.h"
 #include "editor-position-label-private.h"
-#include "editor-sidebar-private.h"
 #include "editor-page-private.h"
 #include "editor-signal-group.h"
 #include "editor-binding-group.h"
@@ -39,12 +39,11 @@ struct _EditorWindow
   GtkLabel             *title;
   GtkLabel             *subtitle;
   GtkLabel             *is_modified;
+  EditorOpenPopover    *open_menu_popover;
   GtkBox               *position_box;
   EditorPositionLabel  *position_label;
-  GtkPaned             *paned;
   GtkStack             *stack;
-  GtkToggleButton      *open_toggle_button;
-  EditorSidebar        *sidebar;
+  GtkMenuButton        *open_menu_button;
   GtkMenuButton        *primary_menu;
   GtkMenuButton        *options_menu;
   GtkMenuButton        *export_menu;
@@ -66,9 +65,6 @@ void          _editor_window_actions_update       (EditorWindow      *self,
                                                    EditorPage        *page);
 void          _editor_window_dnd_init             (EditorWindow      *self);
 EditorWindow *_editor_window_new                  (void);
-gboolean      _editor_window_get_sidebar_revealed (EditorWindow      *self);
-void          _editor_window_set_sidebar_revealed (EditorWindow      *self,
-                                                   gboolean           sidebar_revealed);
 GList        *_editor_window_get_pages            (EditorWindow      *self);
 void          _editor_window_add_page             (EditorWindow      *self,
                                                    EditorPage        *page);
