@@ -247,7 +247,13 @@ editor_window_actions_open_cb (GtkWidget  *widget,
   gtk_file_filter_set_name (text_files, _("Text Files"));
   gtk_file_filter_add_mime_type (text_files, "text/plain");
   gtk_file_chooser_add_filter (GTK_FILE_CHOOSER (native), g_object_ref (text_files));
+
+#ifdef __APPLE__
+  /* Apple cotent-type detect is pretty bad */
+  gtk_file_chooser_set_filter (GTK_FILE_CHOOSER (native), all_files);
+#else
   gtk_file_chooser_set_filter (GTK_FILE_CHOOSER (native), text_files);
+#endif
 
   g_signal_connect_object (native,
                            "response",
