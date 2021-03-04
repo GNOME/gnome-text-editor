@@ -582,6 +582,8 @@ editor_page_class_init (EditorPageClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorPage, view);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, overlay);
 
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Escape, 0, "search.hide", NULL);
+
   g_type_ensure (EDITOR_TYPE_SEARCH_BAR);
 }
 
