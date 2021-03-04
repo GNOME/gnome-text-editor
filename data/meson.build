@@ -1,5 +1,7 @@
 desktop_file_in_config = configuration_data()
 desktop_file_in_config.set('app_id', app_id)
+desktop_file_in_config.set('app_name', 'org.gnome.TextEditor')
+desktop_file_in_config.set('app_version', meson.project_version())
 desktop_file_in = configure_file(
           input: 'org.gnome.TextEditor.desktop.in.in',
          output: '@0@.desktop.in'.format(app_id),
@@ -69,3 +71,4 @@ configure_file(
 
 subdir('icons')
 subdir('styles')
+subdir('macos')
