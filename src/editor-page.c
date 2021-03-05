@@ -976,67 +976,6 @@ _editor_page_copy_all (EditorPage *self)
   gdk_clipboard_set_text (clipboard, text);
 }
 
-static void
-editor_page_delete_draft_cb (GObject      *object,
-                             GAsyncResult *result,
-                             gpointer      user_data)
-{
-  EditorSession *session;
-  GFile *file = (GFile *)object;
-  g_autoptr(EditorPage) self = user_data;
-  g_autoptr(GError) error = NULL;
-
-  g_assert (G_IS_FILE (file));
-  g_assert (G_IS_ASYNC_RESULT (result));
-  g_assert (EDITOR_IS_PAGE (self));
-
-  session = editor_application_get_session (EDITOR_APPLICATION_DEFAULT);
-
-  if (!g_file_delete_finish (file, result, &error))
-    {
-      if (!g_error_matches (error, G_IO_ERROR, G_IO_ERROR_NOT_FOUND))
-        g_warning ("Failed to remove draft: %s\n", error->message);
-      _editor_document_set_draft_id (self->document, NULL);
-    }
-
-  /* If this document was a draft only, we can remove the EditorPage
-   * and also remove it from the recents list.
-   */
-  if (editor_document_get_file (self->document) == NULL)
-    {
-      /* Remove page first so that we can purge the sidebar item
-       * when the draft is removed afterwards.
-       */
-      editor_session_remove_page (session, self);
-      _editor_session_remove_draft (session,
-                                    _editor_document_get_draft_id (self->document));
-    }
-  else
-    {
-      _editor_document_load_async (self->document,
-                                   _editor_page_get_window (self),
-                                   NULL, NULL, NULL);
-    }
-}
-
-void
-_editor_page_discard_changes (EditorPage *self)
-{
-  g_autoptr(GFile) draft_file = NULL;
-
-  g_return_if_fail (EDITOR_IS_PAGE (self));
-
-  _editor_page_raise (self);
-
-  draft_file = _editor_document_get_draft_file (self->document);
-
-  g_file_delete_async (draft_file,
-                       G_PRIORITY_DEFAULT,
-                       NULL,
-                       editor_page_delete_draft_cb,
-                       g_object_ref (self));
-}
-
 gboolean
 editor_page_get_can_discard (EditorPage *self)
 {
@@ -1144,4 +1083,113 @@ _editor_page_move_previous_search (EditorPage *self)
   g_return_if_fail (EDITOR_IS_PAGE (self));
 
   _editor_search_bar_move_previous (self->search_bar);
+}
+
+static void
+editor_page_discard_reload_cb (GObject      *object,
+                               GAsyncResult *result,
+                               gpointer      user_data)
+{
+  EditorDocument *document = (EditorDocument *)object;
+  g_autoptr(GTask) task = user_data;
+  g_autoptr(GError) error = NULL;
+
+  g_assert (EDITOR_IS_DOCUMENT (document));
+  g_assert (G_IS_TASK (task));
+
+  if (!_editor_document_load_finish (document, result, &error))
+    g_task_return_error (task, g_steal_pointer (&error));
+  else
+    g_task_return_boolean (task, TRUE);
+}
+
+static void
+editor_page_delete_draft_cb (GObject      *object,
+                             GAsyncResult *result,
+                             gpointer      user_data)
+{
+  GFile *file = (GFile *)object;
+  EditorSession *session = EDITOR_SESSION_DEFAULT;
+  g_autoptr(GTask) task = user_data;
+  g_autoptr(GError) error = NULL;
+  EditorPage *self;
+
+  g_assert (G_IS_FILE (file));
+  g_assert (G_IS_ASYNC_RESULT (result));
+  g_assert (G_IS_TASK (task));
+
+  self = g_task_get_source_object (task);
+
+  if (!g_file_delete_finish (file, result, &error))
+    {
+      if (!g_error_matches (error, G_IO_ERROR, G_IO_ERROR_NOT_FOUND))
+        g_warning ("Failed to remove draft: %s\n", error->message);
+      _editor_document_set_draft_id (self->document, NULL);
+    }
+
+  /* If this document was a draft only, we can remove the EditorPage
+   * and also remove it from the recents list.
+   */
+  if (editor_document_get_file (self->document) == NULL)
+    {
+      /* Remove page first so that we can purge the sidebar item
+       * when the draft is removed afterwards.
+       */
+      editor_session_remove_page (session, self);
+      _editor_session_remove_draft (session,
+                                    _editor_document_get_draft_id (self->document));
+      g_task_return_boolean (task, TRUE);
+    }
+  else
+    {
+      _editor_document_load_async (self->document,
+                                   _editor_page_get_window (self),
+                                   g_task_get_cancellable (task),
+                                   editor_page_discard_reload_cb,
+                                   g_object_ref (task));
+    }
+}
+
+void
+_editor_page_discard_changes_async  (EditorPage          *self,
+                                     GCancellable        *cancellable,
+                                     GAsyncReadyCallback  callback,
+                                     gpointer             user_data)
+{
+  g_autoptr(GFile) draft_file = NULL;
+  g_autoptr(GTask) task = NULL;
+
+  g_return_if_fail (EDITOR_IS_PAGE (self));
+  g_return_if_fail (!cancellable || G_IS_CANCELLABLE (cancellable));
+
+  task = g_task_new (self, cancellable, callback, user_data);
+  g_task_set_source_tag (task, _editor_page_discard_changes_async);
+
+  draft_file = _editor_document_get_draft_file (self->document);
+
+  g_file_delete_async (draft_file,
+                       G_PRIORITY_DEFAULT,
+                       cancellable,
+                       editor_page_delete_draft_cb,
+                       g_steal_pointer (&task));
+}
+
+gboolean
+_editor_page_discard_changes_finish (EditorPage    *self,
+                                     GAsyncResult  *result,
+                                     GError       **error)
+{
+  g_return_val_if_fail (EDITOR_IS_PAGE (self), FALSE);
+  g_return_val_if_fail (G_IS_TASK (result), FALSE);
+
+  return g_task_propagate_boolean (G_TASK (result), error);
+}
+
+void
+_editor_page_discard_changes (EditorPage *self)
+{
+  g_return_if_fail (EDITOR_IS_PAGE (self));
+
+  _editor_page_raise (self);
+  _editor_page_discard_changes_async (self, NULL, NULL, NULL);
 }

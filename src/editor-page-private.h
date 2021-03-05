@@ -56,23 +56,30 @@ struct _EditorPage
   GtkInfoBar              *infobar;
 };
 
-void          _editor_page_class_actions_init   (EditorPageClass     *klass);
-void          _editor_page_actions_init         (EditorPage          *self);
-EditorWindow *_editor_page_get_window           (EditorPage          *self);
-void          _editor_page_save                 (EditorPage          *self);
-void          _editor_page_save_as              (EditorPage          *self);
-void          _editor_page_raise                (EditorPage          *self);
-void          _editor_page_discard_changes      (EditorPage          *self);
-void          _editor_page_print                (EditorPage          *self);
-void          _editor_page_copy_all             (EditorPage          *self);
-void          _editor_page_discard_changes      (EditorPage          *self);
-gint          _editor_page_position             (EditorPage          *self);
-gchar        *_editor_page_dup_title_no_i18n    (EditorPage          *self);
-void          _editor_page_begin_search         (EditorPage          *self);
-void          _editor_page_begin_replace        (EditorPage          *self);
-void          _editor_page_hide_search          (EditorPage          *self);
-void          _editor_page_scroll_to_insert     (EditorPage          *self);
-void          _editor_page_move_next_search     (EditorPage          *self);
-void          _editor_page_move_previous_search (EditorPage          *self);
+void          _editor_page_class_actions_init     (EditorPageClass      *klass);
+void          _editor_page_actions_init           (EditorPage           *self);
+EditorWindow *_editor_page_get_window             (EditorPage           *self);
+void          _editor_page_save                   (EditorPage           *self);
+void          _editor_page_save_as                (EditorPage           *self);
+void          _editor_page_raise                  (EditorPage           *self);
+void          _editor_page_discard_changes_async  (EditorPage           *self,
+                                                   GCancellable         *cancellable,
+                                                   GAsyncReadyCallback   callback,
+                                                   gpointer              user_data);
+gboolean      _editor_page_discard_changes_finish (EditorPage           *self,
+                                                   GAsyncResult         *result,
+                                                   GError              **error);
+void          _editor_page_discard_changes        (EditorPage           *self);
+void          _editor_page_print                  (EditorPage           *self);
+void          _editor_page_copy_all               (EditorPage           *self);
+void          _editor_page_discard_changes        (EditorPage           *self);
+gint          _editor_page_position               (EditorPage           *self);
+gchar        *_editor_page_dup_title_no_i18n      (EditorPage           *self);
+void          _editor_page_begin_search           (EditorPage           *self);
+void          _editor_page_begin_replace          (EditorPage           *self);
+void          _editor_page_hide_search            (EditorPage           *self);
+void          _editor_page_scroll_to_insert       (EditorPage           *self);
+void          _editor_page_move_next_search       (EditorPage           *self);
+void          _editor_page_move_previous_search   (EditorPage           *self);
 
 G_END_DECLS
