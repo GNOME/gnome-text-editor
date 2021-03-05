@@ -30,6 +30,7 @@ G_DECLARE_FINAL_TYPE (EditorSidebarItem, editor_sidebar_item, EDITOR, SIDEBAR_IT
 
 EditorSidebarItem *_editor_sidebar_item_new             (GFile             *file,
                                                          EditorPage        *page);
+GDateTime         *_editor_sidebar_item_get_age         (EditorSidebarItem *self);
 gboolean           _editor_sidebar_item_get_empty       (EditorSidebarItem *self);
 GFile             *_editor_sidebar_item_get_file        (EditorSidebarItem *self);
 EditorPage        *_editor_sidebar_item_get_page        (EditorSidebarItem *self);

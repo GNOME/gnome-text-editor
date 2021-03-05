@@ -41,6 +41,7 @@ struct _EditorSidebarItem
   gchar      *search_text;
   gchar      *draft_id;
   gchar      *title;
+  gint64      age;
 
   guint       is_modified_set : 1;
   guint       is_modified : 1;
@@ -48,6 +49,7 @@ struct _EditorSidebarItem
 
 enum {
   PROP_0,
+  PROP_AGE,
   PROP_DRAFT_ID,
   PROP_EMPTY,
   PROP_FILE,
@@ -192,6 +194,10 @@ editor_sidebar_item_get_property (GObject    *object,
 
   switch (prop_id)
     {
+    case PROP_AGE:
+      g_value_set_boxed (value, _editor_sidebar_item_get_age (self));
+      break;
+
     case PROP_DRAFT_ID:
       g_value_set_string (value, self->draft_id);
       break;
@@ -263,6 +269,13 @@ editor_sidebar_item_class_init (EditorSidebarItemClass *klass)
   object_class->finalize = editor_sidebar_item_finalize;
   object_class->get_property = editor_sidebar_item_get_property;
   object_class->set_property = editor_sidebar_item_set_property;
+
+  properties [PROP_AGE] =
+    g_param_spec_boxed ("age",
+                        "Age",
+                        "Age",
+                        G_TYPE_DATE_TIME,
+                        (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
   properties [PROP_DRAFT_ID] =
     g_param_spec_string ("draft-id",
@@ -509,4 +522,15 @@ _editor_sidebar_item_set_draft_id (EditorSidebarItem *self,
       self->draft_id = g_strdup (draft_id);
       g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_DRAFT_ID]);
     }
+}
+
+GDateTime *
+_editor_sidebar_item_get_age (EditorSidebarItem *self)
+{
+  g_return_val_if_fail (EDITOR_IS_SIDEBAR_ITEM (self), NULL);
+
+  if (self->age)
+    return g_date_time_new_from_unix_local (self->age);
+
+  return NULL;
 }
