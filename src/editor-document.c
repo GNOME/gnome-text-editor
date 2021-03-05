@@ -654,9 +654,9 @@ editor_document_save_cb (GObject      *object,
   g_autoptr(GError) error = NULL;
   g_autoptr(GFile) draft = NULL;
   g_autoptr(GTask) task = user_data;
+  g_autoptr(GFile) file = NULL;
   EditorDocument *self;
   GtkSourceFile *source_file;
-  GFile *file;
   Save *save;
 
   g_assert (GTK_SOURCE_IS_FILE_SAVER (saver));
@@ -666,7 +666,11 @@ editor_document_save_cb (GObject      *object,
   self = g_task_get_source_object (task);
   save = g_task_get_task_data (task);
   source_file = gtk_source_file_saver_get_file (saver);
-  file = gtk_source_file_get_location (source_file);
+
+  /* We need a copy of file in case gtk_source_file_saver_save_finish()
+   * causes us to loose our reference.
+   */
+  file = g_object_ref (gtk_source_file_get_location (source_file));
 
   g_assert (EDITOR_IS_DOCUMENT (self));
   g_assert (GTK_SOURCE_IS_FILE (source_file));
