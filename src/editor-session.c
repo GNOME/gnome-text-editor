@@ -33,18 +33,20 @@
 
 struct _EditorSession
 {
-  GObject     parent_instance;
-  GPtrArray  *windows;
-  GPtrArray  *pages;
-  GFile      *state_file;
-  GHashTable *seen;
-  GArray     *drafts;
+  GObject             parent_instance;
+
+  GPtrArray          *windows;
+  GPtrArray          *pages;
+  GFile              *state_file;
+  GHashTable         *seen;
+  GArray             *drafts;
   EditorSidebarModel *recents;
 
-  guint      auto_save_source;
+  guint               auto_save_source;
 
-  guint      auto_save : 1;
-  guint      did_restore : 1;
+
+  guint               auto_save : 1;
+  guint               did_restore : 1;
 };
 
 typedef struct
