@@ -27,6 +27,7 @@
 #include "editor-application.h"
 #include "editor-document.h"
 #include "editor-open-popover-private.h"
+#include "editor-save-changes-dialog-private.h"
 #include "editor-session-private.h"
 #include "editor-tab-private.h"
 #include "editor-theme-selector-private.h"
@@ -209,11 +210,9 @@ editor_window_page_removed_cb (EditorWindow *self,
     gtk_stack_set_visible_child (self->stack, GTK_WIDGET (self->empty));
 }
 
-static gboolean
-editor_window_close_request (GtkWindow *window)
+static void
+editor_window_do_close (EditorWindow *self)
 {
-  EditorWindow *self = (EditorWindow *)window;
-
   g_assert (EDITOR_IS_WINDOW (self));
 
   g_signal_handlers_disconnect_by_func (self->notebook,
@@ -229,6 +228,56 @@ editor_window_close_request (GtkWindow *window)
   _editor_session_remove_window (EDITOR_SESSION_DEFAULT, self);
 
   self->visible_page = NULL;
+}
+
+static void
+editor_window_confirm_cb (GObject      *object,
+                          GAsyncResult *result,
+                          gpointer      user_data)
+{
+  g_autoptr(EditorWindow) self = user_data;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+  g_assert (G_IS_ASYNC_RESULT (result));
+
+  _editor_save_changes_dialog_run_finish (result, NULL);
+  editor_window_do_close (self);
+  gtk_window_destroy (GTK_WINDOW (self));
+}
+
+static gboolean
+editor_window_close_request (GtkWindow *window)
+{
+  EditorWindow *self = (EditorWindow *)window;
+  g_autoptr(GPtrArray) unsaved = NULL;
+  guint n_pages;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+
+  /* If there are documents open that need to be saved, first
+   * ask the user what they'd like us to do with them.
+   */
+  unsaved = g_ptr_array_new_with_free_func (g_object_unref);
+  n_pages = gtk_notebook_get_n_pages (self->notebook);
+  for (guint i = 0; i < n_pages; i++)
+    {
+      EditorPage *page = EDITOR_PAGE (gtk_notebook_get_nth_page (self->notebook, i));
+
+      if (editor_page_get_is_modified (page))
+        g_ptr_array_add (unsaved, g_object_ref (page));
+    }
+
+  if (unsaved->len > 0)
+    {
+      _editor_save_changes_dialog_run_async (GTK_WINDOW (self),
+                                             unsaved,
+                                             NULL,
+                                             editor_window_confirm_cb,
+                                             g_object_ref (self));
+      return TRUE;
+    }
+
+  editor_window_do_close (self);
 
   return GTK_WINDOW_CLASS (editor_window_parent_class)->close_request (window);
 }
