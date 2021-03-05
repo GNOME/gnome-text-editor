@@ -48,6 +48,7 @@ struct _EditorDocument
 
   guint                readonly : 1;
   guint                needs_autosave : 1;
+  guint                was_restored : 1;
 };
 
 typedef struct
@@ -522,9 +523,14 @@ editor_document_save_draft_cb (GObject      *object,
   self = g_task_get_source_object (task);
 
   if (!file_saver_save_finish (saver, result, &error))
-    g_task_return_error (task, g_steal_pointer (&error));
+    {
+      g_task_return_error (task, g_steal_pointer (&error));
+    }
   else
-    g_task_return_boolean (task, TRUE);
+    {
+      self->was_restored = FALSE;
+      g_task_return_boolean (task, TRUE);
+    }
 
   _editor_document_unmark_busy (self);
 }
@@ -626,6 +632,10 @@ editor_document_save_position_cb (GObject      *object,
 
   self = g_task_get_source_object (task);
   _editor_document_unmark_busy (self);
+
+  self->was_restored = FALSE;
+
+  g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_EXTERNALLY_MODIFIED]);
 
   g_task_return_boolean (task, TRUE);
 }
@@ -1010,6 +1020,12 @@ editor_document_do_load (EditorDocument *self,
     gtk_source_file_set_location (file, load->draft_file);
   else
     gtk_source_file_set_location (file, load->file);
+
+  /* Keep a note about if the contents came from a draft
+   * so that we can show it to the user when displaying
+   * the document.
+   */
+  self->was_restored = load->has_draft;
 
   loader = gtk_source_file_loader_new (GTK_SOURCE_BUFFER (self), file);
 
@@ -1463,4 +1479,21 @@ editor_document_get_externally_modified (EditorDocument *self)
   g_return_val_if_fail (EDITOR_IS_DOCUMENT (self), FALSE);
 
   return editor_buffer_monitor_get_changed (self->monitor);
+}
+
+void
+_editor_document_set_was_restored (EditorDocument *self,
+                                   gboolean        was_restored)
+{
+  g_return_if_fail (EDITOR_IS_DOCUMENT (self));
+
+  self->was_restored = !!was_restored;
+}
+
+gboolean
+_editor_document_get_was_restored (EditorDocument *self)
+{
+  g_return_val_if_fail (EDITOR_IS_DOCUMENT (self), FALSE);
+
+  return self->was_restored;
 }

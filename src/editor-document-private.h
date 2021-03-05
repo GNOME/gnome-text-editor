@@ -33,6 +33,9 @@ GFile          *_editor_document_get_draft_file        (EditorDocument       *se
 gchar          *_editor_document_dup_uri               (EditorDocument       *self);
 void            _editor_document_mark_busy             (EditorDocument       *self);
 void            _editor_document_unmark_busy           (EditorDocument       *self);
+gboolean        _editor_document_get_was_restored      (EditorDocument       *self);
+void            _editor_document_set_was_restored      (EditorDocument       *self,
+                                                        gboolean              was_restored);
 void            _editor_document_load_async            (EditorDocument       *self,
                                                         EditorWindow         *window,
                                                         GCancellable         *cancellable,
