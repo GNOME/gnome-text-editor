@@ -28,9 +28,13 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (EditorSidebarModel, editor_sidebar_model, EDITOR, SIDEBAR_MODEL, GObject)
 
-EditorSidebarModel *_editor_sidebar_model_new            (EditorSession      *session);
-void                _editor_sidebar_model_page_reordered (EditorSidebarModel *self,
-                                                          EditorPage         *page,
-                                                          guint               page_num);
+EditorSidebarModel *_editor_sidebar_model_new             (EditorSession      *session);
+void                _editor_sidebar_model_page_reordered  (EditorSidebarModel *self,
+                                                           EditorPage         *page,
+                                                           guint               page_num);
+void                _editor_sidebar_model_remove_document (EditorSidebarModel *self,
+                                                           EditorDocument     *document);
+void                _editor_sidebar_model_remove_draft    (EditorSidebarModel *self,
+                                                           const gchar        *draft_id);
 
 G_END_DECLS

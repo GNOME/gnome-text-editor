@@ -83,6 +83,29 @@ G_DEFINE_TYPE_WITH_CODE (EditorSidebarModel, editor_sidebar_model, G_TYPE_OBJECT
                          G_IMPLEMENT_INTERFACE (G_TYPE_LIST_MODEL, list_model_iface_init))
 
 static GSequenceIter *
+find_by_draft_id (EditorSidebarModel *self,
+                  const gchar        *draft_id)
+{
+  GSequenceIter *iter;
+
+  g_assert (EDITOR_IS_SIDEBAR_MODEL (self));
+  g_assert (draft_id != NULL);
+
+  for (iter = g_sequence_get_begin_iter (self->seq);
+       !g_sequence_iter_is_end (iter);
+       iter = g_sequence_iter_next (iter))
+    {
+      EditorSidebarItem *item = g_sequence_get (iter);
+      const gchar *item_draft_id = _editor_sidebar_item_get_draft_id (item);
+
+      if (item_draft_id != NULL && g_strcmp0 (item_draft_id, draft_id) == 0)
+        return iter;
+    }
+
+  return NULL;
+}
+
+static GSequenceIter *
 find_by_document (EditorSidebarModel *self,
                   EditorDocument     *document)
 {
@@ -456,4 +479,42 @@ _editor_sidebar_model_page_reordered (EditorSidebarModel *self,
   iter = g_sequence_get_iter_at_pos (self->seq, page_num);
   g_sequence_insert_before (iter, g_steal_pointer (&item));
   g_list_model_items_changed (G_LIST_MODEL (self), page_num, 0, 1);
+}
+
+void
+_editor_sidebar_model_remove_document (EditorSidebarModel *self,
+                                       EditorDocument     *document)
+{
+  GSequenceIter *iter;
+  guint position;
+
+  g_return_if_fail (EDITOR_IS_SIDEBAR_MODEL (self));
+  g_return_if_fail (EDITOR_IS_DOCUMENT (document));
+
+  iter = find_by_document (self, document);
+  if (iter == NULL)
+    return;
+
+  position = g_sequence_iter_get_position (iter);
+  g_sequence_remove (iter);
+  g_list_model_items_changed (G_LIST_MODEL (self), position, 1, 0);
+}
+
+void
+_editor_sidebar_model_remove_draft (EditorSidebarModel *self,
+                                    const gchar        *draft_id)
+{
+  GSequenceIter *iter;
+  guint position;
+
+  g_return_if_fail (EDITOR_IS_SIDEBAR_MODEL (self));
+  g_return_if_fail (draft_id != NULL);
+
+  iter = find_by_draft_id (self, draft_id);
+  if (iter == NULL)
+    return;
+
+  position = g_sequence_iter_get_position (iter);
+  g_sequence_remove (iter);
+  g_list_model_items_changed (G_LIST_MODEL (self), position, 1, 0);
 }
