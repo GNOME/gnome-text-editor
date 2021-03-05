@@ -38,5 +38,6 @@ gboolean  _editor_gchararray_to_style_scheme (GBinding                   *bindin
                                               const GValue               *from_value,
                                               GValue                     *to_value,
                                               gpointer                    user_data);
+gchar    *_editor_date_time_format           (GDateTime                  *self);
 
 G_END_DECLS
