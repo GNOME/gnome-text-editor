@@ -27,13 +27,6 @@
 #include "editor-utils-private.h"
 #include "editor-window.h"
 
-struct _EditorApplication
-{
-  GtkApplication  parent_instance;
-  EditorSession  *session;
-  GSettings      *settings;
-};
-
 G_DEFINE_TYPE (EditorApplication, editor_application, GTK_TYPE_APPLICATION)
 
 static void

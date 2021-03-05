@@ -24,6 +24,13 @@
 
 G_BEGIN_DECLS
 
+struct _EditorApplication
+{
+  GtkApplication  parent_instance;
+  EditorSession  *session;
+  GSettings      *settings;
+};
+
 EditorApplication *_editor_application_new          (void);
 void               _editor_application_actions_init (EditorApplication *self);
 
