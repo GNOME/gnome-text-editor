@@ -64,11 +64,12 @@ editor_info_bar_update (EditorInfoBar *self)
 
   if (editor_document_get_externally_modified (self->document))
     {
+      gtk_button_set_label (self->discard, _("_Discard Changes &amp; Reload"));
       gtk_label_set_label (self->title, _("File Has Changed on Disk"));
       gtk_label_set_label (self->subtitle, _("The file has been changed by another program."));
-      gtk_widget_show (GTK_WIDGET (self->close));
       gtk_widget_show (GTK_WIDGET (self->discard));
       gtk_widget_hide (GTK_WIDGET (self->save));
+      gtk_info_bar_set_show_close_button (self->infobar, TRUE);
       gtk_info_bar_set_revealed (self->infobar, TRUE);
     }
   else if (_editor_document_get_was_restored (self->document))
@@ -77,9 +78,9 @@ editor_info_bar_update (EditorInfoBar *self)
         {
           gtk_button_set_label (self->save, _("Save _As…"));
           gtk_actionable_set_action_name (GTK_ACTIONABLE (self->save), "page.save-as");
+          gtk_button_set_label (self->discard, _("_Discard"));
           gtk_label_set_label (self->title, _("Document Restored"));
           gtk_label_set_label (self->subtitle, _("Unsaved document has been restored."));
-          gtk_widget_hide (GTK_WIDGET (self->close));
           gtk_widget_show (GTK_WIDGET (self->discard));
           gtk_widget_show (GTK_WIDGET (self->save));
         }
@@ -87,13 +88,14 @@ editor_info_bar_update (EditorInfoBar *self)
         {
           gtk_button_set_label (self->save, _("_Save"));
           gtk_actionable_set_action_name (GTK_ACTIONABLE (self->save), "page.save");
+          gtk_button_set_label (self->discard, _("_Discard"));
           gtk_label_set_label (self->title, _("Draft Changes Restored"));
           gtk_label_set_label (self->subtitle, _("Unsaved changes to the document have been restored."));
-          gtk_widget_hide (GTK_WIDGET (self->close));
           gtk_widget_show (GTK_WIDGET (self->discard));
           gtk_widget_show (GTK_WIDGET (self->save));
         }
 
+      gtk_info_bar_set_show_close_button (self->infobar, FALSE);
       gtk_info_bar_set_revealed (self->infobar, TRUE);
     }
   else
@@ -123,6 +125,17 @@ editor_info_bar_close (GtkWidget   *widget,
   g_assert (EDITOR_IS_INFO_BAR (self));
 
   gtk_info_bar_set_revealed (self->infobar, FALSE);
+}
+
+static void
+on_response_cb (EditorInfoBar *self,
+                int            response,
+                GtkInfoBar    *infobar)
+{
+  g_assert (EDITOR_IS_INFO_BAR (self));
+  g_assert (GTK_IS_INFO_BAR (infobar));
+
+  gtk_info_bar_set_revealed (infobar, FALSE);
 }
 
 static void
@@ -207,7 +220,6 @@ editor_info_bar_class_init (EditorInfoBarClass *klass)
 
   gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-info-bar.ui");
-  gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, close);
   gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, discard);
   gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, infobar);
   gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, save);
@@ -220,6 +232,12 @@ static void
 editor_info_bar_init (EditorInfoBar *self)
 {
   gtk_widget_init_template (GTK_WIDGET (self));
+
+  g_signal_connect_object (self->infobar,
+                           "response",
+                           G_CALLBACK (on_response_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
 }
 
 GtkWidget *

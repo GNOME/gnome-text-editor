@@ -38,21 +38,12 @@
             <property name="use-underline">True</property>
           </object>
         </child>
-        <child type="action">
-          <object class="GtkButton" id="close">
-            <property name="margin-start">6</property>
-            <property name="use-underline">True</property>
-            <property name="label" translatable="yes">_Close</property>
-            <property name="action-name">infobar.close</property>
-          </object>
-        </child>
       </object>
     </child>
   </template>
   <object class="GtkSizeGroup">
     <property name="mode">horizontal</property>
     <widgets>
-      <widget name="close"/>
       <widget name="discard"/>
       <widget name="save"/>
     </widgets>
