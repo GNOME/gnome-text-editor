@@ -53,6 +53,7 @@ struct _EditorPage
   GtkRevealer             *search_revealer;
   EditorSearchBar         *search_bar;
   GtkInfoBar              *changed_infobar;
+  GtkInfoBar              *infobar;
 };
 
 void          _editor_page_class_actions_init   (EditorPageClass     *klass);

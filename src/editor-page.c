@@ -24,7 +24,9 @@
 
 #include <glib/gi18n.h>
 
+#include "editor-info-bar-private.h"
 #include "editor-page-private.h"
+#include "editor-sidebar-model-private.h"
 #include "editor-session-private.h"
 #include "editor-utils-private.h"
 
@@ -228,10 +230,6 @@ editor_page_set_document (EditorPage     *self,
                                G_CALLBACK (editor_page_notify_busy_progress_cb),
                                self,
                                G_CONNECT_SWAPPED);
-
-      g_object_bind_property (document, "externally-modified",
-                              self->changed_infobar, "revealed",
-                              G_BINDING_SYNC_CREATE);
     }
 }
 
@@ -382,20 +380,6 @@ editor_page_search_revealer_notify_reveal_child_cb (EditorPage  *self,
   g_assert (GTK_IS_REVEALER (revealer));
 
   editor_page_update_top_margin (self);
-}
-
-static void
-on_changed_infobar_response_cb (EditorPage *self,
-                                int         response_id,
-                                GtkInfoBar *infobar)
-{
-  g_assert (EDITOR_IS_PAGE (self));
-  g_assert (GTK_IS_INFO_BAR (infobar));
-
-  if (response_id == GTK_RESPONSE_ACCEPT)
-    _editor_page_discard_changes (self);
-
-  gtk_info_bar_set_revealed (infobar, FALSE);
 }
 
 static void
@@ -574,7 +558,7 @@ editor_page_class_init (EditorPageClass *klass)
   gtk_widget_class_set_css_name (widget_class, "page");
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-page.ui");
   gtk_widget_class_bind_template_child (widget_class, EditorPage, box);
-  gtk_widget_class_bind_template_child (widget_class, EditorPage, changed_infobar);
+  gtk_widget_class_bind_template_child (widget_class, EditorPage, infobar);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, progress_bar);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, scroller);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, search_bar);
@@ -584,6 +568,7 @@ editor_page_class_init (EditorPageClass *klass)
 
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Escape, 0, "search.hide", NULL);
 
+  g_type_ensure (EDITOR_TYPE_INFO_BAR);
   g_type_ensure (EDITOR_TYPE_SEARCH_BAR);
 }
 
@@ -593,6 +578,8 @@ editor_page_init (EditorPage *self)
   GtkDropTarget *dest;
 
   gtk_widget_init_template (GTK_WIDGET (self));
+
+  g_object_bind_property (self, "document", self->infobar, "document", 0);
 
   g_signal_connect_object (self->view,
                             "notify::top-margin",
@@ -613,11 +600,6 @@ editor_page_init (EditorPage *self)
                            G_CALLBACK (editor_page_search_revealer_notify_reveal_child_cb),
                            self,
                            G_CONNECT_SWAPPED);
-
-  g_signal_connect_swapped (self->changed_infobar,
-                            "response",
-                            G_CALLBACK (on_changed_infobar_response_cb),
-                            self);
 
   _editor_page_actions_init (self);
 }
