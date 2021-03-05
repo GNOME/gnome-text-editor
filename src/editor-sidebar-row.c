@@ -27,6 +27,7 @@
 #include "editor-path-private.h"
 #include "editor-sidebar-item-private.h"
 #include "editor-sidebar-row-private.h"
+#include "editor-utils-private.h"
 
 struct _EditorSidebarRow
 {
@@ -46,6 +47,7 @@ struct _EditorSidebarRow
   GBinding          *subtitle_binding;
   GBinding          *empty_binding;
   GBinding          *modified_binding;
+  GBinding          *age_binding;
 };
 
 enum {
@@ -77,6 +79,27 @@ modified_to_child (GBinding     *binding,
   return TRUE;
 }
 
+static gboolean
+age_to_string (GBinding     *binding,
+               const GValue *from_value,
+               GValue       *to_value,
+               gpointer      user_data)
+{
+  EditorSidebarRow *self = user_data;
+  GDateTime *dt;
+
+  g_assert (G_IS_BINDING (binding));
+  g_assert (EDITOR_IS_SIDEBAR_ROW (self));
+
+  if ((dt = g_value_get_boxed (from_value)))
+    g_value_take_string (to_value,
+                         _editor_date_time_format (dt));
+  else
+    g_value_set_static_string (to_value, "");
+
+  return TRUE;
+}
+
 static void
 editor_sidebar_row_dispose (GObject *object)
 {
@@ -87,6 +110,7 @@ editor_sidebar_row_dispose (GObject *object)
   g_clear_pointer (&self->subtitle_binding, g_binding_unbind);
   g_clear_pointer (&self->empty_binding, g_binding_unbind);
   g_clear_pointer (&self->modified_binding, g_binding_unbind);
+  g_clear_pointer (&self->age_binding, g_binding_unbind);
   g_clear_object (&self->item);
 
   G_OBJECT_CLASS (editor_sidebar_row_parent_class)->dispose (object);
@@ -221,6 +245,12 @@ _editor_sidebar_row_set_item (EditorSidebarRow  *self,
                                      self->stack, "visible-child",
                                      G_BINDING_SYNC_CREATE,
                                      modified_to_child,
+                                     NULL, self, NULL);
+      self->age_binding =
+        g_object_bind_property_full (self->item, "age",
+                                     self->age, "label",
+                                     G_BINDING_SYNC_CREATE,
+                                     age_to_string,
                                      NULL, self, NULL);
   }
 }
