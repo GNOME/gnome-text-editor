@@ -24,47 +24,49 @@
 
 G_BEGIN_DECLS
 
-EditorDocument *_editor_document_new                   (GFile                *file,
-                                                        const gchar          *draft_id);
-const gchar    *_editor_document_get_draft_id          (EditorDocument       *self);
-void            _editor_document_set_draft_id          (EditorDocument       *self,
-                                                        const gchar          *draft_id);
-GFile          *_editor_document_get_draft_file        (EditorDocument       *self);
-gchar          *_editor_document_dup_uri               (EditorDocument       *self);
-void            _editor_document_mark_busy             (EditorDocument       *self);
-void            _editor_document_unmark_busy           (EditorDocument       *self);
-gboolean        _editor_document_get_was_restored      (EditorDocument       *self);
-void            _editor_document_set_was_restored      (EditorDocument       *self,
-                                                        gboolean              was_restored);
-void            _editor_document_load_async            (EditorDocument       *self,
-                                                        EditorWindow         *window,
-                                                        GCancellable         *cancellable,
-                                                        GAsyncReadyCallback   callback,
-                                                        gpointer              user_data);
-gboolean        _editor_document_load_finish           (EditorDocument       *self,
-                                                        GAsyncResult         *result,
-                                                        GError              **error);
-void            _editor_document_save_async            (EditorDocument       *self,
-                                                        GFile                *file,
-                                                        GCancellable         *cancellable,
-                                                        GAsyncReadyCallback   callback,
-                                                        gpointer              user_data);
-gboolean        _editor_document_save_finish           (EditorDocument       *self,
-                                                        GAsyncResult         *result,
-                                                        GError              **error);
-void            _editor_document_save_draft_async      (EditorDocument       *self,
-                                                        GCancellable         *cancellable,
-                                                        GAsyncReadyCallback   callback,
-                                                        gpointer              user_data);
-gboolean        _editor_document_save_draft_finish     (EditorDocument       *self,
-                                                        GAsyncResult         *result,
-                                                        GError              **error);
-void            _editor_document_guess_language_async  (EditorDocument       *self,
-                                                        GCancellable         *cancellable,
-                                                        GAsyncReadyCallback   callback,
-                                                        gpointer              user_data);
-gboolean        _editor_document_guess_language_finish (EditorDocument       *self,
-                                                        GAsyncResult         *result,
-                                                        GError              **error);
+EditorDocument *_editor_document_new                     (GFile                *file,
+                                                          const gchar          *draft_id);
+const gchar    *_editor_document_get_draft_id            (EditorDocument       *self);
+void            _editor_document_set_draft_id            (EditorDocument       *self,
+                                                          const gchar          *draft_id);
+GFile          *_editor_document_get_draft_file          (EditorDocument       *self);
+gchar          *_editor_document_dup_uri                 (EditorDocument       *self);
+void            _editor_document_mark_busy               (EditorDocument       *self);
+void            _editor_document_unmark_busy             (EditorDocument       *self);
+void            _editor_document_set_externally_modified (EditorDocument       *self,
+                                                          gboolean              externally_modified);
+gboolean        _editor_document_get_was_restored        (EditorDocument       *self);
+void            _editor_document_set_was_restored        (EditorDocument       *self,
+                                                          gboolean              was_restored);
+void            _editor_document_load_async              (EditorDocument       *self,
+                                                          EditorWindow         *window,
+                                                          GCancellable         *cancellable,
+                                                          GAsyncReadyCallback   callback,
+                                                          gpointer              user_data);
+gboolean        _editor_document_load_finish             (EditorDocument       *self,
+                                                          GAsyncResult         *result,
+                                                          GError              **error);
+void            _editor_document_save_async              (EditorDocument       *self,
+                                                          GFile                *file,
+                                                          GCancellable         *cancellable,
+                                                          GAsyncReadyCallback   callback,
+                                                          gpointer              user_data);
+gboolean        _editor_document_save_finish             (EditorDocument       *self,
+                                                          GAsyncResult         *result,
+                                                          GError              **error);
+void            _editor_document_save_draft_async        (EditorDocument       *self,
+                                                          GCancellable         *cancellable,
+                                                          GAsyncReadyCallback   callback,
+                                                          gpointer              user_data);
+gboolean        _editor_document_save_draft_finish       (EditorDocument       *self,
+                                                          GAsyncResult         *result,
+                                                          GError              **error);
+void            _editor_document_guess_language_async    (EditorDocument       *self,
+                                                          GCancellable         *cancellable,
+                                                          GAsyncReadyCallback   callback,
+                                                          gpointer              user_data);
+gboolean        _editor_document_guess_language_finish   (EditorDocument       *self,
+                                                          GAsyncResult         *result,
+                                                          GError              **error);
 
 G_END_DECLS

@@ -49,6 +49,7 @@ struct _EditorDocument
   guint                readonly : 1;
   guint                needs_autosave : 1;
   guint                was_restored : 1;
+  guint                externally_modified : 1;
 };
 
 typedef struct
@@ -265,10 +266,13 @@ editor_document_monitor_notify_changed_cb (EditorDocument      *self,
                                            GParamSpec          *pspec,
                                            EditorBufferMonitor *monitor)
 {
+  gboolean changed;
+
   g_assert (EDITOR_IS_DOCUMENT (self));
   g_assert (EDITOR_IS_BUFFER_MONITOR (monitor));
 
-  g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_EXTERNALLY_MODIFIED]);
+  changed = editor_buffer_monitor_get_changed (monitor);
+  _editor_document_set_externally_modified (self, changed);
 }
 
 static void
@@ -635,7 +639,7 @@ editor_document_save_position_cb (GObject      *object,
 
   self->was_restored = FALSE;
 
-  g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_EXTERNALLY_MODIFIED]);
+  _editor_document_set_externally_modified (self, FALSE);
 
   g_task_return_boolean (task, TRUE);
 }
@@ -966,6 +970,8 @@ editor_document_load_cb (GObject      *object,
       GtkTextIter begin;
 
       g_assert (!file || G_IS_FILE (file));
+
+      _editor_document_set_externally_modified (self, FALSE);
 
       gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (self), &begin);
       gtk_text_buffer_select_range (GTK_TEXT_BUFFER (self), &begin, &begin);
@@ -1478,7 +1484,24 @@ editor_document_get_externally_modified (EditorDocument *self)
 {
   g_return_val_if_fail (EDITOR_IS_DOCUMENT (self), FALSE);
 
-  return editor_buffer_monitor_get_changed (self->monitor);
+  return self->externally_modified;
+}
+
+void
+_editor_document_set_externally_modified (EditorDocument *self,
+                                          gboolean        externally_modified)
+{
+  g_return_if_fail (EDITOR_IS_DOCUMENT (self));
+
+  externally_modified = !!externally_modified;
+
+  if (externally_modified != self->externally_modified)
+    {
+      self->externally_modified = externally_modified;
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_EXTERNALLY_MODIFIED]);
+      if (!self->externally_modified)
+        editor_buffer_monitor_reset (self->monitor);
+    }
 }
 
 void
