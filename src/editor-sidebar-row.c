@@ -39,6 +39,7 @@ struct _EditorSidebarRow
   GtkLabel          *subtitle;
   GtkLabel          *is_modified;
   GtkLabel          *empty;
+  GtkLabel          *age;
   GtkStack          *stack;
 
   GBinding          *title_binding;
@@ -141,6 +142,7 @@ editor_sidebar_row_class_init (EditorSidebarRowClass *klass)
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-sidebar-row.ui");
   gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
+  gtk_widget_class_bind_template_child (widget_class, EditorSidebarRow, age);
   gtk_widget_class_bind_template_child (widget_class, EditorSidebarRow, empty);
   gtk_widget_class_bind_template_child (widget_class, EditorSidebarRow, grid);
   gtk_widget_class_bind_template_child (widget_class, EditorSidebarRow, is_modified);
