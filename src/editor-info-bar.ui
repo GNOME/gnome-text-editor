@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="EditorInfoBar" parent="GtkWidget">
+    <child>
+      <object class="GtkInfoBar" id="infobar">
+        <property name="message-type">warning</property>
+        <property name="revealed">False</property>
+        <child>
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkLabel" id="title">
+                <property name="halign">start</property>
+                <property name="label" translatable="yes">Document Restored</property>
+                <attributes>
+                  <attribute name="weight" value="bold"/>
+                </attributes>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel" id="subtitle">
+                <property name="halign">start</property>
+                <property name="label" translatable="yes">Unsaved document has been restored.</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child type="action">
+          <object class="GtkButton" id="discard">
+            <property name="label" translatable="yes">_Discard…</property>
+            <property name="action-name">page.discard-changes</property>
+            <property name="use-underline">True</property>
+          </object>
+        </child>
+        <child type="action">
+          <object class="GtkButton" id="save">
+            <property name="margin-start">6</property>
+            <property name="use-underline">True</property>
+          </object>
+        </child>
+        <child type="action">
+          <object class="GtkButton" id="close">
+            <property name="margin-start">6</property>
+            <property name="use-underline">True</property>
+            <property name="label" translatable="yes">_Close</property>
+            <property name="action-name">infobar.close</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+  <object class="GtkSizeGroup">
+    <property name="mode">horizontal</property>
+    <widgets>
+      <widget name="close"/>
+      <widget name="discard"/>
+      <widget name="save"/>
+    </widgets>
+  </object>
+</interface>
