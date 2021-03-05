@@ -21,6 +21,7 @@
 #pragma once
 
 #include "editor-session.h"
+#include "editor-sidebar-model-private.h"
 
 G_BEGIN_DECLS
 
@@ -30,6 +31,24 @@ typedef struct
   gchar *title;
   gchar *uri;
 } EditorSessionDraft;
+
+struct _EditorSession
+{
+  GObject             parent_instance;
+
+  GPtrArray          *windows;
+  GPtrArray          *pages;
+  GFile              *state_file;
+  GHashTable         *seen;
+  GArray             *drafts;
+  EditorSidebarModel *recents;
+
+  guint               auto_save_source;
+
+
+  guint               auto_save : 1;
+  guint               did_restore : 1;
+};
 
 EditorSession *_editor_session_new                    (void);
 EditorWindow  *_editor_session_create_window_no_draft (EditorSession  *self);
