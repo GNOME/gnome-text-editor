@@ -1875,19 +1875,26 @@ void
 _editor_session_remove_draft (EditorSession *self,
                               const gchar   *draft_id)
 {
+  g_autofree gchar *copy = NULL;
+
   g_return_if_fail (EDITOR_IS_SESSION (self));
   g_return_if_fail (draft_id != NULL);
+
+  copy = g_strdup (draft_id);
 
   for (guint i = 0; i < self->drafts->len; i++)
     {
       const EditorSessionDraft *draft = &g_array_index (self->drafts, EditorSessionDraft, i);
 
-      if (g_strcmp0 (draft->draft_id, draft_id) == 0)
+      if (g_strcmp0 (draft->draft_id, copy) == 0)
         {
           g_array_remove_index (self->drafts, i);
-          return;
+          break;
         }
     }
+
+  if (self->recents != NULL)
+    _editor_sidebar_model_remove_draft (self->recents, copy);
 }
 
 void
