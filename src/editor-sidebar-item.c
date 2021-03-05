@@ -76,6 +76,41 @@ editor_sidebar_item_do_notify (EditorSidebarItem *self)
 }
 
 static void
+editor_sidebar_item_query_info_cb (GObject      *object,
+                                   GAsyncResult *result,
+                                   gpointer      user_data)
+{
+  GFile *file = (GFile *)object;
+  g_autoptr(GFileInfo) file_info = NULL;
+  g_autoptr(EditorSidebarItem) self = user_data;
+  g_autoptr(GError) error = NULL;
+
+  g_assert (G_IS_FILE (file));
+  g_assert (G_IS_ASYNC_RESULT (result));
+  g_assert (EDITOR_IS_SIDEBAR_ITEM (self));
+
+  if ((file_info = g_file_query_info_finish (file, result, &error)))
+    self->age = g_file_info_get_attribute_uint64 (file_info, G_FILE_ATTRIBUTE_TIME_MODIFIED);
+  else
+    self->age = 0;
+
+  g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_AGE]);
+}
+
+void
+_editor_sidebar_item_set_age (EditorSidebarItem *self,
+                              gint64             age)
+{
+  g_assert (EDITOR_IS_SIDEBAR_ITEM (self));
+
+  if (age != self->age)
+    {
+      self->age = age;
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_AGE]);
+    }
+}
+
+static void
 editor_sidebar_item_set_file (EditorSidebarItem *self,
                               GFile             *file)
 {
@@ -83,7 +118,19 @@ editor_sidebar_item_set_file (EditorSidebarItem *self,
   g_return_if_fail (!file || G_IS_FILE (file));
 
   if (g_set_object (&self->file, file))
-    editor_sidebar_item_do_notify (self);
+    {
+      editor_sidebar_item_do_notify (self);
+      if (!file || !g_file_is_native (file))
+        return;
+
+      g_file_query_info_async (file,
+                               G_FILE_ATTRIBUTE_TIME_MODIFIED,
+                               G_FILE_QUERY_INFO_NONE,
+                               G_PRIORITY_LOW + 100,
+                               NULL,
+                               editor_sidebar_item_query_info_cb,
+                               g_object_ref (self));
+    }
 }
 
 static void

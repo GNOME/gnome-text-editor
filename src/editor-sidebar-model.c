@@ -35,6 +35,7 @@ struct _EditorSidebarModel
   GObject        parent_instance;
   GSequence     *seq;
   EditorSession *session;
+  guint          update_timer;
 };
 
 enum {
@@ -44,6 +45,24 @@ enum {
 };
 
 static GParamSpec *properties [N_PROPS];
+
+static gboolean
+update_timeout_cb (gpointer data)
+{
+  EditorSidebarModel *self = data;
+
+  g_assert (EDITOR_IS_SIDEBAR_MODEL (self));
+
+  for (GSequenceIter *iter = g_sequence_get_begin_iter (self->seq);
+       !g_sequence_iter_is_end (iter);
+       iter = g_sequence_iter_next (iter))
+    {
+      EditorSidebarItem *item = g_sequence_get (iter);
+      g_object_notify (G_OBJECT (item), "age");
+    }
+
+  return G_SOURCE_CONTINUE;
+}
 
 static guint
 editor_sidebar_model_get_n_items (GListModel *model)
@@ -232,6 +251,7 @@ editor_sidebar_model_page_removed_cb (EditorSidebarModel *self,
   _editor_sidebar_item_set_title (item, title);
   _editor_sidebar_item_set_is_modified (item, TRUE, is_modified);
   _editor_sidebar_item_set_draft_id (item, draft_id);
+  _editor_sidebar_item_set_age (item, g_get_real_time ());
 
   g_sequence_prepend (self->seq, g_steal_pointer (&item));
 
@@ -361,6 +381,8 @@ editor_sidebar_model_finalize (GObject *object)
 {
   EditorSidebarModel *self = (EditorSidebarModel *)object;
 
+  g_clear_handle_id (&self->update_timer, g_source_remove);
+
   if (self->session)
     {
       g_signal_handlers_disconnect_by_func (self->session,
@@ -439,6 +461,7 @@ static void
 editor_sidebar_model_init (EditorSidebarModel *self)
 {
   self->seq = g_sequence_new (g_object_unref);
+  self->update_timer = g_timeout_add_seconds (60 * 5, update_timeout_cb, self);
 }
 
 EditorSidebarModel *
