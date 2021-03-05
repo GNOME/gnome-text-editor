@@ -981,6 +981,7 @@ editor_page_delete_draft_cb (GObject      *object,
                              GAsyncResult *result,
                              gpointer      user_data)
 {
+  EditorSession *session;
   GFile *file = (GFile *)object;
   g_autoptr(EditorPage) self = user_data;
   g_autoptr(GError) error = NULL;
@@ -989,6 +990,8 @@ editor_page_delete_draft_cb (GObject      *object,
   g_assert (G_IS_ASYNC_RESULT (result));
   g_assert (EDITOR_IS_PAGE (self));
 
+  session = editor_application_get_session (EDITOR_APPLICATION_DEFAULT);
+
   if (!g_file_delete_finish (file, result, &error))
     {
       if (!g_error_matches (error, G_IO_ERROR, G_IO_ERROR_NOT_FOUND))
@@ -996,9 +999,24 @@ editor_page_delete_draft_cb (GObject      *object,
       _editor_document_set_draft_id (self->document, NULL);
     }
 
-  _editor_document_load_async (self->document,
-                               _editor_page_get_window (self),
-                               NULL, NULL, NULL);
+  /* If this document was a draft only, we can remove the EditorPage
+   * and also remove it from the recents list.
+   */
+  if (editor_document_get_file (self->document) == NULL)
+    {
+      /* Remove page first so that we can purge the sidebar item
+       * when the draft is removed afterwards.
+       */
+      editor_session_remove_page (session, self);
+      _editor_session_remove_draft (session,
+                                    _editor_document_get_draft_id (self->document));
+    }
+  else
+    {
+      _editor_document_load_async (self->document,
+                                   _editor_page_get_window (self),
+                                   NULL, NULL, NULL);
+    }
 }
 
 void
