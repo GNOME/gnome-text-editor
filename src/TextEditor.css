@@ -28,6 +28,10 @@
   font-feature-settings: "tnum";
 }
 
+.org-gnome-TextEditor tab:not(:checked):not(:hover) image {
+  opacity: 0;
+}
+
 .org-gnome-TextEditor .empty-state image.dim-label { color: alpha(@theme_fg_color, 0.5); }
 .org-gnome-TextEditor .empty-state image:backdrop.dim-label { color: alpha(@theme_unfocused_fg_color, 0.5); }
 .org-gnome-TextEditor .empty-state .title { color: alpha(@theme_fg_color, 0.5); }
@@ -68,7 +72,7 @@ notebook:focus:backdrop {
 }
 
 
-/* EditorSidebar */
+/* EditorOpenPopover */
 
 .org-gnome-TextEditor .open-popover listview row {
   border-bottom: 1px solid alpha(@borders, 0.4);
