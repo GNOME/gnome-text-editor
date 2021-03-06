@@ -645,6 +645,24 @@ editor_document_save_position_cb (GObject      *object,
 }
 
 static void
+delete_draft_cb (GObject      *object,
+                 GAsyncResult *result,
+                 gpointer      user_data)
+{
+  GFile *file = (GFile *)object;
+  g_autoptr(GError) error = NULL;
+
+  g_assert (G_IS_FILE (object));
+  g_assert (G_IS_ASYNC_RESULT (result));
+
+  if (!g_file_delete_finish (file, result, &error))
+    {
+      if (!g_error_matches (error, G_IO_ERROR, G_IO_ERROR_NOT_FOUND))
+        g_warning ("Failed to delete draft: %s", error->message);
+    }
+}
+
+static void
 editor_document_save_cb (GObject      *object,
                          GAsyncResult *result,
                          gpointer      user_data)
@@ -686,7 +704,7 @@ editor_document_save_cb (GObject      *object,
 
   /* Delete the draft in case we had one */
   draft = editor_document_get_draft_file (self);
-  g_file_delete_async (draft, G_PRIORITY_DEFAULT, NULL, NULL, NULL);
+  g_file_delete_async (draft, G_PRIORITY_DEFAULT, NULL, delete_draft_cb, NULL);
 
   info = g_file_info_new ();
   g_file_info_set_attribute_string (info, METATDATA_CURSOR, save->position);
