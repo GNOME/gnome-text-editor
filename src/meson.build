@@ -63,11 +63,17 @@ editor_enums = gnome.mkenums_simple('editor-enums',
          sources: editor_enums_headers,
 )
 
+build_ident_h = vcs_tag(
+     fallback: meson.project_version(),
+        input: 'build-ident.h.in',
+       output: 'build-ident.h',
+)
+
 subdir('defaults')
 subdir('modelines')
 subdir('editorconfig')
 
-editor = executable('gnome-text-editor', editor_sources + editor_enums,
+editor = executable('gnome-text-editor', editor_sources + editor_enums + [build_ident_h],
   include_directories: [include_directories('..'),
                         include_directories('editorconfig'),
                         include_directories('editorconfig/libeditorconfig')],
