@@ -36,5 +36,7 @@ void                _editor_sidebar_model_remove_document (EditorSidebarModel *s
                                                            EditorDocument     *document);
 void                _editor_sidebar_model_remove_draft    (EditorSidebarModel *self,
                                                            const gchar        *draft_id);
+void                _editor_sidebar_model_remove_file     (EditorSidebarModel *self,
+                                                           GFile              *file);
 
 G_END_DECLS

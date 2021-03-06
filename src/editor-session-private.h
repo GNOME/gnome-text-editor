@@ -71,5 +71,8 @@ EditorPage    *_editor_session_open_draft             (EditorSession  *self,
 void           _editor_session_move_page_to_window    (EditorSession  *session,
                                                        EditorPage     *page,
                                                        EditorWindow   *window);
+void           _editor_session_forget                 (EditorSession  *self,
+                                                       GFile          *file,
+                                                       const gchar    *draft_id);
 
 G_END_DECLS

@@ -2007,3 +2007,33 @@ editor_session_get_recents (EditorSession *self)
 
   return G_LIST_MODEL (self->recents);
 }
+
+void
+_editor_session_forget (EditorSession *self,
+                        GFile         *file,
+                        const gchar   *draft_id)
+{
+  g_return_if_fail (EDITOR_IS_SESSION (self));
+  g_return_if_fail (!file || G_IS_FILE (file));
+
+  if (file != NULL)
+    {
+      _editor_sidebar_model_remove_file (self->recents, file);
+      g_hash_table_remove (self->seen, file);
+    }
+
+  if (draft_id != NULL)
+    {
+      for (guint i = 0; i < self->drafts->len; i++)
+        {
+          const EditorSessionDraft *draft = &g_array_index (self->drafts, EditorSessionDraft, i);
+
+          if (g_strcmp0 (draft->draft_id, draft_id) == 0)
+            {
+              _editor_sidebar_model_remove_draft (self->recents, draft_id);
+              g_array_remove_index (self->drafts, i);
+              break;
+            }
+        }
+    }
+}

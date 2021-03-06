@@ -541,3 +541,22 @@ _editor_sidebar_model_remove_draft (EditorSidebarModel *self,
   g_sequence_remove (iter);
   g_list_model_items_changed (G_LIST_MODEL (self), position, 1, 0);
 }
+
+void
+_editor_sidebar_model_remove_file (EditorSidebarModel *self,
+                                   GFile              *file)
+{
+  GSequenceIter *iter;
+  guint position;
+
+  g_return_if_fail (EDITOR_IS_SIDEBAR_MODEL (self));
+  g_return_if_fail (G_IS_FILE (file));
+
+  iter = find_by_file (self, file);
+  if (iter == NULL)
+    return;
+
+  position = g_sequence_iter_get_position (iter);
+  g_sequence_remove (iter);
+  g_list_model_items_changed (G_LIST_MODEL (self), position, 1, 0);
+}
