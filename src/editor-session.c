@@ -22,6 +22,8 @@
 
 #include "config.h"
 
+#include <glib/gstdio.h>
+
 #include "editor-application.h"
 #include "editor-document-private.h"
 #include "editor-page-private.h"
@@ -946,11 +948,22 @@ editor_session_update_recent_worker (GTask        *task,
                                      GCancellable *cancellable)
 {
   EditorSessionSave *save = task_data;
+  g_autoptr(GSettings) settings = NULL;
 
   g_assert (G_IS_TASK (task));
   g_assert (EDITOR_IS_SESSION (source_object));
   g_assert (save != NULL);
   g_assert (!cancellable || G_IS_CANCELLABLE (cancellable));
+
+  settings = g_settings_new ("org.gnome.desktop.privacy");
+
+  if (!g_settings_get_boolean (settings, "remember-recent-files"))
+    {
+      /* Just delete recent files if the user doesn't want them */
+      g_autofree gchar *path = get_bookmarks_filename ();
+      g_unlink (path);
+      return;
+    }
 
   if (save->seen != NULL || save->forgot != NULL)
     {
