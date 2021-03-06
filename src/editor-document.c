@@ -702,6 +702,9 @@ editor_document_save_cb (GObject      *object,
       return;
     }
 
+  /* Make sure we don't autosave, we just saved the file */
+  self->needs_autosave = FALSE;
+
   /* Delete the draft in case we had one */
   draft = editor_document_get_draft_file (self);
   g_file_delete_async (draft, G_PRIORITY_DEFAULT, NULL, delete_draft_cb, NULL);
