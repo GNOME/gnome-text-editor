@@ -725,7 +725,7 @@ _editor_document_save_async (EditorDocument      *self,
   save->position = g_strdup_printf ("%u:%u", save->line, save->line_offset);
 
   task = g_task_new (self, cancellable, callback, user_data);
-  g_task_set_source_tag (task, _editor_document_save_draft_async);
+  g_task_set_source_tag (task, _editor_document_save_async);
   g_task_set_task_data (task, save, (GDestroyNotify)save_free);
 
   g_signal_connect_object (task,
