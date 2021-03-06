@@ -261,6 +261,19 @@ _editor_gchararray_to_style_scheme (GBinding     *binding,
 }
 
 gboolean
+_editor_gboolean_to_scroll_policy (GBinding     *binding,
+                                   const GValue *from_value,
+                                   GValue       *to_value,
+                                   gpointer      user_data)
+{
+  if (g_value_get_boolean (from_value))
+    g_value_set_enum (to_value, GTK_POLICY_EXTERNAL);
+  else
+    g_value_set_enum (to_value, GTK_POLICY_AUTOMATIC);
+  return TRUE;
+}
+
+gboolean
 _editor_gboolean_to_wrap_mode (GBinding     *binding,
                                const GValue *from_value,
                                GValue       *to_value,

@@ -35,6 +35,7 @@ const gchar        *editor_page_settings_get_style_variant                 (Edit
 gboolean            editor_page_settings_get_insert_spaces_instead_of_tabs (EditorPageSettings *self);
 guint               editor_page_settings_get_right_margin_position         (EditorPageSettings *self);
 gboolean            editor_page_settings_get_show_line_numbers             (EditorPageSettings *self);
+gboolean            editor_page_settings_get_show_map                      (EditorPageSettings *self);
 gboolean            editor_page_settings_get_show_right_margin             (EditorPageSettings *self);
 gboolean            editor_page_settings_get_use_system_font               (EditorPageSettings *self);
 gboolean            editor_page_settings_get_wrap_text                     (EditorPageSettings *self);

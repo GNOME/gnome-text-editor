@@ -13,15 +13,32 @@
           <object class="GtkOverlay" id="overlay">
             <property name="vexpand">true</property>
             <child>
-              <object class="GtkScrolledWindow" id="scroller">
+              <object class="GtkBox">
+                <property name="orientation">horizontal</property>
                 <child>
-                  <object class="GtkSourceView" id="view">
-                    <property name="auto-indent">true</property>
-                    <property name="top-margin">16</property>
-                    <property name="bottom-margin">16</property>
-                    <property name="left-margin">16</property>
-                    <property name="right-margin">16</property>
-                    <property name="monospace">true</property>
+                  <object class="GtkScrolledWindow" id="scroller">
+                    <property name="hexpand">true</property>
+                    <property name="vexpand">true</property>
+                    <child>
+                      <object class="GtkSourceView" id="view">
+                        <style>
+                          <class name="editor"/>
+                        </style>
+                        <property name="auto-indent">true</property>
+                        <property name="top-margin">16</property>
+                        <property name="bottom-margin">16</property>
+                        <property name="left-margin">16</property>
+                        <property name="right-margin">16</property>
+                        <property name="monospace">true</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkSourceMap" id="map">
+                    <property name="hexpand">false</property>
+                    <property name="visible">false</property>
+                    <property name="view">view</property>
                   </object>
                 </child>
               </object>

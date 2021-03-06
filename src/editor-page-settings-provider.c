@@ -150,7 +150,7 @@ editor_page_settings_provider_get_style_variant (EditorPageSettingsProvider  *se
  * editor_page_settings_provider_get_insert_spaces_instead_of_tabs:
  * @self: a #EditorPageSettingsProvider
  * @insert_spaces_instead_of_tabs: (out) (optional): if spaces should be inserted
- * 
+ *
  * Returns: %TRUE if @insert_spaces_instead_of_tabs was set by the provider.
  */
 gboolean
@@ -296,6 +296,28 @@ editor_page_settings_provider_get_right_margin_position (EditorPageSettingsProvi
 
   if (EDITOR_PAGE_SETTINGS_PROVIDER_GET_IFACE (self)->get_right_margin_position)
     return EDITOR_PAGE_SETTINGS_PROVIDER_GET_IFACE (self)->get_right_margin_position (self, right_margin_position);
+
+  return FALSE;
+}
+
+/**
+ * editor_page_settings_provider_get_show_map:
+ * @self: a #EditorPageSettingsProvider
+ * @show_map: (out) (optional): a location to store the setting
+ *
+ * Returns: %TRUE if @show_map was set by the provider.
+ */
+gboolean
+editor_page_settings_provider_get_show_map (EditorPageSettingsProvider *self,
+                                            gboolean                   *show_map)
+{
+  g_return_val_if_fail (EDITOR_IS_PAGE_SETTINGS_PROVIDER (self), FALSE);
+
+  if (show_map != NULL)
+    *show_map = FALSE;
+
+  if (EDITOR_PAGE_SETTINGS_PROVIDER_GET_IFACE (self)->get_show_map)
+    return EDITOR_PAGE_SETTINGS_PROVIDER_GET_IFACE (self)->get_show_map (self, show_map);
 
   return FALSE;
 }

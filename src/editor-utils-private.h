@@ -34,6 +34,10 @@ gboolean  _editor_gboolean_to_wrap_mode      (GBinding                   *bindin
                                               const GValue               *from_value,
                                               GValue                     *to_value,
                                               gpointer                    user_data);
+gboolean  _editor_gboolean_to_scroll_policy  (GBinding                   *binding,
+                                              const GValue               *from_value,
+                                              GValue                     *to_value,
+                                              gpointer                    user_data);
 gboolean  _editor_gchararray_to_style_scheme (GBinding                   *binding,
                                               const GValue               *from_value,
                                               GValue                     *to_value,

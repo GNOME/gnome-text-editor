@@ -55,6 +55,8 @@ struct _EditorPageSettingsProviderInterface
                                                   gboolean                   *wrap_text);
   gboolean  (*get_tab_width)                     (EditorPageSettingsProvider *self,
                                                   guint                      *tab_width);
+  gboolean  (*get_show_map)                      (EditorPageSettingsProvider *self,
+                                                  gboolean                   *show_map);
 };
 
 void     editor_page_settings_provider_emit_changed                      (EditorPageSettingsProvider  *self);
@@ -82,5 +84,7 @@ gboolean editor_page_settings_provider_get_wrap_text                     (Editor
                                                                           gboolean                    *wrap_text);
 gboolean editor_page_settings_provider_get_tab_width                     (EditorPageSettingsProvider  *self,
                                                                           guint                       *tab_width);
+gboolean editor_page_settings_provider_get_show_map                      (EditorPageSettingsProvider  *self,
+                                                                          gboolean                    *show_map);
 
 G_END_DECLS

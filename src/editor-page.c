@@ -269,6 +269,14 @@ editor_page_constructed (GObject *object)
   editor_binding_group_bind (self->settings_bindings, "show-right-margin",
                              self->view, "show-right-margin",
                              G_BINDING_SYNC_CREATE);
+  editor_binding_group_bind (self->settings_bindings, "show-map",
+                             self->map, "visible",
+                             G_BINDING_SYNC_CREATE);
+  editor_binding_group_bind_full (self->settings_bindings, "show-map",
+                                  self->scroller, "vscrollbar-policy",
+                                  G_BINDING_SYNC_CREATE,
+                                  _editor_gboolean_to_scroll_policy,
+                                  NULL, NULL, NULL);
   editor_binding_group_bind (self->settings_bindings, "tab-width",
                              self->view, "tab-width",
                              G_BINDING_SYNC_CREATE);
@@ -559,12 +567,13 @@ editor_page_class_init (EditorPageClass *klass)
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-page.ui");
   gtk_widget_class_bind_template_child (widget_class, EditorPage, box);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, infobar);
+  gtk_widget_class_bind_template_child (widget_class, EditorPage, map);
+  gtk_widget_class_bind_template_child (widget_class, EditorPage, overlay);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, progress_bar);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, scroller);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, search_bar);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, search_revealer);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, view);
-  gtk_widget_class_bind_template_child (widget_class, EditorPage, overlay);
 
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Escape, 0, "search.hide", NULL);
 

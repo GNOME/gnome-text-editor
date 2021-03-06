@@ -46,6 +46,7 @@ GSETTINGS_GETTER (gboolean, boolean, show_right_margin, "show-right-margin")
 GSETTINGS_GETTER (gboolean, boolean, show_line_numbers, "show-line-numbers")
 GSETTINGS_GETTER (gboolean, boolean, use_system_font, "use-system-font")
 GSETTINGS_GETTER (gboolean, boolean, wrap_text, "wrap-text")
+GSETTINGS_GETTER (gboolean, boolean, show_map, "show-map")
 GSETTINGS_GETTER (guint, uint, right_margin_position, "right-margin-position")
 
 static gboolean
@@ -149,6 +150,7 @@ page_settings_provider_iface_init (EditorPageSettingsProviderInterface *iface)
   iface->get_insert_spaces_instead_of_tabs = editor_page_gsettings_get_insert_spaces_instead_of_tabs;
   iface->get_right_margin_position = editor_page_gsettings_get_right_margin_position;
   iface->get_show_line_numbers = editor_page_gsettings_get_show_line_numbers;
+  iface->get_show_map = editor_page_gsettings_get_show_map;
   iface->get_show_right_margin = editor_page_gsettings_get_show_right_margin;
   iface->get_tab_width = editor_page_gsettings_get_tab_width;
   iface->get_use_system_font = editor_page_gsettings_get_use_system_font;

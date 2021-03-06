@@ -49,6 +49,7 @@ struct _EditorPage
   GtkOverlay              *overlay;
   GtkScrolledWindow       *scroller;
   GtkSourceView           *view;
+  GtkSourceMap            *map;
   GtkProgressBar          *progress_bar;
   GtkRevealer             *search_revealer;
   EditorSearchBar         *search_bar;

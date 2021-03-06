@@ -39,7 +39,7 @@ editor_application_update_font_cb (GSettings      *settings,
   g_assert (G_IS_SETTINGS (settings));
   g_assert (GTK_IS_CSS_PROVIDER (font_css_provider));
 
-  css = g_string_new ("textview {\n");
+  css = g_string_new ("textview.editor {\n");
 
   if (!g_settings_get_boolean (settings, "use-system-font"))
     {

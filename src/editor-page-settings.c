@@ -48,6 +48,7 @@ struct _EditorPageSettings
 
   guint insert_spaces_instead_of_tabs : 1;
   guint show_line_numbers : 1;
+  guint show_map : 1;
   guint show_right_margin : 1;
   guint use_system_font : 1;
   guint wrap_text : 1;
@@ -61,6 +62,7 @@ enum {
   PROP_INSERT_SPACES_INSTEAD_OF_TABS,
   PROP_RIGHT_MARGIN_POSITION,
   PROP_SHOW_LINE_NUMBERS,
+  PROP_SHOW_MAP,
   PROP_SHOW_RIGHT_MARGIN,
   PROP_STYLE_SCHEME,
   PROP_TAB_WIDTH,
@@ -120,6 +122,7 @@ editor_page_settings_update (EditorPageSettings *self)
 
   UPDATE_SETTING (gboolean, insert_spaces_instead_of_tabs, INSERT_SPACES_INSTEAD_OF_TABS, cmp_boolean, (void), (gboolean));
   UPDATE_SETTING (gboolean, show_line_numbers, SHOW_LINE_NUMBERS, cmp_boolean, (void), (gboolean));
+  UPDATE_SETTING (gboolean, show_map, SHOW_MAP, cmp_boolean, (void), (gboolean));
   UPDATE_SETTING (gboolean, show_right_margin, SHOW_RIGHT_MARGIN, cmp_boolean, (void), (gboolean));
   UPDATE_SETTING (gboolean, use_system_font, USE_SYSTEM_FONT, cmp_boolean, (void), (gboolean));
   UPDATE_SETTING (gboolean, wrap_text, WRAP_TEXT, cmp_boolean, (void), (gboolean));
@@ -267,6 +270,10 @@ editor_page_settings_get_property (GObject    *object,
       g_value_set_boolean (value, editor_page_settings_get_show_line_numbers (self));
       break;
 
+    case PROP_SHOW_MAP:
+      g_value_set_boolean (value, editor_page_settings_get_show_map (self));
+      break;
+
     case PROP_SHOW_RIGHT_MARGIN:
       g_value_set_boolean (value, editor_page_settings_get_show_right_margin (self));
       break;
@@ -327,6 +334,10 @@ editor_page_settings_set_property (GObject      *object,
 
     case PROP_SHOW_LINE_NUMBERS:
       self->show_line_numbers = g_value_get_boolean (value);
+      break;
+
+    case PROP_SHOW_MAP:
+      self->show_map = g_value_get_boolean (value);
       break;
 
     case PROP_SHOW_RIGHT_MARGIN:
@@ -407,6 +418,13 @@ editor_page_settings_class_init (EditorPageSettingsClass *klass)
     g_param_spec_boolean ("show-line-numbers",
                           "Show Line Numbers",
                           "If line numbers should be displayed",
+                          FALSE,
+                          (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+
+  properties [PROP_SHOW_MAP] =
+    g_param_spec_boolean ("show-map",
+                          "Show Overview Map",
+                          "If the overview map should be displayed",
                           FALSE,
                           (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
@@ -503,6 +521,14 @@ editor_page_settings_get_show_line_numbers (EditorPageSettings *self)
   g_return_val_if_fail (EDITOR_IS_PAGE_SETTINGS (self), FALSE);
 
   return self->show_line_numbers;
+}
+
+gboolean
+editor_page_settings_get_show_map (EditorPageSettings *self)
+{
+  g_return_val_if_fail (EDITOR_IS_PAGE_SETTINGS (self), FALSE);
+
+  return self->show_map;
 }
 
 gboolean
