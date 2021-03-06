@@ -36,6 +36,7 @@ typedef struct
   GFile        *state_file;
   GBytes       *state_bytes;
   GPtrArray    *seen;
+  GPtrArray    *forgot;
   guint         n_active;
 } EditorSessionSave;
 
@@ -135,6 +136,7 @@ editor_session_save_free (EditorSessionSave *state)
   g_clear_object (&state->state_file);
   g_clear_pointer (&state->app, g_application_release);
   g_clear_pointer (&state->seen, g_ptr_array_unref);
+  g_clear_pointer (&state->forgot, g_ptr_array_unref);
   g_slice_free (EditorSessionSave, state);
 }
 
@@ -321,6 +323,7 @@ editor_session_dispose (GObject *object)
     }
 
   g_hash_table_remove_all (self->seen);
+  g_hash_table_remove_all (self->forgot);
 
   if (self->pages->len > 0)
     g_ptr_array_remove_range (self->pages, 0, self->pages->len);
@@ -341,6 +344,7 @@ editor_session_finalize (GObject *object)
   g_clear_pointer (&self->pages, g_ptr_array_unref);
   g_clear_pointer (&self->windows, g_ptr_array_unref);
   g_clear_pointer (&self->seen, g_hash_table_unref);
+  g_clear_pointer (&self->forgot, g_hash_table_unref);
   g_clear_pointer (&self->drafts, g_array_unref);
   g_clear_object (&self->state_file);
 
@@ -515,6 +519,9 @@ editor_session_init (EditorSession *self)
   self->seen = g_hash_table_new_full ((GHashFunc) g_file_hash,
                                       (GEqualFunc) g_file_equal,
                                       g_object_unref, NULL);
+  self->forgot = g_hash_table_new_full ((GHashFunc) g_file_hash,
+                                        (GEqualFunc) g_file_equal,
+                                        g_object_unref, NULL);
   self->pages = g_ptr_array_new_with_free_func (g_object_unref);
   self->windows = g_ptr_array_new_with_free_func (g_object_unref);
   self->state_file = g_file_new_build_filename (g_get_user_data_dir (),
@@ -945,7 +952,7 @@ editor_session_update_recent_worker (GTask        *task,
   g_assert (save != NULL);
   g_assert (!cancellable || G_IS_CANCELLABLE (cancellable));
 
-  if (save->seen != NULL)
+  if (save->seen != NULL || save->forgot != NULL)
     {
       g_autoptr(GBookmarkFile) bookmarks = g_bookmark_file_new ();
       g_autofree gchar *filename = get_bookmarks_filename ();
@@ -958,14 +965,24 @@ editor_session_update_recent_worker (GTask        *task,
           g_clear_error (&error);
         }
 
-      for (guint i = 0; i < save->seen->len; i++)
+      if (save->seen != NULL)
         {
-          GFile *file = g_ptr_array_index (save->seen, i);
-          g_autofree gchar *uri = g_file_get_uri (file);
+          for (guint i = 0; i < save->seen->len; i++)
+            {
+              GFile *file = g_ptr_array_index (save->seen, i);
+              g_autofree gchar *uri = g_file_get_uri (file);
+              g_bookmark_file_add_application (bookmarks, uri, NULL, NULL);
+            }
+        }
 
-          g_assert (G_IS_FILE (file));
-
-          g_bookmark_file_add_application (bookmarks, uri, NULL, NULL);
+      if (save->forgot != NULL)
+        {
+          for (guint i = 0; i < save->forgot->len; i++)
+            {
+              GFile *file = g_ptr_array_index (save->forgot, i);
+              g_autofree gchar *uri = g_file_get_uri (file);
+              g_bookmark_file_remove_item (bookmarks, uri, NULL);
+            }
         }
 
       if (!g_bookmark_file_to_file (bookmarks, filename, &error))
@@ -1064,6 +1081,18 @@ editor_session_save_async (EditorSession       *self,
       g_hash_table_iter_init (&iter, self->seen);
       while (g_hash_table_iter_next (&iter, (gpointer *)&file, NULL))
         g_ptr_array_add (state->seen, g_file_dup (file));
+    }
+
+  if (g_hash_table_size (self->forgot) > 0)
+    {
+      GHashTableIter iter;
+      GFile *file;
+
+      state->forgot = g_ptr_array_new_with_free_func (g_object_unref);
+
+      g_hash_table_iter_init (&iter, self->forgot);
+      while (g_hash_table_iter_next (&iter, (gpointer *)&file, NULL))
+        g_ptr_array_add (state->forgot, g_file_dup (file));
     }
 
   g_application_hold (state->app);
@@ -2015,6 +2044,8 @@ _editor_session_forget (EditorSession *self,
 {
   g_return_if_fail (EDITOR_IS_SESSION (self));
   g_return_if_fail (!file || G_IS_FILE (file));
+
+  g_hash_table_insert (self->forgot, g_file_dup (file), NULL);
 
   if (file != NULL)
     {

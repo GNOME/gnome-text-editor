@@ -25,6 +25,7 @@
 #include <glib/gi18n.h>
 
 #include "editor-path-private.h"
+#include "editor-session-private.h"
 #include "editor-sidebar-item-private.h"
 #include "editor-sidebar-row-private.h"
 #include "editor-utils-private.h"
@@ -101,6 +102,21 @@ age_to_string (GBinding     *binding,
 }
 
 static void
+editor_sidebar_row_remove (GtkWidget   *widget,
+                           const gchar *action_name,
+                           GVariant    *param)
+{
+  EditorSidebarRow *self = (EditorSidebarRow *)widget;
+  EditorSession *session = EDITOR_SESSION_DEFAULT;
+
+  g_assert (EDITOR_IS_SIDEBAR_ROW (self));
+
+  _editor_session_forget (session,
+                          _editor_sidebar_item_get_file (self->item),
+                          _editor_sidebar_item_get_draft_id (self->item));
+}
+
+static void
 editor_sidebar_row_dispose (GObject *object)
 {
   EditorSidebarRow *self = (EditorSidebarRow *)object;
@@ -173,6 +189,8 @@ editor_sidebar_row_class_init (EditorSidebarRowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorSidebarRow, stack);
   gtk_widget_class_bind_template_child (widget_class, EditorSidebarRow, subtitle);
   gtk_widget_class_bind_template_child (widget_class, EditorSidebarRow, title);
+
+  gtk_widget_class_install_action (widget_class, "row.remove", NULL, editor_sidebar_row_remove);
 
   properties [PROP_ITEM] =
     g_param_spec_object ("item",

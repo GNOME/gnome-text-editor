@@ -40,6 +40,7 @@ struct _EditorSession
   GPtrArray          *pages;
   GFile              *state_file;
   GHashTable         *seen;
+  GHashTable         *forgot;
   GArray             *drafts;
   EditorSidebarModel *recents;
 
