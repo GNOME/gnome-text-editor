@@ -34,12 +34,14 @@
 
 static const gchar *authors[] = {
   "Christian Hergert",
+  "Christopher Davis",
   NULL
 };
 
 static const gchar *artists[] = {
   "Allan Day",
   "Jakub Steiner",
+  "Tobias Bernard",
   NULL
 };
 
