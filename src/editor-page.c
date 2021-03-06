@@ -269,6 +269,11 @@ editor_page_constructed (GObject *object)
   editor_binding_group_bind (self->settings_bindings, "show-right-margin",
                              self->view, "show-right-margin",
                              G_BINDING_SYNC_CREATE);
+  editor_binding_group_bind_full (self->settings_bindings, "show-grid",
+                                  self->view, "background-pattern",
+                                  G_BINDING_SYNC_CREATE,
+                                  _editor_gboolean_to_background_pattern,
+                                  NULL, NULL, NULL);
   editor_binding_group_bind (self->settings_bindings, "show-map",
                              self->map, "visible",
                              G_BINDING_SYNC_CREATE);

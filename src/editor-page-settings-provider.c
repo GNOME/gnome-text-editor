@@ -321,3 +321,25 @@ editor_page_settings_provider_get_show_map (EditorPageSettingsProvider *self,
 
   return FALSE;
 }
+
+/**
+ * editor_page_settings_provider_get_show_grid:
+ * @self: a #EditorPageSettingsProvider
+ * @show_grid: (out) (optional): a location to store the setting
+ *
+ * Returns: %TRUE if @show_grid was set by the provider.
+ */
+gboolean
+editor_page_settings_provider_get_show_grid (EditorPageSettingsProvider *self,
+                                             gboolean                   *show_grid)
+{
+  g_return_val_if_fail (EDITOR_IS_PAGE_SETTINGS_PROVIDER (self), FALSE);
+
+  if (show_grid != NULL)
+    *show_grid = FALSE;
+
+  if (EDITOR_PAGE_SETTINGS_PROVIDER_GET_IFACE (self)->get_show_grid)
+    return EDITOR_PAGE_SETTINGS_PROVIDER_GET_IFACE (self)->get_show_grid (self, show_grid);
+
+  return FALSE;
+}

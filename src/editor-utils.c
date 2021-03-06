@@ -261,6 +261,19 @@ _editor_gchararray_to_style_scheme (GBinding     *binding,
 }
 
 gboolean
+_editor_gboolean_to_background_pattern (GBinding     *binding,
+                                        const GValue *from_value,
+                                        GValue       *to_value,
+                                        gpointer      user_data)
+{
+  if (g_value_get_boolean (from_value))
+    g_value_set_enum (to_value, GTK_SOURCE_BACKGROUND_PATTERN_TYPE_GRID);
+  else
+    g_value_set_enum (to_value, GTK_SOURCE_BACKGROUND_PATTERN_TYPE_NONE);
+  return TRUE;
+}
+
+gboolean
 _editor_gboolean_to_scroll_policy (GBinding     *binding,
                                    const GValue *from_value,
                                    GValue       *to_value,

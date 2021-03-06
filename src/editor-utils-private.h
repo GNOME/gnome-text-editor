@@ -24,24 +24,28 @@
 
 G_BEGIN_DECLS
 
-gchar    *_editor_font_description_to_css    (const PangoFontDescription *font_desc);
-void      _editor_widget_hide_with_fade      (GtkWidget                  *widget);
-gboolean  _editor_gchararray_to_boolean      (GBinding                   *binding,
-                                              const GValue               *from_value,
-                                              GValue                     *to_value,
-                                              gpointer                    user_data);
-gboolean  _editor_gboolean_to_wrap_mode      (GBinding                   *binding,
-                                              const GValue               *from_value,
-                                              GValue                     *to_value,
-                                              gpointer                    user_data);
-gboolean  _editor_gboolean_to_scroll_policy  (GBinding                   *binding,
-                                              const GValue               *from_value,
-                                              GValue                     *to_value,
-                                              gpointer                    user_data);
-gboolean  _editor_gchararray_to_style_scheme (GBinding                   *binding,
-                                              const GValue               *from_value,
-                                              GValue                     *to_value,
-                                              gpointer                    user_data);
-gchar    *_editor_date_time_format           (GDateTime                  *self);
+gchar    *_editor_font_description_to_css        (const PangoFontDescription *font_desc);
+void      _editor_widget_hide_with_fade          (GtkWidget                  *widget);
+gboolean  _editor_gchararray_to_boolean          (GBinding                   *binding,
+                                                  const GValue               *from_value,
+                                                  GValue                     *to_value,
+                                                  gpointer                    user_data);
+gboolean  _editor_gboolean_to_wrap_mode          (GBinding                   *binding,
+                                                  const GValue               *from_value,
+                                                  GValue                     *to_value,
+                                                  gpointer                    user_data);
+gboolean  _editor_gboolean_to_background_pattern (GBinding                   *binding,
+                                                  const GValue               *from_value,
+                                                  GValue                     *to_value,
+                                                  gpointer                    user_data);
+gboolean  _editor_gboolean_to_scroll_policy      (GBinding                   *binding,
+                                                  const GValue               *from_value,
+                                                  GValue                     *to_value,
+                                                  gpointer                    user_data);
+gboolean  _editor_gchararray_to_style_scheme     (GBinding                   *binding,
+                                                  const GValue               *from_value,
+                                                  GValue                     *to_value,
+                                                  gpointer                    user_data);
+gchar    *_editor_date_time_format               (GDateTime                  *self);
 
 G_END_DECLS
