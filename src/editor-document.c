@@ -823,6 +823,7 @@ _editor_document_mark_busy (EditorDocument *self)
       self->busy_progress = 0;
       g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_BUSY]);
       g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_BUSY_PROGRESS]);
+      editor_buffer_monitor_pause (self->monitor);
     }
 }
 
@@ -835,7 +836,10 @@ _editor_document_unmark_busy (EditorDocument *self)
   self->busy_count--;
 
   if (self->busy_count == 0)
-    g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_BUSY]);
+    {
+      g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_BUSY]);
+      editor_buffer_monitor_unpause (self->monitor);
+    }
 }
 
 gboolean
