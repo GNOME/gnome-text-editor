@@ -1,0 +1,45 @@
+# Text Editor 3.39.92
+
+This is my initial release of gnome-text-editor.
+
+It started as an application for me to verify the correctness of the
+GtkSourceView 5 API (which targets GTK 4). After that it helped me implement
+JIT support for GtkSourceView languages. Once that was done it became my
+test case while I wrote the GTK 4 macOS backend and revamped the GL renderer.
+
+It is a simpl and hunble text editor. It does not have all the corner cases
+you'd expect from a text editor yet.
+
+Now that you know this is very much a technology preview release only, you
+might be tempted to keep your safe data away from it.
+
+## What it can do
+
+ • Simple interface designed by the GNOME design team. You can find the
+   mockups in the traditional places such as:
+   https://gitlab.gnome.org/Teams/Design/app-mockups
+ • Search and Replace
+ • Typical GtkSourceView features
+ • Quick access to recent documents
+ • Multiple windows
+ • Automatic discovery of .editorconfig and modelines settings
+ • Light and dark mode
+ • Automatically save files to drafts, restored in case of crash
+ • Can be run from within a Flatpak sandbox and uses document portal
+   for access to host files.
+
+## What it cannot do
+
+ • It doesn't protect you from trying to open really large files
+ • Support your custom GTK 4 theme
+ • Auto-completion or snippets
+ • Plugins
+ • Custom file encodings
+
+## Building
+
+If you'd like to test it out, the easiest way is to clone the repository
+from GNOME Builder and click Run. Additionally, you can find a Flatpak in
+the gnome-nightly¹ Flatpak repository.
+
+¹ https://wiki.gnome.org/Apps/Nightly
