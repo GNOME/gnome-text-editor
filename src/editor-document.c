@@ -759,20 +759,6 @@ _editor_document_save_async (EditorDocument      *self,
 
   g_assert (G_IS_FILE (file));
 
-  /* If we're saving to the default document, we want to ignore
-   * changes to the underlying file during our save operation.
-   */
-  if (editor_document_get_file (self) &&
-      g_file_equal (editor_document_get_file (self), file))
-    {
-      editor_buffer_monitor_pause (self->monitor);
-      g_signal_connect_object (task,
-                               "notify::completed",
-                               G_CALLBACK (editor_buffer_monitor_unpause),
-                               self->monitor,
-                               G_CONNECT_SWAPPED);
-    }
-
   if (editor_document_get_file (self) == NULL)
     {
       gtk_source_file_set_location (self->file, file);
