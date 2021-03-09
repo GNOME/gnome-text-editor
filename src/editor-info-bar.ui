@@ -4,6 +4,7 @@
     <child>
       <object class="GtkInfoBar" id="infobar">
         <property name="message-type">warning</property>
+        <property name="show-close-button">True</property>
         <property name="revealed">False</property>
         <child>
           <object class="GtkBox">
@@ -28,7 +29,6 @@
         <child type="action">
           <object class="GtkButton" id="discard">
             <property name="label" translatable="yes">_Discard…</property>
-            <property name="action-name">page.discard-changes</property>
             <property name="use-underline">True</property>
           </object>
         </child>
