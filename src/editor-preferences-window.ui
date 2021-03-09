@@ -36,6 +36,17 @@
             </child>
           </object>
         </child>
+        <child>
+          <object class="AdwPreferencesGroup">
+            <property name="title" translatable="yes">Appearance</property>
+            <child>
+              <object class="EditorPreferencesSwitch" id="grid">
+                <property name="title" translatable="yes">Display Grid Pattern</property>
+                <property name="schema-key">show-grid</property>
+              </object>
+            </child>
+          </object>
+        </child>
       </object>
     </child>
   </template>
