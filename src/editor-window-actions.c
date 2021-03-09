@@ -501,12 +501,13 @@ _editor_window_actions_update (EditorWindow *self,
       draft = editor_page_is_draft (page);
     }
 
-  gtk_widget_action_set_enabled (GTK_WIDGET (self), "change-language", has_page);
-  gtk_widget_action_set_enabled (GTK_WIDGET (self), "discard-changes", modified && !draft);
-  gtk_widget_action_set_enabled (GTK_WIDGET (self), "print", has_page);
-  gtk_widget_action_set_enabled (GTK_WIDGET (self), "save", can_save);
-  gtk_widget_action_set_enabled (GTK_WIDGET (self), "save-as", has_page);
-  gtk_widget_action_set_enabled (GTK_WIDGET (self), "copy-all", has_page);
-  gtk_widget_action_set_enabled (GTK_WIDGET (self), "begin-replace", has_page);
-  gtk_widget_action_set_enabled (GTK_WIDGET (self), "begin-search", has_page);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "win.close-current-page", has_page);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.change-language", has_page);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.discard-changes", modified && !draft);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.print", has_page);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.save", can_save);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.save-as", has_page);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.copy-all", has_page);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.begin-replace", has_page);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.begin-search", has_page);
 }
