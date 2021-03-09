@@ -390,6 +390,10 @@ _editor_window_class_actions_init (EditorWindowClass *klass)
                                    NULL,
                                    editor_window_actions_close_page_cb);
   gtk_widget_class_install_action (widget_class,
+                                   "win.close-page-or-window",
+                                   NULL,
+                                   editor_window_actions_close_page_cb);
+  gtk_widget_class_install_action (widget_class,
                                    "win.open",
                                    NULL,
                                    editor_window_actions_open_cb);
