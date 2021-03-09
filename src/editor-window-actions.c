@@ -84,6 +84,59 @@ editor_window_actions_save_cb (GtkWidget  *widget,
 }
 
 static void
+editor_window_actions_confirm_save_response_cb (GtkMessageDialog *dialog,
+                                                int               response,
+                                                EditorPage       *page)
+{
+  g_assert (GTK_IS_MESSAGE_DIALOG (dialog));
+  g_assert (EDITOR_IS_PAGE (page));
+
+  if (response == GTK_RESPONSE_YES)
+    _editor_page_save (page);
+
+  gtk_window_destroy (GTK_WINDOW (dialog));
+}
+
+static void
+editor_window_actions_confirm_save_cb (GtkWidget  *widget,
+                                       const char *action_name,
+                                       GVariant   *param)
+{
+  EditorWindow *self = (EditorWindow *)widget;
+  g_autofree gchar *title = NULL;
+  EditorPage *page;
+  GtkWidget *dialog;
+  GtkWidget *save;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+
+  if (!(page = editor_window_get_visible_page (self)))
+    return;
+
+  title = editor_page_dup_title (page);
+  dialog = gtk_message_dialog_new (GTK_WINDOW (self),
+                                   GTK_DIALOG_MODAL,
+                                   GTK_MESSAGE_QUESTION,
+                                   GTK_BUTTONS_NONE,
+                                   /* translators: %s is replaced with the document title */
+                                   _("Save changes to document “%s”?"),
+                                   title);
+  gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
+                                            _("The document may have changed since the draft was created and will be permanently lost."));
+  save = gtk_dialog_add_button (GTK_DIALOG (dialog), _("Save"), GTK_RESPONSE_YES);
+  gtk_widget_add_css_class (save, "destructive-action");
+  gtk_dialog_add_button (GTK_DIALOG (dialog), _("Cancel"), GTK_RESPONSE_CANCEL);
+
+  g_signal_connect_object (dialog,
+                           "response",
+                           G_CALLBACK (editor_window_actions_confirm_save_response_cb),
+                           page,
+                           0);
+
+  gtk_window_present (GTK_WINDOW (dialog));
+}
+
+static void
 editor_window_actions_save_as_cb (GtkWidget  *widget,
                                   const char *action_name,
                                   GVariant   *param)
@@ -139,6 +192,59 @@ editor_window_actions_discard_changes_cb (GtkWidget  *widget,
 
   if ((page = editor_window_get_visible_page (self)))
     _editor_page_discard_changes (page);
+}
+
+static void
+editor_window_actions_confirm_discard_response_cb (GtkMessageDialog *dialog,
+                                                   int               response,
+                                                   EditorPage       *page)
+{
+  g_assert (GTK_IS_MESSAGE_DIALOG (dialog));
+  g_assert (EDITOR_IS_PAGE (page));
+
+  if (response == GTK_RESPONSE_YES)
+    _editor_page_discard_changes (page);
+
+  gtk_window_destroy (GTK_WINDOW (dialog));
+}
+
+static void
+editor_window_actions_confirm_discard_changes_cb (GtkWidget  *widget,
+                                                  const char *action_name,
+                                                  GVariant   *param)
+{
+  EditorWindow *self = (EditorWindow *)widget;
+  g_autofree gchar *title = NULL;
+  EditorPage *page;
+  GtkWidget *dialog;
+  GtkWidget *discard;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+
+  if (!(page = editor_window_get_visible_page (self)))
+    return;
+
+  title = editor_page_dup_title (page);
+  dialog = gtk_message_dialog_new (GTK_WINDOW (self),
+                                   GTK_DIALOG_MODAL,
+                                   GTK_MESSAGE_QUESTION,
+                                   GTK_BUTTONS_NONE,
+                                   /* translators: %s is replaced with the document title */
+                                   _("Discard changes to document “%s”?"),
+                                   title);
+  gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
+                                            _("The unsaved changes will be permanently lost."));
+  discard = gtk_dialog_add_button (GTK_DIALOG (dialog), _("Discard"), GTK_RESPONSE_YES);
+  gtk_widget_add_css_class (discard, "destructive-action");
+  gtk_dialog_add_button (GTK_DIALOG (dialog), _("Cancel"), GTK_RESPONSE_CANCEL);
+
+  g_signal_connect_object (dialog,
+                           "response",
+                           G_CALLBACK (editor_window_actions_confirm_discard_response_cb),
+                           page,
+                           0);
+
+  gtk_window_present (GTK_WINDOW (dialog));
 }
 
 static void
@@ -406,6 +512,10 @@ _editor_window_class_actions_init (EditorWindowClass *klass)
                                    NULL,
                                    editor_window_actions_save_cb);
   gtk_widget_class_install_action (widget_class,
+                                   "page.confirm-save",
+                                   NULL,
+                                   editor_window_actions_confirm_save_cb);
+  gtk_widget_class_install_action (widget_class,
                                    "page.save-as",
                                    NULL,
                                    editor_window_actions_save_as_cb);
@@ -417,6 +527,10 @@ _editor_window_class_actions_init (EditorWindowClass *klass)
                                    "page.discard-changes",
                                    NULL,
                                    editor_window_actions_discard_changes_cb);
+  gtk_widget_class_install_action (widget_class,
+                                   "page.confirm-discard-changes",
+                                   NULL,
+                                   editor_window_actions_confirm_discard_changes_cb);
   gtk_widget_class_install_action (widget_class,
                                    "page.print",
                                    NULL,
