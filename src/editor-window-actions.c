@@ -123,9 +123,9 @@ editor_window_actions_confirm_save_cb (GtkWidget  *widget,
                                    title);
   gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
                                             _("Saving changes will replace the previously saved version."));
+  gtk_dialog_add_button (GTK_DIALOG (dialog), _("Cancel"), GTK_RESPONSE_CANCEL);
   save = gtk_dialog_add_button (GTK_DIALOG (dialog), _("Save"), GTK_RESPONSE_YES);
   gtk_widget_add_css_class (save, "destructive-action");
-  gtk_dialog_add_button (GTK_DIALOG (dialog), _("Cancel"), GTK_RESPONSE_CANCEL);
 
   g_signal_connect_object (dialog,
                            "response",
@@ -234,9 +234,9 @@ editor_window_actions_confirm_discard_changes_cb (GtkWidget  *widget,
                                    title);
   gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
                                             _("Unsaved changes will be permanently lost."));
+  gtk_dialog_add_button (GTK_DIALOG (dialog), _("Cancel"), GTK_RESPONSE_CANCEL);
   discard = gtk_dialog_add_button (GTK_DIALOG (dialog), _("Discard"), GTK_RESPONSE_YES);
   gtk_widget_add_css_class (discard, "destructive-action");
-  gtk_dialog_add_button (GTK_DIALOG (dialog), _("Cancel"), GTK_RESPONSE_CANCEL);
 
   g_signal_connect_object (dialog,
                            "response",
