@@ -42,14 +42,14 @@
             <child>
               <object class="GtkButton">
                 <property name="action-name">search.move-previous</property>
-                <property name="tooltip-text" translatable="yes">Move to previous match (Ctrl+Shift+g)</property>
+                <property name="tooltip-text" translatable="yes">Move to previous match (Ctrl+Shift+G)</property>
                 <property name="icon-name">go-up-symbolic</property>
               </object>
             </child>
             <child>
               <object class="GtkButton">
                 <property name="action-name">search.move-next</property>
-                <property name="tooltip-text" translatable="yes">Move to next match (Ctrl+g)</property>
+                <property name="tooltip-text" translatable="yes">Move to next match (Ctrl+G)</property>
                 <property name="icon-name">go-down-symbolic</property>
               </object>
             </child>
@@ -61,7 +61,7 @@
         </child>
         <child>
           <object class="GtkToggleButton" id="replace_mode_button">
-            <property name="tooltip-text" translatable="yes">Search &amp; Replace (Ctrl+h)</property>
+            <property name="tooltip-text" translatable="yes">Search &amp; Replace (Ctrl+H)</property>
             <property name="icon-name">edit-find-replace-symbolic</property>
             <layout>
               <property name="row">0</property>
