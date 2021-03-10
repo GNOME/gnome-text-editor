@@ -30,7 +30,8 @@
 #include "editor-session-private.h"
 #include "editor-window-private.h"
 
-#define AUTO_SAVE_TIMEOUT_SECONDS 20
+#define DEFAULT_AUTO_SAVE_TIMEOUT_SECONDS 20
+#define MAX_AUTO_SAVE_TIMEOUT_SECONDS (60*5)
 
 typedef struct
 {
@@ -59,6 +60,7 @@ G_DEFINE_TYPE (EditorSession, editor_session, G_TYPE_OBJECT)
 enum {
   PROP_0,
   PROP_AUTO_SAVE,
+  PROP_AUTO_SAVE_DELAY,
   PROP_RECENTS,
   N_PROPS
 };
@@ -367,6 +369,10 @@ editor_session_get_property (GObject    *object,
       g_value_set_boolean (value, editor_session_get_auto_save (self));
       break;
 
+    case PROP_AUTO_SAVE_DELAY:
+      g_value_set_uint (value, editor_session_get_auto_save_delay (self));
+      break;
+
     case PROP_RECENTS:
       g_value_set_object (value, editor_session_get_recents (self));
       break;
@@ -388,6 +394,10 @@ editor_session_set_property (GObject      *object,
     {
     case PROP_AUTO_SAVE:
       editor_session_set_auto_save (self, g_value_get_boolean (value));
+      break;
+
+    case PROP_AUTO_SAVE_DELAY:
+      editor_session_set_auto_save_delay (self, g_value_get_uint (value));
       break;
 
     default:
@@ -422,6 +432,19 @@ editor_session_class_init (EditorSessionClass *klass)
                           "Auto Save",
                           FALSE,
                           (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+
+  /**
+   * EditorSession:auto-save-delay:
+   *
+   * The "auto-save-delay" is the number of seconds to wait after a change to
+   * a document before auto-saving the changes to the drafts directory.
+   */
+  properties [PROP_AUTO_SAVE_DELAY] =
+    g_param_spec_uint ("auto-save-delay",
+                       "Auto Save Delay",
+                       "Number of seconds to wait after changes before autosaving drafts",
+                       1, MAX_AUTO_SAVE_TIMEOUT_SECONDS, DEFAULT_AUTO_SAVE_TIMEOUT_SECONDS,
+                       (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
   /**
    * EditorSession:recents:
@@ -518,6 +541,7 @@ editor_session_class_init (EditorSessionClass *klass)
 static void
 editor_session_init (EditorSession *self)
 {
+  self->auto_save_delay = DEFAULT_AUTO_SAVE_TIMEOUT_SECONDS;
   self->seen = g_hash_table_new_full ((GHashFunc) g_file_hash,
                                       (GEqualFunc) g_file_equal,
                                       g_object_unref, NULL);
@@ -1998,7 +2022,7 @@ editor_session_set_auto_save (EditorSession *self,
       g_clear_handle_id (&self->auto_save_source, g_source_remove);
       if (auto_save)
         self->auto_save_source =
-          g_timeout_add_seconds (AUTO_SAVE_TIMEOUT_SECONDS,
+          g_timeout_add_seconds (self->auto_save_delay,
                                  editor_session_auto_save_timeout_cb,
                                  self);
       g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_AUTO_SAVE]);
@@ -2079,5 +2103,28 @@ _editor_session_forget (EditorSession *self,
               break;
             }
         }
+    }
+}
+
+guint
+editor_session_get_auto_save_delay (EditorSession *self)
+{
+  g_return_val_if_fail (EDITOR_IS_SESSION (self), 0);
+
+  return self->auto_save_delay;
+}
+
+void
+editor_session_set_auto_save_delay (EditorSession *self,
+                                    guint          auto_save_delay)
+{
+  g_return_if_fail (EDITOR_IS_SESSION (self));
+  g_return_if_fail (auto_save_delay > 0);
+  g_return_if_fail (auto_save_delay <= MAX_AUTO_SAVE_TIMEOUT_SECONDS);
+
+  if (auto_save_delay != self->auto_save_delay)
+    {
+      self->auto_save_delay = auto_save_delay;
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_AUTO_SAVE_DELAY]);
     }
 }

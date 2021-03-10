@@ -44,6 +44,7 @@ struct _EditorSession
   GArray             *drafts;
   EditorSidebarModel *recents;
 
+  guint               auto_save_delay;
   guint               auto_save_source;
 
 
