@@ -190,6 +190,10 @@ editor_application_startup (GApplication *application)
 
   gtk_settings = gtk_settings_get_default ();
   self->settings = g_settings_new ("org.gnome.TextEditor");
+
+  g_settings_bind (self->settings, "auto-save-delay",
+                   self->session, "auto-save-delay",
+                   G_SETTINGS_BIND_GET);
   g_settings_bind_with_mapping (self->settings, "style-variant",
                                 gtk_settings, "gtk-application-prefer-dark-theme",
                                 G_SETTINGS_BIND_GET,

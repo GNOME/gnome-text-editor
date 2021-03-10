@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist gettext-domain="gnome-text-editor">
-	<schema id="org.gnome.TextEditor" path="/org/gnome/TextEditor/">
+  <schema id="org.gnome.TextEditor" path="/org/gnome/TextEditor/">
+    <key name="auto-save-delay" type="u">
+      <range min="1" max="300"/>
+      <default>3</default>
+      <summary>Auto Save Delay</summary>
+      <description>The delay in seconds to wait before auto-saving a draft.</description>
+    </key>
     <key name="style-variant" type="s">
       <choices>
         <choice value="light"/>
@@ -75,5 +81,5 @@
       <summary>Discover File Settings</summary>
       <description>If enabled then Text Editor will try to discover file settings from modelines, editorconfig, or per-language defaults.</description>
     </key>
-	</schema>
+  </schema>
 </schemalist>
