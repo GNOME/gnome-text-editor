@@ -1588,7 +1588,7 @@ editor_session_restore_v1 (EditorSession *self,
       if (had_failure)
         goto failure;
 
-      /* We might hvae restored a session that had nothing persisted because
+      /* We might have restored a session that had nothing persisted because
        * all the open tabs were "unmodified drafts". We don't want to warn
        * in that case, just create the window and move on.
        */
@@ -1808,7 +1808,7 @@ editor_session_load_recent_async (EditorSession       *self,
  *
  * Completes an asynchronous request to load the recently opened
  * files. This uses a private #GBookmarkFile stored in the
- * text-editor's user-data dir and is kept seperate from the
+ * text-editor's user-data dir and is kept separate from the
  * application state to simplify removal of the file.
  *
  * Returns: (transfer full) (element-type GFile): a #GPtrArray of #GFile or
