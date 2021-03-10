@@ -30,7 +30,7 @@
 #include "editor-session-private.h"
 #include "editor-window-private.h"
 
-#define DEFAULT_AUTO_SAVE_TIMEOUT_SECONDS 20
+#define DEFAULT_AUTO_SAVE_TIMEOUT_SECONDS 3
 #define MAX_AUTO_SAVE_TIMEOUT_SECONDS (60*5)
 
 typedef struct
