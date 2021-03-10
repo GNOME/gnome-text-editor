@@ -119,10 +119,10 @@ editor_window_actions_confirm_save_cb (GtkWidget  *widget,
                                    GTK_MESSAGE_QUESTION,
                                    GTK_BUTTONS_NONE,
                                    /* translators: %s is replaced with the document title */
-                                   _("Save changes to document “%s”?"),
+                                   _("Save Changes to “%s”?"),
                                    title);
   gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
-                                            _("The document may have changed since the draft was created and will be permanently lost."));
+                                            _("Saving changes will replace the previously saved version."));
   save = gtk_dialog_add_button (GTK_DIALOG (dialog), _("Save"), GTK_RESPONSE_YES);
   gtk_widget_add_css_class (save, "destructive-action");
   gtk_dialog_add_button (GTK_DIALOG (dialog), _("Cancel"), GTK_RESPONSE_CANCEL);
@@ -230,10 +230,10 @@ editor_window_actions_confirm_discard_changes_cb (GtkWidget  *widget,
                                    GTK_MESSAGE_QUESTION,
                                    GTK_BUTTONS_NONE,
                                    /* translators: %s is replaced with the document title */
-                                   _("Discard changes to document “%s”?"),
+                                   _("Discard Changes to “%s”?"),
                                    title);
   gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
-                                            _("The unsaved changes will be permanently lost."));
+                                            _("Unsaved changes will be permanently lost."));
   discard = gtk_dialog_add_button (GTK_DIALOG (dialog), _("Discard"), GTK_RESPONSE_YES);
   gtk_widget_add_css_class (discard, "destructive-action");
   gtk_dialog_add_button (GTK_DIALOG (dialog), _("Cancel"), GTK_RESPONSE_CANCEL);
