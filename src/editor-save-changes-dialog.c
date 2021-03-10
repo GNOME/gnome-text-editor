@@ -246,7 +246,7 @@ _editor_save_changes_dialog_new (GtkWindow *parent,
                                    GTK_BUTTONS_NONE,
                                    _("Save Changes?"));
   gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
-                                            _("Open documents contain unsaved changes. Changes can be saved or discarded."));
+                                            _("Open documents contain unsaved changes. If you don't save them, they will be permanently lost."));
   gtk_dialog_add_buttons (GTK_DIALOG (dialog),
                           _("_Cancel"), GTK_RESPONSE_CANCEL,
                           _("_Discard All"), GTK_RESPONSE_NO,
