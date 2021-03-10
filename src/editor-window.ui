@@ -59,7 +59,8 @@
                 <child>
                   <object class="GtkMenuButton" id="open_menu_button">
                     <property name="label" translatable="yes">Open</property>
-                    <property name="tooltip-text" translatable="yes">Open recent document (Ctrl+K)</property>
+                    <!-- Restore after https://gitlab.gnome.org/GNOME/gtk/-/issues/3743 is fixed -->
+                    <!-- property name="tooltip-text" translatable="yes">Open recent document (Ctrl+K)</property -->
                     <property name="popover">
                       <object class="EditorOpenPopover" id="open_menu_popover">
                       </object>
