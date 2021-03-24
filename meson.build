@@ -1,10 +1,10 @@
 project('gnome-text-editor', 'c',
-          version: '3.39.93',
+          version: '40.0',
     meson_version: '>= 0.50.0',
   default_options: [ 'warning_level=2', 'c_std=gnu18' ],
 )
 
-symbolic_version = '40.beta1'
+symbolic_version = '40.0'
 
 cc = meson.get_compiler('c')
 
