@@ -121,7 +121,11 @@ editor_application_actions_about_cb (GSimpleAction *action,
   gtk_about_dialog_set_logo_icon_name (dialog, PACKAGE_ICON_NAME);
   gtk_about_dialog_set_authors (dialog, authors);
   gtk_about_dialog_set_artists (dialog, artists);
+#if DEVELOPMENT_BUILD
   gtk_about_dialog_set_version (dialog, SYMBOLIC_VERSION " (" EDITOR_BUILD_IDENTIFIER ")");
+#else
+  gtk_about_dialog_set_version (dialog, SYMBOLIC_VERSION);
+#endif
   gtk_about_dialog_set_copyright (dialog, "© 2020-2021 Christian Hergert");
   gtk_about_dialog_set_license_type (dialog, GTK_LICENSE_GPL_3_0);
   gtk_about_dialog_set_website (dialog, PACKAGE_WEBSITE);
