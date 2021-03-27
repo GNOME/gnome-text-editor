@@ -373,6 +373,18 @@ editor_window_actions_open_cb (GtkWidget  *widget,
 }
 
 static void
+editor_window_actions_show_primary_menu_cb (GtkWidget  *widget,
+                                            const char *action_name,
+                                            GVariant   *param)
+{
+  EditorWindow *self = (EditorWindow *)widget;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+
+  gtk_menu_button_popup (self->primary_menu);
+}
+
+static void
 editor_window_actions_focus_search_cb (GtkWidget  *widget,
                                        const char *action_name,
                                        GVariant   *param)
@@ -503,6 +515,10 @@ _editor_window_class_actions_init (EditorWindowClass *klass)
                                    "win.open",
                                    NULL,
                                    editor_window_actions_open_cb);
+  gtk_widget_class_install_action (widget_class,
+                                   "win.show-primary-menu",
+                                   NULL,
+                                   editor_window_actions_show_primary_menu_cb);
   gtk_widget_class_install_action (widget_class,
                                    "win.focus-search",
                                    NULL,
