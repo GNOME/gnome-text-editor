@@ -1112,8 +1112,12 @@ editor_document_load_draft_info_cb (GObject      *object,
 
   if ((info = g_file_query_info_finish (file, result, &error)))
     {
+      const char *etag = g_file_info_get_etag (info);
+
       load->modified_at = g_file_info_get_attribute_uint64 (info, G_FILE_ATTRIBUTE_TIME_MODIFIED);
       load->has_draft = TRUE;
+
+      editor_buffer_monitor_set_etag (self->monitor, etag);
     }
 
   load->n_active--;
@@ -1277,6 +1281,7 @@ _editor_document_load_async (EditorDocument      *self,
   load->n_active++;
   g_file_query_info_async (load->draft_file,
                            G_FILE_ATTRIBUTE_ACCESS_CAN_READ","
+                           G_FILE_ATTRIBUTE_ETAG_VALUE","
                            G_FILE_ATTRIBUTE_STANDARD_SIZE","
                            G_FILE_ATTRIBUTE_TIME_MODIFIED,
                            G_FILE_QUERY_INFO_NONE,
