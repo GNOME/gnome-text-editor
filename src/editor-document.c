@@ -618,11 +618,12 @@ _editor_document_save_draft_finish (EditorDocument  *self,
 }
 
 static void
-editor_document_save_position_cb (GObject      *object,
-                                  GAsyncResult *result,
-                                  gpointer      user_data)
+editor_document_query_etag_cb (GObject      *object,
+                               GAsyncResult *result,
+                               gpointer      user_data)
 {
   GFile *file = (GFile *)object;
+  g_autoptr(GFileInfo) info = NULL;
   g_autoptr(GError) error = NULL;
   g_autoptr(GTask) task = user_data;
   EditorDocument *self;
@@ -631,17 +632,47 @@ editor_document_save_position_cb (GObject      *object,
   g_assert (G_IS_ASYNC_RESULT (result));
   g_assert (G_IS_TASK (task));
 
-  if (!g_file_set_attributes_finish (file, result, NULL, &error))
-    g_warning ("Failed to save cursor position: %s", error->message);
-
   self = g_task_get_source_object (task);
-  _editor_document_unmark_busy (self);
-
   self->was_restored = FALSE;
 
+  if ((info = g_file_query_info_finish (file, result, &error)))
+    {
+      const char *etag = g_file_info_get_etag (info);
+      editor_buffer_monitor_set_etag (self->monitor, etag);
+    }
+
+  _editor_document_unmark_busy (self);
   _editor_document_set_externally_modified (self, FALSE);
 
   g_task_return_boolean (task, TRUE);
+}
+
+static void
+editor_document_save_position_cb (GObject      *object,
+                                  GAsyncResult *result,
+                                  gpointer      user_data)
+{
+  GFile *file = (GFile *)object;
+  g_autoptr(GError) error = NULL;
+  g_autoptr(GTask) task = user_data;
+
+  g_assert (G_IS_FILE (file));
+  g_assert (G_IS_ASYNC_RESULT (result));
+  g_assert (G_IS_TASK (task));
+
+  if (!g_file_set_attributes_finish (file, result, NULL, &error))
+    g_warning ("Failed to save cursor position: %s", error->message);
+
+  /* Now query for the etag so we can update the buffer monitor to ensure
+   * that it doesn't misfire if the file has not changed.
+   */
+  g_file_query_info_async (file,
+                           G_FILE_ATTRIBUTE_ETAG_VALUE,
+                           G_FILE_QUERY_INFO_NONE,
+                           G_PRIORITY_DEFAULT,
+                           NULL,
+                           editor_document_query_etag_cb,
+                           g_steal_pointer (&task));
 }
 
 static void

@@ -30,6 +30,9 @@ G_BEGIN_DECLS
 G_DECLARE_FINAL_TYPE (EditorBufferMonitor, editor_buffer_monitor, EDITOR, BUFFER_MONITOR, GObject)
 
 EditorBufferMonitor *editor_buffer_monitor_new         (void);
+const char          *editor_buffer_monitor_get_etag    (EditorBufferMonitor *self);
+void                 editor_buffer_monitor_set_etag    (EditorBufferMonitor *self,
+                                                        const char          *etag);
 gboolean             editor_buffer_monitor_get_changed (EditorBufferMonitor *self);
 GFile               *editor_buffer_monitor_get_file    (EditorBufferMonitor *self);
 void                 editor_buffer_monitor_set_file    (EditorBufferMonitor *self,

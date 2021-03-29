@@ -29,6 +29,7 @@ struct _EditorBufferMonitor
   GObject parent_instance;
   GFile *file;
   GFileMonitor *monitor;
+  char *etag;
   int pause_count;
   guint changed_source;
   guint changed : 1;
@@ -39,6 +40,7 @@ G_DEFINE_TYPE (EditorBufferMonitor, editor_buffer_monitor, G_TYPE_OBJECT)
 enum {
   PROP_0,
   PROP_CHANGED,
+  PROP_ETAG,
   PROP_FILE,
   N_PROPS
 };
@@ -82,6 +84,10 @@ editor_buffer_monitor_get_property (GObject    *object,
 
   switch (prop_id)
     {
+    case PROP_ETAG:
+      g_value_set_string (value, editor_buffer_monitor_get_etag (self));
+      break;
+
     case PROP_FILE:
       g_value_set_object (value, editor_buffer_monitor_get_file (self));
       break;
@@ -105,6 +111,10 @@ editor_buffer_monitor_set_property (GObject      *object,
 
   switch (prop_id)
     {
+    case PROP_ETAG:
+      editor_buffer_monitor_set_etag (self, g_value_get_string (value));
+      break;
+
     case PROP_FILE:
       editor_buffer_monitor_set_file (self, g_value_get_object (value));
       break;
@@ -122,6 +132,13 @@ editor_buffer_monitor_class_init (EditorBufferMonitorClass *klass)
   object_class->dispose = editor_buffer_monitor_dispose;
   object_class->get_property = editor_buffer_monitor_get_property;
   object_class->set_property = editor_buffer_monitor_set_property;
+
+  properties [PROP_ETAG] =
+    g_param_spec_string ("etag",
+                         "Etag",
+                         "The etag for the file to compare for changes",
+                         NULL,
+                         (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
   properties [PROP_FILE] =
     g_param_spec_object ("file",
@@ -145,6 +162,36 @@ editor_buffer_monitor_init (EditorBufferMonitor *self)
 {
 }
 
+static void
+editor_buffer_monitor_query_info_cb (GObject      *object,
+                                     GAsyncResult *result,
+                                     gpointer      user_data)
+{
+  GFile *file = (GFile *)object;
+  g_autoptr(EditorBufferMonitor) self = user_data;
+  g_autoptr(GFileInfo) info = NULL;
+  g_autoptr(GError) error = NULL;
+
+  g_assert (G_IS_FILE (file));
+  g_assert (G_IS_ASYNC_RESULT (result));
+  g_assert (EDITOR_IS_BUFFER_MONITOR (self));
+
+  if (self->pause_count > 0)
+    return;
+
+  if ((info = g_file_query_info_finish (file, result, &error)))
+    {
+      const char *etag = g_file_info_get_etag (info);
+
+      /* Ignore if contents have not changed */
+      if (self->etag && g_strcmp0 (etag, self->etag) == 0)
+        return;
+    }
+
+  self->changed = TRUE;
+  g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_CHANGED]);
+}
+
 static gboolean
 notify_timeout_cb (gpointer user_data)
 {
@@ -155,10 +202,13 @@ notify_timeout_cb (gpointer user_data)
   self->changed_source = 0;
 
   if (!self->changed)
-    {
-      self->changed = TRUE;
-      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_CHANGED]);
-    }
+    g_file_query_info_async (self->file,
+                             G_FILE_ATTRIBUTE_ETAG_VALUE,
+                             G_FILE_QUERY_INFO_NONE,
+                             G_PRIORITY_DEFAULT,
+                             NULL,
+                             editor_buffer_monitor_query_info_cb,
+                             g_object_ref (self));
 
   return G_SOURCE_REMOVE;
 }
@@ -287,4 +337,26 @@ editor_buffer_monitor_unpause (EditorBufferMonitor *self)
 
   if (self->pause_count == 0)
     editor_buffer_monitor_reset (self);
+}
+
+const char *
+editor_buffer_monitor_get_etag (EditorBufferMonitor *self)
+{
+  g_return_val_if_fail (EDITOR_IS_BUFFER_MONITOR (self), NULL);
+
+  return self->etag;
+}
+
+void
+editor_buffer_monitor_set_etag (EditorBufferMonitor *self,
+                                const char          *etag)
+{
+  g_return_if_fail (EDITOR_IS_BUFFER_MONITOR (self));
+
+  if (g_strcmp0 (etag, self->etag) != 0)
+    {
+      g_free (self->etag);
+      self->etag = g_strdup (etag);
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_ETAG]);
+    }
 }
