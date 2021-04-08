@@ -52,7 +52,7 @@ static void
 editor_preferences_spin_constructed (GObject *object)
 {
   EditorPreferencesSpin *self = (EditorPreferencesSpin *)object;
-  g_autoptr(GSettingsSchemaSource) source = NULL;
+  GSettingsSchemaSource *source = NULL;
   g_autoptr(GSettingsSchemaKey) key = NULL;
   g_autoptr(GSettingsSchema) schema = NULL;
   g_autoptr(GVariant) range = NULL;
