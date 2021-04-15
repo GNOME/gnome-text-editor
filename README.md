@@ -6,9 +6,7 @@ can come back to your work even if you've never saved it to a file.
 
 ## Dependencies
 
-Text Editor was built for the upcoming GTK 4 and GtkSourceView 5.  However, it
-has since been backported to GTK 3 and GtkSourceView 4 to make it more easily
-consumable until those have been released.
+Text Editor was built as a test application for the development of GTK 4 and GtkSourceView 5.
 
 ## Plans
 
