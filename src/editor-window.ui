@@ -58,7 +58,8 @@
                 <property name="spacing">6</property>
                 <child>
                   <object class="GtkMenuButton" id="open_menu_button">
-                    <property name="label" translatable="yes">Open</property>
+                    <property name="label" translatable="yes">_Open</property>
+                    <property name="use-underline">True</property>
                     <property name="tooltip-text" translatable="yes">Open recent document (Ctrl+K)</property>
                     <property name="popover">
                       <object class="EditorOpenPopover" id="open_menu_popover">

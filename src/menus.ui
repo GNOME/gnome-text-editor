@@ -51,46 +51,46 @@
     <section>
       <attribute name="label" translatable="yes">Show</attribute>
       <item>
-        <attribute name="label" translatable="yes">Line Numbers</attribute>
+        <attribute name="label" translatable="yes">_Line Numbers</attribute>
         <attribute name="action">settings.show-line-numbers</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">Right Margin</attribute>
+        <attribute name="label" translatable="yes">_Right Margin</attribute>
         <attribute name="action">settings.show-right-margin</attribute>
       </item>
     </section>
     <section>
       <attribute name="label" translatable="yes">Indentation</attribute>
       <item>
-        <attribute name="label" translatable="yes">Tabs</attribute>
+        <attribute name="label" translatable="yes">_Tabs</attribute>
         <attribute name="action">settings.indent-style</attribute>
         <attribute name="target" type="s">'tab'</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">Spaces</attribute>
+        <attribute name="label" translatable="yes">_Spaces</attribute>
         <attribute name="action">settings.indent-style</attribute>
         <attribute name="target" type="s">'space'</attribute>
       </item>
       <submenu>
-        <attribute name="label" translatable="yes">Spaces Per Tab</attribute>
+        <attribute name="label" translatable="yes">Spaces _Per Tab</attribute>
         <section>
           <item>
-            <attribute name="label" translatable="yes">2</attribute>
+            <attribute name="label" translatable="yes">_2</attribute>
             <attribute name="action">settings.tab-width</attribute>
             <attribute name="target" type="u">2</attribute>
           </item>
           <item>
-            <attribute name="label" translatable="yes">4</attribute>
+            <attribute name="label" translatable="yes">_4</attribute>
             <attribute name="action">settings.tab-width</attribute>
             <attribute name="target" type="u">4</attribute>
           </item>
           <item>
-            <attribute name="label" translatable="yes">6</attribute>
+            <attribute name="label" translatable="yes">_6</attribute>
             <attribute name="action">settings.tab-width</attribute>
             <attribute name="target" type="u">6</attribute>
           </item>
           <item>
-            <attribute name="label" translatable="yes">8</attribute>
+            <attribute name="label" translatable="yes">_8</attribute>
             <attribute name="action">settings.tab-width</attribute>
             <attribute name="target" type="u">8</attribute>
           </item>
@@ -99,15 +99,15 @@
     </section>
     <section>
       <item>
-        <attribute name="label" translatable="yes">Text Wrapping</attribute>
+        <attribute name="label" translatable="yes">T_ext Wrapping</attribute>
         <attribute name="action">settings.wrap-text</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">Automatic Margin Position</attribute>
+        <attribute name="label" translatable="yes">_Automatic Margin Position</attribute>
         <attribute name="action">settings.discover-settings</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">Highlight Mode</attribute>
+        <attribute name="label" translatable="yes">_Highlight Mode</attribute>
         <attribute name="action">page.change-language</attribute>
       </item>
     </section>
@@ -171,7 +171,7 @@
     </section>
     <section>
       <item>
-        <attribute name="label" translatable="yes">Move to New Window</attribute>
+        <attribute name="label" translatable="yes">_Move to New Window</attribute>
         <attribute name="action">tab.move-to-new-window</attribute>
         <attribute name="accel">&lt;control&gt;&lt;shift&gt;n</attribute>
       </item>
@@ -182,7 +182,7 @@
         <attribute name="action">tab.close-other-tabs</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">Close</attribute>
+        <attribute name="label" translatable="yes">_Close</attribute>
         <attribute name="action">tab.close</attribute>
         <attribute name="accel">&lt;control&gt;w</attribute>
       </item>
