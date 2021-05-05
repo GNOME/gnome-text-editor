@@ -521,7 +521,7 @@ _editor_sidebar_item_matches (EditorSidebarItem *self,
       self->search_text = g_strdup_printf ("%s %s", title_fold, subtitle_fold);
     }
 
-  return g_pattern_match_string (spec, self->search_text);
+  return g_pattern_spec_match_string (spec, self->search_text);
 }
 
 void

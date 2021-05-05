@@ -132,7 +132,7 @@ editor_language_row_class_init (EditorLanguageRowClass *klass)
                          "The language for the row",
                          GTK_SOURCE_TYPE_LANGUAGE,
                          (G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
-  
+
   g_object_class_install_properties (object_class, N_PROPS, properties);
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-language-row.ui");
@@ -182,6 +182,6 @@ _editor_language_row_match (EditorLanguageRow *self,
   if (spec == NULL)
     return TRUE;
 
-  return g_pattern_match_string (spec, self->id) ||
-         g_pattern_match_string (spec, self->name);
+  return g_pattern_spec_match_string (spec, self->id) ||
+         g_pattern_spec_match_string (spec, self->name);
 }
