@@ -47,6 +47,29 @@ G_DEFINE_TYPE (EditorPage, editor_page, GTK_TYPE_WIDGET)
 static GParamSpec *properties [N_PROPS];
 
 static void
+editor_page_tweak_gutter_spacing (EditorPage *self)
+{
+  GtkSourceGutter *gutter;
+  GtkWidget *child;
+  guint n = 0;
+
+  g_assert (EDITOR_IS_PAGE (self));
+
+  /* Ensure we have a line gutter renderer to tweak */
+  gutter = gtk_source_view_get_gutter (self->view, GTK_TEXT_WINDOW_LEFT);
+  gtk_source_view_set_show_line_numbers (self->view, TRUE);
+
+  /* Add margin to first gutter renderer */
+  for (child = gtk_widget_get_first_child (GTK_WIDGET (gutter));
+       child != NULL;
+       child = gtk_widget_get_next_sibling (child), n++)
+    {
+      if (GTK_SOURCE_IS_GUTTER_RENDERER (child))
+        gtk_widget_set_margin_start (child, n == 0 ? 4 : 0);
+    }
+}
+
+static void
 editor_page_set_settings (EditorPage         *self,
                           EditorPageSettings *settings)
 {
@@ -578,12 +601,9 @@ static void
 editor_page_init (EditorPage *self)
 {
   GtkDropTarget *dest;
-  GtkSourceGutter *gutter;
 
   gtk_widget_init_template (GTK_WIDGET (self));
-
-  gutter = gtk_source_view_get_gutter (self->view, GTK_TEXT_WINDOW_LEFT);
-  gtk_widget_set_margin_start (GTK_WIDGET (gutter), 4);
+  editor_page_tweak_gutter_spacing (self);
 
   g_object_bind_property (self, "document", self->infobar, "document", 0);
 
