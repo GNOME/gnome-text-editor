@@ -42,6 +42,7 @@ struct _EditorDocument
   EditorBufferMonitor *monitor;
   GtkSourceFile       *file;
   gchar               *draft_id;
+  GtkTextTag          *line_spacing_tag;
 
   guint                busy_count;
   gdouble              busy_progress;
@@ -104,6 +105,17 @@ save_free (Save *save)
   g_slice_free (Save, save);
 }
 
+static void
+editor_document_apply_spacing (EditorDocument *self)
+{
+  GtkTextIter begin, end;
+
+  g_assert (EDITOR_IS_DOCUMENT (self));
+
+  gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (self), &begin, &end);
+  gtk_text_buffer_apply_tag (GTK_TEXT_BUFFER (self), self->line_spacing_tag, &begin, &end);
+}
+
 static GMountOperation *
 editor_document_mount_operation_factory (GtkSourceFile *file,
                                          gpointer       user_data)
@@ -164,6 +176,8 @@ editor_document_changed (GtkTextBuffer *buffer)
   self->needs_autosave = TRUE;
 
   GTK_TEXT_BUFFER_CLASS (editor_document_parent_class)->changed (buffer);
+
+  editor_document_apply_spacing (self);
 }
 
 static void
@@ -276,6 +290,20 @@ editor_document_monitor_notify_changed_cb (EditorDocument      *self,
 }
 
 static void
+editor_document_constructed (GObject *object)
+{
+  EditorDocument *self = (EditorDocument *)object;
+
+  G_OBJECT_CLASS (editor_document_parent_class)->constructed (object);
+
+  self->line_spacing_tag = gtk_text_buffer_create_tag (GTK_TEXT_BUFFER (self),
+                                                       NULL,
+                                                       "pixels-below-lines", 2,
+                                                       NULL);
+  editor_document_apply_spacing (self);
+}
+
+static void
 editor_document_finalize (GObject *object)
 {
   EditorDocument *self = (EditorDocument *)object;
@@ -347,6 +375,7 @@ editor_document_class_init (EditorDocumentClass *klass)
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
   GtkTextBufferClass *buffer_class = GTK_TEXT_BUFFER_CLASS (klass);
 
+  object_class->constructed = editor_document_constructed;
   object_class->finalize = editor_document_finalize;
   object_class->get_property = editor_document_get_property;
   object_class->set_property = editor_document_set_property;
