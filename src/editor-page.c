@@ -228,9 +228,9 @@ boolean_to_left_margin (GBinding     *binding,
                         gpointer      user_data)
 {
   if (g_value_get_boolean (from_value))
-    g_value_set_int (to_value, 2);
+    g_value_set_int (to_value, 0);
   else
-    g_value_set_int (to_value, 16);
+    g_value_set_int (to_value, 12);
   return TRUE;
 }
 
@@ -578,8 +578,12 @@ static void
 editor_page_init (EditorPage *self)
 {
   GtkDropTarget *dest;
+  GtkSourceGutter *gutter;
 
   gtk_widget_init_template (GTK_WIDGET (self));
+
+  gutter = gtk_source_view_get_gutter (self->view, GTK_TEXT_WINDOW_LEFT);
+  gtk_widget_set_margin_start (GTK_WIDGET (gutter), 4);
 
   g_object_bind_property (self, "document", self->infobar, "document", 0);
 
