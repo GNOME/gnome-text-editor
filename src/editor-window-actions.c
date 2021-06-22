@@ -274,7 +274,7 @@ editor_window_actions_change_page_cb (GtkWidget  *widget,
   g_assert (g_variant_is_of_type (param, G_VARIANT_TYPE_INT32));
 
   page_num = g_variant_get_int32 (param) - 1;
-  if (page_num < 0)
+  if (page_num < 0 || page_num >= editor_window_get_n_pages (self))
     return;
 
   if ((page = editor_window_get_nth_page (self, page_num)))
