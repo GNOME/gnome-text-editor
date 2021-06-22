@@ -116,8 +116,8 @@ notebook:focus:backdrop {
 }
 
 textview.source-map:dir(ltr) {
-  border-left: 1px solid @borders;
+  border-left: 1px solid alpha(@borders,.3);
 }
 textview.source-map:dir(rtl) {
-  border-right: 1px solid @borders;
+  border-right: 1px solid alpha(@borders,.3);
 }
