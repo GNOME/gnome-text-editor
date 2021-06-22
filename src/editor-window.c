@@ -29,7 +29,6 @@
 #include "editor-open-popover-private.h"
 #include "editor-save-changes-dialog-private.h"
 #include "editor-session-private.h"
-#include "editor-tab-private.h"
 #include "editor-theme-selector-private.h"
 #include "editor-utils-private.h"
 #include "editor-window-private.h"

@@ -30,8 +30,6 @@ editor_sources = [
   'editor-sidebar-model.c',
   'editor-sidebar-row.c',
   'editor-signal-group.c',
-  'editor-tab.c',
-  'editor-tab-actions.c',
   'editor-theme-selector.c',
   'editor-utils.c',
   'editor-window.c',
