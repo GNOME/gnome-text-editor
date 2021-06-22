@@ -17,6 +17,35 @@ else
   app_id = 'org.gnome.TextEditor'
 endif
 
+# Check dependencies
+glib_req_version = '2.69'
+gtk_req_version = '4.3'
+gtksourceview_req_version = '5.0'
+
+glib_req = '>= @0@'.format(glib_req_version)
+gtk_req = '>= @0@'.format(gtk_req_version)
+gtksourceview_req = '>= @0@'.format(gtksourceview_req_version)
+
+libglib_dep = dependency('gio-unix-2.0', version: glib_req)
+libgtk_dep = dependency('gtk4', version: gtk_req)
+libgtksourceview_dep = dependency('gtksourceview-5', version: gtksourceview_req)
+libadwaita_dep = dependency('libadwaita-1')
+
+# Specify minimum library versions
+glib_major = glib_req_version.split('.')[0].to_int()
+glib_minor = glib_req_version.split('.')[1].to_int()
+gtk_major = gtk_req_version.split('.')[0].to_int()
+gtk_minor = gtk_req_version.split('.')[1].to_int()
+gtksourceview_major = gtksourceview_req_version.split('.')[0].to_int()
+gtksourceview_minor = gtksourceview_req_version.split('.')[1].to_int()
+
+if glib_minor % 2 == 1
+  glib_minor = glib_minor + 1
+endif
+if gtk_minor % 2 == 1
+  gtk_minor = gtk_minor + 1
+endif
+
 config_h = configuration_data()
 config_h.set_quoted('APP_ID', app_id)
 config_h.set_quoted('PACKAGE_VERSION', meson.project_version())
@@ -28,7 +57,14 @@ config_h.set_quoted('PACKAGE_NAME', 'Text Editor')
 config_h.set_quoted('SYMBOLIC_VERSION', symbolic_version)
 config_h.set10('DEVELOPMENT_BUILD', get_option('development'))
 
-global_c_args = []
+global_c_args = [
+  '-DGLIB_VERSION_MIN_REQUIRED=GLIB_VERSION_@0@_@1@'.format(glib_major, glib_minor),
+  '-DGLIB_VERSION_MAX_ALLOWED=GLIB_VERSION_@0@_@1@'.format(glib_major, glib_minor),
+  '-DGDK_VERSION_MIN_REQUIRED=GDK_VERSION_@0@_@1@'.format(gtk_major, gtk_minor),
+  '-DGDK_VERSION_MAX_ALLOWED=GDK_VERSION_@0@_@1@'.format(gtk_major, gtk_minor),
+  '-DGTK_SOURCE_VERSION_MIN_REQUIRED=GTK_SOURCE_VERSION_@0@_@1@'.format(gtksourceview_major, gtksourceview_minor),
+  '-DGTK_SOURCE_VERSION_MAX_ALLOWED=GTK_SOURCE_VERSION_@0@_@1@'.format(gtksourceview_major, gtksourceview_minor),
+]
 test_c_args = [
   '-Wcast-align',
   '-Wdeclaration-after-statement',
