@@ -20,6 +20,8 @@
 
 #pragma once
 
+#include <adwaita.h>
+
 #include "editor-window.h"
 #include "editor-open-popover-private.h"
 #include "editor-position-label-private.h"
@@ -35,7 +37,9 @@ struct _EditorWindow
 
   /* Template Widgets */
   GtkWidget            *empty;
-  GtkNotebook          *notebook;
+  GtkWidget            *pages;
+  AdwTabView           *tab_view;
+  AdwTabBar            *tab_bar;
   GtkLabel             *title;
   GtkLabel             *subtitle;
   GtkLabel             *is_modified;

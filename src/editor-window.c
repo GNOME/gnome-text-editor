@@ -133,19 +133,18 @@ editor_window_update_actions (EditorWindow *self)
 }
 
 static void
-editor_window_notify_current_page_cb (EditorWindow *self,
-                                      GParamSpec   *pspec,
-                                      GtkNotebook  *notebook)
+editor_window_notify_selected_page_cb (EditorWindow *self,
+                                       GParamSpec   *pspec,
+                                       AdwTabView   *tab_view)
 {
   EditorPage *page = NULL;
-  gint page_num;
+  AdwTabPage *tab_page;
 
   g_assert (EDITOR_IS_WINDOW (self));
-  g_assert (GTK_IS_NOTEBOOK (notebook));
+  g_assert (ADW_IS_TAB_VIEW (tab_view));
 
-  page_num = gtk_notebook_get_current_page (notebook);
-  if (page_num > -1)
-    page = EDITOR_PAGE (gtk_notebook_get_nth_page (self->notebook, page_num));
+  if ((tab_page = adw_tab_view_get_selected_page (self->tab_view)))
+    page = EDITOR_PAGE (adw_tab_page_get_child (tab_page));
 
   if (self->visible_page == page)
     return;
@@ -170,43 +169,27 @@ editor_window_notify_current_page_cb (EditorWindow *self,
     gtk_widget_grab_focus (GTK_WIDGET (page));
 
   g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_VISIBLE_PAGE]);
+
+  /* FIXME: Sometimes we get "empty" contents for a tab page when
+   *        switching with the accelerators. This seems to make that
+   *        go away.
+   */
+  gtk_widget_queue_resize (GTK_WIDGET (self->tab_view));
 }
 
 static void
-editor_window_page_added_cb (EditorWindow *self,
-                             EditorPage   *page,
-                             guint         page_num,
-                             GtkNotebook  *notebook)
+editor_window_items_changed_cb (EditorWindow      *self,
+                                guint              position,
+                                guint              removed,
+                                guint              added,
+                                GtkSelectionModel *model)
 {
-  gint n_pages;
-
   g_assert (EDITOR_IS_WINDOW (self));
-  g_assert (EDITOR_IS_PAGE (page));
-  g_assert (GTK_IS_NOTEBOOK (notebook));
+  g_assert (GTK_IS_SELECTION_MODEL (model));
 
-  n_pages = gtk_notebook_get_n_pages (notebook);
-  gtk_notebook_set_show_tabs (notebook, n_pages > 1);
-  gtk_widget_queue_resize (GTK_WIDGET (notebook));
-
-  gtk_stack_set_visible_child (self->stack, GTK_WIDGET (self->notebook));
-}
-
-static void
-editor_window_page_removed_cb (EditorWindow *self,
-                               EditorPage   *page,
-                               guint         page_num,
-                               GtkNotebook  *notebook)
-{
-  gint n_pages;
-
-  g_assert (EDITOR_IS_WINDOW (self));
-  g_assert (EDITOR_IS_PAGE (page));
-  g_assert (GTK_IS_NOTEBOOK (notebook));
-
-  n_pages = gtk_notebook_get_n_pages (notebook);
-  gtk_notebook_set_show_tabs (notebook, n_pages > 1);
-
-  if (n_pages == 0)
+  if (editor_window_get_n_pages (self) > 0)
+    gtk_stack_set_visible_child (self->stack, GTK_WIDGET (self->pages));
+  else
     gtk_stack_set_visible_child (self->stack, GTK_WIDGET (self->empty));
 }
 
@@ -215,14 +198,11 @@ editor_window_do_close (EditorWindow *self)
 {
   g_assert (EDITOR_IS_WINDOW (self));
 
-  g_signal_handlers_disconnect_by_func (self->notebook,
-                                        G_CALLBACK (editor_window_page_added_cb),
+  g_signal_handlers_disconnect_by_func (adw_tab_view_get_pages (self->tab_view),
+                                        G_CALLBACK (editor_window_items_changed_cb),
                                         self);
-  g_signal_handlers_disconnect_by_func (self->notebook,
-                                        G_CALLBACK (editor_window_page_removed_cb),
-                                        self);
-  g_signal_handlers_disconnect_by_func (self->notebook,
-                                        G_CALLBACK (editor_window_notify_current_page_cb),
+  g_signal_handlers_disconnect_by_func (self->tab_view,
+                                        G_CALLBACK (editor_window_notify_selected_page_cb),
                                         self);
 
   _editor_session_remove_window (EDITOR_SESSION_DEFAULT, self);
@@ -258,10 +238,10 @@ editor_window_close_request (GtkWindow *window)
    * ask the user what they'd like us to do with them.
    */
   unsaved = g_ptr_array_new_with_free_func (g_object_unref);
-  n_pages = gtk_notebook_get_n_pages (self->notebook);
+  n_pages = adw_tab_view_get_n_pages (self->tab_view);
   for (guint i = 0; i < n_pages; i++)
     {
-      EditorPage *page = EDITOR_PAGE (gtk_notebook_get_nth_page (self->notebook, i));
+      EditorPage *page = editor_window_get_nth_page (self, i);
 
       if (editor_page_get_is_modified (page))
         g_ptr_array_add (unsaved, g_object_ref (page));
@@ -419,14 +399,16 @@ editor_window_class_init (EditorWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, empty);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, export_menu);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, is_modified);
-  gtk_widget_class_bind_template_child (widget_class, EditorWindow, notebook);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, open_menu_button);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, open_menu_popover);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, options_menu);
+  gtk_widget_class_bind_template_child (widget_class, EditorWindow, pages);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, position_box);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, position_label);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, primary_menu);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, subtitle);
+  gtk_widget_class_bind_template_child (widget_class, EditorWindow, tab_bar);
+  gtk_widget_class_bind_template_child (widget_class, EditorWindow, tab_view);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, title);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, stack);
 
@@ -476,17 +458,13 @@ editor_window_init (EditorWindow *self)
                            self,
                            G_CONNECT_SWAPPED);
 
-  g_signal_connect_swapped (self->notebook,
-                            "page-added",
-                            G_CALLBACK (editor_window_page_added_cb),
+  g_signal_connect_swapped (adw_tab_view_get_pages (self->tab_view),
+                            "items-changed",
+                            G_CALLBACK (editor_window_items_changed_cb),
                             self);
-  g_signal_connect_swapped (self->notebook,
-                            "page-removed",
-                            G_CALLBACK (editor_window_page_removed_cb),
-                            self);
-  g_signal_connect_swapped (self->notebook,
-                            "notify::page",
-                            G_CALLBACK (editor_window_notify_current_page_cb),
+  g_signal_connect_swapped (self->tab_view,
+                            "notify::selected-page",
+                            G_CALLBACK (editor_window_notify_selected_page_cb),
                             self);
 
   self->page_signals = editor_signal_group_new (EDITOR_TYPE_PAGE);
@@ -560,53 +538,68 @@ _editor_window_get_pages (EditorWindow *self)
 
   g_return_val_if_fail (EDITOR_IS_WINDOW (self), NULL);
 
-  n_pages = gtk_notebook_get_n_pages (self->notebook);
+  n_pages = editor_window_get_n_pages (self);
 
   for (guint i = 0; i < n_pages; i++)
-    {
-      GtkWidget *child = gtk_notebook_get_nth_page (self->notebook, i);
-      g_queue_push_tail (&queue, EDITOR_PAGE (child));
-    }
+    g_queue_push_tail (&queue, editor_window_get_nth_page (self, i));
 
   return g_steal_pointer (&queue.head);
+}
+
+static gboolean
+modified_to_icon (GBinding     *binding,
+                  const GValue *from_value,
+                  GValue       *to_value,
+                  gpointer      user_data)
+{
+  static GIcon *icon;
+
+  if (icon == NULL)
+    icon = g_themed_icon_new ("document-modified-symbolic");
+
+  if (g_value_get_boolean (from_value))
+    g_value_set_object (to_value, icon);
+
+  return TRUE;
 }
 
 void
 _editor_window_add_page (EditorWindow *self,
                          EditorPage   *page)
 {
-  EditorTab *tab;
+  AdwTabPage *tab_page;
 
   g_return_if_fail (EDITOR_IS_WINDOW (self));
   g_return_if_fail (EDITOR_IS_PAGE (page));
 
-  tab = _editor_tab_new (page);
+  tab_page = adw_tab_view_append (self->tab_view, GTK_WIDGET (page));
 
-  gtk_notebook_append_page (self->notebook,
-                            GTK_WIDGET (page),
-                            GTK_WIDGET (tab));
+  g_object_bind_property (page, "title", tab_page, "title", G_BINDING_SYNC_CREATE);
+  g_object_bind_property (page, "busy", tab_page, "loading", G_BINDING_SYNC_CREATE);
+  g_object_bind_property_full (page, "is-modified",
+                               tab_page, "icon",
+                               G_BINDING_SYNC_CREATE,
+                               modified_to_icon, NULL,
+                               NULL, NULL);
 
-  g_object_set (gtk_notebook_get_page (self->notebook, GTK_WIDGET (page)),
-                "reorderable", TRUE,
-                NULL);
+  adw_tab_view_set_selected_page (self->tab_view, tab_page);
 }
 
 void
 _editor_window_remove_page (EditorWindow *self,
                             EditorPage   *page)
 {
-  gint page_num;
+  AdwTabPage *tab_page;
 
   g_return_if_fail (EDITOR_IS_WINDOW (self));
   g_return_if_fail (EDITOR_IS_PAGE (page));
 
-  page_num = gtk_notebook_page_num (self->notebook, GTK_WIDGET (page));
-  if (page_num >= 0)
-    gtk_notebook_remove_page (self->notebook, page_num);
+  tab_page = adw_tab_view_get_page (self->tab_view, GTK_WIDGET (page));
+  adw_tab_view_close_page (self->tab_view, tab_page);
 
   if (self->visible_page == page)
     {
-      editor_window_notify_current_page_cb (self, NULL, self->notebook);
+      editor_window_notify_selected_page_cb (self, NULL, self->tab_view);
 
       if (self->visible_page != NULL)
         gtk_widget_grab_focus (GTK_WIDGET (self->visible_page));
@@ -640,15 +633,13 @@ void
 editor_window_set_visible_page (EditorWindow *self,
                                 EditorPage   *page)
 {
-  gint page_num;
+  AdwTabPage *tab_page;
 
   g_return_if_fail (EDITOR_IS_WINDOW (self));
   g_return_if_fail (EDITOR_IS_PAGE (page));
 
-  page_num = gtk_notebook_page_num (self->notebook, GTK_WIDGET (page));
-
-  if (page_num >= 0)
-    gtk_notebook_set_current_page (self->notebook, page_num);
+  if ((tab_page = adw_tab_view_get_page (self->tab_view, GTK_WIDGET (page))))
+    adw_tab_view_set_selected_page (self->tab_view, tab_page);
 }
 
 /**
@@ -664,12 +655,14 @@ EditorPage *
 editor_window_get_nth_page (EditorWindow *self,
                             guint         nth)
 {
+  AdwTabPage *tab_page;
+
   g_return_val_if_fail (EDITOR_IS_WINDOW (self), NULL);
 
-  if (nth >= gtk_notebook_get_n_pages (self->notebook))
-    return NULL;
+  if ((tab_page = adw_tab_view_get_nth_page (self->tab_view, nth)))
+    return EDITOR_PAGE (adw_tab_page_get_child (tab_page));
 
-  return EDITOR_PAGE (gtk_notebook_get_nth_page (self->notebook, nth));
+  return NULL;
 }
 
 /**
@@ -685,7 +678,7 @@ editor_window_get_n_pages (EditorWindow *self)
 {
   g_return_val_if_fail (EDITOR_IS_WINDOW (self), 0);
 
-  return gtk_notebook_get_n_pages (self->notebook);
+  return adw_tab_view_get_n_pages (self->tab_view);
 }
 
 void

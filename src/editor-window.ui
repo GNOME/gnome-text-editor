@@ -120,12 +120,19 @@
               <class name="view"/>
             </style>
             <child>
-              <object class="GtkNotebook" id="notebook">
-                <property name="scrollable">true</property>
-                <property name="show-border">false</property>
-                <property name="show-tabs">false</property>
-                <property name="hexpand">true</property>
-                <property name="vexpand">true</property>
+              <object class="GtkBox" id="pages">
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="AdwTabBar" id="tab_bar">
+                    <property name="view">tab_view</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwTabView" id="tab_view">
+                    <property name="hexpand">true</property>
+                    <property name="vexpand">true</property>
+                  </object>
+                </child>
               </object>
             </child>
             <child>
