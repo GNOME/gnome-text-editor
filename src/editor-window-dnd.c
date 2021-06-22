@@ -50,7 +50,7 @@ editor_window_dnd_drag_data_received_cb (EditorWindow     *self,
       g_autoptr(GFile) file = g_file_new_for_uri (uris[i]);
 
       if (file != NULL)
-        editor_session_open (EDITOR_SESSION_DEFAULT, self, file);
+        editor_session_open (EDITOR_SESSION_DEFAULT, self, file, NULL);
     }
 
   gtk_window_present_with_time (GTK_WINDOW (self), time_);

@@ -36,7 +36,8 @@ EditorWindow *editor_session_create_window       (EditorSession        *self);
 GListModel   *editor_session_get_recents         (EditorSession        *self);
 EditorPage   *editor_session_open                (EditorSession        *self,
                                                   EditorWindow         *window,
-                                                  GFile                *file);
+                                                  GFile                *file,
+                                                  const char           *encoding);
 void          editor_session_open_files          (EditorSession        *self,
                                                   GFile               **files,
                                                   gint                  n_files);

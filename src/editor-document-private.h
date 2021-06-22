@@ -38,6 +38,8 @@ void            _editor_document_set_externally_modified (EditorDocument       *
 gboolean        _editor_document_get_was_restored        (EditorDocument       *self);
 void            _editor_document_set_was_restored        (EditorDocument       *self,
                                                           gboolean              was_restored);
+void            _editor_document_set_encoding            (EditorDocument       *document,
+                                                          const char           *encoding);
 void            _editor_document_load_async              (EditorDocument       *self,
                                                           EditorWindow         *window,
                                                           GCancellable         *cancellable,

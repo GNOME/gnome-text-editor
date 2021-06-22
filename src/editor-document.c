@@ -43,6 +43,7 @@ struct _EditorDocument
   GtkSourceFile       *file;
   gchar               *draft_id;
   GtkTextTag          *line_spacing_tag;
+  char                *encoding;
 
   guint                busy_count;
   gdouble              busy_progress;
@@ -311,6 +312,7 @@ editor_document_finalize (GObject *object)
   g_clear_object (&self->monitor);
   g_clear_object (&self->file);
   g_clear_pointer (&self->draft_id, g_free);
+  g_clear_pointer (&self->encoding, g_free);
 
   G_OBJECT_CLASS (editor_document_parent_class)->finalize (object);
 }
@@ -616,6 +618,12 @@ _editor_document_save_draft_async (EditorDocument      *self,
                                    (GTK_SOURCE_FILE_SAVER_FLAGS_IGNORE_INVALID_CHARS |
                                     GTK_SOURCE_FILE_SAVER_FLAGS_IGNORE_MODIFICATION_TIME));
 
+  if (self->encoding != NULL)
+    {
+      const GtkSourceEncoding *encoding = gtk_source_encoding_get_from_charset (self->encoding);
+      gtk_source_file_saver_set_encoding (saver, encoding);
+    }
+
   /* TODO: Probably want to make this async. We can just create an
    * async variant in editor-utils.c for this.
    */
@@ -852,6 +860,12 @@ _editor_document_save_async (EditorDocument      *self,
   gtk_source_file_saver_set_flags (saver,
                                    (GTK_SOURCE_FILE_SAVER_FLAGS_IGNORE_INVALID_CHARS |
                                     GTK_SOURCE_FILE_SAVER_FLAGS_IGNORE_MODIFICATION_TIME));
+
+  if (self->encoding != NULL)
+    {
+      const GtkSourceEncoding *encoding = gtk_source_encoding_get_from_charset (self->encoding);
+      gtk_source_file_saver_set_encoding (saver, encoding);
+    }
 
   _editor_document_mark_busy (self);
 
@@ -1109,6 +1123,13 @@ editor_document_do_load (EditorDocument *self,
   self->was_restored = load->has_draft;
 
   loader = gtk_source_file_loader_new (GTK_SOURCE_BUFFER (self), file);
+
+  if (self->encoding != NULL)
+    {
+      const GtkSourceEncoding *encoding = gtk_source_encoding_get_from_charset (self->encoding);
+      GSList encodings = { .next = NULL, .data = (gpointer)encoding };
+      gtk_source_file_loader_set_candidate_encodings (loader, &encodings);
+    }
 
   gtk_source_file_loader_load_async (loader,
                                      G_PRIORITY_DEFAULT,
@@ -1599,4 +1620,20 @@ _editor_document_get_was_restored (EditorDocument *self)
   g_return_val_if_fail (EDITOR_IS_DOCUMENT (self), FALSE);
 
   return self->was_restored;
+}
+
+void
+_editor_document_set_encoding (EditorDocument *self,
+                               const char     *encoding)
+{
+  g_return_if_fail (EDITOR_IS_DOCUMENT (self));
+
+  if (g_strcmp0 (encoding, "auto") == 0)
+    encoding = NULL;
+
+  if (g_strcmp0 (self->encoding, encoding) != 0)
+    {
+      g_free (self->encoding);
+      self->encoding = g_strdup (encoding);
+    }
 }

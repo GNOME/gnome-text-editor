@@ -485,7 +485,8 @@ _editor_sidebar_item_open (EditorSidebarItem *self,
   if (self->page != NULL)
     _editor_page_raise (self->page);
   else if (self->file != NULL)
-    editor_session_open (session, window, self->file);
+    /* TODO: This should stash the encoding and reuse it */
+    editor_session_open (session, window, self->file, NULL);
   else if (self->draft_id != NULL)
     _editor_session_open_draft (session, window, self->draft_id);
   else

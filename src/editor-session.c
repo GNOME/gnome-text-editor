@@ -1216,7 +1216,8 @@ get_draft_id_for_file (EditorSession *self,
 EditorPage *
 editor_session_open (EditorSession *self,
                      EditorWindow  *window,
-                     GFile         *file)
+                     GFile         *file,
+                     const char    *encoding)
 {
   g_autoptr(EditorDocument) document = NULL;
   g_autofree gchar *uri = NULL;
@@ -1245,6 +1246,7 @@ editor_session_open (EditorSession *self,
     remove = page;
 
   document = editor_document_new_for_file (file);
+  _editor_document_set_encoding (document, encoding);
 
   if ((draft_id = get_draft_id_for_file (self, file)))
     _editor_document_set_draft_id (document, draft_id);
@@ -1268,7 +1270,7 @@ editor_session_open_files (EditorSession  *self,
   g_return_if_fail (EDITOR_IS_SESSION (self));
 
   for (guint i = 0; i < n_files; i++)
-    editor_session_open (self, NULL, files[i]);
+    editor_session_open (self, NULL, files[i], NULL);
 }
 
 /**

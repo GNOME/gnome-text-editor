@@ -346,7 +346,7 @@ editor_page_drop_target_drop (EditorPage     *self,
       EditorSession *session = editor_application_get_session (EDITOR_APPLICATION_DEFAULT);
       EditorWindow *window = EDITOR_WINDOW (gtk_widget_get_root (GTK_WIDGET (self)));
 
-      editor_session_open (session, window, file);
+      editor_session_open (session, window, file, NULL);
     }
 
   return FALSE;
