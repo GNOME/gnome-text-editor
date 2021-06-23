@@ -20,32 +20,39 @@
 
 #pragma once
 
+#include <gtksourceview/gtksource.h>
+
 #include "editor-types.h"
 
 G_BEGIN_DECLS
 
-gchar    *_editor_font_description_to_css        (const PangoFontDescription *font_desc);
-void      _editor_widget_hide_with_fade          (GtkWidget                  *widget);
-gboolean  _editor_gchararray_to_boolean          (GBinding                   *binding,
-                                                  const GValue               *from_value,
-                                                  GValue                     *to_value,
-                                                  gpointer                    user_data);
-gboolean  _editor_gboolean_to_wrap_mode          (GBinding                   *binding,
-                                                  const GValue               *from_value,
-                                                  GValue                     *to_value,
-                                                  gpointer                    user_data);
-gboolean  _editor_gboolean_to_background_pattern (GBinding                   *binding,
-                                                  const GValue               *from_value,
-                                                  GValue                     *to_value,
-                                                  gpointer                    user_data);
-gboolean  _editor_gboolean_to_scroll_policy      (GBinding                   *binding,
-                                                  const GValue               *from_value,
-                                                  GValue                     *to_value,
-                                                  gpointer                    user_data);
-gboolean  _editor_gchararray_to_style_scheme     (GBinding                   *binding,
-                                                  const GValue               *from_value,
-                                                  GValue                     *to_value,
-                                                  gpointer                    user_data);
-gchar    *_editor_date_time_format               (GDateTime                  *self);
+char                    *_editor_font_description_to_css        (const PangoFontDescription *font_desc);
+void                     _editor_widget_hide_with_fade          (GtkWidget                  *widget);
+gboolean                 _editor_gchararray_to_boolean          (GBinding                   *binding,
+                                                                 const GValue               *from_value,
+                                                                 GValue                     *to_value,
+                                                                 gpointer                    user_data);
+gboolean                 _editor_gboolean_to_wrap_mode          (GBinding                   *binding,
+                                                                 const GValue               *from_value,
+                                                                 GValue                     *to_value,
+                                                                 gpointer                    user_data);
+gboolean                 _editor_gboolean_to_background_pattern (GBinding                   *binding,
+                                                                 const GValue               *from_value,
+                                                                 GValue                     *to_value,
+                                                                 gpointer                    user_data);
+gboolean                 _editor_gboolean_to_scroll_policy      (GBinding                   *binding,
+                                                                 const GValue               *from_value,
+                                                                 GValue                     *to_value,
+                                                                 gpointer                    user_data);
+gboolean                 _editor_gchararray_to_style_scheme     (GBinding                   *binding,
+                                                                 const GValue               *from_value,
+                                                                 GValue                     *to_value,
+                                                                 gpointer                    user_data);
+char                    *_editor_date_time_format               (GDateTime                  *self);
+void                     _editor_file_chooser_add_encodings     (GtkFileChooser             *chooser);
+void                     _editor_file_chooser_add_line_endings  (GtkFileChooser             *chooser,
+                                                                 GtkSourceNewlineType        selected);
+const GtkSourceEncoding *_editor_file_chooser_get_encoding      (GtkFileChooser             *chooser);
+GtkSourceNewlineType     _editor_file_chooser_get_line_ending   (GtkFileChooser             *chooser);
 
 G_END_DECLS

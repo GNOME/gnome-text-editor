@@ -37,21 +37,22 @@
 
 struct _EditorDocument
 {
-  GtkSourceBuffer      parent_instance;
+  GtkSourceBuffer          parent_instance;
 
-  EditorBufferMonitor *monitor;
-  GtkSourceFile       *file;
-  gchar               *draft_id;
-  GtkTextTag          *line_spacing_tag;
-  char                *encoding;
+  EditorBufferMonitor     *monitor;
+  GtkSourceFile           *file;
+  gchar                   *draft_id;
+  GtkTextTag              *line_spacing_tag;
+  const GtkSourceEncoding *encoding;
 
-  guint                busy_count;
-  gdouble              busy_progress;
+  GtkSourceNewlineType     newline_type;
+  guint                    busy_count;
+  gdouble                  busy_progress;
 
-  guint                readonly : 1;
-  guint                needs_autosave : 1;
-  guint                was_restored : 1;
-  guint                externally_modified : 1;
+  guint                    readonly : 1;
+  guint                    needs_autosave : 1;
+  guint                    was_restored : 1;
+  guint                    externally_modified : 1;
 };
 
 typedef struct
@@ -312,7 +313,6 @@ editor_document_finalize (GObject *object)
   g_clear_object (&self->monitor);
   g_clear_object (&self->file);
   g_clear_pointer (&self->draft_id, g_free);
-  g_clear_pointer (&self->encoding, g_free);
 
   G_OBJECT_CLASS (editor_document_parent_class)->finalize (object);
 }
@@ -427,6 +427,7 @@ editor_document_class_init (EditorDocumentClass *klass)
 static void
 editor_document_init (EditorDocument *self)
 {
+  self->newline_type = GTK_SOURCE_NEWLINE_TYPE_DEFAULT;
   self->file = gtk_source_file_new ();
   self->draft_id = g_uuid_string_random ();
 
@@ -617,12 +618,10 @@ _editor_document_save_draft_async (EditorDocument      *self,
   gtk_source_file_saver_set_flags (saver,
                                    (GTK_SOURCE_FILE_SAVER_FLAGS_IGNORE_INVALID_CHARS |
                                     GTK_SOURCE_FILE_SAVER_FLAGS_IGNORE_MODIFICATION_TIME));
+  gtk_source_file_saver_set_newline_type (saver, self->newline_type);
 
   if (self->encoding != NULL)
-    {
-      const GtkSourceEncoding *encoding = gtk_source_encoding_get_from_charset (self->encoding);
-      gtk_source_file_saver_set_encoding (saver, encoding);
-    }
+    gtk_source_file_saver_set_encoding (saver, self->encoding);
 
   /* TODO: Probably want to make this async. We can just create an
    * async variant in editor-utils.c for this.
@@ -860,12 +859,10 @@ _editor_document_save_async (EditorDocument      *self,
   gtk_source_file_saver_set_flags (saver,
                                    (GTK_SOURCE_FILE_SAVER_FLAGS_IGNORE_INVALID_CHARS |
                                     GTK_SOURCE_FILE_SAVER_FLAGS_IGNORE_MODIFICATION_TIME));
+  gtk_source_file_saver_set_newline_type (saver, self->newline_type);
 
   if (self->encoding != NULL)
-    {
-      const GtkSourceEncoding *encoding = gtk_source_encoding_get_from_charset (self->encoding);
-      gtk_source_file_saver_set_encoding (saver, encoding);
-    }
+    gtk_source_file_saver_set_encoding (saver, self->encoding);
 
   _editor_document_mark_busy (self);
 
@@ -1060,6 +1057,8 @@ editor_document_load_cb (GObject      *object,
 
       g_assert (!file || G_IS_FILE (file));
 
+      self->newline_type = gtk_source_file_loader_get_newline_type (loader);
+
       _editor_document_set_externally_modified (self, FALSE);
 
       gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (self), &begin);
@@ -1126,8 +1125,7 @@ editor_document_do_load (EditorDocument *self,
 
   if (self->encoding != NULL)
     {
-      const GtkSourceEncoding *encoding = gtk_source_encoding_get_from_charset (self->encoding);
-      GSList encodings = { .next = NULL, .data = (gpointer)encoding };
+      GSList encodings = { .next = NULL, .data = (gpointer)self->encoding };
       gtk_source_file_loader_set_candidate_encodings (loader, &encodings);
     }
 
@@ -1623,17 +1621,27 @@ _editor_document_get_was_restored (EditorDocument *self)
 }
 
 void
-_editor_document_set_encoding (EditorDocument *self,
-                               const char     *encoding)
+_editor_document_set_encoding (EditorDocument          *self,
+                               const GtkSourceEncoding *encoding)
 {
   g_return_if_fail (EDITOR_IS_DOCUMENT (self));
 
-  if (g_strcmp0 (encoding, "auto") == 0)
-    encoding = NULL;
+  self->encoding = encoding;
+}
 
-  if (g_strcmp0 (self->encoding, encoding) != 0)
-    {
-      g_free (self->encoding);
-      self->encoding = g_strdup (encoding);
-    }
+GtkSourceNewlineType
+_editor_document_get_newline_type (EditorDocument *self)
+{
+  g_return_val_if_fail (EDITOR_IS_DOCUMENT (self), 0);
+
+  return self->newline_type;
+}
+
+void
+_editor_document_set_newline_type (EditorDocument       *self,
+                                   GtkSourceNewlineType  newline_type)
+{
+  g_return_if_fail (EDITOR_IS_DOCUMENT (self));
+
+  self->newline_type = newline_type;
 }

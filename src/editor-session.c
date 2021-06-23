@@ -1214,10 +1214,10 @@ get_draft_id_for_file (EditorSession *self,
 }
 
 EditorPage *
-editor_session_open (EditorSession *self,
-                     EditorWindow  *window,
-                     GFile         *file,
-                     const char    *encoding)
+editor_session_open (EditorSession           *self,
+                     EditorWindow            *window,
+                     GFile                   *file,
+                     const GtkSourceEncoding *encoding)
 {
   g_autoptr(EditorDocument) document = NULL;
   g_autofree gchar *uri = NULL;

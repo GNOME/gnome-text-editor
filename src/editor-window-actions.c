@@ -306,65 +306,12 @@ editor_window_actions_open_response_cb (EditorWindow         *self,
   if (response_id == GTK_RESPONSE_ACCEPT)
     {
       g_autoptr(GFile) file = gtk_file_chooser_get_file (GTK_FILE_CHOOSER (native));
-      const char *encoding = gtk_file_chooser_get_choice (GTK_FILE_CHOOSER (native), "encoding");
+      const GtkSourceEncoding *encoding = _editor_file_chooser_get_encoding (GTK_FILE_CHOOSER (native));
 
       editor_session_open (EDITOR_SESSION_DEFAULT, self, file, encoding);
     }
 
   gtk_native_dialog_destroy (GTK_NATIVE_DIALOG (native));
-}
-
-static int
-sort_by_name (gconstpointer a,
-              gconstpointer b)
-{
-  return g_strcmp0 (gtk_source_encoding_get_name (a),
-                    gtk_source_encoding_get_name (b));
-}
-
-static void
-editor_window_actions_add_encodings (GtkFileChooser *chooser)
-{
-  GPtrArray *choices;
-  GPtrArray *labels;
-  GSList *all;
-
-  g_assert (GTK_IS_FILE_CHOOSER (chooser));
-
-  all = g_slist_sort (gtk_source_encoding_get_all (), sort_by_name);
-  choices = g_ptr_array_new ();
-  labels = g_ptr_array_new_with_free_func (g_free);
-
-#define ADD_ENCODING(id, name)             \
-  G_STMT_START {                           \
-    g_ptr_array_add(choices, (char *)id);  \
-    g_ptr_array_add(labels, (char *)name); \
-  } G_STMT_END
-
-  ADD_ENCODING ("auto", g_strdup (N_("Automatically Detected")));
-
-  for (const GSList *l = all; l; l = l->next)
-    {
-      GtkSourceEncoding *encoding = l->data;
-      char *title = g_strdup_printf ("%s (%s)",
-                                     gtk_source_encoding_get_name (encoding),
-                                     gtk_source_encoding_get_charset (encoding));
-      ADD_ENCODING (gtk_source_encoding_get_charset (encoding), title);
-    }
-
-  ADD_ENCODING (NULL, NULL);
-#undef ADD_ENCODING
-
-  gtk_file_chooser_add_choice (chooser,
-                               "encoding",
-                               _("Character Encoding:"),
-                               (const char **)(gpointer)choices->pdata,
-                               (const char **)(gpointer)labels->pdata);
-  gtk_file_chooser_set_choice (chooser, "encoding", "auto");
-
-  g_slist_free (all);
-  g_clear_pointer (&choices, g_ptr_array_unref);
-  g_clear_pointer (&labels, g_ptr_array_unref);
 }
 
 static void
@@ -417,7 +364,7 @@ editor_window_actions_open_cb (GtkWidget  *widget,
   gtk_file_chooser_set_filter (GTK_FILE_CHOOSER (native), text_files);
 #endif
 
-  editor_window_actions_add_encodings (GTK_FILE_CHOOSER (native));
+  _editor_file_chooser_add_encodings (GTK_FILE_CHOOSER (native));
 
   g_signal_connect_object (native,
                            "response",

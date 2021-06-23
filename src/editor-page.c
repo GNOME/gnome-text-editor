@@ -836,11 +836,16 @@ editor_page_save_as_cb (EditorPage           *self,
       g_autoptr(GFile) dest = NULL;
 
       if ((dest = gtk_file_chooser_get_file (GTK_FILE_CHOOSER (native))))
-        _editor_document_save_async (self->document,
-                                     dest,
-                                     NULL,
-                                     editor_page_save_cb,
-                                     g_object_ref (self));
+        {
+          GtkSourceNewlineType crlf = _editor_file_chooser_get_line_ending (GTK_FILE_CHOOSER (native));
+
+          _editor_document_set_newline_type (self->document, crlf);
+          _editor_document_save_async (self->document,
+                                       dest,
+                                       NULL,
+                                       editor_page_save_cb,
+                                       g_object_ref (self));
+        }
     }
 
   gtk_native_dialog_destroy (GTK_NATIVE_DIALOG (native));
@@ -862,6 +867,10 @@ _editor_page_save_as (EditorPage *self)
                                         GTK_FILE_CHOOSER_ACTION_SAVE,
                                         _("Save"),
                                         _("Cancel"));
+
+  _editor_file_chooser_add_encodings (GTK_FILE_CHOOSER (native));
+  _editor_file_chooser_add_line_endings (GTK_FILE_CHOOSER (native),
+                                         _editor_document_get_newline_type (self->document));
 
   g_signal_connect_object (native,
                            "response",
