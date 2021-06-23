@@ -162,4 +162,8 @@ configure_file(
   configuration: config_h,
 )
 
-meson.add_install_script('build-aux/meson/postinstall.py')
+gnome.post_install(
+  gtk_update_icon_cache: true,
+  glib_compile_schemas: true,
+  update_desktop_database: true,
+)
