@@ -1620,6 +1620,14 @@ _editor_document_get_was_restored (EditorDocument *self)
   return self->was_restored;
 }
 
+const GtkSourceEncoding *
+_editor_document_get_encoding (EditorDocument *self)
+{
+  g_return_val_if_fail (EDITOR_IS_DOCUMENT (self), NULL);
+
+  return self->encoding;
+}
+
 void
 _editor_document_set_encoding (EditorDocument          *self,
                                const GtkSourceEncoding *encoding)

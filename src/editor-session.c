@@ -217,6 +217,7 @@ add_window_state (EditorSession   *self,
           GtkSourceLanguage *language = gtk_source_buffer_get_language (GTK_SOURCE_BUFFER (document));
           GFile *file = editor_document_get_file (document);
           const gchar *draft_id = _editor_document_get_draft_id (document);
+          const GtkSourceEncoding *encoding = _editor_document_get_encoding (document);
           gboolean page_is_active = editor_page_is_active (page);
           GtkTextMark *insert = gtk_text_buffer_get_insert (GTK_TEXT_BUFFER (document));
           GtkTextMark *bound = gtk_text_buffer_get_selection_bound (GTK_TEXT_BUFFER (document));
@@ -244,6 +245,10 @@ add_window_state (EditorSession   *self,
             g_variant_builder_add_parsed (builder,
                                           "{'language', <%s>}",
                                           gtk_source_language_get_id (language));
+          if (encoding != NULL)
+            g_variant_builder_add_parsed (builder,
+                                          "{'encoding', <%s>}",
+                                          gtk_source_encoding_get_charset (encoding));
           g_variant_builder_add (builder, "{sv}", "selection", selection_to_variant (&sel));
           if (page_is_active)
             g_variant_builder_add_parsed (builder, "{'is-active', <%b>}", page_is_active);
@@ -1467,9 +1472,11 @@ editor_session_restore_v1_pages (EditorSession *self,
       g_autoptr(EditorDocument) document = NULL;
       g_autoptr(GVariant) sel_value = NULL;
       g_autoptr(GFile) file = NULL;
+      const GtkSourceEncoding *encoding = NULL;
       EditorPage *epage = NULL;
-      const gchar *draft_id;
-      const gchar *uri;
+      const char *draft_id;
+      const char *charset;
+      const char *uri;
       gboolean is_active;
       Selection sel;
 
@@ -1478,6 +1485,9 @@ editor_session_restore_v1_pages (EditorSession *self,
 
       if (!g_variant_lookup (page, "uri", "&s", &uri))
         uri = NULL;
+
+      if (g_variant_lookup (page, "encoding", "&s", &charset) && charset[0])
+        encoding = gtk_source_encoding_get_from_charset (charset);
 
       if (!(sel_value = g_variant_lookup_value (page, "selection", NULL)) ||
           !selection_from_variant (&sel, sel_value))
@@ -1499,6 +1509,10 @@ editor_session_restore_v1_pages (EditorSession *self,
         file = g_file_new_for_uri (uri);
 
       document = _editor_document_new (file, draft_id);
+
+      if (encoding != NULL)
+        _editor_document_set_encoding (document, encoding);
+
       epage = editor_page_new_for_document (document);
       editor_session_add_page (self, window, epage);
 
