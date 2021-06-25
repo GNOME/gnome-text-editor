@@ -29,6 +29,7 @@
 #include "editor-buffer-monitor-private.h"
 #include "editor-document-private.h"
 #include "editor-spell-checker.h"
+#include "editor-text-buffer-spell-adapter.h"
 #include "editor-session-private.h"
 #include "editor-window.h"
 
@@ -38,23 +39,25 @@
 
 struct _EditorDocument
 {
-  GtkSourceBuffer          parent_instance;
+  GtkSourceBuffer               parent_instance;
 
-  EditorBufferMonitor     *monitor;
-  GtkSourceFile           *file;
-  gchar                   *draft_id;
-  GtkTextTag              *line_spacing_tag;
-  const GtkSourceEncoding *encoding;
-  EditorSpellChecker      *spell_checker;
+  EditorBufferMonitor          *monitor;
+  GtkSourceFile                *file;
+  gchar                        *draft_id;
+  GtkTextTag                   *line_spacing_tag;
+  const GtkSourceEncoding      *encoding;
 
-  GtkSourceNewlineType     newline_type;
-  guint                    busy_count;
-  gdouble                  busy_progress;
+  EditorSpellChecker           *spell_checker;
+  EditorTextBufferSpellAdapter *spell_adapter;
 
-  guint                    readonly : 1;
-  guint                    needs_autosave : 1;
-  guint                    was_restored : 1;
-  guint                    externally_modified : 1;
+  GtkSourceNewlineType          newline_type;
+  guint                         busy_count;
+  gdouble                       busy_progress;
+
+  guint                         readonly : 1;
+  guint                         needs_autosave : 1;
+  guint                         was_restored : 1;
+  guint                         externally_modified : 1;
 };
 
 typedef struct
@@ -193,6 +196,7 @@ editor_document_insert_text (GtkTextBuffer *buffer,
 {
   EditorDocument *self = (EditorDocument *)buffer;
   guint offset;
+  guint length;
 
   g_assert (GTK_IS_TEXT_BUFFER (buffer));
   g_assert (pos != NULL);
@@ -201,6 +205,11 @@ editor_document_insert_text (GtkTextBuffer *buffer,
   offset = gtk_text_iter_get_offset (pos);
 
   GTK_TEXT_BUFFER_CLASS (editor_document_parent_class)->insert_text (buffer, pos, new_text, new_text_length);
+
+  length = gtk_text_iter_get_offset (pos) - offset;
+
+  if (length > 0)
+    editor_text_buffer_spell_adapter_insert_text (self->spell_adapter, offset, length);
 
   if (offset < TITLE_MAX_LEN && editor_document_get_file (self) == NULL)
     g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_TITLE]);
@@ -213,14 +222,20 @@ editor_document_delete_range (GtkTextBuffer *buffer,
 {
   EditorDocument *self = (EditorDocument *)buffer;
   guint offset;
+  guint length;
 
   g_assert (GTK_IS_TEXT_BUFFER (buffer));
   g_assert (start != NULL);
   g_assert (end != NULL);
+  g_assert (gtk_text_iter_compare (start, end) <= 0);
 
   offset = gtk_text_iter_get_offset (start);
+  length = gtk_text_iter_get_offset (end) - offset;
 
   GTK_TEXT_BUFFER_CLASS (editor_document_parent_class)->delete_range (buffer, start, end);
+
+  if (length > 0)
+    editor_text_buffer_spell_adapter_delete_range (self->spell_adapter, offset, length);
 
   if (offset < TITLE_MAX_LEN && editor_document_get_file (self) == NULL)
     g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_TITLE]);
@@ -295,6 +310,12 @@ editor_document_monitor_notify_changed_cb (EditorDocument      *self,
 }
 
 static void
+on_cursor_moved_cb (EditorDocument *self)
+{
+  editor_text_buffer_spell_adapter_cursor_moved (self->spell_adapter);
+}
+
+static void
 editor_document_constructed (GObject *object)
 {
   EditorDocument *self = (EditorDocument *)object;
@@ -316,6 +337,7 @@ editor_document_finalize (GObject *object)
   g_clear_object (&self->monitor);
   g_clear_object (&self->file);
   g_clear_object (&self->spell_checker);
+  g_clear_object (&self->spell_adapter);
   g_clear_pointer (&self->draft_id, g_free);
 
   G_OBJECT_CLASS (editor_document_parent_class)->finalize (object);
@@ -450,6 +472,8 @@ editor_document_init (EditorDocument *self)
   self->file = gtk_source_file_new ();
   self->draft_id = g_uuid_string_random ();
   self->spell_checker = editor_spell_checker_new (NULL, NULL);
+  self->spell_adapter = editor_text_buffer_spell_adapter_new (GTK_TEXT_BUFFER (self),
+                                                              self->spell_checker);
 
   self->monitor = editor_buffer_monitor_new ();
   g_signal_connect_object (self->monitor,
@@ -460,6 +484,8 @@ editor_document_init (EditorDocument *self)
   g_object_bind_property (self->file, "location",
                           self->monitor, "file",
                           G_BINDING_SYNC_CREATE);
+
+  g_signal_connect (self, "cursor-moved", G_CALLBACK (on_cursor_moved_cb), NULL);
 }
 
 EditorDocument *
@@ -1704,5 +1730,8 @@ editor_document_set_spell_checker (EditorDocument     *self,
   g_return_if_fail (!spell_checker || EDITOR_IS_SPELL_CHECKER (spell_checker));
 
   if (g_set_object (&self->spell_checker, spell_checker))
-    g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_SPELL_CHECKER]);
+    {
+      editor_text_buffer_spell_adapter_set_checker (self->spell_adapter, spell_checker);
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_SPELL_CHECKER]);
+    }
 }
