@@ -21,15 +21,18 @@ endif
 glib_req_version = '2.69'
 gtk_req_version = '4.3'
 gtksourceview_req_version = '5.0'
+enchant_req_version = '2.2.0'
 
 glib_req = '>= @0@'.format(glib_req_version)
 gtk_req = '>= @0@'.format(gtk_req_version)
 gtksourceview_req = '>= @0@'.format(gtksourceview_req_version)
+enchant_req = '>= @0@'.format(enchant_req_version)
 
 libglib_dep = dependency('gio-unix-2.0', version: glib_req)
 libgtk_dep = dependency('gtk4', version: gtk_req)
 libgtksourceview_dep = dependency('gtksourceview-5', version: gtksourceview_req)
 libadwaita_dep = dependency('libadwaita-1')
+libenchant_dep = dependency('enchant-2', version: enchant_req)
 
 # Specify minimum library versions
 glib_major = glib_req_version.split('.')[0].to_int()

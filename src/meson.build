@@ -30,6 +30,9 @@ editor_sources = [
   'editor-sidebar-model.c',
   'editor-sidebar-row.c',
   'editor-signal-group.c',
+  'editor-spell-checker.c',
+  'editor-spell-language.c',
+  'editor-spell-provider.c',
   'editor-theme-selector.c',
   'editor-utils.c',
   'editor-window.c',
@@ -68,6 +71,7 @@ build_ident_h = vcs_tag(
        output: 'build-ident.h',
 )
 
+subdir('enchant')
 subdir('defaults')
 subdir('modelines')
 subdir('editorconfig')

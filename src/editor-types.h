@@ -41,6 +41,9 @@ typedef struct _EditorPreferencesWindow    EditorPreferencesWindow;
 typedef struct _EditorSession              EditorSession;
 typedef struct _EditorSidebar              EditorSidebar;
 typedef struct _EditorSignalGroup          EditorSignalGroup;
+typedef struct _EditorSpellChecker         EditorSpellChecker;
+typedef struct _EditorSpellLanguage        EditorSpellLanguage;
+typedef struct _EditorSpellProvider        EditorSpellProvider;
 typedef struct _EditorTab                  EditorTab;
 typedef struct _EditorWindow               EditorWindow;
 
