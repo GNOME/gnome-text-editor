@@ -36,6 +36,7 @@ struct _EditorTextBufferSpellAdapter
   GtkTextBuffer      *buffer;
   EditorSpellChecker *checker;
   CjhTextRegion      *region;
+  GtkTextTag         *tag;
 
   guint               cursor_position;
 
@@ -136,6 +137,10 @@ editor_text_buffer_spell_adapter_set_buffer (EditorTextBufferSpellAdapter *self,
       length = gtk_text_iter_get_offset (&end) - offset;
 
       _cjh_text_region_insert (self->region, offset, length, UNCHECKED);
+
+      self->tag = gtk_text_buffer_create_tag (buffer, NULL,
+                                              "underline", PANGO_UNDERLINE_ERROR,
+                                              NULL);
 
       editor_text_buffer_spell_adapter_queue_update (self);
     }
