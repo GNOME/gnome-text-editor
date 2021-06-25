@@ -103,8 +103,11 @@ editor_text_buffer_spell_adapter_queue_update (EditorTextBufferSpellAdapter *sel
 {
   g_assert (EDITOR_IS_TEXT_BUFFER_SPELL_ADAPTER (self));
 
-  if (self->checker == NULL)
-    return;
+  if (self->checker == NULL || self->buffer == NULL)
+    {
+      g_clear_handle_id (&self->update_source, g_source_remove);
+      return;
+    }
 
   if (self->update_source == 0)
     self->update_source = g_timeout_add_full (G_PRIORITY_LOW,
@@ -133,6 +136,8 @@ editor_text_buffer_spell_adapter_set_buffer (EditorTextBufferSpellAdapter *self,
       length = gtk_text_iter_get_offset (&end) - offset;
 
       _cjh_text_region_insert (self->region, offset, length, UNCHECKED);
+
+      editor_text_buffer_spell_adapter_queue_update (self);
     }
 }
 
