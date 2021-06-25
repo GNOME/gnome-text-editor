@@ -28,6 +28,7 @@
 #include "editor-application.h"
 #include "editor-buffer-monitor-private.h"
 #include "editor-document-private.h"
+#include "editor-spell-checker.h"
 #include "editor-session-private.h"
 #include "editor-window.h"
 
@@ -44,6 +45,7 @@ struct _EditorDocument
   gchar                   *draft_id;
   GtkTextTag              *line_spacing_tag;
   const GtkSourceEncoding *encoding;
+  EditorSpellChecker      *spell_checker;
 
   GtkSourceNewlineType     newline_type;
   guint                    busy_count;
@@ -84,6 +86,7 @@ enum {
   PROP_BUSY_PROGRESS,
   PROP_EXTERNALLY_MODIFIED,
   PROP_FILE,
+  PROP_SPELL_CHECKER,
   PROP_TITLE,
   N_PROPS
 };
@@ -312,6 +315,7 @@ editor_document_finalize (GObject *object)
 
   g_clear_object (&self->monitor);
   g_clear_object (&self->file);
+  g_clear_object (&self->spell_checker);
   g_clear_pointer (&self->draft_id, g_free);
 
   G_OBJECT_CLASS (editor_document_parent_class)->finalize (object);
@@ -347,6 +351,10 @@ editor_document_get_property (GObject    *object,
       g_value_take_string (value, editor_document_dup_title (self));
       break;
 
+    case PROP_SPELL_CHECKER:
+      g_value_set_object (value, editor_document_get_spell_checker (self));
+      break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
     }
@@ -364,6 +372,10 @@ editor_document_set_property (GObject      *object,
     {
     case PROP_FILE:
       gtk_source_file_set_location (self->file, g_value_get_object (value));
+      break;
+
+    case PROP_SPELL_CHECKER:
+      editor_document_set_spell_checker (self, g_value_get_object (value));
       break;
 
     default:
@@ -414,6 +426,13 @@ editor_document_class_init (EditorDocumentClass *klass)
                          G_TYPE_FILE,
                          (G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
 
+  properties [PROP_SPELL_CHECKER] =
+    g_param_spec_object ("spell-checker",
+                         "Spell Checker",
+                         "Spell Checker",
+                         EDITOR_TYPE_SPELL_CHECKER,
+                         (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+
   properties [PROP_TITLE] =
     g_param_spec_string ("title",
                          "Title",
@@ -430,6 +449,7 @@ editor_document_init (EditorDocument *self)
   self->newline_type = GTK_SOURCE_NEWLINE_TYPE_DEFAULT;
   self->file = gtk_source_file_new ();
   self->draft_id = g_uuid_string_random ();
+  self->spell_checker = editor_spell_checker_new (NULL, NULL);
 
   self->monitor = editor_buffer_monitor_new ();
   g_signal_connect_object (self->monitor,
@@ -1652,4 +1672,37 @@ _editor_document_set_newline_type (EditorDocument       *self,
   g_return_if_fail (EDITOR_IS_DOCUMENT (self));
 
   self->newline_type = newline_type;
+}
+
+/**
+ * editor_document_get_spell_checker:
+ *
+ * Gets the spellchecker to use for the document.
+ *
+ * Returns: (transfer none) (nullable): an #EditorSpellChecker
+ */
+EditorSpellChecker *
+editor_document_get_spell_checker (EditorDocument *self)
+{
+  g_return_val_if_fail (EDITOR_IS_DOCUMENT (self), NULL);
+
+  return self->spell_checker;
+}
+
+/**
+ * editor_document_set_spell_checker:
+ * @self: an #EditorDocument
+ * @spell_checker: an #EditorSpellChecker
+ *
+ * Sets the spell checker to use for the document.
+ */
+void
+editor_document_set_spell_checker (EditorDocument     *self,
+                                   EditorSpellChecker *spell_checker)
+{
+  g_return_if_fail (EDITOR_IS_DOCUMENT (self));
+  g_return_if_fail (!spell_checker || EDITOR_IS_SPELL_CHECKER (spell_checker));
+
+  if (g_set_object (&self->spell_checker, spell_checker))
+    g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_SPELL_CHECKER]);
 }
