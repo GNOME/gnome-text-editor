@@ -312,7 +312,15 @@ editor_document_monitor_notify_changed_cb (EditorDocument      *self,
 static void
 on_cursor_moved_cb (EditorDocument *self)
 {
-  editor_text_buffer_spell_adapter_cursor_moved (self->spell_adapter);
+  GtkTextMark *mark;
+  GtkTextIter iter;
+
+  mark = gtk_text_buffer_get_insert (GTK_TEXT_BUFFER (self));
+  gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (self), &iter, mark);
+
+  editor_text_buffer_spell_adapter_cursor_moved (self->spell_adapter,
+                                                 gtk_text_iter_get_offset (&iter));
+
 }
 
 static void

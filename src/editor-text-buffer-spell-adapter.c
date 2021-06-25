@@ -34,6 +34,7 @@ struct _EditorTextBufferSpellAdapter
   GtkTextBuffer      *buffer;
   EditorSpellChecker *checker;
   CjhTextRegion      *region;
+  guint               cursor_position;
 };
 
 G_DEFINE_TYPE (EditorTextBufferSpellAdapter, editor_text_buffer_spell_adapter, G_TYPE_OBJECT)
@@ -225,9 +226,11 @@ editor_text_buffer_spell_adapter_delete_range (EditorTextBufferSpellAdapter *sel
 }
 
 void
-editor_text_buffer_spell_adapter_cursor_moved (EditorTextBufferSpellAdapter *self)
+editor_text_buffer_spell_adapter_cursor_moved (EditorTextBufferSpellAdapter *self,
+                                               guint                         position)
 {
   g_return_if_fail (EDITOR_IS_TEXT_BUFFER_SPELL_ADAPTER (self));
   g_return_if_fail (self->buffer != NULL);
 
+  self->cursor_position = position;
 }

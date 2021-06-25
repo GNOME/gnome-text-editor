@@ -42,6 +42,7 @@ void                          editor_text_buffer_spell_adapter_insert_text  (Edi
 void                          editor_text_buffer_spell_adapter_delete_range (EditorTextBufferSpellAdapter *self,
                                                                              guint                         offset,
                                                                              guint                         len);
-void                          editor_text_buffer_spell_adapter_cursor_moved (EditorTextBufferSpellAdapter *self);
+void                          editor_text_buffer_spell_adapter_cursor_moved (EditorTextBufferSpellAdapter *self,
+                                                                             guint                         position);
 
 G_END_DECLS
