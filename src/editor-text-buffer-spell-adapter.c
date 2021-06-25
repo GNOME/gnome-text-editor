@@ -25,16 +25,21 @@
 #include "editor-spell-checker.h"
 #include "editor-text-buffer-spell-adapter.h"
 
-#define UNCHECKED GSIZE_TO_POINTER(0)
-#define CHECKED   GSIZE_TO_POINTER(1)
+#define UNCHECKED          GSIZE_TO_POINTER(0)
+#define CHECKED            GSIZE_TO_POINTER(1)
+#define UPDATE_DELAY_MSECS 200
 
 struct _EditorTextBufferSpellAdapter
 {
   GObject             parent_instance;
+
   GtkTextBuffer      *buffer;
   EditorSpellChecker *checker;
   CjhTextRegion      *region;
+
   guint               cursor_position;
+
+  guint               update_source;
 };
 
 G_DEFINE_TYPE (EditorTextBufferSpellAdapter, editor_text_buffer_spell_adapter, G_TYPE_OBJECT)
@@ -59,6 +64,54 @@ editor_text_buffer_spell_adapter_new (GtkTextBuffer      *buffer,
                        "buffer", buffer,
                        "checker", checker,
                        NULL);
+}
+
+static gboolean
+editor_text_buffer_spell_adapter_update_range (EditorTextBufferSpellAdapter *self,
+                                               gsize                         begin,
+                                               gsize                         end,
+                                               gint64                        deadline)
+{
+  g_assert (EDITOR_IS_TEXT_BUFFER_SPELL_ADAPTER (self));
+
+  return FALSE;
+}
+
+static gboolean
+editor_text_buffer_spell_adapter_update (EditorTextBufferSpellAdapter *self)
+{
+  gint64 deadline;
+  gboolean has_more;
+  gsize length;
+
+  g_assert (EDITOR_IS_TEXT_BUFFER_SPELL_ADAPTER (self));
+
+  deadline = g_get_monotonic_time () + (G_USEC_PER_SEC/1000L);
+  length = _cjh_text_region_get_length (self->region);
+  has_more = editor_text_buffer_spell_adapter_update_range (self, 0, length, deadline);
+
+  if (has_more)
+    return G_SOURCE_CONTINUE;
+
+  self->update_source = 0;
+
+  return G_SOURCE_REMOVE;
+}
+
+static void
+editor_text_buffer_spell_adapter_queue_update (EditorTextBufferSpellAdapter *self)
+{
+  g_assert (EDITOR_IS_TEXT_BUFFER_SPELL_ADAPTER (self));
+
+  if (self->checker == NULL)
+    return;
+
+  if (self->update_source == 0)
+    self->update_source = g_timeout_add_full (G_PRIORITY_LOW,
+                                              UPDATE_DELAY_MSECS,
+                                              (GSourceFunc) editor_text_buffer_spell_adapter_update,
+                                              g_object_ref (self),
+                                              g_object_unref);
 }
 
 static void
@@ -89,10 +142,20 @@ editor_text_buffer_spell_adapter_finalize (GObject *object)
   EditorTextBufferSpellAdapter *self = (EditorTextBufferSpellAdapter *)object;
 
   g_clear_object (&self->checker);
-  g_clear_weak_pointer (&self->buffer);
   g_clear_pointer (&self->region, _cjh_text_region_free);
 
   G_OBJECT_CLASS (editor_text_buffer_spell_adapter_parent_class)->finalize (object);
+}
+
+static void
+editor_text_buffer_spell_adapter_dispose (GObject *object)
+{
+  EditorTextBufferSpellAdapter *self = (EditorTextBufferSpellAdapter *)object;
+
+  g_clear_weak_pointer (&self->buffer);
+  g_clear_handle_id (&self->update_source, g_source_remove);
+
+  G_OBJECT_CLASS (editor_text_buffer_spell_adapter_parent_class)->dispose (object);
 }
 
 static void
@@ -146,6 +209,7 @@ editor_text_buffer_spell_adapter_class_init (EditorTextBufferSpellAdapterClass *
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
+  object_class->dispose = editor_text_buffer_spell_adapter_dispose;
   object_class->finalize = editor_text_buffer_spell_adapter_finalize;
   object_class->get_property = editor_text_buffer_spell_adapter_get_property;
   object_class->set_property = editor_text_buffer_spell_adapter_set_property;
@@ -190,6 +254,19 @@ editor_text_buffer_spell_adapter_set_checker (EditorTextBufferSpellAdapter *self
 
   if (g_set_object (&self->checker, checker))
     {
+      gsize length = _cjh_text_region_get_length (self->region);
+
+      g_clear_handle_id (&self->update_source, g_source_remove);
+
+      if (length > 0)
+        {
+          _cjh_text_region_remove (self->region, 0, length - 1);
+          _cjh_text_region_insert (self->region, 0, length, UNCHECKED);
+          g_assert_cmpint (length, ==, _cjh_text_region_get_length (self->region));
+        }
+
+      editor_text_buffer_spell_adapter_queue_update (self);
+
       g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_CHECKER]);
     }
 }
@@ -233,4 +310,6 @@ editor_text_buffer_spell_adapter_cursor_moved (EditorTextBufferSpellAdapter *sel
   g_return_if_fail (self->buffer != NULL);
 
   self->cursor_position = position;
+
+  editor_text_buffer_spell_adapter_queue_update (self);
 }
