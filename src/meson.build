@@ -1,4 +1,5 @@
 editor_sources = [
+  'cjhtextregion.c',
   'editor-animation.c',
   'editor-application.c',
   'editor-application-actions.c',
