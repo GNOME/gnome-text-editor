@@ -53,6 +53,8 @@ struct _EditorTextBufferSpellAdapter
   guint               cursor_position;
 
   guint               update_source;
+
+  guint               enabled : 1;
 };
 
 G_DEFINE_TYPE (EditorTextBufferSpellAdapter, editor_text_buffer_spell_adapter, G_TYPE_OBJECT)
@@ -185,7 +187,7 @@ editor_text_buffer_spell_adapter_queue_update (EditorTextBufferSpellAdapter *sel
 {
   g_assert (EDITOR_IS_TEXT_BUFFER_SPELL_ADAPTER (self));
 
-  if (self->checker == NULL || self->buffer == NULL)
+  if (self->checker == NULL || self->buffer == NULL || !self->enabled)
     {
       g_clear_handle_id (&self->update_source, g_source_remove);
       return;

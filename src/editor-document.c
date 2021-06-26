@@ -330,6 +330,8 @@ editor_document_constructed (GObject *object)
 
   G_OBJECT_CLASS (editor_document_parent_class)->constructed (object);
 
+  self->spell_adapter = editor_text_buffer_spell_adapter_new (GTK_TEXT_BUFFER (self),
+                                                              self->spell_checker);
   self->line_spacing_tag = gtk_text_buffer_create_tag (GTK_TEXT_BUFFER (self),
                                                        NULL,
                                                        "pixels-below-lines", 2,
@@ -480,8 +482,6 @@ editor_document_init (EditorDocument *self)
   self->file = gtk_source_file_new ();
   self->draft_id = g_uuid_string_random ();
   self->spell_checker = editor_spell_checker_new (NULL, NULL);
-  self->spell_adapter = editor_text_buffer_spell_adapter_new (GTK_TEXT_BUFFER (self),
-                                                              self->spell_checker);
 
   self->monitor = editor_buffer_monitor_new ();
   g_signal_connect_object (self->monitor,
