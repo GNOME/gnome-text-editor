@@ -155,7 +155,11 @@ editor_text_buffer_spell_adapter_update_range (EditorTextBufferSpellAdapter *sel
   gtk_text_buffer_remove_tag (self->buffer, self->tag, &begin, &end);
 
   if (!gtk_text_iter_starts_word (&iter))
-    gtk_text_iter_backward_word_start (&iter);
+    {
+      if (gtk_text_iter_is_start (&iter))
+        gtk_text_iter_forward_word_end (&iter);
+      gtk_text_iter_backward_word_start (&iter);
+    }
 
   while (gtk_text_iter_compare (&iter, &end) < 0)
     {
