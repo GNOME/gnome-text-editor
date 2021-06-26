@@ -49,6 +49,7 @@ struct _EditorTextBufferSpellAdapter
   EditorSpellChecker *checker;
   CjhTextRegion      *region;
   GtkTextTag         *tag;
+  GtkTextTag         *no_spell_check_tag;
 
   guint               cursor_position;
 
@@ -110,6 +111,26 @@ scan_for_next_unchecked (CjhTextRegion *region,
   return state.found;
 }
 
+static inline gboolean
+word_contains_no_spell_context (EditorTextBufferSpellAdapter *self,
+                                const GtkTextIter            *begin,
+                                const GtkTextIter            *end)
+{
+  GtkTextIter toggle_iter;
+
+  if (self->no_spell_check_tag == NULL)
+    return FALSE;
+
+  if (gtk_text_iter_has_tag (begin, self->no_spell_check_tag))
+    return TRUE;
+
+  toggle_iter = *begin;
+  if (!gtk_text_iter_forward_to_tag_toggle (&toggle_iter, self->no_spell_check_tag))
+    return FALSE;
+
+  return gtk_text_iter_compare (end, &toggle_iter) > 0;
+}
+
 static gboolean
 editor_text_buffer_spell_adapter_update_range (EditorTextBufferSpellAdapter *self,
                                                gsize                         begin_offset,
@@ -131,6 +152,8 @@ editor_text_buffer_spell_adapter_update_range (EditorTextBufferSpellAdapter *sel
   gtk_text_buffer_get_iter_at_offset (self->buffer, &end, end_offset);
   iter = begin;
 
+  gtk_text_buffer_remove_tag (self->buffer, self->tag, &begin, &end);
+
   if (!gtk_text_iter_starts_word (&iter))
     gtk_text_iter_backward_word_start (&iter);
 
@@ -142,11 +165,20 @@ editor_text_buffer_spell_adapter_update_range (EditorTextBufferSpellAdapter *sel
       if (!gtk_text_iter_forward_word_end (&word_end))
         break;
 
+      /* Skip until we are out of the no-spell-check region if necessary */
+      if (word_contains_no_spell_context (self, &iter, &word_end))
+        {
+          if (!gtk_text_iter_ends_tag (&word_end, self->no_spell_check_tag))
+            gtk_text_iter_forward_to_tag_toggle (&word_end, self->no_spell_check_tag);
+          goto move_next_word;
+        }
+
       word = gtk_text_iter_get_slice (&iter, &word_end);
       if (!editor_spell_checker_check_word (self->checker, word, -1))
         gtk_text_buffer_apply_tag (self->buffer, self->tag, &iter, &word_end);
       g_free (word);
 
+    move_next_word:
       if (!gtk_text_iter_forward_word_end (&word_end))
         break;
 
@@ -202,6 +234,78 @@ editor_text_buffer_spell_adapter_queue_update (EditorTextBufferSpellAdapter *sel
 }
 
 static void
+editor_text_buffer_spell_adapter_invalidate_all (EditorTextBufferSpellAdapter *self)
+{
+  gsize length;
+
+  g_assert (EDITOR_IS_TEXT_BUFFER_SPELL_ADAPTER (self));
+
+  length = _cjh_text_region_get_length (self->region);
+
+  if (length > 0)
+    {
+      _cjh_text_region_replace (self->region, 0, length - 1, UNCHECKED);
+      editor_text_buffer_spell_adapter_queue_update (self);
+    }
+}
+
+static void
+on_tag_added_cb (EditorTextBufferSpellAdapter *self,
+                 GtkTextTag                   *tag,
+                 GtkTextTagTable              *tag_table)
+{
+  char *name;
+
+  g_assert (EDITOR_IS_TEXT_BUFFER_SPELL_ADAPTER (self));
+  g_assert (GTK_IS_TEXT_TAG (tag));
+  g_assert (GTK_IS_TEXT_TAG_TABLE (tag_table));
+
+  g_object_get (tag, "name", &name, NULL);
+  if (name && strcmp (name, "gtksourceview:context-classes:no-spell-check") == 0)
+    {
+      g_set_object (&self->no_spell_check_tag, tag);
+      editor_text_buffer_spell_adapter_invalidate_all (self);
+    }
+}
+
+static void
+on_tag_removed_cb (EditorTextBufferSpellAdapter *self,
+                   GtkTextTag                   *tag,
+                   GtkTextTagTable              *tag_table)
+{
+  g_assert (EDITOR_IS_TEXT_BUFFER_SPELL_ADAPTER (self));
+  g_assert (GTK_IS_TEXT_TAG (tag));
+  g_assert (GTK_IS_TEXT_TAG_TABLE (tag_table));
+
+  if (tag == self->no_spell_check_tag)
+    {
+      g_clear_object (&self->no_spell_check_tag);
+      editor_text_buffer_spell_adapter_invalidate_all (self);
+    }
+}
+
+static void
+invalidate_tag_region_cb (EditorTextBufferSpellAdapter *self,
+                          GtkTextTag                   *tag,
+                          GtkTextIter                  *begin,
+                          GtkTextIter                  *end,
+                          GtkTextBuffer                *buffer)
+{
+  g_assert (EDITOR_IS_TEXT_BUFFER_SPELL_ADAPTER (self));
+  g_assert (GTK_IS_TEXT_TAG (tag));
+  g_assert (GTK_IS_TEXT_BUFFER (buffer));
+
+  if (tag == self->no_spell_check_tag)
+    {
+      gsize begin_offset = gtk_text_iter_get_offset (begin);
+      gsize end_offset = gtk_text_iter_get_offset (end);
+
+      _cjh_text_region_replace (self->region, begin_offset, end_offset - begin_offset, UNCHECKED);
+      editor_text_buffer_spell_adapter_queue_update (self);
+    }
+}
+
+static void
 editor_text_buffer_spell_adapter_set_buffer (EditorTextBufferSpellAdapter *self,
                                              GtkTextBuffer                *buffer)
 {
@@ -211,6 +315,7 @@ editor_text_buffer_spell_adapter_set_buffer (EditorTextBufferSpellAdapter *self,
   if (g_set_weak_pointer (&self->buffer, buffer))
     {
       GtkTextIter begin, end;
+      GtkTextTagTable *tag_table;
       guint offset;
       guint length;
 
@@ -225,6 +330,32 @@ editor_text_buffer_spell_adapter_set_buffer (EditorTextBufferSpellAdapter *self,
                                               "underline", PANGO_UNDERLINE_ERROR,
                                               NULL);
 
+      /* Track tag changes from the tag table and extract "no-spell-check"
+       * tag from GtkSourceView so that we can avoid words with that tag.
+       */
+      tag_table = gtk_text_buffer_get_tag_table (buffer);
+      g_signal_connect_object (tag_table,
+                               "tag-added",
+                               G_CALLBACK (on_tag_added_cb),
+                               self,
+                               G_CONNECT_SWAPPED);
+      g_signal_connect_object (tag_table,
+                               "tag-removed",
+                               G_CALLBACK (on_tag_removed_cb),
+                               self,
+                               G_CONNECT_SWAPPED);
+
+      g_signal_connect_object (buffer,
+                               "apply-tag",
+                               G_CALLBACK (invalidate_tag_region_cb),
+                               self,
+                               G_CONNECT_SWAPPED);
+      g_signal_connect_object (buffer,
+                               "remove-tag",
+                               G_CALLBACK (invalidate_tag_region_cb),
+                               self,
+                               G_CONNECT_SWAPPED);
+
       editor_text_buffer_spell_adapter_queue_update (self);
     }
 }
@@ -235,6 +366,7 @@ editor_text_buffer_spell_adapter_finalize (GObject *object)
   EditorTextBufferSpellAdapter *self = (EditorTextBufferSpellAdapter *)object;
 
   g_clear_object (&self->checker);
+  g_clear_object (&self->no_spell_check_tag);
   g_clear_pointer (&self->region, _cjh_text_region_free);
 
   G_OBJECT_CLASS (editor_text_buffer_spell_adapter_parent_class)->finalize (object);
