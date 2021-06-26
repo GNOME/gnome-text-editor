@@ -21,13 +21,14 @@
 #include "config.h"
 
 #include "editor-spell-checker.h"
+#include "editor-spell-language.h"
 #include "editor-spell-provider.h"
 
 struct _EditorSpellChecker
 {
   GObject              parent_instance;
   EditorSpellProvider *provider;
-  const char          *language;
+  EditorSpellLanguage *language;
 };
 
 G_DEFINE_TYPE (EditorSpellChecker, editor_spell_checker, G_TYPE_OBJECT)
@@ -54,6 +55,12 @@ editor_spell_checker_new (EditorSpellProvider *provider,
 {
   g_return_val_if_fail (EDITOR_IS_SPELL_PROVIDER (provider) || !provider, NULL);
 
+  if (provider == NULL)
+    provider = editor_spell_provider_get_default ();
+
+  if (language == NULL)
+    language = editor_spell_provider_get_default_code (provider);
+
   return g_object_new (EDITOR_TYPE_SPELL_CHECKER,
                        "provider", provider,
                        "language", language,
@@ -79,6 +86,7 @@ editor_spell_checker_finalize (GObject *object)
   EditorSpellChecker *self = (EditorSpellChecker *)object;
 
   g_clear_object (&self->provider);
+  g_clear_object (&self->language);
 
   G_OBJECT_CLASS (editor_spell_checker_parent_class)->finalize (object);
 }
@@ -189,7 +197,7 @@ editor_spell_checker_get_language (EditorSpellChecker *self)
 {
   g_return_val_if_fail (EDITOR_IS_SPELL_CHECKER (self), NULL);
 
-  return self->language;
+  return self->language ? editor_spell_language_get_code (self->language) : NULL;
 }
 
 /**
@@ -206,9 +214,9 @@ editor_spell_checker_set_language (EditorSpellChecker *self,
 {
   g_return_if_fail (EDITOR_IS_SPELL_CHECKER (self));
 
-  if (g_strcmp0 (language, self->language) != 0)
+  if (g_strcmp0 (language, editor_spell_checker_get_language (self)) != 0)
     {
-      self->language = g_intern_string (language);
+      self->language = editor_spell_provider_get_language (self->provider, language);
       g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_LANGUAGE]);
     }
 }
@@ -228,4 +236,20 @@ editor_spell_checker_get_provider (EditorSpellChecker *self)
   g_return_val_if_fail (EDITOR_IS_SPELL_CHECKER (self), NULL);
 
   return self->provider;
+}
+
+gboolean
+editor_spell_checker_check_word (EditorSpellChecker *self,
+                                 const char         *word,
+                                 gssize              word_len)
+{
+  g_return_val_if_fail (EDITOR_IS_SPELL_CHECKER (self), FALSE);
+
+  if (word == NULL || word_len == 0)
+    return FALSE;
+
+  if (self->language == NULL)
+    return TRUE;
+
+  return editor_spell_language_contains_word (self->language, word, word_len);
 }

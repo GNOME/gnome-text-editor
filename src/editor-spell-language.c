@@ -119,6 +119,9 @@ editor_spell_language_contains_word (EditorSpellLanguage *self,
   g_return_val_if_fail (EDITOR_IS_SPELL_LANGUAGE (self), FALSE);
   g_return_val_if_fail (word != NULL, FALSE);
 
+  if (word_len < 0)
+    word_len = strlen (word);
+
   return EDITOR_SPELL_LANGUAGE_GET_CLASS (self)->contains_word (self, word, word_len);
 }
 

@@ -29,6 +29,18 @@
 #define CHECKED            GSIZE_TO_POINTER(1)
 #define UPDATE_DELAY_MSECS 200
 
+typedef struct
+{
+  gint64   deadline;
+  guint    has_unchecked : 1;
+} Update;
+
+typedef struct
+{
+  gsize offset;
+  guint found : 1;
+} ScanForUnchecked;
+
 struct _EditorTextBufferSpellAdapter
 {
   GObject             parent_instance;
@@ -68,12 +80,81 @@ editor_text_buffer_spell_adapter_new (GtkTextBuffer      *buffer,
 }
 
 static gboolean
+scan_for_next_unchecked_cb (gsize                   offset,
+                            const CjhTextRegionRun *run,
+                            gpointer                user_data)
+{
+  ScanForUnchecked *state = user_data;
+
+  if (run->data == UNCHECKED)
+    {
+      state->offset = offset;
+      state->found = TRUE;
+      return TRUE;
+    }
+
+  return FALSE;
+}
+
+static gboolean
+scan_for_next_unchecked (CjhTextRegion *region,
+                         gsize          begin,
+                         gsize          end,
+                         gsize         *position)
+{
+  ScanForUnchecked state = {0};
+  _cjh_text_region_foreach_in_range (region, begin, end, scan_for_next_unchecked_cb, &state);
+  *position = state.offset;
+  return state.found;
+}
+
+static gboolean
 editor_text_buffer_spell_adapter_update_range (EditorTextBufferSpellAdapter *self,
-                                               gsize                         begin,
-                                               gsize                         end,
+                                               gsize                         begin_offset,
+                                               gsize                         end_offset,
                                                gint64                        deadline)
 {
+  GtkTextIter iter, begin, end;
+  gsize position;
+
   g_assert (EDITOR_IS_TEXT_BUFFER_SPELL_ADAPTER (self));
+
+  if (begin_offset == end_offset)
+    return FALSE;
+
+  if (!scan_for_next_unchecked (self->region, begin_offset, end_offset, &position))
+    return FALSE;
+
+  gtk_text_buffer_get_iter_at_offset (self->buffer, &begin, position);
+  gtk_text_buffer_get_iter_at_offset (self->buffer, &end, end_offset);
+  iter = begin;
+
+  if (!gtk_text_iter_starts_word (&iter))
+    gtk_text_iter_backward_word_start (&iter);
+
+  while (gtk_text_iter_compare (&iter, &end) < 0)
+    {
+      GtkTextIter word_end = iter;
+      char *word;
+
+      if (!gtk_text_iter_forward_word_end (&word_end))
+        break;
+
+      word = gtk_text_iter_get_slice (&iter, &word_end);
+      if (!editor_spell_checker_check_word (self->checker, word, -1))
+        gtk_text_buffer_apply_tag (self->buffer, self->tag, &iter, &word_end);
+      g_free (word);
+
+      if (!gtk_text_iter_forward_word_end (&word_end))
+        break;
+
+      iter = word_end;
+
+      if (!gtk_text_iter_backward_word_start (&iter))
+        break;
+    }
+
+  _cjh_text_region_replace (self->region, begin_offset, end_offset - begin_offset, CHECKED);
 
   return FALSE;
 }

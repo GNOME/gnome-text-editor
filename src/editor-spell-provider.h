@@ -37,12 +37,14 @@ struct _EditorSpellProviderClass
                                               const char          *language);
   EditorSpellLanguage  *(*get_language)      (EditorSpellProvider *self,
                                               const char          *language);
+  const char           *(*get_default_code)  (EditorSpellProvider *self);
 
   /*< private >*/
   gpointer _reserved[8];
 };
 
 EditorSpellProvider  *editor_spell_provider_get_default       (void);
+const char           *editor_spell_provider_get_default_code  (EditorSpellProvider *self);
 const char           *editor_spell_provider_get_display_name  (EditorSpellProvider *self);
 gboolean              editor_spell_provider_supports_language (EditorSpellProvider *self,
                                                                const char          *language);

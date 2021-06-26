@@ -199,3 +199,35 @@ editor_spell_provider_get_language (EditorSpellProvider *self,
 
   return EDITOR_SPELL_PROVIDER_GET_CLASS (self)->get_language (self, language);
 }
+
+const char *
+editor_spell_provider_get_default_code (EditorSpellProvider *self)
+{
+  const char * const *langs;
+  const char *ret;
+
+  g_return_val_if_fail (EDITOR_IS_SPELL_PROVIDER (self), NULL);
+
+  if (EDITOR_SPELL_PROVIDER_GET_CLASS (self)->get_default_code &&
+      (ret = EDITOR_SPELL_PROVIDER_GET_CLASS (self)->get_default_code (self)))
+    return ret;
+
+  langs = g_get_language_names ();
+
+  if (langs != NULL)
+    {
+      for (guint i = 0; langs[i]; i++)
+        {
+          if (editor_spell_provider_supports_language (self, langs[i]))
+            return langs[i];
+        }
+    }
+
+  if (editor_spell_provider_supports_language (self, "en_US"))
+    return "en_US";
+
+  if (editor_spell_provider_supports_language (self, "C"))
+    return "C";
+
+  return NULL;
+}

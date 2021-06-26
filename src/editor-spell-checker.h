@@ -34,5 +34,8 @@ EditorSpellProvider *editor_spell_checker_get_provider (EditorSpellChecker  *sel
 const char          *editor_spell_checker_get_language (EditorSpellChecker  *self);
 void                 editor_spell_checker_set_language (EditorSpellChecker  *self,
                                                         const char          *language);
+gboolean             editor_spell_checker_check_word   (EditorSpellChecker  *self,
+                                                        const char          *word,
+                                                        gssize               word_len);
 
 G_END_DECLS
