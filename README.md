@@ -12,3 +12,7 @@ Text Editor was built as a test application for the development of GTK 4 and Gtk
 
 Everyone has their favorite programming text editors. Text Editor is focused
 on being a great default text editor.
+
+## Try it Out!
+
+You can install our Nightly build from Flatpak using [https://nightly.gnome.org/repo/appstream/org.gnome.TextEditor.Devel.flatpakref](org.gnome.TextEditor.Devel.flatpakref).
