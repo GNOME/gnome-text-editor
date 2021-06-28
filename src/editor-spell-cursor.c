@@ -46,10 +46,52 @@ editor_spell_cursor_init (EditorSpellCursor *cursor,
   cursor->misspelled_tag = misspelled_tag;
   cursor->begin = *begin;
   cursor->end = *end;
+  cursor->exhausted = FALSE;
+
   gtk_text_iter_order (&cursor->begin, &cursor->end);
+  gtk_text_iter_backward_word_start (&cursor->begin);
+  gtk_text_iter_forward_word_end (&cursor->end);
+
   cursor->word_begin = cursor->begin;
   cursor->word_end = cursor->begin;
-  cursor->exhausted = FALSE;
+
+  /* Clear the tag for the (possibly extended) region */
+  gtk_text_buffer_remove_tag (cursor->buffer,
+                              cursor->misspelled_tag,
+                              &cursor->begin,
+                              &cursor->end);
+}
+
+static gboolean
+forward_word_end (GtkTextIter *iter)
+{
+  GtkTextIter tmp = *iter;
+
+  if (gtk_text_iter_forward_word_end (iter))
+    return TRUE;
+
+  if (gtk_text_iter_is_end (iter) &&
+      gtk_text_iter_ends_word (iter) &&
+      !gtk_text_iter_equal (&tmp, iter))
+    return TRUE;
+
+  return FALSE;
+}
+
+static gboolean
+backward_word_start (GtkTextIter *iter)
+{
+  GtkTextIter tmp = *iter;
+
+  if (gtk_text_iter_backward_word_start (iter))
+    return TRUE;
+
+  if (gtk_text_iter_is_start (iter) &&
+      gtk_text_iter_starts_word (iter) &&
+      !gtk_text_iter_equal (&tmp, iter))
+    return TRUE;
+
+  return FALSE;
 }
 
 char *
@@ -60,43 +102,15 @@ editor_spell_cursor_next_word (EditorSpellCursor *cursor)
   if (cursor->exhausted)
     return NULL;
 
-  /* If this is the initial movement, then we need to handle the
-   * case where the first word overlaps the boundary.
-   */
-  if (gtk_text_iter_equal (&cursor->word_begin, &cursor->word_end))
-    {
-      if (!gtk_text_iter_starts_word (&cursor->word_begin))
-        {
-          if (gtk_text_iter_backward_word_start (&cursor->word_begin))
-            {
-              cursor->word_end = cursor->word_begin;
-              gtk_text_iter_forward_word_end (&cursor->word_end);
-            }
-           else
-            {
-              if (!gtk_text_iter_forward_word_end (&cursor->word_end))
-                goto exhausted;
-
-              cursor->word_begin = cursor->word_end;
-              gtk_text_iter_backward_word_start (&cursor->word_begin);
-            }
-        }
-
-      /* If the word position overlaps the region, then we can return it.
-       * Otherwise we need to try to move forward (the regular flow).
-       */
-      if (gtk_text_iter_compare (&cursor->word_end, &cursor->begin) > 0)
-        return editor_spell_cursor_word (cursor);
-    }
-
-  if (!gtk_text_iter_forward_word_end (&cursor->word_end))
+  if (!forward_word_end (&cursor->word_end))
     goto exhausted;
 
   cursor->word_begin = cursor->word_end;
-  gtk_text_iter_backward_word_start (&cursor->word_begin);
 
-  if (gtk_text_iter_compare (&cursor->word_begin, &cursor->end) <= 0)
-    return editor_spell_cursor_word (cursor);
+  if (!backward_word_start (&cursor->word_begin))
+    goto exhausted;
+
+  return editor_spell_cursor_word (cursor);
 
 exhausted:
   cursor->exhausted = TRUE;

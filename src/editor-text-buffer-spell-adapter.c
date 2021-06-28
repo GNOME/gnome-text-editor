@@ -125,9 +125,6 @@ editor_text_buffer_spell_adapter_update_range (EditorTextBufferSpellAdapter *sel
 
   g_assert (EDITOR_IS_TEXT_BUFFER_SPELL_ADAPTER (self));
 
-  if (begin_offset == end_offset)
-    return FALSE;
-
   if (!scan_for_next_unchecked (self->region, begin_offset, end_offset, &position))
     return FALSE;
 
@@ -472,6 +469,8 @@ editor_text_buffer_spell_adapter_insert_text (EditorTextBufferSpellAdapter *self
   g_return_if_fail (length > 0);
 
   _cjh_text_region_insert (self->region, offset, length, UNCHECKED);
+
+  editor_text_buffer_spell_adapter_queue_update (self);
 }
 
 void
@@ -484,6 +483,14 @@ editor_text_buffer_spell_adapter_delete_range (EditorTextBufferSpellAdapter *sel
   g_return_if_fail (length > 0);
 
   _cjh_text_region_remove (self->region, offset, length);
+
+  /* Invalidate surrounding characters */
+  if (offset)
+    _cjh_text_region_replace (self->region, offset - 1, 1, UNCHECKED);
+  if (offset + length < _cjh_text_region_get_length (self->region))
+    _cjh_text_region_replace (self->region, offset, 1, UNCHECKED);
+
+  editor_text_buffer_spell_adapter_queue_update (self);
 }
 
 void
