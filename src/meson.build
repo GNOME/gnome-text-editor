@@ -33,6 +33,7 @@ editor_sources = [
   'editor-sidebar-row.c',
   'editor-signal-group.c',
   'editor-spell-checker.c',
+  'editor-spell-cursor.c',
   'editor-spell-language.c',
   'editor-spell-menu.c',
   'editor-spell-provider.c',

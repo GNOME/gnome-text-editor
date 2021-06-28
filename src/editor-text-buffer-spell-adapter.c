@@ -23,6 +23,7 @@
 #include "cjhtextregionprivate.h"
 
 #include "editor-spell-checker.h"
+#include "editor-spell-cursor.h"
 #include "editor-text-buffer-spell-adapter.h"
 
 #define UNCHECKED          GSIZE_TO_POINTER(0)
@@ -111,34 +112,16 @@ scan_for_next_unchecked (CjhTextRegion *region,
   return state.found;
 }
 
-static inline gboolean
-word_contains_no_spell_context (EditorTextBufferSpellAdapter *self,
-                                const GtkTextIter            *begin,
-                                const GtkTextIter            *end)
-{
-  GtkTextIter toggle_iter;
-
-  if (self->no_spell_check_tag == NULL)
-    return FALSE;
-
-  if (gtk_text_iter_has_tag (begin, self->no_spell_check_tag))
-    return TRUE;
-
-  toggle_iter = *begin;
-  if (!gtk_text_iter_forward_to_tag_toggle (&toggle_iter, self->no_spell_check_tag))
-    return FALSE;
-
-  return gtk_text_iter_compare (end, &toggle_iter) > 0;
-}
-
 static gboolean
 editor_text_buffer_spell_adapter_update_range (EditorTextBufferSpellAdapter *self,
                                                gsize                         begin_offset,
                                                gsize                         end_offset,
                                                gint64                        deadline)
 {
-  GtkTextIter iter, begin, end;
+  EditorSpellCursor cursor;
+  GtkTextIter begin, end;
   gsize position;
+  char *word;
 
   g_assert (EDITOR_IS_TEXT_BUFFER_SPELL_ADAPTER (self));
 
@@ -150,46 +133,18 @@ editor_text_buffer_spell_adapter_update_range (EditorTextBufferSpellAdapter *sel
 
   gtk_text_buffer_get_iter_at_offset (self->buffer, &begin, position);
   gtk_text_buffer_get_iter_at_offset (self->buffer, &end, end_offset);
-  iter = begin;
-
   gtk_text_buffer_remove_tag (self->buffer, self->tag, &begin, &end);
 
-  if (!gtk_text_iter_starts_word (&iter))
+  editor_spell_cursor_init (&cursor, &begin, &end, self->tag);
+  while ((word = editor_spell_cursor_next_word (&cursor)))
     {
-      if (gtk_text_iter_is_start (&iter))
-        gtk_text_iter_forward_word_end (&iter);
-      gtk_text_iter_backward_word_start (&iter);
-    }
-
-  while (gtk_text_iter_compare (&iter, &end) < 0)
-    {
-      GtkTextIter word_end = iter;
-      char *word;
-
-      if (!gtk_text_iter_forward_word_end (&word_end))
-        break;
-
-      /* Skip until we are out of the no-spell-check region if necessary */
-      if (word_contains_no_spell_context (self, &iter, &word_end))
+      if (!editor_spell_cursor_contains_tag (&cursor, self->no_spell_check_tag))
         {
-          if (!gtk_text_iter_ends_tag (&word_end, self->no_spell_check_tag))
-            gtk_text_iter_forward_to_tag_toggle (&word_end, self->no_spell_check_tag);
-          goto move_next_word;
+          if (!editor_spell_checker_check_word (self->checker, word, -1))
+            editor_spell_cursor_tag (&cursor);
         }
 
-      word = gtk_text_iter_get_slice (&iter, &word_end);
-      if (!editor_spell_checker_check_word (self->checker, word, -1))
-        gtk_text_buffer_apply_tag (self->buffer, self->tag, &iter, &word_end);
       g_free (word);
-
-    move_next_word:
-      if (!gtk_text_iter_forward_word_end (&word_end))
-        break;
-
-      iter = word_end;
-
-      if (!gtk_text_iter_backward_word_start (&iter))
-        break;
     }
 
   _cjh_text_region_replace (self->region, begin_offset, end_offset - begin_offset, CHECKED);
