@@ -429,8 +429,6 @@ editor_window_class_init (EditorWindowClass *klass)
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_7, GDK_ALT_MASK, "page.change", "i", 7);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_8, GDK_ALT_MASK, "page.change", "i", 8);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_9, GDK_ALT_MASK, "page.change", "i", 9);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Page_Up, GDK_CONTROL_MASK | GDK_ALT_MASK | GDK_SHIFT_MASK, "page.move-left", NULL);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Page_Down, GDK_CONTROL_MASK | GDK_ALT_MASK | GDK_SHIFT_MASK, "page.move-right", NULL);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_n, GDK_CONTROL_MASK | GDK_SHIFT_MASK, "page.move-to-new-window", NULL);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_f, GDK_CONTROL_MASK, "page.begin-search", NULL);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_h, GDK_CONTROL_MASK, "page.begin-replace", NULL);
