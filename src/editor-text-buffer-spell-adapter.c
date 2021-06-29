@@ -28,7 +28,7 @@
 
 #define UNCHECKED          GSIZE_TO_POINTER(0)
 #define CHECKED            GSIZE_TO_POINTER(1)
-#define UPDATE_DELAY_MSECS 200
+#define UPDATE_DELAY_MSECS 100
 
 typedef struct
 {
