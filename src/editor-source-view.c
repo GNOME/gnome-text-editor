@@ -73,6 +73,29 @@ on_key_pressed_cb (GtkEventControllerKey *key,
 }
 
 static void
+tweak_gutter_spacing (GtkSourceView *view)
+{
+  GtkSourceGutter *gutter;
+  GtkWidget *child;
+  guint n = 0;
+
+  g_assert (GTK_SOURCE_IS_VIEW (view));
+
+  /* Ensure we have a line gutter renderer to tweak */
+  gutter = gtk_source_view_get_gutter (view, GTK_TEXT_WINDOW_LEFT);
+  gtk_source_view_set_show_line_numbers (view, TRUE);
+
+  /* Add margin to first gutter renderer */
+  for (child = gtk_widget_get_first_child (GTK_WIDGET (gutter));
+       child != NULL;
+       child = gtk_widget_get_next_sibling (child), n++)
+    {
+      if (GTK_SOURCE_IS_GUTTER_RENDERER (child))
+        gtk_widget_set_margin_start (child, n == 0 ? 4 : 0);
+    }
+}
+
+static void
 editor_source_view_class_init (EditorSourceViewClass *klass)
 {
 }
@@ -88,4 +111,6 @@ editor_source_view_init (EditorSourceView *self)
                     G_CALLBACK (on_key_pressed_cb),
                     self);
   gtk_widget_add_controller (GTK_WIDGET (self), controller);
+
+  tweak_gutter_spacing (GTK_SOURCE_VIEW (self));
 }
