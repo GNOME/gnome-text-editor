@@ -21,6 +21,8 @@
 #include "config.h"
 
 #include "editor-source-view.h"
+#include "editor-joined-menu-private.h"
+#include "editor-spell-menu.h"
 
 struct _EditorSourceView
 {
@@ -103,7 +105,10 @@ editor_source_view_class_init (EditorSourceViewClass *klass)
 static void
 editor_source_view_init (EditorSourceView *self)
 {
+  g_autoptr(GMenuModel) spelling_menu = NULL;
+  g_autoptr(EditorJoinedMenu) joined = NULL;
   GtkEventController *controller;
+  GMenuModel *extra_menu;
 
   controller = gtk_event_controller_key_new ();
   g_signal_connect (controller,
@@ -113,4 +118,13 @@ editor_source_view_init (EditorSourceView *self)
   gtk_widget_add_controller (GTK_WIDGET (self), controller);
 
   tweak_gutter_spacing (GTK_SOURCE_VIEW (self));
+
+  joined = editor_joined_menu_new ();
+  extra_menu = gtk_text_view_get_extra_menu (GTK_TEXT_VIEW (self));
+  editor_joined_menu_append_menu (joined, extra_menu);
+
+  spelling_menu = editor_spell_menu_new ();
+  editor_joined_menu_append_menu (joined, spelling_menu);
+
+  gtk_text_view_set_extra_menu (GTK_TEXT_VIEW (self), G_MENU_MODEL (joined));
 }

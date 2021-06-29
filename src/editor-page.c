@@ -25,12 +25,10 @@
 #include <glib/gi18n.h>
 
 #include "editor-info-bar-private.h"
-#include "editor-joined-menu-private.h"
 #include "editor-page-private.h"
 #include "editor-sidebar-model-private.h"
 #include "editor-session-private.h"
 #include "editor-source-view.h"
-#include "editor-spell-menu.h"
 #include "editor-utils-private.h"
 
 enum {
@@ -581,22 +579,9 @@ editor_page_class_init (EditorPageClass *klass)
 static void
 editor_page_init (EditorPage *self)
 {
-  g_autoptr(GMenuModel) spelling_menu = NULL;
-  g_autoptr(EditorJoinedMenu) joined = NULL;
-  GMenuModel *extra_menu;
   GtkDropTarget *dest;
 
   gtk_widget_init_template (GTK_WIDGET (self));
-
-  joined = editor_joined_menu_new ();
-  extra_menu = gtk_text_view_get_extra_menu (GTK_TEXT_VIEW (self->view));
-  editor_joined_menu_append_menu (joined, extra_menu);
-
-  spelling_menu = editor_spell_menu_new ();
-  editor_joined_menu_append_menu (joined, spelling_menu);
-
-  gtk_text_view_set_extra_menu (GTK_TEXT_VIEW (self->view),
-                                G_MENU_MODEL (joined));
 
   g_object_bind_property (self, "document", self->infobar, "document", 0);
 
