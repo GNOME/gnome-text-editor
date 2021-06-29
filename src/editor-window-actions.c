@@ -405,22 +405,16 @@ editor_window_actions_move_left_cb (GtkWidget  *widget,
                                     GVariant   *param)
 {
   EditorWindow *self = (EditorWindow *)widget;
-  GtkNotebook *notebook;
   EditorPage *page;
-  gint page_num;
+  AdwTabPage *tab_page;
 
   g_assert (EDITOR_IS_WINDOW (self));
 
   if (!(page = editor_window_get_visible_page (self)))
     return;
 
-  if (!(notebook = GTK_NOTEBOOK (gtk_widget_get_ancestor (GTK_WIDGET (page), GTK_TYPE_NOTEBOOK))))
-    return;
-
-  if ((page_num = gtk_notebook_page_num (notebook, GTK_WIDGET (page))) < 0)
-    return;
-
-  gtk_notebook_reorder_child (notebook, GTK_WIDGET (page), page_num - 1);
+  tab_page = adw_tab_view_get_page (self->tab_view, GTK_WIDGET (page));
+  adw_tab_view_reorder_backward (self->tab_view, tab_page);
   _editor_page_raise (page);
 }
 
@@ -430,22 +424,16 @@ editor_window_actions_move_right_cb (GtkWidget  *widget,
                                      GVariant   *param)
 {
   EditorWindow *self = (EditorWindow *)widget;
-  GtkNotebook *notebook;
   EditorPage *page;
-  gint page_num;
+  AdwTabPage *tab_page;
 
   g_assert (EDITOR_IS_WINDOW (self));
 
   if (!(page = editor_window_get_visible_page (self)))
     return;
 
-  if (!(notebook = GTK_NOTEBOOK (gtk_widget_get_ancestor (GTK_WIDGET (page), GTK_TYPE_NOTEBOOK))))
-    return;
-
-  if ((page_num = gtk_notebook_page_num (notebook, GTK_WIDGET (page))) < 0)
-    return;
-
-  gtk_notebook_reorder_child (notebook, GTK_WIDGET (page), page_num + 1);
+  tab_page = adw_tab_view_get_page (self->tab_view, GTK_WIDGET (page));
+  adw_tab_view_reorder_forward (self->tab_view, tab_page);
   _editor_page_raise (page);
 }
 
