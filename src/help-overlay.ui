@@ -25,6 +25,30 @@
                 <property name="accelerator">&lt;primary&gt;&lt;shift&gt;n</property>
               </object>
             </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;ctrl&gt;Page_Down</property>
+                <property name="title" translatable="yes">Move to next tab</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;ctrl&gt;Page_Up</property>
+                <property name="title" translatable="yes">Move to previous tab</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;ctrl&gt;&lt;shift&gt;Page_Down</property>
+                <property name="title" translatable="yes">Reorder after next tab</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;ctrl&gt;&lt;shift&gt;Page_Up</property>
+                <property name="title" translatable="yes">Reorder before previous tab</property>
+              </object>
+            </child>
           </object>
         </child>
         <child>
@@ -219,20 +243,6 @@
               <object class="GtkShortcutsShortcut">
                 <property name="accelerator">&lt;ctrl&gt;End</property>
                 <property name="title" translatable="yes">Move to end of document</property>
-                <property name="visible">true</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="accelerator">&lt;ctrl&gt;Page_Down</property>
-                <property name="title" translatable="yes">Move to next horizontal page</property>
-                <property name="visible">true</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="accelerator">&lt;ctrl&gt;Page_Up</property>
-                <property name="title" translatable="yes">Move to previous horizontal page</property>
                 <property name="visible">true</property>
               </object>
             </child>
