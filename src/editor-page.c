@@ -334,78 +334,6 @@ editor_page_drop_target_drop (EditorPage     *self,
 }
 
 static void
-editor_page_update_top_margin (EditorPage *self)
-{
-  GtkAdjustment *adj;
-  gint top_margin;
-  gint new_top_margin;
-  gint diff;
-  gint min, nat;
-
-  g_assert (EDITOR_IS_PAGE (self));
-
-  adj = gtk_scrollable_get_vadjustment (GTK_SCROLLABLE (self->view));
-  gtk_widget_measure (GTK_WIDGET (self->search_bar),
-                      GTK_ORIENTATION_VERTICAL,
-                      -1,
-                      &min, &nat, NULL, NULL);
-
-  top_margin = gtk_text_view_get_top_margin (GTK_TEXT_VIEW (self->view));
-  if (gtk_revealer_get_reveal_child (self->search_revealer))
-    new_top_margin = 16 + min;
-  else
-    new_top_margin = 16;
-  diff = new_top_margin - top_margin;
-
-  if (new_top_margin != top_margin)
-    {
-      guint duration = gtk_revealer_get_transition_duration (self->search_revealer);
-
-      if (gtk_adjustment_get_value (adj) > 0.0)
-        duration = 0;
-
-      editor_object_animate (self->view,
-                             EDITOR_ANIMATION_EASE_OUT_CUBIC,
-                             duration,
-                             NULL,
-                             "top-margin", new_top_margin,
-                             NULL);
-    }
-
-  if (gtk_adjustment_get_value (adj) > new_top_margin)
-    gtk_adjustment_set_value (adj, gtk_adjustment_get_value (adj) + diff);
-}
-
-static void
-editor_page_search_revealer_notify_reveal_child_cb (EditorPage  *self,
-                                                    GParamSpec  *pspec,
-                                                    GtkRevealer *revealer)
-{
-  g_assert (EDITOR_IS_PAGE (self));
-  g_assert (GTK_IS_REVEALER (revealer));
-
-  editor_page_update_top_margin (self);
-}
-
-static void
-top_margin_changed_cb (EditorPage    *self,
-                       GParamSpec    *pspec,
-                       GtkSourceView *view)
-{
-  GtkSourceGutter *gutter;
-
-  g_assert (EDITOR_IS_PAGE (self));
-  g_assert (GTK_SOURCE_IS_VIEW (view));
-
-  gutter = gtk_source_view_get_gutter (view, GTK_TEXT_WINDOW_LEFT);
-
-  for (GtkWidget *child = gtk_widget_get_first_child (GTK_WIDGET (gutter));
-       child != NULL;
-       child = gtk_widget_get_next_sibling (child))
-    gtk_widget_queue_allocate (child);
-}
-
-static void
 editor_page_dispose (GObject *object)
 {
   EditorPage *self = (EditorPage *)object;
@@ -588,12 +516,6 @@ editor_page_init (EditorPage *self)
 
   g_object_bind_property (self, "document", self->infobar, "document", 0);
 
-  g_signal_connect_object (self->view,
-                            "notify::top-margin",
-                            G_CALLBACK (top_margin_changed_cb),
-                            self,
-                            G_CONNECT_SWAPPED);
-
   dest = gtk_drop_target_new (G_TYPE_FILE, GDK_ACTION_COPY);
   g_signal_connect_object (dest,
                            "drop",
@@ -601,12 +523,6 @@ editor_page_init (EditorPage *self)
                            self,
                            G_CONNECT_SWAPPED);
   gtk_widget_add_controller (GTK_WIDGET (self->view), GTK_EVENT_CONTROLLER (dest));
-
-  g_signal_connect_object (self->search_revealer,
-                           "notify::reveal-child",
-                           G_CALLBACK (editor_page_search_revealer_notify_reveal_child_cb),
-                           self,
-                           G_CONNECT_SWAPPED);
 
   _editor_page_actions_init (self);
 }
