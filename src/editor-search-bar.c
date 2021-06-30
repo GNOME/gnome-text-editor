@@ -547,7 +547,7 @@ _editor_search_bar_attach (EditorSearchBar *self,
   if ((search == NULL || g_strcmp0 (search, "") == 0) &&
       gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER (document), &begin, &end))
     {
-      g_autofree gchar *text = g_strstrip (gtk_text_iter_get_slice (&begin, &end));
+      g_autofree gchar *text = gtk_text_iter_get_slice (&begin, &end);
       gtk_editable_set_text (GTK_EDITABLE (self->search_entry), text);
     }
 
@@ -614,7 +614,6 @@ _editor_search_bar_get_can_replace (EditorSearchBar *self)
   buffer = GTK_TEXT_BUFFER (gtk_source_search_context_get_buffer (self->context));
 
   return _editor_search_bar_get_can_move (self) &&
-         g_strcmp0 (gtk_editable_get_text (GTK_EDITABLE (self->replace_entry)), "") != 0 &&
          gtk_text_buffer_get_selection_bounds (buffer, &begin, &end) &&
          gtk_source_search_context_get_occurrence_position (self->context, &begin, &end) > 0;
 }
@@ -624,8 +623,7 @@ _editor_search_bar_get_can_replace_all (EditorSearchBar *self)
 {
   g_return_val_if_fail (EDITOR_IS_SEARCH_BAR (self), FALSE);
 
-  return _editor_search_bar_get_can_move (self) &&
-         g_strcmp0 (gtk_editable_get_text (GTK_EDITABLE (self->replace_entry)), "") != 0;
+  return _editor_search_bar_get_can_move (self);
 }
 
 void
