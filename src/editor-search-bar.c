@@ -47,10 +47,14 @@ struct _EditorSearchBar
   GtkToggleButton         *replace_mode_button;
   GtkBox                  *options_box;
 
+  guint                    offset_when_shown;
+
   guint                    can_move : 1;
   guint                    can_replace : 1;
   guint                    can_replace_all : 1;
   guint                    hide_after_move : 1;
+  guint                    scroll_to_first_match : 1;
+  guint                    jump_back_on_hide : 1;
 };
 
 G_DEFINE_TYPE (EditorSearchBar, editor_search_bar, GTK_TYPE_WIDGET)
@@ -167,6 +171,7 @@ _editor_search_bar_move_next (EditorSearchBar *self,
     return;
 
   self->hide_after_move = !!hide_after_move;
+  self->jump_back_on_hide = FALSE;
 
   buffer = gtk_source_search_context_get_buffer (self->context);
   gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER (buffer), &begin, &end);
@@ -193,6 +198,7 @@ _editor_search_bar_move_previous (EditorSearchBar *self,
     return;
 
   self->hide_after_move = !!hide_after_move;
+  self->jump_back_on_hide = FALSE;
 
   buffer = gtk_source_search_context_get_buffer (self->context);
   gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER (buffer), &begin, &end);
@@ -287,6 +293,17 @@ on_notify_replace_text_cb (EditorSearchBar *self,
   g_assert (GTK_IS_ENTRY (entry));
 
   update_properties (self);
+}
+
+static void
+on_notify_search_text_cb (EditorSearchBar *self,
+                          GParamSpec      *pspec,
+                          GtkEntry        *entry)
+{
+  g_assert (EDITOR_IS_SEARCH_BAR (self));
+  g_assert (GTK_IS_ENTRY (entry));
+
+  self->scroll_to_first_match = TRUE;
 }
 
 static void
@@ -473,6 +490,12 @@ editor_search_bar_init (EditorSearchBar *self)
                            self,
                            G_CONNECT_SWAPPED);
 
+  g_signal_connect_object (self->search_entry,
+                           "notify::text",
+                           G_CALLBACK (on_notify_search_text_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+
   self->settings = gtk_source_search_settings_new ();
 
   gtk_source_search_settings_set_wrap_around (self->settings, TRUE);
@@ -519,12 +542,43 @@ _editor_search_bar_set_mode (EditorSearchBar     *self,
 }
 
 static void
+scroll_to_first_match (EditorSearchBar        *self,
+                       GtkSourceSearchContext *context)
+{
+  GtkTextIter iter, match_begin, match_end;
+  GtkTextBuffer *buffer;
+  GtkWidget *page;
+  gboolean wrapped;
+
+  g_assert (EDITOR_IS_SEARCH_BAR (self));
+  g_assert (GTK_SOURCE_IS_SEARCH_CONTEXT (context));
+
+  if (!(page = gtk_widget_get_ancestor (GTK_WIDGET (self), EDITOR_TYPE_PAGE)))
+    return;
+
+  buffer = GTK_TEXT_BUFFER (gtk_source_search_context_get_buffer (context));
+  gtk_text_buffer_get_iter_at_offset (buffer, &iter, self->offset_when_shown);
+  if (gtk_source_search_context_forward (context, &iter, &match_begin, &match_end, &wrapped))
+    {
+      gtk_text_view_scroll_to_iter (GTK_TEXT_VIEW (EDITOR_PAGE (page)->view),
+                                    &match_begin, 0.25, TRUE, 1.0, 0.5);
+      self->jump_back_on_hide = TRUE;
+    }
+
+  self->scroll_to_first_match = FALSE;
+}
+
+static void
 editor_search_bar_notify_occurrences_count_cb (EditorSearchBar        *self,
                                                GParamSpec             *pspec,
                                                GtkSourceSearchContext *context)
 {
   g_assert (EDITOR_IS_SEARCH_BAR (self));
   g_assert (GTK_SOURCE_IS_SEARCH_CONTEXT (context));
+
+  if (self->scroll_to_first_match &&
+      gtk_source_search_context_get_occurrences_count (context) > 0)
+    scroll_to_first_match (self, context);
 
   update_properties (self);
 }
@@ -543,13 +597,17 @@ void
 _editor_search_bar_attach (EditorSearchBar *self,
                            EditorDocument  *document)
 {
-  GtkTextIter begin, end;
+  GtkTextBuffer *buffer = (GtkTextBuffer *)document;
+  GtkTextIter begin, end, insert;
   const gchar *search;
 
   g_return_if_fail (EDITOR_IS_SEARCH_BAR (self));
 
   if (self->context != NULL)
     return;
+
+  gtk_text_buffer_get_iter_at_mark (buffer, &insert, gtk_text_buffer_get_insert (buffer));
+  self->offset_when_shown = gtk_text_iter_get_offset (&insert);
 
   search = gtk_editable_get_text (GTK_EDITABLE (self->search_entry));
 
@@ -583,9 +641,15 @@ _editor_search_bar_detach (EditorSearchBar *self)
 
   if (self->context != NULL)
     {
-      EditorDocument *document;
+      EditorDocument *document = EDITOR_DOCUMENT (gtk_source_search_context_get_buffer (self->context));
+      GtkWidget *page = gtk_widget_get_ancestor (GTK_WIDGET (self), EDITOR_TYPE_PAGE);
 
-      document = EDITOR_DOCUMENT (gtk_source_search_context_get_buffer (self->context));
+      if (self->jump_back_on_hide)
+        {
+          _editor_page_scroll_to_insert (EDITOR_PAGE (page));
+          g_print ("jumping back to old insert\n");
+        }
+
       g_signal_handlers_disconnect_by_func (self->context,
                                             G_CALLBACK (editor_search_bar_notify_occurrences_count_cb),
                                             self);
@@ -598,6 +662,9 @@ _editor_search_bar_detach (EditorSearchBar *self)
 
   g_cancellable_cancel (self->cancellable);
   g_clear_object (&self->cancellable);
+
+  self->hide_after_move = FALSE;
+  self->jump_back_on_hide = FALSE;
 }
 
 gboolean
