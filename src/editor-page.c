@@ -333,6 +333,46 @@ editor_page_drop_target_drop (EditorPage     *self,
   return FALSE;
 }
 
+static gboolean
+get_child_position_cb (GtkOverlay    *overlay,
+                       GtkWidget     *child,
+                       GtkAllocation *alloc,
+                       EditorPage    *self)
+{
+  GtkRequisition min, nat, map_min;
+
+  g_assert (GTK_IS_OVERLAY (overlay));
+  g_assert (GTK_IS_WIDGET (child));
+  g_assert (alloc != NULL);
+  g_assert (EDITOR_IS_PAGE (self));
+
+  if (child != GTK_WIDGET (self->search_revealer) ||
+      !gtk_widget_get_visible (GTK_WIDGET (self->map)))
+    return FALSE;
+
+  gtk_widget_get_preferred_size (child, &min, &nat);
+  gtk_widget_get_preferred_size (GTK_WIDGET (self->map), &map_min, NULL);
+
+  if (nat.width + map_min.width <= alloc->width)
+    {
+      alloc->x += alloc->width;
+      alloc->x -= map_min.width;
+      alloc->x -= nat.width;
+      alloc->width = nat.width;
+      alloc->y = 0;
+      alloc->height = min.height;
+    }
+  else
+    {
+      alloc->x = 0;
+      alloc->width -= map_min.width;
+      alloc->y = 0;
+      alloc->height = min.height;
+    }
+
+  return TRUE;
+}
+
 static void
 editor_page_dispose (GObject *object)
 {
@@ -499,6 +539,7 @@ editor_page_class_init (EditorPageClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorPage, search_bar);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, search_revealer);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, view);
+  gtk_widget_class_bind_template_callback (widget_class, get_child_position_cb);
 
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Escape, 0, "search.hide", NULL);
 
