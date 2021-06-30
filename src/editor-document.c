@@ -189,12 +189,47 @@ editor_document_changed (GtkTextBuffer *buffer)
 }
 
 static void
+editor_document_guess_content_type (EditorDocument *self)
+{
+  GtkSourceLanguageManager *manager;
+  GtkSourceLanguage *language;
+  g_autofree char *content = NULL;
+  g_autofree char *content_type = NULL;
+  g_autofree char *filename = NULL;
+  GtkTextIter begin, end;
+  GFile *file;
+  gboolean uncertain;
+
+  g_assert (EDITOR_IS_DOCUMENT (self));
+
+  /* Ignore if we already have a language */
+  if ((language = gtk_source_buffer_get_language (GTK_SOURCE_BUFFER (self))))
+    return;
+
+  /* Read the first page of data and use it to guess content-type */
+  gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (self), &begin);
+  gtk_text_buffer_get_iter_at_offset (GTK_TEXT_BUFFER (self), &end, 4095);
+  content = gtk_text_iter_get_slice (&begin, &end);
+
+  if ((file = editor_document_get_file (self)))
+    filename = g_file_get_basename (file);
+
+  content_type = g_content_type_guess (filename, (const guchar *)content, strlen (content), &uncertain);
+  manager = gtk_source_language_manager_get_default ();
+  language = gtk_source_language_manager_guess_language (manager, filename, content_type);
+
+  if (language)
+    gtk_source_buffer_set_language (GTK_SOURCE_BUFFER (self), language);
+}
+
+static void
 editor_document_insert_text (GtkTextBuffer *buffer,
                              GtkTextIter   *pos,
                              const gchar   *new_text,
                              gint           new_text_length)
 {
   EditorDocument *self = (EditorDocument *)buffer;
+  guint line;
   guint offset;
   guint length;
 
@@ -202,6 +237,7 @@ editor_document_insert_text (GtkTextBuffer *buffer,
   g_assert (pos != NULL);
   g_assert (new_text != NULL);
 
+  line = gtk_text_iter_get_line (pos);
   offset = gtk_text_iter_get_offset (pos);
 
   GTK_TEXT_BUFFER_CLASS (editor_document_parent_class)->insert_text (buffer, pos, new_text, new_text_length);
@@ -213,6 +249,9 @@ editor_document_insert_text (GtkTextBuffer *buffer,
 
   if (offset < TITLE_MAX_LEN && editor_document_get_file (self) == NULL)
     g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_TITLE]);
+
+  if (self->busy_count == 0 && line == 0 && strchr (new_text, '\n'))
+    editor_document_guess_content_type (self);
 }
 
 static void
