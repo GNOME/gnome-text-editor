@@ -343,3 +343,25 @@ editor_page_settings_provider_get_show_grid (EditorPageSettingsProvider *self,
 
   return FALSE;
 }
+
+/**
+ * editor_page_settings_provider_get_highlight_current_line:
+ * @self: a #EditorPageSettingsProvider
+ * @highlight_current_line: (out) (optional): a location to store the setting
+ *
+ * Returns: %TRUE if @highlight_current_line was set by the provider.
+ */
+gboolean
+editor_page_settings_provider_get_highlight_current_line (EditorPageSettingsProvider *self,
+                                                          gboolean                   *highlight_current_line)
+{
+  g_return_val_if_fail (EDITOR_IS_PAGE_SETTINGS_PROVIDER (self), FALSE);
+
+  if (highlight_current_line != NULL)
+    *highlight_current_line = FALSE;
+
+  if (EDITOR_PAGE_SETTINGS_PROVIDER_GET_IFACE (self)->get_highlight_current_line)
+    return EDITOR_PAGE_SETTINGS_PROVIDER_GET_IFACE (self)->get_highlight_current_line (self, highlight_current_line);
+
+  return FALSE;
+}

@@ -59,6 +59,8 @@ struct _EditorPageSettingsProviderInterface
                                                   gboolean                   *show_map);
   gboolean  (*get_show_grid)                     (EditorPageSettingsProvider *self,
                                                   gboolean                   *show_grid);
+  gboolean  (*get_highlight_current_line)        (EditorPageSettingsProvider *self,
+                                                  gboolean                   *highlight_current_line);
 };
 
 void     editor_page_settings_provider_emit_changed                      (EditorPageSettingsProvider  *self);
@@ -90,5 +92,7 @@ gboolean editor_page_settings_provider_get_show_map                      (Editor
                                                                           gboolean                    *show_map);
 gboolean editor_page_settings_provider_get_show_grid                     (EditorPageSettingsProvider  *self,
                                                                           gboolean                    *show_grid);
+gboolean editor_page_settings_provider_get_highlight_current_line        (EditorPageSettingsProvider  *self,
+                                                                          gboolean                    *highlight_current_line);
 
 G_END_DECLS

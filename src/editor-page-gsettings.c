@@ -48,6 +48,7 @@ GSETTINGS_GETTER (gboolean, boolean, use_system_font, "use-system-font")
 GSETTINGS_GETTER (gboolean, boolean, wrap_text, "wrap-text")
 GSETTINGS_GETTER (gboolean, boolean, show_map, "show-map")
 GSETTINGS_GETTER (gboolean, boolean, show_grid, "show-grid")
+GSETTINGS_GETTER (gboolean, boolean, highlight_current_line, "highlight-current-line")
 GSETTINGS_GETTER (guint, uint, right_margin_position, "right-margin-position")
 
 static gboolean
@@ -159,6 +160,7 @@ page_settings_provider_iface_init (EditorPageSettingsProviderInterface *iface)
   iface->get_wrap_text = editor_page_gsettings_get_wrap_text;
   iface->get_style_scheme = editor_page_gsettings_get_style_scheme;
   iface->get_style_variant = editor_page_gsettings_get_style_variant;
+  iface->get_highlight_current_line = editor_page_gsettings_get_highlight_current_line;
 }
 
 G_DEFINE_TYPE_WITH_CODE (EditorPageGsettings, editor_page_gsettings, G_TYPE_OBJECT,

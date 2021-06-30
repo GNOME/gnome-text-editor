@@ -46,6 +46,7 @@ struct _EditorPageSettings
   guint right_margin_position;
   guint tab_width;
 
+  guint highlight_current_line : 1;
   guint insert_spaces_instead_of_tabs : 1;
   guint show_line_numbers : 1;
   guint show_grid : 1;
@@ -60,6 +61,7 @@ enum {
   PROP_CUSTOM_FONT,
   PROP_STYLE_VARIANT,
   PROP_DOCUMENT,
+  PROP_HIGHLIGHT_CURRENT_LINE,
   PROP_INSERT_SPACES_INSTEAD_OF_TABS,
   PROP_RIGHT_MARGIN_POSITION,
   PROP_SHOW_GRID,
@@ -127,6 +129,7 @@ editor_page_settings_update (EditorPageSettings *self)
   UPDATE_SETTING (gboolean, show_grid, SHOW_GRID, cmp_boolean, (void), (gboolean));
   UPDATE_SETTING (gboolean, show_map, SHOW_MAP, cmp_boolean, (void), (gboolean));
   UPDATE_SETTING (gboolean, show_right_margin, SHOW_RIGHT_MARGIN, cmp_boolean, (void), (gboolean));
+  UPDATE_SETTING (gboolean, highlight_current_line, HIGHLIGHT_CURRENT_LINE, cmp_boolean, (void), (gboolean));
   UPDATE_SETTING (gboolean, use_system_font, USE_SYSTEM_FONT, cmp_boolean, (void), (gboolean));
   UPDATE_SETTING (gboolean, wrap_text, WRAP_TEXT, cmp_boolean, (void), (gboolean));
   UPDATE_SETTING (guint, tab_width, TAB_WIDTH, cmp_uint, (void), (guint));
@@ -261,6 +264,10 @@ editor_page_settings_get_property (GObject    *object,
       g_value_set_string (value, editor_page_settings_get_style_variant (self));
       break;
 
+    case PROP_HIGHLIGHT_CURRENT_LINE:
+      g_value_set_boolean (value, editor_page_settings_get_highlight_current_line (self));
+      break;
+
     case PROP_INSERT_SPACES_INSTEAD_OF_TABS:
       g_value_set_boolean (value, editor_page_settings_get_insert_spaces_instead_of_tabs (self));
       break;
@@ -333,6 +340,10 @@ editor_page_settings_set_property (GObject      *object,
     case PROP_STYLE_VARIANT:
       g_free (self->style_variant);
       self->style_variant = g_value_dup_string (value);
+      break;
+
+    case PROP_HIGHLIGHT_CURRENT_LINE:
+      self->highlight_current_line = g_value_get_boolean (value);
       break;
 
     case PROP_INSERT_SPACES_INSTEAD_OF_TABS:
@@ -410,6 +421,13 @@ editor_page_settings_class_init (EditorPageSettingsClass *klass)
                          "The document to be edited",
                          EDITOR_TYPE_DOCUMENT,
                          (G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
+
+  properties [PROP_HIGHLIGHT_CURRENT_LINE] =
+    g_param_spec_boolean ("highlight-current-line",
+                          "Highlight Current Line",
+                          "Highlight Current Line",
+                          FALSE,
+                          (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
   properties [PROP_INSERT_SPACES_INSTEAD_OF_TABS] =
     g_param_spec_boolean ("insert-spaces-instead-of-tabs",
@@ -595,4 +613,12 @@ editor_page_settings_get_tab_width (EditorPageSettings *self)
   g_return_val_if_fail (EDITOR_IS_PAGE_SETTINGS (self), 0);
 
   return self->tab_width;
+}
+
+gboolean
+editor_page_settings_get_highlight_current_line (EditorPageSettings *self)
+{
+  g_return_val_if_fail (EDITOR_IS_PAGE_SETTINGS (self), FALSE);
+
+  return self->highlight_current_line;
 }
