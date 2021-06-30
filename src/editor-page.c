@@ -1090,7 +1090,7 @@ _editor_page_move_next_search (EditorPage *self)
 {
   g_return_if_fail (EDITOR_IS_PAGE (self));
 
-  _editor_search_bar_move_next (self->search_bar);
+  _editor_search_bar_move_next (self->search_bar, FALSE);
 }
 
 void
@@ -1098,7 +1098,7 @@ _editor_page_move_previous_search (EditorPage *self)
 {
   g_return_if_fail (EDITOR_IS_PAGE (self));
 
-  _editor_search_bar_move_previous (self->search_bar);
+  _editor_search_bar_move_previous (self->search_bar, FALSE);
 }
 
 static void

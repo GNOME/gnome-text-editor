@@ -39,8 +39,10 @@ void     _editor_search_bar_attach              (EditorSearchBar     *self,
 void     _editor_search_bar_detach              (EditorSearchBar     *self);
 void     _editor_search_bar_set_mode            (EditorSearchBar     *self,
                                                  EditorSearchBarMode  mode);
-void     _editor_search_bar_move_next           (EditorSearchBar     *self);
-void     _editor_search_bar_move_previous       (EditorSearchBar     *self);
+void     _editor_search_bar_move_next           (EditorSearchBar     *self,
+                                                 gboolean             hide_after_move);
+void     _editor_search_bar_move_previous       (EditorSearchBar     *self,
+                                                 gboolean             hide_after_move);
 gboolean _editor_search_bar_get_can_move        (EditorSearchBar     *self);
 gboolean _editor_search_bar_get_can_replace     (EditorSearchBar     *self);
 gboolean _editor_search_bar_get_can_replace_all (EditorSearchBar     *self);

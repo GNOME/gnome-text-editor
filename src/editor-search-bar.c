@@ -50,6 +50,7 @@ struct _EditorSearchBar
   guint                    can_move : 1;
   guint                    can_replace : 1;
   guint                    can_replace_all : 1;
+  guint                    hide_after_move : 1;
 };
 
 G_DEFINE_TYPE (EditorSearchBar, editor_search_bar, GTK_TYPE_WIDGET)
@@ -117,8 +118,7 @@ editor_search_bar_search_activate_cb (EditorSearchBar *self,
   g_assert (EDITOR_IS_SEARCH_BAR (self));
   g_assert (GTK_IS_ENTRY (entry));
 
-  _editor_search_bar_move_next (self);
-  gtk_widget_activate_action (GTK_WIDGET (self), "search.hide", NULL);
+  _editor_search_bar_move_next (self, TRUE);
 }
 
 static void
@@ -148,10 +148,14 @@ editor_search_bar_move_next_forward_cb (GObject      *object,
   buffer = gtk_source_search_context_get_buffer (context);
   gtk_text_buffer_select_range (GTK_TEXT_BUFFER (buffer), &begin, &end);
   editor_search_bar_scroll_to_insert (self);
+
+  if (self->hide_after_move)
+    gtk_widget_activate_action (GTK_WIDGET (self), "search.hide", NULL);
 }
 
 void
-_editor_search_bar_move_next (EditorSearchBar *self)
+_editor_search_bar_move_next (EditorSearchBar *self,
+                              gboolean         hide_after_move)
 {
   GtkSourceBuffer *buffer;
   GtkTextIter begin;
@@ -161,6 +165,8 @@ _editor_search_bar_move_next (EditorSearchBar *self)
 
   if (self->context == NULL)
     return;
+
+  self->hide_after_move = !!hide_after_move;
 
   buffer = gtk_source_search_context_get_buffer (self->context);
   gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER (buffer), &begin, &end);
@@ -174,7 +180,8 @@ _editor_search_bar_move_next (EditorSearchBar *self)
 }
 
 void
-_editor_search_bar_move_previous (EditorSearchBar *self)
+_editor_search_bar_move_previous (EditorSearchBar *self,
+                                  gboolean         hide_after_move)
 {
   GtkSourceBuffer *buffer;
   GtkTextIter begin;
@@ -184,6 +191,8 @@ _editor_search_bar_move_previous (EditorSearchBar *self)
 
   if (self->context == NULL)
     return;
+
+  self->hide_after_move = !!hide_after_move;
 
   buffer = gtk_source_search_context_get_buffer (self->context);
   gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER (buffer), &begin, &end);
@@ -391,7 +400,7 @@ editor_search_bar_class_init (EditorSearchBarClass *klass)
                                 G_CALLBACK (_editor_search_bar_move_next),
                                 NULL, NULL,
                                 NULL,
-                                G_TYPE_NONE, 0);
+                                G_TYPE_NONE, 1, G_TYPE_BOOLEAN);
 
   signals [MOVE_PREVIOUS_SEARCH] =
     g_signal_new_class_handler ("move-previous-search",
@@ -400,7 +409,7 @@ editor_search_bar_class_init (EditorSearchBarClass *klass)
                                 G_CALLBACK (_editor_search_bar_move_previous),
                                 NULL, NULL,
                                 NULL,
-                                G_TYPE_NONE, 0);
+                                G_TYPE_NONE, 1, G_TYPE_BOOLEAN);
 
   signals [HIDE_SEARCH] =
     g_signal_new_class_handler ("hide-search",
@@ -412,14 +421,14 @@ editor_search_bar_class_init (EditorSearchBarClass *klass)
                                 G_TYPE_NONE, 0);
 
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Escape, 0, "search.hide", NULL);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_g, GDK_CONTROL_MASK|GDK_SHIFT_MASK, "search.move-previous-search", 0);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_g, GDK_CONTROL_MASK, "search.move-next-search", 0);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Down, 0, "search.move-next-search", 0);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Up, 0, "search.move-previous-search", 0);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Return, 0, "search.move-next-search", 0);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_KP_Enter, 0, "search.move-next-search", 0);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Return, GDK_SHIFT_MASK, "search.move-previous-search", 0);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_KP_Enter, GDK_SHIFT_MASK, "search.move-previous-search", 0);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_g, GDK_CONTROL_MASK|GDK_SHIFT_MASK, "search.move-previous-search", NULL);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_g, GDK_CONTROL_MASK, "search.move-next-search", NULL);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Down, 0, "search.move-next-search", NULL);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Up, 0, "search.move-previous-search", NULL);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Return, 0, "search.move-next-search", NULL);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_KP_Enter, 0, "search.move-next-search", NULL);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Return, GDK_SHIFT_MASK, "search.move-previous-search", NULL);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_KP_Enter, GDK_SHIFT_MASK, "search.move-previous-search", NULL);
 
   properties [PROP_MODE] =
     g_param_spec_enum ("mode",

@@ -90,7 +90,7 @@ editor_page_actions_replace_one (GtkWidget  *widget,
     {
       _editor_search_bar_replace (self->search_bar);
       _editor_page_scroll_to_insert (self);
-      _editor_search_bar_move_next (self->search_bar);
+      _editor_search_bar_move_next (self->search_bar, FALSE);
     }
 }
 
