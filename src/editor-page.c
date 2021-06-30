@@ -993,12 +993,7 @@ _editor_page_scroll_to_insert (EditorPage *self)
   g_return_if_fail (EDITOR_IS_PAGE (self));
 
   mark = gtk_text_buffer_get_insert (GTK_TEXT_BUFFER (self->document));
-  gtk_text_view_scroll_to_mark (GTK_TEXT_VIEW (self->view),
-                                mark,
-                                0.25,
-                                TRUE,
-                                0.75,
-                                0.5);
+  gtk_text_view_scroll_mark_onscreen (GTK_TEXT_VIEW (self->view), mark);
 }
 
 void
