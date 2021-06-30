@@ -167,6 +167,14 @@ editor_language_dialog_entry_activate_cb (EditorLanguageDialog *self,
 }
 
 static void
+win_close_cb (GtkWidget  *widget,
+              const char *action_name,
+              GVariant   *param)
+{
+  gtk_window_close (GTK_WINDOW (widget));
+}
+
+static void
 editor_language_dialog_entry_changed_cb (EditorLanguageDialog *self,
                                          GtkEntry             *entry)
 {
@@ -274,6 +282,10 @@ editor_language_dialog_class_init (EditorLanguageDialogClass *klass)
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-language-dialog.ui");
   gtk_widget_class_bind_template_child (widget_class, EditorLanguageDialog, list_box);
   gtk_widget_class_bind_template_child (widget_class, EditorLanguageDialog, search_entry);
+
+  gtk_widget_class_install_action (widget_class, "win.close", NULL, win_close_cb);
+
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Escape, 0, "win.close", NULL);
 }
 
 static void
