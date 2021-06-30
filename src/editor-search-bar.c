@@ -306,6 +306,36 @@ on_notify_search_text_cb (EditorSearchBar *self,
   self->scroll_to_first_match = TRUE;
 }
 
+static gboolean
+on_search_key_pressed_cb (GtkEventControllerKey *key,
+                          guint                  keyval,
+                          guint                  keycode,
+                          GdkModifierType        state,
+                          EditorSearchBar       *self)
+{
+  g_assert (GTK_IS_EVENT_CONTROLLER_KEY (key));
+  g_assert (EDITOR_IS_SEARCH_BAR (self));
+
+  if (state == 0)
+    {
+      switch (keyval)
+        {
+        case GDK_KEY_Up:
+          _editor_search_bar_move_next (self, FALSE);
+          return TRUE;
+
+        case GDK_KEY_Down:
+          _editor_search_bar_move_previous (self, FALSE);
+          return TRUE;
+
+        default:
+          break;
+        }
+    }
+
+  return FALSE;
+}
+
 static void
 editor_search_bar_dispose (GObject *object)
 {
@@ -409,6 +439,7 @@ editor_search_bar_class_init (EditorSearchBarClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, search_entry);
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, word_button);
   gtk_widget_class_bind_template_callback (widget_class, editor_search_bar_search_activate_cb);
+  gtk_widget_class_bind_template_callback (widget_class, on_search_key_pressed_cb);
 
   signals [MOVE_NEXT_SEARCH] =
     g_signal_new_class_handler ("move-next-search",
