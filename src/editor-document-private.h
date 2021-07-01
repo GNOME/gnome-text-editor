@@ -74,5 +74,7 @@ void                     _editor_document_guess_language_async    (EditorDocumen
 gboolean                 _editor_document_guess_language_finish   (EditorDocument           *self,
                                                                    GAsyncResult             *result,
                                                                    GError                  **error);
+void                     _editor_document_attach_actions          (EditorDocument           *self,
+                                                                   GtkWidget                *widget);
 
 G_END_DECLS

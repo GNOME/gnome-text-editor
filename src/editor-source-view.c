@@ -20,6 +20,7 @@
 
 #include "config.h"
 
+#include "editor-document-private.h"
 #include "editor-source-view.h"
 #include "editor-joined-menu-private.h"
 #include "editor-spell-menu.h"
@@ -98,6 +99,21 @@ tweak_gutter_spacing (GtkSourceView *view)
 }
 
 static void
+on_notify_buffer_cb (EditorSourceView *self,
+                     GParamSpec       *pspec,
+                     gpointer          unused)
+{
+  GtkTextBuffer *buffer;
+
+  g_assert (EDITOR_IS_SOURCE_VIEW (self));
+
+  buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (self));
+
+  if (EDITOR_IS_DOCUMENT (buffer))
+    _editor_document_attach_actions (EDITOR_DOCUMENT (buffer), GTK_WIDGET (self));
+}
+
+static void
 editor_source_view_class_init (EditorSourceViewClass *klass)
 {
 }
@@ -109,6 +125,11 @@ editor_source_view_init (EditorSourceView *self)
   g_autoptr(EditorJoinedMenu) joined = NULL;
   GtkEventController *controller;
   GMenuModel *extra_menu;
+
+  g_signal_connect (self,
+                    "notify::buffer",
+                    G_CALLBACK (on_notify_buffer_cb),
+                    NULL);
 
   controller = gtk_event_controller_key_new ();
   g_signal_connect (controller,
