@@ -95,6 +95,7 @@ enum {
 };
 
 static GParamSpec *properties [N_PROPS];
+static GSettings *shared_settings;
 
 static void
 load_free (Load *load)
@@ -367,10 +368,17 @@ editor_document_constructed (GObject *object)
 {
   EditorDocument *self = (EditorDocument *)object;
 
+  if (shared_settings == NULL)
+    shared_settings = g_settings_new ("org.gnome.TextEditor");
+
   G_OBJECT_CLASS (editor_document_parent_class)->constructed (object);
 
   self->spell_adapter = editor_text_buffer_spell_adapter_new (GTK_TEXT_BUFFER (self),
                                                               self->spell_checker);
+  g_settings_bind (shared_settings, "spellcheck",
+                   self->spell_adapter, "enabled",
+                   G_SETTINGS_BIND_GET);
+
   self->line_spacing_tag = gtk_text_buffer_create_tag (GTK_TEXT_BUFFER (self),
                                                        NULL,
                                                        "pixels-below-lines", 2,

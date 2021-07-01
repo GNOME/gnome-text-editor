@@ -602,6 +602,7 @@ _editor_window_actions_init (EditorWindow *self)
     "indent-style",
     "show-line-numbers",
     "show-right-margin",
+    "spellcheck",
     "tab-width",
     "wrap-text",
   };
