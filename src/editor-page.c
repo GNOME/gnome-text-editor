@@ -22,6 +22,7 @@
 
 #include "config.h"
 
+#include <adwaita.h>
 #include <glib/gi18n.h>
 
 #include "editor-info-bar-private.h"
@@ -651,14 +652,15 @@ _editor_page_get_window (EditorPage *self)
 gboolean
 editor_page_is_active (EditorPage *self)
 {
-  GtkWidget *notebook;
-  gint current_page;
+  AdwTabView *tab_view;
+  AdwTabPage *tab_page;
 
   g_return_val_if_fail (EDITOR_IS_PAGE (self), FALSE);
 
-  return ((notebook = gtk_widget_get_ancestor (GTK_WIDGET (self), GTK_TYPE_NOTEBOOK)) &&
-          (-1 != (current_page = gtk_notebook_get_current_page (GTK_NOTEBOOK (notebook)))) &&
-          (GTK_WIDGET (self) == gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook), current_page)));
+  tab_view = ADW_TAB_VIEW (gtk_widget_get_ancestor (GTK_WIDGET (self), ADW_TYPE_TAB_VIEW));
+  tab_page = adw_tab_view_get_page (tab_view, GTK_WIDGET (self));
+
+  return tab_page == adw_tab_view_get_selected_page (tab_view);
 }
 
 gchar *
@@ -706,22 +708,17 @@ void
 _editor_page_raise (EditorPage *self)
 {
   g_autofree gchar *title = NULL;
-  GtkWidget *notebook;
-  gint page_num;
+  AdwTabView *tab_view;
+  AdwTabPage *tab_page;
 
   g_return_if_fail (EDITOR_IS_PAGE (self));
 
   title = editor_page_dup_title (self);
   g_debug ("Attempting to raise page: \"%s\"", title);
 
-  if (!(notebook = gtk_widget_get_ancestor (GTK_WIDGET (self), GTK_TYPE_NOTEBOOK)))
-    return;
-
-  if (-1 == (page_num = gtk_notebook_page_num (GTK_NOTEBOOK (notebook), GTK_WIDGET (self))))
-    return;
-
-  if (page_num != gtk_notebook_get_current_page (GTK_NOTEBOOK (notebook)))
-    gtk_notebook_set_current_page (GTK_NOTEBOOK (notebook), page_num);
+  tab_view = ADW_TAB_VIEW (gtk_widget_get_ancestor (GTK_WIDGET (self), ADW_TYPE_TAB_VIEW));
+  tab_page = adw_tab_view_get_page (tab_view, GTK_WIDGET (self));
+  adw_tab_view_set_selected_page (tab_view, tab_page);
 }
 
 static void
@@ -961,14 +958,15 @@ editor_page_get_can_discard (EditorPage *self)
 gint
 _editor_page_position (EditorPage *self)
 {
-  GtkWidget *notebook;
+  AdwTabView *tab_view;
+  AdwTabPage *tab_page;
 
   g_return_val_if_fail (EDITOR_IS_PAGE (self), -1);
 
-  if ((notebook = gtk_widget_get_ancestor (GTK_WIDGET (self), GTK_TYPE_NOTEBOOK)))
-    return gtk_notebook_page_num (GTK_NOTEBOOK (notebook), GTK_WIDGET (self));
+  tab_view = ADW_TAB_VIEW (gtk_widget_get_ancestor (GTK_WIDGET (self), ADW_TYPE_TAB_VIEW));
+  tab_page = adw_tab_view_get_page (tab_view, GTK_WIDGET (self));
 
-  return -1;
+  return adw_tab_view_get_page_position (tab_view, tab_page);
 }
 
 gboolean
