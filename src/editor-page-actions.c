@@ -50,7 +50,7 @@ editor_page_actions_search_hide (GtkWidget  *widget,
   g_assert (EDITOR_IS_PAGE (self));
 
   _editor_page_hide_search (self);
-  gtk_widget_grab_focus (GTK_WIDGET (self));
+  editor_page_grab_focus (self);
 }
 
 static void

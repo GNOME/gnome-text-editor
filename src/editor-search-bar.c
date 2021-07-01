@@ -274,14 +274,12 @@ boolean_to_mode (GBinding     *binding,
   return TRUE;
 }
 
-static gboolean
-editor_search_bar_grab_focus (GtkWidget *widget)
+void
+_editor_search_bar_grab_focus (EditorSearchBar *self)
 {
-  EditorSearchBar *self = (EditorSearchBar *)widget;
+  g_return_if_fail (EDITOR_IS_SEARCH_BAR (self));
 
-  g_assert (EDITOR_IS_SEARCH_BAR (self));
-
-  return gtk_widget_grab_focus (GTK_WIDGET (self->search_entry));
+  gtk_widget_grab_focus (GTK_WIDGET (self->search_entry));
 }
 
 static void
@@ -421,8 +419,6 @@ editor_search_bar_class_init (EditorSearchBarClass *klass)
   object_class->finalize = editor_search_bar_finalize;
   object_class->get_property = editor_search_bar_get_property;
   object_class->set_property = editor_search_bar_set_property;
-
-  widget_class->grab_focus = editor_search_bar_grab_focus;
 
   gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
   gtk_widget_class_set_css_name (widget_class, "searchbar");

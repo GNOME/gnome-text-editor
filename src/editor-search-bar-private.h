@@ -48,5 +48,6 @@ gboolean _editor_search_bar_get_can_replace     (EditorSearchBar     *self);
 gboolean _editor_search_bar_get_can_replace_all (EditorSearchBar     *self);
 void     _editor_search_bar_replace             (EditorSearchBar     *self);
 void     _editor_search_bar_replace_all         (EditorSearchBar     *self);
+void     _editor_search_bar_grab_focus          (EditorSearchBar     *self);
 
 G_END_DECLS

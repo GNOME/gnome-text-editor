@@ -189,7 +189,8 @@ editor_sidebar_hide_cb (GtkWidget  *widget,
   if ((window = gtk_widget_get_ancestor (widget, EDITOR_TYPE_WINDOW)))
     {
       EditorPage *page = editor_window_get_visible_page (EDITOR_WINDOW (window));
-      gtk_widget_grab_focus (GTK_WIDGET (page));
+
+      editor_page_grab_focus (page);
     }
 }
 
