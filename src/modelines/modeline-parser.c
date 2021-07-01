@@ -285,7 +285,7 @@ parse_vim_modeline (gchar           *s,
 		}
 		else if (strcmp (key->str, "wrap") == 0)
 		{
-			options->wrap_mode = neg ? GTK_WRAP_NONE : GTK_WRAP_WORD;
+			options->wrap_mode = neg ? GTK_WRAP_NONE : GTK_WRAP_WORD_CHAR;
 
 			options->set |= MODELINE_SET_WRAP_MODE;
 		}
@@ -405,7 +405,7 @@ parse_emacs_modeline (gchar           *s,
 		else if (strcmp (key->str, "autowrap") == 0)
 		{
 			intval = strcmp (value->str, "nil") != 0;
-			options->wrap_mode = intval ? GTK_WRAP_WORD : GTK_WRAP_NONE;
+			options->wrap_mode = intval ? GTK_WRAP_WORD_CHAR : GTK_WRAP_NONE;
 
 			options->set |= MODELINE_SET_WRAP_MODE;
 		}
@@ -503,7 +503,7 @@ parse_kate_modeline (gchar           *s,
 			         strcmp (value->str, "true") == 0 ||
 			         strcmp (value->str, "1") == 0;
 
-			options->wrap_mode = intval ? GTK_WRAP_WORD : GTK_WRAP_NONE;
+			options->wrap_mode = intval ? GTK_WRAP_WORD_CHAR : GTK_WRAP_NONE;
 
 			options->set |= MODELINE_SET_WRAP_MODE;
 		}

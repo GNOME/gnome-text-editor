@@ -293,7 +293,7 @@ _editor_gboolean_to_wrap_mode (GBinding     *binding,
                                gpointer      user_data)
 {
   if (g_value_get_boolean (from_value))
-    g_value_set_enum (to_value, GTK_WRAP_WORD);
+    g_value_set_enum (to_value, GTK_WRAP_WORD_CHAR);
   else
     g_value_set_enum (to_value, GTK_WRAP_NONE);
   return TRUE;
