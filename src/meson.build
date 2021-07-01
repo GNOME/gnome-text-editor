@@ -36,6 +36,7 @@ editor_sources = [
   'editor-spell-checker.c',
   'editor-spell-cursor.c',
   'editor-spell-language.c',
+  'editor-spell-language-info.c',
   'editor-spell-menu.c',
   'editor-spell-provider.c',
   'editor-text-buffer-spell-adapter.c',

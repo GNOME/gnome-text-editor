@@ -22,6 +22,10 @@
 
 #include <glib/gi18n.h>
 #include <enchant.h>
+#include <locale.h>
+#include <unicode/uloc.h>
+
+#include "editor-spell-language-info.h"
 
 #include "editor-enchant-spell-language.h"
 #include "editor-enchant-spell-provider.h"
@@ -44,6 +48,34 @@ get_broker (void)
     broker = enchant_broker_init ();
 
   return broker;
+}
+
+static char *
+get_display_name (const char *code)
+{
+  const char * const *names = g_get_language_names ();
+
+  for (guint i = 0; names[i]; i++)
+    {
+      UChar ret[256];
+      UErrorCode status = U_ZERO_ERROR;
+
+      ret[0] = 0;
+      uloc_getDisplayName (code, names[i], ret, sizeof ret, &status);
+      ret[sizeof ret-1] = 0;
+
+      if (status == U_ZERO_ERROR && ret[0] != 0)
+        {
+          GString *str = g_string_new (NULL);
+
+          for (guint j = 0; ret[j]; j++)
+            g_string_append_unichar (str, ret[j]);
+
+          return g_string_free (str, FALSE);
+        }
+    }
+
+  return NULL;
 }
 
 /**
@@ -80,18 +112,19 @@ list_languages_cb (const char * const  lang_tag,
                    const char * const  provider_file,
                    void               *user_data)
 {
-  GArray *ar = user_data;
-  char *code = g_strdup (lang_tag);
-  g_array_append_val (ar, code);
+  GPtrArray *ar = user_data;
+  char *name = get_display_name (lang_tag);
+  g_ptr_array_add (ar, editor_spell_language_info_new (name, lang_tag));
+  g_free (name);
 }
 
-static char **
+static GPtrArray *
 editor_enchant_spell_provider_list_languages (EditorSpellProvider *provider)
 {
   EnchantBroker *broker = get_broker ();
-  GArray *ar = g_array_new (TRUE, FALSE, sizeof (char *));
+  GPtrArray *ar = g_ptr_array_new_with_free_func (g_object_unref);
   enchant_broker_list_dicts (broker, list_languages_cb, ar);
-  return (char **)(gpointer)g_array_free (ar, FALSE);
+  return ar;
 }
 
 static EditorSpellLanguage *

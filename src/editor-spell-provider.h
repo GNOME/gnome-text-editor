@@ -32,24 +32,24 @@ struct _EditorSpellProviderClass
 {
   GObjectClass parent_class;
 
-  char                **(*list_languages)    (EditorSpellProvider *self);
-  gboolean              (*supports_language) (EditorSpellProvider *self,
-                                              const char          *language);
-  EditorSpellLanguage  *(*get_language)      (EditorSpellProvider *self,
-                                              const char          *language);
-  const char           *(*get_default_code)  (EditorSpellProvider *self);
+  GPtrArray           *(*list_languages)    (EditorSpellProvider *self);
+  gboolean             (*supports_language) (EditorSpellProvider *self,
+                                             const char          *language);
+  EditorSpellLanguage *(*get_language)      (EditorSpellProvider *self,
+                                             const char          *language);
+  const char          *(*get_default_code)  (EditorSpellProvider *self);
 
   /*< private >*/
   gpointer _reserved[8];
 };
 
-EditorSpellProvider  *editor_spell_provider_get_default       (void);
-const char           *editor_spell_provider_get_default_code  (EditorSpellProvider *self);
-const char           *editor_spell_provider_get_display_name  (EditorSpellProvider *self);
-gboolean              editor_spell_provider_supports_language (EditorSpellProvider *self,
-                                                               const char          *language);
-char                **editor_spell_provider_list_languages    (EditorSpellProvider *self);
-EditorSpellLanguage  *editor_spell_provider_get_language      (EditorSpellProvider *self,
-                                                               const char          *language);
+EditorSpellProvider *editor_spell_provider_get_default       (void);
+const char          *editor_spell_provider_get_default_code  (EditorSpellProvider *self);
+const char          *editor_spell_provider_get_display_name  (EditorSpellProvider *self);
+gboolean             editor_spell_provider_supports_language (EditorSpellProvider *self,
+                                                              const char          *language);
+GPtrArray           *editor_spell_provider_list_languages    (EditorSpellProvider *self);
+EditorSpellLanguage *editor_spell_provider_get_language      (EditorSpellProvider *self,
+                                                              const char          *language);
 
 G_END_DECLS

@@ -33,6 +33,7 @@ libgtk_dep = dependency('gtk4', version: gtk_req)
 libgtksourceview_dep = dependency('gtksourceview-5', version: gtksourceview_req)
 libadwaita_dep = dependency('libadwaita-1')
 libenchant_dep = dependency('enchant-2', version: enchant_req)
+libicu_dep = dependency('icu-uc')
 
 # Specify minimum library versions
 glib_major = glib_req_version.split('.')[0].to_int()

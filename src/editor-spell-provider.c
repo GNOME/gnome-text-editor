@@ -170,9 +170,10 @@ editor_spell_provider_supports_language (EditorSpellProvider *self,
  *
  * Gets a list of the languages supported by the provider.
  *
- * Returns: (transfer full) (array zero-terminated=1): an array of language codes
+ * Returns: (transfer container) (element-type EditorSpellLanguageInfo): an array of
+ *   #EditorSpellLanguageInfo.
  */
-char **
+GPtrArray *
 editor_spell_provider_list_languages (EditorSpellProvider *self)
 {
   g_return_val_if_fail (EDITOR_IS_SPELL_PROVIDER (self), NULL);
