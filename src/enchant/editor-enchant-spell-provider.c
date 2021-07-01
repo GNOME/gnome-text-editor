@@ -61,8 +61,8 @@ get_display_name (const char *code)
       UErrorCode status = U_ZERO_ERROR;
 
       ret[0] = 0;
-      uloc_getDisplayName (code, names[i], ret, sizeof ret, &status);
-      ret[sizeof ret-1] = 0;
+      uloc_getDisplayName (code, names[i], ret, G_N_ELEMENTS (ret), &status);
+      ret[G_N_ELEMENTS (ret)-1] = 0;
 
       if (status == U_ZERO_ERROR && ret[0] != 0)
         {
