@@ -27,6 +27,7 @@
 struct _EditorEnchantSpellLanguage
 {
   EditorSpellLanguage parent_instance;
+  PangoLanguage *language;
   EnchantDict *native;
 };
 
@@ -94,6 +95,79 @@ editor_enchant_spell_language_list_corrections (EditorSpellLanguage *language,
   return g_steal_pointer (&ret);
 }
 
+static char **
+editor_enchant_spell_language_split (EditorEnchantSpellLanguage *self,
+                                     const char                 *words)
+{
+  PangoLogAttr *attrs;
+  GArray *ar;
+  gsize n_chars;
+
+  g_assert (EDITOR_IS_ENCHANT_SPELL_LANGUAGE (self));
+
+  if (words == NULL || self->language == NULL)
+    return NULL;
+
+  /* We don't care about splitting obnoxious stuff */
+  if ((n_chars = g_utf8_strlen (words, -1)) > 1024)
+    return NULL;
+
+  attrs = g_newa (PangoLogAttr, n_chars + 1);
+  pango_get_log_attrs (words, -1, -1, self->language, attrs, n_chars + 1);
+
+  ar = g_array_new (TRUE, FALSE, sizeof (char*));
+
+  for (gsize i = 0; i < n_chars + 1; i++)
+    {
+      if (attrs[i].is_word_start)
+        {
+          for (gsize j = i + 1; j < n_chars + 1; j++)
+            {
+              if (attrs[j].is_word_end)
+                {
+                  char *substr = g_utf8_substring (words, i, j);
+                  g_array_append_val (ar, substr);
+                  i = j;
+                  break;
+                }
+            }
+        }
+    }
+
+  return (char **)(gpointer)g_array_free (ar, FALSE);
+}
+
+static void
+editor_enchant_spell_language_add_all_to_session (EditorEnchantSpellLanguage *self,
+                                                  const char * const         *words)
+{
+  g_assert (EDITOR_IS_ENCHANT_SPELL_LANGUAGE (self));
+
+  if (words == NULL || words[0] == NULL)
+    return;
+
+  for (guint i = 0; words[i]; i++)
+    enchant_dict_add_to_session (self->native, words[i], -1);
+}
+
+static void
+editor_enchant_spell_language_constructed (GObject *object)
+{
+  EditorEnchantSpellLanguage *self = (EditorEnchantSpellLanguage *)object;
+  g_auto(GStrv) split = NULL;
+  const char *code;
+
+  g_assert (EDITOR_IS_ENCHANT_SPELL_LANGUAGE (self));
+
+  G_OBJECT_CLASS (editor_enchant_spell_language_parent_class)->constructed (object);
+
+  code = editor_spell_language_get_code (EDITOR_SPELL_LANGUAGE (self));
+  self->language = pango_language_from_string (code);
+
+  if ((split = editor_enchant_spell_language_split (self, g_get_real_name ())))
+    editor_enchant_spell_language_add_all_to_session (self, (const char * const *)split);
+}
+
 static void
 editor_enchant_spell_language_finalize (GObject *object)
 {
@@ -149,6 +223,7 @@ editor_enchant_spell_language_class_init (EditorEnchantSpellLanguageClass *klass
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
   EditorSpellLanguageClass *spell_language_class = EDITOR_SPELL_LANGUAGE_CLASS (klass);
 
+  object_class->constructed = editor_enchant_spell_language_constructed;
   object_class->finalize = editor_enchant_spell_language_finalize;
   object_class->get_property = editor_enchant_spell_language_get_property;
   object_class->set_property = editor_enchant_spell_language_set_property;
