@@ -36,6 +36,7 @@ gboolean        editor_page_get_can_save        (EditorPage     *self);
 gboolean        editor_page_get_is_modified     (EditorPage     *self);
 gboolean        editor_page_is_active           (EditorPage     *self);
 gboolean        editor_page_is_draft            (EditorPage     *self);
+void            editor_page_grab_focus          (EditorPage     *self);
 gchar          *editor_page_dup_title           (EditorPage     *self);
 gchar          *editor_page_dup_subtitle        (EditorPage     *self);
 gchar          *editor_page_dup_position_label  (EditorPage     *self);

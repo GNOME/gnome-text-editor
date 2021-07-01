@@ -301,18 +301,6 @@ editor_page_constructed (GObject *object)
 }
 
 static gboolean
-editor_page_grab_focus (GtkWidget *widget)
-{
-  EditorPage *self = (EditorPage *)widget;
-
-  g_assert (EDITOR_IS_PAGE (self));
-
-  _editor_page_raise (self);
-
-  return gtk_widget_grab_focus (GTK_WIDGET (self->view));
-}
-
-static gboolean
 editor_page_drop_target_drop (EditorPage     *self,
                               const GValue   *value,
                               gdouble         x,
@@ -472,8 +460,6 @@ editor_page_class_init (EditorPageClass *klass)
   object_class->finalize = editor_page_finalize;
   object_class->get_property = editor_page_get_property;
   object_class->set_property = editor_page_set_property;
-
-  widget_class->grab_focus = editor_page_grab_focus;
 
   properties [PROP_BUSY] =
     g_param_spec_boolean ("busy",
@@ -1158,4 +1144,13 @@ _editor_page_discard_changes (EditorPage *self)
 
   _editor_page_raise (self);
   _editor_page_discard_changes_async (self, NULL, NULL, NULL);
+}
+
+void
+editor_page_grab_focus (EditorPage *self)
+{
+  g_return_if_fail (EDITOR_IS_PAGE (self));
+
+  _editor_page_raise (self);
+  gtk_widget_grab_focus (GTK_WIDGET (self->view));
 }
