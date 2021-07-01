@@ -219,6 +219,13 @@ editor_spell_provider_get_default_code (EditorSpellProvider *self)
     {
       for (guint i = 0; langs[i]; i++)
         {
+          /* Skip past things like "thing.utf8" since we'll
+           * prefer to just have "thing" as it ensures we're
+           * more likely to get code matches elsewhere.
+           */
+          if (strchr (langs[i], '.') != NULL)
+            continue;
+
           if (editor_spell_provider_supports_language (self, langs[i]))
             return langs[i];
         }
