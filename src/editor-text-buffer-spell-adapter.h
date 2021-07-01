@@ -44,5 +44,8 @@ void                          editor_text_buffer_spell_adapter_delete_range (Edi
                                                                              guint                         len);
 void                          editor_text_buffer_spell_adapter_cursor_moved (EditorTextBufferSpellAdapter *self,
                                                                              guint                         position);
+const char                   *editor_text_buffer_spell_adapter_get_language (EditorTextBufferSpellAdapter *self);
+void                          editor_text_buffer_spell_adapter_set_language (EditorTextBufferSpellAdapter *self,
+                                                                             const char                   *language);
 
 G_END_DECLS

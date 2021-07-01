@@ -24,6 +24,7 @@
 
 #include "editor-spell-checker.h"
 #include "editor-spell-cursor.h"
+#include "editor-spell-language.h"
 #include "editor-text-buffer-spell-adapter.h"
 
 #define UNCHECKED          GSIZE_TO_POINTER(0)
@@ -65,6 +66,7 @@ enum {
   PROP_0,
   PROP_BUFFER,
   PROP_CHECKER,
+  PROP_LANGUAGE,
   N_PROPS
 };
 
@@ -369,6 +371,10 @@ editor_text_buffer_spell_adapter_get_property (GObject    *object,
       g_value_set_object (value, editor_text_buffer_spell_adapter_get_checker (self));
       break;
 
+    case PROP_LANGUAGE:
+      g_value_set_string (value, editor_text_buffer_spell_adapter_get_language (self));
+      break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
     }
@@ -390,6 +396,10 @@ editor_text_buffer_spell_adapter_set_property (GObject      *object,
 
     case PROP_CHECKER:
       editor_text_buffer_spell_adapter_set_checker (self, g_value_get_object (value));
+      break;
+
+    case PROP_LANGUAGE:
+      editor_text_buffer_spell_adapter_set_language (self, g_value_get_string (value));
       break;
 
     default:
@@ -421,6 +431,13 @@ editor_text_buffer_spell_adapter_class_init (EditorTextBufferSpellAdapterClass *
                          EDITOR_TYPE_SPELL_CHECKER,
                          (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
+  properties [PROP_LANGUAGE] =
+    g_param_spec_string ("language",
+                         "Language",
+                         "The language code such as en_US",
+                         NULL,
+                         (G_PARAM_READWRITE | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_STRINGS));
+
   g_object_class_install_properties (object_class, N_PROPS, properties);
 }
 
@@ -428,6 +445,7 @@ static void
 editor_text_buffer_spell_adapter_init (EditorTextBufferSpellAdapter *self)
 {
   self->region = _cjh_text_region_new (NULL, NULL);
+  self->enabled = TRUE;
 }
 
 EditorSpellChecker *
@@ -461,6 +479,7 @@ editor_text_buffer_spell_adapter_set_checker (EditorTextBufferSpellAdapter *self
       editor_text_buffer_spell_adapter_queue_update (self);
 
       g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_CHECKER]);
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_LANGUAGE]);
     }
 }
 
@@ -522,4 +541,36 @@ editor_text_buffer_spell_adapter_cursor_moved (EditorTextBufferSpellAdapter *sel
 
   invalidate_surrounding (self, self->cursor_position);
   self->cursor_position = position;
+}
+
+const char *
+editor_text_buffer_spell_adapter_get_language (EditorTextBufferSpellAdapter *self)
+{
+  g_return_val_if_fail (EDITOR_IS_TEXT_BUFFER_SPELL_ADAPTER (self), NULL);
+
+  return self->checker ? editor_spell_checker_get_language (self->checker) : NULL;
+}
+
+void
+editor_text_buffer_spell_adapter_set_language (EditorTextBufferSpellAdapter *self,
+                                               const char                   *language)
+{
+  g_return_if_fail (EDITOR_IS_TEXT_BUFFER_SPELL_ADAPTER (self));
+
+  if (self->checker == NULL && language == NULL)
+    return;
+
+  if (self->checker == NULL)
+    {
+      self->checker = editor_spell_checker_new (NULL, language);
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_CHECKER]);
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_LANGUAGE]);
+    }
+  else if (g_strcmp0 (language, editor_text_buffer_spell_adapter_get_language (self)) != 0)
+    {
+      editor_spell_checker_set_language (self->checker, language);
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_LANGUAGE]);
+    }
+
+  editor_text_buffer_spell_adapter_invalidate_all (self);
 }
