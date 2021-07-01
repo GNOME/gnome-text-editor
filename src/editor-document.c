@@ -1787,6 +1787,7 @@ void
 _editor_document_attach_actions (EditorDocument *self,
                                  GtkWidget      *widget)
 {
+  g_autoptr(GPropertyAction) check = NULL;
   g_autoptr(GPropertyAction) language = NULL;
   g_autoptr(GSimpleActionGroup) group = NULL;
 
@@ -1794,8 +1795,12 @@ _editor_document_attach_actions (EditorDocument *self,
   g_return_if_fail (GTK_IS_WIDGET (widget));
 
   group = g_simple_action_group_new ();
+
   language = g_property_action_new ("language", self->spell_adapter, "language");
   g_action_map_add_action (G_ACTION_MAP (group), G_ACTION (language));
+
+  check = g_property_action_new ("enabled", self->spell_adapter, "enabled");
+  g_action_map_add_action (G_ACTION_MAP (group), G_ACTION (check));
 
   gtk_widget_insert_action_group (widget, "spelling", G_ACTION_GROUP (group));
 }

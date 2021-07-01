@@ -66,6 +66,7 @@ enum {
   PROP_0,
   PROP_BUFFER,
   PROP_CHECKER,
+  PROP_ENABLED,
   PROP_LANGUAGE,
   N_PROPS
 };
@@ -331,6 +332,31 @@ editor_text_buffer_spell_adapter_set_buffer (EditorTextBufferSpellAdapter *self,
 }
 
 static void
+editor_text_buffer_spell_adapter_set_enabled (EditorTextBufferSpellAdapter *self,
+                                              gboolean                      enabled)
+{
+  g_assert (EDITOR_IS_TEXT_BUFFER_SPELL_ADAPTER (self));
+
+  enabled = !!enabled;
+
+  if (self->enabled != enabled)
+    {
+      GtkTextIter begin, end;
+
+      self->enabled = enabled;
+
+      if (self->buffer && self->tag && !self->enabled)
+        {
+          gtk_text_buffer_get_bounds (self->buffer, &begin, &end);
+          gtk_text_buffer_remove_tag (self->buffer, self->tag, &begin, &end);
+        }
+
+      editor_text_buffer_spell_adapter_invalidate_all (self);
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_ENABLED]);
+    }
+}
+
+static void
 editor_text_buffer_spell_adapter_finalize (GObject *object)
 {
   EditorTextBufferSpellAdapter *self = (EditorTextBufferSpellAdapter *)object;
@@ -371,6 +397,10 @@ editor_text_buffer_spell_adapter_get_property (GObject    *object,
       g_value_set_object (value, editor_text_buffer_spell_adapter_get_checker (self));
       break;
 
+    case PROP_ENABLED:
+      g_value_set_boolean (value, self->enabled);
+      break;
+
     case PROP_LANGUAGE:
       g_value_set_string (value, editor_text_buffer_spell_adapter_get_language (self));
       break;
@@ -396,6 +426,10 @@ editor_text_buffer_spell_adapter_set_property (GObject      *object,
 
     case PROP_CHECKER:
       editor_text_buffer_spell_adapter_set_checker (self, g_value_get_object (value));
+      break;
+
+    case PROP_ENABLED:
+      editor_text_buffer_spell_adapter_set_enabled (self, g_value_get_boolean (value));
       break;
 
     case PROP_LANGUAGE:
@@ -430,6 +464,13 @@ editor_text_buffer_spell_adapter_class_init (EditorTextBufferSpellAdapterClass *
                          "Checker",
                          EDITOR_TYPE_SPELL_CHECKER,
                          (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+
+  properties [PROP_ENABLED] =
+    g_param_spec_boolean ("enabled",
+                          "Enabled",
+                          "If spellcheck is enabled",
+                          TRUE,
+                          (G_PARAM_READWRITE | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_STRINGS));
 
   properties [PROP_LANGUAGE] =
     g_param_spec_string ("language",
