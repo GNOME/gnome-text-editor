@@ -42,7 +42,7 @@ populate_languages (GMenu *menu)
       const char *code = editor_spell_language_info_get_code (info);
       g_autoptr(GMenuItem) item = g_menu_item_new (name, NULL);
 
-      g_menu_item_set_action_and_target (item, "spell.language", "s", code);
+      g_menu_item_set_action_and_target (item, "spelling.language", "s", code);
       g_menu_append_item (menu, item);
     }
 }
