@@ -20,6 +20,8 @@
 
 #include "config.h"
 
+#include <string.h>
+
 #include "editor-spell-checker.h"
 #include "editor-spell-language.h"
 #include "editor-spell-provider.h"
@@ -238,6 +240,21 @@ editor_spell_checker_get_provider (EditorSpellChecker *self)
   return self->provider;
 }
 
+static inline gboolean
+word_is_number (const char *word,
+                gssize      word_len)
+{
+  g_assert (word_len > 0);
+
+  for (gssize i = 0; i < word_len; i++)
+    {
+      if (word[i] < '0' || word[i] > '9')
+        return FALSE;
+    }
+
+  return TRUE;
+}
+
 gboolean
 editor_spell_checker_check_word (EditorSpellChecker *self,
                                  const char         *word,
@@ -249,6 +266,12 @@ editor_spell_checker_check_word (EditorSpellChecker *self,
     return FALSE;
 
   if (self->language == NULL)
+    return TRUE;
+
+  if (word_len < 0)
+    word_len = strlen (word);
+
+  if (word_is_number (word, word_len))
     return TRUE;
 
   return editor_spell_language_contains_word (self->language, word, word_len);
