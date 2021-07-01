@@ -38,7 +38,7 @@ populate_languages (GMenu *menu)
   for (guint i = 0; i < infos->len; i++)
     {
       EditorSpellLanguageInfo *info = g_ptr_array_index (infos, i);
-      g_autofree char *name = g_markup_escape_text (editor_spell_language_info_get_name (info), -1);
+      const char *name = editor_spell_language_info_get_name (info);
       const char *code = editor_spell_language_info_get_code (info);
       g_autoptr(GMenuItem) item = g_menu_item_new (name, NULL);
 
