@@ -22,7 +22,30 @@
 
 #include <glib/gi18n.h>
 
+#include "editor-spell-language-info.h"
 #include "editor-spell-menu.h"
+#include "editor-spell-provider.h"
+
+static void
+populate_languages (GMenu *menu)
+{
+  EditorSpellProvider *provider = editor_spell_provider_get_default ();
+  g_autoptr(GPtrArray) infos = editor_spell_provider_list_languages (provider);
+
+  if (infos == NULL)
+    return;
+
+  for (guint i = 0; i < infos->len; i++)
+    {
+      EditorSpellLanguageInfo *info = g_ptr_array_index (infos, i);
+      g_autofree char *name = g_markup_escape_text (editor_spell_language_info_get_name (info), -1);
+      const char *code = editor_spell_language_info_get_code (info);
+      g_autoptr(GMenuItem) item = g_menu_item_new (name, NULL);
+
+      g_menu_item_set_action_and_target (item, "spell.language", "s", code);
+      g_menu_append_item (menu, item);
+    }
+}
 
 GMenuModel *
 editor_spell_menu_new (void)
@@ -45,8 +68,10 @@ editor_spell_menu_new (void)
   g_menu_append_item (corrections_section, add_item);
   g_menu_append_item (corrections_section, ignore_item);
   g_menu_append_section (menu, NULL, G_MENU_MODEL (corrections_section));
-  g_menu_append_item (menu, languages_item);
   g_menu_append_item (menu, check_item);
+  g_menu_append_item (menu, languages_item);
+
+  populate_languages (languages_menu);
 
   g_object_set_data_full (G_OBJECT (menu),
                           "LANGUAGES_MENU",
