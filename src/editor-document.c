@@ -1812,3 +1812,28 @@ _editor_document_attach_actions (EditorDocument *self,
 
   gtk_widget_insert_action_group (widget, "spelling", G_ACTION_GROUP (group));
 }
+
+gboolean
+_editor_document_check_spelling (EditorDocument *self,
+                                 const char     *word)
+{
+  g_return_val_if_fail (EDITOR_IS_DOCUMENT (self), FALSE);
+
+  if (self->spell_checker != NULL)
+    return editor_spell_checker_check_word (self->spell_checker, word, -1);
+
+  return TRUE;
+}
+
+char **
+_editor_document_list_corrections (EditorDocument *self,
+                                   const char     *word)
+{
+  g_return_val_if_fail (EDITOR_IS_DOCUMENT (self), NULL);
+  g_return_val_if_fail (word != NULL, NULL);
+
+  if (self->spell_checker == NULL)
+    return NULL;
+
+  return editor_spell_checker_list_corrections (self->spell_checker, word);
+}

@@ -276,3 +276,16 @@ editor_spell_checker_check_word (EditorSpellChecker *self,
 
   return editor_spell_language_contains_word (self->language, word, word_len);
 }
+
+char **
+editor_spell_checker_list_corrections (EditorSpellChecker *self,
+                                       const char         *word)
+{
+  g_return_val_if_fail (EDITOR_IS_SPELL_CHECKER (self), NULL);
+  g_return_val_if_fail (word != NULL, NULL);
+
+  if (self->language == NULL)
+    return NULL;
+
+  return editor_spell_language_list_corrections (self->language, word, -1);
+}

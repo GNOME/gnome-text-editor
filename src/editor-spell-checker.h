@@ -28,14 +28,16 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (EditorSpellChecker, editor_spell_checker, EDITOR, SPELL_CHECKER, GObject)
 
-EditorSpellChecker  *editor_spell_checker_new          (EditorSpellProvider *provider,
-                                                        const char          *language);
-EditorSpellProvider *editor_spell_checker_get_provider (EditorSpellChecker  *self);
-const char          *editor_spell_checker_get_language (EditorSpellChecker  *self);
-void                 editor_spell_checker_set_language (EditorSpellChecker  *self,
-                                                        const char          *language);
-gboolean             editor_spell_checker_check_word   (EditorSpellChecker  *self,
-                                                        const char          *word,
-                                                        gssize               word_len);
+EditorSpellChecker   *editor_spell_checker_new              (EditorSpellProvider *provider,
+                                                             const char          *language);
+EditorSpellProvider  *editor_spell_checker_get_provider     (EditorSpellChecker  *self);
+const char           *editor_spell_checker_get_language     (EditorSpellChecker  *self);
+void                  editor_spell_checker_set_language     (EditorSpellChecker  *self,
+                                                             const char          *language);
+gboolean              editor_spell_checker_check_word       (EditorSpellChecker  *self,
+                                                             const char          *word,
+                                                             gssize               word_len);
+char                **editor_spell_checker_list_corrections (EditorSpellChecker  *self,
+                                                             const char          *word);
 
 G_END_DECLS
