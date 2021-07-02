@@ -26,6 +26,8 @@
 #include "editor-spell-menu.h"
 #include "editor-spell-provider.h"
 
+#define MAX_CORRECTIONS 5
+
 static void
 populate_languages (GMenu *menu)
 {
@@ -84,4 +86,30 @@ editor_spell_menu_new (void)
                           g_object_unref);
 
   return G_MENU_MODEL (g_steal_pointer (&menu));
+}
+
+void
+editor_spell_menu_set_corrections (GMenuModel         *menu,
+                                   const char * const *words)
+{
+  GMenu *corrections_menu;
+
+  g_return_if_fail (G_IS_MENU_MODEL (menu));
+
+  if (!(corrections_menu = g_object_get_data (menu, "CORRECTIONS_MENU")))
+    g_return_if_reached ();
+
+  while (g_menu_model_get_n_items (G_MENU_MODEL (corrections_menu)))
+    g_menu_remove (corrections_menu, 0);
+
+  if (words == NULL)
+    return;
+
+  for (guint i = 0; i < MAX_CORRECTIONS && words[i]; i++)
+    {
+      g_autoptr(GMenuItem) item = g_menu_item_new (words[i], NULL);
+
+      g_menu_item_set_action_and_target (item, "spelling.correct", "s", words[i]);
+      g_menu_append_item (corrections_menu, item);
+    }
 }
