@@ -305,10 +305,18 @@ editor_window_actions_open_response_cb (EditorWindow         *self,
 
   if (response_id == GTK_RESPONSE_ACCEPT)
     {
-      g_autoptr(GFile) file = gtk_file_chooser_get_file (GTK_FILE_CHOOSER (native));
+      g_autoptr(GListModel) files = gtk_file_chooser_get_files (GTK_FILE_CHOOSER (native));
+      guint i = 0;
+      GFile *file = NULL;
       const GtkSourceEncoding *encoding = _editor_file_chooser_get_encoding (GTK_FILE_CHOOSER (native));
 
-      editor_session_open (EDITOR_SESSION_DEFAULT, self, file, encoding);
+      g_assert (g_list_model_get_item_type (files) == G_TYPE_FILE);
+
+      while ((file = G_FILE (g_list_model_get_object (files, i++))))
+        {
+          editor_session_open (EDITOR_SESSION_DEFAULT, self, file, encoding);
+          g_object_unref (file);
+        }
     }
 
   gtk_native_dialog_destroy (GTK_NATIVE_DIALOG (native));
@@ -365,6 +373,8 @@ editor_window_actions_open_cb (GtkWidget  *widget,
 #endif
 
   _editor_file_chooser_add_encodings (GTK_FILE_CHOOSER (native));
+
+  gtk_file_chooser_set_select_multiple (GTK_FILE_CHOOSER (native), TRUE);
 
   g_signal_connect_object (native,
                            "response",
