@@ -96,7 +96,7 @@ editor_spell_menu_set_corrections (GMenuModel         *menu,
 
   g_return_if_fail (G_IS_MENU_MODEL (menu));
 
-  if (!(corrections_menu = g_object_get_data (menu, "CORRECTIONS_MENU")))
+  if (!(corrections_menu = g_object_get_data (G_OBJECT (menu), "CORRECTIONS_MENU")))
     g_return_if_reached ();
 
   while (g_menu_model_get_n_items (G_MENU_MODEL (corrections_menu)))
