@@ -22,6 +22,7 @@
 
 #include "cjhtextregionprivate.h"
 
+#include "editor-document.h"
 #include "editor-spell-checker.h"
 #include "editor-spell-cursor.h"
 #include "editor-spell-language.h"
@@ -142,6 +143,10 @@ editor_text_buffer_spell_adapter_update_range (EditorTextBufferSpellAdapter *sel
 
   if (!scan_for_next_unchecked (self->region, begin_offset, end_offset, &position))
     return FALSE;
+
+  /* Ignore while we are loading or saving */
+  if (editor_document_get_busy (EDITOR_DOCUMENT (self->buffer)))
+    return TRUE;
 
   gtk_text_buffer_get_iter_at_mark (self->buffer, &insert,
                                     gtk_text_buffer_get_insert (self->buffer));
