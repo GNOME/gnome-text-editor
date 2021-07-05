@@ -30,6 +30,7 @@
 #define UNCHECKED          GSIZE_TO_POINTER(0)
 #define CHECKED            GSIZE_TO_POINTER(1)
 #define UPDATE_DELAY_MSECS 100
+#define UPDATE_QUANTA_USEC (G_USEC_PER_SEC/1000L*2) /* 2 msec */
 
 typedef struct
 {
@@ -133,6 +134,8 @@ editor_text_buffer_spell_adapter_update_range (EditorTextBufferSpellAdapter *sel
   EditorSpellCursor cursor;
   GtkTextIter begin, end, insert;
   gsize position;
+  gboolean ret = FALSE;
+  guint checked = 0;
   char *word;
 
   g_assert (EDITOR_IS_TEXT_BUFFER_SPELL_ADAPTER (self));
@@ -149,6 +152,8 @@ editor_text_buffer_spell_adapter_update_range (EditorTextBufferSpellAdapter *sel
   editor_spell_cursor_init (&cursor, &begin, &end, self->tag);
   while ((word = editor_spell_cursor_next_word (&cursor)))
     {
+      checked++;
+
       if (!editor_spell_cursor_contains_tag (&cursor, self->no_spell_check_tag) &&
           !contains_iter (&cursor.word_begin, &cursor.word_end, &insert))
         {
@@ -157,11 +162,19 @@ editor_text_buffer_spell_adapter_update_range (EditorTextBufferSpellAdapter *sel
         }
 
       g_free (word);
+
+      /* Check deadline every five words */
+      if (checked % 5 == 0 && deadline < g_get_monotonic_time ())
+        {
+          end_offset = MAX (begin_offset, gtk_text_iter_get_offset (&cursor.word_end));
+          ret = TRUE;
+          break;
+        }
     }
 
   _cjh_text_region_replace (self->region, begin_offset, end_offset - begin_offset, CHECKED);
 
-  return FALSE;
+  return ret;
 }
 
 static gboolean
@@ -173,7 +186,7 @@ editor_text_buffer_spell_adapter_update (EditorTextBufferSpellAdapter *self)
 
   g_assert (EDITOR_IS_TEXT_BUFFER_SPELL_ADAPTER (self));
 
-  deadline = g_get_monotonic_time () + (G_USEC_PER_SEC/1000L);
+  deadline = g_get_monotonic_time () + UPDATE_QUANTA_USEC;
   length = _cjh_text_region_get_length (self->region);
   has_more = editor_text_buffer_spell_adapter_update_range (self, 0, length, deadline);
 
