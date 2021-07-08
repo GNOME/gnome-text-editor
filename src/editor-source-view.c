@@ -202,6 +202,7 @@ editor_source_view_init (EditorSourceView *self)
 {
   g_autoptr(EditorJoinedMenu) joined = NULL;
   g_autoptr(GMenu) gsv_section = NULL;
+  g_autoptr(GMenu) spell_section = NULL;
   GtkEventController *controller;
   GMenuModel *extra_menu;
 
@@ -229,12 +230,15 @@ editor_source_view_init (EditorSourceView *self)
 
   joined = editor_joined_menu_new ();
   gsv_section = g_menu_new ();
+  spell_section = g_menu_new ();
+
   extra_menu = gtk_text_view_get_extra_menu (GTK_TEXT_VIEW (self));
   g_menu_append_section (gsv_section, NULL, extra_menu);
   editor_joined_menu_append_menu (joined, G_MENU_MODEL (gsv_section));
 
   self->spelling_menu = editor_spell_menu_new ();
-  editor_joined_menu_append_menu (joined, self->spelling_menu);
+  g_menu_append_section (spell_section, NULL, G_MENU_MODEL (self->spelling_menu));
+  editor_joined_menu_append_menu (joined, G_MENU_MODEL (spell_section));
 
   gtk_text_view_set_extra_menu (GTK_TEXT_VIEW (self), G_MENU_MODEL (joined));
 }
