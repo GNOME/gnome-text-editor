@@ -201,6 +201,7 @@ static void
 editor_source_view_init (EditorSourceView *self)
 {
   g_autoptr(EditorJoinedMenu) joined = NULL;
+  g_autoptr(GMenu) gsv_section = NULL;
   GtkEventController *controller;
   GMenuModel *extra_menu;
 
@@ -227,8 +228,10 @@ editor_source_view_init (EditorSourceView *self)
   tweak_gutter_spacing (GTK_SOURCE_VIEW (self));
 
   joined = editor_joined_menu_new ();
+  gsv_section = g_menu_new ();
   extra_menu = gtk_text_view_get_extra_menu (GTK_TEXT_VIEW (self));
-  editor_joined_menu_append_menu (joined, extra_menu);
+  g_menu_append_section (gsv_section, NULL, extra_menu);
+  editor_joined_menu_append_menu (joined, G_MENU_MODEL (gsv_section));
 
   self->spelling_menu = editor_spell_menu_new ();
   editor_joined_menu_append_menu (joined, self->spelling_menu);
