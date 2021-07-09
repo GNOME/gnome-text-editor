@@ -27,8 +27,6 @@ G_BEGIN_DECLS
 GMenuModel *editor_spell_menu_new             (void);
 void        editor_spell_menu_set_language    (GMenuModel          *menu,
                                                EditorSpellLanguage *language);
-void        editor_spell_menu_set_word        (GMenuModel          *menu,
-                                               const char          *word);
 void        editor_spell_menu_set_corrections (GMenuModel          *menu,
                                                const char * const  *words);
 
