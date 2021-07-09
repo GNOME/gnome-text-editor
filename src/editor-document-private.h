@@ -80,5 +80,7 @@ gboolean                  _editor_document_check_spelling          (EditorDocume
                                                                     const char               *word);
 char                    **_editor_document_list_corrections        (EditorDocument           *self,
                                                                     const char               *word);
+void                      _editor_document_add_spelling_word       (EditorDocument           *self,
+                                                                    const char               *word);
 
 G_END_DECLS

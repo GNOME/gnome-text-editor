@@ -39,5 +39,7 @@ gboolean              editor_spell_checker_check_word       (EditorSpellChecker 
                                                              gssize               word_len);
 char                **editor_spell_checker_list_corrections (EditorSpellChecker  *self,
                                                              const char          *word);
+void                  editor_spell_checker_add_word         (EditorSpellChecker  *self,
+                                                             const char          *word);
 
 G_END_DECLS

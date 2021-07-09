@@ -289,3 +289,14 @@ editor_spell_checker_list_corrections (EditorSpellChecker *self,
 
   return editor_spell_language_list_corrections (self->language, word, -1);
 }
+
+void
+editor_spell_checker_add_word (EditorSpellChecker *self,
+                               const char         *word)
+{
+  g_return_if_fail (EDITOR_IS_SPELL_CHECKER (self));
+  g_return_if_fail (word != NULL);
+
+  if (self->language != NULL)
+    editor_spell_language_add_word (self->language, word);
+}

@@ -1837,3 +1837,13 @@ _editor_document_list_corrections (EditorDocument *self,
 
   return editor_spell_checker_list_corrections (self->spell_checker, word);
 }
+
+void
+_editor_document_add_spelling_word (EditorDocument *self,
+                                    const char     *word)
+{
+  g_return_if_fail (EDITOR_IS_DOCUMENT (self));
+
+  if (self->spell_checker != NULL)
+    editor_spell_checker_add_word (self->spell_checker, word);
+}
