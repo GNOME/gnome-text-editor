@@ -29,6 +29,7 @@ struct _EditorSourceView
 {
   GtkSourceView parent_instance;
   GMenuModel *spelling_menu;
+  char *spelling_word;
 };
 
 G_DEFINE_TYPE (EditorSourceView, editor_source_view, GTK_SOURCE_TYPE_VIEW)
@@ -107,7 +108,12 @@ on_click_pressed_cb (GtkGestureClick  *click,
                      EditorSourceView *self)
 {
   GdkEventSequence *sequence;
+  g_auto(GStrv) corrections = NULL;
+  g_autofree char *word = NULL;
+  GtkTextBuffer *buffer;
   GdkEvent *event;
+  GtkTextIter iter, begin, end;
+  int buf_x, buf_y;
 
   g_assert (EDITOR_IS_SOURCE_VIEW (self));
   g_assert (GTK_IS_GESTURE_CLICK (click));
@@ -115,53 +121,50 @@ on_click_pressed_cb (GtkGestureClick  *click,
   sequence = gtk_gesture_single_get_current_sequence (GTK_GESTURE_SINGLE (click));
   event = gtk_gesture_get_last_event (GTK_GESTURE (click), sequence);
 
-  if (n_press == 1 && gdk_event_triggers_context_menu (event))
+  if (n_press != 1 || !gdk_event_triggers_context_menu (event))
+    goto cleanup;
+
+  /* Move the cursor position to where the click occurred so that
+   * the context menu will be useful for the click location.
+   */
+  buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (self));
+  if (gtk_text_buffer_get_selection_bounds (buffer, &begin, &end))
+    goto cleanup;
+
+  gtk_text_view_window_to_buffer_coords (GTK_TEXT_VIEW (self),
+                                         GTK_TEXT_WINDOW_WIDGET,
+                                         x, y, &buf_x, &buf_y);
+  gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (self), &iter, buf_x, buf_y);
+  gtk_text_buffer_select_range (buffer, &iter, &iter);
+
+  /* Get the word under the cursor */
+  gtk_text_buffer_get_iter_at_mark (buffer, &iter, gtk_text_buffer_get_insert (buffer));
+  begin = iter;
+  if (!gtk_text_iter_starts_word (&begin))
+    gtk_text_iter_backward_word_start (&begin);
+  end = begin;
+  if (!gtk_text_iter_ends_word (&end))
+    gtk_text_iter_forward_word_end (&end);
+  if (!gtk_text_iter_equal (&begin, &end) &&
+      gtk_text_iter_compare (&begin, &iter) <= 0 &&
+      gtk_text_iter_compare (&iter, &end) <= 0)
     {
-      g_autofree char *word = NULL;
-      GtkTextBuffer *buffer;
-      GtkTextIter iter, begin, end;
-      int buf_x, buf_y;
+      word = gtk_text_iter_get_slice (&begin, &end);
 
-      editor_spell_menu_set_corrections (self->spelling_menu, NULL);
-
-      /* Move the cursor position to where the click occurred so that
-       * the context menu will be useful for the click location.
-       */
-      buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (self));
-      if (gtk_text_buffer_get_selection_bounds (buffer, &begin, &end))
-        return;
-
-      gtk_text_view_window_to_buffer_coords (GTK_TEXT_VIEW (self),
-                                             GTK_TEXT_WINDOW_WIDGET,
-                                             x, y, &buf_x, &buf_y);
-      gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (self), &iter, buf_x, buf_y);
-      gtk_text_buffer_select_range (buffer, &iter, &iter);
-
-      /* Get the word under the cursor */
-      gtk_text_buffer_get_iter_at_mark (buffer, &iter, gtk_text_buffer_get_insert (buffer));
-      begin = iter;
-      if (!gtk_text_iter_starts_word (&begin))
-        gtk_text_iter_backward_word_start (&begin);
-      end = begin;
-      if (!gtk_text_iter_ends_word (&end))
-        gtk_text_iter_forward_word_end (&end);
-      if (!gtk_text_iter_equal (&begin, &end) &&
-          gtk_text_iter_compare (&begin, &iter) <= 0 &&
-          gtk_text_iter_compare (&iter, &end) <= 0)
-        {
-          word = gtk_text_iter_get_slice (&begin, &end);
-
-          if (!_editor_document_check_spelling (EDITOR_DOCUMENT (buffer), word))
-            {
-              g_auto(GStrv) corrections = _editor_document_list_corrections (EDITOR_DOCUMENT (buffer), word);
-#if 0
-              gtk_text_buffer_select_range (buffer, &begin, &end);
-#endif
-              editor_spell_menu_set_corrections (self->spelling_menu,
-                                                 (const char * const *)corrections);
-            }
-        }
+      if (!_editor_document_check_spelling (EDITOR_DOCUMENT (buffer), word))
+        corrections = _editor_document_list_corrections (EDITOR_DOCUMENT (buffer), word);
+      else
+        g_clear_pointer (&word, g_free);
     }
+
+cleanup:
+  g_free (self->spelling_word);
+  self->spelling_word = g_steal_pointer (&word);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self),
+                                 "spelling.add",
+                                 self->spelling_word != NULL);
+  editor_spell_menu_set_corrections (self->spelling_menu,
+                                     (const char * const *)corrections);
 }
 
 static void
@@ -180,11 +183,31 @@ on_notify_buffer_cb (EditorSourceView *self,
 }
 
 static void
+editor_source_view_action_spelling_add (GtkWidget  *widget,
+                                        const char *action_name,
+                                        GVariant   *param)
+{
+  EditorSourceView *self = (EditorSourceView *)widget;
+  GtkTextBuffer *buffer;
+
+  g_assert (EDITOR_IS_SOURCE_VIEW (self));
+
+  buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (self));
+
+  if (EDITOR_IS_DOCUMENT (buffer))
+    {
+      g_debug ("Adding “%s” to dictionary\n", self->spelling_word);
+      _editor_document_add_spelling_word (EDITOR_DOCUMENT (buffer), self->spelling_word);
+    }
+}
+
+static void
 editor_source_view_finalize (GObject *object)
 {
   EditorSourceView *self = (EditorSourceView *)object;
 
   g_clear_object (&self->spelling_menu);
+  g_clear_pointer (&self->spelling_word, g_free);
 
   G_OBJECT_CLASS (editor_source_view_parent_class)->finalize (object);
 }
@@ -193,8 +216,11 @@ static void
 editor_source_view_class_init (EditorSourceViewClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
+  GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
   object_class->finalize = editor_source_view_finalize;
+
+  gtk_widget_class_install_action (widget_class, "spelling.add", NULL, editor_source_view_action_spelling_add);
 }
 
 static void
@@ -205,6 +231,8 @@ editor_source_view_init (EditorSourceView *self)
   g_autoptr(GMenu) spell_section = NULL;
   GtkEventController *controller;
   GMenuModel *extra_menu;
+
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "spelling.add", FALSE);
 
   g_signal_connect (self,
                     "notify::buffer",
