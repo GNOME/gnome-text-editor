@@ -20,46 +20,132 @@
 
 #include "config.h"
 
+#include "cjhtextregionprivate.h"
 #include "editor-spell-cursor.h"
 
-static char *
-editor_spell_cursor_word (EditorSpellCursor *cursor)
-{
-  g_assert (cursor != NULL);
-  g_assert (!cursor->exhausted);
+#define RUN_UNCHECKED NULL
 
-  return gtk_text_iter_get_slice (&cursor->word_begin, &cursor->word_end);
+typedef struct
+{
+  CjhTextRegion *region;
+  GtkTextBuffer *buffer;
+  gssize pos;
+} RegionIter;
+
+typedef struct
+{
+  GtkTextBuffer *buffer;
+  GtkTextTag *tag;
+  GtkTextIter pos;
+} TagIter;
+
+typedef struct
+{
+  GtkTextBuffer *buffer;
+  GtkTextIter word_begin;
+  GtkTextIter word_end;
+} WordIter;
+
+struct _EditorSpellCursor
+{
+  RegionIter region;
+  TagIter tag;
+  WordIter word;
+};
+
+static void
+region_iter_init (RegionIter    *self,
+                  GtkTextBuffer *buffer,
+                  CjhTextRegion *region)
+{
+  self->region = region;
+  self->buffer = buffer;
+  self->pos = -1;
 }
 
-void
-editor_spell_cursor_init (EditorSpellCursor *cursor,
-                          const GtkTextIter *begin,
-                          const GtkTextIter *end,
-                          GtkTextTag        *misspelled_tag)
+static gboolean
+region_iter_next_cb (gsize                   position,
+                     const CjhTextRegionRun *run,
+                     gpointer                user_data)
 {
-  g_return_if_fail (cursor != NULL);
-  g_return_if_fail (begin != NULL);
-  g_return_if_fail (end != NULL);
-  g_return_if_fail (gtk_text_iter_get_buffer (begin) == gtk_text_iter_get_buffer (end));
+  if (run->data == RUN_UNCHECKED)
+    {
+      gsize *pos = user_data;
+      *pos = position;
+      return TRUE;
+    }
 
-  cursor->buffer = gtk_text_iter_get_buffer (begin);
-  cursor->misspelled_tag = misspelled_tag;
-  cursor->begin = *begin;
-  cursor->end = *end;
-  cursor->exhausted = FALSE;
+  return FALSE;
+}
 
-  gtk_text_iter_order (&cursor->begin, &cursor->end);
-  gtk_text_iter_backward_word_start (&cursor->begin);
-  gtk_text_iter_forward_word_end (&cursor->end);
+static gboolean
+region_iter_next (RegionIter  *self,
+                  GtkTextIter *iter)
+{
+  gsize pos, new_pos;
 
-  cursor->word_begin = cursor->begin;
-  cursor->word_end = cursor->begin;
+  if (self->pos >= (gssize)_cjh_text_region_get_length (self->region))
+    {
+      gtk_text_buffer_get_end_iter (self->buffer, iter);
+      return FALSE;
+    }
 
-  /* Clear the tag for the (possibly extended) region */
-  gtk_text_buffer_remove_tag (cursor->buffer,
-                              cursor->misspelled_tag,
-                              &cursor->begin,
-                              &cursor->end);
+  if (self->pos < 0)
+    pos = 0;
+  else
+    pos = self->pos;
+
+  _cjh_text_region_foreach_in_range (self->region,
+                                     pos,
+                                     _cjh_text_region_get_length (self->region),
+                                     region_iter_next_cb,
+                                     &new_pos);
+
+  pos = MAX (pos, new_pos);
+  gtk_text_buffer_get_iter_at_offset (self->buffer, iter, pos);
+  self->pos = pos;
+
+  return TRUE;
+}
+
+static void
+region_iter_seek (RegionIter        *self,
+                  const GtkTextIter *iter)
+{
+  /* Move to position past the word */
+  self->pos = gtk_text_iter_get_offset (iter) + 1;
+}
+
+static void
+tag_iter_init (TagIter       *self,
+               GtkTextBuffer *buffer,
+               GtkTextTag    *tag)
+{
+  self->buffer = buffer;
+  self->tag = tag;
+  gtk_text_buffer_get_start_iter (buffer, &self->pos);
+}
+
+static gboolean
+tag_iter_next (TagIter     *self,
+               GtkTextIter *pos)
+{
+  if (self->tag && gtk_text_iter_has_tag (&self->pos, self->tag))
+    {
+      /* Should always succeed because we are within the tag */
+      gtk_text_iter_forward_to_tag_toggle (&self->pos, self->tag);
+    }
+
+  *pos = self->pos;
+
+  return TRUE;
+}
+
+static void
+tag_iter_seek (TagIter           *self,
+               const GtkTextIter *iter)
+{
+  self->pos = *iter;
 }
 
 static gboolean
@@ -94,56 +180,137 @@ backward_word_start (GtkTextIter *iter)
   return FALSE;
 }
 
-char *
-editor_spell_cursor_next_word (EditorSpellCursor *cursor)
+static void
+word_iter_init (WordIter      *self,
+                GtkTextBuffer *buffer)
 {
-  g_return_val_if_fail (cursor != NULL, NULL);
+  self->buffer = buffer;
+  gtk_text_buffer_get_start_iter (buffer, &self->word_begin);
+  self->word_end = self->word_begin;
+}
 
-  if (cursor->exhausted)
-    return NULL;
+static gboolean
+word_iter_next (WordIter    *self,
+                GtkTextIter *word_begin,
+                GtkTextIter *word_end)
+{
+  if (!forward_word_end (&self->word_end))
+    {
+      *word_begin = self->word_end;
+      *word_end = self->word_end;
+      return FALSE;
+    }
 
-  if (!forward_word_end (&cursor->word_end))
-    goto exhausted;
+  self->word_begin = self->word_end;
 
-  cursor->word_begin = cursor->word_end;
+  if (!backward_word_start (&self->word_begin))
+    {
+      *word_begin = self->word_end;
+      *word_end = self->word_end;
+      return FALSE;
+    }
 
-  if (!backward_word_start (&cursor->word_begin))
-    goto exhausted;
+  *word_begin = self->word_begin;
+  *word_end = self->word_end;
 
-  return editor_spell_cursor_word (cursor);
+  return TRUE;
+}
 
-exhausted:
-  cursor->exhausted = TRUE;
+static void
+word_iter_seek (WordIter          *self,
+                const GtkTextIter *iter)
+{
+  self->word_begin = *iter;
+  self->word_end = *iter;
+}
 
-  return NULL;
+EditorSpellCursor *
+editor_spell_cursor_new (GtkTextBuffer *buffer,
+                         CjhTextRegion *region,
+                         GtkTextTag    *no_spell_check_tag)
+{
+  EditorSpellCursor *self;
+
+  g_return_val_if_fail (GTK_IS_TEXT_BUFFER (buffer), NULL);
+  g_return_val_if_fail (region != NULL, NULL);
+  g_return_val_if_fail (!no_spell_check_tag || GTK_IS_TEXT_TAG (no_spell_check_tag), NULL);
+
+  self = g_rc_box_new0 (EditorSpellCursor);
+  region_iter_init (&self->region, buffer, region);
+  tag_iter_init (&self->tag, buffer, no_spell_check_tag);
+  word_iter_init (&self->word, buffer);
+
+  return self;
 }
 
 void
-editor_spell_cursor_tag (EditorSpellCursor *cursor)
+editor_spell_cursor_free (EditorSpellCursor *self)
 {
-  g_return_if_fail (cursor != NULL);
-
-  gtk_text_buffer_apply_tag (cursor->buffer,
-                             cursor->misspelled_tag,
-                             &cursor->word_begin,
-                             &cursor->word_end);
+  g_rc_box_release (self);
 }
 
-gboolean
-editor_spell_cursor_contains_tag (EditorSpellCursor *cursor,
-                                  GtkTextTag        *tag)
+static gboolean
+contains_tag (const GtkTextIter *word_begin,
+              const GtkTextIter *word_end,
+              GtkTextTag        *tag)
 {
   GtkTextIter toggle_iter;
 
-  if (tag == NULL || cursor->exhausted)
+  if (tag == NULL)
     return FALSE;
 
-  if (gtk_text_iter_has_tag (&cursor->word_begin, tag))
+  if (gtk_text_iter_has_tag (word_begin, tag))
     return TRUE;
 
-  toggle_iter = cursor->word_begin;
+  toggle_iter = *word_begin;
   if (!gtk_text_iter_forward_to_tag_toggle (&toggle_iter, tag))
     return FALSE;
 
-  return gtk_text_iter_compare (&cursor->word_end, &toggle_iter) > 0;
+  return gtk_text_iter_compare (word_end, &toggle_iter) > 0;
+}
+
+gboolean
+editor_spell_cursor_next (EditorSpellCursor *self,
+                          GtkTextIter       *word_begin,
+                          GtkTextIter       *word_end)
+{
+  /* Try to advance skipping any checked region in the buffer */
+  if (!region_iter_next (&self->region, word_end))
+    {
+      *word_begin = *word_end;
+      return FALSE;
+    }
+
+  /* Pass that position to the next iter, so it can skip
+   * past anything that is already checked. Then try to move
+   * forward so that we can skip past regions in the text
+   * buffer that are to be ignored by spellcheck.
+   */
+  tag_iter_seek (&self->tag, word_end);
+  if (!tag_iter_next (&self->tag, word_end))
+    {
+      *word_begin = *word_end;
+      return FALSE;
+    }
+
+  /* Now pass that information to the word iter, so that it can
+   * jump forward to the next word starting from our tag/region
+   * positions.
+   */
+  word_iter_seek (&self->word, word_end);
+  if (!word_iter_next (&self->word, word_begin, word_end))
+    return FALSE;
+
+  /* Now pass our new position to the region so that it will
+   * skip past the word when advancing.
+   */
+  region_iter_seek (&self->region, word_end);
+
+  /* If this word contains the no-spell-check tag, then try
+   * again to skip past even more content.
+   */
+  if (contains_tag (word_begin, word_end, self->tag.tag))
+    return editor_spell_cursor_next (self, word_begin, word_end);
+
+  return TRUE;
 }
