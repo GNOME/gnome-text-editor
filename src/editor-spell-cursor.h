@@ -1,4 +1,4 @@
-/* editor-spell-cursor.h
+/* editor-spell-cursor.c
  *
  * Copyright 2021 Christian Hergert <chergert@redhat.com>
  *
@@ -24,24 +24,17 @@
 
 G_BEGIN_DECLS
 
-typedef struct
-{
-  GtkTextBuffer *buffer;
-  GtkTextTag    *misspelled_tag;
-  GtkTextIter    begin;
-  GtkTextIter    end;
-  GtkTextIter    word_begin;
-  GtkTextIter    word_end;
-  guint          exhausted : 1;
-} EditorSpellCursor;
+typedef struct _EditorSpellCursor EditorSpellCursor;
+typedef struct _CjhTextRegion     CjhTextRegion;
 
-void      editor_spell_cursor_init         (EditorSpellCursor *cursor,
-                                            const GtkTextIter *begin,
-                                            const GtkTextIter *end,
-                                            GtkTextTag        *misspelled_tag);
-char     *editor_spell_cursor_next_word    (EditorSpellCursor *cursor);
-void      editor_spell_cursor_tag          (EditorSpellCursor *cursor);
-gboolean  editor_spell_cursor_contains_tag (EditorSpellCursor *cursor,
-                                            GtkTextTag        *tag);
+EditorSpellCursor *editor_spell_cursor_new  (GtkTextBuffer     *buffer,
+                                             CjhTextRegion     *region,
+                                             GtkTextTag        *no_spell_check_tag);
+void               editor_spell_cursor_free (EditorSpellCursor *cursor);
+gboolean           editor_spell_cursor_next (EditorSpellCursor *cursor,
+                                             GtkTextIter       *word_begin,
+                                             GtkTextIter       *word_end);
+
+G_DEFINE_AUTOPTR_CLEANUP_FUNC (EditorSpellCursor, editor_spell_cursor_free)
 
 G_END_DECLS
