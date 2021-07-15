@@ -195,9 +195,8 @@ editor_text_buffer_spell_adapter_update_range (EditorTextBufferSpellAdapter *sel
 }
 
 static gboolean
-editor_text_buffer_spell_adapter_run (GtkTextBuffer *buffer,
-                                      gint64         deadline,
-                                      gpointer       user_data)
+editor_text_buffer_spell_adapter_run (gint64   deadline,
+                                      gpointer user_data)
 {
   EditorTextBufferSpellAdapter *self = user_data;
 
@@ -224,10 +223,7 @@ editor_text_buffer_spell_adapter_queue_update (EditorTextBufferSpellAdapter *sel
     }
 
   if (self->update_source == 0)
-    editor_buffer_scheduler_add_full (self->buffer,
-                                      editor_text_buffer_spell_adapter_run,
-                                      g_object_ref (self),
-                                      g_object_unref);
+    editor_buffer_scheduler_add (editor_text_buffer_spell_adapter_run, self);
 }
 
 static void

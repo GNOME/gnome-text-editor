@@ -24,15 +24,12 @@
 
 G_BEGIN_DECLS
 
-typedef gboolean (*EditorBufferCallback) (GtkTextBuffer *buffer,
-                                          gint64         deadline,
-                                          gpointer       user_data);
+typedef gboolean (*EditorBufferCallback) (gint64   deadline,
+                                          gpointer user_data);
 
-gsize editor_buffer_scheduler_add      (GtkTextBuffer        *buffer,
-                                        EditorBufferCallback  callback,
+gsize editor_buffer_scheduler_add      (EditorBufferCallback  callback,
                                         gpointer              user_data);
-gsize editor_buffer_scheduler_add_full (GtkTextBuffer        *buffer,
-                                        EditorBufferCallback  callback,
+gsize editor_buffer_scheduler_add_full (EditorBufferCallback  callback,
                                         gpointer              user_data,
                                         GDestroyNotify        notify);
 void  editor_buffer_scheduler_remove   (gsize                 handler_id);

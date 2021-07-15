@@ -48,7 +48,6 @@ typedef struct
 typedef struct
 {
   GList link;
-  GtkTextBuffer *buffer;
   EditorBufferCallback callback;
   gpointer user_data;
   GDestroyNotify notify;
@@ -70,25 +69,20 @@ editor_buffer_task_free (EditorBufferTask *task)
   if (task->notify != NULL)
     task->notify (task->user_data);
 
-  g_clear_object (&task->buffer);
-
   g_slice_free (EditorBufferTask, task);
 }
 
 static EditorBufferTask *
-editor_buffer_task_new (GtkTextBuffer        *buffer,
-                        EditorBufferCallback  callback,
+editor_buffer_task_new (EditorBufferCallback  callback,
                         gpointer              user_data,
                         GDestroyNotify        notify)
 {
   EditorBufferTask *task;
 
-  g_return_val_if_fail (GTK_IS_TEXT_BUFFER (buffer), NULL);
   g_return_val_if_fail (callback != NULL, NULL);
 
   task = g_slice_new0 (EditorBufferTask);
   task->link.data = task;
-  task->buffer = g_object_ref (buffer);
   task->callback = callback;
   task->user_data = user_data;
   task->notify = notify;
@@ -158,12 +152,9 @@ editor_buffer_scheduler_dispatch (GSource     *source,
       if (task == NULL)
         break;
 
-      /* Liveliness check to catch miss-use early */
-      g_assert (GTK_IS_TEXT_BUFFER (task->buffer));
-
       g_queue_unlink (&self->queue, &task->link);
 
-      if (task->callback (task->buffer, deadline, task->user_data))
+      if (task->callback (deadline, task->user_data))
         {
           task->ready_time = current + interval;
           g_queue_push_tail_link (&self->queue, &task->link);
@@ -220,27 +211,24 @@ get_scheduler (void)
 }
 
 gsize
-editor_buffer_scheduler_add (GtkTextBuffer        *buffer,
-                             EditorBufferCallback  callback,
-                             gpointer              user_data)
+editor_buffer_scheduler_add (EditorBufferCallback callback,
+                             gpointer             user_data)
 {
-  return editor_buffer_scheduler_add_full (buffer, callback, user_data, NULL);
+  return editor_buffer_scheduler_add_full (callback, user_data, NULL);
 }
 
 gsize
-editor_buffer_scheduler_add_full (GtkTextBuffer        *buffer,
-                                  EditorBufferCallback  callback,
-                                  gpointer              user_data,
-                                  GDestroyNotify        notify)
+editor_buffer_scheduler_add_full (EditorBufferCallback callback,
+                                  gpointer             user_data,
+                                  GDestroyNotify       notify)
 {
   EditorBufferScheduler *self;
   EditorBufferTask *task;
 
-  g_return_val_if_fail (GTK_IS_TEXT_BUFFER (buffer), 0);
   g_return_val_if_fail (callback != NULL, 0);
 
   self = get_scheduler ();
-  task = editor_buffer_task_new (buffer, callback, user_data, notify);
+  task = editor_buffer_task_new (callback, user_data, notify);
   task->id = ++self->last_handler_id;
 
   /* Request progress immediately */
