@@ -22,6 +22,7 @@
 
 #include "cjhtextregionprivate.h"
 
+#include "editor-buffer-scheduler.h"
 #include "editor-document.h"
 #include "editor-spell-checker.h"
 #include "editor-spell-cursor.h"
@@ -57,7 +58,7 @@ struct _EditorTextBufferSpellAdapter
 
   guint               cursor_position;
 
-  guint               update_source;
+  gsize               update_source;
 
   guint               enabled : 1;
 };
@@ -194,22 +195,21 @@ editor_text_buffer_spell_adapter_update_range (EditorTextBufferSpellAdapter *sel
 }
 
 static gboolean
-editor_text_buffer_spell_adapter_update (EditorTextBufferSpellAdapter *self)
+editor_text_buffer_spell_adapter_run (GtkTextBuffer *buffer,
+                                      gint64         deadline,
+                                      gpointer       user_data)
 {
-  gint64 deadline;
-  gboolean has_more;
+  EditorTextBufferSpellAdapter *self = user_data;
 
   g_assert (EDITOR_IS_TEXT_BUFFER_SPELL_ADAPTER (self));
 
-  deadline = g_get_monotonic_time () + UPDATE_QUANTA_USEC;
-  has_more = editor_text_buffer_spell_adapter_update_range (self, deadline);
+  if (!editor_text_buffer_spell_adapter_update_range (self, deadline))
+    {
+      self->update_source = 0;
+      return G_SOURCE_REMOVE;
+    }
 
-  if (has_more)
-    return G_SOURCE_CONTINUE;
-
-  self->update_source = 0;
-
-  return G_SOURCE_REMOVE;
+  return G_SOURCE_CONTINUE;
 }
 
 static void
@@ -219,20 +219,15 @@ editor_text_buffer_spell_adapter_queue_update (EditorTextBufferSpellAdapter *sel
 
   if (self->checker == NULL || self->buffer == NULL || !self->enabled)
     {
-      g_clear_handle_id (&self->update_source, g_source_remove);
+      editor_buffer_scheduler_clear (&self->update_source);
       return;
     }
 
-  /* TODO: We want an *initial* delay of UPDATE_DELAY_MSECS, but then after
-   *       that we probably want something close to the widgets update
-   *       interval so we make progress each frame.
-   */
   if (self->update_source == 0)
-    self->update_source = g_timeout_add_full (G_PRIORITY_LOW,
-                                              UPDATE_DELAY_MSECS,
-                                              (GSourceFunc) editor_text_buffer_spell_adapter_update,
-                                              g_object_ref (self),
-                                              g_object_unref);
+    editor_buffer_scheduler_add_full (self->buffer,
+                                      editor_text_buffer_spell_adapter_run,
+                                      g_object_ref (self),
+                                      g_object_unref);
 }
 
 static void
@@ -405,7 +400,7 @@ editor_text_buffer_spell_adapter_dispose (GObject *object)
   EditorTextBufferSpellAdapter *self = (EditorTextBufferSpellAdapter *)object;
 
   g_clear_weak_pointer (&self->buffer);
-  g_clear_handle_id (&self->update_source, g_source_remove);
+  editor_buffer_scheduler_clear (&self->update_source);
 
   G_OBJECT_CLASS (editor_text_buffer_spell_adapter_parent_class)->dispose (object);
 }
@@ -539,7 +534,7 @@ editor_text_buffer_spell_adapter_set_checker (EditorTextBufferSpellAdapter *self
     {
       gsize length = _cjh_text_region_get_length (self->region);
 
-      g_clear_handle_id (&self->update_source, g_source_remove);
+      editor_buffer_scheduler_clear (&self->update_source);
 
       if (length > 0)
         {
