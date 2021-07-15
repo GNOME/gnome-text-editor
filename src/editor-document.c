@@ -185,8 +185,6 @@ editor_document_changed (GtkTextBuffer *buffer)
   self->needs_autosave = TRUE;
 
   GTK_TEXT_BUFFER_CLASS (editor_document_parent_class)->changed (buffer);
-
-  editor_document_apply_spacing (self);
 }
 
 static void
