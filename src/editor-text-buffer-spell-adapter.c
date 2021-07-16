@@ -104,6 +104,35 @@ get_current_word (GtkTextBuffer *buffer,
   return TRUE;
 }
 
+static gboolean
+get_word_at_position (GtkTextBuffer *buffer,
+                      guint          position,
+                      GtkTextIter   *begin,
+                      GtkTextIter   *end)
+{
+  gtk_text_buffer_get_iter_at_offset (buffer, begin, position);
+  *end = *begin;
+
+  if (gtk_text_iter_ends_word (end))
+    {
+      gtk_text_iter_backward_word_start (begin);
+      return TRUE;
+    }
+
+  if (!gtk_text_iter_starts_word (begin))
+    {
+      if (!gtk_text_iter_inside_word (begin))
+        return FALSE;
+
+      gtk_text_iter_backward_word_start (begin);
+    }
+
+  if (!gtk_text_iter_ends_word (end))
+    gtk_text_iter_forward_word_end (end);
+
+  return TRUE;
+}
+
 EditorTextBufferSpellAdapter *
 editor_text_buffer_spell_adapter_new (GtkTextBuffer      *buffer,
                                       EditorSpellChecker *checker)
@@ -642,10 +671,26 @@ void
 editor_text_buffer_spell_adapter_cursor_moved (EditorTextBufferSpellAdapter *self,
                                                guint                         position)
 {
+  GtkTextIter begin, end;
+
   g_return_if_fail (EDITOR_IS_TEXT_BUFFER_SPELL_ADAPTER (self));
   g_return_if_fail (self->buffer != NULL);
 
+  if (self->cursor_position == position)
+    return;
+
+  /* Invalidate the old position */
+  if (self->enabled && get_word_at_position (self->buffer, self->cursor_position, &begin, &end))
+    mark_unchecked (self,
+                    gtk_text_iter_get_offset (&begin),
+                    gtk_text_iter_get_offset (&end) - gtk_text_iter_get_offset (&begin));
+
   self->cursor_position = position;
+
+  if (self->enabled && get_word_at_position (self->buffer, position, &begin, &end))
+    mark_unchecked (self,
+                    gtk_text_iter_get_offset (&begin),
+                    gtk_text_iter_get_offset (&end) - gtk_text_iter_get_offset (&begin));
 }
 
 const char *
