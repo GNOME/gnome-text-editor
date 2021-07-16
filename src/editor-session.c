@@ -2098,10 +2098,9 @@ _editor_session_forget (EditorSession *self,
   g_return_if_fail (EDITOR_IS_SESSION (self));
   g_return_if_fail (!file || G_IS_FILE (file));
 
-  g_hash_table_insert (self->forgot, g_file_dup (file), NULL);
-
   if (file != NULL)
     {
+      g_hash_table_insert (self->forgot, g_file_dup (file), NULL);
       _editor_sidebar_model_remove_file (self->recents, file);
       g_hash_table_remove (self->seen, file);
     }
