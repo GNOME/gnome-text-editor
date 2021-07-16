@@ -238,13 +238,15 @@ editor_document_insert_text (GtkTextBuffer *buffer,
 
   line = gtk_text_iter_get_line (pos);
   offset = gtk_text_iter_get_offset (pos);
+  length = g_utf8_strlen (new_text, new_text_length);
+
+  if (length > 0)
+    editor_text_buffer_spell_adapter_before_insert_text (self->spell_adapter, offset, length);
 
   GTK_TEXT_BUFFER_CLASS (editor_document_parent_class)->insert_text (buffer, pos, new_text, new_text_length);
 
-  length = gtk_text_iter_get_offset (pos) - offset;
-
   if (length > 0)
-    editor_text_buffer_spell_adapter_insert_text (self->spell_adapter, offset, length);
+    editor_text_buffer_spell_adapter_after_insert_text (self->spell_adapter, offset, length);
 
   if (offset < TITLE_MAX_LEN && editor_document_get_file (self) == NULL)
     g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_TITLE]);
@@ -270,10 +272,13 @@ editor_document_delete_range (GtkTextBuffer *buffer,
   offset = gtk_text_iter_get_offset (start);
   length = gtk_text_iter_get_offset (end) - offset;
 
+  if (length > 0)
+    editor_text_buffer_spell_adapter_before_delete_range (self->spell_adapter, offset, length);
+
   GTK_TEXT_BUFFER_CLASS (editor_document_parent_class)->delete_range (buffer, start, end);
 
   if (length > 0)
-    editor_text_buffer_spell_adapter_delete_range (self->spell_adapter, offset, length);
+    editor_text_buffer_spell_adapter_after_delete_range (self->spell_adapter, offset, length);
 
   if (offset < TITLE_MAX_LEN && editor_document_get_file (self) == NULL)
     g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_TITLE]);

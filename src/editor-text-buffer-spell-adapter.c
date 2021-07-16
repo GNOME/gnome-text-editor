@@ -604,32 +604,36 @@ mark_unchecked (EditorTextBufferSpellAdapter *self,
 }
 
 void
-editor_text_buffer_spell_adapter_insert_text (EditorTextBufferSpellAdapter *self,
-                                              guint                         offset,
-                                              guint                         length)
+editor_text_buffer_spell_adapter_before_insert_text (EditorTextBufferSpellAdapter *self,
+                                                     guint                         offset,
+                                                     guint                         length)
 {
-
-  g_return_if_fail (EDITOR_IS_TEXT_BUFFER_SPELL_ADAPTER (self));
-  g_return_if_fail (GTK_IS_TEXT_BUFFER (self->buffer));
-  g_return_if_fail (length > 0);
-
   _cjh_text_region_insert (self->region, offset, length, RUN_UNCHECKED);
+}
 
+
+void
+editor_text_buffer_spell_adapter_after_insert_text (EditorTextBufferSpellAdapter *self,
+                                                    guint                         offset,
+                                                    guint                         length)
+{
   if (self->enabled)
     mark_unchecked (self, offset, length);
 }
 
 void
-editor_text_buffer_spell_adapter_delete_range (EditorTextBufferSpellAdapter *self,
-                                               guint                         offset,
-                                               guint                         length)
+editor_text_buffer_spell_adapter_before_delete_range (EditorTextBufferSpellAdapter *self,
+                                                      guint                         offset,
+                                                      guint                         length)
 {
-  g_return_if_fail (EDITOR_IS_TEXT_BUFFER_SPELL_ADAPTER (self));
-  g_return_if_fail (self->buffer != NULL);
-  g_return_if_fail (length > 0);
-
   _cjh_text_region_remove (self->region, offset, length);
+}
 
+void
+editor_text_buffer_spell_adapter_after_delete_range (EditorTextBufferSpellAdapter *self,
+                                                     guint                         offset,
+                                                     guint                         length)
+{
   if (self->enabled)
     mark_unchecked (self, offset, 0);
 }

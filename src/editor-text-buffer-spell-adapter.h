@@ -30,22 +30,28 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (EditorTextBufferSpellAdapter, editor_text_buffer_spell_adapter, EDITOR, TEXT_BUFFER_SPELL_ADAPTER, GObject)
 
-EditorTextBufferSpellAdapter *editor_text_buffer_spell_adapter_new          (GtkTextBuffer                *buffer,
-                                                                             EditorSpellChecker           *checker);
-GtkTextBuffer                *editor_text_buffer_spell_adapter_get_buffer   (EditorTextBufferSpellAdapter *self);
-EditorSpellChecker           *editor_text_buffer_spell_adapter_get_checker  (EditorTextBufferSpellAdapter *self);
-void                          editor_text_buffer_spell_adapter_set_checker  (EditorTextBufferSpellAdapter *self,
-                                                                             EditorSpellChecker           *checker);
-void                          editor_text_buffer_spell_adapter_insert_text  (EditorTextBufferSpellAdapter *self,
-                                                                             guint                         offset,
-                                                                             guint                         len);
-void                          editor_text_buffer_spell_adapter_delete_range (EditorTextBufferSpellAdapter *self,
-                                                                             guint                         offset,
-                                                                             guint                         len);
-void                          editor_text_buffer_spell_adapter_cursor_moved (EditorTextBufferSpellAdapter *self,
-                                                                             guint                         position);
-const char                   *editor_text_buffer_spell_adapter_get_language (EditorTextBufferSpellAdapter *self);
-void                          editor_text_buffer_spell_adapter_set_language (EditorTextBufferSpellAdapter *self,
-                                                                             const char                   *language);
+EditorTextBufferSpellAdapter *editor_text_buffer_spell_adapter_new                 (GtkTextBuffer                *buffer,
+                                                                                    EditorSpellChecker           *checker);
+GtkTextBuffer                *editor_text_buffer_spell_adapter_get_buffer          (EditorTextBufferSpellAdapter *self);
+EditorSpellChecker           *editor_text_buffer_spell_adapter_get_checker         (EditorTextBufferSpellAdapter *self);
+void                          editor_text_buffer_spell_adapter_set_checker         (EditorTextBufferSpellAdapter *self,
+                                                                                    EditorSpellChecker           *checker);
+void                          editor_text_buffer_spell_adapter_before_insert_text  (EditorTextBufferSpellAdapter *self,
+                                                                                    guint                         offset,
+                                                                                    guint                         len);
+void                          editor_text_buffer_spell_adapter_after_insert_text   (EditorTextBufferSpellAdapter *self,
+                                                                                    guint                         offset,
+                                                                                    guint                         len);
+void                          editor_text_buffer_spell_adapter_before_delete_range (EditorTextBufferSpellAdapter *self,
+                                                                                    guint                         offset,
+                                                                                    guint                         len);
+void                          editor_text_buffer_spell_adapter_after_delete_range  (EditorTextBufferSpellAdapter *self,
+                                                                                    guint                         offset,
+                                                                                    guint                         len);
+void                          editor_text_buffer_spell_adapter_cursor_moved        (EditorTextBufferSpellAdapter *self,
+                                                                                    guint                         position);
+const char                   *editor_text_buffer_spell_adapter_get_language        (EditorTextBufferSpellAdapter *self);
+void                          editor_text_buffer_spell_adapter_set_language        (EditorTextBufferSpellAdapter *self,
+                                                                                    const char                   *language);
 
 G_END_DECLS
