@@ -76,6 +76,34 @@ enum {
 
 static GParamSpec *properties [N_PROPS];
 
+static gboolean
+get_current_word (GtkTextBuffer *buffer,
+                  GtkTextIter   *begin,
+                  GtkTextIter   *end)
+{
+  if (gtk_text_buffer_get_selection_bounds (buffer, begin, end))
+    return FALSE;
+
+  if (gtk_text_iter_ends_word (end))
+    {
+      gtk_text_iter_backward_word_start (begin);
+      return TRUE;
+    }
+
+  if (!gtk_text_iter_starts_word (begin))
+    {
+      if (!gtk_text_iter_inside_word (begin))
+        return FALSE;
+
+      gtk_text_iter_backward_word_start (begin);
+    }
+
+  if (!gtk_text_iter_ends_word (end))
+    gtk_text_iter_forward_word_end (end);
+
+  return TRUE;
+}
+
 EditorTextBufferSpellAdapter *
 editor_text_buffer_spell_adapter_new (GtkTextBuffer      *buffer,
                                       EditorSpellChecker *checker)
@@ -132,8 +160,7 @@ editor_text_buffer_spell_adapter_update_range (EditorTextBufferSpellAdapter *sel
                                                gint64                        deadline)
 {
   g_autoptr(EditorSpellCursor) cursor = NULL;
-  GtkTextMark *mark;
-  GtkTextIter insert, word_begin, word_end, last_match, begin;
+  GtkTextIter word_begin, word_end, begin;
   gboolean ret = FALSE;
   guint checked = 0;
 
@@ -144,8 +171,6 @@ editor_text_buffer_spell_adapter_update_range (EditorTextBufferSpellAdapter *sel
     return TRUE;
 
   cursor = editor_spell_cursor_new (self->buffer, self->region, self->no_spell_check_tag);
-  mark = gtk_text_buffer_get_insert (self->buffer);
-  gtk_text_buffer_get_iter_at_mark (self->buffer, &insert, mark);
 
   /* Get the first unchecked position so that we can remove the tag
    * from it up to the first word match.
@@ -159,20 +184,14 @@ editor_text_buffer_spell_adapter_update_range (EditorTextBufferSpellAdapter *sel
       return FALSE;
     }
 
-  last_match = begin;
   while (editor_spell_cursor_next (cursor, &word_begin, &word_end))
     {
       g_autofree char *word = gtk_text_iter_get_slice (&word_begin, &word_end);
 
       checked++;
 
-      if (!contains_iter (&word_begin, &word_end, &insert) &&
-          !editor_spell_checker_check_word (self->checker, word, -1))
-        {
-          gtk_text_buffer_remove_tag (self->buffer, self->tag, &last_match, &word_end);
-          gtk_text_buffer_apply_tag (self->buffer, self->tag, &word_begin, &word_end);
-          last_match = word_end;
-        }
+      if (!editor_spell_checker_check_word (self->checker, word, -1))
+        gtk_text_buffer_apply_tag (self->buffer, self->tag, &word_begin, &word_end);
 
       /* Check deadline every five words */
       if (checked % 5 == 0 && deadline < g_get_monotonic_time ())
@@ -182,14 +201,14 @@ editor_text_buffer_spell_adapter_update_range (EditorTextBufferSpellAdapter *sel
         }
     }
 
-  /* Now remove from the last match to the end position */
-  if (!gtk_text_iter_equal (&word_end, &last_match))
-    gtk_text_buffer_remove_tag (self->buffer, self->tag, &last_match, &word_end);
-
   _cjh_text_region_replace (self->region,
                             gtk_text_iter_get_offset (&begin),
                             gtk_text_iter_get_offset (&word_end) - gtk_text_iter_get_offset (&begin),
                             RUN_CHECKED);
+
+  /* Now remove any tag for the current word to be less annoying */
+  if (get_current_word (self->buffer, &word_begin, &word_end))
+    gtk_text_buffer_remove_tag (self->buffer, self->tag, &word_begin, &word_end);
 
   return ret;
 }
@@ -554,32 +573,50 @@ editor_text_buffer_spell_adapter_get_buffer (EditorTextBufferSpellAdapter *self)
   return self->buffer;
 }
 
+static void
+mark_unchecked (EditorTextBufferSpellAdapter *self,
+                guint                         offset,
+                guint                         length)
+{
+  GtkTextIter begin, end;
+
+  g_assert (EDITOR_IS_TEXT_BUFFER_SPELL_ADAPTER (self));
+  g_assert (GTK_IS_TEXT_BUFFER (self->buffer));
+  g_assert (self->enabled);
+
+  gtk_text_buffer_get_iter_at_offset (self->buffer, &begin, offset);
+  gtk_text_buffer_get_iter_at_offset (self->buffer, &end, offset + length);
+
+  if (!gtk_text_iter_starts_word (&begin))
+    gtk_text_iter_backward_word_start (&begin);
+
+  if (!gtk_text_iter_ends_word (&end))
+    gtk_text_iter_forward_word_end (&end);
+
+  _cjh_text_region_replace (self->region,
+                            gtk_text_iter_get_offset (&begin),
+                            gtk_text_iter_get_offset (&end) - gtk_text_iter_get_offset (&begin),
+                            RUN_UNCHECKED);
+
+  gtk_text_buffer_remove_tag (self->buffer, self->tag, &begin, &end);
+
+  editor_text_buffer_spell_adapter_queue_update (self);
+}
+
 void
 editor_text_buffer_spell_adapter_insert_text (EditorTextBufferSpellAdapter *self,
                                               guint                         offset,
                                               guint                         length)
 {
+
   g_return_if_fail (EDITOR_IS_TEXT_BUFFER_SPELL_ADAPTER (self));
+  g_return_if_fail (GTK_IS_TEXT_BUFFER (self->buffer));
   g_return_if_fail (length > 0);
 
   _cjh_text_region_insert (self->region, offset, length, RUN_UNCHECKED);
 
-  editor_text_buffer_spell_adapter_queue_update (self);
-}
-
-static void
-invalidate_surrounding (EditorTextBufferSpellAdapter *self,
-                        guint                         offset)
-{
-  g_assert (EDITOR_IS_TEXT_BUFFER_SPELL_ADAPTER (self));
-
-  if (offset)
-    _cjh_text_region_replace (self->region, offset - 1, 1, RUN_UNCHECKED);
-
-  if (offset + 1 < _cjh_text_region_get_length (self->region))
-    _cjh_text_region_replace (self->region, offset, 1, RUN_UNCHECKED);
-
-  editor_text_buffer_spell_adapter_queue_update (self);
+  if (self->enabled)
+    mark_unchecked (self, offset, length);
 }
 
 void
@@ -592,7 +629,9 @@ editor_text_buffer_spell_adapter_delete_range (EditorTextBufferSpellAdapter *sel
   g_return_if_fail (length > 0);
 
   _cjh_text_region_remove (self->region, offset, length);
-  invalidate_surrounding (self, offset);
+
+  if (self->enabled)
+    mark_unchecked (self, offset, 0);
 }
 
 void
@@ -602,7 +641,6 @@ editor_text_buffer_spell_adapter_cursor_moved (EditorTextBufferSpellAdapter *sel
   g_return_if_fail (EDITOR_IS_TEXT_BUFFER_SPELL_ADAPTER (self));
   g_return_if_fail (self->buffer != NULL);
 
-  invalidate_surrounding (self, self->cursor_position);
   self->cursor_position = position;
 }
 
