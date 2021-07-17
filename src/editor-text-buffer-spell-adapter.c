@@ -274,7 +274,7 @@ editor_text_buffer_spell_adapter_queue_update (EditorTextBufferSpellAdapter *sel
     self->update_source = editor_buffer_scheduler_add (editor_text_buffer_spell_adapter_run, self);
 }
 
-static void
+void
 editor_text_buffer_spell_adapter_invalidate_all (EditorTextBufferSpellAdapter *self)
 {
   gsize length;
