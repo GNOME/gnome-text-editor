@@ -1848,7 +1848,10 @@ _editor_document_add_spelling (EditorDocument *self,
   g_return_if_fail (EDITOR_IS_DOCUMENT (self));
 
   if (self->spell_checker != NULL)
-    editor_spell_checker_add_word (self->spell_checker, word);
+    {
+      editor_spell_checker_add_word (self->spell_checker, word);
+      editor_text_buffer_spell_adapter_invalidate_all (self->spell_adapter);
+    }
 }
 
 void
@@ -1858,5 +1861,8 @@ _editor_document_ignore_spelling (EditorDocument *self,
   g_return_if_fail (EDITOR_IS_DOCUMENT (self));
 
   if (self->spell_checker != NULL)
-    editor_spell_checker_ignore_word (self->spell_checker, word);
+    {
+      editor_spell_checker_ignore_word (self->spell_checker, word);
+      editor_text_buffer_spell_adapter_invalidate_all (self->spell_adapter);
+    }
 }
