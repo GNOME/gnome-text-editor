@@ -277,6 +277,7 @@ editor_text_buffer_spell_adapter_queue_update (EditorTextBufferSpellAdapter *sel
 void
 editor_text_buffer_spell_adapter_invalidate_all (EditorTextBufferSpellAdapter *self)
 {
+  GtkTextIter begin, end;
   gsize length;
 
   g_assert (EDITOR_IS_TEXT_BUFFER_SPELL_ADAPTER (self));
@@ -288,6 +289,9 @@ editor_text_buffer_spell_adapter_invalidate_all (EditorTextBufferSpellAdapter *s
       _cjh_text_region_replace (self->region, 0, length - 1, RUN_UNCHECKED);
       editor_text_buffer_spell_adapter_queue_update (self);
     }
+
+  gtk_text_buffer_get_bounds (self->buffer, &begin, &end);
+  gtk_text_buffer_remove_tag (self->buffer, self->tag, &begin, &end);
 }
 
 static void
