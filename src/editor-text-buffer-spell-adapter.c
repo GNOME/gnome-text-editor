@@ -271,7 +271,7 @@ editor_text_buffer_spell_adapter_queue_update (EditorTextBufferSpellAdapter *sel
     }
 
   if (self->update_source == 0)
-    editor_buffer_scheduler_add (editor_text_buffer_spell_adapter_run, self);
+    self->update_source = editor_buffer_scheduler_add (editor_text_buffer_spell_adapter_run, self);
 }
 
 static void
