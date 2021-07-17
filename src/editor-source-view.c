@@ -162,6 +162,7 @@ cleanup:
   self->spelling_word = g_steal_pointer (&word);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "spelling.add", self->spelling_word != NULL);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "spelling.ignore", self->spelling_word != NULL);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "spelling.correct", self->spelling_word != NULL);
   editor_spell_menu_set_corrections (self->spelling_menu,
                                      (const char * const *)corrections);
 }
@@ -220,6 +221,51 @@ editor_source_view_action_spelling_ignore (GtkWidget  *widget,
 }
 
 static void
+editor_source_view_action_spelling_correct (GtkWidget  *widget,
+                                            const char *action_name,
+                                            GVariant   *param)
+{
+  EditorSourceView *self = (EditorSourceView *)widget;
+  g_autofree char *slice = NULL;
+  GtkTextBuffer *buffer;
+  const char *word;
+  GtkTextIter begin, end;
+
+  g_assert (EDITOR_IS_SOURCE_VIEW (self));
+  g_assert (g_variant_is_of_type (param, G_VARIANT_TYPE_STRING));
+  g_assert (self->spelling_word != NULL);
+
+  buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (self));
+  word = g_variant_get_string (param, NULL);
+
+  if (!EDITOR_IS_DOCUMENT (buffer))
+    return;
+
+  /* We don't deal with selections (yet?) */
+  if (gtk_text_buffer_get_selection_bounds (buffer, &begin, &end))
+    return;
+
+  if (!gtk_text_iter_starts_word (&begin))
+    gtk_text_iter_backward_word_start (&begin);
+
+  if (!gtk_text_iter_ends_word (&end))
+    gtk_text_iter_forward_word_end (&end);
+
+  slice = gtk_text_iter_get_slice (&begin, &end);
+
+  if (g_strcmp0 (slice, self->spelling_word) != 0)
+    {
+      g_debug ("Words do not match, will not replace.");
+      return;
+    }
+
+  gtk_text_buffer_begin_user_action (buffer);
+  gtk_text_buffer_delete (buffer, &begin, &end);
+  gtk_text_buffer_insert (buffer, &begin, word, -1);
+  gtk_text_buffer_end_user_action (buffer);
+}
+
+static void
 editor_source_view_finalize (GObject *object)
 {
   EditorSourceView *self = (EditorSourceView *)object;
@@ -240,6 +286,7 @@ editor_source_view_class_init (EditorSourceViewClass *klass)
 
   gtk_widget_class_install_action (widget_class, "spelling.add", NULL, editor_source_view_action_spelling_add);
   gtk_widget_class_install_action (widget_class, "spelling.ignore", NULL, editor_source_view_action_spelling_ignore);
+  gtk_widget_class_install_action (widget_class, "spelling.correct", "s", editor_source_view_action_spelling_correct);
 }
 
 static void
@@ -253,6 +300,7 @@ editor_source_view_init (EditorSourceView *self)
 
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "spelling.add", FALSE);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "spelling.ignore", FALSE);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "spelling.correct", FALSE);
 
   g_signal_connect (self,
                     "notify::buffer",
