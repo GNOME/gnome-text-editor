@@ -40,6 +40,8 @@ struct _EditorSpellLanguageClass
                                    gssize               word_len);
   void        (*add_word)         (EditorSpellLanguage *self,
                                    const char          *word);
+  void        (*ignore_word)      (EditorSpellLanguage *self,
+                                   const char          *word);
 
   /*< private >*/
   gpointer _reserved[8];
@@ -53,6 +55,8 @@ char       **editor_spell_language_list_corrections (EditorSpellLanguage *self,
                                                      const char          *word,
                                                      gssize               word_len);
 void         editor_spell_language_add_word         (EditorSpellLanguage *self,
+                                                     const char          *word);
+void         editor_spell_language_ignore_word      (EditorSpellLanguage *self,
                                                      const char          *word);
 
 G_END_DECLS

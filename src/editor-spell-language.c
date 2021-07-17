@@ -153,3 +153,14 @@ editor_spell_language_add_word (EditorSpellLanguage *self,
   if (EDITOR_SPELL_LANGUAGE_GET_CLASS (self)->add_word)
     EDITOR_SPELL_LANGUAGE_GET_CLASS (self)->add_word (self, word);
 }
+
+void
+editor_spell_language_ignore_word (EditorSpellLanguage *self,
+                                   const char          *word)
+{
+  g_return_if_fail (EDITOR_IS_SPELL_LANGUAGE (self));
+  g_return_if_fail (word != NULL);
+
+  if (EDITOR_SPELL_LANGUAGE_GET_CLASS (self)->ignore_word)
+    EDITOR_SPELL_LANGUAGE_GET_CLASS (self)->ignore_word (self, word);
+}

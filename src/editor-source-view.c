@@ -160,9 +160,8 @@ on_click_pressed_cb (GtkGestureClick  *click,
 cleanup:
   g_free (self->spelling_word);
   self->spelling_word = g_steal_pointer (&word);
-  gtk_widget_action_set_enabled (GTK_WIDGET (self),
-                                 "spelling.add",
-                                 self->spelling_word != NULL);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "spelling.add", self->spelling_word != NULL);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "spelling.ignore", self->spelling_word != NULL);
   editor_spell_menu_set_corrections (self->spelling_menu,
                                      (const char * const *)corrections);
 }
@@ -197,7 +196,26 @@ editor_source_view_action_spelling_add (GtkWidget  *widget,
   if (EDITOR_IS_DOCUMENT (buffer))
     {
       g_debug ("Adding “%s” to dictionary\n", self->spelling_word);
-      _editor_document_add_spelling_word (EDITOR_DOCUMENT (buffer), self->spelling_word);
+      _editor_document_add_spelling (EDITOR_DOCUMENT (buffer), self->spelling_word);
+    }
+}
+
+static void
+editor_source_view_action_spelling_ignore (GtkWidget  *widget,
+                                           const char *action_name,
+                                           GVariant   *param)
+{
+  EditorSourceView *self = (EditorSourceView *)widget;
+  GtkTextBuffer *buffer;
+
+  g_assert (EDITOR_IS_SOURCE_VIEW (self));
+
+  buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (self));
+
+  if (EDITOR_IS_DOCUMENT (buffer))
+    {
+      g_debug ("Ignoring “%s”\n", self->spelling_word);
+      _editor_document_ignore_spelling (EDITOR_DOCUMENT (buffer), self->spelling_word);
     }
 }
 
@@ -221,6 +239,7 @@ editor_source_view_class_init (EditorSourceViewClass *klass)
   object_class->finalize = editor_source_view_finalize;
 
   gtk_widget_class_install_action (widget_class, "spelling.add", NULL, editor_source_view_action_spelling_add);
+  gtk_widget_class_install_action (widget_class, "spelling.ignore", NULL, editor_source_view_action_spelling_ignore);
 }
 
 static void
@@ -233,6 +252,7 @@ editor_source_view_init (EditorSourceView *self)
   GMenuModel *extra_menu;
 
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "spelling.add", FALSE);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "spelling.ignore", FALSE);
 
   g_signal_connect (self,
                     "notify::buffer",

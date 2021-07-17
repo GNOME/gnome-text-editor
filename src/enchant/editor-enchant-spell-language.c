@@ -163,6 +163,18 @@ editor_enchant_spell_language_add_word (EditorSpellLanguage *language,
 }
 
 static void
+editor_enchant_spell_language_ignore_word (EditorSpellLanguage *language,
+                                           const char          *word)
+{
+  EditorEnchantSpellLanguage *self = (EditorEnchantSpellLanguage *)language;
+
+  g_assert (EDITOR_IS_SPELL_LANGUAGE (language));
+  g_assert (word != NULL);
+
+  enchant_dict_add_to_session (self->native, word, -1);
+}
+
+static void
 editor_enchant_spell_language_constructed (GObject *object)
 {
   EditorEnchantSpellLanguage *self = (EditorEnchantSpellLanguage *)object;
@@ -243,6 +255,7 @@ editor_enchant_spell_language_class_init (EditorEnchantSpellLanguageClass *klass
   spell_language_class->contains_word = editor_enchant_spell_language_contains_word;
   spell_language_class->list_corrections = editor_enchant_spell_language_list_corrections;
   spell_language_class->add_word = editor_enchant_spell_language_add_word;
+  spell_language_class->ignore_word = editor_enchant_spell_language_ignore_word;
 
   properties [PROP_NATIVE] =
     g_param_spec_pointer ("native",

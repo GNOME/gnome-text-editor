@@ -300,3 +300,14 @@ editor_spell_checker_add_word (EditorSpellChecker *self,
   if (self->language != NULL)
     editor_spell_language_add_word (self->language, word);
 }
+
+void
+editor_spell_checker_ignore_word (EditorSpellChecker *self,
+                                  const char         *word)
+{
+  g_return_if_fail (EDITOR_IS_SPELL_CHECKER (self));
+  g_return_if_fail (word != NULL);
+
+  if (self->language != NULL)
+    editor_spell_language_ignore_word (self->language, word);
+}

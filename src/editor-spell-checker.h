@@ -41,5 +41,7 @@ char                **editor_spell_checker_list_corrections (EditorSpellChecker 
                                                              const char          *word);
 void                  editor_spell_checker_add_word         (EditorSpellChecker  *self,
                                                              const char          *word);
+void                  editor_spell_checker_ignore_word      (EditorSpellChecker  *self,
+                                                             const char          *word);
 
 G_END_DECLS
