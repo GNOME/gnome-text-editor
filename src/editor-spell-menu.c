@@ -54,7 +54,6 @@ editor_spell_menu_new (void)
 {
   g_autoptr(GMenu) menu = g_menu_new ();
   g_autoptr(GMenu) corrections_menu = g_menu_new ();
-  g_autoptr(GMenu) corrections_section = g_menu_new ();
   g_autoptr(GMenu) languages_menu = g_menu_new ();
   g_autoptr(GMenuItem) languages_item = g_menu_item_new_submenu (_("Languages"), G_MENU_MODEL (languages_menu));
   g_autoptr(GMenuItem) add_item = g_menu_item_new (_("Add to Dictionary"), "spelling.add");
@@ -66,10 +65,9 @@ editor_spell_menu_new (void)
   g_menu_item_set_attribute (check_item, "role", "s", "check");
   g_menu_item_set_attribute (languages_item, "submenu-action", "s", "spellcheck.enabled");
 
-  g_menu_append_section (corrections_section, NULL, G_MENU_MODEL (corrections_menu));
-  g_menu_append_item (corrections_section, add_item);
-  g_menu_append_item (corrections_section, ignore_item);
-  g_menu_append_section (menu, NULL, G_MENU_MODEL (corrections_section));
+  g_menu_append_section (menu, NULL, G_MENU_MODEL (corrections_menu));
+  g_menu_append_item (menu, add_item);
+  g_menu_append_item (menu, ignore_item);
   g_menu_append_item (menu, check_item);
   g_menu_append_item (menu, languages_item);
 
