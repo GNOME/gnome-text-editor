@@ -2,6 +2,7 @@
 #include "cjhtextregion.c"
 
 static const char *test_text = "this is a series of words";
+static const char *test_text_2 = "it's possible we're going to have join-words.";
 
 static char *
 next_word (EditorSpellCursor *cursor)
@@ -78,6 +79,44 @@ test_cursor_in_word (void)
   _cjh_text_region_free (region);
 }
 
+static void
+test_cursor_join_words (void)
+{
+  g_autoptr(GtkTextBuffer) buffer = gtk_text_buffer_new (NULL);
+  CjhTextRegion *region = _cjh_text_region_new (NULL, NULL);
+  g_autoptr(EditorSpellCursor) cursor = editor_spell_cursor_new (buffer, region, NULL, "-'");
+  char *word;
+
+  gtk_text_buffer_set_text (buffer, test_text_2, -1);
+  _cjh_text_region_insert (region, 0, strlen (test_text_2), NULL);
+
+  word = next_word (cursor);
+  g_assert_cmpstr (word, ==, "it's");
+
+  word = next_word (cursor);
+  g_assert_cmpstr (word, ==, "possible");
+
+  word = next_word (cursor);
+  g_assert_cmpstr (word, ==, "we're");
+
+  word = next_word (cursor);
+  g_assert_cmpstr (word, ==, "going");
+
+  word = next_word (cursor);
+  g_assert_cmpstr (word, ==, "to");
+
+  word = next_word (cursor);
+  g_assert_cmpstr (word, ==, "have");
+
+  word = next_word (cursor);
+  g_assert_cmpstr (word, ==, "join-words");
+
+  word = next_word (cursor);
+  g_assert_cmpstr (word, ==, NULL);
+
+  _cjh_text_region_free (region);
+}
+
 int
 main (int argc,
       char *argv[])
@@ -85,5 +124,6 @@ main (int argc,
   g_test_init (&argc, &argv, NULL);
   g_test_add_func ("/Spelling/Cursor/basic", test_cursor);
   g_test_add_func ("/Spelling/Cursor/in_word", test_cursor_in_word);
+  g_test_add_func ("/Spelling/Cursor/join_words", test_cursor_join_words);
   return g_test_run ();
 }
