@@ -171,7 +171,7 @@ editor_spell_language_get_extra_word_chars (EditorSpellLanguage *self)
   g_return_val_if_fail (EDITOR_IS_SPELL_LANGUAGE (self), NULL);
 
   if (EDITOR_SPELL_LANGUAGE_GET_CLASS (self)->get_extra_word_chars)
-    EDITOR_SPELL_LANGUAGE_GET_CLASS (self)->get_extra_word_chars (self);
+    return EDITOR_SPELL_LANGUAGE_GET_CLASS (self)->get_extra_word_chars (self);
 
   return "";
 }
