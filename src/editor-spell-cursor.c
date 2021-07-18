@@ -155,6 +155,10 @@ is_extra_word_char (const GtkTextIter *iter,
 {
   gunichar ch = gtk_text_iter_get_char (iter);
 
+  /* Short-circuit for known space */
+  if (ch == ' ' || ch == '\n' || ch == '\t' || ch == '\r')
+    return FALSE;
+
   for (const char *c = extra_word_chars; *c; c = g_utf8_next_char (c))
     {
       if (ch == g_utf8_get_char (c))
