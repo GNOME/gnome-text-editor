@@ -29,7 +29,8 @@ typedef struct _CjhTextRegion     CjhTextRegion;
 
 EditorSpellCursor *editor_spell_cursor_new  (GtkTextBuffer     *buffer,
                                              CjhTextRegion     *region,
-                                             GtkTextTag        *no_spell_check_tag);
+                                             GtkTextTag        *no_spell_check_tag,
+                                             const char        *extra_word_chars);
 void               editor_spell_cursor_free (EditorSpellCursor *cursor);
 gboolean           editor_spell_cursor_next (EditorSpellCursor *cursor,
                                              GtkTextIter       *word_begin,

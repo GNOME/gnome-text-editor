@@ -51,6 +51,7 @@ struct _EditorSpellCursor
   RegionIter region;
   TagIter tag;
   WordIter word;
+  const char *extra_word_chars;
 };
 
 static void
@@ -227,7 +228,8 @@ word_iter_seek (WordIter          *self,
 EditorSpellCursor *
 editor_spell_cursor_new (GtkTextBuffer *buffer,
                          CjhTextRegion *region,
-                         GtkTextTag    *no_spell_check_tag)
+                         GtkTextTag    *no_spell_check_tag,
+                         const char    *extra_word_chars)
 {
   EditorSpellCursor *self;
 
@@ -239,6 +241,7 @@ editor_spell_cursor_new (GtkTextBuffer *buffer,
   region_iter_init (&self->region, buffer, region);
   tag_iter_init (&self->tag, buffer, no_spell_check_tag);
   word_iter_init (&self->word, buffer);
+  self->extra_word_chars = extra_word_chars ? g_intern_string (extra_word_chars) : "";
 
   return self;
 }

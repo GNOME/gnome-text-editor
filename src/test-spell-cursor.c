@@ -19,7 +19,7 @@ test_cursor (void)
 {
   g_autoptr(GtkTextBuffer) buffer = gtk_text_buffer_new (NULL);
   CjhTextRegion *region = _cjh_text_region_new (NULL, NULL);
-  g_autoptr(EditorSpellCursor) cursor = editor_spell_cursor_new (buffer, region, NULL);
+  g_autoptr(EditorSpellCursor) cursor = editor_spell_cursor_new (buffer, region, NULL, NULL);
   char *word;
 
   gtk_text_buffer_set_text (buffer, test_text, -1);
@@ -54,7 +54,7 @@ test_cursor_in_word (void)
 {
   g_autoptr(GtkTextBuffer) buffer = gtk_text_buffer_new (NULL);
   CjhTextRegion *region = _cjh_text_region_new (NULL, NULL);
-  g_autoptr(EditorSpellCursor) cursor = editor_spell_cursor_new (buffer, region, NULL);
+  g_autoptr(EditorSpellCursor) cursor = editor_spell_cursor_new (buffer, region, NULL, NULL);
   const char *pos = strstr (test_text, "ries "); /* se|ries */
   gsize offset = pos - test_text;
   char *word;

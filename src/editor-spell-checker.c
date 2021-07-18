@@ -311,3 +311,14 @@ editor_spell_checker_ignore_word (EditorSpellChecker *self,
   if (self->language != NULL)
     editor_spell_language_ignore_word (self->language, word);
 }
+
+const char *
+editor_spell_checker_get_extra_word_chars (EditorSpellChecker *self)
+{
+  g_return_val_if_fail (EDITOR_IS_SPELL_CHECKER (self), NULL);
+
+  if (self->language != NULL)
+    return editor_spell_language_get_extra_word_chars (self->language);
+
+  return "";
+}

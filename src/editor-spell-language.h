@@ -32,31 +32,33 @@ struct _EditorSpellLanguageClass
 {
   GObjectClass parent_class;
 
-  gboolean    (*contains_word)    (EditorSpellLanguage *self,
-                                   const char          *word,
-                                   gssize               word_len);
-  char      **(*list_corrections) (EditorSpellLanguage *self,
-                                   const char          *word,
-                                   gssize               word_len);
-  void        (*add_word)         (EditorSpellLanguage *self,
-                                   const char          *word);
-  void        (*ignore_word)      (EditorSpellLanguage *self,
-                                   const char          *word);
+  gboolean     (*contains_word)        (EditorSpellLanguage *self,
+                                        const char          *word,
+                                        gssize               word_len);
+  char       **(*list_corrections)     (EditorSpellLanguage *self,
+                                        const char          *word,
+                                        gssize               word_len);
+  void         (*add_word)             (EditorSpellLanguage *self,
+                                        const char          *word);
+  void         (*ignore_word)          (EditorSpellLanguage *self,
+                                        const char          *word);
+  const char  *(*get_extra_word_chars) (EditorSpellLanguage *self);
 
   /*< private >*/
   gpointer _reserved[8];
 };
 
-const char  *editor_spell_language_get_code         (EditorSpellLanguage *self);
-gboolean     editor_spell_language_contains_word    (EditorSpellLanguage *self,
-                                                     const char          *word,
-                                                     gssize               word_len);
-char       **editor_spell_language_list_corrections (EditorSpellLanguage *self,
-                                                     const char          *word,
-                                                     gssize               word_len);
-void         editor_spell_language_add_word         (EditorSpellLanguage *self,
-                                                     const char          *word);
-void         editor_spell_language_ignore_word      (EditorSpellLanguage *self,
-                                                     const char          *word);
+const char  *editor_spell_language_get_code             (EditorSpellLanguage *self);
+gboolean     editor_spell_language_contains_word        (EditorSpellLanguage *self,
+                                                         const char          *word,
+                                                         gssize               word_len);
+char       **editor_spell_language_list_corrections     (EditorSpellLanguage *self,
+                                                         const char          *word,
+                                                         gssize               word_len);
+void         editor_spell_language_add_word             (EditorSpellLanguage *self,
+                                                         const char          *word);
+void         editor_spell_language_ignore_word          (EditorSpellLanguage *self,
+                                                         const char          *word);
+const char  *editor_spell_language_get_extra_word_chars (EditorSpellLanguage *self);
 
 G_END_DECLS

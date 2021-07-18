@@ -190,6 +190,7 @@ editor_text_buffer_spell_adapter_update_range (EditorTextBufferSpellAdapter *sel
 {
   g_autoptr(EditorSpellCursor) cursor = NULL;
   GtkTextIter word_begin, word_end, begin;
+  const char *extra_word_chars;
   gboolean ret = FALSE;
   guint checked = 0;
 
@@ -199,7 +200,8 @@ editor_text_buffer_spell_adapter_update_range (EditorTextBufferSpellAdapter *sel
   if (editor_document_get_busy (EDITOR_DOCUMENT (self->buffer)))
     return TRUE;
 
-  cursor = editor_spell_cursor_new (self->buffer, self->region, self->no_spell_check_tag);
+  extra_word_chars = editor_spell_checker_get_extra_word_chars (self->checker);
+  cursor = editor_spell_cursor_new (self->buffer, self->region, self->no_spell_check_tag, extra_word_chars);
 
   /* Get the first unchecked position so that we can remove the tag
    * from it up to the first word match.
