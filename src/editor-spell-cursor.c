@@ -149,13 +149,39 @@ tag_iter_seek (TagIter           *self,
   self->pos = *iter;
 }
 
-static gboolean
-forward_word_end (GtkTextIter *iter)
+static inline gboolean
+is_extra_word_char (const GtkTextIter *iter,
+                    const char        *extra_word_chars)
+{
+  gunichar ch = gtk_text_iter_get_char (iter);
+
+  for (const char *c = extra_word_chars; *c; c = g_utf8_next_char (c))
+    {
+      if (ch == g_utf8_get_char (c))
+        return TRUE;
+    }
+
+  return FALSE;
+}
+
+gboolean
+editor_spell_iter_forward_word_end (GtkTextIter *iter,
+                                    const char  *extra_word_chars)
 {
   GtkTextIter tmp = *iter;
 
   if (gtk_text_iter_forward_word_end (iter))
-    return TRUE;
+    {
+      tmp = *iter;
+
+      if (is_extra_word_char (&tmp, extra_word_chars))
+        {
+          if (editor_spell_iter_forward_word_end (&tmp, extra_word_chars))
+            *iter = tmp;
+        }
+
+      return TRUE;
+    }
 
   if (gtk_text_iter_is_end (iter) &&
       gtk_text_iter_ends_word (iter) &&
@@ -165,13 +191,25 @@ forward_word_end (GtkTextIter *iter)
   return FALSE;
 }
 
-static gboolean
-backward_word_start (GtkTextIter *iter)
+gboolean
+editor_spell_iter_backward_word_start (GtkTextIter *iter,
+                                       const char  *extra_word_chars)
 {
   GtkTextIter tmp = *iter;
 
   if (gtk_text_iter_backward_word_start (iter))
-    return TRUE;
+    {
+      tmp = *iter;
+
+      if (gtk_text_iter_backward_char (&tmp) &&
+          is_extra_word_char (&tmp, extra_word_chars))
+        {
+          if (editor_spell_iter_backward_word_start (&tmp, extra_word_chars))
+            *iter = tmp;
+        }
+
+      return TRUE;
+    }
 
   if (gtk_text_iter_is_start (iter) &&
       gtk_text_iter_starts_word (iter) &&
@@ -193,9 +231,10 @@ word_iter_init (WordIter      *self,
 static gboolean
 word_iter_next (WordIter    *self,
                 GtkTextIter *word_begin,
-                GtkTextIter *word_end)
+                GtkTextIter *word_end,
+                const char  *extra_word_chars)
 {
-  if (!forward_word_end (&self->word_end))
+  if (!editor_spell_iter_forward_word_end (&self->word_end, extra_word_chars))
     {
       *word_begin = self->word_end;
       *word_end = self->word_end;
@@ -204,7 +243,7 @@ word_iter_next (WordIter    *self,
 
   self->word_begin = self->word_end;
 
-  if (!backward_word_start (&self->word_begin))
+  if (!editor_spell_iter_backward_word_start (&self->word_begin, extra_word_chars))
     {
       *word_begin = self->word_end;
       *word_end = self->word_end;
@@ -301,7 +340,7 @@ editor_spell_cursor_next (EditorSpellCursor *self,
    * positions.
    */
   word_iter_seek (&self->word, word_end);
-  if (!word_iter_next (&self->word, word_begin, word_end))
+  if (!word_iter_next (&self->word, word_begin, word_end, self->extra_word_chars))
     return FALSE;
 
   /* Now pass our new position to the region so that it will

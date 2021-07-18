@@ -27,14 +27,18 @@ G_BEGIN_DECLS
 typedef struct _EditorSpellCursor EditorSpellCursor;
 typedef struct _CjhTextRegion     CjhTextRegion;
 
-EditorSpellCursor *editor_spell_cursor_new  (GtkTextBuffer     *buffer,
-                                             CjhTextRegion     *region,
-                                             GtkTextTag        *no_spell_check_tag,
-                                             const char        *extra_word_chars);
-void               editor_spell_cursor_free (EditorSpellCursor *cursor);
-gboolean           editor_spell_cursor_next (EditorSpellCursor *cursor,
-                                             GtkTextIter       *word_begin,
-                                             GtkTextIter       *word_end);
+EditorSpellCursor *editor_spell_cursor_new               (GtkTextBuffer     *buffer,
+                                                          CjhTextRegion     *region,
+                                                          GtkTextTag        *no_spell_check_tag,
+                                                          const char        *extra_word_chars);
+void               editor_spell_cursor_free              (EditorSpellCursor *cursor);
+gboolean           editor_spell_cursor_next              (EditorSpellCursor *cursor,
+                                                          GtkTextIter       *word_begin,
+                                                          GtkTextIter       *word_end);
+gboolean           editor_spell_iter_forward_word_end    (GtkTextIter       *iter,
+                                                          const char        *extra_word_chars);
+gboolean           editor_spell_iter_backward_word_start (GtkTextIter       *iter,
+                                                          const char        *extra_word_chars);
 
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (EditorSpellCursor, editor_spell_cursor_free)
 
