@@ -64,7 +64,8 @@ editor_info_bar_update (EditorInfoBar *self)
 
   if (editor_document_get_externally_modified (self->document))
     {
-      gtk_button_set_label (self->discard, _("_Discard Changes &amp; Reload"));
+      gtk_button_set_label (self->discard, _("_Discard Changes and Reload"));
+      gtk_button_set_use_underline (self->discard, TRUE);
       gtk_actionable_set_action_name (GTK_ACTIONABLE (self->discard), "page.discard-changes");
       gtk_label_set_label (self->title, _("File Has Changed on Disk"));
       gtk_label_set_label (self->subtitle, _("The file has been changed by another program."));
