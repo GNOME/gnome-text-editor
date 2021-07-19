@@ -159,6 +159,9 @@ is_extra_word_char (const GtkTextIter *iter,
   if (ch == ' ' || ch == '\n' || ch == '\t' || ch == '\r')
     return FALSE;
 
+  if (ch == '\'')
+    return TRUE;
+
   for (const char *c = extra_word_chars; *c; c = g_utf8_next_char (c))
     {
       if (ch == g_utf8_get_char (c))
