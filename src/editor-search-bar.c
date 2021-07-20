@@ -319,11 +319,11 @@ on_search_key_pressed_cb (GtkEventControllerKey *key,
       switch (keyval)
         {
         case GDK_KEY_Up:
-          _editor_search_bar_move_next (self, FALSE);
+          _editor_search_bar_move_previous (self, FALSE);
           return TRUE;
 
         case GDK_KEY_Down:
-          _editor_search_bar_move_previous (self, FALSE);
+          _editor_search_bar_move_next (self, FALSE);
           return TRUE;
 
         default:
