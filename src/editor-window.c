@@ -268,7 +268,6 @@ editor_window_constructed (GObject *object)
   GtkApplication *app;
   EditorSession *session;
   GtkPopover *popover;
-  GMenu *export_menu;
   GMenu *options_menu;
   GMenu *primary_menu;
 
@@ -283,9 +282,6 @@ editor_window_constructed (GObject *object)
   g_object_bind_property (session, "recents",
                           self->open_menu_popover, "model",
                           G_BINDING_SYNC_CREATE);
-
-  export_menu = gtk_application_get_menu_by_id (GTK_APPLICATION (app), "export-menu");
-  gtk_menu_button_set_menu_model (self->export_menu, G_MENU_MODEL (export_menu));
 
   primary_menu = gtk_application_get_menu_by_id (GTK_APPLICATION (app), "primary-menu");
   gtk_menu_button_set_menu_model (self->primary_menu, G_MENU_MODEL (primary_menu));
@@ -396,7 +392,6 @@ editor_window_class_init (EditorWindowClass *klass)
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-window.ui");
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, empty);
-  gtk_widget_class_bind_template_child (widget_class, EditorWindow, export_menu);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, is_modified);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, open_menu_button);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, open_menu_popover);
