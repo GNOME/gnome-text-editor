@@ -15,6 +15,20 @@
     </section>
     <section>
       <item>
+        <attribute name="id">save</attribute>
+        <attribute name="label" translatable="yes">_Save</attribute>
+        <attribute name="action">page.save</attribute>
+        <attribute name="accel">&lt;primary&gt;s</attribute>
+      </item>
+      <item>
+        <attribute name="id">save-as</attribute>
+        <attribute name="label" translatable="yes">Save _As…</attribute>
+        <attribute name="action">page.save-as</attribute>
+        <attribute name="accel">&lt;primary&gt;&lt;shift&gt;s</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
         <attribute name="label" translatable="yes">_Find/Replace…</attribute>
         <attribute name="action">page.begin-search</attribute>
         <attribute name="accel">&lt;primary&gt;f</attribute>
@@ -105,20 +119,6 @@
     </section>
   </menu>
   <menu id="export-menu">
-    <section>
-      <item>
-        <attribute name="id">save</attribute>
-        <attribute name="label" translatable="yes">_Save</attribute>
-        <attribute name="action">page.save</attribute>
-        <attribute name="accel">&lt;primary&gt;s</attribute>
-      </item>
-      <item>
-        <attribute name="id">save-as</attribute>
-        <attribute name="label" translatable="yes">Save _As…</attribute>
-        <attribute name="action">page.save-as</attribute>
-        <attribute name="accel">&lt;primary&gt;&lt;shift&gt;s</attribute>
-      </item>
-    </section>
     <section>
       <item>
         <attribute name="id">discard-changes</attribute>
