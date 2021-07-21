@@ -11,4 +11,5 @@ media = [
 
 gnome.yelp(meson.project_name(),
   sources: pages,
+  media: media,
 )
