@@ -139,6 +139,21 @@ editor_application_actions_about_cb (GSimpleAction *action,
 }
 
 static void
+editor_application_actions_help_cb (GSimpleAction *action,
+                                    GVariant      *param,
+                                    gpointer       user_data)
+{
+  EditorApplication *self = user_data;
+  EditorWindow *window;
+
+  g_assert (EDITOR_IS_APPLICATION (self));
+
+  window = editor_application_get_current_window (self);
+
+  gtk_show_uri (GTK_WINDOW (window), "help:gnome-text-editor", GDK_CURRENT_TIME);
+}
+
+static void
 editor_application_actions_quit_cb (GObject      *object,
                                     GAsyncResult *result,
                                     gpointer      user_data)
@@ -217,6 +232,7 @@ _editor_application_actions_init (EditorApplication *self)
     { "new-window", editor_application_actions_new_window_cb },
     { "preferences", editor_application_actions_preferences_cb },
     { "about", editor_application_actions_about_cb },
+    { "help", editor_application_actions_help_cb },
     { "quit", editor_application_actions_quit },
   };
 
