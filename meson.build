@@ -156,6 +156,7 @@ endforeach
 
 subdir('data')
 subdir('src')
+subdir('help')
 subdir('po')
 
 configure_file(

@@ -177,6 +177,7 @@ editor_application_startup (GApplication *application)
   g_autoptr(GtkCssProvider) font_css_provider = NULL;
   GtkSettings *gtk_settings;
   static const gchar *quit_accels[] = { "<Primary>Q", NULL };
+  static const gchar *help_accels[] = { "F1", NULL };
 
   g_assert (EDITOR_IS_APPLICATION (self));
 
@@ -185,6 +186,7 @@ editor_application_startup (GApplication *application)
   adw_init ();
 
   gtk_application_set_accels_for_action (GTK_APPLICATION (self), "app.quit", quit_accels);
+  gtk_application_set_accels_for_action (GTK_APPLICATION (self), "app.help", help_accels);
 
   _editor_application_actions_init (self);
 
