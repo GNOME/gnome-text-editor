@@ -129,7 +129,7 @@ editor_application_actions_about_cb (GSimpleAction *action,
   gtk_about_dialog_set_copyright (dialog, "© 2020-2021 Christian Hergert");
   gtk_about_dialog_set_license_type (dialog, GTK_LICENSE_GPL_3_0);
   gtk_about_dialog_set_website (dialog, PACKAGE_WEBSITE);
-  gtk_about_dialog_set_website_label (dialog, _(PACKAGE_NAME " Website"));
+  gtk_about_dialog_set_website_label (dialog, _("Text Editor Website"));
 
   window = editor_application_get_current_window (self);
   gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (window));
