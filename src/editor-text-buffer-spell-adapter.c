@@ -746,3 +746,11 @@ editor_text_buffer_spell_adapter_set_language (EditorTextBufferSpellAdapter *sel
 
   editor_text_buffer_spell_adapter_invalidate_all (self);
 }
+
+GtkTextTag *
+editor_text_buffer_spell_adapter_get_tag (EditorTextBufferSpellAdapter *self)
+{
+  g_return_val_if_fail (EDITOR_IS_TEXT_BUFFER_SPELL_ADAPTER (self), NULL);
+
+  return self->tag;
+}

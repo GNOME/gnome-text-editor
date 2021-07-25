@@ -84,5 +84,6 @@ void                      _editor_document_add_spelling            (EditorDocume
                                                                     const char               *word);
 void                      _editor_document_ignore_spelling         (EditorDocument           *self,
                                                                     const char               *word);
+GtkTextTag               *_editor_document_get_spelling_tag        (EditorDocument           *self);
 
 G_END_DECLS

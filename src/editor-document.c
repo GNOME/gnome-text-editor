@@ -1866,3 +1866,11 @@ _editor_document_ignore_spelling (EditorDocument *self,
       editor_text_buffer_spell_adapter_invalidate_all (self->spell_adapter);
     }
 }
+
+GtkTextTag *
+_editor_document_get_spelling_tag (EditorDocument *self)
+{
+  g_return_val_if_fail (EDITOR_IS_DOCUMENT (self), NULL);
+
+  return editor_text_buffer_spell_adapter_get_tag (self->spell_adapter);
+}

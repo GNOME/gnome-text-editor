@@ -54,5 +54,6 @@ const char         *editor_text_buffer_spell_adapter_get_language        (Editor
 void                editor_text_buffer_spell_adapter_set_language        (EditorTextBufferSpellAdapter *self,
                                                                           const char                   *language);
 void                editor_text_buffer_spell_adapter_invalidate_all      (EditorTextBufferSpellAdapter *self);
+GtkTextTag         *editor_text_buffer_spell_adapter_get_tag             (EditorTextBufferSpellAdapter *self);
 
 G_END_DECLS
