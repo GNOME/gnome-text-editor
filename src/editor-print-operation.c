@@ -24,6 +24,7 @@
 
 #include <glib/gi18n.h>
 
+#include "editor-document-private.h"
 #include "editor-print-operation.h"
 
 struct _EditorPrintOperation
@@ -98,6 +99,7 @@ editor_print_operation_begin_print (GtkPrintOperation *operation,
 {
   EditorPrintOperation *self = EDITOR_PRINT_OPERATION (operation);
   GtkSourceBuffer *buffer;
+  GtkTextTag *spelling_tag;
   guint tab_width;
   gboolean syntax_hl;
 
@@ -106,12 +108,14 @@ editor_print_operation_begin_print (GtkPrintOperation *operation,
   tab_width = gtk_source_view_get_tab_width (GTK_SOURCE_VIEW (self->view));
   syntax_hl = gtk_source_buffer_get_highlight_syntax (buffer);
 
-  self->compositor = GTK_SOURCE_PRINT_COMPOSITOR (
-    g_object_new (GTK_SOURCE_TYPE_PRINT_COMPOSITOR,
-                  "buffer", buffer,
-                  "tab-width", tab_width,
-                  "highlight-syntax", syntax_hl,
-                  NULL));
+  self->compositor = g_object_new (GTK_SOURCE_TYPE_PRINT_COMPOSITOR,
+                                   "buffer", buffer,
+                                   "tab-width", tab_width,
+                                   "highlight-syntax", syntax_hl,
+                                   NULL);
+
+  spelling_tag = _editor_document_get_spelling_tag (EDITOR_DOCUMENT (buffer));
+  gtk_source_print_compositor_ignore_tag (self->compositor, spelling_tag);
 }
 
 static gboolean
