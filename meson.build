@@ -47,6 +47,9 @@ endif
 if gtk_minor % 2 == 1
   gtk_minor = gtk_minor + 1
 endif
+if gtksourceview_minor % 2 == 1
+  gtksourceview_minor = gtksourceview_minor + 1
+endif
 
 config_h = configuration_data()
 config_h.set_quoted('APP_ID', app_id)
