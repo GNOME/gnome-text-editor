@@ -37,6 +37,9 @@ struct _EditorOpenPopover
   GtkListView    *list_view;
   GtkWidget      *box;
   GtkSearchEntry *search_entry;
+  GtkStack       *stack;
+  GtkWidget      *empty;
+  GtkWidget      *recent;
 };
 
 G_DEFINE_TYPE (EditorOpenPopover, editor_open_popover, GTK_TYPE_POPOVER)
@@ -284,8 +287,11 @@ editor_open_popover_class_init (EditorOpenPopoverClass *klass)
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-open-popover.ui");
   gtk_widget_class_bind_template_child (widget_class, EditorOpenPopover, box);
+  gtk_widget_class_bind_template_child (widget_class, EditorOpenPopover, empty);
   gtk_widget_class_bind_template_child (widget_class, EditorOpenPopover, search_entry);
   gtk_widget_class_bind_template_child (widget_class, EditorOpenPopover, list_view);
+  gtk_widget_class_bind_template_child (widget_class, EditorOpenPopover, recent);
+  gtk_widget_class_bind_template_child (widget_class, EditorOpenPopover, stack);
   gtk_widget_class_bind_template_callback (widget_class, on_list_item_bind_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_list_item_unbind_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_list_view_activate_cb);
@@ -305,6 +311,22 @@ _editor_open_popover_get_model (EditorOpenPopover *self)
   return self->model;
 }
 
+static void
+editor_open_popover_items_changed_cb (EditorOpenPopover *self,
+                                      guint              position,
+                                      guint              removed,
+                                      guint              added,
+                                      GListModel        *model)
+{
+  g_assert (EDITOR_IS_OPEN_POPOVER (self));
+  g_assert (G_IS_LIST_MODEL (model));
+
+  if (added || g_list_model_get_n_items (model))
+    gtk_stack_set_visible_child (self->stack, self->recent);
+  else
+    gtk_stack_set_visible_child (self->stack, self->empty);
+}
+
 void
 _editor_open_popover_set_model (EditorOpenPopover *self,
                                 GListModel        *model)
@@ -318,8 +340,16 @@ _editor_open_popover_set_model (EditorOpenPopover *self,
 
       if (model != NULL)
         {
+          g_signal_connect_object (model,
+                                   "items-changed",
+                                   G_CALLBACK (editor_open_popover_items_changed_cb),
+                                   self,
+                                   G_CONNECT_SWAPPED);
+
           selection = gtk_single_selection_new (g_object_ref (model));
           gtk_single_selection_set_autoselect (selection, FALSE);
+
+          editor_open_popover_items_changed_cb (self, 0, 0, 0, model);
         }
 
       gtk_list_view_set_model (self->list_view, GTK_SELECTION_MODEL (selection));

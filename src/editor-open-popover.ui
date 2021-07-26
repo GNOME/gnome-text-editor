@@ -36,25 +36,40 @@
         <child>
           <object class="GtkFrame">
             <child>
-              <object class="GtkScrolledWindow">
-                <property name="hexpand">True</property>
-                <property name="hscrollbar-policy">never</property>
-                <property name="max-content-height">600</property>
-                <property name="max-content-width">500</property>
-                <property name="propagate-natural-height">True</property>
-                <property name="propagate-natural-width">True</property>
-                <property name="vexpand">True</property>
+              <object class="GtkStack" id="stack">
+                <property name="vhomogeneous">false</property>
+                <property name="hhomogeneous">false</property>
                 <child>
-                  <object class="GtkListView" id="list_view">
-                    <signal name="activate" handler="on_list_view_activate_cb" swapped="true" object="EditorOpenPopover"/>
-                    <property name="orientation">vertical</property>
-                    <property name="single-click-activate">True</property>
-                    <property name="factory">
-                      <object class="GtkSignalListItemFactory">
-                        <signal name="bind" handler="on_list_item_bind_cb" swapped="true" object="EditorOpenPopover"/>
-                        <signal name="unbind" handler="on_list_item_unbind_cb" swapped="true" object="EditorOpenPopover"/>
+                  <object class="GtkLabel" id="empty">
+                    <property name="label" translatable="yes">No Recent Documents</property>
+                    <property name="margin-start">6</property>
+                    <property name="margin-top">12</property>
+                    <property name="margin-bottom">12</property>
+                    <property name="margin-end">6</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkScrolledWindow" id="recent">
+                    <property name="hexpand">True</property>
+                    <property name="hscrollbar-policy">never</property>
+                    <property name="max-content-height">600</property>
+                    <property name="max-content-width">500</property>
+                    <property name="propagate-natural-height">True</property>
+                    <property name="propagate-natural-width">True</property>
+                    <property name="vexpand">True</property>
+                    <child>
+                      <object class="GtkListView" id="list_view">
+                        <signal name="activate" handler="on_list_view_activate_cb" swapped="true" object="EditorOpenPopover"/>
+                        <property name="orientation">vertical</property>
+                        <property name="single-click-activate">True</property>
+                        <property name="factory">
+                          <object class="GtkSignalListItemFactory">
+                            <signal name="bind" handler="on_list_item_bind_cb" swapped="true" object="EditorOpenPopover"/>
+                            <signal name="unbind" handler="on_list_item_unbind_cb" swapped="true" object="EditorOpenPopover"/>
+                          </object>
+                        </property>
                       </object>
-                    </property>
+                    </child>
                   </object>
                 </child>
               </object>
