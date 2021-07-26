@@ -279,6 +279,9 @@ _editor_save_changes_dialog_new (GtkWindow *parent,
         {
           g_autofree gchar *tmp = g_steal_pointer (&title_str);
 
+          if (tmp == NULL)
+            tmp = g_strdup (_("Untitled Document"));
+
           /* translators: %s is replaced with the title of the file */
           title_str = g_strdup_printf (_("%s (new)"), tmp);
 
