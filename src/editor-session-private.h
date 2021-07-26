@@ -50,6 +50,7 @@ struct _EditorSession
 
   guint               auto_save : 1;
   guint               did_restore : 1;
+  guint               dirty : 1;
 };
 
 EditorSession *_editor_session_new                    (void);
@@ -76,5 +77,6 @@ void           _editor_session_move_page_to_window    (EditorSession  *session,
 void           _editor_session_forget                 (EditorSession  *self,
                                                        GFile          *file,
                                                        const gchar    *draft_id);
+void           _editor_session_mark_dirty             (EditorSession  *self);
 
 G_END_DECLS

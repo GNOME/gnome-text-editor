@@ -612,6 +612,8 @@ editor_session_add_window (EditorSession *self,
   g_ptr_array_add (self->windows, g_object_ref_sink (window));
 
   g_signal_emit (self, signals [WINDOW_ADDED], 0, window);
+
+  _editor_session_mark_dirty (self);
 }
 
 EditorWindow *
@@ -710,6 +712,18 @@ editor_session_add_page (EditorSession *self,
   editor_page_grab_focus (page);
 
   g_signal_emit (self, signals [PAGE_ADDED], 0, window, page);
+
+  _editor_session_mark_dirty (self);
+}
+
+static void
+editor_session_document_changed_cb (EditorSession  *self,
+                                    EditorDocument *document)
+{
+  g_assert (EDITOR_IS_SESSION (self));
+  g_assert (EDITOR_IS_DOCUMENT (document));
+
+  _editor_session_mark_dirty (self);
 }
 
 /**
@@ -742,6 +756,12 @@ editor_session_add_document (EditorSession  *self,
 
   page = editor_page_new_for_document (document);
   editor_session_add_page (self, window, page);
+
+  g_signal_connect_object (document,
+                           "changed",
+                           G_CALLBACK (editor_session_document_changed_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
 
   return page;
 }
@@ -832,6 +852,8 @@ editor_session_stash_draft (EditorSession *self,
   d.draft_id = g_strdup (draft_id);
 
   g_array_append_val (self->drafts, d);
+
+  _editor_session_mark_dirty (self);
 }
 
 /**
@@ -886,6 +908,8 @@ editor_session_remove_page (EditorSession *self,
                                      g_object_ref (page));
 
   g_object_unref (page);
+
+  _editor_session_mark_dirty (self);
 }
 
 /**
@@ -968,6 +992,8 @@ _editor_session_remove_window (EditorSession *self,
     }
 
   g_object_unref (window);
+
+  _editor_session_mark_dirty (self);
 }
 
 static void
@@ -1082,7 +1108,7 @@ editor_session_save_draft_cb (GObject      *object,
                                          NULL,
                                          FALSE,
                                          G_FILE_CREATE_REPLACE_DESTINATION,
-                                         NULL,
+	                                        NULL,
                                          editor_session_save_replace_contents_cb,
                                          g_steal_pointer (&task));
 }
@@ -1101,6 +1127,8 @@ editor_session_save_async (EditorSession       *self,
 
   g_return_if_fail (EDITOR_IS_SESSION (self));
   g_return_if_fail (!cancellable || G_IS_CANCELLABLE (cancellable));
+
+  self->dirty = FALSE;
 
   g_variant_builder_init (&builder, G_VARIANT_TYPE ("a{sv}"));
   g_variant_builder_add_parsed (&builder, "{'version', <%u>}", 1);
@@ -1264,6 +1292,8 @@ editor_session_open (EditorSession           *self,
 
   _editor_document_load_async (document, window, NULL, NULL, NULL);
 
+  _editor_session_mark_dirty (self);
+
   return page;
 }
 
@@ -1326,6 +1356,8 @@ _editor_session_open_draft (EditorSession *self,
 
   if (remove)
     editor_session_remove_page (self, remove);
+
+  _editor_session_mark_dirty (self);
 
   return new_page;
 }
@@ -1884,6 +1916,8 @@ _editor_session_document_seen (EditorSession  *self,
       if (!g_hash_table_contains (self->seen, file))
         g_hash_table_insert (self->seen, g_file_dup (file), NULL);
     }
+
+  _editor_session_mark_dirty (self);
 }
 
 GArray *
@@ -1932,6 +1966,8 @@ _editor_session_add_draft (EditorSession *self,
   d.uri = g_strdup (uri);
 
   g_array_append_val (self->drafts, d);
+
+  _editor_session_mark_dirty (self);
 }
 
 void
@@ -1958,6 +1994,8 @@ _editor_session_remove_draft (EditorSession *self,
 
   if (self->recents != NULL)
     _editor_sidebar_model_remove_draft (self->recents, copy);
+
+  _editor_session_mark_dirty (self);
 }
 
 void
@@ -1989,10 +2027,12 @@ editor_session_auto_save_timeout_cb (gpointer user_data)
 
   g_assert (EDITOR_IS_SESSION (self));
 
-  g_debug ("Performing auto-save of session state\n");
+  self->auto_save_source = 0;
+
+  g_debug ("Performing auto-save of session state");
   editor_session_save_async (self, NULL, NULL, NULL);
 
-  return G_SOURCE_CONTINUE;
+  return G_SOURCE_REMOVE;
 }
 
 /**
@@ -2036,11 +2076,7 @@ editor_session_set_auto_save (EditorSession *self,
     {
       self->auto_save = auto_save;
       g_clear_handle_id (&self->auto_save_source, g_source_remove);
-      if (auto_save)
-        self->auto_save_source =
-          g_timeout_add_seconds (self->auto_save_delay,
-                                 editor_session_auto_save_timeout_cb,
-                                 self);
+      _editor_session_mark_dirty (self);
       g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_AUTO_SAVE]);
     }
 }
@@ -2119,6 +2155,8 @@ _editor_session_forget (EditorSession *self,
             }
         }
     }
+
+  _editor_session_mark_dirty (self);
 }
 
 guint
@@ -2140,6 +2178,29 @@ editor_session_set_auto_save_delay (EditorSession *self,
   if (auto_save_delay != self->auto_save_delay)
     {
       self->auto_save_delay = auto_save_delay;
+
+      g_clear_handle_id (&self->auto_save_source, g_source_remove);
+      _editor_session_mark_dirty (self);
+
       g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_AUTO_SAVE_DELAY]);
     }
+}
+
+void
+_editor_session_mark_dirty (EditorSession *self)
+{
+  g_return_if_fail (EDITOR_IS_SESSION (self));
+
+  if (self->dirty)
+    return;
+
+  self->dirty = TRUE;
+
+  if (!self->auto_save)
+    return;
+
+  g_clear_handle_id (&self->auto_save_source, g_source_remove);
+  self->auto_save_source = g_timeout_add_seconds (self->auto_save_delay,
+                                                  editor_session_auto_save_timeout_cb,
+                                                  self);
 }
