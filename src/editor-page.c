@@ -84,6 +84,17 @@ editor_page_document_notify_title_cb (EditorPage     *self,
 }
 
 static void
+editor_page_document_notify_externally_modified_cb (EditorPage     *self,
+                                                    GParamSpec     *pspec,
+                                                    EditorDocument *document)
+{
+  g_assert (EDITOR_IS_PAGE (self));
+  g_assert (EDITOR_IS_DOCUMENT (document));
+
+  g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_IS_MODIFIED]);
+}
+
+static void
 editor_page_document_notify_busy_cb (EditorPage     *self,
                                      GParamSpec     *pspec,
                                      EditorDocument *document)
@@ -188,6 +199,11 @@ editor_page_set_document (EditorPage     *self,
       g_signal_connect_object (document,
                                "notify::title",
                                G_CALLBACK (editor_page_document_notify_title_cb),
+                               self,
+                               G_CONNECT_SWAPPED);
+      g_signal_connect_object (document,
+                               "notify::externally-modified",
+                               G_CALLBACK (editor_page_document_notify_externally_modified_cb),
                                self,
                                G_CONNECT_SWAPPED);
       g_signal_connect_object (document,
