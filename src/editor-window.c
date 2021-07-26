@@ -479,6 +479,11 @@ editor_window_init (EditorWindow *self)
                                       self,
                                       G_CONNECT_SWAPPED);
   editor_signal_group_connect_object (self->page_signals,
+                                      "notify::is-modified",
+                                      G_CALLBACK (editor_window_update_actions),
+                                      self,
+                                      G_CONNECT_SWAPPED);
+  editor_signal_group_connect_object (self->page_signals,
                                       "notify::can-discard",
                                       G_CALLBACK (update_subtitle_visibility_cb),
                                       self,
