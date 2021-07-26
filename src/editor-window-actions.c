@@ -640,6 +640,7 @@ void
 _editor_window_actions_update (EditorWindow *self,
                                EditorPage   *page)
 {
+  gboolean externally_modified = FALSE;
   gboolean has_page = FALSE;
   gboolean can_save = FALSE;
   gboolean modified = FALSE;
@@ -650,15 +651,18 @@ _editor_window_actions_update (EditorWindow *self,
 
   if (page != NULL)
     {
+      EditorDocument *document = editor_page_get_document (page);
+
       has_page = TRUE;
       can_save = editor_page_get_can_save (page);
       modified = editor_page_get_is_modified (page);
       draft = editor_page_is_draft (page);
+      externally_modified = editor_document_get_externally_modified (document);
     }
 
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "win.close-current-page", has_page);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.change-language", has_page);
-  gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.discard-changes", modified && !draft);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.discard-changes", externally_modified || (modified && !draft));
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.print", has_page);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.save", can_save);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.save-as", has_page);
