@@ -28,6 +28,7 @@
 #include "editor-document.h"
 #include "editor-language-dialog.h"
 #include "editor-page-private.h"
+#include "editor-save-changes-dialog-private.h"
 #include "editor-session-private.h"
 #include "editor-window-private.h"
 
@@ -46,6 +47,30 @@ editor_window_actions_new_draft_cb (GtkWidget  *widget,
 }
 
 static void
+editor_window_actions_close_page_confirm_cb (GObject      *object,
+                                             GAsyncResult *result,
+                                             gpointer      user_data)
+{
+  g_autoptr(GPtrArray) pages = user_data;
+  g_autoptr(GError) error = NULL;
+  EditorSession *session;
+
+  g_assert (pages != NULL);
+  g_assert (pages->len > 0);
+
+  if (!_editor_save_changes_dialog_run_finish (result, &error))
+    {
+      g_debug ("Failed to run dialog: %s", error->message);
+      return;
+    }
+
+  session = editor_application_get_session (EDITOR_APPLICATION_DEFAULT);
+
+  for (guint i = 0; i < pages->len; i++)
+    editor_session_remove_page (session, g_ptr_array_index (pages, i));
+}
+
+static void
 editor_window_actions_close_page_cb (GtkWidget  *widget,
                                      const char *action_name,
                                      GVariant   *param)
@@ -58,12 +83,25 @@ editor_window_actions_close_page_cb (GtkWidget  *widget,
 
   session = editor_application_get_session (EDITOR_APPLICATION_DEFAULT);
 
-  page = editor_window_get_visible_page (self);
-  if (page != NULL)
-    editor_session_remove_page (session, page);
+  if ((page = editor_window_get_visible_page (self)))
+    {
+      /* If this document has changes, then request the user to save them. */
+      if (editor_page_get_is_modified (page))
+        {
+          g_autoptr(GPtrArray) pages = g_ptr_array_new_with_free_func (g_object_unref);
+          g_ptr_array_add (pages, g_object_ref (page));
+          _editor_save_changes_dialog_run_async (GTK_WINDOW (self),
+                                                 pages,
+                                                 NULL,
+                                                 editor_window_actions_close_page_confirm_cb,
+                                                 g_ptr_array_ref (pages));
+          return;
+        }
 
-  page = editor_window_get_visible_page (self);
-  if (page == NULL)
+      editor_session_remove_page (session, page);
+    }
+
+  if (!(page = editor_window_get_visible_page (self)))
     gtk_window_close (GTK_WINDOW (self));
 }
 

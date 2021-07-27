@@ -215,11 +215,23 @@ editor_save_changes_dialog_response (GtkMessageDialog *dialog,
   g_assert (GTK_IS_MESSAGE_DIALOG (dialog));
 
   if (response == GTK_RESPONSE_NO)
-    editor_save_changes_dialog_discard (dialog, requests);
+    {
+      editor_save_changes_dialog_discard (dialog, requests);
+    }
   else if (response == GTK_RESPONSE_YES)
-    editor_save_changes_dialog_save (dialog, requests);
+    {
+      editor_save_changes_dialog_save (dialog, requests);
+    }
   else
-    gtk_window_destroy (GTK_WINDOW (dialog));
+    {
+      GTask *task = g_object_get_data (G_OBJECT (dialog), "TASK");
+      g_print ("Returning new error\n");
+      g_task_return_new_error (task,
+                               G_IO_ERROR,
+                               G_IO_ERROR_CANCELLED,
+                               "The user cancelled the request");
+      gtk_window_destroy (GTK_WINDOW (dialog));
+    }
 }
 
 static GtkWidget *

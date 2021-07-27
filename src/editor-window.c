@@ -215,13 +215,16 @@ editor_window_confirm_cb (GObject      *object,
                           gpointer      user_data)
 {
   g_autoptr(EditorWindow) self = user_data;
+  g_autoptr(GError) error = NULL;
 
   g_assert (EDITOR_IS_WINDOW (self));
   g_assert (G_IS_ASYNC_RESULT (result));
 
-  _editor_save_changes_dialog_run_finish (result, NULL);
-  editor_window_do_close (self);
-  gtk_window_destroy (GTK_WINDOW (self));
+  if (_editor_save_changes_dialog_run_finish (result, &error))
+    {
+      editor_window_do_close (self);
+      gtk_window_destroy (GTK_WINDOW (self));
+    }
 }
 
 static gboolean

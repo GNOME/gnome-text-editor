@@ -179,10 +179,13 @@ editor_application_actions_confirm_cb (GObject      *object,
                                        gpointer      user_data)
 {
   g_autoptr(EditorApplication) self = user_data;
+  g_autoptr(GError) error = NULL;
 
   g_assert (EDITOR_IS_APPLICATION (self));
 
-  _editor_save_changes_dialog_run_finish (result, NULL);
+  if (!_editor_save_changes_dialog_run_finish (result, &error))
+    return;
+
   editor_session_save_async (self->session,
                              NULL,
                              editor_application_actions_quit_cb,
