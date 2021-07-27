@@ -738,6 +738,8 @@ editor_page_save_cb (GObject      *object,
 
   if (_editor_document_save_finish (document, result, &error))
     _editor_document_guess_language_async (document, NULL, NULL, NULL);
+  else
+    g_warning ("Failed to save document: %s", error->message);
 }
 
 void
