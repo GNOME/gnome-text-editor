@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues\n"
-"POT-Creation-Date: 2021-07-23 21:04+0000\n"
-"PO-Revision-Date: 2021-07-24 09:02+0300\n"
+"POT-Creation-Date: 2021-07-26 23:42+0000\n"
+"PO-Revision-Date: 2021-07-27 12:57+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -199,7 +199,6 @@ msgid "Failed to retrieve va_list value: %s"
 msgstr "Не вдалося отримати значення va_list: %s"
 
 #: src/editor-application-actions.c:132
-#| msgid "Text Editor"
 msgid "Text Editor Website"
 msgstr "Сайт «Текстового редактора»"
 
@@ -255,33 +254,38 @@ msgstr "Режим підсвічування"
 msgid "Recent Documents"
 msgstr "Недавні документи"
 
-#: src/editor-open-popover.ui:72
+#: src/editor-open-popover.ui:44
+#| msgid "Recent Documents"
+msgid "No Recent Documents"
+msgstr "Немає недавніх документів"
+
+#: src/editor-open-popover.ui:87
 msgid "Br_owse Files…"
 msgstr "_Навігація файлами…"
 
-#: src/editor-page.c:668 src/editor-sidebar-item.c:440
+#: src/editor-page.c:684 src/editor-sidebar-item.c:440
 msgid "New Document"
 msgstr "Новий документ"
 
-#: src/editor-page.c:685 src/editor-sidebar-item.c:459
+#: src/editor-page.c:701 src/editor-sidebar-item.c:459
 #: src/editor-sidebar-item.c:465
 msgid "Draft"
 msgstr "Чернетка"
 
-#: src/editor-page.c:786 src/help-overlay.ui:79
+#: src/editor-page.c:802
 msgid "Save As"
 msgstr "Зберегти як"
 
-#: src/editor-page.c:789 src/editor-window-actions.c:127 src/help-overlay.ui:73
+#: src/editor-page.c:805 src/editor-window-actions.c:127
 msgid "Save"
 msgstr "Зберегти"
 
-#: src/editor-page.c:790 src/editor-window-actions.c:126
+#: src/editor-page.c:806 src/editor-window-actions.c:126
 #: src/editor-window-actions.c:237 src/editor-window-actions.c:346
 msgid "Cancel"
 msgstr "Скасувати"
 
-#: src/editor-page.c:908
+#: src/editor-page.c:924
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Рд %u, Поз %u"
@@ -356,8 +360,13 @@ msgstr "Від_кинути усе"
 msgid "_Save"
 msgstr "З_берегти"
 
-#. translators: %s is replaced with the title of the file
 #: src/editor-save-changes-dialog.c:283
+#| msgid "New Document"
+msgid "Untitled Document"
+msgstr "Документ без назви"
+
+#. translators: %s is replaced with the title of the file
+#: src/editor-save-changes-dialog.c:286
 #, c-format
 msgid "%s (new)"
 msgstr "%s (новий)"
@@ -475,7 +484,7 @@ msgstr "Unix/Linux"
 msgid "Mac OS Classic"
 msgstr "Mac OS Classic"
 
-#: src/editor-utils.c:348 src/help-overlay.ui:11
+#: src/editor-utils.c:348
 msgid "Windows"
 msgstr "Вікна"
 
@@ -572,178 +581,284 @@ msgid "Enchant 2"
 msgstr "Enchant 2"
 
 #: src/help-overlay.ui:8
+#| msgid "Editor Shortcuts"
+msgctxt "shortcut window"
 msgid "Editor Shortcuts"
 msgstr "Редактор скорочень"
 
+#: src/help-overlay.ui:11
+#| msgid "Windows"
+msgctxt "shortcut window"
+msgid "Windows"
+msgstr "Вікна"
+
 #: src/help-overlay.ui:14
+#| msgid "New window"
+msgctxt "shortcut window"
 msgid "New window"
-msgstr "Нове вікно"
+msgstr "Створити вікно"
 
 #: src/help-overlay.ui:20
+#| msgid "Move document to new window"
+msgctxt "shortcut window"
 msgid "Move document to new window"
 msgstr "Пересунути документ до нового вікна"
 
 #: src/help-overlay.ui:27
+#| msgid "Move to next tab"
+msgctxt "shortcut window"
 msgid "Move to next tab"
 msgstr "Перейти до наступної вкладки"
 
 #: src/help-overlay.ui:33
+#| msgid "Move to previous tab"
+msgctxt "shortcut window"
 msgid "Move to previous tab"
 msgstr "Перейти до попередньої вкладки"
 
 #: src/help-overlay.ui:39
+#| msgid "Reorder after next tab"
+msgctxt "shortcut window"
 msgid "Reorder after next tab"
 msgstr "Перевпорядкувати після наступної вкладки"
 
 #: src/help-overlay.ui:45
+#| msgid "Reorder before previous tab"
+msgctxt "shortcut window"
 msgid "Reorder before previous tab"
 msgstr "Перевпорядкувати до попередньої вкладки"
 
 #: src/help-overlay.ui:52
+#| msgid "Documents"
+msgctxt "shortcut window"
 msgid "Documents"
 msgstr "Документи"
 
 #: src/help-overlay.ui:55
+#| msgid "New document"
+msgctxt "shortcut window"
 msgid "New document"
 msgstr "Новий документ"
 
 #: src/help-overlay.ui:61
+#| msgid "Browse to open document"
+msgctxt "shortcut window"
 msgid "Browse to open document"
 msgstr "Здійснити навігацію для відкриття документа"
 
 #: src/help-overlay.ui:67
+#| msgid "Find document by name"
+msgctxt "shortcut window"
 msgid "Find document by name"
 msgstr "Знайти документ за назвою"
 
+#: src/help-overlay.ui:73
+#| msgid "Save"
+msgctxt "shortcut window"
+msgid "Save"
+msgstr "Зберегти"
+
+#: src/help-overlay.ui:79
+#| msgid "Save As"
+msgctxt "shortcut window"
+msgid "Save As"
+msgstr "Зберегти із новою назвою"
+
 #: src/help-overlay.ui:85
+#| msgid "Find/Replace"
+msgctxt "shortcut window"
 msgid "Find/Replace"
 msgstr "Знайти і замінити"
 
 #: src/help-overlay.ui:91
+#| msgid "Close document"
+msgctxt "shortcut window"
 msgid "Close document"
 msgstr "Закрити документ"
 
 #: src/help-overlay.ui:99
+#| msgid "Copy and Paste"
+msgctxt "shortcut window"
 msgid "Copy and Paste"
-msgstr "Копіювати і вставити"
+msgstr "Перенесення тексту"
 
 #: src/help-overlay.ui:103
+#| msgid "Copy selected text to clipboard"
+msgctxt "shortcut window"
 msgid "Copy selected text to clipboard"
 msgstr "Копіювати позначений текст до буфера обміну"
 
 #: src/help-overlay.ui:109
+#| msgid "Cut selected text to clipboard"
+msgctxt "shortcut window"
 msgid "Cut selected text to clipboard"
 msgstr "Вирізати вибраний текст у буфер"
 
 #: src/help-overlay.ui:115
+#| msgid "Paste text from clipboard"
+msgctxt "shortcut window"
 msgid "Paste text from clipboard"
 msgstr "Вставити текст з буфера"
 
 #: src/help-overlay.ui:120
+#| msgid "Copy all to clipboard"
+msgctxt "shortcut window"
 msgid "Copy all to clipboard"
 msgstr "Копіювати усе до буфера"
 
 #: src/help-overlay.ui:128
+#| msgid "Undo and Redo"
+msgctxt "shortcut window"
 msgid "Undo and Redo"
 msgstr "Керування змінами"
 
 #: src/help-overlay.ui:132
+#| msgid "Undo previous command"
+msgctxt "shortcut window"
 msgid "Undo previous command"
 msgstr "Повернути попередню дію"
 
 #: src/help-overlay.ui:138
+#| msgid "Redo previous command"
+msgctxt "shortcut window"
 msgid "Redo previous command"
 msgstr "Повторити попередню дію"
 
 #: src/help-overlay.ui:145
+#| msgid "Editing"
+msgctxt "shortcut window"
 msgid "Editing"
 msgstr "Редагування"
 
 #: src/help-overlay.ui:149
+#| msgid "Insert emoji into document"
+msgctxt "shortcut window"
 msgid "Insert emoji into document"
 msgstr "Вставити до документа емодзі"
 
 #: src/help-overlay.ui:155
+#| msgid "Search within the document"
+msgctxt "shortcut window"
 msgid "Search within the document"
 msgstr "Пошук у документі"
 
 #: src/help-overlay.ui:161
+#| msgid "Search and replace within the document"
+msgctxt "shortcut window"
 msgid "Search and replace within the document"
 msgstr "Пошук і заміна у межах документа"
 
 #: src/help-overlay.ui:167
+#| msgid "Increment number at cursor"
+msgctxt "shortcut window"
 msgid "Increment number at cursor"
 msgstr "Збільшити число на курсорі"
 
 #: src/help-overlay.ui:173
+#| msgid "Decrement number at cursor"
+msgctxt "shortcut window"
 msgid "Decrement number at cursor"
 msgstr "Зменшити число на курсорі"
 
 #: src/help-overlay.ui:179
+#| msgid "Toggle overwrite"
+msgctxt "shortcut window"
 msgid "Toggle overwrite"
 msgstr "Перемкнути перезапис"
 
 #: src/help-overlay.ui:185
+#| msgid "Toggle visibility of insertion caret"
+msgctxt "shortcut window"
 msgid "Toggle visibility of insertion caret"
 msgstr "Перемкнути видимість курсора вставлення"
 
 #: src/help-overlay.ui:192
+#| msgid "Selections"
+msgctxt "shortcut window"
 msgid "Selections"
 msgstr "Позначення"
 
 #: src/help-overlay.ui:196
+#| msgid "Select all"
+msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Позначити все"
 
 #: src/help-overlay.ui:202
+#| msgid "Unselect all"
+msgctxt "shortcut window"
 msgid "Unselect all"
 msgstr "Зняти позначення з усього"
 
 #: src/help-overlay.ui:209
+#| msgid "Movements"
+msgctxt "shortcut window"
 msgid "Movements"
 msgstr "Рухи"
 
 #: src/help-overlay.ui:213
+#| msgid "Move to beginning of document"
+msgctxt "shortcut window"
 msgid "Move to beginning of document"
 msgstr "Перейти на початок документа"
 
 #: src/help-overlay.ui:219
+#| msgid "Move to end of document"
+msgctxt "shortcut window"
 msgid "Move to end of document"
 msgstr "Перейти в кінець документа"
 
 #: src/help-overlay.ui:225
+#| msgid "Move to start of previous paragraph"
+msgctxt "shortcut window"
 msgid "Move to start of previous paragraph"
 msgstr "Перейти до початку попереднього абзацу"
 
 #: src/help-overlay.ui:231
+#| msgid "Move to end of next paragraph"
+msgctxt "shortcut window"
 msgid "Move to end of next paragraph"
 msgstr "Перейти до кінця наступного абзацу"
 
 #: src/help-overlay.ui:237
+#| msgid "Move current or selected lines up"
+msgctxt "shortcut window"
 msgid "Move current or selected lines up"
 msgstr "Пересунути поточний або позначені рядки вище"
 
 #: src/help-overlay.ui:243
+#| msgid "Move current or selected lines down"
+msgctxt "shortcut window"
 msgid "Move current or selected lines down"
 msgstr "Пересунути поточний або позначені рядки нижче"
 
 #: src/help-overlay.ui:250
+#| msgid "Deletion"
+msgctxt "shortcut window"
 msgid "Deletion"
 msgstr "Вилучення"
 
 #: src/help-overlay.ui:254
+#| msgid "Delete from cursor to word start"
+msgctxt "shortcut window"
 msgid "Delete from cursor to word start"
 msgstr "Вилучити текст від курсора до початку слова"
 
 #: src/help-overlay.ui:260
+#| msgid "Delete from cursor to word end"
+msgctxt "shortcut window"
 msgid "Delete from cursor to word end"
 msgstr "Вилучити текст від курсора до кінця слова"
 
 #: src/help-overlay.ui:266
+#| msgid "Delete from cursor to paragraph start"
+msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph start"
 msgstr "Вилучити текст від курсора до початку абзацу"
 
 #: src/help-overlay.ui:272
+#| msgid "Delete from cursor to paragraph end"
+msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph end"
 msgstr "Вилучити текст від курсора до кінця абзацу"
 
