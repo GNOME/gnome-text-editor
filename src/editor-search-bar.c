@@ -757,6 +757,7 @@ void
 _editor_search_bar_replace_all (EditorSearchBar *self)
 {
   g_autoptr(GError) error = NULL;
+  g_autofree char *unescaped = NULL;
   const char *replace;
 
   g_return_if_fail (EDITOR_IS_SEARCH_BAR (self));
@@ -765,7 +766,8 @@ _editor_search_bar_replace_all (EditorSearchBar *self)
     return;
 
   replace = gtk_editable_get_text (GTK_EDITABLE (self->replace_entry));
+  unescaped = gtk_source_utils_unescape_search_text (replace);
 
-  if (!gtk_source_search_context_replace_all (self->context, replace, -1, &error))
+  if (!gtk_source_search_context_replace_all (self->context, unescaped, -1, &error))
     g_warning ("Failed to replace all matches: %s", error->message);
 }
