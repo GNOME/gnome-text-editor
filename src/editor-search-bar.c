@@ -221,30 +221,39 @@ editor_search_bar_hide_search_cb (EditorSearchBar *self)
 }
 
 static gboolean
-empty_to_null (GBinding     *binding,
-               const GValue *from_value,
-               GValue       *to_value,
-               gpointer      user_data)
+text_to_search_text (GBinding     *binding,
+                     const GValue *from_value,
+                     GValue       *to_value,
+                     gpointer      user_data)
 {
+  EditorSearchBar *self = user_data;
   const gchar *str = g_value_get_string (from_value);
-  if (!str || !*str)
+
+  if (!str || gtk_source_search_settings_get_regex_enabled (self->settings))
     g_value_set_string (to_value, NULL);
   else
-    g_value_set_string (to_value, str);
+    g_value_take_string (to_value, gtk_source_utils_unescape_search_text (str));
+
   return TRUE;
 }
 
 static gboolean
-null_to_empty (GBinding     *binding,
-               const GValue *from_value,
-               GValue       *to_value,
-               gpointer      user_data)
+search_text_to_text (GBinding     *binding,
+                     const GValue *from_value,
+                     GValue       *to_value,
+                     gpointer      user_data)
 {
+  EditorSearchBar *self = user_data;
   const gchar *str = g_value_get_string (from_value);
-  if (!str || !*str)
-    g_value_set_string (to_value, "");
+
+  if (str == NULL)
+    str = "";
+
+  if (gtk_source_search_settings_get_regex_enabled (self->settings))
+    g_value_take_string (to_value, gtk_source_utils_escape_search_text (str));
   else
     g_value_set_string (to_value, str);
+
   return TRUE;
 }
 
@@ -530,7 +539,7 @@ editor_search_bar_init (EditorSearchBar *self)
   g_object_bind_property_full (self->settings, "search-text",
                                self->search_entry, "text",
                                G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL,
-                               null_to_empty, empty_to_null, NULL, NULL);
+                               search_text_to_text, text_to_search_text, self, NULL);
   g_object_bind_property_full (self->replace_mode_button, "active",
                                self, "mode",
                                G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL,
