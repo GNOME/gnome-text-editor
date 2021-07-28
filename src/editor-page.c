@@ -731,15 +731,34 @@ editor_page_save_cb (GObject      *object,
   EditorDocument *document = (EditorDocument *)object;
   g_autoptr(EditorPage) self = user_data;
   g_autoptr(GError) error = NULL;
+  GtkNative *parent;
+  GtkWidget *dialog;
 
   g_assert (EDITOR_IS_DOCUMENT (document));
   g_assert (G_IS_ASYNC_RESULT (result));
   g_assert (EDITOR_IS_PAGE (self));
 
   if (_editor_document_save_finish (document, result, &error))
-    _editor_document_guess_language_async (document, NULL, NULL, NULL);
-  else
-    g_warning ("Failed to save document: %s", error->message);
+    {
+      _editor_document_guess_language_async (document, NULL, NULL, NULL);
+      return;
+    }
+
+  g_warning ("Failed to save document: %s", error->message);
+
+  parent = gtk_widget_get_native (GTK_WIDGET (self));
+  dialog = gtk_message_dialog_new (GTK_WINDOW (parent),
+                                   GTK_DIALOG_MODAL | GTK_DIALOG_USE_HEADER_BAR,
+                                   GTK_MESSAGE_WARNING,
+                                   GTK_BUTTONS_CLOSE,
+                                   "%s",
+                                   _("Failed to save document"));
+  gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog), "%s", error->message);
+  g_signal_connect (dialog,
+                    "response",
+                    G_CALLBACK (gtk_window_destroy),
+                    NULL);
+  gtk_window_present (GTK_WINDOW (dialog));
 }
 
 void
