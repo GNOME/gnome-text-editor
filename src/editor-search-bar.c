@@ -681,10 +681,7 @@ _editor_search_bar_detach (EditorSearchBar *self)
       GtkWidget *page = gtk_widget_get_ancestor (GTK_WIDGET (self), EDITOR_TYPE_PAGE);
 
       if (self->jump_back_on_hide)
-        {
-          _editor_page_scroll_to_insert (EDITOR_PAGE (page));
-          g_print ("jumping back to old insert\n");
-        }
+        _editor_page_scroll_to_insert (EDITOR_PAGE (page));
 
       g_signal_handlers_disconnect_by_func (self->context,
                                             G_CALLBACK (editor_search_bar_notify_occurrences_count_cb),
