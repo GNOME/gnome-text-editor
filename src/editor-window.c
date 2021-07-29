@@ -75,21 +75,25 @@ editor_window_cursor_moved_cb (EditorWindow   *self,
                                EditorDocument *document)
 {
   EditorPage *page;
+  guint line;
+  guint column;
 
   g_assert (EDITOR_IS_WINDOW (self));
   g_assert (self->position_label != NULL);
   g_assert (EDITOR_IS_POSITION_LABEL (self->position_label));
   g_assert (EDITOR_IS_DOCUMENT (document));
 
-  if ((page = editor_window_get_visible_page (self)))
-    {
-      guint line;
-      guint column;
+  if (!(page = editor_window_get_visible_page (self)))
+    return;
 
-      editor_page_get_visual_position (page, &line, &column);
+  if (editor_document_get_busy (document))
+    return;
 
-      _editor_position_label_set_position (self->position_label, line + 1, column + 1);
-    }
+  if (editor_page_get_document (page) != document)
+    return;
+
+  editor_page_get_visual_position (page, &line, &column);
+  _editor_position_label_set_position (self->position_label, line + 1, column + 1);
 }
 
 static void
