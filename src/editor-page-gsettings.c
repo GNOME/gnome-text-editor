@@ -139,7 +139,13 @@ static gboolean
 editor_page_gsettings_get_custom_font (EditorPageSettingsProvider  *provider,
                                        gchar                      **custom_font)
 {
-  *custom_font = g_settings_get_string (EDITOR_PAGE_GSETTINGS (provider)->settings, "custom-font");
+  EditorPageGsettings *self = EDITOR_PAGE_GSETTINGS (provider);
+
+  if (!g_settings_get_boolean (self->settings, "use-system-font"))
+    *custom_font = g_settings_get_string (EDITOR_PAGE_GSETTINGS (provider)->settings, "custom-font");
+  else
+    *custom_font = NULL;
+
   return TRUE;
 }
 
