@@ -77,6 +77,7 @@ typedef struct
   gint64           modified_at;
   guint            n_active;
   guint            highlight_syntax : 1;
+  guint            check_spelling : 1;
   guint            has_draft : 1;
   guint            has_file : 1;
 } Load;
@@ -1121,8 +1122,8 @@ editor_document_query_info_cb (GObject      *object,
 
   editor_buffer_monitor_reset (self->monitor);
 
-  if (load->highlight_syntax)
-    gtk_source_buffer_set_highlight_syntax (GTK_SOURCE_BUFFER (self), TRUE);
+  gtk_source_buffer_set_highlight_syntax (GTK_SOURCE_BUFFER (self), load->highlight_syntax);
+  editor_text_buffer_spell_adapter_set_enabled (self->spell_adapter, load->check_spelling);
 
   _editor_document_unmark_busy (self);
 
@@ -1200,6 +1201,7 @@ editor_document_do_load (EditorDocument *self,
       editor_document_set_busy_progress (self, 1, 2, 1.0);
       _editor_document_unmark_busy (self);
       gtk_source_buffer_set_highlight_syntax (GTK_SOURCE_BUFFER (self), TRUE);
+      editor_text_buffer_spell_adapter_set_enabled (self->spell_adapter, load->check_spelling);
       g_task_return_boolean (task, TRUE);
       return;
     }
@@ -1410,6 +1412,9 @@ _editor_document_load_async (EditorDocument      *self,
   if (gtk_source_buffer_get_highlight_syntax (GTK_SOURCE_BUFFER (self)))
     load->highlight_syntax = TRUE;
 
+  if (editor_text_buffer_spell_adapter_get_enabled (self->spell_adapter))
+    load->check_spelling = TRUE;
+
   task = g_task_new (self, cancellable, callback, user_data);
   g_task_set_source_tag (task, _editor_document_load_async);
   g_task_set_task_data (task, load, (GDestroyNotify) load_free);
@@ -1429,6 +1434,7 @@ _editor_document_load_async (EditorDocument      *self,
    * where text changes during the main loop idle callbacks.
    */
   gtk_source_buffer_set_highlight_syntax (GTK_SOURCE_BUFFER (self), FALSE);
+  editor_text_buffer_spell_adapter_set_enabled (self->spell_adapter, FALSE);
 
   load->n_active++;
   g_file_query_info_async (load->draft_file,
