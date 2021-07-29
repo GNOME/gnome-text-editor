@@ -1,0 +1,942 @@
+# Chinese (China) translation for gnome-text-editor.
+# Copyright (C) 2021 gnome-text-editor's COPYRIGHT HOLDER
+# This file is distributed under the same license as the gnome-text-editor package.
+# D <afecr@foxmail.com>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-text-editor master\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
+"issues\n"
+"POT-Creation-Date: 2021-07-29 02:09+0000\n"
+"PO-Revision-Date: 2021-07-29 15:05-0400\n"
+"Last-Translator: Boyuan Yang <073plan@gmail.com>\n"
+"Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.0\n"
+
+#: data/org.gnome.TextEditor.appdata.xml.in.in:6
+msgid "Christian Hergert, et al."
+msgstr "Christian Hergert, et al."
+
+#: data/org.gnome.TextEditor.appdata.xml.in.in:8
+#: data/org.gnome.TextEditor.desktop.in.in:7
+#: src/editor-application-actions.c:114 src/editor-application-actions.c:116
+msgid "Text Editor"
+msgstr "文本编辑器"
+
+#: data/org.gnome.TextEditor.appdata.xml.in.in:10
+msgid "A Text Editor for GNOME"
+msgstr "GNOME 的文本编辑器"
+
+#: data/org.gnome.TextEditor.appdata.xml.in.in:12
+msgid ""
+"GNOME Text Editor is a simple text editor focused on a pleasing default "
+"experience."
+msgstr "GNOME 文本编辑器是一个简单的文本编辑器，专注于令人满意的默认体验。"
+
+#: data/org.gnome.TextEditor.gschema.xml:7
+msgid "Auto Save Delay"
+msgstr "自动保存延迟"
+
+#: data/org.gnome.TextEditor.gschema.xml:8
+msgid "The delay in seconds to wait before auto-saving a draft."
+msgstr "自动保存草稿之前要等待的延迟（秒）。"
+
+#: data/org.gnome.TextEditor.gschema.xml:16
+msgid "Style Variant"
+msgstr "样式变体"
+
+#: data/org.gnome.TextEditor.gschema.xml:17
+msgid ""
+"Use the light or dark variant of the GTK theme and/or GtkSourceView style "
+"scheme."
+msgstr "使用 GTK 主题和/或 GtkSourceView 样式方案的浅色或深色变体。"
+
+#: data/org.gnome.TextEditor.gschema.xml:25
+msgid "Indentation Style"
+msgstr "缩进样式"
+
+#: data/org.gnome.TextEditor.gschema.xml:26
+msgid "If the editor should insert multiple spaces characters instead of tabs."
+msgstr "编辑器是否应该插入多个空格字符而不是 tab。"
+
+#: data/org.gnome.TextEditor.gschema.xml:30
+msgid "Tab Width"
+msgstr "Tab 宽度"
+
+#: data/org.gnome.TextEditor.gschema.xml:31
+msgid "The number of spaces represented by a tab."
+msgstr "一个 tab 表示的空格数。"
+
+#: data/org.gnome.TextEditor.gschema.xml:35
+msgid "Show Line Numbers"
+msgstr "显示行号"
+
+#: data/org.gnome.TextEditor.gschema.xml:36
+msgid "If line numbers should be displayed next to each line."
+msgstr "是否应该在每行旁边显示行号。"
+
+#: data/org.gnome.TextEditor.gschema.xml:40
+msgid "Show Right Margin"
+msgstr "显示右边界"
+
+#: data/org.gnome.TextEditor.gschema.xml:41
+msgid "If a margin line should be displayed on the right of the editor."
+msgstr "是否应该在编辑器的右侧显示边界线。"
+
+#: data/org.gnome.TextEditor.gschema.xml:46
+msgid "Right Margin Position"
+msgstr "右边界位置"
+
+#: data/org.gnome.TextEditor.gschema.xml:47
+msgid ""
+"The position in characters at which the right margin should be displayed."
+msgstr "右边界应该显示的位置（字符数）。"
+
+#: data/org.gnome.TextEditor.gschema.xml:51
+msgid "Show Overview Map"
+msgstr "显示概览图"
+
+#: data/org.gnome.TextEditor.gschema.xml:52
+msgid ""
+"If enabled, an overview map of the file will be displayed to the side of the "
+"editor."
+msgstr "如果启用，文件的概览图将显示在编辑器的一侧。"
+
+#: data/org.gnome.TextEditor.gschema.xml:56
+msgid "Show Background Grid"
+msgstr "显示背景网格"
+
+#: data/org.gnome.TextEditor.gschema.xml:57
+msgid "If enabled, a blueprint style grid is printed on the editor background."
+msgstr "如果启用，在编辑器背景上打印蓝图样式的网格。"
+
+#: data/org.gnome.TextEditor.gschema.xml:61
+msgid "Highlight current line"
+msgstr "高亮当前行"
+
+#: data/org.gnome.TextEditor.gschema.xml:62
+msgid "If enabled, the current line will be highlighted."
+msgstr "如果启用，当前行将被高亮。"
+
+#: data/org.gnome.TextEditor.gschema.xml:66
+msgid "Text Wrapping"
+msgstr "文本换行"
+
+#: data/org.gnome.TextEditor.gschema.xml:67
+msgid "If text should be wrapped."
+msgstr "文本是否应该换行。"
+
+#: data/org.gnome.TextEditor.gschema.xml:71 src/editor-preferences-window.ui:15
+msgid "Use System Font"
+msgstr "使用系统字体"
+
+#: data/org.gnome.TextEditor.gschema.xml:72
+msgid "If the default system monospace font should be used."
+msgstr "是否应该使用默认的系统等宽字体。"
+
+#: data/org.gnome.TextEditor.gschema.xml:76 src/editor-preferences-window.ui:21
+msgid "Custom Font"
+msgstr "自定义字体"
+
+#: data/org.gnome.TextEditor.gschema.xml:77
+msgid "A custom font to use in the editor."
+msgstr "要在编辑器中使用的自定义字体。"
+
+#: data/org.gnome.TextEditor.gschema.xml:81
+msgid "Style Scheme"
+msgstr "样式方案"
+
+#: data/org.gnome.TextEditor.gschema.xml:82
+msgid ""
+"The style scheme to use by the editor. It may translate this into a dark "
+"format when available."
+msgstr "编辑器要使用的样式方案。它可以将其转换为深色格式（如果可用）。"
+
+#: data/org.gnome.TextEditor.gschema.xml:86
+msgid "Discover File Settings"
+msgstr "发现文件设置"
+
+#: data/org.gnome.TextEditor.gschema.xml:87
+msgid ""
+"If enabled then Text Editor will try to discover file settings from "
+"modelines, editorconfig, or per-language defaults."
+msgstr ""
+"如果启用，则文本编辑器将尝试从 modelines、editorconfig 或每种语言的默认值中发"
+"现文件设置。"
+
+#: data/org.gnome.TextEditor.gschema.xml:91
+msgid "Automatically check spelling"
+msgstr "自动检查拼写"
+
+#: data/org.gnome.TextEditor.gschema.xml:92
+msgid "If enabled, then Text Editor will check spelling as you type."
+msgstr "如果启用，则文本编辑器将在您键入时检查拼写。"
+
+#: src/editor-animation.c:1051
+#, c-format
+msgid "Failed to find property %s in %s"
+msgstr "在 %2$s 中查找属性 %1$s 失败"
+
+#: src/editor-animation.c:1060
+#, c-format
+msgid "Failed to retrieve va_list value: %s"
+msgstr "检索 va_list 值失败：%s"
+
+#: src/editor-application-actions.c:132
+msgid "Text Editor Website"
+msgstr "文本编辑器网站"
+
+#: src/editor-document.c:1677
+msgid "[Read-Only]"
+msgstr "[只读]"
+
+#: src/editor-info-bar.c:67
+msgid "_Discard Changes and Reload"
+msgstr "丢弃更改并重新载入(_D)"
+
+#: src/editor-info-bar.c:70
+msgid "File Has Changed on Disk"
+msgstr "磁盘上的文件已更改"
+
+#: src/editor-info-bar.c:71
+msgid "The file has been changed by another program."
+msgstr "文件已被另一个程序更改。"
+
+#: src/editor-info-bar.c:80 src/menus.ui:25
+msgid "Save _As…"
+msgstr "另存为(_A)…"
+
+#: src/editor-info-bar.c:82 src/editor-info-bar.ui:15
+msgid "Document Restored"
+msgstr "文档已恢复"
+
+#: src/editor-info-bar.c:83 src/editor-info-bar.ui:24
+msgid "Unsaved document has been restored."
+msgstr "未保存的文档已被恢复。"
+
+#: src/editor-info-bar.c:89
+msgid "_Save…"
+msgstr "保存(_S)…"
+
+#: src/editor-info-bar.c:91 src/editor-info-bar.ui:31
+msgid "_Discard…"
+msgstr "丢弃(_D)…"
+
+#: src/editor-info-bar.c:93
+msgid "Draft Changes Restored"
+msgstr "草稿更改已恢复"
+
+#: src/editor-info-bar.c:94
+msgid "Unsaved changes to the document have been restored."
+msgstr "文档未保存的更改已被恢复。"
+
+#: src/editor-language-dialog.ui:5
+msgid "Highlight Mode"
+msgstr "高亮模式"
+
+#: src/editor-open-popover.ui:21 src/editor-sidebar.ui:55
+msgid "Recent Documents"
+msgstr "最近文档"
+
+#: src/editor-open-popover.ui:44
+msgid "No Recent Documents"
+msgstr "无最近文档"
+
+#: src/editor-open-popover.ui:87
+msgid "Br_owse Files…"
+msgstr "浏览文件(_O)…"
+
+#: src/editor-page.c:704 src/editor-sidebar-item.c:440
+msgid "New Document"
+msgstr "新建文档"
+
+#: src/editor-page.c:721 src/editor-sidebar-item.c:459
+#: src/editor-sidebar-item.c:465
+msgid "Draft"
+msgstr "草稿"
+
+#: src/editor-page.c:775
+msgid "Failed to save document"
+msgstr "保存文档失败"
+
+#: src/editor-page.c:843
+msgid "Save As"
+msgstr "另存为"
+
+#: src/editor-page.c:846 src/editor-window-actions.c:165
+msgid "Save"
+msgstr "保存"
+
+#: src/editor-page.c:847 src/editor-window-actions.c:164
+#: src/editor-window-actions.c:275 src/editor-window-actions.c:384
+msgid "Cancel"
+msgstr "取消"
+
+#: src/editor-page.c:965
+#, c-format
+msgid "Ln %u, Col %u"
+msgstr "%u 行，%u 列"
+
+#. translators: Ln is short for "Line Number"
+#: src/editor-position-label.ui:12
+msgid "Ln"
+msgstr "行"
+
+#. translators: Col is short for "Column"
+#: src/editor-position-label.ui:32
+msgid "Col"
+msgstr "列"
+
+#: src/editor-preferences-font.c:102
+msgid "Select Font"
+msgstr "选择字体"
+
+#: src/editor-preferences-window.ui:6
+msgid "Preferences"
+msgstr "首选项"
+
+#: src/editor-preferences-window.ui:12
+msgid "Font"
+msgstr "字体"
+
+#: src/editor-preferences-window.ui:30
+msgid "Right Margin"
+msgstr "右边界"
+
+#: src/editor-preferences-window.ui:33
+msgid "Margin Position"
+msgstr "边界位置"
+
+#: src/editor-preferences-window.ui:41
+msgid "Appearance"
+msgstr "外观"
+
+#: src/editor-preferences-window.ui:44
+msgid "Display Grid Pattern"
+msgstr "显示网格图案"
+
+#: src/editor-preferences-window.ui:50
+msgid "Highlight Current Line"
+msgstr "高亮当前行"
+
+#: src/editor-preferences-window.ui:56
+msgid "Display Overview Map"
+msgstr "显示概览图"
+
+#: src/editor-save-changes-dialog.c:259
+msgid "Save Changes?"
+msgstr "保存更改？"
+
+#: src/editor-save-changes-dialog.c:261
+msgid ""
+"Open documents contain unsaved changes. Changes which are not saved will be "
+"permanently lost."
+msgstr "打开的文档包含未保存的更改。未保存的更改将永久丢失。"
+
+#: src/editor-save-changes-dialog.c:263
+msgid "_Cancel"
+msgstr "取消(_C)"
+
+#: src/editor-save-changes-dialog.c:264
+msgid "_Discard All"
+msgstr "全部丢弃(_D)"
+
+#: src/editor-save-changes-dialog.c:265 src/menus.ui:19
+msgid "_Save"
+msgstr "保存(_S)"
+
+#: src/editor-save-changes-dialog.c:295
+msgid "Untitled Document"
+msgstr "无标题文档"
+
+#. translators: %s is replaced with the title of the file
+#: src/editor-save-changes-dialog.c:298
+#, c-format
+msgid "%s (new)"
+msgstr "%s (新建)"
+
+#: src/editor-search-bar.ui:14
+msgid "Search"
+msgstr "搜索"
+
+#: src/editor-search-bar.ui:33
+msgid "Replace"
+msgstr "替换"
+
+#: src/editor-search-bar.ui:50
+msgid "Move to previous match (Ctrl+Shift+G)"
+msgstr "移动到上一个匹配项 (Ctrl+Shift+G)"
+
+#: src/editor-search-bar.ui:57
+msgid "Move to next match (Ctrl+G)"
+msgstr "移动到下一个匹配项 (Ctrl+G)"
+
+#: src/editor-search-bar.ui:69
+msgid "Search & Replace (Ctrl+H)"
+msgstr "搜索和替换 (Ctrl+H)"
+
+#: src/editor-search-bar.ui:79
+msgid "Toggle search options"
+msgstr "切换搜索选项"
+
+#: src/editor-search-bar.ui:93
+msgid "Close search"
+msgstr "关闭搜索"
+
+#: src/editor-search-bar.ui:110
+msgid "_Replace"
+msgstr "替换(_R)"
+
+#: src/editor-search-bar.ui:122
+msgid "Replace _All"
+msgstr "全部替换(_A)"
+
+#: src/editor-search-bar.ui:139
+msgid "Re_gular expressions"
+msgstr "正则表达式(_G)"
+
+#: src/editor-search-bar.ui:145
+msgid "_Case sensitive"
+msgstr "区分大小写(_C)"
+
+#: src/editor-search-bar.ui:151
+msgid "Match whole _word only"
+msgstr "只匹配整个单词(_W)"
+
+#: src/editor-sidebar.ui:32
+msgid "Search documents (Ctrl+K)"
+msgstr "搜索文档 (Ctrl+K)"
+
+#: src/editor-sidebar.ui:41
+msgid "Open document (Ctrl+O)"
+msgstr "打开文档 (Ctrl+O)"
+
+#: src/editor-spell-menu.c:58
+msgid "Languages"
+msgstr "语言"
+
+#: src/editor-spell-menu.c:59
+msgid "Add to Dictionary"
+msgstr "添加到词典"
+
+#: src/editor-spell-menu.c:60
+msgid "Ignore"
+msgstr "忽略"
+
+#: src/editor-spell-menu.c:61
+msgid "Check Spelling"
+msgstr "检查拼写"
+
+#: src/editor-theme-selector.ui:18
+msgid "Light style"
+msgstr "浅色样式"
+
+#: src/editor-theme-selector.ui:31
+msgid "Dark style"
+msgstr "深色样式"
+
+#: src/editor-utils.c:324
+msgid "Just now"
+msgstr "刚才"
+
+#: src/editor-utils.c:326
+msgid "An hour ago"
+msgstr "一小时前"
+
+#: src/editor-utils.c:328
+msgid "Yesterday"
+msgstr "昨天"
+
+#: src/editor-utils.c:334
+msgid "About a year ago"
+msgstr "大约一年前"
+
+#: src/editor-utils.c:338
+#, c-format
+msgid "About %u year ago"
+msgid_plural "About %u years ago"
+msgstr[0] "大约 %u 年前"
+
+#: src/editor-utils.c:346
+msgid "Unix/Linux"
+msgstr "Unix/Linux"
+
+#: src/editor-utils.c:347
+msgid "Mac OS Classic"
+msgstr "Mac OS 经典"
+
+#: src/editor-utils.c:348
+msgid "Windows"
+msgstr "Windows"
+
+#: src/editor-utils.c:378
+msgid "Automatically Detected"
+msgstr "自动检测"
+
+#: src/editor-utils.c:394
+msgid "Character Encoding:"
+msgstr "字符编码："
+
+#: src/editor-utils.c:429
+msgid "Line Ending:"
+msgstr "行尾："
+
+#. translators: %s is replaced with the document title
+#: src/editor-window-actions.c:160
+#, c-format
+msgid "Save Changes to “%s”?"
+msgstr "保存对“%s”的更改？"
+
+#: src/editor-window-actions.c:163
+msgid "Saving changes will replace the previously saved version."
+msgstr "保存更改将替换以前保存的版本。"
+
+#. translators: %s is replaced with the document title
+#: src/editor-window-actions.c:271
+#, c-format
+msgid "Discard Changes to “%s”?"
+msgstr "丢弃对“%s”的更改？"
+
+#: src/editor-window-actions.c:274
+msgid "Unsaved changes will be permanently lost."
+msgstr "未保存的更改将永久丢失。"
+
+#: src/editor-window-actions.c:276
+msgid "Discard"
+msgstr "丢弃"
+
+#: src/editor-window-actions.c:380
+msgid "Open File"
+msgstr "打开文件"
+
+#: src/editor-window-actions.c:383
+msgid "Open"
+msgstr "打开"
+
+#: src/editor-window-actions.c:397
+msgid "All Files"
+msgstr "所有文件"
+
+#: src/editor-window-actions.c:402
+msgid "Text Files"
+msgstr "文本文件"
+
+#: src/editor-window.ui:61
+msgid "_Open"
+msgstr "打开(_O)"
+
+#: src/editor-window.ui:63
+msgid "Open recent document (Ctrl+K)"
+msgstr "打开最近文档 (Ctrl+K)"
+
+#: src/editor-window.ui:75
+msgid "New tab (Ctrl+T)"
+msgstr "新建标签页 (Ctrl+T)"
+
+#: src/editor-window.ui:100
+msgid "View"
+msgstr "查看"
+
+#: src/editor-window.ui:137
+msgid "Start or Open a Document"
+msgstr "启动或打开文档"
+
+#: src/editor-window.ui:140
+msgid ""
+"• Use the open button\n"
+"• Press the new tab button\n"
+"• Press Ctrl+N to start a new document\n"
+"• Press Ctrl+O to browse for a document\n"
+"\n"
+"Or, press Ctrl+W to close the window."
+msgstr ""
+"• 使用打开按钮\n"
+"• 按新建标签页按钮\n"
+"• 按 Ctrl+N 以启动新文档\n"
+"• 按 Ctrl+O 以浏览文档\n"
+"\n"
+"或者，按 Ctrl+W 以关闭窗口。"
+
+#: src/enchant/editor-enchant-spell-provider.c:92
+msgid "Enchant 2"
+msgstr "Enchant 2"
+
+#: src/help-overlay.ui:8
+msgctxt "shortcut window"
+msgid "Editor Shortcuts"
+msgstr "编辑器快捷键"
+
+#: src/help-overlay.ui:11
+msgctxt "shortcut window"
+msgid "Windows"
+msgstr "窗口"
+
+#: src/help-overlay.ui:14
+msgctxt "shortcut window"
+msgid "New window"
+msgstr "新建窗口"
+
+#: src/help-overlay.ui:20
+msgctxt "shortcut window"
+msgid "Move document to new window"
+msgstr "将文档移动到新窗口"
+
+#: src/help-overlay.ui:27
+msgctxt "shortcut window"
+msgid "Move to next tab"
+msgstr "移动到下一个标签页"
+
+#: src/help-overlay.ui:33
+msgctxt "shortcut window"
+msgid "Move to previous tab"
+msgstr "移动到上一个标签页"
+
+#: src/help-overlay.ui:39
+msgctxt "shortcut window"
+msgid "Reorder after next tab"
+msgstr "重新排序到下一个标签页之后"
+
+#: src/help-overlay.ui:45
+msgctxt "shortcut window"
+msgid "Reorder before previous tab"
+msgstr "重新排序到上一个标签页之前"
+
+#: src/help-overlay.ui:52
+msgctxt "shortcut window"
+msgid "Zoom"
+msgstr "缩放"
+
+#: src/help-overlay.ui:56
+msgctxt "shortcut window"
+msgid "Zoom In"
+msgstr "放大"
+
+#: src/help-overlay.ui:62
+msgctxt "shortcut window"
+msgid "Zoom Out"
+msgstr "缩小"
+
+#: src/help-overlay.ui:68
+msgctxt "shortcut window"
+msgid "Reset Zoom"
+msgstr "重置缩放"
+
+#: src/help-overlay.ui:75
+msgctxt "shortcut window"
+msgid "Documents"
+msgstr "文档"
+
+#: src/help-overlay.ui:78
+msgctxt "shortcut window"
+msgid "New document"
+msgstr "新建文档"
+
+#: src/help-overlay.ui:84
+msgctxt "shortcut window"
+msgid "Browse to open document"
+msgstr "浏览以打开文档"
+
+#: src/help-overlay.ui:90
+msgctxt "shortcut window"
+msgid "Find document by name"
+msgstr "按名称查找文档"
+
+#: src/help-overlay.ui:96
+msgctxt "shortcut window"
+msgid "Save"
+msgstr "保存"
+
+#: src/help-overlay.ui:102
+msgctxt "shortcut window"
+msgid "Save As"
+msgstr "另存为"
+
+#: src/help-overlay.ui:108
+msgctxt "shortcut window"
+msgid "Find/Replace"
+msgstr "查找/替换"
+
+#: src/help-overlay.ui:114
+msgctxt "shortcut window"
+msgid "Close document"
+msgstr "关闭文档"
+
+#: src/help-overlay.ui:122
+msgctxt "shortcut window"
+msgid "Copy and Paste"
+msgstr "复制和粘贴"
+
+#: src/help-overlay.ui:126
+msgctxt "shortcut window"
+msgid "Copy selected text to clipboard"
+msgstr "将选中的文本复制到剪贴板"
+
+#: src/help-overlay.ui:132
+msgctxt "shortcut window"
+msgid "Cut selected text to clipboard"
+msgstr "将选中的文本剪切到剪贴板"
+
+#: src/help-overlay.ui:138
+msgctxt "shortcut window"
+msgid "Paste text from clipboard"
+msgstr "从剪贴板粘贴文本"
+
+#: src/help-overlay.ui:143
+msgctxt "shortcut window"
+msgid "Copy all to clipboard"
+msgstr "全部复制到剪贴板"
+
+#: src/help-overlay.ui:151
+msgctxt "shortcut window"
+msgid "Undo and Redo"
+msgstr "撤消和重做"
+
+#: src/help-overlay.ui:155
+msgctxt "shortcut window"
+msgid "Undo previous command"
+msgstr "撤消上一个命令"
+
+#: src/help-overlay.ui:161
+msgctxt "shortcut window"
+msgid "Redo previous command"
+msgstr "重做上一个命令"
+
+#: src/help-overlay.ui:168
+msgctxt "shortcut window"
+msgid "Editing"
+msgstr "编辑"
+
+#: src/help-overlay.ui:172
+msgctxt "shortcut window"
+msgid "Insert emoji into document"
+msgstr "在文档中插入表情符号"
+
+#: src/help-overlay.ui:178
+msgctxt "shortcut window"
+msgid "Search within the document"
+msgstr "在文档中搜索"
+
+#: src/help-overlay.ui:184
+msgctxt "shortcut window"
+msgid "Search and replace within the document"
+msgstr "在文档中搜索和替换"
+
+#: src/help-overlay.ui:190
+msgctxt "shortcut window"
+msgid "Increment number at cursor"
+msgstr "递增光标处的数字"
+
+#: src/help-overlay.ui:196
+msgctxt "shortcut window"
+msgid "Decrement number at cursor"
+msgstr "递减光标处的数字"
+
+#: src/help-overlay.ui:202
+msgctxt "shortcut window"
+msgid "Toggle overwrite"
+msgstr "切换覆盖"
+
+#: src/help-overlay.ui:208
+msgctxt "shortcut window"
+msgid "Toggle visibility of insertion caret"
+msgstr "切换插入光标的可见性"
+
+#: src/help-overlay.ui:215
+msgctxt "shortcut window"
+msgid "Selections"
+msgstr "选择"
+
+#: src/help-overlay.ui:219
+msgctxt "shortcut window"
+msgid "Select all"
+msgstr "全选"
+
+#: src/help-overlay.ui:225
+msgctxt "shortcut window"
+msgid "Unselect all"
+msgstr "全部不选"
+
+#: src/help-overlay.ui:232
+msgctxt "shortcut window"
+msgid "Movements"
+msgstr "移动"
+
+#: src/help-overlay.ui:236
+msgctxt "shortcut window"
+msgid "Move to beginning of document"
+msgstr "移动到文档开头"
+
+#: src/help-overlay.ui:242
+msgctxt "shortcut window"
+msgid "Move to end of document"
+msgstr "移动到文档结尾"
+
+#: src/help-overlay.ui:248
+msgctxt "shortcut window"
+msgid "Move to start of previous paragraph"
+msgstr "移动到上一个段落的开头"
+
+#: src/help-overlay.ui:254
+msgctxt "shortcut window"
+msgid "Move to end of next paragraph"
+msgstr "移动到下一个段落的结尾"
+
+#: src/help-overlay.ui:260
+msgctxt "shortcut window"
+msgid "Move current or selected lines up"
+msgstr "上移当前或选中的行"
+
+#: src/help-overlay.ui:266
+msgctxt "shortcut window"
+msgid "Move current or selected lines down"
+msgstr "下移当前或选中的行"
+
+#: src/help-overlay.ui:273
+msgctxt "shortcut window"
+msgid "Deletion"
+msgstr "删除"
+
+#: src/help-overlay.ui:277
+msgctxt "shortcut window"
+msgid "Delete from cursor to word start"
+msgstr "从光标处删除到单词开头"
+
+#: src/help-overlay.ui:283
+msgctxt "shortcut window"
+msgid "Delete from cursor to word end"
+msgstr "从光标处删除到单词结尾"
+
+#: src/help-overlay.ui:289
+msgctxt "shortcut window"
+msgid "Delete from cursor to paragraph start"
+msgstr "从光标处删除到段落开头"
+
+#: src/help-overlay.ui:295
+msgctxt "shortcut window"
+msgid "Delete from cursor to paragraph end"
+msgstr "从光标处删除到段落结尾"
+
+#: src/menus.ui:11
+msgid "_New Window"
+msgstr "新建窗口(_N)"
+
+#: src/menus.ui:33
+msgid "_Copy All"
+msgstr "全部复制(_C)"
+
+#: src/menus.ui:39
+msgid "_Discard Changes"
+msgstr "丢弃更改(_D)"
+
+#: src/menus.ui:43
+msgid "_Find/Replace…"
+msgstr "查找/替换(_F)…"
+
+#: src/menus.ui:51
+msgid "_Print…"
+msgstr "打印(_P)…"
+
+#: src/menus.ui:58
+msgid "_Preferences"
+msgstr "首选项(_P)"
+
+#: src/menus.ui:62
+msgid "_Keyboard Shortcuts"
+msgstr "键盘快捷键(_K)"
+
+#: src/menus.ui:66
+msgid "Help"
+msgstr "帮助"
+
+#: src/menus.ui:70
+msgid "_About Text Editor"
+msgstr "关于文本编辑器(_A)"
+
+#: src/menus.ui:77
+msgid "Show"
+msgstr "显示"
+
+#: src/menus.ui:79
+msgid "_Line Numbers"
+msgstr "行号(_L)"
+
+#: src/menus.ui:83
+msgid "_Right Margin"
+msgstr "右边界(_R)"
+
+#: src/menus.ui:88
+msgid "Indentation"
+msgstr "缩进"
+
+#: src/menus.ui:90
+msgid "_Tabs"
+msgstr "Tab(_T)"
+
+#: src/menus.ui:95
+msgid "_Spaces"
+msgstr "空格(_S)"
+
+#: src/menus.ui:100
+msgid "Spaces _Per Tab"
+msgstr "每个 Tab 的空格数(_P)"
+
+#: src/menus.ui:103
+msgid "_2"
+msgstr "_2"
+
+#: src/menus.ui:108
+msgid "_4"
+msgstr "_4"
+
+#: src/menus.ui:113
+msgid "_6"
+msgstr "_6"
+
+#: src/menus.ui:118
+msgid "_8"
+msgstr "_8"
+
+#: src/menus.ui:127
+msgid "T_ext Wrapping"
+msgstr "文本换行(_E)"
+
+#: src/menus.ui:131
+msgid "_Automatic Margin Position"
+msgstr "自动边界位置(_A)"
+
+#: src/menus.ui:135
+msgid "Chec_k Spelling"
+msgstr "检查拼写(_K)"
+
+#: src/menus.ui:139
+msgid "_Highlight Mode"
+msgstr "高亮模式(_H)"
+
+#: src/menus.ui:147
+msgid "Move _Left"
+msgstr "左移(_L)"
+
+#: src/menus.ui:152
+msgid "Move _Right"
+msgstr "右移(_R)"
+
+#: src/menus.ui:159
+msgid "_Move to New Window"
+msgstr "移动到新窗口(_M)"
+
+#: src/menus.ui:166
+msgid "Close _Other Tabs"
+msgstr "关闭其他标签页(_O)"
+
+#: src/menus.ui:170
+msgid "_Close"
+msgstr "关闭(_C)"
+
+#~ msgid " Website"
+#~ msgstr " 网站"
