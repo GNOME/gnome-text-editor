@@ -33,6 +33,7 @@ struct _EditorSourceView
   PangoFontDescription *font_desc;
   GMenuModel *spelling_menu;
   char *spelling_word;
+  int font_scale;
 };
 
 G_DEFINE_TYPE (EditorSourceView, editor_source_view, GTK_SOURCE_TYPE_VIEW)
@@ -44,6 +45,56 @@ enum {
 };
 
 static GParamSpec *properties [N_PROPS];
+
+static void
+editor_source_view_update_css (EditorSourceView *self)
+{
+  const PangoFontDescription *font_desc;
+  PangoFontDescription *scaled = NULL;
+  g_autoptr(GString) str = NULL;
+  g_autofree char *font_css = NULL;
+  int size = 11; /* 11pt */
+
+  g_assert (EDITOR_IS_SOURCE_VIEW (self));
+
+  if (self->font_scale == 0 && self->font_desc == NULL)
+    {
+      gtk_css_provider_load_from_data (self->css_provider, "", -1);
+      return;
+    }
+
+  if (self->font_desc != NULL &&
+      pango_font_description_get_set_fields (self->font_desc) & PANGO_FONT_MASK_SIZE)
+    size = pango_font_description_get_size (self->font_desc) / PANGO_SCALE;
+
+  size = MAX (1, size + self->font_scale);
+
+  font_desc = self->font_desc;
+
+  if (size != 0)
+    {
+      if (font_desc)
+        scaled = pango_font_description_copy (font_desc);
+      else
+        scaled = pango_font_description_new ();
+      pango_font_description_set_size (scaled, size * PANGO_SCALE);
+      font_desc = scaled;
+    }
+
+  str = g_string_new ("textview {\n");
+  if (font_desc)
+    {
+
+      font_css = _editor_font_description_to_css (font_desc);
+      g_string_append (str, font_css);
+      g_string_append_c (str, '\n');
+    }
+  g_string_append (str, "}\n");
+
+  gtk_css_provider_load_from_data (self->css_provider, str->str, -1);
+
+  g_clear_pointer (&scaled, pango_font_description_free);
+}
 
 static gboolean
 on_key_pressed_cb (GtkEventControllerKey *key,
@@ -277,6 +328,27 @@ editor_source_view_action_spelling_correct (GtkWidget  *widget,
 }
 
 static void
+editor_source_view_action_zoom (GtkWidget  *widget,
+                                const char *action_name,
+                                GVariant   *param)
+{
+  EditorSourceView *self = (EditorSourceView *)widget;
+
+  g_assert (EDITOR_IS_SOURCE_VIEW (self));
+
+  if (g_strcmp0 (action_name, "page.zoom-in") == 0)
+    self->font_scale++;
+  else if (g_strcmp0 (action_name, "page.zoom-out") == 0)
+    self->font_scale--;
+  else if (g_strcmp0 (action_name, "page.zoom-one") == 0)
+    self->font_scale = 0;
+  else
+    g_assert_not_reached ();
+
+  editor_source_view_update_css (self);
+}
+
+static void
 editor_source_view_finalize (GObject *object)
 {
   EditorSourceView *self = (EditorSourceView *)object;
@@ -345,9 +417,18 @@ editor_source_view_class_init (EditorSourceViewClass *klass)
 
   g_object_class_install_properties (object_class, N_PROPS, properties);
 
+  gtk_widget_class_install_action (widget_class, "page.zoom-in", NULL, editor_source_view_action_zoom);
+  gtk_widget_class_install_action (widget_class, "page.zoom-out", NULL, editor_source_view_action_zoom);
+  gtk_widget_class_install_action (widget_class, "page.zoom-one", NULL, editor_source_view_action_zoom);
   gtk_widget_class_install_action (widget_class, "spelling.add", NULL, editor_source_view_action_spelling_add);
   gtk_widget_class_install_action (widget_class, "spelling.ignore", NULL, editor_source_view_action_spelling_ignore);
   gtk_widget_class_install_action (widget_class, "spelling.correct", "s", editor_source_view_action_spelling_correct);
+
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_plus, GDK_CONTROL_MASK, "page.zoom-in", NULL);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_KP_Add, GDK_CONTROL_MASK, "page.zoom-in", NULL);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_minus, GDK_CONTROL_MASK, "page.zoom-out", NULL);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_KP_Subtract, GDK_CONTROL_MASK, "page.zoom-out", NULL);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_0, GDK_CONTROL_MASK, "page.zoom-one", NULL);
 }
 
 static void
@@ -407,26 +488,6 @@ editor_source_view_init (EditorSourceView *self)
   gtk_text_view_set_extra_menu (GTK_TEXT_VIEW (self), G_MENU_MODEL (joined));
 }
 
-static void
-editor_source_view_update_css (EditorSourceView *self)
-{
-  g_autoptr(GString) str = NULL;
-  g_autofree char *font_css = NULL;
-
-  g_assert (EDITOR_IS_SOURCE_VIEW (self));
-
-  str = g_string_new ("textview {\n");
-  if (self->font_desc)
-    {
-      font_css = _editor_font_description_to_css (self->font_desc);
-      g_string_append (str, font_css);
-      g_string_append_c (str, '\n');
-    }
-  g_string_append (str, "}\n");
-
-  gtk_css_provider_load_from_data (self->css_provider, str->str, -1);
-}
-
 const PangoFontDescription *
 editor_source_view_get_font_desc (EditorSourceView *self)
 {
@@ -450,6 +511,8 @@ editor_source_view_set_font_desc (EditorSourceView           *self,
 
   if (font_desc)
     self->font_desc = pango_font_description_copy (font_desc);
+
+  self->font_scale = 0;
 
   editor_source_view_update_css (self);
 
