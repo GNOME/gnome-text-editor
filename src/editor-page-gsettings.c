@@ -135,6 +135,14 @@ editor_page_gsettings_get_style_variant (EditorPageSettingsProvider  *provider,
   return TRUE;
 }
 
+static gboolean
+editor_page_gsettings_get_custom_font (EditorPageSettingsProvider  *provider,
+                                       gchar                      **custom_font)
+{
+  *custom_font = g_settings_get_string (EDITOR_PAGE_GSETTINGS (provider)->settings, "custom-font");
+  return TRUE;
+}
+
 static void
 editor_page_gsettings_changed_cb (EditorPageGsettings *self,
                                   const gchar         *key,
@@ -149,6 +157,7 @@ editor_page_gsettings_changed_cb (EditorPageGsettings *self,
 static void
 page_settings_provider_iface_init (EditorPageSettingsProviderInterface *iface)
 {
+  iface->get_custom_font = editor_page_gsettings_get_custom_font;
   iface->get_insert_spaces_instead_of_tabs = editor_page_gsettings_get_insert_spaces_instead_of_tabs;
   iface->get_right_margin_position = editor_page_gsettings_get_right_margin_position;
   iface->get_show_line_numbers = editor_page_gsettings_get_show_line_numbers;

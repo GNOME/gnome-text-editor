@@ -30,40 +30,6 @@
 G_DEFINE_TYPE (EditorApplication, editor_application, GTK_TYPE_APPLICATION)
 
 static void
-editor_application_update_font_cb (GSettings      *settings,
-                                   const gchar    *key,
-                                   GtkCssProvider *font_css_provider)
-{
-  g_autoptr(GString) css = NULL;
-
-  g_assert (G_IS_SETTINGS (settings));
-  g_assert (GTK_IS_CSS_PROVIDER (font_css_provider));
-
-  css = g_string_new ("textview.editor {\n");
-
-  if (!g_settings_get_boolean (settings, "use-system-font"))
-    {
-      PangoFontDescription *font_desc = NULL;
-      g_autofree gchar *custom_font = NULL;
-      g_autofree gchar *font_css = NULL;
-
-      if ((custom_font = g_settings_get_string (settings, "custom-font")) &&
-          (font_desc = pango_font_description_from_string (custom_font)) &&
-          (font_css = _editor_font_description_to_css (font_desc)))
-        {
-          g_string_append (css, font_css);
-          g_string_append_c (css, '\n');
-        }
-
-      pango_font_description_free (font_desc);
-    }
-
-  g_string_append (css, "}\n");
-
-  gtk_css_provider_load_from_data (font_css_provider, css->str, css->len);
-}
-
-static void
 editor_application_restore_cb (GObject      *object,
                                GAsyncResult *result,
                                gpointer      user_data)
@@ -174,7 +140,6 @@ editor_application_startup (GApplication *application)
 {
   EditorApplication *self = (EditorApplication *)application;
   g_autoptr(GtkCssProvider) css_provider = NULL;
-  g_autoptr(GtkCssProvider) font_css_provider = NULL;
   GtkSettings *gtk_settings;
   static const gchar *quit_accels[] = { "<Primary>Q", NULL };
   static const gchar *help_accels[] = { "F1", NULL };
@@ -208,21 +173,6 @@ editor_application_startup (GApplication *application)
   gtk_style_context_add_provider_for_display (gdk_display_get_default (),
                                               GTK_STYLE_PROVIDER (css_provider),
                                               GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
-
-  /* Setup CSS for custom fonts */
-  font_css_provider = gtk_css_provider_new ();
-  g_signal_connect_object (self->settings,
-                           "changed::use-system-font",
-                           G_CALLBACK (editor_application_update_font_cb),
-                           font_css_provider, 0);
-  g_signal_connect_object (self->settings,
-                           "changed::custom-font",
-                           G_CALLBACK (editor_application_update_font_cb),
-                           font_css_provider, 0);
-  gtk_style_context_add_provider_for_display (gdk_display_get_default (),
-                                              GTK_STYLE_PROVIDER (font_css_provider),
-                                              GTK_STYLE_PROVIDER_PRIORITY_APPLICATION+1);
-  editor_application_update_font_cb (self->settings, NULL, font_css_provider);
 
   gtk_window_set_default_icon_name (PACKAGE_ICON_NAME);
 }

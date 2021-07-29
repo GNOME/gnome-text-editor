@@ -28,4 +28,8 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (EditorSourceView, editor_source_view, EDITOR, SOURCE_VIEW, GtkSourceView)
 
+const PangoFontDescription *editor_source_view_get_font_desc (EditorSourceView           *self);
+void                        editor_source_view_set_font_desc (EditorSourceView           *self,
+                                                              const PangoFontDescription *font_desc);
+
 G_END_DECLS

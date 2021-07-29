@@ -252,6 +252,22 @@ boolean_to_left_margin (GBinding     *binding,
   return TRUE;
 }
 
+static gboolean
+font_desc_from_string (GBinding     *binding,
+                       const GValue *from_value,
+                       GValue       *to_value,
+                       gpointer      user_data)
+{
+  const char *str = g_value_get_string (from_value);
+
+  if (str)
+    g_value_take_boxed (to_value, pango_font_description_from_string (str));
+  else
+    g_value_set_boxed (to_value, NULL);
+
+  return TRUE;
+}
+
 static void
 editor_page_constructed (GObject *object)
 {
@@ -263,6 +279,10 @@ editor_page_constructed (GObject *object)
 
   self->settings_bindings = editor_binding_group_new ();
 
+  editor_binding_group_bind_full (self->settings_bindings, "custom-font",
+                                  self->view, "font-desc",
+                                  G_BINDING_SYNC_CREATE,
+                                  font_desc_from_string, NULL, NULL, NULL);
   editor_binding_group_bind (self->settings_bindings, "insert-spaces-instead-of-tabs",
                              self->view, "insert-spaces-instead-of-tabs",
                              G_BINDING_SYNC_CREATE);

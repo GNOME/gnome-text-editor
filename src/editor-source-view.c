@@ -24,15 +24,26 @@
 #include "editor-source-view.h"
 #include "editor-joined-menu-private.h"
 #include "editor-spell-menu.h"
+#include "editor-utils-private.h"
 
 struct _EditorSourceView
 {
   GtkSourceView parent_instance;
+  GtkCssProvider *css_provider;
+  PangoFontDescription *font_desc;
   GMenuModel *spelling_menu;
   char *spelling_word;
 };
 
 G_DEFINE_TYPE (EditorSourceView, editor_source_view, GTK_SOURCE_TYPE_VIEW)
+
+enum {
+  PROP_0,
+  PROP_FONT_DESC,
+  N_PROPS
+};
+
+static GParamSpec *properties [N_PROPS];
 
 static gboolean
 on_key_pressed_cb (GtkEventControllerKey *key,
@@ -270,10 +281,49 @@ editor_source_view_finalize (GObject *object)
 {
   EditorSourceView *self = (EditorSourceView *)object;
 
+  g_clear_object (&self->css_provider);
   g_clear_object (&self->spelling_menu);
   g_clear_pointer (&self->spelling_word, g_free);
 
   G_OBJECT_CLASS (editor_source_view_parent_class)->finalize (object);
+}
+
+static void
+editor_source_view_get_property (GObject    *object,
+                                 guint       prop_id,
+                                 GValue     *value,
+                                 GParamSpec *pspec)
+{
+  EditorSourceView *self = EDITOR_SOURCE_VIEW (object);
+
+  switch (prop_id)
+    {
+    case PROP_FONT_DESC:
+      g_value_set_boxed (value, editor_source_view_get_font_desc (self));
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+    }
+}
+
+static void
+editor_source_view_set_property (GObject      *object,
+                                 guint         prop_id,
+                                 const GValue *value,
+                                 GParamSpec   *pspec)
+{
+  EditorSourceView *self = EDITOR_SOURCE_VIEW (object);
+
+  switch (prop_id)
+    {
+    case PROP_FONT_DESC:
+      editor_source_view_set_font_desc (self, g_value_get_boxed (value));
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+    }
 }
 
 static void
@@ -283,6 +333,17 @@ editor_source_view_class_init (EditorSourceViewClass *klass)
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
   object_class->finalize = editor_source_view_finalize;
+  object_class->get_property = editor_source_view_get_property;
+  object_class->set_property = editor_source_view_set_property;
+
+  properties [PROP_FONT_DESC] =
+    g_param_spec_boxed ("font-desc",
+                         "Font Description",
+                         "The font to use for text within the editor",
+                         PANGO_TYPE_FONT_DESCRIPTION,
+                         (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+
+  g_object_class_install_properties (object_class, N_PROPS, properties);
 
   gtk_widget_class_install_action (widget_class, "spelling.add", NULL, editor_source_view_action_spelling_add);
   gtk_widget_class_install_action (widget_class, "spelling.ignore", NULL, editor_source_view_action_spelling_ignore);
@@ -296,11 +357,18 @@ editor_source_view_init (EditorSourceView *self)
   g_autoptr(GMenu) gsv_section = NULL;
   g_autoptr(GMenu) spell_section = NULL;
   GtkEventController *controller;
+  GtkStyleContext *style_context;
   GMenuModel *extra_menu;
 
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "spelling.add", FALSE);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "spelling.ignore", FALSE);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "spelling.correct", FALSE);
+
+  self->css_provider = gtk_css_provider_new ();
+  style_context = gtk_widget_get_style_context (GTK_WIDGET (self));
+  gtk_style_context_add_provider (style_context,
+                                  GTK_STYLE_PROVIDER (self->css_provider),
+                                  GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
   g_signal_connect (self,
                     "notify::buffer",
@@ -337,4 +405,53 @@ editor_source_view_init (EditorSourceView *self)
   editor_joined_menu_append_menu (joined, G_MENU_MODEL (spell_section));
 
   gtk_text_view_set_extra_menu (GTK_TEXT_VIEW (self), G_MENU_MODEL (joined));
+}
+
+static void
+editor_source_view_update_css (EditorSourceView *self)
+{
+  g_autoptr(GString) str = NULL;
+  g_autofree char *font_css = NULL;
+
+  g_assert (EDITOR_IS_SOURCE_VIEW (self));
+
+  str = g_string_new ("textview {\n");
+  if (self->font_desc)
+    {
+      font_css = _editor_font_description_to_css (self->font_desc);
+      g_string_append (str, font_css);
+      g_string_append_c (str, '\n');
+    }
+  g_string_append (str, "}\n");
+
+  gtk_css_provider_load_from_data (self->css_provider, str->str, -1);
+}
+
+const PangoFontDescription *
+editor_source_view_get_font_desc (EditorSourceView *self)
+{
+  g_return_val_if_fail (EDITOR_IS_SOURCE_VIEW (self), NULL);
+
+  return self->font_desc;
+}
+
+void
+editor_source_view_set_font_desc (EditorSourceView           *self,
+                                  const PangoFontDescription *font_desc)
+{
+  g_return_if_fail (EDITOR_IS_SOURCE_VIEW (self));
+
+  if (self->font_desc == font_desc ||
+      (self->font_desc != NULL && font_desc != NULL &&
+       pango_font_description_equal (self->font_desc, font_desc)))
+    return;
+
+  g_clear_pointer (&self->font_desc, pango_font_description_free);
+
+  if (font_desc)
+    self->font_desc = pango_font_description_copy (font_desc);
+
+  editor_source_view_update_css (self);
+
+  g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_FONT_DESC]);
 }
