@@ -423,7 +423,7 @@ editor_text_buffer_spell_adapter_set_buffer (EditorTextBufferSpellAdapter *self,
     }
 }
 
-static void
+void
 editor_text_buffer_spell_adapter_set_enabled (EditorTextBufferSpellAdapter *self,
                                               gboolean                      enabled)
 {
@@ -753,4 +753,10 @@ editor_text_buffer_spell_adapter_get_tag (EditorTextBufferSpellAdapter *self)
   g_return_val_if_fail (EDITOR_IS_TEXT_BUFFER_SPELL_ADAPTER (self), NULL);
 
   return self->tag;
+}
+
+gboolean
+editor_text_buffer_spell_adapter_get_enabled (EditorTextBufferSpellAdapter *self)
+{
+  return self ? self->enabled : FALSE;
 }

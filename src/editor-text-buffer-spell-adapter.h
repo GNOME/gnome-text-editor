@@ -33,6 +33,9 @@ G_DECLARE_FINAL_TYPE (EditorTextBufferSpellAdapter, editor_text_buffer_spell_ada
 EditorTextBufferSpellAdapter *editor_text_buffer_spell_adapter_new                 (GtkTextBuffer                *buffer,
                                                                                     EditorSpellChecker           *checker);
 GtkTextBuffer      *editor_text_buffer_spell_adapter_get_buffer          (EditorTextBufferSpellAdapter *self);
+gboolean            editor_text_buffer_spell_adapter_get_enabled         (EditorTextBufferSpellAdapter *self);
+void                editor_text_buffer_spell_adapter_set_enabled         (EditorTextBufferSpellAdapter *self,
+                                                                          gboolean                      enabled);
 EditorSpellChecker *editor_text_buffer_spell_adapter_get_checker         (EditorTextBufferSpellAdapter *self);
 void                editor_text_buffer_spell_adapter_set_checker         (EditorTextBufferSpellAdapter *self,
                                                                           EditorSpellChecker           *checker);
