@@ -27,6 +27,9 @@
 #include "editor-application.h"
 #include "editor-document.h"
 #include "editor-open-popover-private.h"
+#include "editor-preferences-font.h"
+#include "editor-preferences-spin.h"
+#include "editor-preferences-switch.h"
 #include "editor-save-changes-dialog-private.h"
 #include "editor-session-private.h"
 #include "editor-theme-selector-private.h"
@@ -406,12 +409,13 @@ editor_window_class_init (EditorWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, pages);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, position_box);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, position_label);
+  gtk_widget_class_bind_template_child (widget_class, EditorWindow, preferences_revealer);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, primary_menu);
+  gtk_widget_class_bind_template_child (widget_class, EditorWindow, stack);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, subtitle);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, tab_bar);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, tab_view);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, title);
-  gtk_widget_class_bind_template_child (widget_class, EditorWindow, stack);
 
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_w, GDK_CONTROL_MASK, "win.close-page-or-window", NULL);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_o, GDK_CONTROL_MASK, "win.open", NULL);
@@ -440,6 +444,9 @@ editor_window_class_init (EditorWindowClass *klass)
 
   g_type_ensure (EDITOR_TYPE_OPEN_POPOVER);
   g_type_ensure (EDITOR_TYPE_POSITION_LABEL);
+  g_type_ensure (EDITOR_TYPE_PREFERENCES_FONT);
+  g_type_ensure (EDITOR_TYPE_PREFERENCES_SPIN);
+  g_type_ensure (EDITOR_TYPE_PREFERENCES_SWITCH);
 }
 
 static void

@@ -51,6 +51,7 @@ struct _EditorWindow
   GtkMenuButton        *primary_menu;
   GtkMenuButton        *options_menu;
   GtkMenuButton        *export_menu;
+  GtkRevealer          *preferences_revealer;
 
   /* Borrowed References */
   EditorPage           *visible_page;

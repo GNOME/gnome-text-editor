@@ -548,6 +548,30 @@ editor_window_actions_focus_neighbor_cb (GtkWidget  *widget,
     adw_tab_view_select_next_page (self->tab_view);
 }
 
+static void
+editor_window_actions_show_preferences_cb (GtkWidget  *widget,
+                                           const char *action_name,
+                                           GVariant   *param)
+{
+  EditorWindow *self = (EditorWindow *)widget;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+
+  gtk_revealer_set_reveal_child (self->preferences_revealer, TRUE);
+}
+
+static void
+editor_window_actions_hide_preferences_cb (GtkWidget  *widget,
+                                           const char *action_name,
+                                           GVariant   *param)
+{
+  EditorWindow *self = (EditorWindow *)widget;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+
+  gtk_revealer_set_reveal_child (self->preferences_revealer, FALSE);
+}
+
 void
 _editor_window_class_actions_init (EditorWindowClass *klass)
 {
@@ -637,6 +661,14 @@ _editor_window_class_actions_init (EditorWindowClass *klass)
                                    "page.begin-replace",
                                    NULL,
                                    editor_window_actions_begin_replace_cb);
+  gtk_widget_class_install_action (widget_class,
+                                   "win.hide-preferences",
+                                   NULL,
+                                   editor_window_actions_hide_preferences_cb);
+  gtk_widget_class_install_action (widget_class,
+                                   "win.show-preferences",
+                                   NULL,
+                                   editor_window_actions_show_preferences_cb);
 }
 
 void
