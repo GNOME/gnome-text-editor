@@ -27,7 +27,6 @@
 
 #include "editor-application-private.h"
 #include "editor-page.h"
-#include "editor-preferences-window.h"
 #include "editor-save-changes-dialog-private.h"
 #include "editor-session-private.h"
 #include "editor-window.h"
@@ -44,39 +43,6 @@ static const gchar *artists[] = {
   "Tobias Bernard",
   NULL
 };
-
-static void
-editor_application_actions_preferences_cb (GSimpleAction *action,
-                                           GVariant      *param,
-                                           gpointer       user_data)
-{
-  EditorApplication *self = user_data;
-  EditorPreferencesWindow *prefs;
-  EditorWindow *active = NULL;
-  GList *windows;
-
-  g_assert (EDITOR_IS_APPLICATION (self));
-
-  windows = gtk_application_get_windows (GTK_APPLICATION (self));
-
-  for (const GList *iter = windows; iter; iter = iter->next)
-    {
-      GtkWindow *window = iter->data;
-
-      if (active == NULL && EDITOR_IS_WINDOW (window))
-        active = EDITOR_WINDOW (window);
-
-      if (EDITOR_IS_PREFERENCES_WINDOW (window))
-        {
-          gtk_window_present (window);
-          return;
-        }
-    }
-
-  prefs = editor_preferences_window_new (self);
-  gtk_window_set_transient_for (GTK_WINDOW (prefs), GTK_WINDOW (active));
-  gtk_window_present (GTK_WINDOW (prefs));
-}
 
 static void
 editor_application_actions_new_window_cb (GSimpleAction *action,
@@ -233,7 +199,6 @@ _editor_application_actions_init (EditorApplication *self)
 {
   static const GActionEntry actions[] = {
     { "new-window", editor_application_actions_new_window_cb },
-    { "preferences", editor_application_actions_preferences_cb },
     { "about", editor_application_actions_about_cb },
     { "help", editor_application_actions_help_cb },
     { "quit", editor_application_actions_quit },

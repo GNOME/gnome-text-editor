@@ -24,7 +24,6 @@ editor_sources = [
   'editor-preferences-radio.c',
   'editor-preferences-spin.c',
   'editor-preferences-switch.c',
-  'editor-preferences-window.c',
   'editor-print-operation.c',
   'editor-save-changes-dialog.c',
   'editor-search-bar.c',
