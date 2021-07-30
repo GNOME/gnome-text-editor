@@ -28,6 +28,7 @@
 #include "editor-document.h"
 #include "editor-open-popover-private.h"
 #include "editor-preferences-font.h"
+#include "editor-preferences-radio.h"
 #include "editor-preferences-spin.h"
 #include "editor-preferences-switch.h"
 #include "editor-save-changes-dialog-private.h"
@@ -275,6 +276,8 @@ static void
 editor_window_constructed (GObject *object)
 {
   EditorWindow *self = (EditorWindow *)object;
+  GtkSourceStyleSchemeManager *sm;
+  const char * const *scheme_ids;
   GtkApplication *app;
   EditorSession *session;
   GtkPopover *popover;
@@ -304,6 +307,33 @@ editor_window_constructed (GObject *object)
 
   options_menu = gtk_application_get_menu_by_id (GTK_APPLICATION (app), "options-menu");
   gtk_menu_button_set_menu_model (self->options_menu, G_MENU_MODEL (options_menu));
+
+  /* Populate schemes for preferences */
+  sm = gtk_source_style_scheme_manager_get_default ();
+  if ((scheme_ids = gtk_source_style_scheme_manager_get_scheme_ids (sm)))
+    {
+      EditorPreferencesRadio *group = NULL;
+
+      for (guint i = 0; scheme_ids[i]; i++)
+        {
+          GtkSourceStyleScheme *scheme = gtk_source_style_scheme_manager_get_scheme (sm, scheme_ids[i]);
+          const char *name = gtk_source_style_scheme_get_name (scheme);
+          EditorPreferencesRadio *radio;
+
+          radio = g_object_new (EDITOR_TYPE_PREFERENCES_RADIO,
+                                "schema-id", "org.gnome.TextEditor",
+                                "schema-key", "style-scheme",
+                                "schema-value", scheme_ids[i],
+                                "title", name,
+                                NULL);
+          adw_preferences_group_add (self->scheme_group, GTK_WIDGET (radio));
+
+          if (group == NULL)
+            group = radio;
+          else
+            editor_preferences_radio_set_group (radio, group);
+        }
+    }
 }
 
 static void
@@ -411,6 +441,7 @@ editor_window_class_init (EditorWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, position_label);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, preferences_revealer);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, primary_menu);
+  gtk_widget_class_bind_template_child (widget_class, EditorWindow, scheme_group);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, stack);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, subtitle);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, tab_bar);
