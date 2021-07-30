@@ -28,4 +28,7 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (EditorPreferencesRadio, editor_preferences_radio, EDITOR, PREFERENCES_RADIO, AdwActionRow)
 
+void editor_preferences_radio_set_group (EditorPreferencesRadio *self,
+                                         EditorPreferencesRadio *other);
+
 G_END_DECLS

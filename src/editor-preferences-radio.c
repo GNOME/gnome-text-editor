@@ -62,7 +62,7 @@ editor_preferences_radio_changed_cb (EditorPreferencesRadio *self,
 
   value = g_settings_get_string (settings, key);
   active = g_strcmp0 (value, self->schema_value) == 0;
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (self->toggle), active);
+  gtk_check_button_set_active (self->toggle, active);
 }
 
 static void
@@ -101,14 +101,6 @@ editor_preferences_radio_activated (AdwActionRow *row)
   g_assert (ADW_IS_ACTION_ROW (self));
 
   g_settings_set_string (self->settings, self->schema_key, self->schema_value);
-}
-
-static void
-editor_preferences_radio_clicked_cb (EditorPreferencesRadio *self,
-                                     GtkCheckButton         *button)
-{
-  editor_preferences_radio_activated (ADW_ACTION_ROW (self));
-  g_signal_stop_emission_by_name (button, "clicked");
 }
 
 static void
@@ -220,13 +212,17 @@ editor_preferences_radio_init (EditorPreferencesRadio *self)
 {
   self->toggle = g_object_new (GTK_TYPE_CHECK_BUTTON,
                                "can-focus", FALSE,
-                                "valign", GTK_ALIGN_CENTER,
+                               "valign", GTK_ALIGN_CENTER,
                                NULL);
-  g_signal_connect_object (self->toggle,
-                           "clicked",
-                           G_CALLBACK (editor_preferences_radio_clicked_cb),
-                           self,
-                           G_CONNECT_SWAPPED);
+  adw_action_row_add_prefix (ADW_ACTION_ROW (self), GTK_WIDGET (self->toggle));
+}
 
-  adw_action_row_add_suffix (ADW_ACTION_ROW (self), GTK_WIDGET (self->toggle));
+void
+editor_preferences_radio_set_group (EditorPreferencesRadio *self,
+                                    EditorPreferencesRadio *other)
+{
+  g_return_if_fail (EDITOR_IS_PREFERENCES_RADIO (self));
+  g_return_if_fail (EDITOR_IS_PREFERENCES_RADIO (other));
+
+  gtk_check_button_set_group (self->toggle, other->toggle);
 }
