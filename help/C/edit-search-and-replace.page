@@ -1,0 +1,74 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      type="topic" style="task" version="1.1"
+      id="edit-search-and-replace">
+  <info>
+    <!--
+        Recommended statuses: stub incomplete draft outdated review candidate final
+    -->
+    <revision version="VERSION.NUMBER" date="2021-07-31" status="draft"/>
+
+    <credit type="author copyright">
+      <name>Günther Wagner</name>
+      <email>info@gunibert.de</email>
+      <years>2021</years>
+    </credit>
+
+    <link type="guide" xref="index#edit"/>
+
+    <!--
+        TODO: Remove comments when status will be final
+        Think about whether other pages should be in the seealso list.
+        The target page will automatically get a seealso link back.
+    <link type="seealso" xref="someotherid"/>
+    -->
+
+    <!--
+        Think about whether external resources should be in the seealso
+        list. These require a title.
+    <link type="seealso" href="http://someurl">
+      <title>Link title</title>
+    </link>
+    -->
+
+    <desc>Search and replace text</desc>
+
+    <keywords>search, replace</keywords>
+  </info>
+
+  <title>Search and Replace</title>
+
+  <p>GNOME text editor allows you to quickly search in big text files for a specific
+  text parts. Oftentimes these text parts need to be replaced also.</p>
+
+  <list>
+    <title>Search for text</title>
+    <item><p>Activate the search panel via <guiseq><gui>Hamburger Menu</gui><gui>Find/Replace...</gui></guiseq> or activate it via <keyseq><key>Ctrl</key><key>F</key></keyseq>.</p></item>
+    <item><p>Add your search term into the entry field.</p></item>
+    <item><p>The search is performed as you type. You can now iterate the search result with <key>↑</key> or <key>↓</key> or with the buttons beside the entry.</p></item>
+    <item><p>Pressing <key>Enter</key> will move the cursor to the currently highlighted search result.</p></item>
+    <item><p>Pressing <key>Escape</key> will discard the search panel and the search result.</p></item>
+  </list>
+
+  <list>
+    <title>Search tips &amp; tricks</title>
+    <item><p>In order to quickly search for a word highlight the word and press <keyseq><key>Ctrl</key><key>F</key></keyseq>. The word will be automatically entered into the search entry.</p></item>
+    <item><p>The search can be refined with additional options in the <gui>gear</gui> menu.</p>
+      <list>
+        <item><p>Only match the whole word</p></item>
+        <item><p>Using regular expressions as search term</p></item>
+        <item><p>Respecting case sensitivity of the search term</p></item>
+      </list>
+    </item>
+  </list>
+
+  <list>
+    <title>Replace text</title>
+    <item><p>Activate the search panel via <guiseq><gui>Hamburger Menu</gui><gui>Find/Replace...</gui></guiseq> or activate it via <keyseq><key>Ctrl</key><key>H</key></keyseq>.</p></item>
+    <item><p>In case you opened the search panel via the <gui>Hamburger Menu</gui> you have to click the button for activating the replace functionality.</p></item>
+    <item><p>Add your search term which should be replaced into the entry field.</p></item>
+    <item><p>Add your replace term into the second entry field.</p></item>
+    <item><p>The search is performed as you type. You can now iterate the search result with <key>↑</key> or <key>↓</key> or with the buttons beside the entry.</p></item>
+    <item><p>It is now possible to only replace the current search result element via <gui>Replace</gui> or you can replace all occurrences via <gui>Replace All</gui>.</p></item>
+  </list>
+
+</page>

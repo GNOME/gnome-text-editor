@@ -1,6 +1,9 @@
 pages = [
   'index.page',
   'basics-open-file.page',
+  'basics-create-new-file.page',
+  'basics-draft-folder.page',
+  'edit-search-and-replace.page',
   'legal.xml',
 ]
 
