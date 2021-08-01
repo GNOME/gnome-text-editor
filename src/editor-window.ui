@@ -131,6 +131,7 @@
                       <object class="AdwTabView" id="tab_view">
                         <property name="hexpand">true</property>
                         <property name="vexpand">true</property>
+                        <signal name="close-page" handler="on_tab_view_close_page_cb" swapped="true"/>
                       </object>
                     </child>
                   </object>

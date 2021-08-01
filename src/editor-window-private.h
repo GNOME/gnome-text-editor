@@ -77,5 +77,7 @@ void          _editor_window_add_page             (EditorWindow      *self,
 void          _editor_window_remove_page          (EditorWindow      *self,
                                                    EditorPage        *page);
 void          _editor_window_focus_search         (EditorWindow      *self);
+gboolean      _editor_window_request_close_page   (EditorWindow      *self,
+                                                   EditorPage        *page);
 
 G_END_DECLS

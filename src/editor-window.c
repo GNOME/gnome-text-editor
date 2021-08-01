@@ -337,6 +337,82 @@ editor_window_constructed (GObject *object)
 }
 
 static void
+editor_window_actions_close_page_confirm_cb (GObject      *object,
+                                             GAsyncResult *result,
+                                             gpointer      user_data)
+{
+  g_autoptr(GPtrArray) pages = user_data;
+  g_autoptr(GError) error = NULL;
+  EditorWindow *self;
+  gboolean confirm_close = TRUE;
+
+  g_assert (pages != NULL);
+  g_assert (pages->len > 0);
+
+  if (!_editor_save_changes_dialog_run_finish (result, &error))
+    {
+      g_debug ("Failed to run dialog: %s", error->message);
+      confirm_close = FALSE;
+    }
+
+  self = EDITOR_WINDOW (gtk_window_get_transient_for (GTK_WINDOW (object)));
+
+  for (guint i = 0; i < pages->len; i++)
+    {
+      EditorPage *epage = g_ptr_array_index (pages, i);
+      AdwTabPage *page = adw_tab_view_get_page (self->tab_view, GTK_WIDGET (epage));
+
+      adw_tab_view_close_page_finish (self->tab_view, page, confirm_close);
+    }
+}
+
+gboolean
+_editor_window_request_close_page (EditorWindow *self,
+                                   EditorPage   *page)
+{
+  g_return_val_if_fail (EDITOR_IS_WINDOW (self), FALSE);
+  g_return_val_if_fail (EDITOR_IS_PAGE (page), FALSE);
+
+  /* If this document has changes, then request the user to save them. */
+  if (editor_page_get_is_modified (page))
+    {
+      g_autoptr(GPtrArray) pages = g_ptr_array_new_with_free_func (g_object_unref);
+      g_ptr_array_add (pages, g_object_ref (page));
+      _editor_save_changes_dialog_run_async (GTK_WINDOW (self),
+                                             pages,
+                                             NULL,
+                                             editor_window_actions_close_page_confirm_cb,
+                                             g_ptr_array_ref (pages));
+      return FALSE;
+    }
+
+  return TRUE;
+}
+
+static gboolean
+on_tab_view_close_page_cb (EditorWindow *self,
+                           AdwTabPage   *page,
+                           AdwTabView   *view)
+{
+  EditorPage *epage;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+  g_assert (ADW_IS_TAB_PAGE (page));
+  g_assert (ADW_IS_TAB_VIEW (view));
+
+  if (page != adw_tab_view_get_selected_page (view))
+    adw_tab_view_set_selected_page (view, page);
+
+  if ((epage = EDITOR_PAGE (adw_tab_page_get_child (page))))
+    {
+      if (_editor_window_request_close_page (self, epage))
+        return FALSE;
+    }
+
+  return TRUE;
+}
+
+static void
 editor_window_dispose (GObject *object)
 {
   EditorWindow *self = (EditorWindow *)object;
@@ -431,6 +507,7 @@ editor_window_class_init (EditorWindowClass *klass)
   g_object_class_install_properties (object_class, N_PROPS, properties);
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-window.ui");
+
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, empty);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, is_modified);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, open_menu_button);
@@ -447,6 +524,8 @@ editor_window_class_init (EditorWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, tab_bar);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, tab_view);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, title);
+
+  gtk_widget_class_bind_template_callback (widget_class, on_tab_view_close_page_cb);
 
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_w, GDK_CONTROL_MASK, "win.close-page-or-window", NULL);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_o, GDK_CONTROL_MASK, "win.open", NULL);
