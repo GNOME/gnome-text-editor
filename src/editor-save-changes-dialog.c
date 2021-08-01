@@ -378,7 +378,8 @@ _editor_save_changes_dialog_run_async (GtkWindow           *parent,
   g_return_if_fail (!parent || GTK_IS_WINDOW (parent));
   g_return_if_fail (!cancellable || G_IS_CANCELLABLE (cancellable));
 
-  task = g_task_new (NULL, cancellable, callback, user_data);
+  dialog = _editor_save_changes_dialog_new (parent, pages);
+  task = g_task_new (dialog, cancellable, callback, user_data);
   g_task_set_source_tag (task, _editor_save_changes_dialog_run_async);
 
   if (pages == NULL || pages->len == 0)
@@ -387,7 +388,6 @@ _editor_save_changes_dialog_run_async (GtkWindow           *parent,
       return;
     }
 
-  dialog = _editor_save_changes_dialog_new (parent, pages);
   g_object_set_data_full (G_OBJECT (dialog),
                           "TASK",
                           g_steal_pointer (&task),
