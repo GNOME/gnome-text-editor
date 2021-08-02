@@ -1,0 +1,32 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      type="topic" style="concept" version="1.1"
+      id="basics-draft-folder">
+  <info>
+    <!--
+        Recommended statuses: stub incomplete draft outdated review candidate final
+    -->
+    <revision version="40" date="2021-07-22" status="draft"/>
+
+    <credit type="author copyright">
+      <name>Günther Wagner</name>
+      <email>info@gunibert.de</email>
+      <years>2021</years>
+    </credit>
+
+    <link type="guide" xref="index#basics"/>
+
+    <desc>Explaination of the drafts folder.</desc>
+
+    <keywords>draft, folder</keywords>
+  </info>
+
+  <title>Draft folder</title>
+
+  <p>GNOME Text Editor will automatically save every unsaved file. This folder
+  is located in the application data directory (~/.local/share/gnome-text-editor or
+  in the respective flatpak folder). You should normally not care about that folder
+  as every draft file is always accessible via the <gui>Open</gui> menu.</p>
+
+  <p>You can identify a draft in the title of GNOME Text Editor. There is a subtitle
+  'Draft' if your current document is not saved and will reside in the draft folder.</p>
+</page>
