@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2021-07-28 01:53+0000\n"
-"PO-Revision-Date: 2021-07-28 11:08-0300\n"
+"POT-Creation-Date: 2021-07-29 02:09+0000\n"
+"PO-Revision-Date: 2021-08-02 17:33-0300\n"
 "Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
@@ -200,11 +200,10 @@ msgid "Failed to retrieve va_list value: %s"
 msgstr "Falha ao obter o valor de va_list: %s"
 
 #: src/editor-application-actions.c:132
-#| msgid "Text Editor"
 msgid "Text Editor Website"
 msgstr "Site do Editor de Texto"
 
-#: src/editor-document.c:1666
+#: src/editor-document.c:1677
 msgid "[Read-Only]"
 msgstr "[Somente leitura]"
 
@@ -257,7 +256,6 @@ msgid "Recent Documents"
 msgstr "Documentos recentes"
 
 #: src/editor-open-popover.ui:44
-#| msgid "Recent Documents"
 msgid "No Recent Documents"
 msgstr "Nenhum documento recente"
 
@@ -265,34 +263,33 @@ msgstr "Nenhum documento recente"
 msgid "Br_owse Files…"
 msgstr "Pr_ocurar arquivos…"
 
-#: src/editor-page.c:684 src/editor-sidebar-item.c:440
+#: src/editor-page.c:704 src/editor-sidebar-item.c:440
 msgid "New Document"
 msgstr "Novo documento"
 
-#: src/editor-page.c:701 src/editor-sidebar-item.c:459
+#: src/editor-page.c:721 src/editor-sidebar-item.c:459
 #: src/editor-sidebar-item.c:465
 msgid "Draft"
 msgstr "Rascunho"
 
-#: src/editor-page.c:755
-#| msgid "Close document"
+#: src/editor-page.c:775
 msgid "Failed to save document"
 msgstr "Falha ao salvar o documento"
 
-#: src/editor-page.c:823
+#: src/editor-page.c:843
 msgid "Save As"
 msgstr "Salvar como"
 
-#: src/editor-page.c:826 src/editor-window-actions.c:165
+#: src/editor-page.c:846 src/editor-window-actions.c:165
 msgid "Save"
 msgstr "Salvar"
 
-#: src/editor-page.c:827 src/editor-window-actions.c:164
+#: src/editor-page.c:847 src/editor-window-actions.c:164
 #: src/editor-window-actions.c:275 src/editor-window-actions.c:384
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: src/editor-page.c:945
+#: src/editor-page.c:965
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Lin %u, Col %u"
@@ -368,7 +365,6 @@ msgid "_Save"
 msgstr "_Salvar"
 
 #: src/editor-save-changes-dialog.c:295
-#| msgid "New Document"
 msgid "Untitled Document"
 msgstr "Documento sem título"
 
@@ -586,283 +582,256 @@ msgid "Enchant 2"
 msgstr "Enchant 2"
 
 #: src/help-overlay.ui:8
-#| msgid "Editor Shortcuts"
 msgctxt "shortcut window"
 msgid "Editor Shortcuts"
 msgstr "Atalhos do editor"
 
 #: src/help-overlay.ui:11
-#| msgid "Windows"
 msgctxt "shortcut window"
 msgid "Windows"
 msgstr "Janelas"
 
 #: src/help-overlay.ui:14
-#| msgid "New window"
 msgctxt "shortcut window"
 msgid "New window"
 msgstr "Nova janela"
 
 #: src/help-overlay.ui:20
-#| msgid "Move document to new window"
 msgctxt "shortcut window"
 msgid "Move document to new window"
 msgstr "Move o documento para uma nova janela"
 
 #: src/help-overlay.ui:27
-#| msgid "Move to next tab"
 msgctxt "shortcut window"
 msgid "Move to next tab"
 msgstr "Move para a aba de texto"
 
 #: src/help-overlay.ui:33
-#| msgid "Move to previous tab"
 msgctxt "shortcut window"
 msgid "Move to previous tab"
 msgstr "Move para a aba anterior"
 
 #: src/help-overlay.ui:39
-#| msgid "Reorder after next tab"
 msgctxt "shortcut window"
 msgid "Reorder after next tab"
 msgstr "Reordena após a próxima aba"
 
 #: src/help-overlay.ui:45
-#| msgid "Reorder before previous tab"
 msgctxt "shortcut window"
 msgid "Reorder before previous tab"
 msgstr "Reordena após a aba anterior"
 
 #: src/help-overlay.ui:52
-#| msgid "Documents"
+msgctxt "shortcut window"
+msgid "Zoom"
+msgstr "Ampliação"
+
+#: src/help-overlay.ui:56
+msgctxt "shortcut window"
+msgid "Zoom In"
+msgstr "Amplia"
+
+#: src/help-overlay.ui:62
+msgctxt "shortcut window"
+msgid "Zoom Out"
+msgstr "Reduz"
+
+#: src/help-overlay.ui:68
+msgctxt "shortcut window"
+msgid "Reset Zoom"
+msgstr "Restaura"
+
+#: src/help-overlay.ui:75
 msgctxt "shortcut window"
 msgid "Documents"
 msgstr "Documentos"
 
-#: src/help-overlay.ui:55
-#| msgid "New document"
+#: src/help-overlay.ui:78
 msgctxt "shortcut window"
 msgid "New document"
 msgstr "Novo documento"
 
-#: src/help-overlay.ui:61
-#| msgid "Browse to open document"
+#: src/help-overlay.ui:84
 msgctxt "shortcut window"
 msgid "Browse to open document"
 msgstr "Procura para abrir um documento"
 
-#: src/help-overlay.ui:67
-#| msgid "Find document by name"
+#: src/help-overlay.ui:90
 msgctxt "shortcut window"
 msgid "Find document by name"
 msgstr "Localiza um documento por nome"
 
-#: src/help-overlay.ui:73
-#| msgid "Save"
+#: src/help-overlay.ui:96
 msgctxt "shortcut window"
 msgid "Save"
 msgstr "Salva"
 
-#: src/help-overlay.ui:79
-#| msgid "Save As"
+#: src/help-overlay.ui:102
 msgctxt "shortcut window"
 msgid "Save As"
 msgstr "Salva como"
 
-#: src/help-overlay.ui:85
-#| msgid "Find/Replace"
+#: src/help-overlay.ui:108
 msgctxt "shortcut window"
 msgid "Find/Replace"
 msgstr "Localiza/substitui"
 
-#: src/help-overlay.ui:91
-#| msgid "Close document"
+#: src/help-overlay.ui:114
 msgctxt "shortcut window"
 msgid "Close document"
 msgstr "Fecha o documento"
 
-#: src/help-overlay.ui:99
-#| msgid "Copy and Paste"
+#: src/help-overlay.ui:122
 msgctxt "shortcut window"
 msgid "Copy and Paste"
 msgstr "Copia e cola"
 
-#: src/help-overlay.ui:103
-#| msgid "Copy selected text to clipboard"
+#: src/help-overlay.ui:126
 msgctxt "shortcut window"
 msgid "Copy selected text to clipboard"
 msgstr "Copia o texto selecionado para a área de transferência"
 
-#: src/help-overlay.ui:109
-#| msgid "Cut selected text to clipboard"
+#: src/help-overlay.ui:132
 msgctxt "shortcut window"
 msgid "Cut selected text to clipboard"
 msgstr "Recorta o texto selecionado para a área de transferência"
 
-#: src/help-overlay.ui:115
-#| msgid "Paste text from clipboard"
+#: src/help-overlay.ui:138
 msgctxt "shortcut window"
 msgid "Paste text from clipboard"
 msgstr "Cola o texto da área de transferência"
 
-#: src/help-overlay.ui:120
-#| msgid "Copy all to clipboard"
+#: src/help-overlay.ui:143
 msgctxt "shortcut window"
 msgid "Copy all to clipboard"
 msgstr "Copia tudo para a área de transferência"
 
-#: src/help-overlay.ui:128
-#| msgid "Undo and Redo"
+#: src/help-overlay.ui:151
 msgctxt "shortcut window"
 msgid "Undo and Redo"
 msgstr "Desfaz e refaz"
 
-#: src/help-overlay.ui:132
-#| msgid "Undo previous command"
+#: src/help-overlay.ui:155
 msgctxt "shortcut window"
 msgid "Undo previous command"
 msgstr "Desfaz o comando anterior"
 
-#: src/help-overlay.ui:138
-#| msgid "Redo previous command"
+#: src/help-overlay.ui:161
 msgctxt "shortcut window"
 msgid "Redo previous command"
 msgstr "Refaz o comando anterior"
 
-#: src/help-overlay.ui:145
-#| msgid "Editing"
+#: src/help-overlay.ui:168
 msgctxt "shortcut window"
 msgid "Editing"
 msgstr "Edição"
 
-#: src/help-overlay.ui:149
-#| msgid "Insert emoji into document"
+#: src/help-overlay.ui:172
 msgctxt "shortcut window"
 msgid "Insert emoji into document"
 msgstr "Insere um emoji no documento"
 
-#: src/help-overlay.ui:155
-#| msgid "Search within the document"
+#: src/help-overlay.ui:178
 msgctxt "shortcut window"
 msgid "Search within the document"
 msgstr "Pesquisa dentro do documento"
 
-#: src/help-overlay.ui:161
-#| msgid "Search and replace within the document"
+#: src/help-overlay.ui:184
 msgctxt "shortcut window"
 msgid "Search and replace within the document"
 msgstr "Pesquisa e substitui dentro do documento"
 
-#: src/help-overlay.ui:167
-#| msgid "Increment number at cursor"
+#: src/help-overlay.ui:190
 msgctxt "shortcut window"
 msgid "Increment number at cursor"
 msgstr "Incrementa o número no cursor"
 
-#: src/help-overlay.ui:173
-#| msgid "Decrement number at cursor"
+#: src/help-overlay.ui:196
 msgctxt "shortcut window"
 msgid "Decrement number at cursor"
 msgstr "Decrementa o número no cursor"
 
-#: src/help-overlay.ui:179
-#| msgid "Toggle overwrite"
+#: src/help-overlay.ui:202
 msgctxt "shortcut window"
 msgid "Toggle overwrite"
 msgstr "Ativa sobrescrever"
 
-#: src/help-overlay.ui:185
-#| msgid "Toggle visibility of insertion caret"
+#: src/help-overlay.ui:208
 msgctxt "shortcut window"
 msgid "Toggle visibility of insertion caret"
 msgstr "Alterna a visibilidade do cursor de inserção"
 
-#: src/help-overlay.ui:192
-#| msgid "Selections"
+#: src/help-overlay.ui:215
 msgctxt "shortcut window"
 msgid "Selections"
 msgstr "Seleções"
 
-#: src/help-overlay.ui:196
-#| msgid "Select all"
+#: src/help-overlay.ui:219
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Seleciona tudo"
 
-#: src/help-overlay.ui:202
-#| msgid "Unselect all"
+#: src/help-overlay.ui:225
 msgctxt "shortcut window"
 msgid "Unselect all"
 msgstr "Desmarca tudo"
 
-#: src/help-overlay.ui:209
-#| msgid "Movements"
+#: src/help-overlay.ui:232
 msgctxt "shortcut window"
 msgid "Movements"
 msgstr "Movimentos"
 
-#: src/help-overlay.ui:213
-#| msgid "Move to beginning of document"
+#: src/help-overlay.ui:236
 msgctxt "shortcut window"
 msgid "Move to beginning of document"
 msgstr "Move para o começo do documento"
 
-#: src/help-overlay.ui:219
-#| msgid "Move to end of document"
+#: src/help-overlay.ui:242
 msgctxt "shortcut window"
 msgid "Move to end of document"
 msgstr "Move para o fim do documento"
 
-#: src/help-overlay.ui:225
-#| msgid "Move to start of previous paragraph"
+#: src/help-overlay.ui:248
 msgctxt "shortcut window"
 msgid "Move to start of previous paragraph"
 msgstr "Move para o início do parágrafo anterior"
 
-#: src/help-overlay.ui:231
-#| msgid "Move to end of next paragraph"
+#: src/help-overlay.ui:254
 msgctxt "shortcut window"
 msgid "Move to end of next paragraph"
 msgstr "Move para o fim do próximo parágrafo"
 
-#: src/help-overlay.ui:237
-#| msgid "Move current or selected lines up"
+#: src/help-overlay.ui:260
 msgctxt "shortcut window"
 msgid "Move current or selected lines up"
 msgstr "Move para cima a linha atual ou linhas selecionadas"
 
-#: src/help-overlay.ui:243
-#| msgid "Move current or selected lines down"
+#: src/help-overlay.ui:266
 msgctxt "shortcut window"
 msgid "Move current or selected lines down"
 msgstr "Move para baixo a linha atual ou linhas selecionadas"
 
-#: src/help-overlay.ui:250
-#| msgid "Deletion"
+#: src/help-overlay.ui:273
 msgctxt "shortcut window"
 msgid "Deletion"
 msgstr "Exclusão"
 
-#: src/help-overlay.ui:254
-#| msgid "Delete from cursor to word start"
+#: src/help-overlay.ui:277
 msgctxt "shortcut window"
 msgid "Delete from cursor to word start"
 msgstr "Exclui do cursor até o início da palavra"
 
-#: src/help-overlay.ui:260
-#| msgid "Delete from cursor to word end"
+#: src/help-overlay.ui:283
 msgctxt "shortcut window"
 msgid "Delete from cursor to word end"
 msgstr "Exclui do cursor até o fim da palavra"
 
-#: src/help-overlay.ui:266
-#| msgid "Delete from cursor to paragraph start"
+#: src/help-overlay.ui:289
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph start"
 msgstr "Exclui do cursor até o início da parágrafo"
 
-#: src/help-overlay.ui:272
-#| msgid "Delete from cursor to paragraph end"
+#: src/help-overlay.ui:295
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph end"
 msgstr "Exclui do cursor até o fim da parágrafo"
