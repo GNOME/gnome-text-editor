@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues\n"
-"POT-Creation-Date: 2021-07-29 02:09+0000\n"
-"PO-Revision-Date: 2021-07-29 13:10+0300\n"
+"POT-Creation-Date: 2021-08-02 20:37+0000\n"
+"PO-Revision-Date: 2021-08-03 16:27+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -24,7 +24,8 @@ msgstr "Christian Hergert та інші"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:7
-#: src/editor-application-actions.c:114 src/editor-application-actions.c:116
+#: data/org.gnome.TextEditor.desktop.in.in:8
+#: src/editor-application-actions.c:80 src/editor-application-actions.c:82
 msgid "Text Editor"
 msgstr "Текстовий редактор"
 
@@ -39,6 +40,11 @@ msgid ""
 msgstr ""
 "«Текстовий редактор GNOME» — простий текстовий редактор, у якому акцент "
 "зроблено на задоволення типових потреб користувача."
+
+#: data/org.gnome.TextEditor.desktop.in.in:9
+msgid "View and edit text files"
+msgstr ""
+"Перегляд і редагування текстових файлів"
 
 #: data/org.gnome.TextEditor.gschema.xml:7
 msgid "Auto Save Delay"
@@ -137,7 +143,7 @@ msgstr "Перенесення тексту"
 msgid "If text should be wrapped."
 msgstr "Чи слід переносити рядки тексту."
 
-#: data/org.gnome.TextEditor.gschema.xml:71 src/editor-preferences-window.ui:15
+#: data/org.gnome.TextEditor.gschema.xml:71 src/editor-window.ui:212
 msgid "Use System Font"
 msgstr "Використовувати системний шрифт"
 
@@ -145,7 +151,7 @@ msgstr "Використовувати системний шрифт"
 msgid "If the default system monospace font should be used."
 msgstr "Чи слід типово використовувати загальносистемний моноширинний шрифт."
 
-#: data/org.gnome.TextEditor.gschema.xml:76 src/editor-preferences-window.ui:21
+#: data/org.gnome.TextEditor.gschema.xml:76 src/editor-window.ui:218
 msgid "Custom Font"
 msgstr "Нетиповий шрифт"
 
@@ -198,7 +204,7 @@ msgstr "Не вдалося знайти властивість %s у %s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Не вдалося отримати значення va_list: %s"
 
-#: src/editor-application-actions.c:132
+#: src/editor-application-actions.c:98
 msgid "Text Editor Website"
 msgstr "Сайт «Текстового редактора»"
 
@@ -279,12 +285,12 @@ msgstr "Не вдалося зберегти документ"
 msgid "Save As"
 msgstr "Зберегти як"
 
-#: src/editor-page.c:846 src/editor-window-actions.c:165
+#: src/editor-page.c:846 src/editor-window-actions.c:128
 msgid "Save"
 msgstr "Зберегти"
 
-#: src/editor-page.c:847 src/editor-window-actions.c:164
-#: src/editor-window-actions.c:275 src/editor-window-actions.c:384
+#: src/editor-page.c:847 src/editor-window-actions.c:127
+#: src/editor-window-actions.c:238 src/editor-window-actions.c:347
 msgid "Cancel"
 msgstr "Скасувати"
 
@@ -306,38 +312,6 @@ msgstr "Поз"
 #: src/editor-preferences-font.c:102
 msgid "Select Font"
 msgstr "Виберіть шрифт"
-
-#: src/editor-preferences-window.ui:6
-msgid "Preferences"
-msgstr "Налаштування"
-
-#: src/editor-preferences-window.ui:12
-msgid "Font"
-msgstr "Шрифт"
-
-#: src/editor-preferences-window.ui:30
-msgid "Right Margin"
-msgstr "Правий відступ"
-
-#: src/editor-preferences-window.ui:33
-msgid "Margin Position"
-msgstr "Розташування поля"
-
-#: src/editor-preferences-window.ui:41
-msgid "Appearance"
-msgstr "Вигляд"
-
-#: src/editor-preferences-window.ui:44
-msgid "Display Grid Pattern"
-msgstr "Показувати ґратку"
-
-#: src/editor-preferences-window.ui:50
-msgid "Highlight Current Line"
-msgstr "Підсвічувати поточний рядок"
-
-#: src/editor-preferences-window.ui:56
-msgid "Display Overview Map"
-msgstr "Показувати оглядову мапу"
 
 #: src/editor-save-changes-dialog.c:259
 msgid "Save Changes?"
@@ -503,42 +477,42 @@ msgid "Line Ending:"
 msgstr "Кодування рядка:"
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:160
+#: src/editor-window-actions.c:123
 #, c-format
 msgid "Save Changes to “%s”?"
 msgstr "Зберегти зміни у «%s»?"
 
-#: src/editor-window-actions.c:163
+#: src/editor-window-actions.c:126
 msgid "Saving changes will replace the previously saved version."
 msgstr "Збереження змін призведе до заміщення раніше збереженої версії."
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:271
+#: src/editor-window-actions.c:234
 #, c-format
 msgid "Discard Changes to “%s”?"
 msgstr "Відкинути зміни у «%s»?"
 
-#: src/editor-window-actions.c:274
+#: src/editor-window-actions.c:237
 msgid "Unsaved changes will be permanently lost."
 msgstr "Незбережені зміни буде втрачено без можливості відновлення."
 
-#: src/editor-window-actions.c:276
+#: src/editor-window-actions.c:239
 msgid "Discard"
 msgstr "Відкинути"
 
-#: src/editor-window-actions.c:380
+#: src/editor-window-actions.c:343
 msgid "Open File"
 msgstr "Відкрити файл"
 
-#: src/editor-window-actions.c:383
+#: src/editor-window-actions.c:346
 msgid "Open"
 msgstr "Відкрити"
 
-#: src/editor-window-actions.c:397
+#: src/editor-window-actions.c:360
 msgid "All Files"
 msgstr "усі файли"
 
-#: src/editor-window-actions.c:402
+#: src/editor-window-actions.c:365
 msgid "Text Files"
 msgstr "текстові файли"
 
@@ -558,25 +532,64 @@ msgstr "Створити вкладку (Ctrl+T)"
 msgid "View"
 msgstr "Перегляд"
 
-#: src/editor-window.ui:137
+#: src/editor-window.ui:142
 msgid "Start or Open a Document"
 msgstr "Запуск або відкриття документа"
 
-#: src/editor-window.ui:140
+#: src/editor-window.ui:145
+#| msgid ""
+#| "• Use the open button\n"
+#| "• Press the new tab button\n"
+#| "• Press Ctrl+N to start a new document\n"
+#| "• Press Ctrl+O to browse for a document\n"
+#| "\n"
+#| "Or, press Ctrl+W to close the window."
 msgid ""
-"• Use the open button\n"
-"• Press the new tab button\n"
+"• Press the Open button\n"
+"• Press the New tab button\n"
 "• Press Ctrl+N to start a new document\n"
 "• Press Ctrl+O to browse for a document\n"
 "\n"
 "Or, press Ctrl+W to close the window."
 msgstr ""
-"• Скористайтеся кнопкою «Відкрити»\n"
+"• Натисніть кнопку «Відкрити»\n"
 "• Натисніть кнопку «Створити вкладку»\n"
 "• Натисніть комбінацію Ctrl+N, щоб створити документ\n"
 "• Натисніть комбінацію Ctrl+O, щоб вказати документ\n"
 "\n"
 "або натисніть комбінацію Ctrl+W, щоб закрити вікно."
+
+#: src/editor-window.ui:186
+msgid "Preferences"
+msgstr "Налаштування"
+
+#: src/editor-window.ui:208
+msgid "Font"
+msgstr "Шрифт"
+
+#: src/editor-window.ui:227
+msgid "Right Margin"
+msgstr "Правий відступ"
+
+#: src/editor-window.ui:231
+msgid "Margin Position"
+msgstr "Розташування поля"
+
+#: src/editor-window.ui:239
+msgid "Appearance"
+msgstr "Вигляд"
+
+#: src/editor-window.ui:243
+msgid "Display Grid Pattern"
+msgstr "Показувати ґратку"
+
+#: src/editor-window.ui:249
+msgid "Highlight Current Line"
+msgstr "Підсвічувати поточний рядок"
+
+#: src/editor-window.ui:255
+msgid "Display Overview Map"
+msgstr "Показувати оглядову мапу"
 
 #: src/enchant/editor-enchant-spell-provider.c:92
 msgid "Enchant 2"
@@ -625,26 +638,22 @@ msgstr "Перевпорядкувати до попередньої вклад�
 #: src/help-overlay.ui:52
 msgctxt "shortcut window"
 msgid "Zoom"
-msgstr ""
-"Масштаб"
+msgstr "Масштаб"
 
 #: src/help-overlay.ui:56
 msgctxt "shortcut window"
 msgid "Zoom In"
-msgstr ""
-"Збільшити"
+msgstr "Збільшити"
 
 #: src/help-overlay.ui:62
 msgctxt "shortcut window"
 msgid "Zoom Out"
-msgstr ""
-"Зменшити"
+msgstr "Зменшити"
 
 #: src/help-overlay.ui:68
 msgctxt "shortcut window"
 msgid "Reset Zoom"
-msgstr ""
-"Відновити початковий масштаб"
+msgstr "Відновити початковий масштаб"
 
 #: src/help-overlay.ui:75
 msgctxt "shortcut window"
