@@ -336,6 +336,31 @@ editor_window_constructed (GObject *object)
     }
 }
 
+static gboolean
+on_tab_view_close_page_cb (EditorWindow *self,
+                           AdwTabPage   *page,
+                           AdwTabView   *view)
+{
+  EditorPage *epage;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+  g_assert (ADW_IS_TAB_PAGE (page));
+  g_assert (ADW_IS_TAB_VIEW (view));
+
+  if (page != adw_tab_view_get_selected_page (view))
+    adw_tab_view_set_selected_page (view, page);
+
+  if ((epage = EDITOR_PAGE (adw_tab_page_get_child (page))))
+    {
+      epage->close_requested = TRUE;
+
+      if (_editor_window_request_close_page (self, epage))
+        return FALSE;
+    }
+
+  return TRUE;
+}
+
 static void
 editor_window_actions_close_page_confirm_cb (GObject      *object,
                                              GAsyncResult *result,
@@ -357,13 +382,29 @@ editor_window_actions_close_page_confirm_cb (GObject      *object,
 
   self = EDITOR_WINDOW (gtk_window_get_transient_for (GTK_WINDOW (object)));
 
+  g_signal_handlers_block_by_func (self->tab_view,
+                                   G_CALLBACK (on_tab_view_close_page_cb),
+                                   self);
+
   for (guint i = 0; i < pages->len; i++)
     {
       EditorPage *epage = g_ptr_array_index (pages, i);
       AdwTabPage *page = adw_tab_view_get_page (self->tab_view, GTK_WIDGET (epage));
 
-      adw_tab_view_close_page_finish (self->tab_view, page, confirm_close);
+      g_assert (EDITOR_IS_PAGE (epage));
+      g_assert (ADW_IS_TAB_PAGE (page));
+
+      if (epage->close_requested)
+        adw_tab_view_close_page_finish (self->tab_view, page, confirm_close);
+      else if (confirm_close)
+        adw_tab_view_close_page (self->tab_view, page);
+
+      epage->close_requested = FALSE;
     }
+
+  g_signal_handlers_unblock_by_func (self->tab_view,
+                                     G_CALLBACK (on_tab_view_close_page_cb),
+                                     self);
 }
 
 gboolean
@@ -384,29 +425,6 @@ _editor_window_request_close_page (EditorWindow *self,
                                              editor_window_actions_close_page_confirm_cb,
                                              g_ptr_array_ref (pages));
       return FALSE;
-    }
-
-  return TRUE;
-}
-
-static gboolean
-on_tab_view_close_page_cb (EditorWindow *self,
-                           AdwTabPage   *page,
-                           AdwTabView   *view)
-{
-  EditorPage *epage;
-
-  g_assert (EDITOR_IS_WINDOW (self));
-  g_assert (ADW_IS_TAB_PAGE (page));
-  g_assert (ADW_IS_TAB_VIEW (view));
-
-  if (page != adw_tab_view_get_selected_page (view))
-    adw_tab_view_set_selected_page (view, page);
-
-  if ((epage = EDITOR_PAGE (adw_tab_page_get_child (page))))
-    {
-      if (_editor_window_request_close_page (self, epage))
-        return FALSE;
     }
 
   return TRUE;

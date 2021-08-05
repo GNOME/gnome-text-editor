@@ -55,6 +55,8 @@ struct _EditorPage
   EditorSearchBar         *search_bar;
   GtkInfoBar              *changed_infobar;
   GtkInfoBar              *infobar;
+
+  guint                    close_requested : 1;
 };
 
 void          _editor_page_class_actions_init     (EditorPageClass      *klass);
