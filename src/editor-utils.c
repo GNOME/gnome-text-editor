@@ -343,9 +343,9 @@ static const struct {
   const char *id;
   const char *label;
 } line_endings[] = {
-  { GTK_SOURCE_NEWLINE_TYPE_LF, "unix", N_("Unix/Linux") },
-  { GTK_SOURCE_NEWLINE_TYPE_CR, "mac", N_("Mac OS Classic") },
-  { GTK_SOURCE_NEWLINE_TYPE_CR_LF, "windows", N_("Windows") },
+  { GTK_SOURCE_NEWLINE_TYPE_LF, "unix", N_("Unix/Linux (LF)") },
+  { GTK_SOURCE_NEWLINE_TYPE_CR, "mac", N_("Mac OS Classic (CR)") },
+  { GTK_SOURCE_NEWLINE_TYPE_CR_LF, "windows", N_("Windows (CR+LF)") },
 };
 
 static int
