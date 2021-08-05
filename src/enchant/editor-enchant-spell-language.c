@@ -29,6 +29,7 @@ struct _EditorEnchantSpellLanguage
   EditorSpellLanguage parent_instance;
   PangoLanguage *language;
   EnchantDict *native;
+  char *extra_word_chars;
 };
 
 G_DEFINE_TYPE (EditorEnchantSpellLanguage, editor_enchant_spell_language, EDITOR_TYPE_SPELL_LANGUAGE)
@@ -181,7 +182,7 @@ editor_enchant_spell_language_get_extra_word_chars (EditorSpellLanguage *languag
 
   g_assert (EDITOR_IS_SPELL_LANGUAGE (language));
 
-  return enchant_dict_get_extra_word_characters (self->native);
+  return self->extra_word_chars;
 }
 
 static void
@@ -189,6 +190,7 @@ editor_enchant_spell_language_constructed (GObject *object)
 {
   EditorEnchantSpellLanguage *self = (EditorEnchantSpellLanguage *)object;
   g_auto(GStrv) split = NULL;
+  const char *extra_word_chars;
   const char *code;
 
   g_assert (EDITOR_IS_ENCHANT_SPELL_LANGUAGE (self));
@@ -200,6 +202,19 @@ editor_enchant_spell_language_constructed (GObject *object)
 
   if ((split = editor_enchant_spell_language_split (self, g_get_real_name ())))
     editor_enchant_spell_language_add_all_to_session (self, (const char * const *)split);
+
+  if ((extra_word_chars = enchant_dict_get_extra_word_characters (self->native)))
+    {
+      const char *end_pos = NULL;
+
+      /* Sometimes we get invalid UTF-8 from enchant, so handle that directly.
+       * In particular, the data seems corrupted from Fedora.
+       */
+      if (g_utf8_validate (extra_word_chars, -1, &end_pos))
+        self->extra_word_chars = g_strdup (extra_word_chars);
+      else
+        self->extra_word_chars = g_strndup (extra_word_chars, end_pos - extra_word_chars);
+    }
 }
 
 static void
