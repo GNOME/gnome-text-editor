@@ -25,8 +25,11 @@
 #include "editor-spell-cursor.c"
 #include "cjhtextregion.c"
 
+#undef WANT_DISPLAY_TESTS
+
 static const char *test_text = "this is a series of words";
 static const char *test_text_2 = "it's possible we're going to have join-words.";
+#ifdef WANT_DISPLAY_TESTS
 static const char *test_text_3 = "\
 /* ide-buffer.c\
  *\
@@ -48,6 +51,7 @@ static const char *test_text_3 = "\
  * SPDX-License-Identifier: GPL-3.0-or-later\
  */\
 ";
+#endif
 
 static char *
 next_word (EditorSpellCursor *cursor)
@@ -95,6 +99,7 @@ test_cursor (void)
   _cjh_text_region_free (region);
 }
 
+#ifdef WANT_DISPLAY_TESTS
 static void
 test_cursor2 (void)
 {
@@ -136,6 +141,7 @@ test_cursor2 (void)
 
   _cjh_text_region_free (region);
 }
+#endif
 
 static void
 test_cursor_in_word (void)
@@ -213,12 +219,16 @@ main (int argc,
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
+#ifdef WANT_DISPLAY_TESTS
   gtk_init ();
   gtk_source_init ();
+#endif
 
   g_test_init (&argc, &argv, NULL);
   g_test_add_func ("/Spelling/Cursor/basic", test_cursor);
+#ifdef WANT_DISPLAY_TESTS
   g_test_add_func ("/Spelling/Cursor/basic2", test_cursor2);
+#endif
   g_test_add_func ("/Spelling/Cursor/in_word", test_cursor_in_word);
   g_test_add_func ("/Spelling/Cursor/join_words", test_cursor_join_words);
   return g_test_run ();
