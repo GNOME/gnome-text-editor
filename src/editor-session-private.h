@@ -50,6 +50,7 @@ struct _EditorSession
 
   guint               auto_save : 1;
   guint               did_restore : 1;
+  guint               restore_pages : 1;
   guint               dirty : 1;
 };
 
@@ -78,5 +79,7 @@ void           _editor_session_forget                 (EditorSession  *self,
                                                        GFile          *file,
                                                        const gchar    *draft_id);
 void           _editor_session_mark_dirty             (EditorSession  *self);
+void           _editor_session_set_restore_pages      (EditorSession  *self,
+                                                       gboolean        restore_pages);
 
 G_END_DECLS

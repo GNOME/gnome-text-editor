@@ -22,6 +22,8 @@
 
 #include "config.h"
 
+#include <glib/gi18n.h>
+
 #include "editor-application-private.h"
 #include "editor-session-private.h"
 #include "editor-utils-private.h"
@@ -177,6 +179,22 @@ editor_application_startup (GApplication *application)
   gtk_window_set_default_icon_name (PACKAGE_ICON_NAME);
 }
 
+static gint
+editor_application_handle_local_options (GApplication *app,
+                                         GVariantDict *options)
+{
+  EditorApplication *self = (EditorApplication *)app;
+  gboolean ignore_session;
+
+  g_assert (EDITOR_IS_APPLICATION (self));
+  g_assert (options != NULL);
+
+  if (g_variant_dict_lookup (options, "ignore-session", "b", &ignore_session))
+    _editor_session_set_restore_pages (self->session, FALSE);
+
+  return G_APPLICATION_CLASS (editor_application_parent_class)->handle_local_options (app, options);
+}
+
 static void
 editor_application_constructed (GObject *object)
 {
@@ -213,13 +231,21 @@ editor_application_class_init (EditorApplicationClass *klass)
   application_class->open = editor_application_open;
   application_class->startup = editor_application_startup;
   application_class->shutdown = editor_application_shutdown;
+  application_class->handle_local_options = editor_application_handle_local_options;
 }
+
+static const GOptionEntry entries[] = {
+  { "ignore-session", 0, 0, G_OPTION_ARG_NONE, NULL, N_("Do not restore session at startup") },
+  { 0 }
+};
 
 static void
 editor_application_init (EditorApplication *self)
 {
   self->session = _editor_session_new ();
   editor_session_set_auto_save (self->session, TRUE);
+
+  g_application_add_main_option_entries (G_APPLICATION (self), entries);
 }
 
 EditorApplication *

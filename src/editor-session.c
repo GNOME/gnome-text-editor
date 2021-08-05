@@ -546,6 +546,7 @@ editor_session_class_init (EditorSessionClass *klass)
 static void
 editor_session_init (EditorSession *self)
 {
+  self->restore_pages = TRUE;
   self->auto_save_delay = DEFAULT_AUTO_SAVE_TIMEOUT_SECONDS;
   self->seen = g_hash_table_new_full ((GHashFunc) g_file_hash,
                                       (GEqualFunc) g_file_equal,
@@ -1613,7 +1614,8 @@ editor_session_restore_v1 (EditorSession *self,
   if ((drafts = g_variant_lookup_value (state, "drafts", G_VARIANT_TYPE ("aa{sv}"))))
     editor_session_restore_v1_drafts (self, drafts);
 
-  if (!(windows = g_variant_lookup_value (state, "windows", G_VARIANT_TYPE ("aa{sv}"))) ||
+  if (!self->restore_pages ||
+      !(windows = g_variant_lookup_value (state, "windows", G_VARIANT_TYPE ("aa{sv}"))) ||
       g_variant_n_children (windows) == 0)
     goto failure;
 
@@ -1675,7 +1677,8 @@ editor_session_restore_v1 (EditorSession *self,
   return;
 
 failure:
-  g_warning ("Failed to restore session");
+  if (!self->restore_pages)
+    g_debug ("Failed to restore session or nothing to restore");
 
   editor_session_create_window (self);
 }
@@ -2203,4 +2206,20 @@ _editor_session_mark_dirty (EditorSession *self)
   self->auto_save_source = g_timeout_add_seconds (self->auto_save_delay,
                                                   editor_session_auto_save_timeout_cb,
                                                   self);
+}
+
+void
+_editor_session_set_restore_pages (EditorSession *self,
+                                   gboolean       restore_pages)
+{
+  g_return_if_fail (EDITOR_IS_SESSION (self));
+
+  if (self->did_restore)
+    {
+      g_warning ("Calling %s() after restoring hsa no effect. Ignoring request.",
+                 G_STRFUNC);
+      return;
+    }
+
+  self->restore_pages = !!restore_pages;
 }
