@@ -93,7 +93,7 @@ editor = executable('gnome-text-editor', editor_sources + editor_enums + [build_
 )
 
 test_spell_cursor = executable('test-spell-cursor', 'test-spell-cursor.c',
-  dependencies: libgtk_dep,
+  dependencies: [libgtk_dep, libgtksourceview_dep],
   include_directories: [include_directories('..')],
 )
 test('test-spell-cursor', test_spell_cursor)
