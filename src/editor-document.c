@@ -54,6 +54,7 @@ struct _EditorDocument
   guint                         busy_count;
   gdouble                       busy_progress;
 
+  guint                         loading : 1;
   guint                         readonly : 1;
   guint                         needs_autosave : 1;
   guint                         was_restored : 1;
@@ -1388,6 +1389,17 @@ editor_document_load_file_mount_cb (GObject      *object,
                            g_object_ref (task));
 }
 
+static void
+editor_document_load_completed_cb (EditorDocument *self,
+                                   GParamSpec     *pspec,
+                                   GTask          *task)
+{
+  g_assert (EDITOR_IS_DOCUMENT (self));
+  g_assert (G_IS_TASK (task));
+
+  self->loading = FALSE;
+}
+
 void
 _editor_document_load_async (EditorDocument      *self,
                              EditorWindow        *window,
@@ -1402,6 +1414,9 @@ _editor_document_load_async (EditorDocument      *self,
   g_return_if_fail (EDITOR_IS_DOCUMENT (self));
   g_return_if_fail (!window || EDITOR_IS_WINDOW (window));
   g_return_if_fail (!cancellable || G_IS_CANCELLABLE (cancellable));
+  g_return_if_fail (self->loading == FALSE);
+
+  self->loading = TRUE;
 
   file = editor_document_get_file (self);
 
@@ -1423,6 +1438,12 @@ _editor_document_load_async (EditorDocument      *self,
   task = g_task_new (self, cancellable, callback, user_data);
   g_task_set_source_tag (task, _editor_document_load_async);
   g_task_set_task_data (task, load, (GDestroyNotify) load_free);
+
+  g_signal_connect_object (task,
+                           "notify::completed",
+                           G_CALLBACK (editor_document_load_completed_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
 
   editor_document_set_busy_progress (self, 0, 2, .25);
 
