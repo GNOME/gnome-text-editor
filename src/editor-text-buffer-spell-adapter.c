@@ -578,7 +578,6 @@ static void
 editor_text_buffer_spell_adapter_init (EditorTextBufferSpellAdapter *self)
 {
   self->region = _cjh_text_region_new (NULL, NULL);
-  self->enabled = TRUE;
 }
 
 EditorSpellChecker *
