@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues\n"
-"POT-Creation-Date: 2021-08-02 20:37+0000\n"
-"PO-Revision-Date: 2021-08-03 16:27+0300\n"
+"POT-Creation-Date: 2021-08-05 18:46+0000\n"
+"PO-Revision-Date: 2021-08-06 20:58+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -43,8 +43,7 @@ msgstr ""
 
 #: data/org.gnome.TextEditor.desktop.in.in:9
 msgid "View and edit text files"
-msgstr ""
-"Перегляд і редагування текстових файлів"
+msgstr "Перегляд і редагування текстових файлів"
 
 #: data/org.gnome.TextEditor.gschema.xml:7
 msgid "Auto Save Delay"
@@ -203,6 +202,11 @@ msgstr "Не вдалося знайти властивість %s у %s"
 #, c-format
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Не вдалося отримати значення va_list: %s"
+
+#: src/editor-application.c:238
+msgid "Do not restore session at startup"
+msgstr ""
+"Не відновлювати сеанс після запуску"
 
 #: src/editor-application-actions.c:98
 msgid "Text Editor Website"
@@ -453,16 +457,19 @@ msgstr[2] "Близько %u років тому"
 msgstr[3] "Близько року тому"
 
 #: src/editor-utils.c:346
-msgid "Unix/Linux"
-msgstr "Unix/Linux"
+#| msgid "Unix/Linux"
+msgid "Unix/Linux (LF)"
+msgstr "Unix/Linux (LF)"
 
 #: src/editor-utils.c:347
-msgid "Mac OS Classic"
-msgstr "Mac OS Classic"
+#| msgid "Mac OS Classic"
+msgid "Mac OS Classic (CR)"
+msgstr "Класична Mac OS (CR)"
 
 #: src/editor-utils.c:348
-msgid "Windows"
-msgstr "Вікна"
+#| msgid "Windows"
+msgid "Windows (CR+LF)"
+msgstr "Windows (CR+LF)"
 
 #: src/editor-utils.c:378
 msgid "Automatically Detected"
@@ -537,13 +544,6 @@ msgid "Start or Open a Document"
 msgstr "Запуск або відкриття документа"
 
 #: src/editor-window.ui:145
-#| msgid ""
-#| "• Use the open button\n"
-#| "• Press the new tab button\n"
-#| "• Press Ctrl+N to start a new document\n"
-#| "• Press Ctrl+O to browse for a document\n"
-#| "\n"
-#| "Or, press Ctrl+W to close the window."
 msgid ""
 "• Press the Open button\n"
 "• Press the New tab button\n"
