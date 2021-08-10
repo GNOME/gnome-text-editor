@@ -22,7 +22,6 @@
 
 #include "cjhtextregionprivate.h"
 
-#include "editor-buffer-scheduler.h"
 #include "editor-document.h"
 #include "editor-spell-checker.h"
 #include "editor-spell-cursor.h"
@@ -284,12 +283,12 @@ editor_text_buffer_spell_adapter_queue_update (EditorTextBufferSpellAdapter *sel
 
   if (self->checker == NULL || self->buffer == NULL || !self->enabled)
     {
-      editor_buffer_scheduler_clear (&self->update_source);
+      gtk_source_scheduler_clear (&self->update_source);
       return;
     }
 
   if (self->update_source == 0)
-    self->update_source = editor_buffer_scheduler_add (editor_text_buffer_spell_adapter_run, self);
+    self->update_source = gtk_source_scheduler_add (editor_text_buffer_spell_adapter_run, self);
 }
 
 void
@@ -466,7 +465,7 @@ editor_text_buffer_spell_adapter_dispose (GObject *object)
   EditorTextBufferSpellAdapter *self = (EditorTextBufferSpellAdapter *)object;
 
   g_clear_weak_pointer (&self->buffer);
-  editor_buffer_scheduler_clear (&self->update_source);
+  gtk_source_scheduler_clear (&self->update_source);
 
   G_OBJECT_CLASS (editor_text_buffer_spell_adapter_parent_class)->dispose (object);
 }
@@ -599,7 +598,7 @@ editor_text_buffer_spell_adapter_set_checker (EditorTextBufferSpellAdapter *self
     {
       gsize length = _cjh_text_region_get_length (self->region);
 
-      editor_buffer_scheduler_clear (&self->update_source);
+      gtk_source_scheduler_clear (&self->update_source);
 
       if (length > 0)
         {

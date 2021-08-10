@@ -5,7 +5,6 @@ editor_sources = [
   'editor-application-actions.c',
   'editor-binding-group.c',
   'editor-buffer-monitor.c',
-  'editor-buffer-scheduler.c',
   'editor-document.c',
   'editor-info-bar.c',
   'editor-frame-source.c',
