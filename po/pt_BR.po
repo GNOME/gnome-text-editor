@@ -2,22 +2,23 @@
 # Copyright (C) 2021 gnome-text-editor's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-text-editor package.
 # Rafael Fontenelle <rafaelff@gnome.org>, 2021.
+# Enrico Nicoletto <liverig@gmail.com>, 2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2021-08-05 18:46+0000\n"
-"PO-Revision-Date: 2021-08-06 09:40-0300\n"
-"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
+"POT-Creation-Date: 2021-08-10 19:29+0000\n"
+"PO-Revision-Date: 2021-08-14 09:08-0300\n"
+"Last-Translator: Enrico Nicoletto <liverig@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1)\n"
-"X-Generator: Gtranslator 40.0\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.0\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
 msgid "Christian Hergert, et al."
@@ -212,7 +213,7 @@ msgstr "Não restaurar a sessão na inicialização"
 msgid "Text Editor Website"
 msgstr "Site do Editor de Texto"
 
-#: src/editor-document.c:1677
+#: src/editor-document.c:1715
 msgid "[Read-Only]"
 msgstr "[Somente leitura]"
 
@@ -317,11 +318,19 @@ msgstr "Col"
 msgid "Select Font"
 msgstr "Selecionar fonte"
 
-#: src/editor-save-changes-dialog.c:259
+#: src/editor-save-changes-dialog.c:256 src/editor-window-actions.c:239
+msgid "Discard"
+msgstr "Descartar"
+
+#: src/editor-save-changes-dialog.c:256
+msgid "Discard All"
+msgstr "Descartar tudo"
+
+#: src/editor-save-changes-dialog.c:262
 msgid "Save Changes?"
 msgstr "Salvar alterações?"
 
-#: src/editor-save-changes-dialog.c:261
+#: src/editor-save-changes-dialog.c:264
 msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
@@ -329,24 +338,20 @@ msgstr ""
 "Os documentos abertos contêm alterações não salvas. As alterações que não "
 "forem salvas serão perdidas permanentemente."
 
-#: src/editor-save-changes-dialog.c:263
+#: src/editor-save-changes-dialog.c:266
 msgid "_Cancel"
 msgstr "_Cancelar"
 
-#: src/editor-save-changes-dialog.c:264
-msgid "_Discard All"
-msgstr "_Descartar tudo"
-
-#: src/editor-save-changes-dialog.c:265 src/menus.ui:19
+#: src/editor-save-changes-dialog.c:268 src/menus.ui:19
 msgid "_Save"
 msgstr "_Salvar"
 
-#: src/editor-save-changes-dialog.c:295
+#: src/editor-save-changes-dialog.c:298
 msgid "Untitled Document"
 msgstr "Documento sem título"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:298
+#: src/editor-save-changes-dialog.c:301
 #, c-format
 msgid "%s (new)"
 msgstr "%s (novo)"
@@ -455,17 +460,14 @@ msgstr[0] "Cerca de %u ano atrás"
 msgstr[1] "Cerca de %u anos atrás"
 
 #: src/editor-utils.c:346
-#| msgid "Unix/Linux"
 msgid "Unix/Linux (LF)"
 msgstr "Unix/Linux (LF)"
 
 #: src/editor-utils.c:347
-#| msgid "Mac OS Classic"
 msgid "Mac OS Classic (CR)"
 msgstr "Mac pré-OS X (CR)"
 
 #: src/editor-utils.c:348
-#| msgid "Windows"
 msgid "Windows (CR+LF)"
 msgstr "Windows (CR+LF)"
 
@@ -500,10 +502,6 @@ msgstr "Descartar alterações a “%s”?"
 #: src/editor-window-actions.c:237
 msgid "Unsaved changes will be permanently lost."
 msgstr "Alterações não salvas serão perdidas permanentemente."
-
-#: src/editor-window-actions.c:239
-msgid "Discard"
-msgstr "Descartar"
 
 #: src/editor-window-actions.c:343
 msgid "Open File"
@@ -542,13 +540,6 @@ msgid "Start or Open a Document"
 msgstr "Inicia ou abre um documento"
 
 #: src/editor-window.ui:145
-#| msgid ""
-#| "• Use the open button\n"
-#| "• Press the new tab button\n"
-#| "• Press Ctrl+N to start a new document\n"
-#| "• Press Ctrl+O to browse for a document\n"
-#| "\n"
-#| "Or, press Ctrl+W to close the window."
 msgid ""
 "• Press the Open button\n"
 "• Press the New tab button\n"
@@ -970,6 +961,3 @@ msgstr "Fechar _outras abas"
 #: src/menus.ui:170
 msgid "_Close"
 msgstr "F_echar"
-
-#~ msgid " Website"
-#~ msgstr " Site"
