@@ -225,7 +225,6 @@ editor_save_changes_dialog_response (GtkMessageDialog *dialog,
   else
     {
       GTask *task = g_object_get_data (G_OBJECT (dialog), "TASK");
-      g_print ("Returning new error\n");
       g_task_return_new_error (task,
                                G_IO_ERROR,
                                G_IO_ERROR_CANCELLED,
