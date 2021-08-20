@@ -155,10 +155,11 @@ editor_application_startup (GApplication *application)
   gtk_application_set_accels_for_action (GTK_APPLICATION (self), "app.quit", quit_accels);
   gtk_application_set_accels_for_action (GTK_APPLICATION (self), "app.help", help_accels);
 
+  self->settings = g_settings_new ("org.gnome.TextEditor");
+
   _editor_application_actions_init (self);
 
   gtk_settings = gtk_settings_get_default ();
-  self->settings = g_settings_new ("org.gnome.TextEditor");
 
   g_settings_bind (self->settings, "auto-save-delay",
                    self->session, "auto-save-delay",

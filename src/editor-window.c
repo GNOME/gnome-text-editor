@@ -312,26 +312,31 @@ editor_window_constructed (GObject *object)
   sm = gtk_source_style_scheme_manager_get_default ();
   if ((scheme_ids = gtk_source_style_scheme_manager_get_scheme_ids (sm)))
     {
-      EditorPreferencesRadio *group = NULL;
+      GtkCheckButton *group = NULL;
 
       for (guint i = 0; scheme_ids[i]; i++)
         {
           GtkSourceStyleScheme *scheme = gtk_source_style_scheme_manager_get_scheme (sm, scheme_ids[i]);
           const char *name = gtk_source_style_scheme_get_name (scheme);
-          EditorPreferencesRadio *radio;
+          GtkWidget *radio;
+          GtkWidget *w;
 
-          radio = g_object_new (EDITOR_TYPE_PREFERENCES_RADIO,
-                                "schema-id", "org.gnome.TextEditor",
-                                "schema-key", "style-scheme",
-                                "schema-value", scheme_ids[i],
-                                "title", name,
+          radio = g_object_new (GTK_TYPE_CHECK_BUTTON,
+                                "can-focus", FALSE,
+                                "valign", GTK_ALIGN_CENTER,
+                                "action-name", "app.style-scheme",
+                                "action-target", g_variant_new_string (scheme_ids[i]),
                                 NULL);
-          adw_preferences_group_add (self->scheme_group, GTK_WIDGET (radio));
+          w = adw_action_row_new ();
+          adw_preferences_row_set_title (ADW_PREFERENCES_ROW (w), name);
+          adw_action_row_add_prefix (ADW_ACTION_ROW (w), radio);
+          adw_action_row_set_activatable_widget (ADW_ACTION_ROW (w), radio);
+          adw_preferences_group_add (self->scheme_group, w);
 
           if (group == NULL)
-            group = radio;
+            group = GTK_CHECK_BUTTON (radio);
           else
-            editor_preferences_radio_set_group (radio, group);
+            gtk_check_button_set_group (GTK_CHECK_BUTTON (radio), group);
         }
     }
 }
