@@ -1,0 +1,85 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      type="topic" style="task" version="1.1"
+      id="edit-undo-redo">
+  <info>
+    <!--
+        Recommended statuses: stub incomplete draft outdated review candidate final
+    -->
+    <revision version="40" date="2021-08-22" status="draft"/>
+
+    <credit type="author copyright">
+      <name>Fionn Kelleher</name>
+      <email>self@osslate.net</email>
+      <years>2021</years>
+    </credit>
+
+    <link type="guide" xref="index#edit"/>
+    <link type="seealso" xref="edit-draft-folder"/>
+
+    <desc>Fix mistakes made during editing</desc>
+    <keywords>undo, redo, discard changes</keywords>
+  </info>
+
+  <title>Undoing, redoing, and discarding changes</title>
+
+  <p>
+    GNOME Text Editor automatically keeps track of changes made while editing 
+    a file.
+    Changes can be undone and redone while editing, making it easy to fix
+    mistakes.
+  </p>
+
+  <note style="important">
+    <p>
+      Changes tracked for a file will be lost after closing it, or after
+      <link xref="#discard_changes">discarding changes</link>.
+    </p>
+  </note>
+
+  <section id="redo_and_redo">
+    <title>Undoing or redoing a change</title>
+    <p>
+      Pressing
+      <keyseq>
+        <key>Ctrl</key>
+        <key>Z</key>
+      </keyseq>
+      will undo the last change made to a file.
+      Using this shortcut repeatedly will continue undoing changes as they 
+      were originally made.
+    </p>
+
+    <p>
+      Pressing
+      <keyseq>
+        <key>Ctrl</key>
+        <key>Shift</key>
+        <key>Z</key>
+      </keyseq>
+      will redo the last undone change in a file.
+      Using this shortcut repeatedly will continue redoing changes as they were 
+      originally made.
+    </p>
+    <note style="important">
+      <p>
+        Changes can be redone <em>only</em> if the previous editing operation 
+        was undo or redo.
+        For example, typing text into a file directly after undoing a change 
+        will prevent redoing the last undone change.
+      </p>
+    </note>
+  </section>
+
+  <section id="discard_changes">
+    <title>Discarding all changes since last save</title>
+    <p>
+      <guiseq>
+        <gui>Menu</gui>
+        <gui>Discard Changes</gui>
+      </guiseq>
+      will permanently discard all changes made to a file since it was last 
+      saved.
+    </p>
+  </section>
+
+</page>
