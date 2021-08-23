@@ -4,6 +4,7 @@ pages = [
   'basics-create-new-file.page',
   'basics-draft-folder.page',
   'edit-search-and-replace.page',
+  'edit-undo-redo.page',
   'legal.xml',
 ]
 
