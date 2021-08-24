@@ -124,11 +124,10 @@ msgid "Show Background Grid"
 msgstr "Mostra la quadrícula del fons"
 
 #: data/org.gnome.TextEditor.gschema.xml:57
-#, fuzzy
 msgid ""
 "If enabled, a blueprint style grid is printed on the editor background."
 msgstr ""
-"Si està habilitada, s'imprimirà una graella d'estil de blueprint en el fons de"
+"Si està habilitada, s'imprimirà una graella d'estil impressió blava en el fons de"
 " l'editor."
 
 #: data/org.gnome.TextEditor.gschema.xml:61
@@ -152,7 +151,6 @@ msgid "Use System Font"
 msgstr "Utilitza el tipus de lletra del sistema"
 
 #: data/org.gnome.TextEditor.gschema.xml:72
-#, fuzzy
 msgid "If the default system monospace font should be used."
 msgstr ""
 "Si s'ha d'utilitzar el tipus de lletra monoespai per defecte del sistema."
@@ -178,40 +176,36 @@ msgstr ""
 "fosc quan estigui disponible."
 
 #: data/org.gnome.TextEditor.gschema.xml:86
-#, fuzzy
 msgid "Discover File Settings"
-msgstr "Arranjament del fitxer de descobriment"
+msgstr "Descoberta de fitxers de paràmetres"
 
 #: data/org.gnome.TextEditor.gschema.xml:87
-#, fuzzy
 msgid ""
 "If enabled then Text Editor will try to discover file settings from "
 "modelines, editorconfig, or per-language defaults."
 msgstr ""
-"Si s'habilita, l'editor de text intentarà descobrir els ajustaments dels "
-"fitxers a partir dels modes de línia, l'editorconfig o els predeterminats "
-"per a cada idioma."
+"Si s'habilita, l'editor de text intentarà descobrir els fitxers de paràmetres "
+"a partir dels modes de línia, editorconfig o els predeterminats "
+"de cada idioma."
 
 #: data/org.gnome.TextEditor.gschema.xml:91
-#, fuzzy
 msgid "Automatically check spelling"
 msgstr "Comprovar automàticament l'ortografia"
 
 #: data/org.gnome.TextEditor.gschema.xml:92
-#, fuzzy
 msgid "If enabled, then Text Editor will check spelling as you type."
 msgstr ""
-"Si està activat, l'editor de text comprovarà l'ortografia mentre escriviu."
+"Si està habilitat, l'editor de text comprovarà l'ortografia mentre escriviu."
 
 #: src/editor-animation.c:1051
-#, c-format, fuzzy
+#, c-format
 msgid "Failed to find property %s in %s"
 msgstr "No s'ha pogut trobar la propietat %s a %s"
 
 #: src/editor-animation.c:1060
-#, c-format, fuzzy
+#, c-format
 msgid "Failed to retrieve va_list value: %s"
-msgstr "No s'ha pogut recuperar el valor de la llista: %s"
+msgstr "No s'ha pogut recuperar el valor va_list: %s"
 
 #: src/editor-application.c:239
 msgid "Do not restore session at startup"
@@ -262,7 +256,6 @@ msgid "Draft Changes Restored"
 msgstr "Canvis d'esborrany restaurats"
 
 #: src/editor-info-bar.c:94
-#, fuzzy
 msgid "Unsaved changes to the document have been restored."
 msgstr "S'han restaurat els canvis no desats al document."
 
@@ -340,7 +333,6 @@ msgid "Save Changes?"
 msgstr "Voleu desar els canvis?"
 
 #: src/editor-save-changes-dialog.c:263
-#, fuzzy
 msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
