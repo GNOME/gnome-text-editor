@@ -7,10 +7,8 @@
     "finish-args" : [
         "--device=dri",
         "--share=ipc",
-        "--share=network",
         "--socket=fallback-x11",
         "--socket=wayland",
-        "--socket=cups",
         "--talk-name=org.gtk.vfs",
         "--talk-name=org.gtk.vfs.*",
         "--filesystem=xdg-run/gvfsd",
@@ -35,9 +33,6 @@
             "name" : "libsass",
             "buildsystem" : "meson",
             "builddir" : true,
-            "config-opts" : [
-                "--libdir=/app/lib"
-            ],
             "sources" : [
                 {
                     "type" : "git",
@@ -50,9 +45,6 @@
             "name" : "sassc",
             "buildsystem" : "meson",
             "builddir" : true,
-            "config-opts" : [
-                "--libdir=/app/lib"
-            ],
             "sources" : [
                 {
                     "type" : "git",
@@ -86,10 +78,7 @@
             "name" : "gnome-text-editor",
             "builddir" : true,
             "buildsystem" : "meson",
-            "config-opts" : [
-                "--libdir=/app/lib",
-                "-Ddevelopment=true"
-            ],
+            "config-opts" : [ "-Ddevelopment=true" ],
             "sources" : [
                 {
                     "type" : "git",
