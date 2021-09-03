@@ -1,5 +1,5 @@
 project('gnome-text-editor', 'c',
-          version: '41.beta1',
+          version: '41.0',
     meson_version: '>= 0.50.0',
   default_options: [ 'warning_level=2', 'c_std=gnu18' ],
 )
@@ -17,8 +17,8 @@ endif
 
 # Check dependencies
 glib_req_version = '2.69'
-gtk_req_version = '4.3'
-gtksourceview_req_version = '5.1.1'
+gtk_req_version = '4.4'
+gtksourceview_req_version = '5.2'
 enchant_req_version = '2.2.0'
 
 glib_req = '>= @0@'.format(glib_req_version)
