@@ -104,8 +104,8 @@
 }
 
 textview.source-map:dir(ltr) {
-  border-left: 1px solid alpha(@borders,.3);
+  border-left: 1px solid @borders;
 }
 textview.source-map:dir(rtl) {
-  border-right: 1px solid alpha(@borders,.3);
+  border-right: 1px solid @borders;
 }
