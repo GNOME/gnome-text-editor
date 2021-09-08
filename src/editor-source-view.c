@@ -111,7 +111,7 @@ on_key_pressed_cb (GtkEventControllerKey *key,
   if ((state & GDK_CONTROL_MASK) == 0)
     return FALSE;
 
-  if (state & ~(GDK_CONTROL_MASK|GDK_SHIFT_MASK))
+  if ((state & (GDK_CONTROL_MASK|GDK_SHIFT_MASK)) == 0)
     return FALSE;
 
   switch (keyval)
