@@ -332,6 +332,7 @@ _editor_save_changes_dialog_new (GtkWindow *parent,
                             "active", TRUE,
                             NULL);
 
+      gtk_accessible_update_property (GTK_ACCESSIBLE (check), GTK_ACCESSIBLE_PROPERTY_LABEL, _("Save changes for this document"), -1);
       gtk_box_append (GTK_BOX (box), title);
       gtk_box_append (GTK_BOX (box), subtitle);
       adw_action_row_add_prefix (ADW_ACTION_ROW (row), check);
