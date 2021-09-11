@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues\n"
-"POT-Creation-Date: 2021-08-10 19:29+0000\n"
-"PO-Revision-Date: 2021-08-11 09:24+0300\n"
+"POT-Creation-Date: 2021-09-10 23:11+0000\n"
+"PO-Revision-Date: 2021-09-11 12:34+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -203,7 +203,7 @@ msgstr "Не вдалося знайти властивість %s у %s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Не вдалося отримати значення va_list: %s"
 
-#: src/editor-application.c:238
+#: src/editor-application.c:239
 msgid "Do not restore session at startup"
 msgstr "Не відновлювати сеанс після запуску"
 
@@ -316,20 +316,19 @@ msgstr "Поз"
 msgid "Select Font"
 msgstr "Виберіть шрифт"
 
-#: src/editor-save-changes-dialog.c:256 src/editor-window-actions.c:239
+#: src/editor-save-changes-dialog.c:255 src/editor-window-actions.c:239
 msgid "Discard"
 msgstr "Відкинути"
 
-#: src/editor-save-changes-dialog.c:256
-#| msgid "_Discard All"
+#: src/editor-save-changes-dialog.c:255
 msgid "Discard All"
 msgstr "Відкинути усе"
 
-#: src/editor-save-changes-dialog.c:262
+#: src/editor-save-changes-dialog.c:261
 msgid "Save Changes?"
 msgstr "Зберегти зміни?"
 
-#: src/editor-save-changes-dialog.c:264
+#: src/editor-save-changes-dialog.c:263
 msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
@@ -337,23 +336,29 @@ msgstr ""
 "У відкритих документах містяться незбережені зміни. Ці незбережені зміни "
 "буде втрачено без можливості відновлення."
 
-#: src/editor-save-changes-dialog.c:266
+#: src/editor-save-changes-dialog.c:265
 msgid "_Cancel"
 msgstr "_Скасувати"
 
-#: src/editor-save-changes-dialog.c:268 src/menus.ui:19
+#: src/editor-save-changes-dialog.c:267 src/menus.ui:19
 msgid "_Save"
 msgstr "З_берегти"
 
-#: src/editor-save-changes-dialog.c:298
+#: src/editor-save-changes-dialog.c:297
 msgid "Untitled Document"
 msgstr "Документ без назви"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:301
+#: src/editor-save-changes-dialog.c:300
 #, c-format
 msgid "%s (new)"
 msgstr "%s (новий)"
+
+#: src/editor-save-changes-dialog.c:335
+#| msgctxt "shortcut window"
+#| msgid "Search and replace within the document"
+msgid "Save changes for this document"
+msgstr "Зберегти зміни у цьому документі"
 
 #: src/editor-search-bar.ui:14
 msgid "Search"
