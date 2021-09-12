@@ -2,15 +2,16 @@
 # Copyright © 2021 gnome-text-editor's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-text-editor package.
 # Anders Jonsson <anders.jonsson@norsjovallen.se>, 2021.
+# Luna Jernberg <droidbittin@gmail.com>, 2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2021-08-20 01:54+0000\n"
-"PO-Revision-Date: 2021-08-30 19:25+0200\n"
-"Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
+"POT-Creation-Date: 2021-09-11 20:27+0000\n"
+"PO-Revision-Date: 2021-09-11 09:32+0200\n"
+"Last-Translator: Luna Jernberg <droidbittin@gmail.com>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
@@ -24,8 +25,8 @@ msgid "Christian Hergert, et al."
 msgstr "Christian Hergert med flera."
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
-#: data/org.gnome.TextEditor.desktop.in.in:7
-#: data/org.gnome.TextEditor.desktop.in.in:8
+#: data/org.gnome.TextEditor.desktop.in.in:10
+#: data/org.gnome.TextEditor.desktop.in.in:11
 #: src/editor-application-actions.c:80 src/editor-application-actions.c:82
 msgid "Text Editor"
 msgstr "Textredigerare"
@@ -42,7 +43,7 @@ msgstr ""
 "GNOME Textredigerare är en enkel textredigerare som fokuserar på att erbjuda "
 "en behaglig standardupplevelse."
 
-#: data/org.gnome.TextEditor.desktop.in.in:9
+#: data/org.gnome.TextEditor.desktop.in.in:12
 msgid "View and edit text files"
 msgstr "Visa och redigera textfiler"
 
@@ -357,6 +358,10 @@ msgstr "Namnlöst dokument"
 msgid "%s (new)"
 msgstr "%s (ny)"
 
+#: src/editor-save-changes-dialog.c:335
+msgid "Save changes for this document"
+msgstr "Spara ändringar för detta dokument"
+
 #: src/editor-search-bar.ui:14
 msgid "Search"
 msgstr "Sök"
@@ -461,17 +466,14 @@ msgstr[0] "Ungefär %u år sedan"
 msgstr[1] "Ungefär %u år sedan"
 
 #: src/editor-utils.c:346
-#| msgid "Unix/Linux"
 msgid "Unix/Linux (LF)"
 msgstr "Unix/Linux (LF)"
 
 #: src/editor-utils.c:347
-#| msgid "Mac OS Classic"
 msgid "Mac OS Classic (CR)"
 msgstr "Klassiskt Mac OS (CR)"
 
 #: src/editor-utils.c:348
-#| msgid "Windows"
 msgid "Windows (CR+LF)"
 msgstr "Windows (CR+LF)"
 
