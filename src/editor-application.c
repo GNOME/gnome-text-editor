@@ -221,10 +221,25 @@ editor_application_shutdown (GApplication *application)
 }
 
 static void
+editor_application_window_added (GtkApplication *application,
+                                 GtkWindow      *window)
+{
+  g_assert (EDITOR_IS_APPLICATION (application));
+  g_assert (GTK_IS_WINDOW (window));
+
+#if DEVELOPMENT_BUILD
+  gtk_widget_add_css_class (GTK_WIDGET (window), "devel");
+#endif
+
+  GTK_APPLICATION_CLASS (editor_application_parent_class)->window_added (application, window);
+}
+
+static void
 editor_application_class_init (EditorApplicationClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
   GApplicationClass *application_class = G_APPLICATION_CLASS (klass);
+  GtkApplicationClass *gtk_application_class = GTK_APPLICATION_CLASS (klass);
 
   object_class->constructed = editor_application_constructed;
 
@@ -233,6 +248,8 @@ editor_application_class_init (EditorApplicationClass *klass)
   application_class->startup = editor_application_startup;
   application_class->shutdown = editor_application_shutdown;
   application_class->handle_local_options = editor_application_handle_local_options;
+
+  gtk_application_class->window_added = editor_application_window_added;
 }
 
 static const GOptionEntry entries[] = {
