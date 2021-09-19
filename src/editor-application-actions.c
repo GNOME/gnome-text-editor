@@ -76,7 +76,7 @@ editor_application_actions_about_cb (GSimpleAction *action,
 
   g_assert (EDITOR_IS_APPLICATION (self));
 
-#ifdef DEVELOPMENT_BUILD
+#if DEVELOPMENT_BUILD
   program_name = g_strdup_printf ("%s (Development)", _("Text Editor"));
 #else
   program_name = g_strdup (_("Text Editor"));
