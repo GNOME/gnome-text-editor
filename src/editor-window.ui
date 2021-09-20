@@ -73,6 +73,9 @@
                     <property name="icon-name">tab-new-symbolic</property>
                     <property name="has-tooltip">true</property>
                     <property name="tooltip-text" translatable="yes">New tab (Ctrl+T)</property>
+                    <accessibility>
+                      <property name="label" translatable="yes">New tab (Ctrl+T)</property>
+                    </accessibility>
                   </object>
                 </child>
               </object>
@@ -99,11 +102,17 @@
                   <object class="GtkMenuButton" id="options_menu">
                     <property name="tooltip-text" translatable="yes">View</property>
                     <property name="icon-name">document-properties-symbolic</property>
+                    <accessibility>
+                      <property name="label" translatable="yes">View</property>
+                    </accessibility>
                   </object>
                 </child>
                 <child>
                   <object class="GtkMenuButton" id="primary_menu">
                     <property name="icon-name">open-menu-symbolic</property>
+                    <accessibility>
+                      <property name="label" translatable="yes">Menu</property>
+                    </accessibility>
                   </object>
                 </child>
               </object>
