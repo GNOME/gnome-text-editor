@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues\n"
-"POT-Creation-Date: 2021-09-10 23:11+0000\n"
-"PO-Revision-Date: 2021-09-11 12:34+0300\n"
+"POT-Creation-Date: 2021-09-20 16:42+0000\n"
+"PO-Revision-Date: 2021-09-20 21:13+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -23,8 +23,8 @@ msgid "Christian Hergert, et al."
 msgstr "Christian Hergert та інші"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
-#: data/org.gnome.TextEditor.desktop.in.in:7
-#: data/org.gnome.TextEditor.desktop.in.in:8
+#: data/org.gnome.TextEditor.desktop.in.in:10
+#: data/org.gnome.TextEditor.desktop.in.in:11
 #: src/editor-application-actions.c:80 src/editor-application-actions.c:82
 msgid "Text Editor"
 msgstr "Текстовий редактор"
@@ -41,7 +41,7 @@ msgstr ""
 "«Текстовий редактор GNOME» — простий текстовий редактор, у якому акцент "
 "зроблено на задоволення типових потреб користувача."
 
-#: data/org.gnome.TextEditor.desktop.in.in:9
+#: data/org.gnome.TextEditor.desktop.in.in:12
 msgid "View and edit text files"
 msgstr "Перегляд і редагування текстових файлів"
 
@@ -142,7 +142,7 @@ msgstr "Перенесення тексту"
 msgid "If text should be wrapped."
 msgstr "Чи слід переносити рядки тексту."
 
-#: data/org.gnome.TextEditor.gschema.xml:71 src/editor-window.ui:212
+#: data/org.gnome.TextEditor.gschema.xml:71 src/editor-window.ui:221
 msgid "Use System Font"
 msgstr "Використовувати системний шрифт"
 
@@ -150,7 +150,7 @@ msgstr "Використовувати системний шрифт"
 msgid "If the default system monospace font should be used."
 msgstr "Чи слід типово використовувати загальносистемний моноширинний шрифт."
 
-#: data/org.gnome.TextEditor.gschema.xml:76 src/editor-window.ui:218
+#: data/org.gnome.TextEditor.gschema.xml:76 src/editor-window.ui:227
 msgid "Custom Font"
 msgstr "Нетиповий шрифт"
 
@@ -203,7 +203,7 @@ msgstr "Не вдалося знайти властивість %s у %s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Не вдалося отримати значення va_list: %s"
 
-#: src/editor-application.c:239
+#: src/editor-application.c:256
 msgid "Do not restore session at startup"
 msgstr "Не відновлювати сеанс після запуску"
 
@@ -355,8 +355,6 @@ msgid "%s (new)"
 msgstr "%s (новий)"
 
 #: src/editor-save-changes-dialog.c:335
-#| msgctxt "shortcut window"
-#| msgid "Search and replace within the document"
 msgid "Save changes for this document"
 msgstr "Зберегти зміни у цьому документі"
 
@@ -432,11 +430,11 @@ msgstr "Ігнорувати"
 msgid "Check Spelling"
 msgstr "Перевірка правопису"
 
-#: src/editor-theme-selector.ui:18
+#: src/editor-theme-selector.ui:18 src/editor-theme-selector.ui:20
 msgid "Light style"
 msgstr "Світлий стиль"
 
-#: src/editor-theme-selector.ui:31
+#: src/editor-theme-selector.ui:34 src/editor-theme-selector.ui:36
 msgid "Dark style"
 msgstr "Темний стиль"
 
@@ -533,19 +531,24 @@ msgstr "_Відкрити"
 msgid "Open recent document (Ctrl+K)"
 msgstr "Відкрити нещодавній документ (Ctrl+K)"
 
-#: src/editor-window.ui:75
+#: src/editor-window.ui:75 src/editor-window.ui:77
 msgid "New tab (Ctrl+T)"
 msgstr "Створити вкладку (Ctrl+T)"
 
-#: src/editor-window.ui:100
+#: src/editor-window.ui:103 src/editor-window.ui:106
 msgid "View"
 msgstr "Перегляд"
 
-#: src/editor-window.ui:142
+#: src/editor-window.ui:114
+msgid "Menu"
+msgstr ""
+"Меню"
+
+#: src/editor-window.ui:151
 msgid "Start or Open a Document"
 msgstr "Запуск або відкриття документа"
 
-#: src/editor-window.ui:145
+#: src/editor-window.ui:154
 msgid ""
 "• Press the Open button\n"
 "• Press the New tab button\n"
@@ -561,35 +564,35 @@ msgstr ""
 "\n"
 "або натисніть комбінацію Ctrl+W, щоб закрити вікно."
 
-#: src/editor-window.ui:186
+#: src/editor-window.ui:195
 msgid "Preferences"
 msgstr "Налаштування"
 
-#: src/editor-window.ui:208
+#: src/editor-window.ui:217
 msgid "Font"
 msgstr "Шрифт"
 
-#: src/editor-window.ui:227
+#: src/editor-window.ui:236
 msgid "Right Margin"
 msgstr "Правий відступ"
 
-#: src/editor-window.ui:231
+#: src/editor-window.ui:240
 msgid "Margin Position"
 msgstr "Розташування поля"
 
-#: src/editor-window.ui:239
+#: src/editor-window.ui:248
 msgid "Appearance"
 msgstr "Вигляд"
 
-#: src/editor-window.ui:243
+#: src/editor-window.ui:252
 msgid "Display Grid Pattern"
 msgstr "Показувати ґратку"
 
-#: src/editor-window.ui:249
+#: src/editor-window.ui:258
 msgid "Highlight Current Line"
 msgstr "Підсвічувати поточний рядок"
 
-#: src/editor-window.ui:255
+#: src/editor-window.ui:264
 msgid "Display Overview Map"
 msgstr "Показувати оглядову мапу"
 
