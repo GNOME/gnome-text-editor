@@ -9,9 +9,9 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2021-09-11 20:27+0000\n"
-"PO-Revision-Date: 2021-09-11 09:32+0200\n"
-"Last-Translator: Luna Jernberg <droidbittin@gmail.com>\n"
+"POT-Creation-Date: 2021-09-20 16:42+0000\n"
+"PO-Revision-Date: 2021-09-20 21:11+0200\n"
+"Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
@@ -148,7 +148,7 @@ msgstr "Radbrytning av text"
 msgid "If text should be wrapped."
 msgstr "Huruvida text ska radbrytas."
 
-#: data/org.gnome.TextEditor.gschema.xml:71 src/editor-window.ui:212
+#: data/org.gnome.TextEditor.gschema.xml:71 src/editor-window.ui:221
 msgid "Use System Font"
 msgstr "Använd systemtypsnitt"
 
@@ -156,7 +156,7 @@ msgstr "Använd systemtypsnitt"
 msgid "If the default system monospace font should be used."
 msgstr "Om systemets standardtypsnitt med fast breddsteg ska användas."
 
-#: data/org.gnome.TextEditor.gschema.xml:76 src/editor-window.ui:218
+#: data/org.gnome.TextEditor.gschema.xml:76 src/editor-window.ui:227
 msgid "Custom Font"
 msgstr "Anpassat typsnitt"
 
@@ -207,7 +207,7 @@ msgstr "Misslyckades med att hitta egenskap %s i %s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Misslyckades med att hämta va_list-värde: %s"
 
-#: src/editor-application.c:239
+#: src/editor-application.c:256
 msgid "Do not restore session at startup"
 msgstr "Återställ inte session vid uppstart"
 
@@ -434,11 +434,11 @@ msgstr "Ignorera"
 msgid "Check Spelling"
 msgstr "Kontrollera stavning"
 
-#: src/editor-theme-selector.ui:18
+#: src/editor-theme-selector.ui:18 src/editor-theme-selector.ui:20
 msgid "Light style"
 msgstr "Ljus stil"
 
-#: src/editor-theme-selector.ui:31
+#: src/editor-theme-selector.ui:34 src/editor-theme-selector.ui:36
 msgid "Dark style"
 msgstr "Mörk stil"
 
@@ -533,19 +533,23 @@ msgstr "Ö_ppna"
 msgid "Open recent document (Ctrl+K)"
 msgstr "Öppna senaste dokument (Ctrl+K)"
 
-#: src/editor-window.ui:75
+#: src/editor-window.ui:75 src/editor-window.ui:77
 msgid "New tab (Ctrl+T)"
 msgstr "Ny flik (Ctrl+T)"
 
-#: src/editor-window.ui:100
+#: src/editor-window.ui:103 src/editor-window.ui:106
 msgid "View"
 msgstr "Visa"
 
-#: src/editor-window.ui:142
+#: src/editor-window.ui:114
+msgid "Menu"
+msgstr "Meny"
+
+#: src/editor-window.ui:151
 msgid "Start or Open a Document"
 msgstr "Starta eller öppna ett dokument"
 
-#: src/editor-window.ui:145
+#: src/editor-window.ui:154
 msgid ""
 "• Press the Open button\n"
 "• Press the New tab button\n"
@@ -561,35 +565,35 @@ msgstr ""
 "\n"
 "Eller tryck Ctrl+W för att stänga fönstret."
 
-#: src/editor-window.ui:186
+#: src/editor-window.ui:195
 msgid "Preferences"
 msgstr "Inställningar"
 
-#: src/editor-window.ui:208
+#: src/editor-window.ui:217
 msgid "Font"
 msgstr "Typsnitt"
 
-#: src/editor-window.ui:227
+#: src/editor-window.ui:236
 msgid "Right Margin"
 msgstr "Högermarginal"
 
-#: src/editor-window.ui:231
+#: src/editor-window.ui:240
 msgid "Margin Position"
 msgstr "Position för marginal"
 
-#: src/editor-window.ui:239
+#: src/editor-window.ui:248
 msgid "Appearance"
 msgstr "Utseende"
 
-#: src/editor-window.ui:243
+#: src/editor-window.ui:252
 msgid "Display Grid Pattern"
 msgstr "Visa rutnätsmönster"
 
-#: src/editor-window.ui:249
+#: src/editor-window.ui:258
 msgid "Highlight Current Line"
 msgstr "Färgmarkera aktuell rad"
 
-#: src/editor-window.ui:255
+#: src/editor-window.ui:264
 msgid "Display Overview Map"
 msgstr "Visa översiktskarta"
 
