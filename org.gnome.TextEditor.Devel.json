@@ -9,10 +9,8 @@
         "--share=ipc",
         "--socket=fallback-x11",
         "--socket=wayland",
-        "--talk-name=org.gtk.vfs",
-        "--talk-name=org.gtk.vfs.*",
-        "--filesystem=xdg-run/gvfsd",
-        "--filesystem=home"
+        "--filesystem=host",
+        "--talk-name=org.gtk.vfs.*"
     ],
     "cleanup" : [
         "/include",
