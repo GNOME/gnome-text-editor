@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2021-08-10 19:29+0000\n"
-"PO-Revision-Date: 2021-08-14 09:08-0300\n"
+"POT-Creation-Date: 2021-09-20 16:42+0000\n"
+"PO-Revision-Date: 2021-09-25 11:02-0300\n"
 "Last-Translator: Enrico Nicoletto <liverig@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
@@ -25,8 +25,8 @@ msgid "Christian Hergert, et al."
 msgstr "Christian Hergert, et al."
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
-#: data/org.gnome.TextEditor.desktop.in.in:7
-#: data/org.gnome.TextEditor.desktop.in.in:8
+#: data/org.gnome.TextEditor.desktop.in.in:10
+#: data/org.gnome.TextEditor.desktop.in.in:11
 #: src/editor-application-actions.c:80 src/editor-application-actions.c:82
 msgid "Text Editor"
 msgstr "Editor de Texto"
@@ -43,7 +43,7 @@ msgstr ""
 "GNOME Editor de Texto é um editor de texto simples focado em uma experiência "
 "padrão agradável."
 
-#: data/org.gnome.TextEditor.desktop.in.in:9
+#: data/org.gnome.TextEditor.desktop.in.in:12
 msgid "View and edit text files"
 msgstr "Veja e edite arquivos de  texto"
 
@@ -145,7 +145,7 @@ msgstr "Quebra de texto"
 msgid "If text should be wrapped."
 msgstr "Se o texto deve ser quebrado mais de uma linha."
 
-#: data/org.gnome.TextEditor.gschema.xml:71 src/editor-window.ui:212
+#: data/org.gnome.TextEditor.gschema.xml:71 src/editor-window.ui:221
 msgid "Use System Font"
 msgstr "Usar a fonte do sistema"
 
@@ -153,7 +153,7 @@ msgstr "Usar a fonte do sistema"
 msgid "If the default system monospace font should be used."
 msgstr "Se a fonte monoespaçada do sistema padrão deve ser usada."
 
-#: data/org.gnome.TextEditor.gschema.xml:76 src/editor-window.ui:218
+#: data/org.gnome.TextEditor.gschema.xml:76 src/editor-window.ui:227
 msgid "Custom Font"
 msgstr "Fonte personalizada"
 
@@ -205,7 +205,7 @@ msgstr "Falha ao localizar a propriedade %s em %s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Falha ao obter o valor de va_list: %s"
 
-#: src/editor-application.c:238
+#: src/editor-application.c:256
 msgid "Do not restore session at startup"
 msgstr "Não restaurar a sessão na inicialização"
 
@@ -318,19 +318,19 @@ msgstr "Col"
 msgid "Select Font"
 msgstr "Selecionar fonte"
 
-#: src/editor-save-changes-dialog.c:256 src/editor-window-actions.c:239
+#: src/editor-save-changes-dialog.c:255 src/editor-window-actions.c:239
 msgid "Discard"
 msgstr "Descartar"
 
-#: src/editor-save-changes-dialog.c:256
+#: src/editor-save-changes-dialog.c:255
 msgid "Discard All"
 msgstr "Descartar tudo"
 
-#: src/editor-save-changes-dialog.c:262
+#: src/editor-save-changes-dialog.c:261
 msgid "Save Changes?"
 msgstr "Salvar alterações?"
 
-#: src/editor-save-changes-dialog.c:264
+#: src/editor-save-changes-dialog.c:263
 msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
@@ -338,23 +338,27 @@ msgstr ""
 "Os documentos abertos contêm alterações não salvas. As alterações que não "
 "forem salvas serão perdidas permanentemente."
 
-#: src/editor-save-changes-dialog.c:266
+#: src/editor-save-changes-dialog.c:265
 msgid "_Cancel"
 msgstr "_Cancelar"
 
-#: src/editor-save-changes-dialog.c:268 src/menus.ui:19
+#: src/editor-save-changes-dialog.c:267 src/menus.ui:19
 msgid "_Save"
 msgstr "_Salvar"
 
-#: src/editor-save-changes-dialog.c:298
+#: src/editor-save-changes-dialog.c:297
 msgid "Untitled Document"
 msgstr "Documento sem título"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:301
+#: src/editor-save-changes-dialog.c:300
 #, c-format
 msgid "%s (new)"
 msgstr "%s (novo)"
+
+#: src/editor-save-changes-dialog.c:335
+msgid "Save changes for this document"
+msgstr "Salvar alterações deste documento"
 
 #: src/editor-search-bar.ui:14
 msgid "Search"
@@ -428,11 +432,11 @@ msgstr "Ignorar"
 msgid "Check Spelling"
 msgstr "Verificação ortográfica"
 
-#: src/editor-theme-selector.ui:18
+#: src/editor-theme-selector.ui:18 src/editor-theme-selector.ui:20
 msgid "Light style"
 msgstr "Estilo claro"
 
-#: src/editor-theme-selector.ui:31
+#: src/editor-theme-selector.ui:34 src/editor-theme-selector.ui:36
 msgid "Dark style"
 msgstr "Estilo escuro"
 
@@ -527,19 +531,23 @@ msgstr "_Abrir"
 msgid "Open recent document (Ctrl+K)"
 msgstr "Abre um documento recente (Ctrl+K)"
 
-#: src/editor-window.ui:75
+#: src/editor-window.ui:75 src/editor-window.ui:77
 msgid "New tab (Ctrl+T)"
 msgstr "Nova aba (Ctrl+T)"
 
-#: src/editor-window.ui:100
+#: src/editor-window.ui:103 src/editor-window.ui:106
 msgid "View"
 msgstr "Ver"
 
-#: src/editor-window.ui:142
+#: src/editor-window.ui:114
+msgid "Menu"
+msgstr "Menu"
+
+#: src/editor-window.ui:151
 msgid "Start or Open a Document"
 msgstr "Inicia ou abre um documento"
 
-#: src/editor-window.ui:145
+#: src/editor-window.ui:154
 msgid ""
 "• Press the Open button\n"
 "• Press the New tab button\n"
@@ -555,35 +563,35 @@ msgstr ""
 "\n"
 "Ou pressione Ctrl+W para fechar a janela."
 
-#: src/editor-window.ui:186
+#: src/editor-window.ui:195
 msgid "Preferences"
 msgstr "Preferências"
 
-#: src/editor-window.ui:208
+#: src/editor-window.ui:217
 msgid "Font"
 msgstr "Fonte"
 
-#: src/editor-window.ui:227
+#: src/editor-window.ui:236
 msgid "Right Margin"
 msgstr "Margem direita"
 
-#: src/editor-window.ui:231
+#: src/editor-window.ui:240
 msgid "Margin Position"
 msgstr "Posição da margem"
 
-#: src/editor-window.ui:239
+#: src/editor-window.ui:248
 msgid "Appearance"
 msgstr "Aparência"
 
-#: src/editor-window.ui:243
+#: src/editor-window.ui:252
 msgid "Display Grid Pattern"
 msgstr "Exibir padrão de grade"
 
-#: src/editor-window.ui:249
+#: src/editor-window.ui:258
 msgid "Highlight Current Line"
 msgstr "Destacar a linha atual"
 
-#: src/editor-window.ui:255
+#: src/editor-window.ui:264
 msgid "Display Overview Map"
 msgstr "Exibir o mapa de visão geral"
 
