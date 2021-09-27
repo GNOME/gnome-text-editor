@@ -323,15 +323,17 @@ on_search_key_pressed_cb (GtkEventControllerKey *key,
   g_assert (GTK_IS_EVENT_CONTROLLER_KEY (key));
   g_assert (EDITOR_IS_SEARCH_BAR (self));
 
-  if (state == 0)
+  if ((state & (GDK_CONTROL_MASK | GDK_ALT_MASK)) == 0)
     {
       switch (keyval)
         {
         case GDK_KEY_Up:
+        case GDK_KEY_KP_Up:
           _editor_search_bar_move_previous (self, FALSE);
           return TRUE;
 
         case GDK_KEY_Down:
+        case GDK_KEY_KP_Down:
           _editor_search_bar_move_next (self, FALSE);
           return TRUE;
 

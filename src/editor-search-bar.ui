@@ -19,6 +19,7 @@
             </layout>
             <child>
               <object class="GtkEventControllerKey">
+                <property name="propagation-phase">capture</property>
                 <signal name="key-pressed" handler="on_search_key_pressed_cb"/>
               </object>
             </child>
