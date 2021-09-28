@@ -129,11 +129,15 @@ editor_application_open (GApplication  *application,
 }
 
 static gboolean
-style_variant_to_boolean (GValue   *value,
-                          GVariant *variant,
-                          gpointer  user_data)
+style_variant_to_color_scheme (GValue   *value,
+                               GVariant *variant,
+                               gpointer  user_data)
 {
-  g_value_set_boolean (value, g_strcmp0 (g_variant_get_string (variant, NULL), "dark") == 0);
+  if (g_strcmp0 (g_variant_get_string (variant, NULL), "dark") == 0)
+    g_value_set_enum (value, ADW_COLOR_SCHEME_FORCE_DARK);
+  else
+    g_value_set_enum (value, ADW_COLOR_SCHEME_FORCE_LIGHT);
+
   return TRUE;
 }
 
@@ -142,7 +146,7 @@ editor_application_startup (GApplication *application)
 {
   EditorApplication *self = (EditorApplication *)application;
   g_autoptr(GtkCssProvider) css_provider = NULL;
-  GtkSettings *gtk_settings;
+  AdwStyleManager *style_manager;
   static const gchar *quit_accels[] = { "<Primary>Q", NULL };
   static const gchar *help_accels[] = { "F1", NULL };
 
@@ -159,15 +163,15 @@ editor_application_startup (GApplication *application)
 
   _editor_application_actions_init (self);
 
-  gtk_settings = gtk_settings_get_default ();
+  style_manager = adw_style_manager_get_default ();
 
   g_settings_bind (self->settings, "auto-save-delay",
                    self->session, "auto-save-delay",
                    G_SETTINGS_BIND_GET);
   g_settings_bind_with_mapping (self->settings, "style-variant",
-                                gtk_settings, "gtk-application-prefer-dark-theme",
+                                style_manager, "color-scheme",
                                 G_SETTINGS_BIND_GET,
-                                style_variant_to_boolean,
+                                style_variant_to_color_scheme,
                                 NULL, NULL, NULL);
 
   /* Setup CSS overrides */

@@ -23,6 +23,7 @@
 #include "config.h"
 
 #include "editor-theme-selector-private.h"
+#include <adwaita.h>
 
 struct _EditorThemeSelector
 {
@@ -128,13 +129,10 @@ editor_theme_selector_class_init (EditorThemeSelectorClass *klass)
 static void
 editor_theme_selector_init (EditorThemeSelector *self)
 {
-  gboolean dark = FALSE;
+  gboolean dark = adw_style_manager_get_dark (adw_style_manager_get_default ());
 
   gtk_widget_init_template (GTK_WIDGET (self));
 
-  g_object_get (gtk_settings_get_default (),
-                "gtk-application-prefer-dark-theme", &dark,
-                NULL);
   self->theme = g_strdup (dark ? "dark" : "light");
 }
 
