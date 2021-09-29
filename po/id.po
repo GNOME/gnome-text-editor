@@ -2,30 +2,30 @@
 # Copyright (C) 2021 gnome-text-editor's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-text-editor package.
 # Andika Triwidada <atriwidada@gnome.org>, 2021.
-#
+# Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2021-09-01 11:04+0000\n"
-"PO-Revision-Date: 2021-09-04 21:12+0700\n"
+"POT-Creation-Date: 2021-09-28 07:55+0000\n"
+"PO-Revision-Date: 2021-09-29 13:02+0700\n"
+"Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
 "Language-Team: Indonesian <gnome-l10n-id@googlegroups.com>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n>1;\n"
-"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 3.0\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
 msgid "Christian Hergert, et al."
 msgstr "Christian Hergert, dkk."
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
-#: data/org.gnome.TextEditor.desktop.in.in:7
-#: data/org.gnome.TextEditor.desktop.in.in:8
+#: data/org.gnome.TextEditor.desktop.in.in:10
+#: data/org.gnome.TextEditor.desktop.in.in:11
 #: src/editor-application-actions.c:80 src/editor-application-actions.c:82
 msgid "Text Editor"
 msgstr "Penyunting Teks"
@@ -42,7 +42,7 @@ msgstr ""
 "GNOME Penyunting Teks adalah penyunting teks sederhana yang berfokus pada "
 "pengalaman baku yang menyenangkan."
 
-#: data/org.gnome.TextEditor.desktop.in.in:9
+#: data/org.gnome.TextEditor.desktop.in.in:12
 msgid "View and edit text files"
 msgstr "Melihat dan menyunting berkas teks"
 
@@ -145,7 +145,7 @@ msgstr "Pelipatan Teks"
 msgid "If text should be wrapped."
 msgstr "Bila teks mesti dilipat."
 
-#: data/org.gnome.TextEditor.gschema.xml:71 src/editor-window.ui:212
+#: data/org.gnome.TextEditor.gschema.xml:71 src/editor-window.ui:221
 msgid "Use System Font"
 msgstr "Pakai Fonta Sistem"
 
@@ -153,7 +153,7 @@ msgstr "Pakai Fonta Sistem"
 msgid "If the default system monospace font should be used."
 msgstr "Bila fonta monospace sistem baku mesti dipakai."
 
-#: data/org.gnome.TextEditor.gschema.xml:76 src/editor-window.ui:218
+#: data/org.gnome.TextEditor.gschema.xml:76 src/editor-window.ui:227
 msgid "Custom Font"
 msgstr "Fonta Ubahan"
 
@@ -205,7 +205,7 @@ msgstr "Gagal mencari properti %s dalam %s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Gagal mengambil nilai va_list: %s"
 
-#: src/editor-application.c:239
+#: src/editor-application.c:256
 msgid "Do not restore session at startup"
 msgstr "Jangan pulihkan sesi saat awal mula"
 
@@ -269,7 +269,7 @@ msgstr "Dokumen Baru-baru Ini"
 msgid "No Recent Documents"
 msgstr "Tidak Ada Dokumen Baru-baru Ini"
 
-#: src/editor-open-popover.ui:87
+#: src/editor-open-popover.ui:88
 msgid "Br_owse Files…"
 msgstr "R_amban Berkas…"
 
@@ -356,51 +356,55 @@ msgstr "Dokumen Tanpa Judul"
 msgid "%s (new)"
 msgstr "%s (baru)"
 
+#: src/editor-save-changes-dialog.c:335
+msgid "Save changes for this document"
+msgstr "Simpan perubahan untuk dokumen ini"
+
 #: src/editor-search-bar.ui:14
 msgid "Search"
 msgstr "Cari"
 
-#: src/editor-search-bar.ui:33
+#: src/editor-search-bar.ui:34
 msgid "Replace"
 msgstr "Ganti"
 
-#: src/editor-search-bar.ui:50
+#: src/editor-search-bar.ui:51
 msgid "Move to previous match (Ctrl+Shift+G)"
 msgstr "Pindah ke cocok sebelumnya (Ctrl+Shift+G)"
 
-#: src/editor-search-bar.ui:57
+#: src/editor-search-bar.ui:58
 msgid "Move to next match (Ctrl+G)"
 msgstr "Pindah ke cocok berikutnya (Ctrl+G)"
 
-#: src/editor-search-bar.ui:69
+#: src/editor-search-bar.ui:70
 msgid "Search & Replace (Ctrl+H)"
 msgstr "Cari & Ganti (Crtl+H)"
 
-#: src/editor-search-bar.ui:79
+#: src/editor-search-bar.ui:80
 msgid "Toggle search options"
 msgstr "Jungkitkan opsi pencarian"
 
-#: src/editor-search-bar.ui:93
+#: src/editor-search-bar.ui:94
 msgid "Close search"
 msgstr "Tutup pencarian"
 
-#: src/editor-search-bar.ui:110
+#: src/editor-search-bar.ui:111
 msgid "_Replace"
 msgstr "_Ganti"
 
-#: src/editor-search-bar.ui:122
+#: src/editor-search-bar.ui:123
 msgid "Replace _All"
 msgstr "G_anti Semua"
 
-#: src/editor-search-bar.ui:139
+#: src/editor-search-bar.ui:140
 msgid "Re_gular expressions"
 msgstr "Ekspresi re_guler"
 
-#: src/editor-search-bar.ui:145
+#: src/editor-search-bar.ui:146
 msgid "_Case sensitive"
 msgstr "Peka huruf besar ke_cil"
 
-#: src/editor-search-bar.ui:151
+#: src/editor-search-bar.ui:152
 msgid "Match whole _word only"
 msgstr "Hanya cocok seluruh _kata"
 
@@ -428,11 +432,11 @@ msgstr "Abaikan"
 msgid "Check Spelling"
 msgstr "Periksa Ejaan"
 
-#: src/editor-theme-selector.ui:18
+#: src/editor-theme-selector.ui:18 src/editor-theme-selector.ui:20
 msgid "Light style"
 msgstr "Gaya terang"
 
-#: src/editor-theme-selector.ui:31
+#: src/editor-theme-selector.ui:34 src/editor-theme-selector.ui:36
 msgid "Dark style"
 msgstr "Gaya gelap"
 
@@ -527,19 +531,23 @@ msgstr "_Buka"
 msgid "Open recent document (Ctrl+K)"
 msgstr "Buka dokumen baru-baru ini (Ctrl+K)"
 
-#: src/editor-window.ui:75
+#: src/editor-window.ui:75 src/editor-window.ui:77
 msgid "New tab (Ctrl+T)"
 msgstr "Tab baru (Ctrl+T)"
 
-#: src/editor-window.ui:100
+#: src/editor-window.ui:103 src/editor-window.ui:106
 msgid "View"
 msgstr "Tilikan"
 
-#: src/editor-window.ui:142
+#: src/editor-window.ui:114
+msgid "Menu"
+msgstr "Menu"
+
+#: src/editor-window.ui:151
 msgid "Start or Open a Document"
 msgstr "Mulai atau Buka Dokumen"
 
-#: src/editor-window.ui:145
+#: src/editor-window.ui:154
 msgid ""
 "• Press the Open button\n"
 "• Press the New tab button\n"
@@ -555,35 +563,35 @@ msgstr ""
 "\n"
 "Atau, tekan Ctrl+W untuk menutup jendela."
 
-#: src/editor-window.ui:186
+#: src/editor-window.ui:195
 msgid "Preferences"
 msgstr "Preferensi"
 
-#: src/editor-window.ui:208
+#: src/editor-window.ui:217
 msgid "Font"
 msgstr "Fonta"
 
-#: src/editor-window.ui:227
+#: src/editor-window.ui:236
 msgid "Right Margin"
 msgstr "Batas Kanan"
 
-#: src/editor-window.ui:231
+#: src/editor-window.ui:240
 msgid "Margin Position"
 msgstr "Posisi Batas"
 
-#: src/editor-window.ui:239
+#: src/editor-window.ui:248
 msgid "Appearance"
 msgstr "Penampilan"
 
-#: src/editor-window.ui:243
+#: src/editor-window.ui:252
 msgid "Display Grid Pattern"
 msgstr "Tampilkan Pola Kisi"
 
-#: src/editor-window.ui:249
+#: src/editor-window.ui:258
 msgid "Highlight Current Line"
 msgstr "Sorot Baris Kini"
 
-#: src/editor-window.ui:255
+#: src/editor-window.ui:264
 msgid "Display Overview Map"
 msgstr "Tampilkan Peta Ringkasan"
 
