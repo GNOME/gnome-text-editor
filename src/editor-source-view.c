@@ -429,6 +429,10 @@ editor_source_view_class_init (EditorSourceViewClass *klass)
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_minus, GDK_CONTROL_MASK, "page.zoom-out", NULL);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_KP_Subtract, GDK_CONTROL_MASK, "page.zoom-out", NULL);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_0, GDK_CONTROL_MASK, "page.zoom-one", NULL);
+
+  gtk_widget_class_add_binding_signal (widget_class,
+                                       GDK_KEY_d, GDK_CONTROL_MASK,
+                                       "delete-from-cursor", "(ii)", GTK_DELETE_PARAGRAPHS, 1);
 }
 
 static void
