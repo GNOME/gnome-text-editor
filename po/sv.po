@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2021-09-20 16:42+0000\n"
-"PO-Revision-Date: 2021-09-20 21:11+0200\n"
+"POT-Creation-Date: 2021-09-30 16:06+0000\n"
+"PO-Revision-Date: 2021-09-30 21:48+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -207,7 +207,7 @@ msgstr "Misslyckades med att hitta egenskap %s i %s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Misslyckades med att hämta va_list-värde: %s"
 
-#: src/editor-application.c:256
+#: src/editor-application.c:260
 msgid "Do not restore session at startup"
 msgstr "Återställ inte session vid uppstart"
 
@@ -271,7 +271,7 @@ msgstr "Senaste dokument"
 msgid "No Recent Documents"
 msgstr "Inga senaste dokument"
 
-#: src/editor-open-popover.ui:87
+#: src/editor-open-popover.ui:88
 msgid "Br_owse Files…"
 msgstr "_Bläddra bland filer…"
 
@@ -366,47 +366,47 @@ msgstr "Spara ändringar för detta dokument"
 msgid "Search"
 msgstr "Sök"
 
-#: src/editor-search-bar.ui:33
+#: src/editor-search-bar.ui:34
 msgid "Replace"
 msgstr "Ersätt"
 
-#: src/editor-search-bar.ui:50
+#: src/editor-search-bar.ui:51
 msgid "Move to previous match (Ctrl+Shift+G)"
 msgstr "Gå till föregående matchning (Ctrl+Skift+G)"
 
-#: src/editor-search-bar.ui:57
+#: src/editor-search-bar.ui:58
 msgid "Move to next match (Ctrl+G)"
 msgstr "Gå till nästa matchning (Ctrl+G)"
 
-#: src/editor-search-bar.ui:69
+#: src/editor-search-bar.ui:70
 msgid "Search & Replace (Ctrl+H)"
 msgstr "Sök och ersätt (Ctrl+H)"
 
-#: src/editor-search-bar.ui:79
+#: src/editor-search-bar.ui:80
 msgid "Toggle search options"
 msgstr "Växla sökalternativ"
 
-#: src/editor-search-bar.ui:93
+#: src/editor-search-bar.ui:94
 msgid "Close search"
 msgstr "Stäng sökning"
 
-#: src/editor-search-bar.ui:110
+#: src/editor-search-bar.ui:111
 msgid "_Replace"
 msgstr "E_rsätt"
 
-#: src/editor-search-bar.ui:122
+#: src/editor-search-bar.ui:123
 msgid "Replace _All"
 msgstr "Ersätt _alla"
 
-#: src/editor-search-bar.ui:139
+#: src/editor-search-bar.ui:140
 msgid "Re_gular expressions"
 msgstr "Re_guljära uttryck"
 
-#: src/editor-search-bar.ui:145
+#: src/editor-search-bar.ui:146
 msgid "_Case sensitive"
 msgstr "_Skiftlägeskänslig"
 
-#: src/editor-search-bar.ui:151
+#: src/editor-search-bar.ui:152
 msgid "Match whole _word only"
 msgstr "Matcha endast hela _ord"
 
@@ -861,6 +861,11 @@ msgstr "Ta bort mellan markören och början på stycket"
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph end"
 msgstr "Ta bort mellan markören och slutet på stycket"
+
+#: src/help-overlay.ui:301
+msgctxt "shortcut window"
+msgid "Delete the current line"
+msgstr "Ta bort aktuell rad"
 
 #: src/menus.ui:11
 msgid "_New Window"
