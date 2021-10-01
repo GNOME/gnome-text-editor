@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues\n"
-"POT-Creation-Date: 2021-09-20 16:42+0000\n"
-"PO-Revision-Date: 2021-09-20 21:13+0300\n"
+"POT-Creation-Date: 2021-09-30 16:06+0000\n"
+"PO-Revision-Date: 2021-10-01 20:32+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -203,7 +203,7 @@ msgstr "Не вдалося знайти властивість %s у %s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Не вдалося отримати значення va_list: %s"
 
-#: src/editor-application.c:256
+#: src/editor-application.c:260
 msgid "Do not restore session at startup"
 msgstr "Не відновлювати сеанс після запуску"
 
@@ -267,7 +267,7 @@ msgstr "Недавні документи"
 msgid "No Recent Documents"
 msgstr "Немає недавніх документів"
 
-#: src/editor-open-popover.ui:87
+#: src/editor-open-popover.ui:88
 msgid "Br_owse Files…"
 msgstr "_Навігація файлами…"
 
@@ -362,47 +362,47 @@ msgstr "Зберегти зміни у цьому документі"
 msgid "Search"
 msgstr "Пошук"
 
-#: src/editor-search-bar.ui:33
+#: src/editor-search-bar.ui:34
 msgid "Replace"
 msgstr "Замінити"
 
-#: src/editor-search-bar.ui:50
+#: src/editor-search-bar.ui:51
 msgid "Move to previous match (Ctrl+Shift+G)"
 msgstr "Перейти до попереднього відповідника (Ctrl+Shift+G)"
 
-#: src/editor-search-bar.ui:57
+#: src/editor-search-bar.ui:58
 msgid "Move to next match (Ctrl+G)"
 msgstr "Перейти до наступного відповідника (Ctrl+G)"
 
-#: src/editor-search-bar.ui:69
+#: src/editor-search-bar.ui:70
 msgid "Search & Replace (Ctrl+H)"
 msgstr "Знайти і замінити (Ctrl+H)"
 
-#: src/editor-search-bar.ui:79
+#: src/editor-search-bar.ui:80
 msgid "Toggle search options"
 msgstr "Перемкнути параметри пошуку"
 
-#: src/editor-search-bar.ui:93
+#: src/editor-search-bar.ui:94
 msgid "Close search"
 msgstr "Закрити вікно пошуку"
 
-#: src/editor-search-bar.ui:110
+#: src/editor-search-bar.ui:111
 msgid "_Replace"
 msgstr "За_мінити"
 
-#: src/editor-search-bar.ui:122
+#: src/editor-search-bar.ui:123
 msgid "Replace _All"
 msgstr "Замінити _все"
 
-#: src/editor-search-bar.ui:139
+#: src/editor-search-bar.ui:140
 msgid "Re_gular expressions"
 msgstr "_Формальні вирази"
 
-#: src/editor-search-bar.ui:145
+#: src/editor-search-bar.ui:146
 msgid "_Case sensitive"
 msgstr "_З врахуванням регістру"
 
-#: src/editor-search-bar.ui:151
+#: src/editor-search-bar.ui:152
 msgid "Match whole _word only"
 msgstr "Шукати лише _цілі слова"
 
@@ -541,8 +541,7 @@ msgstr "Перегляд"
 
 #: src/editor-window.ui:114
 msgid "Menu"
-msgstr ""
-"Меню"
+msgstr "Меню"
 
 #: src/editor-window.ui:151
 msgid "Start or Open a Document"
@@ -854,6 +853,12 @@ msgstr "Вилучити текст від курсора до початку а
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph end"
 msgstr "Вилучити текст від курсора до кінця абзацу"
+
+#: src/help-overlay.ui:301
+#| msgid "Highlight current line"
+msgctxt "shortcut window"
+msgid "Delete the current line"
+msgstr "Вилучити поточний рядок"
 
 #: src/menus.ui:11
 msgid "_New Window"
