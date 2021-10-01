@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2021-09-20 16:42+0000\n"
-"PO-Revision-Date: 2021-09-25 11:02-0300\n"
+"POT-Creation-Date: 2021-09-30 16:06+0000\n"
+"PO-Revision-Date: 2021-10-01 15:24-0300\n"
 "Last-Translator: Enrico Nicoletto <liverig@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
@@ -205,7 +205,7 @@ msgstr "Falha ao localizar a propriedade %s em %s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Falha ao obter o valor de va_list: %s"
 
-#: src/editor-application.c:256
+#: src/editor-application.c:260
 msgid "Do not restore session at startup"
 msgstr "Não restaurar a sessão na inicialização"
 
@@ -269,7 +269,7 @@ msgstr "Documentos recentes"
 msgid "No Recent Documents"
 msgstr "Nenhum documento recente"
 
-#: src/editor-open-popover.ui:87
+#: src/editor-open-popover.ui:88
 msgid "Br_owse Files…"
 msgstr "Pr_ocurar arquivos…"
 
@@ -364,47 +364,47 @@ msgstr "Salvar alterações deste documento"
 msgid "Search"
 msgstr "Pesquisar"
 
-#: src/editor-search-bar.ui:33
+#: src/editor-search-bar.ui:34
 msgid "Replace"
 msgstr "Substituir"
 
-#: src/editor-search-bar.ui:50
+#: src/editor-search-bar.ui:51
 msgid "Move to previous match (Ctrl+Shift+G)"
 msgstr "Move para correspondência anterior (Ctrl+Shift+G)"
 
-#: src/editor-search-bar.ui:57
+#: src/editor-search-bar.ui:58
 msgid "Move to next match (Ctrl+G)"
 msgstr "Move para próxima correspondência (Ctrl+Shift+G)"
 
-#: src/editor-search-bar.ui:69
+#: src/editor-search-bar.ui:70
 msgid "Search & Replace (Ctrl+H)"
 msgstr "Pesquisa & substitui (Ctrl+H)"
 
-#: src/editor-search-bar.ui:79
+#: src/editor-search-bar.ui:80
 msgid "Toggle search options"
 msgstr "Ativa as opções de pesquisa"
 
-#: src/editor-search-bar.ui:93
+#: src/editor-search-bar.ui:94
 msgid "Close search"
 msgstr "Fecha a pesquisa"
 
-#: src/editor-search-bar.ui:110
+#: src/editor-search-bar.ui:111
 msgid "_Replace"
 msgstr "_Substituir"
 
-#: src/editor-search-bar.ui:122
+#: src/editor-search-bar.ui:123
 msgid "Replace _All"
 msgstr "Substituir _tudo"
 
-#: src/editor-search-bar.ui:139
+#: src/editor-search-bar.ui:140
 msgid "Re_gular expressions"
 msgstr "Expressão re_gular"
 
-#: src/editor-search-bar.ui:145
+#: src/editor-search-bar.ui:146
 msgid "_Case sensitive"
 msgstr "Diferenciar _maiúsculas de minúsculas"
 
-#: src/editor-search-bar.ui:151
+#: src/editor-search-bar.ui:152
 msgid "Match whole _word only"
 msgstr "Corresponder apenas pala_vra inteira"
 
@@ -853,6 +853,11 @@ msgstr "Exclui do cursor até o início da parágrafo"
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph end"
 msgstr "Exclui do cursor até o fim da parágrafo"
+
+#: src/help-overlay.ui:301
+msgctxt "shortcut window"
+msgid "Delete the current line"
+msgstr "Exclui a linha atual"
 
 #: src/menus.ui:11
 msgid "_New Window"
