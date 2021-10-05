@@ -80,7 +80,7 @@
 
 /* EditorSearchBar */
 
-.org-gnome-TextEditor page searchbar {
+.org-gnome-TextEditor page .searchbar {
   background-image: linear-gradient(shade(@theme_bg_color,1.05), @theme_bg_color);
   padding: 6px;
   border-style: solid;
@@ -93,10 +93,10 @@
   box-shadow: 0 0 3px 1px alpha(shade(@borders,0.8),.35);
   margin: 0 10px 20px 10px;
 }
-.org-gnome-TextEditor page searchbar:backdrop {
+.org-gnome-TextEditor page .searchbar:backdrop {
   box-shadow: none;
 }
-.org-gnome-TextEditor page searchbar button.flat.circular {
+.org-gnome-TextEditor page .searchbar button.flat.circular {
   min-width: 24px;
   min-height: 24px;
   margin: 0px;

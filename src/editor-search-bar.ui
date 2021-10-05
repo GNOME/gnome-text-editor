@@ -2,6 +2,9 @@
 <interface>
   <requires lib="gtk+" version="4.0"/>
   <template class="EditorSearchBar" parent="GtkWidget">
+    <style>
+      <class name="searchbar"/>
+    </style>
     <child>
       <object class="GtkGrid" id="grid">
         <property name="column-spacing">8</property>
