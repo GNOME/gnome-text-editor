@@ -358,6 +358,48 @@ editor_page_drop_target_drop (EditorPage     *self,
   return FALSE;
 }
 
+static void
+goto_line_entry_activate_cb (EditorPage *self,
+                             GtkEntry   *entry)
+{
+  g_assert (EDITOR_IS_PAGE (self));
+  g_assert (GTK_IS_ENTRY (entry));
+
+  gtk_widget_activate_action (GTK_WIDGET (self), "page.goto-line", NULL);
+}
+
+static void
+goto_line_entry_insert_text_cb (EditorPage *self,
+                                const char *new_text,
+                                int         length,
+                                int        *position,
+                                GtkText    *entry)
+{
+  const char *text;
+  GString *str;
+
+  g_assert (EDITOR_IS_PAGE (self));
+  g_assert (position != NULL);
+  g_assert (GTK_IS_TEXT (entry));
+
+  text = gtk_editable_get_text (GTK_EDITABLE (entry));
+  str = g_string_new (text);
+
+  if (position < 0)
+    g_string_insert_len (str, *position, new_text, length);
+
+  for (const char *c = str->str; *c; c = g_utf8_next_char (c))
+    {
+      gunichar ch = g_utf8_get_char (c);
+
+      if (ch == ':' || (ch >= '0' && ch <= '9'))
+        continue;
+
+      g_signal_stop_emission_by_name (entry, "insert-text");
+      return;
+    }
+}
+
 static gboolean
 get_child_position_cb (GtkOverlay    *overlay,
                        GtkWidget     *child,
@@ -554,6 +596,8 @@ editor_page_class_init (EditorPageClass *klass)
   gtk_widget_class_set_css_name (widget_class, "page");
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-page.ui");
   gtk_widget_class_bind_template_child (widget_class, EditorPage, box);
+  gtk_widget_class_bind_template_child (widget_class, EditorPage, goto_line_entry);
+  gtk_widget_class_bind_template_child (widget_class, EditorPage, goto_line_revealer);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, infobar);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, map);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, overlay);
@@ -563,8 +607,10 @@ editor_page_class_init (EditorPageClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorPage, search_revealer);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, view);
   gtk_widget_class_bind_template_callback (widget_class, get_child_position_cb);
+  gtk_widget_class_bind_template_callback (widget_class, goto_line_entry_activate_cb);
 
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Escape, 0, "search.hide", NULL);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_i, GDK_CONTROL_MASK, "page.show-goto-line", NULL);
 
   g_type_ensure (EDITOR_TYPE_INFO_BAR);
   g_type_ensure (EDITOR_TYPE_SEARCH_BAR);
@@ -577,6 +623,21 @@ editor_page_init (EditorPage *self)
   GtkDropTarget *dest;
 
   gtk_widget_init_template (GTK_WIDGET (self));
+
+  /* Work around https://gitlab.gnome.org/GNOME/gtk/-/issues/4315
+   * by connecting to the GtkText to intercept insert-text() emission.
+   */
+  for (GtkWidget *child = gtk_widget_get_first_child (GTK_WIDGET (self->goto_line_entry));
+       child;
+       child = gtk_widget_get_next_sibling (child))
+    {
+      if (GTK_IS_TEXT (child))
+        g_signal_connect_object (child,
+                                 "insert-text",
+                                 G_CALLBACK (goto_line_entry_insert_text_cb),
+                                 self,
+                                 G_CONNECT_SWAPPED);
+    }
 
   g_object_bind_property (self, "document", self->infobar, "document", 0);
 
