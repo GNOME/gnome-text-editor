@@ -1269,6 +1269,10 @@ editor_session_open (EditorSession           *self,
   if ((page = find_page_for_file (self, file)))
     {
       _editor_page_raise (page);
+
+      if ((window = _editor_page_get_window (page)))
+        gtk_window_present (GTK_WINDOW (window));
+
       return page;
     }
 
