@@ -56,15 +56,18 @@ editor_window_actions_close_page_cb (GtkWidget  *widget,
 
   g_assert (EDITOR_IS_WINDOW (self));
 
+  if (editor_window_get_visible_page (self) == NULL)
+    {
+      gtk_window_close (GTK_WINDOW (self));
+      return;
+    }
+
   if ((page = editor_window_get_visible_page (self)) &&
       _editor_window_request_close_page (self, page))
     {
       EditorSession *session = editor_application_get_session (EDITOR_APPLICATION_DEFAULT);
 
       editor_session_remove_page (session, page);
-
-      if (editor_window_get_visible_page (self) == NULL)
-        gtk_window_close (GTK_WINDOW (self));
     }
 }
 
