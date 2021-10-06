@@ -1,9 +1,6 @@
 [Desktop Entry]
 Categories=GNOME;GTK;Utility;TextEditor;
-# Disable DBusActivatable as it will cause URIs to be opened without
-# going through the documents portal.
-# See https://github.com/flatpak/flatpak/issues/4408 for more information.
-DBusActivatable=false
+DBusActivatable=true
 Exec=gnome-text-editor %U
 MimeType=text/plain;
 Name=Text Editor
