@@ -25,6 +25,7 @@
 #include "editor-enums.h"
 #include "editor-page-private.h"
 #include "editor-search-bar-private.h"
+#include "editor-search-entry-private.h"
 #include "editor-utils-private.h"
 
 struct _EditorSearchBar
@@ -36,7 +37,7 @@ struct _EditorSearchBar
   GCancellable            *cancellable;
 
   GtkGrid                 *grid;
-  GtkEntry                *search_entry;
+  EditorSearchEntry       *search_entry;
   GtkEntry                *replace_entry;
   GtkButton               *replace_button;
   GtkButton               *replace_all_button;
@@ -84,6 +85,7 @@ update_properties (EditorSearchBar *self)
   gboolean can_move = _editor_search_bar_get_can_move (self);
   gboolean can_replace = _editor_search_bar_get_can_replace (self);
   gboolean can_replace_all = _editor_search_bar_get_can_replace_all (self);
+  int occurrence_position = -1;
 
   if (can_move != self->can_move)
     {
@@ -102,6 +104,17 @@ update_properties (EditorSearchBar *self)
       self->can_replace_all = can_replace_all;
       g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_CAN_REPLACE_ALL]);
     }
+
+  if (self->context != NULL)
+    {
+      GtkTextBuffer *buffer = GTK_TEXT_BUFFER (gtk_source_search_context_get_buffer (self->context));
+      GtkTextIter begin, end;
+
+      if (gtk_text_buffer_get_selection_bounds (buffer, &begin, &end))
+        occurrence_position = gtk_source_search_context_get_occurrence_position (self->context, &begin, &end);
+    }
+
+  editor_search_entry_set_occurrence_position (self->search_entry, occurrence_position);
 }
 
 static void
@@ -116,11 +129,11 @@ editor_search_bar_scroll_to_insert (EditorSearchBar *self)
 }
 
 static void
-editor_search_bar_search_activate_cb (EditorSearchBar *self,
-                                      GtkEntry        *entry)
+editor_search_bar_search_activate_cb (EditorSearchBar   *self,
+                                      EditorSearchEntry *entry)
 {
   g_assert (EDITOR_IS_SEARCH_BAR (self));
-  g_assert (GTK_IS_ENTRY (entry));
+  g_assert (EDITOR_IS_SEARCH_ENTRY (entry));
 
   _editor_search_bar_move_next (self, TRUE);
 }
@@ -303,12 +316,12 @@ on_notify_replace_text_cb (EditorSearchBar *self,
 }
 
 static void
-on_notify_search_text_cb (EditorSearchBar *self,
-                          GParamSpec      *pspec,
-                          GtkEntry        *entry)
+on_notify_search_text_cb (EditorSearchBar   *self,
+                          GParamSpec        *pspec,
+                          EditorSearchEntry *entry)
 {
   g_assert (EDITOR_IS_SEARCH_BAR (self));
-  g_assert (GTK_IS_ENTRY (entry));
+  g_assert (EDITOR_IS_SEARCH_ENTRY (entry));
 
   self->scroll_to_first_match = TRUE;
 }
@@ -515,6 +528,8 @@ editor_search_bar_class_init (EditorSearchBarClass *klass)
                           (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_properties (object_class, N_PROPS, properties);
+
+  g_type_ensure (EDITOR_TYPE_SEARCH_ENTRY);
 }
 
 static void
@@ -611,11 +626,15 @@ editor_search_bar_notify_occurrences_count_cb (EditorSearchBar        *self,
                                                GParamSpec             *pspec,
                                                GtkSourceSearchContext *context)
 {
+  guint occurrence_count;
+
   g_assert (EDITOR_IS_SEARCH_BAR (self));
   g_assert (GTK_SOURCE_IS_SEARCH_CONTEXT (context));
 
-  if (self->scroll_to_first_match &&
-      gtk_source_search_context_get_occurrences_count (context) > 0)
+  occurrence_count = gtk_source_search_context_get_occurrences_count (context);
+  editor_search_entry_set_occurrence_count (self->search_entry, occurrence_count);
+
+  if (self->scroll_to_first_match && occurrence_count > 0)
     scroll_to_first_match (self, context);
 
   update_properties (self);

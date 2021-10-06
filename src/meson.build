@@ -26,6 +26,7 @@ editor_sources = [
   'editor-print-operation.c',
   'editor-save-changes-dialog.c',
   'editor-search-bar.c',
+  'editor-search-entry.c',
   'editor-session.c',
   'editor-sidebar-item.c',
   'editor-sidebar-model.c',

@@ -10,11 +10,8 @@
         <property name="column-spacing">8</property>
         <property name="row-spacing">8</property>
         <child>
-          <object class="GtkEntry" id="search_entry">
-            <property name="primary-icon-name">edit-find-symbolic</property>
-            <property name="max-width-chars">20</property>
+          <object class="EditorSearchEntry" id="search_entry">
             <property name="hexpand">true</property>
-            <property name="placeholder-text" translatable="yes">Search</property>
             <signal name="activate" handler="editor_search_bar_search_activate_cb" swapped="true" object="EditorSearchBar"/>
             <layout>
               <property name="row">0</property>
