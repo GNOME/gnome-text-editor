@@ -202,6 +202,27 @@ on_search_entry_activate_cb (EditorOpenPopover *self,
 }
 
 static void
+on_search_entry_stop_search_cb (EditorOpenPopover *self,
+                                GtkSearchEntry    *search_entry)
+{
+  EditorWindow *window;
+
+  g_assert (EDITOR_IS_OPEN_POPOVER (self));
+  g_assert (GTK_IS_SEARCH_ENTRY (search_entry));
+
+  window = EDITOR_WINDOW (gtk_widget_get_root (GTK_WIDGET (self)));
+
+  gtk_popover_popdown (GTK_POPOVER (self));
+
+  if (window != NULL)
+    {
+      EditorPage *page = editor_window_get_visible_page (window);
+
+      gtk_widget_child_focus (GTK_WIDGET (page), GTK_DIR_TAB_FORWARD);
+    }
+}
+
+static void
 editor_open_popover_show (GtkWidget *widget)
 {
   EditorOpenPopover *self = (EditorOpenPopover *)widget;
@@ -297,6 +318,7 @@ editor_open_popover_class_init (EditorOpenPopoverClass *klass)
   gtk_widget_class_bind_template_callback (widget_class, on_list_view_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_search_entry_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_search_entry_changed_cb);
+  gtk_widget_class_bind_template_callback (widget_class, on_search_entry_stop_search_cb);
 }
 
 static void

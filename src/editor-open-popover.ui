@@ -31,6 +31,7 @@
             <property name="width-chars">25</property>
             <signal name="changed" handler="on_search_entry_changed_cb" swapped="true" object="EditorOpenPopover"/>
             <signal name="activate" handler="on_search_entry_activate_cb" swapped="true" object="EditorOpenPopover"/>
+            <signal name="stop-search" handler="on_search_entry_stop_search_cb" swapped="true" object="EditorOpenPopover"/>
           </object>
         </child>
         <child>
