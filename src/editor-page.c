@@ -1180,6 +1180,7 @@ editor_page_delete_draft_cb (GObject      *object,
   EditorSession *session = EDITOR_SESSION_DEFAULT;
   g_autoptr(GTask) task = user_data;
   g_autoptr(GError) error = NULL;
+  gboolean reload;
   EditorPage *self;
 
   g_assert (G_IS_FILE (file));
@@ -1187,6 +1188,7 @@ editor_page_delete_draft_cb (GObject      *object,
   g_assert (G_IS_TASK (task));
 
   self = g_task_get_source_object (task);
+  reload = GPOINTER_TO_INT (g_task_get_task_data (task));
 
   if (!g_file_delete_finish (file, result, &error))
     {
@@ -1208,6 +1210,11 @@ editor_page_delete_draft_cb (GObject      *object,
                                     _editor_document_get_draft_id (self->document));
       g_task_return_boolean (task, TRUE);
     }
+  else if (!reload)
+    {
+      editor_session_remove_page (session, self);
+      g_task_return_boolean (task, TRUE);
+    }
   else
     {
       _editor_document_load_async (self->document,
@@ -1219,10 +1226,11 @@ editor_page_delete_draft_cb (GObject      *object,
 }
 
 void
-_editor_page_discard_changes_async  (EditorPage          *self,
-                                     GCancellable        *cancellable,
-                                     GAsyncReadyCallback  callback,
-                                     gpointer             user_data)
+_editor_page_discard_changes_async (EditorPage          *self,
+                                    gboolean             reload,
+                                    GCancellable        *cancellable,
+                                    GAsyncReadyCallback  callback,
+                                    gpointer             user_data)
 {
   g_autoptr(GFile) draft_file = NULL;
   g_autoptr(GTask) task = NULL;
@@ -1232,6 +1240,7 @@ _editor_page_discard_changes_async  (EditorPage          *self,
 
   task = g_task_new (self, cancellable, callback, user_data);
   g_task_set_source_tag (task, _editor_page_discard_changes_async);
+  g_task_set_task_data (task, GINT_TO_POINTER (reload), NULL);
 
   draft_file = _editor_document_get_draft_file (self->document);
 
@@ -1259,7 +1268,7 @@ _editor_page_discard_changes (EditorPage *self)
   g_return_if_fail (EDITOR_IS_PAGE (self));
 
   _editor_page_raise (self);
-  _editor_page_discard_changes_async (self, NULL, NULL, NULL);
+  _editor_page_discard_changes_async (self, TRUE, NULL, NULL, NULL);
 }
 
 void

@@ -68,6 +68,7 @@ void          _editor_page_save                   (EditorPage           *self);
 void          _editor_page_save_as                (EditorPage           *self);
 void          _editor_page_raise                  (EditorPage           *self);
 void          _editor_page_discard_changes_async  (EditorPage           *self,
+                                                   gboolean              reload,
                                                    GCancellable         *cancellable,
                                                    GAsyncReadyCallback   callback,
                                                    gpointer              user_data);

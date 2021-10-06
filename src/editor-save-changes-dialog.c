@@ -132,6 +132,7 @@ editor_save_changes_dialog_discard (GtkMessageDialog *dialog,
       const SaveRequest *sr = &g_array_index (requests, SaveRequest , i);
 
       _editor_page_discard_changes_async (sr->page,
+                                          FALSE,
                                           NULL,
                                           editor_save_changes_dialog_discard_cb,
                                           g_array_ref (requests));
@@ -171,6 +172,7 @@ editor_save_changes_dialog_save_cb (GObject      *object,
             editor_save_changes_dialog_remove (requests, i);
           else
             _editor_page_discard_changes_async (sr->page,
+                                                FALSE,
                                                 NULL,
                                                 editor_save_changes_dialog_discard_cb,
                                                 g_array_ref (requests));
