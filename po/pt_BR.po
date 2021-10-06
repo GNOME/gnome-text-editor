@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2021-09-20 16:42+0000\n"
-"PO-Revision-Date: 2021-09-25 11:02-0300\n"
+"POT-Creation-Date: 2021-10-06 06:20+0000\n"
+"PO-Revision-Date: 2021-10-06 14:58-0300\n"
 "Last-Translator: Enrico Nicoletto <liverig@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
@@ -25,8 +25,8 @@ msgid "Christian Hergert, et al."
 msgstr "Christian Hergert, et al."
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
-#: data/org.gnome.TextEditor.desktop.in.in:10
-#: data/org.gnome.TextEditor.desktop.in.in:11
+#: data/org.gnome.TextEditor.desktop.in.in:7
+#: data/org.gnome.TextEditor.desktop.in.in:8
 #: src/editor-application-actions.c:80 src/editor-application-actions.c:82
 msgid "Text Editor"
 msgstr "Editor de Texto"
@@ -43,7 +43,7 @@ msgstr ""
 "GNOME Editor de Texto é um editor de texto simples focado em uma experiência "
 "padrão agradável."
 
-#: data/org.gnome.TextEditor.desktop.in.in:12
+#: data/org.gnome.TextEditor.desktop.in.in:9
 msgid "View and edit text files"
 msgstr "Veja e edite arquivos de  texto"
 
@@ -205,7 +205,7 @@ msgstr "Falha ao localizar a propriedade %s em %s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Falha ao obter o valor de va_list: %s"
 
-#: src/editor-application.c:256
+#: src/editor-application.c:260
 msgid "Do not restore session at startup"
 msgstr "Não restaurar a sessão na inicialização"
 
@@ -269,37 +269,37 @@ msgstr "Documentos recentes"
 msgid "No Recent Documents"
 msgstr "Nenhum documento recente"
 
-#: src/editor-open-popover.ui:87
+#: src/editor-open-popover.ui:88
 msgid "Br_owse Files…"
 msgstr "Pr_ocurar arquivos…"
 
-#: src/editor-page.c:704 src/editor-sidebar-item.c:440
+#: src/editor-page.c:765 src/editor-sidebar-item.c:440
 msgid "New Document"
 msgstr "Novo documento"
 
-#: src/editor-page.c:721 src/editor-sidebar-item.c:459
+#: src/editor-page.c:782 src/editor-sidebar-item.c:459
 #: src/editor-sidebar-item.c:465
 msgid "Draft"
 msgstr "Rascunho"
 
-#: src/editor-page.c:775
+#: src/editor-page.c:836
 msgid "Failed to save document"
 msgstr "Falha ao salvar o documento"
 
-#: src/editor-page.c:843
+#: src/editor-page.c:904
 msgid "Save As"
 msgstr "Salvar como"
 
-#: src/editor-page.c:846 src/editor-window-actions.c:128
+#: src/editor-page.c:907 src/editor-window-actions.c:128
 msgid "Save"
 msgstr "Salvar"
 
-#: src/editor-page.c:847 src/editor-window-actions.c:127
+#: src/editor-page.c:908 src/editor-window-actions.c:127
 #: src/editor-window-actions.c:238 src/editor-window-actions.c:347
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: src/editor-page.c:965
+#: src/editor-page.c:1026
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Lin %u, Col %u"
@@ -360,51 +360,51 @@ msgstr "%s (novo)"
 msgid "Save changes for this document"
 msgstr "Salvar alterações deste documento"
 
-#: src/editor-search-bar.ui:14
+#: src/editor-search-bar.ui:17
 msgid "Search"
 msgstr "Pesquisar"
 
-#: src/editor-search-bar.ui:33
+#: src/editor-search-bar.ui:37
 msgid "Replace"
 msgstr "Substituir"
 
-#: src/editor-search-bar.ui:50
+#: src/editor-search-bar.ui:54
 msgid "Move to previous match (Ctrl+Shift+G)"
 msgstr "Move para correspondência anterior (Ctrl+Shift+G)"
 
-#: src/editor-search-bar.ui:57
+#: src/editor-search-bar.ui:61
 msgid "Move to next match (Ctrl+G)"
 msgstr "Move para próxima correspondência (Ctrl+Shift+G)"
 
-#: src/editor-search-bar.ui:69
+#: src/editor-search-bar.ui:73
 msgid "Search & Replace (Ctrl+H)"
 msgstr "Pesquisa & substitui (Ctrl+H)"
 
-#: src/editor-search-bar.ui:79
+#: src/editor-search-bar.ui:83
 msgid "Toggle search options"
 msgstr "Ativa as opções de pesquisa"
 
-#: src/editor-search-bar.ui:93
+#: src/editor-search-bar.ui:97
 msgid "Close search"
 msgstr "Fecha a pesquisa"
 
-#: src/editor-search-bar.ui:110
+#: src/editor-search-bar.ui:114
 msgid "_Replace"
 msgstr "_Substituir"
 
-#: src/editor-search-bar.ui:122
+#: src/editor-search-bar.ui:126
 msgid "Replace _All"
 msgstr "Substituir _tudo"
 
-#: src/editor-search-bar.ui:139
+#: src/editor-search-bar.ui:143
 msgid "Re_gular expressions"
 msgstr "Expressão re_gular"
 
-#: src/editor-search-bar.ui:145
+#: src/editor-search-bar.ui:149
 msgid "_Case sensitive"
 msgstr "Diferenciar _maiúsculas de minúsculas"
 
-#: src/editor-search-bar.ui:151
+#: src/editor-search-bar.ui:155
 msgid "Match whole _word only"
 msgstr "Corresponder apenas pala_vra inteira"
 
@@ -829,30 +829,40 @@ msgctxt "shortcut window"
 msgid "Move current or selected lines down"
 msgstr "Move para baixo a linha atual ou linhas selecionadas"
 
-#: src/help-overlay.ui:273
+#: src/help-overlay.ui:272
+msgctxt "shortcut window"
+msgid "Go to line"
+msgstr "Vai para a linha"
+
+#: src/help-overlay.ui:279
 msgctxt "shortcut window"
 msgid "Deletion"
 msgstr "Exclusão"
 
-#: src/help-overlay.ui:277
+#: src/help-overlay.ui:283
 msgctxt "shortcut window"
 msgid "Delete from cursor to word start"
 msgstr "Exclui do cursor até o início da palavra"
 
-#: src/help-overlay.ui:283
+#: src/help-overlay.ui:289
 msgctxt "shortcut window"
 msgid "Delete from cursor to word end"
 msgstr "Exclui do cursor até o fim da palavra"
 
-#: src/help-overlay.ui:289
+#: src/help-overlay.ui:295
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph start"
 msgstr "Exclui do cursor até o início da parágrafo"
 
-#: src/help-overlay.ui:295
+#: src/help-overlay.ui:301
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph end"
 msgstr "Exclui do cursor até o fim da parágrafo"
+
+#: src/help-overlay.ui:307
+msgctxt "shortcut window"
+msgid "Delete the current line"
+msgstr "Exclui a linha atual"
 
 #: src/menus.ui:11
 msgid "_New Window"
