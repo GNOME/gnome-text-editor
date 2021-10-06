@@ -384,9 +384,7 @@ goto_line_entry_insert_text_cb (EditorPage *self,
 
   text = gtk_editable_get_text (GTK_EDITABLE (entry));
   str = g_string_new (text);
-
-  if (position < 0)
-    g_string_insert_len (str, *position, new_text, length);
+  g_string_insert_len (str, *position, new_text, length);
 
   for (const char *c = str->str; *c; c = g_utf8_next_char (c))
     {
