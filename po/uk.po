@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues\n"
-"POT-Creation-Date: 2021-09-20 16:42+0000\n"
-"PO-Revision-Date: 2021-09-20 21:13+0300\n"
+"POT-Creation-Date: 2021-10-06 06:20+0000\n"
+"PO-Revision-Date: 2021-10-06 15:06+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -23,8 +23,8 @@ msgid "Christian Hergert, et al."
 msgstr "Christian Hergert та інші"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
-#: data/org.gnome.TextEditor.desktop.in.in:10
-#: data/org.gnome.TextEditor.desktop.in.in:11
+#: data/org.gnome.TextEditor.desktop.in.in:7
+#: data/org.gnome.TextEditor.desktop.in.in:8
 #: src/editor-application-actions.c:80 src/editor-application-actions.c:82
 msgid "Text Editor"
 msgstr "Текстовий редактор"
@@ -41,7 +41,7 @@ msgstr ""
 "«Текстовий редактор GNOME» — простий текстовий редактор, у якому акцент "
 "зроблено на задоволення типових потреб користувача."
 
-#: data/org.gnome.TextEditor.desktop.in.in:12
+#: data/org.gnome.TextEditor.desktop.in.in:9
 msgid "View and edit text files"
 msgstr "Перегляд і редагування текстових файлів"
 
@@ -203,7 +203,7 @@ msgstr "Не вдалося знайти властивість %s у %s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Не вдалося отримати значення va_list: %s"
 
-#: src/editor-application.c:256
+#: src/editor-application.c:260
 msgid "Do not restore session at startup"
 msgstr "Не відновлювати сеанс після запуску"
 
@@ -267,37 +267,37 @@ msgstr "Недавні документи"
 msgid "No Recent Documents"
 msgstr "Немає недавніх документів"
 
-#: src/editor-open-popover.ui:87
+#: src/editor-open-popover.ui:88
 msgid "Br_owse Files…"
 msgstr "_Навігація файлами…"
 
-#: src/editor-page.c:704 src/editor-sidebar-item.c:440
+#: src/editor-page.c:765 src/editor-sidebar-item.c:440
 msgid "New Document"
 msgstr "Новий документ"
 
-#: src/editor-page.c:721 src/editor-sidebar-item.c:459
+#: src/editor-page.c:782 src/editor-sidebar-item.c:459
 #: src/editor-sidebar-item.c:465
 msgid "Draft"
 msgstr "Чернетка"
 
-#: src/editor-page.c:775
+#: src/editor-page.c:836
 msgid "Failed to save document"
 msgstr "Не вдалося зберегти документ"
 
-#: src/editor-page.c:843
+#: src/editor-page.c:904
 msgid "Save As"
 msgstr "Зберегти як"
 
-#: src/editor-page.c:846 src/editor-window-actions.c:128
+#: src/editor-page.c:907 src/editor-window-actions.c:128
 msgid "Save"
 msgstr "Зберегти"
 
-#: src/editor-page.c:847 src/editor-window-actions.c:127
+#: src/editor-page.c:908 src/editor-window-actions.c:127
 #: src/editor-window-actions.c:238 src/editor-window-actions.c:347
 msgid "Cancel"
 msgstr "Скасувати"
 
-#: src/editor-page.c:965
+#: src/editor-page.c:1026
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Рд %u, Поз %u"
@@ -358,51 +358,51 @@ msgstr "%s (новий)"
 msgid "Save changes for this document"
 msgstr "Зберегти зміни у цьому документі"
 
-#: src/editor-search-bar.ui:14
+#: src/editor-search-bar.ui:17
 msgid "Search"
 msgstr "Пошук"
 
-#: src/editor-search-bar.ui:33
+#: src/editor-search-bar.ui:37
 msgid "Replace"
 msgstr "Замінити"
 
-#: src/editor-search-bar.ui:50
+#: src/editor-search-bar.ui:54
 msgid "Move to previous match (Ctrl+Shift+G)"
 msgstr "Перейти до попереднього відповідника (Ctrl+Shift+G)"
 
-#: src/editor-search-bar.ui:57
+#: src/editor-search-bar.ui:61
 msgid "Move to next match (Ctrl+G)"
 msgstr "Перейти до наступного відповідника (Ctrl+G)"
 
-#: src/editor-search-bar.ui:69
+#: src/editor-search-bar.ui:73
 msgid "Search & Replace (Ctrl+H)"
 msgstr "Знайти і замінити (Ctrl+H)"
 
-#: src/editor-search-bar.ui:79
+#: src/editor-search-bar.ui:83
 msgid "Toggle search options"
 msgstr "Перемкнути параметри пошуку"
 
-#: src/editor-search-bar.ui:93
+#: src/editor-search-bar.ui:97
 msgid "Close search"
 msgstr "Закрити вікно пошуку"
 
-#: src/editor-search-bar.ui:110
+#: src/editor-search-bar.ui:114
 msgid "_Replace"
 msgstr "За_мінити"
 
-#: src/editor-search-bar.ui:122
+#: src/editor-search-bar.ui:126
 msgid "Replace _All"
 msgstr "Замінити _все"
 
-#: src/editor-search-bar.ui:139
+#: src/editor-search-bar.ui:143
 msgid "Re_gular expressions"
 msgstr "_Формальні вирази"
 
-#: src/editor-search-bar.ui:145
+#: src/editor-search-bar.ui:149
 msgid "_Case sensitive"
 msgstr "_З врахуванням регістру"
 
-#: src/editor-search-bar.ui:151
+#: src/editor-search-bar.ui:155
 msgid "Match whole _word only"
 msgstr "Шукати лише _цілі слова"
 
@@ -541,8 +541,7 @@ msgstr "Перегляд"
 
 #: src/editor-window.ui:114
 msgid "Menu"
-msgstr ""
-"Меню"
+msgstr "Меню"
 
 #: src/editor-window.ui:151
 msgid "Start or Open a Document"
@@ -830,30 +829,42 @@ msgctxt "shortcut window"
 msgid "Move current or selected lines down"
 msgstr "Пересунути поточний або позначені рядки нижче"
 
-#: src/help-overlay.ui:273
+#: src/help-overlay.ui:272
+msgctxt "shortcut window"
+msgid "Go to line"
+msgstr ""
+"Перейти до рядка"
+
+#: src/help-overlay.ui:279
 msgctxt "shortcut window"
 msgid "Deletion"
 msgstr "Вилучення"
 
-#: src/help-overlay.ui:277
+#: src/help-overlay.ui:283
 msgctxt "shortcut window"
 msgid "Delete from cursor to word start"
 msgstr "Вилучити текст від курсора до початку слова"
 
-#: src/help-overlay.ui:283
+#: src/help-overlay.ui:289
 msgctxt "shortcut window"
 msgid "Delete from cursor to word end"
 msgstr "Вилучити текст від курсора до кінця слова"
 
-#: src/help-overlay.ui:289
+#: src/help-overlay.ui:295
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph start"
 msgstr "Вилучити текст від курсора до початку абзацу"
 
-#: src/help-overlay.ui:295
+#: src/help-overlay.ui:301
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph end"
 msgstr "Вилучити текст від курсора до кінця абзацу"
+
+#: src/help-overlay.ui:307
+#| msgid "Highlight current line"
+msgctxt "shortcut window"
+msgid "Delete the current line"
+msgstr "Вилучити поточний рядок"
 
 #: src/menus.ui:11
 msgid "_New Window"
