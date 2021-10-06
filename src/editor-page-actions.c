@@ -163,6 +163,8 @@ editor_page_actions_goto_line (GtkWidget  *widget,
              g_unichar_isspace (gtk_text_iter_get_char (&iter)))
         gtk_text_iter_forward_char (&iter);
       gtk_text_buffer_select_range (GTK_TEXT_BUFFER (document), &iter, &iter);
+      gtk_text_view_scroll_mark_onscreen (GTK_TEXT_VIEW (self->view),
+                                          gtk_text_buffer_get_insert (GTK_TEXT_BUFFER (document)));
     }
 
   gtk_revealer_set_reveal_child (self->goto_line_revealer, FALSE);
