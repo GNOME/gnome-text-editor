@@ -32,6 +32,12 @@
 #define RUN_CHECKED        GSIZE_TO_POINTER(1)
 #define UPDATE_DELAY_MSECS 100
 #define UPDATE_QUANTA_USEC (G_USEC_PER_SEC/1000L*2) /* 2 msec */
+/* Keyboard repeat is 30 msec by default (see
+ * org.gnome.desktop.peripherals.keyboard repeat-interval) so
+ * we want something longer than that so we are likely
+ * to get removed/re-added on each repeat movement.
+ */
+#define INVALIDATE_DELAY_MSECS 100
 
 typedef struct
 {
@@ -56,6 +62,8 @@ struct _EditorTextBufferSpellAdapter
   GtkTextTag         *no_spell_check_tag;
 
   guint               cursor_position;
+  guint               incoming_cursor_position;
+  guint               queued_cursor_moved;
 
   gsize               update_source;
 
@@ -687,17 +695,15 @@ editor_text_buffer_spell_adapter_after_delete_range (EditorTextBufferSpellAdapte
     mark_unchecked (self, offset, 0);
 }
 
-void
-editor_text_buffer_spell_adapter_cursor_moved (EditorTextBufferSpellAdapter *self,
-                                               guint                         position)
+static gboolean
+editor_text_buffer_spell_adapter_cursor_moved_cb (gpointer data)
 {
+  EditorTextBufferSpellAdapter *self = data;
   GtkTextIter begin, end;
 
-  g_return_if_fail (EDITOR_IS_TEXT_BUFFER_SPELL_ADAPTER (self));
-  g_return_if_fail (self->buffer != NULL);
+  g_assert (EDITOR_IS_TEXT_BUFFER_SPELL_ADAPTER (self));
 
-  if (self->cursor_position == position)
-    return;
+  self->queued_cursor_moved = 0;
 
   /* Invalidate the old position */
   if (self->enabled && get_word_at_position (self, self->cursor_position, &begin, &end))
@@ -705,12 +711,31 @@ editor_text_buffer_spell_adapter_cursor_moved (EditorTextBufferSpellAdapter *sel
                     gtk_text_iter_get_offset (&begin),
                     gtk_text_iter_get_offset (&end) - gtk_text_iter_get_offset (&begin));
 
-  self->cursor_position = position;
+  self->cursor_position = self->incoming_cursor_position;
 
-  if (self->enabled && get_word_at_position (self, position, &begin, &end))
+  /* Invalidate word at new position */
+  if (self->enabled && get_word_at_position (self, self->cursor_position, &begin, &end))
     mark_unchecked (self,
                     gtk_text_iter_get_offset (&begin),
                     gtk_text_iter_get_offset (&end) - gtk_text_iter_get_offset (&begin));
+
+  return G_SOURCE_REMOVE;
+}
+
+void
+editor_text_buffer_spell_adapter_cursor_moved (EditorTextBufferSpellAdapter *self,
+                                               guint                         position)
+{
+  g_return_if_fail (EDITOR_IS_TEXT_BUFFER_SPELL_ADAPTER (self));
+  g_return_if_fail (self->buffer != NULL);
+
+  self->incoming_cursor_position = position;
+  g_clear_handle_id (&self->queued_cursor_moved, g_source_remove);
+  self->queued_cursor_moved = g_timeout_add_full (G_PRIORITY_LOW,
+                                                  INVALIDATE_DELAY_MSECS,
+                                                  editor_text_buffer_spell_adapter_cursor_moved_cb,
+                                                  g_object_ref (self),
+                                                  g_object_unref);
 }
 
 const char *
