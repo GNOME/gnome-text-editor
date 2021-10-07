@@ -189,11 +189,7 @@ editable_iface_init (GtkEditableInterface *iface)
 static void
 editor_search_entry_update_position (EditorSearchEntry *self)
 {
-  const char *text;
-
   g_assert (EDITOR_IS_SEARCH_ENTRY (self));
-
-  text = gtk_editable_get_text (GTK_EDITABLE (self->text));
 
   if (self->occurrence_count == 0)
     {
