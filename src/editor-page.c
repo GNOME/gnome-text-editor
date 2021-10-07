@@ -1096,6 +1096,7 @@ _editor_page_set_search_visible (EditorPage          *self,
       _editor_search_bar_detach (self->search_bar);
     }
 
+  gtk_revealer_set_reveal_child (self->goto_line_revealer, FALSE);
   gtk_revealer_set_reveal_child (self->search_revealer, search_visible);
 
   if (search_visible)

@@ -122,6 +122,8 @@ editor_page_actions_show_goto_line (GtkWidget  *widget,
 
   g_assert (EDITOR_IS_PAGE (self));
 
+  _editor_page_hide_search (self);
+
   editor_page_get_visual_position (self, &line, &column);
   g_snprintf (str, sizeof str, "%u", line + 1);
   gtk_editable_set_text (GTK_EDITABLE (self->goto_line_entry), str);
