@@ -125,6 +125,7 @@
             <property name="transition-type">over</property>
             <property name="reveal-flap">false</property>
             <property name="locked">true</property>
+            <signal name="notify::reveal-flap" handler="on_notify_reveal_flap_cb" swapped="true"/>
             <child type="separator">
               <object class="GtkSeparator">
                 <property name="orientation">vertical</property>

@@ -537,7 +537,6 @@ editor_window_actions_hide_preferences_cb (GtkWidget  *widget,
   g_assert (EDITOR_IS_WINDOW (self));
 
   adw_flap_set_reveal_flap (self->flap, FALSE);
-  adw_flap_set_locked (self->flap, TRUE);
 }
 
 void

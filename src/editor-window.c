@@ -436,6 +436,18 @@ _editor_window_request_close_page (EditorWindow *self,
 }
 
 static void
+on_notify_reveal_flap_cb (EditorWindow *self,
+                          GParamSpec   *pspec,
+                          AdwFlap      *flap)
+{
+  g_assert (EDITOR_IS_WINDOW (self));
+  g_assert (ADW_IS_FLAP (flap));
+
+  if (!adw_flap_get_reveal_flap (flap))
+    adw_flap_set_locked (flap, TRUE);
+}
+
+static void
 editor_window_dispose (GObject *object)
 {
   EditorWindow *self = (EditorWindow *)object;
@@ -549,6 +561,7 @@ editor_window_class_init (EditorWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, title);
 
   gtk_widget_class_bind_template_callback (widget_class, on_tab_view_close_page_cb);
+  gtk_widget_class_bind_template_callback (widget_class, on_notify_reveal_flap_cb);
 
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_w, GDK_CONTROL_MASK, "win.close-page-or-window", NULL);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_o, GDK_CONTROL_MASK, "win.open", NULL);
