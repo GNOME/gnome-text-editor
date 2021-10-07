@@ -532,6 +532,7 @@ editor_window_class_init (EditorWindowClass *klass)
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-window.ui");
 
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, empty);
+  gtk_widget_class_bind_template_child (widget_class, EditorWindow, flap);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, is_modified);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, open_menu_button);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, open_menu_popover);
@@ -539,7 +540,6 @@ editor_window_class_init (EditorWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, pages);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, position_box);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, position_label);
-  gtk_widget_class_bind_template_child (widget_class, EditorWindow, preferences_revealer);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, primary_menu);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, scheme_group);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, stack);

@@ -523,7 +523,7 @@ editor_window_actions_show_preferences_cb (GtkWidget  *widget,
 
   g_assert (EDITOR_IS_WINDOW (self));
 
-  gtk_revealer_set_reveal_child (self->preferences_revealer, TRUE);
+  adw_flap_set_reveal_flap (self->flap, TRUE);
 }
 
 static void
@@ -535,7 +535,7 @@ editor_window_actions_hide_preferences_cb (GtkWidget  *widget,
 
   g_assert (EDITOR_IS_WINDOW (self));
 
-  gtk_revealer_set_reveal_child (self->preferences_revealer, FALSE);
+  adw_flap_set_reveal_flap (self->flap, FALSE);
 }
 
 void
