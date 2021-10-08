@@ -360,7 +360,10 @@ on_tab_view_close_page_cb (EditorWindow *self,
       epage->close_requested = TRUE;
 
       if (_editor_window_request_close_page (self, epage))
-        return FALSE;
+        {
+          editor_session_remove_page (EDITOR_SESSION_DEFAULT, epage);
+          return FALSE;
+        }
     }
 
   return TRUE;
