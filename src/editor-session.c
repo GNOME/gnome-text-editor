@@ -2220,7 +2220,7 @@ _editor_session_set_restore_pages (EditorSession *self,
 
   if (self->did_restore)
     {
-      g_warning ("Calling %s() after restoring hsa no effect. Ignoring request.",
+      g_warning ("Calling %s() after restoring has no effect. Ignoring request.",
                  G_STRFUNC);
       return;
     }
