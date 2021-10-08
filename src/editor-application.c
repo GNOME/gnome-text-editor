@@ -159,8 +159,6 @@ editor_application_startup (GApplication *application)
   gtk_application_set_accels_for_action (GTK_APPLICATION (self), "app.quit", quit_accels);
   gtk_application_set_accels_for_action (GTK_APPLICATION (self), "app.help", help_accels);
 
-  self->settings = g_settings_new ("org.gnome.TextEditor");
-
   _editor_application_actions_init (self);
 
   style_manager = adw_style_manager_get_default ();
@@ -264,8 +262,12 @@ static const GOptionEntry entries[] = {
 static void
 editor_application_init (EditorApplication *self)
 {
+  self->settings = g_settings_new ("org.gnome.TextEditor");
   self->session = _editor_session_new ();
+
   editor_session_set_auto_save (self->session, TRUE);
+  if (!g_settings_get_boolean (self->settings, "restore-session"))
+    _editor_session_set_restore_pages (self->session, FALSE);
 
   g_application_add_main_option_entries (G_APPLICATION (self), entries);
 }
