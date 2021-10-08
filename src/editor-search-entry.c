@@ -40,13 +40,6 @@ static void editable_iface_init (GtkEditableInterface *iface);
 G_DEFINE_TYPE_WITH_CODE (EditorSearchEntry, editor_search_entry, GTK_TYPE_WIDGET,
                          G_IMPLEMENT_INTERFACE (GTK_TYPE_EDITABLE, editable_iface_init))
 
-enum {
-  ACTIVATE,
-  N_SIGNALS
-};
-
-static guint signals[N_SIGNALS];
-
 GtkWidget *
 editor_search_entry_new (void)
 {
@@ -66,7 +59,7 @@ on_text_activate_cb (EditorSearchEntry *self,
   g_assert (EDITOR_IS_SEARCH_ENTRY (self));
   g_assert (GTK_IS_TEXT (text));
 
-  g_signal_emit (self, signals [ACTIVATE], 0);
+  gtk_widget_activate_action (GTK_WIDGET (self), "search.move-next", "b", FALSE);
 }
 
 static void
@@ -139,16 +132,6 @@ editor_search_entry_class_init (EditorSearchEntryClass *klass)
 
   gtk_editable_install_properties (object_class, 1);
 
-  signals[ACTIVATE] =
-    g_signal_new ("activate",
-                  G_TYPE_FROM_CLASS (klass),
-                  G_SIGNAL_RUN_LAST,
-                  0,
-                  NULL, NULL,
-                  NULL,
-                  G_TYPE_NONE, 0);
-
-  gtk_widget_class_set_activate_signal (widget_class, signals[ACTIVATE]);
   gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BOX_LAYOUT);
   gtk_widget_class_set_css_name (widget_class, "entry");
   gtk_widget_class_set_accessible_role (widget_class, GTK_ACCESSIBLE_ROLE_TEXT_BOX);
@@ -157,6 +140,19 @@ editor_search_entry_class_init (EditorSearchEntryClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorSearchEntry, text);
   gtk_widget_class_bind_template_callback (widget_class, on_text_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_text_notify_cb);
+
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_g, GDK_CONTROL_MASK|GDK_SHIFT_MASK, "search.move-previous", "b", FALSE);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_g, GDK_CONTROL_MASK, "search.move-next", "b", FALSE);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Down, 0, "search.move-next", "b", FALSE);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Up, 0, "search.move-previous", "b", FALSE);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Return, 0, "search.move-next", "b", FALSE);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_KP_Enter, 0, "search.move-next", "b", FALSE);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Return, GDK_SHIFT_MASK, "search.move-previous", "b", FALSE);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_KP_Enter, GDK_SHIFT_MASK, "search.move-previous", "b", FALSE);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Return, GDK_CONTROL_MASK, "search.move-next", "b", TRUE);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_KP_Enter, GDK_CONTROL_MASK, "search.move-next", "b", TRUE);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Return, GDK_CONTROL_MASK|GDK_SHIFT_MASK, "search.move-previous", "b", TRUE);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_KP_Enter, GDK_CONTROL_MASK|GDK_SHIFT_MASK, "search.move-previous", "b", TRUE);
 }
 
 static void

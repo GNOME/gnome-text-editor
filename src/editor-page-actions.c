@@ -62,8 +62,9 @@ editor_page_actions_search_move_next (GtkWidget  *widget,
   EditorPage *self = (EditorPage *)widget;
 
   g_assert (EDITOR_IS_PAGE (self));
+  g_assert (g_variant_is_of_type (param, G_VARIANT_TYPE_BOOLEAN));
 
-  _editor_page_move_next_search (self);
+  _editor_page_move_next_search (self, g_variant_get_boolean (param));
 }
 
 static void
@@ -74,8 +75,9 @@ editor_page_actions_search_move_previous (GtkWidget  *widget,
   EditorPage *self = (EditorPage *)widget;
 
   g_assert (EDITOR_IS_PAGE (self));
+  g_assert (g_variant_is_of_type (param, G_VARIANT_TYPE_BOOLEAN));
 
-  _editor_page_move_previous_search (self);
+  _editor_page_move_previous_search (self, g_variant_get_boolean (param));
 }
 
 static void
@@ -217,9 +219,9 @@ _editor_page_class_actions_init (EditorPageClass *klass)
                                    editor_page_actions_goto_line);
   gtk_widget_class_install_action (widget_class, "search.hide", NULL,
                                    editor_page_actions_search_hide);
-  gtk_widget_class_install_action (widget_class, "search.move-next", NULL,
+  gtk_widget_class_install_action (widget_class, "search.move-next", "b",
                                    editor_page_actions_search_move_next);
-  gtk_widget_class_install_action (widget_class, "search.move-previous", NULL,
+  gtk_widget_class_install_action (widget_class, "search.move-previous", "b",
                                    editor_page_actions_search_move_previous);
   gtk_widget_class_install_action (widget_class, "search.replace-one", NULL,
                                    editor_page_actions_replace_one);

@@ -1139,19 +1139,21 @@ _editor_page_scroll_to_insert (EditorPage *self)
 }
 
 void
-_editor_page_move_next_search (EditorPage *self)
+_editor_page_move_next_search (EditorPage *self,
+                               gboolean    hide_after_move)
 {
   g_return_if_fail (EDITOR_IS_PAGE (self));
 
-  _editor_search_bar_move_next (self->search_bar, FALSE);
+  _editor_search_bar_move_next (self->search_bar, hide_after_move);
 }
 
 void
-_editor_page_move_previous_search (EditorPage *self)
+_editor_page_move_previous_search (EditorPage *self,
+                                   gboolean    hide_after_move)
 {
   g_return_if_fail (EDITOR_IS_PAGE (self));
 
-  _editor_search_bar_move_previous (self->search_bar, FALSE);
+  _editor_search_bar_move_previous (self->search_bar, hide_after_move);
 }
 
 static void

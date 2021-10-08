@@ -72,7 +72,6 @@ enum {
 enum {
   MOVE_NEXT_SEARCH,
   MOVE_PREVIOUS_SEARCH,
-  HIDE_SEARCH,
   N_SIGNALS
 };
 
@@ -126,16 +125,6 @@ editor_search_bar_scroll_to_insert (EditorSearchBar *self)
 
   if ((page = gtk_widget_get_ancestor (GTK_WIDGET (self), EDITOR_TYPE_PAGE)))
     _editor_page_scroll_to_insert (EDITOR_PAGE (page));
-}
-
-static void
-editor_search_bar_search_activate_cb (EditorSearchBar   *self,
-                                      EditorSearchEntry *entry)
-{
-  g_assert (EDITOR_IS_SEARCH_BAR (self));
-  g_assert (EDITOR_IS_SEARCH_ENTRY (entry));
-
-  _editor_search_bar_move_next (self, TRUE);
 }
 
 static void
@@ -223,14 +212,6 @@ _editor_search_bar_move_previous (EditorSearchBar *self,
                                             /* XXX: fixme */
                                             editor_search_bar_move_next_forward_cb,
                                             g_object_ref (self));
-}
-
-static void
-editor_search_bar_hide_search_cb (EditorSearchBar *self)
-{
-  g_assert (EDITOR_IS_SEARCH_BAR (self));
-
-  gtk_widget_activate_action (GTK_WIDGET (self), "search.hide", NULL);
 }
 
 static gboolean
@@ -458,7 +439,6 @@ editor_search_bar_class_init (EditorSearchBarClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, replace_mode_button);
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, search_entry);
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, word_button);
-  gtk_widget_class_bind_template_callback (widget_class, editor_search_bar_search_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_search_key_pressed_cb);
 
   signals [MOVE_NEXT_SEARCH] =
@@ -479,24 +459,7 @@ editor_search_bar_class_init (EditorSearchBarClass *klass)
                                 NULL,
                                 G_TYPE_NONE, 1, G_TYPE_BOOLEAN);
 
-  signals [HIDE_SEARCH] =
-    g_signal_new_class_handler ("hide-search",
-                                G_TYPE_FROM_CLASS (klass),
-                                G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
-                                G_CALLBACK (editor_search_bar_hide_search_cb),
-                                NULL, NULL,
-                                NULL,
-                                G_TYPE_NONE, 0);
-
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Escape, 0, "search.hide", NULL);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_g, GDK_CONTROL_MASK|GDK_SHIFT_MASK, "search.move-previous-search", NULL);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_g, GDK_CONTROL_MASK, "search.move-next-search", NULL);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Down, 0, "search.move-next-search", NULL);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Up, 0, "search.move-previous-search", NULL);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Return, 0, "search.move-next-search", NULL);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_KP_Enter, 0, "search.move-next-search", NULL);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Return, GDK_SHIFT_MASK, "search.move-previous-search", NULL);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_KP_Enter, GDK_SHIFT_MASK, "search.move-previous-search", NULL);
 
   properties [PROP_MODE] =
     g_param_spec_enum ("mode",

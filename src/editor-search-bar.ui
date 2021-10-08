@@ -12,7 +12,6 @@
         <child>
           <object class="EditorSearchEntry" id="search_entry">
             <property name="hexpand">true</property>
-            <signal name="activate" handler="editor_search_bar_search_activate_cb" swapped="true" object="EditorSearchBar"/>
             <layout>
               <property name="row">0</property>
               <property name="column">0</property>
@@ -47,14 +46,14 @@
             </style>
             <child>
               <object class="GtkButton">
-                <property name="action-name">search.move-previous</property>
+                <property name="action-name">search.move-previous(false)</property>
                 <property name="tooltip-text" translatable="yes">Move to previous match (Ctrl+Shift+G)</property>
                 <property name="icon-name">go-up-symbolic</property>
               </object>
             </child>
             <child>
               <object class="GtkButton">
-                <property name="action-name">search.move-next</property>
+                <property name="action-name">search.move-next(false)</property>
                 <property name="tooltip-text" translatable="yes">Move to next match (Ctrl+G)</property>
                 <property name="icon-name">go-down-symbolic</property>
               </object>
