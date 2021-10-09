@@ -46,6 +46,7 @@ GSETTINGS_GETTER (gboolean, boolean, show_right_margin, "show-right-margin")
 GSETTINGS_GETTER (gboolean, boolean, show_line_numbers, "show-line-numbers")
 GSETTINGS_GETTER (gboolean, boolean, use_system_font, "use-system-font")
 GSETTINGS_GETTER (gboolean, boolean, wrap_text, "wrap-text")
+GSETTINGS_GETTER (gboolean, boolean, auto_indent, "auto-indent")
 GSETTINGS_GETTER (gboolean, boolean, show_map, "show-map")
 GSETTINGS_GETTER (gboolean, boolean, show_grid, "show-grid")
 GSETTINGS_GETTER (gboolean, boolean, highlight_current_line, "highlight-current-line")
@@ -173,6 +174,7 @@ page_settings_provider_iface_init (EditorPageSettingsProviderInterface *iface)
   iface->get_tab_width = editor_page_gsettings_get_tab_width;
   iface->get_use_system_font = editor_page_gsettings_get_use_system_font;
   iface->get_wrap_text = editor_page_gsettings_get_wrap_text;
+  iface->get_auto_indent = editor_page_gsettings_get_auto_indent;
   iface->get_style_scheme = editor_page_gsettings_get_style_scheme;
   iface->get_style_variant = editor_page_gsettings_get_style_variant;
   iface->get_highlight_current_line = editor_page_gsettings_get_highlight_current_line;

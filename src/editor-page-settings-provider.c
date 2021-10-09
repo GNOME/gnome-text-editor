@@ -215,7 +215,7 @@ editor_page_settings_provider_get_show_right_margin (EditorPageSettingsProvider 
 /**
  * editor_page_settings_provider_get_use_system_font:
  * @self: a #EditorPageSettingsProvider
- * @wrap_text: (out) (optional): if the system font should be used
+ * @use_system_font: (out) (optional): if the system font should be used
  *
  * Returns: %TRUE if @use_system_font was set by the provider.
  */
@@ -235,7 +235,7 @@ editor_page_settings_provider_get_use_system_font (EditorPageSettingsProvider *s
 }
 
 /**
- * editor_page_settings_provider_get_tab_width:
+ * editor_page_settings_provider_get_wrap_text:
  * @self: a #EditorPageSettingsProvider
  * @wrap_text: (out) (optional): if the text should wrap
  *
@@ -252,6 +252,28 @@ editor_page_settings_provider_get_wrap_text (EditorPageSettingsProvider *self,
 
   if (EDITOR_PAGE_SETTINGS_PROVIDER_GET_IFACE (self)->get_wrap_text)
     return EDITOR_PAGE_SETTINGS_PROVIDER_GET_IFACE (self)->get_wrap_text (self, wrap_text);
+
+  return FALSE;
+}
+
+/**
+ * editor_page_settings_provider_get_auto_indent:
+ * @self: a #EditorPageSettingsProvider
+ * @auto_indent: (out) (optional): if auto-indent should be enabled
+ *
+ * Returns: %TRUE if @auto_indent was set by the provider.
+ */
+gboolean
+editor_page_settings_provider_get_auto_indent (EditorPageSettingsProvider *self,
+                                               gboolean                   *auto_indent)
+{
+  g_return_val_if_fail (EDITOR_IS_PAGE_SETTINGS_PROVIDER (self), FALSE);
+
+  if (auto_indent != NULL)
+    *auto_indent = FALSE;
+
+  if (EDITOR_PAGE_SETTINGS_PROVIDER_GET_IFACE (self)->get_auto_indent)
+    return EDITOR_PAGE_SETTINGS_PROVIDER_GET_IFACE (self)->get_auto_indent (self, auto_indent);
 
   return FALSE;
 }

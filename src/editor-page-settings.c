@@ -54,10 +54,12 @@ struct _EditorPageSettings
   guint show_right_margin : 1;
   guint use_system_font : 1;
   guint wrap_text : 1;
+  guint auto_indent : 1;
 };
 
 enum {
   PROP_0,
+  PROP_AUTO_INDENT,
   PROP_CUSTOM_FONT,
   PROP_STYLE_VARIANT,
   PROP_DOCUMENT,
@@ -132,6 +134,7 @@ editor_page_settings_update (EditorPageSettings *self)
   UPDATE_SETTING (gboolean, highlight_current_line, HIGHLIGHT_CURRENT_LINE, cmp_boolean, (void), (gboolean));
   UPDATE_SETTING (gboolean, use_system_font, USE_SYSTEM_FONT, cmp_boolean, (void), (gboolean));
   UPDATE_SETTING (gboolean, wrap_text, WRAP_TEXT, cmp_boolean, (void), (gboolean));
+  UPDATE_SETTING (gboolean, auto_indent, AUTO_INDENT, cmp_boolean, (void), (gboolean));
   UPDATE_SETTING (guint, tab_width, TAB_WIDTH, cmp_uint, (void), (guint));
   UPDATE_SETTING (guint, right_margin_position, RIGHT_MARGIN_POSITION, cmp_uint, (void), (guint));
   UPDATE_SETTING (g_autofree gchar *, custom_font, CUSTOM_FONT, cmp_string, g_free, g_strdup);
@@ -302,6 +305,10 @@ editor_page_settings_get_property (GObject    *object,
 
     case PROP_WRAP_TEXT:
       g_value_set_boolean (value, editor_page_settings_get_wrap_text (self));
+      break;
+
+    case PROP_AUTO_INDENT:
+      g_value_set_boolean (value, editor_page_settings_get_auto_indent (self));
       break;
 
     default:
@@ -492,6 +499,13 @@ editor_page_settings_class_init (EditorPageSettingsClass *klass)
                           FALSE,
                           (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
+  properties [PROP_AUTO_INDENT] =
+    g_param_spec_boolean ("auto-indent",
+                          "Auto Indent",
+                          "Automatically indent new lines by copying the previous line's indentation.",
+                          TRUE,
+                          (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+
   g_object_class_install_properties (object_class, N_PROPS, properties);
 }
 
@@ -499,6 +513,7 @@ static void
 editor_page_settings_init (EditorPageSettings *self)
 {
   self->providers = g_ptr_array_new_with_free_func (g_object_unref);
+  self->auto_indent = TRUE;
   self->use_system_font = TRUE;
   self->right_margin_position = 80;
   self->tab_width = 8;
@@ -597,6 +612,14 @@ editor_page_settings_get_wrap_text (EditorPageSettings *self)
   g_return_val_if_fail (EDITOR_IS_PAGE_SETTINGS (self), FALSE);
 
   return self->wrap_text;
+}
+
+gboolean
+editor_page_settings_get_auto_indent (EditorPageSettings *self)
+{
+  g_return_val_if_fail (EDITOR_IS_PAGE_SETTINGS (self), FALSE);
+
+  return self->auto_indent;
 }
 
 guint

@@ -87,6 +87,10 @@
     <section>
       <attribute name="label" translatable="yes">Indentation</attribute>
       <item>
+        <attribute name="label" translatable="yes">_Automatic Indentation</attribute>
+        <attribute name="action">settings.auto-indent</attribute>
+      </item>
+      <item>
         <attribute name="label" translatable="yes">_Tabs</attribute>
         <attribute name="action">settings.indent-style</attribute>
         <attribute name="target" type="s">'tab'</attribute>

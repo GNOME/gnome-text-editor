@@ -314,6 +314,9 @@ editor_page_constructed (GObject *object)
   editor_binding_group_bind (self->settings_bindings, "tab-width",
                              self->view, "tab-width",
                              G_BINDING_SYNC_CREATE);
+  editor_binding_group_bind (self->settings_bindings, "auto-indent",
+                             self->view, "auto-indent",
+                             G_BINDING_SYNC_CREATE);
   editor_binding_group_bind_full (self->settings_bindings, "wrap-text",
                                   self->view, "wrap-mode",
                                   G_BINDING_SYNC_CREATE,

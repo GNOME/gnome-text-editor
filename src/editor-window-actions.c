@@ -644,12 +644,13 @@ _editor_window_actions_init (EditorWindow *self)
   g_autoptr(GSimpleActionGroup) group = NULL;
   g_autoptr(GSettings) settings = NULL;
   static const gchar *setting_keys[] = {
-    "style-variant",
+    "auto-indent",
     "discover-settings",
     "indent-style",
     "show-line-numbers",
     "show-right-margin",
     "spellcheck",
+    "style-variant",
     "tab-width",
     "wrap-text",
   };
