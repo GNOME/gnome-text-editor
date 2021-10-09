@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues\n"
-"POT-Creation-Date: 2021-10-09 03:16+0000\n"
-"PO-Revision-Date: 2021-10-09 11:55+0300\n"
+"POT-Creation-Date: 2021-10-09 11:07+0000\n"
+"PO-Revision-Date: 2021-10-09 22:25+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -76,13 +76,13 @@ msgstr ""
 
 #: data/org.gnome.TextEditor.gschema.xml:30
 msgid "Auto Indent"
-msgstr ""
-"Автовідступ"
+msgstr "Автовідступ"
 
 #: data/org.gnome.TextEditor.gschema.xml:31
 msgid "Automatically indent new lines copying the previous line's indentation."
 msgstr ""
-"Автоматично додавати відступ у нових рядках, копіюючи відступ у попередньому рядку."
+"Автоматично додавати відступ у нових рядках, копіюючи відступ у попередньому "
+"рядку."
 
 #: data/org.gnome.TextEditor.gschema.xml:35
 msgid "Tab Width"
@@ -221,13 +221,13 @@ msgstr "Не вдалося знайти властивість %s у %s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Не вдалося отримати значення va_list: %s"
 
-#: src/editor-application.c:258
-msgid "Do not restore session at startup"
-msgstr "Не відновлювати сеанс після запуску"
-
 #: src/editor-application-actions.c:98
 msgid "Text Editor Website"
 msgstr "Сайт «Текстового редактора»"
+
+#: src/editor-application.c:258
+msgid "Do not restore session at startup"
+msgstr "Не відновлювати сеанс після запуску"
 
 #: src/editor-document.c:1715
 msgid "[Read-Only]"
@@ -319,6 +319,17 @@ msgstr "Скасувати"
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Рд %u, Поз %u"
+
+#: src/editor-page.ui:96
+#| msgctxt "shortcut window"
+#| msgid "Go to line"
+msgid "Go to Line"
+msgstr "Перейти до рядка"
+
+#: src/editor-page.ui:114
+msgid "Go"
+msgstr ""
+"Перейти"
 
 #. translators: Ln is short for "Line Number"
 #: src/editor-position-label.ui:12
@@ -419,6 +430,13 @@ msgstr "_З врахуванням регістру"
 #: src/editor-search-bar.ui:151
 msgid "Match whole _word only"
 msgstr "Шукати лише _цілі слова"
+
+#. translators: the first %u is replaced with the current position, the second with the number of search results
+#: src/editor-search-entry.c:197
+#, c-format
+msgid "%u of %u"
+msgstr ""
+"%u з %u"
 
 #: src/editor-sidebar.ui:32
 msgid "Search documents (Ctrl+K)"
@@ -939,7 +957,6 @@ msgid "Indentation"
 msgstr "Відступ"
 
 #: src/menus.ui:90
-#| msgid "_Automatic Margin Position"
 msgid "_Automatic Indentation"
 msgstr "_Автоматичні відступи"
 
