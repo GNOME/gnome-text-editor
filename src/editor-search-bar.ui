@@ -46,14 +46,16 @@
             </style>
             <child>
               <object class="GtkButton">
-                <property name="action-name">search.move-previous(false)</property>
+                <property name="action-name">search.move-previous</property>
+                <property name="action-target">false</property>
                 <property name="tooltip-text" translatable="yes">Move to previous match (Ctrl+Shift+G)</property>
                 <property name="icon-name">go-up-symbolic</property>
               </object>
             </child>
             <child>
               <object class="GtkButton">
-                <property name="action-name">search.move-next(false)</property>
+                <property name="action-name">search.move-next</property>
+                <property name="action-target">false</property>
                 <property name="tooltip-text" translatable="yes">Move to next match (Ctrl+G)</property>
                 <property name="icon-name">go-down-symbolic</property>
               </object>
