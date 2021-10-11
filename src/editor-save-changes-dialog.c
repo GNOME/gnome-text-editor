@@ -254,7 +254,7 @@ _editor_save_changes_dialog_new (GtkWindow *parent,
   requests = g_array_new (FALSE, FALSE, sizeof (SaveRequest));
   g_array_set_clear_func (requests, save_request_clear);
 
-  discard_label = g_dngettext (GETTEXT_PACKAGE, _("Discard"), _("Discard All"), pages->len);
+  discard_label = g_dngettext (GETTEXT_PACKAGE, _("_Discard"), _("_Discard All"), pages->len);
 
   dialog = gtk_message_dialog_new (parent,
                                    GTK_DIALOG_MODAL | GTK_DIALOG_USE_HEADER_BAR,
