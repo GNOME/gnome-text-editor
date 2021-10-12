@@ -35,6 +35,7 @@ main (int   argc,
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
+  gtk_init ();
   gtk_source_init ();
 
   app = _editor_application_new ();
