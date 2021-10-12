@@ -48,6 +48,29 @@ enum {
 static GParamSpec *properties[N_PROPS];
 
 static void
+update_style_scheme_cb (EditorWindow *self,
+                        const char   *key,
+                        GSettings    *settings)
+{
+  g_autofree char *id = NULL;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+
+  id = g_settings_get_string (settings, "style-scheme");
+
+  for (GtkWidget *child = gtk_widget_get_first_child (GTK_WIDGET (self->scheme_group));
+       child;
+       child = gtk_widget_get_next_sibling (child))
+    {
+      GtkSourceStyleSchemePreview *preview = GTK_SOURCE_STYLE_SCHEME_PREVIEW (child);
+      GtkSourceStyleScheme *scheme = gtk_source_style_scheme_preview_get_scheme (preview);
+      const char *scheme_id = gtk_source_style_scheme_get_id (scheme);
+
+      gtk_source_style_scheme_preview_set_selected (preview, g_strcmp0 (scheme_id, id) == 0);
+    }
+}
+
+static void
 update_subtitle_visibility_cb (EditorWindow *self)
 {
   gboolean visible = FALSE;
@@ -312,32 +335,18 @@ editor_window_constructed (GObject *object)
   sm = gtk_source_style_scheme_manager_get_default ();
   if ((scheme_ids = gtk_source_style_scheme_manager_get_scheme_ids (sm)))
     {
-      GtkCheckButton *group = NULL;
-
       for (guint i = 0; scheme_ids[i]; i++)
         {
           GtkSourceStyleScheme *scheme = gtk_source_style_scheme_manager_get_scheme (sm, scheme_ids[i]);
-          const char *name = gtk_source_style_scheme_get_name (scheme);
-          GtkWidget *radio;
-          GtkWidget *w;
+          GtkWidget *preview = gtk_source_style_scheme_preview_new (scheme);
 
-          radio = g_object_new (GTK_TYPE_CHECK_BUTTON,
-                                "can-focus", FALSE,
-                                "valign", GTK_ALIGN_CENTER,
-                                "action-name", "app.style-scheme",
-                                "action-target", g_variant_new_string (scheme_ids[i]),
-                                NULL);
-          w = adw_action_row_new ();
-          adw_preferences_row_set_title (ADW_PREFERENCES_ROW (w), name);
-          adw_action_row_add_prefix (ADW_ACTION_ROW (w), radio);
-          adw_action_row_set_activatable_widget (ADW_ACTION_ROW (w), radio);
-          adw_preferences_group_add (self->scheme_group, w);
-
-          if (group == NULL)
-            group = GTK_CHECK_BUTTON (radio);
-          else
-            gtk_check_button_set_group (GTK_CHECK_BUTTON (radio), group);
+          gtk_actionable_set_action_name (GTK_ACTIONABLE (preview), "app.style-scheme");
+          gtk_actionable_set_action_target (GTK_ACTIONABLE (preview), "s", scheme_ids[i]);
+          gtk_widget_set_hexpand (preview, TRUE);
+          gtk_grid_attach (self->scheme_group, preview, i % 2, i / 2, 1, 1);
         }
+
+      update_style_scheme_cb (self, "style-scheme", self->settings);
     }
 }
 
@@ -610,6 +619,11 @@ editor_window_init (EditorWindow *self)
   g_signal_connect_object (self->settings,
                            "changed::show-line-numbers",
                            G_CALLBACK (update_subtitle_visibility_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+  g_signal_connect_object (self->settings,
+                           "changed::style-scheme",
+                           G_CALLBACK (update_style_scheme_cb),
                            self,
                            G_CONNECT_SWAPPED);
 

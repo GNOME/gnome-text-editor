@@ -51,7 +51,7 @@ struct _EditorWindow
   GtkMenuButton        *primary_menu;
   GtkMenuButton        *options_menu;
   GtkMenuButton        *export_menu;
-  AdwPreferencesGroup  *scheme_group;
+  GtkGrid              *scheme_group;
   AdwFlap              *flap;
 
   /* Borrowed References */
