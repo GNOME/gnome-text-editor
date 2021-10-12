@@ -44,7 +44,6 @@ struct _EditorDocument
   EditorBufferMonitor          *monitor;
   GtkSourceFile                *file;
   gchar                        *draft_id;
-  GtkTextTag                   *line_spacing_tag;
   const GtkSourceEncoding      *encoding;
 
   EditorSpellChecker           *spell_checker;
@@ -113,17 +112,6 @@ save_free (Save *save)
 {
   g_clear_pointer (&save->position, g_free);
   g_slice_free (Save, save);
-}
-
-static void
-editor_document_apply_spacing (EditorDocument *self)
-{
-  GtkTextIter begin, end;
-
-  g_assert (EDITOR_IS_DOCUMENT (self));
-
-  gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (self), &begin, &end);
-  gtk_text_buffer_apply_tag (GTK_TEXT_BUFFER (self), self->line_spacing_tag, &begin, &end);
 }
 
 static GMountOperation *
@@ -401,12 +389,6 @@ editor_document_constructed (GObject *object)
                                 self->spell_adapter, "enabled",
                                 G_SETTINGS_BIND_GET,
                                 apply_spellcheck_mapping, NULL, self, NULL);
-
-  self->line_spacing_tag = gtk_text_buffer_create_tag (GTK_TEXT_BUFFER (self),
-                                                       NULL,
-                                                       "pixels-below-lines", 2,
-                                                       NULL);
-  editor_document_apply_spacing (self);
 }
 
 static void
