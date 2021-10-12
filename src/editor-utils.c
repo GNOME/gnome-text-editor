@@ -128,7 +128,7 @@ _editor_font_description_to_css (const PangoFontDescription *font_desc)
         }
     }
 
-#ifndef GDK_WINDOWING_QUARTZ
+#ifndef GDK_WINDOWING_MACOS
   /*
    * We seem to get "Condensed" for fonts on the Quartz backend,
    * which is rather annoying as it results in us always hitting
