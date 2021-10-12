@@ -57,12 +57,6 @@ editor_source_view_update_css (EditorSourceView *self)
 
   g_assert (EDITOR_IS_SOURCE_VIEW (self));
 
-  if (self->font_scale == 0 && self->font_desc == NULL)
-    {
-      gtk_css_provider_load_from_data (self->css_provider, "", -1);
-      return;
-    }
-
   if (self->font_desc != NULL &&
       pango_font_description_get_set_fields (self->font_desc) & PANGO_FONT_MASK_SIZE)
     size = pango_font_description_get_size (self->font_desc) / PANGO_SCALE;
@@ -87,7 +81,7 @@ editor_source_view_update_css (EditorSourceView *self)
 
       font_css = _editor_font_description_to_css (font_desc);
       g_string_append (str, font_css);
-      g_string_append_c (str, '\n');
+      g_string_append (str, "\nline-height:150%;\n");
     }
   g_string_append (str, "}\n");
 
@@ -349,6 +343,16 @@ editor_source_view_action_zoom (GtkWidget  *widget,
 }
 
 static void
+editor_source_view_constructed (GObject *object)
+{
+  EditorSourceView *self = (EditorSourceView *)object;
+
+  G_OBJECT_CLASS (editor_source_view_parent_class)->constructed (object);
+
+  editor_source_view_update_css (self);
+}
+
+static void
 editor_source_view_finalize (GObject *object)
 {
   EditorSourceView *self = (EditorSourceView *)object;
@@ -404,6 +408,7 @@ editor_source_view_class_init (EditorSourceViewClass *klass)
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
+  object_class->constructed = editor_source_view_constructed;
   object_class->finalize = editor_source_view_finalize;
   object_class->get_property = editor_source_view_get_property;
   object_class->set_property = editor_source_view_set_property;
