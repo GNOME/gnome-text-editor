@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues\n"
-"POT-Creation-Date: 2021-10-09 11:07+0000\n"
-"PO-Revision-Date: 2021-10-09 22:25+0300\n"
+"POT-Creation-Date: 2021-10-11 21:23+0000\n"
+"PO-Revision-Date: 2021-10-12 09:12+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -321,15 +321,12 @@ msgid "Ln %u, Col %u"
 msgstr "Рд %u, Поз %u"
 
 #: src/editor-page.ui:96
-#| msgctxt "shortcut window"
-#| msgid "Go to line"
 msgid "Go to Line"
 msgstr "Перейти до рядка"
 
 #: src/editor-page.ui:114
 msgid "Go"
-msgstr ""
-"Перейти"
+msgstr "Перейти"
 
 #. translators: Ln is short for "Line Number"
 #: src/editor-position-label.ui:12
@@ -345,13 +342,15 @@ msgstr "Поз"
 msgid "Select Font"
 msgstr "Виберіть шрифт"
 
-#: src/editor-save-changes-dialog.c:257 src/editor-window-actions.c:242
-msgid "Discard"
-msgstr "Відкинути"
+#: src/editor-save-changes-dialog.c:257
+#| msgid "Discard"
+msgid "_Discard"
+msgstr "_Відкинути"
 
 #: src/editor-save-changes-dialog.c:257
-msgid "Discard All"
-msgstr "Відкинути усе"
+#| msgid "Discard All"
+msgid "_Discard All"
+msgstr "Від_кинути усе"
 
 #: src/editor-save-changes-dialog.c:263
 msgid "Save Changes?"
@@ -391,43 +390,43 @@ msgstr "Зберегти зміни у цьому документі"
 msgid "Replace"
 msgstr "Замінити"
 
-#: src/editor-search-bar.ui:50
+#: src/editor-search-bar.ui:51
 msgid "Move to previous match (Ctrl+Shift+G)"
 msgstr "Перейти до попереднього відповідника (Ctrl+Shift+G)"
 
-#: src/editor-search-bar.ui:57
+#: src/editor-search-bar.ui:59
 msgid "Move to next match (Ctrl+G)"
 msgstr "Перейти до наступного відповідника (Ctrl+G)"
 
-#: src/editor-search-bar.ui:69
+#: src/editor-search-bar.ui:71
 msgid "Search & Replace (Ctrl+H)"
 msgstr "Знайти і замінити (Ctrl+H)"
 
-#: src/editor-search-bar.ui:79
+#: src/editor-search-bar.ui:81
 msgid "Toggle search options"
 msgstr "Перемкнути параметри пошуку"
 
-#: src/editor-search-bar.ui:93
+#: src/editor-search-bar.ui:95
 msgid "Close search"
 msgstr "Закрити вікно пошуку"
 
-#: src/editor-search-bar.ui:110
+#: src/editor-search-bar.ui:112
 msgid "_Replace"
 msgstr "За_мінити"
 
-#: src/editor-search-bar.ui:122
+#: src/editor-search-bar.ui:124
 msgid "Replace _All"
 msgstr "Замінити _все"
 
-#: src/editor-search-bar.ui:139
+#: src/editor-search-bar.ui:141
 msgid "Re_gular expressions"
 msgstr "_Формальні вирази"
 
-#: src/editor-search-bar.ui:145
+#: src/editor-search-bar.ui:147
 msgid "_Case sensitive"
 msgstr "_З врахуванням регістру"
 
-#: src/editor-search-bar.ui:151
+#: src/editor-search-bar.ui:153
 msgid "Match whole _word only"
 msgstr "Шукати лише _цілі слова"
 
@@ -435,8 +434,7 @@ msgstr "Шукати лише _цілі слова"
 #: src/editor-search-entry.c:197
 #, c-format
 msgid "%u of %u"
-msgstr ""
-"%u з %u"
+msgstr "%u з %u"
 
 #: src/editor-sidebar.ui:32
 msgid "Search documents (Ctrl+K)"
@@ -538,6 +536,10 @@ msgstr "Відкинути зміни у «%s»?"
 #: src/editor-window-actions.c:240
 msgid "Unsaved changes will be permanently lost."
 msgstr "Незбережені зміни буде втрачено без можливості відновлення."
+
+#: src/editor-window-actions.c:242
+msgid "Discard"
+msgstr "Відкинути"
 
 #: src/editor-window-actions.c:346
 msgid "Open File"
