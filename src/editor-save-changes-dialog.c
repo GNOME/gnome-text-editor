@@ -284,11 +284,8 @@ _editor_save_changes_dialog_new (GtkWindow *parent,
       g_autofree gchar *subtitle_str = NULL;
       GFile *file = editor_document_get_file (document);
       g_autoptr(GFile) directory = file ? g_file_get_parent (file) : NULL;
-      GtkWidget *box;
       GtkWidget *check;
       GtkWidget *row;
-      GtkWidget *subtitle;
-      GtkWidget *title;
       SaveRequest sr;
 
       if (file == NULL)
@@ -316,29 +313,14 @@ _editor_save_changes_dialog_new (GtkWindow *parent,
         subtitle_str = _editor_path_collapse (g_file_peek_path (directory));
 
       row = adw_action_row_new ();
-      box = g_object_new (GTK_TYPE_BOX,
-                          "orientation", GTK_ORIENTATION_VERTICAL,
-                          "spacing", 3,
-                          "valign", GTK_ALIGN_CENTER,
-                          NULL);
-      title = g_object_new (GTK_TYPE_LABEL,
-                            "halign", GTK_ALIGN_START,
-                            "label", title_str,
-                            NULL);
-      subtitle = g_object_new (GTK_TYPE_LABEL,
-                               "halign", GTK_ALIGN_START,
-                               "label", subtitle_str,
-                               "attributes", smaller,
-                               NULL);
       check = g_object_new (GTK_TYPE_CHECK_BUTTON,
                             "active", TRUE,
                             NULL);
 
       gtk_accessible_update_property (GTK_ACCESSIBLE (check), GTK_ACCESSIBLE_PROPERTY_LABEL, _("Save changes for this document"), -1);
-      gtk_box_append (GTK_BOX (box), title);
-      gtk_box_append (GTK_BOX (box), subtitle);
+      adw_preferences_row_set_title (ADW_PREFERENCES_ROW (row), title_str);
+      adw_action_row_set_subtitle (ADW_ACTION_ROW (row), subtitle_str);
       adw_action_row_add_prefix (ADW_ACTION_ROW (row), check);
-      adw_action_row_add_suffix (ADW_ACTION_ROW (row), box);
       adw_action_row_set_activatable_widget (ADW_ACTION_ROW (row), check);
       adw_preferences_group_add (ADW_PREFERENCES_GROUP (group), row);
 
