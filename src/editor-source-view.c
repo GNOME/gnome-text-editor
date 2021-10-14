@@ -343,6 +343,42 @@ editor_source_view_action_zoom (GtkWidget  *widget,
 }
 
 static void
+editor_source_view_action_select_line (GtkWidget  *widget,
+                                       const char *action_name,
+                                       GVariant   *param)
+{
+  EditorSourceView *self = (EditorSourceView *)widget;
+  GtkTextBuffer *buffer;
+  GtkTextIter begin, end;
+
+  g_assert (EDITOR_IS_SOURCE_VIEW (self));
+
+  buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (self));
+  gtk_text_buffer_get_selection_bounds (buffer, &begin, &end);
+  gtk_text_iter_order (&begin, &end);
+
+  /* Move beginning of selection/cursor to position 0 of first */
+  if (!gtk_text_iter_starts_line (&begin))
+    gtk_text_iter_set_line_offset (&begin, 0);
+
+  /* Move end of selection/cursor to end of line */
+  if (!gtk_text_iter_ends_line (&end))
+    gtk_text_iter_forward_to_line_end (&end);
+
+  /* Swallow the \n with the selection */
+  if (!gtk_text_iter_is_end (&end))
+    gtk_text_iter_forward_char (&end);
+
+  gtk_text_buffer_select_range (buffer, &begin, &end);
+
+  /* NOTE: This shouldn't be needed, but due to some invalidation issues in
+   *       the line display cache, seems to improve chances we get proper
+   *       invalidation lines within cache.
+   */
+  gtk_widget_queue_draw (widget);
+}
+
+static void
 editor_source_view_constructed (GObject *object)
 {
   EditorSourceView *self = (EditorSourceView *)object;
@@ -428,12 +464,14 @@ editor_source_view_class_init (EditorSourceViewClass *klass)
   gtk_widget_class_install_action (widget_class, "spelling.add", NULL, editor_source_view_action_spelling_add);
   gtk_widget_class_install_action (widget_class, "spelling.ignore", NULL, editor_source_view_action_spelling_ignore);
   gtk_widget_class_install_action (widget_class, "spelling.correct", "s", editor_source_view_action_spelling_correct);
+  gtk_widget_class_install_action (widget_class, "buffer.select-line", NULL, editor_source_view_action_select_line);
 
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_plus, GDK_CONTROL_MASK, "page.zoom-in", NULL);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_KP_Add, GDK_CONTROL_MASK, "page.zoom-in", NULL);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_minus, GDK_CONTROL_MASK, "page.zoom-out", NULL);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_KP_Subtract, GDK_CONTROL_MASK, "page.zoom-out", NULL);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_0, GDK_CONTROL_MASK, "page.zoom-one", NULL);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_l, GDK_CONTROL_MASK, "buffer.select-line", NULL);
 
   gtk_widget_class_add_binding_signal (widget_class,
                                        GDK_KEY_d, GDK_CONTROL_MASK,
