@@ -307,16 +307,26 @@ editor_text_buffer_spell_adapter_invalidate_all (EditorTextBufferSpellAdapter *s
 
   g_assert (EDITOR_IS_TEXT_BUFFER_SPELL_ADAPTER (self));
 
-  length = _cjh_text_region_get_length (self->region);
+  if (!self->enabled)
+    return;
 
-  if (length > 0)
+  /* We remove using the known length from the region */
+  if ((length = _cjh_text_region_get_length (self->region)) > 0)
     {
-      _cjh_text_region_replace (self->region, 0, length - 1, RUN_UNCHECKED);
+      _cjh_text_region_remove (self->region, 0, length - 1);
       editor_text_buffer_spell_adapter_queue_update (self);
     }
 
+  /* We add using the length from the buffer because if we were not
+   * enabled previously, the textregion would be empty.
+   */
   gtk_text_buffer_get_bounds (self->buffer, &begin, &end);
-  gtk_text_buffer_remove_tag (self->buffer, self->tag, &begin, &end);
+  if (!gtk_text_iter_equal (&begin, &end))
+    {
+      length = gtk_text_iter_get_offset (&end) - gtk_text_iter_get_offset (&begin);
+      _cjh_text_region_insert (self->region, 0, length, RUN_UNCHECKED);
+      gtk_text_buffer_remove_tag (self->buffer, self->tag, &begin, &end);
+    }
 }
 
 static void
@@ -364,6 +374,9 @@ invalidate_tag_region_cb (EditorTextBufferSpellAdapter *self,
   g_assert (EDITOR_IS_TEXT_BUFFER_SPELL_ADAPTER (self));
   g_assert (GTK_IS_TEXT_TAG (tag));
   g_assert (GTK_IS_TEXT_BUFFER (buffer));
+
+  if (!self->enabled)
+    return;
 
   if (tag == self->no_spell_check_tag)
     {
@@ -451,6 +464,8 @@ editor_text_buffer_spell_adapter_set_enabled (EditorTextBufferSpellAdapter *self
         }
 
       editor_text_buffer_spell_adapter_invalidate_all (self);
+      editor_text_buffer_spell_adapter_queue_update (self);
+
       g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_ENABLED]);
     }
 }
@@ -665,7 +680,8 @@ editor_text_buffer_spell_adapter_before_insert_text (EditorTextBufferSpellAdapte
                                                      guint                         offset,
                                                      guint                         length)
 {
-  _cjh_text_region_insert (self->region, offset, length, RUN_UNCHECKED);
+  if (self->enabled)
+    _cjh_text_region_insert (self->region, offset, length, RUN_UNCHECKED);
 }
 
 
@@ -683,7 +699,8 @@ editor_text_buffer_spell_adapter_before_delete_range (EditorTextBufferSpellAdapt
                                                       guint                         offset,
                                                       guint                         length)
 {
-  _cjh_text_region_remove (self->region, offset, length);
+  if (self->enabled)
+    _cjh_text_region_remove (self->region, offset, length);
 }
 
 void
@@ -728,6 +745,9 @@ editor_text_buffer_spell_adapter_cursor_moved (EditorTextBufferSpellAdapter *sel
 {
   g_return_if_fail (EDITOR_IS_TEXT_BUFFER_SPELL_ADAPTER (self));
   g_return_if_fail (self->buffer != NULL);
+
+  if (!self->enabled)
+    return;
 
   self->incoming_cursor_position = position;
   g_clear_handle_id (&self->queued_cursor_moved, g_source_remove);
