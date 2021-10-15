@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues\n"
-"POT-Creation-Date: 2021-10-11 21:23+0000\n"
-"PO-Revision-Date: 2021-10-12 09:12+0300\n"
+"POT-Creation-Date: 2021-10-14 22:20+0000\n"
+"PO-Revision-Date: 2021-10-15 17:24+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -152,7 +152,7 @@ msgstr "Перенесення тексту"
 msgid "If text should be wrapped."
 msgstr "Чи слід переносити рядки тексту."
 
-#: data/org.gnome.TextEditor.gschema.xml:76 src/editor-window.ui:234
+#: data/org.gnome.TextEditor.gschema.xml:76 src/editor-window.ui:235
 msgid "Use System Font"
 msgstr "Використовувати системний шрифт"
 
@@ -160,7 +160,7 @@ msgstr "Використовувати системний шрифт"
 msgid "If the default system monospace font should be used."
 msgstr "Чи слід типово використовувати загальносистемний моноширинний шрифт."
 
-#: data/org.gnome.TextEditor.gschema.xml:81 src/editor-window.ui:240
+#: data/org.gnome.TextEditor.gschema.xml:81 src/editor-window.ui:241
 msgid "Custom Font"
 msgstr "Нетиповий шрифт"
 
@@ -229,7 +229,7 @@ msgstr "Сайт «Текстового редактора»"
 msgid "Do not restore session at startup"
 msgstr "Не відновлювати сеанс після запуску"
 
-#: src/editor-document.c:1715
+#: src/editor-document.c:1697
 msgid "[Read-Only]"
 msgstr "[Лише читання]"
 
@@ -320,11 +320,11 @@ msgstr "Скасувати"
 msgid "Ln %u, Col %u"
 msgstr "Рд %u, Поз %u"
 
-#: src/editor-page.ui:96
+#: src/editor-page.ui:98
 msgid "Go to Line"
 msgstr "Перейти до рядка"
 
-#: src/editor-page.ui:114
+#: src/editor-page.ui:116
 msgid "Go"
 msgstr "Перейти"
 
@@ -343,12 +343,10 @@ msgid "Select Font"
 msgstr "Виберіть шрифт"
 
 #: src/editor-save-changes-dialog.c:257
-#| msgid "Discard"
 msgid "_Discard"
 msgstr "_Відкинути"
 
 #: src/editor-save-changes-dialog.c:257
-#| msgid "Discard All"
 msgid "_Discard All"
 msgstr "Від_кинути усе"
 
@@ -372,17 +370,17 @@ msgstr "_Скасувати"
 msgid "_Save"
 msgstr "З_берегти"
 
-#: src/editor-save-changes-dialog.c:299
+#: src/editor-save-changes-dialog.c:296
 msgid "Untitled Document"
 msgstr "Документ без назви"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:302
+#: src/editor-save-changes-dialog.c:299
 #, c-format
 msgid "%s (new)"
 msgstr "%s (новий)"
 
-#: src/editor-save-changes-dialog.c:337
+#: src/editor-save-changes-dialog.c:320
 msgid "Save changes for this document"
 msgstr "Зберегти зміни у цьому документі"
 
@@ -597,43 +595,43 @@ msgstr ""
 "\n"
 "або натисніть комбінацію Ctrl+W, щоб закрити вікно."
 
-#: src/editor-window.ui:196
+#: src/editor-window.ui:197
 msgid "Preferences"
 msgstr "Налаштування"
 
-#: src/editor-window.ui:218
+#: src/editor-window.ui:219
 msgid "Behavior"
 msgstr "Поведінка"
 
-#: src/editor-window.ui:222
+#: src/editor-window.ui:223
 msgid "Restore Session"
 msgstr "Відновлювати сеанс"
 
-#: src/editor-window.ui:230
+#: src/editor-window.ui:231
 msgid "Font"
 msgstr "Шрифт"
 
-#: src/editor-window.ui:249
+#: src/editor-window.ui:250
 msgid "Right Margin"
 msgstr "Правий відступ"
 
-#: src/editor-window.ui:253
+#: src/editor-window.ui:254
 msgid "Margin Position"
 msgstr "Розташування поля"
 
-#: src/editor-window.ui:261
+#: src/editor-window.ui:262
 msgid "Appearance"
 msgstr "Вигляд"
 
-#: src/editor-window.ui:265
+#: src/editor-window.ui:266
 msgid "Display Grid Pattern"
 msgstr "Показувати ґратку"
 
-#: src/editor-window.ui:271
+#: src/editor-window.ui:272
 msgid "Highlight Current Line"
 msgstr "Підсвічувати поточний рядок"
 
-#: src/editor-window.ui:277
+#: src/editor-window.ui:278
 msgid "Display Overview Map"
 msgstr "Показувати оглядову мапу"
 
@@ -836,72 +834,79 @@ msgctxt "shortcut window"
 msgid "Unselect all"
 msgstr "Зняти позначення з усього"
 
-#: src/help-overlay.ui:232
+#: src/help-overlay.ui:231
+#| msgctxt "shortcut window"
+#| msgid "Delete the current line"
+msgctxt "shortcut window"
+msgid "Select current line"
+msgstr "Позначити поточний рядок"
+
+#: src/help-overlay.ui:238
 msgctxt "shortcut window"
 msgid "Movements"
 msgstr "Рухи"
 
-#: src/help-overlay.ui:236
+#: src/help-overlay.ui:242
 msgctxt "shortcut window"
 msgid "Move to beginning of document"
 msgstr "Перейти на початок документа"
 
-#: src/help-overlay.ui:242
+#: src/help-overlay.ui:248
 msgctxt "shortcut window"
 msgid "Move to end of document"
 msgstr "Перейти в кінець документа"
 
-#: src/help-overlay.ui:248
+#: src/help-overlay.ui:254
 msgctxt "shortcut window"
 msgid "Move to start of previous paragraph"
 msgstr "Перейти до початку попереднього абзацу"
 
-#: src/help-overlay.ui:254
+#: src/help-overlay.ui:260
 msgctxt "shortcut window"
 msgid "Move to end of next paragraph"
 msgstr "Перейти до кінця наступного абзацу"
 
-#: src/help-overlay.ui:260
+#: src/help-overlay.ui:266
 msgctxt "shortcut window"
 msgid "Move current or selected lines up"
 msgstr "Пересунути поточний або позначені рядки вище"
 
-#: src/help-overlay.ui:266
+#: src/help-overlay.ui:272
 msgctxt "shortcut window"
 msgid "Move current or selected lines down"
 msgstr "Пересунути поточний або позначені рядки нижче"
 
-#: src/help-overlay.ui:272
+#: src/help-overlay.ui:278
 msgctxt "shortcut window"
 msgid "Go to line"
 msgstr "Перейти до рядка"
 
-#: src/help-overlay.ui:279
+#: src/help-overlay.ui:285
 msgctxt "shortcut window"
 msgid "Deletion"
 msgstr "Вилучення"
 
-#: src/help-overlay.ui:283
+#: src/help-overlay.ui:289
 msgctxt "shortcut window"
 msgid "Delete from cursor to word start"
 msgstr "Вилучити текст від курсора до початку слова"
 
-#: src/help-overlay.ui:289
+#: src/help-overlay.ui:295
 msgctxt "shortcut window"
 msgid "Delete from cursor to word end"
 msgstr "Вилучити текст від курсора до кінця слова"
 
-#: src/help-overlay.ui:295
+#: src/help-overlay.ui:301
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph start"
 msgstr "Вилучити текст від курсора до початку абзацу"
 
-#: src/help-overlay.ui:301
+#: src/help-overlay.ui:307
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph end"
 msgstr "Вилучити текст від курсора до кінця абзацу"
 
-#: src/help-overlay.ui:307
+#: src/help-overlay.ui:313
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "Вилучити поточний рядок"
