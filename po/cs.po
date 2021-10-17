@@ -1,15 +1,16 @@
 # Czech translation for gnome-text-editor.
 # Copyright (C) 2021 gnome-text-editor's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-text-editor package.
+#
 # Marek Černocký <marek@manet.cz>, 2021.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-text-editor master\n"
+"Project-Id-Version: gnome-text-editor gnome-41\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2021-09-04 14:13+0000\n"
-"PO-Revision-Date: 2021-09-07 16:04+0200\n"
+"POT-Creation-Date: 2021-09-28 07:55+0000\n"
+"PO-Revision-Date: 2021-10-17 16:55+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -24,8 +25,8 @@ msgid "Christian Hergert, et al."
 msgstr "Christian Hergert a kol."
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
-#: data/org.gnome.TextEditor.desktop.in.in:7
-#: data/org.gnome.TextEditor.desktop.in.in:8
+#: data/org.gnome.TextEditor.desktop.in.in:10
+#: data/org.gnome.TextEditor.desktop.in.in:11
 #: src/editor-application-actions.c:80 src/editor-application-actions.c:82
 msgid "Text Editor"
 msgstr "Textový editor"
@@ -42,7 +43,7 @@ msgstr ""
 "Textový Editor GNOME je jednoduchý editor pro úpravy textu, který se snaží "
 "být uživatelsky přívětivý již ve výchozím stavu."
 
-#: data/org.gnome.TextEditor.desktop.in.in:9
+#: data/org.gnome.TextEditor.desktop.in.in:12
 msgid "View and edit text files"
 msgstr "Prohlížet a upravovat textové soubory"
 
@@ -143,7 +144,7 @@ msgstr "Zalamovat text"
 msgid "If text should be wrapped."
 msgstr "Zda se má text zalamovat."
 
-#: data/org.gnome.TextEditor.gschema.xml:71 src/editor-window.ui:212
+#: data/org.gnome.TextEditor.gschema.xml:71 src/editor-window.ui:221
 msgid "Use System Font"
 msgstr "Používat systémový font"
 
@@ -151,7 +152,7 @@ msgstr "Používat systémový font"
 msgid "If the default system monospace font should be used."
 msgstr "Zda by se měl používat systémový font s pevnou šířkou."
 
-#: data/org.gnome.TextEditor.gschema.xml:76 src/editor-window.ui:218
+#: data/org.gnome.TextEditor.gschema.xml:76 src/editor-window.ui:227
 msgid "Custom Font"
 msgstr "Vlastní font"
 
@@ -201,7 +202,7 @@ msgstr "Selhalo vyhledání vlastnosti %s v objektu %s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Selhalo získání hodnoty va_list: %s"
 
-#: src/editor-application.c:239
+#: src/editor-application.c:256
 msgid "Do not restore session at startup"
 msgstr "Po spuštění neobnovovat sezení"
 
@@ -265,7 +266,7 @@ msgstr "Nedávné dokumenty"
 msgid "No Recent Documents"
 msgstr "Žádné nedávné dokumenty"
 
-#: src/editor-open-popover.ui:87
+#: src/editor-open-popover.ui:88
 msgid "Br_owse Files…"
 msgstr "_Procházet soubory…"
 
@@ -352,51 +353,55 @@ msgstr "Dokument bez názvu"
 msgid "%s (new)"
 msgstr "%s (nový)"
 
+#: src/editor-save-changes-dialog.c:335
+msgid "Save changes for this document"
+msgstr "Uložit změny v tomto dokumentu"
+
 #: src/editor-search-bar.ui:14
 msgid "Search"
 msgstr "hledat"
 
-#: src/editor-search-bar.ui:33
+#: src/editor-search-bar.ui:34
 msgid "Replace"
 msgstr "nahradit"
 
-#: src/editor-search-bar.ui:50
+#: src/editor-search-bar.ui:51
 msgid "Move to previous match (Ctrl+Shift+G)"
 msgstr "Přejít na předchozí výskyt (Ctrl+Shift+G)"
 
-#: src/editor-search-bar.ui:57
+#: src/editor-search-bar.ui:58
 msgid "Move to next match (Ctrl+G)"
 msgstr "Následující výskyt (Ctrl+G)"
 
-#: src/editor-search-bar.ui:69
+#: src/editor-search-bar.ui:70
 msgid "Search & Replace (Ctrl+H)"
 msgstr "Hledat a nahrazovat (Ctrl+H)"
 
-#: src/editor-search-bar.ui:79
+#: src/editor-search-bar.ui:80
 msgid "Toggle search options"
 msgstr "Přepnout volby hledání"
 
-#: src/editor-search-bar.ui:93
+#: src/editor-search-bar.ui:94
 msgid "Close search"
 msgstr "Zavřít hledání"
 
-#: src/editor-search-bar.ui:110
+#: src/editor-search-bar.ui:111
 msgid "_Replace"
 msgstr "Nah_radit"
 
-#: src/editor-search-bar.ui:122
+#: src/editor-search-bar.ui:123
 msgid "Replace _All"
 msgstr "Nahradit _vše"
 
-#: src/editor-search-bar.ui:139
+#: src/editor-search-bar.ui:140
 msgid "Re_gular expressions"
 msgstr "Re_gulární výraz"
 
-#: src/editor-search-bar.ui:145
+#: src/editor-search-bar.ui:146
 msgid "_Case sensitive"
 msgstr "Rozlišovat veli_kost písmen"
 
-#: src/editor-search-bar.ui:151
+#: src/editor-search-bar.ui:152
 msgid "Match whole _word only"
 msgstr "Pouze celá slo_va"
 
@@ -424,11 +429,11 @@ msgstr "Ignorovat"
 msgid "Check Spelling"
 msgstr "Kontrolovat pravopis"
 
-#: src/editor-theme-selector.ui:18
+#: src/editor-theme-selector.ui:18 src/editor-theme-selector.ui:20
 msgid "Light style"
 msgstr "Světlý styl"
 
-#: src/editor-theme-selector.ui:31
+#: src/editor-theme-selector.ui:34 src/editor-theme-selector.ui:36
 msgid "Dark style"
 msgstr "Tmavý styl"
 
@@ -524,19 +529,23 @@ msgstr "_Otevřít"
 msgid "Open recent document (Ctrl+K)"
 msgstr "Otevřít nedávný dokument (Ctrl+K)"
 
-#: src/editor-window.ui:75
+#: src/editor-window.ui:75 src/editor-window.ui:77
 msgid "New tab (Ctrl+T)"
 msgstr "Nová karta (Ctrl+T)"
 
-#: src/editor-window.ui:100
+#: src/editor-window.ui:103 src/editor-window.ui:106
 msgid "View"
 msgstr "Zobrazit"
 
-#: src/editor-window.ui:142
+#: src/editor-window.ui:114
+msgid "Menu"
+msgstr "Nabídka"
+
+#: src/editor-window.ui:151
 msgid "Start or Open a Document"
 msgstr "Začít nebo otevřít dokument"
 
-#: src/editor-window.ui:145
+#: src/editor-window.ui:154
 msgid ""
 "• Press the Open button\n"
 "• Press the New tab button\n"
@@ -552,35 +561,35 @@ msgstr ""
 "\n"
 "Nebo zmáčknutím Ctrl+W zavřete okno."
 
-#: src/editor-window.ui:186
+#: src/editor-window.ui:195
 msgid "Preferences"
 msgstr "Předvolby"
 
-#: src/editor-window.ui:208
+#: src/editor-window.ui:217
 msgid "Font"
 msgstr "Font"
 
-#: src/editor-window.ui:227
+#: src/editor-window.ui:236
 msgid "Right Margin"
 msgstr "Pravý okraj"
 
-#: src/editor-window.ui:231
+#: src/editor-window.ui:240
 msgid "Margin Position"
 msgstr "Pozice okraje"
 
-#: src/editor-window.ui:239
+#: src/editor-window.ui:248
 msgid "Appearance"
 msgstr "Vzhled"
 
-#: src/editor-window.ui:243
+#: src/editor-window.ui:252
 msgid "Display Grid Pattern"
 msgstr "Zobrazovat na pozadí mřížku"
 
-#: src/editor-window.ui:249
+#: src/editor-window.ui:258
 msgid "Highlight Current Line"
 msgstr "Zvýrazňovat aktuální řádek"
 
-#: src/editor-window.ui:255
+#: src/editor-window.ui:264
 msgid "Display Overview Map"
 msgstr "Zobrazovat přehledovou mapu"
 
