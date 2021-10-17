@@ -86,11 +86,10 @@ age_to_string (GBinding     *binding,
                GValue       *to_value,
                gpointer      user_data)
 {
-  EditorSidebarRow *self = user_data;
   GDateTime *dt;
 
   g_assert (G_IS_BINDING (binding));
-  g_assert (EDITOR_IS_SIDEBAR_ROW (self));
+  g_assert (EDITOR_IS_SIDEBAR_ROW (user_data));
 
   if ((dt = g_value_get_boxed (from_value)))
     g_value_take_string (to_value,

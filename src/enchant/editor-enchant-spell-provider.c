@@ -97,9 +97,7 @@ static gboolean
 editor_enchant_spell_provider_supports_language (EditorSpellProvider *provider,
                                                  const char          *language)
 {
-  EditorEnchantSpellProvider *self = (EditorEnchantSpellProvider *)provider;
-
-  g_assert (EDITOR_IS_ENCHANT_SPELL_PROVIDER (self));
+  g_assert (EDITOR_IS_ENCHANT_SPELL_PROVIDER (provider));
   g_assert (language != NULL);
 
   return enchant_broker_dict_exists (get_broker (), language);
