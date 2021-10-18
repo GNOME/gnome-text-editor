@@ -81,7 +81,7 @@ editor_source_view_update_css (EditorSourceView *self)
 
       font_css = _editor_font_description_to_css (font_desc);
       g_string_append (str, font_css);
-      g_string_append (str, "\nline-height:150%;\n");
+      g_string_append (str, "\nline-height:1.5;\n");
     }
   g_string_append (str, "}\n");
 
