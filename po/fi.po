@@ -8,24 +8,24 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2021-09-19 23:08+0000\n"
-"PO-Revision-Date: 2021-09-20 15:16+0300\n"
+"POT-Creation-Date: 2021-10-14 22:20+0000\n"
+"PO-Revision-Date: 2021-10-18 20:04+0300\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: Finnish <lokalisointi-lista@googlegroups.com>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "X-Generator: Poedit 3.0\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
 msgid "Christian Hergert, et al."
-msgstr ""
+msgstr "Christian Hergert ja muut"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
-#: data/org.gnome.TextEditor.desktop.in.in:10
-#: data/org.gnome.TextEditor.desktop.in.in:11
+#: data/org.gnome.TextEditor.desktop.in.in:7
+#: data/org.gnome.TextEditor.desktop.in.in:8
 #: src/editor-application-actions.c:80 src/editor-application-actions.c:82
 msgid "Text Editor"
 msgstr "Tekstimuokkain"
@@ -42,7 +42,7 @@ msgstr ""
 "Gnomen Tekstimuokkain on yksinkertainen sovellus tekstiasiakirjojen "
 "muokkaamiseen, joka tähtää miellyttävään oletuskokemukseen."
 
-#: data/org.gnome.TextEditor.desktop.in.in:12
+#: data/org.gnome.TextEditor.desktop.in.in:9
 msgid "View and edit text files"
 msgstr "Katsele ja muokkaa tekstitiedostoja"
 
@@ -73,43 +73,51 @@ msgid "If the editor should insert multiple spaces characters instead of tabs."
 msgstr ""
 
 #: data/org.gnome.TextEditor.gschema.xml:30
-msgid "Tab Width"
-msgstr "Sarkaimen leveys"
+msgid "Auto Indent"
+msgstr "Automaattinen sisennys"
 
 #: data/org.gnome.TextEditor.gschema.xml:31
-msgid "The number of spaces represented by a tab."
+msgid "Automatically indent new lines copying the previous line's indentation."
 msgstr ""
 
 #: data/org.gnome.TextEditor.gschema.xml:35
+msgid "Tab Width"
+msgstr "Sarkaimen leveys"
+
+#: data/org.gnome.TextEditor.gschema.xml:36
+msgid "The number of spaces represented by a tab."
+msgstr "Välilyöntejä per sarkain."
+
+#: data/org.gnome.TextEditor.gschema.xml:40
 msgid "Show Line Numbers"
 msgstr "Näytä rivinumerot"
 
-#: data/org.gnome.TextEditor.gschema.xml:36
+#: data/org.gnome.TextEditor.gschema.xml:41
 msgid "If line numbers should be displayed next to each line."
-msgstr ""
+msgstr "Näytetäänkö rivinumerot rivien vieressä."
 
-#: data/org.gnome.TextEditor.gschema.xml:40
+#: data/org.gnome.TextEditor.gschema.xml:45
 msgid "Show Right Margin"
 msgstr "Näytä oikea reunus"
 
-#: data/org.gnome.TextEditor.gschema.xml:41
+#: data/org.gnome.TextEditor.gschema.xml:46
 msgid "If a margin line should be displayed on the right of the editor."
 msgstr "Näytetäänkö reunuslinja muokkaimen oikeassa laidassa."
 
-#: data/org.gnome.TextEditor.gschema.xml:46
+#: data/org.gnome.TextEditor.gschema.xml:51
 msgid "Right Margin Position"
 msgstr "Oikean reunuksen sijainti"
 
-#: data/org.gnome.TextEditor.gschema.xml:47
+#: data/org.gnome.TextEditor.gschema.xml:52
 msgid ""
 "The position in characters at which the right margin should be displayed."
 msgstr ""
 
-#: data/org.gnome.TextEditor.gschema.xml:51
+#: data/org.gnome.TextEditor.gschema.xml:56
 msgid "Show Overview Map"
 msgstr "Näytä asiakirjakartta"
 
-#: data/org.gnome.TextEditor.gschema.xml:52
+#: data/org.gnome.TextEditor.gschema.xml:57
 msgid ""
 "If enabled, an overview map of the file will be displayed to the side of the "
 "editor."
@@ -117,73 +125,82 @@ msgstr ""
 "Jos käytössä, asiakirjan sisällön esittävä kartta näytetään muokkaimen "
 "reunassa."
 
-#: data/org.gnome.TextEditor.gschema.xml:56
+#: data/org.gnome.TextEditor.gschema.xml:61
 msgid "Show Background Grid"
 msgstr "Näytä taustaruudukko"
 
-#: data/org.gnome.TextEditor.gschema.xml:57
+#: data/org.gnome.TextEditor.gschema.xml:62
 msgid "If enabled, a blueprint style grid is printed on the editor background."
 msgstr "Jos käytössä, ruudukko asetetaan muokkaimen taustalle."
 
-#: data/org.gnome.TextEditor.gschema.xml:61
+#: data/org.gnome.TextEditor.gschema.xml:66
 msgid "Highlight current line"
 msgstr "Korosta nykyinen rivi"
 
-#: data/org.gnome.TextEditor.gschema.xml:62
+#: data/org.gnome.TextEditor.gschema.xml:67
 msgid "If enabled, the current line will be highlighted."
 msgstr "Jos käytössä, nykyinen rivi korostetaan."
 
-#: data/org.gnome.TextEditor.gschema.xml:66
+#: data/org.gnome.TextEditor.gschema.xml:71
 msgid "Text Wrapping"
 msgstr "Tekstin rivitys"
 
-#: data/org.gnome.TextEditor.gschema.xml:67
+#: data/org.gnome.TextEditor.gschema.xml:72
 msgid "If text should be wrapped."
 msgstr "Rivitetäänkö teksti vai ei."
 
-#: data/org.gnome.TextEditor.gschema.xml:71 src/editor-window.ui:212
+#: data/org.gnome.TextEditor.gschema.xml:76 src/editor-window.ui:235
 msgid "Use System Font"
 msgstr "Käytä järjestelmän fonttia"
 
-#: data/org.gnome.TextEditor.gschema.xml:72
+#: data/org.gnome.TextEditor.gschema.xml:77
 msgid "If the default system monospace font should be used."
 msgstr "Käytetäänkö järjestelmän oletusarvoista tasalevyistä fonttia."
 
-#: data/org.gnome.TextEditor.gschema.xml:76 src/editor-window.ui:218
+#: data/org.gnome.TextEditor.gschema.xml:81 src/editor-window.ui:241
 msgid "Custom Font"
 msgstr "Mukautettu fontti"
 
-#: data/org.gnome.TextEditor.gschema.xml:77
+#: data/org.gnome.TextEditor.gschema.xml:82
 msgid "A custom font to use in the editor."
 msgstr "Muokkaimessa käytettävä omavalintainen fontti."
 
-#: data/org.gnome.TextEditor.gschema.xml:81
+#: data/org.gnome.TextEditor.gschema.xml:86
 msgid "Style Scheme"
 msgstr "Tyyliskeema"
 
-#: data/org.gnome.TextEditor.gschema.xml:82
+#: data/org.gnome.TextEditor.gschema.xml:87
 msgid ""
 "The style scheme to use by the editor. It may translate this into a dark "
 "format when available."
 msgstr ""
 
-#: data/org.gnome.TextEditor.gschema.xml:86
+#: data/org.gnome.TextEditor.gschema.xml:91
 msgid "Discover File Settings"
 msgstr ""
 
-#: data/org.gnome.TextEditor.gschema.xml:87
+#: data/org.gnome.TextEditor.gschema.xml:92
 msgid ""
 "If enabled then Text Editor will try to discover file settings from "
 "modelines, editorconfig, or per-language defaults."
 msgstr ""
 
-#: data/org.gnome.TextEditor.gschema.xml:91
+#: data/org.gnome.TextEditor.gschema.xml:96
 msgid "Automatically check spelling"
 msgstr "Oikolue automaattisesti"
 
-#: data/org.gnome.TextEditor.gschema.xml:92
+#: data/org.gnome.TextEditor.gschema.xml:97
 msgid "If enabled, then Text Editor will check spelling as you type."
 msgstr ""
+"Jos käytössä, tekstimuokkain tarkistaa kirjoittaessa oikeinkirjoituksen."
+
+#: data/org.gnome.TextEditor.gschema.xml:101
+msgid "Restore session"
+msgstr "Palauta istunto"
+
+#: data/org.gnome.TextEditor.gschema.xml:102
+msgid "When Text Editor is run, restore the previous session."
+msgstr "Kun tekstimuokkain käynnistetään, palauta edellinen istunto."
 
 #: src/editor-animation.c:1051
 #, c-format
@@ -195,15 +212,15 @@ msgstr ""
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Ei saatu va_list-arvoa: %s"
 
-#: src/editor-application.c:256
-msgid "Do not restore session at startup"
-msgstr "Älä palauta istuntoa käynnistyksen yhteydessä"
-
 #: src/editor-application-actions.c:98
 msgid "Text Editor Website"
 msgstr "Tekstimuokkaimen verkkosivusto"
 
-#: src/editor-document.c:1715
+#: src/editor-application.c:258
+msgid "Do not restore session at startup"
+msgstr "Älä palauta istuntoa käynnistyksen yhteydessä"
+
+#: src/editor-document.c:1697
 msgid "[Read-Only]"
 msgstr "[Vain luku]"
 
@@ -255,44 +272,52 @@ msgstr "Korostustila"
 msgid "Recent Documents"
 msgstr "Viimeisimmät asiakirjat"
 
-#: src/editor-open-popover.ui:44
+#: src/editor-open-popover.ui:45
 msgid "No Recent Documents"
 msgstr "Ei viimeisimpiä asiakirjoja"
 
-#: src/editor-open-popover.ui:87
+#: src/editor-open-popover.ui:89
 msgid "Br_owse Files…"
 msgstr "_Selaa tiedostoja…"
 
-#: src/editor-page.c:704 src/editor-sidebar-item.c:440
+#: src/editor-page.c:766 src/editor-sidebar-item.c:440
 msgid "New Document"
 msgstr "Uusi asiakirja"
 
-#: src/editor-page.c:721 src/editor-sidebar-item.c:459
+#: src/editor-page.c:783 src/editor-sidebar-item.c:459
 #: src/editor-sidebar-item.c:465
 msgid "Draft"
 msgstr "Luonnos"
 
-#: src/editor-page.c:775
+#: src/editor-page.c:837
 msgid "Failed to save document"
 msgstr "Asiakirjan tallentaminen epäonnistui"
 
-#: src/editor-page.c:843
+#: src/editor-page.c:905
 msgid "Save As"
 msgstr "Tallenna nimellä"
 
-#: src/editor-page.c:846 src/editor-window-actions.c:128
+#: src/editor-page.c:908 src/editor-window-actions.c:131
 msgid "Save"
 msgstr "Tallenna"
 
-#: src/editor-page.c:847 src/editor-window-actions.c:127
-#: src/editor-window-actions.c:238 src/editor-window-actions.c:347
+#: src/editor-page.c:909 src/editor-window-actions.c:130
+#: src/editor-window-actions.c:241 src/editor-window-actions.c:350
 msgid "Cancel"
 msgstr "Peru"
 
-#: src/editor-page.c:965
+#: src/editor-page.c:1027
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Rv %u, sar %u"
+
+#: src/editor-page.ui:98
+msgid "Go to Line"
+msgstr "Siirry riville"
+
+#: src/editor-page.ui:116
+msgid "Go"
+msgstr "Siirry"
 
 #. translators: Ln is short for "Line Number"
 #: src/editor-position-label.ui:12
@@ -308,19 +333,19 @@ msgstr "Sar"
 msgid "Select Font"
 msgstr "Valitse fontti"
 
-#: src/editor-save-changes-dialog.c:255 src/editor-window-actions.c:239
-msgid "Discard"
-msgstr "Hylkää"
+#: src/editor-save-changes-dialog.c:257
+msgid "_Discard"
+msgstr "_Hylkää"
 
-#: src/editor-save-changes-dialog.c:255
-msgid "Discard All"
-msgstr "Hylkää kaikki"
+#: src/editor-save-changes-dialog.c:257
+msgid "_Discard All"
+msgstr "Hylkää _kaikki"
 
-#: src/editor-save-changes-dialog.c:261
+#: src/editor-save-changes-dialog.c:263
 msgid "Save Changes?"
 msgstr "Tallennetaanko muutokset?"
 
-#: src/editor-save-changes-dialog.c:263
+#: src/editor-save-changes-dialog.c:265
 msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
@@ -328,75 +353,77 @@ msgstr ""
 "Avoinna olevat asiakirjat sisältävät tallentamattomia muutoksia. "
 "Tallentamattomat muutokset häviävät pysyvästi."
 
-#: src/editor-save-changes-dialog.c:265
+#: src/editor-save-changes-dialog.c:267
 msgid "_Cancel"
 msgstr "_Peru"
 
-#: src/editor-save-changes-dialog.c:267 src/menus.ui:19
+#: src/editor-save-changes-dialog.c:269 src/menus.ui:19
 msgid "_Save"
 msgstr "_Tallenna"
 
-#: src/editor-save-changes-dialog.c:297
+#: src/editor-save-changes-dialog.c:296
 msgid "Untitled Document"
 msgstr "Nimetön asiakirja"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:300
+#: src/editor-save-changes-dialog.c:299
 #, c-format
 msgid "%s (new)"
 msgstr "%s (uusi)"
 
-#: src/editor-save-changes-dialog.c:335
+#: src/editor-save-changes-dialog.c:320
 msgid "Save changes for this document"
 msgstr "Tallenna muutokset tähän asiakirjaan"
-
-#: src/editor-search-bar.ui:14
-msgid "Search"
-msgstr "Etsi"
 
 #: src/editor-search-bar.ui:33
 msgid "Replace"
 msgstr "Korvaa"
 
-#: src/editor-search-bar.ui:50
+#: src/editor-search-bar.ui:51
 msgid "Move to previous match (Ctrl+Shift+G)"
 msgstr "Siirry edelliseen osumaan (Ctrl+Shift+G)"
 
-#: src/editor-search-bar.ui:57
+#: src/editor-search-bar.ui:59
 msgid "Move to next match (Ctrl+G)"
 msgstr "Siirry seuraavaan osumaan (Ctrl+G)"
 
-#: src/editor-search-bar.ui:69
+#: src/editor-search-bar.ui:71
 msgid "Search & Replace (Ctrl+H)"
 msgstr "Etsi ja korvaa (Ctrl+H)"
 
-#: src/editor-search-bar.ui:79
+#: src/editor-search-bar.ui:81
 msgid "Toggle search options"
 msgstr "Näytä/piilota hakuvalinnat"
 
-#: src/editor-search-bar.ui:93
+#: src/editor-search-bar.ui:95
 msgid "Close search"
 msgstr "Sulje haku"
 
-#: src/editor-search-bar.ui:110
+#: src/editor-search-bar.ui:112
 msgid "_Replace"
 msgstr "K_orvaa"
 
-#: src/editor-search-bar.ui:122
+#: src/editor-search-bar.ui:124
 msgid "Replace _All"
 msgstr "Korvaa _kaikki"
 
-#: src/editor-search-bar.ui:139
+#: src/editor-search-bar.ui:141
 msgid "Re_gular expressions"
 msgstr "S_äännölliset lausekkeet"
 
-#: src/editor-search-bar.ui:145
+#: src/editor-search-bar.ui:147
 msgid "_Case sensitive"
 msgstr "_Huomioi kirjainkoko"
 
-#: src/editor-search-bar.ui:151
+#: src/editor-search-bar.ui:153
 msgid "Match whole _word only"
 msgstr "Täsmää vain kokonaisiin sanoi_hin"
+
+#. translators: the first %u is replaced with the current position, the second with the number of search results
+#: src/editor-search-entry.c:197
+#, c-format
+msgid "%u of %u"
+msgstr "%u/%u"
 
 #: src/editor-sidebar.ui:32
 msgid "Search documents (Ctrl+K)"
@@ -422,11 +449,11 @@ msgstr "Ohita"
 msgid "Check Spelling"
 msgstr "Oikolue"
 
-#: src/editor-theme-selector.ui:18
+#: src/editor-theme-selector.ui:18 src/editor-theme-selector.ui:20
 msgid "Light style"
 msgstr "Vaalea tyyli"
 
-#: src/editor-theme-selector.ui:31
+#: src/editor-theme-selector.ui:34 src/editor-theme-selector.ui:36
 msgid "Dark style"
 msgstr "Tumma tyyli"
 
@@ -478,38 +505,42 @@ msgid "Line Ending:"
 msgstr "Rivinloppu:"
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:123
+#: src/editor-window-actions.c:126
 #, c-format
 msgid "Save Changes to “%s”?"
 msgstr "Tallennetaanko muutokset asiakirjaan “%s”?"
 
-#: src/editor-window-actions.c:126
+#: src/editor-window-actions.c:129
 msgid "Saving changes will replace the previously saved version."
 msgstr "Muutosten tallentaminen korvaa aiemmin tallennetun version."
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:234
+#: src/editor-window-actions.c:237
 #, c-format
 msgid "Discard Changes to “%s”?"
 msgstr "Hylätäänkö muutokset asiakirjaan “%s”?"
 
-#: src/editor-window-actions.c:237
+#: src/editor-window-actions.c:240
 msgid "Unsaved changes will be permanently lost."
 msgstr "Tallentamattomat muutokset katoavat pysyvästi."
 
-#: src/editor-window-actions.c:343
+#: src/editor-window-actions.c:242
+msgid "Discard"
+msgstr "Hylkää"
+
+#: src/editor-window-actions.c:346
 msgid "Open File"
 msgstr "Avaa tiedosto"
 
-#: src/editor-window-actions.c:346
+#: src/editor-window-actions.c:349
 msgid "Open"
 msgstr "Avaa"
 
-#: src/editor-window-actions.c:360
+#: src/editor-window-actions.c:363
 msgid "All Files"
 msgstr "Kaikki tiedostot"
 
-#: src/editor-window-actions.c:365
+#: src/editor-window-actions.c:368
 msgid "Text Files"
 msgstr "Tekstitiedostot"
 
@@ -521,19 +552,23 @@ msgstr "_Avaa"
 msgid "Open recent document (Ctrl+K)"
 msgstr "Avaa viimeaikainen asiakirja (Ctrl+K)"
 
-#: src/editor-window.ui:75
+#: src/editor-window.ui:75 src/editor-window.ui:77
 msgid "New tab (Ctrl+T)"
 msgstr "Uusi välilehti (Ctrl+T)"
 
-#: src/editor-window.ui:100
+#: src/editor-window.ui:103 src/editor-window.ui:106
 msgid "View"
 msgstr "Näytä"
 
-#: src/editor-window.ui:142
+#: src/editor-window.ui:114
+msgid "Menu"
+msgstr "Valikko"
+
+#: src/editor-window.ui:160
 msgid "Start or Open a Document"
 msgstr "Aloita tai avaa asiakirja"
 
-#: src/editor-window.ui:145
+#: src/editor-window.ui:163
 msgid ""
 "• Press the Open button\n"
 "• Press the New tab button\n"
@@ -549,35 +584,43 @@ msgstr ""
 "\n"
 "Tai paina Ctrl+W sulkeaksesi ikkunan."
 
-#: src/editor-window.ui:186
+#: src/editor-window.ui:197
 msgid "Preferences"
 msgstr "Asetukset"
 
-#: src/editor-window.ui:208
+#: src/editor-window.ui:219
+msgid "Behavior"
+msgstr "Toiminta"
+
+#: src/editor-window.ui:223
+msgid "Restore Session"
+msgstr "Palauta istunto"
+
+#: src/editor-window.ui:231
 msgid "Font"
 msgstr "Fontti"
 
-#: src/editor-window.ui:227
+#: src/editor-window.ui:250
 msgid "Right Margin"
 msgstr "Oikea reunus"
 
-#: src/editor-window.ui:231
+#: src/editor-window.ui:254
 msgid "Margin Position"
 msgstr "Reunuksen sijainti"
 
-#: src/editor-window.ui:239
+#: src/editor-window.ui:262
 msgid "Appearance"
 msgstr "Ulkoasu"
 
-#: src/editor-window.ui:243
+#: src/editor-window.ui:266
 msgid "Display Grid Pattern"
 msgstr "Näytä ruudukko"
 
-#: src/editor-window.ui:249
+#: src/editor-window.ui:272
 msgid "Highlight Current Line"
 msgstr "Korosta nykyinen rivi"
 
-#: src/editor-window.ui:255
+#: src/editor-window.ui:278
 msgid "Display Overview Map"
 msgstr "Näytä asiakirjakartta"
 
@@ -780,65 +823,80 @@ msgctxt "shortcut window"
 msgid "Unselect all"
 msgstr "Älä valitse mitään"
 
-#: src/help-overlay.ui:232
+#: src/help-overlay.ui:231
+msgctxt "shortcut window"
+msgid "Select current line"
+msgstr "Valitse nykyinen rivi"
+
+#: src/help-overlay.ui:238
 msgctxt "shortcut window"
 msgid "Movements"
 msgstr "Siirtyminen"
 
-#: src/help-overlay.ui:236
+#: src/help-overlay.ui:242
 msgctxt "shortcut window"
 msgid "Move to beginning of document"
 msgstr "Siirry asiakirjan alkuun"
 
-#: src/help-overlay.ui:242
+#: src/help-overlay.ui:248
 msgctxt "shortcut window"
 msgid "Move to end of document"
 msgstr "Siirry asiakirjan loppuun"
 
-#: src/help-overlay.ui:248
+#: src/help-overlay.ui:254
 msgctxt "shortcut window"
 msgid "Move to start of previous paragraph"
 msgstr "Siirry edellisen kappaleen alkuun"
 
-#: src/help-overlay.ui:254
+#: src/help-overlay.ui:260
 msgctxt "shortcut window"
 msgid "Move to end of next paragraph"
 msgstr "Siirry edellisen kappaleen loppuun"
 
-#: src/help-overlay.ui:260
+#: src/help-overlay.ui:266
 msgctxt "shortcut window"
 msgid "Move current or selected lines up"
 msgstr "Siirrä nykyinen tai valitut rivit ylös"
 
-#: src/help-overlay.ui:266
+#: src/help-overlay.ui:272
 msgctxt "shortcut window"
 msgid "Move current or selected lines down"
 msgstr "Siirrä nykyinen tai valitut rivit alas"
 
-#: src/help-overlay.ui:273
+#: src/help-overlay.ui:278
+msgctxt "shortcut window"
+msgid "Go to line"
+msgstr "Siirry riville"
+
+#: src/help-overlay.ui:285
 msgctxt "shortcut window"
 msgid "Deletion"
 msgstr "Poistaminen"
 
-#: src/help-overlay.ui:277
+#: src/help-overlay.ui:289
 msgctxt "shortcut window"
 msgid "Delete from cursor to word start"
 msgstr "Poista kursorista sanan alkuun"
 
-#: src/help-overlay.ui:283
+#: src/help-overlay.ui:295
 msgctxt "shortcut window"
 msgid "Delete from cursor to word end"
 msgstr "Poista kursorista sanan loppuun"
 
-#: src/help-overlay.ui:289
+#: src/help-overlay.ui:301
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph start"
 msgstr "Poista kursorista kappaleen alkuun"
 
-#: src/help-overlay.ui:295
+#: src/help-overlay.ui:307
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph end"
 msgstr "Poista kursorista kappaleen loppuun"
+
+#: src/help-overlay.ui:313
+msgctxt "shortcut window"
+msgid "Delete the current line"
+msgstr "Poista nykyinen rivi"
 
 #: src/menus.ui:11
 msgid "_New Window"
@@ -893,65 +951,72 @@ msgid "Indentation"
 msgstr "Sisennys"
 
 #: src/menus.ui:90
+msgid "_Automatic Indentation"
+msgstr "_Automaattinen sisennys"
+
+#: src/menus.ui:94
 msgid "_Tabs"
 msgstr "_Sarkaimet"
 
-#: src/menus.ui:95
+#: src/menus.ui:99
 msgid "_Spaces"
 msgstr "_Välilyönnit"
 
-#: src/menus.ui:100
+#: src/menus.ui:104
 msgid "Spaces _Per Tab"
 msgstr "Välil_yöntejä per sarkain"
 
-#: src/menus.ui:103
+#: src/menus.ui:107
 msgid "_2"
 msgstr "_2"
 
-#: src/menus.ui:108
+#: src/menus.ui:112
 msgid "_4"
 msgstr "_4"
 
-#: src/menus.ui:113
+#: src/menus.ui:117
 msgid "_6"
 msgstr "_6"
 
-#: src/menus.ui:118
+#: src/menus.ui:122
 msgid "_8"
 msgstr "_8"
 
-#: src/menus.ui:127
+#: src/menus.ui:131
 msgid "T_ext Wrapping"
 msgstr "Tekstin _rivistys"
 
-#: src/menus.ui:131
+#: src/menus.ui:135
 msgid "_Automatic Margin Position"
 msgstr "_Automaattinen reunuksen sijainti"
 
-#: src/menus.ui:135
+#: src/menus.ui:139
 msgid "Chec_k Spelling"
 msgstr "Tarkista _kielioppi"
 
-#: src/menus.ui:139
+#: src/menus.ui:143
 msgid "_Highlight Mode"
 msgstr "Ko_rostustila"
 
-#: src/menus.ui:147
+#: src/menus.ui:151
 msgid "Move _Left"
 msgstr "Siirrä _vasemmalle"
 
-#: src/menus.ui:152
+#: src/menus.ui:156
 msgid "Move _Right"
 msgstr "Siirrä _oikealle"
 
-#: src/menus.ui:159
+#: src/menus.ui:163
 msgid "_Move to New Window"
 msgstr "_Siirrä uuteen ikkunaan"
 
-#: src/menus.ui:166
+#: src/menus.ui:170
 msgid "Close _Other Tabs"
 msgstr "Sulje _muut välilehdet"
 
-#: src/menus.ui:170
+#: src/menus.ui:174
 msgid "_Close"
 msgstr "_Sulje"
+
+#~ msgid "Search"
+#~ msgstr "Etsi"
