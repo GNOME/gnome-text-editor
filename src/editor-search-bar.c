@@ -732,9 +732,13 @@ _editor_search_bar_replace (EditorSearchBar *self)
   gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER (buffer), &begin, &end);
 
   if (!gtk_source_search_context_replace (self->context, &begin, &end, replace, -1, &error))
-    g_warning ("Failed to replace match: %s", error->message);
-  else
-    gtk_text_buffer_select_range (GTK_TEXT_BUFFER (buffer), &begin, &begin);
+    {
+      g_warning ("Failed to replace match: %s", error->message);
+      return;
+    }
+
+  gtk_text_buffer_select_range (GTK_TEXT_BUFFER (buffer), &end, &end);
+  _editor_search_bar_move_next (self, FALSE);
 }
 
 void
