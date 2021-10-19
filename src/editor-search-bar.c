@@ -34,7 +34,6 @@ struct _EditorSearchBar
 
   GtkSourceSearchContext  *context;
   GtkSourceSearchSettings *settings;
-  GCancellable            *cancellable;
 
   GtkGrid                 *grid;
   EditorSearchEntry       *search_entry;
@@ -181,7 +180,7 @@ _editor_search_bar_move_next (EditorSearchBar *self,
 
   gtk_source_search_context_forward_async (self->context,
                                            &end,
-                                           self->cancellable,
+                                           NULL,
                                            editor_search_bar_move_next_forward_cb,
                                            g_object_ref (self));
 }
@@ -208,7 +207,7 @@ _editor_search_bar_move_previous (EditorSearchBar *self,
 
   gtk_source_search_context_backward_async (self->context,
                                             &begin,
-                                            self->cancellable,
+                                            NULL,
                                             /* XXX: fixme */
                                             editor_search_bar_move_next_forward_cb,
                                             g_object_ref (self));
@@ -354,7 +353,6 @@ editor_search_bar_finalize (GObject *object)
 {
   EditorSearchBar *self = (EditorSearchBar *)object;
 
-  g_clear_object (&self->cancellable);
   g_clear_object (&self->context);
   g_clear_object (&self->settings);
 
@@ -638,7 +636,6 @@ _editor_search_bar_attach (EditorSearchBar *self,
       gtk_editable_set_text (GTK_EDITABLE (self->search_entry), text);
     }
 
-  self->cancellable = g_cancellable_new ();
   self->context = gtk_source_search_context_new (GTK_SOURCE_BUFFER (document), self->settings);
 
   g_signal_connect_object (self->context,
@@ -676,9 +673,6 @@ _editor_search_bar_detach (EditorSearchBar *self)
 
       g_clear_object (&self->context);
     }
-
-  g_cancellable_cancel (self->cancellable);
-  g_clear_object (&self->cancellable);
 
   self->hide_after_move = FALSE;
   self->jump_back_on_hide = FALSE;
