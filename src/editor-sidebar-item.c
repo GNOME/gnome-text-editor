@@ -242,7 +242,7 @@ editor_sidebar_item_get_property (GObject    *object,
   switch (prop_id)
     {
     case PROP_AGE:
-      g_value_set_boxed (value, _editor_sidebar_item_get_age (self));
+      g_value_take_boxed (value, _editor_sidebar_item_get_age (self));
       break;
 
     case PROP_DRAFT_ID:
