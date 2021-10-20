@@ -229,6 +229,7 @@ editor_sidebar_model_page_removed_cb (EditorSidebarModel *self,
   g_autoptr(EditorSidebarItem) item = NULL;
   g_autofree gchar *title = NULL;
   EditorDocument *document;
+  GSequenceIter *iter;
   const gchar *draft_id;
   gboolean is_modified;
   GFile *file;
@@ -253,9 +254,55 @@ editor_sidebar_model_page_removed_cb (EditorSidebarModel *self,
   _editor_sidebar_item_set_draft_id (item, draft_id);
   _editor_sidebar_item_set_age (item, g_get_real_time ());
 
-  g_sequence_prepend (self->seq, g_steal_pointer (&item));
+  iter = g_sequence_insert_sorted (self->seq,
+                                   g_steal_pointer (&item),
+                                   (GCompareDataFunc)_editor_sidebar_item_compare,
+                                   NULL);
 
-  g_list_model_items_changed (G_LIST_MODEL (self), 0, 0, 1);
+  g_list_model_items_changed (G_LIST_MODEL (self),
+                              g_sequence_iter_get_position (iter),
+                              0, 1);
+}
+
+static void
+on_notify_age_cb (EditorSidebarModel *self,
+                  GParamSpec         *pspec,
+                  EditorSidebarItem  *item)
+{
+  g_autoptr(GDateTime) dt = NULL;
+  GSequenceIter *iter;
+  GFile *file;
+  guint old_position;
+  guint new_position;
+
+  g_assert (EDITOR_IS_SIDEBAR_MODEL (self));
+  g_assert (EDITOR_IS_SIDEBAR_ITEM (item));
+
+  g_signal_handlers_disconnect_by_func (item, G_CALLBACK (on_notify_age_cb), self);
+
+  /* Ignore if we didn't discover a mtime */
+  dt = _editor_sidebar_item_get_age (item);
+  if (dt == NULL)
+    return;
+
+  file = _editor_sidebar_item_get_file (item);
+
+  /* Ignore if we already removed this item */
+  iter = find_by_file (self, file);
+  if (iter == NULL)
+    return;
+
+  /* Remove the iter so we can place it somewhere new */
+  old_position = g_sequence_iter_get_position (iter);
+  g_object_ref (item);
+  g_sequence_remove (iter);
+  g_list_model_items_changed (G_LIST_MODEL (self), old_position, 1, 0);
+  iter = g_sequence_insert_sorted (self->seq,
+                                   item,
+                                   (GCompareDataFunc)_editor_sidebar_item_compare,
+                                   NULL);
+  new_position = g_sequence_iter_get_position (iter);
+  g_list_model_items_changed (G_LIST_MODEL (self), new_position, 0, 1);
 }
 
 static void
@@ -267,8 +314,6 @@ editor_sidebar_model_load_recent_cb (GObject      *object,
   g_autoptr(EditorSidebarModel) self = user_data;
   g_autoptr(GPtrArray) files = NULL;
   g_autoptr(GError) error = NULL;
-  guint position;
-  guint count = 0;
 
   g_assert (EDITOR_IS_SESSION (session));
   g_assert (G_IS_ASYNC_RESULT (result));
@@ -283,8 +328,6 @@ editor_sidebar_model_load_recent_cb (GObject      *object,
 
   g_ptr_array_set_free_func (files, g_object_unref);
 
-  position = g_sequence_get_length (self->seq);
-
   for (guint i = 0; i < files->len; i++)
     {
       GFile *file = g_ptr_array_index (files, i);
@@ -295,13 +338,28 @@ editor_sidebar_model_load_recent_cb (GObject      *object,
 
       if (!find_by_file (self, file))
         {
-          g_sequence_append (self->seq, _editor_sidebar_item_new (file, NULL));
-          count++;
+          EditorSidebarItem *item;
+          GSequenceIter *iter;
+          guint position;
+
+          item = _editor_sidebar_item_new (file, NULL);
+
+          /* We need to update the position after we have an age */
+          g_signal_connect_object (item,
+                                   "notify::age",
+                                   G_CALLBACK (on_notify_age_cb),
+                                   self,
+                                   G_CONNECT_SWAPPED);
+
+          iter = g_sequence_insert_sorted (self->seq,
+                                           item,
+                                           (GCompareDataFunc)_editor_sidebar_item_compare,
+                                           NULL);
+          position = g_sequence_iter_get_position (iter);
+
+          g_list_model_items_changed (G_LIST_MODEL (self), position, 0, 1);
         }
     }
-
-  if (count > 0)
-    g_list_model_items_changed (G_LIST_MODEL (self), position, 0, count);
 }
 
 static void
@@ -359,13 +417,35 @@ editor_sidebar_model_constructed (GObject *object)
       if (iter == NULL)
         {
           g_autoptr(EditorSidebarItem) item = _editor_sidebar_item_new (file, NULL);
-          guint position = g_sequence_get_length (self->seq);
+          g_autoptr(GFileInfo) info = NULL;
+          guint position;
 
           _editor_sidebar_item_set_title (item, draft->title);
           _editor_sidebar_item_set_is_modified (item, TRUE, TRUE);
           _editor_sidebar_item_set_draft_id (item, draft->draft_id);
 
-          g_sequence_append (self->seq, g_steal_pointer (&item));
+          /* For drafts, we're very likely on storage with cached, directory
+           * information. Just query the mtime so we can get a reasonable
+           * sort order on the draft.
+           */
+          if ((info = g_file_query_info (file,
+                                         G_FILE_ATTRIBUTE_TIME_MODIFIED,
+                                         G_FILE_QUERY_INFO_NONE,
+                                         NULL,
+                                         NULL)))
+            {
+              g_autoptr(GDateTime) dt = g_file_info_get_modification_date_time (info);
+
+              if (dt != NULL)
+                _editor_sidebar_item_set_age (item, g_date_time_to_unix (dt));
+            }
+
+          iter = g_sequence_insert_sorted (self->seq,
+                                           g_steal_pointer (&item),
+                                           (GCompareDataFunc)_editor_sidebar_item_compare,
+                                           NULL);
+          position = g_sequence_iter_get_position (iter);
+
           g_list_model_items_changed (G_LIST_MODEL (self), position, 0, 1);
         }
     }
