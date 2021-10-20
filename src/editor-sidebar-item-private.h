@@ -54,5 +54,7 @@ void               _editor_sidebar_item_open            (EditorSidebarItem *self
                                                          EditorWindow      *window);
 gboolean           _editor_sidebar_item_matches         (EditorSidebarItem *self,
                                                          GPatternSpec      *spec);
+int                _editor_sidebar_item_compare         (EditorSidebarItem *a,
+                                                         EditorSidebarItem *b);
 
 G_END_DECLS

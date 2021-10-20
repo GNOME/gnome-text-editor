@@ -582,3 +582,20 @@ _editor_sidebar_item_get_age (EditorSidebarItem *self)
 
   return NULL;
 }
+
+int
+_editor_sidebar_item_compare (EditorSidebarItem *a,
+                              EditorSidebarItem *b)
+{
+  g_return_val_if_fail (EDITOR_IS_SIDEBAR_ITEM (a), 0);
+  g_return_val_if_fail (EDITOR_IS_SIDEBAR_ITEM (b), 0);
+
+  /* More recent sorts first (larger numeric value) */
+
+  if (a->age < b->age)
+    return 1;
+  else if (a->age > b->age)
+    return -1;
+  else
+    return 0;
+}
