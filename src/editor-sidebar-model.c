@@ -338,18 +338,21 @@ editor_sidebar_model_load_recent_cb (GObject      *object,
 
       if (!find_by_file (self, file))
         {
+          g_autoptr(GDateTime) age = NULL;
           EditorSidebarItem *item;
           GSequenceIter *iter;
           guint position;
 
           item = _editor_sidebar_item_new (file, NULL);
+          age = _editor_sidebar_item_get_age (item);
 
           /* We need to update the position after we have an age */
-          g_signal_connect_object (item,
-                                   "notify::age",
-                                   G_CALLBACK (on_notify_age_cb),
-                                   self,
-                                   G_CONNECT_SWAPPED);
+          if (age == NULL)
+            g_signal_connect_object (item,
+                                     "notify::age",
+                                     G_CALLBACK (on_notify_age_cb),
+                                     self,
+                                     G_CONNECT_SWAPPED);
 
           iter = g_sequence_insert_sorted (self->seq,
                                            item,

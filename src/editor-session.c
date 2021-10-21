@@ -1833,10 +1833,12 @@ editor_session_load_recent_worker (GTask        *task,
   files = g_ptr_array_new_with_free_func (g_object_unref);
   uris = g_bookmark_file_get_uris (bookmarks, &len);
 
+
   for (gsize i = 0; i < len; i++)
     {
       const gchar *uri = uris[i];
       g_autoptr(GFile) file = g_file_new_for_uri (uri);
+      GDateTime *age = g_bookmark_file_get_visited_date_time (bookmarks, uri, NULL);
 
       if (g_file_is_native (file))
         {
@@ -1847,6 +1849,15 @@ editor_session_load_recent_worker (GTask        *task,
               continue;
             }
         }
+
+      /* Track the age on the GFile without having to create a
+       * new intermediate structure.
+       */
+      if (age != NULL)
+        g_object_set_data_full (G_OBJECT (file),
+                                "AGE",
+                                g_date_time_ref (age),
+                                (GDestroyNotify)g_date_time_unref);
 
       g_ptr_array_add (files, g_steal_pointer (&file));
     }

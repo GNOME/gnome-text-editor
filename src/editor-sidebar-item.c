@@ -120,16 +120,22 @@ editor_sidebar_item_set_file (EditorSidebarItem *self,
   if (g_set_object (&self->file, file))
     {
       editor_sidebar_item_do_notify (self);
-      if (!file || !g_file_is_native (file))
-        return;
 
-      g_file_query_info_async (file,
-                               G_FILE_ATTRIBUTE_TIME_MODIFIED,
-                               G_FILE_QUERY_INFO_NONE,
-                               G_PRIORITY_LOW + 100,
-                               NULL,
-                               editor_sidebar_item_query_info_cb,
-                               g_object_ref (self));
+      if (file != NULL && g_file_is_native (file))
+        {
+          GDateTime *age = g_object_get_data (G_OBJECT (file), "AGE");
+
+          if (age != NULL)
+            self->age = g_date_time_to_unix (age);
+          else
+            g_file_query_info_async (file,
+                                     G_FILE_ATTRIBUTE_TIME_MODIFIED,
+                                     G_FILE_QUERY_INFO_NONE,
+                                     G_PRIORITY_LOW + 100,
+                                     NULL,
+                                     editor_sidebar_item_query_info_cb,
+                                     g_object_ref (self));
+        }
     }
 }
 
