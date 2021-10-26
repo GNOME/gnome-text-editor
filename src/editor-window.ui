@@ -150,6 +150,7 @@
                         <property name="hexpand">true</property>
                         <property name="vexpand">true</property>
                         <signal name="close-page" handler="on_tab_view_close_page_cb" swapped="true"/>
+                        <signal name="setup-menu" handler="on_tab_view_setup_menu_cb" swapped="true"/>
                       </object>
                     </child>
                   </object>

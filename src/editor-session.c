@@ -2018,23 +2018,24 @@ _editor_session_remove_draft (EditorSession *self,
 
 void
 _editor_session_move_page_to_window (EditorSession *self,
-                                     EditorPage    *page,
+                                     EditorPage    *epage,
                                      EditorWindow  *window)
 {
   EditorWindow *old_window;
 
   g_return_if_fail (EDITOR_IS_SESSION (self));
-  g_return_if_fail (EDITOR_IS_PAGE (page));
+  g_return_if_fail (EDITOR_IS_PAGE (epage));
   g_return_if_fail (EDITOR_IS_WINDOW (window));
 
-  old_window = _editor_page_get_window (page);
+  old_window = _editor_page_get_window (epage);
 
   if (window != old_window)
     {
-      g_object_ref (page);
-      _editor_window_remove_page (old_window, page);
-      _editor_window_add_page (window, page);
-      g_object_unref (page);
+      AdwTabPage *page = adw_tab_view_get_page (old_window->tab_view, GTK_WIDGET (epage));
+
+      _editor_page_begin_move (epage);
+      adw_tab_view_transfer_page (old_window->tab_view, page, window->tab_view, 0);
+      _editor_page_end_move (epage);
     }
 }
 

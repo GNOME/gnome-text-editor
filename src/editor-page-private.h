@@ -59,6 +59,7 @@ struct _EditorPage
   GtkInfoBar              *infobar;
 
   guint                    close_requested : 1;
+  guint                    moving : 1;
 };
 
 void          _editor_page_class_actions_init     (EditorPageClass      *klass);
@@ -89,5 +90,7 @@ void          _editor_page_move_next_search       (EditorPage           *self,
                                                    gboolean              hide_after_search);
 void          _editor_page_move_previous_search   (EditorPage           *self,
                                                    gboolean              hide_after_search);
+void          _editor_page_begin_move             (EditorPage           *self);
+void          _editor_page_end_move               (EditorPage           *self);
 
 G_END_DECLS

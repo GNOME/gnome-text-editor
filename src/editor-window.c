@@ -306,6 +306,7 @@ editor_window_constructed (GObject *object)
   GtkPopover *popover;
   GMenu *options_menu;
   GMenu *primary_menu;
+  GMenu *tab_menu;
 
   g_assert (EDITOR_IS_WINDOW (self));
 
@@ -313,6 +314,9 @@ editor_window_constructed (GObject *object)
 
   app = GTK_APPLICATION (EDITOR_APPLICATION_DEFAULT);
   session = editor_application_get_session (EDITOR_APPLICATION_DEFAULT);
+
+  tab_menu = gtk_application_get_menu_by_id (app, "tab-menu");
+  adw_tab_view_set_menu_model (self->tab_view, G_MENU_MODEL (tab_menu));
 
   /* Set the recents list for the open popover */
   g_object_bind_property (session, "recents",
@@ -364,15 +368,17 @@ on_tab_view_close_page_cb (EditorWindow *self,
   if (page != adw_tab_view_get_selected_page (view))
     adw_tab_view_set_selected_page (view, page);
 
-  if ((epage = EDITOR_PAGE (adw_tab_page_get_child (page))))
-    {
-      epage->close_requested = TRUE;
+  epage = EDITOR_PAGE (adw_tab_page_get_child (page));
 
-      if (_editor_window_request_close_page (self, epage))
-        {
-          editor_session_remove_page (EDITOR_SESSION_DEFAULT, epage);
-          return FALSE;
-        }
+  if (epage->moving)
+    return TRUE;
+
+  epage->close_requested = TRUE;
+
+  if (_editor_window_request_close_page (self, epage))
+    {
+      editor_session_remove_page (EDITOR_SESSION_DEFAULT, epage);
+      return FALSE;
     }
 
   return TRUE;
@@ -428,23 +434,80 @@ gboolean
 _editor_window_request_close_page (EditorWindow *self,
                                    EditorPage   *page)
 {
+  GList *list;
+  gboolean ret;
+
   g_return_val_if_fail (EDITOR_IS_WINDOW (self), FALSE);
   g_return_val_if_fail (EDITOR_IS_PAGE (page), FALSE);
 
-  /* If this document has changes, then request the user to save them. */
-  if (editor_page_get_is_modified (page))
+  if (page->moving)
+    return TRUE;
+
+  list = g_list_append (NULL, page);
+  ret = _editor_window_request_close_pages (self, list, FALSE);
+  g_list_free (list);
+
+  return ret;
+}
+
+gboolean
+_editor_window_request_close_pages (EditorWindow *self,
+                                    GList        *pages,
+                                    gboolean      close_saved)
+{
+  g_autoptr(GPtrArray) ar = NULL;
+
+  g_return_val_if_fail (EDITOR_IS_WINDOW (self), FALSE);
+
+  if (pages == NULL)
+    return TRUE;
+
+  ar = g_ptr_array_new_with_free_func (g_object_unref);
+
+  for (const GList *iter = pages; iter; iter = iter->next)
     {
-      g_autoptr(GPtrArray) pages = g_ptr_array_new_with_free_func (g_object_unref);
-      g_ptr_array_add (pages, g_object_ref (page));
-      _editor_save_changes_dialog_run_async (GTK_WINDOW (self),
-                                             pages,
-                                             NULL,
-                                             editor_window_actions_close_page_confirm_cb,
-                                             g_ptr_array_ref (pages));
-      return FALSE;
+      EditorPage *page = iter->data;
+
+      if (editor_page_get_is_modified (page))
+        g_ptr_array_add (ar, g_object_ref (page));
+      else if (close_saved)
+        editor_session_remove_page (EDITOR_SESSION_DEFAULT, page);
     }
 
-  return TRUE;
+  if (ar->len == 0)
+    return TRUE;
+
+  _editor_save_changes_dialog_run_async (GTK_WINDOW (self),
+                                         ar,
+                                         NULL,
+                                         editor_window_actions_close_page_confirm_cb,
+                                         g_ptr_array_ref (ar));
+
+  return FALSE;
+}
+
+static void
+on_tab_view_setup_menu_cb (EditorWindow *self,
+                           AdwTabPage   *page,
+                           AdwTabView   *view)
+{
+  EditorPage *epage;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+  g_assert (!page || ADW_IS_TAB_PAGE (page));
+  g_assert (ADW_IS_TAB_VIEW (view));
+
+  if (page == NULL)
+    return;
+
+  /* If the tab is not the current page, change to it so that
+   * win/page actions apply to the proper page.
+   */
+
+  epage = EDITOR_PAGE (adw_tab_page_get_child (page));
+
+  if (epage != self->visible_page)
+    editor_window_set_visible_page (self, epage);
 }
 
 static void
@@ -574,6 +637,7 @@ editor_window_class_init (EditorWindowClass *klass)
 
   gtk_widget_class_bind_template_callback (widget_class, on_tab_view_close_page_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_notify_reveal_flap_cb);
+  gtk_widget_class_bind_template_callback (widget_class, on_tab_view_setup_menu_cb);
 
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_w, GDK_CONTROL_MASK, "win.close-page-or-window", NULL);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_o, GDK_CONTROL_MASK, "win.open", NULL);

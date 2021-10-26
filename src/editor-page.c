@@ -1285,3 +1285,21 @@ editor_page_grab_focus (EditorPage *self)
   _editor_page_raise (self);
   gtk_widget_grab_focus (GTK_WIDGET (self->view));
 }
+
+void
+_editor_page_begin_move (EditorPage *self)
+{
+  g_return_if_fail (!self->moving);
+
+  g_object_ref (self);
+  self->moving = TRUE;
+}
+
+void
+_editor_page_end_move (EditorPage *self)
+{
+  g_return_if_fail (self->moving);
+
+  self->moving = FALSE;
+  g_object_unref (self);
+}

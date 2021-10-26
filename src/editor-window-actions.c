@@ -539,6 +539,24 @@ editor_window_actions_hide_preferences_cb (GtkWidget  *widget,
   adw_flap_set_reveal_flap (self->flap, FALSE);
 }
 
+static void
+editor_window_actions_close_other_pages_cb (GtkWidget  *widget,
+                                            const char *action_name,
+                                            GVariant   *param)
+{
+  EditorWindow *self = (EditorWindow *)widget;
+  EditorPage *current_page;
+  GList *pages;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+
+  current_page = editor_window_get_visible_page (self);
+  pages = _editor_window_get_pages (self);
+  pages = g_list_remove (pages, current_page);
+  _editor_window_request_close_pages (self, pages, TRUE);
+  g_list_free (pages);
+}
+
 void
 _editor_window_class_actions_init (EditorWindowClass *klass)
 {
@@ -556,6 +574,10 @@ _editor_window_class_actions_init (EditorWindowClass *klass)
                                    "win.close-page-or-window",
                                    NULL,
                                    editor_window_actions_close_page_cb);
+  gtk_widget_class_install_action (widget_class,
+                                   "win.close-other-pages",
+                                   NULL,
+                                   editor_window_actions_close_other_pages_cb);
   gtk_widget_class_install_action (widget_class,
                                    "win.open",
                                    NULL,
@@ -699,6 +721,7 @@ _editor_window_actions_update (EditorWindow *self,
     }
 
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "win.close-current-page", has_page);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "win.close-other-pages", has_page);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.change-language", has_page);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.discard-changes", externally_modified || (modified && !draft));
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.print", has_page);

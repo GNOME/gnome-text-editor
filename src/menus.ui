@@ -149,30 +149,30 @@
     <section>
       <item>
         <attribute name="label" translatable="yes">Move _Left</attribute>
-        <attribute name="action">tab.move-left</attribute>
+        <attribute name="action">page.move-left</attribute>
         <attribute name="accel">&lt;control&gt;&lt;shift&gt;&lt;alt&gt;Page_Up</attribute>
       </item>
       <item>
         <attribute name="label" translatable="yes">Move _Right</attribute>
-        <attribute name="action">tab.move-right</attribute>
+        <attribute name="action">page.move-right</attribute>
         <attribute name="accel">&lt;control&gt;&lt;shift&gt;&lt;alt&gt;Page_Down</attribute>
       </item>
     </section>
     <section>
       <item>
         <attribute name="label" translatable="yes">_Move to New Window</attribute>
-        <attribute name="action">tab.move-to-new-window</attribute>
+        <attribute name="action">page.move-to-new-window</attribute>
         <attribute name="accel">&lt;control&gt;&lt;shift&gt;n</attribute>
       </item>
     </section>
     <section>
       <item>
         <attribute name="label" translatable="yes">Close _Other Tabs</attribute>
-        <attribute name="action">tab.close-other-tabs</attribute>
+        <attribute name="action">win.close-other-pages</attribute>
       </item>
       <item>
         <attribute name="label" translatable="yes">_Close</attribute>
-        <attribute name="action">tab.close</attribute>
+        <attribute name="action">win.close-current-page</attribute>
         <attribute name="accel">&lt;control&gt;w</attribute>
       </item>
     </section>

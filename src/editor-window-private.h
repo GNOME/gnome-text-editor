@@ -79,5 +79,8 @@ void          _editor_window_remove_page          (EditorWindow      *self,
 void          _editor_window_focus_search         (EditorWindow      *self);
 gboolean      _editor_window_request_close_page   (EditorWindow      *self,
                                                    EditorPage        *page);
+gboolean      _editor_window_request_close_pages  (EditorWindow      *self,
+                                                   GList             *pages,
+                                                   gboolean           close_saved);
 
 G_END_DECLS
