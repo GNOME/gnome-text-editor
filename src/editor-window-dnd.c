@@ -25,59 +25,42 @@
 #include "editor-session.h"
 #include "editor-window-private.h"
 
-#if 0
-static void
-editor_window_dnd_drag_data_received_cb (EditorWindow     *self,
-                                         GdkDragContext   *context,
-                                         gint              x,
-                                         gint              y,
-                                         GtkSelectionData *data,
-                                         guint             info,
-                                         guint             time_,
-                                         GtkWidget        *widget)
+static gboolean
+editor_window_drop_target_drop (EditorWindow  *self,
+                                const GValue  *value,
+                                gdouble        x,
+                                gdouble        y,
+                                GtkDropTarget *dest)
 {
-  g_auto(GStrv) uris = NULL;
-
   g_assert (EDITOR_IS_WINDOW (self));
-  g_assert (GDK_IS_DRAG_CONTEXT (context));
-  g_assert (GTK_IS_WIDGET (widget));
+  g_assert (GTK_IS_DROP_TARGET (dest));
 
-  if (!(uris = gtk_selection_data_get_uris (data)) || uris[0] == NULL)
-    return;
-
-  for (guint i = 0; uris[i] != NULL; i++)
+  if (G_VALUE_HOLDS (value, GDK_TYPE_FILE_LIST))
     {
-      g_autoptr(GFile) file = g_file_new_for_uri (uris[i]);
+      EditorSession *session = editor_application_get_session (EDITOR_APPLICATION_DEFAULT);
+      GSList *list = g_value_get_boxed (value);
 
-      if (file != NULL)
-        editor_session_open (EDITOR_SESSION_DEFAULT, self, file, NULL);
+      for (const GSList *iter = list; iter; iter = iter->next)
+        {
+          GFile *file = iter->data;
+          g_assert (G_IS_FILE (file));
+          editor_session_open (session, self, file, NULL);
+        }
     }
 
-  gtk_window_present_with_time (GTK_WINDOW (self), time_);
+  return FALSE;
 }
-#endif
 
 void
 _editor_window_dnd_init (EditorWindow *self)
 {
-#if 0
-  static const GtkTargetEntry target_entries[] = {
-    { (gchar *)"text/uri-list", 0, 0 },
-  };
+  GtkDropTarget *dest;
 
-  gtk_drag_dest_unset (GTK_WIDGET (self->notebook));
-
-  gtk_drag_dest_set (GTK_WIDGET (self->paned),
-                     GTK_DEST_DEFAULT_ALL,
-                     target_entries,
-                     G_N_ELEMENTS (target_entries),
-                     GDK_ACTION_COPY);
-
-  g_signal_connect_object (self->paned,
-                           "drag-data-received",
-                           G_CALLBACK (editor_window_dnd_drag_data_received_cb),
+  dest = gtk_drop_target_new (GDK_TYPE_FILE_LIST, GDK_ACTION_COPY);
+  g_signal_connect_object (dest,
+                           "drop",
+                           G_CALLBACK (editor_window_drop_target_drop),
                            self,
                            G_CONNECT_SWAPPED);
-
-#endif
+  gtk_widget_add_controller (GTK_WIDGET (self), GTK_EVENT_CONTROLLER (dest));
 }
