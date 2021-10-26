@@ -349,13 +349,18 @@ editor_page_drop_target_drop (EditorPage     *self,
   g_assert (EDITOR_IS_PAGE (self));
   g_assert (GTK_IS_DROP_TARGET (dest));
 
-  if (G_VALUE_HOLDS (value, G_TYPE_FILE))
+  if (G_VALUE_HOLDS (value, GDK_TYPE_FILE_LIST))
     {
-      GFile *file = g_value_get_object (value);
       EditorSession *session = editor_application_get_session (EDITOR_APPLICATION_DEFAULT);
       EditorWindow *window = EDITOR_WINDOW (gtk_widget_get_root (GTK_WIDGET (self)));
+      GSList *list = g_value_get_boxed (value);
 
-      editor_session_open (session, window, file, NULL);
+      for (const GSList *iter = list; iter; iter = iter->next)
+        {
+          GFile *file = iter->data;
+          g_assert (G_IS_FILE (file));
+          editor_session_open (session, window, file, NULL);
+        }
     }
 
   return FALSE;
@@ -642,7 +647,7 @@ editor_page_init (EditorPage *self)
 
   g_object_bind_property (self, "document", self->infobar, "document", 0);
 
-  dest = gtk_drop_target_new (G_TYPE_FILE, GDK_ACTION_COPY);
+  dest = gtk_drop_target_new (GDK_TYPE_FILE_LIST, GDK_ACTION_COPY);
   g_signal_connect_object (dest,
                            "drop",
                            G_CALLBACK (editor_page_drop_target_drop),
