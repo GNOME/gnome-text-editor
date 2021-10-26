@@ -522,6 +522,23 @@ on_notify_reveal_flap_cb (EditorWindow *self,
     adw_flap_set_locked (flap, TRUE);
 }
 
+static AdwTabView *
+on_tab_view_create_window_cb (EditorWindow *self,
+                              AdwTabView   *tab_view)
+{
+  EditorWindow *window;
+  AdwTabView *ret;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+  g_assert (ADW_IS_TAB_VIEW (tab_view));
+
+  window = _editor_session_create_window_no_draft (EDITOR_SESSION_DEFAULT);
+  ret = window->tab_view;
+  gtk_window_present (GTK_WINDOW (window));
+
+  return ret;
+}
+
 static void
 editor_window_dispose (GObject *object)
 {
@@ -638,6 +655,7 @@ editor_window_class_init (EditorWindowClass *klass)
   gtk_widget_class_bind_template_callback (widget_class, on_tab_view_close_page_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_notify_reveal_flap_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_tab_view_setup_menu_cb);
+  gtk_widget_class_bind_template_callback (widget_class, on_tab_view_create_window_cb);
 
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_w, GDK_CONTROL_MASK, "win.close-page-or-window", NULL);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_o, GDK_CONTROL_MASK, "win.open", NULL);
