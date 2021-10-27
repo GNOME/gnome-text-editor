@@ -42,6 +42,7 @@ gboolean            editor_page_settings_get_show_right_margin             (Edit
 gboolean            editor_page_settings_get_use_system_font               (EditorPageSettings *self);
 gboolean            editor_page_settings_get_wrap_text                     (EditorPageSettings *self);
 guint               editor_page_settings_get_tab_width                     (EditorPageSettings *self);
+int                 editor_page_settings_get_indent_width                  (EditorPageSettings *self);
 gboolean            editor_page_settings_get_highlight_current_line        (EditorPageSettings *self);
 
 G_END_DECLS

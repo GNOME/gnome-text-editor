@@ -45,6 +45,7 @@ struct _EditorPageSettings
 
   guint right_margin_position;
   guint tab_width;
+  int indent_width;
 
   guint highlight_current_line : 1;
   guint insert_spaces_instead_of_tabs : 1;
@@ -64,6 +65,7 @@ enum {
   PROP_STYLE_VARIANT,
   PROP_DOCUMENT,
   PROP_HIGHLIGHT_CURRENT_LINE,
+  PROP_INDENT_WIDTH,
   PROP_INSERT_SPACES_INSTEAD_OF_TABS,
   PROP_RIGHT_MARGIN_POSITION,
   PROP_SHOW_GRID,
@@ -102,6 +104,13 @@ cmp_uint (guint a,
   return a == b;
 }
 
+static inline gboolean
+cmp_int (int a,
+         int b)
+{
+  return a == b;
+}
+
 static void
 editor_page_settings_update (EditorPageSettings *self)
 {
@@ -115,10 +124,11 @@ editor_page_settings_update (EditorPageSettings *self)
         EditorPageSettingsProvider *p = g_ptr_array_index (self->providers, i);       \
         if (editor_page_settings_provider_get_##name (p, &name))                      \
           {                                                                           \
-            if (!cmp (self->name,  name))                                             \
+            if (!cmp (self->name, name))                                              \
               {                                                                       \
                 free_func (self->name);                                               \
                 self->name = dup_func (name);                                         \
+                g_debug ("using %s from %s\n", #name, G_OBJECT_TYPE_NAME (p));        \
                 g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_##NAME]); \
               }                                                                       \
             break;                                                                    \
@@ -136,6 +146,7 @@ editor_page_settings_update (EditorPageSettings *self)
   UPDATE_SETTING (gboolean, wrap_text, WRAP_TEXT, cmp_boolean, (void), (gboolean));
   UPDATE_SETTING (gboolean, auto_indent, AUTO_INDENT, cmp_boolean, (void), (gboolean));
   UPDATE_SETTING (guint, tab_width, TAB_WIDTH, cmp_uint, (void), (guint));
+  UPDATE_SETTING (int, indent_width, INDENT_WIDTH, cmp_int, (void), (int));
   UPDATE_SETTING (guint, right_margin_position, RIGHT_MARGIN_POSITION, cmp_uint, (void), (guint));
   UPDATE_SETTING (g_autofree gchar *, custom_font, CUSTOM_FONT, cmp_string, g_free, g_strdup);
   UPDATE_SETTING (g_autofree gchar *, style_scheme, STYLE_SCHEME, cmp_string, g_free, g_strdup);
@@ -299,6 +310,10 @@ editor_page_settings_get_property (GObject    *object,
       g_value_set_uint (value, editor_page_settings_get_tab_width (self));
       break;
 
+    case PROP_INDENT_WIDTH:
+      g_value_set_int (value, editor_page_settings_get_indent_width (self));
+      break;
+
     case PROP_USE_SYSTEM_FONT:
       g_value_set_boolean (value, editor_page_settings_get_use_system_font (self));
       break;
@@ -375,6 +390,10 @@ editor_page_settings_set_property (GObject      *object,
 
     case PROP_TAB_WIDTH:
       self->tab_width = g_value_get_uint (value);
+      break;
+
+    case PROP_INDENT_WIDTH:
+      self->indent_width = g_value_get_int (value);
       break;
 
     case PROP_USE_SYSTEM_FONT:
@@ -485,6 +504,13 @@ editor_page_settings_class_init (EditorPageSettingsClass *klass)
                        1, 32, 8,
                        (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
+  properties [PROP_INDENT_WIDTH] =
+    g_param_spec_int ("indent-width",
+                      "Indent Width",
+                      "The width to use for indentation, or -1 to use tab width",
+                      -1, 32, -1,
+                      (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+
   properties [PROP_USE_SYSTEM_FONT] =
     g_param_spec_boolean ("use-system-font",
                           "Use System Font",
@@ -517,6 +543,7 @@ editor_page_settings_init (EditorPageSettings *self)
   self->use_system_font = TRUE;
   self->right_margin_position = 80;
   self->tab_width = 8;
+  self->indent_width = -1;
   self->settings = g_settings_new ("org.gnome.TextEditor");
 
   g_signal_connect_object (self->settings,
@@ -636,6 +663,14 @@ editor_page_settings_get_tab_width (EditorPageSettings *self)
   g_return_val_if_fail (EDITOR_IS_PAGE_SETTINGS (self), 0);
 
   return self->tab_width;
+}
+
+int
+editor_page_settings_get_indent_width (EditorPageSettings *self)
+{
+  g_return_val_if_fail (EDITOR_IS_PAGE_SETTINGS (self), -1);
+
+  return self->indent_width;
 }
 
 gboolean

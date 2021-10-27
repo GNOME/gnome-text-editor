@@ -63,6 +63,8 @@ struct _EditorPageSettingsProviderInterface
                                                   gboolean                   *highlight_current_line);
   gboolean  (*get_auto_indent)                   (EditorPageSettingsProvider *self,
                                                   gboolean                   *auto_indent);
+  gboolean  (*get_indent_width)                  (EditorPageSettingsProvider *self,
+                                                  int                        *indent_width);
 };
 
 void     editor_page_settings_provider_emit_changed                      (EditorPageSettingsProvider  *self);
@@ -92,6 +94,8 @@ gboolean editor_page_settings_provider_get_wrap_text                     (Editor
                                                                           gboolean                    *wrap_text);
 gboolean editor_page_settings_provider_get_tab_width                     (EditorPageSettingsProvider  *self,
                                                                           guint                       *tab_width);
+gboolean editor_page_settings_provider_get_indent_width                  (EditorPageSettingsProvider  *self,
+                                                                          int                         *indent_width);
 gboolean editor_page_settings_provider_get_show_map                      (EditorPageSettingsProvider  *self,
                                                                           gboolean                    *show_map);
 gboolean editor_page_settings_provider_get_show_grid                     (EditorPageSettingsProvider  *self,

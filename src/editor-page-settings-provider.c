@@ -301,6 +301,28 @@ editor_page_settings_provider_get_tab_width (EditorPageSettingsProvider *self,
 }
 
 /**
+ * editor_page_settings_provider_get_indent_width:
+ * @self: a #EditorPageSettingsProvider
+ * @indent_width: (out) (optional): the width of indentation
+ *
+ * Returns: %TRUE if @indent_width was set by the provider.
+ */
+gboolean
+editor_page_settings_provider_get_indent_width (EditorPageSettingsProvider *self,
+                                                int                        *indent_width)
+{
+  g_return_val_if_fail (EDITOR_IS_PAGE_SETTINGS_PROVIDER (self), FALSE);
+
+  if (indent_width != NULL)
+    *indent_width = -1;
+
+  if (EDITOR_PAGE_SETTINGS_PROVIDER_GET_IFACE (self)->get_indent_width)
+    return EDITOR_PAGE_SETTINGS_PROVIDER_GET_IFACE (self)->get_indent_width (self, indent_width);
+
+  return FALSE;
+}
+
+/**
  * editor_page_settings_provider_get_right_margin_position:
  * @self: a #EditorPageSettingsProvider
  * @right_margin_position: (out) (optional): the position for the right margin
