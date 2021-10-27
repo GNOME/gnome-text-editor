@@ -59,7 +59,7 @@ static inline gboolean
 modeline_has_option (const ModelineOptions *options,
                      ModelineSet            set)
 {
-  return options->set & set;
+  return !!(options->set & set);
 }
 
 G_END_DECLS

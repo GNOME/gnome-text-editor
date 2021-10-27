@@ -36,9 +36,11 @@ struct _EditorModelineSettingsProvider
   guint           reload_source;
 
   guint           tab_width;
+  int             indent_width;
   guint           right_margin_position;
 
   guint           tab_width_set : 1;
+  guint           indent_width_set : 1;
   guint           wrap_text : 1;
   guint           wrap_text_set : 1;
   guint           right_margin_position_set : 1;
@@ -55,6 +57,15 @@ editor_modeline_settings_provider_get_tab_width (EditorPageSettingsProvider *pro
   EditorModelineSettingsProvider *self = EDITOR_MODELINE_SETTINGS_PROVIDER (provider);
   *tab_width = self->tab_width;
   return self->tab_width_set;
+}
+
+static gboolean
+editor_modeline_settings_provider_get_indent_width (EditorPageSettingsProvider *provider,
+                                                    int                        *indent_width)
+{
+  EditorModelineSettingsProvider *self = EDITOR_MODELINE_SETTINGS_PROVIDER (provider);
+  *indent_width = self->indent_width;
+  return self->indent_width_set;
 }
 
 static gboolean
@@ -127,6 +138,15 @@ editor_modeline_settings_provider_reload (gpointer data)
           if ((self->tab_width_set = modeline_has_option (options, MODELINE_SET_TAB_WIDTH)))
             self->tab_width = options->tab_width;
 
+          if (modeline_has_option (options, MODELINE_SET_INDENT_WIDTH))
+            {
+              if (options->indent_width >= 1 && options->indent_width <= 32)
+                {
+                  self->indent_width = options->indent_width;
+                  self->indent_width_set = TRUE;
+                }
+            }
+
           if ((self->wrap_text_set = modeline_has_option (options, MODELINE_SET_WRAP_MODE)))
             self->wrap_text = options->wrap_mode != GTK_WRAP_NONE;
 
@@ -198,6 +218,7 @@ page_settings_provider_iface_init (EditorPageSettingsProviderInterface *iface)
 {
   iface->set_document = editor_modeline_settings_provider_set_document;
   iface->get_tab_width = editor_modeline_settings_provider_get_tab_width;
+  iface->get_indent_width = editor_modeline_settings_provider_get_indent_width;
   iface->get_wrap_text = editor_modeline_settings_provider_get_wrap_text;
   iface->get_right_margin_position = editor_modeline_settings_provider_get_right_margin_position;
   iface->get_show_right_margin = editor_modeline_settings_provider_get_show_right_margin;
