@@ -32,10 +32,12 @@ struct _EditorPageEditorconfig
 
   EditorDocument *document;
 
+  int             indent_width;
   guint           tab_width;
   guint           right_margin_position;
   guint           insert_spaces_instead_of_tabs : 1;
 
+  guint           indent_width_set : 1;
   guint           tab_width_set : 1;
   guint           right_margin_position_set : 1;
   guint           insert_spaces_instead_of_tabs_set : 1;
@@ -84,6 +86,11 @@ editor_page_editorconfig_reload (EditorPageEditorconfig *self)
           const gchar *str = g_value_get_string (value);
           self->insert_spaces_instead_of_tabs = g_strcmp0 (str, "tab") != 0;
           self->insert_spaces_instead_of_tabs_set = TRUE;
+        }
+      else if (g_str_equal (key, "indent_size"))
+        {
+          self->indent_width = g_value_get_int (value);
+          self->indent_width_set = TRUE;
         }
     }
 
@@ -147,6 +154,15 @@ editor_page_editorconfig_get_tab_width (EditorPageSettingsProvider *provider,
 }
 
 static gboolean
+editor_page_editorconfig_get_indent_width (EditorPageSettingsProvider *provider,
+                                           int                        *indent_width)
+{
+  EditorPageEditorconfig *self = EDITOR_PAGE_EDITORCONFIG (provider);
+  *indent_width = self->indent_width;
+  return self->indent_width_set;
+}
+
+static gboolean
 editor_page_editorconfig_get_insert_spaces_instead_of_tabs (EditorPageSettingsProvider *provider,
                                                             gboolean                   *insert_spaces_instead_of_tabs)
 {
@@ -162,6 +178,7 @@ page_settings_provider_iface_init (EditorPageSettingsProviderInterface *iface)
   iface->get_insert_spaces_instead_of_tabs = editor_page_editorconfig_get_insert_spaces_instead_of_tabs;
   iface->get_tab_width = editor_page_editorconfig_get_tab_width;
   iface->get_right_margin_position = editor_page_editorconfig_get_right_margin_position;
+  iface->get_indent_width = editor_page_editorconfig_get_indent_width;
 }
 
 G_DEFINE_TYPE_WITH_CODE (EditorPageEditorconfig, editor_page_editorconfig, G_TYPE_OBJECT,
@@ -202,4 +219,8 @@ editor_page_editorconfig_class_init (EditorPageEditorconfigClass *klass)
 static void
 editor_page_editorconfig_init (EditorPageEditorconfig *self)
 {
+  self->tab_width = 8;
+  self->indent_width = -1;
+  self->insert_spaces_instead_of_tabs = TRUE;
+  self->right_margin_position = 80;
 }
