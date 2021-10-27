@@ -38,47 +38,47 @@ typedef struct
   const gchar *language_id;
   guint right_margin_position;
   guint tab_width;
+  int indent_width;
   guint insert_spaces_instead_of_tabs : 1;
 } Defaults;
 
 static GHashTable *by_language;
 static const Defaults defaults[] = {
   /* https://www.python.org/dev/peps/pep-0008/ */
-  { "python", 79, 4, TRUE },
-  { "python3", 79, 4, TRUE },
+  { "python", 79, 4, -1, TRUE },
+  { "python3", 79, 4, -1, TRUE },
 
   /* GNOME/GNU style */
-  /* TODO: treat indent width separately */
-  { "c", 80, 2, TRUE },
-  { "chdr", 80, 2, TRUE },
+  { "c", 80, 8, 2, TRUE },
+  { "chdr", 80, 8, 2, TRUE },
 
   /* https://llvm.org/docs/CodingStandards.html */
-  { "cpp", 80, 2, TRUE },
-  { "cpphdr", 80, 2, TRUE },
+  { "cpp", 80, 8, 2, TRUE },
+  { "cpphdr", 80, 8, 2, TRUE },
 
   /* GNOME JS Style */
-  { "js", 80, 4, TRUE },
+  { "js", 80, 4, -1, TRUE },
 
   /* http://www.mono-project.com/community/contributing/coding-guidelines */
-  { "c-sharp", 80, 8, FALSE },
+  { "c-sharp", 80, 8, -1, FALSE },
 
   /* https://google.github.io/styleguide/javaguide.html */
-  { "java", 100, 2, TRUE },
+  { "java", 100, 2, -1, TRUE },
 
   /* https://github.com/rubocop-hq/ruby-style-guide */
-  { "ruby", 80, 2, TRUE },
+  { "ruby", 80, 2, -1, TRUE },
 
   /* https://github.com/rust-lang/rustfmt */
-  { "rust", 100, 4, TRUE },
+  { "rust", 100, 4, -1, TRUE },
 
   /* Others */
-  { "css", 80, 2, TRUE },
-  { "html", 80, 2, TRUE },
-  { "makefile", 80, 8, FALSE },
-  { "meson", 80, 2, TRUE },
-  { "markdown", 80, 4, TRUE },
-  { "vala", 100, 4, FALSE },
-  { "xml", 80, 2, TRUE },
+  { "css", 80, 2, -1, TRUE },
+  { "html", 80, 2, -1, TRUE },
+  { "makefile", 80, 8, -1, FALSE },
+  { "meson", 80, 2, -1, TRUE },
+  { "markdown", 80, 4, -1, TRUE },
+  { "vala", 100, 4, -1, FALSE },
+  { "xml", 80, 2, -1, TRUE },
 };
 
 static const Defaults *
@@ -138,6 +138,21 @@ editor_page_defaults_get_tab_width (EditorPageSettingsProvider *provider,
 }
 
 static gboolean
+editor_page_defaults_get_indent_width (EditorPageSettingsProvider *provider,
+                                       int                        *indent_width)
+{
+  const Defaults *d = get_defaults (provider);
+
+  if (d)
+    {
+      *indent_width = d->indent_width;
+      return d->indent_width > 0;
+    }
+
+  return FALSE;
+}
+
+static gboolean
 editor_page_defaults_get_insert_spaces_instead_of_tabs (EditorPageSettingsProvider *provider,
                                                         gboolean                   *insert_spaces_instead_of_tabs)
 {
@@ -154,6 +169,7 @@ page_settings_provider_iface_init (EditorPageSettingsProviderInterface *iface)
   iface->get_right_margin_position = editor_page_defaults_get_right_margin_position;
   iface->get_tab_width = editor_page_defaults_get_tab_width;
   iface->get_insert_spaces_instead_of_tabs = editor_page_defaults_get_insert_spaces_instead_of_tabs;
+  iface->get_indent_width = editor_page_defaults_get_indent_width;
 }
 
 G_DEFINE_TYPE_WITH_CODE (EditorPageDefaults, editor_page_defaults, G_TYPE_OBJECT,
