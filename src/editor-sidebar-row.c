@@ -43,6 +43,7 @@ struct _EditorSidebarRow
   GtkLabel          *empty;
   GtkLabel          *age;
   GtkStack          *stack;
+  GtkButton         *remove;
 
   GBinding          *title_binding;
   GBinding          *subtitle_binding;
@@ -98,21 +99,6 @@ age_to_string (GBinding     *binding,
     g_value_set_static_string (to_value, "");
 
   return TRUE;
-}
-
-static void
-editor_sidebar_row_remove (GtkWidget   *widget,
-                           const gchar *action_name,
-                           GVariant    *param)
-{
-  EditorSidebarRow *self = (EditorSidebarRow *)widget;
-  EditorSession *session = EDITOR_SESSION_DEFAULT;
-
-  g_assert (EDITOR_IS_SIDEBAR_ROW (self));
-
-  _editor_session_forget (session,
-                          _editor_sidebar_item_get_file (self->item),
-                          _editor_sidebar_item_get_draft_id (self->item));
 }
 
 static void
@@ -185,11 +171,10 @@ editor_sidebar_row_class_init (EditorSidebarRowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorSidebarRow, empty);
   gtk_widget_class_bind_template_child (widget_class, EditorSidebarRow, grid);
   gtk_widget_class_bind_template_child (widget_class, EditorSidebarRow, is_modified);
+  gtk_widget_class_bind_template_child (widget_class, EditorSidebarRow, remove);
   gtk_widget_class_bind_template_child (widget_class, EditorSidebarRow, stack);
   gtk_widget_class_bind_template_child (widget_class, EditorSidebarRow, subtitle);
   gtk_widget_class_bind_template_child (widget_class, EditorSidebarRow, title);
-
-  gtk_widget_class_install_action (widget_class, "row.remove", NULL, editor_sidebar_row_remove);
 
   properties [PROP_ITEM] =
     g_param_spec_object ("item",
@@ -245,6 +230,10 @@ _editor_sidebar_row_set_item (EditorSidebarRow  *self,
 
   if (item != NULL)
     {
+      GFile *file = _editor_sidebar_item_get_file (item);
+      const char *draft_id = _editor_sidebar_item_get_draft_id (item);
+      g_autofree char *uri = file ? g_file_get_uri (file) : NULL;
+
       self->title_binding =
         g_object_bind_property (self->item, "title",
                                 self->title, "label",
@@ -269,5 +258,10 @@ _editor_sidebar_row_set_item (EditorSidebarRow  *self,
                                      G_BINDING_SYNC_CREATE,
                                      age_to_string,
                                      NULL, self, NULL);
-  }
+      gtk_actionable_set_action_target (GTK_ACTIONABLE (self->remove),
+                                        "(ss)",
+                                        uri ? uri : "",
+                                        draft_id ? draft_id : "");
+      gtk_actionable_set_action_name (GTK_ACTIONABLE (self->remove), "row.remove");
+    }
 }

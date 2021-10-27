@@ -24,6 +24,7 @@
 
 #include "editor-application.h"
 #include "editor-open-popover-private.h"
+#include "editor-session-private.h"
 #include "editor-sidebar-item-private.h"
 #include "editor-sidebar-row-private.h"
 #include "editor-window.h"
@@ -237,6 +238,30 @@ editor_open_popover_show (GtkWidget *widget)
 }
 
 static void
+on_remove_row_cb (GtkWidget  *widget,
+                  const char *action_name,
+                  GVariant   *param)
+{
+  EditorOpenPopover *self = (EditorOpenPopover *)widget;
+  g_autoptr(GFile) file = NULL;
+  const char *uri;
+  const char *draft_id;
+
+  g_assert (EDITOR_IS_OPEN_POPOVER (self));
+  g_assert (g_variant_is_of_type (param, G_VARIANT_TYPE ("(ss)")));
+
+  g_variant_get (param, "(&s&s)", &uri, &draft_id);
+
+  if (uri[0] != 0)
+    file = g_file_new_for_uri (uri);
+
+  if (draft_id[0] == 0)
+    draft_id = NULL;
+
+  _editor_session_forget (EDITOR_SESSION_DEFAULT, file, draft_id);
+}
+
+static void
 editor_open_popover_dispose (GObject *object)
 {
   EditorOpenPopover *self = (EditorOpenPopover *)object;
@@ -319,6 +344,8 @@ editor_open_popover_class_init (EditorOpenPopoverClass *klass)
   gtk_widget_class_bind_template_callback (widget_class, on_search_entry_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_search_entry_changed_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_search_entry_stop_search_cb);
+
+  gtk_widget_class_install_action (widget_class, "row.remove", "(ss)", on_remove_row_cb);
 }
 
 static void
