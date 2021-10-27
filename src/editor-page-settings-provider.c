@@ -292,7 +292,7 @@ editor_page_settings_provider_get_tab_width (EditorPageSettingsProvider *self,
   g_return_val_if_fail (EDITOR_IS_PAGE_SETTINGS_PROVIDER (self), FALSE);
 
   if (tab_width != NULL)
-    *tab_width = FALSE;
+    *tab_width = 8;
 
   if (EDITOR_PAGE_SETTINGS_PROVIDER_GET_IFACE (self)->get_tab_width)
     return EDITOR_PAGE_SETTINGS_PROVIDER_GET_IFACE (self)->get_tab_width (self, tab_width);
