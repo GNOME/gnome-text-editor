@@ -38,6 +38,7 @@ enum {
   PROP_CAN_SAVE,
   PROP_DOCUMENT,
   PROP_IS_MODIFIED,
+  PROP_SETTINGS,
   PROP_SUBTITLE,
   PROP_TITLE,
   PROP_POSITION_LABEL,
@@ -509,6 +510,10 @@ editor_page_get_property (GObject    *object,
       g_value_take_string (value, editor_page_dup_position_label (self));
       break;
 
+    case PROP_SETTINGS:
+      g_value_set_object (value, self->settings);
+      break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
     }
@@ -592,6 +597,13 @@ editor_page_class_init (EditorPageClass *klass)
                          "Position Label",
                          "The visual position label text",
                          NULL,
+                         (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
+  properties [PROP_SETTINGS] =
+    g_param_spec_object ("settings",
+                         "Settings",
+                         "Settings",
+                         EDITOR_TYPE_PAGE_SETTINGS,
                          (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_properties (object_class, N_PROPS, properties);
