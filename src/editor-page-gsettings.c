@@ -41,6 +41,7 @@ editor_page_gsettings_get_##name (EditorPageSettingsProvider *provider, \
   return TRUE;                                                          \
 }
 
+GSETTINGS_GETTER (int, int, indent_width, "indent-width")
 GSETTINGS_GETTER (guint, uint, tab_width, "tab-width")
 GSETTINGS_GETTER (gboolean, boolean, show_right_margin, "show-right-margin")
 GSETTINGS_GETTER (gboolean, boolean, show_line_numbers, "show-line-numbers")
@@ -172,6 +173,7 @@ page_settings_provider_iface_init (EditorPageSettingsProviderInterface *iface)
   iface->get_show_grid = editor_page_gsettings_get_show_grid;
   iface->get_show_right_margin = editor_page_gsettings_get_show_right_margin;
   iface->get_tab_width = editor_page_gsettings_get_tab_width;
+  iface->get_indent_width = editor_page_gsettings_get_indent_width;
   iface->get_use_system_font = editor_page_gsettings_get_use_system_font;
   iface->get_wrap_text = editor_page_gsettings_get_wrap_text;
   iface->get_auto_indent = editor_page_gsettings_get_auto_indent;

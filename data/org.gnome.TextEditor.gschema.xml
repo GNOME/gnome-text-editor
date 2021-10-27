@@ -31,9 +31,16 @@
       <description>Automatically indent new lines copying the previous line's indentation.</description>
     </key>
     <key name="tab-width" type="u">
+      <range min="1" max="32"/>
       <default>8</default>
       <summary>Tab Width</summary>
       <description>The number of spaces represented by a tab.</description>
+    </key>
+    <key name="indent-width" type="i">
+      <range min="-1" max="32"/>
+      <default>-1</default>
+      <summary>Indent Width</summary>
+      <description>The number of spaces to indent or -1 to use tab-width.</description>
     </key>
     <key name="show-line-numbers" type="b">
       <default>false</default>
