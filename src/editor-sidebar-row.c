@@ -262,6 +262,10 @@ _editor_sidebar_row_set_item (EditorSidebarRow  *self,
                                         "(ss)",
                                         uri ? uri : "",
                                         draft_id ? draft_id : "");
-      gtk_actionable_set_action_name (GTK_ACTIONABLE (self->remove), "row.remove");
+      gtk_actionable_set_action_name (GTK_ACTIONABLE (self->remove), "app.remove-recent");
+    }
+  else
+    {
+      gtk_actionable_set_action_name (GTK_ACTIONABLE (self->remove), NULL);
     }
 }

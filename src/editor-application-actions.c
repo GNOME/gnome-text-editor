@@ -232,6 +232,30 @@ editor_application_actions_settings_changed_cb (GSettings     *settings,
     }
 }
 
+static void
+editor_application_actions_remove_recent_cb (GSimpleAction *action,
+                                             GVariant      *param,
+                                             gpointer       user_data)
+{
+  EditorApplication *self = user_data;
+  g_autoptr(GFile) file = NULL;
+  const char *uri;
+  const char *draft_id;
+
+  g_assert (EDITOR_IS_APPLICATION (self));
+  g_assert (g_variant_is_of_type (param, G_VARIANT_TYPE ("(ss)")));
+
+  g_variant_get (param, "(&s&s)", &uri, &draft_id);
+
+  if (uri[0] != 0)
+    file = g_file_new_for_uri (uri);
+
+  if (draft_id[0] == 0)
+    draft_id = NULL;
+
+  _editor_session_forget (EDITOR_SESSION_DEFAULT, file, draft_id);
+}
+
 void
 _editor_application_actions_init (EditorApplication *self)
 {
@@ -241,6 +265,7 @@ _editor_application_actions_init (EditorApplication *self)
     { "help", editor_application_actions_help_cb },
     { "quit", editor_application_actions_quit },
     { "style-scheme", NULL, "s", "''", editor_application_actions_style_scheme_cb },
+    { "remove-recent", editor_application_actions_remove_recent_cb, "(ss)" },
   };
   GAction *action;
 
