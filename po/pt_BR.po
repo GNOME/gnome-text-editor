@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2021-10-14 22:20+0000\n"
-"PO-Revision-Date: 2021-10-15 19:41-0300\n"
+"POT-Creation-Date: 2021-10-28 09:56+0000\n"
+"PO-Revision-Date: 2021-10-28 15:19-0300\n"
 "Last-Translator: Enrico Nicoletto <liverig@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
@@ -86,95 +86,104 @@ msgid "Automatically indent new lines copying the previous line's indentation."
 msgstr ""
 "Recuar automaticamente novas linhas copiando o recuo da linha anterior."
 
-#: data/org.gnome.TextEditor.gschema.xml:35
+#: data/org.gnome.TextEditor.gschema.xml:36
 msgid "Tab Width"
 msgstr "Largura da tabulação"
 
-#: data/org.gnome.TextEditor.gschema.xml:36
+#: data/org.gnome.TextEditor.gschema.xml:37
 msgid "The number of spaces represented by a tab."
 msgstr "O número de espaços representados por uma tabulação."
 
-#: data/org.gnome.TextEditor.gschema.xml:40
+#: data/org.gnome.TextEditor.gschema.xml:42
+msgid "Indent Width"
+msgstr "Largura do Recuo"
+
+#: data/org.gnome.TextEditor.gschema.xml:43
+msgid "The number of spaces to indent or -1 to use tab-width."
+msgstr ""
+"O número de espaços para o recuo ou -1 para usar uma largura de tabulação."
+
+#: data/org.gnome.TextEditor.gschema.xml:47
 msgid "Show Line Numbers"
 msgstr "Mostrar números de linha"
 
-#: data/org.gnome.TextEditor.gschema.xml:41
+#: data/org.gnome.TextEditor.gschema.xml:48
 msgid "If line numbers should be displayed next to each line."
 msgstr "Se os números de linha devem ser exibidos ao lado de cada linha."
 
-#: data/org.gnome.TextEditor.gschema.xml:45
+#: data/org.gnome.TextEditor.gschema.xml:52
 msgid "Show Right Margin"
 msgstr "Mostrar a margem direita"
 
-#: data/org.gnome.TextEditor.gschema.xml:46
+#: data/org.gnome.TextEditor.gschema.xml:53
 msgid "If a margin line should be displayed on the right of the editor."
 msgstr "Se uma linha marginal deve ser exibida à direita do editor."
 
-#: data/org.gnome.TextEditor.gschema.xml:51
+#: data/org.gnome.TextEditor.gschema.xml:58
 msgid "Right Margin Position"
 msgstr "Posição da margem direita"
 
-#: data/org.gnome.TextEditor.gschema.xml:52
+#: data/org.gnome.TextEditor.gschema.xml:59
 msgid ""
 "The position in characters at which the right margin should be displayed."
 msgstr "A posição em caracteres em que a margem direita deve ser exibida."
 
-#: data/org.gnome.TextEditor.gschema.xml:56
+#: data/org.gnome.TextEditor.gschema.xml:63
 msgid "Show Overview Map"
 msgstr "Mostrar mapa de visão geral"
 
-#: data/org.gnome.TextEditor.gschema.xml:57
+#: data/org.gnome.TextEditor.gschema.xml:64
 msgid ""
 "If enabled, an overview map of the file will be displayed to the side of the "
 "editor."
 msgstr "Se ativado, um mapa geral do arquivo será exibido ao lado do editor."
 
-#: data/org.gnome.TextEditor.gschema.xml:61
+#: data/org.gnome.TextEditor.gschema.xml:68
 msgid "Show Background Grid"
 msgstr "Mostrar grade de fundo"
 
-#: data/org.gnome.TextEditor.gschema.xml:62
+#: data/org.gnome.TextEditor.gschema.xml:69
 msgid "If enabled, a blueprint style grid is printed on the editor background."
 msgstr ""
 "Se ativado, uma grade de estilo de blueprint é impressa no fundo do editor."
 
-#: data/org.gnome.TextEditor.gschema.xml:66
+#: data/org.gnome.TextEditor.gschema.xml:73
 msgid "Highlight current line"
 msgstr "Destacar a linha atual"
 
-#: data/org.gnome.TextEditor.gschema.xml:67
+#: data/org.gnome.TextEditor.gschema.xml:74
 msgid "If enabled, the current line will be highlighted."
 msgstr "Se ativado, a linha atual será destacada."
 
-#: data/org.gnome.TextEditor.gschema.xml:71
+#: data/org.gnome.TextEditor.gschema.xml:78
 msgid "Text Wrapping"
 msgstr "Quebra de texto"
 
-#: data/org.gnome.TextEditor.gschema.xml:72
+#: data/org.gnome.TextEditor.gschema.xml:79
 msgid "If text should be wrapped."
 msgstr "Se o texto deve ser quebrado mais de uma linha."
 
-#: data/org.gnome.TextEditor.gschema.xml:76 src/editor-window.ui:235
+#: data/org.gnome.TextEditor.gschema.xml:83 src/editor-window.ui:237
 msgid "Use System Font"
 msgstr "Usar a fonte do sistema"
 
-#: data/org.gnome.TextEditor.gschema.xml:77
+#: data/org.gnome.TextEditor.gschema.xml:84
 msgid "If the default system monospace font should be used."
 msgstr "Se a fonte monoespaçada do sistema padrão deve ser usada."
 
-#: data/org.gnome.TextEditor.gschema.xml:81 src/editor-window.ui:241
+#: data/org.gnome.TextEditor.gschema.xml:88 src/editor-window.ui:243
 msgid "Custom Font"
 msgstr "Fonte personalizada"
 
-#: data/org.gnome.TextEditor.gschema.xml:82
+#: data/org.gnome.TextEditor.gschema.xml:89
 msgid "A custom font to use in the editor."
 msgstr "Uma fonte personalizada para usar no editor."
 
-#: data/org.gnome.TextEditor.gschema.xml:86
+#: data/org.gnome.TextEditor.gschema.xml:93
 msgid "Style Scheme"
 msgstr "Esquema de estilo"
 
-#: data/org.gnome.TextEditor.gschema.xml:87
+#: data/org.gnome.TextEditor.gschema.xml:94
 msgid ""
 "The style scheme to use by the editor. It may translate this into a dark "
 "format when available."
@@ -182,11 +191,11 @@ msgstr ""
 "O esquema de estilo para usar pelo editor. Pode converter isso em um formato "
 "escuro, quando disponível."
 
-#: data/org.gnome.TextEditor.gschema.xml:91
+#: data/org.gnome.TextEditor.gschema.xml:98
 msgid "Discover File Settings"
 msgstr "Descobrir configurações dos arquivos"
 
-#: data/org.gnome.TextEditor.gschema.xml:92
+#: data/org.gnome.TextEditor.gschema.xml:99
 msgid ""
 "If enabled then Text Editor will try to discover file settings from "
 "modelines, editorconfig, or per-language defaults."
@@ -194,21 +203,21 @@ msgstr ""
 "Se habilitado, o Editor de Texto tentará descobrir configurações de arquivos "
 "de modelines, editorconfig ou padrões por idioma."
 
-#: data/org.gnome.TextEditor.gschema.xml:96
+#: data/org.gnome.TextEditor.gschema.xml:103
 msgid "Automatically check spelling"
 msgstr "Verificar ortografia automaticamente"
 
-#: data/org.gnome.TextEditor.gschema.xml:97
+#: data/org.gnome.TextEditor.gschema.xml:104
 msgid "If enabled, then Text Editor will check spelling as you type."
 msgstr ""
 "Se habilitado, o Editor de Texto verificará a ortografia enquanto você "
 "digita."
 
-#: data/org.gnome.TextEditor.gschema.xml:101
+#: data/org.gnome.TextEditor.gschema.xml:108
 msgid "Restore session"
 msgstr "Restaurar sessão"
 
-#: data/org.gnome.TextEditor.gschema.xml:102
+#: data/org.gnome.TextEditor.gschema.xml:109
 msgid "When Text Editor is run, restore the previous session."
 msgstr "Quando o editor de texto for executado, restaure a sessão anterior."
 
@@ -278,7 +287,7 @@ msgstr "As alterações não salvas ao documento foram restauradas."
 msgid "Highlight Mode"
 msgstr "Modo de destaque"
 
-#: src/editor-open-popover.ui:21 src/editor-sidebar.ui:55
+#: src/editor-open-popover.ui:21
 msgid "Recent Documents"
 msgstr "Documentos recentes"
 
@@ -290,42 +299,42 @@ msgstr "Nenhum documento recente"
 msgid "Br_owse Files…"
 msgstr "Pr_ocurar arquivos…"
 
-#: src/editor-page.c:766 src/editor-sidebar-item.c:440
+#: src/editor-page.c:786 src/editor-sidebar-item.c:446
 msgid "New Document"
 msgstr "Novo documento"
 
-#: src/editor-page.c:783 src/editor-sidebar-item.c:459
-#: src/editor-sidebar-item.c:465
+#: src/editor-page.c:803 src/editor-sidebar-item.c:465
+#: src/editor-sidebar-item.c:471
 msgid "Draft"
 msgstr "Rascunho"
 
-#: src/editor-page.c:837
+#: src/editor-page.c:857
 msgid "Failed to save document"
 msgstr "Falha ao salvar o documento"
 
-#: src/editor-page.c:905
+#: src/editor-page.c:925
 msgid "Save As"
 msgstr "Salvar como"
 
-#: src/editor-page.c:908 src/editor-window-actions.c:131
+#: src/editor-page.c:928 src/editor-window-actions.c:131
 msgid "Save"
 msgstr "Salvar"
 
-#: src/editor-page.c:909 src/editor-window-actions.c:130
+#: src/editor-page.c:929 src/editor-window-actions.c:130
 #: src/editor-window-actions.c:241 src/editor-window-actions.c:350
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: src/editor-page.c:1027
+#: src/editor-page.c:1047
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Lin %u, Col %u"
 
-#: src/editor-page.ui:98
+#: src/editor-page.ui:99
 msgid "Go to Line"
 msgstr "Vai para a linha"
 
-#: src/editor-page.ui:116
+#: src/editor-page.ui:117
 msgid "Go"
 msgstr "Ir"
 
@@ -434,14 +443,6 @@ msgstr "Corresponder apenas pala_vra inteira"
 #, c-format
 msgid "%u of %u"
 msgstr "%u de %u"
-
-#: src/editor-sidebar.ui:32
-msgid "Search documents (Ctrl+K)"
-msgstr "Pesquisar documentos (Ctrl+K)"
-
-#: src/editor-sidebar.ui:41
-msgid "Open document (Ctrl+O)"
-msgstr "Abrir documento (Ctrl+O)"
 
 #: src/editor-spell-menu.c:58
 msgid "Languages"
@@ -574,11 +575,11 @@ msgstr "Ver"
 msgid "Menu"
 msgstr "Menu"
 
-#: src/editor-window.ui:160
+#: src/editor-window.ui:162
 msgid "Start or Open a Document"
 msgstr "Inicia ou abre um documento"
 
-#: src/editor-window.ui:163
+#: src/editor-window.ui:165
 msgid ""
 "• Press the Open button\n"
 "• Press the New tab button\n"
@@ -594,43 +595,43 @@ msgstr ""
 "\n"
 "Ou pressione Ctrl+W para fechar a janela."
 
-#: src/editor-window.ui:197
+#: src/editor-window.ui:199
 msgid "Preferences"
 msgstr "Preferências"
 
-#: src/editor-window.ui:219
+#: src/editor-window.ui:221
 msgid "Behavior"
 msgstr "Comportamento"
 
-#: src/editor-window.ui:223
+#: src/editor-window.ui:225
 msgid "Restore Session"
 msgstr "Restaurar sessão"
 
-#: src/editor-window.ui:231
+#: src/editor-window.ui:233
 msgid "Font"
 msgstr "Fonte"
 
-#: src/editor-window.ui:250
+#: src/editor-window.ui:252
 msgid "Right Margin"
 msgstr "Margem direita"
 
-#: src/editor-window.ui:254
+#: src/editor-window.ui:256
 msgid "Margin Position"
 msgstr "Posição da margem"
 
-#: src/editor-window.ui:262
+#: src/editor-window.ui:264
 msgid "Appearance"
 msgstr "Aparência"
 
-#: src/editor-window.ui:266
+#: src/editor-window.ui:268
 msgid "Display Grid Pattern"
 msgstr "Exibir padrão de grade"
 
-#: src/editor-window.ui:272
+#: src/editor-window.ui:274
 msgid "Highlight Current Line"
 msgstr "Destacar a linha atual"
 
-#: src/editor-window.ui:278
+#: src/editor-window.ui:280
 msgid "Display Overview Map"
 msgstr "Exibir o mapa de visão geral"
 
