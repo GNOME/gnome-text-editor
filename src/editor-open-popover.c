@@ -34,8 +34,9 @@ struct _EditorOpenPopover
   GtkPopover      parent_instance;
 
   GListModel     *model;
+  GListModel     *filtered_model;
 
-  GtkListView    *list_view;
+  GtkListBox     *list_box;
   GtkWidget      *box;
   GtkSearchEntry *search_entry;
   GtkStack       *stack;
@@ -59,6 +60,17 @@ _editor_open_popover_new (void)
   return g_object_new (EDITOR_TYPE_OPEN_POPOVER, NULL);
 }
 
+static GListModel *
+editor_open_popover_get_model (EditorOpenPopover *self)
+{
+  g_assert (EDITOR_IS_OPEN_POPOVER (self));
+
+  if (self->filtered_model)
+    return self->filtered_model;
+
+  return self->model;
+}
+
 static void
 popover_hide (GtkWidget  *widget,
               const char *action_name,
@@ -72,67 +84,37 @@ popover_hide (GtkWidget  *widget,
   gtk_menu_button_popdown (GTK_MENU_BUTTON (parent));
 }
 
+static GtkWidget *
+create_row (gpointer itemptr,
+            gpointer user_data)
+{
+  EditorSidebarItem *item = itemptr;
+
+  g_assert (EDITOR_IS_SIDEBAR_ITEM (item));
+
+  return g_object_new (EDITOR_TYPE_SIDEBAR_ROW,
+                       "item", item,
+                       NULL);
+}
+
 static void
-on_list_item_bind_cb (EditorOpenPopover        *self,
-                      GtkListItem              *list_item,
-                      GtkSignalListItemFactory *factory)
+on_list_box_row_activated_cb (EditorOpenPopover *self,
+                              EditorSidebarRow  *row,
+                              GtkListBox        *list_box)
 {
   EditorSidebarItem *item;
-  GtkWidget *child;
-
-  g_assert (EDITOR_IS_OPEN_POPOVER (self));
-  g_assert (GTK_IS_LIST_ITEM (list_item));
-  g_assert (GTK_IS_SIGNAL_LIST_ITEM_FACTORY (factory));
-
-  if (!(child = gtk_list_item_get_child (list_item)))
-    {
-      child = _editor_sidebar_row_new ();
-      gtk_list_item_set_child (list_item, child);
-    }
-
-  item = gtk_list_item_get_item (list_item);
-  _editor_sidebar_row_set_item (EDITOR_SIDEBAR_ROW (child), item);
-}
-
-static void
-on_list_item_unbind_cb (EditorOpenPopover        *self,
-                        GtkListItem              *list_item,
-                        GtkSignalListItemFactory *factory)
-{
-  GtkWidget *child;
-
-  g_assert (EDITOR_IS_OPEN_POPOVER (self));
-  g_assert (GTK_IS_LIST_ITEM (list_item));
-  g_assert (GTK_IS_SIGNAL_LIST_ITEM_FACTORY (factory));
-
-  child = gtk_list_item_get_child (list_item);
-  _editor_sidebar_row_set_item (EDITOR_SIDEBAR_ROW (child), NULL);
-}
-
-static void
-on_list_view_activate_cb (EditorOpenPopover *self,
-                          guint              position,
-                          GtkListView       *list_view)
-{
-  GtkSelectionModel *model;
-  EditorSession *session;
   EditorWindow *window;
 
   g_assert (EDITOR_IS_OPEN_POPOVER (self));
-  g_assert (GTK_IS_LIST_VIEW (list_view));
+  g_assert (EDITOR_IS_SIDEBAR_ROW (row));
+  g_assert (GTK_IS_LIST_BOX (list_box));
 
-  session = editor_application_get_session (EDITOR_APPLICATION_DEFAULT);
   window = EDITOR_WINDOW (gtk_widget_get_root (GTK_WIDGET (self)));
-  model = gtk_list_view_get_model (list_view);
+  item = _editor_sidebar_row_get_item (row);
 
-  if (position < g_list_model_get_n_items (G_LIST_MODEL (model)))
-    {
-      g_autoptr(EditorSidebarItem) item = g_list_model_get_item (G_LIST_MODEL (model), position);
-
-      gtk_editable_set_text (GTK_EDITABLE (self->search_entry), "");
-      _editor_sidebar_item_open (item, session, window);
-      popover_hide (GTK_WIDGET (self), NULL, NULL);
-    }
+  gtk_editable_set_text (GTK_EDITABLE (self->search_entry), "");
+  _editor_sidebar_item_open (item, EDITOR_SESSION_DEFAULT, window);
+  popover_hide (GTK_WIDGET (self), NULL, NULL);
 }
 
 static gboolean
@@ -183,23 +165,33 @@ on_search_entry_changed_cb (EditorOpenPopover *self,
   g_assert (model != NULL);
   g_assert (G_IS_LIST_MODEL (model));
 
-  selection = gtk_single_selection_new (g_object_ref (model));
-  gtk_list_view_set_model (self->list_view, GTK_SELECTION_MODEL (selection));
+  gtk_list_box_bind_model (self->list_box, model, create_row, NULL, NULL);
+
+  g_set_object (&self->filtered_model, model);
 }
 
 static void
 on_search_entry_activate_cb (EditorOpenPopover *self,
                              GtkSearchEntry    *search_entry)
 {
-  GtkSelectionModel *model;
-  EditorSidebarItem *item;
+  GListModel *model;
 
   g_assert (EDITOR_IS_OPEN_POPOVER (self));
   g_assert (GTK_IS_SEARCH_ENTRY (search_entry));
 
-  if ((model = gtk_list_view_get_model (self->list_view)) &&
-      (item = gtk_single_selection_get_selected_item (GTK_SINGLE_SELECTION (model))))
-    on_list_view_activate_cb (self, 0, self->list_view);
+  if ((model = editor_open_popover_get_model (self)) &&
+      g_list_model_get_n_items (model) > 0)
+    {
+      g_autoptr(EditorSidebarItem) item = g_list_model_get_item (model, 0);
+      EditorWindow *window;
+
+      gtk_editable_set_text (GTK_EDITABLE (self->search_entry), "");
+
+      window = EDITOR_WINDOW (gtk_widget_get_root (GTK_WIDGET (self)));
+      _editor_sidebar_item_open (item, EDITOR_SESSION_DEFAULT, window);
+
+      popover_hide (GTK_WIDGET (self), NULL, NULL);
+    }
 }
 
 static void
@@ -224,50 +216,13 @@ on_search_entry_stop_search_cb (EditorOpenPopover *self,
 }
 
 static void
-editor_open_popover_show (GtkWidget *widget)
-{
-  EditorOpenPopover *self = (EditorOpenPopover *)widget;
-  GtkSelectionModel *model;
-
-  g_assert (EDITOR_IS_OPEN_POPOVER (self));
-
-  if ((model = gtk_list_view_get_model (self->list_view)))
-    gtk_single_selection_set_selected (GTK_SINGLE_SELECTION (model), 0);
-
-  GTK_WIDGET_CLASS (editor_open_popover_parent_class)->show (widget);
-}
-
-static void
-on_remove_row_cb (GtkWidget  *widget,
-                  const char *action_name,
-                  GVariant   *param)
-{
-  EditorOpenPopover *self = (EditorOpenPopover *)widget;
-  g_autoptr(GFile) file = NULL;
-  const char *uri;
-  const char *draft_id;
-
-  g_assert (EDITOR_IS_OPEN_POPOVER (self));
-  g_assert (g_variant_is_of_type (param, G_VARIANT_TYPE ("(ss)")));
-
-  g_variant_get (param, "(&s&s)", &uri, &draft_id);
-
-  if (uri[0] != 0)
-    file = g_file_new_for_uri (uri);
-
-  if (draft_id[0] == 0)
-    draft_id = NULL;
-
-  _editor_session_forget (EDITOR_SESSION_DEFAULT, file, draft_id);
-}
-
-static void
 editor_open_popover_dispose (GObject *object)
 {
   EditorOpenPopover *self = (EditorOpenPopover *)object;
 
   g_clear_pointer (&self->box, gtk_widget_unparent);
   g_clear_object (&self->model);
+  g_clear_object (&self->filtered_model);
 
   G_OBJECT_CLASS (editor_open_popover_parent_class)->dispose (object);
 }
@@ -320,8 +275,6 @@ editor_open_popover_class_init (EditorOpenPopoverClass *klass)
   object_class->get_property = editor_open_popover_get_property;
   object_class->set_property = editor_open_popover_set_property;
 
-  widget_class->show = editor_open_popover_show;
-
   properties [PROP_MODEL] =
     g_param_spec_object ("model",
                          "Model",
@@ -335,17 +288,13 @@ editor_open_popover_class_init (EditorOpenPopoverClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorOpenPopover, box);
   gtk_widget_class_bind_template_child (widget_class, EditorOpenPopover, empty);
   gtk_widget_class_bind_template_child (widget_class, EditorOpenPopover, search_entry);
-  gtk_widget_class_bind_template_child (widget_class, EditorOpenPopover, list_view);
+  gtk_widget_class_bind_template_child (widget_class, EditorOpenPopover, list_box);
   gtk_widget_class_bind_template_child (widget_class, EditorOpenPopover, recent);
   gtk_widget_class_bind_template_child (widget_class, EditorOpenPopover, stack);
-  gtk_widget_class_bind_template_callback (widget_class, on_list_item_bind_cb);
-  gtk_widget_class_bind_template_callback (widget_class, on_list_item_unbind_cb);
-  gtk_widget_class_bind_template_callback (widget_class, on_list_view_activate_cb);
+  gtk_widget_class_bind_template_callback (widget_class, on_list_box_row_activated_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_search_entry_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_search_entry_changed_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_search_entry_stop_search_cb);
-
-  gtk_widget_class_install_action (widget_class, "row.remove", "(ss)", on_remove_row_cb);
 }
 
 static void
@@ -385,7 +334,7 @@ _editor_open_popover_set_model (EditorOpenPopover *self,
 
   if (g_set_object (&self->model, model))
     {
-      g_autoptr(GtkSingleSelection) selection = NULL;
+      g_clear_object (&self->filtered_model);
 
       if (model != NULL)
         {
@@ -395,13 +344,10 @@ _editor_open_popover_set_model (EditorOpenPopover *self,
                                    self,
                                    G_CONNECT_SWAPPED);
 
-          selection = gtk_single_selection_new (g_object_ref (model));
-          gtk_single_selection_set_autoselect (selection, FALSE);
-
           editor_open_popover_items_changed_cb (self, 0, 0, 0, model);
         }
 
-      gtk_list_view_set_model (self->list_view, GTK_SELECTION_MODEL (selection));
+      gtk_list_box_bind_model (self->list_box, model, create_row, NULL, NULL);
       g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_MODEL]);
     }
 }

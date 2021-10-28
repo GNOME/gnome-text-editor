@@ -26,7 +26,7 @@ G_BEGIN_DECLS
 
 #define EDITOR_TYPE_SIDEBAR_ROW (editor_sidebar_row_get_type())
 
-G_DECLARE_FINAL_TYPE (EditorSidebarRow, editor_sidebar_row, EDITOR, SIDEBAR_ROW, GtkWidget)
+G_DECLARE_FINAL_TYPE (EditorSidebarRow, editor_sidebar_row, EDITOR, SIDEBAR_ROW, GtkListBoxRow)
 
 GtkWidget         *_editor_sidebar_row_new      (void);
 void               _editor_sidebar_row_set_item (EditorSidebarRow  *self,

@@ -32,7 +32,7 @@
 
 struct _EditorSidebarRow
 {
-  GtkWidget          parent_instance;
+  GtkListBoxRow      parent_instance;
 
   EditorSidebarItem *item;
 
@@ -58,7 +58,7 @@ enum {
   N_PROPS
 };
 
-G_DEFINE_TYPE (EditorSidebarRow, editor_sidebar_row, GTK_TYPE_WIDGET)
+G_DEFINE_TYPE (EditorSidebarRow, editor_sidebar_row, GTK_TYPE_LIST_BOX_ROW)
 
 static GParamSpec *properties [N_PROPS];
 
