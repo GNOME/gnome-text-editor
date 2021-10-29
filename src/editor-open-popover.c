@@ -316,13 +316,18 @@ editor_open_popover_items_changed_cb (EditorOpenPopover *self,
                                       guint              added,
                                       GListModel        *model)
 {
+  GtkWidget *child;
+
   g_assert (EDITOR_IS_OPEN_POPOVER (self));
   g_assert (G_IS_LIST_MODEL (model));
 
   if (added || g_list_model_get_n_items (model))
-    gtk_stack_set_visible_child (self->stack, self->recent);
+    child = self->recent;
   else
-    gtk_stack_set_visible_child (self->stack, self->empty);
+    child = self->empty;
+
+  if (child != gtk_stack_get_visible_child (self->stack))
+    gtk_stack_set_visible_child (self->stack, child);
 }
 
 void
