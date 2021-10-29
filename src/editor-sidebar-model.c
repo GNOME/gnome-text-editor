@@ -36,6 +36,7 @@ struct _EditorSidebarModel
   GSequence     *seq;
   EditorSession *session;
   guint          update_timer;
+  guint          length; /* cached for O(1) lookup */
 };
 
 enum {
@@ -45,6 +46,18 @@ enum {
 };
 
 static GParamSpec *properties [N_PROPS];
+
+static void
+items_changed (EditorSidebarModel *self,
+               guint               position,
+               guint               removed,
+               guint               added)
+{
+  self->length -= removed;
+  self->length += added;
+
+  g_list_model_items_changed (G_LIST_MODEL (self), position, removed, added);
+}
 
 static gboolean
 update_timeout_cb (gpointer data)
@@ -68,7 +81,8 @@ static guint
 editor_sidebar_model_get_n_items (GListModel *model)
 {
   EditorSidebarModel *self = EDITOR_SIDEBAR_MODEL (model);
-  return g_sequence_get_length (self->seq);
+
+  return self->length;
 }
 
 static GType
@@ -82,8 +96,12 @@ editor_sidebar_model_get_item (GListModel *model,
                                guint       position)
 {
   EditorSidebarModel *self = EDITOR_SIDEBAR_MODEL (model);
-  GSequenceIter *iter = g_sequence_get_iter_at_pos (self->seq, position);
+  GSequenceIter *iter;
 
+  if (position >= self->length)
+    return NULL;
+
+  iter = g_sequence_get_iter_at_pos (self->seq, position);
   if (!g_sequence_iter_is_end (iter))
     return g_object_ref (g_sequence_get (iter));
 
@@ -216,7 +234,7 @@ editor_sidebar_model_page_added_cb (EditorSidebarModel *self,
       guint position = g_sequence_iter_get_position (iter);
 
       g_sequence_remove (iter);
-      g_list_model_items_changed (G_LIST_MODEL (self), position, 1, 0);
+      items_changed (self, position, 1, 0);
     }
 }
 
@@ -259,9 +277,9 @@ editor_sidebar_model_page_removed_cb (EditorSidebarModel *self,
                                    (GCompareDataFunc)_editor_sidebar_item_compare,
                                    NULL);
 
-  g_list_model_items_changed (G_LIST_MODEL (self),
-                              g_sequence_iter_get_position (iter),
-                              0, 1);
+  items_changed (self,
+                 g_sequence_iter_get_position (iter),
+                 0, 1);
 }
 
 static void
@@ -296,13 +314,13 @@ on_notify_age_cb (EditorSidebarModel *self,
   old_position = g_sequence_iter_get_position (iter);
   g_object_ref (item);
   g_sequence_remove (iter);
-  g_list_model_items_changed (G_LIST_MODEL (self), old_position, 1, 0);
+  items_changed (self, old_position, 1, 0);
   iter = g_sequence_insert_sorted (self->seq,
                                    item,
                                    (GCompareDataFunc)_editor_sidebar_item_compare,
                                    NULL);
   new_position = g_sequence_iter_get_position (iter);
-  g_list_model_items_changed (G_LIST_MODEL (self), new_position, 0, 1);
+  items_changed (self, new_position, 0, 1);
 }
 
 static void
@@ -360,7 +378,7 @@ editor_sidebar_model_load_recent_cb (GObject      *object,
                                            NULL);
           position = g_sequence_iter_get_position (iter);
 
-          g_list_model_items_changed (G_LIST_MODEL (self), position, 0, 1);
+          items_changed (self, position, 0, 1);
         }
     }
 }
@@ -449,7 +467,7 @@ editor_sidebar_model_constructed (GObject *object)
                                            NULL);
           position = g_sequence_iter_get_position (iter);
 
-          g_list_model_items_changed (G_LIST_MODEL (self), position, 0, 1);
+          items_changed (self, position, 0, 1);
         }
     }
 
@@ -580,11 +598,11 @@ _editor_sidebar_model_page_reordered (EditorSidebarModel *self,
   item = g_object_ref (g_sequence_get (iter));
   position = g_sequence_iter_get_position (iter);
   g_sequence_remove (iter);
-  g_list_model_items_changed (G_LIST_MODEL (self), position, 1, 0);
+  items_changed (self, position, 1, 0);
 
   iter = g_sequence_get_iter_at_pos (self->seq, page_num);
   g_sequence_insert_before (iter, g_steal_pointer (&item));
-  g_list_model_items_changed (G_LIST_MODEL (self), page_num, 0, 1);
+  items_changed (self, page_num, 0, 1);
 }
 
 void
@@ -603,7 +621,7 @@ _editor_sidebar_model_remove_document (EditorSidebarModel *self,
 
   position = g_sequence_iter_get_position (iter);
   g_sequence_remove (iter);
-  g_list_model_items_changed (G_LIST_MODEL (self), position, 1, 0);
+  items_changed (self, position, 1, 0);
 }
 
 void
@@ -622,7 +640,7 @@ _editor_sidebar_model_remove_draft (EditorSidebarModel *self,
 
   position = g_sequence_iter_get_position (iter);
   g_sequence_remove (iter);
-  g_list_model_items_changed (G_LIST_MODEL (self), position, 1, 0);
+  items_changed (self, position, 1, 0);
 }
 
 void
@@ -641,5 +659,5 @@ _editor_sidebar_model_remove_file (EditorSidebarModel *self,
 
   position = g_sequence_iter_get_position (iter);
   g_sequence_remove (iter);
-  g_list_model_items_changed (G_LIST_MODEL (self), position, 1, 0);
+  items_changed (self, position, 1, 0);
 }
