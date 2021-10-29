@@ -154,6 +154,7 @@ on_search_entry_changed_cb (EditorOpenPopover *self,
                                       g_free);
       filter = gtk_filter_list_model_new (g_object_ref (G_LIST_MODEL (self->model)),
                                           g_object_ref (GTK_FILTER (custom)));
+      gtk_filter_list_model_set_incremental (filter, TRUE);
       model = G_LIST_MODEL (filter);
     }
 
