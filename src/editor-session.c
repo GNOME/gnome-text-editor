@@ -32,6 +32,7 @@
 
 #define DEFAULT_AUTO_SAVE_TIMEOUT_SECONDS 3
 #define MAX_AUTO_SAVE_TIMEOUT_SECONDS (60*5)
+#define MAX_BOOKMARKS 100
 
 typedef struct
 {
@@ -54,6 +55,12 @@ typedef struct
   Position begin;
   Position end;
 } Selection;
+
+typedef struct
+{
+  char *uri;
+  GDateTime *age;
+} Recent;
 
 G_DEFINE_TYPE (EditorSession, editor_session, G_TYPE_OBJECT)
 
@@ -997,6 +1004,25 @@ _editor_session_remove_window (EditorSession *self,
   _editor_session_mark_dirty (self);
 }
 
+static int
+recent_compare (gconstpointer a,
+                gconstpointer b)
+{
+  const Recent *ra = a;
+  const Recent *rb = b;
+
+  if (ra->age == NULL && rb->age == NULL)
+    return strcmp (ra->uri, rb->uri);
+
+  if (ra->age == NULL)
+    return 1;
+
+  if (rb->age == NULL)
+    return -1;
+
+  return g_date_time_compare (ra->age, rb->age);
+}
+
 static void
 editor_session_update_recent_worker (GTask        *task,
                                      gpointer      source_object,
@@ -1005,6 +1031,9 @@ editor_session_update_recent_worker (GTask        *task,
 {
   EditorSessionSave *save = task_data;
   g_autoptr(GSettings) settings = NULL;
+  g_autoptr(GBookmarkFile) bookmarks = NULL;
+  g_autofree gchar *filename = NULL;
+  g_autoptr(GError) error = NULL;
 
   g_assert (G_IS_TASK (task));
   g_assert (EDITOR_IS_SESSION (source_object));
@@ -1021,44 +1050,72 @@ editor_session_update_recent_worker (GTask        *task,
       return;
     }
 
-  if (save->seen != NULL || save->forgot != NULL)
+  bookmarks = g_bookmark_file_new ();
+  filename = get_bookmarks_filename ();
+
+  if (!g_bookmark_file_load_from_file (bookmarks, filename, &error))
     {
-      g_autoptr(GBookmarkFile) bookmarks = g_bookmark_file_new ();
-      g_autofree gchar *filename = get_bookmarks_filename ();
-      g_autoptr(GError) error = NULL;
+      if (!g_error_matches (error, G_FILE_ERROR, G_FILE_ERROR_NOENT))
+        g_warning ("Failed to load bookmarks file: %s", error->message);
+      g_clear_error (&error);
+    }
 
-      if (!g_bookmark_file_load_from_file (bookmarks, filename, &error))
+  /* Truncate to recent items to avoid gigantic lists */
+  if (g_bookmark_file_get_size (bookmarks) > MAX_BOOKMARKS)
+    {
+      g_autoptr(GArray) ar = g_array_new (FALSE, FALSE, sizeof (Recent));
+      gchar **uris;
+      gsize length;
+
+      uris = g_bookmark_file_get_uris (bookmarks, &length);
+
+      for (gsize i = 0; i < length; i++)
         {
-          if (!g_error_matches (error, G_FILE_ERROR, G_FILE_ERROR_NOENT))
-            g_warning ("Failed to load bookmarks file: %s", error->message);
-          g_clear_error (&error);
+          Recent r;
+
+          r.age = g_bookmark_file_get_visited_date_time (bookmarks, uris[i], NULL);
+          r.uri = g_steal_pointer (&uris[i]);
+
+          g_array_append_val (ar, r);
         }
 
-      if (save->seen != NULL)
-        {
-          for (guint i = 0; i < save->seen->len; i++)
-            {
-              GFile *file = g_ptr_array_index (save->seen, i);
-              g_autofree gchar *uri = g_file_get_uri (file);
-              g_bookmark_file_add_application (bookmarks, uri, NULL, NULL);
-            }
-        }
+      g_clear_pointer (&uris, g_free);
 
-      if (save->forgot != NULL)
-        {
-          for (guint i = 0; i < save->forgot->len; i++)
-            {
-              GFile *file = g_ptr_array_index (save->forgot, i);
-              g_autofree gchar *uri = g_file_get_uri (file);
-              g_bookmark_file_remove_item (bookmarks, uri, NULL);
-            }
-        }
+      g_array_sort (ar, recent_compare);
 
-      if (!g_bookmark_file_to_file (bookmarks, filename, &error))
+      for (gsize i = MAX_BOOKMARKS; i < ar->len; i++)
         {
-          g_task_return_error (task, g_steal_pointer (&error));
-          return;
+          const Recent *r = &g_array_index (ar, Recent, i);
+
+          g_debug ("Removing %s from recents", r->uri);
+          g_bookmark_file_remove_item (bookmarks, r->uri, NULL);
         }
+    }
+
+  if (save->seen != NULL)
+    {
+      for (guint i = 0; i < save->seen->len; i++)
+        {
+          GFile *file = g_ptr_array_index (save->seen, i);
+          g_autofree gchar *uri = g_file_get_uri (file);
+          g_bookmark_file_add_application (bookmarks, uri, NULL, NULL);
+        }
+    }
+
+  if (save->forgot != NULL)
+    {
+      for (guint i = 0; i < save->forgot->len; i++)
+        {
+          GFile *file = g_ptr_array_index (save->forgot, i);
+          g_autofree gchar *uri = g_file_get_uri (file);
+          g_bookmark_file_remove_item (bookmarks, uri, NULL);
+        }
+    }
+
+  if (!g_bookmark_file_to_file (bookmarks, filename, &error))
+    {
+      g_task_return_error (task, g_steal_pointer (&error));
+      return;
     }
 
   g_task_return_boolean (task, TRUE);
