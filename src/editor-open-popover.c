@@ -132,7 +132,6 @@ on_search_entry_changed_cb (EditorOpenPopover *self,
                             GtkSearchEntry    *search_entry)
 {
   g_autoptr(GtkFilterListModel) filter = NULL;
-  g_autoptr(GtkSingleSelection) selection = NULL;
   const gchar *text;
   GListModel *model;
 
