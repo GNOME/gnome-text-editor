@@ -46,6 +46,7 @@
             "config-opts" : [ "-Ddevelopment=true" ],
             "sources" : [
                 {
+                    "disable-shallow-clone" : true,
                     "type" : "git",
                     "url" : "https://gitlab.gnome.org/GNOME/gnome-text-editor.git"
                 }
