@@ -53,7 +53,7 @@ void               _editor_sidebar_item_open            (EditorSidebarItem *self
                                                          EditorSession     *session,
                                                          EditorWindow      *window);
 gboolean           _editor_sidebar_item_matches         (EditorSidebarItem *self,
-                                                         GPatternSpec      *spec);
+                                                         const char        *search);
 int                _editor_sidebar_item_compare         (EditorSidebarItem *a,
                                                          EditorSidebarItem *b);
 

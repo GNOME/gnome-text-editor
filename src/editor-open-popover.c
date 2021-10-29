@@ -122,12 +122,9 @@ editor_sidebar_filter_func_cb (gpointer itemptr,
                                gpointer user_data)
 {
   EditorSidebarItem *item = itemptr;
-  GPatternSpec *spec = user_data;
+  const char *search = user_data;
 
-  g_assert (EDITOR_IS_SIDEBAR_ITEM (item));
-  g_assert (spec != NULL);
-
-  return _editor_sidebar_item_matches (item, spec);
+  return _editor_sidebar_item_matches (item, search);
 }
 
 static void
@@ -151,12 +148,11 @@ on_search_entry_changed_cb (EditorOpenPopover *self,
   else
     {
       g_autofree gchar *text_fold = g_utf8_casefold (text, -1);
-      g_autofree gchar *pattern = g_strdup_printf ("*%s*", g_strdelimit (text_fold, " \n\t", '*'));
       g_autoptr(GtkCustomFilter) custom = NULL;
 
       custom = gtk_custom_filter_new (editor_sidebar_filter_func_cb,
-                                      g_pattern_spec_new (pattern),
-                                      (GDestroyNotify) g_pattern_spec_free);
+                                      g_steal_pointer (&text_fold),
+                                      g_free);
       filter = gtk_filter_list_model_new (g_object_ref (G_LIST_MODEL (self->model)),
                                           g_object_ref (GTK_FILTER (custom)));
       model = G_LIST_MODEL (filter);

@@ -511,14 +511,14 @@ _editor_sidebar_item_get_empty (EditorSidebarItem *self)
 
 gboolean
 _editor_sidebar_item_matches (EditorSidebarItem *self,
-                              GPatternSpec      *spec)
+                              const char        *search)
 {
-  g_return_val_if_fail (EDITOR_IS_SIDEBAR_ITEM (self), FALSE);
+  guint prio;
 
-  if (spec == NULL)
+  if (search == NULL)
     return TRUE;
 
-  if (self->search_text == NULL)
+  if G_UNLIKELY (self->search_text == NULL)
     {
       g_autofree gchar *title = _editor_sidebar_item_dup_title (self);
       g_autofree gchar *subtitle = _editor_sidebar_item_dup_subtitle (self);
@@ -528,7 +528,7 @@ _editor_sidebar_item_matches (EditorSidebarItem *self,
       self->search_text = g_strdup_printf ("%s %s", title_fold, subtitle_fold);
     }
 
-  return g_pattern_spec_match_string (spec, self->search_text);
+  return gtk_source_completion_fuzzy_match (self->search_text, search, &prio);
 }
 
 void
