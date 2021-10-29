@@ -41,6 +41,7 @@ struct _EditorSidebarItem
   gchar      *search_text;
   gchar      *draft_id;
   gchar      *title;
+  gchar      *subtitle;
   gint64      age;
 
   guint       is_modified_set : 1;
@@ -65,11 +66,35 @@ G_DEFINE_TYPE (EditorSidebarItem, editor_sidebar_item, G_TYPE_OBJECT)
 static GParamSpec *properties [N_PROPS];
 
 static void
+editor_sidebar_item_update_subtitle (EditorSidebarItem *self)
+{
+  g_autoptr(GFile) dir = NULL;
+
+  g_assert (EDITOR_IS_SIDEBAR_ITEM (self));
+
+  g_free (self->subtitle);
+
+  if (self->file == NULL)
+    {
+      self->subtitle = g_strdup (_("Draft"));
+      return;
+    }
+
+  dir = g_file_get_parent (self->file);
+  if (g_file_is_native (dir))
+    {
+      self->subtitle = _editor_path_collapse (g_file_peek_path (dir));
+      return;
+    }
+
+  self->subtitle = g_file_get_uri (dir);
+}
+
+static void
 editor_sidebar_item_do_notify (EditorSidebarItem *self)
 {
   g_assert (EDITOR_IS_SIDEBAR_ITEM (self));
 
-  g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_FILE]);
   g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_TITLE]);
   g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_SUBTITLE]);
   g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_IS_MODIFIED]);
@@ -119,8 +144,6 @@ editor_sidebar_item_set_file (EditorSidebarItem *self,
 
   if (g_set_object (&self->file, file))
     {
-      editor_sidebar_item_do_notify (self);
-
       if (file != NULL && g_file_is_native (file))
         {
           GDateTime *age = g_object_get_data (G_OBJECT (file), "AGE");
@@ -136,6 +159,9 @@ editor_sidebar_item_set_file (EditorSidebarItem *self,
                                      editor_sidebar_item_query_info_cb,
                                      g_object_ref (self));
         }
+
+      editor_sidebar_item_do_notify (self);
+      editor_sidebar_item_update_subtitle (self);
     }
 }
 
@@ -233,6 +259,7 @@ editor_sidebar_item_finalize (GObject *object)
   g_clear_object (&self->page);
   g_clear_pointer (&self->search_text, g_free);
   g_clear_pointer (&self->draft_id, g_free);
+  g_clear_pointer (&self->subtitle, g_free);
 
   G_OBJECT_CLASS (editor_sidebar_item_parent_class)->finalize (object);
 }
@@ -385,6 +412,7 @@ editor_sidebar_item_class_init (EditorSidebarItemClass *klass)
 static void
 editor_sidebar_item_init (EditorSidebarItem *self)
 {
+  self->subtitle = g_strdup ("");
 }
 
 EditorSidebarItem *
@@ -453,29 +481,9 @@ _editor_sidebar_item_dup_title (EditorSidebarItem *self)
 gchar *
 _editor_sidebar_item_dup_subtitle (EditorSidebarItem *self)
 {
-  g_autoptr(GFile) dir = NULL;
-
   g_return_val_if_fail (EDITOR_IS_SIDEBAR_ITEM (self), NULL);
 
-  if (self->page != NULL)
-    {
-      g_autofree gchar *ret = editor_page_dup_subtitle (self->page);
-
-      if (ret == NULL)
-        ret = g_strdup (_("Draft"));
-
-      return g_steal_pointer (&ret);
-    }
-
-  if (self->file == NULL)
-    return g_strdup (_("Draft"));
-
-  dir = g_file_get_parent (self->file);
-
-  if (g_file_is_native (dir))
-    return _editor_path_collapse (g_file_peek_path (dir));
-
-  return g_file_get_uri (dir);
+  return g_strdup (self->subtitle);
 }
 
 void
@@ -521,9 +529,8 @@ _editor_sidebar_item_matches (EditorSidebarItem *self,
   if G_UNLIKELY (self->search_text == NULL)
     {
       g_autofree gchar *title = _editor_sidebar_item_dup_title (self);
-      g_autofree gchar *subtitle = _editor_sidebar_item_dup_subtitle (self);
       g_autofree gchar *title_fold = g_utf8_casefold (title, -1);
-      g_autofree gchar *subtitle_fold = g_utf8_casefold (subtitle, -1);
+      g_autofree gchar *subtitle_fold = g_utf8_casefold (self->subtitle, -1);
 
       self->search_text = g_strdup_printf ("%s %s", title_fold, subtitle_fold);
     }
