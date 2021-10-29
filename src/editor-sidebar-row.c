@@ -102,6 +102,30 @@ age_to_string (GBinding     *binding,
 }
 
 static void
+on_remove_clicked_cb (EditorSidebarRow *self,
+                      GtkButton        *button)
+{
+  EditorSidebarItem *item;
+  g_autofree char *uri = NULL;
+  const char *draft_id;
+  GFile *file;
+
+  g_assert (EDITOR_IS_SIDEBAR_ROW (self));
+  g_assert (button != NULL);
+
+  item = _editor_sidebar_row_get_item (self);
+  file = _editor_sidebar_item_get_file (item);
+  draft_id = _editor_sidebar_item_get_draft_id (item);
+  uri = file ? g_file_get_uri (file) : NULL;
+
+  gtk_widget_activate_action (GTK_WIDGET (self),
+                              "app.remove-recent",
+                              "(ss)",
+                              uri ? uri : "",
+                              draft_id ? draft_id : "");
+}
+
+static void
 editor_sidebar_row_dispose (GObject *object)
 {
   EditorSidebarRow *self = (EditorSidebarRow *)object;
@@ -175,6 +199,7 @@ editor_sidebar_row_class_init (EditorSidebarRowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorSidebarRow, stack);
   gtk_widget_class_bind_template_child (widget_class, EditorSidebarRow, subtitle);
   gtk_widget_class_bind_template_child (widget_class, EditorSidebarRow, title);
+  gtk_widget_class_bind_template_callback (widget_class, on_remove_clicked_cb);
 
   properties [PROP_ITEM] =
     g_param_spec_object ("item",
@@ -230,10 +255,6 @@ _editor_sidebar_row_set_item (EditorSidebarRow  *self,
 
   if (item != NULL)
     {
-      GFile *file = _editor_sidebar_item_get_file (item);
-      const char *draft_id = _editor_sidebar_item_get_draft_id (item);
-      g_autofree char *uri = file ? g_file_get_uri (file) : NULL;
-
       self->title_binding =
         g_object_bind_property (self->item, "title",
                                 self->title, "label",
@@ -258,14 +279,5 @@ _editor_sidebar_row_set_item (EditorSidebarRow  *self,
                                      G_BINDING_SYNC_CREATE,
                                      age_to_string,
                                      NULL, self, NULL);
-      gtk_actionable_set_action_target (GTK_ACTIONABLE (self->remove),
-                                        "(ss)",
-                                        uri ? uri : "",
-                                        draft_id ? draft_id : "");
-      gtk_actionable_set_action_name (GTK_ACTIONABLE (self->remove), "app.remove-recent");
-    }
-  else
-    {
-      gtk_actionable_set_action_name (GTK_ACTIONABLE (self->remove), NULL);
     }
 }
