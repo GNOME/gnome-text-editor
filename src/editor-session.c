@@ -1010,6 +1010,7 @@ recent_compare (gconstpointer a,
 {
   const Recent *ra = a;
   const Recent *rb = b;
+  int ret;
 
   if (ra->age == NULL && rb->age == NULL)
     return strcmp (ra->uri, rb->uri);
@@ -1020,7 +1021,11 @@ recent_compare (gconstpointer a,
   if (rb->age == NULL)
     return -1;
 
-  return g_date_time_compare (ra->age, rb->age);
+  ret = g_date_time_compare (ra->age, rb->age);
+
+  if (ret < 0) return 1;
+  else if (ret > 0) return -1;
+  else return 0;
 }
 
 static void
