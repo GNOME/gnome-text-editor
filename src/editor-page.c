@@ -247,7 +247,7 @@ boolean_to_left_margin (GBinding     *binding,
                         gpointer      user_data)
 {
   if (g_value_get_boolean (from_value))
-    g_value_set_int (to_value, 0);
+    g_value_set_int (to_value, 6);
   else
     g_value_set_int (to_value, 12);
   return TRUE;
