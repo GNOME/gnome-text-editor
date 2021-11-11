@@ -189,7 +189,12 @@ editor_modeline_settings_provider_queue_reload (EditorModelineSettingsProvider *
       g_clear_handle_id (&self->reload_source, g_source_remove);
     }
 
-  self->reload_source = g_timeout_add_seconds (1, editor_modeline_settings_provider_reload, self);
+  self->reload_source =
+    g_timeout_add_seconds_full (G_PRIORITY_DEFAULT,
+                                1,
+                                editor_modeline_settings_provider_reload,
+                                g_object_ref (self),
+                                g_object_unref);
 }
 
 static void
