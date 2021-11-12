@@ -406,6 +406,13 @@ editor_source_view_action_delete_line (GtkWidget  *widget,
   text = gtk_text_iter_get_slice (&begin, &end);
   gtk_text_buffer_delete (buffer, &begin, &end);
   gtk_text_buffer_end_user_action (buffer);
+
+  /* now move the cursor to the beginning of the new line */
+  gtk_text_iter_set_line_offset (&begin, 0);
+  while (!gtk_text_iter_ends_line (&begin) &&
+         g_unichar_isspace (gtk_text_iter_get_char (&begin)))
+    gtk_text_iter_forward_char (&begin);
+  gtk_text_buffer_select_range (buffer, &begin, &begin);
 }
 
 static void
