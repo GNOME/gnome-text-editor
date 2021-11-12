@@ -25,20 +25,6 @@
 #include "editor-session.h"
 
 static void
-on_notify_command_bar_text_cb (EditorPage            *self,
-                               GParamSpec            *pspec,
-                               GtkSourceVimIMContext *im_context)
-{
-  const char *label;
-
-  g_assert (EDITOR_IS_PAGE (self));
-  g_assert (GTK_SOURCE_IS_VIM_IM_CONTEXT (im_context));
-
-  label = gtk_source_vim_im_context_get_command_bar_text (im_context);
-  gtk_label_set_label (self->vim_command_bar, label);
-}
-
-static void
 on_vim_write_cb (EditorPage            *self,
                  GtkSourceView         *view,
                  const char            *path,
@@ -150,11 +136,8 @@ on_keybindings_changed_cb (EditorPage *self,
           GtkIMContext *im_context;
 
           im_context = gtk_source_vim_im_context_new ();
-          g_signal_connect_object (im_context,
-                                   "notify::command-bar-text",
-                                   G_CALLBACK (on_notify_command_bar_text_cb),
-                                   self,
-                                   G_CONNECT_SWAPPED);
+          g_object_bind_property (im_context, "command-bar-text", self->vim_command_bar, "label", 0);
+          g_object_bind_property (im_context, "command-text", self->vim_command, "label", 0);
           g_signal_connect_object (im_context,
                                    "write",
                                    G_CALLBACK (on_vim_write_cb),
@@ -177,7 +160,7 @@ on_keybindings_changed_cb (EditorPage *self,
           gtk_event_controller_key_set_im_context (GTK_EVENT_CONTROLLER_KEY (self->vim), im_context);
           gtk_widget_add_controller (GTK_WIDGET (self->view), self->vim);
 
-          gtk_widget_show (GTK_WIDGET (self->vim_command_bar));
+          gtk_widget_show (GTK_WIDGET (self->statusbar));
         }
     }
   else
@@ -185,7 +168,7 @@ on_keybindings_changed_cb (EditorPage *self,
       if (self->vim)
         {
           gtk_label_set_label (self->vim_command_bar, NULL);
-          gtk_widget_hide (GTK_WIDGET (self->vim_command_bar));
+          gtk_widget_hide (GTK_WIDGET (self->statusbar));
           gtk_widget_remove_controller (GTK_WIDGET (self), self->vim);
           self->vim = NULL;
         }

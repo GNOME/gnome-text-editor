@@ -629,8 +629,10 @@ editor_page_class_init (EditorPageClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorPage, scroller);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, search_bar);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, search_revealer);
+  gtk_widget_class_bind_template_child (widget_class, EditorPage, statusbar);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, view);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, vim_command_bar);
+  gtk_widget_class_bind_template_child (widget_class, EditorPage, vim_command);
   gtk_widget_class_bind_template_callback (widget_class, get_child_position_cb);
   gtk_widget_class_bind_template_callback (widget_class, goto_line_entry_activate_cb);
 
