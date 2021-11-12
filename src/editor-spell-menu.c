@@ -96,9 +96,23 @@ editor_spell_corrections_get_item_attributes (GMenuModel  *model,
 }
 
 static void
+editor_spell_menu_dispose (GObject *object)
+{
+  EditorSpellCorrections *self = (EditorSpellCorrections *)object;
+
+  g_clear_pointer (&self->word, g_free);
+  g_clear_pointer (&self->corrections, g_strfreev);
+
+  G_OBJECT_CLASS (editor_spell_corrections_parent_class)->dispose (object);
+}
+
+static void
 editor_spell_corrections_class_init (EditorSpellCorrectionsClass *klass)
 {
+  GObjectClass *object_class = G_OBJECT_CLASS (klass);
   GMenuModelClass *menu_model_class = G_MENU_MODEL_CLASS (klass);
+
+  object_class->dispose = editor_spell_menu_dispose;
 
   menu_model_class->get_n_items = editor_spell_corrections_get_n_items;
   menu_model_class->is_mutable = editor_spell_corrections_is_mutable;
