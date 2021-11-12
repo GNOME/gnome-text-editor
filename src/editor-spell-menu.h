@@ -28,6 +28,7 @@ GMenuModel *editor_spell_menu_new             (void);
 void        editor_spell_menu_set_language    (GMenuModel          *menu,
                                                EditorSpellLanguage *language);
 void        editor_spell_menu_set_corrections (GMenuModel          *menu,
+                                               const char          *word,
                                                const char * const  *words);
 
 G_END_DECLS

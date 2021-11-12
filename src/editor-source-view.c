@@ -219,6 +219,7 @@ cleanup:
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "spelling.add", self->spelling_word != NULL);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "spelling.ignore", self->spelling_word != NULL);
   editor_spell_menu_set_corrections (self->spelling_menu,
+                                     self->spelling_word,
                                      (const char * const *)corrections);
 }
 

@@ -34,6 +34,7 @@ G_DECLARE_FINAL_TYPE (EditorSpellCorrections, editor_spell_corrections, EDITOR, 
 struct _EditorSpellCorrections
 {
   GMenuModel parent_instance;
+  char *word;
   char **corrections;
 };
 
@@ -113,6 +114,7 @@ editor_spell_corrections_init (EditorSpellCorrections *self)
 
 static void
 editor_spell_corrections_set (EditorSpellCorrections *self,
+                              const char             *word,
                               const char * const     *corrections)
 {
   guint removed = 0;
@@ -123,12 +125,17 @@ editor_spell_corrections_set (EditorSpellCorrections *self,
   if (corrections == (const char * const *)self->corrections)
     return;
 
+  if (g_strcmp0 (word, self->word) == 0)
+    return;
+
   if (self->corrections != NULL)
     removed = g_strv_length (self->corrections);
 
   if (corrections != NULL)
     added = g_strv_length ((char **)corrections);
 
+  g_free (self->word);
+  self->word = g_strdup (word);
   g_strfreev (self->corrections);
   self->corrections = g_strdupv ((char **)corrections);
   g_menu_model_items_changed (G_MENU_MODEL (self), 0, removed, added);
@@ -200,6 +207,7 @@ editor_spell_menu_new (void)
 
 void
 editor_spell_menu_set_corrections (GMenuModel         *menu,
+                                   const char         *word,
                                    const char * const *words)
 {
   EditorSpellCorrections *corrections_menu;
@@ -209,6 +217,6 @@ editor_spell_menu_set_corrections (GMenuModel         *menu,
   if ((corrections_menu = g_object_get_data (G_OBJECT (menu), "CORRECTIONS_MENU")))
     {
       g_assert (EDITOR_IS_SPELL_CORRECTIONS (corrections_menu));
-      editor_spell_corrections_set (corrections_menu, words);
+      editor_spell_corrections_set (corrections_menu, word, words);
     }
 }
