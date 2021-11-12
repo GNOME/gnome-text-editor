@@ -54,5 +54,6 @@ void                     _editor_file_chooser_add_line_endings  (GtkFileChooser 
                                                                  GtkSourceNewlineType        selected);
 const GtkSourceEncoding *_editor_file_chooser_get_encoding      (GtkFileChooser             *chooser);
 GtkSourceNewlineType     _editor_file_chooser_get_line_ending   (GtkFileChooser             *chooser);
+void                     _editor_revealer_auto_hide             (GtkRevealer                *revealer);
 
 G_END_DECLS

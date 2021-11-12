@@ -651,6 +651,9 @@ editor_page_init (EditorPage *self)
 
   gtk_widget_init_template (GTK_WIDGET (self));
 
+  _editor_revealer_auto_hide (self->search_revealer);
+  _editor_revealer_auto_hide (self->goto_line_revealer);
+
   /* Work around https://gitlab.gnome.org/GNOME/gtk/-/issues/4315
    * by connecting to the GtkText to intercept insert-text() emission.
    */

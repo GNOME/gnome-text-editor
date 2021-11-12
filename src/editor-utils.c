@@ -497,3 +497,66 @@ _editor_file_chooser_get_line_ending (GtkFileChooser *chooser)
 
   return GTK_SOURCE_NEWLINE_TYPE_LF;
 }
+
+static gboolean
+revealer_autohide (gpointer data)
+{
+  GtkRevealer *revealer = data;
+
+  g_assert (GTK_IS_REVEALER (revealer));
+
+  g_object_set_data (G_OBJECT (revealer), "AUTOHIDE_ID", NULL);
+
+  if (gtk_widget_get_parent (GTK_WIDGET (revealer)) != NULL)
+    {
+      if (!gtk_revealer_get_reveal_child (revealer) &&
+          !gtk_revealer_get_child_revealed (revealer))
+        gtk_widget_hide (GTK_WIDGET (revealer));
+    }
+
+  return G_SOURCE_REMOVE;
+}
+
+static void
+revealer_queue_autohide (GtkRevealer *revealer)
+{
+  guint id = GPOINTER_TO_UINT (g_object_get_data (G_OBJECT (revealer), "AUTOHIDE_ID"));
+
+  if (id != 0)
+    {
+      g_source_remove (id);
+      id = 0;
+    }
+
+  if (gtk_widget_get_parent (GTK_WIDGET (revealer)) != NULL)
+    id = g_idle_add_full (G_PRIORITY_HIGH,
+                          revealer_autohide,
+                          g_object_ref (revealer),
+                          g_object_unref);
+
+  g_object_set_data (G_OBJECT (revealer), "AUTOHIDE_ID", GUINT_TO_POINTER (id));
+
+  if ((gtk_revealer_get_reveal_child (revealer) ||
+       gtk_revealer_get_child_revealed (revealer)) &&
+      !gtk_widget_get_visible (GTK_WIDGET (revealer)))
+    gtk_widget_show (GTK_WIDGET (revealer));
+}
+
+/* Try to get a revealer out of the size request machinery
+ * until it is even necessary (ie: displayed).
+ */
+void
+_editor_revealer_auto_hide (GtkRevealer *revealer)
+{
+  g_return_if_fail (GTK_IS_REVEALER (revealer));
+
+  g_signal_connect (revealer,
+                    "notify::reveal-child",
+                    G_CALLBACK (revealer_queue_autohide),
+                    NULL);
+  g_signal_connect (revealer,
+                    "notify::child-revealed",
+                    G_CALLBACK (revealer_queue_autohide),
+                    NULL);
+  revealer_queue_autohide (revealer);
+}
