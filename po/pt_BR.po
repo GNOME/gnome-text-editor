@@ -1,24 +1,24 @@
 # Brazilian Portuguese translation for gnome-text-editor.
 # Copyright (C) 2021 gnome-text-editor's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-text-editor package.
-# Rafael Fontenelle <rafaelff@gnome.org>, 2021.
 # Enrico Nicoletto <liverig@gmail.com>, 2021.
+# Rafael Fontenelle <rafaelff@gnome.org>, 2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2021-10-28 09:56+0000\n"
-"PO-Revision-Date: 2021-10-28 15:19-0300\n"
-"Last-Translator: Enrico Nicoletto <liverig@gmail.com>\n"
+"POT-Creation-Date: 2021-11-12 07:29+0000\n"
+"PO-Revision-Date: 2021-11-12 17:11-0300\n"
+"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.0\n"
+"Plural-Forms: nplurals=2; plural=(n > 1)\n"
+"X-Generator: Gtranslator 40.0\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
 msgid "Christian Hergert, et al."
@@ -221,6 +221,14 @@ msgstr "Restaurar sessão"
 msgid "When Text Editor is run, restore the previous session."
 msgstr "Quando o editor de texto for executado, restaure a sessão anterior."
 
+#: data/org.gnome.TextEditor.gschema.xml:117
+msgid "Keybindings"
+msgstr "Associações de teclas"
+
+#: data/org.gnome.TextEditor.gschema.xml:118
+msgid "The keybindings to use within Text Editor."
+msgstr "As associações de teclas para usar com o Editor de Texto."
+
 #: src/editor-animation.c:1051
 #, c-format
 msgid "Failed to find property %s in %s"
@@ -295,37 +303,36 @@ msgstr "Documentos recentes"
 msgid "No Recent Documents"
 msgstr "Nenhum documento recente"
 
-#: src/editor-open-popover.ui:89
+#: src/editor-open-popover.ui:83
 msgid "Br_owse Files…"
 msgstr "Pr_ocurar arquivos…"
 
-#: src/editor-page.c:786 src/editor-sidebar-item.c:446
+#: src/editor-page.c:790 src/editor-sidebar-item.c:474
 msgid "New Document"
 msgstr "Novo documento"
 
-#: src/editor-page.c:803 src/editor-sidebar-item.c:465
-#: src/editor-sidebar-item.c:471
+#: src/editor-page.c:807 src/editor-sidebar-item.c:79
 msgid "Draft"
 msgstr "Rascunho"
 
-#: src/editor-page.c:857
+#: src/editor-page.c:861
 msgid "Failed to save document"
 msgstr "Falha ao salvar o documento"
 
-#: src/editor-page.c:925
+#: src/editor-page.c:930
 msgid "Save As"
 msgstr "Salvar como"
 
-#: src/editor-page.c:928 src/editor-window-actions.c:131
+#: src/editor-page.c:933 src/editor-window-actions.c:131
 msgid "Save"
 msgstr "Salvar"
 
-#: src/editor-page.c:929 src/editor-window-actions.c:130
+#: src/editor-page.c:934 src/editor-window-actions.c:130
 #: src/editor-window-actions.c:241 src/editor-window-actions.c:350
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: src/editor-page.c:1047
+#: src/editor-page.c:1070
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Lin %u, Col %u"
@@ -577,7 +584,7 @@ msgstr "Menu"
 
 #: src/editor-window.ui:162
 msgid "Start or Open a Document"
-msgstr "Inicia ou abre um documento"
+msgstr "Inicie ou abra um documento"
 
 #: src/editor-window.ui:165
 msgid ""
@@ -593,7 +600,7 @@ msgstr ""
 "• Pressione Ctrl+N para iniciar um novo documento\n"
 "• Pressione Ctrl+O para procurar por um documento\n"
 "\n"
-"Ou pressione Ctrl+W para fechar a janela."
+"Ou pressione Ctrl+W para fechar esta janela."
 
 #: src/editor-window.ui:199
 msgid "Preferences"
