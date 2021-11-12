@@ -872,7 +872,7 @@ _editor_page_save (EditorPage *self)
 
   if (editor_document_get_file (self->document) == NULL)
     {
-      _editor_page_save_as (self);
+      _editor_page_save_as (self, NULL);
       return;
     }
 
@@ -912,7 +912,8 @@ editor_page_save_as_cb (EditorPage           *self,
 }
 
 void
-_editor_page_save_as (EditorPage *self)
+_editor_page_save_as (EditorPage *self,
+                      const char *filename)
 {
   GtkFileChooserNative *native;
   EditorWindow *window;
@@ -931,6 +932,24 @@ _editor_page_save_as (EditorPage *self)
   _editor_file_chooser_add_encodings (GTK_FILE_CHOOSER (native));
   _editor_file_chooser_add_line_endings (GTK_FILE_CHOOSER (native),
                                          _editor_document_get_newline_type (self->document));
+
+  if (filename != NULL)
+    {
+      GFile *file = editor_document_get_file (self->document);
+      g_autoptr(GFile) selected = NULL;
+
+      if (file != NULL && !g_path_is_absolute (filename))
+        {
+          g_autoptr(GFile) parent = g_file_get_parent (file);
+          selected = g_file_get_child (parent, filename);
+        }
+      else
+        {
+          selected = g_file_new_for_path (filename);
+        }
+
+      gtk_file_chooser_set_file (GTK_FILE_CHOOSER (native), selected, NULL);
+    }
 
   g_signal_connect_object (native,
                            "response",

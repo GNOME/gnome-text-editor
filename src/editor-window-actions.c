@@ -153,7 +153,7 @@ editor_window_actions_save_as_cb (GtkWidget  *widget,
   page = editor_window_get_visible_page (self);
 
   if (page != NULL)
-    _editor_page_save_as (page);
+    _editor_page_save_as (page, NULL);
 }
 
 static void

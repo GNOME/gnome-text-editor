@@ -66,7 +66,8 @@ void          _editor_page_class_actions_init     (EditorPageClass      *klass);
 void          _editor_page_actions_init           (EditorPage           *self);
 EditorWindow *_editor_page_get_window             (EditorPage           *self);
 void          _editor_page_save                   (EditorPage           *self);
-void          _editor_page_save_as                (EditorPage           *self);
+void          _editor_page_save_as                (EditorPage           *self,
+                                                   const char           *filename);
 void          _editor_page_raise                  (EditorPage           *self);
 void          _editor_page_discard_changes_async  (EditorPage           *self,
                                                    gboolean              reload,
