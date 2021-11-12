@@ -117,3 +117,11 @@ textview.source-map:dir(rtl) {
 flap > scrolledwindow.preferences > viewport {
   background: @theme_bg_color;
 }
+
+label.vim-command-bar {
+  font-family: monospace;
+  min-width: 100px;
+  padding: 3px 6px;
+  background: @theme_bg_color;
+  border-top: 1px solid @borders;
+}

@@ -25,6 +25,7 @@
 #include <adwaita.h>
 #include <glib/gi18n.h>
 
+#include "editor-application-private.h"
 #include "editor-info-bar-private.h"
 #include "editor-page-private.h"
 #include "editor-sidebar-model-private.h"
@@ -341,6 +342,8 @@ editor_page_constructed (GObject *object)
 
   editor_page_document_notify_busy_cb (self, NULL, self->document);
   editor_page_document_notify_language_cb (self, NULL, self->document);
+
+  _editor_page_vim_init (self);
 }
 
 static gboolean
@@ -627,6 +630,7 @@ editor_page_class_init (EditorPageClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorPage, search_bar);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, search_revealer);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, view);
+  gtk_widget_class_bind_template_child (widget_class, EditorPage, vim_command_bar);
   gtk_widget_class_bind_template_callback (widget_class, get_child_position_cb);
   gtk_widget_class_bind_template_callback (widget_class, goto_line_entry_activate_cb);
 

@@ -108,5 +108,14 @@
       <summary>Restore session</summary>
       <description>When Text Editor is run, restore the previous session.</description>
     </key>
+    <key name="keybindings" type="s">
+      <choices>
+        <choice value="default"/>
+        <choice value="vim"/>
+      </choices>
+      <default>'default'</default>
+      <summary>Keybindings</summary>
+      <description>The keybindings to use within Text Editor.</description>
+    </key>
   </schema>
 </schemalist>

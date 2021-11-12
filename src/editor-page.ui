@@ -145,6 +145,17 @@
             </child>
           </object>
         </child>
+        <child>
+          <object class="GtkLabel" id="vim_command_bar">
+            <property name="xalign">0</property>
+            <property name="valign">end</property>
+            <property name="vexpand">false</property>
+            <property name="visible">false</property>
+            <style>
+              <class name="vim-command-bar"/>
+            </style>
+          </object>
+        </child>
       </object>
     </child>
   </template>

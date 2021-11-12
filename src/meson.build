@@ -17,6 +17,7 @@ editor_sources = [
   'editor-page-gsettings.c',
   'editor-page-settings.c',
   'editor-page-settings-provider.c',
+  'editor-page-vim.c',
   'editor-path.c',
   'editor-position-label.c',
   'editor-preferences-font.c',
