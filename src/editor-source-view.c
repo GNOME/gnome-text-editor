@@ -379,6 +379,36 @@ editor_source_view_action_select_line (GtkWidget  *widget,
 }
 
 static void
+editor_source_view_action_delete_line (GtkWidget  *widget,
+                                       const char *action_name,
+                                       GVariant   *param)
+{
+  EditorSourceView *self = (EditorSourceView *)widget;
+  GtkTextBuffer *buffer;
+  GtkTextIter begin, end;
+  g_autofree char *text = NULL;
+
+  g_assert (EDITOR_IS_SOURCE_VIEW (self));
+
+  editor_source_view_action_select_line (widget, NULL, NULL);
+  buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (self));
+
+  /* If we're at the end of the buffer, then we need to remove the
+   * leading \n instead of the trailing \n to make it appear to the
+   * user that a line was removed.
+   */
+  gtk_text_buffer_begin_user_action (buffer);
+  gtk_text_buffer_get_selection_bounds (buffer, &begin, &end);
+  gtk_text_iter_order (&begin, &end);
+  if (gtk_text_iter_is_end (&end) &&
+      gtk_text_iter_get_line (&begin) == gtk_text_iter_get_line (&end))
+    gtk_text_iter_backward_char (&begin);
+  text = gtk_text_iter_get_slice (&begin, &end);
+  gtk_text_buffer_delete (buffer, &begin, &end);
+  gtk_text_buffer_end_user_action (buffer);
+}
+
+static void
 editor_source_view_constructed (GObject *object)
 {
   EditorSourceView *self = (EditorSourceView *)object;
@@ -465,6 +495,7 @@ editor_source_view_class_init (EditorSourceViewClass *klass)
   gtk_widget_class_install_action (widget_class, "spelling.ignore", NULL, editor_source_view_action_spelling_ignore);
   gtk_widget_class_install_action (widget_class, "spelling.correct", "s", editor_source_view_action_spelling_correct);
   gtk_widget_class_install_action (widget_class, "buffer.select-line", NULL, editor_source_view_action_select_line);
+  gtk_widget_class_install_action (widget_class, "buffer.delete-line", NULL, editor_source_view_action_delete_line);
 
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_plus, GDK_CONTROL_MASK, "page.zoom-in", NULL);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_KP_Add, GDK_CONTROL_MASK, "page.zoom-in", NULL);
@@ -472,10 +503,7 @@ editor_source_view_class_init (EditorSourceViewClass *klass)
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_KP_Subtract, GDK_CONTROL_MASK, "page.zoom-out", NULL);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_0, GDK_CONTROL_MASK, "page.zoom-one", NULL);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_l, GDK_CONTROL_MASK, "buffer.select-line", NULL);
-
-  gtk_widget_class_add_binding_signal (widget_class,
-                                       GDK_KEY_d, GDK_CONTROL_MASK,
-                                       "delete-from-cursor", "(ii)", GTK_DELETE_PARAGRAPHS, 1);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_d, GDK_CONTROL_MASK, "buffer.delete-line", NULL);
 }
 
 static void
