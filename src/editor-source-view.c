@@ -413,6 +413,11 @@ editor_source_view_action_delete_line (GtkWidget  *widget,
          g_unichar_isspace (gtk_text_iter_get_char (&begin)))
     gtk_text_iter_forward_char (&begin);
   gtk_text_buffer_select_range (buffer, &begin, &begin);
+
+  /* it's nice to place the text into the primary selection so that
+   * the user can paste it in other places.
+   */
+  gdk_clipboard_set_text (gtk_widget_get_primary_clipboard (widget), text);
 }
 
 static void
