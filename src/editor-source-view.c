@@ -218,7 +218,6 @@ cleanup:
   self->spelling_word = g_steal_pointer (&word);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "spelling.add", self->spelling_word != NULL);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "spelling.ignore", self->spelling_word != NULL);
-  gtk_widget_action_set_enabled (GTK_WIDGET (self), "spelling.correct", self->spelling_word != NULL);
   editor_spell_menu_set_corrections (self->spelling_menu,
                                      (const char * const *)corrections);
 }
@@ -530,7 +529,6 @@ editor_source_view_init (EditorSourceView *self)
 
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "spelling.add", FALSE);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "spelling.ignore", FALSE);
-  gtk_widget_action_set_enabled (GTK_WIDGET (self), "spelling.correct", FALSE);
 
   self->css_provider = gtk_css_provider_new ();
   style_context = gtk_widget_get_style_context (GTK_WIDGET (self));
