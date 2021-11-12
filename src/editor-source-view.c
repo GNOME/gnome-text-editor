@@ -389,7 +389,7 @@ editor_source_view_constructed (GObject *object)
 }
 
 static void
-editor_source_view_finalize (GObject *object)
+editor_source_view_dispose (GObject *object)
 {
   EditorSourceView *self = (EditorSourceView *)object;
 
@@ -397,7 +397,7 @@ editor_source_view_finalize (GObject *object)
   g_clear_object (&self->spelling_menu);
   g_clear_pointer (&self->spelling_word, g_free);
 
-  G_OBJECT_CLASS (editor_source_view_parent_class)->finalize (object);
+  G_OBJECT_CLASS (editor_source_view_parent_class)->dispose (object);
 }
 
 static void
@@ -445,7 +445,7 @@ editor_source_view_class_init (EditorSourceViewClass *klass)
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
   object_class->constructed = editor_source_view_constructed;
-  object_class->finalize = editor_source_view_finalize;
+  object_class->dispose = editor_source_view_dispose;
   object_class->get_property = editor_source_view_get_property;
   object_class->set_property = editor_source_view_set_property;
 
