@@ -540,6 +540,22 @@ on_tab_view_create_window_cb (EditorWindow *self,
 }
 
 static void
+notify_focus_widget_cb (EditorWindow *self)
+{
+  GtkWidget *widget;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+
+  if (!(widget = gtk_root_get_focus (GTK_ROOT (self))))
+    {
+      EditorPage *page = editor_window_get_visible_page (self);
+
+      if (page != NULL)
+        gtk_root_set_focus (GTK_ROOT (self), GTK_WIDGET (page));
+    }
+}
+
+static void
 editor_window_dispose (GObject *object)
 {
   EditorWindow *self = (EditorWindow *)object;
@@ -693,6 +709,11 @@ static void
 editor_window_init (EditorWindow *self)
 {
   gtk_widget_init_template (GTK_WIDGET (self));
+
+  g_signal_connect (self,
+                    "notify::focus-widget",
+                    G_CALLBACK (notify_focus_widget_cb),
+                    NULL);
 
   gtk_window_set_title (GTK_WINDOW (self), _(PACKAGE_NAME));
   gtk_window_set_default_size (GTK_WINDOW (self), 700, 520);
