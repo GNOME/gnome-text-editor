@@ -23,7 +23,6 @@
 
 
 /* EditorWindow */
-
 .org-gnome-TextEditor positionlabel label {
   font-feature-settings: "tnum";
 }
@@ -31,20 +30,27 @@
 
 /* EditorThemeSelector */
 .org-gnome-TextEditor checkbutton.theme-selector {
-  margin-top: 9px;
-  margin-bottom: 9px;
+  margin: 10px 1px 10px 1px;
   min-height: 42px;
   min-width: 42px;
   border-width: 1px;
   border-style: solid;
   border-color: transparent;
   border-radius: 9999px;
-  padding: 1px;
 }
-.org-gnome-TextEditor checkbutton.theme-selector:checked {
+.org-gnome-TextEditor checkbutton.theme-selector.light:checked,
+.org-gnome-TextEditor checkbutton.theme-selector.dark:checked {
   border-color: @theme_selected_bg_color;
   border-width: 2px;
-  padding: 0;
+  margin: 9px 0 9px 0;
+}
+.org-gnome-TextEditor checkbutton.theme-selector.light {
+  background-color: #fff;
+  border-color: #dcdddd;
+}
+.org-gnome-TextEditor checkbutton.theme-selector.dark {
+  background-color: #2e3436;
+  border-color: #000;
 }
 .org-gnome-TextEditor checkbutton.theme-selector radio {
   -gtk-icon-source: none;
@@ -60,14 +66,6 @@
   -gtk-icon-source: -gtk-icontheme("object-select-symbolic");
   background-color: @theme_selected_bg_color;
   color: @theme_selected_fg_color;
-}
-.org-gnome-TextEditor checkbutton.theme-selector.light:not(:checked) {
-  background-color: #fff;
-  border-color: #dcdddd;
-}
-.org-gnome-TextEditor checkbutton.theme-selector.dark:not(:checked) {
-  background-color: #2e3436;
-  border-color: #000;
 }
 
 
