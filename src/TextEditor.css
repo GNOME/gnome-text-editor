@@ -38,11 +38,16 @@
   border-color: transparent;
   border-radius: 9999px;
 }
+.org-gnome-TextEditor checkbutton.theme-selector.follow:checked,
 .org-gnome-TextEditor checkbutton.theme-selector.light:checked,
 .org-gnome-TextEditor checkbutton.theme-selector.dark:checked {
   border-color: @theme_selected_bg_color;
   border-width: 2px;
   margin: 9px 0 9px 0;
+}
+.org-gnome-TextEditor checkbutton.theme-selector.follow {
+  background: linear-gradient(to bottom right, #fff 50%, #2e3436 50%);
+  border-color: #2e3436;
 }
 .org-gnome-TextEditor checkbutton.theme-selector.light {
   background-color: #fff;

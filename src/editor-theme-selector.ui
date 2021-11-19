@@ -5,7 +5,22 @@
       <object class="GtkBox" id="box">
         <property name="halign">center</property>
         <property name="orientation">horizontal</property>
-        <property name="spacing">24</property>
+        <property name="spacing">12</property>
+        <child>
+          <object class="GtkCheckButton" id="follow">
+            <style>
+              <class name="theme-selector"/>
+              <class name="follow"/>
+            </style>
+            <property name="focus-on-click">false</property>
+            <property name="action-name">settings.style-variant</property>
+            <property name="action-target">'follow'</property>
+            <property name="tooltip-text" translatable="yes">Follow system style</property>
+            <accessibility>
+              <property name="label" translatable="yes">Follow system style</property>
+            </accessibility>
+          </object>
+        </child>
         <child>
           <object class="GtkCheckButton" id="light">
             <style>

@@ -32,6 +32,7 @@ struct _EditorThemeSelector
   GtkWidget *box;
   GtkToggleButton *dark;
   GtkToggleButton *light;
+  GtkToggleButton *follow;
   char *theme;
 };
 
@@ -49,6 +50,20 @@ GtkWidget *
 _editor_theme_selector_new (void)
 {
   return g_object_new (EDITOR_TYPE_THEME_SELECTOR, NULL);
+}
+
+static void
+on_notify_system_supports_color_schemes_cb (EditorThemeSelector *self,
+                                            GParamSpec          *pspec,
+                                            AdwStyleManager     *style_manager)
+{
+  gboolean visible;
+
+  g_assert (EDITOR_IS_THEME_SELECTOR (self));
+  g_assert (ADW_IS_STYLE_MANAGER (style_manager));
+
+  visible = adw_style_manager_get_system_supports_color_schemes (style_manager);
+  gtk_widget_set_visible (GTK_WIDGET (self->follow), visible);
 }
 
 static void
@@ -125,16 +140,27 @@ editor_theme_selector_class_init (EditorThemeSelectorClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorThemeSelector, box);
   gtk_widget_class_bind_template_child (widget_class, EditorThemeSelector, dark);
   gtk_widget_class_bind_template_child (widget_class, EditorThemeSelector, light);
+  gtk_widget_class_bind_template_child (widget_class, EditorThemeSelector, follow);
 }
 
 static void
 editor_theme_selector_init (EditorThemeSelector *self)
 {
-  gboolean dark = adw_style_manager_get_dark (adw_style_manager_get_default ());
+  AdwStyleManager *style_manager = adw_style_manager_get_default ();
+  gboolean dark;
 
   gtk_widget_init_template (GTK_WIDGET (self));
 
+  g_signal_connect_object (style_manager,
+                           "notify::system-supports-color-schemes",
+                           G_CALLBACK (on_notify_system_supports_color_schemes_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+
+  dark = adw_style_manager_get_dark (style_manager);
   self->theme = g_strdup (dark ? "dark" : "light");
+
+  on_notify_system_supports_color_schemes_cb (self, NULL, style_manager);
 }
 
 const char *
