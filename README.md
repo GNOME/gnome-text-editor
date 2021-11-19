@@ -4,17 +4,30 @@ Text Editor is a simple text editor that focus on session management.
 It works hard to keep track of changes and state even if you quit the application.
 You can come back to your work even if you've never saved it to a file.
 
+## Features
+
+ * A simple editor focused on a solid default experience
+ * Syntax highlighting for common programming languages
+ * Search & Replace including support for PCRE2-based regular expressions
+ * Inline spell checking
+ * Document printing
+ * Desktop integration including dark-mode and saving session state
+ * Support for .editorconfig and modelines
+ * Integrated support for Vim keybindings
+
 ## Dependencies
 
-Text Editor was built as a test application for the development of GTK 4 and GtkSourceView 5 and therefore requires both of those along with libadwaita.
-Enchant 2 is used to provide spellchecking capabilities.
+ * GTK 4.4 or newer
+ * GtkSourceView 5.4 or newer
+ * Libadwaita
+ * libpcre (for .editorconfig support)
+ * icu (for language code ids)
 
-A full list of dependencies beyond what is provided by the GNOME SDK can be found in our Flatpak build manifest at [org.gnome.TextEditor.Devel.json](https://gitlab.gnome.org/GNOME/gnome-text-editor/tree/master/org.gnome.TextEditor.Devel.json).
+Refer to the [org.gnome.TextEditor.Devel.json](https://gitlab.gnome.org/GNOME/gnome-text-editor/tree/master/org.gnome.TextEditor.Devel.json) Flatpak manifest for additional details.
 
 ## Plans
 
-Everyone has their favorite programming text editors.
-Text Editor is focused on being a great default text editor.
+To be a delightful and pleasing default text editor experience for GNOME.
 
 ## Try it Out!
 
