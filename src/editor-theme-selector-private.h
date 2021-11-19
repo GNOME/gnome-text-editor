@@ -28,9 +28,9 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (EditorThemeSelector, editor_theme_selector, EDITOR, THEME_SELECTOR, GtkWidget)
 
-GtkWidget   *_editor_theme_selector_new       (void);
-const gchar *_editor_theme_selector_get_theme (EditorThemeSelector *self);
-void         _editor_theme_selector_set_theme (EditorThemeSelector *self,
-                                               const gchar         *theme);
+GtkWidget  *_editor_theme_selector_new       (void);
+const char *_editor_theme_selector_get_theme (EditorThemeSelector *self);
+void        _editor_theme_selector_set_theme (EditorThemeSelector *self,
+                                              const char          *theme);
 
 G_END_DECLS

@@ -22,8 +22,9 @@
 
 #include "config.h"
 
-#include "editor-theme-selector-private.h"
 #include <adwaita.h>
+
+#include "editor-theme-selector-private.h"
 
 struct _EditorThemeSelector
 {
@@ -31,7 +32,7 @@ struct _EditorThemeSelector
   GtkWidget *box;
   GtkToggleButton *dark;
   GtkToggleButton *light;
-  gchar *theme;
+  char *theme;
 };
 
 G_DEFINE_TYPE (EditorThemeSelector, editor_theme_selector, GTK_TYPE_WIDGET)
@@ -136,7 +137,7 @@ editor_theme_selector_init (EditorThemeSelector *self)
   self->theme = g_strdup (dark ? "dark" : "light");
 }
 
-const gchar *
+const char *
 _editor_theme_selector_get_theme (EditorThemeSelector *self)
 {
   g_return_val_if_fail (EDITOR_IS_THEME_SELECTOR (self), NULL);
@@ -146,7 +147,7 @@ _editor_theme_selector_get_theme (EditorThemeSelector *self)
 
 void
 _editor_theme_selector_set_theme (EditorThemeSelector *self,
-                                  const gchar         *theme)
+                                  const char          *theme)
 {
   g_return_if_fail (EDITOR_IS_THEME_SELECTOR (self));
 
