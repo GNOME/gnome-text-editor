@@ -142,6 +142,40 @@ style_variant_to_color_scheme (GValue   *value,
 }
 
 static void
+update_dark (GtkWindow *window)
+{
+  AdwStyleManager *style_manager;
+
+  g_assert (GTK_IS_WINDOW (window));
+
+  style_manager = adw_style_manager_get_default ();
+
+  if (adw_style_manager_get_dark (style_manager))
+    gtk_widget_add_css_class (GTK_WIDGET (window), "dark");
+  else
+    gtk_widget_remove_css_class (GTK_WIDGET (window), "dark");
+}
+
+static void
+on_style_manager_notify_dark (EditorApplication *self,
+                              GParamSpec        *pspec,
+                              AdwStyleManager   *style_manager)
+{
+  g_assert (EDITOR_IS_APPLICATION (self));
+  g_assert (ADW_IS_STYLE_MANAGER (style_manager));
+
+  for (const GList *iter = gtk_application_get_windows (GTK_APPLICATION (self));
+       iter != NULL;
+       iter = iter->next)
+    {
+      GtkWindow *window = iter->data;
+
+      if (EDITOR_IS_WINDOW (window))
+        update_dark (window);
+    }
+}
+
+static void
 editor_application_startup (GApplication *application)
 {
   EditorApplication *self = (EditorApplication *)application;
@@ -162,6 +196,12 @@ editor_application_startup (GApplication *application)
   _editor_application_actions_init (self);
 
   style_manager = adw_style_manager_get_default ();
+
+  g_signal_connect_object (style_manager,
+                           "notify::dark",
+                           G_CALLBACK (on_style_manager_notify_dark),
+                           self,
+                           G_CONNECT_SWAPPED);
 
   g_settings_bind (self->settings, "auto-save-delay",
                    self->session, "auto-save-delay",
@@ -229,9 +269,13 @@ editor_application_window_added (GtkApplication *application,
   g_assert (EDITOR_IS_APPLICATION (application));
   g_assert (GTK_IS_WINDOW (window));
 
+  if (EDITOR_IS_WINDOW (window))
+    {
+      update_dark (window);
 #if DEVELOPMENT_BUILD
-  gtk_widget_add_css_class (GTK_WIDGET (window), "devel");
+      gtk_widget_add_css_class (GTK_WIDGET (window), "devel");
 #endif
+    }
 
   GTK_APPLICATION_CLASS (editor_application_parent_class)->window_added (application, window);
 }
