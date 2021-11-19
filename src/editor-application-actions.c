@@ -237,12 +237,11 @@ editor_application_actions_remove_recent_cb (GSimpleAction *action,
                                              GVariant      *param,
                                              gpointer       user_data)
 {
-  EditorApplication *self = user_data;
   g_autoptr(GFile) file = NULL;
   const char *uri;
   const char *draft_id;
 
-  g_assert (EDITOR_IS_APPLICATION (self));
+  g_assert (EDITOR_IS_APPLICATION (user_data));
   g_assert (g_variant_is_of_type (param, G_VARIANT_TYPE ("(ss)")));
 
   g_variant_get (param, "(&s&s)", &uri, &draft_id);
