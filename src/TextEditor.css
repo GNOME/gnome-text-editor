@@ -30,29 +30,44 @@
 
 
 /* EditorThemeSelector */
-
-.org-gnome-TextEditor checkbutton.theme-selector radio {
-  -gtk-icon-source: none;
-  background: none;
-  box-shadow: none;
-  padding: 10px;
-  min-height: 24px;
-  min-width: 24px;
-  border-width: 3px;
+.org-gnome-TextEditor checkbutton.theme-selector {
+  margin-top: 9px;
+  margin-bottom: 9px;
+  min-height: 42px;
+  min-width: 42px;
+  border-width: 1px;
   border-style: solid;
   border-color: transparent;
+  border-radius: 9999px;
+  padding: 1px;
+}
+.org-gnome-TextEditor checkbutton.theme-selector:checked {
+  border-color: @theme_selected_bg_color;
+  border-width: 2px;
+  padding: 0;
+}
+.org-gnome-TextEditor checkbutton.theme-selector radio {
+  -gtk-icon-source: none;
+  border: none;
+  background: none;
+  box-shadow: none;
+  min-width: 12px;
+  min-height: 12px;
+  margin: 24px 0 0 24px;
+  padding: 2px;
 }
 .org-gnome-TextEditor checkbutton.theme-selector radio:checked {
-  border-color: @theme_selected_bg_color;
-  -gtk-icon-source: -gtk-scaled(-gtk-icontheme("object-select-symbolic"));
+  -gtk-icon-source: -gtk-icontheme("object-select-symbolic");
+  background-color: @theme_selected_bg_color;
+  color: @theme_selected_fg_color;
 }
-.org-gnome-TextEditor checkbutton.theme-selector.light radio {
-  color: #2e3436;
+.org-gnome-TextEditor checkbutton.theme-selector.light:not(:checked) {
   background-color: #fff;
+  border-color: #e2e1de;
 }
-.org-gnome-TextEditor checkbutton.theme-selector.dark radio {
-  color: #fff;
+.org-gnome-TextEditor checkbutton.theme-selector.dark:not(:checked) {
   background-color: #2e3436;
+  border-color: #000;
 }
 
 
