@@ -134,6 +134,7 @@ editor_theme_selector_class_init (EditorThemeSelectorClass *klass)
 
   g_object_class_install_properties (object_class, N_PROPS, properties);
 
+  gtk_widget_class_set_css_name (widget_class, "themeselector");
   gtk_widget_class_install_property_action (widget_class, "theme.mode", "theme");
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-theme-selector.ui");
   gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
