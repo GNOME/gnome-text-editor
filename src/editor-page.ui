@@ -25,6 +25,7 @@
                         <style>
                           <class name="editor"/>
                         </style>
+                        <signal name="notify::font-scale" handler="font_scale_changed_cb" swapped="true"/>
                         <property name="auto-indent">true</property>
                         <property name="top-margin">12</property>
                         <property name="bottom-margin">12</property>

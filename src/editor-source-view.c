@@ -41,6 +41,8 @@ G_DEFINE_TYPE (EditorSourceView, editor_source_view, GTK_SOURCE_TYPE_VIEW)
 enum {
   PROP_0,
   PROP_FONT_DESC,
+  PROP_FONT_SCALE,
+  PROP_ZOOM_LEVEL,
   N_PROPS
 };
 
@@ -60,6 +62,9 @@ editor_source_view_update_css (EditorSourceView *self)
   if (self->font_desc != NULL &&
       pango_font_description_get_set_fields (self->font_desc) & PANGO_FONT_MASK_SIZE)
     size = pango_font_description_get_size (self->font_desc) / PANGO_SCALE;
+
+  if (size + self->font_scale < 1)
+    self->font_scale = -size + 1;
 
   size = MAX (1, size + self->font_scale);
 
@@ -456,6 +461,14 @@ editor_source_view_get_property (GObject    *object,
       g_value_set_boxed (value, editor_source_view_get_font_desc (self));
       break;
 
+    case PROP_FONT_SCALE:
+      g_value_set_int (value, self->font_scale);
+      break;
+
+    case PROP_ZOOM_LEVEL:
+      g_value_set_double (value, editor_source_view_get_zoom_level (self));
+      break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
     }
@@ -473,6 +486,12 @@ editor_source_view_set_property (GObject      *object,
     {
     case PROP_FONT_DESC:
       editor_source_view_set_font_desc (self, g_value_get_boxed (value));
+      break;
+
+    case PROP_FONT_SCALE:
+      self->font_scale = g_value_get_int (value);
+      editor_source_view_update_css (self);
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_ZOOM_LEVEL]);
       break;
 
     default:
@@ -497,6 +516,20 @@ editor_source_view_class_init (EditorSourceViewClass *klass)
                          "The font to use for text within the editor",
                          PANGO_TYPE_FONT_DESCRIPTION,
                          (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+
+  properties [PROP_FONT_SCALE] =
+    g_param_spec_int ("font-scale",
+                      "Font Scale",
+                      "The font scale",
+                      G_MININT, G_MAXINT, 0,
+                      (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+
+  properties [PROP_ZOOM_LEVEL] =
+    g_param_spec_double ("zoom-level",
+                         "Zoom Level",
+                         "Zoom Level",
+                         -G_MAXDOUBLE, G_MAXDOUBLE, 1.0,
+                         (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_properties (object_class, N_PROPS, properties);
 
@@ -603,4 +636,23 @@ editor_source_view_set_font_desc (EditorSourceView           *self,
   editor_source_view_update_css (self);
 
   g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_FONT_DESC]);
+  g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_FONT_SCALE]);
+  g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_ZOOM_LEVEL]);
+}
+
+double
+editor_source_view_get_zoom_level (EditorSourceView *self)
+{
+  int alt_size;
+  int size = 11; /* 11pt */
+
+  g_return_val_if_fail (EDITOR_IS_SOURCE_VIEW (self), 0);
+
+  if (self->font_desc != NULL &&
+      pango_font_description_get_set_fields (self->font_desc) & PANGO_FONT_MASK_SIZE)
+    size = pango_font_description_get_size (self->font_desc) / PANGO_SCALE;
+
+  alt_size = MAX (1, size + self->font_scale);
+
+  return (double)alt_size / (double)size;
 }

@@ -183,6 +183,8 @@ editor_window_notify_selected_page_cb (EditorWindow *self,
 
   gtk_label_set_label (self->title, _(PACKAGE_NAME));
   gtk_label_set_label (self->subtitle, NULL);
+  gtk_label_set_label (GTK_LABEL (self->zoom_label), "100%");
+  gtk_widget_set_sensitive (self->zoom_label, page != NULL);
   gtk_widget_set_visible (GTK_WIDGET (self->is_modified), FALSE);
   gtk_widget_set_visible (GTK_WIDGET (self->subtitle), FALSE);
   gtk_widget_set_visible (GTK_WIDGET (self->position_box),
@@ -307,6 +309,9 @@ editor_window_constructed (GObject *object)
   GMenu *options_menu;
   GMenu *primary_menu;
   GMenu *tab_menu;
+  GtkWidget *zoom_box;
+  GtkWidget *zoom_out;
+  GtkWidget *zoom_in;
 
   g_assert (EDITOR_IS_WINDOW (self));
 
@@ -331,6 +336,38 @@ editor_window_constructed (GObject *object)
   gtk_popover_menu_add_child (GTK_POPOVER_MENU (popover),
                               _editor_theme_selector_new (),
                               "theme");
+
+  /* Add zoom controls */
+  zoom_box = g_object_new (GTK_TYPE_BOX,
+                           "spacing", 12,
+                           "margin-start", 18,
+                           "margin-end", 18,
+                           NULL);
+  zoom_in = g_object_new (GTK_TYPE_BUTTON,
+                          "action-name", "page.zoom-in",
+                          "child", g_object_new (GTK_TYPE_IMAGE,
+                                                 "icon-name", "list-add-symbolic",
+                                                 "pixel-size", 14,
+                                                 NULL),
+                          NULL);
+  gtk_widget_add_css_class (zoom_in, "circular");
+  zoom_out = g_object_new (GTK_TYPE_BUTTON,
+                           "action-name", "page.zoom-out",
+                          "child", g_object_new (GTK_TYPE_IMAGE,
+                                                 "icon-name", "list-remove-symbolic",
+                                                 "pixel-size", 14,
+                                                 NULL),
+                           NULL);
+  gtk_widget_add_css_class (zoom_out, "circular");
+  self->zoom_label = g_object_new (GTK_TYPE_LABEL,
+                                   "hexpand", TRUE,
+                                   "label", "100%",
+                                   NULL);
+  editor_binding_group_bind (self->page_bindings, "zoom-label", self->zoom_label, "label", 0);
+  gtk_box_append (GTK_BOX (zoom_box), zoom_out);
+  gtk_box_append (GTK_BOX (zoom_box), self->zoom_label);
+  gtk_box_append (GTK_BOX (zoom_box), zoom_in);
+  gtk_popover_menu_add_child (GTK_POPOVER_MENU (popover), zoom_box, "zoom");
 
   options_menu = gtk_application_get_menu_by_id (GTK_APPLICATION (app), "options-menu");
   gtk_menu_button_set_menu_model (self->options_menu, G_MENU_MODEL (options_menu));

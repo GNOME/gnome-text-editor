@@ -39,10 +39,11 @@ enum {
   PROP_CAN_SAVE,
   PROP_DOCUMENT,
   PROP_IS_MODIFIED,
+  PROP_POSITION_LABEL,
   PROP_SETTINGS,
   PROP_SUBTITLE,
   PROP_TITLE,
-  PROP_POSITION_LABEL,
+  PROP_ZOOM_LABEL,
   N_PROPS
 };
 
@@ -454,6 +455,17 @@ get_child_position_cb (GtkOverlay    *overlay,
 }
 
 static void
+font_scale_changed_cb (EditorPage       *self,
+                       GParamSpec       *pspec,
+                       EditorSourceView *view)
+{
+  g_assert (EDITOR_IS_PAGE (self));
+  g_assert (EDITOR_IS_SOURCE_VIEW (view));
+
+  g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_ZOOM_LABEL]);
+}
+
+static void
 editor_page_dispose (GObject *object)
 {
   EditorPage *self = (EditorPage *)object;
@@ -518,6 +530,10 @@ editor_page_get_property (GObject    *object,
 
     case PROP_SETTINGS:
       g_value_set_object (value, self->settings);
+      break;
+
+    case PROP_ZOOM_LABEL:
+      g_value_take_string (value, _editor_page_get_zoom_label (self));
       break;
 
     default:
@@ -612,6 +628,13 @@ editor_page_class_init (EditorPageClass *klass)
                          EDITOR_TYPE_PAGE_SETTINGS,
                          (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
+  properties [PROP_ZOOM_LABEL] =
+    g_param_spec_string ("zoom-label",
+                         "Zoom Label",
+                         "Zoom Label",
+                         NULL,
+                         (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
   g_object_class_install_properties (object_class, N_PROPS, properties);
 
   _editor_page_class_actions_init (klass);
@@ -635,6 +658,7 @@ editor_page_class_init (EditorPageClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorPage, vim_command);
   gtk_widget_class_bind_template_callback (widget_class, get_child_position_cb);
   gtk_widget_class_bind_template_callback (widget_class, goto_line_entry_activate_cb);
+  gtk_widget_class_bind_template_callback (widget_class, font_scale_changed_cb);
 
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Escape, 0, "search.hide", NULL);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_i, GDK_CONTROL_MASK, "page.show-goto-line", NULL);
@@ -1350,4 +1374,41 @@ _editor_page_end_move (EditorPage *self)
 
   self->moving = FALSE;
   g_object_unref (self);
+}
+
+char *
+_editor_page_get_zoom_label (EditorPage *self)
+{
+  double level;
+
+  g_return_val_if_fail (EDITOR_IS_PAGE (self), NULL);
+
+  level = editor_source_view_get_zoom_level (EDITOR_SOURCE_VIEW (self->view));
+
+  if (level == 1.0)
+    return g_strdup ("100%");
+
+  return g_strdup_printf ("%.0lf%%", level * 100.0);
+}
+
+void
+_editor_page_zoom_in (EditorPage *self)
+{
+  int font_scale = 0;
+
+  g_return_if_fail (EDITOR_IS_PAGE (self));
+
+  g_object_get (self->view, "font-scale", &font_scale, NULL);
+  g_object_set (self->view, "font-scale", font_scale + 1, NULL);
+}
+
+void
+_editor_page_zoom_out (EditorPage *self)
+{
+  int font_scale = 0;
+
+  g_return_if_fail (EDITOR_IS_PAGE (self));
+
+  g_object_get (self->view, "font-scale", &font_scale, NULL);
+  g_object_set (self->view, "font-scale", font_scale - 1, NULL);
 }

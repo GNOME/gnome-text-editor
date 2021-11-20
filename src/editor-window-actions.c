@@ -557,6 +557,30 @@ editor_window_actions_close_other_pages_cb (GtkWidget  *widget,
   g_list_free (pages);
 }
 
+static void
+editor_window_actions_page_zoom_in_cb (GtkWidget  *widget,
+                                       const char *action_name,
+                                       GVariant   *param)
+{
+  EditorWindow *self = (EditorWindow *)widget;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+
+  _editor_page_zoom_in (editor_window_get_visible_page (self));
+}
+
+static void
+editor_window_actions_page_zoom_out_cb (GtkWidget  *widget,
+                                        const char *action_name,
+                                        GVariant   *param)
+{
+  EditorWindow *self = (EditorWindow *)widget;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+
+  _editor_page_zoom_out (editor_window_get_visible_page (self));
+}
+
 void
 _editor_window_class_actions_init (EditorWindowClass *klass)
 {
@@ -658,6 +682,14 @@ _editor_window_class_actions_init (EditorWindowClass *klass)
                                    "win.show-preferences",
                                    NULL,
                                    editor_window_actions_show_preferences_cb);
+  gtk_widget_class_install_action (widget_class,
+                                   "page.zoom-in",
+                                   NULL,
+                                   editor_window_actions_page_zoom_in_cb);
+  gtk_widget_class_install_action (widget_class,
+                                   "page.zoom-out",
+                                   NULL,
+                                   editor_window_actions_page_zoom_out_cb);
 }
 
 void
@@ -730,5 +762,7 @@ _editor_window_actions_update (EditorWindow *self,
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.copy-all", has_page);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.begin-replace", has_page);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.begin-search", has_page);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.zoom-in", has_page);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.zoom-out", has_page);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "win.focus-neighbor", has_page);
 }

@@ -53,6 +53,7 @@ struct _EditorWindow
   GtkMenuButton        *export_menu;
   GtkGrid              *scheme_group;
   AdwFlap              *flap;
+  GtkWidget            *zoom_label;
 
   /* Borrowed References */
   EditorPage           *visible_page;
