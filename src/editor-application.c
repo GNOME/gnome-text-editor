@@ -133,7 +133,11 @@ style_variant_to_color_scheme (GValue   *value,
                                GVariant *variant,
                                gpointer  user_data)
 {
-  if (g_strcmp0 (g_variant_get_string (variant, NULL), "dark") == 0)
+  const char *str = g_variant_get_string (variant, NULL);
+
+  if (g_strcmp0 (str, "follow") == 0)
+    g_value_set_enum (value, ADW_COLOR_SCHEME_DEFAULT);
+  else if (g_strcmp0 (str, "dark") == 0)
     g_value_set_enum (value, ADW_COLOR_SCHEME_FORCE_DARK);
   else
     g_value_set_enum (value, ADW_COLOR_SCHEME_FORCE_LIGHT);
