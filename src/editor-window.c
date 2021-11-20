@@ -555,6 +555,24 @@ notify_focus_widget_cb (EditorWindow *self)
     }
 }
 
+static gboolean
+transform_window_title (GBinding     *binding,
+                        const GValue *from,
+                        GValue       *to,
+                        gpointer      user_data)
+{
+  g_autoptr(EditorPage) page = EDITOR_PAGE (g_binding_dup_source (binding));
+  g_autofree char *title = editor_page_dup_title (page);
+  g_autofree char *subtitle = editor_page_dup_subtitle (page);
+
+  g_value_take_string (to,
+                       /* translators: the first %s is replaced with the title, the second %s is replaced with the subtitle */
+                       g_strdup_printf (_("%s (%s) - Text Editor"),
+                                        title, subtitle));
+
+  return TRUE;
+}
+
 static void
 editor_window_dispose (GObject *object)
 {
@@ -784,6 +802,10 @@ editor_window_init (EditorWindow *self)
 
   self->page_bindings = editor_binding_group_new ();
 
+  editor_binding_group_bind_full (self->page_bindings, "title",
+                                  self, "title",
+                                  G_BINDING_SYNC_CREATE,
+                                  transform_window_title, NULL, NULL, NULL);
   editor_binding_group_bind (self->page_bindings, "title",
                              self->title, "label",
                              G_BINDING_SYNC_CREATE);
