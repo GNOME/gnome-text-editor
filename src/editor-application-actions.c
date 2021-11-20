@@ -195,44 +195,6 @@ editor_application_actions_quit (GSimpleAction *action,
 }
 
 static void
-editor_application_actions_style_scheme_cb (GSimpleAction *action,
-                                            GVariant      *param,
-                                            gpointer       user_data)
-{
-  EditorApplication *self = user_data;
-  const char *name;
-
-  g_assert (G_IS_SIMPLE_ACTION (action));
-  g_assert (EDITOR_IS_APPLICATION (self));
-  g_assert (g_variant_is_of_type (param, G_VARIANT_TYPE_STRING));
-
-  name = g_variant_get_string (param, NULL);
-
-  g_settings_set_string (self->settings, "style-scheme", name);
-
-  if (g_str_has_suffix (name, "-dark"))
-    g_settings_set_string (self->settings, "style-variant", "dark");
-  else
-    g_settings_set_string (self->settings, "style-variant", "light");
-}
-
-static void
-editor_application_actions_settings_changed_cb (GSettings     *settings,
-                                                const char    *key,
-                                                GSimpleAction *action)
-{
-  g_assert (G_IS_SETTINGS (settings));
-  g_assert (G_IS_SIMPLE_ACTION (action));
-
-  if (g_strcmp0 (key, "style-scheme") == 0 ||
-      g_strcmp0 (key, "style-variant") == 0)
-    {
-      g_autoptr(GVariant) v = g_settings_get_value (settings, "style-scheme");
-      g_simple_action_set_state (action, v);
-    }
-}
-
-static void
 editor_application_actions_remove_recent_cb (GSimpleAction *action,
                                              GVariant      *param,
                                              gpointer       user_data)
@@ -263,23 +225,15 @@ _editor_application_actions_init (EditorApplication *self)
     { "about", editor_application_actions_about_cb },
     { "help", editor_application_actions_help_cb },
     { "quit", editor_application_actions_quit },
-    { "style-scheme", NULL, "s", "''", editor_application_actions_style_scheme_cb },
     { "remove-recent", editor_application_actions_remove_recent_cb, "(ss)" },
   };
-  GAction *action;
+  g_autoptr(GPropertyAction) style_scheme = NULL;
 
   g_action_map_add_action_entries (G_ACTION_MAP (self),
                                    actions,
                                    G_N_ELEMENTS (actions),
                                    self);
 
-  action = g_action_map_lookup_action (G_ACTION_MAP (self), "style-scheme");
-  g_signal_connect_object (self->settings,
-                           "changed",
-                           G_CALLBACK (editor_application_actions_settings_changed_cb),
-                           action,
-                           0);
-  editor_application_actions_settings_changed_cb (self->settings,
-                                                  "style-scheme",
-                                                  G_SIMPLE_ACTION (action));
+  style_scheme = g_property_action_new ("style-scheme", self, "style-scheme");
+  g_action_map_add_action (G_ACTION_MAP (self), G_ACTION (style_scheme));
 }

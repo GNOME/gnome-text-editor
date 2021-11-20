@@ -31,6 +31,14 @@
 
 G_DEFINE_TYPE (EditorApplication, editor_application, GTK_TYPE_APPLICATION)
 
+enum {
+  PROP_0,
+  PROP_STYLE_SCHEME,
+  N_PROPS
+};
+
+static GParamSpec *properties[N_PROPS];
+
 static void
 editor_application_restore_cb (GObject      *object,
                                GAsyncResult *result,
@@ -177,6 +185,8 @@ on_style_manager_notify_dark (EditorApplication *self,
       if (EDITOR_IS_WINDOW (window))
         update_dark (window);
     }
+
+  g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_STYLE_SCHEME]);
 }
 
 static void
@@ -285,6 +295,44 @@ editor_application_window_added (GtkApplication *application,
 }
 
 static void
+editor_application_get_property (GObject    *object,
+                                 guint       prop_id,
+                                 GValue     *value,
+                                 GParamSpec *pspec)
+{
+  EditorApplication *self = EDITOR_APPLICATION (object);
+
+  switch (prop_id)
+    {
+    case PROP_STYLE_SCHEME:
+      g_value_set_string (value, editor_application_get_style_scheme (self));
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+    }
+}
+
+static void
+editor_application_set_property (GObject      *object,
+                                 guint         prop_id,
+                                 const GValue *value,
+                                 GParamSpec   *pspec)
+{
+  EditorApplication *self = EDITOR_APPLICATION (object);
+
+  switch (prop_id)
+    {
+    case PROP_STYLE_SCHEME:
+      editor_application_set_style_scheme (self, g_value_get_string (value));
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+    }
+}
+
+static void
 editor_application_class_init (EditorApplicationClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
@@ -292,6 +340,8 @@ editor_application_class_init (EditorApplicationClass *klass)
   GtkApplicationClass *gtk_application_class = GTK_APPLICATION_CLASS (klass);
 
   object_class->constructed = editor_application_constructed;
+  object_class->get_property = editor_application_get_property;
+  object_class->set_property = editor_application_set_property;
 
   application_class->activate = editor_application_activate;
   application_class->open = editor_application_open;
@@ -300,6 +350,15 @@ editor_application_class_init (EditorApplicationClass *klass)
   application_class->handle_local_options = editor_application_handle_local_options;
 
   gtk_application_class->window_added = editor_application_window_added;
+
+  properties [PROP_STYLE_SCHEME] =
+    g_param_spec_string ("style-scheme",
+                         "Style Scheme",
+                         "The style scheme for the editor",
+                         NULL,
+                         (G_PARAM_READWRITE | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_STRINGS));
+
+  g_object_class_install_properties (object_class, N_PROPS, properties);
 }
 
 static const GOptionEntry entries[] = {
@@ -368,4 +427,86 @@ editor_application_get_current_window (EditorApplication *self)
     }
 
   return NULL;
+}
+
+static GtkSourceStyleScheme *
+_gtk_source_style_scheme_get_variant (GtkSourceStyleScheme *scheme,
+                                      const char           *variant)
+{
+  GtkSourceStyleSchemeManager *style_scheme_manager;
+  GtkSourceStyleScheme *ret;
+  g_autoptr(GString) str = NULL;
+
+  g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme), NULL);
+  g_return_val_if_fail (g_strcmp0 (variant, "light") == 0 ||
+                        g_strcmp0 (variant, "dark") == 0, NULL);
+
+  style_scheme_manager = gtk_source_style_scheme_manager_get_default ();
+  str = g_string_new (gtk_source_style_scheme_get_id (scheme));
+
+  if (g_str_has_suffix (str->str, "-light"))
+    g_string_truncate (str, str->len - strlen ("-light"));
+  else if (g_str_has_suffix (str->str, "-dark"))
+    g_string_truncate (str, str->len - strlen ("-dark"));
+
+  g_string_append_printf (str, "-%s", variant);
+
+  /* Look for "Foo-variant" directly */
+  if ((ret = gtk_source_style_scheme_manager_get_scheme (style_scheme_manager, str->str)))
+    return ret;
+
+  /* Look for "Foo" */
+  g_string_truncate (str, str->len - strlen (variant) - 1);
+  if ((ret = gtk_source_style_scheme_manager_get_scheme (style_scheme_manager, str->str)))
+    return ret;
+
+  /* Fallback to what we were provided */
+  return ret;
+}
+
+const char *
+editor_application_get_style_scheme (EditorApplication *self)
+{
+  GtkSourceStyleSchemeManager *style_scheme_manager;
+  GtkSourceStyleScheme *style_scheme;
+  AdwStyleManager *style_manager;
+  g_autofree char *style_scheme_id = NULL;
+  const char *variant;
+
+  g_return_val_if_fail (EDITOR_IS_APPLICATION (self), NULL);
+
+  style_manager = adw_style_manager_get_default ();
+  style_scheme_manager = gtk_source_style_scheme_manager_get_default ();
+  style_scheme_id = g_settings_get_string (self->settings, "style-scheme");
+
+  /* Fallback to Adwaita if we don't find a match */
+  if (gtk_source_style_scheme_manager_get_scheme (style_scheme_manager, style_scheme_id) == NULL)
+    {
+      g_free (style_scheme_id);
+      style_scheme_id = g_strdup ("Adwaita");
+    }
+
+  if (adw_style_manager_get_dark (style_manager))
+    variant = "dark";
+  else
+    variant = "light";
+
+  style_scheme = gtk_source_style_scheme_manager_get_scheme (style_scheme_manager, style_scheme_id);
+  style_scheme = _gtk_source_style_scheme_get_variant (style_scheme, variant);
+
+  return gtk_source_style_scheme_get_id (style_scheme);
+}
+
+void
+editor_application_set_style_scheme (EditorApplication *self,
+                                     const char        *style_scheme)
+{
+  g_return_if_fail (EDITOR_IS_APPLICATION (self));
+
+  if (style_scheme == NULL)
+    style_scheme = "Adwaita";
+
+  g_object_freeze_notify (G_OBJECT (self));
+  g_settings_set_string (self->settings, "style-scheme", style_scheme);
+  g_object_thaw_notify (G_OBJECT (self));
 }

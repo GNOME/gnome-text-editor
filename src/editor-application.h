@@ -31,5 +31,8 @@ G_DECLARE_FINAL_TYPE (EditorApplication, editor_application, EDITOR, APPLICATION
 
 EditorSession *editor_application_get_session        (EditorApplication *self);
 EditorWindow  *editor_application_get_current_window (EditorApplication *self);
+const char    *editor_application_get_style_scheme   (EditorApplication *self);
+void           editor_application_set_style_scheme   (EditorApplication *self,
+                                                      const char        *style_scheme);
 
 G_END_DECLS

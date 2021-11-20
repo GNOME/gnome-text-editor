@@ -22,6 +22,7 @@
 
 #include "config.h"
 
+#include "editor-application.h"
 #include "editor-page-gsettings-private.h"
 
 struct _EditorPageGsettings
@@ -72,60 +73,7 @@ static gboolean
 editor_page_gsettings_get_style_scheme (EditorPageSettingsProvider  *provider,
                                         gchar                      **style_scheme)
 {
-  EditorPageGsettings *self = EDITOR_PAGE_GSETTINGS (provider);
-  GtkSourceStyleSchemeManager *sm;
-  GtkSourceStyleScheme *scheme;
-  g_autofree gchar *light = NULL;
-  g_autofree gchar *dark = NULL;
-  g_autofree gchar *regular = NULL;
-  g_autofree gchar *style_variant = NULL;
-
-  sm = gtk_source_style_scheme_manager_get_default ();
-  regular = g_settings_get_string (self->settings, "style-scheme");
-
-  if (g_str_has_suffix (regular, "-dark"))
-    {
-      regular[strlen(regular)-5] = 0;
-      dark = g_strdup_printf ("%s-dark", regular);
-      light = g_strdup_printf ("%s-light", regular);
-    }
-  else if (g_str_has_suffix (regular, "-light"))
-    {
-      regular[strlen(regular)-6] = 0;
-      dark = g_strdup_printf ("%s-dark", regular);
-      light = g_strdup_printf ("%s-light", regular);
-    }
-  else
-    {
-      dark = g_strdup_printf ("%s-dark", regular);
-      light = g_strdup_printf ("%s-light", regular);
-    }
-
-  style_variant = g_settings_get_string (self->settings, "style-variant");
-
-  if (g_strcmp0 (style_variant, "dark") == 0)
-    {
-      if (!(scheme = gtk_source_style_scheme_manager_get_scheme (sm, dark)) &&
-          !(scheme = gtk_source_style_scheme_manager_get_scheme (sm, regular)) &&
-          !(scheme = gtk_source_style_scheme_manager_get_scheme (sm, light)))
-        scheme = gtk_source_style_scheme_manager_get_scheme (sm, "Adwaita-dark");
-    }
-  else
-    {
-      if (!(scheme = gtk_source_style_scheme_manager_get_scheme (sm, light)) &&
-          !(scheme = gtk_source_style_scheme_manager_get_scheme (sm, regular)) &&
-          !(scheme = gtk_source_style_scheme_manager_get_scheme (sm, dark)))
-        scheme = gtk_source_style_scheme_manager_get_scheme (sm, "Adwaita");
-    }
-
-  if (style_scheme)
-    {
-      if (scheme)
-        *style_scheme = g_strdup (gtk_source_style_scheme_get_id (scheme));
-      else
-        *style_scheme = NULL;
-    }
-
+  *style_scheme = g_strdup (editor_application_get_style_scheme (EDITOR_APPLICATION_DEFAULT));
   return TRUE;
 }
 
@@ -215,6 +163,17 @@ editor_page_gsettings_init (EditorPageGsettings *self)
 {
 }
 
+static void
+editor_page_gsettings_notify_style_scheme_cb (EditorPageGsettings *self,
+                                              GParamSpec          *pspec,
+                                              EditorApplication   *app)
+{
+  g_assert (EDITOR_IS_PAGE_GSETTINGS (self));
+  g_assert (EDITOR_IS_APPLICATION (app));
+
+  g_object_notify (G_OBJECT (self), "style-scheme");
+}
+
 EditorPageSettingsProvider *
 _editor_page_gsettings_new (GSettings *settings)
 {
@@ -228,6 +187,12 @@ _editor_page_gsettings_new (GSettings *settings)
   g_signal_connect_object (self->settings,
                            "changed",
                            G_CALLBACK (editor_page_gsettings_changed_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+
+  g_signal_connect_object (EDITOR_APPLICATION_DEFAULT,
+                           "notify::style-scheme",
+                           G_CALLBACK (editor_page_gsettings_notify_style_scheme_cb),
                            self,
                            G_CONNECT_SWAPPED);
 
