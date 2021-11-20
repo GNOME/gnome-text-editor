@@ -171,7 +171,7 @@ editor_page_gsettings_notify_style_scheme_cb (EditorPageGsettings *self,
   g_assert (EDITOR_IS_PAGE_GSETTINGS (self));
   g_assert (EDITOR_IS_APPLICATION (app));
 
-  g_object_notify (G_OBJECT (self), "style-scheme");
+  editor_page_settings_provider_emit_changed (EDITOR_PAGE_SETTINGS_PROVIDER (self));
 }
 
 EditorPageSettingsProvider *
