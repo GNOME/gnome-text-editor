@@ -358,6 +358,17 @@ editor_window_actions_open_cb (GtkWidget  *widget,
       if (dir != NULL)
         gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (native), dir, NULL);
     }
+  else
+    {
+      g_autoptr(GSettings) settings = g_settings_new ("org.gnome.TextEditor");
+      g_autofree char *uri = g_settings_get_string (settings, "last-save-directory");
+
+      if (uri && uri[0])
+        {
+          g_autoptr(GFile) dir = g_file_new_for_uri (uri);
+          gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (native), dir, NULL);
+        }
+    }
 
   all_files = gtk_file_filter_new ();
   gtk_file_filter_set_name (all_files, _("All Files"));

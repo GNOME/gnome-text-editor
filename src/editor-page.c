@@ -931,6 +931,14 @@ editor_page_save_as_cb (EditorPage           *self,
       if ((dest = gtk_file_chooser_get_file (GTK_FILE_CHOOSER (native))))
         {
           GtkSourceNewlineType crlf = _editor_file_chooser_get_line_ending (GTK_FILE_CHOOSER (native));
+          g_autoptr(GFile) directory = gtk_file_chooser_get_current_folder (GTK_FILE_CHOOSER (native));
+
+          if (directory != NULL)
+            {
+              g_autoptr(GSettings) settings = g_settings_new ("org.gnome.TextEditor");
+              g_autofree char *uri = g_file_get_uri (directory);
+              g_settings_set_string (settings, "last-save-directory", uri);
+            }
 
           _editor_document_set_newline_type (self->document, crlf);
           _editor_document_save_async (self->document,
@@ -948,10 +956,18 @@ void
 _editor_page_save_as (EditorPage *self,
                       const char *filename)
 {
+  g_autoptr(GSettings) settings = NULL;
+  g_autoptr(GFile) directory = NULL;
   GtkFileChooserNative *native;
   EditorWindow *window;
+  g_autofree char *uri = NULL;
 
   g_return_if_fail (EDITOR_IS_PAGE (self));
+
+  settings = g_settings_new ("org.gnome.TextEditor");
+  uri = g_settings_get_string (settings, "last-save-directory");
+  if (uri && uri[0])
+    directory = g_file_new_for_uri (uri);
 
   _editor_page_raise (self);
 
@@ -982,6 +998,10 @@ _editor_page_save_as (EditorPage *self,
         }
 
       gtk_file_chooser_set_file (GTK_FILE_CHOOSER (native), selected, NULL);
+    }
+  else if (directory != NULL)
+    {
+      gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (native), directory, NULL);
     }
 
   g_signal_connect_object (native,
