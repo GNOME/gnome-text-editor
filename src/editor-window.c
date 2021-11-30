@@ -94,7 +94,30 @@ update_subtitle_visibility_cb (EditorWindow *self)
                             g_settings_get_boolean (self->settings, "show-line-numbers"));
   else
     gtk_widget_hide (GTK_WIDGET (self->position_box));
+}
 
+static void
+update_language_name_cb (EditorWindow *self)
+{
+  const char *language_name = NULL;
+  const char *label = _("Document Type");
+  g_autofree char *freeme = NULL;
+  EditorPage *page;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+
+  if ((page = editor_window_get_visible_page (self)))
+    language_name = editor_page_get_language_name (page);
+
+  g_menu_remove (G_MENU (self->doc_type_menu), self->doc_type_index);
+
+   if (language_name)
+     label = freeme = g_strdup_printf (_("Document Type: %s"), language_name);
+
+   g_menu_insert (G_MENU (self->doc_type_menu),
+                  self->doc_type_index,
+                  label,
+                  "page.change-language");
 }
 
 static void
@@ -142,6 +165,7 @@ editor_window_page_bind_cb (EditorWindow      *self,
   _editor_window_actions_update (self, page);
 
   update_subtitle_visibility_cb (self);
+  update_language_name_cb (self);
 }
 
 static void
@@ -297,6 +321,48 @@ editor_window_close_request (GtkWindow *window)
   return GTK_WINDOW_CLASS (editor_window_parent_class)->close_request (window);
 }
 
+static gboolean
+find_document_type (GMenuModel  *menu,
+                    GMenuModel **container,
+                    guint       *index)
+{
+  guint n_items;
+
+  g_assert (G_IS_MENU_MODEL (menu));
+  g_assert (container != NULL && *container == NULL);
+  g_assert (index != NULL && *index == 0);
+
+  n_items = g_menu_model_get_n_items (menu);
+
+  for (guint i = 0; i < n_items; i++)
+    {
+      g_autoptr(GMenuLinkIter) iter = NULL;
+      g_autofree char *action = NULL;
+
+      if (g_menu_model_get_item_attribute (menu, i, "action", "s", &action))
+        {
+          if (g_strcmp0 (action, "page.change-language") == 0)
+            {
+              *container = g_object_ref (menu);
+              *index = i;
+              return TRUE;
+            }
+        }
+
+      iter = g_menu_model_iterate_item_links (menu, i);
+
+      while (g_menu_link_iter_next (iter))
+        {
+          g_autoptr(GMenuModel) link = g_menu_link_iter_get_value (iter);
+
+          if (find_document_type (link, container, index))
+            return TRUE;
+        }
+    }
+
+  return FALSE;
+}
+
 static void
 editor_window_constructed (GObject *object)
 {
@@ -315,6 +381,10 @@ editor_window_constructed (GObject *object)
 
   session = editor_application_get_session (EDITOR_APPLICATION_DEFAULT);
 
+  find_document_type (G_MENU_MODEL (self->options_menu_model),
+                      &self->doc_type_menu,
+                      &self->doc_type_index);
+  g_assert (G_IS_MENU_MODEL (self->doc_type_menu));
 
   /* Set the recents list for the open popover */
   g_object_bind_property (session, "recents",
@@ -699,6 +769,7 @@ editor_window_class_init (EditorWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, open_menu_button);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, open_menu_popover);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, options_menu);
+  gtk_widget_class_bind_template_child (widget_class, EditorWindow, options_menu_model);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, pages);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, position_box);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, position_label);
@@ -814,6 +885,11 @@ editor_window_init (EditorWindow *self)
   editor_signal_group_connect_object (self->page_signals,
                                       "notify::subtitle",
                                       G_CALLBACK (update_subtitle_visibility_cb),
+                                      self,
+                                      G_CONNECT_SWAPPED);
+  editor_signal_group_connect_object (self->page_signals,
+                                      "notify::language-name",
+                                      G_CALLBACK (update_language_name_cb),
                                       self,
                                       G_CONNECT_SWAPPED);
 

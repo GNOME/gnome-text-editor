@@ -54,6 +54,7 @@ struct _EditorWindow
   GtkGrid              *scheme_group;
   AdwFlap              *flap;
   GtkWidget            *zoom_label;
+  GMenu                *options_menu_model;
 
   /* Borrowed References */
   EditorPage           *visible_page;
@@ -63,6 +64,10 @@ struct _EditorWindow
   EditorSignalGroup    *page_signals;
   EditorSignalGroup    *document_signals;
   GSettings            *settings;
+
+  /* Used to update "Document Type: Markdown" */
+  GMenuModel           *doc_type_menu;
+  guint                 doc_type_index;
 };
 
 
