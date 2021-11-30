@@ -243,7 +243,8 @@ Or, press Ctrl+W to close the window.</property>
                         </child>
                         <child>
                           <object class="EditorPreferencesFont" id="custom_font">
-                            <property name="title" translatable="yes">Custom Font</property>
+                            <!-- translators: the surrounding span region is used to prevent word wrapping in display -->
+                            <property name="title" translatable="yes">&lt;span allow_breaks='false'&gt;Custom Font&lt;/span&gt;</property>
                             <property name="schema-key">custom-font</property>
                             <property name="sensitive" bind-source="use_system_font" bind-property="active" bind-flags="sync-create|invert-boolean"/>
                           </object>
