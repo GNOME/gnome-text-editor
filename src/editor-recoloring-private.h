@@ -1,4 +1,4 @@
-/* editor-application-private.h
+/* editor-recoloring-private.h
  *
  * Copyright 2020 Christian Hergert <chergert@redhat.com>
  *
@@ -20,19 +20,10 @@
 
 #pragma once
 
-#include "editor-application.h"
+#include <gtksourceview/gtksource.h>
 
 G_BEGIN_DECLS
 
-struct _EditorApplication
-{
-  GtkApplication  parent_instance;
-  EditorSession  *session;
-  GSettings      *settings;
-  GtkCssProvider *recoloring;
-};
-
-EditorApplication *_editor_application_new          (void);
-void               _editor_application_actions_init (EditorApplication *self);
+char *_editor_recoloring_generate_css (GtkSourceStyleScheme *style_scheme);
 
 G_END_DECLS

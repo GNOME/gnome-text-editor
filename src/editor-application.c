@@ -25,6 +25,7 @@
 #include <glib/gi18n.h>
 
 #include "editor-application-private.h"
+#include "editor-recoloring-private.h"
 #include "editor-session-private.h"
 #include "editor-utils-private.h"
 #include "editor-window.h"
@@ -169,6 +170,28 @@ update_dark (GtkWindow *window)
 }
 
 static void
+update_css (EditorApplication *self)
+{
+  g_autofree char *css = NULL;
+
+  g_assert (EDITOR_IS_APPLICATION (self));
+
+  if (g_settings_get_boolean (self->settings, "recolor-window"))
+    {
+      GtkSourceStyleSchemeManager *manager;
+      GtkSourceStyleScheme *style_scheme;
+      const char *id;
+
+      id = editor_application_get_style_scheme (self);
+      manager = gtk_source_style_scheme_manager_get_default ();
+      style_scheme = gtk_source_style_scheme_manager_get_scheme (manager, id);
+      css = _editor_recoloring_generate_css (style_scheme);
+    }
+
+  gtk_css_provider_load_from_data (self->recoloring, css ? css : "", -1);
+}
+
+static void
 on_style_manager_notify_dark (EditorApplication *self,
                               GParamSpec        *pspec,
                               AdwStyleManager   *style_manager)
@@ -186,6 +209,8 @@ on_style_manager_notify_dark (EditorApplication *self,
         update_dark (window);
     }
 
+  update_css (self);
+
   g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_STYLE_SCHEME]);
 }
 
@@ -197,23 +222,33 @@ on_changed_style_scheme_cb (EditorApplication *self,
   g_assert (EDITOR_IS_APPLICATION (self));
   g_assert (G_IS_SETTINGS (settings));
 
+  update_css (self);
+
   g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_STYLE_SCHEME]);
 }
 
 static void
 editor_application_startup (GApplication *application)
 {
+  static const gchar *quit_accels[] = { "<Primary>Q", NULL };
+  static const gchar *help_accels[] = { "F1", NULL };
+
   EditorApplication *self = (EditorApplication *)application;
   g_autoptr(GtkCssProvider) css_provider = NULL;
   AdwStyleManager *style_manager;
-  static const gchar *quit_accels[] = { "<Primary>Q", NULL };
-  static const gchar *help_accels[] = { "F1", NULL };
+  GdkDisplay *display;
 
   g_assert (EDITOR_IS_APPLICATION (self));
 
   G_APPLICATION_CLASS (editor_application_parent_class)->startup (application);
 
   adw_init ();
+
+  display = gdk_display_get_default ();
+  self->recoloring = gtk_css_provider_new ();
+  gtk_style_context_add_provider_for_display (display,
+                                              GTK_STYLE_PROVIDER (self->recoloring),
+                                              GTK_STYLE_PROVIDER_PRIORITY_THEME+1);
 
   gtk_application_set_accels_for_action (GTK_APPLICATION (self), "app.quit", quit_accels);
   gtk_application_set_accels_for_action (GTK_APPLICATION (self), "app.help", help_accels);
@@ -283,6 +318,7 @@ editor_application_shutdown (GApplication *application)
   EditorApplication *self = (EditorApplication *)application;
 
   g_clear_object (&self->session);
+  g_clear_object (&self->recoloring);
 
   G_APPLICATION_CLASS (editor_application_parent_class)->shutdown (application);
 }
