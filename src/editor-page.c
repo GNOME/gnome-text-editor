@@ -39,6 +39,7 @@ enum {
   PROP_CAN_SAVE,
   PROP_DOCUMENT,
   PROP_IS_MODIFIED,
+  PROP_LANGUAGE_NAME,
   PROP_POSITION_LABEL,
   PROP_SETTINGS,
   PROP_SUBTITLE,
@@ -154,6 +155,8 @@ editor_page_document_notify_language_cb (EditorPage     *self,
 
   settings = editor_page_settings_new_for_document (document);
   editor_page_set_settings (self, settings);
+
+  g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_LANGUAGE_NAME]);
 }
 
 static void
@@ -465,6 +468,23 @@ font_scale_changed_cb (EditorPage       *self,
   g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_ZOOM_LABEL]);
 }
 
+const char *
+editor_page_get_language_name (EditorPage *self)
+{
+  GtkSourceLanguage *language;
+  EditorDocument *document;
+
+  g_return_val_if_fail (EDITOR_IS_PAGE (self), NULL);
+
+  document = editor_page_get_document (self);
+  language = gtk_source_buffer_get_language (GTK_SOURCE_BUFFER (document));
+
+  if (language != NULL)
+    return gtk_source_language_get_name (language);
+
+  return NULL;
+}
+
 static void
 editor_page_dispose (GObject *object)
 {
@@ -514,6 +534,10 @@ editor_page_get_property (GObject    *object,
 
     case PROP_IS_MODIFIED:
       g_value_set_boolean (value, editor_page_get_is_modified (self));
+      break;
+
+    case PROP_LANGUAGE_NAME:
+      g_value_set_string (value, editor_page_get_language_name (self));
       break;
 
     case PROP_TITLE:
@@ -592,6 +616,13 @@ editor_page_class_init (EditorPageClass *klass)
                          "The document to be viewed",
                          EDITOR_TYPE_DOCUMENT,
                          (G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
+
+  properties [PROP_LANGUAGE_NAME] =
+    g_param_spec_string ("language-name",
+                         "Language Name",
+                         "Language Name",
+                         NULL,
+                         (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
   properties [PROP_TITLE] =
     g_param_spec_string ("title",

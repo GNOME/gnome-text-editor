@@ -43,5 +43,6 @@ gchar          *editor_page_dup_position_label  (EditorPage     *self);
 void            editor_page_get_visual_position (EditorPage     *self,
                                                  guint          *line,
                                                  guint          *column);
+const char     *editor_page_get_language_name   (EditorPage     *self);
 
 G_END_DECLS
