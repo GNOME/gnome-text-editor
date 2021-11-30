@@ -1,27 +1,3 @@
-/* EditorPreferencesWindow */
-
-.org-gnome-TextEditor.preferences frame {
-  border-radius: 5px;
-  background: @content_view_bg;
-}
-.org-gnome-TextEditor.preferences list {
-  background: transparent;
-}
-.org-gnome-TextEditor.preferences list row {
-  border-bottom: 1px solid alpha(@borders, .4);
-}
-.org-gnome-TextEditor.preferences list row:last-child {
-  border-bottom: none;
-}
-
-.org-gnome-TextEditor.preferences .horizontal.linked .radio.text-button {
-  padding: 0;
-}
-.org-gnome-TextEditor.preferences .horizontal.linked .radio.text-button label {
-  padding: 4px 12px 4px 12px;
-}
-
-
 /* EditorWindow */
 .org-gnome-TextEditor positionlabel label {
   font-feature-settings: "tnum";
