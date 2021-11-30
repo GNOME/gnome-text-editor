@@ -6,83 +6,94 @@
     </style>
     <property name="halign">start</property>
     <property name="valign">end</property>
+    <property name="width-request">320</property>
     <child>
       <object class="GtkBox" id="box">
-        <property name="margin-top">3</property>
-        <property name="margin-start">3</property>
-        <property name="margin-end">3</property>
-        <property name="margin-bottom">3</property>
         <property name="orientation">vertical</property>
         <child>
-          <object class="GtkLabel">
-            <property name="margin-top">3</property>
-            <property name="hexpand">true</property>
-            <property name="xalign">0</property>
-            <property name="label" translatable="yes">Recent Documents</property>
-            <attributes>
-              <attribute name="weight" value="bold"/>
-            </attributes>
-          </object>
-        </child>
-        <child>
-          <object class="GtkSearchEntry" id="search_entry">
-            <property name="margin-top">9</property>
-            <property name="margin-bottom">9</property>
-            <property name="width-chars">25</property>
-            <signal name="changed" handler="on_search_entry_changed_cb" swapped="true" object="EditorOpenPopover"/>
-            <signal name="activate" handler="on_search_entry_activate_cb" swapped="true" object="EditorOpenPopover"/>
-            <signal name="stop-search" handler="on_search_entry_stop_search_cb" swapped="true" object="EditorOpenPopover"/>
-          </object>
-        </child>
-        <child>
-          <object class="GtkFrame">
+          <object class="GtkBox">
+            <property name="orientation">horizontal</property>
+            <property name="spacing">6</property>
+            <property name="margin-top">12</property>
+            <property name="margin-bottom">12</property>
+            <property name="margin-start">12</property>
+            <property name="margin-end">12</property>
             <child>
-              <object class="GtkStack" id="stack">
-                <property name="vhomogeneous">false</property>
-                <property name="hhomogeneous">false</property>
-                <child>
-                  <object class="GtkLabel" id="empty">
-                    <property name="label" translatable="yes">No Recent Documents</property>
-                    <property name="margin-start">6</property>
-                    <property name="margin-top">42</property>
-                    <property name="margin-bottom">42</property>
-                    <property name="margin-end">6</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkScrolledWindow" id="recent">
-                    <property name="hexpand">True</property>
-                    <property name="hscrollbar-policy">never</property>
-                    <property name="max-content-height">600</property>
-                    <property name="max-content-width">500</property>
-                    <property name="propagate-natural-height">True</property>
-                    <property name="propagate-natural-width">True</property>
-                    <property name="vexpand">True</property>
-                    <child>
-                      <object class="GtkListBox" id="list_box">
-                        <signal name="row-activated" handler="on_list_box_row_activated_cb" swapped="true" object="EditorOpenPopover"/>
-                        <property name="activate-on-single-click">True</property>
-                        <property name="selection-mode">none</property>
-                      </object>
-                    </child>
-                  </object>
-                </child>
+              <object class="GtkSearchEntry" id="search_entry">
+                <property name="hexpand">True</property>
+                <signal name="changed" handler="on_search_entry_changed_cb" swapped="true" object="EditorOpenPopover"/>
+                <signal name="activate" handler="on_search_entry_activate_cb" swapped="true" object="EditorOpenPopover"/>
+                <signal name="stop-search" handler="on_search_entry_stop_search_cb" swapped="true" object="EditorOpenPopover"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton">
+                <property name="icon-name">document-open-symbolic</property>
+                <property name="action-name">win.open</property>
               </object>
             </child>
           </object>
         </child>
         <child>
           <object class="GtkSeparator">
-            <property name="margin-top">9</property>
-            <property name="margin-bottom">9</property>
             <property name="orientation">horizontal</property>
           </object>
         </child>
         <child>
-          <object class="GtkButton">
-            <property name="label" translatable="yes">Br_owse Files…</property>
-            <property name="use-underline">True</property>
-            <property name="action-name">win.open</property>
+          <object class="GtkStack" id="stack">
+            <property name="vhomogeneous">false</property>
+            <property name="hhomogeneous">false</property>
+            <child>
+              <object class="GtkLabel" id="empty">
+                <property name="label" translatable="yes">No Recent Documents</property>
+                <property name="margin-start">6</property>
+                <property name="margin-top">42</property>
+                <property name="margin-bottom">42</property>
+                <property name="margin-end">6</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkScrolledWindow" id="recent">
+                <property name="hexpand">True</property>
+                <property name="hscrollbar-policy">never</property>
+                <property name="max-content-height">600</property>
+                <property name="max-content-width">250</property>
+                <property name="min-content-width">250</property>
+                <property name="propagate-natural-height">True</property>
+                <property name="vexpand">True</property>
+                <child>
+                  <object class="GtkViewport">
+                    <child>
+                      <object class="GtkFrame">
+                        <property name="margin-top">12</property>
+                        <property name="margin-bottom">12</property>
+                        <property name="margin-start">12</property>
+                        <property name="margin-end">12</property>
+                        <child>
+                          <object class="GtkListBox" id="list_box">
+                            <signal name="row-activated" handler="on_list_box_row_activated_cb" swapped="true" object="EditorOpenPopover"/>
+                            <property name="activate-on-single-click">True</property>
+                            <property name="selection-mode">none</property>
+                            <child type="placeholder">
+                              <object class="GtkLabel">
+                                <property name="label" translatable="yes">No Results Found</property>
+                                <property name="margin-start">6</property>
+                                <property name="margin-top">42</property>
+                                <property name="margin-bottom">42</property>
+                                <property name="margin-end">6</property>
+                                <style>
+                                  <class name="dim-label"/>
+                                </style>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
           </object>
         </child>
       </object>
