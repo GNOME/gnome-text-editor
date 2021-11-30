@@ -25,6 +25,7 @@
 #include <glib/gi18n.h>
 
 #include "editor-application-private.h"
+#include "editor-recoloring-private.h"
 #include "editor-session-private.h"
 #include "editor-utils-private.h"
 #include "editor-window.h"
@@ -192,17 +193,25 @@ on_style_manager_notify_dark (EditorApplication *self,
 static void
 editor_application_startup (GApplication *application)
 {
+  static const gchar *quit_accels[] = { "<Primary>Q", NULL };
+  static const gchar *help_accels[] = { "F1", NULL };
+
   EditorApplication *self = (EditorApplication *)application;
   g_autoptr(GtkCssProvider) css_provider = NULL;
   AdwStyleManager *style_manager;
-  static const gchar *quit_accels[] = { "<Primary>Q", NULL };
-  static const gchar *help_accels[] = { "F1", NULL };
+  GdkDisplay *display;
 
   g_assert (EDITOR_IS_APPLICATION (self));
 
   G_APPLICATION_CLASS (editor_application_parent_class)->startup (application);
 
   adw_init ();
+
+  display = gdk_display_get_default ();
+  self->recoloring = gtk_css_provider_new ();
+  gtk_style_context_add_provider_for_display (display,
+                                              GTK_STYLE_PROVIDER (self->recoloring),
+                                              GTK_STYLE_PROVIDER_PRIORITY_THEME+1);
 
   gtk_application_set_accels_for_action (GTK_APPLICATION (self), "app.quit", quit_accels);
   gtk_application_set_accels_for_action (GTK_APPLICATION (self), "app.help", help_accels);
@@ -272,6 +281,7 @@ editor_application_shutdown (GApplication *application)
   EditorApplication *self = (EditorApplication *)application;
 
   g_clear_object (&self->session);
+  g_clear_object (&self->recoloring);
 
   G_APPLICATION_CLASS (editor_application_parent_class)->shutdown (application);
 }
@@ -471,6 +481,7 @@ editor_application_get_style_scheme (EditorApplication *self)
   GtkSourceStyleScheme *style_scheme;
   AdwStyleManager *style_manager;
   g_autofree char *style_scheme_id = NULL;
+  g_autofree char *css = NULL;
   const char *variant;
 
   g_return_val_if_fail (EDITOR_IS_APPLICATION (self), NULL);
@@ -493,6 +504,9 @@ editor_application_get_style_scheme (EditorApplication *self)
 
   style_scheme = gtk_source_style_scheme_manager_get_scheme (style_scheme_manager, style_scheme_id);
   style_scheme = _gtk_source_style_scheme_get_variant (style_scheme, variant);
+
+  css = _editor_recoloring_generate_css (style_scheme);
+  gtk_css_provider_load_from_data (self->recoloring, css ? css : "", -1);
 
   return gtk_source_style_scheme_get_id (style_scheme);
 }

@@ -25,6 +25,7 @@ editor_sources = [
   'editor-preferences-spin.c',
   'editor-preferences-switch.c',
   'editor-print-operation.c',
+  'editor-recoloring.c',
   'editor-save-changes-dialog.c',
   'editor-search-bar.c',
   'editor-search-entry.c',
