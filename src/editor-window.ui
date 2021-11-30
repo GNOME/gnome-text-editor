@@ -102,6 +102,7 @@
                   <object class="GtkMenuButton" id="options_menu">
                     <property name="tooltip-text" translatable="yes">View</property>
                     <property name="icon-name">document-properties-symbolic</property>
+                    <property name="menu-model">options_menu_model</property>
                     <accessibility>
                       <property name="label" translatable="yes">View</property>
                     </accessibility>
@@ -110,6 +111,7 @@
                 <child>
                   <object class="GtkMenuButton" id="primary_menu">
                     <property name="icon-name">open-menu-symbolic</property>
+                    <property name="menu-model">primary_menu_model</property>
                     <accessibility>
                       <property name="label" translatable="yes">Menu</property>
                     </accessibility>
@@ -149,6 +151,7 @@
                       <object class="AdwTabView" id="tab_view">
                         <property name="hexpand">true</property>
                         <property name="vexpand">true</property>
+                        <property name="menu-model">tab_menu</property>
                         <signal name="close-page" handler="on_tab_view_close_page_cb" swapped="true"/>
                         <signal name="setup-menu" handler="on_tab_view_setup_menu_cb" swapped="true"/>
                         <signal name="create-window" handler="on_tab_view_create_window_cb" swapped="true"/>
@@ -300,4 +303,179 @@ Or, press Ctrl+W to close the window.</property>
       </object>
     </child>
   </template>
+  <menu id="primary_menu_model">
+    <section>
+      <item>
+        <attribute name="custom">theme</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="custom">zoom</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_New Window</attribute>
+        <attribute name="action">app.new-window</attribute>
+        <attribute name="accel">&lt;control&gt;n</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="id">save</attribute>
+        <attribute name="label" translatable="yes">_Save</attribute>
+        <attribute name="action">page.save</attribute>
+        <attribute name="accel">&lt;control&gt;s</attribute>
+      </item>
+      <item>
+        <attribute name="id">save-as</attribute>
+        <attribute name="label" translatable="yes">Save _As…</attribute>
+        <attribute name="action">page.save-as</attribute>
+        <attribute name="accel">&lt;control&gt;&lt;shift&gt;s</attribute>
+      </item>
+      <item>
+        <attribute name="id">discard-changes</attribute>
+        <attribute name="label" translatable="yes">_Discard Changes</attribute>
+        <attribute name="action">page.discard-changes</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Find/Replace…</attribute>
+        <attribute name="action">page.begin-search</attribute>
+        <attribute name="accel">&lt;control&gt;f</attribute>
+      </item>
+      <item>
+        <attribute name="id">print</attribute>
+        <attribute name="label" translatable="yes">_Print</attribute>
+        <attribute name="action">page.print</attribute>
+        <attribute name="accel">&lt;control&gt;p</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Preferences</attribute>
+        <attribute name="action">win.show-preferences</attribute>
+        <attribute name="accel">&lt;control&gt;comma</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
+        <attribute name="action">win.show-help-overlay</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Help</attribute>
+        <attribute name="action">app.help</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_About Text Editor</attribute>
+        <attribute name="action">app.about</attribute>
+      </item>
+    </section>
+  </menu>
+  <menu id="options_menu_model">
+    <section>
+      <attribute name="label" translatable="yes">Show</attribute>
+      <item>
+        <attribute name="label" translatable="yes">_Line Numbers</attribute>
+        <attribute name="action">settings.show-line-numbers</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Right Margin</attribute>
+        <attribute name="action">settings.show-right-margin</attribute>
+      </item>
+    </section>
+    <section>
+      <attribute name="label" translatable="yes">Indentation</attribute>
+      <item>
+        <attribute name="label" translatable="yes">_Automatic Indentation</attribute>
+        <attribute name="action">settings.auto-indent</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Tabs</attribute>
+        <attribute name="action">settings.indent-style</attribute>
+        <attribute name="target" type="s">'tab'</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Spaces</attribute>
+        <attribute name="action">settings.indent-style</attribute>
+        <attribute name="target" type="s">'space'</attribute>
+      </item>
+      <submenu>
+        <attribute name="label" translatable="yes">Spaces _Per Tab</attribute>
+        <section>
+          <item>
+            <attribute name="label" translatable="yes">_2</attribute>
+            <attribute name="action">settings.tab-width</attribute>
+            <attribute name="target" type="u">2</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">_4</attribute>
+            <attribute name="action">settings.tab-width</attribute>
+            <attribute name="target" type="u">4</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">_6</attribute>
+            <attribute name="action">settings.tab-width</attribute>
+            <attribute name="target" type="u">6</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">_8</attribute>
+            <attribute name="action">settings.tab-width</attribute>
+            <attribute name="target" type="u">8</attribute>
+          </item>
+        </section>
+      </submenu>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">T_ext Wrapping</attribute>
+        <attribute name="action">settings.wrap-text</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Automatic Margin Position</attribute>
+        <attribute name="action">settings.discover-settings</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Chec_k Spelling</attribute>
+        <attribute name="action">settings.spellcheck</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Document Type</attribute>
+        <attribute name="action">page.change-language</attribute>
+      </item>
+    </section>
+  </menu>
+  <menu id="tab_menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Move _Left</attribute>
+        <attribute name="action">page.move-left</attribute>
+        <attribute name="accel">&lt;control&gt;&lt;shift&gt;&lt;alt&gt;Page_Up</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Move _Right</attribute>
+        <attribute name="action">page.move-right</attribute>
+        <attribute name="accel">&lt;control&gt;&lt;shift&gt;&lt;alt&gt;Page_Down</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Move to New Window</attribute>
+        <attribute name="action">page.move-to-new-window</attribute>
+        <attribute name="accel">&lt;control&gt;&lt;shift&gt;n</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Close _Other Tabs</attribute>
+        <attribute name="action">win.close-other-pages</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Close</attribute>
+        <attribute name="action">win.close-current-page</attribute>
+        <attribute name="accel">&lt;control&gt;w</attribute>
+      </item>
+    </section>
+  </menu>
 </interface>

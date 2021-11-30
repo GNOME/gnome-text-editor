@@ -303,12 +303,8 @@ editor_window_constructed (GObject *object)
   EditorWindow *self = (EditorWindow *)object;
   GtkSourceStyleSchemeManager *sm;
   const char * const *scheme_ids;
-  GtkApplication *app;
   EditorSession *session;
   GtkPopover *popover;
-  GMenu *options_menu;
-  GMenu *primary_menu;
-  GMenu *tab_menu;
   GtkWidget *zoom_box;
   GtkWidget *zoom_out;
   GtkWidget *zoom_in;
@@ -317,19 +313,13 @@ editor_window_constructed (GObject *object)
 
   G_OBJECT_CLASS (editor_window_parent_class)->constructed (object);
 
-  app = GTK_APPLICATION (EDITOR_APPLICATION_DEFAULT);
   session = editor_application_get_session (EDITOR_APPLICATION_DEFAULT);
 
-  tab_menu = gtk_application_get_menu_by_id (app, "tab-menu");
-  adw_tab_view_set_menu_model (self->tab_view, G_MENU_MODEL (tab_menu));
 
   /* Set the recents list for the open popover */
   g_object_bind_property (session, "recents",
                           self->open_menu_popover, "model",
                           G_BINDING_SYNC_CREATE);
-
-  primary_menu = gtk_application_get_menu_by_id (GTK_APPLICATION (app), "primary-menu");
-  gtk_menu_button_set_menu_model (self->primary_menu, G_MENU_MODEL (primary_menu));
 
   /* The primary menu has some custom widgets added to it */
   popover = gtk_menu_button_get_popover (self->primary_menu);
@@ -368,9 +358,6 @@ editor_window_constructed (GObject *object)
   gtk_box_append (GTK_BOX (zoom_box), self->zoom_label);
   gtk_box_append (GTK_BOX (zoom_box), zoom_in);
   gtk_popover_menu_add_child (GTK_POPOVER_MENU (popover), zoom_box, "zoom");
-
-  options_menu = gtk_application_get_menu_by_id (GTK_APPLICATION (app), "options-menu");
-  gtk_menu_button_set_menu_model (self->options_menu, G_MENU_MODEL (options_menu));
 
   /* Populate schemes for preferences */
   sm = gtk_source_style_scheme_manager_get_default ();
