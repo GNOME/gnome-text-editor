@@ -272,6 +272,10 @@ editor_preferences_dialog_init (EditorPreferencesDialog *self)
 
   gtk_widget_init_template (GTK_WIDGET (self));
 
+#if DEVELOPMENT_BUILD
+  gtk_widget_add_css_class (GTK_WIDGET (self), "devel");
+#endif
+
   g_object_set (self,
                 "application", g_application_get_default (),
                 NULL);

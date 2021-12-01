@@ -296,6 +296,10 @@ editor_language_dialog_init (EditorLanguageDialog *self)
 {
   gtk_widget_init_template (GTK_WIDGET (self));
 
+#if DEVELOPMENT_BUILD
+  gtk_widget_add_css_class (GTK_WIDGET (self), "devel");
+#endif
+
   gtk_window_set_default_size (GTK_WINDOW (self), 500, -1);
   gtk_window_set_resizable (GTK_WINDOW (self), FALSE);
 
