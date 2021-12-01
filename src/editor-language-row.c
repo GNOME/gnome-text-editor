@@ -26,13 +26,12 @@
 
 struct _EditorLanguageRow
 {
-  GtkListBoxRow      parent_instance;
+  AdwActionRow       parent_instance;
 
   GtkSourceLanguage *language;
   gchar             *id;
   gchar             *name;
 
-  GtkLabel          *title;
   GtkImage          *image;
 };
 
@@ -42,7 +41,7 @@ enum {
   N_PROPS
 };
 
-G_DEFINE_TYPE (EditorLanguageRow, editor_language_row, GTK_TYPE_LIST_BOX_ROW)
+G_DEFINE_TYPE (EditorLanguageRow, editor_language_row, ADW_TYPE_ACTION_ROW)
 
 static GParamSpec *properties [N_PROPS];
 
@@ -60,7 +59,7 @@ editor_language_row_constructed (GObject *object)
     return;
 
   name = gtk_source_language_get_name (self->language);
-  gtk_label_set_label (self->title, name);
+  adw_preferences_row_set_title (ADW_PREFERENCES_ROW (self), name);
 }
 
 static void
@@ -136,7 +135,6 @@ editor_language_row_class_init (EditorLanguageRowClass *klass)
   g_object_class_install_properties (object_class, N_PROPS, properties);
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-language-row.ui");
-  gtk_widget_class_bind_template_child (widget_class, EditorLanguageRow, title);
   gtk_widget_class_bind_template_child (widget_class, EditorLanguageRow, image);
 }
 
@@ -152,6 +150,7 @@ _editor_language_row_new (GtkSourceLanguage *language)
   g_return_val_if_fail (!language || GTK_SOURCE_IS_LANGUAGE (language), NULL);
 
   return g_object_new (EDITOR_TYPE_LANGUAGE_ROW,
+                       "activatable", TRUE,
                        "language", language,
                        NULL);
 }

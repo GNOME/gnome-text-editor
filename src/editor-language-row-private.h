@@ -20,13 +20,15 @@
 
 #pragma once
 
+#include <adwaita.h>
+
 #include "editor-types-private.h"
 
 G_BEGIN_DECLS
 
 #define EDITOR_TYPE_LANGUAGE_ROW (editor_language_row_get_type())
 
-G_DECLARE_FINAL_TYPE (EditorLanguageRow, editor_language_row, EDITOR, LANGUAGE_ROW, GtkListBoxRow)
+G_DECLARE_FINAL_TYPE (EditorLanguageRow, editor_language_row, EDITOR, LANGUAGE_ROW, AdwActionRow)
 
 EditorLanguageRow *_editor_language_row_new          (GtkSourceLanguage *language);
 GtkSourceLanguage *_editor_language_row_get_language (EditorLanguageRow *self);
