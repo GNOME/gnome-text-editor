@@ -48,29 +48,6 @@ enum {
 static GParamSpec *properties[N_PROPS];
 
 static void
-update_style_scheme_cb (EditorWindow *self,
-                        const char   *key,
-                        GSettings    *settings)
-{
-  g_autofree char *id = NULL;
-
-  g_assert (EDITOR_IS_WINDOW (self));
-
-  id = g_settings_get_string (settings, "style-scheme");
-
-  for (GtkWidget *child = gtk_widget_get_first_child (GTK_WIDGET (self->scheme_group));
-       child;
-       child = gtk_widget_get_next_sibling (child))
-    {
-      GtkSourceStyleSchemePreview *preview = GTK_SOURCE_STYLE_SCHEME_PREVIEW (child);
-      GtkSourceStyleScheme *scheme = gtk_source_style_scheme_preview_get_scheme (preview);
-      const char *scheme_id = gtk_source_style_scheme_get_id (scheme);
-
-      gtk_source_style_scheme_preview_set_selected (preview, g_strcmp0 (scheme_id, id) == 0);
-    }
-}
-
-static void
 update_subtitle_visibility_cb (EditorWindow *self)
 {
   gboolean visible = FALSE;
@@ -367,8 +344,6 @@ static void
 editor_window_constructed (GObject *object)
 {
   EditorWindow *self = (EditorWindow *)object;
-  GtkSourceStyleSchemeManager *sm;
-  const char * const *scheme_ids;
   EditorSession *session;
   GtkPopover *popover;
   GtkWidget *zoom_box;
@@ -428,24 +403,6 @@ editor_window_constructed (GObject *object)
   gtk_box_append (GTK_BOX (zoom_box), self->zoom_label);
   gtk_box_append (GTK_BOX (zoom_box), zoom_in);
   gtk_popover_menu_add_child (GTK_POPOVER_MENU (popover), zoom_box, "zoom");
-
-  /* Populate schemes for preferences */
-  sm = gtk_source_style_scheme_manager_get_default ();
-  if ((scheme_ids = gtk_source_style_scheme_manager_get_scheme_ids (sm)))
-    {
-      for (guint i = 0; scheme_ids[i]; i++)
-        {
-          GtkSourceStyleScheme *scheme = gtk_source_style_scheme_manager_get_scheme (sm, scheme_ids[i]);
-          GtkWidget *preview = gtk_source_style_scheme_preview_new (scheme);
-
-          gtk_actionable_set_action_name (GTK_ACTIONABLE (preview), "app.style-scheme");
-          gtk_actionable_set_action_target (GTK_ACTIONABLE (preview), "s", scheme_ids[i]);
-          gtk_widget_set_hexpand (preview, TRUE);
-          gtk_grid_attach (self->scheme_group, preview, i % 2, i / 2, 1, 1);
-        }
-
-      update_style_scheme_cb (self, "style-scheme", self->settings);
-    }
 }
 
 static gboolean
@@ -604,18 +561,6 @@ on_tab_view_setup_menu_cb (EditorWindow *self,
     editor_window_set_visible_page (self, epage);
 }
 
-static void
-on_notify_reveal_flap_cb (EditorWindow *self,
-                          GParamSpec   *pspec,
-                          AdwFlap      *flap)
-{
-  g_assert (EDITOR_IS_WINDOW (self));
-  g_assert (ADW_IS_FLAP (flap));
-
-  if (!adw_flap_get_reveal_flap (flap))
-    adw_flap_set_locked (flap, TRUE);
-}
-
 static AdwTabView *
 on_tab_view_create_window_cb (EditorWindow *self,
                               AdwTabView   *tab_view)
@@ -764,7 +709,6 @@ editor_window_class_init (EditorWindowClass *klass)
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-window.ui");
 
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, empty);
-  gtk_widget_class_bind_template_child (widget_class, EditorWindow, flap);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, is_modified);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, open_menu_button);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, open_menu_popover);
@@ -774,7 +718,6 @@ editor_window_class_init (EditorWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, position_box);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, position_label);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, primary_menu);
-  gtk_widget_class_bind_template_child (widget_class, EditorWindow, scheme_group);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, stack);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, subtitle);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, tab_bar);
@@ -782,7 +725,6 @@ editor_window_class_init (EditorWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, title);
 
   gtk_widget_class_bind_template_callback (widget_class, on_tab_view_close_page_cb);
-  gtk_widget_class_bind_template_callback (widget_class, on_notify_reveal_flap_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_tab_view_setup_menu_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_tab_view_create_window_cb);
 
@@ -836,11 +778,6 @@ editor_window_init (EditorWindow *self)
   g_signal_connect_object (self->settings,
                            "changed::show-line-numbers",
                            G_CALLBACK (update_subtitle_visibility_cb),
-                           self,
-                           G_CONNECT_SWAPPED);
-  g_signal_connect_object (self->settings,
-                           "changed::style-scheme",
-                           G_CALLBACK (update_style_scheme_cb),
                            self,
                            G_CONNECT_SWAPPED);
 

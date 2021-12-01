@@ -20,6 +20,7 @@ editor_sources = [
   'editor-page-vim.c',
   'editor-path.c',
   'editor-position-label.c',
+  'editor-preferences-dialog.c',
   'editor-preferences-font.c',
   'editor-preferences-radio.c',
   'editor-preferences-spin.c',

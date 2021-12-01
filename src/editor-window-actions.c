@@ -28,6 +28,7 @@
 #include "editor-document.h"
 #include "editor-language-dialog.h"
 #include "editor-page-private.h"
+#include "editor-preferences-dialog-private.h"
 #include "editor-save-changes-dialog-private.h"
 #include "editor-session-private.h"
 #include "editor-window-private.h"
@@ -531,23 +532,12 @@ editor_window_actions_show_preferences_cb (GtkWidget  *widget,
                                            GVariant   *param)
 {
   EditorWindow *self = (EditorWindow *)widget;
+  GtkWidget *dialog;
 
   g_assert (EDITOR_IS_WINDOW (self));
 
-  adw_flap_set_locked (self->flap, FALSE);
-  adw_flap_set_reveal_flap (self->flap, TRUE);
-}
-
-static void
-editor_window_actions_hide_preferences_cb (GtkWidget  *widget,
-                                           const char *action_name,
-                                           GVariant   *param)
-{
-  EditorWindow *self = (EditorWindow *)widget;
-
-  g_assert (EDITOR_IS_WINDOW (self));
-
-  adw_flap_set_reveal_flap (self->flap, FALSE);
+  dialog = editor_preferences_dialog_new (self);
+  gtk_window_present (GTK_WINDOW (dialog));
 }
 
 static void
@@ -685,10 +675,6 @@ _editor_window_class_actions_init (EditorWindowClass *klass)
                                    "page.begin-replace",
                                    NULL,
                                    editor_window_actions_begin_replace_cb);
-  gtk_widget_class_install_action (widget_class,
-                                   "win.hide-preferences",
-                                   NULL,
-                                   editor_window_actions_hide_preferences_cb);
   gtk_widget_class_install_action (widget_class,
                                    "win.show-preferences",
                                    NULL,

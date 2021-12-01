@@ -94,14 +94,15 @@ editor_preferences_font_activated (AdwActionRow *row)
   PangoFontDescription *font_desc;
   g_autofree gchar *font = NULL;
   GtkWidget *dialog;
-  GtkRoot *root;
+  GtkWidget *window;
 
   g_assert (ADW_IS_ACTION_ROW (self));
 
-  root = gtk_widget_get_root (GTK_WIDGET (row));
-  dialog = gtk_font_chooser_dialog_new (_("Select Font"), GTK_WINDOW (root));
-  font = g_settings_get_string (self->settings, self->schema_key);
+  window = gtk_widget_get_ancestor (GTK_WIDGET (row), GTK_TYPE_WINDOW);
+  dialog = gtk_font_chooser_dialog_new (_("Select Font"), GTK_WINDOW (window));
+  gtk_window_set_modal (GTK_WINDOW (window), TRUE);
 
+  font = g_settings_get_string (self->settings, self->schema_key);
   font_desc = pango_font_description_from_string (font);
   gtk_font_chooser_set_font_desc (GTK_FONT_CHOOSER (dialog), font_desc);
 

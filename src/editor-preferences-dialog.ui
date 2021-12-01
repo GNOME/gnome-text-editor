@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0"/>
+  <requires lib="libadwaita" version="1.0"/>
+  <template class="EditorPreferencesDialog" parent="AdwPreferencesWindow">
+    <property name="default-height">700</property>
+    <style>
+      <class name="org-gnome-TextEditor"/>
+      <class name="preferences"/>
+    </style>
+    <child>
+      <object class="AdwPreferencesPage">
+        <child>
+          <object class="AdwPreferencesGroup">
+            <property name="title" translatable="yes">Appearance</property>
+            <child>
+              <object class="GtkFrame">
+                <property name="margin-bottom">24</property>
+                <child>
+                  <object class="GtkSourceView" id="source_view">
+                    <property name="editable">false</property>
+                    <property name="cursor-visible">false</property>
+                    <property name="top-margin">8</property>
+                    <property name="bottom-margin">8</property>
+                    <property name="left-margin">12</property>
+                    <property name="right-margin">12</property>
+                    <property name="monospace">true</property>
+                    <property name="show-line-numbers">true</property>
+                    <property name="buffer">
+                      <object class="GtkSourceBuffer" id="buffer">
+                        <property name="text">
+
+
+</property>
+                      </object>
+                    </property>
+                    <style>
+                      <class name="preview"/>
+                    </style>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkGrid" id="scheme_group">
+                <property name="hexpand">true</property>
+                <property name="column-spacing">9</property>
+                <property name="row-spacing">9</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwPreferencesGroup">
+            <child>
+              <object class="AdwExpanderRow">
+                <child type="action">
+                  <object class="GtkSwitch" id="use_system_font">
+                    <property name="halign">end</property>
+                    <property name="valign">center</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="EditorPreferencesFont" id="custom_font">
+                    <!-- translators: the surrounding span region is used to prevent word wrapping in display -->
+                    <property name="title" translatable="yes">&lt;span allow_breaks='false'&gt;Custom Font&lt;/span&gt;</property>
+                    <property name="schema-key">custom-font</property>
+                    <property name="sensitive" bind-source="use_system_font" bind-property="active" bind-flags="sync-create|invert-boolean"/>
+                  </object>
+                </child>
+                <property name="title" translatable="yes">System Font</property>
+                <property name="expanded" bind-source="use_system_font" bind-property="active" bind-flags="sync-create|bidirectional|invert-boolean"/>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwPreferencesGroup">
+            <child>
+              <object class="EditorPreferencesSwitch" id="grid">
+                <property name="title" translatable="yes">Display Grid Pattern</property>
+                <property name="schema-key">show-grid</property>
+              </object>
+            </child>
+            <child>
+              <object class="EditorPreferencesSwitch" id="highlight_current_line">
+                <property name="title" translatable="yes">Highlight Current Line</property>
+                <property name="schema-key">highlight-current-line</property>
+              </object>
+            </child>
+            <child>
+              <object class="EditorPreferencesSwitch" id="map">
+                <property name="title" translatable="yes">Display Overview Map</property>
+                <property name="schema-key">show-map</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwPreferencesGroup">
+            <property name="title" translatable="yes">Right Margin</property>
+            <child>
+              <object class="EditorPreferencesSpin" id="right_margin">
+                <property name="title" translatable="yes">Margin Position</property>
+                <property name="schema-key">right-margin-position</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwPreferencesGroup">
+            <property name="title" translatable="yes">Behavior</property>
+            <child>
+              <object class="EditorPreferencesSwitch" id="session">
+                <property name="title" translatable="yes">Restore Session</property>
+                <property name="subtitle" translatable="yes">Return to your previous session when Text Editor is started</property>
+                <property name="schema-key">restore-session</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>
