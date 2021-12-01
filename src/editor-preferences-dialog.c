@@ -175,9 +175,18 @@ update_style_scheme_selection (EditorPreferencesDialog *self)
 }
 
 static gboolean
-scheme_is_dark (const char *id)
+scheme_is_dark (GtkSourceStyleScheme *scheme)
 {
-  return strstr (id, "-dark") != NULL;
+  const char *id = gtk_source_style_scheme_get_id (scheme);
+  const char *variant = gtk_source_style_scheme_get_metadata (scheme, "variant");
+
+  if (strstr (id, "-dark") != NULL)
+    return TRUE;
+
+  if (g_strcmp0 (variant, "dark") == 0)
+    return TRUE;
+
+  return FALSE;
 }
 
 static void
@@ -202,10 +211,11 @@ update_style_schemes (EditorPreferencesDialog *self)
           GtkSourceStyleScheme *scheme;
           GtkWidget *preview;
 
-          if (is_dark != scheme_is_dark (scheme_ids[i]))
+          scheme = gtk_source_style_scheme_manager_get_scheme (sm, scheme_ids[i]);
+
+          if (is_dark != scheme_is_dark (scheme))
             continue;
 
-          scheme = gtk_source_style_scheme_manager_get_scheme (sm, scheme_ids[i]);
           preview = gtk_source_style_scheme_preview_new (scheme);
           gtk_actionable_set_action_name (GTK_ACTIONABLE (preview), "app.style-scheme");
           gtk_actionable_set_action_target (GTK_ACTIONABLE (preview), "s", scheme_ids[i]);
