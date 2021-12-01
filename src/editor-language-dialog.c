@@ -293,7 +293,8 @@ editor_language_dialog_init (EditorLanguageDialog *self)
 {
   gtk_widget_init_template (GTK_WIDGET (self));
 
-  gtk_window_set_default_size (GTK_WINDOW (self), 500, 500);
+  gtk_window_set_default_size (GTK_WINDOW (self), 500, -1);
+  gtk_window_set_resizable (GTK_WINDOW (self), FALSE);
 
   g_signal_connect_object (self->list_box,
                            "row-activated",
