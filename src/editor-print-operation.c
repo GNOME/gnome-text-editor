@@ -98,10 +98,17 @@ editor_print_operation_begin_print (GtkPrintOperation *operation,
                                     GtkPrintContext   *context)
 {
   EditorPrintOperation *self = EDITOR_PRINT_OPERATION (operation);
+  g_autoptr(GSettings) settings = NULL;
+  g_autofree char *custom_font = NULL;
   GtkSourceBuffer *buffer;
   GtkTextTag *spelling_tag;
   guint tab_width;
   gboolean syntax_hl;
+  gboolean use_system_font;
+
+  settings = g_settings_new ("org.gnome.TextEditor");
+  use_system_font = g_settings_get_boolean (settings, "use-system-font");
+  custom_font = g_settings_get_string (settings, "custom-font");
 
   buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (self->view)));
 
@@ -113,6 +120,14 @@ editor_print_operation_begin_print (GtkPrintOperation *operation,
                                    "tab-width", tab_width,
                                    "highlight-syntax", syntax_hl,
                                    NULL);
+
+  if (!use_system_font)
+    {
+      gtk_source_print_compositor_set_body_font_name (self->compositor, custom_font);
+      gtk_source_print_compositor_set_line_numbers_font_name (self->compositor, custom_font);
+      gtk_source_print_compositor_set_header_font_name (self->compositor, custom_font);
+      gtk_source_print_compositor_set_footer_font_name (self->compositor, custom_font);
+    }
 
   spelling_tag = _editor_document_get_spelling_tag (EDITOR_DOCUMENT (buffer));
   gtk_source_print_compositor_ignore_tag (self->compositor, spelling_tag);
