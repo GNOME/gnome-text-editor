@@ -190,6 +190,17 @@ on_style_manager_notify_dark (EditorApplication *self,
 }
 
 static void
+on_changed_style_scheme_cb (EditorApplication *self,
+                            const char        *key,
+                            GSettings         *settings)
+{
+  g_assert (EDITOR_IS_APPLICATION (self));
+  g_assert (G_IS_SETTINGS (settings));
+
+  g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_STYLE_SCHEME]);
+}
+
+static void
 editor_application_startup (GApplication *application)
 {
   EditorApplication *self = (EditorApplication *)application;
@@ -371,6 +382,12 @@ editor_application_init (EditorApplication *self)
 {
   self->settings = g_settings_new ("org.gnome.TextEditor");
   self->session = _editor_session_new ();
+
+  g_signal_connect_object (self->settings,
+                           "changed::style-scheme",
+                           G_CALLBACK (on_changed_style_scheme_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
 
   editor_session_set_auto_save (self->session, TRUE);
   if (!g_settings_get_boolean (self->settings, "restore-session"))
