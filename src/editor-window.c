@@ -613,6 +613,29 @@ transform_window_title (GBinding     *binding,
 }
 
 static void
+on_show_help_overlay_cb (GtkWidget  *widget,
+                         const char *action_name,
+                         GVariant   *param)
+{
+  g_autoptr(GtkBuilder) builder = NULL;
+  GObject *help_overlay;
+
+  g_assert (EDITOR_IS_WINDOW (widget));
+
+  builder = gtk_builder_new_from_resource ("/org/gnome/TextEditor/ui/help-overlay.ui");
+  help_overlay = gtk_builder_get_object (builder, "help_overlay");
+
+  if (GTK_IS_SHORTCUTS_WINDOW (help_overlay))
+    {
+#if DEVELOPMENT_BUILD
+      gtk_widget_add_css_class (GTK_WIDGET (help_overlay), "devel");
+#endif
+      gtk_window_set_transient_for (GTK_WINDOW (help_overlay), GTK_WINDOW (widget));
+      gtk_window_present (GTK_WINDOW (help_overlay));
+    }
+}
+
+static void
 editor_window_dispose (GObject *object)
 {
   EditorWindow *self = (EditorWindow *)object;
@@ -728,6 +751,8 @@ editor_window_class_init (EditorWindowClass *klass)
   gtk_widget_class_bind_template_callback (widget_class, on_tab_view_setup_menu_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_tab_view_create_window_cb);
 
+  gtk_widget_class_install_action (widget_class, "win.show-help-overlay", NULL, on_show_help_overlay_cb);
+
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_w, GDK_CONTROL_MASK, "win.close-page-or-window", NULL);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_o, GDK_CONTROL_MASK, "win.open", NULL);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_k, GDK_CONTROL_MASK, "win.focus-search", NULL);
@@ -751,6 +776,7 @@ editor_window_class_init (EditorWindowClass *klass)
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_h, GDK_CONTROL_MASK, "page.begin-replace", NULL);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_F10, 0, "win.show-primary-menu", NULL);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_comma, GDK_CONTROL_MASK, "win.show-preferences", NULL);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_question, GDK_CONTROL_MASK, "win.show-help-overlay", NULL);
 
   _editor_window_class_actions_init (klass);
 
