@@ -29,6 +29,8 @@
 #include "editor-window.h"
 #include "editor-utils-private.h"
 
+#define N_COLUMNS 3
+
 struct _EditorPreferencesDialog
 {
   AdwPreferencesWindow  parent_instance;
@@ -206,7 +208,7 @@ update_style_schemes (EditorPreferencesDialog *self)
           gtk_actionable_set_action_name (GTK_ACTIONABLE (preview), "app.style-scheme");
           gtk_actionable_set_action_target (GTK_ACTIONABLE (preview), "s", scheme_ids[i]);
           gtk_widget_set_hexpand (preview, TRUE);
-          gtk_grid_attach (self->scheme_group, preview, j % 4, j / 4, 1, 1);
+          gtk_grid_attach (self->scheme_group, preview, j % N_COLUMNS, j / N_COLUMNS, 1, 1);
 
           j++;
         }
