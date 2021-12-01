@@ -151,11 +151,11 @@ guess_preview_language (EditorPreferencesDialog *self)
 static void
 update_style_scheme_selection (EditorPreferencesDialog *self)
 {
-  g_autofree char *id = NULL;
+  const char *id;
 
   g_assert (EDITOR_IS_PREFERENCES_DIALOG (self));
 
-  id = g_settings_get_string (self->settings, "style-scheme");
+  id = editor_application_get_style_scheme (EDITOR_APPLICATION (g_application_get_default ()));
 
   for (GtkWidget *child = gtk_widget_get_first_child (GTK_WIDGET (self->scheme_group));
        child;
@@ -332,11 +332,6 @@ editor_preferences_dialog_init (EditorPreferencesDialog *self)
                                 G_SETTINGS_BIND_GET,
                                 bind_background_pattern, NULL, NULL, NULL);
   g_signal_connect_object (self->settings,
-                           "changed::style-scheme",
-                           G_CALLBACK (update_style_scheme_selection),
-                           self,
-                           G_CONNECT_SWAPPED);
-  g_signal_connect_object (self->settings,
                            "changed::custom-font",
                            G_CALLBACK (update_custom_font_cb),
                            self,
@@ -344,6 +339,12 @@ editor_preferences_dialog_init (EditorPreferencesDialog *self)
   g_signal_connect_object (self->settings,
                            "changed::use-system-font",
                            G_CALLBACK (update_custom_font_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+
+  g_signal_connect_object (g_application_get_default (),
+                           "notify::style-scheme",
+                           G_CALLBACK (update_style_scheme_selection),
                            self,
                            G_CONNECT_SWAPPED);
 
