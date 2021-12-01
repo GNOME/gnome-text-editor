@@ -206,7 +206,7 @@ update_style_schemes (EditorPreferencesDialog *self)
           gtk_actionable_set_action_name (GTK_ACTIONABLE (preview), "app.style-scheme");
           gtk_actionable_set_action_target (GTK_ACTIONABLE (preview), "s", scheme_ids[i]);
           gtk_widget_set_hexpand (preview, TRUE);
-          gtk_grid_attach (self->scheme_group, preview, j % 3, j / 3, 1, 1);
+          gtk_grid_attach (self->scheme_group, preview, j % 4, j / 4, 1, 1);
 
           j++;
         }
