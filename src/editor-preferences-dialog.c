@@ -32,7 +32,10 @@
 struct _EditorPreferencesDialog
 {
   AdwPreferencesWindow  parent_instance;
+
   GSettings            *settings;
+  GtkCssProvider       *css_provider;
+
   GtkSwitch            *use_custom_font;
   GtkFlowBox           *scheme_group;
   GtkSourceBuffer      *buffer;
@@ -227,6 +230,35 @@ bind_background_pattern (GValue *value,
   return TRUE;
 }
 
+static void
+update_custom_font_cb (EditorPreferencesDialog *self,
+                       const char              *key,
+                       GSettings               *settings)
+{
+  g_assert (EDITOR_IS_PREFERENCES_DIALOG (self));
+  g_assert (G_IS_SETTINGS (settings));
+
+  if (!g_settings_get_boolean (settings, "use-system-font"))
+    {
+      g_autofree char *custom_font = g_settings_get_string (settings, "custom-font");
+      g_autoptr(PangoFontDescription) font_desc = pango_font_description_from_string (custom_font);
+      g_autofree char *css = _editor_font_description_to_css (font_desc);
+
+      if (css != NULL)
+        {
+          g_autoptr(GString) str = g_string_new (NULL);
+
+          g_string_append_printf (str, "textview { %s }", css);
+
+          /* Use -1 instead of str->len to avoid a string copy */
+          gtk_css_provider_load_from_data (self->css_provider, str->str, -1);
+
+          return;
+        }
+    }
+
+  gtk_css_provider_load_from_data (self->css_provider, "", -1);
+}
 
 static void
 editor_preferences_dialog_constructed (GObject *object)
@@ -245,6 +277,7 @@ editor_preferences_dialog_dispose (GObject *object)
   EditorPreferencesDialog *self = (EditorPreferencesDialog *)object;
 
   g_clear_object (&self->settings);
+  g_clear_object (&self->css_provider);
 
   G_OBJECT_CLASS (editor_preferences_dialog_parent_class)->dispose (object);
 }
@@ -269,6 +302,7 @@ static void
 editor_preferences_dialog_init (EditorPreferencesDialog *self)
 {
   AdwStyleManager *style_manager;
+  GtkStyleContext *style_context;
 
   gtk_widget_init_template (GTK_WIDGET (self));
 
@@ -279,6 +313,12 @@ editor_preferences_dialog_init (EditorPreferencesDialog *self)
   g_object_set (self,
                 "application", g_application_get_default (),
                 NULL);
+
+  style_context = gtk_widget_get_style_context (GTK_WIDGET (self->source_view));
+  self->css_provider = gtk_css_provider_new ();
+  gtk_style_context_add_provider (style_context,
+                                  GTK_STYLE_PROVIDER (self->css_provider),
+                                  GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
   self->settings = g_settings_new ("org.gnome.TextEditor");
   g_settings_bind (self->settings, "use-system-font",
@@ -294,6 +334,16 @@ editor_preferences_dialog_init (EditorPreferencesDialog *self)
   g_signal_connect_object (self->settings,
                            "changed::style-scheme",
                            G_CALLBACK (update_style_scheme_selection),
+                           self,
+                           G_CONNECT_SWAPPED);
+  g_signal_connect_object (self->settings,
+                           "changed::custom-font",
+                           G_CALLBACK (update_custom_font_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+  g_signal_connect_object (self->settings,
+                           "changed::use-system-font",
+                           G_CALLBACK (update_custom_font_cb),
                            self,
                            G_CONNECT_SWAPPED);
 
