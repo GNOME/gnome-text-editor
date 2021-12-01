@@ -126,12 +126,15 @@ editor_language_dialog_filter (EditorLanguageDialog *self,
        child != NULL;
        child = gtk_widget_get_next_sibling (child))
     {
-      EditorLanguageRow *row = EDITOR_LANGUAGE_ROW (child);
+      if (EDITOR_IS_LANGUAGE_ROW (child))
+        {
+          EditorLanguageRow *row = EDITOR_LANGUAGE_ROW (child);
 
-      if (_editor_language_row_match (row, spec))
-        gtk_widget_show (GTK_WIDGET (row));
-      else
-        gtk_widget_hide (GTK_WIDGET (row));
+          if (_editor_language_row_match (row, spec))
+            gtk_widget_show (GTK_WIDGET (row));
+          else
+            gtk_widget_hide (GTK_WIDGET (row));
+        }
     }
 }
 
