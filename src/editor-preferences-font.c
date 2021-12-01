@@ -30,8 +30,6 @@ struct _EditorPreferencesFont
 {
   AdwActionRow  row;
 
-  GtkLabel             *font_label;
-
   GSettings            *settings;
   gchar                *schema_id;
   gchar                *schema_key;
@@ -64,7 +62,7 @@ editor_preferences_font_constructed (GObject *object)
   self->settings = g_settings_new (self->schema_id);
 
   g_settings_bind (self->settings, self->schema_key,
-                   self->font_label, "label",
+                   self, "title",
                    G_SETTINGS_BIND_GET);
 
   gtk_list_box_row_set_activatable (GTK_LIST_BOX_ROW (object), TRUE);
@@ -208,25 +206,13 @@ editor_preferences_font_class_init (EditorPreferencesFontClass *klass)
 static void
 editor_preferences_font_init (EditorPreferencesFont *self)
 {
-  GtkBox *box;
   GtkImage *image;
-
-  box = g_object_new (GTK_TYPE_BOX, "spacing", 12, NULL);
-  adw_action_row_add_suffix (ADW_ACTION_ROW (self), GTK_WIDGET (box));
-
-  self->font_label = g_object_new (GTK_TYPE_LABEL,
-                                   "can-focus", FALSE,
-                                   "ellipsize", PANGO_ELLIPSIZE_MIDDLE,
-                                   "selectable", FALSE,
-                                   "halign", GTK_ALIGN_END,
-                                   "hexpand", TRUE,
-                                   NULL);
-  gtk_box_append (box, GTK_WIDGET (self->font_label));
 
   image = g_object_new (GTK_TYPE_IMAGE,
                         "icon-name", "go-next-symbolic",
                         "hexpand", FALSE,
                         "margin-start", 12,
+                        "halign", GTK_ALIGN_END,
                         NULL);
-  gtk_box_append (box, GTK_WIDGET (image));
+  adw_action_row_add_suffix (ADW_ACTION_ROW (self), GTK_WIDGET (image));
 }

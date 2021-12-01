@@ -33,7 +33,7 @@ struct _EditorPreferencesDialog
 {
   AdwPreferencesWindow  parent_instance;
   GSettings            *settings;
-  GtkSwitch            *use_system_font;
+  GtkSwitch            *use_custom_font;
   GtkFlowBox           *scheme_group;
   GtkSourceBuffer      *buffer;
   GtkSourceView        *source_view;
@@ -262,7 +262,7 @@ editor_preferences_dialog_class_init (EditorPreferencesDialogClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorPreferencesDialog, buffer);
   gtk_widget_class_bind_template_child (widget_class, EditorPreferencesDialog, scheme_group);
   gtk_widget_class_bind_template_child (widget_class, EditorPreferencesDialog, source_view);
-  gtk_widget_class_bind_template_child (widget_class, EditorPreferencesDialog, use_system_font);
+  gtk_widget_class_bind_template_child (widget_class, EditorPreferencesDialog, use_custom_font);
 }
 
 static void
@@ -278,8 +278,8 @@ editor_preferences_dialog_init (EditorPreferencesDialog *self)
 
   self->settings = g_settings_new ("org.gnome.TextEditor");
   g_settings_bind (self->settings, "use-system-font",
-                   self->use_system_font, "active",
-                   G_SETTINGS_BIND_DEFAULT);
+                   self->use_custom_font, "active",
+                   G_SETTINGS_BIND_DEFAULT | G_SETTINGS_BIND_INVERT_BOOLEAN);
   g_settings_bind (self->settings, "highlight-current-line",
                    self->source_view, "highlight-current-line",
                    G_SETTINGS_BIND_GET);
