@@ -29,14 +29,12 @@
 #include "editor-window.h"
 #include "editor-utils-private.h"
 
-#define N_COLUMNS 3
-
 struct _EditorPreferencesDialog
 {
   AdwPreferencesWindow  parent_instance;
   GSettings            *settings;
   GtkSwitch            *use_system_font;
-  GtkGrid              *scheme_group;
+  GtkFlowBox           *scheme_group;
   GtkSourceBuffer      *buffer;
   GtkSourceView        *source_view;
 };
@@ -160,7 +158,8 @@ update_style_scheme_selection (EditorPreferencesDialog *self)
        child;
        child = gtk_widget_get_next_sibling (child))
     {
-      GtkSourceStyleSchemePreview *preview = GTK_SOURCE_STYLE_SCHEME_PREVIEW (child);
+      GtkFlowBoxChild *intermediate = GTK_FLOW_BOX_CHILD (child);
+      GtkSourceStyleSchemePreview *preview = GTK_SOURCE_STYLE_SCHEME_PREVIEW (gtk_flow_box_child_get_child (intermediate));
       GtkSourceStyleScheme *scheme = gtk_source_style_scheme_preview_get_scheme (preview);
       const char *scheme_id = gtk_source_style_scheme_get_id (scheme);
       gboolean selected = g_strcmp0 (scheme_id, id) == 0;
@@ -207,8 +206,7 @@ update_style_schemes (EditorPreferencesDialog *self)
           preview = gtk_source_style_scheme_preview_new (scheme);
           gtk_actionable_set_action_name (GTK_ACTIONABLE (preview), "app.style-scheme");
           gtk_actionable_set_action_target (GTK_ACTIONABLE (preview), "s", scheme_ids[i]);
-          gtk_widget_set_hexpand (preview, TRUE);
-          gtk_grid_attach (self->scheme_group, preview, j % N_COLUMNS, j / N_COLUMNS, 1, 1);
+          gtk_flow_box_insert (self->scheme_group, preview, -1);
 
           j++;
         }

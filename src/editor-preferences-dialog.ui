@@ -28,10 +28,6 @@
                     <property name="show-line-numbers">true</property>
                     <property name="buffer">
                       <object class="GtkSourceBuffer" id="buffer">
-                        <property name="text">
-
-
-</property>
                       </object>
                     </property>
                     <style>
@@ -42,10 +38,13 @@
               </object>
             </child>
             <child>
-              <object class="GtkGrid" id="scheme_group">
+              <object class="GtkFlowBox" id="scheme_group">
                 <property name="hexpand">true</property>
-                <property name="column-spacing">6</property>
-                <property name="row-spacing">6</property>
+                <property name="column-spacing">0</property>
+                <property name="row-spacing">0</property>
+                <property name="max-children-per-line">4</property>
+                <property name="max-children-per-line">4</property>
+                <property name="selection-mode">none</property>
               </object>
             </child>
           </object>
