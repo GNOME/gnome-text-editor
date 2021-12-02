@@ -340,6 +340,9 @@ editor_preferences_dialog_init (EditorPreferencesDialog *self)
   g_settings_bind (self->settings, "show-right-margin",
                    self->source_view, "show-right-margin",
                    G_SETTINGS_BIND_GET);
+  g_settings_bind (self->settings, "show-line-numbers",
+                   self->source_view, "show-line-numbers",
+                   G_SETTINGS_BIND_GET);
   g_settings_bind_with_mapping (self->settings, "show-grid",
                                 self->source_view, "background-pattern",
                                 G_SETTINGS_BIND_GET,
