@@ -169,7 +169,7 @@ on_keybindings_changed_cb (EditorPage *self,
         {
           gtk_label_set_label (self->vim_command_bar, NULL);
           gtk_widget_hide (GTK_WIDGET (self->statusbar));
-          gtk_widget_remove_controller (GTK_WIDGET (self), self->vim);
+          gtk_widget_remove_controller (GTK_WIDGET (self->view), self->vim);
           self->vim = NULL;
         }
     }
