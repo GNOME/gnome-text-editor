@@ -489,12 +489,26 @@ _gtk_source_style_scheme_get_variant (GtkSourceStyleScheme *scheme,
   GtkSourceStyleSchemeManager *style_scheme_manager;
   GtkSourceStyleScheme *ret;
   g_autoptr(GString) str = NULL;
+  g_autofree char *key = NULL;
+  const char *mapping;
 
   g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme), NULL);
   g_return_val_if_fail (g_strcmp0 (variant, "light") == 0 ||
                         g_strcmp0 (variant, "dark") == 0, NULL);
 
   style_scheme_manager = gtk_source_style_scheme_manager_get_default ();
+
+  /* If the scheme provides "light-variant" or "dark-variant" metadata,
+   * we will prefer those if the variant is available.
+   */
+  key = g_strdup_printf ("%s-variant", variant);
+  if ((mapping = gtk_source_style_scheme_get_metadata (scheme, key)))
+    {
+      if ((ret = gtk_source_style_scheme_manager_get_scheme (style_scheme_manager, mapping)))
+        return ret;
+    }
+
+  /* Try to find a match by replacing -light/-dark with @variant */
   str = g_string_new (gtk_source_style_scheme_get_id (scheme));
 
   if (g_str_has_suffix (str->str, "-light"))
