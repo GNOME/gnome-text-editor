@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues\n"
-"POT-Creation-Date: 2021-11-30 06:03+0000\n"
-"PO-Revision-Date: 2021-11-30 09:57+0200\n"
+"POT-Creation-Date: 2021-11-30 08:22+0000\n"
+"PO-Revision-Date: 2021-12-02 23:07+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -230,6 +230,16 @@ msgid "The keybindings to use within Text Editor."
 msgstr ""
 "Клавіатурні скорочення, якими можна скористатися у текстовому редакторі."
 
+#: data/org.gnome.TextEditor.gschema.xml:123
+msgid "Last Save Directory"
+msgstr ""
+"Каталог останнього збереження"
+
+#: data/org.gnome.TextEditor.gschema.xml:124
+msgid "The directory last used in a save or save-as dialog."
+msgstr ""
+"Каталог, який востаннє було використано у діалоговому вікні збереження."
+
 #: src/editor-animation.c:1051
 #, c-format
 msgid "Failed to find property %s in %s"
@@ -293,20 +303,19 @@ msgid "Unsaved changes to the document have been restored."
 msgstr "Відновлено незбережені зміни, які було внесено до документа."
 
 #: src/editor-language-dialog.ui:5
-msgid "Highlight Mode"
-msgstr "Режим підсвічування"
+#| msgctxt "shortcut window"
+#| msgid "Documents"
+msgid "Document Type"
+msgstr "Тип документа"
 
-#: src/editor-open-popover.ui:21
-msgid "Recent Documents"
-msgstr "Недавні документи"
-
-#: src/editor-open-popover.ui:45
+#: src/editor-open-popover.ui:54
 msgid "No Recent Documents"
 msgstr "Немає недавніх документів"
 
-#: src/editor-open-popover.ui:83
-msgid "Br_owse Files…"
-msgstr "_Навігація файлами…"
+#: src/editor-open-popover.ui:87
+msgid "No Results Found"
+msgstr ""
+"Нічого не знайдено"
 
 #: src/editor-page.c:819 src/editor-sidebar-item.c:474
 msgid "New Document"
@@ -320,20 +329,20 @@ msgstr "Чернетка"
 msgid "Failed to save document"
 msgstr "Не вдалося зберегти документ"
 
-#: src/editor-page.c:959
+#: src/editor-page.c:975
 msgid "Save As"
 msgstr "Зберегти як"
 
-#: src/editor-page.c:962 src/editor-window-actions.c:131
+#: src/editor-page.c:978 src/editor-window-actions.c:131
 msgid "Save"
 msgstr "Зберегти"
 
-#: src/editor-page.c:963 src/editor-window-actions.c:130
+#: src/editor-page.c:979 src/editor-window-actions.c:130
 #: src/editor-window-actions.c:241 src/editor-window-actions.c:350
 msgid "Cancel"
 msgstr "Скасувати"
 
-#: src/editor-page.c:1099
+#: src/editor-page.c:1119
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Рд %u, Поз %u"
@@ -561,11 +570,11 @@ msgstr "Відкрити файл"
 msgid "Open"
 msgstr "Відкрити"
 
-#: src/editor-window-actions.c:363
+#: src/editor-window-actions.c:374
 msgid "All Files"
 msgstr "усі файли"
 
-#: src/editor-window-actions.c:368
+#: src/editor-window-actions.c:379
 msgid "Text Files"
 msgstr "текстові файли"
 
@@ -942,7 +951,6 @@ msgid "_Find/Replace…"
 msgstr "Знайти і з_амінити…"
 
 #: src/menus.ui:48
-#| msgid "_Print…"
 msgid "_Print"
 msgstr "Над_рукувати"
 
@@ -1023,8 +1031,10 @@ msgid "Chec_k Spelling"
 msgstr "П_еревіряти правопис"
 
 #: src/menus.ui:141
-msgid "_Highlight Mode"
-msgstr "Ре_жим підсвічування"
+#| msgctxt "shortcut window"
+#| msgid "Documents"
+msgid "_Document Type"
+msgstr "_Тип документа"
 
 #: src/menus.ui:149
 msgid "Move _Left"
@@ -1045,6 +1055,18 @@ msgstr "Закрити _інші вкладки"
 #: src/menus.ui:172
 msgid "_Close"
 msgstr "З_акрити"
+
+#~ msgid "Highlight Mode"
+#~ msgstr "Режим підсвічування"
+
+#~ msgid "Recent Documents"
+#~ msgstr "Недавні документи"
+
+#~ msgid "Br_owse Files…"
+#~ msgstr "_Навігація файлами…"
+
+#~ msgid "_Highlight Mode"
+#~ msgstr "Ре_жим підсвічування"
 
 #~ msgid "_Copy All"
 #~ msgstr "_Копіювати усе"
