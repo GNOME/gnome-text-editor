@@ -53,6 +53,65 @@ G_DEFINE_TYPE (EditorPage, editor_page, GTK_TYPE_WIDGET)
 static GParamSpec *properties [N_PROPS];
 
 static void
+on_draw_spaces_changed (EditorPage  *self,
+                        const gchar *key,
+                        GSettings   *settings)
+{
+  GtkSourceSpaceLocationFlags location_flags = GTK_SOURCE_SPACE_LOCATION_NONE;
+  GtkSourceSpaceTypeFlags type_flags = GTK_SOURCE_SPACE_TYPE_NONE;
+  GtkSourceView *source_view;
+  GtkSourceSpaceDrawer *drawer;
+  guint flags;
+
+  g_assert (EDITOR_IS_PAGE (self));
+  g_assert (g_strcmp0 (key, "draw-spaces") == 0);
+  g_assert (G_IS_SETTINGS (settings));
+
+  source_view = GTK_SOURCE_VIEW (self->view);
+  drawer = gtk_source_view_get_space_drawer (source_view);
+  flags = g_settings_get_flags (settings, "draw-spaces");
+
+  if (flags == 0)
+    {
+      gtk_source_space_drawer_set_enable_matrix (drawer, FALSE);
+      return;
+    }
+
+  /* Reset the matrix before setting it */
+  gtk_source_space_drawer_set_types_for_locations (drawer, GTK_SOURCE_SPACE_LOCATION_ALL, GTK_SOURCE_SPACE_TYPE_NONE);
+
+  if (flags & 1)
+    type_flags |= GTK_SOURCE_SPACE_TYPE_SPACE;
+
+  if (flags & 2)
+    type_flags |= GTK_SOURCE_SPACE_TYPE_TAB;
+
+  if (flags & 4)
+    {
+      gtk_source_space_drawer_set_types_for_locations (drawer, GTK_SOURCE_SPACE_LOCATION_ALL, GTK_SOURCE_SPACE_TYPE_NEWLINE);
+      type_flags |= GTK_SOURCE_SPACE_TYPE_NEWLINE;
+    }
+
+  if (flags & 8)
+    type_flags |= GTK_SOURCE_SPACE_TYPE_NBSP;
+
+  if (flags & 16)
+    location_flags |= GTK_SOURCE_SPACE_LOCATION_LEADING;
+
+  if (flags & 32)
+    location_flags |= GTK_SOURCE_SPACE_LOCATION_INSIDE_TEXT;
+
+  if (flags & 64)
+    location_flags |= GTK_SOURCE_SPACE_LOCATION_TRAILING;
+
+  if (type_flags > 0 && location_flags == 0)
+    location_flags |= GTK_SOURCE_SPACE_LOCATION_ALL;
+
+  gtk_source_space_drawer_set_enable_matrix (drawer, TRUE);
+  gtk_source_space_drawer_set_types_for_locations (drawer, location_flags, type_flags);
+}
+
+static void
 editor_page_set_settings (EditorPage         *self,
                           EditorPageSettings *settings)
 {
@@ -278,6 +337,7 @@ static void
 editor_page_constructed (GObject *object)
 {
   EditorPage *self = (EditorPage *)object;
+  EditorApplication *app;
 
   g_assert (EDITOR_IS_PAGE (self));
 
@@ -346,6 +406,15 @@ editor_page_constructed (GObject *object)
 
   editor_page_document_notify_busy_cb (self, NULL, self->document);
   editor_page_document_notify_language_cb (self, NULL, self->document);
+
+  /* Setup spaces drawing */
+  app = EDITOR_APPLICATION (g_application_get_default ());
+  g_signal_connect_object (app->settings,
+                           "changed::draw-spaces",
+                           G_CALLBACK (on_draw_spaces_changed),
+                           self,
+                           G_CONNECT_SWAPPED);
+  on_draw_spaces_changed (self, "draw-spaces", app->settings);
 
   _editor_page_vim_init (self);
 }

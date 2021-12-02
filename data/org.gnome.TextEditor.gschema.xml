@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist gettext-domain="gnome-text-editor">
+  <flags id="org.gnome.TextEditor.DrawSpaces">
+    <value nick="space" value="1"/>
+    <value nick="tab" value="2"/>
+    <value nick="newline" value="4"/>
+    <value nick="nbsp" value="8"/>
+    <value nick="leading" value="16"/>
+    <value nick="text" value="32"/>
+    <value nick="trailing" value="64"/>
+  </flags>
   <schema id="org.gnome.TextEditor" path="/org/gnome/TextEditor/">
     <key name="auto-save-delay" type="u">
       <range min="1" max="300"/>
@@ -127,6 +136,11 @@
       <default>''</default>
       <summary>Last Save Directory</summary>
       <description>The directory last used in a save or save-as dialog.</description>
+    </key>
+    <key name="draw-spaces" flags="org.gnome.TextEditor.DrawSpaces">
+      <default>[]</default>
+      <summary>Draw Spaces</summary>
+      <description>The various types of spaces to draw in the editor.</description>
     </key>
   </schema>
 </schemalist>
