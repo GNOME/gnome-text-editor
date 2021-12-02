@@ -371,12 +371,15 @@ editor_language_dialog_set_language (EditorLanguageDialog *self,
        child != NULL;
        child = gtk_widget_get_next_sibling (child))
     {
-      EditorLanguageRow *row = EDITOR_LANGUAGE_ROW (child);
-
-      if (language == _editor_language_row_get_language (row))
+      if (EDITOR_IS_LANGUAGE_ROW (child))
         {
-          editor_language_dialog_select (EDITOR_LANGUAGE_DIALOG (self), row);
-          break;
+          EditorLanguageRow *row = EDITOR_LANGUAGE_ROW (child);
+
+          if (language == _editor_language_row_get_language (row))
+            {
+              editor_language_dialog_select (EDITOR_LANGUAGE_DIALOG (self), row);
+              break;
+            }
         }
     }
 }
