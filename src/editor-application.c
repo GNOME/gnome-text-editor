@@ -279,6 +279,9 @@ editor_application_startup (GApplication *application)
                                               GTK_STYLE_PROVIDER (css_provider),
                                               GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
+  /* Setup any recoloring that needs to be done */
+  update_css (self);
+
   gtk_window_set_default_icon_name (PACKAGE_ICON_NAME);
 }
 
