@@ -67,15 +67,15 @@
 .org-gnome-TextEditor .open-popover contents {
   padding: 0;
 }
-.org-gnome-TextEditor .open-popover scrolledwindow scrollbar.vertical {
-  margin-top: 3px;
+.org-gnome-TextEditor .open-popover list {
   margin-bottom: 3px;
 }
 .org-gnome-TextEditor .open-popover list row {
-  border-bottom: 1px solid alpha(@borders, 0.4);
+  border-radius: 9px;
+  margin: 3px 6px;
 }
-.org-gnome-TextEditor .open-popover list row:last-child {
-  border-bottom: none;
+.org-gnome-TextEditor .open-popover list row:first-child {
+  margin-top: 6px;
 }
 .org-gnome-TextEditor .open-popover list row button {
   padding: 3px;
@@ -83,6 +83,7 @@
   min-height: 24px;
   min-width: 24px;
 }
+.org-gnome-TextEditor .open-popover list row:hover,
 .org-gnome-TextEditor .open-popover list row:focus {
   background: alpha(currentColor, .07);
 }
