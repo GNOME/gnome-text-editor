@@ -20,6 +20,8 @@
 
 #include "config.h"
 
+#include <math.h>
+
 #include "editor-recoloring-private.h"
 
 #define SHARED_CSS \
@@ -160,17 +162,32 @@ premix_colors (GdkRGBA       *dest,
     }
 }
 
-static gboolean
-scheme_is_dark (GtkSourceStyleScheme *scheme)
+gboolean
+_editor_source_style_scheme_is_dark (GtkSourceStyleScheme *scheme)
 {
   const char *id = gtk_source_style_scheme_get_id (scheme);
   const char *variant = gtk_source_style_scheme_get_metadata (scheme, "variant");
+  GdkRGBA text_bg;
 
-  if (strstr (id, "-dark") != NULL)
+  if (g_strcmp0 (variant, "light") == 0)
+    return FALSE;
+  else if (g_strcmp0 (variant, "dark") == 0)
+    return TRUE;
+  else if (strstr (id, "-dark") != NULL)
     return TRUE;
 
-  if (g_strcmp0 (variant, "dark") == 0)
-    return TRUE;
+  if (get_background (scheme, "text", &text_bg))
+    {
+      /* http://alienryderflex.com/hsp.html */
+      double r = text_bg.red * 255.0;
+      double g = text_bg.green * 255.0;
+      double b = text_bg.blue * 255.0;
+      double hsp = sqrt (0.299 * (r * r) +
+                         0.587 * (g * g) +
+                         0.114 * (b * b));
+
+      return hsp <= 127.5;
+    }
 
   return FALSE;
 }
@@ -198,7 +215,7 @@ _editor_recoloring_generate_css (GtkSourceStyleScheme *style_scheme)
     return NULL;
 
   name = gtk_source_style_scheme_get_name (style_scheme);
-  is_dark = scheme_is_dark (style_scheme);
+  is_dark = _editor_source_style_scheme_is_dark (style_scheme);
   alt = is_dark ? &white : &black;
 
   str = g_string_new (SHARED_CSS);
