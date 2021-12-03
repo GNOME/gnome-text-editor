@@ -25,6 +25,7 @@
 
 #include "editor-page.h"
 #include "editor-preferences-dialog-private.h"
+#include "editor-recoloring-private.h"
 #include "editor-session.h"
 #include "editor-window.h"
 #include "editor-utils-private.h"
@@ -174,21 +175,6 @@ update_style_scheme_selection (EditorPreferencesDialog *self)
     }
 }
 
-static gboolean
-scheme_is_dark (GtkSourceStyleScheme *scheme)
-{
-  const char *id = gtk_source_style_scheme_get_id (scheme);
-  const char *variant = gtk_source_style_scheme_get_metadata (scheme, "variant");
-
-  if (strstr (id, "-dark") != NULL)
-    return TRUE;
-
-  if (g_strcmp0 (variant, "dark") == 0)
-    return TRUE;
-
-  return FALSE;
-}
-
 static void
 update_style_schemes (EditorPreferencesDialog *self)
 {
@@ -213,7 +199,7 @@ update_style_schemes (EditorPreferencesDialog *self)
 
           scheme = gtk_source_style_scheme_manager_get_scheme (sm, scheme_ids[i]);
 
-          if (is_dark != scheme_is_dark (scheme))
+          if (is_dark != _editor_source_style_scheme_is_dark (scheme))
             continue;
 
           preview = gtk_source_style_scheme_preview_new (scheme);
