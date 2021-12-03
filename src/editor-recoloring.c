@@ -32,10 +32,10 @@
   "@define-color view_fg_color @window_fg_color;\n"
 #define LIGHT_CSS_SUFFIX \
   "@define-color popover_bg_color mix(@window_bg_color, white, .1);\n" \
-  "@define-color card_bg_color alpha(white, .65);\n"
+  "@define-color card_bg_color alpha(white, .5);\n"
 #define DARK_CSS_SUFFIX \
   "@define-color popover_bg_color mix(@window_bg_color, black, .1);\n" \
-  "@define-color card_bg_color alpha(black, .65);\n"
+  "@define-color card_bg_color alpha(white, .1);\n"
 
 enum {
   FOREGROUND,
