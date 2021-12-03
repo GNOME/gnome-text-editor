@@ -124,11 +124,17 @@ scheme_is_dark (GtkSourceStyleScheme *scheme)
 char *
 _editor_recoloring_generate_css (GtkSourceStyleScheme *style_scheme)
 {
+  const char *id;
   const char *name;
   GString *str;
   GdkRGBA color;
 
   g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (style_scheme), NULL);
+
+  /* Don't restyle Adwaita as we already have it */
+  id = gtk_source_style_scheme_get_name (style_scheme);
+  if (g_str_has_prefix (id, "Adwaita"))
+    return NULL;
 
   name = gtk_source_style_scheme_get_name (style_scheme);
 
