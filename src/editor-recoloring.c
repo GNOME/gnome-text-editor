@@ -32,7 +32,7 @@
   "@define-color view_fg_color @window_fg_color;\n"
 #define LIGHT_CSS_SUFFIX \
   "@define-color popover_bg_color mix(@window_bg_color, white, .1);\n" \
-  "@define-color card_bg_color alpha(white, .5);\n"
+  "@define-color card_bg_color alpha(white, .6);\n"
 #define DARK_CSS_SUFFIX \
   "@define-color popover_bg_color mix(@window_bg_color, black, .1);\n" \
   "@define-color card_bg_color alpha(white, .1);\n"
@@ -68,11 +68,13 @@ get_color (GtkSourceStyleScheme *scheme,
                 NULL);
 
   if (kind == FOREGROUND && fg_set)
-    return gdk_rgba_parse (color, fg);
+    gdk_rgba_parse (color, fg);
   else if (kind == BACKGROUND && bg_set)
-    return gdk_rgba_parse (color, bg);
+    gdk_rgba_parse (color, bg);
+  else
+    return FALSE;
 
-  return FALSE;
+  return color->alpha > 0.0;
 }
 
 static inline gboolean
@@ -97,13 +99,64 @@ define_color (GString       *str,
               const GdkRGBA *color)
 {
   g_autofree char *color_str = NULL;
+  GdkRGBA opaque;
 
   g_assert (str != NULL);
   g_assert (name != NULL);
   g_assert (color != NULL);
 
-  color_str = gdk_rgba_to_string (color);
+  opaque = *color;
+  opaque.alpha = 1.0f;
+
+  color_str = gdk_rgba_to_string (&opaque);
   g_string_append_printf (str, "@define-color %s %s;\n", name, color_str);
+}
+
+static void
+define_color_mixed (GString       *str,
+                    const char    *name,
+                    const GdkRGBA *a,
+                    const GdkRGBA *b,
+                    double         level)
+{
+  g_autofree char *a_str = NULL;
+  g_autofree char *b_str = NULL;
+
+  g_assert (str != NULL);
+  g_assert (name != NULL);
+  g_assert (a != NULL);
+  g_assert (b != NULL);
+
+  a_str = gdk_rgba_to_string (a);
+  b_str = gdk_rgba_to_string (b);
+
+  g_string_append_printf (str, "@define-color %s mix(%s,%s,%lf);\n", name, a_str, b_str, level);
+}
+
+static inline void
+premix_colors (GdkRGBA       *dest,
+               const GdkRGBA *fg,
+               const GdkRGBA *bg,
+               gboolean       bg_set,
+               double         alpha)
+{
+  g_assert (dest != NULL);
+  g_assert (fg != NULL);
+  g_assert (bg != NULL || bg_set == FALSE);
+  g_assert (alpha >= 0.0 && alpha <= 1.0);
+
+  if (bg_set)
+    {
+      dest->red = ((1 - alpha) * bg->red) + (alpha * fg->red);
+      dest->green = ((1 - alpha) * bg->green) + (alpha * fg->green);
+      dest->blue = ((1 - alpha) * bg->blue) + (alpha * fg->blue);
+      dest->alpha = 1.0;
+    }
+  else
+    {
+      *dest = *fg;
+      dest->alpha = alpha;
+    }
 }
 
 static gboolean
@@ -124,10 +177,17 @@ scheme_is_dark (GtkSourceStyleScheme *scheme)
 char *
 _editor_recoloring_generate_css (GtkSourceStyleScheme *style_scheme)
 {
+  static const GdkRGBA black = {0,0,0,1};
+  static const GdkRGBA white = {1,1,1,1};
+  const GdkRGBA *alt;
+  GdkRGBA text_bg;
+  GdkRGBA text_fg;
+  GdkRGBA right_margin;
   const char *id;
   const char *name;
   GString *str;
   GdkRGBA color;
+  gboolean is_dark;
 
   g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (style_scheme), NULL);
 
@@ -137,26 +197,49 @@ _editor_recoloring_generate_css (GtkSourceStyleScheme *style_scheme)
     return NULL;
 
   name = gtk_source_style_scheme_get_name (style_scheme);
+  is_dark = scheme_is_dark (style_scheme);
+  alt = is_dark ? &white : &black;
 
   str = g_string_new (SHARED_CSS);
   g_string_append_printf (str, "/* %s */\n", name);
 
-  if (get_background (style_scheme, "text", &color))
-    define_color (str, "window_bg_color", &color);
+  /* TODO: Improve error checking and fallbacks */
 
-  if (get_foreground (style_scheme, "text", &color))
-    define_color (str, "window_fg_color", &color);
+  get_background (style_scheme, "text", &text_bg);
+  get_foreground (style_scheme, "text", &text_fg);
+  get_background (style_scheme, "right-margin", &right_margin);
+  right_margin.alpha = 1;
 
-  if (get_background (style_scheme, "current-line", &color))
-    define_color (str, "headerbar_bg_color", &color);
+  premix_colors (&color, &text_bg, &right_margin, TRUE, 1.0);
+  if (is_dark)
+    define_color_mixed (str, "window_bg_color", &text_bg, alt, .025);
+  else
+    define_color_mixed (str, "window_bg_color", &text_bg, &white, .1);
+  define_color_mixed (str, "window_fg_color", &text_fg, alt, .1);
 
-  if (get_foreground (style_scheme, "selection", &color))
-    define_color (str, "accent_color", &color);
+  premix_colors (&color, &text_bg, &text_fg, TRUE, 1.0);
+  if (is_dark)
+    define_color_mixed (str, "headerbar_bg_color", &text_bg, alt, .05);
+  else
+    define_color_mixed (str, "headerbar_bg_color", &text_bg, alt, .025);
+  define_color (str, "headerbar_fg_color", &text_fg);
+
+  define_color_mixed (str, "view_bg_color", &text_bg, &white, is_dark ? .1 : .3);
+  define_color (str, "view_fg_color", &text_fg);
 
   if (get_background (style_scheme, "selection", &color))
     define_color (str, "accent_bg_color", &color);
 
-  if (scheme_is_dark (style_scheme))
+  if (get_foreground (style_scheme, "selection", &color))
+    define_color (str, "accent_fg_color", &color);
+
+  if (get_background (style_scheme, "selection", &color))
+    {
+      color.alpha = 1;
+      define_color_mixed (str, "accent_color", &color, alt, .1);
+    }
+
+  if (is_dark)
     g_string_append (str, DARK_CSS_SUFFIX);
   else
     g_string_append (str, LIGHT_CSS_SUFFIX);
