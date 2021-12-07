@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues\n"
-"POT-Creation-Date: 2021-12-04 15:01+0000\n"
-"PO-Revision-Date: 2021-12-04 18:49+0200\n"
+"POT-Creation-Date: 2021-12-07 00:12+0000\n"
+"PO-Revision-Date: 2021-12-07 19:20+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -222,14 +222,12 @@ msgid "When Text Editor is run, restore the previous session."
 msgstr "Після запуску «Текстового редактора» відновити попередній сеанс."
 
 #: data/org.gnome.TextEditor.gschema.xml:123
-#| msgid "_New Window"
 msgid "Recolor Window"
 msgstr "Перефарбувати вікно"
 
 #: data/org.gnome.TextEditor.gschema.xml:124
 msgid "Use the style-scheme to recolor the application window."
-msgstr ""
-"Скористатися стилем-схемою для зміни кольорів вікна програми."
+msgstr "Скористатися стилем-схемою для зміни кольорів вікна програми."
 
 #: data/org.gnome.TextEditor.gschema.xml:132
 msgid "Keybindings"
@@ -250,14 +248,12 @@ msgstr ""
 "Каталог, який востаннє було використано у діалоговому вікні збереження."
 
 #: data/org.gnome.TextEditor.gschema.xml:142
-#| msgid "_Spaces"
 msgid "Draw Spaces"
 msgstr "Візуалізація пробілів"
 
 #: data/org.gnome.TextEditor.gschema.xml:143
 msgid "The various types of spaces to draw in the editor."
-msgstr ""
-"Різні типи пробілів, які слід малювати у редакторі."
+msgstr "Різні типи пробілів, які слід малювати у редакторі."
 
 #: src/editor-animation.c:1051
 #, c-format
@@ -277,7 +273,7 @@ msgstr "Сайт «Текстового редактора»"
 msgid "Do not restore session at startup"
 msgstr "Не відновлювати сеанс після запуску"
 
-#: src/editor-document.c:1697
+#: src/editor-document.c:1708
 msgid "[Read-Only]"
 msgstr "[Лише читання]"
 
@@ -327,8 +323,7 @@ msgstr "Тип документа"
 
 #: src/editor-language-dialog.ui:47
 msgid "No Matches"
-msgstr ""
-"Немає відповідників"
+msgstr "Немає відповідників"
 
 #: src/editor-open-popover.ui:48
 msgid "No Recent Documents"
@@ -424,14 +419,14 @@ msgstr ""
 "Повертатися до попереднього сеансу після запуску «Текстового редактора»"
 
 #: src/editor-preferences-dialog.ui:121
-#| msgid "Discover File Settings"
 msgid "Discover Document Settings"
 msgstr "Визначити параметри документа"
 
 #: src/editor-preferences-dialog.ui:122
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr ""
-"Застосувати параметри на основі modelines, editorconfig або притомних типових значень"
+"Застосувати параметри на основі modelines, editorconfig або притомних "
+"типових значень"
 
 #: src/editor-preferences-font.c:100
 msgid "Select Font"
@@ -648,7 +643,6 @@ msgstr "текстові файли"
 
 #: src/editor-window.c:92
 #, c-format
-#| msgid "Document Type"
 msgid "Document Type: %s"
 msgstr "Тип документа: %s"
 
@@ -685,25 +679,25 @@ msgstr "Запуск або відкриття документа"
 #: src/editor-window.ui:153
 #| msgid ""
 #| "• Press the Open button\n"
-#| "• Press the New tab button\n"
-#| "• Press Ctrl+N to start a new document\n"
-#| "• Press Ctrl+O to browse for a document\n"
+#| "                    • Press the New tab button\n"
+#| "                    • Press Ctrl+N to start a new document\n"
+#| "                    • Press Ctrl+O to browse for a document\n"
 #| "\n"
-#| "Or, press Ctrl+W to close the window."
+#| "                      Or, press Ctrl+W to close the window."
 msgid ""
 "• Press the Open button\n"
-"                    • Press the New tab button\n"
-"                    • Press Ctrl+N to start a new document\n"
-"                    • Press Ctrl+O to browse for a document\n"
+"• Press the New tab button\n"
+"• Press Ctrl+N to start a new document\n"
+"• Press Ctrl+O to browse for a document\n"
 "\n"
-"                      Or, press Ctrl+W to close the window."
+"Or, press Ctrl+W to close the window."
 msgstr ""
 "• Натисніть кнопку «Відкрити»\n"
-"                  • Натисніть кнопку «Створити вкладку»\n"
-"                  • Натисніть комбінацію Ctrl+N, щоб створити документ\n"
-"                  • Натисніть комбінацію Ctrl+O, щоб вказати документ\n"
+"• Натисніть кнопку «Створити вкладку»\n"
+"• Натисніть комбінацію Ctrl+N, щоб створити документ\n"
+"• Натисніть комбінацію Ctrl+O, щоб вказати документ\n"
 "\n"
-"                    або натисніть комбінацію Ctrl+W, щоб закрити вікно."
+"або натисніть комбінацію Ctrl+W, щоб закрити вікно."
 
 #: src/editor-window.ui:181
 msgid "_New Window"
