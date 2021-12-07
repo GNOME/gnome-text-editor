@@ -133,8 +133,7 @@ editor_language_dialog_filter (EditorLanguageDialog *self,
           EditorLanguageRow *row = EDITOR_LANGUAGE_ROW (child);
           gboolean matches = _editor_language_row_match (row, spec);
 
-          if (matches != gtk_widget_get_visible (GTK_WIDGET (row)))
-            gtk_widget_set_visible (GTK_WIDGET (row), matches);
+          gtk_widget_set_visible (GTK_WIDGET (row), matches);
 
           had_match |= matches;
         }
