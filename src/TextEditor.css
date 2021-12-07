@@ -1,20 +1,20 @@
 /* EditorWindow */
-.org-gnome-TextEditor positionlabel label {
+window.org-gnome-TextEditor positionlabel label {
   font-feature-settings: "tnum";
 }
 
 
 /* EditorPreferencesDialog */
-.org-gnome-TextEditor.preferences textview.preview {
+window.org-gnome-TextEditor.preferences textview.preview {
   line-height: 1.2;
 }
 
 
 /* EditorThemeSelector */
-.org-gnome-TextEditor themeselector {
+window.org-gnome-TextEditor themeselector {
   margin: 9px;
 }
-.org-gnome-TextEditor themeselector checkbutton {
+window.org-gnome-TextEditor themeselector checkbutton {
   margin: 1px;
   min-height: 42px;
   min-width: 42px;
@@ -23,29 +23,29 @@
   border-color: transparent;
   border-radius: 9999px;
 }
-.org-gnome-TextEditor themeselector checkbutton.follow:checked,
-.org-gnome-TextEditor themeselector checkbutton.light:checked,
-.org-gnome-TextEditor themeselector checkbutton.dark:checked {
+window.org-gnome-TextEditor themeselector checkbutton.follow:checked,
+window.org-gnome-TextEditor themeselector checkbutton.light:checked,
+window.org-gnome-TextEditor themeselector checkbutton.dark:checked {
   border-color: @theme_selected_bg_color;
   border-width: 2px;
   margin: 0;
 }
-.org-gnome-TextEditor themeselector checkbutton.follow {
+window.org-gnome-TextEditor themeselector checkbutton.follow {
   background: linear-gradient(to bottom right, #fff 50%, #2e3436 50%);
   border-color: #2e3436;
 }
-.org-gnome-TextEditor themeselector.dark checkbutton.follow {
+window.org-gnome-TextEditor themeselector.dark checkbutton.follow {
   border-color: #dcdddd;
 }
-.org-gnome-TextEditor themeselector checkbutton.light {
+window.org-gnome-TextEditor themeselector checkbutton.light {
   background-color: #fff;
   border-color: #dcdddd;
 }
-.org-gnome-TextEditor themeselector checkbutton.dark {
+window.org-gnome-TextEditor themeselector checkbutton.dark {
   background-color: #2e3436;
   border-color: #000;
 }
-.org-gnome-TextEditor themeselector checkbutton radio {
+window.org-gnome-TextEditor themeselector checkbutton radio {
   -gtk-icon-source: none;
   border: none;
   background: none;
@@ -55,7 +55,7 @@
   margin: 24px -4px -4px 24px;
   padding: 2px;
 }
-.org-gnome-TextEditor checkbutton.theme-selector radio:checked {
+window.org-gnome-TextEditor checkbutton.theme-selector radio:checked {
   -gtk-icon-source: -gtk-icontheme("object-select-symbolic");
   background-color: @theme_selected_bg_color;
   color: @theme_selected_fg_color;
@@ -64,34 +64,34 @@
 
 /* EditorOpenPopover */
 
-.org-gnome-TextEditor .open-popover contents {
+window.org-gnome-TextEditor .open-popover contents {
   padding: 0;
 }
-.org-gnome-TextEditor .open-popover list {
+window.org-gnome-TextEditor .open-popover list {
   margin-bottom: 3px;
 }
-.org-gnome-TextEditor .open-popover list row {
+window.org-gnome-TextEditor .open-popover list row {
   border-radius: 9px;
   margin: 3px 6px;
 }
-.org-gnome-TextEditor .open-popover list row:first-child {
+window.org-gnome-TextEditor .open-popover list row:first-child {
   margin-top: 6px;
 }
-.org-gnome-TextEditor .open-popover list row button {
+window.org-gnome-TextEditor .open-popover list row button {
   padding: 3px;
   margin: 0;
   min-height: 24px;
   min-width: 24px;
 }
-.org-gnome-TextEditor .open-popover list row:hover,
-.org-gnome-TextEditor .open-popover list row:focus {
+window.org-gnome-TextEditor .open-popover list row:hover,
+window.org-gnome-TextEditor .open-popover list row:focus {
   background: alpha(currentColor, .07);
 }
 
 
 /* EditorSearchBar */
 
-.org-gnome-TextEditor page .searchbar {
+window.org-gnome-TextEditor page .searchbar {
   background-image: linear-gradient(shade(@theme_bg_color,1.05), @theme_bg_color);
   padding: 6px;
   border-style: solid;
@@ -104,10 +104,10 @@
   box-shadow: 0 0 5px 1px rgba(0,0,0,0.09);
   margin: 0 10px 20px 10px;
 }
-.org-gnome-TextEditor page .searchbar:backdrop {
+window.org-gnome-TextEditor page .searchbar:backdrop {
   box-shadow: none;
 }
-.org-gnome-TextEditor page .searchbar button.flat.circular {
+window.org-gnome-TextEditor page .searchbar button.flat.circular {
   min-width: 24px;
   min-height: 24px;
   margin: 0px;
