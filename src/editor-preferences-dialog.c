@@ -25,10 +25,14 @@
 
 #include "editor-page.h"
 #include "editor-preferences-dialog-private.h"
+#include "editor-preferences-font.h"
+#include "editor-preferences-radio.h"
+#include "editor-preferences-spin.h"
+#include "editor-preferences-switch.h"
 #include "editor-recoloring-private.h"
 #include "editor-session.h"
-#include "editor-window.h"
 #include "editor-utils-private.h"
+#include "editor-window.h"
 
 struct _EditorPreferencesDialog
 {
@@ -292,6 +296,10 @@ editor_preferences_dialog_class_init (EditorPreferencesDialogClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorPreferencesDialog, scheme_group);
   gtk_widget_class_bind_template_child (widget_class, EditorPreferencesDialog, source_view);
   gtk_widget_class_bind_template_child (widget_class, EditorPreferencesDialog, use_custom_font);
+
+  g_type_ensure (EDITOR_TYPE_PREFERENCES_FONT);
+  g_type_ensure (EDITOR_TYPE_PREFERENCES_SPIN);
+  g_type_ensure (EDITOR_TYPE_PREFERENCES_SWITCH);
 }
 
 static void

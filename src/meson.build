@@ -42,6 +42,7 @@ editor_sources = [
   'editor-spell-language-info.c',
   'editor-spell-menu.c',
   'editor-spell-provider.c',
+  'editor-statusbar.c',
   'editor-text-buffer-spell-adapter.c',
   'editor-theme-selector.c',
   'editor-utils.c',

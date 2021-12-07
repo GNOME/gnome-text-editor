@@ -57,9 +57,6 @@ struct _EditorPage
   EditorSearchBar         *search_bar;
   GtkInfoBar              *changed_infobar;
   GtkInfoBar              *infobar;
-  GtkLabel                *vim_command;
-  GtkLabel                *vim_command_bar;
-  GtkBox                  *statusbar;
   GtkEventController      *vim;
 
   guint                    close_requested : 1;

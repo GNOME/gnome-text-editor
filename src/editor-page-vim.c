@@ -133,11 +133,8 @@ on_keybindings_changed_cb (EditorPage *self,
     {
       if (self->vim == NULL)
         {
-          GtkIMContext *im_context;
+          GtkIMContext *im_context = gtk_source_vim_im_context_new ();
 
-          im_context = gtk_source_vim_im_context_new ();
-          g_object_bind_property (im_context, "command-bar-text", self->vim_command_bar, "label", 0);
-          g_object_bind_property (im_context, "command-text", self->vim_command, "label", 0);
           g_signal_connect_object (im_context,
                                    "write",
                                    G_CALLBACK (on_vim_write_cb),
@@ -159,16 +156,12 @@ on_keybindings_changed_cb (EditorPage *self,
           gtk_event_controller_set_propagation_phase (self->vim, GTK_PHASE_CAPTURE);
           gtk_event_controller_key_set_im_context (GTK_EVENT_CONTROLLER_KEY (self->vim), im_context);
           gtk_widget_add_controller (GTK_WIDGET (self->view), self->vim);
-
-          gtk_widget_show (GTK_WIDGET (self->statusbar));
         }
     }
   else
     {
       if (self->vim)
         {
-          gtk_label_set_label (self->vim_command_bar, NULL);
-          gtk_widget_hide (GTK_WIDGET (self->statusbar));
           gtk_widget_remove_controller (GTK_WIDGET (self->view), self->vim);
           self->vim = NULL;
         }

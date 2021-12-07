@@ -27,10 +27,6 @@
 #include "editor-application.h"
 #include "editor-document.h"
 #include "editor-open-popover-private.h"
-#include "editor-preferences-font.h"
-#include "editor-preferences-radio.h"
-#include "editor-preferences-spin.h"
-#include "editor-preferences-switch.h"
 #include "editor-save-changes-dialog-private.h"
 #include "editor-session-private.h"
 #include "editor-theme-selector-private.h"
@@ -46,6 +42,21 @@ enum {
 };
 
 static GParamSpec *properties[N_PROPS];
+
+static void
+update_keybindings_cb (EditorWindow *self,
+                       const char   *key,
+                       GSettings    *settings)
+{
+  g_autofree char *keybindings = NULL;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+  g_assert (G_IS_SETTINGS (settings));
+
+  /* Show the statusbar if we have vim keybindings enabled */
+  keybindings = g_settings_get_string (settings, "keybindings");
+  gtk_widget_set_visible (GTK_WIDGET (self->statusbar), g_strcmp0 (keybindings, "vim") == 0);
+}
 
 static void
 update_subtitle_visibility_cb (EditorWindow *self)
@@ -195,6 +206,7 @@ editor_window_notify_selected_page_cb (EditorWindow *self,
 
   editor_binding_group_set_source (self->page_bindings, page);
   editor_signal_group_set_target (self->page_signals, page);
+  editor_statusbar_bind_page (self->statusbar, page);
 
   _editor_window_actions_update (self, page);
 
@@ -743,6 +755,7 @@ editor_window_class_init (EditorWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, primary_menu);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, stack);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, subtitle);
+  gtk_widget_class_bind_template_child (widget_class, EditorWindow, statusbar);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, tab_bar);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, tab_view);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, title);
@@ -782,9 +795,7 @@ editor_window_class_init (EditorWindowClass *klass)
 
   g_type_ensure (EDITOR_TYPE_OPEN_POPOVER);
   g_type_ensure (EDITOR_TYPE_POSITION_LABEL);
-  g_type_ensure (EDITOR_TYPE_PREFERENCES_FONT);
-  g_type_ensure (EDITOR_TYPE_PREFERENCES_SPIN);
-  g_type_ensure (EDITOR_TYPE_PREFERENCES_SWITCH);
+  g_type_ensure (EDITOR_TYPE_STATUSBAR);
 }
 
 static void
@@ -806,6 +817,12 @@ editor_window_init (EditorWindow *self)
                            G_CALLBACK (update_subtitle_visibility_cb),
                            self,
                            G_CONNECT_SWAPPED);
+  g_signal_connect_object (self->settings,
+                           "changed::keybindings",
+                           G_CALLBACK (update_keybindings_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+  update_keybindings_cb (self, NULL, self->settings);
 
   g_signal_connect_swapped (adw_tab_view_get_pages (self->tab_view),
                             "items-changed",

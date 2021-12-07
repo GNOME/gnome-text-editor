@@ -22,12 +22,13 @@
 
 #include <adwaita.h>
 
-#include "editor-window.h"
-#include "editor-open-popover-private.h"
-#include "editor-position-label-private.h"
-#include "editor-page-private.h"
-#include "editor-signal-group.h"
 #include "editor-binding-group.h"
+#include "editor-open-popover-private.h"
+#include "editor-page-private.h"
+#include "editor-position-label-private.h"
+#include "editor-signal-group.h"
+#include "editor-statusbar-private.h"
+#include "editor-window.h"
 
 G_BEGIN_DECLS
 
@@ -53,6 +54,7 @@ struct _EditorWindow
   GtkMenuButton        *export_menu;
   GtkWidget            *zoom_label;
   GMenu                *options_menu_model;
+  EditorStatusbar      *statusbar;
 
   /* Borrowed References */
   EditorPage           *visible_page;
