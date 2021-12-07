@@ -164,6 +164,7 @@ on_keybindings_changed_cb (EditorPage *self,
         {
           gtk_widget_remove_controller (GTK_WIDGET (self->view), self->vim);
           self->vim = NULL;
+          gtk_text_view_set_overwrite (GTK_TEXT_VIEW (self->view), FALSE);
         }
     }
 }
