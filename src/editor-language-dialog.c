@@ -209,13 +209,10 @@ editor_language_dialog_constructed (GObject *object)
   for (guint i = 0; ids[i]; i++)
     {
       const gchar *id = ids[i];
-      GtkSourceLanguage *language;
+      GtkSourceLanguage *language = gtk_source_language_manager_get_language (lm, id);
 
-      if (strcmp (id, "def") == 0)
-        continue;
-
-      language = gtk_source_language_manager_get_language (lm, id);
-      g_list_store_append (store, language);
+      if (!gtk_source_language_get_hidden (language))
+        g_list_store_append (store, language);
     }
 
   gtk_list_box_bind_model (self->list_box,
