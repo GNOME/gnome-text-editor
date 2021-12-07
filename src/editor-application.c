@@ -155,21 +155,6 @@ style_variant_to_color_scheme (GValue   *value,
 }
 
 static void
-update_dark (GtkWindow *window)
-{
-  AdwStyleManager *style_manager;
-
-  g_assert (GTK_IS_WINDOW (window));
-
-  style_manager = adw_style_manager_get_default ();
-
-  if (adw_style_manager_get_dark (style_manager))
-    gtk_widget_add_css_class (GTK_WIDGET (window), "dark");
-  else
-    gtk_widget_remove_css_class (GTK_WIDGET (window), "dark");
-}
-
-static void
 update_css (EditorApplication *self)
 {
   g_autofree char *css = NULL;
@@ -198,16 +183,6 @@ on_style_manager_notify_dark (EditorApplication *self,
 {
   g_assert (EDITOR_IS_APPLICATION (self));
   g_assert (ADW_IS_STYLE_MANAGER (style_manager));
-
-  for (const GList *iter = gtk_application_get_windows (GTK_APPLICATION (self));
-       iter != NULL;
-       iter = iter->next)
-    {
-      GtkWindow *window = iter->data;
-
-      if (EDITOR_IS_WINDOW (window))
-        update_dark (window);
-    }
 
   update_css (self);
 
@@ -335,7 +310,6 @@ editor_application_window_added (GtkApplication *application,
 
   if (EDITOR_IS_WINDOW (window))
     {
-      update_dark (window);
 #if DEVELOPMENT_BUILD
       gtk_widget_add_css_class (GTK_WIDGET (window), "devel");
 #endif

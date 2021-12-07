@@ -67,6 +67,22 @@ on_notify_system_supports_color_schemes_cb (EditorThemeSelector *self,
 }
 
 static void
+on_notify_dark_cb (EditorThemeSelector *self,
+                   GParamSpec          *pspec,
+                   AdwStyleManager     *style_manager)
+{
+  g_assert (EDITOR_IS_THEME_SELECTOR (self));
+  g_assert (ADW_IS_STYLE_MANAGER (style_manager));
+
+  style_manager = adw_style_manager_get_default ();
+
+  if (adw_style_manager_get_dark (style_manager))
+    gtk_widget_add_css_class (GTK_WIDGET (self), "dark");
+  else
+    gtk_widget_remove_css_class (GTK_WIDGET (self), "dark");
+}
+
+static void
 editor_theme_selector_dispose (GObject *object)
 {
   EditorThemeSelector *self = (EditorThemeSelector *)object;
@@ -158,10 +174,17 @@ editor_theme_selector_init (EditorThemeSelector *self)
                            self,
                            G_CONNECT_SWAPPED);
 
+  g_signal_connect_object (style_manager,
+                           "notify::dark",
+                           G_CALLBACK (on_notify_dark_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+
   dark = adw_style_manager_get_dark (style_manager);
   self->theme = g_strdup (dark ? "dark" : "light");
 
   on_notify_system_supports_color_schemes_cb (self, NULL, style_manager);
+  on_notify_dark_cb (self, NULL, style_manager);
 }
 
 const char *
