@@ -32,6 +32,7 @@ struct _EditorLanguageDialog
 
   GtkListBox        *list_box;
   GtkEntry          *search_entry;
+  GtkWidget         *placeholder;
 
   EditorLanguageRow *selected;
 };
@@ -111,6 +112,7 @@ editor_language_dialog_filter (EditorLanguageDialog *self,
 {
   g_autoptr(GPatternSpec) spec = NULL;
   GtkWidget *child;
+  gboolean had_match = FALSE;
 
   g_assert (EDITOR_IS_LANGUAGE_DIALOG (self));
 
@@ -129,13 +131,16 @@ editor_language_dialog_filter (EditorLanguageDialog *self,
       if (EDITOR_IS_LANGUAGE_ROW (child))
         {
           EditorLanguageRow *row = EDITOR_LANGUAGE_ROW (child);
+          gboolean matches = _editor_language_row_match (row, spec);
 
-          if (_editor_language_row_match (row, spec))
-            gtk_widget_show (GTK_WIDGET (row));
-          else
-            gtk_widget_hide (GTK_WIDGET (row));
+          if (matches != gtk_widget_get_visible (GTK_WIDGET (row)))
+            gtk_widget_set_visible (GTK_WIDGET (row), matches);
+
+          had_match |= matches;
         }
     }
+
+  gtk_widget_set_visible (self->placeholder, !had_match);
 }
 
 static GtkListBoxRow *
@@ -281,6 +286,7 @@ editor_language_dialog_class_init (EditorLanguageDialogClass *klass)
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-language-dialog.ui");
   gtk_widget_class_bind_template_child (widget_class, EditorLanguageDialog, list_box);
+  gtk_widget_class_bind_template_child (widget_class, EditorLanguageDialog, placeholder);
   gtk_widget_class_bind_template_child (widget_class, EditorLanguageDialog, search_entry);
 
   gtk_widget_class_install_action (widget_class, "win.close", NULL, win_close_cb);
