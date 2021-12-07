@@ -142,3 +142,15 @@ box.statusbar {
   background: @theme_bg_color;
   border-top: 1px solid @borders;
 }
+
+
+window.org-gnome-TextEditor.language-dialog row:last-child {
+  border-bottom: 1px solid transparent;
+}
+window.org-gnome-TextEditor.language-dialog label.placeholder {
+  min-height: 55px; /* 50px min-height + 2 padding top/bottom + 1 border */
+  margin-left: 12px;
+  margin-right: 12px;
+  padding-left: 2px;
+  padding-right: 2px;
+}

@@ -3,6 +3,10 @@
   <requires lib="gtk+" version="4.0"/>
   <template class="EditorLanguageDialog" parent="GtkWindow">
     <property name="title" translatable="yes">Document Type</property>
+    <style>
+      <class name="org-gnome-TextEditor"/>
+      <class name="language-dialog"/>
+    </style>
     <child type="titlebar">
       <object class="GtkHeaderBar"/>
     </child>
@@ -45,13 +49,10 @@
                     <child type="placeholder">
                       <object class="GtkLabel" id="placeholder">
                         <property name="label" translatable="yes">No Matches</property>
-                        <property name="margin-top">18</property>
-                        <property name="margin-bottom">18</property>
-                        <property name="margin-end">18</property>
-                        <property name="margin-start">18</property>
                         <property name="visible">false</property>
                         <style>
                           <class name="dim-label"/>
+                          <class name="placeholder"/>
                         </style>
                       </object>
                     </child>
