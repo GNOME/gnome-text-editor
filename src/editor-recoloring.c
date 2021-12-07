@@ -124,6 +124,7 @@ define_color_mixed (GString       *str,
 {
   g_autofree char *a_str = NULL;
   g_autofree char *b_str = NULL;
+  char levelstr[G_ASCII_DTOSTR_BUF_SIZE];
 
   g_assert (str != NULL);
   g_assert (name != NULL);
@@ -133,7 +134,9 @@ define_color_mixed (GString       *str,
   a_str = gdk_rgba_to_string (a);
   b_str = gdk_rgba_to_string (b);
 
-  g_string_append_printf (str, "@define-color %s mix(%s,%s,%lf);\n", name, a_str, b_str, level);
+  g_ascii_dtostr (levelstr, sizeof levelstr, level);
+
+  g_string_append_printf (str, "@define-color %s mix(%s,%s,%s);\n", name, a_str, b_str, levelstr);
 }
 
 static inline void
