@@ -1,7 +1,50 @@
-# Text Editor 42.alpha0
+# Text Editor 42.alpha1
 
- * Fixed navigation using Up/Down from search bar.
- * Disabled use of DBusActivatable=true in .desktop file due to breakage with opening command line arguments without the desktop portal.
- * Improvements to accessibility labels.
- * Translation updates.
+ • Use libadwaita for access to desktop light/dark modes.
+ • New interface to jump to a given line number.
+ • New keyboard shortcut for delete-current-line, jump-to-line,
+   select-current-line, zooming, and preferences.
+ • The open popover no longer displays document mtimes, but they are used
+   for sorting results.
+ • Tab menus are fixed within the document editor.
+ • Tabs may now be dragged into new windows.
+ • DnD of multiple files into the editor has been restored.
+ • Text Editor can no differntiate between indentation and tab size.
+ • Application startup has been vastly improved.
+ • The session manager now truncates the number of bookmarks to 100.
+ • Numerous crash and bug fixes.
+ • Guess a reasonable filename for Save As dialog.
+ • Deleted text is copied into the primary clipboard when using the
+   delete-lines command.
+ • A new custom GMenuModel is used for spelling corrections to allow
+   for faster updates of menus.
+ • Zoom with keybindings and scroll-wheell is now supported.
+ • Text Editor will try to discover if style schemes are light or dark
+   and only show them when appropriate in preferences.
+ • Menus have been significantly tweaked based on usage and feedback.
+ • Text Editor can no follow the system dark-mode preference.
+ • Ensure window is raised when a document is reopened, possibly through an
+   external application such as Nautilus.
+ • Overview map style improvements.
+ • Improved keyboard navigation to and from the open popover.
+ • Text Editor will now restyle it's windows based on the selected
+   GtkSourceStyleScheme.
+ • A new gsetting for how to draw whitespace has been added.
+ • A new gestting to disable window restyling has been added.
+ • Text Editor now has a Vim emulation layer that may be enabled using
+   the org.gnome.TextEditor keybindings gsetting.
+ • A statusbar has been added when the Vim emulation is in use only.
+ • A new and improved preferences dialog which supports previewing the
+   preferences changes without leaving the dialog.
+ • Search and Replace has been improved and restyled.
+ • A new preference to enable restoring the session at startup was added.
+ • A new preference to enable automatically discovering file settings
+   using modelines, editorconfig, and more has been added.
+ • Improved font styling within the application.
+ • Performance and style improvements to the spell checking engine.
+ • Fixed navigation using Up/Down from search bar.
+ • Disabled use of DBusActivatable=true in .desktop file due to breakage with
+   opening command line arguments without the desktop portal.
+ • Improvements to accessibility labels.
+ • Translation updates.
 
