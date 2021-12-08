@@ -97,6 +97,7 @@ void          _editor_page_end_move               (EditorPage           *self);
 void          _editor_page_vim_init               (EditorPage           *self);
 void          _editor_page_zoom_in                (EditorPage           *self);
 void          _editor_page_zoom_out               (EditorPage           *self);
+void          _editor_page_zoom_one               (EditorPage           *self);
 char         *_editor_page_get_zoom_label         (EditorPage           *self);
 
 G_END_DECLS

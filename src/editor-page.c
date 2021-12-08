@@ -1529,3 +1529,11 @@ _editor_page_zoom_out (EditorPage *self)
   g_object_get (self->view, "font-scale", &font_scale, NULL);
   g_object_set (self->view, "font-scale", font_scale - 1, NULL);
 }
+
+void
+_editor_page_zoom_one (EditorPage *self)
+{
+  g_return_if_fail (EDITOR_IS_PAGE (self));
+
+  g_object_set (self->view, "font-scale", 0, NULL);
+}
