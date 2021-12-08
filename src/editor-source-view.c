@@ -229,6 +229,42 @@ cleanup:
 }
 
 static void
+editor_source_view_zoom (EditorSourceView *self,
+                         int               amount)
+{
+  g_assert (EDITOR_IS_SOURCE_VIEW (self));
+
+  if (amount == 0)
+    self->font_scale = 0;
+  else
+    self->font_scale += amount;
+
+  editor_source_view_update_css (self);
+}
+
+static gboolean
+on_scroll_scrolled_cb (GtkEventControllerScroll *scroll,
+                       double                    dx,
+                       double                    dy,
+                       EditorSourceView         *self)
+{
+  GdkModifierType mods;
+
+  g_assert (GTK_IS_EVENT_CONTROLLER_SCROLL (scroll));
+  g_assert (EDITOR_IS_SOURCE_VIEW (self));
+
+  mods = gtk_event_controller_get_current_event_state (GTK_EVENT_CONTROLLER (scroll));
+
+  if ((mods & GDK_CONTROL_MASK) != 0)
+    {
+      editor_source_view_zoom (self, dy < 0 ? 1 : -1);
+      return TRUE;
+    }
+
+  return FALSE;
+}
+
+static void
 on_notify_buffer_cb (EditorSourceView *self,
                      GParamSpec       *pspec,
                      gpointer          unused)
@@ -336,15 +372,13 @@ editor_source_view_action_zoom (GtkWidget  *widget,
   g_assert (EDITOR_IS_SOURCE_VIEW (self));
 
   if (g_strcmp0 (action_name, "page.zoom-in") == 0)
-    self->font_scale++;
+    editor_source_view_zoom (self, 1);
   else if (g_strcmp0 (action_name, "page.zoom-out") == 0)
-    self->font_scale--;
+    editor_source_view_zoom (self, -1);
   else if (g_strcmp0 (action_name, "page.zoom-one") == 0)
-    self->font_scale = 0;
+    editor_source_view_zoom (self, 0);
   else
     g_assert_not_reached ();
-
-  editor_source_view_update_css (self);
 }
 
 static void
@@ -588,6 +622,13 @@ editor_source_view_init (EditorSourceView *self)
   g_signal_connect (controller,
                     "pressed",
                     G_CALLBACK (on_click_pressed_cb),
+                    self);
+  gtk_widget_add_controller (GTK_WIDGET (self), controller);
+
+  controller = gtk_event_controller_scroll_new (GTK_EVENT_CONTROLLER_SCROLL_VERTICAL | GTK_EVENT_CONTROLLER_SCROLL_DISCRETE);
+  g_signal_connect (controller,
+                    "scroll",
+                    G_CALLBACK (on_scroll_scrolled_cb),
                     self);
   gtk_widget_add_controller (GTK_WIDGET (self), controller);
 
