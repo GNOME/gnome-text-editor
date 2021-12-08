@@ -240,6 +240,9 @@ editor_source_view_zoom (EditorSourceView *self,
     self->font_scale += amount;
 
   editor_source_view_update_css (self);
+
+  g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_FONT_SCALE]);
+  g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_ZOOM_LEVEL]);
 }
 
 static gboolean
