@@ -791,6 +791,13 @@ editor_window_class_init (EditorWindowClass *klass)
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_comma, GDK_CONTROL_MASK, "win.show-preferences", NULL);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_question, GDK_CONTROL_MASK, "win.show-help-overlay", NULL);
 
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_plus, GDK_CONTROL_MASK, "page.zoom-in", NULL);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_KP_Add, GDK_CONTROL_MASK, "page.zoom-in", NULL);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_equal, GDK_CONTROL_MASK, "page.zoom-in", NULL);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_minus, GDK_CONTROL_MASK, "page.zoom-out", NULL);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_0, GDK_CONTROL_MASK, "page.zoom-one", NULL);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_KP_0, GDK_CONTROL_MASK, "page.zoom-one", NULL);
+
   _editor_window_class_actions_init (klass);
 
   g_type_ensure (EDITOR_TYPE_OPEN_POPOVER);
