@@ -241,8 +241,10 @@ update_custom_font_cb (EditorPreferencesDialog *self,
   if (!g_settings_get_boolean (settings, "use-system-font"))
     {
       g_autofree char *custom_font = g_settings_get_string (settings, "custom-font");
-      g_autoptr(PangoFontDescription) font_desc = pango_font_description_from_string (custom_font);
+      PangoFontDescription *font_desc = pango_font_description_from_string (custom_font);
       g_autofree char *css = _editor_font_description_to_css (font_desc);
+
+      g_clear_pointer (&font_desc, pango_font_description_free);
 
       if (css != NULL)
         {
