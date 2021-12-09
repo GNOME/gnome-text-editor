@@ -169,15 +169,6 @@ editor_text_buffer_spell_adapter_new (GtkTextBuffer      *buffer,
                        NULL);
 }
 
-static inline gboolean
-contains_iter (const GtkTextIter *begin,
-               const GtkTextIter *end,
-               const GtkTextIter *iter)
-{
-  return gtk_text_iter_compare (begin, iter) <= 0 &&
-         gtk_text_iter_compare (iter, end) <= 0;
-}
-
 static gboolean
 get_unchecked_start_cb (gsize                   offset,
                         const CjhTextRegionRun *run,
