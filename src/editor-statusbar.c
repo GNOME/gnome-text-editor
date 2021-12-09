@@ -301,7 +301,8 @@ editor_statusbar_bind_page (EditorStatusbar *self,
 
   if (page != NULL)
     {
-      vim = gtk_event_controller_key_get_im_context (GTK_EVENT_CONTROLLER_KEY (page->vim));
+      if (page->vim != NULL)
+        vim = gtk_event_controller_key_get_im_context (GTK_EVENT_CONTROLLER_KEY (page->vim));
       document = page->document;
     }
 
