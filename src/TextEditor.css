@@ -96,7 +96,8 @@ window.org-gnome-TextEditor .open-popover list row:focus {
 /* EditorSearchBar */
 
 window.org-gnome-TextEditor page .searchbar {
-  background-image: linear-gradient(shade(@theme_bg_color,1.05), @theme_bg_color);
+  background-color: @popover_bg_color;
+  color: @popover_fg_color;
   padding: 6px;
   border-style: solid;
   border-color: @borders;
