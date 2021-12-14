@@ -96,7 +96,9 @@ on_vim_execute_command_cb (EditorPage            *self,
   g_assert (EDITOR_IS_PAGE (self));
   g_assert (GTK_SOURCE_IS_VIM_IM_CONTEXT (im_context));
 
-  if (g_str_equal (command, ":q") || g_str_equal (command, ":quit"))
+  if (g_str_equal (command, ":q") ||
+      g_str_equal (command, ":quit") ||
+      g_str_equal (command, "^Wc"))
     {
       editor_session_remove_page (EDITOR_SESSION_DEFAULT, self);
       return TRUE;
