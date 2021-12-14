@@ -733,6 +733,17 @@ _editor_document_save_draft_async (EditorDocument      *self,
   if (self->encoding != NULL)
     gtk_source_file_saver_set_encoding (saver, self->encoding);
 
+  /* If there are no modifications, then delete any backing file
+   * for the draft so we don't risk reloading it.
+   */
+  if (!gtk_text_buffer_get_modified (GTK_TEXT_BUFFER (self)) &&
+      editor_document_get_file (self) != NULL)
+    {
+      g_file_delete (draft_file, NULL, NULL);
+      g_task_return_boolean (task, TRUE);
+      return;
+    }
+
   /* TODO: Probably want to make this async. We can just create an
    * async variant in editor-utils.c for this.
    */
