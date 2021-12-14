@@ -1429,6 +1429,7 @@ _editor_page_discard_changes_async (EditorPage          *self,
 {
   g_autoptr(GFile) draft_file = NULL;
   g_autoptr(GTask) task = NULL;
+  const char *draft_id;
 
   g_return_if_fail (EDITOR_IS_PAGE (self));
   g_return_if_fail (!cancellable || G_IS_CANCELLABLE (cancellable));
@@ -1438,6 +1439,9 @@ _editor_page_discard_changes_async (EditorPage          *self,
   g_task_set_task_data (task, GINT_TO_POINTER (reload), NULL);
 
   draft_file = _editor_document_get_draft_file (self->document);
+  draft_id = _editor_document_get_draft_id (self->document);
+
+  _editor_session_remove_draft (EDITOR_SESSION_DEFAULT, draft_id);
 
   g_file_delete_async (draft_file,
                        G_PRIORITY_DEFAULT,
