@@ -105,6 +105,7 @@ editor_print_operation_begin_print (GtkPrintOperation *operation,
   guint tab_width;
   gboolean syntax_hl;
   gboolean use_system_font;
+  gboolean show_line_numbers;
 
   settings = g_settings_new ("org.gnome.TextEditor");
   use_system_font = g_settings_get_boolean (settings, "use-system-font");
@@ -114,11 +115,13 @@ editor_print_operation_begin_print (GtkPrintOperation *operation,
 
   tab_width = gtk_source_view_get_tab_width (GTK_SOURCE_VIEW (self->view));
   syntax_hl = gtk_source_buffer_get_highlight_syntax (buffer);
+  show_line_numbers = gtk_source_view_get_show_line_numbers (self->view);
 
   self->compositor = g_object_new (GTK_SOURCE_TYPE_PRINT_COMPOSITOR,
                                    "buffer", buffer,
                                    "tab-width", tab_width,
                                    "highlight-syntax", syntax_hl,
+                                   "print-line-numbers", show_line_numbers,
                                    "wrap-mode", GTK_WRAP_WORD_CHAR,
                                    NULL);
 
