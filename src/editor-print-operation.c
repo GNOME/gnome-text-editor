@@ -100,8 +100,11 @@ editor_print_operation_begin_print (GtkPrintOperation *operation,
   EditorPrintOperation *self = EDITOR_PRINT_OPERATION (operation);
   g_autoptr(GSettings) settings = NULL;
   g_autofree char *custom_font = NULL;
+  g_autofree char *title = NULL;
+  g_autofree char *left = NULL;
   GtkSourceBuffer *buffer;
   GtkTextTag *spelling_tag;
+  GFile *file;
   guint tab_width;
   gboolean syntax_hl;
   gboolean use_system_font;
@@ -122,6 +125,7 @@ editor_print_operation_begin_print (GtkPrintOperation *operation,
                                    "tab-width", tab_width,
                                    "highlight-syntax", syntax_hl,
                                    "print-line-numbers", show_line_numbers,
+                                   "print-header", TRUE,
                                    "wrap-mode", GTK_WRAP_WORD_CHAR,
                                    NULL);
 
@@ -132,6 +136,26 @@ editor_print_operation_begin_print (GtkPrintOperation *operation,
       gtk_source_print_compositor_set_header_font_name (self->compositor, custom_font);
       gtk_source_print_compositor_set_footer_font_name (self->compositor, custom_font);
     }
+
+  file = editor_document_get_file (EDITOR_DOCUMENT (buffer));
+  title = editor_document_dup_title (EDITOR_DOCUMENT (buffer));
+
+  if (file == NULL)
+    left = g_strdup_printf (_("Draft: %s"), title);
+  else if (g_file_is_native (file))
+    left = g_strdup_printf (_("File: %s"), title);
+  else
+    left = _editor_document_dup_uri (EDITOR_DOCUMENT (buffer));
+
+  gtk_source_print_compositor_set_header_format (self->compositor,
+                                                 TRUE,
+                                                 left,
+                                                 NULL,
+                                                 /* Translators: %N is the current page number, %Q is the total
+                                                  * number of pages (ex. Page 2 of 10)
+                                                  */
+                                                 _("Page %N of %Q"));
+
 
   spelling_tag = _editor_document_get_spelling_tag (EDITOR_DOCUMENT (buffer));
   gtk_source_print_compositor_ignore_tag (self->compositor, spelling_tag);
