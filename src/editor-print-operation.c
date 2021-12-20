@@ -117,8 +117,18 @@ editor_print_operation_begin_print (GtkPrintOperation *operation,
   buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (self->view)));
 
   tab_width = gtk_source_view_get_tab_width (GTK_SOURCE_VIEW (self->view));
-  syntax_hl = gtk_source_buffer_get_highlight_syntax (buffer);
   show_line_numbers = gtk_source_view_get_show_line_numbers (self->view);
+
+#if 0
+  syntax_hl = gtk_source_buffer_get_highlight_syntax (buffer);
+#else
+  /* Currently, we don't have a way to ensure that the syntax will look
+   * good when printing, so we always turn it off. To do that, we might
+   * want to add a new style scheme that is print-focused and create a
+   * duplicate buffer with the same content.
+   */
+  syntax_hl = FALSE;
+#endif
 
   self->compositor = g_object_new (GTK_SOURCE_TYPE_PRINT_COMPOSITOR,
                                    "buffer", buffer,
