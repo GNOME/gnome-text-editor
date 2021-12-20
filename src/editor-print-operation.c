@@ -119,6 +119,7 @@ editor_print_operation_begin_print (GtkPrintOperation *operation,
                                    "buffer", buffer,
                                    "tab-width", tab_width,
                                    "highlight-syntax", syntax_hl,
+                                   "wrap-mode", GTK_WRAP_WORD_CHAR,
                                    NULL);
 
   if (!use_system_font)
