@@ -99,10 +99,14 @@ editor_print_operation_begin_print (GtkPrintOperation *operation,
 {
   EditorPrintOperation *self = EDITOR_PRINT_OPERATION (operation);
   g_autoptr(GSettings) settings = NULL;
+  g_autoptr(GtkSourceBuffer) alt_buffer = NULL;
   g_autofree char *custom_font = NULL;
   g_autofree char *title = NULL;
   g_autofree char *left = NULL;
+  EditorDocument *document;
   GtkSourceBuffer *buffer;
+  GtkSourceStyleScheme *scheme;
+  GtkSourceStyleSchemeManager *schemes;
   GtkTextTag *spelling_tag;
   GFile *file;
   guint tab_width;
@@ -114,21 +118,39 @@ editor_print_operation_begin_print (GtkPrintOperation *operation,
   use_system_font = g_settings_get_boolean (settings, "use-system-font");
   custom_font = g_settings_get_string (settings, "custom-font");
 
-  buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (self->view)));
+  document = EDITOR_DOCUMENT (gtk_text_view_get_buffer (GTK_TEXT_VIEW (self->view)));
+  buffer = GTK_SOURCE_BUFFER (document);
 
   tab_width = gtk_source_view_get_tab_width (GTK_SOURCE_VIEW (self->view));
   show_line_numbers = gtk_source_view_get_show_line_numbers (self->view);
 
-#if 0
   syntax_hl = gtk_source_buffer_get_highlight_syntax (buffer);
-#else
-  /* Currently, we don't have a way to ensure that the syntax will look
-   * good when printing, so we always turn it off. To do that, we might
-   * want to add a new style scheme that is print-focused and create a
-   * duplicate buffer with the same content.
+
+  /* Possibly use an alternate buffer with the Adwaita style-scheme
+   * since that is the only one we can really rely on for printing.
    */
-  syntax_hl = FALSE;
-#endif
+  if (syntax_hl &&
+      (scheme = gtk_source_buffer_get_style_scheme (buffer)) &&
+      g_strcmp0 ("Adwaita", gtk_source_style_scheme_get_id (scheme)) != 0)
+    {
+      g_autofree char *text = NULL;
+      GtkTextIter begin, end;
+
+      schemes = gtk_source_style_scheme_manager_get_default ();
+      scheme = gtk_source_style_scheme_manager_get_scheme (schemes, "Adwaita");
+
+      gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (buffer), &begin, &end);
+      text = gtk_text_iter_get_slice (&begin, &end);
+
+      alt_buffer = g_object_new (GTK_SOURCE_TYPE_BUFFER,
+                                 "language", gtk_source_buffer_get_language (buffer),
+                                 "highlight-syntax", TRUE,
+                                 "style-scheme", scheme,
+                                 "text", text,
+                                 NULL);
+
+      buffer = alt_buffer;
+    }
 
   self->compositor = g_object_new (GTK_SOURCE_TYPE_PRINT_COMPOSITOR,
                                    "buffer", buffer,
@@ -147,15 +169,15 @@ editor_print_operation_begin_print (GtkPrintOperation *operation,
       gtk_source_print_compositor_set_footer_font_name (self->compositor, custom_font);
     }
 
-  file = editor_document_get_file (EDITOR_DOCUMENT (buffer));
-  title = editor_document_dup_title (EDITOR_DOCUMENT (buffer));
+  file = editor_document_get_file (document);
+  title = editor_document_dup_title (document);
 
   if (file == NULL)
     left = g_strdup_printf (_("Draft: %s"), title);
   else if (g_file_is_native (file))
     left = g_strdup_printf (_("File: %s"), title);
   else
-    left = _editor_document_dup_uri (EDITOR_DOCUMENT (buffer));
+    left = _editor_document_dup_uri (document);
 
   gtk_source_print_compositor_set_header_format (self->compositor,
                                                  TRUE,
@@ -166,9 +188,11 @@ editor_print_operation_begin_print (GtkPrintOperation *operation,
                                                   */
                                                  _("Page %N of %Q"));
 
-
-  spelling_tag = _editor_document_get_spelling_tag (EDITOR_DOCUMENT (buffer));
-  gtk_source_print_compositor_ignore_tag (self->compositor, spelling_tag);
+  if ((gpointer)document == (gpointer)buffer)
+    {
+      spelling_tag = _editor_document_get_spelling_tag (document);
+      gtk_source_print_compositor_ignore_tag (self->compositor, spelling_tag);
+    }
 }
 
 static gboolean
