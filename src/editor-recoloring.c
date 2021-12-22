@@ -136,6 +136,9 @@ define_color_mixed (GString       *str,
 
   g_ascii_dtostr (levelstr, sizeof levelstr, level);
 
+  /* truncate */
+  levelstr[6] = 0;
+
   g_string_append_printf (str, "@define-color %s mix(%s,%s,%s);\n", name, a_str, b_str, levelstr);
 }
 
