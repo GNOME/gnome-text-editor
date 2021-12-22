@@ -65,3 +65,4 @@ configure_file(
 
 subdir('icons')
 subdir('macos')
+subdir('styles')
