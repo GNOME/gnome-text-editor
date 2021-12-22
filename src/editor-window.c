@@ -98,14 +98,15 @@ static void
 remove_page (EditorWindow *self,
              EditorPage   *page)
 {
-  EditorDocument *document;
-
   g_assert (EDITOR_IS_WINDOW (self));
   g_assert (EDITOR_IS_PAGE (page));
 
   /* Track page close for reopening */
-  document = editor_page_get_document (page);
-  add_closed_document (self, document);
+  if (!editor_page_get_can_discard (page))
+    {
+      EditorDocument *document = editor_page_get_document (page);
+      add_closed_document (self, document);
+    }
 
   editor_session_remove_page (EDITOR_SESSION_DEFAULT, page);
 }
