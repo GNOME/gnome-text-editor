@@ -20,6 +20,7 @@
 
 #include "config.h"
 
+#include "editor-application-private.h"
 #include "editor-document-private.h"
 #include "editor-source-view.h"
 #include "editor-joined-menu-private.h"
@@ -53,22 +54,29 @@ editor_source_view_update_css (EditorSourceView *self)
 {
   const PangoFontDescription *font_desc;
   PangoFontDescription *scaled = NULL;
+  PangoFontDescription *system_font = NULL;
   g_autoptr(GString) str = NULL;
   g_autofree char *font_css = NULL;
   int size = 11; /* 11pt */
 
   g_assert (EDITOR_IS_SOURCE_VIEW (self));
 
-  if (self->font_desc != NULL &&
-      pango_font_description_get_set_fields (self->font_desc) & PANGO_FONT_MASK_SIZE)
-    size = pango_font_description_get_size (self->font_desc) / PANGO_SCALE;
+  font_desc = self->font_desc;
+
+  if (font_desc == NULL)
+    {
+      system_font = _editor_application_get_system_font (EDITOR_APPLICATION_DEFAULT);
+      font_desc = system_font;
+    }
+
+  if (font_desc != NULL &&
+      pango_font_description_get_set_fields (font_desc) & PANGO_FONT_MASK_SIZE)
+    size = pango_font_description_get_size (font_desc) / PANGO_SCALE;
 
   if (size + self->font_scale < 1)
     self->font_scale = -size + 1;
 
   size = MAX (1, size + self->font_scale);
-
-  font_desc = self->font_desc;
 
   if (size != 0)
     {
@@ -93,6 +101,7 @@ editor_source_view_update_css (EditorSourceView *self)
   gtk_css_provider_load_from_data (self->css_provider, str->str, -1);
 
   g_clear_pointer (&scaled, pango_font_description_free);
+  g_clear_pointer (&system_font, pango_font_description_free);
 }
 
 static gboolean
@@ -598,6 +607,12 @@ editor_source_view_init (EditorSourceView *self)
   GtkEventController *controller;
   GtkStyleContext *style_context;
   GMenuModel *extra_menu;
+
+  g_signal_connect_object (EDITOR_APPLICATION_DEFAULT,
+                           "notify::system-font-name",
+                           G_CALLBACK (editor_source_view_update_css),
+                           self,
+                           G_CONNECT_SWAPPED);
 
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "spelling.add", FALSE);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "spelling.ignore", FALSE);
