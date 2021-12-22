@@ -64,6 +64,7 @@ struct _EditorWindow
   EditorSignalGroup    *page_signals;
   EditorSignalGroup    *document_signals;
   GSettings            *settings;
+  GArray               *closed_items;
 
   /* Used to update "Document Type: Markdown" */
   GMenuModel           *doc_type_menu;

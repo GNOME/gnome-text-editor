@@ -33,6 +33,13 @@
 #include "editor-utils-private.h"
 #include "editor-window-private.h"
 
+typedef struct
+{
+  char *draft_id;
+  GFile *file;
+  const GtkSourceEncoding *encoding;
+} ClosedItem;
+
 G_DEFINE_TYPE (EditorWindow, editor_window, ADW_TYPE_APPLICATION_WINDOW)
 
 enum {
@@ -42,6 +49,101 @@ enum {
 };
 
 static GParamSpec *properties[N_PROPS];
+
+static void
+closed_item_clear (gpointer data)
+{
+  ClosedItem *ci = data;
+
+  g_clear_pointer (&ci->draft_id, g_free);
+  g_clear_object (&ci->file);
+}
+
+static void
+add_closed_document (EditorWindow   *self,
+                     EditorDocument *document)
+{
+  ClosedItem ci = {0};
+  GFile *file;
+  const char *draft_id;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+  g_assert (EDITOR_IS_DOCUMENT (document));
+
+  file = editor_document_get_file (document);
+  draft_id = _editor_document_get_draft_id (document);
+
+  g_assert (file || draft_id);
+
+  for (guint i = 0; i < self->closed_items->len; i++)
+    {
+      const ClosedItem *ele = &g_array_index (self->closed_items, ClosedItem, i);
+
+      if ((file && ele->file == file) || (draft_id && ele->draft_id == draft_id))
+        return;
+    }
+
+  if (file)
+    ci.file = g_file_dup (file);
+  else
+    ci.draft_id = g_strdup (draft_id);
+
+  ci.encoding = _editor_document_get_encoding (document);
+
+  g_array_append_val (self->closed_items, ci);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "win.undo-close-page", TRUE);
+}
+
+static void
+remove_page (EditorWindow *self,
+             EditorPage   *page)
+{
+  EditorDocument *document;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+  g_assert (EDITOR_IS_PAGE (page));
+
+  /* Track page close for reopening */
+  document = editor_page_get_document (page);
+  add_closed_document (self, document);
+
+  editor_session_remove_page (EDITOR_SESSION_DEFAULT, page);
+}
+
+static void
+restore_closed_document (EditorWindow *self)
+{
+  const ClosedItem *ci;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+
+  if (self->closed_items->len == 0)
+    return;
+
+  ci = &g_array_index (self->closed_items, ClosedItem, self->closed_items->len - 1);
+
+  if (ci->file)
+    editor_session_open (EDITOR_SESSION_DEFAULT, self, ci->file, ci->encoding);
+  else
+    _editor_session_open_draft (EDITOR_SESSION_DEFAULT, self, ci->draft_id);
+
+  g_array_set_size (self->closed_items, self->closed_items->len - 1);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self),
+                                 "win.undo-close-page",
+                                 self->closed_items->len > 0);
+}
+
+static void
+on_undo_close_page_cb (GtkWidget  *widget,
+                       const char *action_name,
+                       GVariant   *param)
+{
+  EditorWindow *self = (EditorWindow *)widget;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+
+  restore_closed_document (self);
+}
 
 static void
 update_keybindings_cb (EditorWindow *self,
@@ -440,7 +542,7 @@ on_tab_view_close_page_cb (EditorWindow *self,
 
   if (_editor_window_request_close_page (self, epage))
     {
-      editor_session_remove_page (EDITOR_SESSION_DEFAULT, epage);
+      remove_page (self, epage);
       return FALSE;
     }
 
@@ -534,7 +636,7 @@ _editor_window_request_close_pages (EditorWindow *self,
       if (editor_page_get_is_modified (page))
         g_ptr_array_add (ar, g_object_ref (page));
       else if (close_saved)
-        editor_session_remove_page (EDITOR_SESSION_DEFAULT, page);
+        remove_page (self, page);
     }
 
   if (ar->len == 0)
@@ -675,6 +777,7 @@ editor_window_finalize (GObject *object)
   g_clear_object (&self->page_bindings);
   g_clear_object (&self->page_signals);
   g_clear_object (&self->document_signals);
+  g_clear_pointer (&self->closed_items, g_array_unref);
 
   G_OBJECT_CLASS (editor_window_parent_class)->finalize (object);
 }
@@ -765,6 +868,7 @@ editor_window_class_init (EditorWindowClass *klass)
   gtk_widget_class_bind_template_callback (widget_class, on_tab_view_create_window_cb);
 
   gtk_widget_class_install_action (widget_class, "win.show-help-overlay", NULL, on_show_help_overlay_cb);
+  gtk_widget_class_install_action (widget_class, "win.undo-close-page", NULL, on_undo_close_page_cb);
 
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_w, GDK_CONTROL_MASK, "win.close-page-or-window", NULL);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_o, GDK_CONTROL_MASK, "win.open", NULL);
@@ -790,6 +894,7 @@ editor_window_class_init (EditorWindowClass *klass)
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_F10, 0, "win.show-primary-menu", NULL);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_comma, GDK_CONTROL_MASK, "win.show-preferences", NULL);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_question, GDK_CONTROL_MASK, "win.show-help-overlay", NULL);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_t, GDK_CONTROL_MASK|GDK_SHIFT_MASK, "win.undo-close-page", NULL);
 
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_plus, GDK_CONTROL_MASK, "page.zoom-in", NULL);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_KP_Add, GDK_CONTROL_MASK, "page.zoom-in", NULL);
@@ -809,6 +914,10 @@ static void
 editor_window_init (EditorWindow *self)
 {
   gtk_widget_init_template (GTK_WIDGET (self));
+
+  self->closed_items = g_array_new (FALSE, FALSE, sizeof (ClosedItem));
+  g_array_set_clear_func (self->closed_items, closed_item_clear);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "win.undo-close-page", FALSE);
 
   g_signal_connect (self,
                     "notify::focus-widget",
