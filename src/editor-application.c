@@ -30,11 +30,16 @@
 #include "editor-utils-private.h"
 #include "editor-window.h"
 
+#define PORTAL_BUS_NAME "org.freedesktop.portal.Desktop"
+#define PORTAL_OBJECT_PATH "/org/freedesktop/portal/desktop"
+#define PORTAL_SETTINGS_INTERFACE "org.freedesktop.portal.Settings"
+
 G_DEFINE_TYPE (EditorApplication, editor_application, GTK_TYPE_APPLICATION)
 
 enum {
   PROP_0,
   PROP_STYLE_SCHEME,
+  PROP_SYSTEM_FONT_NAME,
   N_PROPS
 };
 
@@ -203,13 +208,83 @@ on_changed_style_scheme_cb (EditorApplication *self,
 }
 
 static void
+on_portal_settings_changed_cb (EditorApplication *self,
+                               const char        *sender_name,
+                               const char        *signal_name,
+                               GVariant          *parameters,
+                               gpointer           user_data)
+{
+  g_autoptr(GVariant) value = NULL;
+  const char *schema_id;
+  const char *key;
+
+  g_assert (EDITOR_IS_APPLICATION (self));
+  g_assert (sender_name != NULL);
+  g_assert (signal_name != NULL);
+
+  if (g_strcmp0 (signal_name, "SettingChanged") != 0)
+    return;
+
+  g_variant_get (parameters, "(&s&sv)", &schema_id, &key, &value);
+
+  if (g_strcmp0 (schema_id, "org.gnome.desktop.interface") == 0 &&
+      g_strcmp0 (key, "monospace-font-name") == 0 &&
+      g_strcmp0 (g_variant_get_string (value, NULL), "") != 0)
+    {
+      g_free (self->system_font_name);
+      self->system_font_name = g_strdup (g_variant_get_string (value, NULL));
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_SYSTEM_FONT_NAME]);
+    }
+}
+
+static void
+parse_portal_settings (EditorApplication *self,
+                       GVariant          *parameters)
+{
+  GVariantIter *iter = NULL;
+  const char *schema_str;
+  GVariant *val;
+
+  g_assert (EDITOR_IS_APPLICATION (self));
+
+  if (parameters == NULL)
+    return;
+
+  g_variant_get (parameters, "(a{sa{sv}})", &iter);
+
+  while (g_variant_iter_loop (iter, "{s@a{sv}}", &schema_str, &val))
+    {
+      GVariantIter *iter2 = g_variant_iter_new (val);
+      const char *key;
+      GVariant *v;
+
+      while (g_variant_iter_loop (iter2, "{sv}", &key, &v))
+        {
+          if (g_strcmp0 (schema_str, "org.gnome.desktop.interface") == 0 &&
+              g_strcmp0 (key, "monospace-font-name") == 0 &&
+              g_strcmp0 (g_variant_get_string (v, NULL), "") != 0)
+            {
+              g_free (self->system_font_name);
+              self->system_font_name = g_strdup (g_variant_get_string (v, NULL));
+            }
+        }
+
+      g_variant_iter_free (iter2);
+    }
+
+  g_variant_iter_free (iter);
+}
+
+static void
 editor_application_startup (GApplication *application)
 {
+  static const char *patterns[] = { "org.gnome.*", NULL };
   static const gchar *quit_accels[] = { "<Primary>Q", NULL };
   static const gchar *help_accels[] = { "F1", NULL };
 
   EditorApplication *self = (EditorApplication *)application;
   g_autoptr(GtkCssProvider) css_provider = NULL;
+  g_autoptr(GVariant) all = NULL;
   AdwStyleManager *style_manager;
   GdkDisplay *display;
 
@@ -229,6 +304,30 @@ editor_application_startup (GApplication *application)
   gtk_application_set_accels_for_action (GTK_APPLICATION (self), "app.help", help_accels);
 
   _editor_application_actions_init (self);
+
+  /* Setup portal to get settings */
+  self->portal = g_dbus_proxy_new_for_bus_sync (G_BUS_TYPE_SESSION,
+                                                G_DBUS_PROXY_FLAGS_NONE,
+                                                NULL,
+                                                PORTAL_BUS_NAME,
+                                                PORTAL_OBJECT_PATH,
+                                                PORTAL_SETTINGS_INTERFACE,
+                                                NULL,
+                                                NULL);
+  g_assert_nonnull (self->portal);
+  g_signal_connect_object (self->portal,
+                           "g-signal",
+                           G_CALLBACK (on_portal_settings_changed_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+  all = g_dbus_proxy_call_sync (self->portal,
+                                "ReadAll",
+                                g_variant_new ("(^as)", patterns),
+                                G_DBUS_CALL_FLAGS_NONE,
+                                G_MAXINT,
+                                NULL,
+                                NULL);
+  parse_portal_settings (self, all);
 
   style_manager = adw_style_manager_get_default ();
 
@@ -297,6 +396,8 @@ editor_application_shutdown (GApplication *application)
 
   g_clear_object (&self->session);
   g_clear_object (&self->recoloring);
+  g_clear_object (&self->portal);
+  g_clear_pointer (&self->system_font_name, g_free);
 
   G_APPLICATION_CLASS (editor_application_parent_class)->shutdown (application);
 }
@@ -330,6 +431,10 @@ editor_application_get_property (GObject    *object,
     {
     case PROP_STYLE_SCHEME:
       g_value_set_string (value, editor_application_get_style_scheme (self));
+      break;
+
+    case PROP_SYSTEM_FONT_NAME:
+      g_value_set_string (value, self->system_font_name);
       break;
 
     default:
@@ -382,6 +487,13 @@ editor_application_class_init (EditorApplicationClass *klass)
                          NULL,
                          (G_PARAM_READWRITE | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_STRINGS));
 
+  properties [PROP_SYSTEM_FONT_NAME] =
+    g_param_spec_string ("system-font-name",
+                         "System Font Name",
+                         "System Font Name",
+                         "Monospace 11",
+                         (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
   g_object_class_install_properties (object_class, N_PROPS, properties);
 }
 
@@ -395,6 +507,7 @@ editor_application_init (EditorApplication *self)
 {
   self->settings = g_settings_new ("org.gnome.TextEditor");
   self->session = _editor_session_new ();
+  self->system_font_name = g_strdup ("Monospace 11");
 
   g_signal_connect_object (self->settings,
                            "changed::style-scheme",
@@ -553,4 +666,12 @@ editor_application_set_style_scheme (EditorApplication *self,
   g_object_freeze_notify (G_OBJECT (self));
   g_settings_set_string (self->settings, "style-scheme", style_scheme);
   g_object_thaw_notify (G_OBJECT (self));
+}
+
+PangoFontDescription *
+_editor_application_get_system_font (EditorApplication *self)
+{
+  g_return_val_if_fail (EDITOR_IS_APPLICATION (self), NULL);
+
+  return pango_font_description_from_string (self->system_font_name);
 }

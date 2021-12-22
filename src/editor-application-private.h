@@ -30,9 +30,12 @@ struct _EditorApplication
   EditorSession  *session;
   GSettings      *settings;
   GtkCssProvider *recoloring;
+  GDBusProxy     *portal;
+  char           *system_font_name;
 };
 
-EditorApplication *_editor_application_new          (void);
-void               _editor_application_actions_init (EditorApplication *self);
+EditorApplication    *_editor_application_new             (void);
+void                  _editor_application_actions_init    (EditorApplication *self);
+PangoFontDescription *_editor_application_get_system_font (EditorApplication *self);
 
 G_END_DECLS
