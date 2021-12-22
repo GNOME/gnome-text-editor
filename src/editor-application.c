@@ -314,20 +314,23 @@ editor_application_startup (GApplication *application)
                                                 PORTAL_SETTINGS_INTERFACE,
                                                 NULL,
                                                 NULL);
-  g_assert_nonnull (self->portal);
-  g_signal_connect_object (self->portal,
-                           "g-signal",
-                           G_CALLBACK (on_portal_settings_changed_cb),
-                           self,
-                           G_CONNECT_SWAPPED);
-  all = g_dbus_proxy_call_sync (self->portal,
-                                "ReadAll",
-                                g_variant_new ("(^as)", patterns),
-                                G_DBUS_CALL_FLAGS_NONE,
-                                G_MAXINT,
-                                NULL,
-                                NULL);
-  parse_portal_settings (self, all);
+
+  if (self->portal != NULL)
+    {
+      g_signal_connect_object (self->portal,
+                               "g-signal",
+                               G_CALLBACK (on_portal_settings_changed_cb),
+                               self,
+                               G_CONNECT_SWAPPED);
+      all = g_dbus_proxy_call_sync (self->portal,
+                                    "ReadAll",
+                                    g_variant_new ("(^as)", patterns),
+                                    G_DBUS_CALL_FLAGS_NONE,
+                                    G_MAXINT,
+                                    NULL,
+                                    NULL);
+      parse_portal_settings (self, all);
+    }
 
   style_manager = adw_style_manager_get_default ();
 
