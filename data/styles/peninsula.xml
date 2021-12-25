@@ -24,60 +24,58 @@
     <property name="dark-variant">peninsula-dark</property>
   </metadata>
 
-  <color name="text_bg"                     value="#ffffff"/>
-  <color name="text_fg"                     value="#262626"/>
-  <color name="comment_fg"                  value="#707f8c"/>
-  <color name="preprocessor_fg"             value="#78492a"/>
-  <color name="line_fg"                     value="#a6a6a6"/>
-  <color name="current_line_bg"             value="#edf5ff"/>
-  <color name="current_line_fg"             value="#232526"/>
-  <color name="selection_bg"                value="#007bff"/>
-  <color name="search_fg"                   value="#ffffff"/>
-  <color name="search_bg"                   value="#0078fa"/>
-  <color name="spaces_fg"                   value="#eaeaea"/>
-  <color name="pattern_bg"                  value="#e3e3e3"/>
-  <color name="url_fg"                      value="#1437ff"/>
+  <color name="dark1"                       value="#232526"/>
+  <color name="dark2"                       value="#262626"/>
+  <color name="dark3"                       value="#4a4a4a"/>
+  <color name="dark4"                       value="#707f8c"/>
+  <color name="dark5"                       value="#9a9a9a"/>
+  <color name="dark6"                       value="#a6a6a6"/>
 
+  <color name="light1"                      value="#e3e3e3"/>
+  <color name="light2"                      value="#edf5ff"/>
+  <color name="light3"                      value="#eaeaea"/>
+
+  <color name="blue1"                       value="#007bff"/>
+  <color name="blue2"                       value="#1437ff"/>
+  <color name="brown"                       value="#78492a"/>
   <color name="magenta"                     value="#ad3da4"/>
-  <color name="teal"                        value="#1180b2"/>
-  <color name="blue"                        value="#08476a"/>
-  <color name="light_blue"                  value="#007ba2"/>
   <color name="purple"                      value="#210460"/>
   <color name="red"                         value="#d12f1b"/>
-  <color name="map_overlay_bg"              value="#9a9a9a"/>
+  <color name="teal"                        value="#1180b2"/>
+  <color name="white"                       value="#ffffff"/>
 
-  <style name="text"                        foreground="text_fg" background="text_bg"/>
-  <style name="selection"                   background="selection_bg"/>
-  <style name="search-match"                foreground="search_fg" background="search_bg"/>
-  <style name="cursor"                      foreground="#4a4a4a"/>
-  <style name="current-line"                background="current_line_bg"/>
-  <style name="current-line-number"         background="current_line_bg" foreground="current_line_fg" bold="false"/>
-  <style name="line-numbers"                foreground="line_fg" background="text_bg"/>
-  <style name="draw-spaces"                 foreground="spaces_fg"/>
-  <style name="background-pattern"          foreground="pattern_bg"/>
+  <style name="text"                        foreground="dark2" background="white"/>
+  <style name="selection"                   background="blue1"/>
+  <style name="search-match"                foreground="white" background="blue1"/>
+  <style name="cursor"                      foreground="dark3"/>
+  <style name="current-line"                background="light2"/>
+  <style name="current-line-number"         background="light2" foreground="dark1" bold="false"/>
+  <style name="line-numbers"                foreground="dark6" background="white"/>
+  <style name="draw-spaces"                 foreground="light3"/>
+  <style name="background-pattern"          foreground="light1"/>
   <style name="bracket-match"               bold="true"/>
   <style name="bracket-mismatch"            underline="error" bold="true"/>
-  <style name="right-margin"                foreground="map_overlay_bg" background="map_overlay_bg"/>
-  <style name="map-overlay"                 background="map_overlay_bg"/>
+  <style name="right-margin"                foreground="dark5" background="dark5"/>
+  <style name="map-overlay"                 background="dark5"/>
   <style name="def:string"                  foreground="red"/>
   <style name="def:type"                    foreground="magenta" bold="true"/>
-  <style name="def:comment"                 foreground="comment_fg"/>
-  <style name="def:list-marker"             foreground="preprocessor_fg" bold="true"/>
+  <style name="def:comment"                 foreground="dark4"/>
+  <style name="def:list-marker"             foreground="brown" bold="true"/>
   <style name="def:heading"                 bold="true"/>
   <style name="def:identifier"              foreground="teal"/>
-  <style name="def:preprocessor"            foreground="preprocessor_fg"/>
+  <style name="def:preprocessor"            foreground="brown"/>
   <style name="def:keyword"                 foreground="magenta" bold="true"/>
-  <style name="def:variable"                foreground="light_blue"/>
+  <style name="def:variable"                foreground="blue1"/>
   <style name="def:special-constant"        foreground="magenta" bold="true"/>
   <style name="def:emphasis"                bold="true"/>
   <style name="def:strong-emphasis"         italic="true" bold="true"/>
-  <style name="def:net-address"             foreground="url_fg"/>
-  <style name="def:link-destination"        foreground="url_fg"/>
+  <style name="def:net-address"             foreground="blue2"/>
+  <style name="def:link-destination"        foreground="blue2"/>
   <style name="def:link-text"               foreground="red"/>
-  <style name="def:floating-point"          foreground="url_fg"/>
-  <style name="def:decimal"                 foreground="url_fg"/>
+  <style name="def:floating-point"          foreground="blue1"/>
+  <style name="def:decimal"                 foreground="blue1"/>
   <style name="def:boolean"                 foreground="magenta"/>
-  <style name="def:base-n-integer"          foreground="url_fg"/>
+  <style name="def:base-n-integer"          foreground="blue1"/>
   <style name="gtk-doc:function-name"       foreground="teal"/>
   <style name="gtk-doc:function"            foreground="teal"/>
   <style name="gtk-doc:parameter"           bold="true"/>
