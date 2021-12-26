@@ -44,12 +44,31 @@
             <property name="vhomogeneous">false</property>
             <property name="hhomogeneous">false</property>
             <child>
-              <object class="GtkLabel" id="empty">
-                <property name="label" translatable="yes">No Recent Documents</property>
+              <object class="GtkBox" id="empty">
+                <property name="orientation">vertical</property>
+                <property name="spacing">18</property>
                 <property name="margin-start">6</property>
-                <property name="margin-top">18</property>
-                <property name="margin-bottom">18</property>
+                <property name="margin-top">36</property>
+                <property name="margin-bottom">36</property>
                 <property name="margin-end">6</property>
+                <child>
+                  <object class="GtkImage">
+                    <property name="icon-name">text-x-generic-symbolic</property>
+                    <property name="pixel-size">64</property>
+                    <style>
+                      <class name="dim-label"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="label" translatable="yes">No Recent Documents</property>
+                    <attributes>
+                      <attribute name="weight" value="bold"/>
+                      <attribute name="scale" value="1.1"/>
+                    </attributes>
+                  </object>
+                </child>
               </object>
             </child>
             <child>
