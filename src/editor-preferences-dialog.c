@@ -216,6 +216,7 @@ update_style_schemes (EditorPreferencesDialog *self)
   GtkSourceStyleSchemeManager *sm;
   const char * const *scheme_ids;
   g_autoptr(GArray) schemes = NULL;
+  const char *current_scheme;
   gboolean is_dark;
   guint j = 0;
 
@@ -223,6 +224,7 @@ update_style_schemes (EditorPreferencesDialog *self)
 
   schemes = g_array_new (FALSE, FALSE, sizeof (SchemeInfo));
   is_dark = adw_style_manager_get_dark (adw_style_manager_get_default ());
+  current_scheme = editor_application_get_style_scheme (EDITOR_APPLICATION_DEFAULT);
 
   /* Populate schemes for preferences */
   sm = gtk_source_style_scheme_manager_get_default ();
@@ -273,7 +275,11 @@ update_style_schemes (EditorPreferencesDialog *self)
       const SchemeInfo *info = &g_array_index (schemes, SchemeInfo, i);
       GtkWidget *preview;
 
-      if (is_dark != _editor_source_style_scheme_is_dark (info->scheme))
+      /* Ignore if not matching light/dark variant for app, unless it is
+       * the current scheme and it has no alternate.
+       */
+      if (is_dark != _editor_source_style_scheme_is_dark (info->scheme) &&
+          (g_strcmp0 (info->id, current_scheme) != 0 || info->has_alt))
         continue;
 
       preview = gtk_source_style_scheme_preview_new (info->scheme);
