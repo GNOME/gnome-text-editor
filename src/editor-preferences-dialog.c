@@ -179,43 +179,112 @@ update_style_scheme_selection (EditorPreferencesDialog *self)
     }
 }
 
+typedef struct
+{
+  const char           *id;
+  const char           *sort_key;
+  GtkSourceStyleScheme *scheme;
+  guint                 has_alt : 1;
+  guint                 is_dark : 1;
+} SchemeInfo;
+
+static int
+sort_schemes_cb (gconstpointer a,
+                 gconstpointer b)
+{
+  const SchemeInfo *info_a = a;
+  const SchemeInfo *info_b = b;
+
+  /* Light schemes first */
+  if (!info_a->is_dark && info_b->is_dark)
+    return -1;
+  else if (info_a->is_dark && !info_b->is_dark)
+    return 1;
+
+  /* Items with variants first */
+  if (info_a->has_alt && !info_b->has_alt)
+    return -1;
+  else if (!info_a->has_alt && info_b->has_alt)
+    return 1;
+
+  return g_utf8_collate (info_a->sort_key, info_b->sort_key);
+}
+
 static void
 update_style_schemes (EditorPreferencesDialog *self)
 {
   GtkSourceStyleSchemeManager *sm;
   const char * const *scheme_ids;
+  g_autoptr(GArray) schemes = NULL;
   gboolean is_dark;
+  guint j = 0;
 
   g_assert (EDITOR_IS_PREFERENCES_DIALOG (self));
 
+  schemes = g_array_new (FALSE, FALSE, sizeof (SchemeInfo));
   is_dark = adw_style_manager_get_dark (adw_style_manager_get_default ());
 
   /* Populate schemes for preferences */
   sm = gtk_source_style_scheme_manager_get_default ();
   if ((scheme_ids = gtk_source_style_scheme_manager_get_scheme_ids (sm)))
     {
-      guint j = 0;
-
       for (guint i = 0; scheme_ids[i]; i++)
         {
-          GtkSourceStyleScheme *scheme;
-          GtkWidget *preview;
+          SchemeInfo info;
 
-          scheme = gtk_source_style_scheme_manager_get_scheme (sm, scheme_ids[i]);
+          info.scheme = gtk_source_style_scheme_manager_get_scheme (sm, scheme_ids[i]);
+          info.id = gtk_source_style_scheme_get_id (info.scheme);
+          info.sort_key = gtk_source_style_scheme_get_name (info.scheme);
+          info.has_alt = FALSE;
+          info.is_dark = FALSE;
 
-          if (is_dark != _editor_source_style_scheme_is_dark (scheme))
-            continue;
+          if (_editor_source_style_scheme_is_dark (info.scheme))
+            {
+              GtkSourceStyleScheme *alt = _editor_source_style_scheme_get_variant (info.scheme, "light");
 
-          preview = gtk_source_style_scheme_preview_new (scheme);
-          gtk_actionable_set_action_name (GTK_ACTIONABLE (preview), "app.style-scheme");
-          gtk_actionable_set_action_target (GTK_ACTIONABLE (preview), "s", scheme_ids[i]);
-          gtk_flow_box_insert (self->scheme_group, preview, -1);
+              g_assert (GTK_SOURCE_IS_STYLE_SCHEME (alt));
 
-          j++;
+              if (alt != info.scheme)
+                {
+                  info.sort_key = gtk_source_style_scheme_get_id (alt);
+                  info.has_alt = TRUE;
+                }
+
+              info.is_dark = TRUE;
+            }
+          else
+            {
+              GtkSourceStyleScheme *alt = _editor_source_style_scheme_get_variant (info.scheme, "dark");
+
+              g_assert (GTK_SOURCE_IS_STYLE_SCHEME (alt));
+
+              if (alt != info.scheme)
+                info.has_alt = TRUE;
+            }
+
+          g_array_append_val (schemes, info);
         }
 
-      update_style_scheme_selection (self);
+      g_array_sort (schemes, sort_schemes_cb);
     }
+
+  for (guint i = 0; i < schemes->len; i++)
+    {
+      const SchemeInfo *info = &g_array_index (schemes, SchemeInfo, i);
+      GtkWidget *preview;
+
+      if (is_dark != _editor_source_style_scheme_is_dark (info->scheme))
+        continue;
+
+      preview = gtk_source_style_scheme_preview_new (info->scheme);
+      gtk_actionable_set_action_name (GTK_ACTIONABLE (preview), "app.style-scheme");
+      gtk_actionable_set_action_target (GTK_ACTIONABLE (preview), "s", info->id);
+      gtk_flow_box_insert (self->scheme_group, preview, -1);
+
+      j++;
+    }
+
+    update_style_scheme_selection (self);
 }
 
 static gboolean
