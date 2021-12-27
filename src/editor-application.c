@@ -575,55 +575,6 @@ editor_application_get_current_window (EditorApplication *self)
   return NULL;
 }
 
-static GtkSourceStyleScheme *
-_gtk_source_style_scheme_get_variant (GtkSourceStyleScheme *scheme,
-                                      const char           *variant)
-{
-  GtkSourceStyleSchemeManager *style_scheme_manager;
-  GtkSourceStyleScheme *ret;
-  g_autoptr(GString) str = NULL;
-  g_autofree char *key = NULL;
-  const char *mapping;
-
-  g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme), NULL);
-  g_return_val_if_fail (g_strcmp0 (variant, "light") == 0 ||
-                        g_strcmp0 (variant, "dark") == 0, NULL);
-
-  style_scheme_manager = gtk_source_style_scheme_manager_get_default ();
-
-  /* If the scheme provides "light-variant" or "dark-variant" metadata,
-   * we will prefer those if the variant is available.
-   */
-  key = g_strdup_printf ("%s-variant", variant);
-  if ((mapping = gtk_source_style_scheme_get_metadata (scheme, key)))
-    {
-      if ((ret = gtk_source_style_scheme_manager_get_scheme (style_scheme_manager, mapping)))
-        return ret;
-    }
-
-  /* Try to find a match by replacing -light/-dark with @variant */
-  str = g_string_new (gtk_source_style_scheme_get_id (scheme));
-
-  if (g_str_has_suffix (str->str, "-light"))
-    g_string_truncate (str, str->len - strlen ("-light"));
-  else if (g_str_has_suffix (str->str, "-dark"))
-    g_string_truncate (str, str->len - strlen ("-dark"));
-
-  g_string_append_printf (str, "-%s", variant);
-
-  /* Look for "Foo-variant" directly */
-  if ((ret = gtk_source_style_scheme_manager_get_scheme (style_scheme_manager, str->str)))
-    return ret;
-
-  /* Look for "Foo" */
-  g_string_truncate (str, str->len - strlen (variant) - 1);
-  if ((ret = gtk_source_style_scheme_manager_get_scheme (style_scheme_manager, str->str)))
-    return ret;
-
-  /* Fallback to what we were provided */
-  return ret;
-}
-
 const char *
 editor_application_get_style_scheme (EditorApplication *self)
 {
@@ -652,7 +603,7 @@ editor_application_get_style_scheme (EditorApplication *self)
     variant = "light";
 
   style_scheme = gtk_source_style_scheme_manager_get_scheme (style_scheme_manager, style_scheme_id);
-  style_scheme = _gtk_source_style_scheme_get_variant (style_scheme, variant);
+  style_scheme = _editor_source_style_scheme_get_variant (style_scheme, variant);
 
   return gtk_source_style_scheme_get_id (style_scheme);
 }

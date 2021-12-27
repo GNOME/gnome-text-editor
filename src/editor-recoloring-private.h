@@ -24,7 +24,9 @@
 
 G_BEGIN_DECLS
 
-char     *_editor_recoloring_generate_css     (GtkSourceStyleScheme *style_scheme);
-gboolean  _editor_source_style_scheme_is_dark (GtkSourceStyleScheme *style_scheme);
+char                 *_editor_recoloring_generate_css         (GtkSourceStyleScheme *style_scheme);
+gboolean              _editor_source_style_scheme_is_dark     (GtkSourceStyleScheme *style_scheme);
+GtkSourceStyleScheme *_editor_source_style_scheme_get_variant (GtkSourceStyleScheme *style_scheme,
+                                                               const char           *variant);
 
 G_END_DECLS
