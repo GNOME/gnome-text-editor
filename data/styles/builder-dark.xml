@@ -64,12 +64,14 @@
   <color name="pink1"                       value="#dd4a68"/>
   <color name="red1"                        value="#ff0000"/>
 
-  <color name="dark1"                        value="#1e1e1e"/>
-  <color name="dark2"                        value="#303030"/>
+  <color name="dark1"                       value="#1e1e1e"/>
+  <color name="dark2"                       value="#303030"/>
+
+  <color name="transparent"                 value="#rgba(0,0,0,0)"/>
 
   <!-- Global Settings -->
   <style name="text"                        foreground="aluminium3" background="dark1"/>
-  <style name="selection"                   foreground="aluminium1" background="aluminium4"/>
+  <style name="selection"                   foreground="transparent" background="#rgba(136,138,133,.3)"/>
   <style name="cursor"                      foreground="aluminium2"/>
   <style name="current-line"                background="dark2"/>
   <style name="current-line-number"         background="dark2"/>
