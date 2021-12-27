@@ -70,14 +70,14 @@ get_color (GtkSourceStyleScheme *scheme,
                 "background-set", &bg_set,
                 NULL);
 
-  if (kind == FOREGROUND && fg_set)
+  if (kind == FOREGROUND && fg && fg_set)
     gdk_rgba_parse (color, fg);
-  else if (kind == BACKGROUND && bg_set)
+  else if (kind == BACKGROUND && bg && bg_set)
     gdk_rgba_parse (color, bg);
   else
     return FALSE;
 
-  return color->alpha > 0.0;
+  return color->alpha >= .1;
 }
 
 static inline gboolean
@@ -272,7 +272,12 @@ _editor_recoloring_generate_css (GtkSourceStyleScheme *style_scheme)
       get_foreground (style_scheme, "selection", &color))
     define_color (str, "accent_fg_color", &color);
 
-  if (get_background (style_scheme, "selection", &color))
+  if (get_metadata_color (style_scheme, "accent_color", &color))
+    {
+      define_color (str, "accent_color", &color);
+    }
+  else if (get_metadata_color (style_scheme, "accent_bg_color", &color) ||
+           get_background (style_scheme, "selection", &color))
     {
       color.alpha = 1;
       define_color_mixed (str, "accent_color", &color, alt, .1);
