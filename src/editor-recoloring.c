@@ -96,6 +96,19 @@ get_background (GtkSourceStyleScheme *scheme,
   return get_color (scheme, style_name, bg, BACKGROUND);
 }
 
+static gboolean
+get_metadata_color (GtkSourceStyleScheme *scheme,
+                    const char           *key,
+                    GdkRGBA              *color)
+{
+  const char *str;
+
+  if ((str = gtk_source_style_scheme_get_metadata (scheme, key)))
+    return gdk_rgba_parse (color, str);
+
+  return FALSE;
+}
+
 static void
 define_color (GString       *str,
               const char    *name,
@@ -251,10 +264,12 @@ _editor_recoloring_generate_css (GtkSourceStyleScheme *style_scheme)
   define_color_mixed (str, "view_bg_color", &text_bg, &white, is_dark ? .1 : .3);
   define_color (str, "view_fg_color", &text_fg);
 
-  if (get_background (style_scheme, "selection", &color))
+  if (get_metadata_color (style_scheme, "accent_bg_color", &color) ||
+      get_background (style_scheme, "selection", &color))
     define_color (str, "accent_bg_color", &color);
 
-  if (get_foreground (style_scheme, "selection", &color))
+  if (get_metadata_color (style_scheme, "accent_fg_color", &color) ||
+      get_foreground (style_scheme, "selection", &color))
     define_color (str, "accent_fg_color", &color);
 
   if (get_background (style_scheme, "selection", &color))
