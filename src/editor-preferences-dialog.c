@@ -338,6 +338,24 @@ update_custom_font_cb (EditorPreferencesDialog *self,
 }
 
 static void
+style_scheme_activated_cb (EditorPreferencesDialog *self,
+                           GtkFlowBoxChild         *child,
+                           GtkFlowBox              *flow_box)
+{
+  GtkWidget *preview;
+
+  g_assert (EDITOR_IS_PREFERENCES_DIALOG (self));
+  g_assert (GTK_IS_FLOW_BOX_CHILD (child));
+  g_assert (GTK_IS_FLOW_BOX (flow_box));
+
+  if ((preview = gtk_flow_box_child_get_child (child)))
+    {
+      g_assert (GTK_SOURCE_IS_STYLE_SCHEME_PREVIEW (preview));
+      gtk_widget_activate (preview);
+    }
+}
+
+static void
 editor_preferences_dialog_constructed (GObject *object)
 {
   EditorPreferencesDialog *self = (EditorPreferencesDialog *)object;
@@ -373,6 +391,7 @@ editor_preferences_dialog_class_init (EditorPreferencesDialogClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorPreferencesDialog, scheme_group);
   gtk_widget_class_bind_template_child (widget_class, EditorPreferencesDialog, source_view);
   gtk_widget_class_bind_template_child (widget_class, EditorPreferencesDialog, use_custom_font);
+  gtk_widget_class_bind_template_callback (widget_class, style_scheme_activated_cb);
 
   g_type_ensure (EDITOR_TYPE_PREFERENCES_FONT);
   g_type_ensure (EDITOR_TYPE_PREFERENCES_SPIN);
