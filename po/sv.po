@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2021-12-26 21:29+0000\n"
-"PO-Revision-Date: 2021-12-28 23:37+0100\n"
+"POT-Creation-Date: 2021-12-30 20:42+0000\n"
+"PO-Revision-Date: 2021-12-30 22:29+0100\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -174,7 +174,7 @@ msgstr "Använd systemtypsnitt"
 msgid "If the default system monospace font should be used."
 msgstr "Om systemets standardtypsnitt med fast breddsteg ska användas."
 
-#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:58
+#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:59
 msgid "Custom Font"
 msgstr "Anpassat typsnitt"
 
@@ -255,6 +255,18 @@ msgstr "Rita ut blanktecken"
 msgid "The various types of spaces to draw in the editor."
 msgstr "De olika typerna av blanktecken att rita ut i redigeraren."
 
+#: data/org.gnome.TextEditor.gschema.xml:147
+msgid "Enable Snippets"
+msgstr "Aktivera textsnuttar"
+
+#: data/org.gnome.TextEditor.gschema.xml:148
+msgid ""
+"Enable the use of snippets registered with GtkSourceView from within the "
+"editor."
+msgstr ""
+"Aktivera användning av textsnuttar som registrerats med GtkSourceView "
+"inifrån redigeraren."
+
 #: src/editor-animation.c:1051
 #, c-format
 msgid "Failed to find property %s in %s"
@@ -333,32 +345,32 @@ msgstr "Inga senaste dokument"
 msgid "No Results Found"
 msgstr "Inga resultat hittades"
 
-#: src/editor-page.c:916 src/editor-sidebar-item.c:474
+#: src/editor-page.c:920 src/editor-sidebar-item.c:474
 msgid "New Document"
 msgstr "Nytt dokument"
 
-#: src/editor-page.c:933 src/editor-sidebar-item.c:79
+#: src/editor-page.c:937 src/editor-sidebar-item.c:79
 msgid "Draft"
 msgstr "Utkast"
 
-#: src/editor-page.c:987
+#: src/editor-page.c:991
 msgid "Failed to save document"
 msgstr "Misslyckades med att spara dokument"
 
-#: src/editor-page.c:1072
+#: src/editor-page.c:1076
 msgid "Save As"
 msgstr "Spara som"
 
-#: src/editor-page.c:1075 src/editor-window-actions.c:132
+#: src/editor-page.c:1079 src/editor-window-actions.c:132
 msgid "Save"
 msgstr "Spara"
 
-#: src/editor-page.c:1076 src/editor-window-actions.c:131
+#: src/editor-page.c:1080 src/editor-window-actions.c:131
 #: src/editor-window-actions.c:242 src/editor-window-actions.c:351
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: src/editor-page.c:1216
+#: src/editor-page.c:1220
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Rad %u, Kol %u"
@@ -385,43 +397,43 @@ msgstr "Kol"
 msgid "Appearance"
 msgstr "Utseende"
 
-#: src/editor-preferences-dialog.ui:80
+#: src/editor-preferences-dialog.ui:81
 msgid "Display Grid Pattern"
 msgstr "Visa rutnätsmönster"
 
-#: src/editor-preferences-dialog.ui:86
+#: src/editor-preferences-dialog.ui:87
 msgid "Highlight Current Line"
 msgstr "Färgmarkera aktuell rad"
 
-#: src/editor-preferences-dialog.ui:92
+#: src/editor-preferences-dialog.ui:93
 msgid "Display Overview Map"
 msgstr "Visa översiktskarta"
 
-#: src/editor-preferences-dialog.ui:100
+#: src/editor-preferences-dialog.ui:101
 msgid "Right Margin"
 msgstr "Högermarginal"
 
-#: src/editor-preferences-dialog.ui:103
+#: src/editor-preferences-dialog.ui:104
 msgid "Margin Position"
 msgstr "Position för marginal"
 
-#: src/editor-preferences-dialog.ui:111
+#: src/editor-preferences-dialog.ui:112
 msgid "Behavior"
 msgstr "Beteende"
 
-#: src/editor-preferences-dialog.ui:114
+#: src/editor-preferences-dialog.ui:115
 msgid "Restore Session"
 msgstr "Återställ session"
 
-#: src/editor-preferences-dialog.ui:115
+#: src/editor-preferences-dialog.ui:116
 msgid "Return to your previous session when Text Editor is started"
 msgstr "Återgå till din föregående session när Textredigerare startas"
 
-#: src/editor-preferences-dialog.ui:121
+#: src/editor-preferences-dialog.ui:122
 msgid "Discover Document Settings"
 msgstr "Identifiera dokumentinställningar"
 
-#: src/editor-preferences-dialog.ui:122
+#: src/editor-preferences-dialog.ui:123
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr ""
 "Tillämpa inställningar med lägesrader, editorconfig eller rimliga "
