@@ -30,6 +30,17 @@
     ],
     "modules" : [
         {
+            "name" : "gtksourceview",
+            "buildsystem" : "meson",
+            "config-opts" : [ "-Ddevelopment=true" ],
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/GNOME/gtksourceview.git"
+                }
+            ]
+        },
+        {
             "name" : "gnome-text-editor",
             "builddir" : true,
             "buildsystem" : "meson",
