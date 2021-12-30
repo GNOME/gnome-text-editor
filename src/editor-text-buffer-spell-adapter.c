@@ -380,6 +380,35 @@ invalidate_tag_region_cb (EditorTextBufferSpellAdapter *self,
 }
 
 static void
+apply_error_style_cb (GtkSourceBuffer *buffer,
+                      GParamSpec      *pspec,
+                      GtkTextTag      *tag)
+{
+  GtkSourceStyleScheme *scheme;
+  GtkSourceStyle *style;
+
+  g_assert (GTK_SOURCE_IS_BUFFER (buffer));
+  g_assert (GTK_IS_TEXT_TAG (tag));
+
+  g_object_set (tag,
+                "underline", PANGO_UNDERLINE_ERROR,
+                "background-set", FALSE,
+                "foreground-set", FALSE,
+                "weight-set", FALSE,
+                "variant-set", FALSE,
+                "style-set", FALSE,
+                "indent-set", FALSE,
+                "size-set", FALSE,
+                NULL);
+
+  if ((scheme = gtk_source_buffer_get_style_scheme (buffer)))
+    {
+      if ((style = gtk_source_style_scheme_get_style (scheme, "def:misspelled-word")))
+        gtk_source_style_apply (style, tag);
+    }
+}
+
+static void
 editor_text_buffer_spell_adapter_set_buffer (EditorTextBufferSpellAdapter *self,
                                              GtkTextBuffer                *buffer)
 {
@@ -403,6 +432,13 @@ editor_text_buffer_spell_adapter_set_buffer (EditorTextBufferSpellAdapter *self,
       self->tag = gtk_text_buffer_create_tag (buffer, NULL,
                                               "underline", PANGO_UNDERLINE_ERROR,
                                               NULL);
+
+      g_signal_connect_object (buffer,
+                               "notify::style-scheme",
+                               G_CALLBACK (apply_error_style_cb),
+                               self->tag,
+                               0);
+      apply_error_style_cb (GTK_SOURCE_BUFFER (buffer), NULL, self->tag);
 
       /* Track tag changes from the tag table and extract "no-spell-check"
        * tag from GtkSourceView so that we can avoid words with that tag.
