@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues\n"
-"POT-Creation-Date: 2021-12-22 04:01+0000\n"
-"PO-Revision-Date: 2021-12-22 14:48+0200\n"
+"POT-Creation-Date: 2021-12-30 20:42+0000\n"
+"PO-Revision-Date: 2021-12-31 16:46+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -170,7 +170,7 @@ msgstr "Використовувати системний шрифт"
 msgid "If the default system monospace font should be used."
 msgstr "Чи слід типово використовувати загальносистемний моноширинний шрифт."
 
-#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:58
+#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:59
 msgid "Custom Font"
 msgstr "Нетиповий шрифт"
 
@@ -255,6 +255,18 @@ msgstr "Візуалізація пробілів"
 msgid "The various types of spaces to draw in the editor."
 msgstr "Різні типи пробілів, які слід малювати у редакторі."
 
+#: data/org.gnome.TextEditor.gschema.xml:147
+msgid "Enable Snippets"
+msgstr ""
+"Увімкнути фрагменти"
+
+#: data/org.gnome.TextEditor.gschema.xml:148
+msgid ""
+"Enable the use of snippets registered with GtkSourceView from within the "
+"editor."
+msgstr ""
+"Увімкнути у редакторі використання фрагментів, зареєстрованих за допомогою GtkSourceView."
+
 #: src/editor-animation.c:1051
 #, c-format
 msgid "Failed to find property %s in %s"
@@ -269,7 +281,7 @@ msgstr "Не вдалося отримати значення va_list: %s"
 msgid "Text Editor Website"
 msgstr "Сайт «Текстового редактора»"
 
-#: src/editor-application.c:389
+#: src/editor-application.c:504
 msgid "Do not restore session at startup"
 msgstr "Не відновлювати сеанс після запуску"
 
@@ -317,7 +329,7 @@ msgstr "Відновлено зміни з чернетки"
 msgid "Unsaved changes to the document have been restored."
 msgstr "Відновлено незбережені зміни, які було внесено до документа."
 
-#: src/editor-language-dialog.ui:5 src/editor-window.c:193
+#: src/editor-language-dialog.ui:5 src/editor-window.c:194
 msgid "Document Type"
 msgstr "Тип документа"
 
@@ -325,40 +337,40 @@ msgstr "Тип документа"
 msgid "No Matches"
 msgstr "Немає відповідників"
 
-#: src/editor-open-popover.ui:48
+#: src/editor-open-popover.ui:65
 msgid "No Recent Documents"
 msgstr "Немає недавніх документів"
 
-#: src/editor-open-popover.ui:73
+#: src/editor-open-popover.ui:92
 msgid "No Results Found"
 msgstr "Нічого не знайдено"
 
-#: src/editor-page.c:916 src/editor-sidebar-item.c:474
+#: src/editor-page.c:920 src/editor-sidebar-item.c:474
 msgid "New Document"
 msgstr "Новий документ"
 
-#: src/editor-page.c:933 src/editor-sidebar-item.c:79
+#: src/editor-page.c:937 src/editor-sidebar-item.c:79
 msgid "Draft"
 msgstr "Чернетка"
 
-#: src/editor-page.c:987
+#: src/editor-page.c:991
 msgid "Failed to save document"
 msgstr "Не вдалося зберегти документ"
 
-#: src/editor-page.c:1072
+#: src/editor-page.c:1076
 msgid "Save As"
 msgstr "Зберегти як"
 
-#: src/editor-page.c:1075 src/editor-window-actions.c:132
+#: src/editor-page.c:1079 src/editor-window-actions.c:132
 msgid "Save"
 msgstr "Зберегти"
 
-#: src/editor-page.c:1076 src/editor-window-actions.c:131
+#: src/editor-page.c:1080 src/editor-window-actions.c:131
 #: src/editor-window-actions.c:242 src/editor-window-actions.c:351
 msgid "Cancel"
 msgstr "Скасувати"
 
-#: src/editor-page.c:1216
+#: src/editor-page.c:1220
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Рд %u, Поз %u"
@@ -385,44 +397,44 @@ msgstr "Поз"
 msgid "Appearance"
 msgstr "Вигляд"
 
-#: src/editor-preferences-dialog.ui:80
+#: src/editor-preferences-dialog.ui:81
 msgid "Display Grid Pattern"
 msgstr "Показувати ґратку"
 
-#: src/editor-preferences-dialog.ui:86
+#: src/editor-preferences-dialog.ui:87
 msgid "Highlight Current Line"
 msgstr "Підсвічувати поточний рядок"
 
-#: src/editor-preferences-dialog.ui:92
+#: src/editor-preferences-dialog.ui:93
 msgid "Display Overview Map"
 msgstr "Показувати оглядову мапу"
 
-#: src/editor-preferences-dialog.ui:100
+#: src/editor-preferences-dialog.ui:101
 msgid "Right Margin"
 msgstr "Правий відступ"
 
-#: src/editor-preferences-dialog.ui:103
+#: src/editor-preferences-dialog.ui:104
 msgid "Margin Position"
 msgstr "Розташування поля"
 
-#: src/editor-preferences-dialog.ui:111
+#: src/editor-preferences-dialog.ui:112
 msgid "Behavior"
 msgstr "Поведінка"
 
-#: src/editor-preferences-dialog.ui:114
+#: src/editor-preferences-dialog.ui:115
 msgid "Restore Session"
 msgstr "Відновлювати сеанс"
 
-#: src/editor-preferences-dialog.ui:115
+#: src/editor-preferences-dialog.ui:116
 msgid "Return to your previous session when Text Editor is started"
 msgstr ""
 "Повертатися до попереднього сеансу після запуску «Текстового редактора»"
 
-#: src/editor-preferences-dialog.ui:121
+#: src/editor-preferences-dialog.ui:122
 msgid "Discover Document Settings"
 msgstr "Визначити параметри документа"
 
-#: src/editor-preferences-dialog.ui:122
+#: src/editor-preferences-dialog.ui:123
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr ""
 "Застосувати параметри на основі modelines, editorconfig або притомних "
@@ -658,13 +670,13 @@ msgstr "усі файли"
 msgid "Text Files"
 msgstr "текстові файли"
 
-#: src/editor-window.c:205
+#: src/editor-window.c:206
 #, c-format
 msgid "Document Type: %s"
 msgstr "Тип документа: %s"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:723
+#: src/editor-window.c:724
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) – Текстовий редактор"
@@ -866,8 +878,6 @@ msgid "Reorder before previous tab"
 msgstr "Перевпорядкувати до попередньої вкладки"
 
 #: src/help-overlay.ui:51
-#| msgctxt "shortcut window"
-#| msgid "Move to previous tab"
 msgctxt "shortcut window"
 msgid "Restore previously closed tab"
 msgstr "Відновити раніше закриту вкладку"
