@@ -205,8 +205,7 @@ add_window_state (EditorSession   *self,
         g_variant_builder_add_parsed (builder, "{'is-active', <%b>}", is_active);
 
       /* Store the window size */
-      width = gtk_widget_get_width (GTK_WIDGET (window));
-      height = gtk_widget_get_height (GTK_WIDGET (window));
+      gtk_window_get_default_size (GTK_WINDOW (window), &width, &height);
       g_variant_builder_add_parsed (builder,
                                     "{'size', <(%u,%u)>}",
                                     CLAMP (width, 0, 10000),
@@ -579,26 +578,27 @@ _editor_session_new (void)
 
 static gboolean
 get_default_size (EditorSession *self,
-                  guint         *width,
-                  guint         *height)
+                  int           *width,
+                  int           *height)
 {
-  GApplication *app;
-  GtkWindow *active;
+  const GList *windows;
 
   g_assert (EDITOR_IS_SESSION (self));
 
-  app = g_application_get_default ();
-  active = gtk_application_get_active_window (GTK_APPLICATION (app));
+  windows = gtk_application_get_windows (GTK_APPLICATION (EDITOR_APPLICATION_DEFAULT));
 
-  if (active)
+  *width = default_width;
+  *height = default_height;
+
+  for (const GList *iter = windows; iter; iter = iter->next)
     {
-      *width = gtk_widget_get_width (GTK_WIDGET (active));
-      *height = gtk_widget_get_height (GTK_WIDGET (active));
-    }
-  else
-    {
-      *width = default_width;
-      *height = default_height;
+      GtkWindow *window = iter->data;
+
+      if (EDITOR_IS_WINDOW (window))
+        {
+          gtk_window_get_default_size (window, width, height);
+          break;
+        }
     }
 
   return *width > 0 && *height > 0;
@@ -629,8 +629,8 @@ _editor_session_create_window_no_draft (EditorSession *self)
 {
   EditorWindow *window;
   gboolean resize;
-  guint width;
-  guint height;
+  int width;
+  int height;
 
   g_return_val_if_fail (EDITOR_IS_SESSION (self), NULL);
 
@@ -660,8 +660,8 @@ editor_session_create_window (EditorSession *self)
   g_autoptr(EditorDocument) document = NULL;
   EditorWindow *window;
   gboolean resize;
-  guint width;
-  guint height;
+  int width;
+  int height;
 
   g_return_val_if_fail (EDITOR_IS_SESSION (self), NULL);
 
