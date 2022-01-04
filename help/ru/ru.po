@@ -1,0 +1,217 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-usage/issues\n"
+"POT-Creation-Date: 2021-12-30 13:30+0000\n"
+"PO-Revision-Date: 2022-01-04 21:32+1000\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"Last-Translator: Ser82-png\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"Language: ru\n"
+
+#: data/org.gnome.Usage.appdata.xml.in.in:5
+msgid "GNOME Usage"
+msgstr "GNOME Usage"
+
+#: data/org.gnome.Usage.appdata.xml.in.in:6
+msgid "A nice way to view information about use of system resources"
+msgstr ""
+"Хороший способ просмотра информации об использовании системных ресурсов"
+
+#: data/org.gnome.Usage.appdata.xml.in.in:8
+msgid ""
+"A simple GNOME 3 application to monitor and analyze system resources such as "
+"processing, memory, and storage."
+msgstr ""
+"Программа для мониторинга и анализа системных ресурсов, таких как процессы, "
+"оперативная память и дисковое пространство."
+
+#: data/org.gnome.Usage.desktop.in.in:3 data/ui/window.ui:8
+#: data/ui/window.ui:23 src/application.vala:76
+msgid "Usage"
+msgstr "Usage"
+
+#: data/org.gnome.Usage.desktop.in.in:4
+msgid ""
+"A nice way to view information about use of system resources, like memory "
+"and disk space"
+msgstr ""
+"Хороший способ просмотра информации об использовании системных ресурсов, "
+"таких как оперативная память и дисковое пространство"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Usage.desktop.in.in:13
+msgid ""
+"Monitor;System;Process;CPU;Memory;Network;History;Usage;Performance;Task;"
+"Manager;"
+msgstr ""
+"Monitor;System;Process;CPU;Memory;Network;History;Usage;Performance;Task;"
+"Manager;Мониторинг;Система;Процесс;Процессор;Память;Сеть;История;"
+"Использование;Производительность;Задачи;Менеджер;"
+
+#: data/org.gnome.Usage.gschema.xml.in:5
+msgid "A list of processes which we don’t want killed"
+msgstr "Список процессов, которые мы не хотим убивать"
+
+#: data/org.gnome.Usage.gschema.xml.in:6
+msgid "This list is used for filtering which processes the user can’t stop."
+msgstr ""
+"Этот список используется для фильтрации процессов, которые пользователь не "
+"может остановить."
+
+#: data/ui/memory-speedometer.ui:38
+msgid "RAM"
+msgstr "Оперативная память"
+
+#: data/ui/memory-speedometer.ui:53 data/ui/storage-view.ui:51
+#: data/ui/swap-speedometer.ui:51
+msgid "Used"
+msgstr "Использовано"
+
+#: data/ui/memory-speedometer.ui:77 data/ui/storage-view.ui:58
+#: data/ui/swap-speedometer.ui:75
+msgid "Available"
+msgstr "Доступно"
+
+#: data/ui/no-results-found-view.ui:23
+msgid "No results found"
+msgstr "Ничего не найдено"
+
+#: data/ui/no-results-found-view.ui:32
+msgid "Try a different search"
+msgstr "Попробуйте другой поиск"
+
+#: data/ui/primary-menu.ui:14
+msgid "_About Usage"
+msgstr "_О приложении"
+
+#: data/ui/primary-menu.ui:29
+msgid "Group system processes"
+msgstr "Группа системных процессов"
+
+#: data/ui/primary-menu.ui:37
+msgid "Show all processes"
+msgstr "Показать все процессы"
+
+#. Translators: This sentence is later suffixed with an application name. Example: “Force Quit Videos?”
+#: data/ui/quit-process-dialog.ui:9
+msgid "Force Quit %s?"
+msgstr "Принудительно завершить работу %s?"
+
+#: data/ui/quit-process-dialog.ui:10
+msgid "Unsaved work might be lost."
+msgstr "Несохраненная работа может быть потеряна."
+
+#: data/ui/quit-process-dialog.ui:16
+msgid "Cancel"
+msgstr "Отмена"
+
+#: data/ui/quit-process-dialog.ui:24
+msgid "Force Quit"
+msgstr "Принудительный выход"
+
+#: data/ui/storage-actionbar.ui:17
+msgid "Delete…"
+msgstr "Удалить…"
+
+#: data/ui/storage-view.ui:42
+msgid "Home Partition"
+msgstr "Домашний раздел"
+
+#: data/ui/swap-speedometer.ui:36
+msgid "Swap"
+msgstr "Подкачка"
+
+#: src/app-item.vala:147
+msgid "System"
+msgstr "Система"
+
+#: src/application.vala:77
+msgid ""
+"A nice way to view information about use of system resources, like memory "
+"and disk space."
+msgstr ""
+"Хороший способ просмотра информации об использовании системных ресурсов, "
+"таких как оперативная память и дисковое пространство."
+
+#: src/application.vala:80
+msgid "translator-credits"
+msgstr ""
+"IgorPolyakov <igorpolyakov@protonmail.com>,2019\n"
+"Ser82-png,2021"
+
+#: src/application.vala:82
+msgid "Websites"
+msgstr "Веб-сайты"
+
+#: src/cpu-sub-view.vala:28 src/graph-stack-switcher.vala:40
+msgid "Processor"
+msgstr "Процессор"
+
+#: src/graph-stack-switcher.vala:41 src/memory-sub-view.vala:28
+msgid "Memory"
+msgstr "Память"
+
+#: src/performance-view.vala:44
+msgid "Performance"
+msgstr "Производительность"
+
+#: src/storage/storage-actionbar.vala:37
+#, c-format
+msgid "%s selected"
+msgstr "%s выбрано"
+
+#: src/storage/storage-actionbar.vala:43
+msgid "Are you sure you want to permanently delete selected items?"
+msgstr ""
+"Вы действительно хотите удалить выбранные элементы без возможности "
+"восстановления?"
+
+#: src/storage/storage-actionbar.vala:50
+msgid "If you delete these items, they will be permanently lost."
+msgstr "Если вы удалите эти элементы, они будут потеряны безвозвратно."
+
+#: src/storage/storage-row-popover.vala:32
+msgid ""
+"Operating system files are an essential part of your system and cannot be "
+"removed."
+msgstr ""
+"Файлы операционной системы являются важной частью вашей системы и не могут "
+"быть удалены."
+
+#: src/storage/storage-view.vala:78
+msgid "Storage"
+msgstr "Хранилище"
+
+#: src/storage/storage-view.vala:246
+msgid "Operating System"
+msgstr "Операционная система"
+
+#: src/storage/storage-view.vala:272
+msgid "Scanning directories"
+msgstr "Сканирование каталогов"
+
+#: src/utils.vala:26
+#, c-format
+msgid "%llu B"
+msgstr "%llu Б"
+
+#: src/utils.vala:31
+#, c-format
+msgid "%s/s"
+msgstr "%s/с"
+
+#: src/utils.vala:33
+#, c-format
+msgid "%llu B/s"
+msgstr "%llu Б/с"
