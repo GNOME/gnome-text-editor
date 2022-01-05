@@ -33,8 +33,8 @@
 #include "editor-session-private.h"
 #include "editor-window.h"
 
-#define METADATA_CURSOR    "metadata::gte-cursor"
-#define METADATA_SPELLING  "metadata::gte-spelling"
+#define METADATA_CURSOR     "metadata::gte-cursor"
+#define METADATA_SPELLING   "metadata::gte-spelling"
 #define TITLE_LAST_WORD_POS 20
 #define TITLE_MAX_LEN       100
 
