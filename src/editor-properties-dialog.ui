@@ -11,7 +11,8 @@
       <object class="GtkHeaderBar">
         <child type="start">
           <object class="GtkButton" id="rescan">
-            <property name="label" translatable="yes">Update</property>
+            <property name="label" translatable="yes">_Update</property>
+            <property name="use-underline">true</property>
             <property name="visible">false</property>
             <property name="action-name">win.rescan</property>
           </object>
