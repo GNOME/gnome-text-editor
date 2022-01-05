@@ -29,6 +29,7 @@
 #include "editor-language-dialog.h"
 #include "editor-page-private.h"
 #include "editor-preferences-dialog-private.h"
+#include "editor-properties-dialog-private.h"
 #include "editor-save-changes-dialog-private.h"
 #include "editor-session-private.h"
 #include "editor-window-private.h"
@@ -594,6 +595,23 @@ editor_window_actions_page_zoom_one_cb (GtkWidget  *widget,
   _editor_page_zoom_one (editor_window_get_visible_page (self));
 }
 
+static void
+editor_window_actions_page_properties_cb (GtkWidget  *widget,
+                                          const char *action_name,
+                                          GVariant   *param)
+{
+  EditorWindow *self = (EditorWindow *)widget;
+  EditorDocument *document;
+  GtkWidget *window;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+
+  document = editor_page_get_document (self->visible_page);
+  window = editor_properties_dialog_new (self, document);
+
+  gtk_window_present (GTK_WINDOW (window));
+}
+
 void
 _editor_window_class_actions_init (EditorWindowClass *klass)
 {
@@ -703,6 +721,10 @@ _editor_window_class_actions_init (EditorWindowClass *klass)
                                    "page.zoom-one",
                                    NULL,
                                    editor_window_actions_page_zoom_one_cb);
+  gtk_widget_class_install_action (widget_class,
+                                   "page.properties",
+                                   NULL,
+                                   editor_window_actions_page_properties_cb);
 }
 
 void
@@ -770,6 +792,7 @@ _editor_window_actions_update (EditorWindow *self,
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.change-language", has_page);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.discard-changes", externally_modified || (modified && !draft));
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.print", has_page);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.properties", has_page);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.save", can_save);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.save-as", has_page);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.copy-all", has_page);
