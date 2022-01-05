@@ -8,6 +8,7 @@ editor_sources = [
   'editor-document.c',
   'editor-info-bar.c',
   'editor-frame-source.c',
+  'editor-file-manager.c',
   'editor-joined-menu.c',
   'editor-language-dialog.c',
   'editor-language-row.c',
