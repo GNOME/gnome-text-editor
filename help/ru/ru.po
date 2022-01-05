@@ -1,217 +1,479 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Russian translation for gnome-text-editor.
+# Copyright (C) 2021 gnome-text-editor's COPYRIGHT HOLDER
+# This file is distributed under the same license as the gnome-text-editor package.
+# Sergej A. <sw@atrus.ru>, 2021.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-usage/issues\n"
-"POT-Creation-Date: 2021-12-30 13:30+0000\n"
-"PO-Revision-Date: 2022-01-04 21:32+1000\n"
-"Language-Team: \n"
+"Project-Id-Version: gnome-text-editor gnome-41\n"
+"POT-Creation-Date: 2021-12-29 18:06+0000\n"
+"PO-Revision-Date: 2022-01-04 21:20+1000\n"
+"Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3\n"
-"Last-Translator: Ser82-png\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 "Language: ru\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Last-Translator: Ser82-png\n"
+"X-Generator: Poedit 2.3\n"
 
-#: data/org.gnome.Usage.appdata.xml.in.in:5
-msgid "GNOME Usage"
-msgstr "GNOME Usage"
-
-#: data/org.gnome.Usage.appdata.xml.in.in:6
-msgid "A nice way to view information about use of system resources"
-msgstr ""
-"Хороший способ просмотра информации об использовании системных ресурсов"
-
-#: data/org.gnome.Usage.appdata.xml.in.in:8
-msgid ""
-"A simple GNOME 3 application to monitor and analyze system resources such as "
-"processing, memory, and storage."
-msgstr ""
-"Программа для мониторинга и анализа системных ресурсов, таких как процессы, "
-"оперативная память и дисковое пространство."
-
-#: data/org.gnome.Usage.desktop.in.in:3 data/ui/window.ui:8
-#: data/ui/window.ui:23 src/application.vala:76
-msgid "Usage"
-msgstr "Usage"
-
-#: data/org.gnome.Usage.desktop.in.in:4
-msgid ""
-"A nice way to view information about use of system resources, like memory "
-"and disk space"
-msgstr ""
-"Хороший способ просмотра информации об использовании системных ресурсов, "
-"таких как оперативная память и дисковое пространство"
-
-#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.Usage.desktop.in.in:13
-msgid ""
-"Monitor;System;Process;CPU;Memory;Network;History;Usage;Performance;Task;"
-"Manager;"
-msgstr ""
-"Monitor;System;Process;CPU;Memory;Network;History;Usage;Performance;Task;"
-"Manager;Мониторинг;Система;Процесс;Процессор;Память;Сеть;История;"
-"Использование;Производительность;Задачи;Менеджер;"
-
-#: data/org.gnome.Usage.gschema.xml.in:5
-msgid "A list of processes which we don’t want killed"
-msgstr "Список процессов, которые мы не хотим убивать"
-
-#: data/org.gnome.Usage.gschema.xml.in:6
-msgid "This list is used for filtering which processes the user can’t stop."
-msgstr ""
-"Этот список используется для фильтрации процессов, которые пользователь не "
-"может остановить."
-
-#: data/ui/memory-speedometer.ui:38
-msgid "RAM"
-msgstr "Оперативная память"
-
-#: data/ui/memory-speedometer.ui:53 data/ui/storage-view.ui:51
-#: data/ui/swap-speedometer.ui:51
-msgid "Used"
-msgstr "Использовано"
-
-#: data/ui/memory-speedometer.ui:77 data/ui/storage-view.ui:58
-#: data/ui/swap-speedometer.ui:75
-msgid "Available"
-msgstr "Доступно"
-
-#: data/ui/no-results-found-view.ui:23
-msgid "No results found"
-msgstr "Ничего не найдено"
-
-#: data/ui/no-results-found-view.ui:32
-msgid "Try a different search"
-msgstr "Попробуйте другой поиск"
-
-#: data/ui/primary-menu.ui:14
-msgid "_About Usage"
-msgstr "_О приложении"
-
-#: data/ui/primary-menu.ui:29
-msgid "Group system processes"
-msgstr "Группа системных процессов"
-
-#: data/ui/primary-menu.ui:37
-msgid "Show all processes"
-msgstr "Показать все процессы"
-
-#. Translators: This sentence is later suffixed with an application name. Example: “Force Quit Videos?”
-#: data/ui/quit-process-dialog.ui:9
-msgid "Force Quit %s?"
-msgstr "Принудительно завершить работу %s?"
-
-#: data/ui/quit-process-dialog.ui:10
-msgid "Unsaved work might be lost."
-msgstr "Несохраненная работа может быть потеряна."
-
-#: data/ui/quit-process-dialog.ui:16
-msgid "Cancel"
-msgstr "Отмена"
-
-#: data/ui/quit-process-dialog.ui:24
-msgid "Force Quit"
-msgstr "Принудительный выход"
-
-#: data/ui/storage-actionbar.ui:17
-msgid "Delete…"
-msgstr "Удалить…"
-
-#: data/ui/storage-view.ui:42
-msgid "Home Partition"
-msgstr "Домашний раздел"
-
-#: data/ui/swap-speedometer.ui:36
-msgid "Swap"
-msgstr "Подкачка"
-
-#: src/app-item.vala:147
-msgid "System"
-msgstr "Система"
-
-#: src/application.vala:77
-msgid ""
-"A nice way to view information about use of system resources, like memory "
-"and disk space."
-msgstr ""
-"Хороший способ просмотра информации об использовании системных ресурсов, "
-"таких как оперативная память и дисковое пространство."
-
-#: src/application.vala:80
+#. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
+msgctxt "_"
 msgid "translator-credits"
+msgstr "Ser82-png, 2021."
+
+#. (itstool) path: info/title
+#: C/index.page:7
+msgctxt "link:trail"
+msgid "GNOME Text Editor"
+msgstr "GNOME Text Editor"
+
+#. (itstool) path: info/title
+#: C/index.page:8
+msgctxt "link"
+msgid "GNOME Text Editor"
+msgstr "GNOME Text Editor"
+
+#. (itstool) path: info/title
+#: C/index.page:9
+msgctxt "text"
+msgid "GNOME Text Editor"
+msgstr "GNOME Text Editor"
+
+#. (itstool) path: credit/name
+#: C/index.page:14
+msgid "Christian Hergert"
+msgstr "Christian Hergert"
+
+#. (itstool) path: credit/years
+#: C/index.page:16 C/index.page:21 C/basics-create-new-file.page:13
+#: C/basics-draft-folder.page:13 C/edit-search-and-replace.page:13
+#: C/edit-undo-redo.page:13
+msgid "2021"
+msgstr "2021"
+
+#. (itstool) path: credit/name
+#: C/index.page:19 C/basics-create-new-file.page:11
+#: C/basics-draft-folder.page:11 C/edit-search-and-replace.page:11
+msgid "Günther Wagner"
+msgstr "Günther Wagner"
+
+#. (itstool) path: info/desc
+#: C/index.page:26
+msgid "Use <app>GNOME Text Editor</app> to edit text files."
 msgstr ""
-"IgorPolyakov <igorpolyakov@protonmail.com>,2019\n"
-"Ser82-png,2021"
+"Использование <app>GNOME Text Editor</app> для редактирования текстовых "
+"файлов."
 
-#: src/application.vala:82
-msgid "Websites"
-msgstr "Веб-сайты"
+#. (itstool) path: page/title
+#: C/index.page:29
+msgid "<_:media-1/> GNOME Text Editor"
+msgstr "<_:media-1/> GNOME Text Editor"
 
-#: src/cpu-sub-view.vala:28 src/graph-stack-switcher.vala:40
-msgid "Processor"
-msgstr "Процессор"
+#. (itstool) path: section/title
+#: C/index.page:35
+msgid "Basics"
+msgstr "Основное"
 
-#: src/graph-stack-switcher.vala:41 src/memory-sub-view.vala:28
-msgid "Memory"
-msgstr "Память"
+#. (itstool) path: section/title
+#: C/index.page:40
+msgid "Edit files"
+msgstr "Редактировать файлы"
 
-#: src/performance-view.vala:44
-msgid "Performance"
-msgstr "Производительность"
+#. (itstool) path: page/title
+#: C/basics-open-file.page:9
+msgid "Open a file"
+msgstr "Открыть файл"
 
-#: src/storage/storage-actionbar.vala:37
-#, c-format
-msgid "%s selected"
-msgstr "%s выбрано"
-
-#: src/storage/storage-actionbar.vala:43
-msgid "Are you sure you want to permanently delete selected items?"
-msgstr ""
-"Вы действительно хотите удалить выбранные элементы без возможности "
-"восстановления?"
-
-#: src/storage/storage-actionbar.vala:50
-msgid "If you delete these items, they will be permanently lost."
-msgstr "Если вы удалите эти элементы, они будут потеряны безвозвратно."
-
-#: src/storage/storage-row-popover.vala:32
+#. (itstool) path: page/p
+#: C/basics-open-file.page:13
 msgid ""
-"Operating system files are an essential part of your system and cannot be "
-"removed."
+"To open a file in GNOME Text Editor use <gui style=\"button\">Open</gui> in "
+"the Headerbar and <gui>Browse Files...</gui> or the shortcut "
+"<keyseq><key>Ctrl</key><key>O</key></keyseq>."
 msgstr ""
-"Файлы операционной системы являются важной частью вашей системы и не могут "
-"быть удалены."
+"Чтобы открыть файл в GNOME Text Editor, используйте кнопку <gui style="
+"\"button\">Открыть</gui> на панели заголовков и <gui>Обзор файлов...</gui> "
+"или комбинацию клавиш <keyseq><key>Ctrl</key><key>O</key></keyseq>."
 
-#: src/storage/storage-view.vala:78
-msgid "Storage"
-msgstr "Хранилище"
+#. (itstool) path: page/p
+#: C/basics-open-file.page:17
+msgid ""
+"In the dialog choose your file(s) you want to open and click <gui>Open</"
+"gui>. It is possible to select multiple files to open these at once."
+msgstr ""
+"В диалоговом окне выберите файлы, которые хотите открыть, и нажмите "
+"<gui>Открыть</gui>. Можно выбрать несколько файлов, чтобы открыть их "
+"одновременно."
 
-#: src/storage/storage-view.vala:246
-msgid "Operating System"
-msgstr "Операционная система"
+#. (itstool) path: page/p
+#: C/basics-open-file.page:20
+msgid ""
+"Closing the dialog without opening a file can be achieved by clicking "
+"<gui>Cancel</gui>."
+msgstr ""
+"Закрыть диалоговое окно без открытия файла можно, нажав <gui>Отмена</gui>."
 
-#: src/storage/storage-view.vala:272
-msgid "Scanning directories"
-msgstr "Сканирование каталогов"
+#. (itstool) path: section/title
+#: C/basics-open-file.page:23
+msgid "Open by name"
+msgstr "Открыть по имени"
 
-#: src/utils.vala:26
-#, c-format
-msgid "%llu B"
-msgstr "%llu Б"
+#. (itstool) path: section/p
+#: C/basics-open-file.page:25
+msgid ""
+"You can search in the <gui>Open</gui> Popup or press <keyseq><key>Ctrl</"
+"key><key>K</key></keyseq> to search for recently edited files."
+msgstr ""
+"Вы можете выполнить поиск в выпадающем окне <gui>Открыть</gui> или нажать "
+"<keyseq><key>Ctrl</key><key>K</key></keyseq> для поиска недавно "
+"отредактированных файлов."
 
-#: src/utils.vala:31
-#, c-format
-msgid "%s/s"
-msgstr "%s/с"
+#. (itstool) path: section/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/basics-open-file.page:27
+msgctxt "_"
+msgid ""
+"external ref='media/search-recent.png' md5='f57950a08e6c7159429d030eb349814f'"
+msgstr ""
+"external ref='media/search-recent.png' md5='f57950a08e6c7159429d030eb349814f'"
 
-#: src/utils.vala:33
-#, c-format
-msgid "%llu B/s"
-msgstr "%llu Б/с"
+#. (itstool) path: info/keywords
+#: C/basics-create-new-file.page:19
+msgid "new file, create file"
+msgstr "новый файл, создать файл"
+
+#. (itstool) path: page/title
+#: C/basics-create-new-file.page:22
+msgid "Create a new file"
+msgstr "Создать новый файл"
+
+#. (itstool) path: page/p
+#: C/basics-create-new-file.page:24
+msgid "In GNOME Text Editor a new file can be created in several ways:"
+msgstr "В GNOME Text Editor новый файл можно создать несколькими способами:"
+
+#. (itstool) path: item/p
+#: C/basics-create-new-file.page:27
+msgid "Use the <gui>New tab</gui> button."
+msgstr "Используя кнопку <gui>Новая вкладка</gui>."
+
+#. (itstool) path: item/p
+#: C/basics-create-new-file.page:28
+msgid "Press <keyseq><key>Ctrl</key><key>N</key></keyseq>"
+msgstr "Нажав <keyseq><key>Ctrl</key><key>N</key></keyseq>"
+
+#. (itstool) path: page/p
+#: C/basics-create-new-file.page:31
+msgid ""
+"A new document is by default in a state called <gui>Draft</gui>. The meaning "
+"of this is that the document is automatically saved in the draft folder of "
+"GNOME Text Editor."
+msgstr ""
+"Новый документ по умолчанию находится в состоянии <gui>Черновик</gui>. Смысл "
+"этого в том, что документ автоматически сохраняется в папке черновиков GNOME "
+"Text Editor."
+
+#. (itstool) path: info/desc
+#: C/basics-draft-folder.page:18
+msgid "Explanation of the drafts folder."
+msgstr "Пояснение к папке с черновиками."
+
+#. (itstool) path: info/keywords
+#: C/basics-draft-folder.page:20
+msgid "draft, folder"
+msgstr "черновик, папка"
+
+#. (itstool) path: page/title
+#: C/basics-draft-folder.page:23
+msgid "Draft folder"
+msgstr "Папка для черновиков"
+
+#. (itstool) path: page/p
+#: C/basics-draft-folder.page:25
+msgid ""
+"GNOME Text Editor will automatically save every unsaved file. This folder is "
+"located in the application data directory (~/.local/share/gnome-text-editor "
+"or in the respective flatpak folder). You should normally not care about "
+"that folder as every draft file is always accessible via the <gui>Open</gui> "
+"menu."
+msgstr ""
+"GNOME Text Editor автоматически сохраняет каждый несохраненный файл. Эта "
+"папка находится в каталоге данных приложения (~/.local/share/gnome-text-"
+"editor или в соответствующей папке flatpak). Обычно не нужно беспокоиться об "
+"этом, поскольку каждый файл черновика всегда доступен через меню "
+"<gui>Открыть</gui>."
+
+#. (itstool) path: page/p
+#: C/basics-draft-folder.page:30
+msgid ""
+"You can identify a draft in the title of GNOME Text Editor. There is a "
+"subtitle 'Draft' if your current document is not saved and will reside in "
+"the draft folder."
+msgstr ""
+"Вы можете узнать черновик в заголовке GNOME Text Editor. В подзаголовке "
+"будет указано \"Черновик\", если текущий документ не сохранен и будет "
+"храниться в папке черновиков."
+
+#. (itstool) path: info/desc
+#: C/edit-search-and-replace.page:33
+msgid "Search and replace text"
+msgstr "Поиск и замена текста"
+
+#. (itstool) path: info/keywords
+#: C/edit-search-and-replace.page:35
+msgid "search, replace"
+msgstr "поиск, замена"
+
+#. (itstool) path: page/title
+#: C/edit-search-and-replace.page:38
+msgid "Search and Replace"
+msgstr "Найти и заменить"
+
+#. (itstool) path: page/p
+#: C/edit-search-and-replace.page:40
+msgid ""
+"GNOME text editor allows you to quickly search in big text files for a "
+"specific text parts. Oftentimes these text parts need to be replaced also."
+msgstr ""
+"GNOME text editor позволяет быстро искать в больших текстовых файлах "
+"определенные части текста. Они также часто нуждаются в замене."
+
+#. (itstool) path: list/title
+#: C/edit-search-and-replace.page:44
+msgid "Search for text"
+msgstr "Искать текст"
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:45
+msgid ""
+"Activate the search panel via <guiseq><gui>Hamburger Menu</gui><gui>Find/"
+"Replace...</gui></guiseq> or activate it via <keyseq><key>Ctrl</key><key>F</"
+"key></keyseq>."
+msgstr ""
+"Активируйте панель поиска с помощью <guiseq><gui>Гамбургер-меню</"
+"gui><gui>Найти/Заменить...</gui></guiseq> или активируйте её с помощью "
+"<keyseq><key>Ctrl</key><key>F</key></keyseq>."
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:46
+msgid "Add your search term into the entry field."
+msgstr "Добавьте поисковый запрос в поле ввода."
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:47 C/edit-search-and-replace.page:70
+msgid ""
+"The search is performed as you type. You can now iterate the search result "
+"with <key>↑</key> or <key>↓</key> or with the buttons beside the entry."
+msgstr ""
+"Поиск выполняется по мере ввода. Теперь вы можете перебирать результаты "
+"поиска с помощью <key>↑</key> или <key>↓</key>, или с помощью кнопок рядом "
+"со строкой ввода."
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:48
+msgid ""
+"Pressing <key>Enter</key> will move the cursor to the currently highlighted "
+"search result."
+msgstr ""
+"Нажатие <key>Enter</key> переместит курсор к текущему выделенному результату "
+"поиска."
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:49
+msgid ""
+"Pressing <key>Escape</key> will discard the search panel and the search "
+"result."
+msgstr "Нажатие <key>Escape</key> отключает панель поиска и результат поиска."
+
+#. (itstool) path: list/title
+#: C/edit-search-and-replace.page:53
+msgid "Search tips &amp; tricks"
+msgstr "Советы по поиску&amp; хитрости"
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:54
+msgid ""
+"In order to quickly search for a word highlight the word and press "
+"<keyseq><key>Ctrl</key><key>F</key></keyseq>. The word will be automatically "
+"entered into the search entry."
+msgstr ""
+"Чтобы быстро найти слово, выделите его и нажмите <keyseq><key>Ctrl</"
+"key><key>F</key></keyseq>. Слово будет автоматически введено в поисковую "
+"запись."
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:55
+msgid ""
+"The search can be refined with additional options in the <gui>gear</gui> "
+"menu."
+msgstr ""
+"Поиск можно уточнить с помощью дополнительных опций в меню <gui>шестерёнки</"
+"gui>."
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:57
+msgid "Only match the whole word"
+msgstr "Только слово целиком"
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:58
+msgid "Using regular expressions as search term"
+msgstr "Используя регулярные выражения в качестве поискового запроса"
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:59
+msgid "Respecting case sensitivity of the search term"
+msgstr "Учитывая регистр в поисковом запросе"
+
+#. (itstool) path: list/title
+#: C/edit-search-and-replace.page:65
+msgid "Replace text"
+msgstr "Заменить текст"
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:66
+msgid ""
+"Activate the search panel via <guiseq><gui>Hamburger Menu</gui><gui>Find/"
+"Replace...</gui></guiseq> or activate it via <keyseq><key>Ctrl</key><key>H</"
+"key></keyseq>."
+msgstr ""
+"Активируйте панель поиска с помощью <guiseq><gui>Гамбургер-меню</gui> "
+"<gui>Найти/Заменить...</gui> </guiseq> или активируйте с помощью <keyseq> "
+"<key>Ctrl</key><key>H</key></keyseq>."
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:67
+msgid ""
+"In case you opened the search panel via the <gui>Hamburger Menu</gui> you "
+"have to click the button for activating the replace functionality."
+msgstr ""
+"Если вы открыли панель поиска через <gui>Гамбургер-меню</gui>, то нужно "
+"нажать кнопку для активации функции замены."
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:68
+msgid "Add your search term which should be replaced into the entry field."
+msgstr "Добавьте поисковый запрос, требуемый для замены, в поле ввода."
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:69
+msgid "Add your replace term into the second entry field."
+msgstr "Добавьте термин для замены во второе поле ввода."
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:71
+msgid ""
+"It is now possible to only replace the current search result element via "
+"<gui>Replace</gui> or you can replace all occurrences via <gui>Replace All</"
+"gui>."
+msgstr ""
+"Теперь можно заменить только текущий элемент результата поиска с помощью "
+"<gui>Заменить</gui> или все случаи используя <gui>Заменить все</gui>."
+
+#. (itstool) path: credit/name
+#: C/edit-undo-redo.page:11
+msgid "Fionn Kelleher"
+msgstr "Fionn Kelleher"
+
+#. (itstool) path: info/desc
+#: C/edit-undo-redo.page:19
+msgid "Fix mistakes made during editing"
+msgstr "Исправление ошибок, допущенных при редактировании"
+
+#. (itstool) path: info/keywords
+#: C/edit-undo-redo.page:20
+msgid "undo, redo, discard changes"
+msgstr "отмена, возврат, отменить изменения"
+
+#. (itstool) path: page/title
+#: C/edit-undo-redo.page:23
+msgid "Undoing, redoing, and discarding changes"
+msgstr "Отмена, возврат и отменить изменения"
+
+#. (itstool) path: page/p
+#: C/edit-undo-redo.page:25
+msgid ""
+"GNOME Text Editor automatically keeps track of changes made while editing a "
+"file. Changes can be undone and redone while editing, making it easy to fix "
+"mistakes."
+msgstr ""
+"GNOME Text Editor автоматически отслеживает изменения, внесенные при "
+"редактировании файла. Изменения можно отменить и вернуть во время "
+"редактирования, что упрощает исправление ошибок."
+
+#. (itstool) path: note/p
+#: C/edit-undo-redo.page:33
+msgid ""
+"Changes tracked for a file will be lost after closing it, or after <link "
+"xref=\"#discard_changes\">discarding changes</link>."
+msgstr ""
+"Изменения, внесённые в файл, будут потеряны после его закрытия или после "
+"<link xref=\"# discard_changes\">отмены изменений</link>."
+
+#. (itstool) path: section/title
+#: C/edit-undo-redo.page:40
+msgid "Undoing or redoing a change"
+msgstr "Отмена или возврат изменения"
+
+#. (itstool) path: section/p
+#: C/edit-undo-redo.page:41
+msgid ""
+"Pressing <keyseq> <key>Ctrl</key> <key>Z</key> </keyseq> will undo the last "
+"change made to a file. Using this shortcut repeatedly will continue undoing "
+"changes as they were originally made."
+msgstr ""
+"Нажатие <keyseq> <key>Ctrl</key> <key>Z</key> </keyseq> отменит последнее "
+"изменение, внесённое в файл. Повторное использование этого сочетания клавиш "
+"продолжит отмену изменений по мере их появления."
+
+#. (itstool) path: section/p
+#: C/edit-undo-redo.page:52
+msgid ""
+"Pressing <keyseq> <key>Ctrl</key> <key>Shift</key> <key>Z</key> </keyseq> "
+"will redo the last undone change in a file. Using this shortcut repeatedly "
+"will continue redoing changes as they were originally made."
+msgstr ""
+"Нажатие <keyseq> <key>Ctrl</key> <key>Shift</key> <key>Z</key> </keyseq> "
+"вернёт последнее отмененное изменение в файле. Повторное использование этого "
+"сочетания клавиш продолжит возврат изменений по мере их появления."
+
+#. (itstool) path: note/p
+#: C/edit-undo-redo.page:64
+msgid ""
+"Changes can be redone <em>only</em> if the previous editing operation was "
+"undo or redo. For example, typing text into a file directly after undoing a "
+"change will prevent redoing the last undone change."
+msgstr ""
+"Изменения могут быть повторены <em>только</em>, если предыдущая операция "
+"редактирования была отменена или повторена. Например, ввод текста в файл "
+"непосредственно после отмены изменения предотвратит повторное внесение "
+"последнего отмененного изменения."
+
+#. (itstool) path: section/title
+#: C/edit-undo-redo.page:74
+msgid "Discarding all changes since last save"
+msgstr "Отмена всех изменений с момента последнего сохранения"
+
+#. (itstool) path: section/p
+#: C/edit-undo-redo.page:75
+msgid ""
+"<guiseq> <gui>Menu</gui> <gui>Discard Changes</gui> </guiseq> will "
+"permanently discard all changes made to a file since it was last saved."
+msgstr ""
+"<guiseq><gui>Меню</gui><gui>Отменить изменения</gui> </guiseq> безвозвратно "
+"отменит все изменения, внесенные в файл с момента его последнего сохранения."
+
+#. (itstool) path: p/link
+#: C/legal.xml:4
+msgid "Creative Commons Attribution-ShareAlike 3.0 Unported License"
+msgstr "Creative Commons Attribution-ShareAlike 3.0 Unported License"
+
+#. (itstool) path: license/p
+#: C/legal.xml:3
+msgid "This work is licensed under a <_:link-1/>."
+msgstr "Эта работа находится под лицензией <_:link-1/>."
