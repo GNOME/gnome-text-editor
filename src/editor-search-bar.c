@@ -223,7 +223,7 @@ text_to_search_text (GBinding     *binding,
   const gchar *str = g_value_get_string (from_value);
 
   if (!str || gtk_source_search_settings_get_regex_enabled (self->settings))
-    g_value_set_string (to_value, NULL);
+    g_value_set_string (to_value, str);
   else
     g_value_take_string (to_value, gtk_source_utils_unescape_search_text (str));
 
