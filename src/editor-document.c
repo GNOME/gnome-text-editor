@@ -98,6 +98,26 @@ enum {
 static GParamSpec *properties [N_PROPS];
 static GSettings *shared_settings;
 
+static GtkSourceLanguage *
+guess_language (GtkSourceLanguageManager *manager,
+                const char               *filename,
+                const char               *content_type)
+{
+  /* Apply content-type overrides */
+  if (filename != NULL && content_type != NULL)
+    {
+      /* shared-mime-info calls it text/x-python rather than text/x-python3
+       * if the shebang is something like "env python" vs "env python3". We
+       * always want to default to Python 3.
+       */
+      if (g_str_has_suffix (filename, ".py") &&
+          g_str_equal (content_type, "text/x-python"))
+        content_type = "text/x-python3";
+    }
+
+  return gtk_source_language_manager_guess_language (manager, filename, content_type);
+}
+
 static void
 load_free (Load *load)
 {
@@ -205,7 +225,7 @@ editor_document_guess_content_type (EditorDocument *self)
 
   content_type = g_content_type_guess (filename, (const guchar *)content, strlen (content), &uncertain);
   manager = gtk_source_language_manager_get_default ();
-  language = gtk_source_language_manager_guess_language (manager, filename, content_type);
+  language = guess_language (manager, filename, content_type);
 
   if (language)
     gtk_source_buffer_set_language (GTK_SOURCE_BUFFER (self), language);
@@ -1110,7 +1130,7 @@ editor_document_query_info_cb (GObject      *object,
 
   editor_document_set_readonly (self, readonly);
 
-  language = gtk_source_language_manager_guess_language (lm, filename, content_type);
+  language = guess_language (lm, filename, content_type);
   gtk_source_buffer_set_language (GTK_SOURCE_BUFFER (self), language);
   gtk_source_buffer_set_highlight_syntax (GTK_SOURCE_BUFFER (self), language != NULL);
 
@@ -1549,7 +1569,7 @@ editor_document_guess_language_query_cb (GObject      *object,
   content_type = g_file_info_get_attribute_string (info, G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE);
   filename = g_file_get_basename (file);
   lm = gtk_source_language_manager_get_default ();
-  language = gtk_source_language_manager_guess_language (lm, filename, content_type);
+  language = guess_language (lm, filename, content_type);
   self = g_task_get_source_object (task);
 
   g_assert (EDITOR_IS_DOCUMENT (self));
