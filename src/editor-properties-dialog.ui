@@ -38,8 +38,12 @@
                 <property name="title" translatable="yes">Name</property>
                 <child type="suffix">
                   <object class="GtkLabel" id="name">
+                    <property name="hexpand">true</property>
                     <property name="xalign">1</property>
-                    <property name="ellipsize">middle</property>
+                    <property name="ellipsize">none</property>
+                    <property name="wrap">true</property>
+                    <property name="wrap-mode">word-char</property>
+                    <property name="use-markup">true</property>
                   </object>
                 </child>
               </object>
@@ -49,8 +53,11 @@
                 <property name="title" translatable="yes">Location</property>
                 <child type="suffix">
                   <object class="GtkLabel" id="location">
+                    <property name="hexpand">true</property>
                     <property name="xalign">1</property>
-                    <property name="ellipsize">middle</property>
+                    <property name="ellipsize">none</property>
+                    <property name="wrap">true</property>
+                    <property name="wrap-mode">word-char</property>
                     <property name="use-markup">true</property>
                     <signal name="activate-link" handler="activate_link_cb" swapped="true"/>
                   </object>
