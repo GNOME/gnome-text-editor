@@ -3,6 +3,8 @@
   <requires lib="gtk" version="4.0"/>
   <template class="EditorPropertiesDialog" parent="GtkWindow">
     <property name="title" translatable="yes">Properties</property>
+    <property name="resizable">false</property>
+    <property name="default-width">360</property>
     <style>
       <class name="org-gnome-TextEditor"/>
       <class name="properties-dialog"/>
