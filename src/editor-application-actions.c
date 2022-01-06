@@ -23,6 +23,7 @@
 #include "build-ident.h"
 #include "config.h"
 
+#include <enchant.h>
 #include <glib/gi18n.h>
 
 #include "editor-application-private.h"
@@ -58,6 +59,96 @@ static const gchar *documenters[] = {
   NULL
 };
 
+static char *
+get_system_information (void)
+{
+  GString *str = g_string_new (NULL);
+  GtkSettings *gtk_settings = gtk_settings_get_default ();
+  g_autoptr(GSettings) settings = g_settings_new ("org.gnome.TextEditor");
+  g_autoptr(GSettingsSchema) schema = NULL;
+  g_autofree char *theme_name = NULL;
+  g_auto(GStrv) keys = NULL;
+
+  g_object_get (gtk_settings, "gtk-theme-name", &theme_name, NULL);
+  g_object_get (settings, "settings-schema", &schema, NULL);
+
+  g_string_append_printf (str, "%s (%s)", PACKAGE_NAME, EDITOR_BUILD_IDENTIFIER);
+#if DEVELOPMENT_BUILD
+  g_string_append_printf (str, " Development");
+#endif
+  g_string_append (str, "\n");
+
+  g_string_append (str, "\n");
+  if (g_file_test ("/.flatpak-info", G_FILE_TEST_EXISTS))
+    g_string_append (str, "Flatpak: yes\n");
+  g_string_append_printf (str,
+                          "GLib: %d.%d.%d (%d.%d.%d)\n",
+                          glib_major_version,
+                          glib_minor_version,
+                          glib_micro_version,
+                          GLIB_MAJOR_VERSION,
+                          GLIB_MINOR_VERSION,
+                          GLIB_MICRO_VERSION);
+  g_string_append_printf (str,
+                          "GTK: %d.%d.%d (%d.%d.%d)\n",
+                          gtk_get_major_version (),
+                          gtk_get_minor_version (),
+                          gtk_get_micro_version (),
+                          GTK_MAJOR_VERSION,
+                          GTK_MINOR_VERSION,
+                          GTK_MICRO_VERSION);
+  g_string_append_printf (str,
+                          "GtkSourceView: %d.%d.%d (%d.%d.%d)\n",
+                          gtk_source_get_major_version (),
+                          gtk_source_get_minor_version (),
+                          gtk_source_get_micro_version (),
+                          GTK_SOURCE_MAJOR_VERSION,
+                          GTK_SOURCE_MINOR_VERSION,
+                          GTK_SOURCE_MICRO_VERSION);
+  g_string_append_printf (str,
+                          "Libadwaita: %d.%d.%d (%d.%d.%d)\n",
+                          adw_get_major_version (),
+                          adw_get_minor_version (),
+                          adw_get_micro_version (),
+                          ADW_MAJOR_VERSION,
+                          ADW_MINOR_VERSION,
+                          ADW_MICRO_VERSION);
+  g_string_append_printf (str,
+                          "Enchant2: %s\n",
+                          enchant_get_version ());
+
+  g_string_append (str, "\n");
+  g_string_append_printf (str, "gtk-theme-name: %s\n", theme_name);
+  g_string_append_printf (str, "GTK_THEME: %s\n", g_getenv ("GTK_THEME") ?: "unset");
+
+  g_string_append (str, "\n");
+  keys = g_settings_schema_list_keys (schema);
+  for (guint i = 0; keys[i]; i++)
+    {
+      g_autoptr(GSettingsSchemaKey) key = g_settings_schema_get_key (schema, keys[i]);
+      g_autoptr(GVariant) default_value = g_settings_schema_key_get_default_value (key);
+      g_autoptr(GVariant) user_value = g_settings_get_user_value (settings, keys[i]);
+      g_autoptr(GVariant) value = g_settings_get_value (settings, keys[i]);
+      g_autofree char *default_str = g_variant_print (default_value, TRUE);
+      g_autofree char *value_str = NULL;
+
+      g_string_append_printf (str, "org.gnome.TextEditor %s = ", keys[i]);
+
+      if (user_value != NULL && !g_variant_equal (default_value, user_value))
+        {
+          value_str = g_variant_print (user_value, TRUE);
+          g_string_append_printf (str, "%s [default=%s]\n", value_str, default_str);
+        }
+      else
+        {
+          value_str = g_variant_print (value, TRUE);
+          g_string_append_printf (str, "%s\n", value_str);
+        }
+    }
+
+  return g_string_free (str, FALSE);
+}
+
 static void
 editor_application_actions_new_window_cb (GSimpleAction *action,
                                           GVariant      *param,
@@ -85,6 +176,7 @@ editor_application_actions_about_cb (GSimpleAction *action,
 {
   EditorApplication *self = user_data;
   g_autofree char *program_name = NULL;
+  g_autofree char *system_information = NULL;
   GtkAboutDialog *dialog;
   EditorWindow *window;
 
@@ -112,6 +204,9 @@ editor_application_actions_about_cb (GSimpleAction *action,
   gtk_about_dialog_set_license_type (dialog, GTK_LICENSE_GPL_3_0);
   gtk_about_dialog_set_website (dialog, PACKAGE_WEBSITE);
   gtk_about_dialog_set_website_label (dialog, _("Text Editor Website"));
+
+  system_information = get_system_information ();
+  gtk_about_dialog_set_system_information (dialog, system_information);
 
   window = editor_application_get_current_window (self);
   gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (window));
