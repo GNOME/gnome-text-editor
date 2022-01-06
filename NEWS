@@ -1,3 +1,49 @@
+# Text Editor 42.alpha2
+
+This is our second Alpha release as we progress towards GNOME 42. Please take
+some time and test the application and submit bug reports. Distributions are
+encouraged to package GNOME Text Editor so that we can fix any lingering
+integration issues before the Beta releases.
+
+ • Mnemonics for the primary menu have be updated to reduce duplicates.
+ • Restoring windows from the session now uses `gtk_window_set_default_size()`
+   and `gtk_window_get_default_size()` to improve the chances we get the
+   proper size restored. There may still be issues on Xorg with GTK 4, but
+   that needs to be addressed in GTK 4.
+ • Paths are now properly expanded/collapsed for `wordexp()` when directories
+   with spaces are used.
+ • A new document properties dialog has been added to get information about
+   the document such as number of words, characters, and lines.
+ • Regex search from the search bar works again.
+ • Spellchecking will now use the `def:misspelled-word` style from the
+   GtkSourceStyleScheme when available, allowing schemes to override styling.
+ • Fix the default style scheme to be Adwaita in gsettings.
+ • You can now navigate and select style schemes with the keyboard in
+   the Preferences dialog.
+ • Always show the current style scheme in Preferences.
+ • Style schemes in Preferences are now sorted in lexicographic form along
+   with the presence of an alternate light/dark style. This should result in
+   similar placement of schemes across application changes to light/dark.
+ • The open popover empty state design has been improved.
+ • Track monospace-font-name from desktop preferences.
+ • Improve recoloring for some style schemes with metadata overrides.
+ • Various macOS build and runtime fixes.
+ • Add light and dark schemes for both Builder and Peninsula.
+ • You can now restore closed pages with Ctrl+Shift+t.
+ • Improve printing support for various fonts, sizing, margins, and more.
+ • Prune discard drafts when cleaning up session.
+ • CSS fixes for integrating with libadwaita and GtkSourceView.
+ • Various Vim emulation improvements.
+ • Text Editor will now prefer "python3" over "python2" when a documents
+   content-type matches `text/x-python`, as that is overwhelmingly what
+   is found in files today.
+ • When windows are restored, they will no longer restore empty drafts, even
+   if they were modified previously (added text then undo/deleted).
+ • The about dialog show now include proper git commit hashes for development
+   builds (`meson configure -Ddevelopment=true`) to aid in users and
+   distributions submitting helpful bug reports.
+ • Translation updates.
+
 # Text Editor 42.alpha1
 
  • Use libadwaita for access to desktop light/dark modes.
