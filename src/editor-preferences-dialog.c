@@ -364,6 +364,7 @@ editor_preferences_dialog_constructed (GObject *object)
 
   update_style_schemes (self);
   guess_preview_language (self);
+  update_custom_font_cb (self, NULL, self->settings);
 }
 
 static void
