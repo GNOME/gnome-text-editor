@@ -22,8 +22,10 @@
 
 #include "editor-application-private.h"
 #include "editor-document-private.h"
-#include "editor-source-view.h"
 #include "editor-joined-menu-private.h"
+#include "editor-page-private.h"
+#include "editor-search-bar-private.h"
+#include "editor-source-view.h"
 #include "editor-spell-menu.h"
 #include "editor-utils-private.h"
 

@@ -29,5 +29,6 @@ typedef struct _EditorSidebarRow   EditorSidebarRow;
 typedef struct _EditorSidebarItem  EditorSidebarItem;
 typedef struct _EditorSidebarModel EditorSidebarModel;
 typedef struct _EditorSearchBar    EditorSearchBar;
+typedef struct _EditorSearchEntry  EditorSearchEntry;
 
 G_END_DECLS

@@ -34,6 +34,35 @@ typedef enum
 
 G_DECLARE_FINAL_TYPE (EditorSearchBar, editor_search_bar, EDITOR, SEARCH_BAR, GtkWidget)
 
+struct _EditorSearchBar
+{
+  GtkWidget                parent_instance;
+
+  GtkSourceSearchContext  *context;
+  GtkSourceSearchSettings *settings;
+
+  GtkGrid                 *grid;
+  EditorSearchEntry       *search_entry;
+  GtkEntry                *replace_entry;
+  GtkButton               *replace_button;
+  GtkButton               *replace_all_button;
+  GtkCheckButton          *case_button;
+  GtkCheckButton          *regex_button;
+  GtkCheckButton          *word_button;
+  GtkToggleButton         *options_button;
+  GtkToggleButton         *replace_mode_button;
+  GtkBox                  *options_box;
+
+  guint                    offset_when_shown;
+
+  guint                    can_move : 1;
+  guint                    can_replace : 1;
+  guint                    can_replace_all : 1;
+  guint                    hide_after_move : 1;
+  guint                    scroll_to_first_match : 1;
+  guint                    jump_back_on_hide : 1;
+};
+
 void     _editor_search_bar_attach              (EditorSearchBar     *self,
                                                  EditorDocument      *document);
 void     _editor_search_bar_detach              (EditorSearchBar     *self);
