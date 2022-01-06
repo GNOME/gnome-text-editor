@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues\n"
-"POT-Creation-Date: 2022-01-05 23:57+0000\n"
-"PO-Revision-Date: 2022-01-06 11:07+0200\n"
+"POT-Creation-Date: 2022-01-06 21:24+0000\n"
+"PO-Revision-Date: 2022-01-06 23:55+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -25,7 +25,7 @@ msgstr "Christian Hergert та інші"
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:7
 #: data/org.gnome.TextEditor.desktop.in.in:8
-#: src/editor-application-actions.c:80 src/editor-application-actions.c:82
+#: src/editor-application-actions.c:186 src/editor-application-actions.c:188
 msgid "Text Editor"
 msgstr "Текстовий редактор"
 
@@ -277,38 +277,39 @@ msgstr "Не вдалося знайти властивість %s у %s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Не вдалося отримати значення va_list: %s"
 
-#: src/editor-application-actions.c:99
+#: src/editor-application-actions.c:206
 msgid "Text Editor Website"
 msgstr "Сайт «Текстового редактора»"
+
+#: src/editor-application-actions.c:207
+msgid "translator-credits"
+msgstr ""
+"Юрій Чорноіван <yurchor@ukr.net>, 2021–2022"
 
 #: src/editor-application.c:504
 msgid "Do not restore session at startup"
 msgstr "Не відновлювати сеанс після запуску"
 
-#: src/editor-document.c:1719
+#: src/editor-document.c:1739
 msgid "[Read-Only]"
 msgstr "[Лише читання]"
 
 #: src/editor-file-manager.c:87
 msgid "File path is NULL"
-msgstr ""
-"Шлях до файла порожній"
+msgstr "Шлях до файла порожній"
 
 #: src/editor-file-manager.c:96 src/editor-file-manager.c:107
 msgid "Error converting UTF-8 filename to wide char"
-msgstr ""
-"Помилка перетворення назви файлу з UTF-8 в широкі символи"
+msgstr "Помилка перетворення назви файлу з UTF-8 в широкі символи"
 
 #: src/editor-file-manager.c:115
 msgid "ILCreateFromPath() failed"
-msgstr ""
-"Помилка ILCreateFromPath()"
+msgstr "Помилка ILCreateFromPath()"
 
 #: src/editor-file-manager.c:152
 #, c-format
 msgid "Cannot convert “%s” into a valid NSURL."
-msgstr ""
-"Не вдалося перетворити «%s» на коректний NSURL."
+msgstr "Не вдалося перетворити «%s» на коректний NSURL."
 
 #: src/editor-info-bar.c:67
 msgid "_Discard Changes and Reload"
@@ -482,6 +483,56 @@ msgstr "Файл: %s"
 #: src/editor-print-operation.c:189
 msgid "Page %N of %Q"
 msgstr "Сторінка %N з %Q"
+
+#: src/editor-properties-dialog.ui:5
+#| msgid "Documen_t Properties"
+msgid "Properties"
+msgstr "Властивості"
+
+#: src/editor-properties-dialog.ui:16
+msgid "_Update"
+msgstr ""
+"_Оновити"
+
+#: src/editor-properties-dialog.ui:35
+#| msgid "File: %s"
+msgid "File"
+msgstr "Файл"
+
+#: src/editor-properties-dialog.ui:38
+msgid "Name"
+msgstr ""
+"Назва"
+
+#: src/editor-properties-dialog.ui:53
+msgid "Location"
+msgstr ""
+"Розташування"
+
+#: src/editor-properties-dialog.ui:71
+msgid "Statistics"
+msgstr ""
+"Статистика"
+
+#: src/editor-properties-dialog.ui:74
+msgid "Lines"
+msgstr ""
+"Рядки"
+
+#: src/editor-properties-dialog.ui:89
+msgid "Words"
+msgstr ""
+"Слова"
+
+#: src/editor-properties-dialog.ui:104
+msgid "Characters, No Spaces"
+msgstr ""
+"Символи (без пробілів)"
+
+#: src/editor-properties-dialog.ui:119
+msgid "All Characters"
+msgstr ""
+"Всі символи"
 
 #: src/editor-save-changes-dialog.c:257
 msgid "_Discard"
@@ -760,12 +811,10 @@ msgid "_Print"
 msgstr "Над_рукувати"
 
 #: src/editor-window.ui:224
-#| msgid "Document Type"
 msgid "Documen_t Properties"
 msgstr "В_ластивості документа"
 
 #: src/editor-window.ui:230
-#| msgid "Preferences"
 msgid "P_references"
 msgstr "На_лаштування"
 
@@ -774,12 +823,10 @@ msgid "_Keyboard Shortcuts"
 msgstr "_Клавіатурні скорочення"
 
 #: src/editor-window.ui:239
-#| msgid "Help"
 msgid "_Help"
 msgstr "_Довідка"
 
 #: src/editor-window.ui:243
-#| msgid "_About Text Editor"
 msgid "A_bout Text Editor"
 msgstr "_Про «Текстовий редактор»"
 
