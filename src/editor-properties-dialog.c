@@ -180,7 +180,7 @@ editor_properties_dialog_rescan (EditorPropertiesDialog *self)
   if (gtk_text_iter_equal (&begin, &end))
     lines = 0;
   else
-    lines = gtk_text_iter_get_line (&end) - gtk_text_iter_get_line (&begin);
+    lines = gtk_text_iter_get_line (&end) - gtk_text_iter_get_line (&begin) + 1;
 
   calculate_info (buffer,
                   &begin, &end,
