@@ -88,7 +88,7 @@ editor_application_actions_about_cb (GSimpleAction *action,
   gtk_about_dialog_set_authors (dialog, authors);
   gtk_about_dialog_set_artists (dialog, artists);
 #if DEVELOPMENT_BUILD
-  gtk_about_dialog_set_version (dialog, PACKAGE_VERSION" (" EDITOR_BUILD_IDENTIFIER ")");
+  gtk_about_dialog_set_version (dialog, EDITOR_BUILD_IDENTIFIER);
   gtk_widget_add_css_class (GTK_WIDGET (dialog), "devel");
 #else
   gtk_about_dialog_set_version (dialog, PACKAGE_VERSION);

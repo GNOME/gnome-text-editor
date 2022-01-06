@@ -79,6 +79,7 @@ editor_enums = gnome.mkenums_simple('editor-enums',
 )
 
 build_ident_h = vcs_tag(
+      command: ['git', 'describe'],
      fallback: meson.project_version(),
         input: 'build-ident.h.in',
        output: 'build-ident.h',
