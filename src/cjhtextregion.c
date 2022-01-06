@@ -23,6 +23,22 @@
 #include "cjhtextregionprivate.h"
 #include "cjhtextregionbtree.h"
 
+/**
+ * SECTION:cjhtextregion
+ * @Title: CjhTextRegion
+ * @Short_description: track regions of text with a hybrid B+Tree and piecetable
+ *
+ * This data-structure is a hybrid between a PieceTable and a B+Tree, which I've
+ * decided to call a Piece+Tree. It allows for very fast tracking of regions of
+ * text (in a single dimention, meaning no sub-regions).
+ *
+ * This is very useful for tracking where work still needs to be done in a text
+ * buffer such as for spelling mistakes, syntax highlighting, error checking, or
+ * multi-device synchronization.
+ *
+ * See_also: https://blogs.gnome.org/chergert/2021/03/26/bplustree_augmented_piecetable/
+ */
+
 #ifndef G_DISABLE_ASSERT
 # define DEBUG_VALIDATE(a,b) G_STMT_START { if (a) cjh_text_region_node_validate(a,b); } G_STMT_END
 #else
