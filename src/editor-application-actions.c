@@ -84,16 +84,16 @@ editor_application_actions_about_cb (GSimpleAction *action,
                                      gpointer       user_data)
 {
   EditorApplication *self = user_data;
-  g_autofree gchar *program_name = NULL;
+  g_autofree char *program_name = NULL;
   GtkAboutDialog *dialog;
   EditorWindow *window;
 
   g_assert (EDITOR_IS_APPLICATION (self));
 
 #if DEVELOPMENT_BUILD
-  program_name = g_strdup_printf ("%s (Development)", _("Text Editor"));
+  program_name = g_strdup_printf ("%s %s (Development)", _("Text Editor"), PACKAGE_VERSION);
 #else
-  program_name = g_strdup (_("Text Editor"));
+  program_name = g_strdup_printf ("%s %s", _("Text Editor"), PACKAGE_VERSION);
 #endif
 
   dialog = GTK_ABOUT_DIALOG (gtk_about_dialog_new ());
