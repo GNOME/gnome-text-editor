@@ -34,6 +34,13 @@
 static const gchar *authors[] = {
   "Christian Hergert",
   "Christopher Davis",
+  "Günther Wagner",
+  "Lukáš Tyrychtr",
+  "Matthias Clasen",
+  "Michael Catanzaro",
+  "Nick Richards",
+  "scootergrisen",
+  "vanadiae",
   NULL
 };
 
