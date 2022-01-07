@@ -85,6 +85,7 @@ window.org-gnome-TextEditor .open-popover list row button {
 
 window.org-gnome-TextEditor page .searchbar {
   background-color: @popover_bg_color;
+  background-clip: padding-box;
   color: @popover_fg_color;
   padding: 6px;
   border-style: solid;
