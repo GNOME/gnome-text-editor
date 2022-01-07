@@ -36,8 +36,8 @@
   "@define-color popover_bg_color mix(@window_bg_color, white, .1);\n" \
   "@define-color card_bg_color alpha(white, .6);\n"
 #define DARK_CSS_SUFFIX \
-  "@define-color popover_bg_color mix(@window_bg_color, black, 0.1);\n" \
-  "@define-color card_bg_color lighter(mix(@window_bg_color,@window_fg_color,.025));\n" \
+  "@define-color popover_bg_color mix(@window_bg_color, white, 0.07);\n" \
+  "@define-color card_bg_color @popover_bg_color;\n" \
   "@define-color view_bg_color darker(@window_bg_color);\n"
 
 enum {

@@ -1,9 +1,3 @@
-/* EditorWindow */
-window.org-gnome-TextEditor positionlabel label {
-  font-feature-settings: "tnum";
-}
-
-
 /* EditorPreferencesDialog */
 window.org-gnome-TextEditor.preferences textview.preview {
   line-height: 1.2;
@@ -20,36 +14,27 @@ window.org-gnome-TextEditor themeselector {
   margin: 9px;
 }
 window.org-gnome-TextEditor themeselector checkbutton {
-  margin: 1px;
   padding: 0;
-  min-height: 42px;
-  min-width: 42px;
-  border-width: 1px;
-  border-style: solid;
-  border-color: transparent;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 1px;
+  background-clip: content-box;
   border-radius: 9999px;
+  box-shadow: inset 0 0 0 1px @borders;
 }
 window.org-gnome-TextEditor themeselector checkbutton.follow:checked,
 window.org-gnome-TextEditor themeselector checkbutton.light:checked,
 window.org-gnome-TextEditor themeselector checkbutton.dark:checked {
-  border-color: @theme_selected_bg_color;
-  border-width: 2px;
-  margin: 0;
+  box-shadow: inset 0 0 0 2px @theme_selected_bg_color;
 }
 window.org-gnome-TextEditor themeselector checkbutton.follow {
-  background: linear-gradient(to bottom right, #fff 50%, #2e3436 50%);
-  border-color: #2e3436;
-}
-window.org-gnome-TextEditor themeselector.dark checkbutton.follow {
-  border-color: #dcdddd;
+  background-image: linear-gradient(to bottom right, #fff 49.99%, #202020 50.01%);
 }
 window.org-gnome-TextEditor themeselector checkbutton.light {
   background-color: #fff;
-  border-color: #dcdddd;
 }
 window.org-gnome-TextEditor themeselector checkbutton.dark {
-  background-color: #2e3436;
-  border-color: #000;
+  background-color: #202020;
 }
 window.org-gnome-TextEditor themeselector checkbutton radio {
   -gtk-icon-source: none;
@@ -58,7 +43,7 @@ window.org-gnome-TextEditor themeselector checkbutton radio {
   box-shadow: none;
   min-width: 12px;
   min-height: 12px;
-  margin: 24px -4px -4px 24px;
+  transform: translate(27px, 14px);
   padding: 2px;
 }
 window.org-gnome-TextEditor checkbutton.theme-selector radio:checked {
@@ -75,12 +60,14 @@ window.org-gnome-TextEditor .open-popover contents {
 }
 window.org-gnome-TextEditor .open-popover list {
   margin-bottom: 3px;
+  background: none;
+  color: inherit;
 }
 window.org-gnome-TextEditor .open-popover list label.placeholder {
   min-height: 57px;
 }
 window.org-gnome-TextEditor .open-popover list row {
-  border-radius: 9px;
+  border-radius: 6px;
   margin: 3px 6px;
 }
 window.org-gnome-TextEditor .open-popover list row:first-child {
@@ -92,16 +79,13 @@ window.org-gnome-TextEditor .open-popover list row button {
   min-height: 24px;
   min-width: 24px;
 }
-window.org-gnome-TextEditor .open-popover list row:hover,
-window.org-gnome-TextEditor .open-popover list row:focus {
-  background: alpha(currentColor, .07);
-}
 
 
 /* EditorSearchBar */
 
 window.org-gnome-TextEditor page .searchbar {
   background-color: @popover_bg_color;
+  background-clip: padding-box;
   color: @popover_fg_color;
   padding: 6px;
   border-style: solid;
@@ -114,9 +98,6 @@ window.org-gnome-TextEditor page .searchbar {
   margin: 0 10px 20px 10px;
   box-shadow: 0 1px 5px 1px alpha(black, .09),
               0 2px 14px 3px alpha(black, .05);
-}
-window.org-gnome-TextEditor page .searchbar:backdrop {
-  box-shadow: none;
 }
 window.org-gnome-TextEditor page .searchbar button.flat.circular {
   min-width: 24px;
@@ -143,15 +124,10 @@ textview.source-map:dir(rtl) {
   border-right: 1px solid @borders;
 }
 
-flap > scrolledwindow.preferences > viewport {
-  background: @theme_bg_color;
-}
-
 box.statusbar {
   font-family: monospace;
   min-width: 100px;
   padding: 3px 12px;
-  background: @theme_bg_color;
   border-top: 1px solid @borders;
 }
 
