@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-01-05 23:57+0000\n"
-"PO-Revision-Date: 2022-01-06 16:24+0100\n"
+"POT-Creation-Date: 2022-01-07 17:23+0000\n"
+"PO-Revision-Date: 2022-01-08 14:55+0100\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -27,7 +27,7 @@ msgstr "Christian Hergert med flera."
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:7
 #: data/org.gnome.TextEditor.desktop.in.in:8
-#: src/editor-application-actions.c:80 src/editor-application-actions.c:82
+#: src/editor-application-actions.c:185
 msgid "Text Editor"
 msgstr "Textredigerare"
 
@@ -277,15 +277,23 @@ msgstr "Misslyckades med att hitta egenskap %s i %s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Misslyckades med att hämta va_list-värde: %s"
 
-#: src/editor-application-actions.c:99
+#: src/editor-application-actions.c:199
 msgid "Text Editor Website"
 msgstr "Webbplats för Textredigerare"
+
+#: src/editor-application-actions.c:200
+msgid "translator-credits"
+msgstr ""
+"Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
+"\n"
+"Skicka synpunkter på översättningen till\n"
+"<tp-sv@listor.tp-sv.se>."
 
 #: src/editor-application.c:504
 msgid "Do not restore session at startup"
 msgstr "Återställ inte session vid uppstart"
 
-#: src/editor-document.c:1719
+#: src/editor-document.c:1739
 msgid "[Read-Only]"
 msgstr "[Skrivskyddad]"
 
@@ -402,12 +410,12 @@ msgid "Go"
 msgstr "Gå"
 
 #. translators: Ln is short for "Line Number"
-#: src/editor-position-label.ui:12
+#: src/editor-position-label.ui:15
 msgid "Ln"
 msgstr "Rad"
 
 #. translators: Col is short for "Column"
-#: src/editor-position-label.ui:32
+#: src/editor-position-label.ui:35
 msgid "Col"
 msgstr "Kol"
 
@@ -477,6 +485,46 @@ msgstr "Fil: %s"
 #: src/editor-print-operation.c:189
 msgid "Page %N of %Q"
 msgstr "Sida %N av %Q"
+
+#: src/editor-properties-dialog.ui:5
+msgid "Properties"
+msgstr "Egenskaper"
+
+#: src/editor-properties-dialog.ui:16
+msgid "_Update"
+msgstr "_Uppdatera"
+
+#: src/editor-properties-dialog.ui:35
+msgid "File"
+msgstr "Fil"
+
+#: src/editor-properties-dialog.ui:38
+msgid "Name"
+msgstr "Namn"
+
+#: src/editor-properties-dialog.ui:53
+msgid "Location"
+msgstr "Plats"
+
+#: src/editor-properties-dialog.ui:71
+msgid "Statistics"
+msgstr "Statistik"
+
+#: src/editor-properties-dialog.ui:74
+msgid "Lines"
+msgstr "Rader"
+
+#: src/editor-properties-dialog.ui:89
+msgid "Words"
+msgstr "Ord"
+
+#: src/editor-properties-dialog.ui:104
+msgid "Characters, No Spaces"
+msgstr "Tecken, inga blanksteg"
+
+#: src/editor-properties-dialog.ui:119
+msgid "All Characters"
+msgstr "Alla tecken"
 
 #: src/editor-save-changes-dialog.c:257
 msgid "_Discard"
