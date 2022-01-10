@@ -1073,6 +1073,7 @@ _editor_window_add_page (EditorWindow *self,
 
   g_object_bind_property (page, "title", tab_page, "title", G_BINDING_SYNC_CREATE);
   g_object_bind_property (page, "busy", tab_page, "loading", G_BINDING_SYNC_CREATE);
+  g_object_bind_property (page, "indicator", tab_page, "indicator-icon", G_BINDING_SYNC_CREATE);
   g_object_bind_property_full (page, "is-modified",
                                tab_page, "icon",
                                G_BINDING_SYNC_CREATE,

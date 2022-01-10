@@ -38,6 +38,7 @@ enum {
   PROP_BUSY,
   PROP_CAN_SAVE,
   PROP_DOCUMENT,
+  PROP_INDICATOR,
   PROP_IS_MODIFIED,
   PROP_LANGUAGE_NAME,
   PROP_POSITION_LABEL,
@@ -198,6 +199,7 @@ editor_page_document_notify_file_cb (EditorPage     *self,
   g_assert (EDITOR_IS_PAGE (self));
   g_assert (EDITOR_IS_DOCUMENT (document));
 
+  g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_INDICATOR]);
   g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_TITLE]);
   g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_SUBTITLE]);
 }
@@ -558,6 +560,30 @@ editor_page_get_language_name (EditorPage *self)
   return NULL;
 }
 
+static GIcon *
+editor_page_get_indicator (EditorPage *self)
+{
+  static GIcon *icon;
+  g_autofree char *uri = NULL;
+  EditorDocument *document;
+  GFile *file;
+
+  document = editor_page_get_document (self);
+  file = editor_document_get_file (document);
+
+  if (file == NULL)
+    return NULL;
+
+  uri = g_file_get_uri (file);
+  if (!g_str_has_prefix (uri, "admin://"))
+    return NULL;
+
+  if (icon == NULL)
+    icon = g_themed_icon_new ("document-admin-symbolic");
+
+  return icon;
+}
+
 static void
 editor_page_dispose (GObject *object)
 {
@@ -603,6 +629,10 @@ editor_page_get_property (GObject    *object,
 
     case PROP_DOCUMENT:
       g_value_set_object (value, editor_page_get_document (self));
+      break;
+
+    case PROP_INDICATOR:
+      g_value_set_object (value, editor_page_get_indicator (self));
       break;
 
     case PROP_IS_MODIFIED:
@@ -689,6 +719,13 @@ editor_page_class_init (EditorPageClass *klass)
                          "The document to be viewed",
                          EDITOR_TYPE_DOCUMENT,
                          (G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
+
+  properties [PROP_INDICATOR] =
+    g_param_spec_object ("indicator",
+                         "Indicator",
+                         "The document indicator if any",
+                         G_TYPE_ICON,
+                         (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
   properties [PROP_LANGUAGE_NAME] =
     g_param_spec_string ("language-name",
