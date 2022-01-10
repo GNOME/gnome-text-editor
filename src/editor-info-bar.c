@@ -31,6 +31,9 @@ struct _EditorInfoBar
 
   EditorDocument *document;
 
+  GtkBox         *box;
+
+  /* Discard widgetry */
   GtkInfoBar     *infobar;
   GtkButton      *close;
   GtkButton      *discard;
@@ -144,7 +147,7 @@ editor_info_bar_dispose (GObject *object)
   EditorInfoBar *self = (EditorInfoBar *)object;
 
   g_clear_object (&self->document);
-  g_clear_pointer ((GtkWidget **)&self->infobar, gtk_widget_unparent);
+  g_clear_pointer ((GtkWidget **)&self->box, gtk_widget_unparent);
 
   G_OBJECT_CLASS (editor_info_bar_parent_class)->dispose (object);
 }
@@ -220,6 +223,7 @@ editor_info_bar_class_init (EditorInfoBarClass *klass)
 
   gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-info-bar.ui");
+  gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, box);
   gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, discard);
   gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, infobar);
   gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, save);
