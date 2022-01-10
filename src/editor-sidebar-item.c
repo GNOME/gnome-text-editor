@@ -80,14 +80,13 @@ editor_sidebar_item_update_subtitle (EditorSidebarItem *self)
       return;
     }
 
-  dir = g_file_get_parent (self->file);
-  if (g_file_is_native (dir))
-    {
-      self->subtitle = _editor_path_collapse (g_file_peek_path (dir));
-      return;
-    }
-
-  self->subtitle = g_file_get_uri (dir);
+  /* Can happen, but implausible since someone tried to open "/" */
+  if (!(dir = g_file_get_parent (self->file)))
+    self->subtitle = g_strdup ("");
+  else if (g_file_is_native (dir))
+    self->subtitle = _editor_path_collapse (g_file_peek_path (dir));
+  else
+    self->subtitle = g_file_get_uri (dir);
 }
 
 static void
