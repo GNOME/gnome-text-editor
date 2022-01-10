@@ -34,7 +34,7 @@ struct _EditorInfoBar
   GtkBox         *box;
 
   /* Discard widgetry */
-  GtkInfoBar     *infobar;
+  GtkInfoBar     *discard_infobar;
   GtkButton      *close;
   GtkButton      *discard;
   GtkButton      *save;
@@ -61,7 +61,7 @@ editor_info_bar_update (EditorInfoBar *self)
   /* Ignore things if we're busy to avoid flapping */
   if (editor_document_get_busy (self->document))
     {
-      gtk_info_bar_set_revealed (self->infobar, FALSE);
+      gtk_info_bar_set_revealed (self->discard_infobar, FALSE);
       return;
     }
 
@@ -74,7 +74,7 @@ editor_info_bar_update (EditorInfoBar *self)
       gtk_label_set_label (self->subtitle, _("The file has been changed by another program."));
       gtk_widget_show (GTK_WIDGET (self->discard));
       gtk_widget_hide (GTK_WIDGET (self->save));
-      gtk_info_bar_set_revealed (self->infobar, TRUE);
+      gtk_info_bar_set_revealed (self->discard_infobar, TRUE);
     }
   else if (_editor_document_get_was_restored (self->document))
     {
@@ -99,11 +99,11 @@ editor_info_bar_update (EditorInfoBar *self)
           gtk_widget_show (GTK_WIDGET (self->save));
         }
 
-      gtk_info_bar_set_revealed (self->infobar, TRUE);
+      gtk_info_bar_set_revealed (self->discard_infobar, TRUE);
     }
   else
     {
-      gtk_info_bar_set_revealed (self->infobar, FALSE);
+      gtk_info_bar_set_revealed (self->discard_infobar, FALSE);
     }
 }
 
@@ -127,7 +127,7 @@ editor_info_bar_close (GtkWidget   *widget,
 
   g_assert (EDITOR_IS_INFO_BAR (self));
 
-  gtk_info_bar_set_revealed (self->infobar, FALSE);
+  gtk_info_bar_set_revealed (self->discard_infobar, FALSE);
 }
 
 static void
@@ -225,7 +225,7 @@ editor_info_bar_class_init (EditorInfoBarClass *klass)
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-info-bar.ui");
   gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, box);
   gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, discard);
-  gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, infobar);
+  gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, discard_infobar);
   gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, save);
   gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, subtitle);
   gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, title);
@@ -237,7 +237,7 @@ editor_info_bar_init (EditorInfoBar *self)
 {
   gtk_widget_init_template (GTK_WIDGET (self));
 
-  g_signal_connect_object (self->infobar,
+  g_signal_connect_object (self->discard_infobar,
                            "response",
                            G_CALLBACK (on_response_cb),
                            self,
