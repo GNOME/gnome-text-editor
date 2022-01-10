@@ -681,6 +681,16 @@ editor_session_create_window (EditorSession *self)
   return window;
 }
 
+static void
+editor_session_document_changed_cb (EditorSession  *self,
+                                    EditorDocument *document)
+{
+  g_assert (EDITOR_IS_SESSION (self));
+  g_assert (EDITOR_IS_DOCUMENT (document));
+
+  _editor_session_mark_dirty (self);
+}
+
 /**
  * editor_session_add_page:
  * @self: an #EditorSession
@@ -700,6 +710,8 @@ editor_session_add_page (EditorSession *self,
                          EditorWindow  *window,
                          EditorPage    *page)
 {
+  EditorDocument *document;
+
   g_return_if_fail (EDITOR_IS_SESSION (self));
   g_return_if_fail (EDITOR_IS_WINDOW (window));
   g_return_if_fail (EDITOR_IS_PAGE (page));
@@ -709,6 +721,14 @@ editor_session_add_page (EditorSession *self,
 
   g_assert (window != NULL);
   g_assert (EDITOR_IS_WINDOW (window));
+
+  /* Update session state when the document changes */
+  document = editor_page_get_document (page);
+  g_signal_connect_object (document,
+                           "changed",
+                           G_CALLBACK (editor_session_document_changed_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
 
   g_ptr_array_add (self->pages, g_object_ref (page));
 
@@ -720,16 +740,6 @@ editor_session_add_page (EditorSession *self,
   editor_page_grab_focus (page);
 
   g_signal_emit (self, signals [PAGE_ADDED], 0, window, page);
-
-  _editor_session_mark_dirty (self);
-}
-
-static void
-editor_session_document_changed_cb (EditorSession  *self,
-                                    EditorDocument *document)
-{
-  g_assert (EDITOR_IS_SESSION (self));
-  g_assert (EDITOR_IS_DOCUMENT (document));
 
   _editor_session_mark_dirty (self);
 }
@@ -764,12 +774,6 @@ editor_session_add_document (EditorSession  *self,
 
   page = editor_page_new_for_document (document);
   editor_session_add_page (self, window, page);
-
-  g_signal_connect_object (document,
-                           "changed",
-                           G_CALLBACK (editor_session_document_changed_cb),
-                           self,
-                           G_CONNECT_SWAPPED);
 
   return page;
 }
