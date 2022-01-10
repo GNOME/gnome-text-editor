@@ -95,8 +95,22 @@ enum {
   N_PROPS
 };
 
+enum {
+  SAVE,
+  N_SIGNALS
+};
+
 static GParamSpec *properties [N_PROPS];
 static GSettings *shared_settings;
+static guint signals [N_SIGNALS];
+
+static void
+editor_document_emit_save (EditorDocument *self)
+{
+  g_assert (EDITOR_IS_DOCUMENT (self));
+
+  g_signal_emit (self, signals [SAVE], 0);
+}
 
 static GtkSourceLanguage *
 guess_language (GtkSourceLanguageManager *manager,
@@ -546,6 +560,21 @@ editor_document_class_init (EditorDocumentClass *klass)
                          (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_properties (object_class, N_PROPS, properties);
+
+  /**
+   * EditorDocument::save:
+   * @self: a #EditorDocument
+   *
+   * The "save" signal is emitted right before the document
+   * is about to be saved.
+   */
+  signals [SAVE] = g_signal_new ("save",
+                                 G_TYPE_FROM_CLASS (klass),
+                                 G_SIGNAL_RUN_LAST,
+                                 0,
+                                 NULL, NULL,
+                                 NULL,
+                                 G_TYPE_NONE, 0);
 }
 
 static void
@@ -729,6 +758,8 @@ _editor_document_save_draft_async (EditorDocument      *self,
       g_task_return_boolean (task, TRUE);
       return;
     }
+
+  editor_document_emit_save (self);
 
   self->needs_autosave = FALSE;
 
@@ -944,6 +975,8 @@ _editor_document_save_async (EditorDocument      *self,
   g_return_if_fail (EDITOR_IS_DOCUMENT (self));
   g_return_if_fail (!cancellable || G_IS_CANCELLABLE (cancellable));
   g_return_if_fail (self->draft_id != NULL);
+
+  editor_document_emit_save (self);
 
   insert = gtk_text_buffer_get_insert (GTK_TEXT_BUFFER (self));
   gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (self), &iter, insert);
