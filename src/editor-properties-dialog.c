@@ -40,7 +40,6 @@ struct _EditorPropertiesDialog
   GtkLabel       *location;
   GtkLabel       *name;
   GtkLabel       *words;
-  GtkButton      *rescan;
 };
 
 G_DEFINE_TYPE (EditorPropertiesDialog, editor_properties_dialog, GTK_TYPE_WINDOW)
@@ -201,18 +200,16 @@ editor_properties_dialog_rescan (EditorPropertiesDialog *self)
   str = g_strdup_printf("%'d", chars - white_chars);
   gtk_label_set_label (self->chars, str);
   g_free (str);
-
-  gtk_widget_hide (GTK_WIDGET (self->rescan));
 }
 
 static void
-editor_properties_dialog_changed_cb (EditorPropertiesDialog *self,
-                                     EditorDocument         *document)
+editor_properties_dialog_save_cb (EditorPropertiesDialog *self,
+                                  EditorDocument         *document)
 {
   g_assert (EDITOR_IS_PROPERTIES_DIALOG (self));
   g_assert (EDITOR_IS_DOCUMENT (document));
 
-  gtk_widget_show (GTK_WIDGET (self->rescan));
+  editor_properties_dialog_rescan (self);
 }
 
 static void
@@ -232,8 +229,8 @@ editor_properties_dialog_set_document (EditorPropertiesDialog *self,
                                    G_BINDING_SYNC_CREATE,
                                    file_to_location, NULL, NULL, NULL);
       g_signal_connect_object (self->document,
-                               "changed",
-                               G_CALLBACK (editor_properties_dialog_changed_cb),
+                               "save",
+                               G_CALLBACK (editor_properties_dialog_save_cb),
                                self,
                                G_CONNECT_SWAPPED);
       editor_properties_dialog_rescan (self);
@@ -283,18 +280,6 @@ win_close_cb (GtkWidget  *widget,
               GVariant   *param)
 {
   gtk_window_close (GTK_WINDOW (widget));
-}
-
-static void
-win_rescan_cb (GtkWidget  *widget,
-               const char *action_name,
-               GVariant   *param)
-{
-  EditorPropertiesDialog *self = EDITOR_PROPERTIES_DIALOG (widget);
-
-  g_assert (EDITOR_IS_PROPERTIES_DIALOG (self));
-
-  editor_properties_dialog_rescan (self);
 }
 
 static void
@@ -370,12 +355,10 @@ editor_properties_dialog_class_init (EditorPropertiesDialogClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorPropertiesDialog, lines);
   gtk_widget_class_bind_template_child (widget_class, EditorPropertiesDialog, location);
   gtk_widget_class_bind_template_child (widget_class, EditorPropertiesDialog, name);
-  gtk_widget_class_bind_template_child (widget_class, EditorPropertiesDialog, rescan);
   gtk_widget_class_bind_template_child (widget_class, EditorPropertiesDialog, words);
   gtk_widget_class_bind_template_callback (widget_class, activate_link_cb);
 
   gtk_widget_class_install_action (widget_class, "win.close", NULL, win_close_cb);
-  gtk_widget_class_install_action (widget_class, "win.rescan", NULL, win_rescan_cb);
 
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Escape, 0, "win.close", NULL);
 }
