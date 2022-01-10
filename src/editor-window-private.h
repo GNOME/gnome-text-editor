@@ -44,6 +44,7 @@ struct _EditorWindow
   GtkLabel             *title;
   GtkLabel             *subtitle;
   GtkLabel             *is_modified;
+  GtkImage             *indicator;
   EditorOpenPopover    *open_menu_popover;
   GtkBox               *position_box;
   EditorPositionLabel  *position_label;
