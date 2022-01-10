@@ -219,6 +219,7 @@ update_style_schemes (EditorPreferencesDialog *self)
   const char *current_scheme;
   gboolean is_dark;
   guint j = 0;
+  GtkWidget *child;
 
   g_assert (EDITOR_IS_PREFERENCES_DIALOG (self));
 
@@ -269,6 +270,9 @@ update_style_schemes (EditorPreferencesDialog *self)
 
       g_array_sort (schemes, sort_schemes_cb);
     }
+
+  while ((child = gtk_widget_get_first_child (GTK_WIDGET (self->scheme_group))))
+    gtk_flow_box_remove (self->scheme_group, child);
 
   for (guint i = 0; i < schemes->len; i++)
     {
@@ -457,8 +461,8 @@ editor_preferences_dialog_init (EditorPreferencesDialog *self)
 
   style_manager = adw_style_manager_get_default ();
   g_signal_connect_object (style_manager,
-                           "notify::color-scheme",
-                           G_CALLBACK (update_style_scheme_selection),
+                           "notify::dark",
+                           G_CALLBACK (update_style_schemes),
                            self,
                            G_CONNECT_SWAPPED);
 }
