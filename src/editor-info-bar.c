@@ -35,7 +35,6 @@ struct _EditorInfoBar
 
   /* Discard widgetry */
   GtkInfoBar     *discard_infobar;
-  GtkButton      *close;
   GtkButton      *discard;
   GtkButton      *save;
   GtkLabel       *title;
@@ -116,18 +115,6 @@ on_notify_cb (EditorInfoBar  *self,
   g_assert (EDITOR_IS_DOCUMENT (document));
 
   editor_info_bar_update (self);
-}
-
-static void
-editor_info_bar_close (GtkWidget   *widget,
-                       const gchar *action_name,
-                       GVariant    *param)
-{
-  EditorInfoBar *self = (EditorInfoBar *)widget;
-
-  g_assert (EDITOR_IS_INFO_BAR (self));
-
-  gtk_info_bar_set_revealed (self->discard_infobar, FALSE);
 }
 
 static void
@@ -229,7 +216,6 @@ editor_info_bar_class_init (EditorInfoBarClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, save);
   gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, subtitle);
   gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, title);
-  gtk_widget_class_install_action (widget_class, "infobar.close", NULL, editor_info_bar_close);
 }
 
 static void
