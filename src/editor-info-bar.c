@@ -24,6 +24,7 @@
 
 #include "editor-document-private.h"
 #include "editor-info-bar-private.h"
+#include "editor-window.h"
 
 struct _EditorInfoBar
 {
@@ -39,6 +40,12 @@ struct _EditorInfoBar
   GtkButton      *save;
   GtkLabel       *title;
   GtkLabel       *subtitle;
+
+  /* Permission denied infobar */
+  GtkInfoBar     *access_infobar;
+  GtkButton      *access_subtitle;
+  GtkButton      *access_title;
+  GtkButton      *access_try_admin;
 };
 
 enum {
@@ -129,6 +136,30 @@ on_response_cb (EditorInfoBar *self,
 }
 
 static void
+on_try_admin_cb (EditorInfoBar *self,
+                 GtkButton     *button)
+{
+  g_assert (EDITOR_IS_INFO_BAR (self));
+  g_assert (GTK_IS_BUTTON (button));
+
+  _editor_document_use_admin (self->document);
+}
+
+static void
+on_try_again_cb (EditorInfoBar *self,
+                 GtkButton     *button)
+{
+  EditorWindow *window;
+
+  g_assert (EDITOR_IS_INFO_BAR (self));
+  g_assert (GTK_IS_BUTTON (button));
+
+  window = EDITOR_WINDOW (gtk_widget_get_ancestor (GTK_WIDGET (self), EDITOR_TYPE_WINDOW));
+
+  _editor_document_load_async (self->document, window, NULL, NULL, NULL);
+}
+
+static void
 editor_info_bar_dispose (GObject *object)
 {
   EditorInfoBar *self = (EditorInfoBar *)object;
@@ -171,6 +202,12 @@ editor_info_bar_set_property (GObject      *object,
     case PROP_DOCUMENT:
       if (g_set_object (&self->document, g_value_get_object (value)))
         {
+          g_object_bind_property (self->document, "suggest-admin",
+                                  self->access_try_admin, "visible",
+                                  G_BINDING_SYNC_CREATE);
+          g_object_bind_property (self->document, "had-error",
+                                  self->access_infobar, "revealed",
+                                  G_BINDING_SYNC_CREATE);
           g_signal_connect_object (self->document,
                                    "notify::busy",
                                    G_CALLBACK (on_notify_cb),
@@ -210,12 +247,18 @@ editor_info_bar_class_init (EditorInfoBarClass *klass)
 
   gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-info-bar.ui");
+  gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, access_infobar);
+  gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, access_try_admin);
+  gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, access_subtitle);
+  gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, access_title);
   gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, box);
   gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, discard);
   gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, discard_infobar);
   gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, save);
   gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, subtitle);
   gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, title);
+  gtk_widget_class_bind_template_callback (widget_class, on_try_admin_cb);
+  gtk_widget_class_bind_template_callback (widget_class, on_try_again_cb);
 }
 
 static void

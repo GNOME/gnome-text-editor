@@ -89,12 +89,13 @@ G_DEFINE_TYPE (EditorDocument, editor_document, GTK_SOURCE_TYPE_BUFFER)
 
 enum {
   PROP_0,
-  PROP_SUGGEST_ADMIN,
   PROP_BUSY,
   PROP_BUSY_PROGRESS,
   PROP_EXTERNALLY_MODIFIED,
   PROP_FILE,
+  PROP_HAD_ERROR,
   PROP_SPELL_CHECKER,
+  PROP_SUGGEST_ADMIN,
   PROP_TITLE,
   N_PROPS
 };
@@ -141,6 +142,7 @@ editor_document_track_error (EditorDocument *self,
     {
       self->suggest_admin = FALSE;
       g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_SUGGEST_ADMIN]);
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_HAD_ERROR]);
       return;
     }
 
@@ -152,6 +154,8 @@ editor_document_track_error (EditorDocument *self,
           g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_SUGGEST_ADMIN]);
         }
     }
+
+  g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_HAD_ERROR]);
 }
 
 static void
@@ -509,6 +513,10 @@ editor_document_get_property (GObject    *object,
       g_value_set_boolean (value, self->suggest_admin);
       break;
 
+    case PROP_HAD_ERROR:
+      g_value_set_boolean (value, _editor_document_had_error (self));
+      break;
+
     case PROP_BUSY:
       g_value_set_boolean (value, editor_document_get_busy (self));
       break;
@@ -580,6 +588,13 @@ editor_document_class_init (EditorDocumentClass *klass)
     g_param_spec_boolean ("suggest-admin",
                           "Suggest Admin",
                           "Suggest to the user to use admin://",
+                          FALSE,
+                          (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
+  properties [PROP_HAD_ERROR] =
+    g_param_spec_boolean ("had-error",
+                          "Had Error",
+                          "If there was an error with the document",
                           FALSE,
                           (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
