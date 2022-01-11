@@ -304,6 +304,7 @@ editor_window_notify_selected_page_cb (EditorWindow *self,
   gtk_widget_set_visible (GTK_WIDGET (self->subtitle), FALSE);
   gtk_widget_set_visible (GTK_WIDGET (self->position_box),
                           page && g_settings_get_boolean (self->settings, "show-line-numbers"));
+  gtk_widget_set_visible (GTK_WIDGET (self->indicator), FALSE);
 
   self->visible_page = page;
 
