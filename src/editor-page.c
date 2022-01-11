@@ -974,19 +974,20 @@ editor_page_dup_subtitle (EditorPage *self)
     return g_strdup (_("Draft"));
 
   if (!g_file_is_native (dir))
-  {
-    g_autofree char *uri = g_file_get_uri (dir);
+    {
+      g_autofree char *uri = g_file_get_uri (dir);
 
-    if (g_str_has_prefix (uri, "admin:///"))
-      {
-        const char *path = uri + strlen ("admin://");
+      if (g_str_has_prefix (uri, "admin:///"))
+        {
+          const char *suffix = uri + strlen ("admin://");
+          g_autofree char *path = _editor_path_collapse (suffix);
 
-        /* translators: %s is replaced with the path on the filesystem */
-        return g_strdup_printf (_("%s (Administrator)"), path);
-      }
+          /* translators: %s is replaced with the path on the filesystem */
+          return g_strdup_printf (_("%s (Administrator)"), path);
+        }
 
-    return g_steal_pointer (&uri);
-  }
+      return g_steal_pointer (&uri);
+    }
 
   return _editor_path_collapse (g_file_peek_path (dir));
 }
