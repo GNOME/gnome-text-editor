@@ -46,6 +46,7 @@ struct _EditorDocument
   GtkSourceFile                *file;
   gchar                        *draft_id;
   const GtkSourceEncoding      *encoding;
+  GError                       *last_error;
 
   EditorSpellChecker           *spell_checker;
   EditorTextBufferSpellAdapter *spell_adapter;
@@ -133,6 +134,9 @@ editor_document_track_error (EditorDocument *self,
                              const GError   *error)
 {
   g_assert (EDITOR_IS_DOCUMENT (self));
+
+  g_clear_error (&self->last_error);
+  self->last_error = error ? g_error_copy (error) : NULL;
 
   self->load_failed = error != NULL;
 
@@ -494,6 +498,7 @@ editor_document_finalize (GObject *object)
   g_clear_object (&self->file);
   g_clear_object (&self->spell_checker);
   g_clear_object (&self->spell_adapter);
+  g_clear_error (&self->last_error);
   g_clear_pointer (&self->draft_id, g_free);
 
   G_OBJECT_CLASS (editor_document_parent_class)->finalize (object);
@@ -1466,19 +1471,19 @@ editor_document_load_file_info_cb (GObject      *object,
 
   if (!(info = g_file_query_info_finish (file, result, &error)))
     {
-      editor_document_track_error (self, error);
-
       if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_NOT_SUPPORTED))
         {
           load->has_file = TRUE;
           load->content_type = NULL;
           load->modified_at = 0;
+          g_clear_error (&error);
         }
       else if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_NOT_FOUND))
         {
           load->has_file = FALSE;
           load->content_type = NULL;
           load->modified_at = 0;
+          g_clear_error (&error);
         }
       else if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_PERMISSION_DENIED))
         {
@@ -1499,10 +1504,20 @@ editor_document_load_file_info_cb (GObject      *object,
       load->modified_at = g_file_info_get_attribute_uint64 (info, G_FILE_ATTRIBUTE_TIME_MODIFIED);
     }
 
+  /* XXX: We might need to be more careful about how we call this multiple times */
+  editor_document_track_error (self, error);
+
   load->n_active--;
 
   if (load->n_active == 0)
-    editor_document_do_load (self, task, load);
+    {
+      if (error != NULL)
+        g_task_return_error (task, g_steal_pointer (&error));
+      else if (self->last_error)
+        g_task_return_error (task, g_error_copy (self->last_error));
+      else
+        editor_document_do_load (self, task, load);
+    }
 }
 
 static void
