@@ -40,5 +40,7 @@ void                 editor_buffer_monitor_set_file    (EditorBufferMonitor *sel
 void                 editor_buffer_monitor_reset       (EditorBufferMonitor *self);
 void                 editor_buffer_monitor_pause       (EditorBufferMonitor *self);
 void                 editor_buffer_monitor_unpause     (EditorBufferMonitor *self);
+void                 editor_buffer_monitor_set_failed  (EditorBufferMonitor *self,
+                                                        gboolean             failed);
 
 G_END_DECLS

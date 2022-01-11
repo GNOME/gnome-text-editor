@@ -33,6 +33,7 @@ struct _EditorBufferMonitor
   int pause_count;
   guint changed_source;
   guint changed : 1;
+  guint failed : 1;
 };
 
 G_DEFINE_TYPE (EditorBufferMonitor, editor_buffer_monitor, G_TYPE_OBJECT)
@@ -201,7 +202,7 @@ notify_timeout_cb (gpointer user_data)
 
   self->changed_source = 0;
 
-  if (!self->changed)
+  if (!self->changed && !self->failed)
     g_file_query_info_async (self->file,
                              G_FILE_ATTRIBUTE_ETAG_VALUE,
                              G_FILE_QUERY_INFO_NONE,
@@ -359,4 +360,23 @@ editor_buffer_monitor_set_etag (EditorBufferMonitor *self,
       self->etag = g_strdup (etag);
       g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_ETAG]);
     }
+}
+
+void
+editor_buffer_monitor_set_failed (EditorBufferMonitor *self,
+                                  gboolean             failed)
+{
+  g_return_if_fail (EDITOR_IS_BUFFER_MONITOR (self));
+
+  failed = !!failed;
+
+  if (failed == self->failed)
+    return;
+
+  self->failed = failed;
+
+  if (self->failed)
+    editor_buffer_monitor_pause (self);
+  else
+    editor_buffer_monitor_unpause (self);
 }
