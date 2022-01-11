@@ -59,6 +59,8 @@ struct _EditorDocument
   guint                         needs_autosave : 1;
   guint                         was_restored : 1;
   guint                         externally_modified : 1;
+  guint                         suggest_admin : 1;
+  guint                         load_failed : 1;
 };
 
 typedef struct
@@ -77,6 +79,7 @@ typedef struct
   gint64           draft_modified_at;
   gint64           modified_at;
   guint            n_active;
+
   guint            highlight_syntax : 1;
   guint            has_draft : 1;
   guint            has_file : 1;
@@ -86,6 +89,7 @@ G_DEFINE_TYPE (EditorDocument, editor_document, GTK_SOURCE_TYPE_BUFFER)
 
 enum {
   PROP_0,
+  PROP_SUGGEST_ADMIN,
   PROP_BUSY,
   PROP_BUSY_PROGRESS,
   PROP_EXTERNALLY_MODIFIED,
@@ -103,6 +107,52 @@ enum {
 static GParamSpec *properties [N_PROPS];
 static GSettings *shared_settings;
 static guint signals [N_SIGNALS];
+
+static gboolean
+is_admin (EditorDocument *self)
+{
+  g_autofree char *uri = NULL;
+  GFile *file;
+
+  g_assert (EDITOR_IS_DOCUMENT (self));
+
+  if (!(file = editor_document_get_file (self)))
+    return FALSE;
+
+  if (g_file_is_native (file))
+    return FALSE;
+
+  uri = g_file_get_uri (file);
+
+  return g_str_has_prefix (uri, "admin:///");
+}
+
+static void
+editor_document_track_error (EditorDocument *self,
+                             const GError   *error)
+{
+  g_assert (EDITOR_IS_DOCUMENT (self));
+
+  self->load_failed = error != NULL;
+
+  editor_buffer_monitor_set_failed (self->monitor, self->load_failed);
+
+  if (error == NULL)
+    {
+      self->suggest_admin = FALSE;
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_SUGGEST_ADMIN]);
+      return;
+    }
+
+  if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_PERMISSION_DENIED))
+    {
+      if (!is_admin (self))
+        {
+          self->suggest_admin = TRUE;
+          g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_SUGGEST_ADMIN]);
+        }
+    }
+}
 
 static void
 editor_document_emit_save (EditorDocument *self)
@@ -170,6 +220,11 @@ editor_document_load_notify_completed_cb (EditorDocument *self,
 
   g_assert (EDITOR_IS_DOCUMENT (self));
   g_assert (G_IS_TASK (task));
+
+  self->loading = FALSE;
+
+  if (!g_task_had_error (task))
+    editor_document_track_error (self, NULL);
 
   session = editor_application_get_session (EDITOR_APPLICATION_DEFAULT);
   _editor_session_document_seen (session, self);
@@ -450,6 +505,10 @@ editor_document_get_property (GObject    *object,
 
   switch (prop_id)
     {
+    case PROP_SUGGEST_ADMIN:
+      g_value_set_boolean (value, self->suggest_admin);
+      break;
+
     case PROP_BUSY:
       g_value_set_boolean (value, editor_document_get_busy (self));
       break;
@@ -516,6 +575,13 @@ editor_document_class_init (EditorDocumentClass *klass)
   buffer_class->changed = editor_document_changed;
   buffer_class->insert_text = editor_document_insert_text;
   buffer_class->delete_range = editor_document_delete_range;
+
+  properties [PROP_SUGGEST_ADMIN] =
+    g_param_spec_boolean ("suggest-admin",
+                          "Suggest Admin",
+                          "Suggest to the user to use admin://",
+                          FALSE,
+                          (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
   properties [PROP_BUSY] =
     g_param_spec_boolean ("busy",
@@ -1231,6 +1297,7 @@ editor_document_load_cb (GObject      *object,
   if (!gtk_source_file_loader_load_finish (loader, result, &error))
     {
       g_warning ("Failed to load file: %s", error->message);
+      editor_document_track_error (self, error);
       g_task_return_error (task, g_steal_pointer (&error));
       _editor_document_unmark_busy (self);
       return;
@@ -1384,6 +1451,8 @@ editor_document_load_file_info_cb (GObject      *object,
 
   if (!(info = g_file_query_info_finish (file, result, &error)))
     {
+      editor_document_track_error (self, error);
+
       if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_NOT_SUPPORTED))
         {
           load->has_file = TRUE;
@@ -1393,6 +1462,12 @@ editor_document_load_file_info_cb (GObject      *object,
       else if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_NOT_FOUND))
         {
           load->has_file = FALSE;
+          load->content_type = NULL;
+          load->modified_at = 0;
+        }
+      else if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_PERMISSION_DENIED))
+        {
+          load->has_file = TRUE;
           load->content_type = NULL;
           load->modified_at = 0;
         }
@@ -1466,17 +1541,6 @@ editor_document_load_file_mount_cb (GObject      *object,
                            g_object_ref (task));
 }
 
-static void
-editor_document_load_completed_cb (EditorDocument *self,
-                                   GParamSpec     *pspec,
-                                   GTask          *task)
-{
-  g_assert (EDITOR_IS_DOCUMENT (self));
-  g_assert (G_IS_TASK (task));
-
-  self->loading = FALSE;
-}
-
 void
 _editor_document_load_async (EditorDocument      *self,
                              EditorWindow        *window,
@@ -1512,12 +1576,6 @@ _editor_document_load_async (EditorDocument      *self,
   task = g_task_new (self, cancellable, callback, user_data);
   g_task_set_source_tag (task, _editor_document_load_async);
   g_task_set_task_data (task, load, (GDestroyNotify) load_free);
-
-  g_signal_connect_object (task,
-                           "notify::completed",
-                           G_CALLBACK (editor_document_load_completed_cb),
-                           self,
-                           G_CONNECT_SWAPPED);
 
   editor_document_set_busy_progress (self, 0, 2, .25);
 
@@ -1645,6 +1703,11 @@ _editor_document_guess_language_async (EditorDocument      *self,
                              G_IO_ERROR,
                              G_IO_ERROR_INVALID_FILENAME,
                              "File has not been saved, cannot guess content-type");
+  else if (self->load_failed)
+    g_task_return_new_error (task,
+                             G_IO_ERROR,
+                             G_IO_ERROR_CANCELLED,
+                             "Cannot query file as load failed.");
   else
     g_file_query_info_async (file,
                              G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE,
@@ -2059,4 +2122,12 @@ _editor_document_use_admin (EditorDocument *self)
   gtk_source_file_set_location (self->file, admin_file);
 
   g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_FILE]);
+}
+
+gboolean
+_editor_document_had_error (EditorDocument *self)
+{
+  g_return_val_if_fail (EDITOR_IS_DOCUMENT (self), FALSE);
+
+  return self->load_failed;
 }
