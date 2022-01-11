@@ -2035,3 +2035,28 @@ _editor_document_get_spelling_tag (EditorDocument *self)
 
   return editor_text_buffer_spell_adapter_get_tag (self->spell_adapter);
 }
+
+void
+_editor_document_use_admin (EditorDocument *self)
+{
+  GFile *file;
+  g_autofree char *uri = NULL;
+  g_autofree char *admin_uri = NULL;
+  g_autoptr(GFile) admin_file = NULL;
+
+  g_return_if_fail (EDITOR_IS_DOCUMENT (self));
+
+  if (!(file = editor_document_get_file (self)))
+    return;
+
+  uri = g_file_get_uri (file);
+  if (!g_str_has_prefix (uri, "file:///"))
+    return;
+
+  admin_uri = g_strdup_printf ("admin://%s", g_file_get_path (file));
+  admin_file = g_file_new_for_uri (admin_uri);
+
+  gtk_source_file_set_location (self->file, admin_file);
+
+  g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_FILE]);
+}
