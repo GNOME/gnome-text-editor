@@ -225,6 +225,8 @@ _editor_recoloring_generate_css (GtkSourceStyleScheme *style_scheme)
   GString *str;
   GdkRGBA color;
   gboolean is_dark;
+  gboolean has_fg;
+  gboolean has_bg;
 
   g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (style_scheme), NULL);
 
@@ -242,22 +244,32 @@ _editor_recoloring_generate_css (GtkSourceStyleScheme *style_scheme)
 
   /* TODO: Improve error checking and fallbacks */
 
-  get_background (style_scheme, "text", &text_bg);
-  get_foreground (style_scheme, "text", &text_fg);
+  has_bg = get_background (style_scheme, "text", &text_bg);
+  has_fg = get_foreground (style_scheme, "text", &text_fg);
   get_background (style_scheme, "right-margin", &right_margin);
   right_margin.alpha = 1;
 
-  if (is_dark)
-    define_color_mixed (str, "window_bg_color", &text_bg, alt, .025);
+  if (has_fg && has_bg)
+    {
+      define_color (str, "window_bg_color", &text_bg);
+      define_color (str, "window_fg_color", &text_fg);
+      define_color (str, "headerbar_bg_color", &text_bg);
+      define_color (str, "headerbar_fg_color", &text_fg);
+    }
   else
-    define_color_mixed (str, "window_bg_color", &text_bg, &white, .1);
-  define_color_mixed (str, "window_fg_color", &text_fg, alt, .1);
+    {
+      if (is_dark)
+        define_color_mixed (str, "window_bg_color", &text_bg, alt, .025);
+      else
+        define_color_mixed (str, "window_bg_color", &text_bg, &white, .1);
+      define_color_mixed (str, "window_fg_color", &text_fg, alt, .1);
 
-  if (is_dark)
-    define_color_mixed (str, "headerbar_bg_color", &text_bg, alt, .05);
-  else
-    define_color_mixed (str, "headerbar_bg_color", &text_bg, alt, .025);
-  define_color (str, "headerbar_fg_color", &text_fg);
+      if (is_dark)
+        define_color_mixed (str, "headerbar_bg_color", &text_bg, alt, .05);
+      else
+        define_color_mixed (str, "headerbar_bg_color", &text_bg, alt, .025);
+      define_color (str, "headerbar_fg_color", &text_fg);
+    }
 
   define_color_mixed (str, "view_bg_color", &text_bg, &white, is_dark ? .1 : .3);
   define_color (str, "view_fg_color", &text_fg);
