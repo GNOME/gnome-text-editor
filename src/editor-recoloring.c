@@ -247,14 +247,12 @@ _editor_recoloring_generate_css (GtkSourceStyleScheme *style_scheme)
   get_background (style_scheme, "right-margin", &right_margin);
   right_margin.alpha = 1;
 
-  premix_colors (&color, &text_bg, &right_margin, TRUE, 1.0);
   if (is_dark)
     define_color_mixed (str, "window_bg_color", &text_bg, alt, .025);
   else
     define_color_mixed (str, "window_bg_color", &text_bg, &white, .1);
   define_color_mixed (str, "window_fg_color", &text_fg, alt, .1);
 
-  premix_colors (&color, &text_bg, &text_fg, TRUE, 1.0);
   if (is_dark)
     define_color_mixed (str, "headerbar_bg_color", &text_bg, alt, .05);
   else
