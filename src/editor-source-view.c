@@ -40,6 +40,7 @@ struct _EditorSourceView
   GMenuModel *spelling_menu;
   char *spelling_word;
   int font_scale;
+  double line_height;
 };
 
 G_DEFINE_TYPE (EditorSourceView, editor_source_view, GTK_SOURCE_TYPE_VIEW)
@@ -48,6 +49,7 @@ enum {
   PROP_0,
   PROP_FONT_DESC,
   PROP_FONT_SCALE,
+  PROP_LINE_HEIGHT,
   PROP_ZOOM_LEVEL,
   N_PROPS
 };
@@ -63,6 +65,7 @@ editor_source_view_update_css (EditorSourceView *self)
   g_autoptr(GString) str = NULL;
   g_autofree char *font_css = NULL;
   int size = 11; /* 11pt */
+  char line_height_str[G_ASCII_DTOSTR_BUF_SIZE];
 
   g_assert (EDITOR_IS_SOURCE_VIEW (self));
 
@@ -94,13 +97,17 @@ editor_source_view_update_css (EditorSourceView *self)
     }
 
   str = g_string_new ("textview {\n");
+
   if (font_desc)
     {
-
       font_css = _editor_font_description_to_css (font_desc);
       g_string_append (str, font_css);
-      g_string_append (str, "\nline-height:1.2;\n");
     }
+
+  g_ascii_dtostr (line_height_str, sizeof line_height_str, self->line_height);
+  line_height_str[6] = 0;
+  g_string_append_printf (str, "\nline-height: %s;\n", line_height_str);
+
   g_string_append (str, "}\n");
 
   gtk_css_provider_load_from_data (self->css_provider, str->str, -1);
@@ -691,6 +698,10 @@ editor_source_view_get_property (GObject    *object,
       g_value_set_int (value, self->font_scale);
       break;
 
+    case PROP_LINE_HEIGHT:
+      g_value_set_double (value, self->line_height);
+      break;
+
     case PROP_ZOOM_LEVEL:
       g_value_set_double (value, editor_source_view_get_zoom_level (self));
       break;
@@ -720,6 +731,11 @@ editor_source_view_set_property (GObject      *object,
       g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_ZOOM_LEVEL]);
       break;
 
+    case PROP_LINE_HEIGHT:
+      self->line_height = g_value_get_double (value);
+      editor_source_view_update_css (self);
+      break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
     }
@@ -738,6 +754,13 @@ editor_source_view_class_init (EditorSourceViewClass *klass)
   object_class->set_property = editor_source_view_set_property;
 
   text_view_class->snapshot_layer = editor_source_view_snapshot_layer;
+
+  properties [PROP_LINE_HEIGHT] =
+    g_param_spec_double ("line-height",
+                         "Line height",
+                         "The line height of all lines",
+                         0.5, 10.0, 1.2,
+                         (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
   properties [PROP_FONT_DESC] =
     g_param_spec_boxed ("font-desc",

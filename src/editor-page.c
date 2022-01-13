@@ -421,6 +421,9 @@ editor_page_constructed (GObject *object)
   g_settings_bind (app->settings, "enable-snippets",
                    self->view, "enable-snippets",
                    G_SETTINGS_BIND_GET);
+  g_settings_bind (app->settings, "line-height",
+                   self->view, "line-height",
+                   G_SETTINGS_BIND_GET);
 
   _editor_page_vim_init (self);
 }

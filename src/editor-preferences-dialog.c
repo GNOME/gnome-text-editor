@@ -314,31 +314,44 @@ update_custom_font_cb (EditorPreferencesDialog *self,
                        const char              *key,
                        GSettings               *settings)
 {
+  g_autofree char *custom_font = NULL;
+  g_autoptr(GString) str = NULL;
+  gboolean use_system_font;
+  double line_height;
+  char line_height_str[G_ASCII_DTOSTR_BUF_SIZE];
+
   g_assert (EDITOR_IS_PREFERENCES_DIALOG (self));
   g_assert (G_IS_SETTINGS (settings));
 
-  if (!g_settings_get_boolean (settings, "use-system-font"))
+  line_height = g_settings_get_double (settings, "line-height");
+  use_system_font = g_settings_get_boolean (settings, "use-system-font");
+  custom_font = g_settings_get_string (settings, "custom-font");
+
+  str = g_string_new ("textview {\n");
+
+  if (!use_system_font)
     {
-      g_autofree char *custom_font = g_settings_get_string (settings, "custom-font");
       PangoFontDescription *font_desc = pango_font_description_from_string (custom_font);
-      g_autofree char *css = _editor_font_description_to_css (font_desc);
 
-      g_clear_pointer (&font_desc, pango_font_description_free);
-
-      if (css != NULL)
+      if (font_desc != NULL)
         {
-          g_autoptr(GString) str = g_string_new (NULL);
+          g_autofree char *css = _editor_font_description_to_css (font_desc);
 
-          g_string_append_printf (str, "textview { %s }", css);
+          if (css != NULL)
+            g_string_append_printf (str, "  %s\n", css);
 
-          /* Use -1 instead of str->len to avoid a string copy */
-          gtk_css_provider_load_from_data (self->css_provider, str->str, -1);
-
-          return;
+          pango_font_description_free (font_desc);
         }
     }
 
-  gtk_css_provider_load_from_data (self->css_provider, "", -1);
+  g_ascii_dtostr (line_height_str, sizeof line_height_str, line_height);
+  line_height_str[6] = 0;
+  g_string_append_printf (str, "  line-height: %s;\n", line_height_str);
+
+  g_string_append (str, "}");
+
+  /* Use -1 instead of str->len to avoid a string copy */
+  gtk_css_provider_load_from_data (self->css_provider, str->str, -1);
 }
 
 static void
@@ -449,6 +462,11 @@ editor_preferences_dialog_init (EditorPreferencesDialog *self)
                            G_CONNECT_SWAPPED);
   g_signal_connect_object (self->settings,
                            "changed::use-system-font",
+                           G_CALLBACK (update_custom_font_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+  g_signal_connect_object (self->settings,
+                           "changed::line-height",
                            G_CALLBACK (update_custom_font_cb),
                            self,
                            G_CONNECT_SWAPPED);
