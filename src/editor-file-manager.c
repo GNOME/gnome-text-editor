@@ -38,6 +38,8 @@
 
 #include "editor-file-manager.h"
 
+/* Copied from the GIMP */
+
 #if !(defined(G_OS_WIN32) || defined(PLATFORM_OSX))
 static void
 show_items_cb (GObject      *source_object,
@@ -57,7 +59,17 @@ show_items_cb (GObject      *source_object,
 }
 #endif /* !(defined(G_OS_WIN32) || defined(PLATFORM_OSX)) */
 
-/* Copied from the GIMP */
+/**
+ * editor_file_manager_show:
+ * @file: a #GFile to load within the desktop file manager
+ * @error: a location for a #GError, or %NULL
+ *
+ * Requests that @file is displayed within the default desktop file manager.
+ * Typically this means browsing to the parent directory and then selecting
+ * @file within that directory.
+ *
+ * Returns: %TRUE if successful; otherwise %FALSE and @error is set.
+ */
 gboolean
 editor_file_manager_show (GFile   *file,
                           GError **error)
