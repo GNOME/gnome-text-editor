@@ -35,7 +35,7 @@
  *
  * Use the various methods to bind properties from a single source
  * object to multiple destination objects. Properties can be bound
- * bidrectionally and are connected when the source object is set
+ * bidirectionally and are connected when the source object is set
  * with editor_binding_group_set_source().
  */
 
@@ -564,7 +564,7 @@ editor_binding_group_bind (EditorBindingGroup *self,
  * Creates a binding between @source_property on the source object and
  * @target_property on @target, allowing you to set the transformation
  * functions to be used by the binding. The binding flags
- * #G_BINDING_SYNC_CREATE is automatically specified.
+ * %G_BINDING_SYNC_CREATE is automatically specified.
  *
  * See: g_object_bind_property_full().
  */
@@ -604,7 +604,7 @@ editor_binding_group_bind_full (EditorBindingGroup    *self,
  * Creates a binding between @source_property on the source object and
  * @target_property on @target, allowing you to set the transformation
  * functions to be used by the binding. The binding flags
- * #G_BINDING_SYNC_CREATE is automatically specified.
+ * %G_BINDING_SYNC_CREATE is automatically specified.
  *
  * This function is the language bindings friendly version of
  * editor_binding_group_bind_property_full(), using #GClosures
