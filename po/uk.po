@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues\n"
-"POT-Creation-Date: 2022-01-11 01:38+0000\n"
-"PO-Revision-Date: 2022-01-11 09:41+0200\n"
+"POT-Creation-Date: 2022-01-13 18:52+0000\n"
+"PO-Revision-Date: 2022-01-14 21:58+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -267,6 +267,16 @@ msgstr ""
 "Увімкнути у редакторі використання фрагментів, зареєстрованих за допомогою "
 "GtkSourceView."
 
+#: data/org.gnome.TextEditor.gschema.xml:153
+#| msgid "Line Ending:"
+msgid "Line Height"
+msgstr "Висота рядка"
+
+#: data/org.gnome.TextEditor.gschema.xml:154
+msgid "The line height to use for the selected font."
+msgstr ""
+"Висота рядка, яку слід використати для вибраного шрифту."
+
 #: src/editor-animation.c:1051
 #, c-format
 msgid "Failed to find property %s in %s"
@@ -289,7 +299,7 @@ msgstr "Юрій Чорноіван <yurchor@ukr.net>, 2021–2022"
 msgid "Do not restore session at startup"
 msgstr "Не відновлювати сеанс після запуску"
 
-#: src/editor-document.c:1850
+#: src/editor-document.c:1865
 msgid "[Read-Only]"
 msgstr "[Лише читання]"
 
@@ -351,24 +361,20 @@ msgid "Unsaved changes to the document have been restored."
 msgstr "Відновлено незбережені зміни, які було внесено до документа."
 
 #: src/editor-info-bar.ui:18
-#| msgid "Open File"
 msgid "Could Not Open File"
 msgstr "Не вдалося відкрити файл"
 
 #: src/editor-info-bar.ui:27
 msgid "You do not have permission to open the file."
-msgstr ""
-"У вашого користувача недостатньо прав для відкриття цього файла."
+msgstr "У вашого користувача недостатньо прав для відкриття цього файла."
 
 #: src/editor-info-bar.ui:34
 msgid "_Retry"
-msgstr ""
-"_Повторити"
+msgstr "_Повторити"
 
 #: src/editor-info-bar.ui:41
 msgid "Open As _Administrator"
-msgstr ""
-"Відкрити від імені _адміністратора"
+msgstr "Відкрити від імені _адміністратора"
 
 #: src/editor-language-dialog.ui:5 src/editor-window.c:194
 msgid "Document Type"
@@ -386,40 +392,39 @@ msgstr "Немає недавніх документів"
 msgid "No Results Found"
 msgstr "Нічого не знайдено"
 
-#: src/editor-page.c:957 src/editor-sidebar-item.c:473
+#: src/editor-page.c:960 src/editor-sidebar-item.c:473
 msgid "New Document"
 msgstr "Новий документ"
 
-#: src/editor-page.c:974 src/editor-properties-dialog.c:74
+#: src/editor-page.c:977 src/editor-properties-dialog.c:74
 #: src/editor-sidebar-item.c:79
 msgid "Draft"
 msgstr "Чернетка"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:986
+#: src/editor-page.c:989
 #, c-format
 msgid "%s (Administrator)"
-msgstr ""
-"%s (адміністратор)"
+msgstr "%s (адміністратор)"
 
-#: src/editor-page.c:1041
+#: src/editor-page.c:1044
 msgid "Failed to save document"
 msgstr "Не вдалося зберегти документ"
 
-#: src/editor-page.c:1126
+#: src/editor-page.c:1129
 msgid "Save As"
 msgstr "Зберегти як"
 
-#: src/editor-page.c:1129 src/editor-window-actions.c:133
+#: src/editor-page.c:1132 src/editor-window-actions.c:133
 msgid "Save"
 msgstr "Зберегти"
 
-#: src/editor-page.c:1130 src/editor-window-actions.c:132
+#: src/editor-page.c:1133 src/editor-window-actions.c:132
 #: src/editor-window-actions.c:243 src/editor-window-actions.c:352
 msgid "Cancel"
 msgstr "Скасувати"
 
-#: src/editor-page.c:1270
+#: src/editor-page.c:1273
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Рд %u, Поз %u"
