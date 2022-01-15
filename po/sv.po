@@ -2,15 +2,15 @@
 # Copyright © 2021, 2022 gnome-text-editor's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-text-editor package.
 # Anders Jonsson <anders.jonsson@norsjovallen.se>, 2021, 2022.
-# Luna Jernberg <droidbittin@gmail.com>, 2021.
+# Luna Jernberg <droidbittin@gmail.com>, 2021, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-01-07 17:23+0000\n"
-"PO-Revision-Date: 2022-01-08 14:55+0100\n"
+"POT-Creation-Date: 2022-01-13 18:52+0000\n"
+"PO-Revision-Date: 2022-01-15 15:44+0100\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -267,6 +267,14 @@ msgstr ""
 "Aktivera användning av textsnuttar som registrerats med GtkSourceView "
 "inifrån redigeraren."
 
+#: data/org.gnome.TextEditor.gschema.xml:153
+msgid "Line Height"
+msgstr "Radhöjd"
+
+#: data/org.gnome.TextEditor.gschema.xml:154
+msgid "The line height to use for the selected font."
+msgstr "Radhöjden att använda för det valda typsnittet."
+
 #: src/editor-animation.c:1051
 #, c-format
 msgid "Failed to find property %s in %s"
@@ -285,6 +293,7 @@ msgstr "Webbplats för Textredigerare"
 msgid "translator-credits"
 msgstr ""
 "Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
+"Luna Jernberg <droidbittin@gmail.com>\n"
 "\n"
 "Skicka synpunkter på översättningen till\n"
 "<tp-sv@listor.tp-sv.se>."
@@ -293,7 +302,7 @@ msgstr ""
 msgid "Do not restore session at startup"
 msgstr "Återställ inte session vid uppstart"
 
-#: src/editor-document.c:1739
+#: src/editor-document.c:1865
 msgid "[Read-Only]"
 msgstr "[Skrivskyddad]"
 
@@ -314,45 +323,61 @@ msgstr "ILCreateFromPath() misslyckades"
 msgid "Cannot convert “%s” into a valid NSURL."
 msgstr "Kan inte konvertera ”%s” till en giltig NSURL."
 
-#: src/editor-info-bar.c:67
+#: src/editor-info-bar.c:76
 msgid "_Discard Changes and Reload"
 msgstr "_Förkasta ändringar och läs in på nytt"
 
-#: src/editor-info-bar.c:70
+#: src/editor-info-bar.c:79
 msgid "File Has Changed on Disk"
 msgstr "Filen har ändrats på disk"
 
-#: src/editor-info-bar.c:71
+#: src/editor-info-bar.c:80
 msgid "The file has been changed by another program."
 msgstr "Filen har ändrats av ett annat program."
 
-#: src/editor-info-bar.c:80 src/editor-window.ui:200
+#: src/editor-info-bar.c:89 src/editor-window.ui:216
 msgid "Save _As…"
 msgstr "Spara s_om…"
 
-#: src/editor-info-bar.c:82 src/editor-info-bar.ui:15
+#: src/editor-info-bar.c:91 src/editor-info-bar.ui:60
 msgid "Document Restored"
 msgstr "Dokument återställt"
 
-#: src/editor-info-bar.c:83 src/editor-info-bar.ui:24
+#: src/editor-info-bar.c:92 src/editor-info-bar.ui:69
 msgid "Unsaved document has been restored."
 msgstr "Ett osparat dokument har återställts."
 
-#: src/editor-info-bar.c:89
+#: src/editor-info-bar.c:98
 msgid "_Save…"
 msgstr "_Spara…"
 
-#: src/editor-info-bar.c:91 src/editor-info-bar.ui:31
+#: src/editor-info-bar.c:100 src/editor-info-bar.ui:76
 msgid "_Discard…"
 msgstr "_Förkasta…"
 
-#: src/editor-info-bar.c:93
+#: src/editor-info-bar.c:102
 msgid "Draft Changes Restored"
 msgstr "Utkastsändringar återställda"
 
-#: src/editor-info-bar.c:94
+#: src/editor-info-bar.c:103
 msgid "Unsaved changes to the document have been restored."
 msgstr "Osparade ändringar till dokumentet har återställts."
+
+#: src/editor-info-bar.ui:18
+msgid "Could Not Open File"
+msgstr "Kunde inte öppna fil"
+
+#: src/editor-info-bar.ui:27
+msgid "You do not have permission to open the file."
+msgstr "Du har inte rättighet att öppna filen."
+
+#: src/editor-info-bar.ui:34
+msgid "_Retry"
+msgstr "_Försök igen"
+
+#: src/editor-info-bar.ui:41
+msgid "Open As _Administrator"
+msgstr "Öppna som _administratör"
 
 #: src/editor-language-dialog.ui:5 src/editor-window.c:194
 msgid "Document Type"
@@ -370,33 +395,39 @@ msgstr "Inga senaste dokument"
 msgid "No Results Found"
 msgstr "Inga resultat hittades"
 
-#: src/editor-page.c:920 src/editor-sidebar-item.c:474
+#: src/editor-page.c:960 src/editor-sidebar-item.c:473
 msgid "New Document"
 msgstr "Nytt dokument"
 
-#: src/editor-page.c:937 src/editor-properties-dialog.c:75
+#: src/editor-page.c:977 src/editor-properties-dialog.c:74
 #: src/editor-sidebar-item.c:79
 msgid "Draft"
 msgstr "Utkast"
 
-#: src/editor-page.c:991
+#. translators: %s is replaced with the path on the filesystem
+#: src/editor-page.c:989
+#, c-format
+msgid "%s (Administrator)"
+msgstr "%s (administratör)"
+
+#: src/editor-page.c:1044
 msgid "Failed to save document"
 msgstr "Misslyckades med att spara dokument"
 
-#: src/editor-page.c:1076
+#: src/editor-page.c:1129
 msgid "Save As"
 msgstr "Spara som"
 
-#: src/editor-page.c:1079 src/editor-window-actions.c:133
+#: src/editor-page.c:1132 src/editor-window-actions.c:133
 msgid "Save"
 msgstr "Spara"
 
-#: src/editor-page.c:1080 src/editor-window-actions.c:132
+#: src/editor-page.c:1133 src/editor-window-actions.c:132
 #: src/editor-window-actions.c:243 src/editor-window-actions.c:352
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: src/editor-page.c:1220
+#: src/editor-page.c:1273
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Rad %u, Kol %u"
@@ -490,39 +521,35 @@ msgstr "Sida %N av %Q"
 msgid "Properties"
 msgstr "Egenskaper"
 
-#: src/editor-properties-dialog.ui:16
-msgid "_Update"
-msgstr "_Uppdatera"
-
-#: src/editor-properties-dialog.ui:35
+#: src/editor-properties-dialog.ui:26
 msgid "File"
 msgstr "Fil"
 
-#: src/editor-properties-dialog.ui:38
+#: src/editor-properties-dialog.ui:29
 msgid "Name"
 msgstr "Namn"
 
-#: src/editor-properties-dialog.ui:53
+#: src/editor-properties-dialog.ui:44
 msgid "Location"
 msgstr "Plats"
 
-#: src/editor-properties-dialog.ui:71
+#: src/editor-properties-dialog.ui:62
 msgid "Statistics"
 msgstr "Statistik"
 
-#: src/editor-properties-dialog.ui:74
+#: src/editor-properties-dialog.ui:65
 msgid "Lines"
 msgstr "Rader"
 
-#: src/editor-properties-dialog.ui:89
+#: src/editor-properties-dialog.ui:80
 msgid "Words"
 msgstr "Ord"
 
-#: src/editor-properties-dialog.ui:104
+#: src/editor-properties-dialog.ui:95
 msgid "Characters, No Spaces"
 msgstr "Tecken, inga blanksteg"
 
-#: src/editor-properties-dialog.ui:119
+#: src/editor-properties-dialog.ui:110
 msgid "All Characters"
 msgstr "Alla tecken"
 
@@ -550,7 +577,7 @@ msgstr ""
 msgid "_Cancel"
 msgstr "A_vbryt"
 
-#: src/editor-save-changes-dialog.c:269 src/editor-window.ui:194
+#: src/editor-save-changes-dialog.c:269 src/editor-window.ui:210
 msgid "_Save"
 msgstr "_Spara"
 
@@ -739,36 +766,36 @@ msgid "Document Type: %s"
 msgstr "Dokumenttyp: %s"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:724
+#: src/editor-window.c:725
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - Textredigerare"
 
-#: src/editor-window.ui:61
+#: src/editor-window.ui:77
 msgid "_Open"
 msgstr "Ö_ppna"
 
-#: src/editor-window.ui:63
+#: src/editor-window.ui:79
 msgid "Open recent document (Ctrl+K)"
 msgstr "Öppna senaste dokument (Ctrl+K)"
 
-#: src/editor-window.ui:75 src/editor-window.ui:77
+#: src/editor-window.ui:91 src/editor-window.ui:93
 msgid "New tab (Ctrl+T)"
 msgstr "Ny flik (Ctrl+T)"
 
-#: src/editor-window.ui:103 src/editor-window.ui:107
+#: src/editor-window.ui:119 src/editor-window.ui:123
 msgid "View"
 msgstr "Visa"
 
-#: src/editor-window.ui:116
+#: src/editor-window.ui:132
 msgid "Menu"
 msgstr "Meny"
 
-#: src/editor-window.ui:150
+#: src/editor-window.ui:166
 msgid "Start or Open a Document"
 msgstr "Starta eller öppna ett dokument"
 
-#: src/editor-window.ui:153
+#: src/editor-window.ui:169
 msgid ""
 "• Press the Open button\n"
 "• Press the New tab button\n"
@@ -784,119 +811,119 @@ msgstr ""
 "\n"
 "Eller tryck Ctrl+W för att stänga fönstret."
 
-#: src/editor-window.ui:186
+#: src/editor-window.ui:202
 msgid "_New Window"
 msgstr "_Nytt fönster"
 
-#: src/editor-window.ui:206
+#: src/editor-window.ui:222
 msgid "_Discard Changes"
 msgstr "_Förkasta ändringar"
 
-#: src/editor-window.ui:212
+#: src/editor-window.ui:228
 msgid "_Find/Replace…"
 msgstr "_Sök/ersätt…"
 
-#: src/editor-window.ui:218
+#: src/editor-window.ui:234
 msgid "_Print"
 msgstr "S_kriv ut"
 
-#: src/editor-window.ui:224
+#: src/editor-window.ui:240
 msgid "Documen_t Properties"
 msgstr "Dok_umentegenskaper"
 
-#: src/editor-window.ui:230
+#: src/editor-window.ui:246
 msgid "P_references"
 msgstr "_Inställningar"
 
-#: src/editor-window.ui:235
+#: src/editor-window.ui:251
 msgid "_Keyboard Shortcuts"
 msgstr "_Tangentbordsgenvägar"
 
-#: src/editor-window.ui:239
+#: src/editor-window.ui:255
 msgid "_Help"
 msgstr "_Hjälp"
 
-#: src/editor-window.ui:243
+#: src/editor-window.ui:259
 msgid "A_bout Text Editor"
 msgstr "_Om Textredigerare"
 
-#: src/editor-window.ui:250
+#: src/editor-window.ui:266
 msgid "Show"
 msgstr "Visa"
 
-#: src/editor-window.ui:252
+#: src/editor-window.ui:268
 msgid "_Line Numbers"
 msgstr "_Radnummer"
 
-#: src/editor-window.ui:256
+#: src/editor-window.ui:272
 msgid "_Right Margin"
 msgstr "_Högermarginal"
 
-#: src/editor-window.ui:261
+#: src/editor-window.ui:277
 msgid "Indentation"
 msgstr "Indrag"
 
-#: src/editor-window.ui:263
+#: src/editor-window.ui:279
 msgid "_Automatic Indentation"
 msgstr "_Automatiskt indrag"
 
-#: src/editor-window.ui:267
+#: src/editor-window.ui:283
 msgid "_Tabs"
 msgstr "_Tabbar"
 
-#: src/editor-window.ui:272
+#: src/editor-window.ui:288
 msgid "_Spaces"
 msgstr "_Blanksteg"
 
-#: src/editor-window.ui:277
+#: src/editor-window.ui:293
 msgid "Spaces _Per Tab"
 msgstr "Blanksteg _per tabb"
 
-#: src/editor-window.ui:280
+#: src/editor-window.ui:296
 msgid "_2"
 msgstr "_2"
 
-#: src/editor-window.ui:285
+#: src/editor-window.ui:301
 msgid "_4"
 msgstr "_4"
 
-#: src/editor-window.ui:290
+#: src/editor-window.ui:306
 msgid "_6"
 msgstr "_6"
 
-#: src/editor-window.ui:295
+#: src/editor-window.ui:311
 msgid "_8"
 msgstr "_8"
 
-#: src/editor-window.ui:304
+#: src/editor-window.ui:320
 msgid "T_ext Wrapping"
 msgstr "Radbrytning av t_ext"
 
-#: src/editor-window.ui:308
+#: src/editor-window.ui:324
 msgid "Chec_k Spelling"
 msgstr "_Kontrollera stavning"
 
-#: src/editor-window.ui:312
+#: src/editor-window.ui:328
 msgid "_Document Type"
 msgstr "_Dokumenttyp"
 
-#: src/editor-window.ui:320
+#: src/editor-window.ui:336
 msgid "Move _Left"
 msgstr "Flytta _vänster"
 
-#: src/editor-window.ui:325
+#: src/editor-window.ui:341
 msgid "Move _Right"
 msgstr "Flytta _höger"
 
-#: src/editor-window.ui:332
+#: src/editor-window.ui:348
 msgid "_Move to New Window"
 msgstr "_Flytta till nytt fönster"
 
-#: src/editor-window.ui:339
+#: src/editor-window.ui:355
 msgid "Close _Other Tabs"
 msgstr "Stäng a_ndra flikar"
 
-#: src/editor-window.ui:343
+#: src/editor-window.ui:359
 msgid "_Close"
 msgstr "S_täng"
 
@@ -1184,6 +1211,9 @@ msgstr "Ta bort mellan markören och slutet på stycket"
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "Ta bort aktuell rad"
+
+#~ msgid "_Update"
+#~ msgstr "_Uppdatera"
 
 #~ msgid "_Preferences"
 #~ msgstr "_Inställningar"
