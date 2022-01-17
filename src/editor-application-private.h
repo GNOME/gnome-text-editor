@@ -26,7 +26,7 @@ G_BEGIN_DECLS
 
 struct _EditorApplication
 {
-  GtkApplication  parent_instance;
+  AdwApplication  parent_instance;
   EditorSession  *session;
   GSettings      *settings;
   GtkCssProvider *recoloring;

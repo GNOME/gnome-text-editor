@@ -34,7 +34,7 @@
 #define PORTAL_OBJECT_PATH "/org/freedesktop/portal/desktop"
 #define PORTAL_SETTINGS_INTERFACE "org.freedesktop.portal.Settings"
 
-G_DEFINE_TYPE (EditorApplication, editor_application, GTK_TYPE_APPLICATION)
+G_DEFINE_TYPE (EditorApplication, editor_application, ADW_TYPE_APPLICATION)
 
 enum {
   PROP_0,
@@ -291,8 +291,6 @@ editor_application_startup (GApplication *application)
   g_assert (EDITOR_IS_APPLICATION (self));
 
   G_APPLICATION_CLASS (editor_application_parent_class)->startup (application);
-
-  adw_init ();
 
   display = gdk_display_get_default ();
   self->recoloring = gtk_css_provider_new ();

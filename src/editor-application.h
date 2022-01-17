@@ -20,6 +20,8 @@
 
 #pragma once
 
+#include <adwaita.h>
+
 #include "editor-types.h"
 
 G_BEGIN_DECLS
@@ -27,7 +29,7 @@ G_BEGIN_DECLS
 #define EDITOR_TYPE_APPLICATION    (editor_application_get_type())
 #define EDITOR_APPLICATION_DEFAULT (EDITOR_APPLICATION(g_application_get_default()))
 
-G_DECLARE_FINAL_TYPE (EditorApplication, editor_application, EDITOR, APPLICATION, GtkApplication)
+G_DECLARE_FINAL_TYPE (EditorApplication, editor_application, EDITOR, APPLICATION, AdwApplication)
 
 EditorSession *editor_application_get_session        (EditorApplication *self);
 EditorWindow  *editor_application_get_current_window (EditorApplication *self);
