@@ -87,5 +87,7 @@ void                      _editor_document_ignore_spelling         (EditorDocume
 GtkTextTag               *_editor_document_get_spelling_tag        (EditorDocument           *self);
 void                      _editor_document_use_admin               (EditorDocument           *self);
 gboolean                  _editor_document_had_error               (EditorDocument           *self);
+void                      _editor_document_persist_syntax_language (EditorDocument           *self,
+                                                                    const char               *language_id);
 
 G_END_DECLS

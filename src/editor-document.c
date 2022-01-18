@@ -35,6 +35,7 @@
 
 #define METADATA_CURSOR     "metadata::gte-cursor"
 #define METADATA_SPELLING   "metadata::gte-spelling"
+#define METADATA_SYNTAX     "metadata::gte-syntax"
 #define TITLE_LAST_WORD_POS 20
 #define TITLE_MAX_LEN       100
 
@@ -160,6 +161,63 @@ editor_document_track_error (EditorDocument *self,
     }
 
   g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_HAD_ERROR]);
+}
+
+static void
+check_error (GObject      *object,
+             GAsyncResult *result,
+             gpointer      user_data)
+{
+  GFile *file = (GFile *)object;
+  g_autoptr(GError) error = NULL;
+
+  if (!g_file_set_attributes_finish (file, result, NULL, &error))
+    g_warning ("%s", error->message);
+}
+
+void
+_editor_document_persist_syntax_language (EditorDocument *self,
+                                          const char     *language_id)
+{
+  g_autoptr(GFileInfo) info = NULL;
+  GFile *file;
+
+  g_assert (EDITOR_IS_DOCUMENT (self));
+
+  /* Only persist the metadata if we have a backing file */
+  if (!(file = editor_document_get_file (self)) || !g_file_is_native (file))
+    return;
+
+  info = g_file_info_new ();
+  g_file_info_set_attribute_string (info, METADATA_SYNTAX, language_id ? language_id : "");
+  g_file_set_attributes_async (file, info, G_FILE_QUERY_INFO_NONE,
+                               G_PRIORITY_DEFAULT, NULL, check_error, NULL);
+}
+
+static void
+on_spelling_language_changed_cb (EditorDocument     *self,
+                                 GParamSpec         *pspec,
+                                 EditorSpellChecker *spell_checker)
+{
+  g_autoptr(GFileInfo) info = NULL;
+  const char *language_id;
+  GFile *file;
+
+  g_assert (EDITOR_IS_DOCUMENT (self));
+  g_assert (EDITOR_IS_SPELL_CHECKER (spell_checker));
+
+  /* Only persist the metadata if we have a backing file */
+  if (!(file = editor_document_get_file (self)) || !g_file_is_native (file))
+    return;
+
+  /* Ignore if there is nothing to set */
+  if (!(language_id = editor_spell_checker_get_language (spell_checker)))
+    return;
+
+  info = g_file_info_new ();
+  g_file_info_set_attribute_string (info, METADATA_SPELLING, language_id);
+  g_file_set_attributes_async (file, info, G_FILE_QUERY_INFO_NONE,
+                               G_PRIORITY_DEFAULT, NULL, check_error, NULL);
 }
 
 static void
@@ -1213,11 +1271,12 @@ editor_document_query_info_cb (GObject      *object,
   g_autoptr(GTask) task = user_data;
   g_autofree gchar *filename = NULL;
   GtkSourceLanguageManager *lm;
-  GtkSourceLanguage *language;
+  GtkSourceLanguage *language = NULL;
   EditorDocument *self;
   const gchar *content_type;
   const gchar *position;
   const gchar *spelling_language;
+  const gchar *syntax;
   gboolean readonly;
   gboolean is_modified;
   guint line = 0;
@@ -1246,10 +1305,18 @@ editor_document_query_info_cb (GObject      *object,
   content_type = g_file_info_get_attribute_string (info, G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE);
   position = g_file_info_get_attribute_string (info, METADATA_CURSOR);
   spelling_language = g_file_info_get_attribute_string (info, METADATA_SPELLING);
+  syntax = g_file_info_get_attribute_string (info, METADATA_SYNTAX);
 
   editor_document_set_readonly (self, readonly);
 
-  language = guess_language (lm, filename, content_type);
+  /* Use existing language from extended attribute if it is available, otherwise
+   * fallback to guessing the syntax from the content-type.
+   */
+  if (syntax != NULL && syntax[0] != 0)
+    language = gtk_source_language_manager_get_language (lm, syntax);
+  if (language == NULL)
+    language = guess_language (lm, filename, content_type);
+
   gtk_source_buffer_set_language (GTK_SOURCE_BUFFER (self), language);
   gtk_source_buffer_set_highlight_syntax (GTK_SOURCE_BUFFER (self), language != NULL);
 
@@ -1344,6 +1411,7 @@ editor_document_load_cb (GObject      *object,
                                G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE","
                                G_FILE_ATTRIBUTE_FILESYSTEM_READONLY","
                                METADATA_CURSOR","
+                               METADATA_SYNTAX","
                                METADATA_SPELLING,
                                G_FILE_QUERY_INFO_NONE,
                                G_PRIORITY_DEFAULT,
@@ -1970,44 +2038,6 @@ editor_document_get_spell_checker (EditorDocument *self)
   g_return_val_if_fail (EDITOR_IS_DOCUMENT (self), NULL);
 
   return self->spell_checker;
-}
-
-static void
-check_error (GObject      *object,
-             GAsyncResult *result,
-             gpointer      user_data)
-{
-  GFile *file = (GFile *)object;
-  g_autoptr(GError) error = NULL;
-
-  if (!g_file_set_attributes_finish (file, result, NULL, &error))
-    g_warning ("%s", error->message);
-}
-
-static void
-on_spelling_language_changed_cb (EditorDocument     *self,
-                                 GParamSpec         *pspec,
-                                 EditorSpellChecker *spell_checker)
-{
-  g_autoptr(GFileInfo) info = NULL;
-  const char *language_id;
-  GFile *file;
-
-  g_assert (EDITOR_IS_DOCUMENT (self));
-  g_assert (EDITOR_IS_SPELL_CHECKER (spell_checker));
-
-  /* Only persist the metadata if we have a backing file */
-  if (!(file = editor_document_get_file (self)) || !g_file_is_native (file))
-    return;
-
-  /* Ignore if there is nothing to set */
-  if (!(language_id = editor_spell_checker_get_language (spell_checker)))
-    return;
-
-  info = g_file_info_new ();
-  g_file_info_set_attribute_string (info, METADATA_SPELLING, language_id);
-  g_file_set_attributes_async (file, info, G_FILE_QUERY_INFO_NONE,
-                               G_PRIORITY_DEFAULT, NULL, check_error, NULL);
 }
 
 /**
