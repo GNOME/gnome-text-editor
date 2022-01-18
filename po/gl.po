@@ -11,7 +11,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
 "POT-Creation-Date: 2022-01-13 18:52+0000\n"
-"PO-Revision-Date: 2022-01-18 10:07+0100\n"
+"PO-Revision-Date: 2022-01-18 11:31+0100\n"
 "Last-Translator: Fran Diéguez <frandieguez@gnome.org>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -90,6 +90,7 @@ msgstr "Autosangrar"
 #: data/org.gnome.TextEditor.gschema.xml:41
 msgid "Automatically indent new lines copying the previous line's indentation."
 msgstr ""
+"Sangrar automaticamente as liñas novas copiando o sangrado de liña anterior."
 
 #: data/org.gnome.TextEditor.gschema.xml:46
 msgid "Tab Width"
@@ -97,7 +98,7 @@ msgstr "Largura da tabulación"
 
 #: data/org.gnome.TextEditor.gschema.xml:47
 msgid "The number of spaces represented by a tab."
-msgstr ""
+msgstr "O número de espacios representados por unha tabulación."
 
 #: data/org.gnome.TextEditor.gschema.xml:52
 #| msgid "Indentation"
@@ -106,7 +107,7 @@ msgstr "Ancho do sangrado"
 
 #: data/org.gnome.TextEditor.gschema.xml:53
 msgid "The number of spaces to indent or -1 to use tab-width."
-msgstr ""
+msgstr "O número de espacios a sangrar ou -1 para usar o tab-width."
 
 #: data/org.gnome.TextEditor.gschema.xml:57
 msgid "Show Line Numbers"
@@ -115,6 +116,7 @@ msgstr "Mostrar os números de liña"
 #: data/org.gnome.TextEditor.gschema.xml:58
 msgid "If line numbers should be displayed next to each line."
 msgstr ""
+"Indica se se debería mostrar o número de liña debería ao carón de cada liña."
 
 #: data/org.gnome.TextEditor.gschema.xml:62
 msgid "Show Right Margin"
@@ -123,15 +125,16 @@ msgstr "Mostrar a marxe dereita"
 #: data/org.gnome.TextEditor.gschema.xml:63
 msgid "If a margin line should be displayed on the right of the editor."
 msgstr ""
+"Indica se se debería mostrar o marxe da liña na parte dereita do editor."
 
 #: data/org.gnome.TextEditor.gschema.xml:68
 msgid "Right Margin Position"
-msgstr "Posición da marxe dereita"
+msgstr "Posición do marxe dereito"
 
 #: data/org.gnome.TextEditor.gschema.xml:69
 msgid ""
 "The position in characters at which the right margin should be displayed."
-msgstr ""
+msgstr "A posición en caracteres na que se debería mostrar o marxe dereito"
 
 #: data/org.gnome.TextEditor.gschema.xml:73
 msgid "Show Overview Map"
@@ -141,7 +144,7 @@ msgstr "Mostrar o Mapa de vista xeral"
 msgid ""
 "If enabled, an overview map of the file will be displayed to the side of the "
 "editor."
-msgstr ""
+msgstr "Se está activo, mostrarase un mapa de vista previa nun lado do editor"
 
 #: data/org.gnome.TextEditor.gschema.xml:78
 msgid "Show Background Grid"
@@ -150,6 +153,8 @@ msgstr "Mostrar a grella de fondo"
 #: data/org.gnome.TextEditor.gschema.xml:79
 msgid "If enabled, a blueprint style grid is printed on the editor background."
 msgstr ""
+"Se está activo, mostrarase unha grella con estilo de plano como fondo do "
+"editor."
 
 #: data/org.gnome.TextEditor.gschema.xml:83
 msgid "Highlight current line"
@@ -157,7 +162,7 @@ msgstr "Realzar a liña actual"
 
 #: data/org.gnome.TextEditor.gschema.xml:84
 msgid "If enabled, the current line will be highlighted."
-msgstr ""
+msgstr "Se está activo, realzarase a liña actual."
 
 #: data/org.gnome.TextEditor.gschema.xml:88
 msgid "Text Wrapping"
@@ -174,6 +179,7 @@ msgstr "Usar o tipo de letra do sistema"
 #: data/org.gnome.TextEditor.gschema.xml:94
 msgid "If the default system monospace font should be used."
 msgstr ""
+"Se se debería usar o tipo de letra monoespaciado predeterminado do sistema."
 
 #: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:59
 msgid "Custom Font"
@@ -192,6 +198,8 @@ msgid ""
 "The style scheme to use by the editor. It may translate this into a dark "
 "format when available."
 msgstr ""
+"O esquema de estilo a usar polo editor. Pode traducirse isto en formato "
+"escuro cando está dispoñíbel."
 
 #: data/org.gnome.TextEditor.gschema.xml:108
 msgid "Discover File Settings"
@@ -221,7 +229,7 @@ msgstr "Restaurar sessión"
 
 #: data/org.gnome.TextEditor.gschema.xml:119
 msgid "When Text Editor is run, restore the previous session."
-msgstr ""
+msgstr "Ao iniciar o Editor de texto, restaurar a sesión anterior."
 
 #: data/org.gnome.TextEditor.gschema.xml:123
 #| msgid "_New Window"
@@ -230,7 +238,7 @@ msgstr "Recolorear xanela"
 
 #: data/org.gnome.TextEditor.gschema.xml:124
 msgid "Use the style-scheme to recolor the application window."
-msgstr ""
+msgstr "Usar o esquema de estilo para recolorear a xanela da aplicación."
 
 #: data/org.gnome.TextEditor.gschema.xml:132
 msgid "Keybindings"
@@ -238,7 +246,7 @@ msgstr "Atallos de teclado"
 
 #: data/org.gnome.TextEditor.gschema.xml:133
 msgid "The keybindings to use within Text Editor."
-msgstr ""
+msgstr "Os atallos de teclado a usar no Editor de texto."
 
 #: data/org.gnome.TextEditor.gschema.xml:137
 msgid "Last Save Directory"
@@ -246,7 +254,7 @@ msgstr "O último directorio gardado"
 
 #: data/org.gnome.TextEditor.gschema.xml:138
 msgid "The directory last used in a save or save-as dialog."
-msgstr ""
+msgstr "O último directorio usado no diálogo de gardar ou gardar como."
 
 #: data/org.gnome.TextEditor.gschema.xml:142
 #| msgid "_Spaces"
@@ -255,17 +263,18 @@ msgstr "Debuxar espacios"
 
 #: data/org.gnome.TextEditor.gschema.xml:143
 msgid "The various types of spaces to draw in the editor."
-msgstr ""
+msgstr "Os distintos estilos de espacios a debuxar no editor."
 
 #: data/org.gnome.TextEditor.gschema.xml:147
 msgid "Enable Snippets"
-msgstr ""
+msgstr "Activar fragmentos"
 
 #: data/org.gnome.TextEditor.gschema.xml:148
 msgid ""
 "Enable the use of snippets registered with GtkSourceView from within the "
 "editor."
 msgstr ""
+"Actíveo para usar os fragmentos rexistrados con GtkSourceView desde o editor."
 
 #: data/org.gnome.TextEditor.gschema.xml:153
 #| msgid "Line Ending:"
