@@ -940,6 +940,8 @@ editor_window_init (EditorWindow *self)
   gtk_window_set_title (GTK_WINDOW (self), _(PACKAGE_NAME));
   gtk_window_set_default_size (GTK_WINDOW (self), 700, 520);
 
+  adw_status_page_set_icon_name (ADW_STATUS_PAGE (self->empty), APP_ID"-symbolic");
+
   self->settings = g_settings_new ("org.gnome.TextEditor");
   g_signal_connect_object (self->settings,
                            "changed::show-line-numbers",
