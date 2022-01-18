@@ -23,6 +23,7 @@
 #include "config.h"
 
 #include <glib/gi18n.h>
+#include <unistd.h>
 
 #include "editor-application.h"
 #include "editor-document-private.h"
@@ -68,9 +69,13 @@ static GParamSpec *properties [N_PROPS];
 static void
 editor_sidebar_item_update_subtitle (EditorSidebarItem *self)
 {
+  static char *docportal = NULL;
   g_autoptr(GFile) dir = NULL;
 
   g_assert (EDITOR_IS_SIDEBAR_ITEM (self));
+
+  if (docportal == NULL)
+    docportal = g_strdup_printf ("/run/user/%u/doc/", getuid ());
 
   g_free (self->subtitle);
 
@@ -82,11 +87,22 @@ editor_sidebar_item_update_subtitle (EditorSidebarItem *self)
 
   /* Can happen, but implausible since someone tried to open "/" */
   if (!(dir = g_file_get_parent (self->file)))
-    self->subtitle = g_strdup ("");
+    {
+      self->subtitle = g_strdup ("");
+    }
   else if (g_file_is_native (dir))
-    self->subtitle = _editor_path_collapse (g_file_peek_path (dir));
+    {
+      const char *peek = g_file_peek_path (dir);
+
+      if (g_str_has_prefix (peek, docportal))
+        self->subtitle = g_strdup (_("Document Portal"));
+      else
+        self->subtitle = _editor_path_collapse (g_file_peek_path (dir));
+    }
   else
-    self->subtitle = g_file_get_uri (dir);
+    {
+      self->subtitle = g_file_get_uri (dir);
+    }
 }
 
 static void

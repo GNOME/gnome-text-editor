@@ -24,6 +24,7 @@
 
 #include <adwaita.h>
 #include <glib/gi18n.h>
+#include <unistd.h>
 
 #include "editor-application-private.h"
 #include "editor-info-bar-private.h"
@@ -965,11 +966,16 @@ editor_page_dup_title (EditorPage *self)
 gchar *
 editor_page_dup_subtitle (EditorPage *self)
 {
+  static char *docportal = NULL;
   g_autoptr(GFile) dir = NULL;
+  const char *peek;
   GFile *file;
 
   g_return_val_if_fail (EDITOR_IS_PAGE (self), NULL);
   g_return_val_if_fail (EDITOR_IS_DOCUMENT (self->document), NULL);
+
+  if (docportal == NULL)
+    docportal = g_strdup_printf ("/run/user/%u/doc/", getuid ());
 
   file = editor_document_get_file (self->document);
 
@@ -992,7 +998,11 @@ editor_page_dup_subtitle (EditorPage *self)
       return g_steal_pointer (&uri);
     }
 
-  return _editor_path_collapse (g_file_peek_path (dir));
+  peek = g_file_peek_path (dir);
+  if (g_str_has_prefix (peek, docportal))
+    return g_strdup (_("Document Portal"));
+
+  return _editor_path_collapse (peek);
 }
 
 void
