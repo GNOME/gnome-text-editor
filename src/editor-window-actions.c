@@ -159,6 +159,23 @@ editor_window_actions_save_as_cb (GtkWidget  *widget,
 }
 
 static void
+editor_window_actions_notify_language_cb (EditorDocument       *document,
+                                          GParamSpec           *pspec,
+                                          EditorLanguageDialog *dialog)
+{
+  GtkSourceLanguage *language;
+  const char *language_id = NULL;
+
+  g_assert (EDITOR_IS_DOCUMENT (document));
+  g_assert (EDITOR_IS_LANGUAGE_DIALOG (dialog));
+
+  if ((language = editor_language_dialog_get_language (dialog)))
+    language_id = gtk_source_language_get_id (language);
+
+  _editor_document_persist_syntax_language (document, language_id);
+}
+
+static void
 editor_window_actions_change_language_cb (GtkWidget  *widget,
                                           const char *action_name,
                                           GVariant   *param)
@@ -182,6 +199,17 @@ editor_window_actions_change_language_cb (GtkWidget  *widget,
 
   g_object_bind_property (document, "language", dialog, "language",
                           G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL);
+
+  /* We only want to persist the language to underlying storage if the
+   * user changes the value using the language dialog. Otherwise, we can't
+   * update to better content-type discovery in updates of shared-mime-info
+   * or GtkSourceView as they'd be pinned to the first result we ever get.
+   */
+  g_signal_connect_object (dialog,
+                           "notify::language",
+                           G_CALLBACK (editor_window_actions_notify_language_cb),
+                           document,
+                           G_CONNECT_SWAPPED);
 
   gtk_window_present (GTK_WINDOW (dialog));
 }
