@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues\n"
-"POT-Creation-Date: 2022-01-13 18:52+0000\n"
-"PO-Revision-Date: 2022-01-14 21:58+0200\n"
+"POT-Creation-Date: 2022-01-18 22:19+0000\n"
+"PO-Revision-Date: 2022-01-19 00:54+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -268,14 +268,12 @@ msgstr ""
 "GtkSourceView."
 
 #: data/org.gnome.TextEditor.gschema.xml:153
-#| msgid "Line Ending:"
 msgid "Line Height"
 msgstr "Висота рядка"
 
 #: data/org.gnome.TextEditor.gschema.xml:154
 msgid "The line height to use for the selected font."
-msgstr ""
-"Висота рядка, яку слід використати для вибраного шрифту."
+msgstr "Висота рядка, яку слід використати для вибраного шрифту."
 
 #: src/editor-animation.c:1051
 #, c-format
@@ -295,27 +293,27 @@ msgstr "Сайт «Текстового редактора»"
 msgid "translator-credits"
 msgstr "Юрій Чорноіван <yurchor@ukr.net>, 2021–2022"
 
-#: src/editor-application.c:504
+#: src/editor-application.c:502
 msgid "Do not restore session at startup"
 msgstr "Не відновлювати сеанс після запуску"
 
-#: src/editor-document.c:1865
+#: src/editor-document.c:1933
 msgid "[Read-Only]"
 msgstr "[Лише читання]"
 
-#: src/editor-file-manager.c:87
+#: src/editor-file-manager.c:99
 msgid "File path is NULL"
 msgstr "Шлях до файла порожній"
 
-#: src/editor-file-manager.c:96 src/editor-file-manager.c:107
+#: src/editor-file-manager.c:108 src/editor-file-manager.c:119
 msgid "Error converting UTF-8 filename to wide char"
 msgstr "Помилка перетворення назви файлу з UTF-8 в широкі символи"
 
-#: src/editor-file-manager.c:115
+#: src/editor-file-manager.c:127
 msgid "ILCreateFromPath() failed"
 msgstr "Помилка ILCreateFromPath()"
 
-#: src/editor-file-manager.c:152
+#: src/editor-file-manager.c:164
 #, c-format
 msgid "Cannot convert “%s” into a valid NSURL."
 msgstr "Не вдалося перетворити «%s» на коректний NSURL."
@@ -384,47 +382,52 @@ msgstr "Тип документа"
 msgid "No Matches"
 msgstr "Немає відповідників"
 
-#: src/editor-open-popover.ui:65
+#: src/editor-open-popover.ui:67
 msgid "No Recent Documents"
 msgstr "Немає недавніх документів"
 
-#: src/editor-open-popover.ui:92
+#: src/editor-open-popover.ui:94
 msgid "No Results Found"
 msgstr "Нічого не знайдено"
 
-#: src/editor-page.c:960 src/editor-sidebar-item.c:473
+#: src/editor-page.c:961 src/editor-sidebar-item.c:489
 msgid "New Document"
 msgstr "Новий документ"
 
-#: src/editor-page.c:977 src/editor-properties-dialog.c:74
-#: src/editor-sidebar-item.c:79
+#: src/editor-page.c:983 src/editor-properties-dialog.c:74
+#: src/editor-sidebar-item.c:84
 msgid "Draft"
 msgstr "Чернетка"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:989
+#: src/editor-page.c:995
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (адміністратор)"
 
-#: src/editor-page.c:1044
+#: src/editor-page.c:1003 src/editor-sidebar-item.c:98
+#| msgid "Documen_t Properties"
+msgid "Document Portal"
+msgstr "Портал документів"
+
+#: src/editor-page.c:1054
 msgid "Failed to save document"
 msgstr "Не вдалося зберегти документ"
 
-#: src/editor-page.c:1129
+#: src/editor-page.c:1139
 msgid "Save As"
 msgstr "Зберегти як"
 
-#: src/editor-page.c:1132 src/editor-window-actions.c:133
+#: src/editor-page.c:1142 src/editor-window-actions.c:133
 msgid "Save"
 msgstr "Зберегти"
 
-#: src/editor-page.c:1133 src/editor-window-actions.c:132
-#: src/editor-window-actions.c:243 src/editor-window-actions.c:352
+#: src/editor-page.c:1143 src/editor-window-actions.c:132
+#: src/editor-window-actions.c:271 src/editor-window-actions.c:380
 msgid "Cancel"
 msgstr "Скасувати"
 
-#: src/editor-page.c:1273
+#: src/editor-page.c:1283
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Рд %u, Поз %u"
@@ -731,32 +734,32 @@ msgid "Saving changes will replace the previously saved version."
 msgstr "Збереження змін призведе до заміщення раніше збереженої версії."
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:239
+#: src/editor-window-actions.c:267
 #, c-format
 msgid "Discard Changes to “%s”?"
 msgstr "Відкинути зміни у «%s»?"
 
-#: src/editor-window-actions.c:242
+#: src/editor-window-actions.c:270
 msgid "Unsaved changes will be permanently lost."
 msgstr "Незбережені зміни буде втрачено без можливості відновлення."
 
-#: src/editor-window-actions.c:244
+#: src/editor-window-actions.c:272
 msgid "Discard"
 msgstr "Відкинути"
 
-#: src/editor-window-actions.c:348
+#: src/editor-window-actions.c:376
 msgid "Open File"
 msgstr "Відкрити файл"
 
-#: src/editor-window-actions.c:351
+#: src/editor-window-actions.c:379
 msgid "Open"
 msgstr "Відкрити"
 
-#: src/editor-window-actions.c:376
+#: src/editor-window-actions.c:404
 msgid "All Files"
 msgstr "усі файли"
 
-#: src/editor-window-actions.c:381
+#: src/editor-window-actions.c:409
 msgid "Text Files"
 msgstr "текстові файли"
 
@@ -771,23 +774,23 @@ msgstr "Тип документа: %s"
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) – Текстовий редактор"
 
-#: src/editor-window.ui:77
+#: src/editor-window.ui:78
 msgid "_Open"
 msgstr "_Відкрити"
 
-#: src/editor-window.ui:79
+#: src/editor-window.ui:80
 msgid "Open recent document (Ctrl+K)"
 msgstr "Відкрити нещодавній документ (Ctrl+K)"
 
-#: src/editor-window.ui:91 src/editor-window.ui:93
+#: src/editor-window.ui:92 src/editor-window.ui:94
 msgid "New tab (Ctrl+T)"
 msgstr "Створити вкладку (Ctrl+T)"
 
-#: src/editor-window.ui:119 src/editor-window.ui:123
+#: src/editor-window.ui:120 src/editor-window.ui:124
 msgid "View"
 msgstr "Перегляд"
 
-#: src/editor-window.ui:132
+#: src/editor-window.ui:133
 msgid "Menu"
 msgstr "Меню"
 
