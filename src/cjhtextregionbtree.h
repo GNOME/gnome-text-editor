@@ -191,7 +191,10 @@ G_BEGIN_DECLS
         for (_iter = (Node)->head, _nth = 0;                                 \
              _nth < (Nth);                                                   \
              _iter = (Node)->items[_iter].next, ++_nth)                      \
-          { /* Do Nothing */ }                                               \
+          {                                                                  \
+            /* Do Nothing */                                                 \
+            g_assert (_iter != VAL_QUEUE_INVALID(Node));                     \
+          }                                                                  \
       }                                                                      \
   } G_STMT_END
 #define _VAL_QUEUE_MOVE(Node, Old, New)                                      \
@@ -293,6 +296,12 @@ G_BEGIN_DECLS
     guint8 _len;                                                             \
                                                                              \
     VAL_QUEUE_POP_NTH(&(FIELD)->q, POSITION, _pos);                          \
+    if (_pos == VAL_QUEUE_INVALID(&(FIELD)->q))                              \
+      {                                                                      \
+        g_assert_not_reached ();                                             \
+        break;                                                               \
+      }                                                                      \
+                                                                             \
     _ele = (FIELD)->items[_pos];                                             \
     _len = VAL_QUEUE_LENGTH(&(FIELD)->q);                                    \
                                                                              \
