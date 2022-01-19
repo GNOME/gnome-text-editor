@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-01-13 18:52+0000\n"
-"PO-Revision-Date: 2022-01-15 15:44+0100\n"
+"POT-Creation-Date: 2022-01-18 22:19+0000\n"
+"PO-Revision-Date: 2022-01-19 18:22+0100\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -298,27 +298,27 @@ msgstr ""
 "Skicka synpunkter på översättningen till\n"
 "<tp-sv@listor.tp-sv.se>."
 
-#: src/editor-application.c:504
+#: src/editor-application.c:502
 msgid "Do not restore session at startup"
 msgstr "Återställ inte session vid uppstart"
 
-#: src/editor-document.c:1865
+#: src/editor-document.c:1933
 msgid "[Read-Only]"
 msgstr "[Skrivskyddad]"
 
-#: src/editor-file-manager.c:87
+#: src/editor-file-manager.c:99
 msgid "File path is NULL"
 msgstr "Filsökväg är NULL"
 
-#: src/editor-file-manager.c:96 src/editor-file-manager.c:107
+#: src/editor-file-manager.c:108 src/editor-file-manager.c:119
 msgid "Error converting UTF-8 filename to wide char"
 msgstr "Fel vid konvertering av UTF-8-filnamn till breda tecken"
 
-#: src/editor-file-manager.c:115
+#: src/editor-file-manager.c:127
 msgid "ILCreateFromPath() failed"
 msgstr "ILCreateFromPath() misslyckades"
 
-#: src/editor-file-manager.c:152
+#: src/editor-file-manager.c:164
 #, c-format
 msgid "Cannot convert “%s” into a valid NSURL."
 msgstr "Kan inte konvertera ”%s” till en giltig NSURL."
@@ -387,47 +387,51 @@ msgstr "Dokumenttyp"
 msgid "No Matches"
 msgstr "Inga träffar"
 
-#: src/editor-open-popover.ui:65
+#: src/editor-open-popover.ui:67
 msgid "No Recent Documents"
 msgstr "Inga senaste dokument"
 
-#: src/editor-open-popover.ui:92
+#: src/editor-open-popover.ui:94
 msgid "No Results Found"
 msgstr "Inga resultat hittades"
 
-#: src/editor-page.c:960 src/editor-sidebar-item.c:473
+#: src/editor-page.c:961 src/editor-sidebar-item.c:489
 msgid "New Document"
 msgstr "Nytt dokument"
 
-#: src/editor-page.c:977 src/editor-properties-dialog.c:74
-#: src/editor-sidebar-item.c:79
+#: src/editor-page.c:983 src/editor-properties-dialog.c:74
+#: src/editor-sidebar-item.c:84
 msgid "Draft"
 msgstr "Utkast"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:989
+#: src/editor-page.c:995
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (administratör)"
 
-#: src/editor-page.c:1044
+#: src/editor-page.c:1003 src/editor-sidebar-item.c:98
+msgid "Document Portal"
+msgstr "Dokumentportal"
+
+#: src/editor-page.c:1054
 msgid "Failed to save document"
 msgstr "Misslyckades med att spara dokument"
 
-#: src/editor-page.c:1129
+#: src/editor-page.c:1139
 msgid "Save As"
 msgstr "Spara som"
 
-#: src/editor-page.c:1132 src/editor-window-actions.c:133
+#: src/editor-page.c:1142 src/editor-window-actions.c:133
 msgid "Save"
 msgstr "Spara"
 
-#: src/editor-page.c:1133 src/editor-window-actions.c:132
-#: src/editor-window-actions.c:243 src/editor-window-actions.c:352
+#: src/editor-page.c:1143 src/editor-window-actions.c:132
+#: src/editor-window-actions.c:271 src/editor-window-actions.c:380
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: src/editor-page.c:1273
+#: src/editor-page.c:1283
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Rad %u, Kol %u"
@@ -731,32 +735,32 @@ msgid "Saving changes will replace the previously saved version."
 msgstr "Att spara ändringar kommer ersätta den tidigare sparade versionen."
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:239
+#: src/editor-window-actions.c:267
 #, c-format
 msgid "Discard Changes to “%s”?"
 msgstr "Förkasta ändringar till ”%s”?"
 
-#: src/editor-window-actions.c:242
+#: src/editor-window-actions.c:270
 msgid "Unsaved changes will be permanently lost."
 msgstr "Osparade ändringar kommer att förloras permanent."
 
-#: src/editor-window-actions.c:244
+#: src/editor-window-actions.c:272
 msgid "Discard"
 msgstr "Förkasta"
 
-#: src/editor-window-actions.c:348
+#: src/editor-window-actions.c:376
 msgid "Open File"
 msgstr "Öppna fil"
 
-#: src/editor-window-actions.c:351
+#: src/editor-window-actions.c:379
 msgid "Open"
 msgstr "Öppna"
 
-#: src/editor-window-actions.c:376
+#: src/editor-window-actions.c:404
 msgid "All Files"
 msgstr "Alla filer"
 
-#: src/editor-window-actions.c:381
+#: src/editor-window-actions.c:409
 msgid "Text Files"
 msgstr "Textfiler"
 
@@ -771,23 +775,23 @@ msgstr "Dokumenttyp: %s"
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - Textredigerare"
 
-#: src/editor-window.ui:77
+#: src/editor-window.ui:78
 msgid "_Open"
 msgstr "Ö_ppna"
 
-#: src/editor-window.ui:79
+#: src/editor-window.ui:80
 msgid "Open recent document (Ctrl+K)"
 msgstr "Öppna senaste dokument (Ctrl+K)"
 
-#: src/editor-window.ui:91 src/editor-window.ui:93
+#: src/editor-window.ui:92 src/editor-window.ui:94
 msgid "New tab (Ctrl+T)"
 msgstr "Ny flik (Ctrl+T)"
 
-#: src/editor-window.ui:119 src/editor-window.ui:123
+#: src/editor-window.ui:120 src/editor-window.ui:124
 msgid "View"
 msgstr "Visa"
 
-#: src/editor-window.ui:132
+#: src/editor-window.ui:133
 msgid "Menu"
 msgstr "Meny"
 
