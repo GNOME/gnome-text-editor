@@ -131,13 +131,13 @@ editor_print_operation_begin_print (GtkPrintOperation *operation,
    */
   if (syntax_hl &&
       (scheme = gtk_source_buffer_get_style_scheme (buffer)) &&
-      g_strcmp0 ("Adwaita", gtk_source_style_scheme_get_id (scheme)) != 0)
+      g_strcmp0 ("printing", gtk_source_style_scheme_get_id (scheme)) != 0)
     {
       g_autofree char *text = NULL;
       GtkTextIter begin, end;
 
       schemes = gtk_source_style_scheme_manager_get_default ();
-      scheme = gtk_source_style_scheme_manager_get_scheme (schemes, "Adwaita");
+      scheme = gtk_source_style_scheme_manager_get_scheme (schemes, "printing");
 
       gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (buffer), &begin, &end);
       text = gtk_text_iter_get_slice (&begin, &end);

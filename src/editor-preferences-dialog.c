@@ -235,6 +235,10 @@ update_style_schemes (EditorPreferencesDialog *self)
         {
           SchemeInfo info;
 
+          /* Ignore our printing scheme */
+          if (g_strcmp0 (scheme_ids[i], "printing") == 0)
+            continue;
+
           info.scheme = gtk_source_style_scheme_manager_get_scheme (sm, scheme_ids[i]);
           info.id = gtk_source_style_scheme_get_id (info.scheme);
           info.sort_key = gtk_source_style_scheme_get_name (info.scheme);
