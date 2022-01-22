@@ -279,10 +279,11 @@ static void
 editor_application_startup (GApplication *application)
 {
   static const char *patterns[] = { "org.gnome.*", NULL };
-  static const gchar *quit_accels[] = { "<Primary>Q", NULL };
-  static const gchar *help_accels[] = { "F1", NULL };
+  static const char *quit_accels[] = { "<Primary>Q", NULL };
+  static const char *help_accels[] = { "F1", NULL };
 
   EditorApplication *self = (EditorApplication *)application;
+  GtkSourceStyleSchemeManager *schemes;
   g_autoptr(GtkCssProvider) css_provider = NULL;
   g_autoptr(GVariant) all = NULL;
   AdwStyleManager *style_manager;
@@ -329,6 +330,9 @@ editor_application_startup (GApplication *application)
                                     NULL);
       parse_portal_settings (self, all);
     }
+
+  schemes = gtk_source_style_scheme_manager_get_default ();
+  gtk_source_style_scheme_manager_append_search_path (schemes, PACKAGE_DATADIR"/styles");
 
   style_manager = adw_style_manager_get_default ();
 

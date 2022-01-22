@@ -3,4 +3,5 @@ install_data([
   'builder-dark.xml',
   'peninsula.xml',
   'peninsula-dark.xml',
-], install_dir: join_paths(get_option('datadir'), 'gtksourceview-5/styles'))
+  'printing.xml',
+], install_dir: join_paths(get_option('datadir'), 'gnome-text-editor/styles'))
