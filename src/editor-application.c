@@ -284,7 +284,6 @@ editor_application_startup (GApplication *application)
 
   EditorApplication *self = (EditorApplication *)application;
   GtkSourceStyleSchemeManager *schemes;
-  g_autoptr(GtkCssProvider) css_provider = NULL;
   g_autoptr(GVariant) all = NULL;
   AdwStyleManager *style_manager;
   GdkDisplay *display;
@@ -350,13 +349,6 @@ editor_application_startup (GApplication *application)
                                 G_SETTINGS_BIND_GET,
                                 style_variant_to_color_scheme,
                                 NULL, NULL, NULL);
-
-  /* Setup CSS overrides */
-  css_provider = gtk_css_provider_new ();
-  gtk_css_provider_load_from_resource (css_provider, "/org/gnome/TextEditor/css/TextEditor.css");
-  gtk_style_context_add_provider_for_display (gdk_display_get_default (),
-                                              GTK_STYLE_PROVIDER (css_provider),
-                                              GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
   /* Setup any recoloring that needs to be done */
   update_css (self);
