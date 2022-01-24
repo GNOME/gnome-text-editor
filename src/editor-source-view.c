@@ -29,7 +29,9 @@
 #include "editor-spell-menu.h"
 #include "editor-utils-private.h"
 
-#define X_PAD 3
+#define MIN_BUBBLE_SCALE -2
+#define MAX_BUBBLE_SCALE 3
+#define X_PAD 5
 #define Y_PAD 3
 
 struct _EditorSourceView
@@ -594,7 +596,9 @@ editor_source_view_draw_search_bubbles (EditorSourceView *self,
   g_assert (EDITOR_IS_SOURCE_VIEW (self));
   g_assert (GTK_IS_SNAPSHOT (snapshot));
 
-  if (!(context = get_search_context (self)))
+  if (self->font_scale < MIN_BUBBLE_SCALE ||
+      self->font_scale > MAX_BUBBLE_SCALE ||
+      !(context = get_search_context (self)))
     return;
 
   style_context = gtk_widget_get_style_context (GTK_WIDGET (self));
@@ -652,10 +656,8 @@ editor_source_view_snapshot_layer (GtkTextView      *text_view,
 
   GTK_TEXT_VIEW_CLASS (editor_source_view_parent_class)->snapshot_layer (text_view, layer, snapshot);
 
-#if 0
   if (layer == GTK_TEXT_VIEW_LAYER_BELOW_TEXT)
     editor_source_view_draw_search_bubbles (self, snapshot);
-#endif
 }
 
 static void
