@@ -64,6 +64,9 @@ editor_source_view_update_css (EditorSourceView *self)
   const PangoFontDescription *font_desc;
   PangoFontDescription *scaled = NULL;
   PangoFontDescription *system_font = NULL;
+  GtkSourceStyleScheme *scheme;
+  GtkSourceStyle *style;
+  GtkTextBuffer *buffer;
   g_autoptr(GString) str = NULL;
   g_autofree char *font_css = NULL;
   int size = 11; /* 11pt */
@@ -71,9 +74,35 @@ editor_source_view_update_css (EditorSourceView *self)
 
   g_assert (EDITOR_IS_SOURCE_VIEW (self));
 
-  font_desc = self->font_desc;
+  str = g_string_new (NULL);
 
-  if (font_desc == NULL)
+  /* Get information for search bubbles */
+  buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (self));
+  if ((scheme = gtk_source_buffer_get_style_scheme (GTK_SOURCE_BUFFER (buffer))) &&
+      (style = gtk_source_style_scheme_get_style (scheme, "search-match")))
+    {
+      g_autofree char *background = NULL;
+      gboolean background_set = FALSE;
+
+      g_object_get (style,
+                    "background", &background,
+                    "background-set", &background_set,
+                    NULL);
+
+      if (background != NULL && background_set)
+        g_string_append_printf (str,
+                                ".search-match {"
+                                " background:mix(%s,currentColor,0.0125);"
+                                " border-radius:7px;"
+                                " box-shadow: 0 1px 3px mix(%s,currentColor,.2);"
+                                "}\n",
+                                background, background);
+    }
+
+  g_string_append (str, "textview {\n");
+
+  /* Get font information to adjust line height and font changes */
+  if ((font_desc = self->font_desc) == NULL)
     {
       system_font = _editor_application_get_system_font (EDITOR_APPLICATION_DEFAULT);
       font_desc = system_font;
@@ -97,8 +126,6 @@ editor_source_view_update_css (EditorSourceView *self)
       pango_font_description_set_size (scaled, size * PANGO_SCALE);
       font_desc = scaled;
     }
-
-  str = g_string_new ("textview {\n");
 
   if (font_desc)
     {
@@ -300,6 +327,12 @@ on_notify_buffer_cb (EditorSourceView *self,
   g_assert (EDITOR_IS_SOURCE_VIEW (self));
 
   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (self));
+
+  g_signal_connect_object (buffer,
+                           "notify::style-scheme",
+                           G_CALLBACK (editor_source_view_update_css),
+                           self,
+                           G_CONNECT_SWAPPED);
 
   if (EDITOR_IS_DOCUMENT (buffer))
     _editor_document_attach_actions (EDITOR_DOCUMENT (buffer), GTK_WIDGET (self));
