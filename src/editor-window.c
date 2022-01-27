@@ -1043,9 +1043,15 @@ editor_window_init (EditorWindow *self)
 EditorWindow *
 _editor_window_new (void)
 {
-  return g_object_new (EDITOR_TYPE_WINDOW,
-                       "application", EDITOR_APPLICATION_DEFAULT,
-                       NULL);
+  g_autoptr(GtkWindowGroup) group = gtk_window_group_new ();
+  EditorWindow *window;
+
+  window = g_object_new (EDITOR_TYPE_WINDOW,
+                         "application", EDITOR_APPLICATION_DEFAULT,
+                         NULL);
+  gtk_window_group_add_window (group, GTK_WINDOW (window));
+
+  return window;
 }
 
 GList *
