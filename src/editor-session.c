@@ -70,6 +70,7 @@ enum {
   PROP_AUTO_SAVE,
   PROP_AUTO_SAVE_DELAY,
   PROP_RECENTS,
+  PROP_CAN_CLEAR_HISTORY,
   N_PROPS
 };
 
@@ -325,6 +326,14 @@ find_page_for_file (EditorSession *self,
   return NULL;
 }
 
+static gboolean
+_editor_session_get_can_clear_history (EditorSession *self)
+{
+  g_assert (EDITOR_IS_SESSION (self));
+
+  return self->can_clear_history;
+}
+
 static void
 editor_session_dispose (GObject *object)
 {
@@ -383,6 +392,10 @@ editor_session_get_property (GObject    *object,
 
     case PROP_AUTO_SAVE_DELAY:
       g_value_set_uint (value, editor_session_get_auto_save_delay (self));
+      break;
+
+    case PROP_CAN_CLEAR_HISTORY:
+      g_value_set_boolean (value, _editor_session_get_can_clear_history (self));
       break;
 
     case PROP_RECENTS:
@@ -457,6 +470,18 @@ editor_session_class_init (EditorSessionClass *klass)
                        "Number of seconds to wait after changes before autosaving drafts",
                        1, MAX_AUTO_SAVE_TIMEOUT_SECONDS, DEFAULT_AUTO_SAVE_TIMEOUT_SECONDS,
                        (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+
+  /**
+   * EditorSession:can-clear-history:
+   *
+   * If the history can be cleared.
+   */
+  properties [PROP_CAN_CLEAR_HISTORY] =
+    g_param_spec_boolean ("can-clear-history",
+                          "Can Clear History",
+                          "If the history can be cleared",
+                          FALSE,
+                          (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
   /**
    * EditorSession:recents:
@@ -1755,6 +1780,38 @@ failure:
 }
 
 static void
+editor_session_recents_items_changed_cb (EditorSession      *self,
+                                         guint               position,
+                                         guint               removed,
+                                         guint               added,
+                                         EditorSidebarModel *model)
+{
+  gboolean can_clear_history = FALSE;
+  guint n_items;
+
+  g_assert (EDITOR_IS_SESSION (self));
+
+  n_items = g_list_model_get_n_items (G_LIST_MODEL (model));
+
+  for (guint i = 0; i < n_items; i++)
+    {
+      g_autoptr(EditorSidebarItem) item = g_list_model_get_item (G_LIST_MODEL (model), i);
+
+      if (!_editor_sidebar_item_get_is_modified (item))
+        {
+          can_clear_history = TRUE;
+          break;
+        }
+    }
+
+  if (can_clear_history != self->can_clear_history)
+    {
+      self->can_clear_history = can_clear_history;
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_CAN_CLEAR_HISTORY]);
+    }
+}
+
+static void
 editor_session_restore (EditorSession *self,
                         GVariant      *state)
 {
@@ -1765,6 +1822,12 @@ editor_session_restore (EditorSession *self,
   g_assert (g_variant_is_of_type (state, G_VARIANT_TYPE_VARDICT));
 
   self->recents = _editor_sidebar_model_new (self);
+
+  g_signal_connect_object (self->recents,
+                           "items-changed",
+                           G_CALLBACK (editor_session_recents_items_changed_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
 
   if (g_variant_lookup (state, "version", "u", &version) && version == 1)
     editor_session_restore_v1 (self, state);

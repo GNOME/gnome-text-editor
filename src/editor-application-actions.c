@@ -346,6 +346,7 @@ _editor_application_actions_init (EditorApplication *self)
     { "clear-history", editor_application_actions_clear_history },
   };
   g_autoptr(GPropertyAction) style_scheme = NULL;
+  GAction *action;
 
   g_action_map_add_action_entries (G_ACTION_MAP (self),
                                    actions,
@@ -354,4 +355,9 @@ _editor_application_actions_init (EditorApplication *self)
 
   style_scheme = g_property_action_new ("style-scheme", self, "style-scheme");
   g_action_map_add_action (G_ACTION_MAP (self), G_ACTION (style_scheme));
+
+  action = g_action_map_lookup_action (G_ACTION_MAP (self), "clear-history");
+  g_object_bind_property (self->session, "can-clear-history",
+                          action, "enabled",
+                          G_BINDING_SYNC_CREATE);
 }

@@ -52,6 +52,7 @@ struct _EditorSession
   guint               did_restore : 1;
   guint               restore_pages : 1;
   guint               dirty : 1;
+  guint               can_clear_history : 1;
 };
 
 EditorSession *_editor_session_new                    (void);
