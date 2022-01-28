@@ -119,23 +119,35 @@
               </object>
             </child>
             <child>
-              <object class="EditorPreferencesSwitch" id="session">
+              <object class="AdwExpanderRow">
                 <property name="title" translatable="yes">Restore Session</property>
                 <property name="subtitle" translatable="yes">Return to your previous session when Text Editor is started</property>
-                <property name="schema-key">restore-session</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkButton">
-                <property name="action-name">app.clear-history</property>
-                <property name="focus-on-click">false</property>
-                <property name="halign">end</property>
-                <property name="label" translatable="yes">_Clear History</property>
-                <property name="margin-top">24</property>
-                <property name="use-underline">true</property>
-                <style>
-                  <class name="destructive-action"/>
-                </style>
+                <property name="expanded" bind-source="restore_session" bind-property="active" bind-flags="sync-create|bidirectional"/>
+                <child type="action">
+                  <object class="GtkSwitch" id="restore_session">
+                    <property name="halign">end</property>
+                    <property name="valign">center</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwPreferencesRow" id="clear_history_row">
+                    <child type="suffix">
+                      <object class="GtkButton">
+                        <property name="action-name">app.clear-history</property>
+                        <property name="focus-on-click">false</property>
+                        <property name="halign">end</property>
+                        <property name="label" translatable="yes">_Clear History</property>
+                        <property name="margin-top">6</property>
+                        <property name="margin-end">6</property>
+                        <property name="margin-bottom">6</property>
+                        <property name="use-underline">true</property>
+                        <style>
+                          <class name="destructive-action"/>
+                        </style>
+                      </object>
+                    </child>
+                  </object>
+                </child>
               </object>
             </child>
           </object>

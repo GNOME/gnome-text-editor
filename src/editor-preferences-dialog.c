@@ -42,6 +42,7 @@ struct _EditorPreferencesDialog
   GtkCssProvider       *css_provider;
 
   GtkSwitch            *use_custom_font;
+  GtkSwitch            *restore_session;
   GtkFlowBox           *scheme_group;
   GtkSourceBuffer      *buffer;
   GtkSourceView        *source_view;
@@ -413,6 +414,7 @@ editor_preferences_dialog_class_init (EditorPreferencesDialogClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorPreferencesDialog, scheme_group);
   gtk_widget_class_bind_template_child (widget_class, EditorPreferencesDialog, source_view);
   gtk_widget_class_bind_template_child (widget_class, EditorPreferencesDialog, use_custom_font);
+  gtk_widget_class_bind_template_child (widget_class, EditorPreferencesDialog, restore_session);
   gtk_widget_class_bind_template_callback (widget_class, style_scheme_activated_cb);
 
   g_type_ensure (EDITOR_TYPE_PREFERENCES_FONT);
@@ -459,6 +461,9 @@ editor_preferences_dialog_init (EditorPreferencesDialog *self)
                                 self->source_view, "background-pattern",
                                 G_SETTINGS_BIND_GET,
                                 bind_background_pattern, NULL, NULL, NULL);
+  g_settings_bind (self->settings, "restore-session",
+                   self->restore_session, "active",
+                   G_SETTINGS_BIND_DEFAULT);
   g_signal_connect_object (self->settings,
                            "changed::custom-font",
                            G_CALLBACK (update_custom_font_cb),
