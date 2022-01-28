@@ -81,5 +81,6 @@ void           _editor_session_forget                 (EditorSession  *self,
 void           _editor_session_mark_dirty             (EditorSession  *self);
 void           _editor_session_set_restore_pages      (EditorSession  *self,
                                                        gboolean        restore_pages);
+void           _editor_session_clear_history          (EditorSession  *self);
 
 G_END_DECLS

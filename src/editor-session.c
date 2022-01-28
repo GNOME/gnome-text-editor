@@ -28,6 +28,7 @@
 #include "editor-document-private.h"
 #include "editor-page-private.h"
 #include "editor-session-private.h"
+#include "editor-sidebar-item-private.h"
 #include "editor-window-private.h"
 
 #define DEFAULT_AUTO_SAVE_TIMEOUT_SECONDS 3
@@ -2304,4 +2305,45 @@ _editor_session_set_restore_pages (EditorSession *self,
     }
 
   self->restore_pages = !!restore_pages;
+}
+
+/**
+ * _editor_session_clear_history:
+ * @self: an #EditorSession
+ *
+ * This clears the history (recently-used.xbel) and clears the
+ * panel of those items but will not clear/remove unsaved drafts
+ * as we don't want to lose that data, only history.
+ */
+void
+_editor_session_clear_history (EditorSession *self)
+{
+  g_autofree char *filename = NULL;
+  guint n_items;
+
+  g_return_if_fail (EDITOR_IS_SESSION (self));
+
+  filename = get_bookmarks_filename ();
+  g_unlink (filename);
+
+  n_items = g_list_model_get_n_items (G_LIST_MODEL (self->recents));
+
+  for (guint i = n_items; i > 0; i--)
+    {
+      g_autoptr(EditorSidebarItem) item = g_list_model_get_item (G_LIST_MODEL (self->recents), i-1);
+      const char *draft_id;
+      GFile *file;
+
+      /* Ignore modified files to avoid losing data */
+      if (_editor_sidebar_item_get_is_modified (item))
+        continue;
+
+      file = _editor_sidebar_item_get_file (item);
+      draft_id = _editor_sidebar_item_get_draft_id (item);
+
+      if (file != NULL)
+        _editor_sidebar_model_remove_file (self->recents, file);
+      else
+        _editor_sidebar_model_remove_draft (self->recents, draft_id);
+    }
 }
