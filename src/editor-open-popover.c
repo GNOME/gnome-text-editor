@@ -207,7 +207,8 @@ on_search_entry_stop_search_cb (EditorOpenPopover *self,
     {
       EditorPage *page = editor_window_get_visible_page (window);
 
-      gtk_widget_child_focus (GTK_WIDGET (page), GTK_DIR_TAB_FORWARD);
+      if (page != NULL)
+        gtk_widget_child_focus (GTK_WIDGET (page), GTK_DIR_TAB_FORWARD);
     }
 }
 
