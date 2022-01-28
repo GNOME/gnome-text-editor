@@ -125,21 +125,33 @@ editor_application_open (GApplication  *application,
   for (guint i = 0; i < n_files; i++)
     g_ptr_array_add (ar, g_file_dup (files[i]));
 
-  /* Restore the session first if there are no windows */
-  if (!_editor_session_did_restore (self->session))
-    {
-      g_application_hold (application);
-      editor_session_restore_async (self->session,
-                                    NULL,
-                                    editor_application_restore_cb,
-                                    g_steal_pointer (&ar));
-    }
-  else if (ar->len > 0)
+  /* If we're being asked to open files via this interface,
+   * we want to ignore restoring the previous session because
+   * the user has either provided a filename on the command line
+   * or has opened a file from something like Nautilus or another
+   * default file-handler situation.
+   *
+   * We either have 1) already restored a session, or 2) dont
+   * need to and instead should just show the window. However,
+   * in the case of #2, we need to at least restore our recent
+   * files so the sidebar can continue working. This is done by
+   * setting the restore_pages within EditorSession to FALSE.
+   */
+
+  if (_editor_session_did_restore (self->session))
     {
       editor_session_open_files (self->session,
                                  (GFile **)ar->pdata,
                                  ar->len);
+      return;
     }
+
+  g_application_hold (application);
+  _editor_session_set_restore_pages (self->session, FALSE);
+  editor_session_restore_async (self->session,
+                                NULL,
+                                editor_application_restore_cb,
+                                g_steal_pointer (&ar));
 }
 
 static gboolean
