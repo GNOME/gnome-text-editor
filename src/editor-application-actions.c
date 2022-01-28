@@ -322,6 +322,18 @@ editor_application_actions_remove_recent_cb (GSimpleAction *action,
   _editor_session_forget (EDITOR_SESSION_DEFAULT, file, draft_id);
 }
 
+static void
+editor_application_actions_clear_history (GSimpleAction *action,
+                                          GVariant      *param,
+                                          gpointer       user_data)
+{
+  EditorApplication *self = user_data;
+
+  g_assert (EDITOR_IS_APPLICATION (self));
+
+  _editor_session_clear_history (self->session);
+}
+
 void
 _editor_application_actions_init (EditorApplication *self)
 {
@@ -331,6 +343,7 @@ _editor_application_actions_init (EditorApplication *self)
     { "help", editor_application_actions_help_cb },
     { "quit", editor_application_actions_quit },
     { "remove-recent", editor_application_actions_remove_recent_cb, "(ss)" },
+    { "clear-history", editor_application_actions_clear_history },
   };
   g_autoptr(GPropertyAction) style_scheme = NULL;
 
