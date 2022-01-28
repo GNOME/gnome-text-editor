@@ -112,6 +112,13 @@
           <object class="AdwPreferencesGroup">
             <property name="title" translatable="yes">Behavior</property>
             <child>
+              <object class="EditorPreferencesSwitch" id="discover">
+                <property name="title" translatable="yes">Discover Document Settings</property>
+                <property name="subtitle" translatable="yes">Apply settings using modelines, editorconfig, or sensible defaults</property>
+                <property name="schema-key">discover-settings</property>
+              </object>
+            </child>
+            <child>
               <object class="EditorPreferencesSwitch" id="session">
                 <property name="title" translatable="yes">Restore Session</property>
                 <property name="subtitle" translatable="yes">Return to your previous session when Text Editor is started</property>
@@ -119,10 +126,16 @@
               </object>
             </child>
             <child>
-              <object class="EditorPreferencesSwitch" id="discover">
-                <property name="title" translatable="yes">Discover Document Settings</property>
-                <property name="subtitle" translatable="yes">Apply settings using modelines, editorconfig, or sensible defaults</property>
-                <property name="schema-key">discover-settings</property>
+              <object class="GtkButton">
+                <property name="action-name">app.clear-history</property>
+                <property name="focus-on-click">false</property>
+                <property name="halign">end</property>
+                <property name="label" translatable="yes">_Clear History</property>
+                <property name="margin-top">24</property>
+                <property name="use-underline">true</property>
+                <style>
+                  <class name="destructive-action"/>
+                </style>
               </object>
             </child>
           </object>
