@@ -135,10 +135,11 @@ guess_preview_language (EditorPreferencesDialog *self)
   if ((transient_for = gtk_window_get_transient_for (GTK_WINDOW (self))) &&
       EDITOR_IS_WINDOW (transient_for))
     {
-      EditorPage *page = editor_window_get_visible_page (EDITOR_WINDOW (transient_for));
       EditorDocument *document;
+      EditorPage *page;
 
-      if ((document = editor_page_get_document (page)))
+      if ((page = editor_window_get_visible_page (EDITOR_WINDOW (transient_for))) &&
+          (document = editor_page_get_document (page)))
         {
           GtkSourceLanguage *lang = gtk_source_buffer_get_language (GTK_SOURCE_BUFFER (document));
           const char *text = get_preview (lang);
