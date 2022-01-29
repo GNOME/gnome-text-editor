@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-01-24 22:25+0000\n"
-"PO-Revision-Date: 2022-01-24 20:03-0300\n"
+"POT-Creation-Date: 2022-01-28 20:36+0000\n"
+"PO-Revision-Date: 2022-01-29 19:39-0300\n"
 "Last-Translator: Matheus Barbosa <mdpb.matheus@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
@@ -172,7 +172,7 @@ msgstr "Usar a fonte do sistema"
 msgid "If the default system monospace font should be used."
 msgstr "Se a fonte monoespaçada do sistema padrão deve ser usada."
 
-#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:59
+#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:60
 msgid "Custom Font"
 msgstr "Fonte personalizada"
 
@@ -295,7 +295,7 @@ msgstr ""
 "Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Matheus Barbosa <mdpb.matheus@gmail.com>"
 
-#: src/editor-application.c:502
+#: src/editor-application.c:514
 msgid "Do not restore session at startup"
 msgstr "Não restaurar a sessão na inicialização"
 
@@ -451,51 +451,55 @@ msgstr "Lin"
 msgid "Col"
 msgstr "Col"
 
-#: src/editor-preferences-dialog.ui:16
+#: src/editor-preferences-dialog.ui:17
 msgid "Appearance"
 msgstr "Aparência"
 
-#: src/editor-preferences-dialog.ui:81
+#: src/editor-preferences-dialog.ui:82
 msgid "Display Grid Pattern"
 msgstr "Exibir padrão de grade"
 
-#: src/editor-preferences-dialog.ui:87
+#: src/editor-preferences-dialog.ui:88
 msgid "Highlight Current Line"
 msgstr "Destacar a linha atual"
 
-#: src/editor-preferences-dialog.ui:93
+#: src/editor-preferences-dialog.ui:94
 msgid "Display Overview Map"
 msgstr "Exibir o mapa de visão geral"
 
-#: src/editor-preferences-dialog.ui:101
+#: src/editor-preferences-dialog.ui:102
 msgid "Right Margin"
 msgstr "Margem direita"
 
-#: src/editor-preferences-dialog.ui:104
+#: src/editor-preferences-dialog.ui:105
 msgid "Margin Position"
 msgstr "Posição da margem"
 
-#: src/editor-preferences-dialog.ui:112
+#: src/editor-preferences-dialog.ui:113
 msgid "Behavior"
 msgstr "Comportamento"
 
-#: src/editor-preferences-dialog.ui:115
-msgid "Restore Session"
-msgstr "Restaurar sessão"
-
 #: src/editor-preferences-dialog.ui:116
-msgid "Return to your previous session when Text Editor is started"
-msgstr "Retorna para sua sessão anterior quando o Editor de Texto é iniciado"
-
-#: src/editor-preferences-dialog.ui:122
 msgid "Discover Document Settings"
 msgstr "Descobrir configurações dos documentos"
 
-#: src/editor-preferences-dialog.ui:123
+#: src/editor-preferences-dialog.ui:117
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr ""
 "Aplica configurações usando modelines, editorconfig e outros padrões "
 "sensíveis"
+
+#: src/editor-preferences-dialog.ui:123
+msgid "Restore Session"
+msgstr "Restaurar sessão"
+
+#: src/editor-preferences-dialog.ui:124
+msgid "Return to your previous session when Text Editor is started"
+msgstr "Retorna para sua sessão anterior quando o Editor de Texto é iniciado"
+
+#: src/editor-preferences-dialog.ui:133
+msgid "_Clear History"
+msgstr "_Limpar histórico"
 
 #: src/editor-preferences-font.c:100
 msgid "Select Font"
