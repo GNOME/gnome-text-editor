@@ -46,6 +46,8 @@ struct _EditorPreferencesDialog
   GtkFlowBox           *scheme_group;
   GtkSourceBuffer      *buffer;
   GtkSourceView        *source_view;
+
+  guint                 disposed : 1;
 };
 
 G_DEFINE_TYPE (EditorPreferencesDialog, editor_preferences_dialog, ADW_TYPE_PREFERENCES_WINDOW)
@@ -394,6 +396,8 @@ static void
 editor_preferences_dialog_dispose (GObject *object)
 {
   EditorPreferencesDialog *self = (EditorPreferencesDialog *)object;
+
+  self->disposed = TRUE;
 
   g_clear_object (&self->settings);
   g_clear_object (&self->css_provider);
