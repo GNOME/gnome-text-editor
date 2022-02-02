@@ -46,6 +46,8 @@ editor_window_drop_target_drop (EditorWindow  *self,
           g_assert (G_IS_FILE (file));
           editor_session_open (session, self, file, NULL);
         }
+
+      return TRUE;
     }
 
   return FALSE;
