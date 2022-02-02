@@ -300,7 +300,7 @@ update_style_schemes (EditorPreferencesDialog *self)
       j++;
     }
 
-    update_style_scheme_selection (self);
+  update_style_scheme_selection (self);
 }
 
 static gboolean
