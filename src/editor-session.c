@@ -34,6 +34,7 @@
 #define DEFAULT_AUTO_SAVE_TIMEOUT_SECONDS 3
 #define MAX_AUTO_SAVE_TIMEOUT_SECONDS (60*5)
 #define MAX_BOOKMARKS 100
+#define HUGE_WINDOW 8000
 
 typedef struct
 {
@@ -187,6 +188,16 @@ add_window_state (EditorSession   *self,
 {
   g_assert (EDITOR_IS_SESSION (self));
   g_assert (builder != NULL);
+
+  if (default_width > 0 && default_height > 0)
+    {
+      g_variant_builder_open (builder, G_VARIANT_TYPE ("{sv}"));
+      g_variant_builder_add (builder, "s", "default-window-size");
+      g_variant_builder_open (builder, G_VARIANT_TYPE ("v"));
+      g_variant_builder_add (builder, "(uu)", default_width, default_height);
+      g_variant_builder_close (builder);
+      g_variant_builder_close (builder);
+    }
 
   g_variant_builder_open (builder, G_VARIANT_TYPE ("{sv}"));
   g_variant_builder_add (builder, "s", "windows");
@@ -1003,6 +1014,16 @@ _editor_session_remove_window (EditorSession *self,
   if (self->windows->len == 1 &&
       EDITOR_WINDOW (g_ptr_array_index (self->windows, 0)) == window)
     {
+      int width, height;
+
+      /* Save the width/height as default for future sessions */
+      gtk_window_get_default_size (GTK_WINDOW (window), &width, &height);
+      if (width > 0 && width < HUGE_WINDOW && height > 0 && height < HUGE_WINDOW)
+        {
+          default_width = width;
+          default_height = height;
+        }
+
       editor_session_save_async (self,
                                  NULL,
                                  editor_session_save_for_shutdown_cb,
@@ -1702,6 +1723,7 @@ editor_session_restore_v1 (EditorSession *self,
   GVariantIter iter;
   GVariant *window;
   gboolean had_failure = FALSE;
+  guint width, height;
 
   g_assert (EDITOR_IS_SESSION (self));
   g_assert (state != NULL);
@@ -1709,6 +1731,13 @@ editor_session_restore_v1 (EditorSession *self,
 
   if ((drafts = g_variant_lookup_value (state, "drafts", G_VARIANT_TYPE ("aa{sv}"))))
     editor_session_restore_v1_drafts (self, drafts);
+
+  if (g_variant_lookup (state, "default-window-size", "(uu)", &width, &height) &&
+      width < HUGE_WINDOW && height < HUGE_WINDOW)
+    {
+      default_width = width;
+      default_height = height;
+    }
 
   if (!self->restore_pages ||
       !(windows = g_variant_lookup_value (state, "windows", G_VARIANT_TYPE ("aa{sv}"))) ||
@@ -1719,10 +1748,9 @@ editor_session_restore_v1 (EditorSession *self,
   while (g_variant_iter_loop (&iter, "@a{sv}", &window))
     {
       g_autoptr(GVariant) pages = NULL;
-      guint width, height;
 
       if (!g_variant_lookup (window, "size", "(uu)", &width, &height) ||
-          width > 10000 || height > 10000)
+          width > HUGE_WINDOW || height > HUGE_WINDOW)
         {
           width = 0;
           height = 0;
