@@ -1873,11 +1873,14 @@ editor_document_dup_title (EditorDocument *self)
   g_return_val_if_fail (EDITOR_IS_DOCUMENT (self), NULL);
 
   file = editor_document_get_file (self);
+  str = g_string_new (NULL);
 
   if (file != NULL)
-    return g_file_get_basename (file);
-
-  str = g_string_new (NULL);
+    {
+      g_autofree char *base = g_file_get_basename (file);
+      g_string_append (str, base);
+      goto handle_suffix;
+    }
 
   gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (self), &iter);
 
@@ -1926,6 +1929,8 @@ editor_document_dup_title (EditorDocument *self)
 
   if (str->len > 0 && str->str[str->len-1] == ' ')
     g_string_truncate (str, str->len - 1);
+
+handle_suffix:
 
   if (self->readonly)
     {
