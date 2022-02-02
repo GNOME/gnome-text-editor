@@ -17,7 +17,7 @@ endif
 
 # Check dependencies
 glib_req_version = '2.69'
-gtk_req_version = '4.4'
+gtk_req_version = '4.5'
 gtksourceview_req_version = '5.3.1'
 enchant_req_version = '2.2.0'
 
