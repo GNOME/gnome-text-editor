@@ -380,6 +380,121 @@ style_scheme_activated_cb (EditorPreferencesDialog *self,
     }
 }
 
+static gboolean
+can_install_scheme (GtkSourceStyleSchemeManager *manager,
+                    const char * const          *scheme_ids,
+                    GFile                       *file)
+{
+  g_autofree char *uri = NULL;
+  const char *path;
+
+  g_assert (GTK_SOURCE_IS_STYLE_SCHEME_MANAGER (manager));
+  g_assert (G_IS_FILE (file));
+
+  uri = g_file_get_uri (file);
+
+  /* Don't allow resources, which would be weird anyway */
+  if (g_str_has_prefix (uri, "resource://"))
+    return FALSE;
+
+  /* Make sure it's in the form of name.xml as we will require
+   * that elsewhere anyway.
+   */
+  if (!g_str_has_suffix (uri, ".xml"))
+    return FALSE;
+
+  /* Not a native file, so likely not already installed */
+  if (!g_file_is_native (file))
+    return TRUE;
+
+  path = g_file_peek_path (file);
+  scheme_ids = gtk_source_style_scheme_manager_get_scheme_ids (manager);
+  for (guint i = 0; scheme_ids[i] != NULL; i++)
+    {
+      GtkSourceStyleScheme *scheme = gtk_source_style_scheme_manager_get_scheme (manager, scheme_ids[i]);
+      const char *filename = gtk_source_style_scheme_get_filename (scheme);
+
+      /* If we have already loaded this scheme, then ignore it */
+      if (g_strcmp0 (filename, path) == 0)
+        return FALSE;
+    }
+
+  return TRUE;
+}
+
+static void
+editor_preferences_dialog_install_schemes_cb (GObject      *object,
+                                              GAsyncResult *result,
+                                              gpointer      user_data)
+{
+  EditorApplication *app = (EditorApplication *)object;
+  g_autoptr(EditorPreferencesDialog) self = user_data;
+  GtkSourceStyleSchemeManager *manager;
+  g_autoptr(GError) error = NULL;
+
+  g_assert (EDITOR_IS_APPLICATION (app));
+  g_assert (G_IS_ASYNC_RESULT (result));
+  g_assert (EDITOR_IS_PREFERENCES_DIALOG (self));
+
+  if (!editor_application_install_schemes_finish (app, result, &error))
+    g_critical ("Failed to install schemes: %s", error->message);
+
+  manager = gtk_source_style_scheme_manager_get_default ();
+  gtk_source_style_scheme_manager_force_rescan (manager);
+
+  if (!self->disposed)
+    update_style_schemes (self);
+}
+
+static gboolean
+editor_preferences_dialog_drop_scheme_cb (EditorPreferencesDialog *self,
+                                          const GValue            *value,
+                                          double                   x,
+                                          double                   y,
+                                          GtkDropTarget           *drop_target)
+{
+  g_assert (EDITOR_IS_PREFERENCES_DIALOG (self));
+  g_assert (GTK_IS_DROP_TARGET (drop_target));
+
+  if (G_VALUE_HOLDS (value, GDK_TYPE_FILE_LIST))
+    {
+      GSList *list = g_value_get_boxed (value);
+      g_autoptr(GPtrArray) to_install = NULL;
+      g_autoptr(GTask) task = NULL;
+      GtkSourceStyleSchemeManager *manager;
+      const char * const *scheme_ids;
+
+      if (list == NULL)
+        return FALSE;
+
+      manager = gtk_source_style_scheme_manager_get_default ();
+      scheme_ids = gtk_source_style_scheme_manager_get_scheme_ids (manager);
+      to_install = g_ptr_array_new_with_free_func (g_object_unref);
+
+      for (const GSList *iter = list; iter; iter = iter->next)
+        {
+          GFile *file = iter->data;
+
+          if (can_install_scheme (manager, scheme_ids, file))
+            g_ptr_array_add (to_install, g_object_ref (file));
+        }
+
+      if (to_install->len == 0)
+        return FALSE;
+
+      editor_application_install_schemes_async (EDITOR_APPLICATION_DEFAULT,
+                                                (GFile **)(gpointer)to_install->pdata,
+                                                to_install->len,
+                                                NULL,
+                                                editor_preferences_dialog_install_schemes_cb,
+                                                g_object_ref (self));
+
+      return TRUE;
+    }
+
+  return FALSE;
+}
+
 static void
 editor_preferences_dialog_constructed (GObject *object)
 {
@@ -432,12 +547,21 @@ editor_preferences_dialog_init (EditorPreferencesDialog *self)
 {
   AdwStyleManager *style_manager;
   GtkStyleContext *style_context;
+  GtkDropTarget *drop_target;
 
   gtk_widget_init_template (GTK_WIDGET (self));
 
 #if DEVELOPMENT_BUILD
   gtk_widget_add_css_class (GTK_WIDGET (self), "devel");
 #endif
+
+  drop_target = gtk_drop_target_new (GDK_TYPE_FILE_LIST, GDK_ACTION_COPY);
+  g_signal_connect_object (drop_target,
+                           "drop",
+                           G_CALLBACK (editor_preferences_dialog_drop_scheme_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+  gtk_widget_add_controller (GTK_WIDGET (self), GTK_EVENT_CONTROLLER (drop_target));
 
   style_context = gtk_widget_get_style_context (GTK_WIDGET (self->source_view));
   self->css_provider = gtk_css_provider_new ();
