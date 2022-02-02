@@ -30,6 +30,7 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (EditorPreferencesDialog, editor_preferences_dialog, EDITOR, PREFERENCES_DIALOG, AdwPreferencesWindow)
 
-GtkWidget *editor_preferences_dialog_new (EditorWindow *transient_for);
+GtkWidget *editor_preferences_dialog_new (EditorApplication *application,
+                                          EditorWindow      *transient_for);
 
 G_END_DECLS

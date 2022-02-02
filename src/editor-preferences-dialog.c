@@ -435,10 +435,6 @@ editor_preferences_dialog_init (EditorPreferencesDialog *self)
   gtk_widget_add_css_class (GTK_WIDGET (self), "devel");
 #endif
 
-  g_object_set (self,
-                "application", g_application_get_default (),
-                NULL);
-
   style_context = gtk_widget_get_style_context (GTK_WIDGET (self->source_view));
   self->css_provider = gtk_css_provider_new ();
   gtk_style_context_add_provider (style_context,
@@ -496,11 +492,13 @@ editor_preferences_dialog_init (EditorPreferencesDialog *self)
 }
 
 GtkWidget *
-editor_preferences_dialog_new (EditorWindow *transient_for)
+editor_preferences_dialog_new (EditorApplication *application,
+                               EditorWindow      *transient_for)
 {
   g_return_val_if_fail (EDITOR_IS_WINDOW (transient_for), NULL);
 
   return g_object_new (EDITOR_TYPE_PREFERENCES_DIALOG,
+                       "application", application,
                        "transient-for", transient_for,
                        NULL);
 }

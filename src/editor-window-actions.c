@@ -565,7 +565,7 @@ editor_window_actions_show_preferences_cb (GtkWidget  *widget,
 
   g_assert (EDITOR_IS_WINDOW (self));
 
-  dialog = editor_preferences_dialog_new (self);
+  dialog = editor_preferences_dialog_new (EDITOR_APPLICATION_DEFAULT, self);
   gtk_window_present (GTK_WINDOW (dialog));
 }
 
