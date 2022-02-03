@@ -245,6 +245,7 @@ _editor_save_changes_dialog_new (GtkWindow *parent,
   GtkWidget *dialog;
   GtkWidget *group;
   GtkWidget *area;
+  GtkWidget *button;
 
   g_return_val_if_fail (!parent || GTK_IS_WINDOW (parent), NULL);
   g_return_val_if_fail (pages != NULL, NULL);
@@ -268,6 +269,12 @@ _editor_save_changes_dialog_new (GtkWindow *parent,
                           discard_label, GTK_RESPONSE_NO,
                           _("_Save"), GTK_RESPONSE_YES,
                           NULL);
+
+  button = gtk_dialog_get_widget_for_response (GTK_DIALOG (dialog), GTK_RESPONSE_NO);
+  gtk_widget_add_css_class (button, "destructive-action");
+
+  button = gtk_dialog_get_widget_for_response (GTK_DIALOG (dialog), GTK_RESPONSE_YES);
+  gtk_widget_add_css_class (button, "suggested-action");
 
   area = gtk_message_dialog_get_message_area (GTK_MESSAGE_DIALOG (dialog));
   group = adw_preferences_group_new ();
