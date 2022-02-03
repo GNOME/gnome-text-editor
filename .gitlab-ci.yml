@@ -72,6 +72,10 @@ macos:
                 -Dgtksourceview:werror=false
                 -Dgtk:werror=false
                 -Dlibadwaita:werror=false
+                -Dlibadwaita:gtk_doc=false
+                -Dlibadwaita:vapi=false
+                -Dlibadwaita:examples=false
+                -Dlibadwaita:tests=false
                 -Dlibsass:werror=false
                 -Dsassc:werror=false
                 _build
