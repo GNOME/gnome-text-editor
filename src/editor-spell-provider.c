@@ -20,9 +20,12 @@
 
 #include "config.h"
 
+#include "editor-empty-spell-provider-private.h"
 #include "editor-spell-provider.h"
 
-#include "enchant/editor-enchant-spell-provider.h"
+#ifdef HAVE_ENCHANT
+# include "enchant/editor-enchant-spell-provider.h"
+#endif
 
 typedef struct
 {
@@ -138,7 +141,13 @@ editor_spell_provider_get_default (void)
 
   if (instance == NULL)
     {
+#ifdef HAVE_ENCHANT
       instance = editor_enchant_spell_provider_new ();
+#endif
+
+      if (instance == NULL)
+        instance = editor_empty_spell_provider_new ();
+
       g_set_weak_pointer (&instance, instance);
     }
 

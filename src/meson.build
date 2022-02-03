@@ -7,6 +7,7 @@ editor_sources = [
   'editor-buffer-monitor.c',
   'editor-document.c',
   'editor-info-bar.c',
+  'editor-empty-spell-provider.c',
   'editor-frame-source.c',
   'editor-file-manager.c',
   'editor-joined-menu.c',
@@ -85,6 +86,8 @@ build_ident_h = vcs_tag(
        output: 'build-ident.h',
 )
 
+editor_c_args = []
+
 subdir('enchant')
 subdir('defaults')
 subdir('modelines')
@@ -94,7 +97,7 @@ editor = executable('gnome-text-editor', editor_sources + editor_enums + [build_
   include_directories: [include_directories('..'),
                         include_directories('editorconfig'),
                         include_directories('editorconfig/libeditorconfig')],
-               c_args: [ '-DHANDY_USE_UNSTABLE_API' ],
+               c_args: editor_c_args,
          dependencies: editor_deps,
               install: true,
 )

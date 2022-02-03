@@ -23,7 +23,10 @@
 #include "build-ident.h"
 #include "config.h"
 
-#include <enchant.h>
+#ifdef HAVE_ENCHANT
+# include <enchant.h>
+#endif
+
 #include <glib/gi18n.h>
 
 #include "editor-application-private.h"
@@ -115,7 +118,11 @@ get_system_information (void)
                           ADW_MICRO_VERSION);
   g_string_append_printf (str,
                           "Enchant2: %s\n",
+#ifdef HAVE_ENCHANT
                           enchant_get_version ());
+#else
+                          "Unavailable");
+#endif
 
   g_string_append (str, "\n");
   g_string_append_printf (str, "gtk-theme-name: %s\n", theme_name);
