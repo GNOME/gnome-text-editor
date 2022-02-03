@@ -33,7 +33,13 @@
         {
             "name" : "gtksourceview",
             "buildsystem" : "meson",
-            "config-opts" : [ "-Ddevelopment=true" ],
+            "config-opts" : [
+                "-Dinstall_tests=false",
+                "-Dintrospection=false",
+                "-Dvapi=false",
+                "-Dgtk_doc=false",
+                "-Dsysprof=false"
+            ],
             "sources" : [
                 {
                     "type" : "git",
