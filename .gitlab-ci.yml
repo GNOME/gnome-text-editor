@@ -5,6 +5,12 @@ include:
 variables:
     FEDORA_IMAGE: "registry.gitlab.gnome.org/gnome/gtksourceview/fedora:latest"
 
+.only-default:
+    only:
+        - branches
+    except:
+        - tags
+
 flatpak:
     image: 'registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:master'
     variables:
@@ -22,6 +28,9 @@ nightly:
     dependencies: ['flatpak']
     
 fedora:
+    extends: .only-default
+    only:
+        - branches@GNOME/gnome-text-editor
     image: $FEDORA_IMAGE
     needs: []
     variables:
