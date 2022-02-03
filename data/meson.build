@@ -1,3 +1,5 @@
+if host_machine.system() not in ['windows', 'darwin']
+
 desktop_file_in_config = configuration_data()
 desktop_file_in_config.set('app_id', app_id)
 desktop_file_in_config.set('app_name', 'org.gnome.TextEditor')
@@ -47,11 +49,6 @@ if appstream_util.found()
   )
 endif
 
-gnome.compile_schemas(build_by_default: true)
-install_data('org.gnome.TextEditor.gschema.xml',
-  install_dir: join_paths(get_option('datadir'), 'glib-2.0/schemas')
-)
-
 # D-Bus service file.
 dbusconf = configuration_data()
 dbusconf.set('bindir', join_paths(get_option('prefix'), get_option('bindir')))
@@ -61,6 +58,13 @@ configure_file(
          output: '@0@.service'.format(app_id),
   configuration: dbusconf,
    install_dir: join_paths(get_option('datadir'), 'dbus-1', 'services'),
+)
+
+endif
+
+gnome.compile_schemas(build_by_default: true)
+install_data('org.gnome.TextEditor.gschema.xml',
+  install_dir: join_paths(get_option('datadir'), 'glib-2.0/schemas')
 )
 
 subdir('icons')
