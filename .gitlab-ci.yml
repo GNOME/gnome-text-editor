@@ -27,7 +27,7 @@ fedora:
     variables:
         MESON_FLAGS: "-Dwerror=true -Dgtk:media-gstreamer=disabled -Dgtk:broadway-backend=false -Dgtk:demos=false -Dgtk:build-examples=false -Dgtk:build-tests=false -Dgtk:werror=false -Dglib:werror=false -Dgtksourceview:werror=false -Dlibadwaita:werror=false -Dicu:werror=false -Dlibsass:werror=false -Dsassc:werror=false"
     script:
-        - sudo dnf -y install git libpng-devel libjpeg-turbo-devel expat-devel enchant2-devel libicu-devel
+        - sudo dnf -y install git libpng-devel libjpeg-turbo-devel expat-devel enchant2-devel libicu-devel desktop-file-utils
         - mkdir -p pfx/
         - meson ${MESON_FLAGS} --prefix=${PWD}/pfx _build
         - ninja -C _build install
