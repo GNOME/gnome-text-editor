@@ -1,4 +1,9 @@
-include: 'https://gitlab.gnome.org/GNOME/citemplates/raw/master/flatpak/flatpak_ci_initiative.yml'
+include:
+  - project: 'gnome/citemplates'
+    file: 'flatpak/flatpak_ci_initiative.yml'
+
+variables:
+    FEDORA_IMAGE: "registry.gitlab.gnome.org/gnome/gtksourceview/fedora:latest"
 
 flatpak:
     image: 'registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:master'
@@ -16,3 +21,13 @@ nightly:
     needs: ['flatpak']
     dependencies: ['flatpak']
     
+fedora:
+    image: $FEDORA_IMAGE
+    needs: []
+    variables:
+        MESON_FLAGS: "-Dwerror=true -Dgtk:media-gstreamer=disabled -Dgtk:broadway-backend=false -Dgtk:demos=false -Dgtk:build-examples=false -Dgtk:build-tests=false -Dgtk:werror=false -Dglib:werror=false -Dgtksourceview:werror=false -Dlibadwaita:werror=false -Dicu:werror=false -Dlibsass:werror=false -Dsassc:werror=false"
+    script:
+        - sudo dnf -y install git libpng-devel libjpeg-turbo-devel expat-devel enchant2-devel libicu-devel
+        - mkdir -p pfx/
+        - meson ${MESON_FLAGS} --prefix=${PWD}/pfx _build
+        - ninja -C _build install
