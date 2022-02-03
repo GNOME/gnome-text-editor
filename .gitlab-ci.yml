@@ -85,3 +85,17 @@ macos:
         when: always
         paths:
             - "${CI_PROJECT_DIR}/_build/meson-logs"
+
+vs2017-x64:
+    extends: .only-default
+    only:
+        - branches@GNOME/gnome-text-editor
+    tags:
+        - win32-ps
+    needs: []
+    script:
+        - .gitlab-ci/test-msvc.bat
+    artifacts:
+        when: always
+        paths:
+            - "${CI_PROJECT_DIR}/_build/meson-logs"
