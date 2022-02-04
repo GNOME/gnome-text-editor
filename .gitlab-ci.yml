@@ -33,12 +33,35 @@ fedora:
         - branches@GNOME/gnome-text-editor
     image: $FEDORA_IMAGE
     needs: []
-    variables:
-        MESON_FLAGS: "-Dwerror=true -Dgtk:media-gstreamer=disabled -Dgtk:broadway-backend=false -Dgtk:demos=false -Dgtk:build-examples=false -Dgtk:build-tests=false -Dgtk:werror=false -Dglib:werror=false -Dgtksourceview:werror=false -Dlibadwaita:werror=false -Dicu:werror=false -Dlibsass:werror=false -Dsassc:werror=false"
     script:
-        - sudo dnf -y install git libpng-devel libjpeg-turbo-devel expat-devel enchant2-devel libicu-devel desktop-file-utils shared-mime-info itstool
+        - sudo dnf -y
+                desktop-file-utils
+                enchant2-devel
+                expat-devel
+                git
+                install
+                itstool
+                libicu-devel
+                libjpeg-turbo-devel
+                libpng-devel
+                shared-mime-info
         - mkdir -p pfx/
-        - meson ${MESON_FLAGS} --prefix=${PWD}/pfx _build
+        - meson --prefix=${PWD}/pfx
+                -Dwerror=true
+                -Dglib:werror=false
+                -Dgtk:broadway-backend=false
+                -Dgtk:build-examples=false
+                -Dgtk:build-tests=false
+                -Dgtk:demos=false
+                -Dgtk:media-gstreamer=disabled
+                -Dgtk:werror=false
+                -Dgtksourceview:werror=false
+                -Dicu:werror=false
+                -Dlibadwaita:werror=false
+                -Dlibsass:werror=false
+                -Dsassc:werror=false"
+                _build
+        - ninja -C _build test
         - ninja -C _build install
 
 macos:
@@ -53,34 +76,34 @@ macos:
         - pip3 install --user meson==0.59.4
         - pip3 install --user ninja
         - export PATH=/Users/gitlabrunner/Library/Python/3.7/bin:$PATH
-    variables:
-        MESON_FORCE_BACKTRACE: "1"
     script:
         - mkdir -p pfx/
-        - meson -Dgtk:x11-backend=false
-                -Dgtk:broadway-backend=true
-                -Dgtk:macos-backend=true
-                -Dgtk:media-gstreamer=disabled
-                -Dgtk:introspection=disabled
-                -Dgtk:demos=false
-                -Dgtk:build-examples=false
-                -Dgtk:build-tests=false
+        - meson --prefix=${PWD}/pfx
                 -Dcpp_std=c++11
                 -Denchant=disabled
-                -Dpixman:tests=disabled
                 -Dglib:werror=false
-                -Dgtksourceview:werror=false
+                -Dgtk:broadway-backend=true
+                -Dgtk:build-examples=false
+                -Dgtk:build-tests=false
+                -Dgtk:demos=false
+                -Dgtk:introspection=disabled
+                -Dgtk:macos-backend=true
+                -Dgtk:media-gstreamer=disabled
                 -Dgtk:werror=false
-                -Dlibadwaita:werror=false
+                -Dgtk:x11-backend=false
+                -Dgtksourceview:werror=false
+                -Dlibadwaita:examples=false
                 -Dlibadwaita:gtk_doc=false
                 -Dlibadwaita:introspection=disabled
-                -Dlibadwaita:vapi=false
-                -Dlibadwaita:examples=false
                 -Dlibadwaita:tests=false
+                -Dlibadwaita:vapi=false
+                -Dlibadwaita:werror=false
                 -Dlibsass:werror=false
+                -Dpixman:tests=disabled
                 -Dsassc:werror=false
                 _build
-        - ninja -C _build
+        - ninja -C _build test
+        - ninja -C _build install
     artifacts:
         when: always
         paths:
