@@ -58,7 +58,7 @@ fedora:
                 -Dicu:werror=false
                 -Dlibadwaita:werror=false
                 -Dlibsass:werror=false
-                -Dsassc:werror=false"
+                -Dsassc:werror=false
                 _build
         - ninja -C _build test
         - ninja -C _build install
