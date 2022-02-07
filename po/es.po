@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the gnome-text-editor package.
 # Daniel Mustieles <daniel.mustieles@gmail.com>, 2021.
 # leo <daniel.mustieles@gmail.com>, 2021.
-# Miguel Ángel Nieto <correo@miguelangelnieto.net>, 2021.
+# Miguel Ángel Nieto <correo@miguelangelnieto.net>, 2021-2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2021-12-22 11:15+0000\n"
-"PO-Revision-Date: 2021-12-22 12:32+0100\n"
+"POT-Creation-Date: 2022-02-05 11:27+0000\n"
+"PO-Revision-Date: 2022-02-07 11:06+0100\n"
 "Last-Translator: Miguel Ángel Nieto <correo@miguelangelnieto.net>\n"
 "Language-Team: Spanish - Spain <gnome-es-list@gnome.org>\n"
 "Language: es_ES\n"
@@ -23,12 +23,12 @@ msgstr ""
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
 msgid "Christian Hergert, et al."
-msgstr "Christian Hergert y otros"
+msgstr "Christian Hergert y otrosa n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:7
 #: data/org.gnome.TextEditor.desktop.in.in:8
-#: src/editor-application-actions.c:80 src/editor-application-actions.c:82
+#: src/editor-application-actions.c:192
 msgid "Text Editor"
 msgstr "Editor de texto"
 
@@ -178,7 +178,7 @@ msgstr "Usar tipografía del sistema"
 msgid "If the default system monospace font should be used."
 msgstr "Indica si utilizar la fuente monoespaciada predeterminada del sistema."
 
-#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:58
+#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:60
 msgid "Custom Font"
 msgstr "Tipografía personalizada"
 
@@ -265,6 +265,26 @@ msgstr "Dibujar espacios"
 msgid "The various types of spaces to draw in the editor."
 msgstr "Los diferentes tipos de espacios que dibujar en el editor."
 
+#: data/org.gnome.TextEditor.gschema.xml:147
+msgid "Enable Snippets"
+msgstr "Habilitar fragmentos"
+
+#: data/org.gnome.TextEditor.gschema.xml:148
+msgid ""
+"Enable the use of snippets registered with GtkSourceView from within the "
+"editor."
+msgstr ""
+"Habilita el uso de fragmentos registrados con GtkSourceView desde dentro del "
+"editor."
+
+#: data/org.gnome.TextEditor.gschema.xml:153
+msgid "Line Height"
+msgstr "Altura de línea"
+
+#: data/org.gnome.TextEditor.gschema.xml:154
+msgid "The line height to use for the selected font."
+msgstr "La altura de línea que usar para la fuente seleccionada."
+
 #: src/editor-animation.c:1051
 #, c-format
 msgid "Failed to find property %s in %s"
@@ -276,100 +296,150 @@ msgstr "Falló al encontrar la propiedad %s en %s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Falló al recuperar el valor va_list: %s"
 
-#: src/editor-application-actions.c:99
+#: src/editor-application-actions.c:206
 msgid "Text Editor Website"
 msgstr "Página web del editor de texto"
 
-#: src/editor-application.c:389
+#: src/editor-application-actions.c:207
+msgid "translator-credits"
+msgstr ""
+"Miguel Ángel Nieto, <correo@miguelangelnieto.net>, 2022\n"
+"Daniel Mustieles <Daniel.mustieles@gmail.com>, 2021 - 2022"
+
+#: src/editor-application.c:514
 msgid "Do not restore session at startup"
 msgstr "No restaurar la sesión al inicio"
 
-#: src/editor-document.c:1719
+#: src/editor-document.c:1938
 msgid "[Read-Only]"
 msgstr "[Sólo lectura]"
 
-#: src/editor-info-bar.c:67
+#: src/editor-file-manager.c:99
+msgid "File path is NULL"
+msgstr "La ruta del archivo es NULL"
+
+#: src/editor-file-manager.c:108 src/editor-file-manager.c:119
+msgid "Error converting UTF-8 filename to wide char"
+msgstr "Error convirtiendo el archivo UTF-8 a carácter ancho"
+
+#: src/editor-file-manager.c:127
+msgid "ILCreateFromPath() failed"
+msgstr "ILCreateFromPath() falló"
+
+#: src/editor-file-manager.c:164
+#, c-format
+msgid "Cannot convert “%s” into a valid NSURL."
+msgstr "No se puede convertir «%s» en un NSURL válido."
+
+#: src/editor-info-bar.c:76
 msgid "_Discard Changes and Reload"
 msgstr "_Descartar cambios y recargar"
 
-#: src/editor-info-bar.c:70
+#: src/editor-info-bar.c:79
 msgid "File Has Changed on Disk"
 msgstr "El archivo ha cambiado en el disco"
 
-#: src/editor-info-bar.c:71
+#: src/editor-info-bar.c:80
 msgid "The file has been changed by another program."
 msgstr "Otro programa ha cambiado el archivo."
 
-#: src/editor-info-bar.c:80 src/editor-window.ui:200
+#: src/editor-info-bar.c:89 src/editor-window.ui:216
 msgid "Save _As…"
 msgstr "Guardar _como…"
 
-#: src/editor-info-bar.c:82 src/editor-info-bar.ui:15
+#: src/editor-info-bar.c:91 src/editor-info-bar.ui:61
 msgid "Document Restored"
 msgstr "Documento restaurado"
 
-#: src/editor-info-bar.c:83 src/editor-info-bar.ui:24
+#: src/editor-info-bar.c:92 src/editor-info-bar.ui:70
 msgid "Unsaved document has been restored."
 msgstr "Se ha restaurado un documento sin guardar."
 
-#: src/editor-info-bar.c:89
+#: src/editor-info-bar.c:98
 msgid "_Save…"
 msgstr "_Guardar…"
 
-#: src/editor-info-bar.c:91 src/editor-info-bar.ui:31
+#: src/editor-info-bar.c:100 src/editor-info-bar.ui:77
 msgid "_Discard…"
 msgstr "_Descartar…"
 
-#: src/editor-info-bar.c:93
+#: src/editor-info-bar.c:102
 msgid "Draft Changes Restored"
 msgstr "Restaurados los cambios del borrador"
 
-#: src/editor-info-bar.c:94
+#: src/editor-info-bar.c:103
 msgid "Unsaved changes to the document have been restored."
 msgstr "Se han restaurado los cambios sin guardar del documento."
 
-#: src/editor-language-dialog.ui:5 src/editor-window.c:194
+#: src/editor-info-bar.ui:19
+msgid "Could Not Open File"
+msgstr "No se pudo abrir el archivo"
+
+#: src/editor-info-bar.ui:28
+msgid "You do not have permission to open the file."
+msgstr "No tiene permisos para abrir el archivo."
+
+#: src/editor-info-bar.ui:35
+msgid "_Retry"
+msgstr "_Reintentar"
+
+#: src/editor-info-bar.ui:42
+msgid "Open As _Administrator"
+msgstr "Abrir como _administrador"
+
+#: src/editor-language-dialog.ui:6 src/editor-window.c:194
 msgid "Document Type"
 msgstr "Tipo de documento"
 
-#: src/editor-language-dialog.ui:51
+#: src/editor-language-dialog.ui:52
 msgid "No Matches"
 msgstr "Sin coincidencias"
 
-#: src/editor-open-popover.ui:48
+#: src/editor-open-popover.ui:67
 msgid "No Recent Documents"
 msgstr "No hay documentos recientes"
 
-#: src/editor-open-popover.ui:73
+#: src/editor-open-popover.ui:94
 msgid "No Results Found"
 msgstr "No se encontraron resultados"
 
-#: src/editor-page.c:916 src/editor-sidebar-item.c:474
+#: src/editor-page.c:961 src/editor-sidebar-item.c:489
 msgid "New Document"
 msgstr "Documento nuevo"
 
-#: src/editor-page.c:933 src/editor-sidebar-item.c:79
+#: src/editor-page.c:983 src/editor-properties-dialog.c:74
+#: src/editor-sidebar-item.c:84
 msgid "Draft"
 msgstr "Borrador"
 
-#: src/editor-page.c:987
+#. translators: %s is replaced with the path on the filesystem
+#: src/editor-page.c:995
+#, c-format
+msgid "%s (Administrator)"
+msgstr "%s (Administrador)"
+
+#: src/editor-page.c:1003 src/editor-sidebar-item.c:98
+msgid "Document Portal"
+msgstr "Portal de documentos"
+
+#: src/editor-page.c:1054
 msgid "Failed to save document"
 msgstr "Falló al guardar el documento"
 
-#: src/editor-page.c:1072
+#: src/editor-page.c:1139
 msgid "Save As"
 msgstr "Guardar como"
 
-#: src/editor-page.c:1075 src/editor-window-actions.c:132
+#: src/editor-page.c:1142 src/editor-window-actions.c:133
 msgid "Save"
 msgstr "Guardar"
 
-#: src/editor-page.c:1076 src/editor-window-actions.c:131
-#: src/editor-window-actions.c:242 src/editor-window-actions.c:351
+#: src/editor-page.c:1143 src/editor-window-actions.c:132
+#: src/editor-window-actions.c:271 src/editor-window-actions.c:380
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: src/editor-page.c:1216
+#: src/editor-page.c:1283
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Ln %u, Col %u"
@@ -383,60 +453,64 @@ msgid "Go"
 msgstr "Ir"
 
 #. translators: Ln is short for "Line Number"
-#: src/editor-position-label.ui:12
+#: src/editor-position-label.ui:15
 msgid "Ln"
 msgstr "Ln"
 
 #. translators: Col is short for "Column"
-#: src/editor-position-label.ui:32
+#: src/editor-position-label.ui:35
 msgid "Col"
 msgstr "Col"
 
-#: src/editor-preferences-dialog.ui:16
+#: src/editor-preferences-dialog.ui:17
 msgid "Appearance"
 msgstr "Apariencia"
 
-#: src/editor-preferences-dialog.ui:80
+#: src/editor-preferences-dialog.ui:82
 msgid "Display Grid Pattern"
 msgstr "Mostrar patrón de rejilla"
 
-#: src/editor-preferences-dialog.ui:86
+#: src/editor-preferences-dialog.ui:88
 msgid "Highlight Current Line"
 msgstr "Resaltar la línea actual"
 
-#: src/editor-preferences-dialog.ui:92
+#: src/editor-preferences-dialog.ui:94
 msgid "Display Overview Map"
 msgstr "Mostrar mapa de vista general"
 
-#: src/editor-preferences-dialog.ui:100
+#: src/editor-preferences-dialog.ui:102
 msgid "Right Margin"
 msgstr "Margen derecho"
 
-#: src/editor-preferences-dialog.ui:103
+#: src/editor-preferences-dialog.ui:105
 msgid "Margin Position"
 msgstr "Posición del margen"
 
-#: src/editor-preferences-dialog.ui:111
+#: src/editor-preferences-dialog.ui:113
 msgid "Behavior"
 msgstr "Comportamiento"
 
-#: src/editor-preferences-dialog.ui:114
-msgid "Restore Session"
-msgstr "Restaurar la sesión"
-
-#: src/editor-preferences-dialog.ui:115
-msgid "Return to your previous session when Text Editor is started"
-msgstr "Volver a su sesión anterior cuando se inicie el editor de texto"
-
-#: src/editor-preferences-dialog.ui:121
+#: src/editor-preferences-dialog.ui:116
 msgid "Discover Document Settings"
 msgstr "Descubrir la configuración de documentos"
 
-#: src/editor-preferences-dialog.ui:122
+#: src/editor-preferences-dialog.ui:117
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr ""
 "Aplicar las configuraciones usando modelines, editorconfig o valores "
 "predeterminados razonables"
+
+#: src/editor-preferences-dialog.ui:123
+msgid "Restore Session"
+msgstr "Restaurar la sesión"
+
+#: src/editor-preferences-dialog.ui:124
+msgid "Return to your previous session when Text Editor is started"
+msgstr "Volver a su sesión anterior cuando se inicie el editor de texto"
+
+#: src/editor-preferences-dialog.ui:139
+msgid "_Clear History"
+msgstr "_Limpiar el histórico"
 
 #: src/editor-preferences-font.c:100
 msgid "Select Font"
@@ -459,19 +533,55 @@ msgstr "Archivo: %s"
 msgid "Page %N of %Q"
 msgstr "Página %N de %Q"
 
-#: src/editor-save-changes-dialog.c:257
+#: src/editor-properties-dialog.ui:6
+msgid "Properties"
+msgstr "Propiedades"
+
+#: src/editor-properties-dialog.ui:27
+msgid "File"
+msgstr "Archivo"
+
+#: src/editor-properties-dialog.ui:30
+msgid "Name"
+msgstr "Nombre"
+
+#: src/editor-properties-dialog.ui:45
+msgid "Location"
+msgstr "Localización"
+
+#: src/editor-properties-dialog.ui:63
+msgid "Statistics"
+msgstr "Estadísticas"
+
+#: src/editor-properties-dialog.ui:66
+msgid "Lines"
+msgstr "Líneas"
+
+#: src/editor-properties-dialog.ui:81
+msgid "Words"
+msgstr "Palabras"
+
+#: src/editor-properties-dialog.ui:96
+msgid "Characters, No Spaces"
+msgstr "Caracteres, sin espacios"
+
+#: src/editor-properties-dialog.ui:111
+msgid "All Characters"
+msgstr "Todos los caracteres"
+
+#: src/editor-save-changes-dialog.c:258
 msgid "_Discard"
 msgstr "_Descartar"
 
-#: src/editor-save-changes-dialog.c:257
+#: src/editor-save-changes-dialog.c:258
 msgid "_Discard All"
 msgstr "_Descartar todo"
 
-#: src/editor-save-changes-dialog.c:263
+#: src/editor-save-changes-dialog.c:264
 msgid "Save Changes?"
 msgstr "¿Quiere guardar los cambios?"
 
-#: src/editor-save-changes-dialog.c:265
+#: src/editor-save-changes-dialog.c:266
 msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
@@ -479,25 +589,25 @@ msgstr ""
 "Los documentos abiertos contienen cambios sin guardar. Los cambios que no se "
 "guarden se perderán de forma permanente."
 
-#: src/editor-save-changes-dialog.c:267
+#: src/editor-save-changes-dialog.c:268
 msgid "_Cancel"
 msgstr "_Cancelar"
 
-#: src/editor-save-changes-dialog.c:269 src/editor-window.ui:194
+#: src/editor-save-changes-dialog.c:270 src/editor-window.ui:210
 msgid "_Save"
 msgstr "_Guardar"
 
-#: src/editor-save-changes-dialog.c:296
+#: src/editor-save-changes-dialog.c:303
 msgid "Untitled Document"
 msgstr "Documento sin título"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:299
+#: src/editor-save-changes-dialog.c:306
 #, c-format
 msgid "%s (new)"
 msgstr "%s (nuevo)"
 
-#: src/editor-save-changes-dialog.c:320
+#: src/editor-save-changes-dialog.c:327
 msgid "Save changes for this document"
 msgstr "Guardar los cambios para este documento"
 
@@ -567,15 +677,15 @@ msgstr "Ignorar"
 msgid "Check Spelling"
 msgstr "Comprobar ortografía"
 
-#: src/editor-theme-selector.ui:21 src/editor-theme-selector.ui:23
+#: src/editor-theme-selector.ui:22 src/editor-theme-selector.ui:24
 msgid "Follow system style"
 msgstr "Seguir el estilo del sistema"
 
-#: src/editor-theme-selector.ui:38 src/editor-theme-selector.ui:40
+#: src/editor-theme-selector.ui:39 src/editor-theme-selector.ui:41
 msgid "Light style"
 msgstr "Estilo claro"
 
-#: src/editor-theme-selector.ui:56 src/editor-theme-selector.ui:58
+#: src/editor-theme-selector.ui:57 src/editor-theme-selector.ui:59
 msgid "Dark style"
 msgstr "Estilo oscuro"
 
@@ -627,42 +737,42 @@ msgid "Line Ending:"
 msgstr "Final de línea:"
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:127
+#: src/editor-window-actions.c:128
 #, c-format
 msgid "Save Changes to “%s”?"
 msgstr "¿Guardar cambios en «%s»?"
 
-#: src/editor-window-actions.c:130
+#: src/editor-window-actions.c:131
 msgid "Saving changes will replace the previously saved version."
 msgstr "Al guardar los cambios reemplazará la versión guardada anteriormente."
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:238
+#: src/editor-window-actions.c:267
 #, c-format
 msgid "Discard Changes to “%s”?"
 msgstr "¿Descartar los cambios en «%s»?"
 
-#: src/editor-window-actions.c:241
+#: src/editor-window-actions.c:270
 msgid "Unsaved changes will be permanently lost."
 msgstr "Los cambios sin guardar se perderán de forma permanente."
 
-#: src/editor-window-actions.c:243
+#: src/editor-window-actions.c:272
 msgid "Discard"
 msgstr "Descartar"
 
-#: src/editor-window-actions.c:347
+#: src/editor-window-actions.c:376
 msgid "Open File"
 msgstr "Abrir archivo"
 
-#: src/editor-window-actions.c:350
+#: src/editor-window-actions.c:379
 msgid "Open"
 msgstr "Abrir"
 
-#: src/editor-window-actions.c:375
+#: src/editor-window-actions.c:404
 msgid "All Files"
 msgstr "Todos los archivos"
 
-#: src/editor-window-actions.c:380
+#: src/editor-window-actions.c:409
 msgid "Text Files"
 msgstr "Archivos de texto"
 
@@ -672,36 +782,36 @@ msgid "Document Type: %s"
 msgstr "Tipo de documento: %s"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:724
+#: src/editor-window.c:725
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - Editor de texto"
 
-#: src/editor-window.ui:61
+#: src/editor-window.ui:78
 msgid "_Open"
 msgstr "Ab_rir"
 
-#: src/editor-window.ui:63
+#: src/editor-window.ui:80
 msgid "Open recent document (Ctrl+K)"
 msgstr "Abrir documento reciente (Ctrl+K)"
 
-#: src/editor-window.ui:75 src/editor-window.ui:77
+#: src/editor-window.ui:92 src/editor-window.ui:94
 msgid "New tab (Ctrl+T)"
 msgstr "Pestaña nueva (Ctrl+T)"
 
-#: src/editor-window.ui:103 src/editor-window.ui:107
+#: src/editor-window.ui:120 src/editor-window.ui:124
 msgid "View"
 msgstr "Ver"
 
-#: src/editor-window.ui:116
+#: src/editor-window.ui:133
 msgid "Menu"
 msgstr "Menú"
 
-#: src/editor-window.ui:150
+#: src/editor-window.ui:166
 msgid "Start or Open a Document"
 msgstr "Abrir o crear documento"
 
-#: src/editor-window.ui:153
+#: src/editor-window.ui:169
 msgid ""
 "• Press the Open button\n"
 "• Press the New tab button\n"
@@ -717,115 +827,119 @@ msgstr ""
 "\n"
 "O pulse Ctrl+W para cerrar la ventana."
 
-#: src/editor-window.ui:186
+#: src/editor-window.ui:202
 msgid "_New Window"
 msgstr "Ventana _nueva"
 
-#: src/editor-window.ui:206
+#: src/editor-window.ui:222
 msgid "_Discard Changes"
 msgstr "_Descartar cambios"
 
-#: src/editor-window.ui:212
+#: src/editor-window.ui:228
 msgid "_Find/Replace…"
 msgstr "_Buscar y reemplazar…"
 
-#: src/editor-window.ui:218
+#: src/editor-window.ui:234
 msgid "_Print"
 msgstr "_Imprimir"
 
-#: src/editor-window.ui:225
-msgid "_Preferences"
-msgstr "_Preferencias"
+#: src/editor-window.ui:240
+msgid "Documen_t Properties"
+msgstr "Propiedades del documen_to"
 
-#: src/editor-window.ui:230
+#: src/editor-window.ui:246
+msgid "P_references"
+msgstr "P_referencias"
+
+#: src/editor-window.ui:251
 msgid "_Keyboard Shortcuts"
 msgstr "Atajos del _teclado"
 
-#: src/editor-window.ui:234
-msgid "Help"
-msgstr "Ayuda"
+#: src/editor-window.ui:255
+msgid "_Help"
+msgstr "_Ayuda"
 
-#: src/editor-window.ui:238
-msgid "_About Text Editor"
+#: src/editor-window.ui:259
+msgid "A_bout Text Editor"
 msgstr "_Acerca del editor de texto"
 
-#: src/editor-window.ui:245
+#: src/editor-window.ui:266
 msgid "Show"
 msgstr "Mostrar"
 
-#: src/editor-window.ui:247
+#: src/editor-window.ui:268
 msgid "_Line Numbers"
 msgstr "_Números de línea"
 
-#: src/editor-window.ui:251
+#: src/editor-window.ui:272
 msgid "_Right Margin"
 msgstr "Margen de_recho"
 
-#: src/editor-window.ui:256
+#: src/editor-window.ui:277
 msgid "Indentation"
 msgstr "Sangrado"
 
-#: src/editor-window.ui:258
+#: src/editor-window.ui:279
 msgid "_Automatic Indentation"
 msgstr "Sangrado _automático"
 
-#: src/editor-window.ui:262
+#: src/editor-window.ui:283
 msgid "_Tabs"
 msgstr "_Pestañas"
 
-#: src/editor-window.ui:267
+#: src/editor-window.ui:288
 msgid "_Spaces"
 msgstr "_Espacios"
 
-#: src/editor-window.ui:272
+#: src/editor-window.ui:293
 msgid "Spaces _Per Tab"
 msgstr "Espacios _por tabulado"
 
-#: src/editor-window.ui:275
+#: src/editor-window.ui:296
 msgid "_2"
 msgstr "_2"
 
-#: src/editor-window.ui:280
+#: src/editor-window.ui:301
 msgid "_4"
 msgstr "_4"
 
-#: src/editor-window.ui:285
+#: src/editor-window.ui:306
 msgid "_6"
 msgstr "_6"
 
-#: src/editor-window.ui:290
+#: src/editor-window.ui:311
 msgid "_8"
 msgstr "_8"
 
-#: src/editor-window.ui:299
+#: src/editor-window.ui:320
 msgid "T_ext Wrapping"
 msgstr "Ajuste de t_exto"
 
-#: src/editor-window.ui:303
+#: src/editor-window.ui:324
 msgid "Chec_k Spelling"
 msgstr "Compro_bar ortografía"
 
-#: src/editor-window.ui:307
+#: src/editor-window.ui:328
 msgid "_Document Type"
 msgstr "Tipo de _documento"
 
-#: src/editor-window.ui:315
+#: src/editor-window.ui:336
 msgid "Move _Left"
 msgstr "Moverse a la _izquierda"
 
-#: src/editor-window.ui:320
+#: src/editor-window.ui:341
 msgid "Move _Right"
 msgstr "Moverse a la _derecha"
 
-#: src/editor-window.ui:327
+#: src/editor-window.ui:348
 msgid "_Move to New Window"
 msgstr "_Moverse a la siguiente ventana"
 
-#: src/editor-window.ui:334
+#: src/editor-window.ui:355
 msgid "Close _Other Tabs"
 msgstr "Cerrar _otras pestañas"
 
-#: src/editor-window.ui:338
+#: src/editor-window.ui:359
 msgid "_Close"
 msgstr "_Cerrar"
 
@@ -833,280 +947,283 @@ msgstr "_Cerrar"
 msgid "Enchant 2"
 msgstr "Enchant 2"
 
-#: src/help-overlay.ui:8
+#: src/help-overlay.ui:9
 msgctxt "shortcut window"
 msgid "Editor Shortcuts"
 msgstr "Atajos del editor"
 
-#: src/help-overlay.ui:11
+#: src/help-overlay.ui:12
 msgctxt "shortcut window"
 msgid "Windows"
 msgstr "Ventanas"
 
-#: src/help-overlay.ui:14
+#: src/help-overlay.ui:15
 msgctxt "shortcut window"
 msgid "New window"
 msgstr "Ventana nueva"
 
-#: src/help-overlay.ui:20
+#: src/help-overlay.ui:21
 msgctxt "shortcut window"
 msgid "Move document to new window"
 msgstr "Mover el documento a una ventana nueva"
 
-#: src/help-overlay.ui:27
+#: src/help-overlay.ui:28
 msgctxt "shortcut window"
 msgid "Move to next tab"
 msgstr "Cambiar a la siguiente pestaña"
 
-#: src/help-overlay.ui:33
+#: src/help-overlay.ui:34
 msgctxt "shortcut window"
 msgid "Move to previous tab"
 msgstr "Cambiar a la pestaña anterior"
 
-#: src/help-overlay.ui:39
+#: src/help-overlay.ui:40
 msgctxt "shortcut window"
 msgid "Reorder after next tab"
 msgstr "Reordenar después de la pestaña siguiente"
 
-#: src/help-overlay.ui:45
+#: src/help-overlay.ui:46
 msgctxt "shortcut window"
 msgid "Reorder before previous tab"
 msgstr "Reordenar antes de la pestaña anterior"
 
-#: src/help-overlay.ui:51
+#: src/help-overlay.ui:52
 msgctxt "shortcut window"
 msgid "Restore previously closed tab"
 msgstr "Restaurar la pestaña cerrada anteriormente"
 
-#: src/help-overlay.ui:58
+#: src/help-overlay.ui:59
 msgctxt "shortcut window"
 msgid "Zoom"
 msgstr "Ampliación"
 
-#: src/help-overlay.ui:62
+#: src/help-overlay.ui:63
 msgctxt "shortcut window"
 msgid "Zoom In"
 msgstr "Acercar"
 
-#: src/help-overlay.ui:68
+#: src/help-overlay.ui:69
 msgctxt "shortcut window"
 msgid "Zoom Out"
 msgstr "Alejar"
 
-#: src/help-overlay.ui:74
+#: src/help-overlay.ui:75
 msgctxt "shortcut window"
 msgid "Reset Zoom"
 msgstr "Restablecer ampliación"
 
-#: src/help-overlay.ui:81
+#: src/help-overlay.ui:82
 msgctxt "shortcut window"
 msgid "Documents"
 msgstr "Documentos"
 
-#: src/help-overlay.ui:84
+#: src/help-overlay.ui:85
 msgctxt "shortcut window"
 msgid "New document"
 msgstr "Nuevo documento"
 
-#: src/help-overlay.ui:90
+#: src/help-overlay.ui:91
 msgctxt "shortcut window"
 msgid "Browse to open document"
 msgstr "Navegar para abrir un documento"
 
-#: src/help-overlay.ui:96
+#: src/help-overlay.ui:97
 msgctxt "shortcut window"
 msgid "Find document by name"
 msgstr "Buscar documento por nombre"
 
-#: src/help-overlay.ui:102
+#: src/help-overlay.ui:103
 msgctxt "shortcut window"
 msgid "Save"
 msgstr "Guardar"
 
-#: src/help-overlay.ui:108
+#: src/help-overlay.ui:109
 msgctxt "shortcut window"
 msgid "Save As"
 msgstr "Guardar como"
 
-#: src/help-overlay.ui:114
+#: src/help-overlay.ui:115
 msgctxt "shortcut window"
 msgid "Find/Replace"
 msgstr "Buscar y reemplazar"
 
-#: src/help-overlay.ui:120
+#: src/help-overlay.ui:121
 msgctxt "shortcut window"
 msgid "Close document"
 msgstr "Cerrar documento"
 
-#: src/help-overlay.ui:128
+#: src/help-overlay.ui:129
 msgctxt "shortcut window"
 msgid "Copy and Paste"
 msgstr "Copiar y pegar"
 
-#: src/help-overlay.ui:132
+#: src/help-overlay.ui:133
 msgctxt "shortcut window"
 msgid "Copy selected text to clipboard"
 msgstr "Copiar el texto seleccionado al portapapeles"
 
-#: src/help-overlay.ui:138
+#: src/help-overlay.ui:139
 msgctxt "shortcut window"
 msgid "Cut selected text to clipboard"
 msgstr "Cortar el texto seleccionado al portapapeles"
 
-#: src/help-overlay.ui:144
+#: src/help-overlay.ui:145
 msgctxt "shortcut window"
 msgid "Paste text from clipboard"
 msgstr "Pegar texto desde el portapapeles"
 
-#: src/help-overlay.ui:149
+#: src/help-overlay.ui:150
 msgctxt "shortcut window"
 msgid "Copy all to clipboard"
 msgstr "Copiar todo al portapapeles"
 
-#: src/help-overlay.ui:157
+#: src/help-overlay.ui:158
 msgctxt "shortcut window"
 msgid "Undo and Redo"
 msgstr "Deshacer y rehacer"
 
-#: src/help-overlay.ui:161
+#: src/help-overlay.ui:162
 msgctxt "shortcut window"
 msgid "Undo previous command"
 msgstr "Deshacer el último comando"
 
-#: src/help-overlay.ui:167
+#: src/help-overlay.ui:168
 msgctxt "shortcut window"
 msgid "Redo previous command"
 msgstr "Rehacer el último comando"
 
-#: src/help-overlay.ui:174
+#: src/help-overlay.ui:175
 msgctxt "shortcut window"
 msgid "Editing"
 msgstr "Edición"
 
-#: src/help-overlay.ui:178
+#: src/help-overlay.ui:179
 msgctxt "shortcut window"
 msgid "Insert emoji into document"
 msgstr "Insertar emoticono en el documento"
 
-#: src/help-overlay.ui:184
+#: src/help-overlay.ui:185
 msgctxt "shortcut window"
 msgid "Search within the document"
 msgstr "Buscar en el documento"
 
-#: src/help-overlay.ui:190
+#: src/help-overlay.ui:191
 msgctxt "shortcut window"
 msgid "Search and replace within the document"
 msgstr "Buscar y reemplazar en el documento"
 
-#: src/help-overlay.ui:196
+#: src/help-overlay.ui:197
 msgctxt "shortcut window"
 msgid "Increment number at cursor"
 msgstr "Incrementar el número en el cursor"
 
-#: src/help-overlay.ui:202
+#: src/help-overlay.ui:203
 msgctxt "shortcut window"
 msgid "Decrement number at cursor"
 msgstr "Disminuir el número en el cursor"
 
-#: src/help-overlay.ui:208
+#: src/help-overlay.ui:209
 msgctxt "shortcut window"
 msgid "Toggle overwrite"
 msgstr "Alternar sobrescribir"
 
-#: src/help-overlay.ui:214
+#: src/help-overlay.ui:215
 msgctxt "shortcut window"
 msgid "Toggle visibility of insertion caret"
 msgstr "Alternar la visibilidad del cursor de inserción"
 
-#: src/help-overlay.ui:221
+#: src/help-overlay.ui:222
 msgctxt "shortcut window"
 msgid "Selections"
 msgstr "Selecciones"
 
-#: src/help-overlay.ui:225
+#: src/help-overlay.ui:226
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Seleccionar todo"
 
-#: src/help-overlay.ui:231
+#: src/help-overlay.ui:232
 msgctxt "shortcut window"
 msgid "Unselect all"
 msgstr "Deseleccionar todo"
 
-#: src/help-overlay.ui:237
+#: src/help-overlay.ui:238
 msgctxt "shortcut window"
 msgid "Select current line"
 msgstr "Seleccionar la línea actual"
 
-#: src/help-overlay.ui:244
+#: src/help-overlay.ui:245
 msgctxt "shortcut window"
 msgid "Movements"
 msgstr "Movimientos"
 
-#: src/help-overlay.ui:248
+#: src/help-overlay.ui:249
 msgctxt "shortcut window"
 msgid "Move to beginning of document"
 msgstr "Moverse al principio del documento"
 
-#: src/help-overlay.ui:254
+#: src/help-overlay.ui:255
 msgctxt "shortcut window"
 msgid "Move to end of document"
 msgstr "Moverse al final del documento"
 
-#: src/help-overlay.ui:260
+#: src/help-overlay.ui:261
 msgctxt "shortcut window"
 msgid "Move to start of previous paragraph"
 msgstr "Moverse al principio del párrafo anterior"
 
-#: src/help-overlay.ui:266
+#: src/help-overlay.ui:267
 msgctxt "shortcut window"
 msgid "Move to end of next paragraph"
 msgstr "Moverse al principio del siguiente párrafo"
 
-#: src/help-overlay.ui:272
+#: src/help-overlay.ui:273
 msgctxt "shortcut window"
 msgid "Move current or selected lines up"
 msgstr "Mover las líneas actuales o seleccionadas hacia arriba"
 
-#: src/help-overlay.ui:278
+#: src/help-overlay.ui:279
 msgctxt "shortcut window"
 msgid "Move current or selected lines down"
 msgstr "Mover las líneas actuales o seleccionadas hacia abajo"
 
-#: src/help-overlay.ui:284
+#: src/help-overlay.ui:285
 msgctxt "shortcut window"
 msgid "Go to line"
 msgstr "Ir a la línea"
 
-#: src/help-overlay.ui:291
+#: src/help-overlay.ui:292
 msgctxt "shortcut window"
 msgid "Deletion"
 msgstr "Eliminación"
 
-#: src/help-overlay.ui:295
+#: src/help-overlay.ui:296
 msgctxt "shortcut window"
 msgid "Delete from cursor to word start"
 msgstr "Eliminar desde el cursor hasta el inicio de la palabra"
 
-#: src/help-overlay.ui:301
+#: src/help-overlay.ui:302
 msgctxt "shortcut window"
 msgid "Delete from cursor to word end"
 msgstr "Eliminar desde el cursor hasta el final de la palabra"
 
-#: src/help-overlay.ui:307
+#: src/help-overlay.ui:308
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph start"
 msgstr "Eliminar desde el cursor hasta el inicio del párrafo"
 
-#: src/help-overlay.ui:313
+#: src/help-overlay.ui:314
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph end"
 msgstr "Eliminar desde el cursor hasta el final del párrafo"
 
-#: src/help-overlay.ui:319
+#: src/help-overlay.ui:320
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "Eliminar la línea actual"
+
+#~ msgid "_Preferences"
+#~ msgstr "_Preferencias"
 
 #~ msgid "Highlight Mode"
 #~ msgstr "Modo de resaltado"
@@ -1116,9 +1233,6 @@ msgstr "Eliminar la línea actual"
 
 #~ msgid "Br_owse Files…"
 #~ msgstr "Ex_aminar archivos…"
-
-#~ msgid "Preferences"
-#~ msgstr "Preferencias"
 
 #~ msgid "Font"
 #~ msgstr "Tipografía"
