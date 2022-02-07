@@ -155,6 +155,7 @@ define_color_mixed (GString       *str,
   g_string_append_printf (str, "@define-color %s mix(%s,%s,%s);\n", name, a_str, b_str, levelstr);
 }
 
+#if 0
 static inline void
 premix_colors (GdkRGBA       *dest,
                const GdkRGBA *fg,
@@ -180,6 +181,7 @@ premix_colors (GdkRGBA       *dest,
       dest->alpha = alpha;
     }
 }
+#endif
 
 gboolean
 _editor_source_style_scheme_is_dark (GtkSourceStyleScheme *scheme)
