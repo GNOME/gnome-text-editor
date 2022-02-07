@@ -34,7 +34,7 @@ fedora:
     image: $FEDORA_IMAGE
     needs: []
     script:
-        - sudo dnf -y
+        - sudo dnf -y install
                 desktop-file-utils
                 enchant2-devel
                 expat-devel
