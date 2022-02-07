@@ -100,9 +100,10 @@ editor_page_gsettings_get_custom_font (EditorPageSettingsProvider  *provider,
 }
 
 static void
-editor_page_gsettings_changed_cb (EditorPageGsettings *self,
-                                  const gchar         *key,
-                                  GSettings           *settings)
+editor_page_gsettings_change_event_cb (EditorPageGsettings *self,
+                                       gpointer             keys,
+                                       int                  n_keys,
+                                       GSettings           *settings)
 {
   g_assert (EDITOR_IS_PAGE_GSETTINGS (self));
   g_assert (G_IS_SETTINGS (settings));
@@ -142,7 +143,7 @@ editor_page_gsettings_dispose (GObject *object)
   if (self->settings != NULL)
     {
       g_signal_handlers_disconnect_by_func (self->settings,
-                                            G_CALLBACK (editor_page_gsettings_changed_cb),
+                                            G_CALLBACK (editor_page_gsettings_change_event_cb),
                                             self);
       g_clear_object (&self->settings);
     }
@@ -185,8 +186,8 @@ _editor_page_gsettings_new (GSettings *settings)
   self->settings = g_object_ref (settings);
 
   g_signal_connect_object (self->settings,
-                           "changed",
-                           G_CALLBACK (editor_page_gsettings_changed_cb),
+                           "change-event",
+                           G_CALLBACK (editor_page_gsettings_change_event_cb),
                            self,
                            G_CONNECT_SWAPPED);
 
