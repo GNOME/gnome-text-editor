@@ -460,7 +460,6 @@ editor_preferences_dialog_drop_scheme_cb (EditorPreferencesDialog *self,
     {
       GSList *list = g_value_get_boxed (value);
       g_autoptr(GPtrArray) to_install = NULL;
-      g_autoptr(GTask) task = NULL;
       GtkSourceStyleSchemeManager *manager;
       const char * const *scheme_ids;
 
