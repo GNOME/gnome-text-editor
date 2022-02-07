@@ -82,6 +82,7 @@ macos:
                 -Dcpp_std=c++11
                 -Denchant=disabled
                 -Dglib:werror=false
+                -Dglib:tests=false
                 -Dgtk:broadway-backend=true
                 -Dgtk:build-examples=false
                 -Dgtk:build-tests=false
