@@ -58,7 +58,14 @@ fedora:
                 -Dicu:werror=false
                 -Dlibadwaita:werror=false
                 -Dlibsass:werror=false
+                -Dpango:gtk_doc=false
+                -Dpango:introspection=false
+                -Dpango:werror=false
                 -Dsassc:werror=false
+                -Dwayland-protocols:tests=false
+                -Dwayland:documentation=false
+                -Dwayland:dtd_validation=false
+                -Dwayland:tests=false
                 _build
         - ninja -C _build test
         - ninja -C _build install
