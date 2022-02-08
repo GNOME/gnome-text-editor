@@ -54,8 +54,16 @@ fedora:
                 -Dgtk:demos=false
                 -Dgtk:media-gstreamer=disabled
                 -Dgtk:werror=false
+                -Dgtksourceview:gtk_doc=false
+                -Dgtksourceview:introspection=disabled
+                -Dgtksourceview:vapi=false
                 -Dgtksourceview:werror=false
                 -Dicu:werror=false
+                -Dlibadwaita:examples=false
+                -Dlibadwaita:gtk_doc=false
+                -Dlibadwaita:introspection=disabled
+                -Dlibadwaita:tests=false
+                -Dlibadwaita:vapi=false
                 -Dlibadwaita:werror=false
                 -Dlibsass:werror=false
                 -Dpango:gtk_doc=false
@@ -67,8 +75,10 @@ fedora:
                 -Dwayland:dtd_validation=false
                 -Dwayland:tests=false
                 _build
-        - ninja -C _build test
-        - ninja -C _build install
+        - cd _build
+        - ninja
+        - meson test --suite gnome-text-editor
+        - ninja install
 
 macos:
     extends: .only-default
@@ -87,9 +97,9 @@ macos:
         - meson --prefix=${PWD}/pfx
                 -Dcpp_std=c++11
                 -Denchant=disabled
-                -Dglib:werror=false
                 -Dglib:tests=false
-                -Dgtk:broadway-backend=true
+                -Dglib:werror=false
+                -Dgtk:broadway-backend=false
                 -Dgtk:build-examples=false
                 -Dgtk:build-tests=false
                 -Dgtk:demos=false
@@ -98,7 +108,11 @@ macos:
                 -Dgtk:media-gstreamer=disabled
                 -Dgtk:werror=false
                 -Dgtk:x11-backend=false
+                -Dgtksourceview:gtk_doc=false
+                -Dgtksourceview:introspection=disabled
+                -Dgtksourceview:vapi=false
                 -Dgtksourceview:werror=false
+                -Dicu:werror=false
                 -Dlibadwaita:examples=false
                 -Dlibadwaita:gtk_doc=false
                 -Dlibadwaita:introspection=disabled
@@ -106,11 +120,20 @@ macos:
                 -Dlibadwaita:vapi=false
                 -Dlibadwaita:werror=false
                 -Dlibsass:werror=false
+                -Dpango:gtk_doc=false
+                -Dpango:introspection=disabled
+                -Dpango:werror=false
                 -Dpixman:tests=disabled
                 -Dsassc:werror=false
+                -Dwayland-protocols:tests=false
+                -Dwayland:documentation=false
+                -Dwayland:dtd_validation=false
+                -Dwayland:tests=false
                 _build
-        - ninja -C _build test
-        - ninja -C _build install
+        - cd _build
+        - ninja
+        - meson test --suite gnome-text-editor
+        - ninja install
     artifacts:
         when: always
         paths:
