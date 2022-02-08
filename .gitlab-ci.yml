@@ -48,15 +48,19 @@ fedora:
         - meson --prefix=${PWD}/pfx
                 -Dwerror=true
                 -Dglib:werror=false
+                -Dglib:tests=false
                 -Dgtk:broadway-backend=false
                 -Dgtk:build-examples=false
                 -Dgtk:build-tests=false
                 -Dgtk:demos=false
+                -Dgtk:tests=false
                 -Dgtk:media-gstreamer=disabled
                 -Dgtk:werror=false
                 -Dgtksourceview:werror=false
+                -Dgtksourceview:tests=false
                 -Dicu:werror=false
                 -Dlibadwaita:werror=false
+                -Dlibadwaita:tests=false
                 -Dlibsass:werror=false
                 -Dsassc:werror=false
                 _build
