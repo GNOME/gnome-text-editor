@@ -133,7 +133,6 @@ macos:
         - cd _build
         - ninja
         - meson test --suite gnome-text-editor
-        - ninja install
     artifacts:
         when: always
         paths:
