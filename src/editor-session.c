@@ -1418,7 +1418,8 @@ editor_session_open (EditorSession           *self,
 void
 editor_session_open_files (EditorSession  *self,
                            GFile         **files,
-                           gint            n_files)
+                           gint            n_files,
+                           const char     *hint)
 {
   g_return_if_fail (EDITOR_IS_SESSION (self));
 

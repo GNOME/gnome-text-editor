@@ -34,6 +34,12 @@
 #define PORTAL_OBJECT_PATH "/org/freedesktop/portal/desktop"
 #define PORTAL_SETTINGS_INTERFACE "org.freedesktop.portal.Settings"
 
+typedef struct
+{
+  GPtrArray *files;
+  char *hint;
+} Restore;
+
 G_DEFINE_TYPE (EditorApplication, editor_application, ADW_TYPE_APPLICATION)
 
 enum {
@@ -46,28 +52,62 @@ enum {
 static GParamSpec *properties[N_PROPS];
 
 static void
+restore_free (Restore *restore)
+{
+  g_clear_pointer (&restore->files, g_ptr_array_unref);
+  g_clear_pointer (&restore->hint, g_free);
+  g_free (restore);
+}
+
+static Restore *
+restore_new (GFile      **files,
+             guint        n_files,
+             const char  *hint)
+{
+  Restore *restore;
+
+  g_assert (files != NULL || n_files == 0);
+
+  restore = g_new0 (Restore, 1);
+  restore->files = g_ptr_array_new_with_free_func (g_object_unref);
+  restore->hint = g_strdup (hint);
+
+  for (guint i = 0; i < n_files; i++)
+    g_ptr_array_add (restore->files, g_object_ref (files[i]));
+
+  return restore;
+}
+
+G_DEFINE_AUTOPTR_CLEANUP_FUNC (Restore, restore_free)
+
+static void
 editor_application_restore_cb (GObject      *object,
                                GAsyncResult *result,
                                gpointer      user_data)
 {
   EditorSession *session = (EditorSession *)object;
-  g_autoptr(GPtrArray) files = user_data;
+  g_autoptr(Restore) restore = user_data;
   g_autoptr(GError) error = NULL;
 
   g_assert (G_IS_ASYNC_RESULT (result));
   g_assert (EDITOR_IS_SESSION (session));
+  g_assert (restore != NULL);
+  g_assert (restore->files != NULL);
 
   if (!editor_session_restore_finish (session, result, &error))
     {
       if (!g_error_matches (error, G_IO_ERROR, G_IO_ERROR_NOT_FOUND))
         g_warning ("Failed to restore session: %s", error->message);
 
-      if (files == NULL || files->len == 0)
+      if (restore->files->len == 0)
         editor_session_create_window (session);
     }
 
-  if (files != NULL && files->len > 0)
-    editor_session_open_files (session, (GFile **)files->pdata, files->len);
+  if (restore->files->len > 0)
+    editor_session_open_files (session,
+                               (GFile **)(gpointer)restore->files->pdata,
+                               restore->files->len,
+                               restore->hint);
 
   g_application_release (g_application_get_default ());
 }
@@ -105,7 +145,7 @@ editor_application_activate (GApplication *application)
   editor_session_restore_async (self->session,
                                 NULL,
                                 editor_application_restore_cb,
-                                NULL);
+                                restore_new (NULL, 0, NULL));
 }
 
 static void
@@ -115,15 +155,9 @@ editor_application_open (GApplication  *application,
                          const gchar   *hint)
 {
   EditorApplication *self = (EditorApplication *)application;
-  g_autoptr(GPtrArray) ar = NULL;
 
   g_assert (EDITOR_IS_APPLICATION (self));
-  g_assert (files != NULL);
-  g_assert (n_files > 0);
-
-  ar = g_ptr_array_new_with_free_func (g_object_unref);
-  for (guint i = 0; i < n_files; i++)
-    g_ptr_array_add (ar, g_file_dup (files[i]));
+  g_assert (files != NULL || n_files == 0);
 
   /* If we're being asked to open files via this interface,
    * we want to ignore restoring the previous session because
@@ -140,9 +174,7 @@ editor_application_open (GApplication  *application,
 
   if (_editor_session_did_restore (self->session))
     {
-      editor_session_open_files (self->session,
-                                 (GFile **)ar->pdata,
-                                 ar->len);
+      editor_session_open_files (self->session, files, n_files, hint);
       return;
     }
 
@@ -151,7 +183,7 @@ editor_application_open (GApplication  *application,
   editor_session_restore_async (self->session,
                                 NULL,
                                 editor_application_restore_cb,
-                                g_steal_pointer (&ar));
+                                restore_new (files, n_files, hint));
 }
 
 static gboolean

@@ -40,7 +40,8 @@ EditorPage   *editor_session_open                (EditorSession            *self
                                                   const GtkSourceEncoding  *encoding);
 void          editor_session_open_files          (EditorSession            *self,
                                                   GFile                   **files,
-                                                  gint                      n_files);
+                                                  gint                      n_files,
+                                                  const char               *hint);
 void          editor_session_add_page            (EditorSession            *self,
                                                   EditorWindow             *window,
                                                   EditorPage               *page);
