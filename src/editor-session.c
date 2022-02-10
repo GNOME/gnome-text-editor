@@ -1421,10 +1421,15 @@ editor_session_open_files (EditorSession  *self,
                            gint            n_files,
                            const char     *hint)
 {
+  EditorWindow *window = NULL;
+
   g_return_if_fail (EDITOR_IS_SESSION (self));
 
+  if (g_strcmp0 (hint, "new-window") == 0)
+    window = editor_session_create_window (self);
+
   for (guint i = 0; i < n_files; i++)
-    editor_session_open (self, NULL, files[i], NULL);
+    editor_session_open (self, window, files[i], NULL);
 }
 
 /**
