@@ -23,6 +23,7 @@
 #include "config.h"
 
 #include <glib/gi18n.h>
+#include <unistd.h>
 
 #include "editor-application-private.h"
 #include "editor-recoloring-private.h"
@@ -404,16 +405,66 @@ editor_application_startup (GApplication *application)
   gtk_window_set_default_icon_name (PACKAGE_ICON_NAME);
 }
 
+static int
+editor_application_command_line (GApplication            *app,
+                                 GApplicationCommandLine *command_line)
+{
+  EditorApplication *self = (EditorApplication *)app;
+  g_auto(GStrv) argv = NULL;
+  g_autoptr(GPtrArray) files = NULL;
+  GVariantDict *options;
+  gboolean new_window = FALSE;
+  const char *hint = NULL;
+  int argc;
+
+  g_assert (EDITOR_IS_APPLICATION (self));
+  g_assert (G_IS_APPLICATION_COMMAND_LINE (command_line));
+
+  /* If the user specified commandline arguments (files) to open, then we
+   * should do that instead of allowing GApplication to do it for us. That
+   * way we can provide a "hint" about using a new-window.
+   */
+
+  argv = g_application_command_line_get_arguments (command_line, &argc);
+  options = g_application_command_line_get_options_dict (command_line);
+  files = g_ptr_array_new_with_free_func (g_object_unref);
+
+  for (int i = 1; i < argc; i++)
+    g_ptr_array_add (files,
+                     g_application_command_line_create_file_for_arg (command_line, argv[i]));
+
+  /* Only accept --new-window if this is a remote instance, we already
+   * create a window if we're in the same process.
+   */
+  if (g_application_command_line_get_is_remote (command_line) &&
+      g_variant_dict_lookup (options, "new-window", "b", &new_window) &&
+      new_window)
+    hint = "new-window";
+
+  if (files->len > 0)
+    g_application_open (app,
+                        (GFile **)(gpointer)files->pdata,
+                        files->len,
+                        hint);
+  else
+    g_application_activate (app);
+
+  return EXIT_SUCCESS;
+}
+
 static gint
 editor_application_handle_local_options (GApplication *app,
                                          GVariantDict *options)
 {
   EditorApplication *self = (EditorApplication *)app;
-  gboolean ignore_session;
+  gboolean ignore_session = FALSE;
 
   g_assert (EDITOR_IS_APPLICATION (self));
   g_assert (options != NULL);
 
+  /* This should only happen in the application launching, not the remote
+   * instance as we don't want to affect something already running.
+   */
   if (g_variant_dict_lookup (options, "ignore-session", "b", &ignore_session))
     _editor_session_set_restore_pages (self->session, FALSE);
 
@@ -431,7 +482,8 @@ editor_application_constructed (GObject *object)
 
   g_application_set_application_id (G_APPLICATION (self), APP_ID);
   g_application_set_resource_base_path (G_APPLICATION (self), "/org/gnome/TextEditor");
-  g_application_set_flags (G_APPLICATION (self), G_APPLICATION_HANDLES_OPEN);
+  g_application_set_flags (G_APPLICATION (self),
+                           G_APPLICATION_HANDLES_OPEN | G_APPLICATION_HANDLES_COMMAND_LINE);
 }
 
 static void
@@ -521,6 +573,7 @@ editor_application_class_init (EditorApplicationClass *klass)
   application_class->open = editor_application_open;
   application_class->startup = editor_application_startup;
   application_class->shutdown = editor_application_shutdown;
+  application_class->command_line = editor_application_command_line;
   application_class->handle_local_options = editor_application_handle_local_options;
 
   gtk_application_class->window_added = editor_application_window_added;
@@ -544,6 +597,7 @@ editor_application_class_init (EditorApplicationClass *klass)
 
 static const GOptionEntry entries[] = {
   { "ignore-session", 0, 0, G_OPTION_ARG_NONE, NULL, N_("Do not restore session at startup") },
+  { "new-window", 0, 0, G_OPTION_ARG_NONE, NULL, N_("Open provided files in a new window") },
   { 0 }
 };
 
