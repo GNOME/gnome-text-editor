@@ -596,8 +596,8 @@ editor_application_class_init (EditorApplicationClass *klass)
 }
 
 static const GOptionEntry entries[] = {
-  { "ignore-session", 0, 0, G_OPTION_ARG_NONE, NULL, N_("Do not restore session at startup") },
-  { "new-window", 0, 0, G_OPTION_ARG_NONE, NULL, N_("Open provided files in a new window") },
+  { "ignore-session", 'i', 0, G_OPTION_ARG_NONE, NULL, N_("Do not restore session at startup") },
+  { "new-window", 'n', 0, G_OPTION_ARG_NONE, NULL, N_("Open provided files in a new window") },
   { 0 }
 };
 
