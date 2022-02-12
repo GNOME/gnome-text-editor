@@ -10,16 +10,16 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-01-28 20:36+0000\n"
-"PO-Revision-Date: 2022-01-29 19:39-0300\n"
-"Last-Translator: Matheus Barbosa <mdpb.matheus@gmail.com>\n"
+"POT-Creation-Date: 2022-02-11 23:50+0000\n"
+"PO-Revision-Date: 2022-02-11 21:55-0300\n"
+"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1)\n"
-"X-Generator: Gtranslator 40.0\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
 msgid "Christian Hergert, et al."
@@ -28,7 +28,7 @@ msgstr "Christian Hergert, et al."
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:7
 #: data/org.gnome.TextEditor.desktop.in.in:8
-#: src/editor-application-actions.c:185
+#: src/editor-application-actions.c:192
 msgid "Text Editor"
 msgstr "Editor de Texto"
 
@@ -284,22 +284,26 @@ msgstr "Falha ao localizar a propriedade %s em %s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Falha ao obter o valor de va_list: %s"
 
-#: src/editor-application-actions.c:199
+#: src/editor-application-actions.c:206
 msgid "Text Editor Website"
 msgstr "Site do Editor de Texto"
 
-#: src/editor-application-actions.c:200
+#: src/editor-application-actions.c:207
 msgid "translator-credits"
 msgstr ""
 "Enrico Nicoletto <liverig@gmail.com>\n"
 "Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Matheus Barbosa <mdpb.matheus@gmail.com>"
 
-#: src/editor-application.c:514
+#: src/editor-application.c:599
 msgid "Do not restore session at startup"
-msgstr "Não restaurar a sessão na inicialização"
+msgstr "Não restaura a sessão na inicialização"
 
-#: src/editor-document.c:1933
+#: src/editor-application.c:600
+msgid "Open provided files in a new window"
+msgstr "Abre os arquivos fornecidos em uma nova janela"
+
+#: src/editor-document.c:1938
 msgid "[Read-Only]"
 msgstr "[Somente leitura]"
 
@@ -497,7 +501,7 @@ msgstr "Restaurar sessão"
 msgid "Return to your previous session when Text Editor is started"
 msgstr "Retorna para sua sessão anterior quando o Editor de Texto é iniciado"
 
-#: src/editor-preferences-dialog.ui:133
+#: src/editor-preferences-dialog.ui:139
 msgid "_Clear History"
 msgstr "_Limpar histórico"
 
@@ -558,19 +562,19 @@ msgstr "Caracteres, sem espaços"
 msgid "All Characters"
 msgstr "Todos caracteres"
 
-#: src/editor-save-changes-dialog.c:257
+#: src/editor-save-changes-dialog.c:258
 msgid "_Discard"
 msgstr "_Descartar"
 
-#: src/editor-save-changes-dialog.c:257
+#: src/editor-save-changes-dialog.c:258
 msgid "_Discard All"
 msgstr "_Descartar tudo"
 
-#: src/editor-save-changes-dialog.c:263
+#: src/editor-save-changes-dialog.c:264
 msgid "Save Changes?"
 msgstr "Salvar alterações?"
 
-#: src/editor-save-changes-dialog.c:265
+#: src/editor-save-changes-dialog.c:266
 msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
@@ -578,25 +582,25 @@ msgstr ""
 "Os documentos abertos contêm alterações não salvas. As alterações que não "
 "forem salvas serão perdidas permanentemente."
 
-#: src/editor-save-changes-dialog.c:267
+#: src/editor-save-changes-dialog.c:268
 msgid "_Cancel"
 msgstr "_Cancelar"
 
-#: src/editor-save-changes-dialog.c:269 src/editor-window.ui:210
+#: src/editor-save-changes-dialog.c:270 src/editor-window.ui:210
 msgid "_Save"
 msgstr "_Salvar"
 
-#: src/editor-save-changes-dialog.c:296
+#: src/editor-save-changes-dialog.c:303
 msgid "Untitled Document"
 msgstr "Documento sem título"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:299
+#: src/editor-save-changes-dialog.c:306
 #, c-format
 msgid "%s (new)"
 msgstr "%s (novo)"
 
-#: src/editor-save-changes-dialog.c:320
+#: src/editor-save-changes-dialog.c:327
 msgid "Save changes for this document"
 msgstr "Salvar alterações deste documento"
 
