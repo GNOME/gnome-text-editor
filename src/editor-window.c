@@ -880,7 +880,7 @@ editor_window_class_init (EditorWindowClass *klass)
   gtk_widget_class_bind_template_callback (widget_class, on_tab_view_setup_menu_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_tab_view_create_window_cb);
 
-  gtk_widget_class_install_action (widget_class, "win.show-help-overlay", NULL, on_show_help_overlay_cb);
+  gtk_widget_class_install_action (widget_class, "win.alternate-help-overlay", NULL, on_show_help_overlay_cb);
   gtk_widget_class_install_action (widget_class, "win.undo-close-page", NULL, on_undo_close_page_cb);
 
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_w, GDK_CONTROL_MASK, "win.close-page-or-window", NULL);
@@ -906,7 +906,7 @@ editor_window_class_init (EditorWindowClass *klass)
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_h, GDK_CONTROL_MASK, "page.begin-replace", NULL);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_F10, 0, "win.show-primary-menu", NULL);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_comma, GDK_CONTROL_MASK, "win.show-preferences", NULL);
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_question, GDK_CONTROL_MASK, "win.show-help-overlay", NULL);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_question, GDK_CONTROL_MASK, "win.alternate-help-overlay", NULL);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_t, GDK_CONTROL_MASK|GDK_SHIFT_MASK, "win.undo-close-page", NULL);
 
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_plus, GDK_CONTROL_MASK, "page.zoom-in", NULL);
