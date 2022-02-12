@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues\n"
-"POT-Creation-Date: 2022-01-28 20:36+0000\n"
-"PO-Revision-Date: 2022-01-29 11:37+0200\n"
+"POT-Creation-Date: 2022-02-11 23:50+0000\n"
+"PO-Revision-Date: 2022-02-12 18:28+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -25,7 +25,7 @@ msgstr "Christian Hergert та інші"
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:7
 #: data/org.gnome.TextEditor.desktop.in.in:8
-#: src/editor-application-actions.c:185
+#: src/editor-application-actions.c:192
 msgid "Text Editor"
 msgstr "Текстовий редактор"
 
@@ -285,19 +285,24 @@ msgstr "Не вдалося знайти властивість %s у %s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Не вдалося отримати значення va_list: %s"
 
-#: src/editor-application-actions.c:199
+#: src/editor-application-actions.c:206
 msgid "Text Editor Website"
 msgstr "Сайт «Текстового редактора»"
 
-#: src/editor-application-actions.c:200
+#: src/editor-application-actions.c:207
 msgid "translator-credits"
 msgstr "Юрій Чорноіван <yurchor@ukr.net>, 2021–2022"
 
-#: src/editor-application.c:514
+#: src/editor-application.c:599
 msgid "Do not restore session at startup"
 msgstr "Не відновлювати сеанс після запуску"
 
-#: src/editor-document.c:1933
+#: src/editor-application.c:600
+msgid "Open provided files in a new window"
+msgstr ""
+"Відкрити задані файли у новому вікні"
+
+#: src/editor-document.c:1938
 msgid "[Read-Only]"
 msgstr "[Лише читання]"
 
@@ -496,10 +501,9 @@ msgid "Return to your previous session when Text Editor is started"
 msgstr ""
 "Повертатися до попереднього сеансу після запуску «Текстового редактора»"
 
-#: src/editor-preferences-dialog.ui:133
+#: src/editor-preferences-dialog.ui:139
 msgid "_Clear History"
-msgstr ""
-"О_чистити журнал"
+msgstr "О_чистити журнал"
 
 #: src/editor-preferences-font.c:100
 msgid "Select Font"
@@ -558,19 +562,19 @@ msgstr "Символи (без пробілів)"
 msgid "All Characters"
 msgstr "Всі символи"
 
-#: src/editor-save-changes-dialog.c:257
+#: src/editor-save-changes-dialog.c:258
 msgid "_Discard"
 msgstr "_Відкинути"
 
-#: src/editor-save-changes-dialog.c:257
+#: src/editor-save-changes-dialog.c:258
 msgid "_Discard All"
 msgstr "Від_кинути усе"
 
-#: src/editor-save-changes-dialog.c:263
+#: src/editor-save-changes-dialog.c:264
 msgid "Save Changes?"
 msgstr "Зберегти зміни?"
 
-#: src/editor-save-changes-dialog.c:265
+#: src/editor-save-changes-dialog.c:266
 msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
@@ -578,25 +582,25 @@ msgstr ""
 "У відкритих документах містяться незбережені зміни. Ці незбережені зміни "
 "буде втрачено без можливості відновлення."
 
-#: src/editor-save-changes-dialog.c:267
+#: src/editor-save-changes-dialog.c:268
 msgid "_Cancel"
 msgstr "_Скасувати"
 
-#: src/editor-save-changes-dialog.c:269 src/editor-window.ui:210
+#: src/editor-save-changes-dialog.c:270 src/editor-window.ui:210
 msgid "_Save"
 msgstr "З_берегти"
 
-#: src/editor-save-changes-dialog.c:296
+#: src/editor-save-changes-dialog.c:303
 msgid "Untitled Document"
 msgstr "Документ без назви"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:299
+#: src/editor-save-changes-dialog.c:306
 #, c-format
 msgid "%s (new)"
 msgstr "%s (новий)"
 
-#: src/editor-save-changes-dialog.c:320
+#: src/editor-save-changes-dialog.c:327
 msgid "Save changes for this document"
 msgstr "Зберегти зміни у цьому документі"
 
