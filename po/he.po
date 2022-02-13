@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor gnome-41\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-01-18 22:19+0000\n"
-"PO-Revision-Date: 2022-01-24 21:52+0200\n"
+"POT-Creation-Date: 2022-02-11 23:50+0000\n"
+"PO-Revision-Date: 2022-02-13 19:12+0200\n"
 "Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
-"Language-Team: Hebrew <yoseforb@gmail.com>\n"
+"Language-Team: Hebrew <>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Gtranslator 40.0\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
@@ -26,7 +26,7 @@ msgstr "‏Christian Hergert ונוספים."
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:7
 #: data/org.gnome.TextEditor.desktop.in.in:8
-#: src/editor-application-actions.c:185
+#: src/editor-application-actions.c:192
 msgid "Text Editor"
 msgstr "עורך טקסט"
 
@@ -92,12 +92,10 @@ msgid "The number of spaces represented by a tab."
 msgstr "The number of spaces represented by a tab."
 
 #: data/org.gnome.TextEditor.gschema.xml:52
-#| msgid "Indentation"
 msgid "Indent Width"
 msgstr "Indent Width"
 
 #: data/org.gnome.TextEditor.gschema.xml:53
-#| msgid "The number of spaces represented by a tab."
 msgid "The number of spaces to indent or -1 to use tab-width."
 msgstr "The number of spaces to indent or -1 to use tab-width."
 
@@ -172,7 +170,7 @@ msgstr "שימוש בגופן מערכת"
 msgid "If the default system monospace font should be used."
 msgstr "If the default system monospace font should be used."
 
-#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:59
+#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:60
 msgid "Custom Font"
 msgstr "גופן מותאם אישית"
 
@@ -221,7 +219,6 @@ msgid "When Text Editor is run, restore the previous session."
 msgstr "When Text Editor is run, restore the previous session."
 
 #: data/org.gnome.TextEditor.gschema.xml:123
-#| msgid "_New Window"
 msgid "Recolor Window"
 msgstr "Recolor Window"
 
@@ -246,7 +243,6 @@ msgid "The directory last used in a save or save-as dialog."
 msgstr "The directory last used in a save or save-as dialog."
 
 #: data/org.gnome.TextEditor.gschema.xml:142
-#| msgid "_Spaces"
 msgid "Draw Spaces"
 msgstr "Draw Spaces"
 
@@ -267,7 +263,6 @@ msgstr ""
 "editor."
 
 #: data/org.gnome.TextEditor.gschema.xml:153
-#| msgid "Line Ending:"
 msgid "Line Height"
 msgstr "Line Height"
 
@@ -285,22 +280,26 @@ msgstr "ארע כשל במציאת מאפיים %s בתוך %s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "ארע כשל בשליפת ערך va_list: ‏%s"
 
-#: src/editor-application-actions.c:199
+#: src/editor-application-actions.c:206
 msgid "Text Editor Website"
 msgstr "אתר האינטרנט של עורך הטקסט"
 
-#: src/editor-application-actions.c:200
+#: src/editor-application-actions.c:207
 msgid "translator-credits"
 msgstr ""
 "יוסף אור בוצ׳קו <yoseforb@gmail.com>\n"
 "\n"
 "<a href=\"https://l10n.gnome.org/teams/he/\">מיזם תרגום GNOME לעברית</a>"
 
-#: src/editor-application.c:502
+#: src/editor-application.c:599
 msgid "Do not restore session at startup"
 msgstr "לא לשחזר הפעלה אחרונה עם הפעלת היישום"
 
-#: src/editor-document.c:1933
+#: src/editor-application.c:600
+msgid "Open provided files in a new window"
+msgstr "פתיחת הקבצים שסופקו בחלון חדש"
+
+#: src/editor-document.c:1938
 msgid "[Read-Only]"
 msgstr "[קריאה בלבד]"
 
@@ -337,11 +336,11 @@ msgstr "הקובץ שונה על ידי תכנה אחרת."
 msgid "Save _As…"
 msgstr "שמירה _בשם…"
 
-#: src/editor-info-bar.c:91 src/editor-info-bar.ui:60
+#: src/editor-info-bar.c:91 src/editor-info-bar.ui:61
 msgid "Document Restored"
 msgstr "שוחזר מסמך"
 
-#: src/editor-info-bar.c:92 src/editor-info-bar.ui:69
+#: src/editor-info-bar.c:92 src/editor-info-bar.ui:70
 msgid "Unsaved document has been restored."
 msgstr "שוחזר מסמך שטרם נשמר."
 
@@ -349,7 +348,7 @@ msgstr "שוחזר מסמך שטרם נשמר."
 msgid "_Save…"
 msgstr "_שמירה…"
 
-#: src/editor-info-bar.c:100 src/editor-info-bar.ui:76
+#: src/editor-info-bar.c:100 src/editor-info-bar.ui:77
 msgid "_Discard…"
 msgstr "_השלכה…"
 
@@ -361,30 +360,27 @@ msgstr "שוחזרו שינויים בטיוטה"
 msgid "Unsaved changes to the document have been restored."
 msgstr "שוחזרו שינויים שטרם נשמרו במסמך."
 
-#: src/editor-info-bar.ui:18
-#| msgid "Open File"
+#: src/editor-info-bar.ui:19
 msgid "Could Not Open File"
 msgstr "לא נתן לפתוח קובץ"
 
-#: src/editor-info-bar.ui:27
+#: src/editor-info-bar.ui:28
 msgid "You do not have permission to open the file."
 msgstr "אין לך הרשאות לפתיחת הקובץ."
 
-#: src/editor-info-bar.ui:34
+#: src/editor-info-bar.ui:35
 msgid "_Retry"
 msgstr "_ניסיון חוזר"
 
-#: src/editor-info-bar.ui:41
+#: src/editor-info-bar.ui:42
 msgid "Open As _Administrator"
 msgstr "פתיחה כ_מנהל מערכת"
 
-#: src/editor-language-dialog.ui:5 src/editor-window.c:194
-#| msgctxt "shortcut window"
-#| msgid "Documents"
+#: src/editor-language-dialog.ui:6 src/editor-window.c:194
 msgid "Document Type"
 msgstr "סוג מסמך"
 
-#: src/editor-language-dialog.ui:51
+#: src/editor-language-dialog.ui:52
 msgid "No Matches"
 msgstr "אין התאמות"
 
@@ -412,7 +408,6 @@ msgid "%s (Administrator)"
 msgstr "‏‎%s (מנהל)"
 
 #: src/editor-page.c:1003 src/editor-sidebar-item.c:98
-#| msgid "Document Restored"
 msgid "Document Portal"
 msgstr "שער מסמך"
 
@@ -456,50 +451,53 @@ msgstr "שורה"
 msgid "Col"
 msgstr "עמודה"
 
-#: src/editor-preferences-dialog.ui:16
+#: src/editor-preferences-dialog.ui:17
 msgid "Appearance"
 msgstr "מראה"
 
-#: src/editor-preferences-dialog.ui:81
+#: src/editor-preferences-dialog.ui:82
 msgid "Display Grid Pattern"
 msgstr "הצגת קווי רשת"
 
-#: src/editor-preferences-dialog.ui:87
+#: src/editor-preferences-dialog.ui:88
 msgid "Highlight Current Line"
 msgstr "הדגשת השורה הנוכחית"
 
-#: src/editor-preferences-dialog.ui:93
+#: src/editor-preferences-dialog.ui:94
 msgid "Display Overview Map"
 msgstr "הצגת מפת ממוזערת"
 
-#: src/editor-preferences-dialog.ui:101
+#: src/editor-preferences-dialog.ui:102
 msgid "Right Margin"
 msgstr "שוליים ימניים"
 
-#: src/editor-preferences-dialog.ui:104
+#: src/editor-preferences-dialog.ui:105
 msgid "Margin Position"
 msgstr "מיקום שוליים"
 
-#: src/editor-preferences-dialog.ui:112
+#: src/editor-preferences-dialog.ui:113
 msgid "Behavior"
 msgstr "התנהגות"
 
-#: src/editor-preferences-dialog.ui:115
-msgid "Restore Session"
-msgstr "שחזור הפעלה"
-
 #: src/editor-preferences-dialog.ui:116
-msgid "Return to your previous session when Text Editor is started"
-msgstr "חזרה להפעלה הקודמת שלך ברגע הפעלת עורך הטקסט"
-
-#: src/editor-preferences-dialog.ui:122
-#| msgid "Discover File Settings"
 msgid "Discover Document Settings"
 msgstr "גילוי הגדרות מסמך"
 
-#: src/editor-preferences-dialog.ui:123
+#: src/editor-preferences-dialog.ui:117
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr "החלת הגדרות באמצעות מצב שורות, הגדרות עורך או הגיון בבררת מחדל"
+
+#: src/editor-preferences-dialog.ui:123
+msgid "Restore Session"
+msgstr "שחזור הפעלה"
+
+#: src/editor-preferences-dialog.ui:124
+msgid "Return to your previous session when Text Editor is started"
+msgstr "חזרה להפעלה הקודמת שלך ברגע הפעלת עורך הטקסט"
+
+#: src/editor-preferences-dialog.ui:139
+msgid "_Clear History"
+msgstr "_ניקוי היסטוריה"
 
 #: src/editor-preferences-font.c:100
 msgid "Select Font"
@@ -507,7 +505,6 @@ msgstr "בחירת גופן"
 
 #: src/editor-print-operation.c:176
 #, c-format
-#| msgid "Draft"
 msgid "Draft: %s"
 msgstr "טיוטה: %s"
 
@@ -523,82 +520,79 @@ msgstr "קובץ: %s"
 msgid "Page %N of %Q"
 msgstr "עמוד %N מתוך %Q"
 
-#: src/editor-properties-dialog.ui:5
+#: src/editor-properties-dialog.ui:6
 msgid "Properties"
 msgstr "מאפיינים"
 
-#: src/editor-properties-dialog.ui:26
-#| msgid "Open File"
+#: src/editor-properties-dialog.ui:27
 msgid "File"
 msgstr "קובץ"
 
-#: src/editor-properties-dialog.ui:29
+#: src/editor-properties-dialog.ui:30
 msgid "Name"
 msgstr "שם"
 
-#: src/editor-properties-dialog.ui:44
+#: src/editor-properties-dialog.ui:45
 msgid "Location"
 msgstr "מיקום"
 
-#: src/editor-properties-dialog.ui:62
+#: src/editor-properties-dialog.ui:63
 msgid "Statistics"
 msgstr "סטטיסטיקה"
 
-#: src/editor-properties-dialog.ui:65
+#: src/editor-properties-dialog.ui:66
 msgid "Lines"
 msgstr "שורות"
 
-#: src/editor-properties-dialog.ui:80
+#: src/editor-properties-dialog.ui:81
 msgid "Words"
 msgstr "מילים"
 
-#: src/editor-properties-dialog.ui:95
+#: src/editor-properties-dialog.ui:96
 msgid "Characters, No Spaces"
 msgstr "תווים, ללא רווחים"
 
-#: src/editor-properties-dialog.ui:110
+#: src/editor-properties-dialog.ui:111
 msgid "All Characters"
 msgstr "כל התאאים"
 
-#: src/editor-save-changes-dialog.c:257
-#| msgid "Discard"
+#: src/editor-save-changes-dialog.c:258
 msgid "_Discard"
 msgstr "השל_כה"
 
-#: src/editor-save-changes-dialog.c:257
-#| msgid "Discard All"
+#: src/editor-save-changes-dialog.c:258
 msgid "_Discard All"
 msgstr "השלכת ה_כל"
 
-#: src/editor-save-changes-dialog.c:263
+#: src/editor-save-changes-dialog.c:264
 msgid "Save Changes?"
 msgstr "שמירת השינויים?"
 
-#: src/editor-save-changes-dialog.c:265
+#: src/editor-save-changes-dialog.c:266
 msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
 msgstr "קיימים שינויים שטרם נשמרו. שינויים שלא ישמרו יאבדו לצמיתות."
 
-#: src/editor-save-changes-dialog.c:267
+#: src/editor-save-changes-dialog.c:268
 msgid "_Cancel"
 msgstr "_ביטול"
 
-#: src/editor-save-changes-dialog.c:269 src/editor-window.ui:210
+#: src/editor-save-changes-dialog.c:270 src/editor-window.ui:210
 msgid "_Save"
 msgstr "_שמירה"
 
-#: src/editor-save-changes-dialog.c:296
+#: src/editor-save-changes-dialog.c:303
 msgid "Untitled Document"
 msgstr "מסמך ללא שם"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:299
+#: src/editor-save-changes-dialog.c:306
 #, c-format
 msgid "%s (new)"
 msgstr "‏%s ‏(חדש)"
 
-#: src/editor-save-changes-dialog.c:320
+#: src/editor-save-changes-dialog.c:327
 msgid "Save changes for this document"
 msgstr "שמירת השינויים במסמך זה"
 
@@ -668,15 +662,15 @@ msgstr "התעלמות"
 msgid "Check Spelling"
 msgstr "_בדיקת איות…"
 
-#: src/editor-theme-selector.ui:21 src/editor-theme-selector.ui:23
+#: src/editor-theme-selector.ui:22 src/editor-theme-selector.ui:24
 msgid "Follow system style"
 msgstr "שימוש בסגנון מערכת"
 
-#: src/editor-theme-selector.ui:38 src/editor-theme-selector.ui:40
+#: src/editor-theme-selector.ui:39 src/editor-theme-selector.ui:41
 msgid "Light style"
 msgstr "סגנון בהיר"
 
-#: src/editor-theme-selector.ui:56 src/editor-theme-selector.ui:58
+#: src/editor-theme-selector.ui:57 src/editor-theme-selector.ui:59
 msgid "Dark style"
 msgstr "סגנון כהה"
 
@@ -769,15 +763,12 @@ msgstr "קובצי טקסט"
 
 #: src/editor-window.c:206
 #, c-format
-#| msgctxt "shortcut window"
-#| msgid "Documents"
 msgid "Document Type: %s"
 msgstr "סוג מסמך: %s"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
 #: src/editor-window.c:725
 #, c-format
-#| msgid "Text Editor"
 msgid "%s (%s) - Text Editor"
 msgstr "‏‎%s ‏(%s) - עורך טקסט"
 
@@ -834,17 +825,14 @@ msgid "_Find/Replace…"
 msgstr "_חיפוש והחלפה…"
 
 #: src/editor-window.ui:234
-#| msgid "_Print…"
 msgid "_Print"
 msgstr "_הדפסה"
 
 #: src/editor-window.ui:240
-#| msgid "Document Restored"
 msgid "Documen_t Properties"
 msgstr "מאפייני _מסמך"
 
 #: src/editor-window.ui:246
-#| msgid "Preferences"
 msgid "P_references"
 msgstr "_העדפות"
 
@@ -853,12 +841,10 @@ msgid "_Keyboard Shortcuts"
 msgstr "_צירופי מקשים"
 
 #: src/editor-window.ui:255
-#| msgid "Help"
 msgid "_Help"
 msgstr "_עזרה"
 
 #: src/editor-window.ui:259
-#| msgid "_About Text Editor"
 msgid "A_bout Text Editor"
 msgstr "_על אודות עורך טקסט"
 
@@ -879,7 +865,6 @@ msgid "Indentation"
 msgstr "הזחה"
 
 #: src/editor-window.ui:279
-#| msgid "_Automatic Margin Position"
 msgid "_Automatic Indentation"
 msgstr "הזחה _אוטומטית"
 
@@ -920,8 +905,6 @@ msgid "Chec_k Spelling"
 msgstr "_בדיקת איות"
 
 #: src/editor-window.ui:328
-#| msgctxt "shortcut window"
-#| msgid "Documents"
 msgid "_Document Type"
 msgstr "סוג _מסמך"
 
@@ -949,281 +932,277 @@ msgstr "_סגירה"
 msgid "Enchant 2"
 msgstr "Enchant 2"
 
-#: src/help-overlay.ui:8
+#: src/help-overlay.ui:9
 msgctxt "shortcut window"
 msgid "Editor Shortcuts"
 msgstr "צירופי מקשים לעורך"
 
-#: src/help-overlay.ui:11
+#: src/help-overlay.ui:12
 msgctxt "shortcut window"
 msgid "Windows"
 msgstr "חלונות"
 
-#: src/help-overlay.ui:14
+#: src/help-overlay.ui:15
 msgctxt "shortcut window"
 msgid "New window"
 msgstr "חלון חדש"
 
-#: src/help-overlay.ui:20
+#: src/help-overlay.ui:21
 msgctxt "shortcut window"
 msgid "Move document to new window"
 msgstr "העברת מסמך לחלון חדש"
 
-#: src/help-overlay.ui:27
+#: src/help-overlay.ui:28
 msgctxt "shortcut window"
 msgid "Move to next tab"
 msgstr "העברה ללשונית הבאה"
 
-#: src/help-overlay.ui:33
+#: src/help-overlay.ui:34
 msgctxt "shortcut window"
 msgid "Move to previous tab"
 msgstr "העברה ללשונית הקודמת"
 
-#: src/help-overlay.ui:39
+#: src/help-overlay.ui:40
 msgctxt "shortcut window"
 msgid "Reorder after next tab"
 msgstr "סידור מחדש אחרי הלשונית הבאה"
 
-#: src/help-overlay.ui:45
+#: src/help-overlay.ui:46
 msgctxt "shortcut window"
 msgid "Reorder before previous tab"
 msgstr "סידור מחדש אחרי הלשונית הקודמת"
 
-#: src/help-overlay.ui:51
-#| msgctxt "shortcut window"
-#| msgid "Move to previous tab"
+#: src/help-overlay.ui:52
 msgctxt "shortcut window"
 msgid "Restore previously closed tab"
 msgstr "שחזור הלשוניות האחרונה שנסגרה"
 
-#: src/help-overlay.ui:58
+#: src/help-overlay.ui:59
 msgctxt "shortcut window"
 msgid "Zoom"
 msgstr "תקריב"
 
-#: src/help-overlay.ui:62
+#: src/help-overlay.ui:63
 msgctxt "shortcut window"
 msgid "Zoom In"
 msgstr "התקרבות"
 
-#: src/help-overlay.ui:68
+#: src/help-overlay.ui:69
 msgctxt "shortcut window"
 msgid "Zoom Out"
 msgstr "התרחקות"
 
-#: src/help-overlay.ui:74
+#: src/help-overlay.ui:75
 msgctxt "shortcut window"
 msgid "Reset Zoom"
 msgstr "איפוס התקריב"
 
-#: src/help-overlay.ui:81
+#: src/help-overlay.ui:82
 msgctxt "shortcut window"
 msgid "Documents"
 msgstr "מסמכים"
 
-#: src/help-overlay.ui:84
+#: src/help-overlay.ui:85
 msgctxt "shortcut window"
 msgid "New document"
 msgstr "מסמך חדש"
 
-#: src/help-overlay.ui:90
+#: src/help-overlay.ui:91
 msgctxt "shortcut window"
 msgid "Browse to open document"
 msgstr "פתיחת מסמך חדש"
 
-#: src/help-overlay.ui:96
+#: src/help-overlay.ui:97
 msgctxt "shortcut window"
 msgid "Find document by name"
 msgstr "חיפוש מסמך לפי שם"
 
-#: src/help-overlay.ui:102
+#: src/help-overlay.ui:103
 msgctxt "shortcut window"
 msgid "Save"
 msgstr "שמירה"
 
-#: src/help-overlay.ui:108
+#: src/help-overlay.ui:109
 msgctxt "shortcut window"
 msgid "Save As"
 msgstr "שמירה בשם"
 
-#: src/help-overlay.ui:114
+#: src/help-overlay.ui:115
 msgctxt "shortcut window"
 msgid "Find/Replace"
 msgstr "חיפוש והחלפה"
 
-#: src/help-overlay.ui:120
+#: src/help-overlay.ui:121
 msgctxt "shortcut window"
 msgid "Close document"
 msgstr "סגירת מסמך"
 
-#: src/help-overlay.ui:128
+#: src/help-overlay.ui:129
 msgctxt "shortcut window"
 msgid "Copy and Paste"
 msgstr "העתקה והדבקה"
 
-#: src/help-overlay.ui:132
+#: src/help-overlay.ui:133
 msgctxt "shortcut window"
 msgid "Copy selected text to clipboard"
 msgstr "העתקה הטקסט הנבחר ללוח הגזירים"
 
-#: src/help-overlay.ui:138
+#: src/help-overlay.ui:139
 msgctxt "shortcut window"
 msgid "Cut selected text to clipboard"
 msgstr "גזירת הטקסט הנבחר ללוח הגזירים"
 
-#: src/help-overlay.ui:144
+#: src/help-overlay.ui:145
 msgctxt "shortcut window"
 msgid "Paste text from clipboard"
 msgstr "הדבקת טקסט מלוח הגזירים"
 
-#: src/help-overlay.ui:149
+#: src/help-overlay.ui:150
 msgctxt "shortcut window"
 msgid "Copy all to clipboard"
 msgstr "העתקת הכל ללוח הגזירים"
 
-#: src/help-overlay.ui:157
+#: src/help-overlay.ui:158
 msgctxt "shortcut window"
 msgid "Undo and Redo"
 msgstr "ביטול וביצוע חוזר"
 
-#: src/help-overlay.ui:161
+#: src/help-overlay.ui:162
 msgctxt "shortcut window"
 msgid "Undo previous command"
 msgstr "ביטול הפקודה האחרונה"
 
-#: src/help-overlay.ui:167
+#: src/help-overlay.ui:168
 msgctxt "shortcut window"
 msgid "Redo previous command"
 msgstr "ביצוע חוזר של הפקודה האחרונה"
 
-#: src/help-overlay.ui:174
+#: src/help-overlay.ui:175
 msgctxt "shortcut window"
 msgid "Editing"
 msgstr "עריכה"
 
-#: src/help-overlay.ui:178
+#: src/help-overlay.ui:179
 msgctxt "shortcut window"
 msgid "Insert emoji into document"
 msgstr "הכנסת רגשון למסמך"
 
-#: src/help-overlay.ui:184
+#: src/help-overlay.ui:185
 msgctxt "shortcut window"
 msgid "Search within the document"
 msgstr "חיפוש במסמך"
 
-#: src/help-overlay.ui:190
+#: src/help-overlay.ui:191
 msgctxt "shortcut window"
 msgid "Search and replace within the document"
 msgstr "חיפוש והחלפה במסמך"
 
-#: src/help-overlay.ui:196
+#: src/help-overlay.ui:197
 msgctxt "shortcut window"
 msgid "Increment number at cursor"
 msgstr "הגדלת המספר שתחת הסמן"
 
-#: src/help-overlay.ui:202
+#: src/help-overlay.ui:203
 msgctxt "shortcut window"
 msgid "Decrement number at cursor"
 msgstr "הקטנת המספר שתחת הסמן"
 
-#: src/help-overlay.ui:208
+#: src/help-overlay.ui:209
 msgctxt "shortcut window"
 msgid "Toggle overwrite"
 msgstr "מצב דריסה"
 
-#: src/help-overlay.ui:214
+#: src/help-overlay.ui:215
 msgctxt "shortcut window"
 msgid "Toggle visibility of insertion caret"
 msgstr "הצגת הסמן"
 
-#: src/help-overlay.ui:221
+#: src/help-overlay.ui:222
 msgctxt "shortcut window"
 msgid "Selections"
 msgstr "בחירות"
 
-#: src/help-overlay.ui:225
+#: src/help-overlay.ui:226
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "בחירת הכול"
 
-#: src/help-overlay.ui:231
+#: src/help-overlay.ui:232
 msgctxt "shortcut window"
 msgid "Unselect all"
 msgstr "ביטול בחירת הכל"
 
-#: src/help-overlay.ui:237
-#| msgid "Highlight current line"
+#: src/help-overlay.ui:238
 msgctxt "shortcut window"
 msgid "Select current line"
 msgstr "בחירת השורה הנוכחית"
 
-#: src/help-overlay.ui:244
+#: src/help-overlay.ui:245
 msgctxt "shortcut window"
 msgid "Movements"
 msgstr "מעברים"
 
-#: src/help-overlay.ui:248
+#: src/help-overlay.ui:249
 msgctxt "shortcut window"
 msgid "Move to beginning of document"
 msgstr "מעבר לתחילת המסמך"
 
-#: src/help-overlay.ui:254
+#: src/help-overlay.ui:255
 msgctxt "shortcut window"
 msgid "Move to end of document"
 msgstr "מעבר לסוף המסמך"
 
-#: src/help-overlay.ui:260
+#: src/help-overlay.ui:261
 msgctxt "shortcut window"
 msgid "Move to start of previous paragraph"
 msgstr "מעבר לתחילת הפסקה הקודמת"
 
-#: src/help-overlay.ui:266
+#: src/help-overlay.ui:267
 msgctxt "shortcut window"
 msgid "Move to end of next paragraph"
 msgstr "מעבר לסוף הפסקה הבאה"
 
-#: src/help-overlay.ui:272
+#: src/help-overlay.ui:273
 msgctxt "shortcut window"
 msgid "Move current or selected lines up"
 msgstr "מעבר למעלה לשורה הנוכחית או הנבחרת"
 
-#: src/help-overlay.ui:278
+#: src/help-overlay.ui:279
 msgctxt "shortcut window"
 msgid "Move current or selected lines down"
 msgstr "מעבר למטה מהשורה הנוכחית או הנבחרת"
 
-#: src/help-overlay.ui:284
+#: src/help-overlay.ui:285
 msgctxt "shortcut window"
 msgid "Go to line"
 msgstr "מעבר לשורה"
 
-#: src/help-overlay.ui:291
+#: src/help-overlay.ui:292
 msgctxt "shortcut window"
 msgid "Deletion"
 msgstr "מחיקה"
 
-#: src/help-overlay.ui:295
+#: src/help-overlay.ui:296
 msgctxt "shortcut window"
 msgid "Delete from cursor to word start"
 msgstr "מחיקה מהסמן עד לתחילת המילה"
 
-#: src/help-overlay.ui:301
+#: src/help-overlay.ui:302
 msgctxt "shortcut window"
 msgid "Delete from cursor to word end"
 msgstr "מחיקה מהסמן עד לסוף המילה"
 
-#: src/help-overlay.ui:307
+#: src/help-overlay.ui:308
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph start"
 msgstr "מחיקה מהסמן עד לתחילת הפסקה"
 
-#: src/help-overlay.ui:313
+#: src/help-overlay.ui:314
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph end"
 msgstr "מחיקה מהסמןעד לסוף הפסקה"
 
-#: src/help-overlay.ui:319
-#| msgid "Highlight current line"
+#: src/help-overlay.ui:320
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "מחיקת השורה הנוכחית"
