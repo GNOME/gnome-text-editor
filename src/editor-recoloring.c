@@ -251,27 +251,41 @@ _editor_recoloring_generate_css (GtkSourceStyleScheme *style_scheme)
   get_background (style_scheme, "right-margin", &right_margin);
   right_margin.alpha = 1;
 
-  if (has_fg && has_bg)
-    {
-      define_color (str, "window_bg_color", &text_bg);
-      define_color (str, "window_fg_color", &text_fg);
-      define_color (str, "headerbar_bg_color", &text_bg);
-      define_color (str, "headerbar_fg_color", &text_fg);
-    }
+  if (get_metadata_color (style_scheme, "window_bg_color", &color))
+    define_color (str, "window_bg_color", &color);
+  else if (has_bg && has_fg)
+    define_color (str, "window_bg_color", &text_bg);
+  else if (is_dark)
+    define_color_mixed (str, "window_bg_color", &text_bg, alt, .025);
   else
-    {
-      if (is_dark)
-        define_color_mixed (str, "window_bg_color", &text_bg, alt, .025);
-      else
-        define_color_mixed (str, "window_bg_color", &text_bg, &white, .1);
-      define_color_mixed (str, "window_fg_color", &text_fg, alt, .1);
+    define_color_mixed (str, "window_bg_color", &text_bg, &white, .1);
 
-      if (is_dark)
-        define_color_mixed (str, "headerbar_bg_color", &text_bg, alt, .05);
-      else
-        define_color_mixed (str, "headerbar_bg_color", &text_bg, alt, .025);
-      define_color (str, "headerbar_fg_color", &text_fg);
-    }
+  if (get_metadata_color (style_scheme, "window_fg_color", &color))
+    define_color (str, "window_fg_color", &color);
+  else if (has_fg && has_fg)
+    define_color (str, "window_fg_color", &text_fg);
+  else if (is_dark)
+    define_color_mixed (str, "window_fg_color", &text_bg, alt, .05);
+  else
+    define_color_mixed (str, "window_fg_color", &text_bg, alt, .025);
+
+  if (get_metadata_color (style_scheme, "headerbar_bg_color", &color))
+    define_color (str, "headerbar_bg_color", &color);
+  else if (has_bg && has_fg)
+    define_color_mixed (str, "headerbar_bg_color", &text_bg, &text_fg, .05);
+  else if (is_dark)
+    define_color_mixed (str, "headerbar_bg_color", &text_bg, alt, .025);
+  else
+    define_color_mixed (str, "headerbar_bg_color", &text_bg, &white, .1);
+
+  if (get_metadata_color (style_scheme, "headerbar_fg_color", &color))
+    define_color (str, "headerbar_fg_color", &color);
+  else if (has_fg && has_fg)
+    define_color (str, "headerbar_fg_color", &text_fg);
+  else if (is_dark)
+    define_color_mixed (str, "headerbar_fg_color", &text_bg, alt, .05);
+  else
+    define_color_mixed (str, "headerbar_fg_color", &text_bg, alt, .025);
 
   define_color_mixed (str, "view_bg_color", &text_bg, &white, is_dark ? .1 : .3);
   define_color (str, "view_fg_color", &text_fg);
