@@ -3,27 +3,28 @@
 # This file is distributed under the same license as the gnome-text-editor package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # Juliano de Souza Camargo <julianosc@protonmail.com>, 2022.
+# Hugo Carvalho <hugokarvalho@hotmail.com>, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor gnome-41\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-01-27 11:22+0000\n"
-"PO-Revision-Date: 2022-02-05 08:16-0300\n"
-"Last-Translator: Juliano de Souza Camargo <julianosc@protonmail.com>\n"
+"POT-Creation-Date: 2022-02-13 20:27+0000\n"
+"PO-Revision-Date: 2022-02-14 14:17+0000\n"
+"Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese < https://l10n.gnome.org/teams/pt/>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-DL-Team: pt\n"
 "X-DL-Module: gnome-text-editor\n"
 "X-DL-Branch: main\n"
 "X-DL-Domain: po\n"
 "X-DL-State: Translating\n"
-"X-Generator: Gtranslator 40.0\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
 msgid "Christian Hergert, et al."
@@ -32,7 +33,7 @@ msgstr "Christian Hergert, et al."
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:7
 #: data/org.gnome.TextEditor.desktop.in.in:8
-#: src/editor-application-actions.c:185
+#: src/editor-application-actions.c:192
 msgid "Text Editor"
 msgstr "Editor de texto"
 
@@ -100,12 +101,10 @@ msgid "The number of spaces represented by a tab."
 msgstr "O número de espaços representados por uma tabulação."
 
 #: data/org.gnome.TextEditor.gschema.xml:52
-#| msgid "Indentation"
 msgid "Indent Width"
 msgstr "Largura de indentação"
 
 #: data/org.gnome.TextEditor.gschema.xml:53
-#| msgid "The number of spaces represented by a tab."
 msgid "The number of spaces to indent or -1 to use tab-width."
 msgstr ""
 "O número de espaços para indentar ou -1 para usar a largura da tabulação."
@@ -178,7 +177,7 @@ msgstr "Utilizar letra do sistema"
 msgid "If the default system monospace font should be used."
 msgstr "Se a letra monoespaçada do sistema deve ser usada."
 
-#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:59
+#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:60
 msgid "Custom Font"
 msgstr "Letra personalizada"
 
@@ -212,7 +211,7 @@ msgstr ""
 
 #: data/org.gnome.TextEditor.gschema.xml:113
 msgid "Automatically check spelling"
-msgstr "Verificação ortográfica automatica."
+msgstr "Verificação ortográfica automatica"
 
 #: data/org.gnome.TextEditor.gschema.xml:114
 msgid "If enabled, then Text Editor will check spelling as you type."
@@ -229,7 +228,6 @@ msgid "When Text Editor is run, restore the previous session."
 msgstr "Quando o Editor de texto é aberto, restaura a sessão anterior."
 
 #: data/org.gnome.TextEditor.gschema.xml:123
-#| msgid "_New Window"
 msgid "Recolor Window"
 msgstr "Colorir janela"
 
@@ -254,7 +252,6 @@ msgid "The directory last used in a save or save-as dialog."
 msgstr "O diretório utilizado na janela gravar ou gravar como da última vez."
 
 #: data/org.gnome.TextEditor.gschema.xml:142
-#| msgid "_Spaces"
 msgid "Draw Spaces"
 msgstr "Desenhar espaços"
 
@@ -273,7 +270,6 @@ msgid ""
 msgstr "Ativa o uso de excertos registados com GtkSourceView dentro do editor."
 
 #: data/org.gnome.TextEditor.gschema.xml:153
-#| msgid "Line Ending:"
 msgid "Line Height"
 msgstr "Altura da linha"
 
@@ -291,19 +287,25 @@ msgstr "Falha ao localizar a propriedade %s em %s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Falha ao obter o valor 'va_list': %s"
 
-#: src/editor-application-actions.c:199
+#: src/editor-application-actions.c:206
 msgid "Text Editor Website"
 msgstr "Sítio Web do Editor de texto"
 
-#: src/editor-application-actions.c:200
+#: src/editor-application-actions.c:207
 msgid "translator-credits"
-msgstr "Juliano de Souza Camargo <julianosc@pm.me>"
+msgstr ""
+"Juliano de Souza Camargo <julianosc@pm.me>\n"
+"Hugo Carvalho <hugokarvalho@hotmail.com>"
 
-#: src/editor-application.c:502
+#: src/editor-application.c:599
 msgid "Do not restore session at startup"
 msgstr "Não carregar a última sessão ao iniciar"
 
-#: src/editor-document.c:1933
+#: src/editor-application.c:600
+msgid "Open provided files in a new window"
+msgstr "Abrir ficheiros fornecidos numa nova janela"
+
+#: src/editor-document.c:1938
 msgid "[Read-Only]"
 msgstr "[Apenas Leitura]"
 
@@ -350,11 +352,11 @@ msgstr "Um documento não gravado foi restaurado."
 
 #: src/editor-info-bar.c:98
 msgid "_Save…"
-msgstr "_Gravar..."
+msgstr "_Gravar…"
 
 #: src/editor-info-bar.c:100 src/editor-info-bar.ui:77
 msgid "_Discard…"
-msgstr "_Descartar..."
+msgstr "_Descartar…"
 
 #: src/editor-info-bar.c:102
 msgid "Draft Changes Restored"
@@ -365,7 +367,6 @@ msgid "Unsaved changes to the document have been restored."
 msgstr "Alterações não gravadas no documento foram restauradas."
 
 #: src/editor-info-bar.ui:19
-#| msgid "Open File"
 msgid "Could Not Open File"
 msgstr "Impossível abrir o ficheiro"
 
@@ -382,8 +383,6 @@ msgid "Open As _Administrator"
 msgstr "Abrir como _administrador"
 
 #: src/editor-language-dialog.ui:6 src/editor-window.c:194
-#| msgctxt "shortcut window"
-#| msgid "Documents"
 msgid "Document Type"
 msgstr "Tipo de documento"
 
@@ -415,7 +414,6 @@ msgid "%s (Administrator)"
 msgstr "%s (Administrador)"
 
 #: src/editor-page.c:1003 src/editor-sidebar-item.c:98
-#| msgid "Document Restored"
 msgid "Document Portal"
 msgstr "Portal do documento"
 
@@ -459,51 +457,54 @@ msgstr "Ln"
 msgid "Col"
 msgstr "Col"
 
-#: src/editor-preferences-dialog.ui:16
+#: src/editor-preferences-dialog.ui:17
 msgid "Appearance"
 msgstr "Aparência"
 
-#: src/editor-preferences-dialog.ui:81
+#: src/editor-preferences-dialog.ui:82
 msgid "Display Grid Pattern"
 msgstr "Exibir as linhas de grelha"
 
-#: src/editor-preferences-dialog.ui:87
+#: src/editor-preferences-dialog.ui:88
 msgid "Highlight Current Line"
 msgstr "Realçar a linha atual"
 
-#: src/editor-preferences-dialog.ui:93
+#: src/editor-preferences-dialog.ui:94
 msgid "Display Overview Map"
 msgstr "Mostrar mapa resumo"
 
-#: src/editor-preferences-dialog.ui:101
+#: src/editor-preferences-dialog.ui:102
 msgid "Right Margin"
 msgstr "Margem direita"
 
-#: src/editor-preferences-dialog.ui:104
+#: src/editor-preferences-dialog.ui:105
 msgid "Margin Position"
 msgstr "Posição da margem"
 
-#: src/editor-preferences-dialog.ui:112
+#: src/editor-preferences-dialog.ui:113
 msgid "Behavior"
 msgstr "Comportamento"
 
-#: src/editor-preferences-dialog.ui:115
-msgid "Restore Session"
-msgstr "Restaurar sessão"
-
 #: src/editor-preferences-dialog.ui:116
-msgid "Return to your previous session when Text Editor is started"
-msgstr "Retorna à sessão anterior quando o Editor de texto é aberto"
-
-#: src/editor-preferences-dialog.ui:122
-#| msgid "Discover File Settings"
 msgid "Discover Document Settings"
 msgstr "Definições da descoberta de ficheiros"
 
 # Sensible?
-#: src/editor-preferences-dialog.ui:123
+#: src/editor-preferences-dialog.ui:117
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr "Aplica definições usando modelines, editorconfig, ou predefinições"
+
+#: src/editor-preferences-dialog.ui:123
+msgid "Restore Session"
+msgstr "Restaurar sessão"
+
+#: src/editor-preferences-dialog.ui:124
+msgid "Return to your previous session when Text Editor is started"
+msgstr "Retorna à sessão anterior quando o Editor de texto é aberto"
+
+#: src/editor-preferences-dialog.ui:139
+msgid "_Clear History"
+msgstr "_Limpar histórico"
 
 #: src/editor-preferences-font.c:100
 msgid "Select Font"
@@ -511,7 +512,6 @@ msgstr "Selecionar letra"
 
 #: src/editor-print-operation.c:176
 #, c-format
-#| msgid "Draft"
 msgid "Draft: %s"
 msgstr "Rascunho: %s"
 
@@ -532,7 +532,6 @@ msgid "Properties"
 msgstr "Propriedades"
 
 #: src/editor-properties-dialog.ui:27
-#| msgid "Open File"
 msgid "File"
 msgstr "Ficheiro"
 
@@ -564,21 +563,19 @@ msgstr "Caracteres, sem espaços"
 msgid "All Characters"
 msgstr "Todos os caracteres"
 
-#: src/editor-save-changes-dialog.c:257
-#| msgid "Discard"
+#: src/editor-save-changes-dialog.c:258
 msgid "_Discard"
 msgstr "_Descartar"
 
-#: src/editor-save-changes-dialog.c:257
-#| msgid "Discard All"
+#: src/editor-save-changes-dialog.c:258
 msgid "_Discard All"
 msgstr "_Descartar tudo"
 
-#: src/editor-save-changes-dialog.c:263
+#: src/editor-save-changes-dialog.c:264
 msgid "Save Changes?"
 msgstr "Gravar as alterações?"
 
-#: src/editor-save-changes-dialog.c:265
+#: src/editor-save-changes-dialog.c:266
 msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
@@ -586,25 +583,25 @@ msgstr ""
 "Documentos abertos possuem alterações não gravadas. Quando não gravadas, são "
 "definitivamente perdidas."
 
-#: src/editor-save-changes-dialog.c:267
+#: src/editor-save-changes-dialog.c:268
 msgid "_Cancel"
 msgstr "_Cancelar"
 
-#: src/editor-save-changes-dialog.c:269 src/editor-window.ui:210
+#: src/editor-save-changes-dialog.c:270 src/editor-window.ui:210
 msgid "_Save"
 msgstr "_Gravar"
 
-#: src/editor-save-changes-dialog.c:296
+#: src/editor-save-changes-dialog.c:303
 msgid "Untitled Document"
 msgstr "Documento sem título"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:299
+#: src/editor-save-changes-dialog.c:306
 #, c-format
 msgid "%s (new)"
 msgstr "%s (novo)"
 
-#: src/editor-save-changes-dialog.c:320
+#: src/editor-save-changes-dialog.c:327
 msgid "Save changes for this document"
 msgstr "Gravar alterações deste documento"
 
@@ -775,15 +772,12 @@ msgstr "Ficheiros de texto"
 
 #: src/editor-window.c:206
 #, c-format
-#| msgctxt "shortcut window"
-#| msgid "Documents"
 msgid "Document Type: %s"
 msgstr "Tipo de documento: %s"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
 #: src/editor-window.c:725
 #, c-format
-#| msgid "Text Editor"
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - Editor de texto"
 
@@ -837,20 +831,17 @@ msgstr "_Descartar alterações"
 
 #: src/editor-window.ui:228
 msgid "_Find/Replace…"
-msgstr "Procurar/subst_ituir..."
+msgstr "Procurar/substituir…"
 
 #: src/editor-window.ui:234
-#| msgid "_Print…"
 msgid "_Print"
 msgstr "Im_primir"
 
 #: src/editor-window.ui:240
-#| msgid "Document Restored"
 msgid "Documen_t Properties"
 msgstr "Propriedades do documen_to"
 
 #: src/editor-window.ui:246
-#| msgid "Preferences"
 msgid "P_references"
 msgstr "P_referências"
 
@@ -859,12 +850,10 @@ msgid "_Keyboard Shortcuts"
 msgstr "A_talhos de teclado"
 
 #: src/editor-window.ui:255
-#| msgid "Help"
 msgid "_Help"
 msgstr "A_juda"
 
 #: src/editor-window.ui:259
-#| msgid "_About Text Editor"
 msgid "A_bout Text Editor"
 msgstr "Acerca do Editor de te_xto"
 
@@ -885,7 +874,6 @@ msgid "Indentation"
 msgstr "Indentação"
 
 #: src/editor-window.ui:279
-#| msgid "_Automatic Margin Position"
 msgid "_Automatic Indentation"
 msgstr "Indentação _automática"
 
@@ -926,8 +914,6 @@ msgid "Chec_k Spelling"
 msgstr "Verificação ortográ_fica"
 
 #: src/editor-window.ui:328
-#| msgctxt "shortcut window"
-#| msgid "Documents"
 msgid "_Document Type"
 msgstr "Tipo de _documento"
 
@@ -996,8 +982,6 @@ msgid "Reorder before previous tab"
 msgstr "Reordenar antes do separador anterior"
 
 #: src/help-overlay.ui:52
-#| msgctxt "shortcut window"
-#| msgid "Move to previous tab"
 msgctxt "shortcut window"
 msgid "Restore previously closed tab"
 msgstr "Restaurar o separador anteriormente fechado"
@@ -1158,7 +1142,6 @@ msgid "Unselect all"
 msgstr "Desselecionar tudo"
 
 #: src/help-overlay.ui:238
-#| msgid "Highlight current line"
 msgctxt "shortcut window"
 msgid "Select current line"
 msgstr "Selecionar a linha atual"
@@ -1229,7 +1212,6 @@ msgid "Delete from cursor to paragraph end"
 msgstr "Eliminar do cursor ao fim do parágrafo"
 
 #: src/help-overlay.ui:320
-#| msgid "Highlight current line"
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "Eliminar a linha atual"
