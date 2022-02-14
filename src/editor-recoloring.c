@@ -262,7 +262,7 @@ _editor_recoloring_generate_css (GtkSourceStyleScheme *style_scheme)
 
   if (get_metadata_color (style_scheme, "window_fg_color", &color))
     define_color (str, "window_fg_color", &color);
-  else if (has_fg && has_fg)
+  else if (has_bg && has_fg)
     define_color (str, "window_fg_color", &text_fg);
   else if (is_dark)
     define_color_mixed (str, "window_fg_color", &text_bg, alt, .05);
@@ -280,7 +280,7 @@ _editor_recoloring_generate_css (GtkSourceStyleScheme *style_scheme)
 
   if (get_metadata_color (style_scheme, "headerbar_fg_color", &color))
     define_color (str, "headerbar_fg_color", &color);
-  else if (has_fg && has_fg)
+  else if (has_bg && has_fg)
     define_color (str, "headerbar_fg_color", &text_fg);
   else if (is_dark)
     define_color_mixed (str, "headerbar_fg_color", &text_bg, alt, .05);
