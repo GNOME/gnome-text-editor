@@ -2,14 +2,14 @@
 # Copyright (C) 2021 gnome-text-editor's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-text-editor package.
 # Andika Triwidada <atriwidada@gnome.org>, 2021.
-# Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2021.
+# Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2021-2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2021-10-29 03:35+0000\n"
-"PO-Revision-Date: 2021-09-29 13:02+0700\n"
+"POT-Creation-Date: 2022-02-13 20:27+0000\n"
+"PO-Revision-Date: 2022-02-18 08:50+0700\n"
 "Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
 "Language-Team: Indonesian <gnome-l10n-id@googlegroups.com>\n"
 "Language: id\n"
@@ -26,7 +26,7 @@ msgstr "Christian Hergert, dkk."
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:7
 #: data/org.gnome.TextEditor.desktop.in.in:8
-#: src/editor-application-actions.c:80 src/editor-application-actions.c:82
+#: src/editor-application-actions.c:192
 msgid "Text Editor"
 msgstr "Penyunting Teks"
 
@@ -46,19 +46,19 @@ msgstr ""
 msgid "View and edit text files"
 msgstr "Melihat dan menyunting berkas teks"
 
-#: data/org.gnome.TextEditor.gschema.xml:7
+#: data/org.gnome.TextEditor.gschema.xml:16
 msgid "Auto Save Delay"
 msgstr "Tundaan Simpan Otomatis"
 
-#: data/org.gnome.TextEditor.gschema.xml:8
+#: data/org.gnome.TextEditor.gschema.xml:17
 msgid "The delay in seconds to wait before auto-saving a draft."
 msgstr "Tundaan dalam detik sebelum menyimpan otomatis suatu draf."
 
-#: data/org.gnome.TextEditor.gschema.xml:16
+#: data/org.gnome.TextEditor.gschema.xml:26
 msgid "Style Variant"
 msgstr "Varian Gaya"
 
-#: data/org.gnome.TextEditor.gschema.xml:17
+#: data/org.gnome.TextEditor.gschema.xml:27
 msgid ""
 "Use the light or dark variant of the GTK theme and/or GtkSourceView style "
 "scheme."
@@ -66,71 +66,70 @@ msgstr ""
 "Gunakan varian terang atau gelap dari tema GTK dan/atau skema gaya "
 "GtkSourceView."
 
-#: data/org.gnome.TextEditor.gschema.xml:25
+#: data/org.gnome.TextEditor.gschema.xml:35
 msgid "Indentation Style"
 msgstr "Gaya Indentasi"
 
-#: data/org.gnome.TextEditor.gschema.xml:26
+#: data/org.gnome.TextEditor.gschema.xml:36
 msgid "If the editor should insert multiple spaces characters instead of tabs."
 msgstr "Bila penyunting mesti menyisipkan beberapa karakter spasi bukan tab."
 
-#: data/org.gnome.TextEditor.gschema.xml:30
+#: data/org.gnome.TextEditor.gschema.xml:40
 msgid "Auto Indent"
 msgstr "Indentasi Otomatis"
 
-#: data/org.gnome.TextEditor.gschema.xml:31
+#: data/org.gnome.TextEditor.gschema.xml:41
 msgid "Automatically indent new lines copying the previous line's indentation."
 msgstr ""
-"Indentasi baris baru menyalin dari indentasi baris sebelumnya secara otomatis"
+"Indentasi baris baru menyalin dari indentasi baris sebelumnya secara "
+"otomatis."
 
-#: data/org.gnome.TextEditor.gschema.xml:36
+#: data/org.gnome.TextEditor.gschema.xml:46
 msgid "Tab Width"
 msgstr "Lebar Tab"
 
-#: data/org.gnome.TextEditor.gschema.xml:37
+#: data/org.gnome.TextEditor.gschema.xml:47
 msgid "The number of spaces represented by a tab."
 msgstr "Banyaknya spasi yang direpresentasikan oleh sebuah tab."
 
-#: data/org.gnome.TextEditor.gschema.xml:42
-#| msgid "Indentation"
+#: data/org.gnome.TextEditor.gschema.xml:52
 msgid "Indent Width"
 msgstr "Lebar Indentasi"
 
-#: data/org.gnome.TextEditor.gschema.xml:43
-#| msgid "The number of spaces represented by a tab."
+#: data/org.gnome.TextEditor.gschema.xml:53
 msgid "The number of spaces to indent or -1 to use tab-width."
 msgstr "Jumlah spasi untuk indentasi atau -1 untuk menggunakan lebar-tab."
 
-#: data/org.gnome.TextEditor.gschema.xml:47
+#: data/org.gnome.TextEditor.gschema.xml:57
 msgid "Show Line Numbers"
 msgstr "Tampilkan Nomor Baris"
 
-#: data/org.gnome.TextEditor.gschema.xml:48
+#: data/org.gnome.TextEditor.gschema.xml:58
 msgid "If line numbers should be displayed next to each line."
 msgstr "Bila nomor baris mesti ditampilkan pada setiap baris."
 
-#: data/org.gnome.TextEditor.gschema.xml:52
+#: data/org.gnome.TextEditor.gschema.xml:62
 msgid "Show Right Margin"
 msgstr "Tampilkan Batas Kanan"
 
-#: data/org.gnome.TextEditor.gschema.xml:53
+#: data/org.gnome.TextEditor.gschema.xml:63
 msgid "If a margin line should be displayed on the right of the editor."
 msgstr "Bila suatu garis batas mesti ditampilkan di sebelah kanan penyunting."
 
-#: data/org.gnome.TextEditor.gschema.xml:58
+#: data/org.gnome.TextEditor.gschema.xml:68
 msgid "Right Margin Position"
 msgstr "Posisi Batas Kanan"
 
-#: data/org.gnome.TextEditor.gschema.xml:59
+#: data/org.gnome.TextEditor.gschema.xml:69
 msgid ""
 "The position in characters at which the right margin should be displayed."
 msgstr "Posisi dalam karakter dimana batas kanan mesti ditampilkan."
 
-#: data/org.gnome.TextEditor.gschema.xml:63
+#: data/org.gnome.TextEditor.gschema.xml:73
 msgid "Show Overview Map"
 msgstr "Tampilkan Peta Ringkasan"
 
-#: data/org.gnome.TextEditor.gschema.xml:64
+#: data/org.gnome.TextEditor.gschema.xml:74
 msgid ""
 "If enabled, an overview map of the file will be displayed to the side of the "
 "editor."
@@ -138,53 +137,53 @@ msgstr ""
 "Bila difungsikan, suatu peta ringkasan dari berkas akan ditampilkan di sisi "
 "penyunting."
 
-#: data/org.gnome.TextEditor.gschema.xml:68
+#: data/org.gnome.TextEditor.gschema.xml:78
 msgid "Show Background Grid"
 msgstr "Tampilkan Kisi Latar Belakang"
 
-#: data/org.gnome.TextEditor.gschema.xml:69
+#: data/org.gnome.TextEditor.gschema.xml:79
 msgid "If enabled, a blueprint style grid is printed on the editor background."
 msgstr ""
 "Bila difungsikan, kisi gaya cetak biru digambar pada latar belakang "
 "penyunting."
 
-#: data/org.gnome.TextEditor.gschema.xml:73
+#: data/org.gnome.TextEditor.gschema.xml:83
 msgid "Highlight current line"
 msgstr "Sorot baris kini"
 
-#: data/org.gnome.TextEditor.gschema.xml:74
+#: data/org.gnome.TextEditor.gschema.xml:84
 msgid "If enabled, the current line will be highlighted."
 msgstr "Bila difungsikan, baris saat ini akan disorot."
 
-#: data/org.gnome.TextEditor.gschema.xml:78
+#: data/org.gnome.TextEditor.gschema.xml:88
 msgid "Text Wrapping"
 msgstr "Pelipatan Teks"
 
-#: data/org.gnome.TextEditor.gschema.xml:79
+#: data/org.gnome.TextEditor.gschema.xml:89
 msgid "If text should be wrapped."
 msgstr "Bila teks mesti dilipat."
 
-#: data/org.gnome.TextEditor.gschema.xml:83 src/editor-window.ui:237
+#: data/org.gnome.TextEditor.gschema.xml:93
 msgid "Use System Font"
 msgstr "Pakai Fonta Sistem"
 
-#: data/org.gnome.TextEditor.gschema.xml:84
+#: data/org.gnome.TextEditor.gschema.xml:94
 msgid "If the default system monospace font should be used."
 msgstr "Bila fonta monospace sistem baku mesti dipakai."
 
-#: data/org.gnome.TextEditor.gschema.xml:88 src/editor-window.ui:243
+#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:60
 msgid "Custom Font"
 msgstr "Fonta Ubahan"
 
-#: data/org.gnome.TextEditor.gschema.xml:89
+#: data/org.gnome.TextEditor.gschema.xml:99
 msgid "A custom font to use in the editor."
 msgstr "Suatu fonta ubahan untuk dipakai dalam penyunting."
 
-#: data/org.gnome.TextEditor.gschema.xml:93
+#: data/org.gnome.TextEditor.gschema.xml:103
 msgid "Style Scheme"
 msgstr "Skema Gaya"
 
-#: data/org.gnome.TextEditor.gschema.xml:94
+#: data/org.gnome.TextEditor.gschema.xml:104
 msgid ""
 "The style scheme to use by the editor. It may translate this into a dark "
 "format when available."
@@ -192,11 +191,11 @@ msgstr ""
 "Skema gaya yang akan dipakai oleh penyunting. Dapat menerjemahkan ini ke "
 "dalam format gelap ketika tersedia."
 
-#: data/org.gnome.TextEditor.gschema.xml:98
+#: data/org.gnome.TextEditor.gschema.xml:108
 msgid "Discover File Settings"
 msgstr "Temukan Pengaturan Berkas"
 
-#: data/org.gnome.TextEditor.gschema.xml:99
+#: data/org.gnome.TextEditor.gschema.xml:109
 msgid ""
 "If enabled then Text Editor will try to discover file settings from "
 "modelines, editorconfig, or per-language defaults."
@@ -204,23 +203,76 @@ msgstr ""
 "Bila difungsikan maka Penyunting Teks akan mencoba menemukan pengaturan "
 "berlas dari modeline, editorconfig, atau baku per bahasa."
 
-#: data/org.gnome.TextEditor.gschema.xml:103
+#: data/org.gnome.TextEditor.gschema.xml:113
 msgid "Automatically check spelling"
 msgstr "Secara otomatis periksa ejaan"
 
-#: data/org.gnome.TextEditor.gschema.xml:104
+#: data/org.gnome.TextEditor.gschema.xml:114
 msgid "If enabled, then Text Editor will check spelling as you type."
 msgstr ""
 "Bila difungsikan, maka Penyunting Teks akan memeriksa ejaan ketika Anda "
 "mengetik."
 
-#: data/org.gnome.TextEditor.gschema.xml:108
+#: data/org.gnome.TextEditor.gschema.xml:118
 msgid "Restore session"
 msgstr "Pulihkan sesi"
 
-#: data/org.gnome.TextEditor.gschema.xml:109
+#: data/org.gnome.TextEditor.gschema.xml:119
 msgid "When Text Editor is run, restore the previous session."
 msgstr "Ketika Penyunting Teks berjalan, pulihkan sesi sebelumnya."
+
+#: data/org.gnome.TextEditor.gschema.xml:123
+msgid "Recolor Window"
+msgstr "Warnai Ulang Jendela"
+
+#: data/org.gnome.TextEditor.gschema.xml:124
+msgid "Use the style-scheme to recolor the application window."
+msgstr "Gunakan skema gaya untuk mewarnai ulang jendela aplikasi."
+
+#: data/org.gnome.TextEditor.gschema.xml:132
+msgid "Keybindings"
+msgstr "Pengikatan tombol"
+
+#: data/org.gnome.TextEditor.gschema.xml:133
+msgid "The keybindings to use within Text Editor."
+msgstr "Pengikatan tombol untuk digunakan dalam Penyunting Teks."
+
+#: data/org.gnome.TextEditor.gschema.xml:137
+msgid "Last Save Directory"
+msgstr "Direktori Simpan Terakhir"
+
+#: data/org.gnome.TextEditor.gschema.xml:138
+msgid "The directory last used in a save or save-as dialog."
+msgstr ""
+"Direktori terakhir yang digunakan dalam dialog simpan atau simpan-sebagai."
+
+#: data/org.gnome.TextEditor.gschema.xml:142
+msgid "Draw Spaces"
+msgstr "Gambar Spasi"
+
+#: data/org.gnome.TextEditor.gschema.xml:143
+msgid "The various types of spaces to draw in the editor."
+msgstr "Berbagai jenis ruang untuk menggambar di penyunting."
+
+#: data/org.gnome.TextEditor.gschema.xml:147
+msgid "Enable Snippets"
+msgstr "Aktifkan Cuplikan"
+
+#: data/org.gnome.TextEditor.gschema.xml:148
+msgid ""
+"Enable the use of snippets registered with GtkSourceView from within the "
+"editor."
+msgstr ""
+"Aktifkan penggunaan cuplikan yang terdaftar di GtkSourceView dari dalam "
+"penyunting."
+
+#: data/org.gnome.TextEditor.gschema.xml:153
+msgid "Line Height"
+msgstr "Tinggi Garis"
+
+#: data/org.gnome.TextEditor.gschema.xml:154
+msgid "The line height to use for the selected font."
+msgstr "Tinggi garis yang akan digunakan untuk fonta yang dipilih."
 
 #: src/editor-animation.c:1051
 #, c-format
@@ -232,139 +284,296 @@ msgstr "Gagal mencari properti %s dalam %s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Gagal mengambil nilai va_list: %s"
 
-#: src/editor-application-actions.c:98
+#: src/editor-application-actions.c:206
 msgid "Text Editor Website"
 msgstr "Situs Web Penyunting Teks"
 
-#: src/editor-application.c:258
+#: src/editor-application-actions.c:207
+msgid "translator-credits"
+msgstr ""
+"Andika Triwidada <atriwidada@gnome.org>, 2021.\n"
+"Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2021-2022."
+
+#: src/editor-application.c:599
 msgid "Do not restore session at startup"
 msgstr "Jangan pulihkan sesi saat awal mula"
 
-#: src/editor-document.c:1697
+#: src/editor-application.c:600
+msgid "Open provided files in a new window"
+msgstr "Membuka berkas yang disediakan di jendela baru"
+
+#: src/editor-document.c:1938
 msgid "[Read-Only]"
 msgstr "[Hanya-Baca]"
 
-#: src/editor-info-bar.c:67
+#: src/editor-file-manager.c:99
+msgid "File path is NULL"
+msgstr "Path berkas adalah NULL"
+
+#: src/editor-file-manager.c:108 src/editor-file-manager.c:119
+msgid "Error converting UTF-8 filename to wide char"
+msgstr "Kesalahan mengonversi nama file UTF-8 menjadi karakter lebar"
+
+#: src/editor-file-manager.c:127
+msgid "ILCreateFromPath() failed"
+msgstr "ILCreateFromPath() gagal"
+
+#: src/editor-file-manager.c:164
+#, c-format
+msgid "Cannot convert “%s” into a valid NSURL."
+msgstr "Tidak dapat mengonversi “%s” menjadi NSURL yang valid."
+
+#: src/editor-info-bar.c:76
 msgid "_Discard Changes and Reload"
 msgstr "_Buang Perubahan dan Muat Ulang"
 
-#: src/editor-info-bar.c:70
+#: src/editor-info-bar.c:79
 msgid "File Has Changed on Disk"
 msgstr "Berkas Telah Berubah pada Disk"
 
-#: src/editor-info-bar.c:71
+#: src/editor-info-bar.c:80
 msgid "The file has been changed by another program."
 msgstr "Berkas telah diubah oleh program lain."
 
-#: src/editor-info-bar.c:80 src/menus.ui:25
+#: src/editor-info-bar.c:89 src/editor-window.ui:216
 msgid "Save _As…"
 msgstr "Simp_an Sebagai…"
 
-#: src/editor-info-bar.c:82 src/editor-info-bar.ui:15
+#: src/editor-info-bar.c:91 src/editor-info-bar.ui:61
 msgid "Document Restored"
 msgstr "Dokumen Dipulihkan"
 
-#: src/editor-info-bar.c:83 src/editor-info-bar.ui:24
+#: src/editor-info-bar.c:92 src/editor-info-bar.ui:70
 msgid "Unsaved document has been restored."
 msgstr "Dokumen yang belum disimpan telah dipulihkan."
 
-#: src/editor-info-bar.c:89
+#: src/editor-info-bar.c:98
 msgid "_Save…"
 msgstr "_Simpan…"
 
-#: src/editor-info-bar.c:91 src/editor-info-bar.ui:31
+#: src/editor-info-bar.c:100 src/editor-info-bar.ui:77
 msgid "_Discard…"
 msgstr "_Buang…"
 
-#: src/editor-info-bar.c:93
+#: src/editor-info-bar.c:102
 msgid "Draft Changes Restored"
 msgstr "Perubahan Draf Dipulihkan"
 
-#: src/editor-info-bar.c:94
+#: src/editor-info-bar.c:103
 msgid "Unsaved changes to the document have been restored."
 msgstr "Perubahan yang belum disimpan ke dokumen telah dipulihkan."
 
-#: src/editor-language-dialog.ui:5
-msgid "Highlight Mode"
-msgstr "Mode Penyorotan"
+#: src/editor-info-bar.ui:19
+msgid "Could Not Open File"
+msgstr "Tak Bisa Membuka Berkas"
 
-#: src/editor-open-popover.ui:21
-msgid "Recent Documents"
-msgstr "Dokumen Baru-baru Ini"
+#: src/editor-info-bar.ui:28
+msgid "You do not have permission to open the file."
+msgstr "Anda tidak memiliki izin untuk membuka berkas."
 
-#: src/editor-open-popover.ui:45
+#: src/editor-info-bar.ui:35
+msgid "_Retry"
+msgstr "_Ulangi"
+
+#: src/editor-info-bar.ui:42
+msgid "Open As _Administrator"
+msgstr "Buka sebagai _Administrator"
+
+#: src/editor-language-dialog.ui:6 src/editor-window.c:194
+msgid "Document Type"
+msgstr "Tipe Dokumen"
+
+#: src/editor-language-dialog.ui:52
+msgid "No Matches"
+msgstr "Tidak Ada Kecocokan"
+
+#: src/editor-open-popover.ui:67
 msgid "No Recent Documents"
 msgstr "Tidak Ada Dokumen Baru-baru Ini"
 
-#: src/editor-open-popover.ui:83
-msgid "Br_owse Files…"
-msgstr "R_amban Berkas…"
+#: src/editor-open-popover.ui:94
+msgid "No Results Found"
+msgstr "Tak Ada Hasil yang Ditemukan"
 
-#: src/editor-page.c:786 src/editor-sidebar-item.c:474
+#: src/editor-page.c:961 src/editor-sidebar-item.c:489
 msgid "New Document"
 msgstr "Dokumen Baru"
 
-#: src/editor-page.c:803 src/editor-sidebar-item.c:79
+#: src/editor-page.c:983 src/editor-properties-dialog.c:74
+#: src/editor-sidebar-item.c:84
 msgid "Draft"
 msgstr "Draf"
 
-#: src/editor-page.c:857
+#. translators: %s is replaced with the path on the filesystem
+#: src/editor-page.c:995
+#, c-format
+msgid "%s (Administrator)"
+msgstr "%s (Administrator)"
+
+#: src/editor-page.c:1003 src/editor-sidebar-item.c:98
+msgid "Document Portal"
+msgstr "Portal Dokumen"
+
+#: src/editor-page.c:1054
 msgid "Failed to save document"
 msgstr "Gagal menyimpan dokumen"
 
-#: src/editor-page.c:925
+#: src/editor-page.c:1139
 msgid "Save As"
 msgstr "Simpan Sebagai"
 
-#: src/editor-page.c:928 src/editor-window-actions.c:131
+#: src/editor-page.c:1142 src/editor-window-actions.c:133
 msgid "Save"
 msgstr "Simpan"
 
-#: src/editor-page.c:929 src/editor-window-actions.c:130
-#: src/editor-window-actions.c:241 src/editor-window-actions.c:350
+#: src/editor-page.c:1143 src/editor-window-actions.c:132
+#: src/editor-window-actions.c:271 src/editor-window-actions.c:380
 msgid "Cancel"
 msgstr "Batal"
 
-#: src/editor-page.c:1047
+#: src/editor-page.c:1283
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Brs %u, Kol %u"
 
-#: src/editor-page.ui:99
+#: src/editor-page.ui:100
 msgid "Go to Line"
 msgstr "Pergi ke Baris"
 
-#: src/editor-page.ui:117
+#: src/editor-page.ui:118
 msgid "Go"
 msgstr "Pergi"
 
 #. translators: Ln is short for "Line Number"
-#: src/editor-position-label.ui:12
+#: src/editor-position-label.ui:15
 msgid "Ln"
 msgstr "Brs"
 
 #. translators: Col is short for "Column"
-#: src/editor-position-label.ui:32
+#: src/editor-position-label.ui:35
 msgid "Col"
 msgstr "Kol"
 
-#: src/editor-preferences-font.c:102
+#: src/editor-preferences-dialog.ui:17
+msgid "Appearance"
+msgstr "Penampilan"
+
+#: src/editor-preferences-dialog.ui:82
+msgid "Display Grid Pattern"
+msgstr "Tampilkan Pola Kisi"
+
+#: src/editor-preferences-dialog.ui:88
+msgid "Highlight Current Line"
+msgstr "Sorot Baris Kini"
+
+#: src/editor-preferences-dialog.ui:94
+msgid "Display Overview Map"
+msgstr "Tampilkan Peta Ringkasan"
+
+#: src/editor-preferences-dialog.ui:102
+msgid "Right Margin"
+msgstr "Batas Kanan"
+
+#: src/editor-preferences-dialog.ui:105
+msgid "Margin Position"
+msgstr "Posisi Batas"
+
+#: src/editor-preferences-dialog.ui:113
+msgid "Behavior"
+msgstr "Perilaku"
+
+#: src/editor-preferences-dialog.ui:116
+msgid "Discover Document Settings"
+msgstr "Temukan Pengaturan Dokumen"
+
+#: src/editor-preferences-dialog.ui:117
+msgid "Apply settings using modelines, editorconfig, or sensible defaults"
+msgstr ""
+"Terapkan pengaturan menggunakan baris mode, konfigurasi penyunting, atau "
+"bawaan yang masuk akal"
+
+#: src/editor-preferences-dialog.ui:123
+msgid "Restore Session"
+msgstr "Pulihkan Sesi"
+
+#: src/editor-preferences-dialog.ui:124
+msgid "Return to your previous session when Text Editor is started"
+msgstr "Kembali ke sesi sebelumnya saat Penyunting Teks dimulai"
+
+#: src/editor-preferences-dialog.ui:139
+msgid "_Clear History"
+msgstr "_Hapus Riwayat"
+
+#: src/editor-preferences-font.c:100
 msgid "Select Font"
 msgstr "Pilih Fonta"
 
-#: src/editor-save-changes-dialog.c:257
+#: src/editor-print-operation.c:176
+#, c-format
+msgid "Draft: %s"
+msgstr "Draf: %s"
+
+#: src/editor-print-operation.c:178
+#, c-format
+msgid "File: %s"
+msgstr "Berkas: %s"
+
+#. Translators: %N is the current page number, %Q is the total
+#. * number of pages (ex. Page 2 of 10)
+#.
+#: src/editor-print-operation.c:189
+msgid "Page %N of %Q"
+msgstr "Halaman %N dari %Q"
+
+#: src/editor-properties-dialog.ui:6
+msgid "Properties"
+msgstr "Properti"
+
+#: src/editor-properties-dialog.ui:27
+msgid "File"
+msgstr "Berkas"
+
+#: src/editor-properties-dialog.ui:30
+msgid "Name"
+msgstr "Nama"
+
+#: src/editor-properties-dialog.ui:45
+msgid "Location"
+msgstr "Lokasi"
+
+#: src/editor-properties-dialog.ui:63
+msgid "Statistics"
+msgstr "Statistik"
+
+#: src/editor-properties-dialog.ui:66
+msgid "Lines"
+msgstr "Baris"
+
+#: src/editor-properties-dialog.ui:81
+msgid "Words"
+msgstr "Kata"
+
+#: src/editor-properties-dialog.ui:96
+msgid "Characters, No Spaces"
+msgstr "Karakter, Tanpa Spasi"
+
+#: src/editor-properties-dialog.ui:111
+msgid "All Characters"
+msgstr "Semua Karakter"
+
+#: src/editor-save-changes-dialog.c:258
 msgid "_Discard"
 msgstr "_Buang"
 
-#: src/editor-save-changes-dialog.c:257
+#: src/editor-save-changes-dialog.c:258
 msgid "_Discard All"
 msgstr "_Buang Semua"
 
-#: src/editor-save-changes-dialog.c:263
+#: src/editor-save-changes-dialog.c:264
 msgid "Save Changes?"
 msgstr "Simpan Perubahan?"
 
-#: src/editor-save-changes-dialog.c:265
+#: src/editor-save-changes-dialog.c:266
 msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
@@ -372,25 +581,25 @@ msgstr ""
 "Dokumen yang terbuka memuat perubahan yang belum disimpan. Perubahan yang "
 "tidak disimpan akan hilang selamanya."
 
-#: src/editor-save-changes-dialog.c:267
+#: src/editor-save-changes-dialog.c:268
 msgid "_Cancel"
 msgstr "_Batal"
 
-#: src/editor-save-changes-dialog.c:269 src/menus.ui:19
+#: src/editor-save-changes-dialog.c:270 src/editor-window.ui:210
 msgid "_Save"
 msgstr "_Simpan"
 
-#: src/editor-save-changes-dialog.c:296
+#: src/editor-save-changes-dialog.c:303
 msgid "Untitled Document"
 msgstr "Dokumen Tanpa Judul"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:299
+#: src/editor-save-changes-dialog.c:306
 #, c-format
 msgid "%s (new)"
 msgstr "%s (baru)"
 
-#: src/editor-save-changes-dialog.c:320
+#: src/editor-save-changes-dialog.c:327
 msgid "Save changes for this document"
 msgstr "Simpan perubahan untuk dokumen ini"
 
@@ -444,142 +653,157 @@ msgstr "Hanya cocok seluruh _kata"
 msgid "%u of %u"
 msgstr "%u dari %u"
 
-#: src/editor-spell-menu.c:58
+#: src/editor-spell-menu.c:191
 msgid "Languages"
 msgstr "Bahasa"
 
-#: src/editor-spell-menu.c:59
+#: src/editor-spell-menu.c:192
 msgid "Add to Dictionary"
 msgstr "Tambah ke Kamus"
 
-#: src/editor-spell-menu.c:60
+#: src/editor-spell-menu.c:193
 msgid "Ignore"
 msgstr "Abaikan"
 
-#: src/editor-spell-menu.c:61
+#: src/editor-spell-menu.c:194
 msgid "Check Spelling"
 msgstr "Periksa Ejaan"
 
-#: src/editor-theme-selector.ui:18 src/editor-theme-selector.ui:20
+#: src/editor-theme-selector.ui:22 src/editor-theme-selector.ui:24
+msgid "Follow system style"
+msgstr "Ikuti gaya sistem"
+
+#: src/editor-theme-selector.ui:39 src/editor-theme-selector.ui:41
 msgid "Light style"
 msgstr "Gaya terang"
 
-#: src/editor-theme-selector.ui:34 src/editor-theme-selector.ui:36
+#: src/editor-theme-selector.ui:57 src/editor-theme-selector.ui:59
 msgid "Dark style"
 msgstr "Gaya gelap"
 
-#: src/editor-utils.c:324
+#: src/editor-utils.c:346
 msgid "Just now"
 msgstr "Baru saja"
 
-#: src/editor-utils.c:326
+#: src/editor-utils.c:348
 msgid "An hour ago"
 msgstr "Satu jam yang lalu"
 
-#: src/editor-utils.c:328
+#: src/editor-utils.c:350
 msgid "Yesterday"
 msgstr "Kemarin"
 
-#: src/editor-utils.c:334
+#: src/editor-utils.c:356
 msgid "About a year ago"
 msgstr "Sekitar setahun lalu"
 
-#: src/editor-utils.c:338
+#: src/editor-utils.c:360
 #, c-format
 msgid "About %u year ago"
 msgid_plural "About %u years ago"
 msgstr[0] "Sekitar %u tahun yang lalu"
 msgstr[1] "Sekitar %u tahun yang lalu"
 
-#: src/editor-utils.c:346
+#: src/editor-utils.c:368
 msgid "Unix/Linux (LF)"
 msgstr "Unix/Linux (LF)"
 
-#: src/editor-utils.c:347
+#: src/editor-utils.c:369
 msgid "Mac OS Classic (CR)"
 msgstr "Mac OS Klasik (CR)"
 
-#: src/editor-utils.c:348
+#: src/editor-utils.c:370
 msgid "Windows (CR+LF)"
 msgstr "Windows (CR+LF)"
 
-#: src/editor-utils.c:378
+#: src/editor-utils.c:400
 msgid "Automatically Detected"
 msgstr "Terdeteksi Secara Otomatis"
 
-#: src/editor-utils.c:394
+#: src/editor-utils.c:416
 msgid "Character Encoding:"
 msgstr "Pengkodean Karakter:"
 
-#: src/editor-utils.c:429
+#: src/editor-utils.c:451
 msgid "Line Ending:"
 msgstr "Akhir Baris:"
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:126
+#: src/editor-window-actions.c:128
 #, c-format
 msgid "Save Changes to “%s”?"
 msgstr "Simpan Perubahan ke \"%s\"?"
 
-#: src/editor-window-actions.c:129
+#: src/editor-window-actions.c:131
 msgid "Saving changes will replace the previously saved version."
 msgstr "Menyimpan perubahan akan menggantikan versi yang sebelumnya disimpan."
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:237
+#: src/editor-window-actions.c:267
 #, c-format
 msgid "Discard Changes to “%s”?"
 msgstr "Buang Perubahan ke \"%s\"?"
 
-#: src/editor-window-actions.c:240
+#: src/editor-window-actions.c:270
 msgid "Unsaved changes will be permanently lost."
 msgstr "Perubahan yang tidak disimpan akan hilang permanen."
 
-#: src/editor-window-actions.c:242
+#: src/editor-window-actions.c:272
 msgid "Discard"
 msgstr "Buang"
 
-#: src/editor-window-actions.c:346
+#: src/editor-window-actions.c:376
 msgid "Open File"
 msgstr "Buka Berkas"
 
-#: src/editor-window-actions.c:349
+#: src/editor-window-actions.c:379
 msgid "Open"
 msgstr "Buka"
 
-#: src/editor-window-actions.c:363
+#: src/editor-window-actions.c:404
 msgid "All Files"
 msgstr "Semua Berkas"
 
-#: src/editor-window-actions.c:368
+#: src/editor-window-actions.c:409
 msgid "Text Files"
 msgstr "Berkas Teks"
 
-#: src/editor-window.ui:61
+#: src/editor-window.c:206
+#, c-format
+msgid "Document Type: %s"
+msgstr "Tipe Dokumen: %s"
+
+#. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
+#: src/editor-window.c:725
+#, c-format
+msgid "%s (%s) - Text Editor"
+msgstr "%s (%s) - Penyunting Teks"
+
+#: src/editor-window.ui:78
 msgid "_Open"
 msgstr "_Buka"
 
-#: src/editor-window.ui:63
+#: src/editor-window.ui:80
 msgid "Open recent document (Ctrl+K)"
 msgstr "Buka dokumen baru-baru ini (Ctrl+K)"
 
-#: src/editor-window.ui:75 src/editor-window.ui:77
+#: src/editor-window.ui:92 src/editor-window.ui:94
 msgid "New tab (Ctrl+T)"
 msgstr "Tab baru (Ctrl+T)"
 
-#: src/editor-window.ui:103 src/editor-window.ui:106
+#: src/editor-window.ui:120 src/editor-window.ui:124
 msgid "View"
 msgstr "Tilikan"
 
-#: src/editor-window.ui:114
+#: src/editor-window.ui:133
 msgid "Menu"
 msgstr "Menu"
 
-#: src/editor-window.ui:162
+#: src/editor-window.ui:166
 msgid "Start or Open a Document"
 msgstr "Mulai atau Buka Dokumen"
 
-#: src/editor-window.ui:165
+#: src/editor-window.ui:169
 msgid ""
 "• Press the Open button\n"
 "• Press the New tab button\n"
@@ -595,439 +819,424 @@ msgstr ""
 "\n"
 "Atau, tekan Ctrl+W untuk menutup jendela."
 
-#: src/editor-window.ui:199
-msgid "Preferences"
-msgstr "Preferensi"
+#: src/editor-window.ui:202
+msgid "_New Window"
+msgstr "Je_ndela Baru"
 
-#: src/editor-window.ui:221
-msgid "Behavior"
-msgstr "Perilaku"
+#: src/editor-window.ui:222
+msgid "_Discard Changes"
+msgstr "_Buang Perubahan"
 
-#: src/editor-window.ui:225
-msgid "Restore Session"
-msgstr "Pulihkan Sesi"
+#: src/editor-window.ui:228
+msgid "_Find/Replace…"
+msgstr "_Cari/Ganti…"
 
-#: src/editor-window.ui:233
-msgid "Font"
-msgstr "Fonta"
+#: src/editor-window.ui:234
+msgid "_Print"
+msgstr "_Cetak"
 
-#: src/editor-window.ui:252
-msgid "Right Margin"
-msgstr "Batas Kanan"
+#: src/editor-window.ui:240
+msgid "Documen_t Properties"
+msgstr "Proper_ti Dokumen"
 
-#: src/editor-window.ui:256
-msgid "Margin Position"
-msgstr "Posisi Batas"
+#: src/editor-window.ui:246
+msgid "P_references"
+msgstr "P_referensi"
 
-#: src/editor-window.ui:264
-msgid "Appearance"
-msgstr "Penampilan"
+#: src/editor-window.ui:251
+msgid "_Keyboard Shortcuts"
+msgstr "Pintasan Papan Ti_k"
+
+#: src/editor-window.ui:255
+msgid "_Help"
+msgstr "_Bantuan"
+
+#: src/editor-window.ui:259
+msgid "A_bout Text Editor"
+msgstr "Tent_ang Penyunting Teks"
+
+#: src/editor-window.ui:266
+msgid "Show"
+msgstr "Tampilkan"
 
 #: src/editor-window.ui:268
-msgid "Display Grid Pattern"
-msgstr "Tampilkan Pola Kisi"
+msgid "_Line Numbers"
+msgstr "No_mor Baris"
 
-#: src/editor-window.ui:274
-msgid "Highlight Current Line"
-msgstr "Sorot Baris Kini"
+#: src/editor-window.ui:272
+msgid "_Right Margin"
+msgstr "Batas K_anan"
 
-#: src/editor-window.ui:280
-msgid "Display Overview Map"
-msgstr "Tampilkan Peta Ringkasan"
+#: src/editor-window.ui:277
+msgid "Indentation"
+msgstr "Indentasi"
+
+#: src/editor-window.ui:279
+msgid "_Automatic Indentation"
+msgstr "Indentasi Otom_atis"
+
+#: src/editor-window.ui:283
+msgid "_Tabs"
+msgstr "_Tab"
+
+#: src/editor-window.ui:288
+msgid "_Spaces"
+msgstr "_Spasi"
+
+#: src/editor-window.ui:293
+msgid "Spaces _Per Tab"
+msgstr "Spasi _Per Tab"
+
+#: src/editor-window.ui:296
+msgid "_2"
+msgstr "_2"
+
+#: src/editor-window.ui:301
+msgid "_4"
+msgstr "_4"
+
+#: src/editor-window.ui:306
+msgid "_6"
+msgstr "_6"
+
+#: src/editor-window.ui:311
+msgid "_8"
+msgstr "_8"
+
+#: src/editor-window.ui:320
+msgid "T_ext Wrapping"
+msgstr "Pelipatan T_eks"
+
+#: src/editor-window.ui:324
+msgid "Chec_k Spelling"
+msgstr "Peri_ksa Ejaan"
+
+#: src/editor-window.ui:328
+msgid "_Document Type"
+msgstr "Tipe _Document"
+
+#: src/editor-window.ui:336
+msgid "Move _Left"
+msgstr "Pindah Ke K_iri"
+
+#: src/editor-window.ui:341
+msgid "Move _Right"
+msgstr "Pindah Ke K_anan"
+
+#: src/editor-window.ui:348
+msgid "_Move to New Window"
+msgstr "Pi_ndah ke Jendela Baru"
+
+#: src/editor-window.ui:355
+msgid "Close _Other Tabs"
+msgstr "T_utup Tab Lainnya"
+
+#: src/editor-window.ui:359
+msgid "_Close"
+msgstr "_Tutup"
 
 #: src/enchant/editor-enchant-spell-provider.c:92
 msgid "Enchant 2"
 msgstr "Enchant 2"
 
-#: src/help-overlay.ui:8
+#: src/help-overlay.ui:9
 msgctxt "shortcut window"
 msgid "Editor Shortcuts"
 msgstr "Pintasan Penyunting"
 
-#: src/help-overlay.ui:11
+#: src/help-overlay.ui:12
 msgctxt "shortcut window"
 msgid "Windows"
 msgstr "Jendela"
 
-#: src/help-overlay.ui:14
+#: src/help-overlay.ui:15
 msgctxt "shortcut window"
 msgid "New window"
 msgstr "Jendela baru"
 
-#: src/help-overlay.ui:20
+#: src/help-overlay.ui:21
 msgctxt "shortcut window"
 msgid "Move document to new window"
 msgstr "Pindahkan dokumen ke jendela baru"
 
-#: src/help-overlay.ui:27
+#: src/help-overlay.ui:28
 msgctxt "shortcut window"
 msgid "Move to next tab"
 msgstr "Pindah ke tab berikutnya"
 
-#: src/help-overlay.ui:33
+#: src/help-overlay.ui:34
 msgctxt "shortcut window"
 msgid "Move to previous tab"
 msgstr "Pindah ke tab sebelumnya"
 
-#: src/help-overlay.ui:39
+#: src/help-overlay.ui:40
 msgctxt "shortcut window"
 msgid "Reorder after next tab"
 msgstr "Urutkan ulang setelah tab berikutnya"
 
-#: src/help-overlay.ui:45
+#: src/help-overlay.ui:46
 msgctxt "shortcut window"
 msgid "Reorder before previous tab"
 msgstr "Urutkan ulang sebelum tab sebelumnya"
 
 #: src/help-overlay.ui:52
 msgctxt "shortcut window"
+msgid "Restore previously closed tab"
+msgstr "Pulihkan tab yang sebelumnya ditutup"
+
+#: src/help-overlay.ui:59
+msgctxt "shortcut window"
 msgid "Zoom"
 msgstr "Zum"
 
-#: src/help-overlay.ui:56
+#: src/help-overlay.ui:63
 msgctxt "shortcut window"
 msgid "Zoom In"
 msgstr "Perbesar"
 
-#: src/help-overlay.ui:62
+#: src/help-overlay.ui:69
 msgctxt "shortcut window"
 msgid "Zoom Out"
 msgstr "Perkecil"
 
-#: src/help-overlay.ui:68
+#: src/help-overlay.ui:75
 msgctxt "shortcut window"
 msgid "Reset Zoom"
 msgstr "Reset Zum"
 
-#: src/help-overlay.ui:75
+#: src/help-overlay.ui:82
 msgctxt "shortcut window"
 msgid "Documents"
 msgstr "Dokumen"
 
-#: src/help-overlay.ui:78
+#: src/help-overlay.ui:85
 msgctxt "shortcut window"
 msgid "New document"
 msgstr "Dokumen baru"
 
-#: src/help-overlay.ui:84
+#: src/help-overlay.ui:91
 msgctxt "shortcut window"
 msgid "Browse to open document"
 msgstr "Ramban untuk membuka dokumen"
 
-#: src/help-overlay.ui:90
+#: src/help-overlay.ui:97
 msgctxt "shortcut window"
 msgid "Find document by name"
 msgstr "Temukan dokumen berdasarkan nama"
 
-#: src/help-overlay.ui:96
+#: src/help-overlay.ui:103
 msgctxt "shortcut window"
 msgid "Save"
 msgstr "Simpan"
 
-#: src/help-overlay.ui:102
+#: src/help-overlay.ui:109
 msgctxt "shortcut window"
 msgid "Save As"
 msgstr "Simpan Sebagai"
 
-#: src/help-overlay.ui:108
+#: src/help-overlay.ui:115
 msgctxt "shortcut window"
 msgid "Find/Replace"
 msgstr "Cari/Ganti"
 
-#: src/help-overlay.ui:114
+#: src/help-overlay.ui:121
 msgctxt "shortcut window"
 msgid "Close document"
 msgstr "Tutup dokumen"
 
-#: src/help-overlay.ui:122
+#: src/help-overlay.ui:129
 msgctxt "shortcut window"
 msgid "Copy and Paste"
 msgstr "Salin dan Tempel"
 
-#: src/help-overlay.ui:126
+#: src/help-overlay.ui:133
 msgctxt "shortcut window"
 msgid "Copy selected text to clipboard"
 msgstr "Salin teks yang dipilih ke papan klip"
 
-#: src/help-overlay.ui:132
+#: src/help-overlay.ui:139
 msgctxt "shortcut window"
 msgid "Cut selected text to clipboard"
 msgstr "Potong teks yang dipilih ke papan klip"
 
-#: src/help-overlay.ui:138
+#: src/help-overlay.ui:145
 msgctxt "shortcut window"
 msgid "Paste text from clipboard"
 msgstr "Tempel teks dari papan klip"
 
-#: src/help-overlay.ui:143
+#: src/help-overlay.ui:150
 msgctxt "shortcut window"
 msgid "Copy all to clipboard"
 msgstr "Salin semua ke papan klip"
 
-#: src/help-overlay.ui:151
+#: src/help-overlay.ui:158
 msgctxt "shortcut window"
 msgid "Undo and Redo"
 msgstr "Tak Jadi dan Jadi Lagi"
 
-#: src/help-overlay.ui:155
+#: src/help-overlay.ui:162
 msgctxt "shortcut window"
 msgid "Undo previous command"
 msgstr "Tak Jadi jalankan perintah sebelumnya"
 
-#: src/help-overlay.ui:161
+#: src/help-overlay.ui:168
 msgctxt "shortcut window"
 msgid "Redo previous command"
 msgstr "Jadi Lagi jalankan perintah sebelumnya"
 
-#: src/help-overlay.ui:168
+#: src/help-overlay.ui:175
 msgctxt "shortcut window"
 msgid "Editing"
 msgstr "Menyunting"
 
-#: src/help-overlay.ui:172
+#: src/help-overlay.ui:179
 msgctxt "shortcut window"
 msgid "Insert emoji into document"
 msgstr "Sisipkan emoji ke dalam dokumen"
 
-#: src/help-overlay.ui:178
+#: src/help-overlay.ui:185
 msgctxt "shortcut window"
 msgid "Search within the document"
 msgstr "Cari dalam dokumen"
 
-#: src/help-overlay.ui:184
+#: src/help-overlay.ui:191
 msgctxt "shortcut window"
 msgid "Search and replace within the document"
 msgstr "Cari dan ganti dalam dokumen"
 
-#: src/help-overlay.ui:190
+#: src/help-overlay.ui:197
 msgctxt "shortcut window"
 msgid "Increment number at cursor"
 msgstr "Naikkan angka di kursor"
 
-#: src/help-overlay.ui:196
+#: src/help-overlay.ui:203
 msgctxt "shortcut window"
 msgid "Decrement number at cursor"
 msgstr "Turunkan angka di kursor"
 
-#: src/help-overlay.ui:202
+#: src/help-overlay.ui:209
 msgctxt "shortcut window"
 msgid "Toggle overwrite"
 msgstr "Jungkitkan penimpaan"
 
-#: src/help-overlay.ui:208
+#: src/help-overlay.ui:215
 msgctxt "shortcut window"
 msgid "Toggle visibility of insertion caret"
 msgstr "Jungkitkan kenampakan karet penyisipan"
 
-#: src/help-overlay.ui:215
+#: src/help-overlay.ui:222
 msgctxt "shortcut window"
 msgid "Selections"
 msgstr "Pilihan"
 
-#: src/help-overlay.ui:219
+#: src/help-overlay.ui:226
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Pilih semua"
 
-#: src/help-overlay.ui:225
+#: src/help-overlay.ui:232
 msgctxt "shortcut window"
 msgid "Unselect all"
 msgstr "Pilih tak satupun"
 
-#: src/help-overlay.ui:231
+#: src/help-overlay.ui:238
 msgctxt "shortcut window"
 msgid "Select current line"
 msgstr "Pilih baris ini"
 
-#: src/help-overlay.ui:238
+#: src/help-overlay.ui:245
 msgctxt "shortcut window"
 msgid "Movements"
 msgstr "Pergerakan"
 
-#: src/help-overlay.ui:242
+#: src/help-overlay.ui:249
 msgctxt "shortcut window"
 msgid "Move to beginning of document"
 msgstr "Pindah ke awal dokumen"
 
-#: src/help-overlay.ui:248
+#: src/help-overlay.ui:255
 msgctxt "shortcut window"
 msgid "Move to end of document"
 msgstr "Pindah ke akhir dokumen"
 
-#: src/help-overlay.ui:254
+#: src/help-overlay.ui:261
 msgctxt "shortcut window"
 msgid "Move to start of previous paragraph"
 msgstr "Pindah ke awal paragraf sebelumnya"
 
-#: src/help-overlay.ui:260
+#: src/help-overlay.ui:267
 msgctxt "shortcut window"
 msgid "Move to end of next paragraph"
 msgstr "Pindah ke akhir paragraf berikutnya"
 
-#: src/help-overlay.ui:266
+#: src/help-overlay.ui:273
 msgctxt "shortcut window"
 msgid "Move current or selected lines up"
 msgstr "Pindahkan naik baris saat ini atau yang dipilih"
 
-#: src/help-overlay.ui:272
+#: src/help-overlay.ui:279
 msgctxt "shortcut window"
 msgid "Move current or selected lines down"
 msgstr "Pindahkan turun baris saat ini atau yang dipilih"
 
-#: src/help-overlay.ui:278
+#: src/help-overlay.ui:285
 msgctxt "shortcut window"
 msgid "Go to line"
 msgstr "Pergi ke baris"
 
-#: src/help-overlay.ui:285
+#: src/help-overlay.ui:292
 msgctxt "shortcut window"
 msgid "Deletion"
 msgstr "Penghapusan"
 
-#: src/help-overlay.ui:289
+#: src/help-overlay.ui:296
 msgctxt "shortcut window"
 msgid "Delete from cursor to word start"
 msgstr "Hapus dari kursor ke awal kata"
 
-#: src/help-overlay.ui:295
+#: src/help-overlay.ui:302
 msgctxt "shortcut window"
 msgid "Delete from cursor to word end"
 msgstr "Hapus dari kursor ke akhir kata"
 
-#: src/help-overlay.ui:301
+#: src/help-overlay.ui:308
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph start"
 msgstr "Hapus dari kursor ke awal paragraf"
 
-#: src/help-overlay.ui:307
+#: src/help-overlay.ui:314
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph end"
 msgstr "Hapus dari kursor ke akhir paragraf"
 
-#: src/help-overlay.ui:313
+#: src/help-overlay.ui:320
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "Hapus baris ini"
 
-#: src/menus.ui:11
-msgid "_New Window"
-msgstr "Je_ndela Baru"
+#~ msgid "Highlight Mode"
+#~ msgstr "Mode Penyorotan"
 
-#: src/menus.ui:33
-msgid "_Copy All"
-msgstr "Salin Semu_a"
+#~ msgid "Recent Documents"
+#~ msgstr "Dokumen Baru-baru Ini"
 
-#: src/menus.ui:39
-msgid "_Discard Changes"
-msgstr "_Buang Perubahan"
+#~ msgid "Br_owse Files…"
+#~ msgstr "R_amban Berkas…"
 
-#: src/menus.ui:43
-msgid "_Find/Replace…"
-msgstr "_Cari/Ganti…"
+#~ msgid "Font"
+#~ msgstr "Fonta"
 
-#: src/menus.ui:51
-msgid "_Print…"
-msgstr "_Cetak…"
+#~ msgid "_Copy All"
+#~ msgstr "Salin Semu_a"
 
-#: src/menus.ui:58
-msgid "_Preferences"
-msgstr "_Preferensi"
+#~ msgid "_Preferences"
+#~ msgstr "_Preferensi"
 
-#: src/menus.ui:62
-msgid "_Keyboard Shortcuts"
-msgstr "Pintasan Papan Ti_k"
+#~ msgid "_Automatic Margin Position"
+#~ msgstr "Posisi Batas Otom_atis"
 
-#: src/menus.ui:66
-msgid "Help"
-msgstr "Bantuan"
-
-#: src/menus.ui:70
-msgid "_About Text Editor"
-msgstr "Tent_ang Penyunting Teks"
-
-#: src/menus.ui:77
-msgid "Show"
-msgstr "Tampilkan"
-
-#: src/menus.ui:79
-msgid "_Line Numbers"
-msgstr "No_mor Baris"
-
-#: src/menus.ui:83
-msgid "_Right Margin"
-msgstr "Batas K_anan"
-
-#: src/menus.ui:88
-msgid "Indentation"
-msgstr "Indentasi"
-
-#: src/menus.ui:90
-msgid "_Automatic Indentation"
-msgstr "Indentasi Otom_atis"
-
-#: src/menus.ui:94
-msgid "_Tabs"
-msgstr "_Tab"
-
-#: src/menus.ui:99
-msgid "_Spaces"
-msgstr "_Spasi"
-
-#: src/menus.ui:104
-msgid "Spaces _Per Tab"
-msgstr "Spasi _Per Tab"
-
-#: src/menus.ui:107
-msgid "_2"
-msgstr "_2"
-
-#: src/menus.ui:112
-msgid "_4"
-msgstr "_4"
-
-#: src/menus.ui:117
-msgid "_6"
-msgstr "_6"
-
-#: src/menus.ui:122
-msgid "_8"
-msgstr "_8"
-
-#: src/menus.ui:131
-msgid "T_ext Wrapping"
-msgstr "Pelipatan T_eks"
-
-#: src/menus.ui:135
-msgid "_Automatic Margin Position"
-msgstr "Posisi Batas Otom_atis"
-
-#: src/menus.ui:139
-msgid "Chec_k Spelling"
-msgstr "Peri_ksa Ejaan"
-
-#: src/menus.ui:143
-msgid "_Highlight Mode"
-msgstr "Moda _Penyorotan"
-
-#: src/menus.ui:151
-msgid "Move _Left"
-msgstr "Pindah Ke K_iri"
-
-#: src/menus.ui:156
-msgid "Move _Right"
-msgstr "Pindah Ke K_anan"
-
-#: src/menus.ui:163
-msgid "_Move to New Window"
-msgstr "Pi_ndah ke Jendela Baru"
-
-#: src/menus.ui:170
-msgid "Close _Other Tabs"
-msgstr "T_utup Tab Lainnya"
-
-#: src/menus.ui:174
-msgid "_Close"
-msgstr "_Tutup"
+#~ msgid "_Highlight Mode"
+#~ msgstr "Moda _Penyorotan"
 
 #~ msgid "Search documents (Ctrl+K)"
 #~ msgstr "Cari dokumen (Ctrl+K)"
