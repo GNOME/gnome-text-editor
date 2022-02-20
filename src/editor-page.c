@@ -503,6 +503,7 @@ get_child_position_cb (GtkOverlay    *overlay,
                        EditorPage    *self)
 {
   GtkRequisition min, nat, map_min;
+  GtkAllocation ov_alloc;
 
   g_assert (GTK_IS_OVERLAY (overlay));
   g_assert (GTK_IS_WIDGET (child));
@@ -513,12 +514,13 @@ get_child_position_cb (GtkOverlay    *overlay,
       !gtk_widget_get_visible (GTK_WIDGET (self->map)))
     return FALSE;
 
+  gtk_widget_get_allocation (GTK_WIDGET (overlay), &ov_alloc);
   gtk_widget_get_preferred_size (child, &min, &nat);
   gtk_widget_get_preferred_size (GTK_WIDGET (self->map), &map_min, NULL);
 
-  if (nat.width + map_min.width <= alloc->width)
+  if (nat.width + map_min.width <= ov_alloc.width)
     {
-      alloc->x += alloc->width;
+      alloc->x = ov_alloc.width;
       alloc->x -= map_min.width;
       alloc->x -= nat.width;
       alloc->width = nat.width;
@@ -528,7 +530,7 @@ get_child_position_cb (GtkOverlay    *overlay,
   else
     {
       alloc->x = 0;
-      alloc->width -= map_min.width;
+      alloc->width = min.width;
       alloc->y = 0;
       alloc->height = min.height;
     }
