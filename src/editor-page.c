@@ -337,6 +337,21 @@ font_desc_from_string (GBinding     *binding,
 }
 
 static void
+on_settings_changed_cb (EditorPage         *self,
+                        GParamSpec         *pspec,
+                        EditorBindingGroup *group)
+{
+  EditorPageSettings *settings;
+
+  g_assert (EDITOR_IS_PAGE (self));
+  g_assert (EDITOR_IS_BINDING_GROUP (group));
+
+  settings = EDITOR_PAGE_SETTINGS (editor_binding_group_get_source (group));
+
+  _editor_page_actions_bind_settings (self, settings);
+}
+
+static void
 editor_page_constructed (GObject *object)
 {
   EditorPage *self = (EditorPage *)object;
@@ -347,6 +362,12 @@ editor_page_constructed (GObject *object)
   G_OBJECT_CLASS (editor_page_parent_class)->constructed (object);
 
   self->settings_bindings = editor_binding_group_new ();
+
+  g_signal_connect_object (self->settings_bindings,
+                           "notify::source",
+                           G_CALLBACK (on_settings_changed_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
 
   editor_binding_group_bind_full (self->settings_bindings, "custom-font",
                                   self->view, "font-desc",

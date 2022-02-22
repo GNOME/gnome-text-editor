@@ -250,3 +250,31 @@ _editor_page_actions_init (EditorPage *self)
                            self,
                            G_CONNECT_SWAPPED);
 }
+
+void
+_editor_page_actions_bind_settings (EditorPage         *self,
+                                    EditorPageSettings *settings)
+{
+  GSimpleActionGroup *group;
+  static const char *props[] = {
+    "auto-indent",
+    "indent-style",
+    "indent-width",
+    "tab-width",
+  };
+
+  g_assert (EDITOR_IS_PAGE (self));
+  g_assert (!settings || EDITOR_IS_PAGE_SETTINGS (settings));
+
+  group = g_simple_action_group_new ();
+  if (settings != NULL)
+    {
+      for (guint i = 0; i < G_N_ELEMENTS (props); i++)
+        {
+          g_autoptr(GPropertyAction) action = g_property_action_new (props[i], settings, props[i]);
+          g_action_map_add_action (G_ACTION_MAP (group), G_ACTION (action));
+        }
+    }
+  gtk_widget_insert_action_group (GTK_WIDGET (self), "view", G_ACTION_GROUP (group));
+  g_clear_object (&group);
+}

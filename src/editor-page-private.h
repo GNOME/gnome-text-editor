@@ -65,6 +65,8 @@ struct _EditorPage
 
 void          _editor_page_class_actions_init     (EditorPageClass      *klass);
 void          _editor_page_actions_init           (EditorPage           *self);
+void          _editor_page_actions_bind_settings  (EditorPage           *self,
+                                                   EditorPageSettings   *settings);
 EditorWindow *_editor_page_get_window             (EditorPage           *self);
 void          _editor_page_save                   (EditorPage           *self);
 void          _editor_page_save_as                (EditorPage           *self,
