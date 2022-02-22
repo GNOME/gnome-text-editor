@@ -588,24 +588,20 @@ _editor_search_bar_attach (EditorSearchBar *self,
 {
   GtkTextBuffer *buffer = (GtkTextBuffer *)document;
   GtkTextIter begin, end, insert;
-  const gchar *search;
 
   g_return_if_fail (EDITOR_IS_SEARCH_BAR (self));
-
-  if (self->context != NULL)
-    return;
 
   gtk_text_buffer_get_iter_at_mark (buffer, &insert, gtk_text_buffer_get_insert (buffer));
   self->offset_when_shown = gtk_text_iter_get_offset (&insert);
 
-  search = gtk_editable_get_text (GTK_EDITABLE (self->search_entry));
-
-  if ((search == NULL || g_strcmp0 (search, "") == 0) &&
-      gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER (document), &begin, &end))
+  if (gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER (document), &begin, &end))
     {
       g_autofree gchar *text = gtk_text_iter_get_slice (&begin, &end);
       gtk_editable_set_text (GTK_EDITABLE (self->search_entry), text);
     }
+
+  if (self->context != NULL)
+    return;
 
   self->context = gtk_source_search_context_new (GTK_SOURCE_BUFFER (document), self->settings);
 
