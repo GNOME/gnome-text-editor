@@ -959,3 +959,17 @@ editor_source_view_get_zoom_level (EditorSourceView *self)
 
   return (double)alt_size / (double)size;
 }
+
+void
+editor_source_view_prepend_extra_menu (EditorSourceView *self,
+                                       GMenuModel       *extra_menu)
+{
+  GMenuModel *base;
+
+  g_return_if_fail (EDITOR_IS_SOURCE_VIEW (self));
+  g_return_if_fail (G_IS_MENU_MODEL (extra_menu));
+
+  base = gtk_text_view_get_extra_menu (GTK_TEXT_VIEW (self));
+
+  editor_joined_menu_prepend_menu (EDITOR_JOINED_MENU (base), extra_menu);
+}
