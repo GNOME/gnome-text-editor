@@ -341,6 +341,10 @@ editor_page_settings_set_property (GObject      *object,
 
   switch (prop_id)
     {
+    case PROP_AUTO_INDENT:
+      self->auto_indent = g_value_get_boolean (value);
+      break;
+
     case PROP_DOCUMENT:
       g_set_weak_pointer (&self->document, g_value_get_object (value));
       break;
