@@ -1,3 +1,36 @@
+# Text Editor 42.beta1
+
+This is our first Beta release as we progress towards GNOME 42. A number
+of bug fixes have landed since 42.alpha2 and we encourage your further
+testing to make 42 a great reveal!
+
+ • Many CSS integration improvements including recoloring
+ • Text Editor will now locate style schemes in additional search paths
+ • Fixes to search bar positioning and focus-in state
+ • You can now tweak many per-document settings using the context menu
+   within the page which can help users determine what settings were/are
+   global from the view menu vs how they were overriden by automatic
+   settings discovery (which can be disabled in preferences).
+ • Smart-Home-End behavior is now enabled in "before" mode
+ • New command line options have been added
+ • Build fixes for macOS
+ • We now advertise the GTK version we require propertly for line-height
+ • Improvements to titles/subtitles to reflect various document capabilities
+ • A new style scheme has been added for printing which is used automatically
+   until we have further settings in GtkPrintOperation via Flatpak portals.
+ • More strict checks in B+Tree code for spell checking. If you find any
+   assertions, please do tell us!
+ • Propertly use AdwApplication base class
+ • Improvements to failure paths when access to underlying GFile or GFileInfo
+   fails to provide reasonable information.
+ • Spellcheck settings are now persisted across sessions using extended
+   attributes.
+ • The buffer monitor is now disabled when a buffer fails to load
+ • The default style scheme is now set to Adwaita propertly
+ • Search now draws various bubbles around the matches to make them easier
+   to differentiate from the background text.
+ • Translation updates
+
 # Text Editor 42.alpha2
 
 This is our second Alpha release as we progress towards GNOME 42. Please take
