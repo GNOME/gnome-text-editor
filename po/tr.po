@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-01-18 22:19+0000\n"
-"PO-Revision-Date: 2022-01-16 23:54+0200\n"
+"POT-Creation-Date: 2022-02-22 01:46+0000\n"
+"PO-Revision-Date: 2022-02-22 20:36+0300\n"
 "Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
 "Language: tr\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 2.4.3\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
 msgid "Christian Hergert, et al."
@@ -30,7 +30,7 @@ msgstr "Christian Hergert ve diğerleri"
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:7
 #: data/org.gnome.TextEditor.desktop.in.in:8
-#: src/editor-application-actions.c:185
+#: src/editor-application-actions.c:192
 msgid "Text Editor"
 msgstr "Metin Düzenleyici"
 
@@ -43,8 +43,8 @@ msgid ""
 "GNOME Text Editor is a simple text editor focused on a pleasing default "
 "experience."
 msgstr ""
-"GNOME Metin Düzenleyici, hoş ve basitliğin deneyimine odaklanan "
-"metin düzenleyicidir."
+"GNOME Metin Düzenleyici, hoş ve basitliğin deneyimine odaklanan metin "
+"düzenleyicidir."
 
 #: data/org.gnome.TextEditor.desktop.in.in:9
 msgid "View and edit text files"
@@ -76,8 +76,7 @@ msgstr "Girinti Biçemi"
 
 #: data/org.gnome.TextEditor.gschema.xml:36
 msgid "If the editor should insert multiple spaces characters instead of tabs."
-msgstr ""
-"Düzenleyici sekme yerine birden çok boşluk karakteri eklemeliyse."
+msgstr "Düzenleyici sekme yerine birden çok boşluk karakteri eklemeliyse."
 
 #: data/org.gnome.TextEditor.gschema.xml:40
 msgid "Auto Indent"
@@ -85,7 +84,9 @@ msgstr "Kendiliğinden Girinti"
 
 #: data/org.gnome.TextEditor.gschema.xml:41
 msgid "Automatically indent new lines copying the previous line's indentation."
-msgstr "Yeni satırları önceki satırın girintisini kopyalayarak kendiliğinden girintile."
+msgstr ""
+"Yeni satırları önceki satırın girintisini kopyalayarak kendiliğinden "
+"girintile."
 
 #: data/org.gnome.TextEditor.gschema.xml:46
 msgid "Tab Width"
@@ -126,7 +127,7 @@ msgstr "Sağ Kenar Boşluğu Konumu"
 #: data/org.gnome.TextEditor.gschema.xml:69
 msgid ""
 "The position in characters at which the right margin should be displayed."
-msgstr ""
+msgstr "Sağ kenar boşluğunun hangi karakter konumunda gösterilmesi gerektiği."
 
 #: data/org.gnome.TextEditor.gschema.xml:73
 msgid "Show Overview Map"
@@ -137,8 +138,8 @@ msgid ""
 "If enabled, an overview map of the file will be displayed to the side of the "
 "editor."
 msgstr ""
-"Etkinleştirilirse, düzenleyicinin yanında dosyanın genel bakış "
-"haritası gösterilecektir."
+"Etkinleştirilirse, düzenleyicinin yanında dosyanın genel bakış haritası "
+"gösterilecektir."
 
 #: data/org.gnome.TextEditor.gschema.xml:78
 msgid "Show Background Grid"
@@ -174,7 +175,7 @@ msgstr "Sistem Yazı Tipi Kullan"
 msgid "If the default system monospace font should be used."
 msgstr "Öntanımlı sistem tek aralıklı yazı tipi kullanılmalıysa."
 
-#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:59
+#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:60
 msgid "Custom Font"
 msgstr "Özel Yazı Tipi"
 
@@ -191,8 +192,8 @@ msgid ""
 "The style scheme to use by the editor. It may translate this into a dark "
 "format when available."
 msgstr ""
-"Düzenleyicice kullanılacak biçem şeması. Olabildiğinde "
-"bunu karanlık biçeme çevirebilir."
+"Düzenleyicice kullanılacak biçem şeması. Olabildiğinde bunu karanlık biçeme "
+"çevirebilir."
 
 #: data/org.gnome.TextEditor.gschema.xml:108
 msgid "Discover File Settings"
@@ -203,6 +204,8 @@ msgid ""
 "If enabled then Text Editor will try to discover file settings from "
 "modelines, editorconfig, or per-language defaults."
 msgstr ""
+"Eğer etkinse, Metin Düzenleyici; modeline, editorconfig veya dil başı "
+"öntanımlılardan dosya ayarlarını keşfetmeyi deneyecek."
 
 #: data/org.gnome.TextEditor.gschema.xml:113
 msgid "Automatically check spelling"
@@ -227,43 +230,43 @@ msgstr "Pencereyi Yeniden Renklendir"
 
 #: data/org.gnome.TextEditor.gschema.xml:124
 msgid "Use the style-scheme to recolor the application window."
-msgstr ""
+msgstr "Uygulama penceresini yeniden renklendirmek için biçem şemasını kullan"
 
 #: data/org.gnome.TextEditor.gschema.xml:132
 msgid "Keybindings"
-msgstr ""
+msgstr "Tuş Bağları"
 
 #: data/org.gnome.TextEditor.gschema.xml:133
 msgid "The keybindings to use within Text Editor."
-msgstr ""
+msgstr "Metin Düzenleyici’de kullanılacak tuş bağları."
 
 #: data/org.gnome.TextEditor.gschema.xml:137
 msgid "Last Save Directory"
-msgstr ""
+msgstr "Son Kayıt Dizini"
 
 #: data/org.gnome.TextEditor.gschema.xml:138
 msgid "The directory last used in a save or save-as dialog."
-msgstr ""
+msgstr "Kaydet veya farklı kaydet penceresinde kullanılan son dizin."
 
 #: data/org.gnome.TextEditor.gschema.xml:142
-#, fuzzy
-#| msgid "_Spaces"
 msgid "Draw Spaces"
-msgstr "_Boşluklar"
+msgstr "Boşlukları Çiz"
 
 #: data/org.gnome.TextEditor.gschema.xml:143
 msgid "The various types of spaces to draw in the editor."
-msgstr ""
+msgstr "Düzenleyicide çizilecek çeşitli boşluk türleri."
 
 #: data/org.gnome.TextEditor.gschema.xml:147
 msgid "Enable Snippets"
-msgstr ""
+msgstr "Parçacıkları Etkinleştir"
 
 #: data/org.gnome.TextEditor.gschema.xml:148
 msgid ""
 "Enable the use of snippets registered with GtkSourceView from within the "
 "editor."
 msgstr ""
+"Düzenleyicide GtkSourceView ile kayıtlı parçacıkların kullanımını "
+"etkinleştir."
 
 #: data/org.gnome.TextEditor.gschema.xml:153
 msgid "Line Height"
@@ -283,19 +286,23 @@ msgstr "%2$s içinde %1$s özelliği bulmada hata oluştu"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "va_list değeri alınamadı: %s"
 
-#: src/editor-application-actions.c:199
+#: src/editor-application-actions.c:206
 msgid "Text Editor Website"
 msgstr "Metin Düzenleyici Web Sitesi"
 
-#: src/editor-application-actions.c:200
+#: src/editor-application-actions.c:207
 msgid "translator-credits"
-msgstr ""
+msgstr "Emin Tufan Çetin <etcetin@gmail.com>"
 
-#: src/editor-application.c:502
+#: src/editor-application.c:599
 msgid "Do not restore session at startup"
 msgstr "Başlangıçta oturumu kurtarma"
 
-#: src/editor-document.c:1933
+#: src/editor-application.c:600
+msgid "Open provided files in a new window"
+msgstr "Sağlanan dosyaları yeni pencerede aç"
+
+#: src/editor-document.c:1938
 msgid "[Read-Only]"
 msgstr "[Salt Okunur]"
 
@@ -305,20 +312,20 @@ msgstr "Dosya yolu NULL"
 
 #: src/editor-file-manager.c:108 src/editor-file-manager.c:119
 msgid "Error converting UTF-8 filename to wide char"
-msgstr ""
+msgstr "UTF-8 dosya adı wide char’a dönüştürülemedi"
 
 #: src/editor-file-manager.c:127
 msgid "ILCreateFromPath() failed"
-msgstr ""
+msgstr "ILCreateFromPath() başarısız"
 
 #: src/editor-file-manager.c:164
 #, c-format
 msgid "Cannot convert “%s” into a valid NSURL."
-msgstr ""
+msgstr "“%s” geçerli NSURL’ye dönüştürülemedi."
 
 #: src/editor-info-bar.c:76
 msgid "_Discard Changes and Reload"
-msgstr "Değişiklikleri _Görmezden Gel ve Yeniden Yükle"
+msgstr "Değişiklikleri _At ve Yeniden Yükle"
 
 #: src/editor-info-bar.c:79
 msgid "File Has Changed on Disk"
@@ -332,11 +339,11 @@ msgstr "Dosya başka yazılımca değiştirildi."
 msgid "Save _As…"
 msgstr "Farklı _Kaydet…"
 
-#: src/editor-info-bar.c:91 src/editor-info-bar.ui:60
+#: src/editor-info-bar.c:91 src/editor-info-bar.ui:61
 msgid "Document Restored"
 msgstr "Belge Kurtarıldı"
 
-#: src/editor-info-bar.c:92 src/editor-info-bar.ui:69
+#: src/editor-info-bar.c:92 src/editor-info-bar.ui:70
 msgid "Unsaved document has been restored."
 msgstr "Kaydedilmemiş belge kurtarıldı."
 
@@ -344,7 +351,7 @@ msgstr "Kaydedilmemiş belge kurtarıldı."
 msgid "_Save…"
 msgstr "_Kaydet…"
 
-#: src/editor-info-bar.c:100 src/editor-info-bar.ui:76
+#: src/editor-info-bar.c:100 src/editor-info-bar.ui:77
 msgid "_Discard…"
 msgstr "_Görmezden Gel…"
 
@@ -356,29 +363,27 @@ msgstr "Taslak Değişiklikler Geri Yüklendi"
 msgid "Unsaved changes to the document have been restored."
 msgstr "Belgede kaydedilmemiş değişiklikler geri yüklendi."
 
-#: src/editor-info-bar.ui:18
-#, fuzzy
-#| msgid "Open File"
+#: src/editor-info-bar.ui:19
 msgid "Could Not Open File"
-msgstr "Dosya Aç"
+msgstr "Dosya Açılamadı"
 
-#: src/editor-info-bar.ui:27
+#: src/editor-info-bar.ui:28
 msgid "You do not have permission to open the file."
 msgstr "Dosyayı açacak izniniz yok."
 
-#: src/editor-info-bar.ui:34
+#: src/editor-info-bar.ui:35
 msgid "_Retry"
 msgstr "_Yeniden Dene"
 
-#: src/editor-info-bar.ui:41
+#: src/editor-info-bar.ui:42
 msgid "Open As _Administrator"
 msgstr "_Yönetici Olarak Aç"
 
-#: src/editor-language-dialog.ui:5 src/editor-window.c:194
+#: src/editor-language-dialog.ui:6 src/editor-window.c:194
 msgid "Document Type"
 msgstr "Belge Türü"
 
-#: src/editor-language-dialog.ui:51
+#: src/editor-language-dialog.ui:52
 msgid "No Matches"
 msgstr "Eşleşme Yok"
 
@@ -390,54 +395,98 @@ msgstr "Son Kullanılan Belge Yok"
 msgid "No Results Found"
 msgstr "Sonuç Bulunamadı"
 
-#: src/editor-page.c:961 src/editor-sidebar-item.c:489
+#: src/editor-page.c:987 src/editor-sidebar-item.c:489
 msgid "New Document"
 msgstr "Yeni Belge"
 
-#: src/editor-page.c:983 src/editor-properties-dialog.c:74
+#: src/editor-page.c:1009 src/editor-properties-dialog.c:74
 #: src/editor-sidebar-item.c:84
 msgid "Draft"
 msgstr "Taslak"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:995
+#: src/editor-page.c:1021
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (Yönetici)"
 
-#: src/editor-page.c:1003 src/editor-sidebar-item.c:98
+#: src/editor-page.c:1029 src/editor-sidebar-item.c:98
 msgid "Document Portal"
-msgstr ""
+msgstr "Belge Geçidi"
 
-#: src/editor-page.c:1054
+#: src/editor-page.c:1080
 msgid "Failed to save document"
 msgstr "Belge kaydedilirken hata"
 
-#: src/editor-page.c:1139
+#: src/editor-page.c:1165
 msgid "Save As"
 msgstr "Farklı Kaydet"
 
-#: src/editor-page.c:1142 src/editor-window-actions.c:133
+#: src/editor-page.c:1168 src/editor-window-actions.c:133
 msgid "Save"
 msgstr "Kaydet"
 
-#: src/editor-page.c:1143 src/editor-window-actions.c:132
+#: src/editor-page.c:1169 src/editor-window-actions.c:132
 #: src/editor-window-actions.c:271 src/editor-window-actions.c:380
 msgid "Cancel"
 msgstr "İptal"
 
-#: src/editor-page.c:1283
+#: src/editor-page.c:1309
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "St %u, Süt %u"
 
-#: src/editor-page.ui:100
+#: src/editor-page.ui:101
 msgid "Go to Line"
 msgstr "Satıra Git"
 
-#: src/editor-page.ui:118
+#: src/editor-page.ui:119
 msgid "Go"
 msgstr "Git"
+
+#: src/editor-page.ui:156 src/editor-window.ui:277
+msgid "Indentation"
+msgstr "Girintile"
+
+#: src/editor-page.ui:159 src/editor-window.ui:279
+msgid "_Automatic Indentation"
+msgstr "_Kendiliğinden Girintile"
+
+#: src/editor-page.ui:165 src/editor-window.ui:283
+msgid "_Tabs"
+msgstr "_Sekmeler"
+
+#: src/editor-page.ui:170 src/editor-window.ui:288
+msgid "_Spaces"
+msgstr "_Boşluklar"
+
+#: src/editor-page.ui:177 src/editor-window.ui:293
+msgid "Spaces _Per Tab"
+msgstr "Sekme _Başına Boşluk"
+
+#: src/editor-page.ui:179 src/editor-page.ui:207
+msgid "2"
+msgstr "2"
+
+#: src/editor-page.ui:184 src/editor-page.ui:212
+msgid "4"
+msgstr "4"
+
+#: src/editor-page.ui:189 src/editor-page.ui:217
+msgid "6"
+msgstr "6"
+
+#: src/editor-page.ui:194 src/editor-page.ui:222
+msgid "8"
+msgstr "8"
+
+#: src/editor-page.ui:200
+msgid "Spaces Per Indent"
+msgstr "Girinti Başına Boşluk"
+
+#: src/editor-page.ui:202
+msgid "Use Tab Size"
+msgstr "Sekme Boyutu Kullan"
 
 #. translators: Ln is short for "Line Number"
 #: src/editor-position-label.ui:15
@@ -449,49 +498,54 @@ msgstr "St"
 msgid "Col"
 msgstr "Süt"
 
-#: src/editor-preferences-dialog.ui:16
+#: src/editor-preferences-dialog.ui:17
 msgid "Appearance"
 msgstr "Görünüm"
 
-#: src/editor-preferences-dialog.ui:81
+#: src/editor-preferences-dialog.ui:82
 msgid "Display Grid Pattern"
 msgstr "Izgara Desenini Göster"
 
-#: src/editor-preferences-dialog.ui:87
+#: src/editor-preferences-dialog.ui:88
 msgid "Highlight Current Line"
 msgstr "Geçerli Satırı Vurgula"
 
-#: src/editor-preferences-dialog.ui:93
+#: src/editor-preferences-dialog.ui:94
 msgid "Display Overview Map"
 msgstr "Genel Bakış Haritasını Göster"
 
-#: src/editor-preferences-dialog.ui:101
+#: src/editor-preferences-dialog.ui:102
 msgid "Right Margin"
 msgstr "Sağ Kenar Boşluğu"
 
-#: src/editor-preferences-dialog.ui:104
+#: src/editor-preferences-dialog.ui:105
 msgid "Margin Position"
 msgstr "Kenar Boşluk Konum"
 
-#: src/editor-preferences-dialog.ui:112
+#: src/editor-preferences-dialog.ui:113
 msgid "Behavior"
 msgstr "Davranış"
 
-#: src/editor-preferences-dialog.ui:115
-msgid "Restore Session"
-msgstr "Oturumu Kurtar"
-
 #: src/editor-preferences-dialog.ui:116
-msgid "Return to your previous session when Text Editor is started"
-msgstr "Metin Düzenleyici başladığında önceki oturumunuza geri dönün"
-
-#: src/editor-preferences-dialog.ui:122
 msgid "Discover Document Settings"
 msgstr "Dosya Ayarlarını Keşfet"
 
-#: src/editor-preferences-dialog.ui:123
+#: src/editor-preferences-dialog.ui:117
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr ""
+"Modeline, editorconfig veya duyarlı öntanımlıları kullanarak ayarları uygula"
+
+#: src/editor-preferences-dialog.ui:123
+msgid "Restore Session"
+msgstr "Oturumu Kurtar"
+
+#: src/editor-preferences-dialog.ui:124
+msgid "Return to your previous session when Text Editor is started"
+msgstr "Metin Düzenleyici başladığında önceki oturumunuza geri dönün"
+
+#: src/editor-preferences-dialog.ui:139
+msgid "_Clear History"
+msgstr "Geçmişi _Temizle"
 
 #: src/editor-preferences-font.c:100
 msgid "Select Font"
@@ -514,55 +568,55 @@ msgstr "Dosya: %s"
 msgid "Page %N of %Q"
 msgstr "Sayfa %N/%Q"
 
-#: src/editor-properties-dialog.ui:5
+#: src/editor-properties-dialog.ui:6
 msgid "Properties"
 msgstr "Özellikler"
 
-#: src/editor-properties-dialog.ui:26
+#: src/editor-properties-dialog.ui:27
 msgid "File"
 msgstr "Dosya"
 
-#: src/editor-properties-dialog.ui:29
+#: src/editor-properties-dialog.ui:30
 msgid "Name"
 msgstr "Ad"
 
-#: src/editor-properties-dialog.ui:44
+#: src/editor-properties-dialog.ui:45
 msgid "Location"
 msgstr "Konum"
 
-#: src/editor-properties-dialog.ui:62
+#: src/editor-properties-dialog.ui:63
 msgid "Statistics"
 msgstr "İstatistikler"
 
-#: src/editor-properties-dialog.ui:65
+#: src/editor-properties-dialog.ui:66
 msgid "Lines"
 msgstr "Satırlar"
 
-#: src/editor-properties-dialog.ui:80
+#: src/editor-properties-dialog.ui:81
 msgid "Words"
 msgstr "Sözcükler"
 
-#: src/editor-properties-dialog.ui:95
+#: src/editor-properties-dialog.ui:96
 msgid "Characters, No Spaces"
 msgstr "Karakterler, Boşluksuz"
 
-#: src/editor-properties-dialog.ui:110
+#: src/editor-properties-dialog.ui:111
 msgid "All Characters"
 msgstr "Tüm Karakterler"
 
-#: src/editor-save-changes-dialog.c:257
+#: src/editor-save-changes-dialog.c:258
 msgid "_Discard"
 msgstr "_Görmezden Gel"
 
-#: src/editor-save-changes-dialog.c:257
+#: src/editor-save-changes-dialog.c:258
 msgid "_Discard All"
 msgstr "Tümünü _Görmezden Gel"
 
-#: src/editor-save-changes-dialog.c:263
+#: src/editor-save-changes-dialog.c:264
 msgid "Save Changes?"
 msgstr "Değişiklikleri Kaydet?"
 
-#: src/editor-save-changes-dialog.c:265
+#: src/editor-save-changes-dialog.c:266
 msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
@@ -570,25 +624,25 @@ msgstr ""
 "Açık belgeler kaydedilmemiş değişiklikler içeriyor. Kaydedilmeyen "
 "değişiklikler kalıcı olarak yitirilecek."
 
-#: src/editor-save-changes-dialog.c:267
+#: src/editor-save-changes-dialog.c:268
 msgid "_Cancel"
 msgstr "_İptal"
 
-#: src/editor-save-changes-dialog.c:269 src/editor-window.ui:210
+#: src/editor-save-changes-dialog.c:270 src/editor-window.ui:210
 msgid "_Save"
 msgstr "_Kaydet"
 
-#: src/editor-save-changes-dialog.c:296
+#: src/editor-save-changes-dialog.c:303
 msgid "Untitled Document"
 msgstr "Adsız Belge"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:299
+#: src/editor-save-changes-dialog.c:306
 #, c-format
 msgid "%s (new)"
 msgstr "%s (yeni)"
 
-#: src/editor-save-changes-dialog.c:320
+#: src/editor-save-changes-dialog.c:327
 msgid "Save changes for this document"
 msgstr "Bu belge için değişiklikleri kaydet"
 
@@ -658,15 +712,15 @@ msgstr "Görmezden Gel"
 msgid "Check Spelling"
 msgstr "Denetimi Kapat"
 
-#: src/editor-theme-selector.ui:21 src/editor-theme-selector.ui:23
+#: src/editor-theme-selector.ui:22 src/editor-theme-selector.ui:24
 msgid "Follow system style"
 msgstr "Sistem biçemini izle"
 
-#: src/editor-theme-selector.ui:38 src/editor-theme-selector.ui:40
+#: src/editor-theme-selector.ui:39 src/editor-theme-selector.ui:41
 msgid "Light style"
 msgstr "Açık biçem"
 
-#: src/editor-theme-selector.ui:56 src/editor-theme-selector.ui:58
+#: src/editor-theme-selector.ui:57 src/editor-theme-selector.ui:59
 msgid "Dark style"
 msgstr "Koyu biçem"
 
@@ -764,8 +818,7 @@ msgstr "Belge Türü: %s"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
 #: src/editor-window.c:725
-#, fuzzy, c-format
-#| msgid "Text Editor"
+#, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - Metin Düzenleyici"
 
@@ -802,6 +855,12 @@ msgid ""
 "\n"
 "Or, press Ctrl+W to close the window."
 msgstr ""
+"• Aç düğmesine bas\n"
+"• Yeni sekme düğmesine bas\n"
+"• Yeni belge başlatmak için Ctrl+N’ye bas\n"
+"• Dosyaya göz atmak için Ctrl+O’ya bas\n"
+"\n"
+"Veya pencereyi kapatmak için Ctrl+W'ya bas."
 
 #: src/editor-window.ui:202
 msgid "_New Window"
@@ -850,26 +909,6 @@ msgstr "_Satır Numaraları"
 #: src/editor-window.ui:272
 msgid "_Right Margin"
 msgstr "_Sağ Kenar Boşluğu"
-
-#: src/editor-window.ui:277
-msgid "Indentation"
-msgstr "Girintileme"
-
-#: src/editor-window.ui:279
-msgid "_Automatic Indentation"
-msgstr "_Kendiliğinden Girintileme"
-
-#: src/editor-window.ui:283
-msgid "_Tabs"
-msgstr "_Sekmeler"
-
-#: src/editor-window.ui:288
-msgid "_Spaces"
-msgstr "_Boşluklar"
-
-#: src/editor-window.ui:293
-msgid "Spaces _Per Tab"
-msgstr "Sekme _Başına Boşluk"
 
 #: src/editor-window.ui:296
 msgid "_2"
@@ -923,277 +962,277 @@ msgstr "_Kapat"
 msgid "Enchant 2"
 msgstr "Enchant 2"
 
-#: src/help-overlay.ui:8
+#: src/help-overlay.ui:9
 msgctxt "shortcut window"
 msgid "Editor Shortcuts"
 msgstr "Kısayol Düzenleyici"
 
-#: src/help-overlay.ui:11
+#: src/help-overlay.ui:12
 msgctxt "shortcut window"
 msgid "Windows"
 msgstr "Pencereler"
 
-#: src/help-overlay.ui:14
+#: src/help-overlay.ui:15
 msgctxt "shortcut window"
 msgid "New window"
 msgstr "Yeni Pencere"
 
-#: src/help-overlay.ui:20
+#: src/help-overlay.ui:21
 msgctxt "shortcut window"
 msgid "Move document to new window"
 msgstr "Belgeyi yeni pencereye taşı"
 
-#: src/help-overlay.ui:27
+#: src/help-overlay.ui:28
 msgctxt "shortcut window"
 msgid "Move to next tab"
 msgstr "Sonraki sekmeye taşı"
 
-#: src/help-overlay.ui:33
+#: src/help-overlay.ui:34
 msgctxt "shortcut window"
 msgid "Move to previous tab"
 msgstr "Önceki sekmeye sürükle"
 
-#: src/help-overlay.ui:39
+#: src/help-overlay.ui:40
 msgctxt "shortcut window"
 msgid "Reorder after next tab"
 msgstr "Sonraki sekmeden sonra yeniden sırala"
 
-#: src/help-overlay.ui:45
+#: src/help-overlay.ui:46
 msgctxt "shortcut window"
 msgid "Reorder before previous tab"
 msgstr "Önceki sekmeden önce yeniden sırala"
 
-#: src/help-overlay.ui:51
+#: src/help-overlay.ui:52
 msgctxt "shortcut window"
 msgid "Restore previously closed tab"
 msgstr "Kapatılan sekmeyi kurtar"
 
-#: src/help-overlay.ui:58
+#: src/help-overlay.ui:59
 msgctxt "shortcut window"
 msgid "Zoom"
 msgstr "Yakınlaştırma"
 
-#: src/help-overlay.ui:62
+#: src/help-overlay.ui:63
 msgctxt "shortcut window"
 msgid "Zoom In"
 msgstr "Yakınlaştır"
 
-#: src/help-overlay.ui:68
+#: src/help-overlay.ui:69
 msgctxt "shortcut window"
 msgid "Zoom Out"
 msgstr "Uzaklaştır"
 
-#: src/help-overlay.ui:74
+#: src/help-overlay.ui:75
 msgctxt "shortcut window"
 msgid "Reset Zoom"
 msgstr "Yakınlaştırmayı Sıfırla"
 
-#: src/help-overlay.ui:81
+#: src/help-overlay.ui:82
 msgctxt "shortcut window"
 msgid "Documents"
 msgstr "Belgeler"
 
-#: src/help-overlay.ui:84
+#: src/help-overlay.ui:85
 msgctxt "shortcut window"
 msgid "New document"
 msgstr "Yeni belge"
 
-#: src/help-overlay.ui:90
+#: src/help-overlay.ui:91
 msgctxt "shortcut window"
 msgid "Browse to open document"
 msgstr "Belge açmak için göz at"
 
-#: src/help-overlay.ui:96
+#: src/help-overlay.ui:97
 msgctxt "shortcut window"
 msgid "Find document by name"
 msgstr "Adıyla dosya bul"
 
-#: src/help-overlay.ui:102
+#: src/help-overlay.ui:103
 msgctxt "shortcut window"
 msgid "Save"
 msgstr "Kaydet"
 
-#: src/help-overlay.ui:108
+#: src/help-overlay.ui:109
 msgctxt "shortcut window"
 msgid "Save As"
 msgstr "Farklı Kaydet"
 
-#: src/help-overlay.ui:114
+#: src/help-overlay.ui:115
 msgctxt "shortcut window"
 msgid "Find/Replace"
 msgstr "Bul/Değiştir"
 
-#: src/help-overlay.ui:120
+#: src/help-overlay.ui:121
 msgctxt "shortcut window"
 msgid "Close document"
 msgstr "Belgeyi kapat"
 
-#: src/help-overlay.ui:128
+#: src/help-overlay.ui:129
 msgctxt "shortcut window"
 msgid "Copy and Paste"
 msgstr "Kopyala ve Yapıştır"
 
-#: src/help-overlay.ui:132
+#: src/help-overlay.ui:133
 msgctxt "shortcut window"
 msgid "Copy selected text to clipboard"
 msgstr "Seçili metni panoya kopyala"
 
-#: src/help-overlay.ui:138
+#: src/help-overlay.ui:139
 msgctxt "shortcut window"
 msgid "Cut selected text to clipboard"
 msgstr "Seçili metni panoya kes"
 
-#: src/help-overlay.ui:144
+#: src/help-overlay.ui:145
 msgctxt "shortcut window"
 msgid "Paste text from clipboard"
 msgstr "Panodan metin yapıştır"
 
-#: src/help-overlay.ui:149
+#: src/help-overlay.ui:150
 msgctxt "shortcut window"
 msgid "Copy all to clipboard"
 msgstr "Tümünü panoya kopyala"
 
-#: src/help-overlay.ui:157
+#: src/help-overlay.ui:158
 msgctxt "shortcut window"
 msgid "Undo and Redo"
 msgstr "Geri al ve yinele"
 
-#: src/help-overlay.ui:161
+#: src/help-overlay.ui:162
 msgctxt "shortcut window"
 msgid "Undo previous command"
 msgstr "Son komutu geri al"
 
-#: src/help-overlay.ui:167
+#: src/help-overlay.ui:168
 msgctxt "shortcut window"
 msgid "Redo previous command"
 msgstr "Son komutu yinele"
 
-#: src/help-overlay.ui:174
+#: src/help-overlay.ui:175
 msgctxt "shortcut window"
 msgid "Editing"
 msgstr "Düzenleme"
 
-#: src/help-overlay.ui:178
+#: src/help-overlay.ui:179
 msgctxt "shortcut window"
 msgid "Insert emoji into document"
 msgstr "Belgeye emoji ekle"
 
-#: src/help-overlay.ui:184
+#: src/help-overlay.ui:185
 msgctxt "shortcut window"
 msgid "Search within the document"
 msgstr "Belge içinde ara"
 
-#: src/help-overlay.ui:190
+#: src/help-overlay.ui:191
 msgctxt "shortcut window"
 msgid "Search and replace within the document"
 msgstr "Belge içinde ara ve değiştir"
 
-#: src/help-overlay.ui:196
+#: src/help-overlay.ui:197
 msgctxt "shortcut window"
 msgid "Increment number at cursor"
 msgstr "İmleçteki sayıyı artır"
 
-#: src/help-overlay.ui:202
+#: src/help-overlay.ui:203
 msgctxt "shortcut window"
 msgid "Decrement number at cursor"
 msgstr "İmleçteki sayıyı azalt"
 
-#: src/help-overlay.ui:208
+#: src/help-overlay.ui:209
 msgctxt "shortcut window"
 msgid "Toggle overwrite"
 msgstr "Üzerine yazmayı aç/kapat"
 
-#: src/help-overlay.ui:214
+#: src/help-overlay.ui:215
 msgctxt "shortcut window"
 msgid "Toggle visibility of insertion caret"
 msgstr "Ekleme şapkasının görünürlüğünü aç/kapat"
 
-#: src/help-overlay.ui:221
+#: src/help-overlay.ui:222
 msgctxt "shortcut window"
 msgid "Selections"
 msgstr "Seçimler"
 
-#: src/help-overlay.ui:225
+#: src/help-overlay.ui:226
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Tümünü seç"
 
-#: src/help-overlay.ui:231
+#: src/help-overlay.ui:232
 msgctxt "shortcut window"
 msgid "Unselect all"
 msgstr "Hiçbirini seçme"
 
-#: src/help-overlay.ui:237
+#: src/help-overlay.ui:238
 msgctxt "shortcut window"
 msgid "Select current line"
 msgstr "Geçerli satırı seç"
 
-#: src/help-overlay.ui:244
+#: src/help-overlay.ui:245
 msgctxt "shortcut window"
 msgid "Movements"
 msgstr "Sürüklemeler"
 
-#: src/help-overlay.ui:248
+#: src/help-overlay.ui:249
 msgctxt "shortcut window"
 msgid "Move to beginning of document"
 msgstr "Belgenin başına git"
 
-#: src/help-overlay.ui:254
+#: src/help-overlay.ui:255
 msgctxt "shortcut window"
 msgid "Move to end of document"
 msgstr "Belgenin sonuna git"
 
-#: src/help-overlay.ui:260
+#: src/help-overlay.ui:261
 msgctxt "shortcut window"
 msgid "Move to start of previous paragraph"
 msgstr "Önceki paragrafın başına git"
 
-#: src/help-overlay.ui:266
+#: src/help-overlay.ui:267
 msgctxt "shortcut window"
 msgid "Move to end of next paragraph"
 msgstr "Sonraki paragrafın sonuna git"
 
-#: src/help-overlay.ui:272
+#: src/help-overlay.ui:273
 msgctxt "shortcut window"
 msgid "Move current or selected lines up"
 msgstr "Geçerli veya seçili satırları yukarı taşı"
 
-#: src/help-overlay.ui:278
+#: src/help-overlay.ui:279
 msgctxt "shortcut window"
 msgid "Move current or selected lines down"
 msgstr "Geçerli veya seçili satırları aşağı taşı"
 
-#: src/help-overlay.ui:284
+#: src/help-overlay.ui:285
 msgctxt "shortcut window"
 msgid "Go to line"
 msgstr "Satıra git"
 
-#: src/help-overlay.ui:291
+#: src/help-overlay.ui:292
 msgctxt "shortcut window"
 msgid "Deletion"
 msgstr "Silinme"
 
-#: src/help-overlay.ui:295
+#: src/help-overlay.ui:296
 msgctxt "shortcut window"
 msgid "Delete from cursor to word start"
 msgstr "İmleçten sözcük başlangıcına dek sil"
 
-#: src/help-overlay.ui:301
+#: src/help-overlay.ui:302
 msgctxt "shortcut window"
 msgid "Delete from cursor to word end"
 msgstr "İmleçten sözcük sonuna dek sil"
 
-#: src/help-overlay.ui:307
+#: src/help-overlay.ui:308
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph start"
 msgstr "İmleçten paragraf başlangıcına dek sil"
 
-#: src/help-overlay.ui:313
+#: src/help-overlay.ui:314
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph end"
 msgstr "İmleçten paragraf sonuna dek sil"
 
-#: src/help-overlay.ui:319
+#: src/help-overlay.ui:320
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "Geçerli satırı sil"
