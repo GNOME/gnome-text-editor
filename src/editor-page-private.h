@@ -58,6 +58,7 @@ struct _EditorPage
   GtkInfoBar              *changed_infobar;
   GtkInfoBar              *infobar;
   GtkEventController      *vim;
+  GMenu                   *indent_menu;
 
   guint                    close_requested : 1;
   guint                    moving : 1;
