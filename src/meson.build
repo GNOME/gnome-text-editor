@@ -70,6 +70,7 @@ editor_sources += gnome.compile_resources('editor-resources',
 
 editor_enums_headers = [
   'editor-search-bar-private.h',
+  'editor-types.h',
 ]
 
 editor_enums = gnome.mkenums_simple('editor-enums',

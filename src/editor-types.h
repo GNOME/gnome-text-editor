@@ -47,4 +47,10 @@ typedef struct _EditorSpellProvider        EditorSpellProvider;
 typedef struct _EditorTab                  EditorTab;
 typedef struct _EditorWindow               EditorWindow;
 
+typedef enum
+{
+  EDITOR_INDENT_STYLE_TAB = 0,
+  EDITOR_INDENT_STYLE_SPACE,
+} EditorIndentStyle;
+
 G_END_DECLS

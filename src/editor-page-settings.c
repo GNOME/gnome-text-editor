@@ -23,6 +23,7 @@
 #include "config.h"
 
 #include "editor-document.h"
+#include "editor-enums.h"
 #include "editor-page-gsettings-private.h"
 #include "editor-page-settings.h"
 #include "editor-page-settings-provider.h"
@@ -66,6 +67,7 @@ enum {
   PROP_DOCUMENT,
   PROP_HIGHLIGHT_CURRENT_LINE,
   PROP_INDENT_WIDTH,
+  PROP_INDENT_STYLE,
   PROP_INSERT_SPACES_INSTEAD_OF_TABS,
   PROP_RIGHT_MARGIN_POSITION,
   PROP_SHOW_GRID,
@@ -286,6 +288,10 @@ editor_page_settings_get_property (GObject    *object,
       g_value_set_boolean (value, editor_page_settings_get_insert_spaces_instead_of_tabs (self));
       break;
 
+    case PROP_INDENT_STYLE:
+      g_value_set_enum (value, !!editor_page_settings_get_insert_spaces_instead_of_tabs (self));
+      break;
+
     case PROP_RIGHT_MARGIN_POSITION:
       g_value_set_uint (value, editor_page_settings_get_right_margin_position (self));
       break;
@@ -374,6 +380,12 @@ editor_page_settings_set_property (GObject      *object,
 
     case PROP_INSERT_SPACES_INSTEAD_OF_TABS:
       self->insert_spaces_instead_of_tabs = g_value_get_boolean (value);
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_INDENT_STYLE]);
+      break;
+
+    case PROP_INDENT_STYLE:
+      self->insert_spaces_instead_of_tabs = !!g_value_get_enum (value);
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_INSERT_SPACES_INSTEAD_OF_TABS]);
       break;
 
     case PROP_SHOW_LINE_NUMBERS:
@@ -465,6 +477,12 @@ editor_page_settings_class_init (EditorPageSettingsClass *klass)
                           "If spaces should be inserted instead of tabs",
                           FALSE,
                           (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+
+  properties [PROP_INDENT_STYLE] =
+    g_param_spec_enum ("indent-style", NULL, NULL,
+                       EDITOR_TYPE_INDENT_STYLE,
+                       EDITOR_INDENT_STYLE_TAB,
+                       (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
   properties [PROP_RIGHT_MARGIN_POSITION] =
     g_param_spec_uint ("right-margin-position",
