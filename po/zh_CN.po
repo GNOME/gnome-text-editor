@@ -9,16 +9,16 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-02-11 23:50+0000\n"
-"PO-Revision-Date: 2022-02-13 09:32+0800\n"
+"POT-Creation-Date: 2022-02-22 11:21+0000\n"
+"PO-Revision-Date: 2022-02-23 13:34-0500\n"
 "Last-Translator: lumingzh <lumingzh@qq.com>\n"
 "Language-Team: Chinese - China <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
-"X-Generator: Gtranslator 41.0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 2.4.3\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
 msgid "Christian Hergert, et al."
@@ -377,54 +377,98 @@ msgstr "无最近文档"
 msgid "No Results Found"
 msgstr "未找到结果"
 
-#: src/editor-page.c:961 src/editor-sidebar-item.c:489
+#: src/editor-page.c:987 src/editor-sidebar-item.c:489
 msgid "New Document"
 msgstr "新建文档"
 
-#: src/editor-page.c:983 src/editor-properties-dialog.c:74
+#: src/editor-page.c:1009 src/editor-properties-dialog.c:74
 #: src/editor-sidebar-item.c:84
 msgid "Draft"
 msgstr "草稿"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:995
+#: src/editor-page.c:1021
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s（管理员）"
 
-#: src/editor-page.c:1003 src/editor-sidebar-item.c:98
+#: src/editor-page.c:1029 src/editor-sidebar-item.c:98
 msgid "Document Portal"
 msgstr "文档门户"
 
-#: src/editor-page.c:1054
+#: src/editor-page.c:1080
 msgid "Failed to save document"
 msgstr "保存文档失败"
 
-#: src/editor-page.c:1139
+#: src/editor-page.c:1165
 msgid "Save As"
 msgstr "另存为"
 
-#: src/editor-page.c:1142 src/editor-window-actions.c:133
+#: src/editor-page.c:1168 src/editor-window-actions.c:133
 msgid "Save"
 msgstr "保存"
 
-#: src/editor-page.c:1143 src/editor-window-actions.c:132
+#: src/editor-page.c:1169 src/editor-window-actions.c:132
 #: src/editor-window-actions.c:271 src/editor-window-actions.c:380
 msgid "Cancel"
 msgstr "取消"
 
-#: src/editor-page.c:1283
+#: src/editor-page.c:1309
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "%u 行，%u 列"
 
-#: src/editor-page.ui:100
+#: src/editor-page.ui:101
 msgid "Go to Line"
 msgstr "跳转至行"
 
-#: src/editor-page.ui:118
+#: src/editor-page.ui:119
 msgid "Go"
 msgstr "跳转"
+
+#: src/editor-page.ui:156 src/editor-window.ui:277
+msgid "Indentation"
+msgstr "缩进"
+
+#: src/editor-page.ui:159 src/editor-window.ui:279
+msgid "_Automatic Indentation"
+msgstr "自动缩进(_A)"
+
+#: src/editor-page.ui:165 src/editor-window.ui:283
+msgid "_Tabs"
+msgstr "制表符(_T)"
+
+#: src/editor-page.ui:170 src/editor-window.ui:288
+msgid "_Spaces"
+msgstr "空格(_S)"
+
+#: src/editor-page.ui:177 src/editor-window.ui:293
+msgid "Spaces _Per Tab"
+msgstr "每个制表符的空格数(_P)"
+
+#: src/editor-page.ui:179 src/editor-page.ui:207
+msgid "2"
+msgstr "2"
+
+#: src/editor-page.ui:184 src/editor-page.ui:212
+msgid "4"
+msgstr "4"
+
+#: src/editor-page.ui:189 src/editor-page.ui:217
+msgid "6"
+msgstr "6"
+
+#: src/editor-page.ui:194 src/editor-page.ui:222
+msgid "8"
+msgstr "8"
+
+#: src/editor-page.ui:200
+msgid "Spaces Per Indent"
+msgstr "每次缩进的空格数"
+
+#: src/editor-page.ui:202
+msgid "Use Tab Size"
+msgstr "使用制表符大小"
 
 #. translators: Ln is short for "Line Number"
 #: src/editor-position-label.ui:15
@@ -843,26 +887,6 @@ msgstr "行号(_L)"
 #: src/editor-window.ui:272
 msgid "_Right Margin"
 msgstr "右边界(_R)"
-
-#: src/editor-window.ui:277
-msgid "Indentation"
-msgstr "缩进"
-
-#: src/editor-window.ui:279
-msgid "_Automatic Indentation"
-msgstr "自动缩进(_A)"
-
-#: src/editor-window.ui:283
-msgid "_Tabs"
-msgstr "制表符(_T)"
-
-#: src/editor-window.ui:288
-msgid "_Spaces"
-msgstr "空格(_S)"
-
-#: src/editor-window.ui:293
-msgid "Spaces _Per Tab"
-msgstr "每个制表符的空格数(_P)"
 
 #: src/editor-window.ui:296
 msgid "_2"
