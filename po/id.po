@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-02-13 20:27+0000\n"
-"PO-Revision-Date: 2022-02-18 08:50+0700\n"
+"POT-Creation-Date: 2022-02-22 01:46+0000\n"
+"PO-Revision-Date: 2022-02-23 09:36+0700\n"
 "Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
 "Language-Team: Indonesian <gnome-l10n-id@googlegroups.com>\n"
 "Language: id\n"
@@ -395,54 +395,98 @@ msgstr "Tidak Ada Dokumen Baru-baru Ini"
 msgid "No Results Found"
 msgstr "Tak Ada Hasil yang Ditemukan"
 
-#: src/editor-page.c:961 src/editor-sidebar-item.c:489
+#: src/editor-page.c:987 src/editor-sidebar-item.c:489
 msgid "New Document"
 msgstr "Dokumen Baru"
 
-#: src/editor-page.c:983 src/editor-properties-dialog.c:74
+#: src/editor-page.c:1009 src/editor-properties-dialog.c:74
 #: src/editor-sidebar-item.c:84
 msgid "Draft"
 msgstr "Draf"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:995
+#: src/editor-page.c:1021
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (Administrator)"
 
-#: src/editor-page.c:1003 src/editor-sidebar-item.c:98
+#: src/editor-page.c:1029 src/editor-sidebar-item.c:98
 msgid "Document Portal"
 msgstr "Portal Dokumen"
 
-#: src/editor-page.c:1054
+#: src/editor-page.c:1080
 msgid "Failed to save document"
 msgstr "Gagal menyimpan dokumen"
 
-#: src/editor-page.c:1139
+#: src/editor-page.c:1165
 msgid "Save As"
 msgstr "Simpan Sebagai"
 
-#: src/editor-page.c:1142 src/editor-window-actions.c:133
+#: src/editor-page.c:1168 src/editor-window-actions.c:133
 msgid "Save"
 msgstr "Simpan"
 
-#: src/editor-page.c:1143 src/editor-window-actions.c:132
+#: src/editor-page.c:1169 src/editor-window-actions.c:132
 #: src/editor-window-actions.c:271 src/editor-window-actions.c:380
 msgid "Cancel"
 msgstr "Batal"
 
-#: src/editor-page.c:1283
+#: src/editor-page.c:1309
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Brs %u, Kol %u"
 
-#: src/editor-page.ui:100
+#: src/editor-page.ui:101
 msgid "Go to Line"
 msgstr "Pergi ke Baris"
 
-#: src/editor-page.ui:118
+#: src/editor-page.ui:119
 msgid "Go"
 msgstr "Pergi"
+
+#: src/editor-page.ui:156 src/editor-window.ui:277
+msgid "Indentation"
+msgstr "Indentasi"
+
+#: src/editor-page.ui:159 src/editor-window.ui:279
+msgid "_Automatic Indentation"
+msgstr "Indentasi Otom_atis"
+
+#: src/editor-page.ui:165 src/editor-window.ui:283
+msgid "_Tabs"
+msgstr "_Tab"
+
+#: src/editor-page.ui:170 src/editor-window.ui:288
+msgid "_Spaces"
+msgstr "_Spasi"
+
+#: src/editor-page.ui:177 src/editor-window.ui:293
+msgid "Spaces _Per Tab"
+msgstr "Spasi _Per Tab"
+
+#: src/editor-page.ui:179 src/editor-page.ui:207
+msgid "2"
+msgstr "2"
+
+#: src/editor-page.ui:184 src/editor-page.ui:212
+msgid "4"
+msgstr "4"
+
+#: src/editor-page.ui:189 src/editor-page.ui:217
+msgid "6"
+msgstr "6"
+
+#: src/editor-page.ui:194 src/editor-page.ui:222
+msgid "8"
+msgstr "8"
+
+#: src/editor-page.ui:200
+msgid "Spaces Per Indent"
+msgstr "Spasi Per Inden"
+
+#: src/editor-page.ui:202
+msgid "Use Tab Size"
+msgstr "Gunakan Ukuran Tab"
 
 #. translators: Ln is short for "Line Number"
 #: src/editor-position-label.ui:15
@@ -866,26 +910,6 @@ msgstr "No_mor Baris"
 #: src/editor-window.ui:272
 msgid "_Right Margin"
 msgstr "Batas K_anan"
-
-#: src/editor-window.ui:277
-msgid "Indentation"
-msgstr "Indentasi"
-
-#: src/editor-window.ui:279
-msgid "_Automatic Indentation"
-msgstr "Indentasi Otom_atis"
-
-#: src/editor-window.ui:283
-msgid "_Tabs"
-msgstr "_Tab"
-
-#: src/editor-window.ui:288
-msgid "_Spaces"
-msgstr "_Spasi"
-
-#: src/editor-window.ui:293
-msgid "Spaces _Per Tab"
-msgstr "Spasi _Per Tab"
 
 #: src/editor-window.ui:296
 msgid "_2"
