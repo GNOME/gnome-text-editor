@@ -4,15 +4,16 @@
 # Daniel Mustieles <daniel.mustieles@gmail.com>, 2021.
 # leo <daniel.mustieles@gmail.com>, 2021.
 # Miguel Ángel Nieto <correo@miguelangelnieto.net>, 2021-2022.
+# Daniel Mustieles García <daniel.mustieles@gmail.com>, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-02-05 11:27+0000\n"
-"PO-Revision-Date: 2022-02-07 11:06+0100\n"
-"Last-Translator: Miguel Ángel Nieto <correo@miguelangelnieto.net>\n"
+"POT-Creation-Date: 2022-02-22 01:46+0000\n"
+"PO-Revision-Date: 2022-02-24 12:47+0100\n"
+"Last-Translator: Daniel Mustieles García <daniel.mustieles@gmail.com>\n"
 "Language-Team: Spanish - Spain <gnome-es-list@gnome.org>\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
@@ -306,9 +307,13 @@ msgstr ""
 "Miguel Ángel Nieto, <correo@miguelangelnieto.net>, 2022\n"
 "Daniel Mustieles <Daniel.mustieles@gmail.com>, 2021 - 2022"
 
-#: src/editor-application.c:514
+#: src/editor-application.c:599
 msgid "Do not restore session at startup"
 msgstr "No restaurar la sesión al inicio"
+
+#: src/editor-application.c:600
+msgid "Open provided files in a new window"
+msgstr "Abrir archivos proporcionados en una ventana nueva"
 
 #: src/editor-document.c:1938
 msgid "[Read-Only]"
@@ -403,54 +408,103 @@ msgstr "No hay documentos recientes"
 msgid "No Results Found"
 msgstr "No se encontraron resultados"
 
-#: src/editor-page.c:961 src/editor-sidebar-item.c:489
+#: src/editor-page.c:987 src/editor-sidebar-item.c:489
 msgid "New Document"
 msgstr "Documento nuevo"
 
-#: src/editor-page.c:983 src/editor-properties-dialog.c:74
+#: src/editor-page.c:1009 src/editor-properties-dialog.c:74
 #: src/editor-sidebar-item.c:84
 msgid "Draft"
 msgstr "Borrador"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:995
+#: src/editor-page.c:1021
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (Administrador)"
 
-#: src/editor-page.c:1003 src/editor-sidebar-item.c:98
+#: src/editor-page.c:1029 src/editor-sidebar-item.c:98
 msgid "Document Portal"
 msgstr "Portal de documentos"
 
-#: src/editor-page.c:1054
+#: src/editor-page.c:1080
 msgid "Failed to save document"
 msgstr "Falló al guardar el documento"
 
-#: src/editor-page.c:1139
+#: src/editor-page.c:1165
 msgid "Save As"
 msgstr "Guardar como"
 
-#: src/editor-page.c:1142 src/editor-window-actions.c:133
+#: src/editor-page.c:1168 src/editor-window-actions.c:133
 msgid "Save"
 msgstr "Guardar"
 
-#: src/editor-page.c:1143 src/editor-window-actions.c:132
+#: src/editor-page.c:1169 src/editor-window-actions.c:132
 #: src/editor-window-actions.c:271 src/editor-window-actions.c:380
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: src/editor-page.c:1283
+#: src/editor-page.c:1309
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Ln %u, Col %u"
 
-#: src/editor-page.ui:100
+#: src/editor-page.ui:101
 msgid "Go to Line"
 msgstr "Ir a la línea"
 
-#: src/editor-page.ui:118
+#: src/editor-page.ui:119
 msgid "Go"
 msgstr "Ir"
+
+#: src/editor-page.ui:156 src/editor-window.ui:277
+msgid "Indentation"
+msgstr "Sangrado"
+
+#: src/editor-page.ui:159 src/editor-window.ui:279
+msgid "_Automatic Indentation"
+msgstr "Sangrado _automático"
+
+#: src/editor-page.ui:165 src/editor-window.ui:283
+msgid "_Tabs"
+msgstr "_Pestañas"
+
+#: src/editor-page.ui:170 src/editor-window.ui:288
+msgid "_Spaces"
+msgstr "_Espacios"
+
+#: src/editor-page.ui:177 src/editor-window.ui:293
+msgid "Spaces _Per Tab"
+msgstr "Espacios _por tabulado"
+
+#: src/editor-page.ui:179 src/editor-page.ui:207
+#| msgid "_2"
+msgid "2"
+msgstr "2"
+
+#: src/editor-page.ui:184 src/editor-page.ui:212
+#| msgid "_4"
+msgid "4"
+msgstr "4"
+
+#: src/editor-page.ui:189 src/editor-page.ui:217
+#| msgid "_6"
+msgid "6"
+msgstr "6"
+
+#: src/editor-page.ui:194 src/editor-page.ui:222
+#| msgid "_8"
+msgid "8"
+msgstr "8"
+
+#: src/editor-page.ui:200
+#| msgid "Spaces _Per Tab"
+msgid "Spaces Per Indent"
+msgstr "Espacios por tabulado"
+
+#: src/editor-page.ui:202
+msgid "Use Tab Size"
+msgstr "Usar tamaño del tabulador"
 
 #. translators: Ln is short for "Line Number"
 #: src/editor-position-label.ui:15
@@ -874,26 +928,6 @@ msgstr "_Números de línea"
 #: src/editor-window.ui:272
 msgid "_Right Margin"
 msgstr "Margen de_recho"
-
-#: src/editor-window.ui:277
-msgid "Indentation"
-msgstr "Sangrado"
-
-#: src/editor-window.ui:279
-msgid "_Automatic Indentation"
-msgstr "Sangrado _automático"
-
-#: src/editor-window.ui:283
-msgid "_Tabs"
-msgstr "_Pestañas"
-
-#: src/editor-window.ui:288
-msgid "_Spaces"
-msgstr "_Espacios"
-
-#: src/editor-window.ui:293
-msgid "Spaces _Per Tab"
-msgstr "Espacios _por tabulado"
 
 #: src/editor-window.ui:296
 msgid "_2"
