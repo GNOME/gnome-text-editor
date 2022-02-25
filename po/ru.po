@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-02-11 23:50+0000\n"
-"PO-Revision-Date: 2022-02-12 17:48+1000\n"
-"Last-Translator: Ser82-png <sw@atrus.ru>\n"
+"POT-Creation-Date: 2022-02-22 01:46+0000\n"
+"PO-Revision-Date: 2022-02-22 12:03+0300\n"
+"Last-Translator: Aleksandr Melman <Alexmelman88@gmail.com>\n"
 "Language-Team: \n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
 msgid "Christian Hergert, et al."
@@ -393,54 +393,98 @@ msgstr "Отсутствуют недавно открытые документ�
 msgid "No Results Found"
 msgstr "Результатов не найдено"
 
-#: src/editor-page.c:961 src/editor-sidebar-item.c:489
+#: src/editor-page.c:987 src/editor-sidebar-item.c:489
 msgid "New Document"
 msgstr "Создать документ"
 
-#: src/editor-page.c:983 src/editor-properties-dialog.c:74
+#: src/editor-page.c:1009 src/editor-properties-dialog.c:74
 #: src/editor-sidebar-item.c:84
 msgid "Draft"
 msgstr "Черновик"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:995
+#: src/editor-page.c:1021
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (Администратор)"
 
-#: src/editor-page.c:1003 src/editor-sidebar-item.c:98
+#: src/editor-page.c:1029 src/editor-sidebar-item.c:98
 msgid "Document Portal"
 msgstr "Портал документов"
 
-#: src/editor-page.c:1054
+#: src/editor-page.c:1080
 msgid "Failed to save document"
 msgstr "Ошибка при сохранении документа"
 
-#: src/editor-page.c:1139
+#: src/editor-page.c:1165
 msgid "Save As"
 msgstr "Сохранить как"
 
-#: src/editor-page.c:1142 src/editor-window-actions.c:133
+#: src/editor-page.c:1168 src/editor-window-actions.c:133
 msgid "Save"
 msgstr "Сохранить"
 
-#: src/editor-page.c:1143 src/editor-window-actions.c:132
+#: src/editor-page.c:1169 src/editor-window-actions.c:132
 #: src/editor-window-actions.c:271 src/editor-window-actions.c:380
 msgid "Cancel"
 msgstr "Отмена"
 
-#: src/editor-page.c:1283
+#: src/editor-page.c:1309
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Стр. %u, Поз. %u"
 
-#: src/editor-page.ui:100
+#: src/editor-page.ui:101
 msgid "Go to Line"
 msgstr "Перейти к строке"
 
-#: src/editor-page.ui:118
+#: src/editor-page.ui:119
 msgid "Go"
 msgstr "Перейти"
+
+#: src/editor-page.ui:156 src/editor-window.ui:277
+msgid "Indentation"
+msgstr "Отступ"
+
+#: src/editor-page.ui:159 src/editor-window.ui:279
+msgid "_Automatic Indentation"
+msgstr "_Автоматический отступ"
+
+#: src/editor-page.ui:165 src/editor-window.ui:283
+msgid "_Tabs"
+msgstr "_Табуляция"
+
+#: src/editor-page.ui:170 src/editor-window.ui:288
+msgid "_Spaces"
+msgstr "_Пробелы"
+
+#: src/editor-page.ui:177 src/editor-window.ui:293
+msgid "Spaces _Per Tab"
+msgstr "Пробелов на _табуляцию"
+
+#: src/editor-page.ui:179 src/editor-page.ui:207
+msgid "2"
+msgstr "2"
+
+#: src/editor-page.ui:184 src/editor-page.ui:212
+msgid "4"
+msgstr "4"
+
+#: src/editor-page.ui:189 src/editor-page.ui:217
+msgid "6"
+msgstr "6"
+
+#: src/editor-page.ui:194 src/editor-page.ui:222
+msgid "8"
+msgstr "8"
+
+#: src/editor-page.ui:200
+msgid "Spaces Per Indent"
+msgstr "Пробелов на отступ"
+
+#: src/editor-page.ui:202
+msgid "Use Tab Size"
+msgstr "Использовать размер табуляции"
 
 #. translators: Ln is short for "Line Number"
 #: src/editor-position-label.ui:15
@@ -866,26 +910,6 @@ msgstr "_Номера строк"
 msgid "_Right Margin"
 msgstr "Правый _край"
 
-#: src/editor-window.ui:277
-msgid "Indentation"
-msgstr "Отступ"
-
-#: src/editor-window.ui:279
-msgid "_Automatic Indentation"
-msgstr "_Автоматический отступ"
-
-#: src/editor-window.ui:283
-msgid "_Tabs"
-msgstr "_Табуляция"
-
-#: src/editor-window.ui:288
-msgid "_Spaces"
-msgstr "_Пробелы"
-
-#: src/editor-window.ui:293
-msgid "Spaces _Per Tab"
-msgstr "Пробелов на _табуляцию"
-
 #: src/editor-window.ui:296
 msgid "_2"
 msgstr "_2"
@@ -1212,6 +1236,3 @@ msgstr "Удалить от курсора до конца абзаца"
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "Удалить текущую строку"
-
-#~ msgid "_Update"
-#~ msgstr "_Обновить"
