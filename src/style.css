@@ -106,21 +106,22 @@ window.org-gnome-TextEditor page .searchbar button.flat.circular {
   padding: 3px;
 }
 
-textview.source-map slider {
-  border-radius: 7px;
-  margin: 0 3px;
+textview.GtkSourceMap slider {
+  border-radius: 9px;
+  margin: 0 3px 0 2px;
 }
 
-textview.source-map {
+textview.GtkSourceMap {
   font-family: BuilderBlocks;
   font-size: 1.75pt;
   line-height: 5px;
   opacity: 0.75;
+  margin: 1px 0 2px 0;
 }
-textview.source-map:dir(ltr) {
+textview.GtkSourceMap:dir(ltr) {
   border-left: 1px solid @borders;
 }
-textview.source-map:dir(rtl) {
+textview.GtkSourceMap:dir(rtl) {
   border-right: 1px solid @borders;
 }
 
