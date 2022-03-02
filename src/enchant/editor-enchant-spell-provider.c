@@ -112,8 +112,12 @@ list_languages_cb (const char * const  lang_tag,
 {
   GPtrArray *ar = user_data;
   char *name = get_display_name (lang_tag);
-  g_ptr_array_add (ar, editor_spell_language_info_new (name, lang_tag));
-  g_free (name);
+
+  if (name != NULL)
+    {
+      g_ptr_array_add (ar, editor_spell_language_info_new (name, lang_tag));
+      g_free (name);
+    }
 }
 
 static GPtrArray *
