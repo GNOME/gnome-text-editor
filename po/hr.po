@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
 "POT-Creation-Date: 2022-03-02 14:52+0000\n"
-"PO-Revision-Date: 2022-03-02 21:44+0100\n"
+"PO-Revision-Date: 2022-03-03 12:44+0100\n"
 "Last-Translator: \n"
 "Language-Team: Croatian <hr@li.org>\n"
 "Language: hr\n"
@@ -69,7 +69,7 @@ msgstr ""
 
 #: data/org.gnome.TextEditor.gschema.xml:35
 msgid "Indentation Style"
-msgstr "Razina umetanja"
+msgstr "Izgled poravnanja"
 
 #: data/org.gnome.TextEditor.gschema.xml:36
 msgid "If the editor should insert multiple spaces characters instead of tabs."
@@ -77,11 +77,11 @@ msgstr "Treba li uređivač umetnuti više razmaka umjesto tabulatora."
 
 #: data/org.gnome.TextEditor.gschema.xml:40
 msgid "Auto Indent"
-msgstr "Automatski umetni"
+msgstr "Automatski poravnanje"
 
 #: data/org.gnome.TextEditor.gschema.xml:41
 msgid "Automatically indent new lines copying the previous line's indentation."
-msgstr "Automatski umetni nove retke kopirajući umetanje prijašnjeg retka."
+msgstr "Automatski poravnaj nove retke kopirajući poravnanje prijašnjeg retka."
 
 #: data/org.gnome.TextEditor.gschema.xml:46
 msgid "Tab Width"
@@ -89,31 +89,32 @@ msgstr "Širina tabulatora"
 
 #: data/org.gnome.TextEditor.gschema.xml:47
 msgid "The number of spaces represented by a tab."
-msgstr ""
+msgstr "Broj razmaka predstavljenih tabulatorom."
 
 #: data/org.gnome.TextEditor.gschema.xml:52
 msgid "Indent Width"
-msgstr ""
+msgstr "Širina poravnanja"
 
 #: data/org.gnome.TextEditor.gschema.xml:53
 msgid "The number of spaces to indent or -1 to use tab-width."
 msgstr ""
+"Broj razmaka koji se koristi za poravnanje ili -1 za korištenje tab-širine."
 
 #: data/org.gnome.TextEditor.gschema.xml:57
 msgid "Show Line Numbers"
-msgstr ""
+msgstr "Prikaži brojeve redaka"
 
 #: data/org.gnome.TextEditor.gschema.xml:58
 msgid "If line numbers should be displayed next to each line."
-msgstr ""
+msgstr "Trebaju li brojevi redaka biti prikazan pokraj svakog retka."
 
 #: data/org.gnome.TextEditor.gschema.xml:62
 msgid "Show Right Margin"
-msgstr ""
+msgstr "Prikaži desni rub"
 
 #: data/org.gnome.TextEditor.gschema.xml:63
 msgid "If a margin line should be displayed on the right of the editor."
-msgstr ""
+msgstr "Treba li linija ruba biti prikazana na desnoj strani uređivača."
 
 #: data/org.gnome.TextEditor.gschema.xml:68
 msgid "Right Margin Position"
@@ -122,25 +123,27 @@ msgstr "Položaj desnog ruba"
 #: data/org.gnome.TextEditor.gschema.xml:69
 msgid ""
 "The position in characters at which the right margin should be displayed."
-msgstr ""
+msgstr "Položaj u znakovima na kojem bi se desni rub trebao prikazati."
 
 #: data/org.gnome.TextEditor.gschema.xml:73
 msgid "Show Overview Map"
-msgstr ""
+msgstr "Prikaži okvir pregleda"
 
 #: data/org.gnome.TextEditor.gschema.xml:74
 msgid ""
 "If enabled, an overview map of the file will be displayed to the side of the "
 "editor."
 msgstr ""
+"Ako je omogućeno, okvir pregleda datoteke biti će prikazan u bočnoj strani "
+"uređivača."
 
 #: data/org.gnome.TextEditor.gschema.xml:78
 msgid "Show Background Grid"
-msgstr ""
+msgstr "Prikaži pozadinsku mrežu"
 
 #: data/org.gnome.TextEditor.gschema.xml:79
 msgid "If enabled, a blueprint style grid is printed on the editor background."
-msgstr ""
+msgstr "Ako je omogućeno, plavkasta mreža je prikazana u pozadini uređivača."
 
 #: data/org.gnome.TextEditor.gschema.xml:83
 msgid "Highlight current line"
@@ -148,7 +151,7 @@ msgstr "Istakni trenutni redak"
 
 #: data/org.gnome.TextEditor.gschema.xml:84
 msgid "If enabled, the current line will be highlighted."
-msgstr ""
+msgstr "Ako je omogućeno, trenutni redak će biti istaknut."
 
 #: data/org.gnome.TextEditor.gschema.xml:88
 msgid "Text Wrapping"
@@ -156,7 +159,7 @@ msgstr "Prijelom teksta"
 
 #: data/org.gnome.TextEditor.gschema.xml:89
 msgid "If text should be wrapped."
-msgstr ""
+msgstr "Treba li tekst prelomiti."
 
 #: data/org.gnome.TextEditor.gschema.xml:93
 msgid "Use System Font"
@@ -164,7 +167,7 @@ msgstr "Koristi slova sustava"
 
 #: data/org.gnome.TextEditor.gschema.xml:94
 msgid "If the default system monospace font should be used."
-msgstr ""
+msgstr "Treba li koristiti monospace zadana slova sustava."
 
 #: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:60
 msgid "Custom Font"
@@ -172,7 +175,7 @@ msgstr "Prilagođena slova"
 
 #: data/org.gnome.TextEditor.gschema.xml:99
 msgid "A custom font to use in the editor."
-msgstr ""
+msgstr "Prilagođena slova za korištenje u uređivaču."
 
 #: data/org.gnome.TextEditor.gschema.xml:103
 msgid "Style Scheme"
@@ -183,6 +186,8 @@ msgid ""
 "The style scheme to use by the editor. It may translate this into a dark "
 "format when available."
 msgstr ""
+"Shema izgleda koja se koristi u uređivaču. Može se prevesti u tamni format "
+"kada je dostupan."
 
 #: data/org.gnome.TextEditor.gschema.xml:108
 msgid "Discover File Settings"
@@ -193,6 +198,8 @@ msgid ""
 "If enabled then Text Editor will try to discover file settings from "
 "modelines, editorconfig, or per-language defaults."
 msgstr ""
+"Ako je omogućeno uređivač teksta će pokušati otkriti postavke datoteke iz "
+"modela, podešavanja uređivača ili zadanih postavki jezika."
 
 #: data/org.gnome.TextEditor.gschema.xml:113
 msgid "Automatically check spelling"
@@ -201,6 +208,8 @@ msgstr "Automatski provjeri pravopis"
 #: data/org.gnome.TextEditor.gschema.xml:114
 msgid "If enabled, then Text Editor will check spelling as you type."
 msgstr ""
+"Ako je omogućeno, tada će uređivač retka provjeravati pravopis tijekom "
+"tipkanja."
 
 #: data/org.gnome.TextEditor.gschema.xml:118
 msgid "Restore session"
@@ -208,24 +217,23 @@ msgstr "Obnovi sesiju"
 
 #: data/org.gnome.TextEditor.gschema.xml:119
 msgid "When Text Editor is run, restore the previous session."
-msgstr ""
+msgstr "Kada se uređivač teksta pokrene, prijašnja sesija će se obnoviti."
 
 #: data/org.gnome.TextEditor.gschema.xml:123
 msgid "Recolor Window"
-msgstr ""
+msgstr "Prebojavanje prozor"
 
 #: data/org.gnome.TextEditor.gschema.xml:124
 msgid "Use the style-scheme to recolor the application window."
-msgstr ""
+msgstr "Koristi shemu izgleda za prebojavanje prozora aplikacije."
 
 #: data/org.gnome.TextEditor.gschema.xml:132
-#, fuzzy
 msgid "Keybindings"
 msgstr "Prečaci tipkovnice"
 
 #: data/org.gnome.TextEditor.gschema.xml:133
 msgid "The keybindings to use within Text Editor."
-msgstr ""
+msgstr "Prečaci tipkovnice koje koristi uređivač teksta."
 
 #: data/org.gnome.TextEditor.gschema.xml:137
 msgid "Last Save Directory"
@@ -233,16 +241,15 @@ msgstr "Posljednji direktorij spremanja"
 
 #: data/org.gnome.TextEditor.gschema.xml:138
 msgid "The directory last used in a save or save-as dialog."
-msgstr ""
+msgstr "Posljednje korišteni direktorij za spremanje dokumenta."
 
 #: data/org.gnome.TextEditor.gschema.xml:142
-#, fuzzy
 msgid "Draw Spaces"
-msgstr "Umetni razmak"
+msgstr "Iscrtavanje prostora"
 
 #: data/org.gnome.TextEditor.gschema.xml:143
 msgid "The various types of spaces to draw in the editor."
-msgstr ""
+msgstr "Različite vrste prostora za iscrtavanje u uređivaču."
 
 #: data/org.gnome.TextEditor.gschema.xml:147
 msgid "Enable Snippets"
@@ -253,28 +260,30 @@ msgid ""
 "Enable the use of snippets registered with GtkSourceView from within the "
 "editor."
 msgstr ""
+"Omogući korištenje isječaka registriranih s GtkSourceViewa sadržanog u "
+"uređivaču."
 
 #: data/org.gnome.TextEditor.gschema.xml:153
 msgid "Line Height"
-msgstr "Visinu redka"
+msgstr "Visinu retka"
 
 #: data/org.gnome.TextEditor.gschema.xml:154
 msgid "The line height to use for the selected font."
-msgstr ""
+msgstr "Visina retka koja se koristi za odabrana slova."
 
 #: src/editor-animation.c:1051
 #, c-format
 msgid "Failed to find property %s in %s"
-msgstr ""
+msgstr "Neuspjeli pronalazak svojstva %s u %s"
 
 #: src/editor-animation.c:1060
 #, c-format
 msgid "Failed to retrieve va_list value: %s"
-msgstr ""
+msgstr "Neuspjelo primanje va_list vrijednosti: %s"
 
 #: src/editor-application-actions.c:206
 msgid "Text Editor Website"
-msgstr ""
+msgstr "Web stranica uređivača teksta"
 
 #: src/editor-application-actions.c:207
 msgid "translator-credits"
@@ -284,11 +293,11 @@ msgstr ""
 
 #: src/editor-application.c:599
 msgid "Do not restore session at startup"
-msgstr ""
+msgstr "Ne obnavljaj sesiju pri pokretanju"
 
 #: src/editor-application.c:600
 msgid "Open provided files in a new window"
-msgstr ""
+msgstr "Otvori navedene datoteke u novom prozoru"
 
 #: src/editor-document.c:1938
 msgid "[Read-Only]"
@@ -300,16 +309,16 @@ msgstr "Putanja datoteke je NULA"
 
 #: src/editor-file-manager.c:108 src/editor-file-manager.c:119
 msgid "Error converting UTF-8 filename to wide char"
-msgstr ""
+msgstr "Greška pretvaranja UTF-8 naziva datoteke u široki znak"
 
 #: src/editor-file-manager.c:127
 msgid "ILCreateFromPath() failed"
-msgstr ""
+msgstr "ILCreateFromPath() je neuspjelo"
 
 #: src/editor-file-manager.c:164
 #, c-format
 msgid "Cannot convert “%s” into a valid NSURL."
-msgstr ""
+msgstr "Nemoguća pretvorba “%s” u valjan NSURL."
 
 #: src/editor-info-bar.c:76
 msgid "_Discard Changes and Reload"
@@ -400,7 +409,7 @@ msgstr "%s (Administrator)"
 
 #: src/editor-page.c:1029 src/editor-sidebar-item.c:98
 msgid "Document Portal"
-msgstr ""
+msgstr "Portal dokumenata"
 
 #: src/editor-page.c:1080
 msgid "Failed to save document"
@@ -434,11 +443,11 @@ msgstr "Idi"
 
 #: src/editor-page.ui:153 src/editor-window.ui:277
 msgid "Indentation"
-msgstr "Umetanje"
+msgstr "Poravnavanje"
 
 #: src/editor-page.ui:156 src/editor-window.ui:279
 msgid "_Automatic Indentation"
-msgstr "_Automatsko umetanje"
+msgstr "_Automatsko poravnavanje"
 
 #: src/editor-page.ui:162 src/editor-window.ui:283
 msgid "_Tabs"
@@ -470,7 +479,7 @@ msgstr "8"
 
 #: src/editor-page.ui:197
 msgid "Spaces Per Indent"
-msgstr "Razmaka po umetanju"
+msgstr "Razmaka po poravnanju"
 
 #: src/editor-page.ui:199
 msgid "Use Tab Size"
@@ -521,6 +530,8 @@ msgstr "Otkrij postavke dokumenta"
 #: src/editor-preferences-dialog.ui:117
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr ""
+"Primijeni postavke iz modela, podešavanja uređivača ili zadanih postavki "
+"jezika"
 
 #: src/editor-preferences-dialog.ui:123
 msgid "Restore Session"
@@ -565,7 +576,7 @@ msgstr "Datoteka"
 
 #: src/editor-properties-dialog.ui:30
 msgid "Name"
-msgstr "Naziv "
+msgstr "Naziv"
 
 #: src/editor-properties-dialog.ui:45
 msgid "Location"
@@ -643,7 +654,7 @@ msgstr "Idi na prijašnje podudaranje (Ctrl+Shift+G)"
 
 #: src/editor-search-bar.ui:59
 msgid "Move to next match (Ctrl+G)"
-msgstr "Idi na prijašnje sljedeće (Ctrl+G)"
+msgstr "Idi na sljedeće podudaranje (Ctrl+G)"
 
 #: src/editor-search-bar.ui:71
 msgid "Search & Replace (Ctrl+H)"
@@ -701,7 +712,7 @@ msgstr "Provjera pravopisa"
 
 #: src/editor-theme-selector.ui:22 src/editor-theme-selector.ui:24
 msgid "Follow system style"
-msgstr "Slijedi izgled sustava"
+msgstr "Izgled sustava"
 
 #: src/editor-theme-selector.ui:39 src/editor-theme-selector.ui:41
 msgid "Light style"
@@ -824,7 +835,7 @@ msgstr "Nova kartica (Ctrl+T)"
 
 #: src/editor-window.ui:120 src/editor-window.ui:124
 msgid "View"
-msgstr "Prikaz"
+msgstr "Pogled"
 
 #: src/editor-window.ui:133
 msgid "Menu"
@@ -848,7 +859,7 @@ msgstr ""
 "• Pritisni Ctrl+N za početak novog dokumenta\n"
 "• Pritisni Ctrl+O za pregled dokumenta\n"
 "\n"
-"Ili, pritisni Ctrl+W za zatvaranje dokumenta."
+"Ili, pritisni Ctrl+W za zatvaranje prozora."
 
 #: src/editor-window.ui:202
 msgid "_New Window"
@@ -954,7 +965,7 @@ msgstr "_Zatvori"
 
 #: src/enchant/editor-enchant-spell-provider.c:92
 msgid "Enchant 2"
-msgstr ""
+msgstr "Enchant 2"
 
 #: src/help-overlay.ui:9
 msgctxt "shortcut window"
@@ -1137,10 +1148,9 @@ msgid "Toggle overwrite"
 msgstr "Uklj/Isklj prebrisivanje"
 
 #: src/help-overlay.ui:215
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Toggle visibility of insertion caret"
-msgstr "Uklj/Isklj vidljivost pokazivača miša"
+msgstr "Uklj/Isklj vidljivost pokazivača teksta"
 
 #: src/help-overlay.ui:222
 msgctxt "shortcut window"
