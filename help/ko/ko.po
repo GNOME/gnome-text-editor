@@ -1,0 +1,463 @@
+# Korean translation for gnome-text-editor.
+# Copyright (C) 2022 gnome-text-editor's COPYRIGHT HOLDER
+# This file is distributed under the same license as the gnome-text-editor package.
+# Seong-ho Cho <shcho@gnome.org>, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-text-editor main\n"
+"POT-Creation-Date: 2022-03-08 19:45+0000\n"
+"PO-Revision-Date: 2022-03-10 19:18+0900\n"
+"Language-Team: Korean <gnome-kr@googlegroups.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ko\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
+"X-Generator: Poedit 2.3.1\n"
+
+#. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
+msgctxt "_"
+msgid "translator-credits"
+msgstr "조성호 <shcho@gnome.org>, 2022."
+
+#. (itstool) path: info/title
+#: C/index.page:7
+msgctxt "link:trail"
+msgid "GNOME Text Editor"
+msgstr "그놈 텍스트 편집기"
+
+#. (itstool) path: info/title
+#: C/index.page:8
+msgctxt "link"
+msgid "GNOME Text Editor"
+msgstr "그놈 텍스트 편집기"
+
+#. (itstool) path: info/title
+#: C/index.page:9
+msgctxt "text"
+msgid "GNOME Text Editor"
+msgstr "그놈 텍스트 편집기"
+
+#. (itstool) path: credit/name
+#: C/index.page:14
+msgid "Christian Hergert"
+msgstr "Christian Hergert"
+
+#. (itstool) path: credit/years
+#: C/index.page:16 C/index.page:21 C/basics-create-new-file.page:13
+#: C/basics-draft-folder.page:13 C/edit-search-and-replace.page:13
+#: C/edit-undo-redo.page:13
+msgid "2021"
+msgstr "2021"
+
+#. (itstool) path: credit/name
+#: C/index.page:19 C/basics-create-new-file.page:11
+#: C/basics-draft-folder.page:11 C/edit-search-and-replace.page:11
+msgid "Günther Wagner"
+msgstr "Günther Wagner"
+
+#. (itstool) path: info/desc
+#: C/index.page:26
+msgid "Use <app>GNOME Text Editor</app> to edit text files."
+msgstr "텍스트 파일 편집엔 <app>그놈 텍스트 편집기</app>를 사용하세요."
+
+#. (itstool) path: page/title
+#: C/index.page:29
+msgid "<_:media-1/> GNOME Text Editor"
+msgstr "<_:media-1/> 그놈 텍스트 편집기"
+
+#. (itstool) path: section/title
+#: C/index.page:35
+msgid "Basics"
+msgstr "기초"
+
+#. (itstool) path: section/title
+#: C/index.page:40
+msgid "Edit files"
+msgstr "파일 편집"
+
+#. (itstool) path: page/title
+#: C/basics-open-file.page:9
+msgid "Open a file"
+msgstr "파일 열기"
+
+#. (itstool) path: page/p
+#: C/basics-open-file.page:13
+msgid ""
+"To open a file in GNOME Text Editor use <gui style=\"button\">Open</gui> in "
+"the Headerbar and <gui>Browse Files...</gui> or the shortcut "
+"<keyseq><key>Ctrl</key><key>O</key></keyseq>."
+msgstr ""
+"그놈 텍스트 편집기에서 파일을 열려면 헤더 모음에서 <gui style=\"button\">열"
+"기</gui> 단추를 활용하고, <gui>파일 찾아보기...</gui>를 선택하거나 "
+"<keyseq><key>Ctrl</key><key>O</key></keyseq> 바로 가기 키를 누릅니다."
+
+#. (itstool) path: page/p
+#: C/basics-open-file.page:17
+msgid ""
+"In the dialog choose your file(s) you want to open and click <gui>Open</"
+"gui>. It is possible to select multiple files to open these at once."
+msgstr ""
+"대화 상자에서 열고자 하는 파일을 선택한 후 <gui>열기</gui>를 누릅니다. 한번"
+"에 여러 파일을 선택하여 열 수 있습니다."
+
+#. (itstool) path: page/p
+#: C/basics-open-file.page:20
+msgid ""
+"Closing the dialog without opening a file can be achieved by clicking "
+"<gui>Cancel</gui>."
+msgstr "<gui>취소</gui>를 누르면 파일을 열지 않고 대화상자를 닫을 수 있습니다."
+
+#. (itstool) path: section/title
+#: C/basics-open-file.page:23
+msgid "Open by name"
+msgstr "이름으로 열기"
+
+#. (itstool) path: section/p
+#: C/basics-open-file.page:25
+msgid ""
+"You can search in the <gui>Open</gui> Popup or press <keyseq><key>Ctrl</"
+"key><key>K</key></keyseq> to search for recently edited files."
+msgstr ""
+"<gui>열기</gui> 풍선창 또는 <keyseq><key>Ctrl</key><key>K</key></keyseq> 바"
+"로 가기 키를 누르면 최근 편집한 파일을 검색할 수 있습니다."
+
+#. (itstool) path: section/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/basics-open-file.page:27
+msgctxt "_"
+msgid ""
+"external ref='media/search-recent.png' md5='f57950a08e6c7159429d030eb349814f'"
+msgstr ""
+"external ref='media/search-recent.png' md5='f57950a08e6c7159429d030eb349814f'"
+
+#. (itstool) path: info/keywords
+#: C/basics-create-new-file.page:19
+msgid "new file, create file"
+msgstr "새 파일, 파일 만들기"
+
+#. (itstool) path: page/title
+#: C/basics-create-new-file.page:22
+msgid "Create a new file"
+msgstr "새 파일 만들기"
+
+#. (itstool) path: page/p
+#: C/basics-create-new-file.page:24
+msgid "In GNOME Text Editor a new file can be created in several ways:"
+msgstr "그놈 텍스트 편집기에서는 여러가지 방법으로 새 파일을 만들 수 있습니다:"
+
+#. (itstool) path: item/p
+#: C/basics-create-new-file.page:27
+msgid "Use the <gui>New tab</gui> button."
+msgstr "<gui>새 탭</gui> 단추를 사용합니다."
+
+#. (itstool) path: item/p
+#: C/basics-create-new-file.page:28
+msgid "Press <keyseq><key>Ctrl</key><key>N</key></keyseq>"
+msgstr "<keyseq><key>Ctrl</key><key>N</key></keyseq> 키를 누릅니다."
+
+#. (itstool) path: page/p
+#: C/basics-create-new-file.page:31
+msgid ""
+"A new document is by default in a state called <gui>Draft</gui>. The meaning "
+"of this is that the document is automatically saved in the draft folder of "
+"GNOME Text Editor."
+msgstr ""
+"기본적으로 <gui>초안</gui> 상태의 새 문서를 만듭니다. 그놈 텍스트 편집기 초"
+"안 폴더에 문서를 자동으로 저장함을 의미합니다."
+
+#. (itstool) path: info/desc
+#: C/basics-draft-folder.page:18
+msgid "Explanation of the drafts folder."
+msgstr "초안 폴더를 설명합니다."
+
+#. (itstool) path: info/keywords
+#: C/basics-draft-folder.page:20
+msgid "draft, folder"
+msgstr "초안, 폴더"
+
+#. (itstool) path: page/title
+#: C/basics-draft-folder.page:23
+msgid "Draft folder"
+msgstr "초안 폴더"
+
+#. (itstool) path: page/p
+#: C/basics-draft-folder.page:25
+msgid ""
+"GNOME Text Editor will automatically save every unsaved file. This folder is "
+"located in the application data directory (~/.local/share/gnome-text-editor "
+"or in the respective flatpak folder). You should normally not care about "
+"that folder as every draft file is always accessible via the <gui>Open</gui> "
+"menu."
+msgstr ""
+"그놈 텍스트 편집기에서는 저장하지 않은 모든 파일을 자동으로 저장합니다. 이 폴"
+"더는 프로그램 데이터 디렉터리(~/.local/share/gnome-text-editor 또는 개별 플랫"
+"팩 폴더)에 있습니다. 보통 사용자 여러분은 <gui>열기</gui> 메뉴로 모든 초안 파"
+"일을 항상 열어 볼 수 있다는 점을 신경쓰지 않습니다."
+
+#. (itstool) path: page/p
+#: C/basics-draft-folder.page:30
+msgid ""
+"You can identify a draft in the title of GNOME Text Editor. There is a "
+"subtitle 'Draft' if your current document is not saved and will reside in "
+"the draft folder."
+msgstr ""
+"그놈 텍스트 편집기의 제목에서 초안을 구별할 수 있습니다. 현재 문서를 저장하"
+"지 않고 초안 폴더에 두었을 경우 부제가 '초안'으로 돼있습니다."
+
+#. (itstool) path: info/desc
+#: C/edit-search-and-replace.page:33
+msgid "Search and replace text"
+msgstr "텍스트 검색 및 바꾸기"
+
+#. (itstool) path: info/keywords
+#: C/edit-search-and-replace.page:35
+msgid "search, replace"
+msgstr "검색, 바꾸기"
+
+#. (itstool) path: page/title
+#: C/edit-search-and-replace.page:38
+msgid "Search and Replace"
+msgstr "검색 및 바꾸기"
+
+#. (itstool) path: page/p
+#: C/edit-search-and-replace.page:40
+msgid ""
+"GNOME text editor allows you to quickly search in big text files for a "
+"specific text parts. Oftentimes these text parts need to be replaced also."
+msgstr ""
+"그놈 텍스트 편집기에서는 언제든지 지정 텍스트 부분을 대용량 텍스트 파일에서 "
+"빠르게 찾아볼 수 있습니다. 주로 이 텍스트 부분을 바꾸고 싶을 때도 있습니다."
+
+#. (itstool) path: list/title
+#: C/edit-search-and-replace.page:44
+msgid "Search for text"
+msgstr "텍스트 검색"
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:45
+msgid ""
+"Activate the search panel via <guiseq><gui>Hamburger Menu</gui><gui>Find/"
+"Replace...</gui></guiseq> or activate it via <keyseq><key>Ctrl</key><key>F</"
+"key></keyseq>."
+msgstr ""
+"<guiseq><gui>햄버거 메뉴</gui><gui>찾기/바꾸기...</gui></guiseq> 또는 "
+"<keyseq><key>Ctrl</key><key>F</key></keyseq> 키로 검색 창을 띄웁니다."
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:46
+msgid "Add your search term into the entry field."
+msgstr "항목 입력 창에 검색 단어를 추가합니다."
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:47 C/edit-search-and-replace.page:70
+msgid ""
+"The search is performed as you type. You can now iterate the search result "
+"with <key>↑</key> or <key>↓</key> or with the buttons beside the entry."
+msgstr ""
+"키보드를 타건하는 즉시 검색 동작을 수행합니다. <key>↑</key> 키 또는 <key>↓</"
+"key> 키, 내지는 항목 옆의 단추로 검색 결과를 순회해볼 수 있습니다."
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:48
+msgid ""
+"Pressing <key>Enter</key> will move the cursor to the currently highlighted "
+"search result."
+msgstr "<key>Enter</key> 키를 눌러 현재 강조한 검색 결과로 커서를 이동합니다."
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:49
+msgid ""
+"Pressing <key>Escape</key> will discard the search panel and the search "
+"result."
+msgstr "<key>Escape</key>를 눌러 검색 창과 검색 결과를 버립니다."
+
+#. (itstool) path: list/title
+#: C/edit-search-and-replace.page:53
+msgid "Search tips &amp; tricks"
+msgstr "검색 비결과 요령"
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:54
+msgid ""
+"In order to quickly search for a word highlight the word and press "
+"<keyseq><key>Ctrl</key><key>F</key></keyseq>. The word will be automatically "
+"entered into the search entry."
+msgstr ""
+"단어를 빠르게 검색하려면 단어를 강조한 후 <keyseq><key>Ctrl</key><key>F</"
+"key></keyseq> 키를 누릅니다. 해당 단어는 자동으로 항목 입력창에 들어갑니다."
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:55
+msgid ""
+"The search can be refined with additional options in the <gui>gear</gui> "
+"menu."
+msgstr "<gui>톱니바퀴</gui> 메뉴에서 추가 검색 옵션을 찾아볼 수 있습니다."
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:57
+msgid "Only match the whole word"
+msgstr "전체 단어가 일치하는 경우에만"
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:58
+msgid "Using regular expressions as search term"
+msgstr "정규 표현식을 검색 단어로 활용"
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:59
+msgid "Respecting case sensitivity of the search term"
+msgstr "검색 단어에 대소문자 구별"
+
+#. (itstool) path: list/title
+#: C/edit-search-and-replace.page:65
+msgid "Replace text"
+msgstr "텍스트 바꾸기"
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:66
+msgid ""
+"Activate the search panel via <guiseq><gui>Hamburger Menu</gui><gui>Find/"
+"Replace...</gui></guiseq> or activate it via <keyseq><key>Ctrl</key><key>H</"
+"key></keyseq>."
+msgstr ""
+"<guiseq><gui>햄버거 메뉴</gui><gui>찾기/바꾸기...</gui></guiseq> 또는 "
+"<keyseq><key>Ctrl</key><key>H</key></keyseq> 키로 검색 창을 띄웁니다."
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:67
+msgid ""
+"In case you opened the search panel via the <gui>Hamburger Menu</gui> you "
+"have to click the button for activating the replace functionality."
+msgstr ""
+"<gui>햄버거 메뉴</gui>로 검색 창을 띄웠다면 바꾸기 기능을 사용할 때 단추를 눌"
+"러야 합니다."
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:68
+msgid "Add your search term which should be replaced into the entry field."
+msgstr "항목 입력창에 단어를 바꾸려 하는 단어를 추가합니다."
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:69
+msgid "Add your replace term into the second entry field."
+msgstr "두번째 항목 입력창에 바꿀 단어를 추가합니다."
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:71
+msgid ""
+"It is now possible to only replace the current search result element via "
+"<gui>Replace</gui> or you can replace all occurrences via <gui>Replace All</"
+"gui>."
+msgstr ""
+"이제 현재 검색 결과만 <gui>바꾸기</gui>로 단어를 바꾸거나, 일치하는 모든 검"
+"색 결과에 대해 <gui>모두 바꾸기</gui> 할 수 있습니다."
+
+#. (itstool) path: credit/name
+#: C/edit-undo-redo.page:11
+msgid "Fionn Kelleher"
+msgstr "Fionn Kelleher"
+
+#. (itstool) path: info/desc
+#: C/edit-undo-redo.page:19
+msgid "Fix mistakes made during editing"
+msgstr "편집하다 저지른 실수를 되돌립니다"
+
+#. (itstool) path: info/keywords
+#: C/edit-undo-redo.page:20
+msgid "undo, redo, discard changes"
+msgstr "실행 취소, 다시 실행, 바뀐 내용 버리기"
+
+#. (itstool) path: page/title
+#: C/edit-undo-redo.page:23
+msgid "Undoing, redoing, and discarding changes"
+msgstr "실행 취소, 다시 실행, 바꾼 내용을 버리기를 수행합니다"
+
+#. (itstool) path: page/p
+#: C/edit-undo-redo.page:25
+msgid ""
+"GNOME Text Editor automatically keeps track of changes made while editing a "
+"file. Changes can be undone and redone while editing, making it easy to fix "
+"mistakes."
+msgstr ""
+"그놈 텍스트 편집기는 자동으로 파일을 편집하는 동안 파일의 바뀌는 내용을 추적"
+"합니다. 바뀐 내용은 편집하는 동안 이전 내용으로 되돌리거나 바뀔 내용으로 바꾸"
+"어 실수를 쉽게 바로 잡을 수 있습니다."
+
+#. (itstool) path: note/p
+#: C/edit-undo-redo.page:33
+msgid ""
+"Changes tracked for a file will be lost after closing it, or after <link "
+"xref=\"#discard_changes\">discarding changes</link>."
+msgstr ""
+"파일을 닫거나 <link xref=\"#discard_changes\">바뀐 내용 취소</link>를 선택하"
+"면 파일 편집 과정에 추적하던 바뀐 내용을 잃게 됩니다."
+
+#. (itstool) path: section/title
+#: C/edit-undo-redo.page:40
+msgid "Undoing or redoing a change"
+msgstr "바꾸기 취소 또는 바꾸기 다시 실행"
+
+#. (itstool) path: section/p
+#: C/edit-undo-redo.page:41
+msgid ""
+"Pressing <keyseq> <key>Ctrl</key> <key>Z</key> </keyseq> will undo the last "
+"change made to a file. Using this shortcut repeatedly will continue undoing "
+"changes as they were originally made."
+msgstr ""
+"<keyseq> <key>Ctrl</key> <key>Z</key> </keyseq> 키를 눌러 파일의 최근 내용 바"
+"꾸기 동작을 되돌립니다. 이 바로 가기 키를 반복해서 누르면 키를 누르기 직전의 "
+"내용으로 바뀐 내용을 계속 되돌립니다."
+
+#. (itstool) path: section/p
+#: C/edit-undo-redo.page:52
+msgid ""
+"Pressing <keyseq> <key>Ctrl</key> <key>Shift</key> <key>Z</key> </keyseq> "
+"will redo the last undone change in a file. Using this shortcut repeatedly "
+"will continue redoing changes as they were originally made."
+msgstr ""
+"<keyseq> <key>Ctrl</key> <key>Shift</key> <key>Z</key> </keyseq> 키를 눌러 파"
+"일에서 최근 바꾸었다 되돌린 내용 시점에서 바꾸기 동작을 다시 실행합니다. 이 "
+"바로 가기 키를 반복해서 누르면 키를 누른 직후의 내용으로 파일의 내용을 다시 "
+"바꿔줍니다."
+
+#. (itstool) path: note/p
+#: C/edit-undo-redo.page:64
+msgid ""
+"Changes can be redone <em>only</em> if the previous editing operation was "
+"undo or redo. For example, typing text into a file directly after undoing a "
+"change will prevent redoing the last undone change."
+msgstr ""
+"바꾸기 동작은 이전 편집 동작이 실행 취소 또는 다시 실행인 경우에<em>만</em> "
+"다시 실행할 수 있습니다. 예를 들어 파일에 내용 바꾸기 동작을 취소한 다음 텍스"
+"트를 직접 입력하면 최근 바꾸기를 취소한 시점에서 바꾸기를 다시 실행하는 동작"
+"을 막습니다."
+
+#. (itstool) path: section/title
+#: C/edit-undo-redo.page:74
+msgid "Discarding all changes since last save"
+msgstr "최근 저장한 후로 바뀐 모든 내용 버리기"
+
+#. (itstool) path: section/p
+#: C/edit-undo-redo.page:75
+msgid ""
+"<guiseq> <gui>Menu</gui> <gui>Discard Changes</gui> </guiseq> will "
+"permanently discard all changes made to a file since it was last saved."
+msgstr ""
+"<guiseq> <gui>메뉴</gui> <gui>바뀐 내용 버리기</gui> </guiseq> 로 최근 저장"
+"한 이후에 파일에 바뀐 모든 내용을 완전히 버립니다."
+
+#. (itstool) path: p/link
+#: C/legal.xml:4
+msgid "Creative Commons Attribution-ShareAlike 3.0 Unported License"
+msgstr "크리에이티브 커먼즈 저작자표시-동일조건변경허락 3.0 Unported 라이선스"
+
+#. (itstool) path: license/p
+#: C/legal.xml:3
+msgid "This work is licensed under a <_:link-1/>."
+msgstr "이 문서는 <_:link-1/>에 따른 활용을 허가합니다."
