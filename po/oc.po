@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-02-13 20:27+0000\n"
-"PO-Revision-Date: 2022-02-19 10:58+0100\n"
+"POT-Creation-Date: 2022-03-15 19:00+0000\n"
+"PO-Revision-Date: 2022-03-15 20:47+0100\n"
 "Last-Translator: Quentin PAGÈS\n"
 "Language-Team: Occitan <totenoc@gmail.com>\n"
 "Language: oc\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
 msgid "Christian Hergert, et al."
@@ -349,10 +349,8 @@ msgid "Unsaved changes to the document have been restored."
 msgstr ""
 
 #: src/editor-info-bar.ui:19
-#, fuzzy
-#| msgid "Open File"
 msgid "Could Not Open File"
-msgstr "Dobrir fichièr"
+msgstr "Impossible de dobrir lo fichièr"
 
 #: src/editor-info-bar.ui:28
 msgid "You do not have permission to open the file."
@@ -360,11 +358,11 @@ msgstr ""
 
 #: src/editor-info-bar.ui:35
 msgid "_Retry"
-msgstr ""
+msgstr "_Tornar ensajar"
 
 #: src/editor-info-bar.ui:42
 msgid "Open As _Administrator"
-msgstr ""
+msgstr "Dobrir coma _administrator"
 
 #: src/editor-language-dialog.ui:6 src/editor-window.c:194
 msgid "Document Type"
@@ -372,7 +370,7 @@ msgstr "Mena de document"
 
 #: src/editor-language-dialog.ui:52
 msgid "No Matches"
-msgstr ""
+msgstr "Cap de correspondéncia"
 
 #: src/editor-open-popover.ui:67
 msgid "No Recent Documents"
@@ -380,68 +378,112 @@ msgstr "Pas cap de document recent"
 
 #: src/editor-open-popover.ui:94
 msgid "No Results Found"
-msgstr ""
+msgstr "Cap de resultat pas trobat"
 
-#: src/editor-page.c:961 src/editor-sidebar-item.c:489
+#: src/editor-page.c:987 src/editor-sidebar-item.c:489
 msgid "New Document"
 msgstr "Document novèl"
 
-#: src/editor-page.c:983 src/editor-properties-dialog.c:74
+#: src/editor-page.c:1009 src/editor-properties-dialog.c:74
 #: src/editor-sidebar-item.c:84
 msgid "Draft"
 msgstr "Borrolhon"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:995
+#: src/editor-page.c:1021
 #, c-format
 msgid "%s (Administrator)"
 msgstr ""
 
-#: src/editor-page.c:1003 src/editor-sidebar-item.c:98
+#: src/editor-page.c:1029 src/editor-sidebar-item.c:98
 #, fuzzy
 #| msgid "Document Restored"
 msgid "Document Portal"
 msgstr "Document restaurat"
 
-#: src/editor-page.c:1054
+#: src/editor-page.c:1080
 msgid "Failed to save document"
 msgstr ""
 
-#: src/editor-page.c:1139
+#: src/editor-page.c:1165
 msgid "Save As"
 msgstr "Enregistrar jos"
 
-#: src/editor-page.c:1142 src/editor-window-actions.c:133
+#: src/editor-page.c:1168 src/editor-window-actions.c:133
 msgid "Save"
 msgstr "Enregistrar"
 
-#: src/editor-page.c:1143 src/editor-window-actions.c:132
+#: src/editor-page.c:1169 src/editor-window-actions.c:132
 #: src/editor-window-actions.c:271 src/editor-window-actions.c:380
 msgid "Cancel"
 msgstr "Anullar"
 
-#: src/editor-page.c:1283
+#: src/editor-page.c:1309
 #, c-format
 msgid "Ln %u, Col %u"
-msgstr ""
+msgstr "Ln %u, Col %u"
 
-#: src/editor-page.ui:100
+#: src/editor-page.ui:98
 msgid "Go to Line"
+msgstr "Anar a la linha"
+
+#: src/editor-page.ui:116
+msgid "Go"
+msgstr "Zo"
+
+#: src/editor-page.ui:153 src/editor-window.ui:277
+msgid "Indentation"
+msgstr "Indentacion"
+
+#: src/editor-page.ui:156 src/editor-window.ui:279
+msgid "_Automatic Indentation"
+msgstr "Indentacion _automatica"
+
+#: src/editor-page.ui:162 src/editor-window.ui:283
+msgid "_Tabs"
+msgstr "_Onglets"
+
+#: src/editor-page.ui:167 src/editor-window.ui:288
+msgid "_Spaces"
+msgstr "_Espacis"
+
+#: src/editor-page.ui:174 src/editor-window.ui:293
+msgid "Spaces _Per Tab"
 msgstr ""
 
-#: src/editor-page.ui:118
-msgid "Go"
+#: src/editor-page.ui:176 src/editor-page.ui:204
+msgid "2"
+msgstr "2"
+
+#: src/editor-page.ui:181 src/editor-page.ui:209
+msgid "4"
+msgstr "4"
+
+#: src/editor-page.ui:186 src/editor-page.ui:214
+msgid "6"
+msgstr "6"
+
+#: src/editor-page.ui:191 src/editor-page.ui:219
+msgid "8"
+msgstr "8"
+
+#: src/editor-page.ui:197
+msgid "Spaces Per Indent"
+msgstr ""
+
+#: src/editor-page.ui:199
+msgid "Use Tab Size"
 msgstr ""
 
 #. translators: Ln is short for "Line Number"
 #: src/editor-position-label.ui:15
 msgid "Ln"
-msgstr ""
+msgstr "Ln"
 
 #. translators: Col is short for "Column"
 #: src/editor-position-label.ui:35
 msgid "Col"
-msgstr ""
+msgstr "Col"
 
 #: src/editor-preferences-dialog.ui:17
 msgid "Appearance"
@@ -489,17 +531,16 @@ msgstr ""
 
 #: src/editor-preferences-dialog.ui:139
 msgid "_Clear History"
-msgstr "_Escafar l’istoric…"
+msgstr "_Escafar l’istoric"
 
 #: src/editor-preferences-font.c:100
 msgid "Select Font"
 msgstr "Causir una poliça"
 
 #: src/editor-print-operation.c:176
-#, fuzzy, c-format
-#| msgid "Draft"
+#, c-format
 msgid "Draft: %s"
-msgstr "Borrolhon"
+msgstr "Borrolhon  %s"
 
 #: src/editor-print-operation.c:178
 #, c-format
@@ -515,7 +556,7 @@ msgstr "Pagina %N de %Q"
 
 #: src/editor-properties-dialog.ui:6
 msgid "Properties"
-msgstr "Proprietats "
+msgstr "Proprietats"
 
 #: src/editor-properties-dialog.ui:27
 msgid "File"
@@ -551,11 +592,11 @@ msgstr ""
 
 #: src/editor-save-changes-dialog.c:258
 msgid "_Discard"
-msgstr ""
+msgstr "_Ignorar"
 
 #: src/editor-save-changes-dialog.c:258
 msgid "_Discard All"
-msgstr ""
+msgstr "_Tot ignorar"
 
 #: src/editor-save-changes-dialog.c:264
 msgid "Save Changes?"
@@ -583,7 +624,7 @@ msgstr "Document sens nom"
 #: src/editor-save-changes-dialog.c:306
 #, c-format
 msgid "%s (new)"
-msgstr ""
+msgstr "%s (novèl)"
 
 #: src/editor-save-changes-dialog.c:327
 msgid "Save changes for this document"
@@ -681,7 +722,7 @@ msgstr "Ièr"
 
 #: src/editor-utils.c:356
 msgid "About a year ago"
-msgstr ""
+msgstr "Fa environ un an"
 
 #: src/editor-utils.c:360
 #, c-format
@@ -708,7 +749,7 @@ msgstr "Detectat automaticament"
 
 #: src/editor-utils.c:416
 msgid "Character Encoding:"
-msgstr "Encodatge de caractèrs"
+msgstr "Encodatge de caractèrs :"
 
 #: src/editor-utils.c:451
 msgid "Line Ending:"
@@ -755,18 +796,15 @@ msgid "Text Files"
 msgstr "Fichièrs tèxte"
 
 #: src/editor-window.c:206
-#, fuzzy, c-format
-#| msgctxt "shortcut window"
-#| msgid "Documents"
+#, c-format
 msgid "Document Type: %s"
-msgstr "Documents"
+msgstr "Tipe de document : %s"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
 #: src/editor-window.c:725
-#, fuzzy, c-format
-#| msgid "Text Editor"
+#, c-format
 msgid "%s (%s) - Text Editor"
-msgstr "Editor de tèxte"
+msgstr "%s (%s) - Editor de tèxte"
 
 #: src/editor-window.ui:78
 msgid "_Open"
@@ -819,10 +857,8 @@ msgid "_Print"
 msgstr "_Imprimir"
 
 #: src/editor-window.ui:240
-#, fuzzy
-#| msgid "Document Restored"
 msgid "Documen_t Properties"
-msgstr "Document restaurat"
+msgstr "Proprietats del documen_t"
 
 #: src/editor-window.ui:246
 msgid "P_references"
@@ -837,10 +873,8 @@ msgid "_Help"
 msgstr "_Ajuda"
 
 #: src/editor-window.ui:259
-#, fuzzy
-#| msgid "Text Editor"
 msgid "A_bout Text Editor"
-msgstr "Editor de tèxte"
+msgstr "A _prepaus de l'Editor de tèxte"
 
 #: src/editor-window.ui:266
 msgid "Show"
@@ -852,26 +886,6 @@ msgstr "Numèros de _linha"
 
 #: src/editor-window.ui:272
 msgid "_Right Margin"
-msgstr ""
-
-#: src/editor-window.ui:277
-msgid "Indentation"
-msgstr "Indentacion"
-
-#: src/editor-window.ui:279
-msgid "_Automatic Indentation"
-msgstr "Indentacion _automatica"
-
-#: src/editor-window.ui:283
-msgid "_Tabs"
-msgstr "_Onglets"
-
-#: src/editor-window.ui:288
-msgid "_Spaces"
-msgstr "_Espacis"
-
-#: src/editor-window.ui:293
-msgid "Spaces _Per Tab"
 msgstr ""
 
 #: src/editor-window.ui:296
@@ -896,30 +910,27 @@ msgstr ""
 
 #: src/editor-window.ui:324
 msgid "Chec_k Spelling"
-msgstr ""
+msgstr "Veri_ficar l'ortografia"
 
 #: src/editor-window.ui:328
-#, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "Documents"
 msgid "_Document Type"
-msgstr "Documents"
+msgstr "Tipe de _document"
 
 #: src/editor-window.ui:336
 msgid "Move _Left"
-msgstr ""
+msgstr "Desp_laçar a esquèrra"
 
 #: src/editor-window.ui:341
 msgid "Move _Right"
-msgstr ""
+msgstr "Desplaçar a d_recha"
 
 #: src/editor-window.ui:348
 msgid "_Move to New Window"
-msgstr ""
+msgstr "_Desplaçar dins una fenèstra novèla"
 
 #: src/editor-window.ui:355
 msgid "Close _Other Tabs"
-msgstr ""
+msgstr "Tampar los _autres onglets"
 
 #: src/editor-window.ui:359
 msgid "_Close"
@@ -970,12 +981,9 @@ msgid "Reorder before previous tab"
 msgstr ""
 
 #: src/help-overlay.ui:52
-#, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "Redo previous command"
 msgctxt "shortcut window"
 msgid "Restore previously closed tab"
-msgstr "Restablir la comanda precedenta"
+msgstr "Restablir los onglets tampats precedentament"
 
 #: src/help-overlay.ui:59
 msgctxt "shortcut window"
@@ -1125,12 +1133,12 @@ msgstr "Seleccions"
 #: src/help-overlay.ui:226
 msgctxt "shortcut window"
 msgid "Select all"
-msgstr ""
+msgstr "Tot seleccionar"
 
 #: src/help-overlay.ui:232
 msgctxt "shortcut window"
 msgid "Unselect all"
-msgstr ""
+msgstr "Tot deseleccionar"
 
 #: src/help-overlay.ui:238
 msgctxt "shortcut window"
@@ -1175,12 +1183,12 @@ msgstr ""
 #: src/help-overlay.ui:285
 msgctxt "shortcut window"
 msgid "Go to line"
-msgstr ""
+msgstr "Anar a la linha@ action"
 
 #: src/help-overlay.ui:292
 msgctxt "shortcut window"
 msgid "Deletion"
-msgstr ""
+msgstr "Supression"
 
 #: src/help-overlay.ui:296
 msgctxt "shortcut window"
