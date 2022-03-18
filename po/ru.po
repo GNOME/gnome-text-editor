@@ -2,23 +2,29 @@
 # Copyright (C) 2021 gnome-text-editor's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-text-editor package.
 # Ser82-png <sw@atrus.ru>, 2022.
+# Ivan Molodetskikh <yalterz@gmail.com>, 2022.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-02-22 01:46+0000\n"
-"PO-Revision-Date: 2022-02-22 12:03+0300\n"
-"Last-Translator: Aleksandr Melman <Alexmelman88@gmail.com>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2022-03-15 19:00+0000\n"
+"PO-Revision-Date: 2022-03-09 10:58+0300\n"
+"Last-Translator: Ivan Molodetskikh <yalterz@gmail.com>\n"
+"Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
-"X-Generator: Poedit 3.0.1\n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+"X-Generator: Gtranslator 41.0\n"
+"X-DL-Team: ru\n"
+"X-DL-Module: gnome-text-editor\n"
+"X-DL-Branch: main\n"
+"X-DL-Domain: po\n"
+"X-DL-State: None\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
 msgid "Christian Hergert, et al."
@@ -155,11 +161,11 @@ msgstr "Если включено, текущая строка будет выд
 
 #: data/org.gnome.TextEditor.gschema.xml:88
 msgid "Text Wrapping"
-msgstr "Перенос текста"
+msgstr "Переносить текст"
 
 #: data/org.gnome.TextEditor.gschema.xml:89
 msgid "If text should be wrapped."
-msgstr "Если требуется переносить текст."
+msgstr "Требуется ли переносить текст."
 
 #: data/org.gnome.TextEditor.gschema.xml:93
 msgid "Use System Font"
@@ -395,7 +401,7 @@ msgstr "Результатов не найдено"
 
 #: src/editor-page.c:987 src/editor-sidebar-item.c:489
 msgid "New Document"
-msgstr "Создать документ"
+msgstr "Новый документ"
 
 #: src/editor-page.c:1009 src/editor-properties-dialog.c:74
 #: src/editor-sidebar-item.c:84
@@ -434,55 +440,55 @@ msgstr "Отмена"
 msgid "Ln %u, Col %u"
 msgstr "Стр. %u, Поз. %u"
 
-#: src/editor-page.ui:101
+#: src/editor-page.ui:98
 msgid "Go to Line"
 msgstr "Перейти к строке"
 
-#: src/editor-page.ui:119
+#: src/editor-page.ui:116
 msgid "Go"
 msgstr "Перейти"
 
-#: src/editor-page.ui:156 src/editor-window.ui:277
+#: src/editor-page.ui:153 src/editor-window.ui:277
 msgid "Indentation"
 msgstr "Отступ"
 
-#: src/editor-page.ui:159 src/editor-window.ui:279
+#: src/editor-page.ui:156 src/editor-window.ui:279
 msgid "_Automatic Indentation"
 msgstr "_Автоматический отступ"
 
-#: src/editor-page.ui:165 src/editor-window.ui:283
+#: src/editor-page.ui:162 src/editor-window.ui:283
 msgid "_Tabs"
 msgstr "_Табуляция"
 
-#: src/editor-page.ui:170 src/editor-window.ui:288
+#: src/editor-page.ui:167 src/editor-window.ui:288
 msgid "_Spaces"
 msgstr "_Пробелы"
 
-#: src/editor-page.ui:177 src/editor-window.ui:293
+#: src/editor-page.ui:174 src/editor-window.ui:293
 msgid "Spaces _Per Tab"
 msgstr "Пробелов на _табуляцию"
 
-#: src/editor-page.ui:179 src/editor-page.ui:207
+#: src/editor-page.ui:176 src/editor-page.ui:204
 msgid "2"
 msgstr "2"
 
-#: src/editor-page.ui:184 src/editor-page.ui:212
+#: src/editor-page.ui:181 src/editor-page.ui:209
 msgid "4"
 msgstr "4"
 
-#: src/editor-page.ui:189 src/editor-page.ui:217
+#: src/editor-page.ui:186 src/editor-page.ui:214
 msgid "6"
 msgstr "6"
 
-#: src/editor-page.ui:194 src/editor-page.ui:222
+#: src/editor-page.ui:191 src/editor-page.ui:219
 msgid "8"
 msgstr "8"
 
-#: src/editor-page.ui:200
+#: src/editor-page.ui:197
 msgid "Spaces Per Indent"
 msgstr "Пробелов на отступ"
 
-#: src/editor-page.ui:202
+#: src/editor-page.ui:199
 msgid "Use Tab Size"
 msgstr "Использовать размер табуляции"
 
@@ -526,13 +532,13 @@ msgstr "Поведение"
 
 #: src/editor-preferences-dialog.ui:116
 msgid "Discover Document Settings"
-msgstr "Открыть настройки документа"
+msgstr "Автоматически определять настройки документа"
 
 #: src/editor-preferences-dialog.ui:117
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr ""
-"Применять настройки с помощью modelines, editorconfig или разумных значений "
-"по умолчанию"
+"Применять настройки из modeline, editorconfig или использовать разумные "
+"значения по умолчанию"
 
 #: src/editor-preferences-dialog.ui:123
 msgid "Restore Session"
@@ -540,7 +546,7 @@ msgstr "Восстанавливать сеанс"
 
 #: src/editor-preferences-dialog.ui:124
 msgid "Return to your previous session when Text Editor is started"
-msgstr "Вернуться к предыдущему сеансу при запуске текстового редактора"
+msgstr "Возвращаться к предыдущему сеансу при запуске текстового редактора"
 
 #: src/editor-preferences-dialog.ui:139
 msgid "_Clear History"
@@ -844,7 +850,7 @@ msgstr "Меню"
 
 #: src/editor-window.ui:166
 msgid "Start or Open a Document"
-msgstr "Начать или открыть документ"
+msgstr "Создать или открыть документ"
 
 #: src/editor-window.ui:169
 msgid ""
@@ -855,12 +861,12 @@ msgid ""
 "\n"
 "Or, press Ctrl+W to close the window."
 msgstr ""
-"• Нажмите кнопку \"Открыть\"\n"
-"• Нажмите кнопку \"Новая вкладка\"\n"
-"• Нажмите Ctrl+N для создания нового документа\n"
-"• Нажмите Ctrl+O для обзора документов\n"
+"• Нажмите кнопку «Открыть»\n"
+"• Нажмите кнопку «Новая вкладка»\n"
+"• Нажмите Ctrl+N, чтобы создать новый документ\n"
+"• Нажмите Ctrl+O, чтобы открыть документ\n"
 "\n"
-"Или нажмите Ctrl+W для закрытия окна."
+"Или нажмите Ctrl+W, чтобы закрыть окно."
 
 #: src/editor-window.ui:202
 msgid "_New Window"
