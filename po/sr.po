@@ -1,0 +1,1198 @@
+# Serbian translation for gnome-text-editor.
+# Copyright (C) 2022 gnome-text-editor's COPYRIGHT HOLDER
+# This file is distributed under the same license as the gnome-text-editor package.
+# Марко Костић <marko.m.kostic@gmail.com>, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-text-editor main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
+"issues\n"
+"POT-Creation-Date: 2022-03-15 16:59+0000\n"
+"PO-Revision-Date: 2022-03-19 10:20+0100\n"
+"Last-Translator: Марко М. Костић <marko.m.kostic@gmail.com>\n"
+"Language-Team: Serbian <gnome-sr@googlegroups.com>\n"
+"Language: sr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : n"
+"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#: data/org.gnome.TextEditor.appdata.xml.in.in:6
+msgid "Christian Hergert, et al."
+msgstr "Кристијан Хергерт (Christian Hergert) и други"
+
+#: data/org.gnome.TextEditor.appdata.xml.in.in:8
+#: data/org.gnome.TextEditor.desktop.in.in:7
+#: data/org.gnome.TextEditor.desktop.in.in:8
+#: src/editor-application-actions.c:80 src/editor-application-actions.c:82
+msgid "Text Editor"
+msgstr "Уређивач текста"
+
+#: data/org.gnome.TextEditor.appdata.xml.in.in:10
+msgid "A Text Editor for GNOME"
+msgstr "Гномов уређивач текста"
+
+#: data/org.gnome.TextEditor.appdata.xml.in.in:12
+msgid ""
+"GNOME Text Editor is a simple text editor focused on a pleasing default "
+"experience."
+msgstr ""
+"Гномов уређивач текста је једноставни уређивач текста, усредсређен на "
+"пријатно подразумевано искуство."
+
+#: data/org.gnome.TextEditor.desktop.in.in:9
+msgid "View and edit text files"
+msgstr "Погледајте и уређујте текстуалне датотеке"
+
+#: data/org.gnome.TextEditor.gschema.xml:7
+msgid "Auto Save Delay"
+msgstr "Застој самосталног чувања"
+
+#: data/org.gnome.TextEditor.gschema.xml:8
+msgid "The delay in seconds to wait before auto-saving a draft."
+msgstr "Застој у секундама пре самосталног чувања нацрта."
+
+#: data/org.gnome.TextEditor.gschema.xml:16
+msgid "Style Variant"
+msgstr "Варијанта стила"
+
+#: data/org.gnome.TextEditor.gschema.xml:17
+msgid ""
+"Use the light or dark variant of the GTK theme and/or GtkSourceView style "
+"scheme."
+msgstr ""
+"Користи светлу или тамну варијацију ГТК теме и/или GtkSourceView стилске "
+"шеме."
+
+#: data/org.gnome.TextEditor.gschema.xml:25
+msgid "Indentation Style"
+msgstr "Стил увлачења"
+
+#: data/org.gnome.TextEditor.gschema.xml:26
+msgid "If the editor should insert multiple spaces characters instead of tabs."
+msgstr "Да ли уређивач треба убацивати више знакова размака уместо табулатора."
+
+#: data/org.gnome.TextEditor.gschema.xml:30
+msgid "Tab Width"
+msgstr "Ширина табулатора"
+
+#: data/org.gnome.TextEditor.gschema.xml:31
+msgid "The number of spaces represented by a tab."
+msgstr "Ширина табулатора у размацима."
+
+#: data/org.gnome.TextEditor.gschema.xml:35
+msgid "Show Line Numbers"
+msgstr "Прикажи бројеве редова"
+
+#: data/org.gnome.TextEditor.gschema.xml:36
+msgid "If line numbers should be displayed next to each line."
+msgstr "Да ли треба приказати број реда поред сваког реда."
+
+#: data/org.gnome.TextEditor.gschema.xml:40
+msgid "Show Right Margin"
+msgstr "Прикажи десну маргину"
+
+#: data/org.gnome.TextEditor.gschema.xml:41
+msgid "If a margin line should be displayed on the right of the editor."
+msgstr "Да ли треба приказати линију маргине на десној страни уређивача."
+
+#: data/org.gnome.TextEditor.gschema.xml:46
+msgid "Right Margin Position"
+msgstr "Положај десне маргине"
+
+#: data/org.gnome.TextEditor.gschema.xml:47
+msgid ""
+"The position in characters at which the right margin should be displayed."
+msgstr "Даљина у знаковима на којој ће десна маргина бити приказана."
+
+#: data/org.gnome.TextEditor.gschema.xml:51
+msgid "Show Overview Map"
+msgstr "Прикажи минијатурни преглед кода"
+
+#: data/org.gnome.TextEditor.gschema.xml:52
+msgid ""
+"If enabled, an overview map of the file will be displayed to the side of the "
+"editor."
+msgstr ""
+"Ако је омогућено, минијатурни преглед кода биће приказан на страни уређивача."
+
+#: data/org.gnome.TextEditor.gschema.xml:56
+msgid "Show Background Grid"
+msgstr "Прикажи мрежицу"
+
+#: data/org.gnome.TextEditor.gschema.xml:57
+msgid "If enabled, a blueprint style grid is printed on the editor background."
+msgstr "Ако је омогућено, мрежица биће приказана у позадини текста."
+
+#: data/org.gnome.TextEditor.gschema.xml:61
+msgid "Highlight current line"
+msgstr "Истакни текући ред"
+
+#: data/org.gnome.TextEditor.gschema.xml:62
+msgid "If enabled, the current line will be highlighted."
+msgstr "Ако је омогућено, тренутни ред биће истакнут."
+
+#: data/org.gnome.TextEditor.gschema.xml:66
+msgid "Text Wrapping"
+msgstr "Прелом текста"
+
+#: data/org.gnome.TextEditor.gschema.xml:67
+msgid "If text should be wrapped."
+msgstr "Да ли треба преламати текст."
+
+#: data/org.gnome.TextEditor.gschema.xml:71 src/editor-window.ui:221
+msgid "Use System Font"
+msgstr "Користи системски фонт"
+
+#: data/org.gnome.TextEditor.gschema.xml:72
+msgid "If the default system monospace font should be used."
+msgstr "Да ли треба користити системски фонт утврђене ширине."
+
+#: data/org.gnome.TextEditor.gschema.xml:76 src/editor-window.ui:227
+msgid "Custom Font"
+msgstr "Произвољни фонт"
+
+#: data/org.gnome.TextEditor.gschema.xml:77
+msgid "A custom font to use in the editor."
+msgstr "Произвољни фонт за коришћење у уређивачу."
+
+#: data/org.gnome.TextEditor.gschema.xml:81
+msgid "Style Scheme"
+msgstr "Шема стила"
+
+#: data/org.gnome.TextEditor.gschema.xml:82
+msgid ""
+"The style scheme to use by the editor. It may translate this into a dark "
+"format when available."
+msgstr ""
+"Шема стила коју користи уређивач. Може се превести у тамни формат када је он "
+"доступан."
+
+#: data/org.gnome.TextEditor.gschema.xml:86
+msgid "Discover File Settings"
+msgstr "Откриј подешавања датотеке"
+
+#: data/org.gnome.TextEditor.gschema.xml:87
+msgid ""
+"If enabled then Text Editor will try to discover file settings from "
+"modelines, editorconfig, or per-language defaults."
+msgstr ""
+"Ако је омогућено онда ће уређивач текста покушати да пронађе подешавање "
+"датотеке из modelines, editorconfig или подразумеваних подешавања сваког "
+"језика понаособ."
+
+#: data/org.gnome.TextEditor.gschema.xml:91
+msgid "Automatically check spelling"
+msgstr "Самостално проверавај правопис"
+
+#: data/org.gnome.TextEditor.gschema.xml:92
+msgid "If enabled, then Text Editor will check spelling as you type."
+msgstr "Ако је омогућено, уређивач текста провераваће правопис током куцања."
+
+#: src/editor-animation.c:1051
+#, c-format
+msgid "Failed to find property %s in %s"
+msgstr "Нисам успео да учитам особину %s унутар %s"
+
+#: src/editor-animation.c:1060
+#, c-format
+msgid "Failed to retrieve va_list value: %s"
+msgstr "Нисам успео да добавим va_list вредност: %s"
+
+#: src/editor-application.c:256
+msgid "Do not restore session at startup"
+msgstr "Не обнављај сесију при покретању"
+
+#: src/editor-application-actions.c:98
+msgid "Text Editor Website"
+msgstr "Страница Уређивача текста"
+
+#: src/editor-document.c:1715
+msgid "[Read-Only]"
+msgstr "[само за читање]"
+
+#: src/editor-info-bar.c:67
+msgid "_Discard Changes and Reload"
+msgstr "О_дбаци измене и поново учитај"
+
+#: src/editor-info-bar.c:70
+msgid "File Has Changed on Disk"
+msgstr "Датотека на диску је промењена"
+
+#: src/editor-info-bar.c:71
+msgid "The file has been changed by another program."
+msgstr "Ову датотеку је променио други програм."
+
+#: src/editor-info-bar.c:80 src/menus.ui:25
+msgid "Save _As…"
+msgstr "Сачувај _као…"
+
+#: src/editor-info-bar.c:82 src/editor-info-bar.ui:15
+msgid "Document Restored"
+msgstr "Документ је обновљен"
+
+#: src/editor-info-bar.c:83 src/editor-info-bar.ui:24
+msgid "Unsaved document has been restored."
+msgstr "Несачувани документ је обновљен."
+
+#: src/editor-info-bar.c:89
+msgid "_Save…"
+msgstr "_Сачувај…"
+
+#: src/editor-info-bar.c:91 src/editor-info-bar.ui:31
+msgid "_Discard…"
+msgstr "О_дбаци…"
+
+#: src/editor-info-bar.c:93
+msgid "Draft Changes Restored"
+msgstr "Измене нацрта су обновљене"
+
+#: src/editor-info-bar.c:94
+msgid "Unsaved changes to the document have been restored."
+msgstr "Несачуване измене у документу су обновљене."
+
+#: src/editor-language-dialog.ui:5
+msgid "Highlight Mode"
+msgstr "Режим истицања"
+
+#: src/editor-open-popover.ui:21 src/editor-sidebar.ui:55
+msgid "Recent Documents"
+msgstr "Скорашњи документи"
+
+#: src/editor-open-popover.ui:44
+msgid "No Recent Documents"
+msgstr "Нема скорашњих докумената"
+
+#: src/editor-open-popover.ui:88
+msgid "Br_owse Files…"
+msgstr "Прегледај дат_отеке…"
+
+#: src/editor-page.c:704 src/editor-sidebar-item.c:440
+msgid "New Document"
+msgstr "Нови документ"
+
+#: src/editor-page.c:721 src/editor-sidebar-item.c:459
+#: src/editor-sidebar-item.c:465
+msgid "Draft"
+msgstr "Нацрт"
+
+#: src/editor-page.c:775
+msgid "Failed to save document"
+msgstr "Нисам успео да сачувам документ"
+
+#: src/editor-page.c:843
+msgid "Save As"
+msgstr "Сачувај као"
+
+#: src/editor-page.c:846 src/editor-window-actions.c:131
+msgid "Save"
+msgstr "Сачувај"
+
+#: src/editor-page.c:847 src/editor-window-actions.c:130
+#: src/editor-window-actions.c:241 src/editor-window-actions.c:350
+msgid "Cancel"
+msgstr "Откажи"
+
+#: src/editor-page.c:965
+#, c-format
+msgid "Ln %u, Col %u"
+msgstr "Ред %u, кол.: %u"
+
+#. translators: Ln is short for "Line Number"
+#: src/editor-position-label.ui:12
+msgid "Ln"
+msgstr "Ред"
+
+#. translators: Col is short for "Column"
+#: src/editor-position-label.ui:32
+msgid "Col"
+msgstr "Кол."
+
+#: src/editor-preferences-font.c:102
+msgid "Select Font"
+msgstr "Изабери фонт"
+
+#: src/editor-save-changes-dialog.c:255 src/editor-window-actions.c:242
+msgid "Discard"
+msgstr "Одбаци"
+
+#: src/editor-save-changes-dialog.c:255
+msgid "Discard All"
+msgstr "Одбаци све"
+
+#: src/editor-save-changes-dialog.c:261
+msgid "Save Changes?"
+msgstr "Сачувати измене?"
+
+#: src/editor-save-changes-dialog.c:263
+msgid ""
+"Open documents contain unsaved changes. Changes which are not saved will be "
+"permanently lost."
+msgstr ""
+"Отворена документа садрже несачуване измене. Несачуване измене биће трајно "
+"изгубљене."
+
+#: src/editor-save-changes-dialog.c:265
+msgid "_Cancel"
+msgstr "_Откажи"
+
+#: src/editor-save-changes-dialog.c:267 src/menus.ui:19
+msgid "_Save"
+msgstr "_Сачувај"
+
+#: src/editor-save-changes-dialog.c:297
+msgid "Untitled Document"
+msgstr "Неименован документ"
+
+#. translators: %s is replaced with the title of the file
+#: src/editor-save-changes-dialog.c:300
+#, c-format
+msgid "%s (new)"
+msgstr "%s (нова)"
+
+#: src/editor-save-changes-dialog.c:335
+msgid "Save changes for this document"
+msgstr "Сачувај измене у овом документу"
+
+#: src/editor-search-bar.ui:14
+msgid "Search"
+msgstr "Претрага"
+
+#: src/editor-search-bar.ui:34
+msgid "Replace"
+msgstr "Замени"
+
+#: src/editor-search-bar.ui:51
+msgid "Move to previous match (Ctrl+Shift+G)"
+msgstr "Претходни резултат претраге (Ctrl+Shift+G)"
+
+#: src/editor-search-bar.ui:58
+msgid "Move to next match (Ctrl+G)"
+msgstr "Следећи резултат претраге (Ctrl+G)"
+
+#: src/editor-search-bar.ui:70
+msgid "Search & Replace (Ctrl+H)"
+msgstr "Нађи и замени (Ctrl+H)"
+
+#: src/editor-search-bar.ui:80
+msgid "Toggle search options"
+msgstr "Прикажи опције претраге"
+
+#: src/editor-search-bar.ui:94
+msgid "Close search"
+msgstr "Затвори претрагу"
+
+#: src/editor-search-bar.ui:111
+msgid "_Replace"
+msgstr "_Замени"
+
+#: src/editor-search-bar.ui:123
+msgid "Replace _All"
+msgstr "Замени _све"
+
+#: src/editor-search-bar.ui:140
+msgid "Re_gular expressions"
+msgstr "Ре_гуларни изрази"
+
+#: src/editor-search-bar.ui:146
+msgid "_Case sensitive"
+msgstr "_Разликуј велика и мала слова"
+
+#: src/editor-search-bar.ui:152
+msgid "Match whole _word only"
+msgstr "Поклопи само _целу реч"
+
+#: src/editor-sidebar.ui:32
+msgid "Search documents (Ctrl+K)"
+msgstr "Претражи документе (Ctrl+K)"
+
+#: src/editor-sidebar.ui:41
+msgid "Open document (Ctrl+O)"
+msgstr "Отвори документ (Ctrl+O)"
+
+#: src/editor-spell-menu.c:58
+msgid "Languages"
+msgstr "Језици"
+
+#: src/editor-spell-menu.c:59
+msgid "Add to Dictionary"
+msgstr "Додај у речник"
+
+#: src/editor-spell-menu.c:60
+msgid "Ignore"
+msgstr "Занемари"
+
+#: src/editor-spell-menu.c:61
+msgid "Check Spelling"
+msgstr "Провера правописа"
+
+#: src/editor-theme-selector.ui:18 src/editor-theme-selector.ui:20
+msgid "Light style"
+msgstr "Светли стил"
+
+#: src/editor-theme-selector.ui:34 src/editor-theme-selector.ui:36
+msgid "Dark style"
+msgstr "Тамни стил"
+
+#: src/editor-utils.c:324
+msgid "Just now"
+msgstr "Управо сада"
+
+#: src/editor-utils.c:326
+msgid "An hour ago"
+msgstr "Пре једног сата"
+
+#: src/editor-utils.c:328
+msgid "Yesterday"
+msgstr "Јуче"
+
+#: src/editor-utils.c:334
+msgid "About a year ago"
+msgstr "Пре једне године"
+
+#: src/editor-utils.c:338
+#, c-format
+msgid "About %u year ago"
+msgid_plural "About %u years ago"
+msgstr[0] "Пре %u године"
+msgstr[1] "Пре %u године"
+msgstr[2] "Пре %u година"
+msgstr[3] "Пре једне године"
+
+#: src/editor-utils.c:346
+msgid "Unix/Linux (LF)"
+msgstr "Уникс/Линукс (LF)"
+
+#: src/editor-utils.c:347
+msgid "Mac OS Classic (CR)"
+msgstr "Мек ОС класични (CR)"
+
+#: src/editor-utils.c:348
+msgid "Windows (CR+LF)"
+msgstr "Виндоус (CR+LF)"
+
+#: src/editor-utils.c:378
+msgid "Automatically Detected"
+msgstr "Самостално препознат"
+
+#: src/editor-utils.c:394
+msgid "Character Encoding:"
+msgstr "Кодирања знакова:"
+
+#: src/editor-utils.c:429
+msgid "Line Ending:"
+msgstr "Завршетак реда:"
+
+#. translators: %s is replaced with the document title
+#: src/editor-window-actions.c:126
+#, c-format
+msgid "Save Changes to “%s”?"
+msgstr "Сачувати измене у документу „%s“?"
+
+#: src/editor-window-actions.c:129
+msgid "Saving changes will replace the previously saved version."
+msgstr "Чување измена замениће претходно сачувано издање."
+
+#. translators: %s is replaced with the document title
+#: src/editor-window-actions.c:237
+#, c-format
+msgid "Discard Changes to “%s”?"
+msgstr "Одбацити измене у документу „%s“?"
+
+#: src/editor-window-actions.c:240
+msgid "Unsaved changes will be permanently lost."
+msgstr "Несачуване измене биће трајно изгубљене."
+
+#: src/editor-window-actions.c:346
+msgid "Open File"
+msgstr "Отвори датотеку"
+
+#: src/editor-window-actions.c:349
+msgid "Open"
+msgstr "Отвори"
+
+#: src/editor-window-actions.c:363
+msgid "All Files"
+msgstr "Све датотеке"
+
+#: src/editor-window-actions.c:368
+msgid "Text Files"
+msgstr "Текстуалне датотеке"
+
+#: src/editor-window.ui:61
+msgid "_Open"
+msgstr "От_вори"
+
+#: src/editor-window.ui:63
+msgid "Open recent document (Ctrl+K)"
+msgstr "Отвори скорашњи документ (Ctrl+K)"
+
+#: src/editor-window.ui:75 src/editor-window.ui:77
+msgid "New tab (Ctrl+T)"
+msgstr "Нови језичак (Ctrl+T)"
+
+#: src/editor-window.ui:103 src/editor-window.ui:106
+msgid "View"
+msgstr "Преглед"
+
+#: src/editor-window.ui:114
+msgid "Menu"
+msgstr "Мени"
+
+#: src/editor-window.ui:151
+msgid "Start or Open a Document"
+msgstr "Започни или отвори документ"
+
+#: src/editor-window.ui:154
+msgid ""
+"• Press the Open button\n"
+"• Press the New tab button\n"
+"• Press Ctrl+N to start a new document\n"
+"• Press Ctrl+O to browse for a document\n"
+"\n"
+"Or, press Ctrl+W to close the window."
+msgstr ""
+"• Притисни дугме за отварање\n"
+"• Притисни дугме за нови језичак\n"
+"• Притисни Ctrl+N за нови документ\n"
+"• Притисни Ctrl+O за прегледање докумената\n"
+"\n"
+"Или, притисните Ctrl+W да бисте затворили прозор."
+
+#: src/editor-window.ui:195
+msgid "Preferences"
+msgstr "Поставке"
+
+#: src/editor-window.ui:217
+msgid "Font"
+msgstr "Фонт"
+
+#: src/editor-window.ui:236
+msgid "Right Margin"
+msgstr "Десна маргина"
+
+#: src/editor-window.ui:240
+msgid "Margin Position"
+msgstr "Положај маргине"
+
+#: src/editor-window.ui:248
+msgid "Appearance"
+msgstr "Изглед"
+
+#: src/editor-window.ui:252
+msgid "Display Grid Pattern"
+msgstr "Прикажи шаблон са мрежом"
+
+#: src/editor-window.ui:258
+msgid "Highlight Current Line"
+msgstr "Истакни тренутну линију"
+
+#: src/editor-window.ui:264
+msgid "Display Overview Map"
+msgstr "Прикажи минијатурни преглед кода"
+
+#: src/enchant/editor-enchant-spell-provider.c:92
+msgid "Enchant 2"
+msgstr "Енчант 2"
+
+#: src/help-overlay.ui:8
+msgctxt "shortcut window"
+msgid "Editor Shortcuts"
+msgstr "Пречице уређивача"
+
+#: src/help-overlay.ui:11
+msgctxt "shortcut window"
+msgid "Windows"
+msgstr "Прозори"
+
+#: src/help-overlay.ui:14
+msgctxt "shortcut window"
+msgid "New window"
+msgstr "Нови прозор"
+
+#: src/help-overlay.ui:20
+msgctxt "shortcut window"
+msgid "Move document to new window"
+msgstr "Премести у нови прозор"
+
+#: src/help-overlay.ui:27
+msgctxt "shortcut window"
+msgid "Move to next tab"
+msgstr "Премести у следећи језичак"
+
+#: src/help-overlay.ui:33
+msgctxt "shortcut window"
+msgid "Move to previous tab"
+msgstr "Премести у претходни језичак"
+
+#: src/help-overlay.ui:39
+msgctxt "shortcut window"
+msgid "Reorder after next tab"
+msgstr "Помери иза следећег језичка"
+
+#: src/help-overlay.ui:45
+msgctxt "shortcut window"
+msgid "Reorder before previous tab"
+msgstr "Помери испред претходног језичка"
+
+#: src/help-overlay.ui:52
+msgctxt "shortcut window"
+msgid "Zoom"
+msgstr "Увеличавање"
+
+#: src/help-overlay.ui:56
+msgctxt "shortcut window"
+msgid "Zoom In"
+msgstr "Увећавање"
+
+#: src/help-overlay.ui:62
+msgctxt "shortcut window"
+msgid "Zoom Out"
+msgstr "Умањивање"
+
+#: src/help-overlay.ui:68
+msgctxt "shortcut window"
+msgid "Reset Zoom"
+msgstr "Враћање увеличавања"
+
+#: src/help-overlay.ui:75
+msgctxt "shortcut window"
+msgid "Documents"
+msgstr "Документи"
+
+#: src/help-overlay.ui:78
+msgctxt "shortcut window"
+msgid "New document"
+msgstr "Нови документ"
+
+#: src/help-overlay.ui:84
+msgctxt "shortcut window"
+msgid "Browse to open document"
+msgstr "Отвори нови документ"
+
+#: src/help-overlay.ui:90
+msgctxt "shortcut window"
+msgid "Find document by name"
+msgstr "Пронађи документ по називу"
+
+#: src/help-overlay.ui:96
+msgctxt "shortcut window"
+msgid "Save"
+msgstr "Сачувај"
+
+#: src/help-overlay.ui:102
+msgctxt "shortcut window"
+msgid "Save As"
+msgstr "Сачувај као"
+
+#: src/help-overlay.ui:108
+msgctxt "shortcut window"
+msgid "Find/Replace"
+msgstr "Нађи и замени"
+
+#: src/help-overlay.ui:114
+msgctxt "shortcut window"
+msgid "Close document"
+msgstr "Затвори документ"
+
+#: src/help-overlay.ui:122
+msgctxt "shortcut window"
+msgid "Copy and Paste"
+msgstr "Копирај и убаци"
+
+#: src/help-overlay.ui:126
+msgctxt "shortcut window"
+msgid "Copy selected text to clipboard"
+msgstr "Копирај изабрани текст у оставу"
+
+#: src/help-overlay.ui:132
+msgctxt "shortcut window"
+msgid "Cut selected text to clipboard"
+msgstr "Исеци изабрани текст у оставу"
+
+#: src/help-overlay.ui:138
+msgctxt "shortcut window"
+msgid "Paste text from clipboard"
+msgstr "Убаци текст из оставе"
+
+#: src/help-overlay.ui:143
+msgctxt "shortcut window"
+msgid "Copy all to clipboard"
+msgstr "Копирај све у оставу"
+
+#: src/help-overlay.ui:151
+msgctxt "shortcut window"
+msgid "Undo and Redo"
+msgstr "Опозови и понови"
+
+#: src/help-overlay.ui:155
+msgctxt "shortcut window"
+msgid "Undo previous command"
+msgstr "Опозови претходну наредбу"
+
+#: src/help-overlay.ui:161
+msgctxt "shortcut window"
+msgid "Redo previous command"
+msgstr "Понови претходну наредбу"
+
+#: src/help-overlay.ui:168
+msgctxt "shortcut window"
+msgid "Editing"
+msgstr "Уређивање"
+
+#: src/help-overlay.ui:172
+msgctxt "shortcut window"
+msgid "Insert emoji into document"
+msgstr "Убаци емотивка у документ"
+
+#: src/help-overlay.ui:178
+msgctxt "shortcut window"
+msgid "Search within the document"
+msgstr "Претражи унутар документа"
+
+#: src/help-overlay.ui:184
+msgctxt "shortcut window"
+msgid "Search and replace within the document"
+msgstr "Претражи и замени унутар документа"
+
+#: src/help-overlay.ui:190
+msgctxt "shortcut window"
+msgid "Increment number at cursor"
+msgstr "Повећај број на показивачу"
+
+#: src/help-overlay.ui:196
+msgctxt "shortcut window"
+msgid "Decrement number at cursor"
+msgstr "Смањи број на показивачу"
+
+#: src/help-overlay.ui:202
+msgctxt "shortcut window"
+msgid "Toggle overwrite"
+msgstr "Укључи преписивање"
+
+#: src/help-overlay.ui:208
+msgctxt "shortcut window"
+msgid "Toggle visibility of insertion caret"
+msgstr "Промени стање видљивости знака куцања"
+
+#: src/help-overlay.ui:215
+msgctxt "shortcut window"
+msgid "Selections"
+msgstr "Одабири"
+
+#: src/help-overlay.ui:219
+msgctxt "shortcut window"
+msgid "Select all"
+msgstr "Изабери све"
+
+#: src/help-overlay.ui:225
+msgctxt "shortcut window"
+msgid "Unselect all"
+msgstr "Избаци све из избора"
+
+#: src/help-overlay.ui:232
+msgctxt "shortcut window"
+msgid "Movements"
+msgstr "Кретања"
+
+#: src/help-overlay.ui:236
+msgctxt "shortcut window"
+msgid "Move to beginning of document"
+msgstr "Помери на почетак документа"
+
+#: src/help-overlay.ui:242
+msgctxt "shortcut window"
+msgid "Move to end of document"
+msgstr "Помери на крај документа"
+
+#: src/help-overlay.ui:248
+msgctxt "shortcut window"
+msgid "Move to start of previous paragraph"
+msgstr "Помери на почетак наредног пасуса"
+
+#: src/help-overlay.ui:254
+msgctxt "shortcut window"
+msgid "Move to end of next paragraph"
+msgstr "Помери на крај наредног пасуса"
+
+#: src/help-overlay.ui:260
+msgctxt "shortcut window"
+msgid "Move current or selected lines up"
+msgstr "Помери тренутну или изабране редове нагоре"
+
+#: src/help-overlay.ui:266
+msgctxt "shortcut window"
+msgid "Move current or selected lines down"
+msgstr "Помери тренутну или изабране редове надоле"
+
+#: src/help-overlay.ui:273
+msgctxt "shortcut window"
+msgid "Deletion"
+msgstr "Брисање"
+
+#: src/help-overlay.ui:277
+msgctxt "shortcut window"
+msgid "Delete from cursor to word start"
+msgstr "Обриши од показивача до почетка речи"
+
+#: src/help-overlay.ui:283
+msgctxt "shortcut window"
+msgid "Delete from cursor to word end"
+msgstr "Обриши од показивача до краја речи"
+
+#: src/help-overlay.ui:289
+msgctxt "shortcut window"
+msgid "Delete from cursor to paragraph start"
+msgstr "Обриши од показивача од почетка пасуса"
+
+#: src/help-overlay.ui:295
+msgctxt "shortcut window"
+msgid "Delete from cursor to paragraph end"
+msgstr "Обриши од показивача од краја пасуса"
+
+#: src/menus.ui:11
+msgid "_New Window"
+msgstr "_Нови прозор"
+
+#: src/menus.ui:33
+msgid "_Copy All"
+msgstr "_Копирај све"
+
+#: src/menus.ui:39
+msgid "_Discard Changes"
+msgstr "_Одбаци измене"
+
+#: src/menus.ui:43
+msgid "_Find/Replace…"
+msgstr "Нађи и за_мени…"
+
+#: src/menus.ui:51
+msgid "_Print…"
+msgstr "Штам_пај…"
+
+#: src/menus.ui:58
+msgid "_Preferences"
+msgstr "_Поставке"
+
+#: src/menus.ui:62
+msgid "_Keyboard Shortcuts"
+msgstr "Пречице на та_статури"
+
+#: src/menus.ui:66
+msgid "Help"
+msgstr "Помоћ"
+
+#: src/menus.ui:70
+msgid "_About Text Editor"
+msgstr "О уређив_ачу текста"
+
+#: src/menus.ui:77
+msgid "Show"
+msgstr "Прикажи"
+
+#: src/menus.ui:79
+msgid "_Line Numbers"
+msgstr "Бројеви _редова"
+
+#: src/menus.ui:83
+msgid "_Right Margin"
+msgstr "Десна ма_ргина"
+
+#: src/menus.ui:88
+msgid "Indentation"
+msgstr "Увлачење"
+
+#: src/menus.ui:90
+msgid "_Tabs"
+msgstr "_Табулатори"
+
+#: src/menus.ui:95
+msgid "_Spaces"
+msgstr "Ра_змаци"
+
+#: src/menus.ui:100
+msgid "Spaces _Per Tab"
+msgstr "Размака _по табулатору"
+
+#: src/menus.ui:103
+msgid "_2"
+msgstr "_2"
+
+#: src/menus.ui:108
+msgid "_4"
+msgstr "_4"
+
+#: src/menus.ui:113
+msgid "_6"
+msgstr "_6"
+
+#: src/menus.ui:118
+msgid "_8"
+msgstr "_8"
+
+#: src/menus.ui:127
+msgid "T_ext Wrapping"
+msgstr "Пр_еламање текста"
+
+#: src/menus.ui:131
+msgid "_Automatic Margin Position"
+msgstr "С_амостални положај маргине"
+
+#: src/menus.ui:135
+msgid "Chec_k Spelling"
+msgstr "Про_вери правопис"
+
+#: src/menus.ui:139
+msgid "_Highlight Mode"
+msgstr "_Режим истицања"
+
+#: src/menus.ui:147
+msgid "Move _Left"
+msgstr "Премести _лево"
+
+#: src/menus.ui:152
+msgid "Move _Right"
+msgstr "Премести _десно"
+
+#: src/menus.ui:159
+msgid "_Move to New Window"
+msgstr "Премести у _нови прозор"
+
+#: src/menus.ui:166
+msgid "Close _Other Tabs"
+msgstr "Затвори _остале језичке"
+
+#: src/menus.ui:170
+msgid "_Close"
+msgstr "_Затвори"
+
+#~ msgid "Auto Indent"
+#~ msgstr "Самостално увлачење"
+
+#~ msgid ""
+#~ "Automatically indent new lines copying the previous line's indentation."
+#~ msgstr ""
+#~ "Самостално увлачи нове линије на основу увучености претходне линије."
+
+#~ msgid "Indent Width"
+#~ msgstr "Ширина увлачења"
+
+#~ msgid "The number of spaces to indent or -1 to use tab-width."
+#~ msgstr "Број размака за увлачење или -1 за коришћење ширине табулатора."
+
+#~ msgid "Restore session"
+#~ msgstr "Обнови сесију"
+
+#~ msgid "When Text Editor is run, restore the previous session."
+#~ msgstr "Када се уређивач текста покрене, обнови претходну сесију."
+
+#~ msgid "Recolor Window"
+#~ msgstr "Поново обоји прозор"
+
+#~ msgid "Use the style-scheme to recolor the application window."
+#~ msgstr "Користи шему стила за поновно бојење прозора програма."
+
+#~ msgid "Keybindings"
+#~ msgstr "Пречице тастатуре"
+
+#~ msgid "The keybindings to use within Text Editor."
+#~ msgstr "Пречице које се користе унутар уређивача текста."
+
+#~ msgid "Last Save Directory"
+#~ msgstr "Последња фасцикла чувања"
+
+#~ msgid "The directory last used in a save or save-as dialog."
+#~ msgstr "Фасцикла која је коришћена последњи пут у прозорчићима чувања."
+
+#~ msgid "Draw Spaces"
+#~ msgstr "Означи размаке"
+
+#~ msgid "The various types of spaces to draw in the editor."
+#~ msgstr "Разне врсте размака које треба означити у уређивачу."
+
+#~ msgid "Enable Snippets"
+#~ msgstr "Омогући исечке"
+
+#~ msgid ""
+#~ "Enable the use of snippets registered with GtkSourceView from within the "
+#~ "editor."
+#~ msgstr ""
+#~ "Омогућавање коришћења исечака регистрованих унутар GtkSourceView дела "
+#~ "уређивача."
+
+#~ msgid "Line Height"
+#~ msgstr "Висина реда"
+
+#~ msgid "The line height to use for the selected font."
+#~ msgstr "Висина реда за одабрани фонт."
+
+#~ msgid "translator-credits"
+#~ msgstr ""
+#~ "Марко М. Костић <marko.m.kostic@gmail.com>\n"
+#~ "\n"
+#~ "https://гном.срб — превод Гнома на српски језик."
+
+#~ msgid "Open provided files in a new window"
+#~ msgstr "Отвори достављене датотеке у новом прозору"
+
+#~ msgid "File path is NULL"
+#~ msgstr "Путања датотеке је неисправна"
+
+#~ msgid "Error converting UTF-8 filename to wide char"
+#~ msgstr "Грешка приликом претварања УТФ-8 назива датотеке у широки знак"
+
+#~ msgid "ILCreateFromPath() failed"
+#~ msgstr "Позив ILCreateFromPath() није успео"
+
+#~ msgid "Cannot convert “%s” into a valid NSURL."
+#~ msgstr "Не могу претворити „%s“ у исправан NSURL."
+
+#~ msgid "Could Not Open File"
+#~ msgstr "Не могу да отворим датотеку"
+
+#~ msgid "You do not have permission to open the file."
+#~ msgstr "Немате потребне дозволе да отворите датотеку."
+
+#~ msgid "_Retry"
+#~ msgstr "П_робај поново"
+
+#~ msgid "Open As _Administrator"
+#~ msgstr "Отвори као _администратор"
+
+#~ msgid "Document Type"
+#~ msgstr "Врста документа"
+
+#~ msgid "No Matches"
+#~ msgstr "Нема подударања"
+
+#~ msgid "No Results Found"
+#~ msgstr "Нема резултата"
+
+#~ msgid "%s (Administrator)"
+#~ msgstr "%s (администратор)"
+
+#~ msgid "Document Portal"
+#~ msgstr "Портал документа"
+
+#~ msgid "Go to Line"
+#~ msgstr "Иди на ред"
+
+#~ msgid "Go"
+#~ msgstr "Иди"
+
+#~ msgid "_Automatic Indentation"
+#~ msgstr "С_амостално увлачење"
+
+#~ msgid "2"
+#~ msgstr "2"
+
+#~ msgid "4"
+#~ msgstr "4"
+
+#~ msgid "6"
+#~ msgstr "6"
+
+#~ msgid "8"
+#~ msgstr "8"
+
+#~ msgid "Spaces Per Indent"
+#~ msgstr "Размака по увлачењу"
+
+#~ msgid "Use Tab Size"
+#~ msgstr "Користи величину табулатора"
+
+#~ msgid "Behavior"
+#~ msgstr "Понашање"
+
+#~ msgid "Discover Document Settings"
+#~ msgstr "Откриј подешавања датотеке"
+
+#~ msgid "Apply settings using modelines, editorconfig, or sensible defaults"
+#~ msgstr ""
+#~ "Примени подешавања на основу modelines, editorconfig или подразумеваних "
+#~ "подешавања"
+
+#~ msgid "Restore Session"
+#~ msgstr "Обнови сесију"
+
+#~ msgid "Return to your previous session when Text Editor is started"
+#~ msgstr "Обнови претходну сесију када се уређивач текста покрене"
+
+#~ msgid "_Clear History"
+#~ msgstr "Очис_ти историјат"
+
+#~ msgid "Draft: %s"
+#~ msgstr "Нацрт: %s"
+
+#~ msgid "File: %s"
+#~ msgstr "Датотека: %s"
+
+#~ msgid "Page %N of %Q"
+#~ msgstr "Страница %N од %Q"
+
+#~ msgid "Properties"
+#~ msgstr "Особине"
+
+#~ msgid "File"
+#~ msgstr "Датотека"
+
+#~ msgid "Name"
+#~ msgstr "Назив"
+
+#~ msgid "Location"
+#~ msgstr "Место"
+
+#~ msgid "Statistics"
+#~ msgstr "Статистика"
+
+#~ msgid "Lines"
+#~ msgstr "Редови"
+
+#~ msgid "Words"
+#~ msgstr "Речи"
+
+#~ msgid "Characters, No Spaces"
+#~ msgstr "Знакова (без размака)"
+
+#~ msgid "All Characters"
+#~ msgstr "Сви знакови"
+
+#~ msgid "_Discard"
+#~ msgstr "О_дбаци"
+
+#~ msgid "%u of %u"
+#~ msgstr "%u од %u"
+
+#~ msgid "Follow system style"
+#~ msgstr "Прати системски стил"
+
+#~ msgid "Document Type: %s"
+#~ msgstr "Врста документа: %s"
+
+#~ msgid "%s (%s) - Text Editor"
+#~ msgstr "%s (%s) - уређивач текста"
+
+#~ msgid "Documen_t Properties"
+#~ msgstr "Својс_тва документа"
+
+#~ msgid "_Document Type"
+#~ msgstr "Врста _документа"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Restore previously closed tab"
+#~ msgstr "Обнови претходно затворени језичак"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Select current line"
+#~ msgstr "Изабери тренутни ред"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Go to line"
+#~ msgstr "Иди на ред"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Delete the current line"
+#~ msgstr "Обриши тренутни ред"
