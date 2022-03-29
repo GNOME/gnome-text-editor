@@ -481,19 +481,6 @@ editor_animation_tick (EditorAnimation *animation,
    */
   g_signal_emit (animation, signals[TICK], 0);
 
-  /*
-   * Flush any outstanding events to the graphics server (in the case of X).
-   */
-#if !GTK_CHECK_VERSION (3, 13, 0)
-  if (GTK_IS_WIDGET (animation->target))
-    {
-      GdkWindow *window;
-
-      if ((window = gtk_widget_get_window (GTK_WIDGET (animation->target))))
-        gdk_window_flush (window);
-    }
-#endif
-
   animation->last_offset = offset;
 
   return offset < 1.0;
