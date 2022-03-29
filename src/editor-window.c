@@ -497,7 +497,7 @@ editor_window_constructed (GObject *object)
   zoom_in = g_object_new (GTK_TYPE_BUTTON,
                           "action-name", "page.zoom-in",
                           "child", g_object_new (GTK_TYPE_IMAGE,
-                                                 "icon-name", "list-add-symbolic",
+                                                 "icon-name", "zoom-in-symbolic",
                                                  "pixel-size", 14,
                                                  NULL),
                           NULL);
@@ -505,7 +505,7 @@ editor_window_constructed (GObject *object)
   zoom_out = g_object_new (GTK_TYPE_BUTTON,
                            "action-name", "page.zoom-out",
                           "child", g_object_new (GTK_TYPE_IMAGE,
-                                                 "icon-name", "list-remove-symbolic",
+                                                 "icon-name", "zoom-out-symbolic",
                                                  "pixel-size", 14,
                                                  NULL),
                            NULL);
