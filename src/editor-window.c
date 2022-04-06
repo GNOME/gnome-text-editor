@@ -498,18 +498,20 @@ editor_window_constructed (GObject *object)
                           "action-name", "page.zoom-in",
                           "child", g_object_new (GTK_TYPE_IMAGE,
                                                  "icon-name", "zoom-in-symbolic",
-                                                 "pixel-size", 14,
+                                                 "pixel-size", 16,
                                                  NULL),
                           NULL);
   gtk_widget_add_css_class (zoom_in, "circular");
+  gtk_widget_add_css_class (zoom_in, "flat");
   zoom_out = g_object_new (GTK_TYPE_BUTTON,
                            "action-name", "page.zoom-out",
                           "child", g_object_new (GTK_TYPE_IMAGE,
                                                  "icon-name", "zoom-out-symbolic",
-                                                 "pixel-size", 14,
+                                                 "pixel-size", 16,
                                                  NULL),
                            NULL);
   gtk_widget_add_css_class (zoom_out, "circular");
+  gtk_widget_add_css_class (zoom_out, "flat");
   self->zoom_label = g_object_new (GTK_TYPE_LABEL,
                                    "hexpand", TRUE,
                                    "label", "100%",
