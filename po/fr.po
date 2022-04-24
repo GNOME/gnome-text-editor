@@ -3,22 +3,23 @@
 # This file is distributed under the same license as the gnome-text-editor package.
 # Franck Albaret <contact@dansleru.sh>, 2022
 # Alexandre Franke <afranke@gnome.org>, 2022	
+# Charles Monzat <charles.monzat@free.fr>, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-04-14 18:48+0000\n"
-"PO-Revision-Date: 2022-04-22 18:57+0200\n"
-"Last-Translator: Alexandre Franke <afranke@gnome.org>\n"
+"POT-Creation-Date: 2022-04-22 16:58+0000\n"
+"PO-Revision-Date: 2022-04-24 22:13+0200\n"
+"Last-Translator: Charles Monzat <charles.monzat@free.fr>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Gtranslator 40.0\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
 msgid "Christian Hergert, et al."
@@ -40,7 +41,7 @@ msgid ""
 "GNOME Text Editor is a simple text editor focused on a pleasing default "
 "experience."
 msgstr ""
-"L'Éditeur de texte de GNOME est un éditeur de texte simple, axé sur une "
+"Éditeur de texte de GNOME est un éditeur de texte simple, axé sur une "
 "expérience utilisateur agréable."
 
 #: data/org.gnome.TextEditor.desktop.in.in:9
@@ -64,7 +65,7 @@ msgid ""
 "Use the light or dark variant of the GTK theme and/or GtkSourceView style "
 "scheme."
 msgstr ""
-"Utilisez la variante claire ou sombre du thème GTK et/ou de celui de "
+"Utiliser la variante claire ou sombre du thème GTK et/ou celui de "
 "GtkSourceView."
 
 #: data/org.gnome.TextEditor.gschema.xml:35
@@ -142,7 +143,7 @@ msgid ""
 "If enabled, an overview map of the file will be displayed to the side of the "
 "editor."
 msgstr ""
-"Si activé, une vue d’ensemble du fichier sera affiché sur le côté de "
+"Si activé, une vue d’ensemble du fichier sera affichée sur le côté de "
 "l’éditeur."
 
 #: data/org.gnome.TextEditor.gschema.xml:78
@@ -156,11 +157,11 @@ msgstr ""
 
 #: data/org.gnome.TextEditor.gschema.xml:83
 msgid "Highlight current line"
-msgstr "Mettre en évidence la ligne courante"
+msgstr "Mettre en évidence la ligne actuelle"
 
 #: data/org.gnome.TextEditor.gschema.xml:84
 msgid "If enabled, the current line will be highlighted."
-msgstr "Si activé, la ligne courante sera mise en évidence."
+msgstr "Si activé, la ligne actuelle sera mise en évidence."
 
 #: data/org.gnome.TextEditor.gschema.xml:88
 msgid "Text Wrapping"
@@ -227,7 +228,7 @@ msgstr "Restaurer la session"
 
 #: data/org.gnome.TextEditor.gschema.xml:119
 msgid "When Text Editor is run, restore the previous session."
-msgstr "Au lancement de l’éditeur de texte, restaurer la session précédente."
+msgstr "Restaurer la session précédente, au lancement de l’éditeur de texte."
 
 #: data/org.gnome.TextEditor.gschema.xml:123
 msgid "Recolor Window"
@@ -235,7 +236,7 @@ msgstr "Recolorer la fenêtre"
 
 #: data/org.gnome.TextEditor.gschema.xml:124
 msgid "Use the style-scheme to recolor the application window."
-msgstr "Utilisez le thème pour recolorer la fenêtre de l’application."
+msgstr "Utiliser le thème pour recolorer la fenêtre de l’application."
 
 #: data/org.gnome.TextEditor.gschema.xml:132
 msgid "Keybindings"
@@ -295,11 +296,12 @@ msgstr "Échec de récupération de la valeur va_list : %s"
 
 #: src/editor-application-actions.c:206
 msgid "Text Editor Website"
-msgstr "Site Web de l’éditeur de texte"
+msgstr "Site web de l’éditeur de texte"
 
 #: src/editor-application-actions.c:207
 msgid "translator-credits"
-msgstr "Franck Albaret\n"
+msgstr ""
+"Franck Albaret\n"
 "Alexandre Franke"
 
 #: src/editor-application.c:599
@@ -377,7 +379,7 @@ msgstr "Impossible d’ouvrir le fichier"
 
 #: src/editor-info-bar.ui:28
 msgid "You do not have permission to open the file."
-msgstr "Vous n'avez pas la permission d’ouvrir ce fichier."
+msgstr "Vous n’avez pas la permission d’ouvrir ce fichier."
 
 #: src/editor-info-bar.ui:35
 msgid "_Retry"
@@ -424,7 +426,7 @@ msgstr "Portail de documents"
 
 #: src/editor-page.c:1080
 msgid "Failed to save document"
-msgstr "L'enregistrement du fichier a échoué"
+msgstr "L’enregistrement du fichier a échoué"
 
 #: src/editor-page.c:1165
 msgid "Save As"
@@ -516,7 +518,7 @@ msgstr "Afficher le motif de grille"
 
 #: src/editor-preferences-dialog.ui:85
 msgid "Highlight Current Line"
-msgstr "Surligner la ligne courante"
+msgstr "Surligner la ligne actuelle"
 
 #: src/editor-preferences-dialog.ui:91
 msgid "Display Overview Map"
@@ -554,7 +556,7 @@ msgstr "Revenir à votre session précédente au lancement de l’éditeur de te
 
 #: src/editor-preferences-dialog.ui:136
 msgid "_Clear History"
-msgstr "_Effacer Historique"
+msgstr "_Effacer l’historique"
 
 #: src/editor-preferences-font.c:100
 msgid "Select Font"
@@ -619,7 +621,7 @@ msgstr "_Abandonner"
 
 #: src/editor-save-changes-dialog.c:258
 msgid "_Discard All"
-msgstr "_Abandonner tout"
+msgstr "_Tout abandonner"
 
 #: src/editor-save-changes-dialog.c:264
 msgid "Save Changes?"
@@ -635,7 +637,7 @@ msgstr ""
 
 #: src/editor-save-changes-dialog.c:268
 msgid "_Cancel"
-msgstr "_Annuler"
+msgstr "A_nnuler"
 
 #: src/editor-save-changes-dialog.c:270 src/editor-window.ui:210
 msgid "_Save"
@@ -661,11 +663,11 @@ msgstr "Remplacer"
 
 #: src/editor-search-bar.ui:51
 msgid "Move to previous match (Ctrl+Shift+G)"
-msgstr "Correspondance précédente (Ctrl+Maj+G)"
+msgstr "Occurrence précédente (Ctrl+Maj+G)"
 
 #: src/editor-search-bar.ui:59
 msgid "Move to next match (Ctrl+G)"
-msgstr "Correspondance suivante (Ctrl+G)"
+msgstr "Occurrence suivante (Ctrl+G)"
 
 #: src/editor-search-bar.ui:71
 msgid "Search & Replace (Ctrl+H)"
@@ -685,7 +687,7 @@ msgstr "_Remplacer"
 
 #: src/editor-search-bar.ui:124
 msgid "Replace _All"
-msgstr "Remplacer _tout"
+msgstr "_Tout remplacer"
 
 #: src/editor-search-bar.ui:141
 msgid "Re_gular expressions"
@@ -703,7 +705,7 @@ msgstr "Correspondance uniquement avec l’ensemble du _mot"
 #: src/editor-search-entry.c:197
 #, c-format
 msgid "%u of %u"
-msgstr "%u de %u"
+msgstr "%u sur %u"
 
 #: src/editor-spell-menu.c:191
 msgid "Languages"
@@ -774,7 +776,7 @@ msgstr "Détecté automatiquement"
 
 #: src/editor-utils.c:416
 msgid "Character Encoding:"
-msgstr "Encodage des caractères :"
+msgstr "Codage des caractères :"
 
 #: src/editor-utils.c:451
 msgid "Line Ending:"
@@ -869,7 +871,7 @@ msgstr ""
 "• Appuyer sur Ctrl+N pour commencer un nouveau document\n"
 "• Appuyer sur Ctrl+O pour rechercher un document\n"
 "\n"
-"Ou appuyer sur Ctrl+W pour ferme la fenêtre."
+"Ou appuyer sur Ctrl+W pour fermer la fenêtre."
 
 #: src/editor-window.ui:202
 msgid "_New Window"
@@ -893,15 +895,15 @@ msgstr "Propriétés du documen_t"
 
 #: src/editor-window.ui:246
 msgid "P_references"
-msgstr "P_références"
+msgstr "Pré_férences"
 
 #: src/editor-window.ui:251
 msgid "_Keyboard Shortcuts"
-msgstr "_Raccourcis Clavier"
+msgstr "_Raccourcis clavier"
 
 #: src/editor-window.ui:255
 msgid "_Help"
-msgstr "_Aide"
+msgstr "Aid_e"
 
 #: src/editor-window.ui:259
 msgid "A_bout Text Editor"
@@ -1084,22 +1086,22 @@ msgstr "Copier et coller"
 #: src/help-overlay.ui:133
 msgctxt "shortcut window"
 msgid "Copy selected text to clipboard"
-msgstr "Copier le texte sélectionné dans le presse-papier"
+msgstr "Copier le texte sélectionné dans le presse-papiers"
 
 #: src/help-overlay.ui:139
 msgctxt "shortcut window"
 msgid "Cut selected text to clipboard"
-msgstr "Couper le texte sélectionné dans le presse-papier"
+msgstr "Couper le texte sélectionné dans le presse-papiers"
 
 #: src/help-overlay.ui:145
 msgctxt "shortcut window"
 msgid "Paste text from clipboard"
-msgstr "Coller le texte depuis le presse-papier"
+msgstr "Coller le texte depuis le presse-papiers"
 
 #: src/help-overlay.ui:150
 msgctxt "shortcut window"
 msgid "Copy all to clipboard"
-msgstr "Tout copier dans le presse-papier"
+msgstr "Tout copier dans le presse-papiers"
 
 #: src/help-overlay.ui:158
 msgctxt "shortcut window"
@@ -1164,17 +1166,17 @@ msgstr "Sélections"
 #: src/help-overlay.ui:226
 msgctxt "shortcut window"
 msgid "Select all"
-msgstr "Sélectionner tout"
+msgstr "Tout sélectionner"
 
 #: src/help-overlay.ui:232
 msgctxt "shortcut window"
 msgid "Unselect all"
-msgstr "Désélectionner tout"
+msgstr "Tout désélectionner"
 
 #: src/help-overlay.ui:238
 msgctxt "shortcut window"
 msgid "Select current line"
-msgstr "Sélectionner la ligne courante"
+msgstr "Sélectionner la ligne actuelle"
 
 #: src/help-overlay.ui:245
 msgctxt "shortcut window"
@@ -1204,12 +1206,12 @@ msgstr "Aller à la fin du prochain paragraphe"
 #: src/help-overlay.ui:273
 msgctxt "shortcut window"
 msgid "Move current or selected lines up"
-msgstr "Déplacer la ligne courante ou sélectionnée vers le haut"
+msgstr "Déplacer la ligne actuelle ou sélectionnée vers le haut"
 
 #: src/help-overlay.ui:279
 msgctxt "shortcut window"
 msgid "Move current or selected lines down"
-msgstr "Déplacer la ligne courante ou sélectionnée vers le bas"
+msgstr "Déplacer la ligne actuelle ou sélectionnée vers le bas"
 
 #: src/help-overlay.ui:285
 msgctxt "shortcut window"
@@ -1234,17 +1236,17 @@ msgstr "Supprimer du curseur à la fin du mot"
 #: src/help-overlay.ui:308
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph start"
-msgstr "Supprimer du curseur au début de paragraphe"
+msgstr "Supprimer du curseur au début du paragraphe"
 
 #: src/help-overlay.ui:314
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph end"
-msgstr "Supprimer du curseur à la fin de paragraphe"
+msgstr "Supprimer du curseur à la fin du paragraphe"
 
 #: src/help-overlay.ui:320
 msgctxt "shortcut window"
 msgid "Delete the current line"
-msgstr "Supprimer la ligne courante"
+msgstr "Supprimer la ligne actuelle"
 
 #~ msgid "_Preferences"
 #~ msgstr "_Préférences"
