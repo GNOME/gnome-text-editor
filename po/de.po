@@ -10,9 +10,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues\n"
-"POT-Creation-Date: 2022-03-04 14:25+0000\n"
-"PO-Revision-Date: 2022-03-10 16:32+0100\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
+"issues\n"
+"POT-Creation-Date: 2022-05-02 16:43+0000\n"
+"PO-Revision-Date: 2022-05-05 16:41+0200\n"
 "Last-Translator: Philipp Kiemle <philipp.kiemle@gmail.com>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
@@ -20,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
 msgid "Christian Hergert, et al."
@@ -28,7 +29,8 @@ msgstr "Christian Hergert, et al."
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:7
-#: data/org.gnome.TextEditor.desktop.in.in:8 src/editor-application-actions.c:192
+#: data/org.gnome.TextEditor.desktop.in.in:8
+#: src/editor-application-actions.c:192
 msgid "Text Editor"
 msgstr "Texteditor"
 
@@ -65,8 +67,8 @@ msgid ""
 "Use the light or dark variant of the GTK theme and/or GtkSourceView style "
 "scheme."
 msgstr ""
-"Die helle oder dunkle Variante des GTK-Themas und/oder des GTKSourceView-Stil-"
-"Schemas nutzen."
+"Die helle oder dunkle Variante des GTK-Themas und/oder des GTKSourceView-"
+"Stil-Schemas nutzen."
 
 #: data/org.gnome.TextEditor.gschema.xml:35
 msgid "Indentation Style"
@@ -121,15 +123,18 @@ msgstr "Rechten Rand anzeigen"
 #: data/org.gnome.TextEditor.gschema.xml:63
 msgid "If a margin line should be displayed on the right of the editor."
 msgstr ""
-"Legt fest, ob auf der rechten Seite des Editors ein Rand angezeigt werden soll."
+"Legt fest, ob auf der rechten Seite des Editors ein Rand angezeigt werden "
+"soll."
 
 #: data/org.gnome.TextEditor.gschema.xml:68
 msgid "Right Margin Position"
 msgstr "Position des rechten Rands"
 
 #: data/org.gnome.TextEditor.gschema.xml:69
-msgid "The position in characters at which the right margin should be displayed."
-msgstr "Die Position (in Zeichen), an der der rechte Rand angezeigt werden soll."
+msgid ""
+"The position in characters at which the right margin should be displayed."
+msgstr ""
+"Die Position (in Zeichen), an der der rechte Rand angezeigt werden soll."
 
 #: data/org.gnome.TextEditor.gschema.xml:73
 msgid "Show Overview Map"
@@ -178,7 +183,7 @@ msgstr ""
 "Legt fest, ob die voreingestellte Schriftart zur Darstellung von "
 "dicktengleichem Text verwendet werden soll."
 
-#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:60
+#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:57
 msgid "Custom Font"
 msgstr "Benutzerdefinierte Schriftart"
 
@@ -206,8 +211,8 @@ msgstr "Dateieinstellungen übernehmen"
 # Modelines sind von Konfigurationszeilen am Beginn der Datei. Übersetzung würde m.M.n. nur zu Verwirrung führen. - ts
 #: data/org.gnome.TextEditor.gschema.xml:109
 msgid ""
-"If enabled then Text Editor will try to discover file settings from modelines, "
-"editorconfig, or per-language defaults."
+"If enabled then Text Editor will try to discover file settings from "
+"modelines, editorconfig, or per-language defaults."
 msgstr ""
 "Legt fest, ob Texteditor versuchen soll, Dateieinstellungen aus Modelines, "
 "einer Editorconfig oder sprachspezifischen Voreinstellungen zu übernehmen."
@@ -252,8 +257,8 @@ msgstr "Letzter Speicherort"
 #: data/org.gnome.TextEditor.gschema.xml:138
 msgid "The directory last used in a save or save-as dialog."
 msgstr ""
-"Der zuletzt verwendete Speicherort in einem »Speichern« oder »Speichern unter«-"
-"Dialog."
+"Der zuletzt verwendete Speicherort in einem »Speichern« oder »Speichern "
+"unter«-Dialog."
 
 #: data/org.gnome.TextEditor.gschema.xml:142
 msgid "Draw Spaces"
@@ -285,12 +290,12 @@ msgstr "Zeilenhöhe"
 msgid "The line height to use for the selected font."
 msgstr "Die Zeilenhöhe für die ausgewählte Schriftart."
 
-#: src/editor-animation.c:1051
+#: src/editor-animation.c:1038
 #, c-format
 msgid "Failed to find property %s in %s"
 msgstr "Eigenschaft %s in %s konnte nicht gefunden werden"
 
-#: src/editor-animation.c:1060
+#: src/editor-animation.c:1047
 #, c-format
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Empfangen des va_list-Wertes ist gescheitert: %s"
@@ -465,9 +470,10 @@ msgstr "Einrückung"
 msgid "_Automatic Indentation"
 msgstr "_Automatische Einrückung"
 
+#. Translators: this is a tab character, not a browser tab
 #: src/editor-page.ui:162 src/editor-window.ui:283
 msgid "_Tabs"
-msgstr "_Reiter"
+msgstr "_Tabulatoren"
 
 #: src/editor-page.ui:167 src/editor-window.ui:288
 msgid "_Spaces"
@@ -515,51 +521,51 @@ msgstr "Sp"
 msgid "Appearance"
 msgstr "Erscheinungsbild"
 
-#: src/editor-preferences-dialog.ui:82
+#: src/editor-preferences-dialog.ui:79
 msgid "Display Grid Pattern"
 msgstr "Raster anzeigen"
 
-#: src/editor-preferences-dialog.ui:88
+#: src/editor-preferences-dialog.ui:85
 msgid "Highlight Current Line"
 msgstr "Aktuelle Zeile hervorheben"
 
-#: src/editor-preferences-dialog.ui:94
+#: src/editor-preferences-dialog.ui:91
 msgid "Display Overview Map"
 msgstr "Übersichtskarte anzeigen"
 
-#: src/editor-preferences-dialog.ui:102
+#: src/editor-preferences-dialog.ui:99
 msgid "Right Margin"
 msgstr "Rechter Rand"
 
-#: src/editor-preferences-dialog.ui:105
+#: src/editor-preferences-dialog.ui:102
 msgid "Margin Position"
 msgstr "Position des Rands"
 
-#: src/editor-preferences-dialog.ui:113
+#: src/editor-preferences-dialog.ui:110
 msgid "Behavior"
 msgstr "Verhalten"
 
 # "Discover" meint hier das "Entdecken" von Einstellungen aus Konfigurationsdateien o.ä. - pk
-#: src/editor-preferences-dialog.ui:116
+#: src/editor-preferences-dialog.ui:113
 msgid "Discover Document Settings"
 msgstr "Dateieinstellungen übernehmen"
 
 # Modelines sind von Konfigurationszeilen am Beginn der Datei. Übersetzung würde m.M.n. nur zu Verwirrung führen. - pk
-#: src/editor-preferences-dialog.ui:117
+#: src/editor-preferences-dialog.ui:114
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr ""
 "Einstellungen von Modelines, Editorconfig oder jeweiligen Voreinstellungen "
 "übernehmen"
 
-#: src/editor-preferences-dialog.ui:123
+#: src/editor-preferences-dialog.ui:120
 msgid "Restore Session"
 msgstr "Sitzung wiederherstellen"
 
-#: src/editor-preferences-dialog.ui:124
+#: src/editor-preferences-dialog.ui:121
 msgid "Return to your previous session when Text Editor is started"
 msgstr "Vorherige Sitzung wiederherstellen, wenn Texteditor gestartet wird"
 
-#: src/editor-preferences-dialog.ui:139
+#: src/editor-preferences-dialog.ui:136
 msgid "_Clear History"
 msgstr "Chronik _leeren"
 
@@ -834,7 +840,7 @@ msgid "Document Type: %s"
 msgstr "Dokumententyp: %s"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:725
+#: src/editor-window.c:727
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - Texteditor"
