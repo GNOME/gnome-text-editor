@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the gnome-text-editor package.
 #
 #
-# Philipp Kiemle <philipp.kiemle@gmail.com>, 2021.
+# Philipp Kiemle <philipp.kiemle@gmail.com>, 2021-2022.
 # Christian Kirbach <christian.kirbach@gmail.com>, 2021.
 #
 msgid ""
@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2021-08-22 08:38+0000\n"
-"PO-Revision-Date: 2021-08-25 00:44+0200\n"
+"POT-Creation-Date: 2022-04-15 14:23+0000\n"
+"PO-Revision-Date: 2022-05-05 16:43+0200\n"
 "Last-Translator: Philipp Kiemle <philipp.kiemle@gmail.com>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
 msgid "Christian Hergert, et al."
@@ -152,7 +152,7 @@ msgstr "Textumbruch"
 msgid "If text should be wrapped."
 msgstr "Legt fest, ob Text umgebrochen werden soll."
 
-#: data/org.gnome.TextEditor.gschema.xml:71 src/editor-window.ui:212
+#: data/org.gnome.TextEditor.gschema.xml:71 src/editor-window.ui:221
 msgid "Use System Font"
 msgstr "Systemschriftart verwenden"
 
@@ -162,7 +162,7 @@ msgstr ""
 "Legt fest, ob die voreingestellte Schriftart zur Darstellung von "
 "dicktengleichem Text verwendet werden soll."
 
-#: data/org.gnome.TextEditor.gschema.xml:76 src/editor-window.ui:218
+#: data/org.gnome.TextEditor.gschema.xml:76 src/editor-window.ui:227
 msgid "Custom Font"
 msgstr "Benutzerdefinierte Schriftart"
 
@@ -209,7 +209,7 @@ msgstr "Eigenschaft %s in %s konnte nicht gefunden werden"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Empfangen des va_list-Wertes ist gescheitert: %s"
 
-#: src/editor-application.c:239
+#: src/editor-application.c:256
 msgid "Do not restore session at startup"
 msgstr "Die Sitzung beim Start nicht wiederherstellen"
 
@@ -273,7 +273,7 @@ msgstr "Zuletzt geöffnete Dokumente"
 msgid "No Recent Documents"
 msgstr "Keine zuletzt geöffneten Dokumente"
 
-#: src/editor-open-popover.ui:87
+#: src/editor-open-popover.ui:88
 msgid "Br_owse Files…"
 msgstr "Da_teien durchsuchen …"
 
@@ -294,12 +294,12 @@ msgstr "Speichern des Dokuments ist fehlgeschlagen"
 msgid "Save As"
 msgstr "Speichern unter"
 
-#: src/editor-page.c:846 src/editor-window-actions.c:128
+#: src/editor-page.c:846 src/editor-window-actions.c:131
 msgid "Save"
 msgstr "Speichern"
 
-#: src/editor-page.c:847 src/editor-window-actions.c:127
-#: src/editor-window-actions.c:238 src/editor-window-actions.c:347
+#: src/editor-page.c:847 src/editor-window-actions.c:130
+#: src/editor-window-actions.c:241 src/editor-window-actions.c:350
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -322,7 +322,7 @@ msgstr "Sp"
 msgid "Select Font"
 msgstr "Schriftart wählen"
 
-#: src/editor-save-changes-dialog.c:255 src/editor-window-actions.c:239
+#: src/editor-save-changes-dialog.c:255 src/editor-window-actions.c:242
 msgid "Discard"
 msgstr "Verwerfen"
 
@@ -360,51 +360,58 @@ msgstr "Unbenanntes Dokument"
 msgid "%s (new)"
 msgstr "%s (neu)"
 
+#: src/editor-save-changes-dialog.c:335
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Search and replace within the document"
+msgid "Save changes for this document"
+msgstr "Innerhalb des Dokuments suchen und ersetzen"
+
 #: src/editor-search-bar.ui:14
 msgid "Search"
 msgstr "Suchen"
 
-#: src/editor-search-bar.ui:33
+#: src/editor-search-bar.ui:34
 msgid "Replace"
 msgstr "Ersetzen"
 
-#: src/editor-search-bar.ui:50
+#: src/editor-search-bar.ui:51
 msgid "Move to previous match (Ctrl+Shift+G)"
 msgstr "Zum vorherigen Treffer springen (Strg+Umschalt+G)"
 
-#: src/editor-search-bar.ui:57
+#: src/editor-search-bar.ui:58
 msgid "Move to next match (Ctrl+G)"
 msgstr "Zum nächsten Treffer springen (Strg+G)"
 
-#: src/editor-search-bar.ui:69
+#: src/editor-search-bar.ui:70
 msgid "Search & Replace (Ctrl+H)"
 msgstr "Suchen & Ersetzen (Strg+H)"
 
-#: src/editor-search-bar.ui:79
+#: src/editor-search-bar.ui:80
 msgid "Toggle search options"
 msgstr "Suchoptionen umschalten"
 
-#: src/editor-search-bar.ui:93
+#: src/editor-search-bar.ui:94
 msgid "Close search"
 msgstr "Suche schließen"
 
-#: src/editor-search-bar.ui:110
+#: src/editor-search-bar.ui:111
 msgid "_Replace"
 msgstr "E_rsetzen"
 
-#: src/editor-search-bar.ui:122
+#: src/editor-search-bar.ui:123
 msgid "Replace _All"
 msgstr "_Alle ersetzen"
 
-#: src/editor-search-bar.ui:139
+#: src/editor-search-bar.ui:140
 msgid "Re_gular expressions"
 msgstr "R_eguläre Ausdrücke"
 
-#: src/editor-search-bar.ui:145
+#: src/editor-search-bar.ui:146
 msgid "_Case sensitive"
 msgstr "Groß-/Kleinschreibung beachten"
 
-#: src/editor-search-bar.ui:151
+#: src/editor-search-bar.ui:152
 msgid "Match whole _word only"
 msgstr "Nur ganze _Wörter"
 
@@ -432,11 +439,11 @@ msgstr "Ignorieren"
 msgid "Check Spelling"
 msgstr "Rechtschreibung prüfen"
 
-#: src/editor-theme-selector.ui:18
+#: src/editor-theme-selector.ui:18 src/editor-theme-selector.ui:20
 msgid "Light style"
 msgstr "Heller Stil"
 
-#: src/editor-theme-selector.ui:31
+#: src/editor-theme-selector.ui:34 src/editor-theme-selector.ui:36
 msgid "Dark style"
 msgstr "Dunkler Stil"
 
@@ -488,39 +495,39 @@ msgid "Line Ending:"
 msgstr "Zeilenende:"
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:123
+#: src/editor-window-actions.c:126
 #, c-format
 msgid "Save Changes to “%s”?"
 msgstr "Die Änderungen an der Datei »%s« speichern?"
 
-#: src/editor-window-actions.c:126
+#: src/editor-window-actions.c:129
 msgid "Saving changes will replace the previously saved version."
 msgstr ""
 "Das Speichern von Änderungen wird die vorher gespeicherte Version ersetzen."
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:234
+#: src/editor-window-actions.c:237
 #, c-format
 msgid "Discard Changes to “%s”?"
 msgstr "Änderungen an »%s« _verwerfen?"
 
-#: src/editor-window-actions.c:237
+#: src/editor-window-actions.c:240
 msgid "Unsaved changes will be permanently lost."
 msgstr "Ungespeicherte Änderungen gehen für immer verloren."
 
-#: src/editor-window-actions.c:343
+#: src/editor-window-actions.c:346
 msgid "Open File"
 msgstr "Datei öffnen"
 
-#: src/editor-window-actions.c:346
+#: src/editor-window-actions.c:349
 msgid "Open"
 msgstr "Öffnen"
 
-#: src/editor-window-actions.c:360
+#: src/editor-window-actions.c:363
 msgid "All Files"
 msgstr "Alle Dateien"
 
-#: src/editor-window-actions.c:365
+#: src/editor-window-actions.c:368
 msgid "Text Files"
 msgstr "Textdateien"
 
@@ -532,19 +539,23 @@ msgstr "_Öffnen"
 msgid "Open recent document (Ctrl+K)"
 msgstr "Zuletzt geöffnetes Dokument öffnen (Strg+K)"
 
-#: src/editor-window.ui:75
+#: src/editor-window.ui:75 src/editor-window.ui:77
 msgid "New tab (Ctrl+T)"
 msgstr "Neuer Reiter (Strg+T)"
 
-#: src/editor-window.ui:100
+#: src/editor-window.ui:103 src/editor-window.ui:106
 msgid "View"
 msgstr "Ansicht"
 
-#: src/editor-window.ui:142
+#: src/editor-window.ui:114
+msgid "Menu"
+msgstr ""
+
+#: src/editor-window.ui:151
 msgid "Start or Open a Document"
 msgstr "Ein Dokument beginnen oder öffnen"
 
-#: src/editor-window.ui:145
+#: src/editor-window.ui:154
 msgid ""
 "• Press the Open button\n"
 "• Press the New tab button\n"
@@ -554,35 +565,35 @@ msgid ""
 "Or, press Ctrl+W to close the window."
 msgstr ""
 
-#: src/editor-window.ui:186
+#: src/editor-window.ui:195
 msgid "Preferences"
 msgstr "Einstellungen"
 
-#: src/editor-window.ui:208
+#: src/editor-window.ui:217
 msgid "Font"
 msgstr "Schriftart"
 
-#: src/editor-window.ui:227
+#: src/editor-window.ui:236
 msgid "Right Margin"
 msgstr "Rechter Rand"
 
-#: src/editor-window.ui:231
+#: src/editor-window.ui:240
 msgid "Margin Position"
 msgstr "Position des Rands"
 
-#: src/editor-window.ui:239
+#: src/editor-window.ui:248
 msgid "Appearance"
 msgstr "Erscheinungsbild"
 
-#: src/editor-window.ui:243
+#: src/editor-window.ui:252
 msgid "Display Grid Pattern"
 msgstr "Raster anzeigen"
 
-#: src/editor-window.ui:249
+#: src/editor-window.ui:258
 msgid "Highlight Current Line"
 msgstr "Aktuelle Zeile hervorheben"
 
-#: src/editor-window.ui:255
+#: src/editor-window.ui:264
 msgid "Display Overview Map"
 msgstr "Übersichtskarte anzeigen"
 
@@ -621,13 +632,11 @@ msgid "Move to previous tab"
 msgstr "Zum vorherigen Reiter verschieben"
 
 #: src/help-overlay.ui:39
-#| msgid "Move to next tab"
 msgctxt "shortcut window"
 msgid "Reorder after next tab"
 msgstr ""
 
 #: src/help-overlay.ui:45
-#| msgid "Move to previous tab"
 msgctxt "shortcut window"
 msgid "Reorder before previous tab"
 msgstr ""
@@ -905,7 +914,7 @@ msgstr "Einrückung"
 
 #: src/menus.ui:90
 msgid "_Tabs"
-msgstr "_Reiter"
+msgstr "_Tabulatoren"
 
 #: src/menus.ui:95
 msgid "_Spaces"
