@@ -1,0 +1,484 @@
+# Polish translation for gnome-text-editor help.
+# Copyright © 2022 the gnome-text-editor authors.
+# This file is distributed under the same license as the gnome-text-editor help.
+# Piotr Drąg <piotrdrag@gmail.com>, 2022.
+# Aviary.pl <community-poland@mozilla.org>, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-text-editor-help\n"
+"POT-Creation-Date: 2022-05-08 08:52+0000\n"
+"PO-Revision-Date: 2022-05-08 12:58+0200\n"
+"Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
+"Language-Team: Polish <community-poland@mozilla.org>\n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
+
+#. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
+msgctxt "_"
+msgid "translator-credits"
+msgstr ""
+"Piotr Drąg <piotrdrag@gmail.com>, 2022\n"
+"Aviary.pl <community-poland@mozilla.org>, 2022"
+
+#. (itstool) path: info/title
+#: C/index.page:7
+msgctxt "link:trail"
+msgid "GNOME Text Editor"
+msgstr "Edytor tekstu GNOME"
+
+#. (itstool) path: info/title
+#: C/index.page:8
+msgctxt "link"
+msgid "GNOME Text Editor"
+msgstr "Edytor tekstu GNOME"
+
+#. (itstool) path: info/title
+#: C/index.page:9
+msgctxt "text"
+msgid "GNOME Text Editor"
+msgstr "Edytor tekstu GNOME"
+
+#. (itstool) path: credit/name
+#: C/index.page:14
+msgid "Christian Hergert"
+msgstr "Christian Hergert"
+
+#. (itstool) path: credit/years
+#: C/index.page:16 C/index.page:21 C/basics-create-new-file.page:13
+#: C/basics-draft-folder.page:13 C/edit-search-and-replace.page:13
+#: C/edit-undo-redo.page:13
+msgid "2021"
+msgstr "2021"
+
+#. (itstool) path: credit/name
+#: C/index.page:19 C/basics-create-new-file.page:11
+#: C/basics-draft-folder.page:11 C/edit-search-and-replace.page:11
+msgid "Günther Wagner"
+msgstr "Günther Wagner"
+
+#. (itstool) path: info/desc
+#: C/index.page:26
+msgid "Use <app>GNOME Text Editor</app> to edit text files."
+msgstr ""
+"Używanie <app>Edytora tekstu GNOME</app> do modyfikowania plików tekstowych."
+
+#. (itstool) path: page/title
+#: C/index.page:29
+msgid "<_:media-1/> GNOME Text Editor"
+msgstr "<_:media-1/> Edytor tekstu GNOME"
+
+#. (itstool) path: section/title
+#: C/index.page:35
+msgid "Basics"
+msgstr "Podstawy"
+
+#. (itstool) path: section/title
+#: C/index.page:40
+msgid "Edit files"
+msgstr "Modyfikowanie plików"
+
+#. (itstool) path: page/title
+#: C/basics-open-file.page:9
+msgid "Open a file"
+msgstr "Otwieranie pliku"
+
+#. (itstool) path: page/p
+#: C/basics-open-file.page:13
+msgid ""
+"To open a file in GNOME Text Editor use <gui style=\"button\">Open</gui> in "
+"the Headerbar and <gui>Browse Files...</gui> or the shortcut "
+"<keyseq><key>Ctrl</key><key>O</key></keyseq>."
+msgstr ""
+"Aby otworzyć plik w Edytorze tekstu GNOME, kliknij przycisk <gui style="
+"\"button\">Otwórz</gui> na pasku nagłówka, a następnie <gui>Przeglądaj pliki…"
+"</gui>, lub naciśnij klawisze <keyseq><key>Ctrl</key><key>O</key></keyseq>."
+
+#. (itstool) path: page/p
+#: C/basics-open-file.page:17
+msgid ""
+"In the dialog choose your file(s) you want to open and click <gui>Open</"
+"gui>. It is possible to select multiple files to open these at once."
+msgstr ""
+"W oknie wybierz pliki do otwarcia i kliknij przycisk <gui>Otwórz</gui>. "
+"Można zaznaczyć wiele plików, aby otworzyć je w tym samym czasie."
+
+#. (itstool) path: page/p
+#: C/basics-open-file.page:20
+msgid ""
+"Closing the dialog without opening a file can be achieved by clicking "
+"<gui>Cancel</gui>."
+msgstr ""
+"Można zamknąć okno bez otwierania pliku klikając przycisk <gui>Anuluj</gui>."
+
+#. (itstool) path: section/title
+#: C/basics-open-file.page:23
+msgid "Open by name"
+msgstr "Otwieranie według nazwy"
+
+#. (itstool) path: section/p
+#: C/basics-open-file.page:25
+msgid ""
+"You can search in the <gui>Open</gui> Popup or press <keyseq><key>Ctrl</"
+"key><key>K</key></keyseq> to search for recently edited files."
+msgstr ""
+"Można wyszukiwać w wyskakującym oknie <gui>Otwieranie</gui> lub nacisnąć "
+"klawisze <keyseq><key>Ctrl</key><key>K</key></keyseq>, aby wyszukać ostatnio "
+"modyfikowane pliki."
+
+#. (itstool) path: section/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/basics-open-file.page:27
+msgctxt "_"
+msgid ""
+"external ref='media/search-recent.png' md5='f57950a08e6c7159429d030eb349814f'"
+msgstr ""
+"external ref='media/search-recent.png' md5='f57950a08e6c7159429d030eb349814f'"
+
+#. (itstool) path: info/keywords
+#: C/basics-create-new-file.page:19
+msgid "new file, create file"
+msgstr "nowy plik, utwórz plik"
+
+#. (itstool) path: page/title
+#: C/basics-create-new-file.page:22
+msgid "Create a new file"
+msgstr "Tworzenie nowego pliku"
+
+#. (itstool) path: page/p
+#: C/basics-create-new-file.page:24
+msgid "In GNOME Text Editor a new file can be created in several ways:"
+msgstr ""
+"Edytor tekstu GNOME umożliwia utworzenie nowego pliku na kilka sposobów:"
+
+#. (itstool) path: item/p
+#: C/basics-create-new-file.page:27
+msgid "Use the <gui>New tab</gui> button."
+msgstr "Kliknij przycisk <gui>Nowa karta</gui>."
+
+#. (itstool) path: item/p
+#: C/basics-create-new-file.page:28
+msgid "Press <keyseq><key>Ctrl</key><key>N</key></keyseq>"
+msgstr "Naciśnij klawisze <keyseq><key>Ctrl</key><key>N</key></keyseq>."
+
+#. (itstool) path: page/p
+#: C/basics-create-new-file.page:31
+msgid ""
+"A new document is by default in a state called <gui>Draft</gui>. The meaning "
+"of this is that the document is automatically saved in the draft folder of "
+"GNOME Text Editor."
+msgstr ""
+"Nowy dokument jest domyślnie w stanie <gui>Szkicu</gui>. Oznacza to, że "
+"dokument jest automatycznie zapisywany w katalogu szkiców Edytora tekstu "
+"GNOME."
+
+#. (itstool) path: info/desc
+#: C/basics-draft-folder.page:18
+msgid "Explanation of the drafts folder."
+msgstr "Wyjaśnienie katalogu szkiców."
+
+#. (itstool) path: info/keywords
+#: C/basics-draft-folder.page:20
+msgid "draft, folder"
+msgstr "szkic, katalog"
+
+#. (itstool) path: page/title
+#: C/basics-draft-folder.page:23
+msgid "Draft folder"
+msgstr "Katalog szkiców"
+
+#. (itstool) path: page/p
+#: C/basics-draft-folder.page:25
+msgid ""
+"GNOME Text Editor will automatically save every unsaved file. This folder is "
+"located in the application data directory (~/.local/share/gnome-text-editor "
+"or in the respective flatpak folder). You should normally not care about "
+"that folder as every draft file is always accessible via the <gui>Open</gui> "
+"menu."
+msgstr ""
+"Edytor tekstu GNOME automatycznie zapisze każdy niezapisany plik. Katalog "
+"ten jest położony w katalogu danych programu (~/.local/share/gnome-text-"
+"editor lub w odpowiednim katalogu pakietu Flatpak). Na co dzień nie należy "
+"się przejmować tym katalogiem, jako że każdy plik szkicu jest zawsze "
+"dostępny w menu <gui>Otwierania</gui>."
+
+#. (itstool) path: page/p
+#: C/basics-draft-folder.page:30
+msgid ""
+"You can identify a draft in the title of GNOME Text Editor. There is a "
+"subtitle 'Draft' if your current document is not saved and will reside in "
+"the draft folder."
+msgstr ""
+"Szkic można zidentyfikować po tytule Edytora tekstu GNOME. Jeśli obecny "
+"dokument nie jest zapisany i będzie znajdował się w katalogu szkiców, to "
+"widoczny jest napis „Szkic”."
+
+#. (itstool) path: info/desc
+#: C/edit-search-and-replace.page:33
+msgid "Search and replace text"
+msgstr "Wyszukiwanie i zastępowanie tekstu"
+
+#. (itstool) path: info/keywords
+#: C/edit-search-and-replace.page:35
+msgid "search, replace"
+msgstr "wyszukaj, zastąp"
+
+#. (itstool) path: page/title
+#: C/edit-search-and-replace.page:38
+msgid "Search and Replace"
+msgstr "Wyszukiwanie i zastępowanie"
+
+#. (itstool) path: page/p
+#: C/edit-search-and-replace.page:40
+msgid ""
+"GNOME text editor allows you to quickly search in big text files for a "
+"specific text parts. Oftentimes these text parts need to be replaced also."
+msgstr ""
+"Edytor tekstu GNOME umożliwia szybkie wyszukiwanie konkretnych części tekstu "
+"w dużych plikach tekstowych. Często te części muszą także zostać zastąpione."
+
+#. (itstool) path: list/title
+#: C/edit-search-and-replace.page:44
+msgid "Search for text"
+msgstr "Wyszukiwanie tekstu"
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:45
+msgid ""
+"Activate the search panel via <guiseq><gui>Hamburger Menu</gui><gui>Find/"
+"Replace...</gui></guiseq> or activate it via <keyseq><key>Ctrl</key><key>F</"
+"key></keyseq>."
+msgstr ""
+"Aktywuj panel wyszukiwania w <guiseq><gui>Menu</gui><gui>Znajdź/zastąp…</"
+"gui></guiseq> lub za pomocą klawiszy <keyseq><key>Ctrl</key><key>F</key></"
+"keyseq>."
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:46
+msgid "Add your search term into the entry field."
+msgstr "Wpisz wyszukiwane słowa w polu."
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:47 C/edit-search-and-replace.page:70
+msgid ""
+"The search is performed as you type. You can now iterate the search result "
+"with <key>↑</key> or <key>↓</key> or with the buttons beside the entry."
+msgstr ""
+"Wyszukiwanie jest wykonywane w trakcie pisania. Można przechodzić między "
+"wynikami wyszukiwania za pomocą klawiszy <key>↑</key> i <key>↓</key> lub "
+"przycisków obok pola."
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:48
+msgid ""
+"Pressing <key>Enter</key> will move the cursor to the currently highlighted "
+"search result."
+msgstr ""
+"Naciśnięcie klawisza <key>Enter</key> przeniesie kursor do obecnie "
+"wyróżnionego wyniku wyszukiwania."
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:49
+msgid ""
+"Pressing <key>Escape</key> will discard the search panel and the search "
+"result."
+msgstr ""
+"Naciśnięcie klawisza <key>Escape</key> zamknie panel wyszukiwania "
+"i znalezione wyniki."
+
+#. (itstool) path: list/title
+#: C/edit-search-and-replace.page:53
+msgid "Search tips &amp; tricks"
+msgstr "Wskazówki nt. wyszukiwania"
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:54
+msgid ""
+"In order to quickly search for a word highlight the word and press "
+"<keyseq><key>Ctrl</key><key>F</key></keyseq>. The word will be automatically "
+"entered into the search entry."
+msgstr ""
+"Aby szybko znaleźć słowo, zaznacz je i naciśnij klawisze <keyseq><key>Ctrl</"
+"key><key>F</key></keyseq>. Zostanie ono automatycznie wstawione w polu "
+"wyszukiwania."
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:55
+msgid ""
+"The search can be refined with additional options in the <gui>gear</gui> "
+"menu."
+msgstr ""
+"Można zawęzić wyszukiwanie za pomocą dodatkowych opcji w menu <gui>z kołem "
+"zębatym</gui>."
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:57
+msgid "Only match the whole word"
+msgstr "Wyszukiwanie tylko całych wyrazów"
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:58
+msgid "Using regular expressions as search term"
+msgstr "Używanie wyrażeń regularnych"
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:59
+msgid "Respecting case sensitivity of the search term"
+msgstr "Rozróżnianie małych i wielkich liter"
+
+#. (itstool) path: list/title
+#: C/edit-search-and-replace.page:65
+msgid "Replace text"
+msgstr "Zastępowanie tekstu"
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:66
+msgid ""
+"Activate the search panel via <guiseq><gui>Hamburger Menu</gui><gui>Find/"
+"Replace...</gui></guiseq> or activate it via <keyseq><key>Ctrl</key><key>H</"
+"key></keyseq>."
+msgstr ""
+"Aktywuj panel wyszukiwania w <guiseq><gui>Menu</gui><gui>Znajdź/zastąp…</"
+"gui></guiseq> lub za pomocą klawiszy <keyseq><key>Ctrl</key><key>H</key></"
+"keyseq>."
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:67
+msgid ""
+"In case you opened the search panel via the <gui>Hamburger Menu</gui> you "
+"have to click the button for activating the replace functionality."
+msgstr ""
+"Jeśli otwarto panel wyszukiwania za pomocą <gui>Menu</gui>, to należy "
+"kliknąć przycisk aktywujący funkcję zastępowania."
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:68
+msgid "Add your search term which should be replaced into the entry field."
+msgstr ""
+"Wpisz wyszukiwane słowa, które mają zostać zastąpione w pierwszym polu."
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:69
+msgid "Add your replace term into the second entry field."
+msgstr "Wpisz słowa, na które mają zostać zamienione w drugim polu."
+
+#. (itstool) path: item/p
+#: C/edit-search-and-replace.page:71
+msgid ""
+"It is now possible to only replace the current search result element via "
+"<gui>Replace</gui> or you can replace all occurrences via <gui>Replace All</"
+"gui>."
+msgstr ""
+"Można teraz zastąpić tylko obecny wynik wyszukiwania za pomocą przycisku "
+"<gui>Zastąp</gui> lub wszystkie jego wystąpienia za pomocą przycisku "
+"<gui>Zastąp wszystko</gui>."
+
+#. (itstool) path: credit/name
+#: C/edit-undo-redo.page:11
+msgid "Fionn Kelleher"
+msgstr "Fionn Kelleher"
+
+#. (itstool) path: info/desc
+#: C/edit-undo-redo.page:19
+msgid "Fix mistakes made during editing"
+msgstr "Poprawianie pomyłek podczas pisania"
+
+#. (itstool) path: info/keywords
+#: C/edit-undo-redo.page:20
+msgid "undo, redo, discard changes"
+msgstr "cofnij, ponów, odrzuć zmiany"
+
+#. (itstool) path: page/title
+#: C/edit-undo-redo.page:23
+msgid "Undoing, redoing, and discarding changes"
+msgstr "Cofanie, ponawianie i odrzucanie zmian"
+
+#. (itstool) path: page/p
+#: C/edit-undo-redo.page:25
+msgid ""
+"GNOME Text Editor automatically keeps track of changes made while editing a "
+"file. Changes can be undone and redone while editing, making it easy to fix "
+"mistakes."
+msgstr ""
+"Edytor tekstu GNOME automatycznie śledzi zmiany wprowadzone podczas "
+"modyfikowania pliku. Można je cofać i ponawiać podczas pisania, co ułatwia "
+"poprawianie pomyłek."
+
+#. (itstool) path: note/p
+#: C/edit-undo-redo.page:33
+msgid ""
+"Changes tracked for a file will be lost after closing it, or after <link "
+"xref=\"#discard_changes\">discarding changes</link>."
+msgstr ""
+"Zmiany śledzone w pliku zostaną utracone po jego zamknięciu lub po <link "
+"xref=\"#discard_changes\">odrzuceniu zmian</link>."
+
+#. (itstool) path: section/title
+#: C/edit-undo-redo.page:40
+msgid "Undoing or redoing a change"
+msgstr "Cofanie lub ponawianie zmiany"
+
+#. (itstool) path: section/p
+#: C/edit-undo-redo.page:41
+msgid ""
+"Pressing <keyseq> <key>Ctrl</key> <key>Z</key> </keyseq> will undo the last "
+"change made to a file. Using this shortcut repeatedly will continue undoing "
+"changes as they were originally made."
+msgstr ""
+"Naciśnięcie klawiszy <keyseq><key>Ctrl</key><key>Z</key></keyseq> cofnie "
+"ostatnio wprowadzoną zmianę w pliku. Ponowne używanie tego skrótu spowoduje "
+"cofanie kolejno wprowadzonych zmian."
+
+#. (itstool) path: section/p
+#: C/edit-undo-redo.page:52
+msgid ""
+"Pressing <keyseq> <key>Ctrl</key> <key>Shift</key> <key>Z</key> </keyseq> "
+"will redo the last undone change in a file. Using this shortcut repeatedly "
+"will continue redoing changes as they were originally made."
+msgstr ""
+"Naciśnięcie klawiszy <keyseq><key>Ctrl</key><key>Shift</key><key>Z</key></"
+"keyseq> ponowi ostatnio cofniętą zmianę w pliku. Ponowne używanie tego "
+"skrótu spowoduje ponawianie kolejno wprowadzonych zmian."
+
+#. (itstool) path: note/p
+#: C/edit-undo-redo.page:64
+msgid ""
+"Changes can be redone <em>only</em> if the previous editing operation was "
+"undo or redo. For example, typing text into a file directly after undoing a "
+"change will prevent redoing the last undone change."
+msgstr ""
+"Zmiany można ponawiać <em>tylko</em>, jeśli poprzednim działaniem na pliku "
+"było cofnięcie lub ponowienie. Na przykład napisanie czegoś w pliku "
+"bezpośrednio po cofnięciu zmiany uniemożliwi ponowienie ostatnio cofniętej "
+"zmiany."
+
+#. (itstool) path: section/title
+#: C/edit-undo-redo.page:74
+msgid "Discarding all changes since last save"
+msgstr "Odrzucanie wszystkich zmian od ostatniego zapisu"
+
+#. (itstool) path: section/p
+#: C/edit-undo-redo.page:75
+msgid ""
+"<guiseq> <gui>Menu</gui> <gui>Discard Changes</gui> </guiseq> will "
+"permanently discard all changes made to a file since it was last saved."
+msgstr ""
+"<guiseq><gui>Menu</gui><gui>Odrzuć zmiany</gui></guiseq> trwale odrzuci "
+"wszystkie zmiany wprowadzone w pliku od ostatniego zapisu."
+
+#. (itstool) path: p/link
+#: C/legal.xml:4
+msgid "Creative Commons Attribution-ShareAlike 3.0 Unported License"
+msgstr "Creative Commons Attribution-ShareAlike 3.0 Unported"
+
+#. (itstool) path: license/p
+#: C/legal.xml:3
+msgid "This work is licensed under a <_:link-1/>."
+msgstr "Na warunkach licencji <_:link-1/>."
