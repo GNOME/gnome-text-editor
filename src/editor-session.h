@@ -38,6 +38,9 @@ EditorPage   *editor_session_open                (EditorSession            *self
                                                   EditorWindow             *window,
                                                   GFile                    *file,
                                                   const GtkSourceEncoding  *encoding);
+void          editor_session_open_stream         (EditorSession            *session,
+                                                  EditorWindow             *window,
+                                                  GInputStream             *stream);
 void          editor_session_open_files          (EditorSession            *self,
                                                   GFile                   **files,
                                                   gint                      n_files,

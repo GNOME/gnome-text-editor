@@ -2444,3 +2444,74 @@ _editor_session_clear_history (EditorSession *self)
         _editor_sidebar_model_remove_draft (self->recents, draft_id);
     }
 }
+
+static void
+editor_session_load_stream_cb (GObject      *object,
+                               GAsyncResult *result,
+                               gpointer      user_data)
+{
+  GtkSourceFileLoader *loader = (GtkSourceFileLoader *)object;
+  g_autoptr(EditorDocument) document = user_data;
+  g_autoptr(GError) error = NULL;
+
+  g_assert (GTK_SOURCE_IS_FILE_LOADER (loader));
+  g_assert (G_IS_ASYNC_RESULT (result));
+  g_assert (EDITOR_IS_DOCUMENT (document));
+
+  if (!gtk_source_file_loader_load_finish (loader, result, &error))
+    g_warning ("Failed to read input stream: %s", error->message);
+
+  gtk_text_buffer_set_modified (GTK_TEXT_BUFFER (document), TRUE);
+}
+
+static void
+load_stream_into_document (GInputStream   *stream,
+                           EditorDocument *document)
+{
+  g_autoptr(GtkSourceFileLoader) loader = NULL;
+  g_autoptr(GtkSourceFile) file = NULL;
+
+  g_assert (G_IS_INPUT_STREAM (stream));
+  g_assert (EDITOR_IS_DOCUMENT (document));
+
+  file = gtk_source_file_new ();
+  loader = gtk_source_file_loader_new_from_stream (GTK_SOURCE_BUFFER (document), file, stream);
+  gtk_source_file_loader_load_async (loader,
+                                     G_PRIORITY_DEFAULT,
+                                     NULL,
+                                     NULL, NULL, NULL,
+                                     editor_session_load_stream_cb,
+                                     g_object_ref (document));
+}
+
+void
+editor_session_open_stream (EditorSession *session,
+                            EditorWindow  *window,
+                            GInputStream  *stream)
+{
+  g_autoptr(EditorDocument) new_document = NULL;
+  EditorPage *old_page;
+  EditorPage *new_page;
+
+  g_return_if_fail (EDITOR_IS_SESSION (session));
+  g_return_if_fail (!window || EDITOR_IS_WINDOW (window));
+  g_return_if_fail (G_IS_INPUT_STREAM (stream));
+
+  if (window == NULL)
+    window = find_or_create_window (session);
+
+  /* If the window has a single empty page within it, just close that
+   * page and let our new page replace it.
+   */
+  if (editor_window_get_n_pages (window) == 1 &&
+      (old_page = editor_window_get_nth_page (window, 0)) &&
+      editor_page_get_can_discard (old_page))
+    _editor_window_remove_page (window, old_page);
+
+  new_document = editor_document_new_draft ();
+  new_page = editor_session_add_document (session, window, new_document);
+
+  load_stream_into_document (stream, new_document);
+  _editor_page_raise (new_page);
+  _editor_session_mark_dirty (session);
+}

@@ -405,6 +405,25 @@ editor_application_startup (GApplication *application)
   gtk_window_set_default_icon_name (PACKAGE_ICON_NAME);
 }
 
+static gboolean
+load_stdin_stream_cb (gpointer user_data)
+{
+  EditorApplication *self = EDITOR_APPLICATION_DEFAULT;
+  EditorSession *session;
+  EditorWindow *window;
+  GInputStream *stream = user_data;
+
+  g_assert (EDITOR_IS_APPLICATION (self));
+  g_assert (G_IS_INPUT_STREAM (stream));
+
+  window = editor_application_get_current_window (self);
+  session = editor_application_get_session (self);
+  editor_session_open_stream (session, window, stream);
+  g_application_release (G_APPLICATION (self));
+
+  return G_SOURCE_REMOVE;
+}
+
 static int
 editor_application_command_line (GApplication            *app,
                                  GApplicationCommandLine *command_line)
@@ -412,6 +431,7 @@ editor_application_command_line (GApplication            *app,
   EditorApplication *self = (EditorApplication *)app;
   g_auto(GStrv) argv = NULL;
   g_autoptr(GPtrArray) files = NULL;
+  g_autoptr(GInputStream) stdin_stream = NULL;
   GVariantDict *options;
   gboolean new_window = FALSE;
   const char *hint = NULL;
@@ -430,8 +450,28 @@ editor_application_command_line (GApplication            *app,
   files = g_ptr_array_new_with_free_func (g_object_unref);
 
   for (int i = 1; i < argc; i++)
-    g_ptr_array_add (files,
-                     g_application_command_line_create_file_for_arg (command_line, argv[i]));
+    {
+      /* We want to read stdin into temporary file if we get '-' */
+      if (g_strcmp0 (argv[i], "-") == 0)
+        {
+          if (stdin_stream != NULL)
+            g_application_command_line_printerr (command_line,
+                                                 "%s\n",
+                                                 _("Standard input was requested multiple times. Ignoring request."));
+          else if (!(stdin_stream = g_application_command_line_get_stdin (command_line)))
+            g_application_command_line_printerr (command_line,
+                                                 "%s\n",
+                                                 _("Standard input is not supported on this platform. Ignoring request."));
+          continue;
+        }
+
+      /* Otherwise add the file to the list of files we need to open, taking
+       * into account the other directory a remote instance could be running
+       * from.
+       */
+      g_ptr_array_add (files,
+                       g_application_command_line_create_file_for_arg (command_line, argv[i]));
+    }
 
   /* Only accept --new-window if this is a remote instance, we already
    * create a window if we're in the same process.
@@ -448,6 +488,26 @@ editor_application_command_line (GApplication            *app,
                         hint);
   else
     g_application_activate (app);
+
+  /* We've activated but there is a strong chance that our state has not yet
+   * been restored because that requires reading from disk. Give a bit of a
+   * delay before we process the intput stream for our initial windows to be
+   * created and state restored.
+   *
+   * This is basically a hack, but to do anything else would require more state
+   * tracking in the session manager which is particularly difficult as the
+   * stdin could be coming from another process which has been passed to us
+   * over D-Bus.
+   */
+  if (stdin_stream != NULL)
+    {
+      g_application_hold (G_APPLICATION (self));
+      g_timeout_add_full (G_PRIORITY_DEFAULT,
+                          500 /* msec */,
+                          load_stdin_stream_cb,
+                          g_steal_pointer (&stdin_stream),
+                          g_object_unref);
+    }
 
   return EXIT_SUCCESS;
 }
