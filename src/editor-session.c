@@ -1103,6 +1103,7 @@ editor_session_update_recent_worker (GTask        *task,
       /* Just delete recent files if the user doesn't want them */
       g_autofree gchar *path = get_bookmarks_filename ();
       g_unlink (path);
+      g_task_return_boolean (task, TRUE);
       return;
     }
 
