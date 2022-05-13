@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues\n"
-"POT-Creation-Date: 2022-02-22 01:46+0000\n"
+"POT-Creation-Date: 2022-05-12 20:38+0000\n"
 "PO-Revision-Date: 2022-01-18 18:08+0100\n"
 "Last-Translator: maite guix <maite.guix@me.com>\n"
 "Language-Team: Catalan <gnome@llistes.softcatala.org>\n"
@@ -178,7 +178,7 @@ msgstr ""
 "Si s'ha d'utilitzar el tipus de lletra monoespai per defecte del sistema."
 
 #: data/org.gnome.TextEditor.gschema.xml:98
-#: src/editor-preferences-dialog.ui:60
+#: src/editor-preferences-dialog.ui:57
 msgid "Custom Font"
 msgstr "Tipus de lletra personalitzada"
 
@@ -284,12 +284,12 @@ msgid "The line height to use for the selected font."
 msgstr ""
 "L'alçada de la línia que s'utilitzarà per al tipus de lletra seleccionat."
 
-#: src/editor-animation.c:1051
+#: src/editor-animation.c:1038
 #, c-format
 msgid "Failed to find property %s in %s"
 msgstr "No s'ha pogut trobar la propietat %s a %s"
 
-#: src/editor-animation.c:1060
+#: src/editor-animation.c:1047
 #, c-format
 msgid "Failed to retrieve va_list value: %s"
 msgstr "No s'ha pogut recuperar el valor va_list: %s"
@@ -302,11 +302,23 @@ msgstr "Lloc web de l'Editor de text"
 msgid "translator-credits"
 msgstr "Jordi Mas i Hernàndez <jmas@softcatala.org>, 2021-2022"
 
-#: src/editor-application.c:599
+#: src/editor-application.c:460
+msgid "Standard input was requested multiple times. Ignoring request."
+msgstr ""
+"L'entrada estàndard s'ha demanat diverses vegades. S'ignora la "
+"sol·licitud."
+
+#: src/editor-application.c:464
+msgid "Standard input is not supported on this platform. Ignoring request."
+msgstr ""
+"L'entrada estàndard no és compatible en aquesta plataforma. S'ignora "
+"la sol·licitud."
+
+#: src/editor-application.c:659
 msgid "Do not restore session at startup"
 msgstr "No restauris la sessió a l'inici"
 
-#: src/editor-application.c:600
+#: src/editor-application.c:660
 msgid "Open provided files in a new window"
 msgstr "Obre els fitxers proporcionats en una finestra nova"
 
@@ -445,55 +457,56 @@ msgstr "Cancel·la"
 msgid "Ln %u, Col %u"
 msgstr "Ln %u, Col %u"
 
-#: src/editor-page.ui:101
+#: src/editor-page.ui:98
 msgid "Go to Line"
 msgstr "Ves a la línia"
 
-#: src/editor-page.ui:119
+#: src/editor-page.ui:116
 msgid "Go"
 msgstr "Ves"
 
-#: src/editor-page.ui:156 src/editor-window.ui:277
+#: src/editor-page.ui:153 src/editor-window.ui:277
 msgid "Indentation"
 msgstr "Sagnat"
 
-#: src/editor-page.ui:159 src/editor-window.ui:279
+#: src/editor-page.ui:156 src/editor-window.ui:279
 msgid "_Automatic Indentation"
 msgstr "_Sagnat automàtic"
 
-#: src/editor-page.ui:165 src/editor-window.ui:283
+#. Translators: this is a tab character, not a browser tab
+#: src/editor-page.ui:162 src/editor-window.ui:283
 msgid "_Tabs"
 msgstr "_Tabuladors"
 
-#: src/editor-page.ui:170 src/editor-window.ui:288
+#: src/editor-page.ui:167 src/editor-window.ui:288
 msgid "_Spaces"
 msgstr "_Espais"
 
-#: src/editor-page.ui:177 src/editor-window.ui:293
+#: src/editor-page.ui:174 src/editor-window.ui:293
 msgid "Spaces _Per Tab"
 msgstr "_Espais per tabulador"
 
-#: src/editor-page.ui:179 src/editor-page.ui:207
+#: src/editor-page.ui:176 src/editor-page.ui:204
 msgid "2"
 msgstr "2"
 
-#: src/editor-page.ui:184 src/editor-page.ui:212
+#: src/editor-page.ui:181 src/editor-page.ui:209
 msgid "4"
 msgstr "4"
 
-#: src/editor-page.ui:189 src/editor-page.ui:217
+#: src/editor-page.ui:186 src/editor-page.ui:214
 msgid "6"
 msgstr "6"
 
-#: src/editor-page.ui:194 src/editor-page.ui:222
+#: src/editor-page.ui:191 src/editor-page.ui:219
 msgid "8"
 msgstr "8"
 
-#: src/editor-page.ui:200
+#: src/editor-page.ui:197
 msgid "Spaces Per Indent"
 msgstr "Espais per al sagnat"
 
-#: src/editor-page.ui:202
+#: src/editor-page.ui:199
 msgid "Use Tab Size"
 msgstr "Utilitza la mida del tabulador"
 
@@ -511,49 +524,49 @@ msgstr "Col"
 msgid "Appearance"
 msgstr "Aparença"
 
-#: src/editor-preferences-dialog.ui:82
+#: src/editor-preferences-dialog.ui:79
 msgid "Display Grid Pattern"
 msgstr "Mostra el patró de la quadrícula"
 
-#: src/editor-preferences-dialog.ui:88
+#: src/editor-preferences-dialog.ui:85
 msgid "Highlight Current Line"
 msgstr "Ressalta la línia actual"
 
-#: src/editor-preferences-dialog.ui:94
+#: src/editor-preferences-dialog.ui:91
 msgid "Display Overview Map"
 msgstr "Mostra el mapa general"
 
-#: src/editor-preferences-dialog.ui:102
+#: src/editor-preferences-dialog.ui:99
 msgid "Right Margin"
 msgstr "Marge dret"
 
-#: src/editor-preferences-dialog.ui:105
+#: src/editor-preferences-dialog.ui:102
 msgid "Margin Position"
 msgstr "Posició del marge"
 
-#: src/editor-preferences-dialog.ui:113
+#: src/editor-preferences-dialog.ui:110
 msgid "Behavior"
 msgstr "Comportament"
 
-#: src/editor-preferences-dialog.ui:116
+#: src/editor-preferences-dialog.ui:113
 msgid "Discover Document Settings"
 msgstr "Descobreix la configuració del document"
 
-#: src/editor-preferences-dialog.ui:117
+#: src/editor-preferences-dialog.ui:114
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr ""
 "Apliqueu la configuració mitjançant línies de mode, configuració de l'editor"
 " o valors predeterminats sensats"
 
-#: src/editor-preferences-dialog.ui:123
+#: src/editor-preferences-dialog.ui:120
 msgid "Restore Session"
 msgstr "Restaura la sessió"
 
-#: src/editor-preferences-dialog.ui:124
+#: src/editor-preferences-dialog.ui:121
 msgid "Return to your previous session when Text Editor is started"
 msgstr "Torna a la sessió anterior quan s'iniciï l'Editor de text"
 
-#: src/editor-preferences-dialog.ui:139
+#: src/editor-preferences-dialog.ui:136
 msgid "_Clear History"
 msgstr "_Neteja l'historial"
 
@@ -828,7 +841,7 @@ msgstr "Tipus de document: %s"
 
 #. translators: the first %s is replaced with the title, the second %s is
 #. replaced with the subtitle
-#: src/editor-window.c:725
+#: src/editor-window.c:727
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - Editor de text"
