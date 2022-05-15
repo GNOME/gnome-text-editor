@@ -9,17 +9,17 @@ msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-03-15 19:00+0000\n"
-"PO-Revision-Date: 2022-03-09 10:58+0300\n"
-"Last-Translator: Ivan Molodetskikh <yalterz@gmail.com>\n"
+"POT-Creation-Date: 2022-05-12 20:38+0000\n"
+"PO-Revision-Date: 2022-05-14 00:17+1000\n"
+"Last-Translator: Ser82-png <sw@atrus.ru>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
-"X-Generator: Gtranslator 41.0\n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 2.3\n"
 "X-DL-Team: ru\n"
 "X-DL-Module: gnome-text-editor\n"
 "X-DL-Branch: main\n"
@@ -175,7 +175,7 @@ msgstr "Использовать системный шрифт"
 msgid "If the default system monospace font should be used."
 msgstr "Если требуется использовать по умолчанию системный моноширинный шрифт."
 
-#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:60
+#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:57
 msgid "Custom Font"
 msgstr "Текущий шрифт"
 
@@ -280,12 +280,12 @@ msgstr "Высота строки"
 msgid "The line height to use for the selected font."
 msgstr "Высота строки для выбранного шрифта."
 
-#: src/editor-animation.c:1051
+#: src/editor-animation.c:1038
 #, c-format
 msgid "Failed to find property %s in %s"
 msgstr "Не удалось найти свойство %s в %s"
 
-#: src/editor-animation.c:1060
+#: src/editor-animation.c:1047
 #, c-format
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Не удалось получить значение va_list: %s"
@@ -298,11 +298,20 @@ msgstr "Домашняя страница текстового редактор�
 msgid "translator-credits"
 msgstr "Ser82-png <sw@atrus.ru>, 2022"
 
-#: src/editor-application.c:599
+#: src/editor-application.c:460
+msgid "Standard input was requested multiple times. Ignoring request."
+msgstr "Стандартный ввод был запрошен несколько раз. Запрос проигнорирован."
+
+#: src/editor-application.c:464
+msgid "Standard input is not supported on this platform. Ignoring request."
+msgstr ""
+"Стандартный ввод не поддерживается на этой платформе. Запрос проигнорирован."
+
+#: src/editor-application.c:659
 msgid "Do not restore session at startup"
 msgstr "Не восстанавливать сеанс при запуске"
 
-#: src/editor-application.c:600
+#: src/editor-application.c:660
 msgid "Open provided files in a new window"
 msgstr "Открыть предоставленные файлы в новом окне"
 
@@ -456,6 +465,7 @@ msgstr "Отступ"
 msgid "_Automatic Indentation"
 msgstr "_Автоматический отступ"
 
+#. Translators: this is a tab character, not a browser tab
 #: src/editor-page.ui:162 src/editor-window.ui:283
 msgid "_Tabs"
 msgstr "_Табуляция"
@@ -506,49 +516,49 @@ msgstr "Поз."
 msgid "Appearance"
 msgstr "Внешний вид"
 
-#: src/editor-preferences-dialog.ui:82
+#: src/editor-preferences-dialog.ui:79
 msgid "Display Grid Pattern"
 msgstr "Показывать сетку"
 
-#: src/editor-preferences-dialog.ui:88
+#: src/editor-preferences-dialog.ui:85
 msgid "Highlight Current Line"
 msgstr "Выделять текущую строку"
 
-#: src/editor-preferences-dialog.ui:94
+#: src/editor-preferences-dialog.ui:91
 msgid "Display Overview Map"
 msgstr "Показывать обзорную карту"
 
-#: src/editor-preferences-dialog.ui:102
+#: src/editor-preferences-dialog.ui:99
 msgid "Right Margin"
 msgstr "Правый край"
 
-#: src/editor-preferences-dialog.ui:105
+#: src/editor-preferences-dialog.ui:102
 msgid "Margin Position"
 msgstr "Положение края"
 
-#: src/editor-preferences-dialog.ui:113
+#: src/editor-preferences-dialog.ui:110
 msgid "Behavior"
 msgstr "Поведение"
 
-#: src/editor-preferences-dialog.ui:116
+#: src/editor-preferences-dialog.ui:113
 msgid "Discover Document Settings"
 msgstr "Автоматически определять настройки документа"
 
-#: src/editor-preferences-dialog.ui:117
+#: src/editor-preferences-dialog.ui:114
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr ""
 "Применять настройки из modeline, editorconfig или использовать разумные "
 "значения по умолчанию"
 
-#: src/editor-preferences-dialog.ui:123
+#: src/editor-preferences-dialog.ui:120
 msgid "Restore Session"
 msgstr "Восстанавливать сеанс"
 
-#: src/editor-preferences-dialog.ui:124
+#: src/editor-preferences-dialog.ui:121
 msgid "Return to your previous session when Text Editor is started"
 msgstr "Возвращаться к предыдущему сеансу при запуске текстового редактора"
 
-#: src/editor-preferences-dialog.ui:139
+#: src/editor-preferences-dialog.ui:136
 msgid "_Clear History"
 msgstr "Очистить _историю"
 
@@ -823,7 +833,7 @@ msgid "Document Type: %s"
 msgstr "Тип документа: %s"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:725
+#: src/editor-window.c:727
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - текстовый редактор"
