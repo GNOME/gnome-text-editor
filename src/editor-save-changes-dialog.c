@@ -342,7 +342,7 @@ _editor_save_changes_dialog_new (GtkWindow *parent,
       if (file != NULL)
         sr.file = g_file_dup (file);
       else
-        sr.file = g_file_get_child (directory, title_str);
+        sr.file = _editor_document_suggest_file (document, directory);
 
       g_array_append_val (requests, sr);
     }
