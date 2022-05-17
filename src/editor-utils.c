@@ -35,6 +35,8 @@
 #define FONT_WEIGHT  "font-weight"
 #define FONT_SIZE    "font-size"
 
+#define CHOICE_LINE_ENDING "line-ending"
+
 gchar *
 _editor_font_description_to_css (const PangoFontDescription *font_desc)
 {
@@ -447,17 +449,17 @@ _editor_file_chooser_add_line_endings (GtkFileChooser       *chooser,
     }
 
   gtk_file_chooser_add_choice (chooser,
-                               "line-ending",
+                               CHOICE_LINE_ENDING,
                                _("Line Ending:"),
                                (const char **)(gpointer)choices->data,
                                (const char **)(gpointer)labels->data);
-  gtk_file_chooser_set_choice (chooser, "line-endings", "unix");
+  gtk_file_chooser_set_choice (chooser, CHOICE_LINE_ENDING, "unix");
 
   for (guint i = 0; i < G_N_ELEMENTS (line_endings); i++)
     {
       if (line_endings[i].type == selected)
         {
-          gtk_file_chooser_set_choice (chooser, "line-endings", line_endings[i].id);
+          gtk_file_chooser_set_choice (chooser, CHOICE_LINE_ENDING, line_endings[i].id);
           break;
         }
     }
@@ -486,7 +488,7 @@ _editor_file_chooser_get_line_ending (GtkFileChooser *chooser)
 
   g_return_val_if_fail (GTK_IS_FILE_CHOOSER (chooser), 0);
 
-  if ((ending = gtk_file_chooser_get_choice (chooser, "line-ending")))
+  if ((ending = gtk_file_chooser_get_choice (chooser, CHOICE_LINE_ENDING)))
     {
       for (guint i = 0; i < G_N_ELEMENTS (line_endings); i++)
         {
