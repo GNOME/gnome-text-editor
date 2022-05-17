@@ -89,5 +89,8 @@ void                      _editor_document_use_admin               (EditorDocume
 gboolean                  _editor_document_had_error               (EditorDocument           *self);
 void                      _editor_document_persist_syntax_language (EditorDocument           *self,
                                                                     const char               *language_id);
+char                     *_editor_document_suggest_filename        (EditorDocument           *self);
+GFile                    *_editor_document_suggest_file            (EditorDocument           *self,
+                                                                    GFile                    *directory);
 
 G_END_DECLS

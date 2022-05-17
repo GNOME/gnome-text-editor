@@ -2196,3 +2196,55 @@ _editor_document_had_error (EditorDocument *self)
 
   return self->load_failed;
 }
+
+char *
+_editor_document_suggest_filename (EditorDocument *self)
+{
+  g_autofree char *title = NULL;
+  GtkSourceLanguage *lang;
+  const char *suggested_name = NULL;
+  const char *suggested_suffix = NULL;
+
+  g_assert (EDITOR_IS_DOCUMENT (self));
+
+  if ((lang = gtk_source_buffer_get_language (GTK_SOURCE_BUFFER (self))))
+    {
+      suggested_suffix = gtk_source_language_get_metadata (lang, "suggested-suffix");
+      suggested_name = gtk_source_language_get_metadata (lang, "suggested-name");
+    }
+
+  if (suggested_name != NULL)
+    return g_strdup (suggested_name);
+
+  title = editor_document_dup_title (self);
+
+  if (suggested_suffix == NULL)
+    return g_strdup_printf ("%s.txt", title);
+
+  return g_strdup_printf ("%s.%s", title, suggested_suffix);
+}
+
+GFile *
+_editor_document_suggest_file (EditorDocument *self,
+                               GFile          *directory)
+{
+  static GFile *documents;
+  g_autofree char *name = NULL;
+
+  g_return_val_if_fail (EDITOR_IS_DOCUMENT (self), NULL);
+  g_return_val_if_fail (!directory || G_IS_FILE (directory), NULL);
+
+  if (directory == NULL)
+    {
+      if (documents == NULL)
+        documents = g_file_new_for_path (g_get_user_special_dir (G_USER_DIRECTORY_DOCUMENTS));
+      directory = documents;
+    }
+
+  name = _editor_document_suggest_filename (self);
+
+  g_assert (G_IS_FILE (directory));
+  g_assert (name != NULL);
+
+  return g_file_get_child (directory, name);
+}
