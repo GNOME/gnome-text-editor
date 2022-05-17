@@ -1194,6 +1194,12 @@ _editor_page_save_as (EditorPage *self,
       gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (native), directory, NULL);
     }
 
+  if (filename == NULL)
+    {
+      g_autofree char *suggestion = _editor_document_suggest_filename (self->document);
+      gtk_file_chooser_set_current_name (GTK_FILE_CHOOSER (native), suggestion);
+    }
+
   g_signal_connect_object (native,
                            "response",
                            G_CALLBACK (editor_page_save_as_cb),
