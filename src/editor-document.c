@@ -22,8 +22,9 @@
 
 #include "config.h"
 
-#include <glib/gi18n.h>
 #include <string.h>
+
+#include <glib/gi18n.h>
 
 #include "editor-application.h"
 #include "editor-buffer-monitor-private.h"
@@ -2204,6 +2205,7 @@ _editor_document_suggest_filename (EditorDocument *self)
   GtkSourceLanguage *lang;
   const char *suggested_name = NULL;
   const char *suggested_suffix = NULL;
+  const char *current_suffix;
 
   g_assert (EDITOR_IS_DOCUMENT (self));
 
@@ -2216,12 +2218,20 @@ _editor_document_suggest_filename (EditorDocument *self)
   if (suggested_name != NULL)
     return g_strdup (suggested_name);
 
+  if (suggested_suffix == NULL)
+    suggested_suffix = ".txt";
+
   title = editor_document_dup_title (self);
 
-  if (suggested_suffix == NULL)
-    return g_strdup_printf ("%s.txt", title);
+  if (title == NULL)
+    title = g_strdup (_("New Document"));
 
-  return g_strdup_printf ("%s.%s", title, suggested_suffix);
+  current_suffix = strrchr (title, '.');
+
+  if (g_strcmp0 (current_suffix, suggested_suffix) == 0)
+    return g_steal_pointer (&title);
+
+  return g_strdup_printf ("%s%s", title, suggested_suffix);
 }
 
 GFile *
