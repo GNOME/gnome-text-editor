@@ -223,6 +223,9 @@ add_window_state (EditorSession   *self,
                                     "{'size', <(%u,%u)>}",
                                     CLAMP (width, 0, 10000),
                                     CLAMP (height, 0, 10000));
+      g_variant_builder_add_parsed (builder,
+                                    "{'maximized', <%b>}",
+                                    gtk_window_is_maximized (GTK_WINDOW (window)));
 
       /* Add all of the pages from the window */
       g_variant_builder_open (builder, G_VARIANT_TYPE ("{sv}"));
@@ -1755,6 +1758,7 @@ editor_session_restore_v1 (EditorSession *self,
   while (g_variant_iter_loop (&iter, "@a{sv}", &window))
     {
       g_autoptr(GVariant) pages = NULL;
+      gboolean maximized = FALSE;
 
       if (!g_variant_lookup (window, "size", "(uu)", &width, &height) ||
           width > HUGE_WINDOW || height > HUGE_WINDOW)
@@ -1762,6 +1766,9 @@ editor_session_restore_v1 (EditorSession *self,
           width = 0;
           height = 0;
         }
+
+      if (!g_variant_lookup (window, "maximized", "b", &maximized))
+        maximized = FALSE;
 
       if ((pages = g_variant_lookup_value (window, "pages", G_VARIANT_TYPE ("aa{sv}"))) &&
           g_variant_n_children (pages) > 0)
@@ -1778,6 +1785,9 @@ editor_session_restore_v1 (EditorSession *self,
               g_ptr_array_remove (self->windows, ewin);
               continue;
             }
+
+          if (maximized)
+            gtk_window_maximize (GTK_WINDOW (ewin));
 
           gtk_window_present (GTK_WINDOW (ewin));
         }
