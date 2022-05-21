@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues"
 "\n"
-"POT-Creation-Date: 2022-05-12 20:38+0000\n"
-"PO-Revision-Date: 2022-05-13 09:02+0300\n"
+"POT-Creation-Date: 2022-05-20 19:55+0000\n"
+"PO-Revision-Date: 2022-05-21 11:04+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -298,14 +298,14 @@ msgstr "Юрій Чорноіван <yurchor@ukr.net>, 2021–2022"
 #: src/editor-application.c:460
 msgid "Standard input was requested multiple times. Ignoring request."
 msgstr ""
-"Надіслано декілька запитів щодо стандартного джерела вхідних даних. Запит"
-" проігноровано."
+"Надіслано декілька запитів щодо стандартного джерела вхідних даних. Запит "
+"проігноровано."
 
 #: src/editor-application.c:464
 msgid "Standard input is not supported on this platform. Ignoring request."
 msgstr ""
-"На цій платформі не передбачено підтримки стандартного джерела вхідних даних."
-" Ігноруємо запит."
+"На цій платформі не передбачено підтримки стандартного джерела вхідних "
+"даних. Ігноруємо запит."
 
 #: src/editor-application.c:659
 msgid "Do not restore session at startup"
@@ -444,7 +444,7 @@ msgstr "Зберегти"
 msgid "Cancel"
 msgstr "Скасувати"
 
-#: src/editor-page.c:1309
+#: src/editor-page.c:1315
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Рд %u, Поз %u"
@@ -694,15 +694,15 @@ msgstr "За_мінити"
 msgid "Replace _All"
 msgstr "Замінити _все"
 
-#: src/editor-search-bar.ui:141
+#: src/editor-search-bar.ui:140
 msgid "Re_gular expressions"
 msgstr "_Формальні вирази"
 
-#: src/editor-search-bar.ui:147
+#: src/editor-search-bar.ui:146
 msgid "_Case sensitive"
 msgstr "_З врахуванням регістру"
 
-#: src/editor-search-bar.ui:153
+#: src/editor-search-bar.ui:152
 msgid "Match whole _word only"
 msgstr "Шукати лише _цілі слова"
 
@@ -740,23 +740,23 @@ msgstr "Світлий стиль"
 msgid "Dark style"
 msgstr "Темний стиль"
 
-#: src/editor-utils.c:346
+#: src/editor-utils.c:348
 msgid "Just now"
 msgstr "Зараз"
 
-#: src/editor-utils.c:348
+#: src/editor-utils.c:350
 msgid "An hour ago"
 msgstr "Годину тому"
 
-#: src/editor-utils.c:350
+#: src/editor-utils.c:352
 msgid "Yesterday"
 msgstr "Вчора"
 
-#: src/editor-utils.c:356
+#: src/editor-utils.c:358
 msgid "About a year ago"
 msgstr "Близько року тому"
 
-#: src/editor-utils.c:360
+#: src/editor-utils.c:362
 #, c-format
 msgid "About %u year ago"
 msgid_plural "About %u years ago"
@@ -765,27 +765,27 @@ msgstr[1] "Близько %u років тому"
 msgstr[2] "Близько %u років тому"
 msgstr[3] "Близько року тому"
 
-#: src/editor-utils.c:368
+#: src/editor-utils.c:370
 msgid "Unix/Linux (LF)"
 msgstr "Unix/Linux (LF)"
 
-#: src/editor-utils.c:369
+#: src/editor-utils.c:371
 msgid "Mac OS Classic (CR)"
 msgstr "Класична Mac OS (CR)"
 
-#: src/editor-utils.c:370
+#: src/editor-utils.c:372
 msgid "Windows (CR+LF)"
 msgstr "Windows (CR+LF)"
 
-#: src/editor-utils.c:400
+#: src/editor-utils.c:402
 msgid "Automatically Detected"
 msgstr "Автовизначення"
 
-#: src/editor-utils.c:416
+#: src/editor-utils.c:418
 msgid "Character Encoding:"
 msgstr "Кодування символів:"
 
-#: src/editor-utils.c:451
+#: src/editor-utils.c:453
 msgid "Line Ending:"
 msgstr "Кодування рядка:"
 
@@ -839,6 +839,11 @@ msgstr "Тип документа: %s"
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) – Текстовий редактор"
+
+#: src/editor-window.c:1130
+#| msgid "Failed to save document"
+msgid "There are unsaved documents"
+msgstr "Є незбережені документи"
 
 #: src/editor-window.ui:78
 msgid "_Open"
