@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-05-13 19:23+0000\n"
-"PO-Revision-Date: 2022-05-16 12:28+0430\n"
+"POT-Creation-Date: 2022-05-20 19:55+0000\n"
+"PO-Revision-Date: 2022-05-22 12:48+0430\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "Language: fa\n"
@@ -426,7 +426,7 @@ msgstr "ذخیره"
 msgid "Cancel"
 msgstr "لغو"
 
-#: src/editor-page.c:1309
+#: src/editor-page.c:1315
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "خ %Iu، س %Iu"
@@ -674,15 +674,15 @@ msgstr "_جای‌گزینی"
 msgid "Replace _All"
 msgstr "جایگزینی _همه"
 
-#: src/editor-search-bar.ui:141
+#: src/editor-search-bar.ui:140
 msgid "Re_gular expressions"
 msgstr "_عبارت‌های با قاعده"
 
-#: src/editor-search-bar.ui:147
+#: src/editor-search-bar.ui:146
 msgid "_Case sensitive"
 msgstr "_حسّاس به بزرگی و کوچکی"
 
-#: src/editor-search-bar.ui:153
+#: src/editor-search-bar.ui:152
 msgid "Match whole _word only"
 msgstr "فقط تطبیق واژهٔ _کامل"
 
@@ -720,49 +720,49 @@ msgstr "سبک روشن"
 msgid "Dark style"
 msgstr "سبک تیره"
 
-#: src/editor-utils.c:346
+#: src/editor-utils.c:348
 msgid "Just now"
 msgstr "هم‌اکنون"
 
-#: src/editor-utils.c:348
+#: src/editor-utils.c:350
 msgid "An hour ago"
 msgstr "ساعتی پیش"
 
-#: src/editor-utils.c:350
+#: src/editor-utils.c:352
 msgid "Yesterday"
 msgstr "دیروز"
 
-#: src/editor-utils.c:356
+#: src/editor-utils.c:358
 msgid "About a year ago"
 msgstr "حدود پارسال"
 
-#: src/editor-utils.c:360
+#: src/editor-utils.c:362
 #, c-format
 msgid "About %u year ago"
 msgid_plural "About %u years ago"
 msgstr[0] "حدود %Iu سال پیش"
 
-#: src/editor-utils.c:368
+#: src/editor-utils.c:370
 msgid "Unix/Linux (LF)"
 msgstr "یونیکس/گنو (LF)"
 
-#: src/editor-utils.c:369
+#: src/editor-utils.c:371
 msgid "Mac OS Classic (CR)"
 msgstr "مک کلاسیک (CR)"
 
-#: src/editor-utils.c:370
+#: src/editor-utils.c:372
 msgid "Windows (CR+LF)"
 msgstr "ویندوز (CR+LF)"
 
-#: src/editor-utils.c:400
+#: src/editor-utils.c:402
 msgid "Automatically Detected"
 msgstr "تشخیص داده به صورت خودکار"
 
-#: src/editor-utils.c:416
+#: src/editor-utils.c:418
 msgid "Character Encoding:"
 msgstr "رمزگذاری نویسه:"
 
-#: src/editor-utils.c:451
+#: src/editor-utils.c:453
 msgid "Line Ending:"
 msgstr "پایان خط:"
 
@@ -816,6 +816,10 @@ msgstr "گونهٔ سند: %s"
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - ویرایشگر متن"
+
+#: src/editor-window.c:1130
+msgid "There are unsaved documents"
+msgstr "سندهای ذخیره نشده‌ای وجود دارند"
 
 #: src/editor-window.ui:78
 msgid "_Open"
