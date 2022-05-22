@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-03-12 09:44+0000\n"
-"PO-Revision-Date: 2022-03-13 19:50+0100\n"
+"POT-Creation-Date: 2022-05-13 19:23+0000\n"
+"PO-Revision-Date: 2022-05-22 14:22+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -168,7 +168,7 @@ msgstr "Czcionka systemowa"
 msgid "If the default system monospace font should be used."
 msgstr "Czy używać domyślnej czcionki o stałej szerokości systemu."
 
-#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:60
+#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:57
 msgid "Custom Font"
 msgstr "Niestandardowa czcionka"
 
@@ -267,12 +267,12 @@ msgstr "Wysokość wiersza"
 msgid "The line height to use for the selected font."
 msgstr "Wysokość wiersza używana dla wybranej czcionki."
 
-#: src/editor-animation.c:1051
+#: src/editor-animation.c:1038
 #, c-format
 msgid "Failed to find property %s in %s"
 msgstr "Odnalezienie właściwości %s w %s się nie powiodło"
 
-#: src/editor-animation.c:1060
+#: src/editor-animation.c:1047
 #, c-format
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Odebranie wartości va_list się nie powiodło: %s"
@@ -445,6 +445,7 @@ msgstr "Wcięcia"
 msgid "_Automatic Indentation"
 msgstr "_Automatyczne"
 
+#. Translators: this is a tab character, not a browser tab
 #: src/editor-page.ui:162 src/editor-window.ui:283
 msgid "_Tabs"
 msgstr "_Tabulacje"
@@ -489,55 +490,55 @@ msgstr "Wrsz"
 #. translators: Col is short for "Column"
 #: src/editor-position-label.ui:35
 msgid "Col"
-msgstr "Kol"
+msgstr "kol"
 
 #: src/editor-preferences-dialog.ui:17
 msgid "Appearance"
 msgstr "Wygląd"
 
-#: src/editor-preferences-dialog.ui:82
+#: src/editor-preferences-dialog.ui:79
 msgid "Display Grid Pattern"
 msgstr "Wzór siatki"
 
-#: src/editor-preferences-dialog.ui:88
+#: src/editor-preferences-dialog.ui:85
 msgid "Highlight Current Line"
 msgstr "Wyróżnianie bieżącego wiersza"
 
-#: src/editor-preferences-dialog.ui:94
+#: src/editor-preferences-dialog.ui:91
 msgid "Display Overview Map"
 msgstr "Mapa przekrojowa"
 
-#: src/editor-preferences-dialog.ui:102
+#: src/editor-preferences-dialog.ui:99
 msgid "Right Margin"
 msgstr "Prawy margines"
 
-#: src/editor-preferences-dialog.ui:105
+#: src/editor-preferences-dialog.ui:102
 msgid "Margin Position"
 msgstr "Pozycja marginesu"
 
-#: src/editor-preferences-dialog.ui:113
+#: src/editor-preferences-dialog.ui:110
 msgid "Behavior"
 msgstr "Zachowanie"
 
-#: src/editor-preferences-dialog.ui:116
+#: src/editor-preferences-dialog.ui:113
 msgid "Discover Document Settings"
 msgstr "Wykrywanie ustawień dokumentów"
 
-#: src/editor-preferences-dialog.ui:117
+#: src/editor-preferences-dialog.ui:114
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr ""
 "Zastosowywanie ustawień za pomocą wierszy trybu, plików editorconfig lub "
 "rozsądnych domyślnych"
 
-#: src/editor-preferences-dialog.ui:123
+#: src/editor-preferences-dialog.ui:120
 msgid "Restore Session"
 msgstr "Przywracanie sesji"
 
-#: src/editor-preferences-dialog.ui:124
+#: src/editor-preferences-dialog.ui:121
 msgid "Return to your previous session when Text Editor is started"
 msgstr "Powrót do poprzedniej sesji po uruchomieniu programu"
 
-#: src/editor-preferences-dialog.ui:139
+#: src/editor-preferences-dialog.ui:136
 msgid "_Clear History"
 msgstr "Wy_czyść historię"
 
@@ -812,7 +813,7 @@ msgid "Document Type: %s"
 msgstr "Typ dokumentu: %s"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:725
+#: src/editor-window.c:727
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) — Edytor tekstu"
