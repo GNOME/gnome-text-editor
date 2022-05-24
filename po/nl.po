@@ -8,18 +8,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
-"issues\n"
-"POT-Creation-Date: 2022-03-29 10:52+0000\n"
-"PO-Revision-Date: 2022-04-01 14:18+0200\n"
-"Last-Translator: Nathan Follens <nfollens@gnome.org>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues"
+"\n"
+"POT-Creation-Date: 2022-05-20 23:12+0000\n"
+"PO-Revision-Date: 2022-05-24 10:24+0200\n"
+"Last-Translator: Hannie Dumoleyn <hannie@ubuntu-nl.org>\n"
 "Language-Team: Dutch <gnome-nl-list@gnome.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Lokalize 19.12.3\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
 msgid "Christian Hergert, et al."
@@ -178,7 +178,7 @@ msgid "If the default system monospace font should be used."
 msgstr ""
 "Bepaalt of het standaard systeemlettertype met vaste breedte gebruikt wordt."
 
-#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:60
+#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:57
 msgid "Custom Font"
 msgstr "Aangepast lettertype"
 
@@ -297,22 +297,43 @@ msgstr "Ophalen van va_list-waarde is mislukt: %s"
 msgid "Text Editor Website"
 msgstr "Website van Teksteditor"
 
-# Ik vind vertaler-credits niet mooi. Hieronder komen de namen te staan van de vertalers.
+# Dit hoort een lijst te zijn met vertalers, ik heb een lijst opgebouwd op basis van de metadata van dit bestand
 #: src/editor-application-actions.c:207
 msgid "translator-credits"
-msgstr "vertalers"
+msgstr ""
+"Nathan Follens <nfollens@gnome.org>\n"
+"Hannie Dumoleyn\n"
+"Philip Goto\n"
+"\n"
+"Meer info over Gnome-NL https://nl.gnome.org"
 
-#: src/editor-application.c:599
+#: src/editor-application.c:460
+msgid "Standard input was requested multiple times. Ignoring request."
+msgstr ""
+"Standaardinvoer is meerdere keren aangevraagd. Verzoek wordt genegeerd."
+
+#: src/editor-application.c:464
+msgid "Standard input is not supported on this platform. Ignoring request."
+msgstr ""
+"Standaardinvoer wordt niet ondersteund op dit platform. Verzoek wordt "
+"genegeerd."
+
+#: src/editor-application.c:659
 msgid "Do not restore session at startup"
 msgstr "Sessie niet herstellen bij opstarten"
 
-#: src/editor-application.c:600
+#: src/editor-application.c:660
 msgid "Open provided files in a new window"
 msgstr "Aangeleverde bestanden openen in een nieuw venster"
 
-#: src/editor-document.c:1938
+#: src/editor-document.c:1939
 msgid "[Read-Only]"
 msgstr "[alleen-lezen]"
+
+#: src/editor-document.c:2227 src/editor-page.c:987
+#: src/editor-sidebar-item.c:489
+msgid "New Document"
+msgstr "Nieuw document"
 
 #: src/editor-file-manager.c:99
 msgid "File path is NULL"
@@ -403,10 +424,6 @@ msgstr "Geen recente documenten"
 msgid "No Results Found"
 msgstr "Geen resultaten gevonden"
 
-#: src/editor-page.c:987 src/editor-sidebar-item.c:489
-msgid "New Document"
-msgstr "Nieuw document"
-
 #: src/editor-page.c:1009 src/editor-properties-dialog.c:74
 #: src/editor-sidebar-item.c:84
 msgid "Draft"
@@ -439,7 +456,7 @@ msgstr "Opslaan"
 msgid "Cancel"
 msgstr "Annuleren"
 
-#: src/editor-page.c:1309
+#: src/editor-page.c:1315
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Rg %u, kol %u"
@@ -460,6 +477,7 @@ msgstr "Inspringing"
 msgid "_Automatic Indentation"
 msgstr "_Automatische inspringing"
 
+#. Translators: this is a tab character, not a browser tab
 #: src/editor-page.ui:162 src/editor-window.ui:283
 msgid "_Tabs"
 msgstr "_Tabs"
@@ -510,49 +528,49 @@ msgstr "Kol"
 msgid "Appearance"
 msgstr "Uiterlijk"
 
-#: src/editor-preferences-dialog.ui:82
+#: src/editor-preferences-dialog.ui:79
 msgid "Display Grid Pattern"
 msgstr "Rasterpatroon weergeven"
 
-#: src/editor-preferences-dialog.ui:88
+#: src/editor-preferences-dialog.ui:85
 msgid "Highlight Current Line"
 msgstr "Huidige regel markeren"
 
-#: src/editor-preferences-dialog.ui:94
+#: src/editor-preferences-dialog.ui:91
 msgid "Display Overview Map"
 msgstr "Overzichtskaart weergeven"
 
-#: src/editor-preferences-dialog.ui:102
+#: src/editor-preferences-dialog.ui:99
 msgid "Right Margin"
 msgstr "Rechtermarge"
 
-#: src/editor-preferences-dialog.ui:105
+#: src/editor-preferences-dialog.ui:102
 msgid "Margin Position"
 msgstr "Positie van marge"
 
-#: src/editor-preferences-dialog.ui:113
+#: src/editor-preferences-dialog.ui:110
 msgid "Behavior"
 msgstr "Gedrag"
 
-#: src/editor-preferences-dialog.ui:116
+#: src/editor-preferences-dialog.ui:113
 msgid "Discover Document Settings"
 msgstr "Documentinstellingen ontdekken"
 
-#: src/editor-preferences-dialog.ui:117
+#: src/editor-preferences-dialog.ui:114
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr ""
 "Instellingen toepassen op basis van modelines, editorconfig of logische "
 "standaardwaarden"
 
-#: src/editor-preferences-dialog.ui:123
+#: src/editor-preferences-dialog.ui:120
 msgid "Restore Session"
 msgstr "Sessie herstellen"
 
-#: src/editor-preferences-dialog.ui:124
+#: src/editor-preferences-dialog.ui:121
 msgid "Return to your previous session when Text Editor is started"
 msgstr "Teruggaan naar de vorige sessie wanneer Teksteditor wordt gestart"
 
-#: src/editor-preferences-dialog.ui:139
+#: src/editor-preferences-dialog.ui:136
 msgid "_Clear History"
 msgstr "_Geschiedenis wissen"
 
@@ -687,15 +705,15 @@ msgstr "Ve_rvangen"
 msgid "Replace _All"
 msgstr "_Alles vervangen"
 
-#: src/editor-search-bar.ui:141
+#: src/editor-search-bar.ui:140
 msgid "Re_gular expressions"
 msgstr "Re_guliere expressies"
 
-#: src/editor-search-bar.ui:147
+#: src/editor-search-bar.ui:146
 msgid "_Case sensitive"
 msgstr "Hoofdletter_gevoelig"
 
-#: src/editor-search-bar.ui:153
+#: src/editor-search-bar.ui:152
 msgid "Match whole _word only"
 msgstr "Alleen met  hele _woord overeenkomen"
 
@@ -733,50 +751,50 @@ msgstr "Lichte stijl"
 msgid "Dark style"
 msgstr "Donkere stijl"
 
-#: src/editor-utils.c:346
+#: src/editor-utils.c:348
 msgid "Just now"
 msgstr "Zojuist"
 
-#: src/editor-utils.c:348
+#: src/editor-utils.c:350
 msgid "An hour ago"
 msgstr "Een uur geleden"
 
-#: src/editor-utils.c:350
+#: src/editor-utils.c:352
 msgid "Yesterday"
 msgstr "Gisteren"
 
-#: src/editor-utils.c:356
+#: src/editor-utils.c:358
 msgid "About a year ago"
 msgstr "Ongeveer een jaar geleden"
 
-#: src/editor-utils.c:360
+#: src/editor-utils.c:362
 #, c-format
 msgid "About %u year ago"
 msgid_plural "About %u years ago"
 msgstr[0] "Ongeveer %u jaar geleden"
 msgstr[1] "Ongeveer %u jaar geleden"
 
-#: src/editor-utils.c:368
+#: src/editor-utils.c:370
 msgid "Unix/Linux (LF)"
 msgstr "Unix/Linux (LF)"
 
-#: src/editor-utils.c:369
+#: src/editor-utils.c:371
 msgid "Mac OS Classic (CR)"
 msgstr "Mac OS Classic (CR)"
 
-#: src/editor-utils.c:370
+#: src/editor-utils.c:372
 msgid "Windows (CR+LF)"
 msgstr "Windows (CR+LF)"
 
-#: src/editor-utils.c:400
+#: src/editor-utils.c:402
 msgid "Automatically Detected"
 msgstr "Automatisch herkend"
 
-#: src/editor-utils.c:416
+#: src/editor-utils.c:418
 msgid "Character Encoding:"
 msgstr "Tekenset:"
 
-#: src/editor-utils.c:451
+#: src/editor-utils.c:453
 msgid "Line Ending:"
 msgstr "Regeleinde:"
 
@@ -828,10 +846,15 @@ msgid "Document Type: %s"
 msgstr "Documenttype: %s"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:725
+#: src/editor-window.c:727
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - Teksteditor"
+
+#: src/editor-window.c:1130
+#| msgid "Failed to save document"
+msgid "There are unsaved documents"
+msgstr "Er zijn nog niet opgeslagen documenten"
 
 #: src/editor-window.ui:78
 msgid "_Open"
