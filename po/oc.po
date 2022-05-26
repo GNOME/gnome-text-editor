@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-03-15 19:00+0000\n"
-"PO-Revision-Date: 2022-03-15 20:47+0100\n"
+"POT-Creation-Date: 2022-05-22 12:24+0000\n"
+"PO-Revision-Date: 2022-05-26 20:13+0200\n"
 "Last-Translator: Quentin PAGÈS\n"
 "Language-Team: Occitan <totenoc@gmail.com>\n"
 "Language: oc\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
 msgid "Christian Hergert, et al."
-msgstr ""
+msgstr "Christian Hergert, et al."
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:7
@@ -46,7 +46,7 @@ msgstr "Afichar e modificar de fichièrs de tèxt"
 
 #: data/org.gnome.TextEditor.gschema.xml:16
 msgid "Auto Save Delay"
-msgstr ""
+msgstr "Relambi de salvagarda auto"
 
 #: data/org.gnome.TextEditor.gschema.xml:17
 msgid "The delay in seconds to wait before auto-saving a draft."
@@ -64,7 +64,7 @@ msgstr ""
 
 #: data/org.gnome.TextEditor.gschema.xml:35
 msgid "Indentation Style"
-msgstr ""
+msgstr "Estil d’indentacion"
 
 #: data/org.gnome.TextEditor.gschema.xml:36
 msgid "If the editor should insert multiple spaces characters instead of tabs."
@@ -133,7 +133,7 @@ msgstr ""
 
 #: data/org.gnome.TextEditor.gschema.xml:78
 msgid "Show Background Grid"
-msgstr ""
+msgstr "Afichar la grasilha de fons"
 
 #: data/org.gnome.TextEditor.gschema.xml:79
 msgid "If enabled, a blueprint style grid is printed on the editor background."
@@ -163,7 +163,7 @@ msgstr "Utilizar la poliça del sistèma"
 msgid "If the default system monospace font should be used."
 msgstr ""
 
-#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:60
+#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:57
 msgid "Custom Font"
 msgstr "Poliça personalizada"
 
@@ -193,7 +193,7 @@ msgstr ""
 
 #: data/org.gnome.TextEditor.gschema.xml:113
 msgid "Automatically check spelling"
-msgstr ""
+msgstr "Verificar automaticament l'ortografia"
 
 #: data/org.gnome.TextEditor.gschema.xml:114
 msgid "If enabled, then Text Editor will check spelling as you type."
@@ -201,7 +201,7 @@ msgstr ""
 
 #: data/org.gnome.TextEditor.gschema.xml:118
 msgid "Restore session"
-msgstr ""
+msgstr "Restablir la session"
 
 #: data/org.gnome.TextEditor.gschema.xml:119
 msgid "When Text Editor is run, restore the previous session."
@@ -261,27 +261,27 @@ msgstr "Nautor de linha"
 msgid "The line height to use for the selected font."
 msgstr ""
 
-#: src/editor-animation.c:1051
+#: src/editor-animation.c:1038
 #, c-format
 msgid "Failed to find property %s in %s"
 msgstr ""
 
-#: src/editor-animation.c:1060
+#: src/editor-animation.c:1047
 #, c-format
 msgid "Failed to retrieve va_list value: %s"
 msgstr ""
 
 #: src/editor-application-actions.c:206
 msgid "Text Editor Website"
-msgstr ""
+msgstr "Site web de Text Editor"
 
 #: src/editor-application-actions.c:207
 msgid "translator-credits"
-msgstr ""
+msgstr "Quentin PAGÈS"
 
 #: src/editor-application.c:599
 msgid "Do not restore session at startup"
-msgstr ""
+msgstr "Restablir pas la session a l’aviada"
 
 #: src/editor-application.c:600
 msgid "Open provided files in a new window"
@@ -314,7 +314,7 @@ msgstr ""
 
 #: src/editor-info-bar.c:79
 msgid "File Has Changed on Disk"
-msgstr ""
+msgstr "Lo fichièr a cambiat sul disc"
 
 #: src/editor-info-bar.c:80
 msgid "The file has been changed by another program."
@@ -393,7 +393,7 @@ msgstr "Borrolhon"
 #: src/editor-page.c:1021
 #, c-format
 msgid "%s (Administrator)"
-msgstr ""
+msgstr "%s (Administrator)"
 
 #: src/editor-page.c:1029 src/editor-sidebar-item.c:98
 #, fuzzy
@@ -403,7 +403,7 @@ msgstr "Document restaurat"
 
 #: src/editor-page.c:1080
 msgid "Failed to save document"
-msgstr ""
+msgstr "L'enregistrament del document a fracassat"
 
 #: src/editor-page.c:1165
 msgid "Save As"
@@ -439,6 +439,7 @@ msgstr "Indentacion"
 msgid "_Automatic Indentation"
 msgstr "Indentacion _automatica"
 
+#. Translators: this is a tab character, not a browser tab
 #: src/editor-page.ui:162 src/editor-window.ui:283
 msgid "_Tabs"
 msgstr "_Onglets"
@@ -489,47 +490,47 @@ msgstr "Col"
 msgid "Appearance"
 msgstr "Aparéncia"
 
-#: src/editor-preferences-dialog.ui:82
+#: src/editor-preferences-dialog.ui:79
 msgid "Display Grid Pattern"
 msgstr ""
 
-#: src/editor-preferences-dialog.ui:88
+#: src/editor-preferences-dialog.ui:85
 msgid "Highlight Current Line"
 msgstr ""
 
-#: src/editor-preferences-dialog.ui:94
+#: src/editor-preferences-dialog.ui:91
 msgid "Display Overview Map"
 msgstr ""
 
-#: src/editor-preferences-dialog.ui:102
+#: src/editor-preferences-dialog.ui:99
 msgid "Right Margin"
-msgstr ""
+msgstr "Marge de drecha"
 
-#: src/editor-preferences-dialog.ui:105
+#: src/editor-preferences-dialog.ui:102
 msgid "Margin Position"
-msgstr ""
+msgstr "Posicion del marge"
 
-#: src/editor-preferences-dialog.ui:113
+#: src/editor-preferences-dialog.ui:110
 msgid "Behavior"
 msgstr "Compòrtament"
 
-#: src/editor-preferences-dialog.ui:116
+#: src/editor-preferences-dialog.ui:113
 msgid "Discover Document Settings"
 msgstr ""
 
-#: src/editor-preferences-dialog.ui:117
+#: src/editor-preferences-dialog.ui:114
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr ""
 
-#: src/editor-preferences-dialog.ui:123
+#: src/editor-preferences-dialog.ui:120
 msgid "Restore Session"
-msgstr ""
+msgstr "Restablir la session"
 
-#: src/editor-preferences-dialog.ui:124
+#: src/editor-preferences-dialog.ui:121
 msgid "Return to your previous session when Text Editor is started"
 msgstr ""
 
-#: src/editor-preferences-dialog.ui:139
+#: src/editor-preferences-dialog.ui:136
 msgid "_Clear History"
 msgstr "_Escafar l’istoric"
 
@@ -588,7 +589,7 @@ msgstr ""
 
 #: src/editor-properties-dialog.ui:111
 msgid "All Characters"
-msgstr ""
+msgstr "Totes los caractèrs"
 
 #: src/editor-save-changes-dialog.c:258
 msgid "_Discard"
@@ -662,15 +663,15 @@ msgstr "_Remplaçar"
 msgid "Replace _All"
 msgstr "Remplaçar _tot"
 
-#: src/editor-search-bar.ui:141
+#: src/editor-search-bar.ui:140
 msgid "Re_gular expressions"
 msgstr "Ex_pressions regularas"
 
-#: src/editor-search-bar.ui:147
+#: src/editor-search-bar.ui:146
 msgid "_Case sensitive"
 msgstr "_Sensible a la cassa"
 
-#: src/editor-search-bar.ui:153
+#: src/editor-search-bar.ui:152
 msgid "Match whole _word only"
 msgstr ""
 
@@ -708,52 +709,52 @@ msgstr "Estil clar"
 msgid "Dark style"
 msgstr "Estil escur"
 
-#: src/editor-utils.c:346
+#: src/editor-utils.c:348
 msgid "Just now"
 msgstr "Ara meteis"
 
-#: src/editor-utils.c:348
+#: src/editor-utils.c:350
 msgid "An hour ago"
 msgstr "Fa una ora"
 
-#: src/editor-utils.c:350
+#: src/editor-utils.c:352
 msgid "Yesterday"
 msgstr "Ièr"
 
-#: src/editor-utils.c:356
+#: src/editor-utils.c:358
 msgid "About a year ago"
 msgstr "Fa environ un an"
 
-#: src/editor-utils.c:360
+#: src/editor-utils.c:362
 #, c-format
 msgid "About %u year ago"
 msgid_plural "About %u years ago"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/editor-utils.c:368
+#: src/editor-utils.c:370
 msgid "Unix/Linux (LF)"
 msgstr "Unix/Linux (LF)"
 
-#: src/editor-utils.c:369
+#: src/editor-utils.c:371
 msgid "Mac OS Classic (CR)"
 msgstr "Mac OS Classic (CR)"
 
-#: src/editor-utils.c:370
+#: src/editor-utils.c:372
 msgid "Windows (CR+LF)"
 msgstr "Windows (CR+LF)"
 
-#: src/editor-utils.c:400
+#: src/editor-utils.c:402
 msgid "Automatically Detected"
 msgstr "Detectat automaticament"
 
-#: src/editor-utils.c:416
+#: src/editor-utils.c:418
 msgid "Character Encoding:"
 msgstr "Encodatge de caractèrs :"
 
-#: src/editor-utils.c:451
+#: src/editor-utils.c:453
 msgid "Line Ending:"
-msgstr ""
+msgstr "Fin de linha :"
 
 #. translators: %s is replaced with the document title
 #: src/editor-window-actions.c:128
@@ -769,7 +770,7 @@ msgstr ""
 #: src/editor-window-actions.c:267
 #, c-format
 msgid "Discard Changes to “%s”?"
-msgstr ""
+msgstr "Abandonar las modificacions de « %s » ?"
 
 #: src/editor-window-actions.c:270
 msgid "Unsaved changes will be permanently lost."
@@ -801,7 +802,7 @@ msgid "Document Type: %s"
 msgstr "Tipe de document : %s"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:725
+#: src/editor-window.c:727
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - Editor de tèxte"
@@ -886,7 +887,7 @@ msgstr "Numèros de _linha"
 
 #: src/editor-window.ui:272
 msgid "_Right Margin"
-msgstr ""
+msgstr "Marge de _drecha"
 
 #: src/editor-window.ui:296
 msgid "_2"
@@ -958,17 +959,17 @@ msgstr "Fenèstra novèla"
 #: src/help-overlay.ui:21
 msgctxt "shortcut window"
 msgid "Move document to new window"
-msgstr ""
+msgstr "Desplaçar lo document dins una fenèstra novèla"
 
 #: src/help-overlay.ui:28
 msgctxt "shortcut window"
 msgid "Move to next tab"
-msgstr ""
+msgstr "Passar a l'onglet seguent"
 
 #: src/help-overlay.ui:34
 msgctxt "shortcut window"
 msgid "Move to previous tab"
-msgstr ""
+msgstr "Tornar a l'onglet precedent"
 
 #: src/help-overlay.ui:40
 msgctxt "shortcut window"
@@ -1023,7 +1024,7 @@ msgstr ""
 #: src/help-overlay.ui:97
 msgctxt "shortcut window"
 msgid "Find document by name"
-msgstr ""
+msgstr "Trapar lo document per nom"
 
 #: src/help-overlay.ui:103
 msgctxt "shortcut window"
@@ -1068,7 +1069,7 @@ msgstr "Pegar lo tèxte seleccionat dempuèi lo quichapapièr"
 #: src/help-overlay.ui:150
 msgctxt "shortcut window"
 msgid "Copy all to clipboard"
-msgstr ""
+msgstr "Tot copiar al quichapapièrs"
 
 #: src/help-overlay.ui:158
 msgctxt "shortcut window"
@@ -1093,17 +1094,17 @@ msgstr "Edicion"
 #: src/help-overlay.ui:179
 msgctxt "shortcut window"
 msgid "Insert emoji into document"
-msgstr ""
+msgstr "Inserir un emoji al document"
 
 #: src/help-overlay.ui:185
 msgctxt "shortcut window"
 msgid "Search within the document"
-msgstr ""
+msgstr "Recercar dins del document"
 
 #: src/help-overlay.ui:191
 msgctxt "shortcut window"
 msgid "Search and replace within the document"
-msgstr ""
+msgstr "Cercar e remplaçar dins del document"
 
 #: src/help-overlay.ui:197
 msgctxt "shortcut window"
@@ -1143,7 +1144,7 @@ msgstr "Tot deseleccionar"
 #: src/help-overlay.ui:238
 msgctxt "shortcut window"
 msgid "Select current line"
-msgstr ""
+msgstr "Metre en susbrilhança la linha actuala"
 
 #: src/help-overlay.ui:245
 msgctxt "shortcut window"
