@@ -24,21 +24,44 @@
 
 #include "editor-application-private.h"
 
+static gboolean
+check_standalone (int    *argc,
+                  char ***argv)
+{
+  g_autoptr(GOptionContext) context = NULL;
+  gboolean standalone = FALSE;
+  GOptionEntry entries[] = {
+    { "standalone", 's', 0, G_OPTION_ARG_NONE, &standalone },
+    { NULL }
+  };
+
+  context = g_option_context_new (NULL);
+  g_option_context_set_ignore_unknown_options (context, TRUE);
+  g_option_context_set_help_enabled (context, FALSE);
+  g_option_context_add_main_entries (context, entries, NULL);
+  g_option_context_parse (context, argc, argv, NULL);
+
+  return standalone;
+}
+
 int
 main (int   argc,
       char *argv[])
 {
   g_autoptr(EditorApplication) app = NULL;
+  gboolean standalone;
   int ret;
 
   bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
+  standalone = check_standalone (&argc, &argv);
+
   gtk_init ();
   gtk_source_init ();
 
-  app = _editor_application_new ();
+  app = _editor_application_new (standalone);
   ret = g_application_run (G_APPLICATION (app), argc, argv);
 
   gtk_source_finalize ();

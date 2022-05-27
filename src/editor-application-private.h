@@ -32,9 +32,10 @@ struct _EditorApplication
   GtkCssProvider *recoloring;
   GDBusProxy     *portal;
   char           *system_font_name;
+  guint           standalone : 1;
 };
 
-EditorApplication    *_editor_application_new             (void);
+EditorApplication    *_editor_application_new             (gboolean           standalone);
 void                  _editor_application_actions_init    (EditorApplication *self);
 PangoFontDescription *_editor_application_get_system_font (EditorApplication *self);
 

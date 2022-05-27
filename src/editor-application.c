@@ -523,9 +523,12 @@ editor_application_handle_local_options (GApplication *app,
   g_assert (options != NULL);
 
   /* This should only happen in the application launching, not the remote
-   * instance as we don't want to affect something already running.
+   * instance as we don't want to affect something already running. Running
+   * standalone implies --ignore-session so that we don't stomp on any
+   * other session data.
    */
-  if (g_variant_dict_lookup (options, "ignore-session", "b", &ignore_session))
+  if (self->standalone ||
+      g_variant_dict_lookup (options, "ignore-session", "b", &ignore_session))
     _editor_session_set_restore_pages (self->session, FALSE);
 
   return G_APPLICATION_CLASS (editor_application_parent_class)->handle_local_options (app, options);
@@ -542,8 +545,6 @@ editor_application_constructed (GObject *object)
 
   g_application_set_application_id (G_APPLICATION (self), APP_ID);
   g_application_set_resource_base_path (G_APPLICATION (self), "/org/gnome/TextEditor");
-  g_application_set_flags (G_APPLICATION (self),
-                           G_APPLICATION_HANDLES_OPEN | G_APPLICATION_HANDLES_COMMAND_LINE);
 }
 
 static void
@@ -658,6 +659,7 @@ editor_application_class_init (EditorApplicationClass *klass)
 static const GOptionEntry entries[] = {
   { "ignore-session", 'i', 0, G_OPTION_ARG_NONE, NULL, N_("Do not restore session at startup") },
   { "new-window", 'n', 0, G_OPTION_ARG_NONE, NULL, N_("Open provided files in a new window") },
+  { "standalone", 's', 0, G_OPTION_ARG_NONE, NULL, N_("Run a new instance of Text Editor (implies --ignore-session)") },
   { 0 }
 };
 
@@ -682,9 +684,20 @@ editor_application_init (EditorApplication *self)
 }
 
 EditorApplication *
-_editor_application_new (void)
+_editor_application_new (gboolean standalone)
 {
-  return g_object_new (EDITOR_TYPE_APPLICATION, NULL);
+  GApplicationFlags flags = G_APPLICATION_HANDLES_COMMAND_LINE | G_APPLICATION_HANDLES_OPEN;
+  EditorApplication *self;
+
+  if (standalone)
+    flags |= G_APPLICATION_NON_UNIQUE;
+
+  self = g_object_new (EDITOR_TYPE_APPLICATION,
+                       "flags", flags,
+                       NULL);
+  self->standalone = !!standalone;
+
+  return self;
 }
 
 /**
