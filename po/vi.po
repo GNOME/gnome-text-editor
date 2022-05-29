@@ -4,11 +4,11 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-text-editor gnome-42\n"
+"Project-Id-Version: gnome-text-editor main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-05-13 23:16+0000\n"
-"PO-Revision-Date: 2022-05-29 14:23+0700\n"
+"POT-Creation-Date: 2022-05-29 07:24+0000\n"
+"PO-Revision-Date: 2022-05-29 14:29+0700\n"
 "Last-Translator: Trần Ngọc Quân <vnwildman@gmail.com>\n"
 "Language-Team: Vietnamese <gnome-vi-list@gnome.org>\n"
 "Language: vi\n"
@@ -288,17 +288,36 @@ msgstr "Trang thôn tin Phần mềm soạn thảo văn bản"
 msgid "translator-credits"
 msgstr "Nhóm Việt hóa GNOME <gnome-vi-list@gnome.org>"
 
-#: src/editor-application.c:599
+#: src/editor-application.c:460
+msgid "Standard input was requested multiple times. Ignoring request."
+msgstr "Đầu vào tiêu chuẩn đã bị yêu cầu nhiều lần. Nên bỏ qua yêu cầu."
+
+#: src/editor-application.c:464
+msgid "Standard input is not supported on this platform. Ignoring request."
+msgstr ""
+"Đầu vào tiêu chuẩn không được hỗ trợ bởi nền tảng này. Nên bỏ qua yêu cầu."
+
+#: src/editor-application.c:660
 msgid "Do not restore session at startup"
 msgstr "Không khôi phục phiên làm việc khi khởi chạy"
 
-#: src/editor-application.c:600
+#: src/editor-application.c:661
 msgid "Open provided files in a new window"
 msgstr "Mở các tập tin đã cung cấp trong cửa sổ mới"
 
-#: src/editor-document.c:1938
+#: src/editor-application.c:662
+msgid "Run a new instance of Text Editor (implies --ignore-session)"
+msgstr ""
+"Chạy một minh dụ mới của Trình soạn thảo văn bản (ý là --ignore-session)"
+
+#: src/editor-document.c:1939
 msgid "[Read-Only]"
 msgstr "[Chỉ đọc]"
+
+#: src/editor-document.c:2227 src/editor-page.c:987
+#: src/editor-sidebar-item.c:489
+msgid "New Document"
+msgstr "Tài liệu mới"
 
 #: src/editor-file-manager.c:99
 msgid "File path is NULL"
@@ -389,10 +408,6 @@ msgstr "Không có tài liệu mới dùng nào"
 msgid "No Results Found"
 msgstr "Không tìm thấy kết quả nào"
 
-#: src/editor-page.c:987 src/editor-sidebar-item.c:489
-msgid "New Document"
-msgstr "Tài liệu mới"
-
 #: src/editor-page.c:1009 src/editor-properties-dialog.c:74
 #: src/editor-sidebar-item.c:84
 msgid "Draft"
@@ -425,7 +440,7 @@ msgstr "Lưu"
 msgid "Cancel"
 msgstr "Hủy"
 
-#: src/editor-page.c:1309
+#: src/editor-page.c:1315
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Dg %u, Cột %u"
@@ -676,15 +691,15 @@ msgstr "Tha_y thế"
 msgid "Replace _All"
 msgstr "Tha_y thế hết"
 
-#: src/editor-search-bar.ui:141
+#: src/editor-search-bar.ui:140
 msgid "Re_gular expressions"
 msgstr "Biểu thức chính qu_y"
 
-#: src/editor-search-bar.ui:147
+#: src/editor-search-bar.ui:146
 msgid "_Case sensitive"
 msgstr "Phân biệt _HOA/thường"
 
-#: src/editor-search-bar.ui:153
+#: src/editor-search-bar.ui:152
 msgid "Match whole _word only"
 msgstr "Khớp t_oàn từ"
 
@@ -722,49 +737,49 @@ msgstr "Sáng"
 msgid "Dark style"
 msgstr "Tối"
 
-#: src/editor-utils.c:346
+#: src/editor-utils.c:348
 msgid "Just now"
 msgstr "Vừa xong"
 
-#: src/editor-utils.c:348
+#: src/editor-utils.c:350
 msgid "An hour ago"
 msgstr "Một giờ trước"
 
-#: src/editor-utils.c:350
+#: src/editor-utils.c:352
 msgid "Yesterday"
 msgstr "Hôm qua"
 
-#: src/editor-utils.c:356
+#: src/editor-utils.c:358
 msgid "About a year ago"
 msgstr "Khoảng một năm trước"
 
-#: src/editor-utils.c:360
+#: src/editor-utils.c:362
 #, c-format
 msgid "About %u year ago"
 msgid_plural "About %u years ago"
 msgstr[0] "Khoảng %u năm trước"
 
-#: src/editor-utils.c:368
+#: src/editor-utils.c:370
 msgid "Unix/Linux (LF)"
 msgstr "Unix/Linux (LF)"
 
-#: src/editor-utils.c:369
+#: src/editor-utils.c:371
 msgid "Mac OS Classic (CR)"
 msgstr "Mac OS Cổ điển (CR)"
 
-#: src/editor-utils.c:370
+#: src/editor-utils.c:372
 msgid "Windows (CR+LF)"
 msgstr "Windows (CR+LF)"
 
-#: src/editor-utils.c:400
+#: src/editor-utils.c:402
 msgid "Automatically Detected"
 msgstr "Tự động xóa"
 
-#: src/editor-utils.c:416
+#: src/editor-utils.c:418
 msgid "Character Encoding:"
 msgstr "Bảng mã kí tự:"
 
-#: src/editor-utils.c:451
+#: src/editor-utils.c:453
 msgid "Line Ending:"
 msgstr "Kết thúc dòng:"
 
@@ -818,6 +833,10 @@ msgstr "Kiểu tài liệu: %s"
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - Trình soạn thảo văn bản"
+
+#: src/editor-window.c:1130
+msgid "There are unsaved documents"
+msgstr "Có tạo tài liệu chưa được ghi lại"
 
 #: src/editor-window.ui:78
 msgid "_Open"
