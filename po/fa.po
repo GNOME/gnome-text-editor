@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-05-20 19:55+0000\n"
-"PO-Revision-Date: 2022-05-22 12:48+0430\n"
+"POT-Creation-Date: 2022-05-29 07:24+0000\n"
+"PO-Revision-Date: 2022-05-29 12:25+0430\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "Language: fa\n"
@@ -289,17 +289,26 @@ msgstr ",ورودی استاندارد چندین بار درخواست شد. چ
 msgid "Standard input is not supported on this platform. Ignoring request."
 msgstr "ورودی استاندارد روی این بن‌سازه پشتیبانی نمی‌شود. چشم‌پوشی از درخواست."
 
-#: src/editor-application.c:659
+#: src/editor-application.c:660
 msgid "Do not restore session at startup"
 msgstr "باز نگرداندن نشست هنگام آغاز"
 
-#: src/editor-application.c:660
+#: src/editor-application.c:661
 msgid "Open provided files in a new window"
 msgstr "گشودن پرونده‌های فراهم شده در پنجره‌ای جدید"
 
-#: src/editor-document.c:1938
+#: src/editor-application.c:662
+msgid "Run a new instance of Text Editor (implies --ignore-session)"
+msgstr "اجرای نمونه‌ای جدید از ویرایشگر متن (پیاده‌سازی ‪--ignore-session‬)"
+
+#: src/editor-document.c:1939
 msgid "[Read-Only]"
 msgstr "[فقط خواندنی]"
+
+#: src/editor-document.c:2227 src/editor-page.c:987
+#: src/editor-sidebar-item.c:489
+msgid "New Document"
+msgstr "سند جدید"
 
 #: src/editor-file-manager.c:99
 msgid "File path is NULL"
@@ -389,10 +398,6 @@ msgstr "بدون سندهای اخیر"
 #: src/editor-open-popover.ui:94
 msgid "No Results Found"
 msgstr "هیچ نتیجه‌ای پیدا نشد"
-
-#: src/editor-page.c:987 src/editor-sidebar-item.c:489
-msgid "New Document"
-msgstr "سند جدید"
 
 #: src/editor-page.c:1009 src/editor-properties-dialog.c:74
 #: src/editor-sidebar-item.c:84
