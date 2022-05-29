@@ -1,0 +1,1235 @@
+# Vietnamese translation for gnome-text-editor.
+# This file is distributed under the same license as the gnome-text-editor package.
+# Ngọc Quân Trần <vnwildman@gmail.com>, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-text-editor gnome-42\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
+"issues\n"
+"POT-Creation-Date: 2022-05-13 23:16+0000\n"
+"PO-Revision-Date: 2022-05-29 14:23+0700\n"
+"Last-Translator: Trần Ngọc Quân <vnwildman@gmail.com>\n"
+"Language-Team: Vietnamese <gnome-vi-list@gnome.org>\n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Gtranslator 3.38.0\n"
+
+#: data/org.gnome.TextEditor.appdata.xml.in.in:6
+msgid "Christian Hergert, et al."
+msgstr "Christian Hergert, và những người khác."
+
+#: data/org.gnome.TextEditor.appdata.xml.in.in:8
+#: data/org.gnome.TextEditor.desktop.in.in:7
+#: data/org.gnome.TextEditor.desktop.in.in:8
+#: src/editor-application-actions.c:192
+msgid "Text Editor"
+msgstr "Soạn thảo văn bản"
+
+#: data/org.gnome.TextEditor.appdata.xml.in.in:10
+msgid "A Text Editor for GNOME"
+msgstr "Một phần mềm soạn thảo văn bản dành cho GNOME"
+
+#: data/org.gnome.TextEditor.appdata.xml.in.in:12
+msgid ""
+"GNOME Text Editor is a simple text editor focused on a pleasing default "
+"experience."
+msgstr ""
+"Trình soạn thảo văn bản GNOME là bộ soạn thảo văn bản đơn giản nhắm vào đối "
+"tượng người dùng ít kinh nghiệm."
+
+#: data/org.gnome.TextEditor.desktop.in.in:9
+msgid "View and edit text files"
+msgstr "Xem và chỉnh sửa tập tin dạng chữ"
+
+#: data/org.gnome.TextEditor.gschema.xml:16
+msgid "Auto Save Delay"
+msgstr "Độ trễ tự động lưu"
+
+#: data/org.gnome.TextEditor.gschema.xml:17
+msgid "The delay in seconds to wait before auto-saving a draft."
+msgstr "Thời gian chờ tính bằng giây giữa các lần tự lưu một bản nháp."
+
+#: data/org.gnome.TextEditor.gschema.xml:26
+msgid "Style Variant"
+msgstr "Biến thế chủ đề"
+
+#: data/org.gnome.TextEditor.gschema.xml:27
+msgid ""
+"Use the light or dark variant of the GTK theme and/or GtkSourceView style "
+"scheme."
+msgstr ""
+"Sử dụng biến thể sáng hoặc tối của chủ đề GTK và/hoặc lược đồ kiểu dáng "
+"GtkSourceView."
+
+#: data/org.gnome.TextEditor.gschema.xml:35
+msgid "Indentation Style"
+msgstr "Kiểu thụt lề"
+
+#: data/org.gnome.TextEditor.gschema.xml:36
+msgid "If the editor should insert multiple spaces characters instead of tabs."
+msgstr ""
+"Nếu trình soạn thảo văn bản nên chèn nhiều ký tự dấu cách thay cho các tab."
+
+#: data/org.gnome.TextEditor.gschema.xml:40
+msgid "Auto Indent"
+msgstr "Tự động thụt lề"
+
+#: data/org.gnome.TextEditor.gschema.xml:41
+msgid "Automatically indent new lines copying the previous line's indentation."
+msgstr "Tự động thụt lề dòng mới bằng cách sao chép thụt lề của dòng kế trước."
+
+#: data/org.gnome.TextEditor.gschema.xml:46
+msgid "Tab Width"
+msgstr "Chiều rộng tab"
+
+#: data/org.gnome.TextEditor.gschema.xml:47
+msgid "The number of spaces represented by a tab."
+msgstr "Số lượng khoảng trắng đại diện cho một tab."
+
+#: data/org.gnome.TextEditor.gschema.xml:52
+msgid "Indent Width"
+msgstr "Khoảng thụt lề"
+
+#: data/org.gnome.TextEditor.gschema.xml:53
+msgid "The number of spaces to indent or -1 to use tab-width."
+msgstr "Số lượng khoảng trắng để thụt đầu dòng hoặc -1 để sử dụng độ-rộng-tab."
+
+#: data/org.gnome.TextEditor.gschema.xml:57
+msgid "Show Line Numbers"
+msgstr "Hiện số thứ tự dòng"
+
+#: data/org.gnome.TextEditor.gschema.xml:58
+msgid "If line numbers should be displayed next to each line."
+msgstr "Nếu số dòng nên được hiển thị kế tiếp cho từng dòng."
+
+#: data/org.gnome.TextEditor.gschema.xml:62
+msgid "Show Right Margin"
+msgstr "Hiện lề bên phải"
+
+#: data/org.gnome.TextEditor.gschema.xml:63
+msgid "If a margin line should be displayed on the right of the editor."
+msgstr "Nếu dòng lề nên được hiển thị bên phải của phần soạn thảo."
+
+#: data/org.gnome.TextEditor.gschema.xml:68
+msgid "Right Margin Position"
+msgstr "Vị trí lề phải"
+
+#: data/org.gnome.TextEditor.gschema.xml:69
+msgid ""
+"The position in characters at which the right margin should be displayed."
+msgstr "Vị trí trong các ký tự tại nơi mà lề phải nên được hiển thị."
+
+#: data/org.gnome.TextEditor.gschema.xml:73
+msgid "Show Overview Map"
+msgstr "Hiện sơ đồ tổng thể"
+
+#: data/org.gnome.TextEditor.gschema.xml:74
+msgid ""
+"If enabled, an overview map of the file will be displayed to the side of the "
+"editor."
+msgstr ""
+"Nếu bật, sơ đồ tổng thể của tập tin sẽ được hiển thị ở bên cạnh của phần "
+"soạn thảo."
+
+#: data/org.gnome.TextEditor.gschema.xml:78
+msgid "Show Background Grid"
+msgstr "Hiển thị lưới nền"
+
+#: data/org.gnome.TextEditor.gschema.xml:79
+msgid "If enabled, a blueprint style grid is printed on the editor background."
+msgstr "Nếu bật, lưới kiểu thiết kế sẽ được in trên nền của phần soạn thảo."
+
+#: data/org.gnome.TextEditor.gschema.xml:83
+msgid "Highlight current line"
+msgstr "Tô sáng dòng hiện tại"
+
+#: data/org.gnome.TextEditor.gschema.xml:84
+msgid "If enabled, the current line will be highlighted."
+msgstr "Nếu bật, dòng hiện tại sẽ được tô sáng."
+
+#: data/org.gnome.TextEditor.gschema.xml:88
+msgid "Text Wrapping"
+msgstr "Ngắt dòng dài"
+
+#: data/org.gnome.TextEditor.gschema.xml:89
+msgid "If text should be wrapped."
+msgstr "Nếu chữ nên được ngắt dòng nếu quá dài."
+
+#: data/org.gnome.TextEditor.gschema.xml:93
+msgid "Use System Font"
+msgstr "Sử dụng font chữ của hệ thống"
+
+#: data/org.gnome.TextEditor.gschema.xml:94
+msgid "If the default system monospace font should be used."
+msgstr "Nếu nên dùng phông Monospace hệ thống mặc định."
+
+#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:57
+msgid "Custom Font"
+msgstr "Phông chữ tự chọn"
+
+#: data/org.gnome.TextEditor.gschema.xml:99
+msgid "A custom font to use in the editor."
+msgstr "Một phông chữ tự chọn trong trình soạn thảo."
+
+#: data/org.gnome.TextEditor.gschema.xml:103
+msgid "Style Scheme"
+msgstr "Lược đồ kiểu dáng"
+
+#: data/org.gnome.TextEditor.gschema.xml:104
+msgid ""
+"The style scheme to use by the editor. It may translate this into a dark "
+"format when available."
+msgstr ""
+"Lược đồ kiểu dáng được sử dụng bởi trình biên soạn. Nó có thể dịch cái này "
+"sang định dạng tối khi sẵn có."
+
+#: data/org.gnome.TextEditor.gschema.xml:108
+msgid "Discover File Settings"
+msgstr "Khám phá các cài đặt tập tin"
+
+#: data/org.gnome.TextEditor.gschema.xml:109
+msgid ""
+"If enabled then Text Editor will try to discover file settings from "
+"modelines, editorconfig, or per-language defaults."
+msgstr ""
+"Nếu bật thì Trình soạn thảo văn bản sẽ nhận ra các cài đặt tập tin từ "
+"modelines, editorconfig, hoặc mặc định mỗi-ngôn-ngữ."
+
+#: data/org.gnome.TextEditor.gschema.xml:113
+msgid "Automatically check spelling"
+msgstr "Kiểm tra chính tả tự động"
+
+#: data/org.gnome.TextEditor.gschema.xml:114
+msgid "If enabled, then Text Editor will check spelling as you type."
+msgstr ""
+"Nếu bật, thì Trình soạn thảo văn bản sẽ kiểm tra chính tả trong khi bạn đang "
+"gõ."
+
+#: data/org.gnome.TextEditor.gschema.xml:118
+msgid "Restore session"
+msgstr "Phục hồi phiên làm việc"
+
+#: data/org.gnome.TextEditor.gschema.xml:119
+msgid "When Text Editor is run, restore the previous session."
+msgstr ""
+"Khi Trình soạn thảo văn bản chạy, khôi phục lại phiên làm việc trước đây."
+
+#: data/org.gnome.TextEditor.gschema.xml:123
+msgid "Recolor Window"
+msgstr "Thay màu Cửa sổ"
+
+#: data/org.gnome.TextEditor.gschema.xml:124
+msgid "Use the style-scheme to recolor the application window."
+msgstr "Sử dụng lược đồ kiểu dáng để thay đổi lại màu sắc cửa sổ ứng dụng."
+
+#: data/org.gnome.TextEditor.gschema.xml:132
+msgid "Keybindings"
+msgstr "Tổ hợp phím"
+
+#: data/org.gnome.TextEditor.gschema.xml:133
+msgid "The keybindings to use within Text Editor."
+msgstr "Tổ hợp phím tắt được sử dụng trong trình soạn thảo."
+
+#: data/org.gnome.TextEditor.gschema.xml:137
+msgid "Last Save Directory"
+msgstr "Thư mục lưu lần cuối"
+
+#: data/org.gnome.TextEditor.gschema.xml:138
+msgid "The directory last used in a save or save-as dialog."
+msgstr "Thư mục đã dùng lần cuối của hộp thoại lưu hoặc lưu bằng tên mới."
+
+#: data/org.gnome.TextEditor.gschema.xml:142
+msgid "Draw Spaces"
+msgstr "Vẽ khoảng trắng"
+
+#: data/org.gnome.TextEditor.gschema.xml:143
+msgid "The various types of spaces to draw in the editor."
+msgstr "Các kiểu khoảng trắng khác nhau để vẽ trong phần soạn thảo."
+
+#: data/org.gnome.TextEditor.gschema.xml:147
+msgid "Enable Snippets"
+msgstr "Bật Snippets"
+
+#: data/org.gnome.TextEditor.gschema.xml:148
+msgid ""
+"Enable the use of snippets registered with GtkSourceView from within the "
+"editor."
+msgstr ""
+"Bật sử dụng các snippets đã đăng ký với GtkSourceView từ bên trong phần soạn "
+"thảo."
+
+#: data/org.gnome.TextEditor.gschema.xml:153
+msgid "Line Height"
+msgstr "Chiều cao dòng"
+
+#: data/org.gnome.TextEditor.gschema.xml:154
+msgid "The line height to use for the selected font."
+msgstr "Chiều cao dòng được dùng cho phông chữ được chọn."
+
+#: src/editor-animation.c:1038
+#, c-format
+msgid "Failed to find property %s in %s"
+msgstr "Gặp lỗi khi tìm thuộc tính %s trong %s"
+
+#: src/editor-animation.c:1047
+#, c-format
+msgid "Failed to retrieve va_list value: %s"
+msgstr "Gặp lỗi khi lấy giá trị va_list: %s"
+
+#: src/editor-application-actions.c:206
+msgid "Text Editor Website"
+msgstr "Trang thôn tin Phần mềm soạn thảo văn bản"
+
+#: src/editor-application-actions.c:207
+msgid "translator-credits"
+msgstr "Nhóm Việt hóa GNOME <gnome-vi-list@gnome.org>"
+
+#: src/editor-application.c:599
+msgid "Do not restore session at startup"
+msgstr "Không khôi phục phiên làm việc khi khởi chạy"
+
+#: src/editor-application.c:600
+msgid "Open provided files in a new window"
+msgstr "Mở các tập tin đã cung cấp trong cửa sổ mới"
+
+#: src/editor-document.c:1938
+msgid "[Read-Only]"
+msgstr "[Chỉ đọc]"
+
+#: src/editor-file-manager.c:99
+msgid "File path is NULL"
+msgstr "Đường dẫn tập tin là NULL"
+
+#: src/editor-file-manager.c:108 src/editor-file-manager.c:119
+msgid "Error converting UTF-8 filename to wide char"
+msgstr "Lỗi chuyển đổi tên tập tin UTF-8 sang wide char"
+
+#: src/editor-file-manager.c:127
+msgid "ILCreateFromPath() failed"
+msgstr "ILCreateFromPath() gặp lỗi"
+
+#: src/editor-file-manager.c:164
+#, c-format
+msgid "Cannot convert “%s” into a valid NSURL."
+msgstr "Không thể chuyển đổi “%s” sang một NSURL hợp lệ."
+
+#: src/editor-info-bar.c:76
+msgid "_Discard Changes and Reload"
+msgstr "Hủ_y thay đổi và Tải lại"
+
+#: src/editor-info-bar.c:79
+msgid "File Has Changed on Disk"
+msgstr "Tập tin trên đĩa đã bị thay đổi"
+
+#: src/editor-info-bar.c:80
+msgid "The file has been changed by another program."
+msgstr "Tập tin mở đã bị thay đổi do chương trình khác."
+
+#: src/editor-info-bar.c:89 src/editor-window.ui:216
+msgid "Save _As…"
+msgstr "Lư_u thành…"
+
+#: src/editor-info-bar.c:91 src/editor-info-bar.ui:61
+msgid "Document Restored"
+msgstr "Tài liệu đã được phục hồi"
+
+#: src/editor-info-bar.c:92 src/editor-info-bar.ui:70
+msgid "Unsaved document has been restored."
+msgstr "Tài liệu chưa được lưu đã được phục hồi."
+
+#: src/editor-info-bar.c:98
+msgid "_Save…"
+msgstr "_Lưu…"
+
+#: src/editor-info-bar.c:100 src/editor-info-bar.ui:77
+msgid "_Discard…"
+msgstr "_Bãi bỏ…"
+
+#: src/editor-info-bar.c:102
+msgid "Draft Changes Restored"
+msgstr "Các thay đổi nháp đã được phục hồi"
+
+#: src/editor-info-bar.c:103
+msgid "Unsaved changes to the document have been restored."
+msgstr "Các thay đổi đối với tài liệu chưa được lưu đã được phục hồi."
+
+#: src/editor-info-bar.ui:19
+msgid "Could Not Open File"
+msgstr "Không thể mở tập tin"
+
+#: src/editor-info-bar.ui:28
+msgid "You do not have permission to open the file."
+msgstr "Bạn không có quyền mở tập tin."
+
+#: src/editor-info-bar.ui:35
+msgid "_Retry"
+msgstr "Thử _lại"
+
+#: src/editor-info-bar.ui:42
+msgid "Open As _Administrator"
+msgstr "Mở với tư cách _Quản trị viên"
+
+#: src/editor-language-dialog.ui:6 src/editor-window.c:194
+msgid "Document Type"
+msgstr "Kiểu tài liệu"
+
+#: src/editor-language-dialog.ui:52
+msgid "No Matches"
+msgstr "Không tìm thấy"
+
+#: src/editor-open-popover.ui:67
+msgid "No Recent Documents"
+msgstr "Không có tài liệu mới dùng nào"
+
+#: src/editor-open-popover.ui:94
+msgid "No Results Found"
+msgstr "Không tìm thấy kết quả nào"
+
+#: src/editor-page.c:987 src/editor-sidebar-item.c:489
+msgid "New Document"
+msgstr "Tài liệu mới"
+
+#: src/editor-page.c:1009 src/editor-properties-dialog.c:74
+#: src/editor-sidebar-item.c:84
+msgid "Draft"
+msgstr "Nháp"
+
+#. translators: %s is replaced with the path on the filesystem
+#: src/editor-page.c:1021
+#, c-format
+msgid "%s (Administrator)"
+msgstr "%s (Người quản trị)"
+
+#: src/editor-page.c:1029 src/editor-sidebar-item.c:98
+msgid "Document Portal"
+msgstr "Cổng tài liệu"
+
+#: src/editor-page.c:1080
+msgid "Failed to save document"
+msgstr "Gặp lỗi khi lưu tài liệu"
+
+#: src/editor-page.c:1165
+msgid "Save As"
+msgstr "Lưu thành"
+
+#: src/editor-page.c:1168 src/editor-window-actions.c:133
+msgid "Save"
+msgstr "Lưu"
+
+#: src/editor-page.c:1169 src/editor-window-actions.c:132
+#: src/editor-window-actions.c:271 src/editor-window-actions.c:380
+msgid "Cancel"
+msgstr "Hủy"
+
+#: src/editor-page.c:1309
+#, c-format
+msgid "Ln %u, Col %u"
+msgstr "Dg %u, Cột %u"
+
+#: src/editor-page.ui:98
+msgid "Go to Line"
+msgstr "Nhảy tới dòng"
+
+#: src/editor-page.ui:116
+msgid "Go"
+msgstr "Tới"
+
+#: src/editor-page.ui:153 src/editor-window.ui:277
+msgid "Indentation"
+msgstr "Thụt lề"
+
+#: src/editor-page.ui:156 src/editor-window.ui:279
+msgid "_Automatic Indentation"
+msgstr "Thụt lề _tự động"
+
+#. Translators: this is a tab character, not a browser tab
+#: src/editor-page.ui:162 src/editor-window.ui:283
+msgid "_Tabs"
+msgstr "_Thẻ"
+
+#: src/editor-page.ui:167 src/editor-window.ui:288
+msgid "_Spaces"
+msgstr "_Khoảng trắng"
+
+#: src/editor-page.ui:174 src/editor-window.ui:293
+msgid "Spaces _Per Tab"
+msgstr "Khoảng trắng _mỗi tab"
+
+#: src/editor-page.ui:176 src/editor-page.ui:204
+msgid "2"
+msgstr "2"
+
+#: src/editor-page.ui:181 src/editor-page.ui:209
+msgid "4"
+msgstr "4"
+
+#: src/editor-page.ui:186 src/editor-page.ui:214
+msgid "6"
+msgstr "6"
+
+#: src/editor-page.ui:191 src/editor-page.ui:219
+msgid "8"
+msgstr "8"
+
+#: src/editor-page.ui:197
+msgid "Spaces Per Indent"
+msgstr "Khảng trắng mỗi thụt đầu dòng"
+
+#: src/editor-page.ui:199
+msgid "Use Tab Size"
+msgstr "Dùng cỡ tab"
+
+#. translators: Ln is short for "Line Number"
+#: src/editor-position-label.ui:15
+msgid "Ln"
+msgstr "Dg"
+
+#. translators: Col is short for "Column"
+#: src/editor-position-label.ui:35
+msgid "Col"
+msgstr "Cột"
+
+#: src/editor-preferences-dialog.ui:17
+msgid "Appearance"
+msgstr "Diện mạo"
+
+#: src/editor-preferences-dialog.ui:79
+msgid "Display Grid Pattern"
+msgstr "Hiện mẫu lưới"
+
+#: src/editor-preferences-dialog.ui:85
+msgid "Highlight Current Line"
+msgstr "Tô sáng dòng hiện tại"
+
+#: src/editor-preferences-dialog.ui:91
+msgid "Display Overview Map"
+msgstr "Hiện sơ đồ tổng thể"
+
+#: src/editor-preferences-dialog.ui:99
+msgid "Right Margin"
+msgstr "Lề phải"
+
+#: src/editor-preferences-dialog.ui:102
+msgid "Margin Position"
+msgstr "Vị trí lề"
+
+#: src/editor-preferences-dialog.ui:110
+msgid "Behavior"
+msgstr "Ứng xử"
+
+#: src/editor-preferences-dialog.ui:113
+msgid "Discover Document Settings"
+msgstr "Khám phá các cài đặt tập tin"
+
+#: src/editor-preferences-dialog.ui:114
+msgid "Apply settings using modelines, editorconfig, or sensible defaults"
+msgstr ""
+"Áp dụng các cài đặt sử dụng modelines, editorconfig, hay các mặc định nhạy "
+"cảm"
+
+#: src/editor-preferences-dialog.ui:120
+msgid "Restore Session"
+msgstr "Phục hồi phiên làm việc"
+
+#: src/editor-preferences-dialog.ui:121
+msgid "Return to your previous session when Text Editor is started"
+msgstr ""
+"Trở lại với phiên làm việc trước đây của bạn khi Trình soạn thảo văn bản "
+"khởi chạy"
+
+#: src/editor-preferences-dialog.ui:136
+msgid "_Clear History"
+msgstr "_Xóa sạch lược sử"
+
+#: src/editor-preferences-font.c:100
+msgid "Select Font"
+msgstr "Chọn phông"
+
+#: src/editor-print-operation.c:176
+#, c-format
+msgid "Draft: %s"
+msgstr "Bản nháp: %s"
+
+#: src/editor-print-operation.c:178
+#, c-format
+msgid "File: %s"
+msgstr "Tập tin: %s"
+
+#. Translators: %N is the current page number, %Q is the total
+#. * number of pages (ex. Page 2 of 10)
+#.
+#: src/editor-print-operation.c:189
+msgid "Page %N of %Q"
+msgstr "Trang %N trên %Q"
+
+#: src/editor-properties-dialog.ui:6
+msgid "Properties"
+msgstr "Thuộc tính"
+
+#: src/editor-properties-dialog.ui:27
+msgid "File"
+msgstr "Tập tin"
+
+#: src/editor-properties-dialog.ui:30
+msgid "Name"
+msgstr "Tên"
+
+#: src/editor-properties-dialog.ui:45
+msgid "Location"
+msgstr "Vị trí"
+
+#: src/editor-properties-dialog.ui:63
+msgid "Statistics"
+msgstr "Thống kê"
+
+#: src/editor-properties-dialog.ui:66
+msgid "Lines"
+msgstr "Dòng"
+
+#: src/editor-properties-dialog.ui:81
+msgid "Words"
+msgstr "Từ"
+
+#: src/editor-properties-dialog.ui:96
+msgid "Characters, No Spaces"
+msgstr "Ký tự, không tính khoảng trắng"
+
+#: src/editor-properties-dialog.ui:111
+msgid "All Characters"
+msgstr "Mọi ký tự"
+
+#: src/editor-save-changes-dialog.c:258
+msgid "_Discard"
+msgstr "_Bãi bỏ"
+
+#: src/editor-save-changes-dialog.c:258
+msgid "_Discard All"
+msgstr "Hủy _tất cả"
+
+#: src/editor-save-changes-dialog.c:264
+msgid "Save Changes?"
+msgstr "Lưu thay đổi?"
+
+#: src/editor-save-changes-dialog.c:266
+msgid ""
+"Open documents contain unsaved changes. Changes which are not saved will be "
+"permanently lost."
+msgstr ""
+"Mở tài liệu có chứa các thay đổi chưa được lưu lại. Các thay đổi mà chưa "
+"được lưu sẽ bị mất vĩnh viễn."
+
+#: src/editor-save-changes-dialog.c:268
+msgid "_Cancel"
+msgstr "_Hủy"
+
+#: src/editor-save-changes-dialog.c:270 src/editor-window.ui:210
+msgid "_Save"
+msgstr "_Lưu"
+
+#: src/editor-save-changes-dialog.c:303
+msgid "Untitled Document"
+msgstr "Tài liệu chưa có tên"
+
+#. translators: %s is replaced with the title of the file
+#: src/editor-save-changes-dialog.c:306
+#, c-format
+msgid "%s (new)"
+msgstr "%s (mới)"
+
+#: src/editor-save-changes-dialog.c:327
+msgid "Save changes for this document"
+msgstr "Lưu các thay đổi cho tài liệu này"
+
+#: src/editor-search-bar.ui:33
+msgid "Replace"
+msgstr "Thay thế"
+
+#: src/editor-search-bar.ui:51
+msgid "Move to previous match (Ctrl+Shift+G)"
+msgstr "Đi đến chỗ khớp mẫu kế trước (Ctrl+Shift+G)"
+
+#: src/editor-search-bar.ui:59
+msgid "Move to next match (Ctrl+G)"
+msgstr "Di chuyển đến khớp kế tiếp (Ctrl+G)"
+
+#: src/editor-search-bar.ui:71
+msgid "Search & Replace (Ctrl+H)"
+msgstr "Tìm kiếm và thay thế (Ctrl+H)"
+
+#: src/editor-search-bar.ui:81
+msgid "Toggle search options"
+msgstr "Bật/tắt tùy chọn tìm kiếm"
+
+#: src/editor-search-bar.ui:95
+msgid "Close search"
+msgstr "Đóng tìm kiếm"
+
+#: src/editor-search-bar.ui:112
+msgid "_Replace"
+msgstr "Tha_y thế"
+
+#: src/editor-search-bar.ui:124
+msgid "Replace _All"
+msgstr "Tha_y thế hết"
+
+#: src/editor-search-bar.ui:141
+msgid "Re_gular expressions"
+msgstr "Biểu thức chính qu_y"
+
+#: src/editor-search-bar.ui:147
+msgid "_Case sensitive"
+msgstr "Phân biệt _HOA/thường"
+
+#: src/editor-search-bar.ui:153
+msgid "Match whole _word only"
+msgstr "Khớp t_oàn từ"
+
+#. translators: the first %u is replaced with the current position, the second with the number of search results
+#: src/editor-search-entry.c:197
+#, c-format
+msgid "%u of %u"
+msgstr "%u trên %u"
+
+#: src/editor-spell-menu.c:191
+msgid "Languages"
+msgstr "Ngôn ngữ"
+
+#: src/editor-spell-menu.c:192
+msgid "Add to Dictionary"
+msgstr "Thêm vào từ điển"
+
+#: src/editor-spell-menu.c:193
+msgid "Ignore"
+msgstr "Bỏ qua"
+
+#: src/editor-spell-menu.c:194
+msgid "Check Spelling"
+msgstr "Kiểm tra chính tả"
+
+#: src/editor-theme-selector.ui:22 src/editor-theme-selector.ui:24
+msgid "Follow system style"
+msgstr "Theo chủ đề của hệ thống"
+
+#: src/editor-theme-selector.ui:39 src/editor-theme-selector.ui:41
+msgid "Light style"
+msgstr "Sáng"
+
+#: src/editor-theme-selector.ui:57 src/editor-theme-selector.ui:59
+msgid "Dark style"
+msgstr "Tối"
+
+#: src/editor-utils.c:346
+msgid "Just now"
+msgstr "Vừa xong"
+
+#: src/editor-utils.c:348
+msgid "An hour ago"
+msgstr "Một giờ trước"
+
+#: src/editor-utils.c:350
+msgid "Yesterday"
+msgstr "Hôm qua"
+
+#: src/editor-utils.c:356
+msgid "About a year ago"
+msgstr "Khoảng một năm trước"
+
+#: src/editor-utils.c:360
+#, c-format
+msgid "About %u year ago"
+msgid_plural "About %u years ago"
+msgstr[0] "Khoảng %u năm trước"
+
+#: src/editor-utils.c:368
+msgid "Unix/Linux (LF)"
+msgstr "Unix/Linux (LF)"
+
+#: src/editor-utils.c:369
+msgid "Mac OS Classic (CR)"
+msgstr "Mac OS Cổ điển (CR)"
+
+#: src/editor-utils.c:370
+msgid "Windows (CR+LF)"
+msgstr "Windows (CR+LF)"
+
+#: src/editor-utils.c:400
+msgid "Automatically Detected"
+msgstr "Tự động xóa"
+
+#: src/editor-utils.c:416
+msgid "Character Encoding:"
+msgstr "Bảng mã kí tự:"
+
+#: src/editor-utils.c:451
+msgid "Line Ending:"
+msgstr "Kết thúc dòng:"
+
+#. translators: %s is replaced with the document title
+#: src/editor-window-actions.c:128
+#, c-format
+msgid "Save Changes to “%s”?"
+msgstr "Lưu các thay đổi vào “%s” không?"
+
+#: src/editor-window-actions.c:131
+msgid "Saving changes will replace the previously saved version."
+msgstr "Lưu các thay đổi sẽ thay thế phiên bản đã lưu trước đây."
+
+#. translators: %s is replaced with the document title
+#: src/editor-window-actions.c:267
+#, c-format
+msgid "Discard Changes to “%s”?"
+msgstr "Hủy thay đổi với “%s”?"
+
+#: src/editor-window-actions.c:270
+msgid "Unsaved changes will be permanently lost."
+msgstr "Các thay đổi chưa được lưu lại sẽ bị mất hoàn toàn."
+
+#: src/editor-window-actions.c:272
+msgid "Discard"
+msgstr "Bãi bỏ"
+
+#: src/editor-window-actions.c:376
+msgid "Open File"
+msgstr "Mở tập tin"
+
+#: src/editor-window-actions.c:379
+msgid "Open"
+msgstr "Mở"
+
+#: src/editor-window-actions.c:404
+msgid "All Files"
+msgstr "Mọi tập tin"
+
+#: src/editor-window-actions.c:409
+msgid "Text Files"
+msgstr "Tập tin văn bản"
+
+#: src/editor-window.c:206
+#, c-format
+msgid "Document Type: %s"
+msgstr "Kiểu tài liệu: %s"
+
+#. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
+#: src/editor-window.c:727
+#, c-format
+msgid "%s (%s) - Text Editor"
+msgstr "%s (%s) - Trình soạn thảo văn bản"
+
+#: src/editor-window.ui:78
+msgid "_Open"
+msgstr "_Mở"
+
+#: src/editor-window.ui:80
+msgid "Open recent document (Ctrl+K)"
+msgstr "Mở tài liệu mới dùng (Ctrl+K)"
+
+#: src/editor-window.ui:92 src/editor-window.ui:94
+msgid "New tab (Ctrl+T)"
+msgstr "Tab mới (Ctrl+T)"
+
+#: src/editor-window.ui:120 src/editor-window.ui:124
+msgid "View"
+msgstr "Xem"
+
+#: src/editor-window.ui:133
+msgid "Menu"
+msgstr "Trình đơn"
+
+#: src/editor-window.ui:166
+msgid "Start or Open a Document"
+msgstr "Khởi chạy hoặc Mở một tài liệu"
+
+#: src/editor-window.ui:169
+msgid ""
+"• Press the Open button\n"
+"• Press the New tab button\n"
+"• Press Ctrl+N to start a new document\n"
+"• Press Ctrl+O to browse for a document\n"
+"\n"
+"Or, press Ctrl+W to close the window."
+msgstr ""
+"• Nhấn nút Mở\n"
+"• Nhấn nút Thẻ mới\n"
+"• Nhấn Ctrl+N để bắt đầu một tài liệu mới\n"
+"• Nhấn Ctrl+O để duyệt tìm tài liệu\n"
+"\n"
+"Hoăc, nhấn Ctrl+W để đóng cửa sổ."
+
+#: src/editor-window.ui:202
+msgid "_New Window"
+msgstr "_Cửa sổ mới"
+
+#: src/editor-window.ui:222
+msgid "_Discard Changes"
+msgstr "Hủ_y thay đổi"
+
+#: src/editor-window.ui:228
+msgid "_Find/Replace…"
+msgstr "Tì_m/Thay thế…"
+
+#: src/editor-window.ui:234
+msgid "_Print"
+msgstr "_In"
+
+#: src/editor-window.ui:240
+msgid "Documen_t Properties"
+msgstr "_Thuộc tính tài liệu"
+
+#: src/editor-window.ui:246
+msgid "P_references"
+msgstr "_Tùy thích"
+
+#: src/editor-window.ui:251
+msgid "_Keyboard Shortcuts"
+msgstr "_Phím tắt bàn phím"
+
+#: src/editor-window.ui:255
+msgid "_Help"
+msgstr "Trợ giú_p"
+
+#: src/editor-window.ui:259
+msgid "A_bout Text Editor"
+msgstr "Giới thiệu Phần mềm soạn thảo văn bản"
+
+#: src/editor-window.ui:266
+msgid "Show"
+msgstr "Hiện"
+
+#: src/editor-window.ui:268
+msgid "_Line Numbers"
+msgstr "Số _dòng"
+
+#: src/editor-window.ui:272
+msgid "_Right Margin"
+msgstr "Lề _phải"
+
+#: src/editor-window.ui:296
+msgid "_2"
+msgstr "_2"
+
+#: src/editor-window.ui:301
+msgid "_4"
+msgstr "_4"
+
+#: src/editor-window.ui:306
+msgid "_6"
+msgstr "_6"
+
+#: src/editor-window.ui:311
+msgid "_8"
+msgstr "_8"
+
+#: src/editor-window.ui:320
+msgid "T_ext Wrapping"
+msgstr "Ngắt _dòng dài"
+
+#: src/editor-window.ui:324
+msgid "Chec_k Spelling"
+msgstr "_Kiểm tra chính tả"
+
+#: src/editor-window.ui:328
+msgid "_Document Type"
+msgstr "Kiểu tài liệ_u"
+
+#: src/editor-window.ui:336
+msgid "Move _Left"
+msgstr "Chuyển sang _trái"
+
+#: src/editor-window.ui:341
+msgid "Move _Right"
+msgstr "Chuyển sang _phải"
+
+#: src/editor-window.ui:348
+msgid "_Move to New Window"
+msgstr "Chu_yển vào cửa sổ mới"
+
+#: src/editor-window.ui:355
+msgid "Close _Other Tabs"
+msgstr "Đóng những thẻ _khác"
+
+#: src/editor-window.ui:359
+msgid "_Close"
+msgstr "Đó_ng"
+
+#: src/enchant/editor-enchant-spell-provider.c:92
+msgid "Enchant 2"
+msgstr "Enchant 2"
+
+#: src/help-overlay.ui:9
+msgctxt "shortcut window"
+msgid "Editor Shortcuts"
+msgstr "Phím tắt chỉnh sửa"
+
+#: src/help-overlay.ui:12
+msgctxt "shortcut window"
+msgid "Windows"
+msgstr "Cửa sổ"
+
+#: src/help-overlay.ui:15
+msgctxt "shortcut window"
+msgid "New window"
+msgstr "Cửa sổ mới"
+
+#: src/help-overlay.ui:21
+msgctxt "shortcut window"
+msgid "Move document to new window"
+msgstr "Chuyển tài liệu vào cửa sổ mới"
+
+#: src/help-overlay.ui:28
+msgctxt "shortcut window"
+msgid "Move to next tab"
+msgstr "Chuyển sang thẻ kế tiếp"
+
+#: src/help-overlay.ui:34
+msgctxt "shortcut window"
+msgid "Move to previous tab"
+msgstr "Chuyển sang thẻ kế trước"
+
+#: src/help-overlay.ui:40
+msgctxt "shortcut window"
+msgid "Reorder after next tab"
+msgstr "Sắp xếp lại sau thẻ kế tiếp"
+
+#: src/help-overlay.ui:46
+msgctxt "shortcut window"
+msgid "Reorder before previous tab"
+msgstr "Sắp xếp lại trước thẻ kế trước"
+
+#: src/help-overlay.ui:52
+msgctxt "shortcut window"
+msgid "Restore previously closed tab"
+msgstr "Mở lại thẻ đã đóng kế trước"
+
+#: src/help-overlay.ui:59
+msgctxt "shortcut window"
+msgid "Zoom"
+msgstr "Thu/Phóng"
+
+#: src/help-overlay.ui:63
+msgctxt "shortcut window"
+msgid "Zoom In"
+msgstr "Phóng to"
+
+#: src/help-overlay.ui:69
+msgctxt "shortcut window"
+msgid "Zoom Out"
+msgstr "Thu nhỏ"
+
+#: src/help-overlay.ui:75
+msgctxt "shortcut window"
+msgid "Reset Zoom"
+msgstr "Đặt lại mức phóng to"
+
+#: src/help-overlay.ui:82
+msgctxt "shortcut window"
+msgid "Documents"
+msgstr "Tài liệu"
+
+#: src/help-overlay.ui:85
+msgctxt "shortcut window"
+msgid "New document"
+msgstr "Tài liệu mới"
+
+#: src/help-overlay.ui:91
+msgctxt "shortcut window"
+msgid "Browse to open document"
+msgstr "Duyệt để mở một tài liệu"
+
+#: src/help-overlay.ui:97
+msgctxt "shortcut window"
+msgid "Find document by name"
+msgstr "Tìm tài liệu theo tên"
+
+#: src/help-overlay.ui:103
+msgctxt "shortcut window"
+msgid "Save"
+msgstr "Lưu"
+
+#: src/help-overlay.ui:109
+msgctxt "shortcut window"
+msgid "Save As"
+msgstr "Lưu thành"
+
+#: src/help-overlay.ui:115
+msgctxt "shortcut window"
+msgid "Find/Replace"
+msgstr "Tìm/Thay Thế"
+
+#: src/help-overlay.ui:121
+msgctxt "shortcut window"
+msgid "Close document"
+msgstr "Đóng tài liệu"
+
+#: src/help-overlay.ui:129
+msgctxt "shortcut window"
+msgid "Copy and Paste"
+msgstr "Chép và Dán"
+
+#: src/help-overlay.ui:133
+msgctxt "shortcut window"
+msgid "Copy selected text to clipboard"
+msgstr "Chép chữ đã chọn vào clipboard"
+
+#: src/help-overlay.ui:139
+msgctxt "shortcut window"
+msgid "Cut selected text to clipboard"
+msgstr "Cắt chữ đã chọn vào clipboard"
+
+#: src/help-overlay.ui:145
+msgctxt "shortcut window"
+msgid "Paste text from clipboard"
+msgstr "Dán chữ từ clipboard"
+
+#: src/help-overlay.ui:150
+msgctxt "shortcut window"
+msgid "Copy all to clipboard"
+msgstr "Chép tất cả vào clipboard"
+
+#: src/help-overlay.ui:158
+msgctxt "shortcut window"
+msgid "Undo and Redo"
+msgstr "Hoàn tác và Làm lại"
+
+#: src/help-overlay.ui:162
+msgctxt "shortcut window"
+msgid "Undo previous command"
+msgstr "Hoàn lại lệnh trước đó"
+
+#: src/help-overlay.ui:168
+msgctxt "shortcut window"
+msgid "Redo previous command"
+msgstr "Làm lại lệnh trước đó"
+
+#: src/help-overlay.ui:175
+msgctxt "shortcut window"
+msgid "Editing"
+msgstr "Sửa"
+
+#: src/help-overlay.ui:179
+msgctxt "shortcut window"
+msgid "Insert emoji into document"
+msgstr "Chèn emoji vào tài liệu"
+
+#: src/help-overlay.ui:185
+msgctxt "shortcut window"
+msgid "Search within the document"
+msgstr "Tìm kiếm trong tài liệu"
+
+#: src/help-overlay.ui:191
+msgctxt "shortcut window"
+msgid "Search and replace within the document"
+msgstr "Tìm và thay thế trong tài liệu"
+
+#: src/help-overlay.ui:197
+msgctxt "shortcut window"
+msgid "Increment number at cursor"
+msgstr "Gia số tại con trỏ"
+
+#: src/help-overlay.ui:203
+msgctxt "shortcut window"
+msgid "Decrement number at cursor"
+msgstr "Giảm số tại con trỏ"
+
+#: src/help-overlay.ui:209
+msgctxt "shortcut window"
+msgid "Toggle overwrite"
+msgstr "Bật/Tắt Ghi đè"
+
+#: src/help-overlay.ui:215
+msgctxt "shortcut window"
+msgid "Toggle visibility of insertion caret"
+msgstr "Bật/tắt hiển thi con nháy chèn"
+
+#: src/help-overlay.ui:222
+msgctxt "shortcut window"
+msgid "Selections"
+msgstr "Chọn"
+
+#: src/help-overlay.ui:226
+msgctxt "shortcut window"
+msgid "Select all"
+msgstr "Chọn hết"
+
+#: src/help-overlay.ui:232
+msgctxt "shortcut window"
+msgid "Unselect all"
+msgstr "Bỏ chọn tất cả"
+
+#: src/help-overlay.ui:238
+msgctxt "shortcut window"
+msgid "Select current line"
+msgstr "Chọn dòng hiện tại"
+
+#: src/help-overlay.ui:245
+msgctxt "shortcut window"
+msgid "Movements"
+msgstr "Di chuyển"
+
+#: src/help-overlay.ui:249
+msgctxt "shortcut window"
+msgid "Move to beginning of document"
+msgstr "Di chuyển lên đầu tài liệu"
+
+#: src/help-overlay.ui:255
+msgctxt "shortcut window"
+msgid "Move to end of document"
+msgstr "Di chuyển đến cuối tài liệu"
+
+#: src/help-overlay.ui:261
+msgctxt "shortcut window"
+msgid "Move to start of previous paragraph"
+msgstr "Di chuyển đến đầu của đoạn kế trước"
+
+#: src/help-overlay.ui:267
+msgctxt "shortcut window"
+msgid "Move to end of next paragraph"
+msgstr "Di chuyển đến cuối đoạn"
+
+#: src/help-overlay.ui:273
+msgctxt "shortcut window"
+msgid "Move current or selected lines up"
+msgstr "Chuyển dòng hiện tại hoặc đã chọn lên trên"
+
+#: src/help-overlay.ui:279
+msgctxt "shortcut window"
+msgid "Move current or selected lines down"
+msgstr "Chuyển dòng hiện tại hoặc đã chọn xuống dưới"
+
+#: src/help-overlay.ui:285
+msgctxt "shortcut window"
+msgid "Go to line"
+msgstr "Nhảy tới dòng"
+
+#: src/help-overlay.ui:292
+msgctxt "shortcut window"
+msgid "Deletion"
+msgstr "Xóa"
+
+#: src/help-overlay.ui:296
+msgctxt "shortcut window"
+msgid "Delete from cursor to word start"
+msgstr "Xóa từ vị trí con trỏ ngược tới đầu từ"
+
+#: src/help-overlay.ui:302
+msgctxt "shortcut window"
+msgid "Delete from cursor to word end"
+msgstr "Xóa từ vị trí con trỏ đến cuối từ"
+
+#: src/help-overlay.ui:308
+msgctxt "shortcut window"
+msgid "Delete from cursor to paragraph start"
+msgstr "Xóa từ vị trí con trỏ ngược tới đầu đoạn"
+
+#: src/help-overlay.ui:314
+msgctxt "shortcut window"
+msgid "Delete from cursor to paragraph end"
+msgstr "Xóa từ vị trí con trỏ ngược tới cuối đoạn"
+
+#: src/help-overlay.ui:320
+msgctxt "shortcut window"
+msgid "Delete the current line"
+msgstr "Xóa dòng hiện tại"
