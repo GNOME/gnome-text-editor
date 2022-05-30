@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor gnome-41\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-02-22 01:46+0000\n"
-"PO-Revision-Date: 2022-02-22 21:57+0200\n"
+"POT-Creation-Date: 2022-05-27 23:54+0000\n"
+"PO-Revision-Date: 2022-05-30 21:54+0300\n"
 "Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
-"Language-Team: Hebrew <>\n"
+"Language-Team: Hebrew <yoseforb@gmail.com>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "X-Generator: Gtranslator 40.0\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
@@ -170,7 +170,7 @@ msgstr "שימוש בגופן מערכת"
 msgid "If the default system monospace font should be used."
 msgstr "If the default system monospace font should be used."
 
-#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:60
+#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:57
 msgid "Custom Font"
 msgstr "גופן מותאם אישית"
 
@@ -270,12 +270,12 @@ msgstr "Line Height"
 msgid "The line height to use for the selected font."
 msgstr "The line height to use for the selected font."
 
-#: src/editor-animation.c:1051
+#: src/editor-animation.c:1038
 #, c-format
 msgid "Failed to find property %s in %s"
 msgstr "ארע כשל במציאת מאפיים %s בתוך %s"
 
-#: src/editor-animation.c:1060
+#: src/editor-animation.c:1047
 #, c-format
 msgid "Failed to retrieve va_list value: %s"
 msgstr "ארע כשל בשליפת ערך va_list: ‏%s"
@@ -291,17 +291,34 @@ msgstr ""
 "\n"
 "<a href=\"https://l10n.gnome.org/teams/he/\">מיזם תרגום GNOME לעברית</a>"
 
-#: src/editor-application.c:599
+#: src/editor-application.c:460
+msgid "Standard input was requested multiple times. Ignoring request."
+msgstr "קלט תקני נדרש מספר פעמים. התעלמות מהבקשה."
+
+#: src/editor-application.c:464
+msgid "Standard input is not supported on this platform. Ignoring request."
+msgstr "קלט תקני אינו נתמך בפלטפורמה זו. התעלמות מהבקשה."
+
+#: src/editor-application.c:660
 msgid "Do not restore session at startup"
 msgstr "לא לשחזר הפעלה אחרונה עם הפעלת היישום"
 
-#: src/editor-application.c:600
+#: src/editor-application.c:661
 msgid "Open provided files in a new window"
 msgstr "פתיחת הקבצים שסופקו בחלון חדש"
 
-#: src/editor-document.c:1938
+#: src/editor-application.c:662
+msgid "Run a new instance of Text Editor (implies --ignore-session)"
+msgstr "הרצת מופע חדש של עורך הטקסט (מרמז ‎--ignore-session‎)"
+
+#: src/editor-document.c:1939
 msgid "[Read-Only]"
 msgstr "[קריאה בלבד]"
+
+#: src/editor-document.c:2227 src/editor-page.c:987
+#: src/editor-sidebar-item.c:489
+msgid "New Document"
+msgstr "מסמך חדש"
 
 #: src/editor-file-manager.c:99
 msgid "File path is NULL"
@@ -392,10 +409,6 @@ msgstr "אין מסמכים אחרונים"
 msgid "No Results Found"
 msgstr "לא נמצאו תוצאות"
 
-#: src/editor-page.c:987 src/editor-sidebar-item.c:489
-msgid "New Document"
-msgstr "מסמך חדש"
-
 #: src/editor-page.c:1009 src/editor-properties-dialog.c:74
 #: src/editor-sidebar-item.c:84
 msgid "Draft"
@@ -428,65 +441,61 @@ msgstr "שמירה"
 msgid "Cancel"
 msgstr "ביטול"
 
-#: src/editor-page.c:1309
+#: src/editor-page.c:1315
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "שורה %u, עמודה %u"
 
-#: src/editor-page.ui:101
+#: src/editor-page.ui:98
 msgid "Go to Line"
 msgstr "מעבר לשורה"
 
-#: src/editor-page.ui:119
+#: src/editor-page.ui:116
 msgid "Go"
 msgstr "מעבר"
 
-#: src/editor-page.ui:156 src/editor-window.ui:277
+#: src/editor-page.ui:153 src/editor-window.ui:277
 msgid "Indentation"
 msgstr "הזחה"
 
-#: src/editor-page.ui:159 src/editor-window.ui:279
+#: src/editor-page.ui:156 src/editor-window.ui:279
 msgid "_Automatic Indentation"
 msgstr "הזחה _אוטומטית"
 
-#: src/editor-page.ui:165 src/editor-window.ui:283
+#. Translators: this is a tab character, not a browser tab
+#: src/editor-page.ui:162 src/editor-window.ui:283
 msgid "_Tabs"
 msgstr "_טאב"
 
-#: src/editor-page.ui:170 src/editor-window.ui:288
+#: src/editor-page.ui:167 src/editor-window.ui:288
 msgid "_Spaces"
 msgstr "רוו_חים"
 
-#: src/editor-page.ui:177 src/editor-window.ui:293
+#: src/editor-page.ui:174 src/editor-window.ui:293
 msgid "Spaces _Per Tab"
 msgstr "רווחים _לכל טאב"
 
-#: src/editor-page.ui:179 src/editor-page.ui:207
-#| msgid "_2"
+#: src/editor-page.ui:176 src/editor-page.ui:204
 msgid "2"
 msgstr "2"
 
-#: src/editor-page.ui:184 src/editor-page.ui:212
-#| msgid "_4"
+#: src/editor-page.ui:181 src/editor-page.ui:209
 msgid "4"
 msgstr "4"
 
-#: src/editor-page.ui:189 src/editor-page.ui:217
-#| msgid "_6"
+#: src/editor-page.ui:186 src/editor-page.ui:214
 msgid "6"
 msgstr "6"
 
-#: src/editor-page.ui:194 src/editor-page.ui:222
-#| msgid "_8"
+#: src/editor-page.ui:191 src/editor-page.ui:219
 msgid "8"
 msgstr "8"
 
-#: src/editor-page.ui:200
-#| msgid "Spaces _Per Tab"
+#: src/editor-page.ui:197
 msgid "Spaces Per Indent"
 msgstr "רווחים לכל טאב"
 
-#: src/editor-page.ui:202
+#: src/editor-page.ui:199
 msgid "Use Tab Size"
 msgstr "שימוש בטאב בגודל"
 
@@ -504,47 +513,47 @@ msgstr "עמודה"
 msgid "Appearance"
 msgstr "מראה"
 
-#: src/editor-preferences-dialog.ui:82
+#: src/editor-preferences-dialog.ui:79
 msgid "Display Grid Pattern"
 msgstr "הצגת קווי רשת"
 
-#: src/editor-preferences-dialog.ui:88
+#: src/editor-preferences-dialog.ui:85
 msgid "Highlight Current Line"
 msgstr "הדגשת השורה הנוכחית"
 
-#: src/editor-preferences-dialog.ui:94
+#: src/editor-preferences-dialog.ui:91
 msgid "Display Overview Map"
 msgstr "הצגת מפת ממוזערת"
 
-#: src/editor-preferences-dialog.ui:102
+#: src/editor-preferences-dialog.ui:99
 msgid "Right Margin"
 msgstr "שוליים ימניים"
 
-#: src/editor-preferences-dialog.ui:105
+#: src/editor-preferences-dialog.ui:102
 msgid "Margin Position"
 msgstr "מיקום שוליים"
 
-#: src/editor-preferences-dialog.ui:113
+#: src/editor-preferences-dialog.ui:110
 msgid "Behavior"
 msgstr "התנהגות"
 
-#: src/editor-preferences-dialog.ui:116
+#: src/editor-preferences-dialog.ui:113
 msgid "Discover Document Settings"
 msgstr "גילוי הגדרות מסמך"
 
-#: src/editor-preferences-dialog.ui:117
+#: src/editor-preferences-dialog.ui:114
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr "החלת הגדרות באמצעות מצב שורות, הגדרות עורך או הגיון בבררת מחדל"
 
-#: src/editor-preferences-dialog.ui:123
+#: src/editor-preferences-dialog.ui:120
 msgid "Restore Session"
 msgstr "שחזור הפעלה"
 
-#: src/editor-preferences-dialog.ui:124
+#: src/editor-preferences-dialog.ui:121
 msgid "Return to your previous session when Text Editor is started"
 msgstr "חזרה להפעלה הקודמת שלך ברגע הפעלת עורך הטקסט"
 
-#: src/editor-preferences-dialog.ui:139
+#: src/editor-preferences-dialog.ui:136
 msgid "_Clear History"
 msgstr "_ניקוי היסטוריה"
 
@@ -677,15 +686,15 @@ msgstr "_החלפה"
 msgid "Replace _All"
 msgstr "החלפת ה_כול"
 
-#: src/editor-search-bar.ui:141
+#: src/editor-search-bar.ui:140
 msgid "Re_gular expressions"
 msgstr "ביטוי _רגולרי"
 
-#: src/editor-search-bar.ui:147
+#: src/editor-search-bar.ui:146
 msgid "_Case sensitive"
 msgstr "התאמת _רישיות"
 
-#: src/editor-search-bar.ui:153
+#: src/editor-search-bar.ui:152
 msgid "Match whole _word only"
 msgstr "התאמה למילים שלמות _בלבד"
 
@@ -723,50 +732,50 @@ msgstr "סגנון בהיר"
 msgid "Dark style"
 msgstr "סגנון כהה"
 
-#: src/editor-utils.c:346
+#: src/editor-utils.c:348
 msgid "Just now"
 msgstr "רק עכשיו"
 
-#: src/editor-utils.c:348
+#: src/editor-utils.c:350
 msgid "An hour ago"
 msgstr "לפני שעה"
 
-#: src/editor-utils.c:350
+#: src/editor-utils.c:352
 msgid "Yesterday"
 msgstr "אתמול"
 
-#: src/editor-utils.c:356
+#: src/editor-utils.c:358
 msgid "About a year ago"
 msgstr "לפני כשנה"
 
-#: src/editor-utils.c:360
+#: src/editor-utils.c:362
 #, c-format
 msgid "About %u year ago"
 msgid_plural "About %u years ago"
 msgstr[0] "לפני שנה"
 msgstr[1] "לפני %u שנים"
 
-#: src/editor-utils.c:368
+#: src/editor-utils.c:370
 msgid "Unix/Linux (LF)"
 msgstr "יוניקס/לינוקס (LF)"
 
-#: src/editor-utils.c:369
+#: src/editor-utils.c:371
 msgid "Mac OS Classic (CR)"
 msgstr "‏Mac OS קלאסי (CR)"
 
-#: src/editor-utils.c:370
+#: src/editor-utils.c:372
 msgid "Windows (CR+LF)"
 msgstr "חלונות (CR+LF)"
 
-#: src/editor-utils.c:400
+#: src/editor-utils.c:402
 msgid "Automatically Detected"
 msgstr "זיהוי אוטומטי"
 
-#: src/editor-utils.c:416
+#: src/editor-utils.c:418
 msgid "Character Encoding:"
 msgstr "קידוד תווים:"
 
-#: src/editor-utils.c:451
+#: src/editor-utils.c:453
 msgid "Line Ending:"
 msgstr "סיום שורה:"
 
@@ -816,10 +825,15 @@ msgid "Document Type: %s"
 msgstr "סוג מסמך: %s"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:725
+#: src/editor-window.c:727
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "‏‎%s ‏(%s) - עורך טקסט"
+
+#: src/editor-window.c:1130
+#| msgid "Failed to save document"
+msgid "There are unsaved documents"
+msgstr "ישנם מסמכים שלא נשמרו"
 
 #: src/editor-window.ui:78
 msgid "_Open"
