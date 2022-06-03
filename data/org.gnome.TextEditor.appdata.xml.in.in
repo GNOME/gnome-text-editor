@@ -34,6 +34,16 @@
 
   <translation type="gettext">gnome-text-editor</translation>
 
+  <recommends>
+    <control>pointing</control>
+    <control>keyboard</control>
+    <control>touch</control>
+  </recommends>
+
+  <requires>
+    <display_length compare="ge">360</display_length>
+  </requires>
+
   <releases>
     <release version="47.0" date="2024-09-13"/>
   </releases>
