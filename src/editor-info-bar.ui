@@ -17,6 +17,7 @@
                   <object class="GtkLabel" id="access_title">
                     <property name="halign">start</property>
                     <property name="label" translatable="yes">Could Not Open File</property>
+                    <property name="wrap">True</property>
                     <attributes>
                       <attribute name="weight" value="bold"/>
                     </attributes>
@@ -26,6 +27,7 @@
                   <object class="GtkLabel" id="access_subtitle">
                     <property name="halign">start</property>
                     <property name="label" translatable="yes">You do not have permission to open the file.</property>
+                    <property name="wrap">True</property>
                   </object>
                 </child>
               </object>
@@ -59,6 +61,7 @@
                   <object class="GtkLabel" id="title">
                     <property name="halign">start</property>
                     <property name="label" translatable="yes">Document Restored</property>
+                    <property name="wrap">True</property>
                     <attributes>
                       <attribute name="weight" value="bold"/>
                     </attributes>
@@ -68,6 +71,7 @@
                   <object class="GtkLabel" id="subtitle">
                     <property name="halign">start</property>
                     <property name="label" translatable="yes">Unsaved document has been restored.</property>
+                    <property name="wrap">True</property>
                   </object>
                 </child>
               </object>

@@ -114,6 +114,20 @@ editor_info_bar_update (EditorInfoBar *self)
 }
 
 static void
+editor_info_bar_wrap_button_label (GtkButton *button)
+{
+  GtkWidget *label;
+
+  g_assert (GTK_IS_BUTTON (button));
+
+  label = gtk_button_get_child (button);
+  g_assert (GTK_IS_LABEL (label));
+
+  gtk_label_set_wrap (GTK_LABEL (label), TRUE);
+  gtk_label_set_justify (GTK_LABEL (label), GTK_JUSTIFY_CENTER);
+}
+
+static void
 on_notify_cb (EditorInfoBar  *self,
               GParamSpec     *pspec,
               EditorDocument *document)
@@ -265,6 +279,13 @@ static void
 editor_info_bar_init (EditorInfoBar *self)
 {
   gtk_widget_init_template (GTK_WIDGET (self));
+
+  /*
+   * Ensure buttons with long labels can wrap text and are
+   * center-justified, so the infobar can fit narrow screens.
+   */
+  editor_info_bar_wrap_button_label (self->access_try_admin);
+  editor_info_bar_wrap_button_label (self->discard);
 
   g_signal_connect_object (self->discard_infobar,
                            "response",
