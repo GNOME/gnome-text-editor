@@ -4,17 +4,18 @@
 #
 #
 # Philipp Kiemle <philipp.kiemle@gmail.com>, 2021-2022.
-# Christian Kirbach <christian.kirbach@gmail.com>, 2021.
+# Christian Kirbach <christian.kirbach@gmail.com>, 2021, 2022.
 # Tim Sabsch <tim@sabsch.com>, 2022.
+# Jürgen Benvenuti <gastornis@posteo.org>, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-05-02 16:43+0000\n"
-"PO-Revision-Date: 2022-05-05 16:41+0200\n"
-"Last-Translator: Philipp Kiemle <philipp.kiemle@gmail.com>\n"
+"POT-Creation-Date: 2022-05-31 19:59+0000\n"
+"PO-Revision-Date: 2022-06-03 23:47+0200\n"
+"Last-Translator: Christian Kirbach <christian.kirbach@gmail.com>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -309,20 +310,41 @@ msgid "translator-credits"
 msgstr ""
 "Philipp Kiemle <philipp.kiemle@gmail.com>\n"
 "Christian Kirbach <christian.kirbach@gmail.com>\n"
-"Tim Sabsch <tim@sabsch.com>"
+"Tim Sabsch <tim@sabsch.com>\n"
+"Jürgen Benvenuti <gastornis@posteo.org>"
 
-#: src/editor-application.c:599
+#: src/editor-application.c:460
+msgid "Standard input was requested multiple times. Ignoring request."
+msgstr "Standardeingabe wurde mehrfach angefragt. Anfrage wird ignoriert."
+
+#: src/editor-application.c:464
+msgid "Standard input is not supported on this platform. Ignoring request."
+msgstr ""
+"Standardeingabe wird auf dieser Plattform nicht unterstützt. Anfrage wird "
+"ignoriert."
+
+#: src/editor-application.c:660
 msgid "Do not restore session at startup"
 msgstr "Die Sitzung beim Start nicht wiederherstellen"
 
 # Hier geht es um Dateien, die beim Start der Anwendung als CLI-Argument angegeben wurden
-#: src/editor-application.c:600
+#: src/editor-application.c:661
 msgid "Open provided files in a new window"
 msgstr "Angegebene Dateien in einem neuen Fenster öffnen"
 
-#: src/editor-document.c:1938
+#: src/editor-application.c:662
+msgid "Run a new instance of Text Editor (implies --ignore-session)"
+msgstr ""
+"Eine neue Instanz von Texteditor ausführen (impliziert --ignore-session)"
+
+#: src/editor-document.c:1939
 msgid "[Read-Only]"
 msgstr "[Nur lesen]"
+
+#: src/editor-document.c:2227 src/editor-page.c:987
+#: src/editor-sidebar-item.c:489
+msgid "New Document"
+msgstr "Neues Dokument"
 
 #: src/editor-file-manager.c:99
 msgid "File path is NULL"
@@ -413,10 +435,6 @@ msgstr "Keine zuletzt geöffneten Dokumente"
 msgid "No Results Found"
 msgstr "Keine Ergebnisse gefunden"
 
-#: src/editor-page.c:987 src/editor-sidebar-item.c:489
-msgid "New Document"
-msgstr "Neues Dokument"
-
 #: src/editor-page.c:1009 src/editor-properties-dialog.c:74
 #: src/editor-sidebar-item.c:84
 msgid "Draft"
@@ -449,7 +467,7 @@ msgstr "Speichern"
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: src/editor-page.c:1309
+#: src/editor-page.c:1315
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Z %u, Sp %u"
@@ -620,7 +638,7 @@ msgstr "Wörter"
 
 #: src/editor-properties-dialog.ui:96
 msgid "Characters, No Spaces"
-msgstr "Zeichen, keine Leerzeichen"
+msgstr "Zeichen, ohne Leerzeichen"
 
 #: src/editor-properties-dialog.ui:111
 msgid "All Characters"
@@ -700,15 +718,15 @@ msgstr "E_rsetzen"
 msgid "Replace _All"
 msgstr "_Alle ersetzen"
 
-#: src/editor-search-bar.ui:141
+#: src/editor-search-bar.ui:140
 msgid "Re_gular expressions"
 msgstr "R_eguläre Ausdrücke"
 
-#: src/editor-search-bar.ui:147
+#: src/editor-search-bar.ui:146
 msgid "_Case sensitive"
 msgstr "Groß-/Kleinschreibung beachten"
 
-#: src/editor-search-bar.ui:153
+#: src/editor-search-bar.ui:152
 msgid "Match whole _word only"
 msgstr "Nur ganze _Wörter"
 
@@ -746,50 +764,50 @@ msgstr "Heller Stil"
 msgid "Dark style"
 msgstr "Dunkler Stil"
 
-#: src/editor-utils.c:346
+#: src/editor-utils.c:348
 msgid "Just now"
 msgstr "Gerade eben"
 
-#: src/editor-utils.c:348
+#: src/editor-utils.c:350
 msgid "An hour ago"
 msgstr "Vor einer Stunde"
 
-#: src/editor-utils.c:350
+#: src/editor-utils.c:352
 msgid "Yesterday"
 msgstr "Gestern"
 
-#: src/editor-utils.c:356
+#: src/editor-utils.c:358
 msgid "About a year ago"
 msgstr "Etwa vor einem Jahr"
 
-#: src/editor-utils.c:360
+#: src/editor-utils.c:362
 #, c-format
 msgid "About %u year ago"
 msgid_plural "About %u years ago"
 msgstr[0] "Etwa vor %u Jahr"
 msgstr[1] "Etwa vor %u Jahren"
 
-#: src/editor-utils.c:368
+#: src/editor-utils.c:370
 msgid "Unix/Linux (LF)"
 msgstr "Unix/Linux (LF)"
 
-#: src/editor-utils.c:369
+#: src/editor-utils.c:371
 msgid "Mac OS Classic (CR)"
 msgstr "Mac OS klassisch (CR)"
 
-#: src/editor-utils.c:370
+#: src/editor-utils.c:372
 msgid "Windows (CR+LF)"
 msgstr "Windows (CR+LF)"
 
-#: src/editor-utils.c:400
+#: src/editor-utils.c:402
 msgid "Automatically Detected"
 msgstr "Automatisch erkannt"
 
-#: src/editor-utils.c:416
+#: src/editor-utils.c:418
 msgid "Character Encoding:"
 msgstr "Zeichenkodierung:"
 
-#: src/editor-utils.c:451
+#: src/editor-utils.c:453
 msgid "Line Ending:"
 msgstr "Zeilenende:"
 
@@ -844,6 +862,10 @@ msgstr "Dokumententyp: %s"
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - Texteditor"
+
+#: src/editor-window.c:1130
+msgid "There are unsaved documents"
+msgstr "Es gibt ungespeicherte Dokumente"
 
 #: src/editor-window.ui:78
 msgid "_Open"
@@ -903,7 +925,7 @@ msgstr "_Drucken"
 
 #: src/editor-window.ui:240
 msgid "Documen_t Properties"
-msgstr "D_okumenteneinstellungen"
+msgstr "D_okumenteigenschaften"
 
 #: src/editor-window.ui:246
 msgid "P_references"
