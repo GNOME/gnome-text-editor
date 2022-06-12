@@ -70,8 +70,6 @@ struct _EditorWindow
   /* Used to update "Document Type: Markdown" */
   GMenuModel           *doc_type_menu;
   guint                 doc_type_index;
-
-  guint                 inhibit_cookie;
 };
 
 

@@ -778,13 +778,6 @@ editor_window_dispose (GObject *object)
   editor_signal_group_set_target (self->page_signals, NULL);
   editor_signal_group_set_target (self->document_signals, NULL);
 
-  if (self->inhibit_cookie != 0)
-    {
-      gtk_application_uninhibit (GTK_APPLICATION (EDITOR_APPLICATION_DEFAULT),
-                                 self->inhibit_cookie);
-      self->inhibit_cookie = 0;
-    }
-
   G_OBJECT_CLASS (editor_window_parent_class)->dispose (object);
 }
 
@@ -1096,58 +1089,6 @@ modified_to_icon (GBinding     *binding,
   return TRUE;
 }
 
-static void
-editor_window_update_inhibit (EditorWindow *self)
-{
-  gboolean inhibit = FALSE;
-  guint n_pages;
-
-  g_assert (EDITOR_IS_WINDOW (self));
-
-  n_pages = editor_window_get_n_pages (self);
-
-  for (guint i = 0; i < n_pages; i++)
-    {
-      EditorPage *page = editor_window_get_nth_page (self, i);
-
-      if (editor_page_get_is_modified (page))
-        {
-          inhibit = TRUE;
-          break;
-        }
-    }
-
-  if ((inhibit && self->inhibit_cookie != 0) ||
-      (!inhibit && self->inhibit_cookie == 0))
-    return;
-
-  if (inhibit)
-    {
-      self->inhibit_cookie =
-        gtk_application_inhibit (GTK_APPLICATION (EDITOR_APPLICATION_DEFAULT),
-                                 GTK_WINDOW (self),
-                                 GTK_APPLICATION_INHIBIT_LOGOUT,
-                                 _("There are unsaved documents"));
-    }
-  else
-    {
-      gtk_application_uninhibit (GTK_APPLICATION (EDITOR_APPLICATION_DEFAULT),
-                                 self->inhibit_cookie);
-      self->inhibit_cookie = 0;
-    }
-}
-
-static void
-page_notify_is_modified_cb (EditorWindow *self,
-                            GParamSpec   *pspec,
-                            EditorPage   *page)
-{
-  g_assert (EDITOR_IS_WINDOW (self));
-  g_assert (EDITOR_IS_PAGE (page));
-
-  editor_window_update_inhibit (self);
-}
-
 void
 _editor_window_add_page (EditorWindow *self,
                          EditorPage   *page)
@@ -1168,15 +1109,7 @@ _editor_window_add_page (EditorWindow *self,
                                modified_to_icon, NULL,
                                NULL, NULL);
 
-  g_signal_connect_object (page,
-                           "notify::is-modified",
-                           G_CALLBACK (page_notify_is_modified_cb),
-                           self,
-                           G_CONNECT_SWAPPED);
-
   adw_tab_view_set_selected_page (self->tab_view, tab_page);
-
-  editor_window_update_inhibit (self);
 }
 
 void
@@ -1188,10 +1121,6 @@ _editor_window_remove_page (EditorWindow *self,
   g_return_if_fail (EDITOR_IS_WINDOW (self));
   g_return_if_fail (EDITOR_IS_PAGE (page));
 
-  g_signal_handlers_disconnect_by_func (page,
-                                        G_CALLBACK (page_notify_is_modified_cb),
-                                        self);
-
   tab_page = adw_tab_view_get_page (self->tab_view, GTK_WIDGET (page));
   adw_tab_view_close_page (self->tab_view, tab_page);
 
@@ -1202,8 +1131,6 @@ _editor_window_remove_page (EditorWindow *self,
       if (self->visible_page != NULL)
         editor_page_grab_focus (self->visible_page);
     }
-
-  editor_window_update_inhibit (self);
 }
 
 /**
