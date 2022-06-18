@@ -34,5 +34,11 @@ void                        editor_source_view_set_font_desc      (EditorSourceV
 double                      editor_source_view_get_zoom_level     (EditorSourceView           *self);
 void                        editor_source_view_prepend_extra_menu (EditorSourceView           *self,
                                                                    GMenuModel                 *extra_menu);
+void                        editor_source_view_jump_to_iter       (GtkTextView                *text_view,
+                                                                   const GtkTextIter          *iter,
+                                                                   double                      within_margin,
+                                                                   gboolean                    use_align,
+                                                                   double                      xalign,
+                                                                   double                      yalign);
 
 G_END_DECLS
