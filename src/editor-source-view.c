@@ -693,6 +693,40 @@ editor_source_view_snapshot_layer (GtkTextView      *text_view,
     editor_source_view_draw_search_bubbles (self, snapshot);
 }
 
+static gboolean
+editor_source_view_scroll_to_insert_in_idle_cb (gpointer user_data)
+{
+  EditorSourceView *self = user_data;
+  GtkTextBuffer *buffer;
+  GtkTextMark *mark;
+  GtkTextIter iter;
+
+  g_assert (EDITOR_IS_SOURCE_VIEW (self));
+
+  buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (self));
+  mark = gtk_text_buffer_get_insert (buffer);
+  gtk_text_buffer_get_iter_at_mark (buffer, &iter, mark);
+
+  editor_source_view_jump_to_iter (GTK_TEXT_VIEW (self), &iter, .25, TRUE, 1.0, 0.5);
+
+  return G_SOURCE_REMOVE;
+}
+
+static void
+editor_source_view_root (GtkWidget *widget)
+{
+  EditorSourceView *self = (EditorSourceView *)widget;
+
+  g_assert (EDITOR_IS_SOURCE_VIEW (self));
+
+  GTK_WIDGET_CLASS (editor_source_view_parent_class)->root (widget);
+
+  g_idle_add_full (G_PRIORITY_LOW,
+                   editor_source_view_scroll_to_insert_in_idle_cb,
+                   g_object_ref (self),
+                   g_object_unref);
+}
+
 static void
 editor_source_view_constructed (GObject *object)
 {
@@ -787,6 +821,8 @@ editor_source_view_class_init (EditorSourceViewClass *klass)
   object_class->dispose = editor_source_view_dispose;
   object_class->get_property = editor_source_view_get_property;
   object_class->set_property = editor_source_view_set_property;
+
+  widget_class->root = editor_source_view_root;
 
   text_view_class->snapshot_layer = editor_source_view_snapshot_layer;
 
