@@ -1502,6 +1502,7 @@ editor_page_delete_draft_cb (GObject      *object,
       editor_session_remove_page (session, self);
       _editor_session_remove_draft (session,
                                     _editor_document_get_draft_id (self->document));
+      gtk_text_buffer_set_modified (GTK_TEXT_BUFFER (self->document), FALSE);
       g_task_return_boolean (task, TRUE);
     }
   else if (!reload)
