@@ -10,6 +10,8 @@ Include the contents of About Text Editor->System here to provide us with
 detailed versions of foundational libraries and settings used by your system.
 ```
 
+Have you tested Nightly to see if the issue has been fixed? If not, why?
+
 # Bug information #
 ## Steps to reproduce ##
 - Step by step, how can you make the problem appear?
