@@ -1742,9 +1742,10 @@ editor_document_guess_language_query_cb (GObject      *object,
   g_autoptr(GTask) task = user_data;
   g_autofree gchar *filename = NULL;
   GtkSourceLanguageManager *lm;
-  GtkSourceLanguage *language;
+  GtkSourceLanguage *language = NULL;
   EditorDocument *self;
   const gchar *content_type;
+  const char *syntax;
 
   g_assert (G_IS_FILE (file));
   g_assert (G_IS_ASYNC_RESULT (result));
@@ -1756,14 +1757,21 @@ editor_document_guess_language_query_cb (GObject      *object,
       return;
     }
 
-  content_type = g_file_info_get_attribute_string (info, G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE);
-  filename = g_file_get_basename (file);
   lm = gtk_source_language_manager_get_default ();
-  language = guess_language (lm, filename, content_type);
+
+  if ((syntax = g_file_info_get_attribute_string (info, METADATA_SYNTAX)))
+    language = gtk_source_language_manager_get_language (lm, syntax);
+
+  if (language == NULL)
+    {
+      content_type = g_file_info_get_attribute_string (info, G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE);
+      filename = g_file_get_basename (file);
+      language = guess_language (lm, filename, content_type);
+    }
+
   self = g_task_get_source_object (task);
 
   g_assert (EDITOR_IS_DOCUMENT (self));
-  g_assert (GTK_SOURCE_IS_LANGUAGE_MANAGER (lm));
   g_assert (!language || GTK_SOURCE_IS_LANGUAGE (language));
 
   if (language != NULL)
@@ -1809,7 +1817,8 @@ _editor_document_guess_language_async (EditorDocument      *self,
                              "Cannot query file as load failed.");
   else
     g_file_query_info_async (file,
-                             G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE,
+                             G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE","
+                             METADATA_SYNTAX,
                              G_FILE_QUERY_INFO_NONE,
                              G_PRIORITY_DEFAULT,
                              cancellable,
