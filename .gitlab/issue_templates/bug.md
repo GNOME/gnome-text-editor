@@ -6,7 +6,8 @@ What is the version of GNOME Text Editor? _(e.g. "42.0-1.fc36.x86_64" or "commit
 If the bug caused data loss, where was the file located? _(e.g. "Home directory" or "on a USB stick" or "in a directory symlinked from my Home directory")
 
 ```
-Include the contents of About Text Editor->System here to provide us with detailed versions of foundational libraries and settings used by your system.
+Include the contents of About Text Editor->System here to provide us with
+detailed versions of foundational libraries and settings used by your system.
 ```
 
 # Bug information #
