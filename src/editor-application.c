@@ -486,6 +486,8 @@ editor_application_command_line (GApplication            *app,
                         (GFile **)(gpointer)files->pdata,
                         files->len,
                         hint);
+  else if (g_strcmp0 (hint, "new-window") == 0)
+    editor_session_create_window (self->session);
   else
     g_application_activate (app);
 
