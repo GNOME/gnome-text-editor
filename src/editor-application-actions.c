@@ -265,6 +265,7 @@ editor_application_actions_confirm_cb (GObject      *object,
     return;
 
   editor_session_save_async (self->session,
+                             TRUE,
                              NULL,
                              editor_application_actions_quit_cb,
                              g_object_ref (self));
@@ -301,6 +302,7 @@ editor_application_actions_quit (GSimpleAction *action,
     }
 
   editor_session_save_async (self->session,
+                             TRUE,
                              NULL,
                              editor_application_actions_quit_cb,
                              g_object_ref (self));

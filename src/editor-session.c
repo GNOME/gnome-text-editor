@@ -1028,6 +1028,7 @@ _editor_session_remove_window (EditorSession *self,
         }
 
       editor_session_save_async (self,
+                                 TRUE,
                                  NULL,
                                  editor_session_save_for_shutdown_cb,
                                  NULL);
@@ -1233,6 +1234,7 @@ editor_session_save_draft_cb (GObject      *object,
 
 void
 editor_session_save_async (EditorSession       *self,
+                           gboolean             shutting_down,
                            GCancellable        *cancellable,
                            GAsyncReadyCallback  callback,
                            gpointer             user_data)
@@ -1252,6 +1254,7 @@ editor_session_save_async (EditorSession       *self,
   g_variant_builder_add_parsed (&builder, "{'version', <%u>}", 1);
   add_draft_state (self, &builder);
   add_window_state (self, &builder);
+  g_variant_builder_add_parsed (&builder, "{'shutdown', <%b>}", !!shutting_down);
   vstate = g_variant_builder_end (&builder);
 
   state = g_slice_new0 (EditorSessionSave);
@@ -2224,7 +2227,7 @@ editor_session_auto_save_timeout_cb (gpointer user_data)
   self->auto_save_source = 0;
 
   g_debug ("Performing auto-save of session state");
-  editor_session_save_async (self, NULL, NULL, NULL);
+  editor_session_save_async (self, FALSE, NULL, NULL, NULL);
 
   return G_SOURCE_REMOVE;
 }

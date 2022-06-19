@@ -67,6 +67,7 @@ gboolean      editor_session_restore_finish      (EditorSession            *self
                                                   GAsyncResult             *result,
                                                   GError                  **error);
 void          editor_session_save_async          (EditorSession            *self,
+                                                  gboolean                  shutting_down,
                                                   GCancellable             *cancellable,
                                                   GAsyncReadyCallback       callback,
                                                   gpointer                  user_data);
