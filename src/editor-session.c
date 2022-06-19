@@ -1736,6 +1736,8 @@ editor_session_restore_v1 (EditorSession *self,
   GVariantIter iter;
   GVariant *window;
   gboolean had_failure = FALSE;
+  gboolean restore_pages;
+  gboolean did_shutdown = TRUE;
   guint width, height;
 
   g_assert (EDITOR_IS_SESSION (self));
@@ -1752,7 +1754,16 @@ editor_session_restore_v1 (EditorSession *self,
       default_height = height;
     }
 
-  if (!self->restore_pages ||
+  /* Check if the application crashed. If shutdown==false, then we auto-saved
+   * session state but did not shutdown gracefully. We always restore pages in
+   * that case to avoid data loss of drafts. (Technically they're there, but the
+   * user wouldn't be able to find them unless session-restore is active).
+   */
+  restore_pages = self->restore_pages;
+  if (g_variant_lookup (state, "shutdown", "b", &did_shutdown) && !did_shutdown)
+    restore_pages = TRUE;
+
+  if (!restore_pages ||
       !(windows = g_variant_lookup_value (state, "windows", G_VARIANT_TYPE ("aa{sv}"))) ||
       g_variant_n_children (windows) == 0)
     goto failure;
@@ -1821,7 +1832,7 @@ editor_session_restore_v1 (EditorSession *self,
   return;
 
 failure:
-  if (!self->restore_pages)
+  if (!restore_pages)
     g_debug ("Failed to restore session or nothing to restore");
 
   editor_session_create_window (self);
