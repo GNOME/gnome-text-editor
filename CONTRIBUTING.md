@@ -19,6 +19,14 @@ You can find mockups for Text Editor on the GNOME Design Team's
 [https://gitlab.gnome.org/Teams/Design/app-mockups/-/tree/master/text-editor](text editor mockups)
 repository.
 
+File an issue at [Teams/Design/Whiteboards](https://gitlab.gnome.org/Teams/Design/whiteboards/) to start that process.
+Out of the design process, we expect the following:
+
+ * A mockup if changing UI components.
+ * A specification of the implementation, and what should be implemented and what should not be implemented.
+ * A breakdown of what existing code will be affected.
+ * If there are any side-effects to the change that will affect other modules in the code-base.
+
 ## Coding Style
 
 Text Editor follows the GTK coding style which is similar to the GNU style.

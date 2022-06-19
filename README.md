@@ -4,6 +4,11 @@ Text Editor is a simple text editor that focuses on session management.
 It works hard to keep track of changes and state even if you quit the application.
 You can come back to your work even if you've never saved it to a file.
 
+## Contributions
+
+ * __Please do not file issues for feature requests.__ Features must go through the design process first. File an issue at [Teams/Design/Whiteboards](https://gitlab.gnome.org/Teams/Design/whiteboards/) to start that process. In the end you should have a mockup, implementation specification, and breakdown of how that will change the existing code-base.
+ * Please __test Nightly before filing bugs__. You can install Nightly from Flatpak using `flatpak --user install gnome-nightly org.gnome.TextEditor.Devel`.
+
 ## Features
 
  * A simple editor focused on a solid default experience
@@ -17,7 +22,7 @@ You can come back to your work even if you've never saved it to a file.
 
 ## Dependencies
 
- * GTK 4.4 or newer
+ * GTK 4.6 or newer
  * GtkSourceView 5.4 or newer
  * Libadwaita
  * libpcre (for .editorconfig support)
