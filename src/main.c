@@ -22,16 +22,19 @@
 
 #include <glib/gi18n.h>
 
+#include "build-ident.h"
 #include "editor-application-private.h"
 
-static gboolean
-check_standalone (int    *argc,
-                  char ***argv)
+static void
+check_early_opts (int        *argc,
+                  char     ***argv,
+                  gboolean   *standalone)
 {
   g_autoptr(GOptionContext) context = NULL;
-  gboolean standalone = FALSE;
+  gboolean version = FALSE;
   GOptionEntry entries[] = {
-    { "standalone", 's', 0, G_OPTION_ARG_NONE, &standalone },
+    { "standalone", 's', 0, G_OPTION_ARG_NONE, standalone },
+    { "version", 0, 0, G_OPTION_ARG_NONE, &version },
     { NULL }
   };
 
@@ -41,7 +44,11 @@ check_standalone (int    *argc,
   g_option_context_add_main_entries (context, entries, NULL);
   g_option_context_parse (context, argc, argv, NULL);
 
-  return standalone;
+  if (version)
+    {
+      g_printerr ("%s %s (%s)\n", PACKAGE_NAME, PACKAGE_VERSION, EDITOR_BUILD_IDENTIFIER);
+      exit (EXIT_SUCCESS);
+    }
 }
 
 int
@@ -49,14 +56,14 @@ main (int   argc,
       char *argv[])
 {
   g_autoptr(EditorApplication) app = NULL;
-  gboolean standalone;
+  gboolean standalone = FALSE;
   int ret;
 
   bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
-  standalone = check_standalone (&argc, &argv);
+  check_early_opts (&argc, &argv, &standalone);
 
   gtk_init ();
   gtk_source_init ();

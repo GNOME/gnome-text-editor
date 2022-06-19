@@ -662,6 +662,7 @@ static const GOptionEntry entries[] = {
   { "ignore-session", 'i', 0, G_OPTION_ARG_NONE, NULL, N_("Do not restore session at startup") },
   { "new-window", 'n', 0, G_OPTION_ARG_NONE, NULL, N_("Open provided files in a new window") },
   { "standalone", 's', 0, G_OPTION_ARG_NONE, NULL, N_("Run a new instance of Text Editor (implies --ignore-session)") },
+  { "version", 0, 0, G_OPTION_ARG_NONE, NULL, N_("Print version information and exit") },
   { 0 }
 };
 
