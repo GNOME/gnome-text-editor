@@ -540,6 +540,7 @@ static void
 editor_application_constructed (GObject *object)
 {
   EditorApplication *self = (EditorApplication *)object;
+  g_autofree char *description = NULL;
 
   g_assert (EDITOR_IS_APPLICATION (self));
 
@@ -547,6 +548,9 @@ editor_application_constructed (GObject *object)
 
   g_application_set_application_id (G_APPLICATION (self), APP_ID);
   g_application_set_resource_base_path (G_APPLICATION (self), "/org/gnome/TextEditor");
+
+  description = g_strdup_printf ("%s %s", _("Bugs may be reported at:"), PACKAGE_BUGREPORTS);
+  g_application_set_option_context_description (G_APPLICATION (self), description);
 }
 
 static void
