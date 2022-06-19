@@ -1123,6 +1123,9 @@ editor_page_save_as_cb (EditorPage           *self,
           GtkSourceNewlineType crlf = _editor_file_chooser_get_line_ending (GTK_FILE_CHOOSER (native));
           g_autoptr(GFile) directory = gtk_file_chooser_get_current_folder (GTK_FILE_CHOOSER (native));
 
+          if (directory == NULL)
+            directory = g_file_get_parent (dest);
+
           if (directory != NULL)
             {
               g_autoptr(GSettings) settings = g_settings_new ("org.gnome.TextEditor");
