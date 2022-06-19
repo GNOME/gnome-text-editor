@@ -203,7 +203,7 @@ editor_application_actions_about_cb (GSimpleAction *action,
   gtk_about_dialog_set_documenters (dialog, documenters);
   gtk_about_dialog_set_license_type (dialog, GTK_LICENSE_GPL_3_0);
   gtk_about_dialog_set_website (dialog, PACKAGE_WEBSITE);
-  gtk_about_dialog_set_website_label (dialog, _("Text Editor Website"));
+  gtk_about_dialog_set_website_label (dialog, _("Learn More about Text Editor"));
   gtk_about_dialog_set_translator_credits (dialog, _("translator-credits"));
 
   system_information = get_system_information ();
