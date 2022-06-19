@@ -80,63 +80,63 @@ fedora:
         - meson test --suite gnome-text-editor
         - ninja install
 
-macos:
-    extends: .only-default
-    only:
-        - branches@GNOME/gnome-text-editor
-    tags:
-        - macos
-    needs: []
-    before_script:
-        - bash .gitlab-ci/show-info-osx.sh
-        - pip3 install --user meson==0.59.4
-        - pip3 install --user ninja
-        - export PATH=/Users/gitlabrunner/Library/Python/3.7/bin:$PATH
-    script:
-        - mkdir -p pfx/
-        - meson --prefix=${PWD}/pfx
-                -Dcpp_std=c++11
-                -Denchant=disabled
-                -Dglib:tests=false
-                -Dglib:werror=false
-                -Dgtk:broadway-backend=false
-                -Dgtk:build-examples=false
-                -Dgtk:build-tests=false
-                -Dgtk:demos=false
-                -Dgtk:introspection=disabled
-                -Dgtk:macos-backend=true
-                -Dgtk:media-gstreamer=disabled
-                -Dgtk:werror=false
-                -Dgtk:x11-backend=false
-                -Dgtksourceview:gtk_doc=false
-                -Dgtksourceview:introspection=disabled
-                -Dgtksourceview:vapi=false
-                -Dgtksourceview:werror=false
-                -Dicu:werror=false
-                -Dlibadwaita:examples=false
-                -Dlibadwaita:gtk_doc=false
-                -Dlibadwaita:introspection=disabled
-                -Dlibadwaita:tests=false
-                -Dlibadwaita:vapi=false
-                -Dlibadwaita:werror=false
-                -Dlibsass:werror=false
-                -Dpango:gtk_doc=false
-                -Dpango:introspection=disabled
-                -Dpango:werror=false
-                -Dpixman:tests=disabled
-                -Dsassc:werror=false
-                -Dwayland-protocols:tests=false
-                -Dwayland:documentation=false
-                -Dwayland:dtd_validation=false
-                -Dwayland:tests=false
-                _build
-        - cd _build
-        - ninja
-        - meson test --suite gnome-text-editor
-    artifacts:
-        when: always
-        paths:
-            - "${CI_PROJECT_DIR}/_build/meson-logs"
+#macos:
+#    extends: .only-default
+#    only:
+#        - branches@GNOME/gnome-text-editor
+#    tags:
+#        - macos
+#    needs: []
+#    before_script:
+#        - bash .gitlab-ci/show-info-osx.sh
+#        - pip3 install --user meson==0.59.4
+#        - pip3 install --user ninja
+#        - export PATH=/Users/gitlabrunner/Library/Python/3.7/bin:$PATH
+#    script:
+#        - mkdir -p pfx/
+#        - meson --prefix=${PWD}/pfx
+#                -Dcpp_std=c++11
+#                -Denchant=disabled
+#                -Dglib:tests=false
+#                -Dglib:werror=false
+#                -Dgtk:broadway-backend=false
+#                -Dgtk:build-examples=false
+#                -Dgtk:build-tests=false
+#                -Dgtk:demos=false
+#                -Dgtk:introspection=disabled
+#                -Dgtk:macos-backend=true
+#                -Dgtk:media-gstreamer=disabled
+#                -Dgtk:werror=false
+#                -Dgtk:x11-backend=false
+#                -Dgtksourceview:gtk_doc=false
+#                -Dgtksourceview:introspection=disabled
+#                -Dgtksourceview:vapi=false
+#                -Dgtksourceview:werror=false
+#                -Dicu:werror=false
+#                -Dlibadwaita:examples=false
+#                -Dlibadwaita:gtk_doc=false
+#                -Dlibadwaita:introspection=disabled
+#                -Dlibadwaita:tests=false
+#                -Dlibadwaita:vapi=false
+#                -Dlibadwaita:werror=false
+#                -Dlibsass:werror=false
+#                -Dpango:gtk_doc=false
+#                -Dpango:introspection=disabled
+#                -Dpango:werror=false
+#                -Dpixman:tests=disabled
+#                -Dsassc:werror=false
+#                -Dwayland-protocols:tests=false
+#                -Dwayland:documentation=false
+#                -Dwayland:dtd_validation=false
+#                -Dwayland:tests=false
+#                _build
+#        - cd _build
+#        - ninja
+#        - meson test --suite gnome-text-editor
+#    artifacts:
+#        when: always
+#        paths:
+#            - "${CI_PROJECT_DIR}/_build/meson-logs"
 
 #vs2017-x64:
 #    extends: .only-default
