@@ -161,24 +161,80 @@ editor_spell_corrections_new (void)
   return g_object_new (EDITOR_TYPE_SPELL_CORRECTIONS, NULL);
 }
 
+static int
+count_groups (GPtrArray *infos)
+{
+  g_autoptr(GHashTable) groups = g_hash_table_new (g_str_hash, g_str_equal);
+
+  g_assert (infos != NULL);
+
+  for (guint i = 0; i < infos->len; i++)
+    {
+      EditorSpellLanguageInfo *info = g_ptr_array_index (infos, i);
+      const char *group = editor_spell_language_info_get_group (info);
+
+      if (group != NULL && group[0] != 0 && !g_hash_table_contains (groups, group))
+        g_hash_table_insert (groups, (char *)group, NULL);
+    }
+
+  return g_hash_table_size (groups);
+}
+
 static void
 populate_languages (GMenu *menu)
 {
   EditorSpellProvider *provider = editor_spell_provider_get_default ();
   g_autoptr(GPtrArray) infos = editor_spell_provider_list_languages (provider);
+  g_autoptr(GHashTable) groups = NULL;
 
   if (infos == NULL)
     return;
+
+  groups = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_object_unref);
+
+  /* First setup our groups. We do that up front so we can avoid
+   * checking below, but also so we can hoist a single group up
+   * into the parent menu if necessary.
+   */
+  if (count_groups (infos) > 1)
+    {
+      for (guint i = 0; i < infos->len; i++)
+        {
+          EditorSpellLanguageInfo *info = g_ptr_array_index (infos, i);
+          const char *group = editor_spell_language_info_get_group (info);
+          GMenu *group_menu;
+
+          if (group == NULL || group[0] == 0)
+            continue;
+
+          if (!g_hash_table_contains (groups, group))
+            {
+              group_menu = g_menu_new ();
+              g_menu_append_submenu (menu, group, G_MENU_MODEL (group_menu));
+              g_hash_table_insert (groups,
+                                   g_strdup (group),
+                                   g_steal_pointer (&group_menu));
+            }
+        }
+    }
 
   for (guint i = 0; i < infos->len; i++)
     {
       EditorSpellLanguageInfo *info = g_ptr_array_index (infos, i);
       const char *name = editor_spell_language_info_get_name (info);
+      const char *group = editor_spell_language_info_get_group (info);
       const char *code = editor_spell_language_info_get_code (info);
-      g_autoptr(GMenuItem) item = g_menu_item_new (name, NULL);
+      g_autoptr(GMenuItem) item = NULL;
+      GMenu *group_menu;
 
+      if (group == NULL || !(group_menu = g_hash_table_lookup (groups, group)))
+        group_menu = menu;
+
+      g_assert (G_IS_MENU (group_menu));
+
+      item = g_menu_item_new (name, NULL);
       g_menu_item_set_action_and_target (item, "spelling.language", "s", code);
-      g_menu_append_item (menu, item);
+      g_menu_append_item (group_menu, item);
     }
 }
 
