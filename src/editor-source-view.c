@@ -742,6 +742,9 @@ editor_source_view_dispose (GObject *object)
 {
   EditorSourceView *self = (EditorSourceView *)object;
 
+  gtk_text_view_set_extra_menu (GTK_TEXT_VIEW (self), NULL);
+  gtk_widget_insert_action_group (GTK_WIDGET (self), "spelling", NULL);
+
   g_clear_object (&self->css_provider);
   g_clear_object (&self->spelling_menu);
   g_clear_pointer (&self->spelling_word, g_free);
