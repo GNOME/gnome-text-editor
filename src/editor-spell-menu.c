@@ -241,13 +241,22 @@ populate_languages (GMenu *menu)
 GMenuModel *
 editor_spell_menu_new (void)
 {
+  static GMenu *languages_menu;
+  static GMenuItem *languages_item;
   g_autoptr(GMenu) menu = g_menu_new ();
   g_autoptr(GMenuModel) corrections_menu = editor_spell_corrections_new ();
-  g_autoptr(GMenu) languages_menu = g_menu_new ();
-  g_autoptr(GMenuItem) languages_item = g_menu_item_new_submenu (_("Languages"), G_MENU_MODEL (languages_menu));
   g_autoptr(GMenuItem) add_item = g_menu_item_new (_("Add to Dictionary"), "spelling.add");
   g_autoptr(GMenuItem) ignore_item = g_menu_item_new (_("Ignore"), "spelling.ignore");
   g_autoptr(GMenuItem) check_item = g_menu_item_new (_("Check Spelling"), "spelling.enabled");
+
+  if (languages_menu == NULL)
+    {
+      languages_menu = g_menu_new ();
+      populate_languages (languages_menu);
+    }
+
+  if (languages_item == NULL)
+    languages_item = g_menu_item_new_submenu (_("Languages"), G_MENU_MODEL (languages_menu));
 
   g_menu_item_set_attribute (add_item, "hidden-when", "s", "action-disabled");
   g_menu_item_set_attribute (ignore_item, "hidden-when", "s", "action-disabled");
@@ -259,13 +268,6 @@ editor_spell_menu_new (void)
   g_menu_append_item (menu, ignore_item);
   g_menu_append_item (menu, check_item);
   g_menu_append_item (menu, languages_item);
-
-  populate_languages (languages_menu);
-
-  g_object_set_data_full (G_OBJECT (menu),
-                          "LANGUAGES_MENU",
-                          g_object_ref (languages_menu),
-                          g_object_unref);
 
   g_object_set_data_full (G_OBJECT (menu),
                           "CORRECTIONS_MENU",
