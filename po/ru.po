@@ -9,9 +9,9 @@ msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-05-29 07:55+0000\n"
-"PO-Revision-Date: 2022-05-29 21:12+1000\n"
-"Last-Translator: Ser82-png <sw@atrus.ru>\n"
+"POT-Creation-Date: 2022-06-20 21:14+0000\n"
+"PO-Revision-Date: 2022-06-21 23:47+1000\n"
+"Last-Translator: Ser82-png <asvmail.as@gmail.com>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -291,12 +291,12 @@ msgid "Failed to retrieve va_list value: %s"
 msgstr "Не удалось получить значение va_list: %s"
 
 #: src/editor-application-actions.c:206
-msgid "Text Editor Website"
-msgstr "Домашняя страница текстового редактора"
+msgid "Learn More about Text Editor"
+msgstr "Узнать больше о текстовом редакторе"
 
 #: src/editor-application-actions.c:207
 msgid "translator-credits"
-msgstr "Ser82-png <sw@atrus.ru>, 2022"
+msgstr "Ser82-png <asvmail.as@gmail.com>, 2022"
 
 #: src/editor-application.c:460
 msgid "Standard input was requested multiple times. Ignoring request."
@@ -307,25 +307,33 @@ msgid "Standard input is not supported on this platform. Ignoring request."
 msgstr ""
 "Стандартный ввод не поддерживается на этой платформе. Запрос проигнорирован."
 
-#: src/editor-application.c:660
+#: src/editor-application.c:552
+msgid "Bugs may be reported at:"
+msgstr "Об ошибках можно сообщать по адресу:"
+
+#: src/editor-application.c:666
 msgid "Do not restore session at startup"
 msgstr "Не восстанавливать сеанс при запуске"
 
-#: src/editor-application.c:661
+#: src/editor-application.c:667
 msgid "Open provided files in a new window"
 msgstr "Открыть предоставленные файлы в новом окне"
 
-#: src/editor-application.c:662
+#: src/editor-application.c:668
 msgid "Run a new instance of Text Editor (implies --ignore-session)"
 msgstr ""
 "Запустить новый экземпляр текстового редактора (подразумевается --ignore-"
 "session)"
 
-#: src/editor-document.c:1939
+#: src/editor-application.c:669
+msgid "Print version information and exit"
+msgstr "Напечатать информацию о версии и выйти"
+
+#: src/editor-document.c:1948
 msgid "[Read-Only]"
 msgstr "[Только чтение]"
 
-#: src/editor-document.c:2227 src/editor-page.c:987
+#: src/editor-document.c:2236 src/editor-page.c:987
 #: src/editor-sidebar-item.c:489
 msgid "New Document"
 msgstr "Новый документ"
@@ -363,11 +371,11 @@ msgstr "Этот файл был изменен другой программо�
 msgid "Save _As…"
 msgstr "Сохранить _как…"
 
-#: src/editor-info-bar.c:91 src/editor-info-bar.ui:61
+#: src/editor-info-bar.c:91 src/editor-info-bar.ui:63
 msgid "Document Restored"
 msgstr "Документ восстановлен"
 
-#: src/editor-info-bar.c:92 src/editor-info-bar.ui:70
+#: src/editor-info-bar.c:92 src/editor-info-bar.ui:73
 msgid "Unsaved document has been restored."
 msgstr "Несохраненный документ был восстановлен."
 
@@ -375,7 +383,7 @@ msgstr "Несохраненный документ был восстановл�
 msgid "_Save…"
 msgstr "С_охранить…"
 
-#: src/editor-info-bar.c:100 src/editor-info-bar.ui:77
+#: src/editor-info-bar.c:100 src/editor-info-bar.ui:81
 msgid "_Discard…"
 msgstr "_Сбросить…"
 
@@ -391,15 +399,15 @@ msgstr "Несохраненные изменения в документе во
 msgid "Could Not Open File"
 msgstr "Не удалось открыть файл"
 
-#: src/editor-info-bar.ui:28
+#: src/editor-info-bar.ui:29
 msgid "You do not have permission to open the file."
 msgstr "У вас нет прав на открытие файла."
 
-#: src/editor-info-bar.ui:35
+#: src/editor-info-bar.ui:37
 msgid "_Retry"
 msgstr "_Повторить"
 
-#: src/editor-info-bar.ui:42
+#: src/editor-info-bar.ui:44
 msgid "Open As _Administrator"
 msgstr "Открыть как _Администратор"
 
@@ -438,20 +446,20 @@ msgstr "Портал документов"
 msgid "Failed to save document"
 msgstr "Ошибка при сохранении документа"
 
-#: src/editor-page.c:1165
+#: src/editor-page.c:1168
 msgid "Save As"
 msgstr "Сохранить как"
 
-#: src/editor-page.c:1168 src/editor-window-actions.c:133
+#: src/editor-page.c:1171 src/editor-window-actions.c:133
 msgid "Save"
 msgstr "Сохранить"
 
-#: src/editor-page.c:1169 src/editor-window-actions.c:132
+#: src/editor-page.c:1172 src/editor-window-actions.c:132
 #: src/editor-window-actions.c:271 src/editor-window-actions.c:380
 msgid "Cancel"
 msgstr "Отмена"
 
-#: src/editor-page.c:1315
+#: src/editor-page.c:1318
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Стр. %u, Поз. %u"
@@ -1263,3 +1271,6 @@ msgstr "Удалить от курсора до конца абзаца"
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "Удалить текущую строку"
+
+#~ msgid "Text Editor Website"
+#~ msgstr "Домашняя страница текстового редактора"
