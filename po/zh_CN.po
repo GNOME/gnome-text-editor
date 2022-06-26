@@ -9,16 +9,16 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-05-27 23:54+0000\n"
-"PO-Revision-Date: 2022-05-27 22:37-0400\n"
+"POT-Creation-Date: 2022-06-19 23:05+0000\n"
+"PO-Revision-Date: 2022-06-21 19:26+0800\n"
 "Last-Translator: lumingzh <lumingzh@qq.com>\n"
 "Language-Team: Chinese - China <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.4.3\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"X-Generator: Gtranslator 42.0\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
 msgid "Christian Hergert, et al."
@@ -269,8 +269,8 @@ msgid "Failed to retrieve va_list value: %s"
 msgstr "检索 va_list 值失败：%s"
 
 #: src/editor-application-actions.c:206
-msgid "Text Editor Website"
-msgstr "文本编辑器网站"
+msgid "Learn More about Text Editor"
+msgstr "了解更多关于文本编辑器的信息"
 
 #: src/editor-application-actions.c:207
 msgid "translator-credits"
@@ -284,23 +284,31 @@ msgstr "标准输入被请求了多次。正在忽略请求。"
 msgid "Standard input is not supported on this platform. Ignoring request."
 msgstr "在该平台上不支持标准输入。正在忽略请求。"
 
-#: src/editor-application.c:660
+#: src/editor-application.c:552
+msgid "Bugs may be reported at:"
+msgstr "缺陷可以报告至："
+
+#: src/editor-application.c:666
 msgid "Do not restore session at startup"
 msgstr "不要在启动时恢复会话"
 
-#: src/editor-application.c:661
+#: src/editor-application.c:667
 msgid "Open provided files in a new window"
 msgstr "在新窗口打开提供的文件"
 
-#: src/editor-application.c:662
+#: src/editor-application.c:668
 msgid "Run a new instance of Text Editor (implies --ignore-session)"
 msgstr "运行文本编辑器的新实例（暗示 --ignore-session）"
 
-#: src/editor-document.c:1939
+#: src/editor-application.c:669
+msgid "Print version information and exit"
+msgstr "显示版本信息并退出"
+
+#: src/editor-document.c:1948
 msgid "[Read-Only]"
 msgstr "[只读]"
 
-#: src/editor-document.c:2227 src/editor-page.c:987
+#: src/editor-document.c:2236 src/editor-page.c:987
 #: src/editor-sidebar-item.c:489
 msgid "New Document"
 msgstr "新建文档"
@@ -338,11 +346,11 @@ msgstr "文件已被另一个程序更改。"
 msgid "Save _As…"
 msgstr "另存为(_A)…"
 
-#: src/editor-info-bar.c:91 src/editor-info-bar.ui:61
+#: src/editor-info-bar.c:91 src/editor-info-bar.ui:63
 msgid "Document Restored"
 msgstr "文档已恢复"
 
-#: src/editor-info-bar.c:92 src/editor-info-bar.ui:70
+#: src/editor-info-bar.c:92 src/editor-info-bar.ui:73
 msgid "Unsaved document has been restored."
 msgstr "未保存的文档已被恢复。"
 
@@ -350,7 +358,7 @@ msgstr "未保存的文档已被恢复。"
 msgid "_Save…"
 msgstr "保存(_S)…"
 
-#: src/editor-info-bar.c:100 src/editor-info-bar.ui:77
+#: src/editor-info-bar.c:100 src/editor-info-bar.ui:81
 msgid "_Discard…"
 msgstr "丢弃(_D)…"
 
@@ -366,15 +374,15 @@ msgstr "文档未保存的更改已被恢复。"
 msgid "Could Not Open File"
 msgstr "无法打开文件"
 
-#: src/editor-info-bar.ui:28
+#: src/editor-info-bar.ui:29
 msgid "You do not have permission to open the file."
 msgstr "您没有权限打开该文件。"
 
-#: src/editor-info-bar.ui:35
+#: src/editor-info-bar.ui:37
 msgid "_Retry"
 msgstr "重试(_R)"
 
-#: src/editor-info-bar.ui:42
+#: src/editor-info-bar.ui:44
 msgid "Open As _Administrator"
 msgstr "以管理员身份打开(_A)"
 
@@ -413,20 +421,20 @@ msgstr "文档门户"
 msgid "Failed to save document"
 msgstr "保存文档失败"
 
-#: src/editor-page.c:1165
+#: src/editor-page.c:1168
 msgid "Save As"
 msgstr "另存为"
 
-#: src/editor-page.c:1168 src/editor-window-actions.c:133
+#: src/editor-page.c:1171 src/editor-window-actions.c:133
 msgid "Save"
 msgstr "保存"
 
-#: src/editor-page.c:1169 src/editor-window-actions.c:132
+#: src/editor-page.c:1172 src/editor-window-actions.c:132
 #: src/editor-window-actions.c:271 src/editor-window-actions.c:380
 msgid "Cancel"
 msgstr "取消"
 
-#: src/editor-page.c:1315
+#: src/editor-page.c:1318
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "%u 行，%u 列"
@@ -1232,6 +1240,9 @@ msgstr "从光标处删除到段落结尾"
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "删除当前行"
+
+#~ msgid "Text Editor Website"
+#~ msgstr "文本编辑器网站"
 
 #~ msgid "Highlight Mode"
 #~ msgstr "高亮模式"
