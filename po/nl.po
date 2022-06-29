@@ -8,18 +8,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues"
-"\n"
-"POT-Creation-Date: 2022-05-20 23:12+0000\n"
-"PO-Revision-Date: 2022-05-24 10:24+0200\n"
-"Last-Translator: Hannie Dumoleyn <hannie@ubuntu-nl.org>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
+"issues\n"
+"POT-Creation-Date: 2022-06-28 20:21+0000\n"
+"PO-Revision-Date: 2022-06-29 10:29+0200\n"
+"Last-Translator: Nathan Follens <nfollens@gnome.org>\n"
 "Language-Team: Dutch <gnome-nl-list@gnome.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 19.12.3\n"
+"X-Generator: Poedit 3.1\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
 msgid "Christian Hergert, et al."
@@ -294,8 +294,8 @@ msgid "Failed to retrieve va_list value: %s"
 msgstr "Ophalen van va_list-waarde is mislukt: %s"
 
 #: src/editor-application-actions.c:206
-msgid "Text Editor Website"
-msgstr "Website van Teksteditor"
+msgid "Learn More about Text Editor"
+msgstr "Meer informatie over Teksteditor"
 
 # Dit hoort een lijst te zijn met vertalers, ik heb een lijst opgebouwd op basis van de metadata van dit bestand
 #: src/editor-application-actions.c:207
@@ -318,19 +318,32 @@ msgstr ""
 "Standaardinvoer wordt niet ondersteund op dit platform. Verzoek wordt "
 "genegeerd."
 
-#: src/editor-application.c:659
+#: src/editor-application.c:552
+msgid "Bugs may be reported at:"
+msgstr "Gelieve fouten te melden aan:"
+
+#: src/editor-application.c:666
 msgid "Do not restore session at startup"
 msgstr "Sessie niet herstellen bij opstarten"
 
-#: src/editor-application.c:660
+#: src/editor-application.c:667
 msgid "Open provided files in a new window"
 msgstr "Aangeleverde bestanden openen in een nieuw venster"
 
-#: src/editor-document.c:1939
+#: src/editor-application.c:668
+msgid "Run a new instance of Text Editor (implies --ignore-session)"
+msgstr ""
+"Opent een nieuwe instantie van Teksteditor (veronderstelt --ignore-session)"
+
+#: src/editor-application.c:669
+msgid "Print version information and exit"
+msgstr "Versieinformatie tonen en afsluiten"
+
+#: src/editor-document.c:1948
 msgid "[Read-Only]"
 msgstr "[alleen-lezen]"
 
-#: src/editor-document.c:2227 src/editor-page.c:987
+#: src/editor-document.c:2236 src/editor-page.c:987
 #: src/editor-sidebar-item.c:489
 msgid "New Document"
 msgstr "Nieuw document"
@@ -368,11 +381,11 @@ msgstr "Het bestand is gewijzigd door een ander programma."
 msgid "Save _As…"
 msgstr "Opslaan _als…"
 
-#: src/editor-info-bar.c:91 src/editor-info-bar.ui:61
+#: src/editor-info-bar.c:91 src/editor-info-bar.ui:63
 msgid "Document Restored"
 msgstr "Document hersteld"
 
-#: src/editor-info-bar.c:92 src/editor-info-bar.ui:70
+#: src/editor-info-bar.c:92 src/editor-info-bar.ui:73
 msgid "Unsaved document has been restored."
 msgstr "Niet-opgeslagen document is hersteld."
 
@@ -380,7 +393,7 @@ msgstr "Niet-opgeslagen document is hersteld."
 msgid "_Save…"
 msgstr "Op_slaan…"
 
-#: src/editor-info-bar.c:100 src/editor-info-bar.ui:77
+#: src/editor-info-bar.c:100 src/editor-info-bar.ui:81
 msgid "_Discard…"
 msgstr "_Verwerpen…"
 
@@ -396,15 +409,15 @@ msgstr "Niet-opgeslagen wijzigingen aan het document zijn hersteld."
 msgid "Could Not Open File"
 msgstr "Kon bestand niet openen"
 
-#: src/editor-info-bar.ui:28
+#: src/editor-info-bar.ui:29
 msgid "You do not have permission to open the file."
 msgstr "U heeft geen rechten om dit bestand te openen."
 
-#: src/editor-info-bar.ui:35
+#: src/editor-info-bar.ui:37
 msgid "_Retry"
 msgstr "_Opnieuw proberen"
 
-#: src/editor-info-bar.ui:42
+#: src/editor-info-bar.ui:44
 msgid "Open As _Administrator"
 msgstr "Openen als _administrator"
 
@@ -439,24 +452,27 @@ msgstr "%s (Administrator)"
 msgid "Document Portal"
 msgstr "Documentportaal"
 
-#: src/editor-page.c:1080
+#: src/editor-page.c:1075
 msgid "Failed to save document"
 msgstr "Opslaan van document is mislukt"
 
-#: src/editor-page.c:1165
+#: src/editor-page.c:1076 src/editor-window.ui:359
+msgid "_Close"
+msgstr "Sl_uiten"
+
+#: src/editor-page.c:1160
 msgid "Save As"
 msgstr "Opslaan als"
 
-#: src/editor-page.c:1168 src/editor-window-actions.c:133
+#: src/editor-page.c:1163
 msgid "Save"
 msgstr "Opslaan"
 
-#: src/editor-page.c:1169 src/editor-window-actions.c:132
-#: src/editor-window-actions.c:271 src/editor-window-actions.c:380
+#: src/editor-page.c:1164 src/editor-window-actions.c:352
 msgid "Cancel"
 msgstr "Annuleren"
 
-#: src/editor-page.c:1315
+#: src/editor-page.c:1310
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Rg %u, kol %u"
@@ -631,19 +647,19 @@ msgstr "Tekens, geen spaties"
 msgid "All Characters"
 msgstr "Alle tekens"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:254 src/editor-window-actions.c:242
 msgid "_Discard"
 msgstr "_Verwerpen"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:254
 msgid "_Discard All"
 msgstr "_Alles verwerpen"
 
-#: src/editor-save-changes-dialog.c:264
+#: src/editor-save-changes-dialog.c:257
 msgid "Save Changes?"
 msgstr "Wijzigingen opslaan?"
 
-#: src/editor-save-changes-dialog.c:266
+#: src/editor-save-changes-dialog.c:258
 msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
@@ -651,25 +667,27 @@ msgstr ""
 "De geopende documenten bevatten niet-opgeslagen wijzigingen. Wijzigingen die "
 "u niet opslaat zullen definitief verloren gaan."
 
-#: src/editor-save-changes-dialog.c:268
+#: src/editor-save-changes-dialog.c:261 src/editor-window-actions.c:116
+#: src/editor-window-actions.c:241
 msgid "_Cancel"
 msgstr "_Annuleren"
 
-#: src/editor-save-changes-dialog.c:270 src/editor-window.ui:210
+#: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:117
+#: src/editor-window.ui:210
 msgid "_Save"
 msgstr "Op_slaan"
 
-#: src/editor-save-changes-dialog.c:303
+#: src/editor-save-changes-dialog.c:293
 msgid "Untitled Document"
 msgstr "Naamloos document"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:306
+#: src/editor-save-changes-dialog.c:296
 #, c-format
 msgid "%s (new)"
 msgstr "%s (nieuw)"
 
-#: src/editor-save-changes-dialog.c:327
+#: src/editor-save-changes-dialog.c:317
 msgid "Save changes for this document"
 msgstr "Wijzigingen opslaan voor dit document"
 
@@ -723,21 +741,21 @@ msgstr "Alleen met  hele _woord overeenkomen"
 msgid "%u of %u"
 msgstr "%u van %u"
 
-#: src/editor-spell-menu.c:191
-msgid "Languages"
-msgstr "Talen"
-
-#: src/editor-spell-menu.c:192
+#: src/editor-spell-menu.c:248
 msgid "Add to Dictionary"
 msgstr "Toevoegen aan woordenboek"
 
-#: src/editor-spell-menu.c:193
+#: src/editor-spell-menu.c:249
 msgid "Ignore"
 msgstr "Negeren"
 
-#: src/editor-spell-menu.c:194
+#: src/editor-spell-menu.c:250
 msgid "Check Spelling"
 msgstr "Spelling controleren"
+
+#: src/editor-spell-menu.c:259
+msgid "Languages"
+msgstr "Talen"
 
 #: src/editor-theme-selector.ui:22 src/editor-theme-selector.ui:24
 msgid "Follow system style"
@@ -798,45 +816,41 @@ msgstr "Tekenset:"
 msgid "Line Ending:"
 msgstr "Regeleinde:"
 
-#. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:128
-#, c-format
-msgid "Save Changes to “%s”?"
-msgstr "Wijzigingen opslaan in ‘%s’?"
-
-#: src/editor-window-actions.c:131
+#: src/editor-window-actions.c:110
 msgid "Saving changes will replace the previously saved version."
 msgstr ""
 "Door de wijzigingen op te slaan zal de vorige opgeslagen versie vervangen "
 "worden."
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:267
+#: src/editor-window-actions.c:113
+#, c-format
+msgid "Save Changes to “%s”?"
+msgstr "Wijzigingen opslaan in ‘%s’?"
+
+#: src/editor-window-actions.c:235
+msgid "Unsaved changes will be permanently lost."
+msgstr "Niet-opgeslagen wijzigingen zullen definitief verloren gaan."
+
+#. translators: %s is replaced with the document title
+#: src/editor-window-actions.c:238
 #, c-format
 msgid "Discard Changes to “%s”?"
 msgstr "Wijzigingen aan ‘%s’ verwerpen?"
 
-#: src/editor-window-actions.c:270
-msgid "Unsaved changes will be permanently lost."
-msgstr "Niet-opgeslagen wijzigingen zullen definitief verloren gaan."
-
-#: src/editor-window-actions.c:272
-msgid "Discard"
-msgstr "Verwerpen"
-
-#: src/editor-window-actions.c:376
+#: src/editor-window-actions.c:348
 msgid "Open File"
 msgstr "Bestand openen"
 
-#: src/editor-window-actions.c:379
+#: src/editor-window-actions.c:351
 msgid "Open"
 msgstr "Openen"
 
-#: src/editor-window-actions.c:404
+#: src/editor-window-actions.c:376
 msgid "All Files"
 msgstr "Alle bestanden"
 
-#: src/editor-window-actions.c:409
+#: src/editor-window-actions.c:381
 msgid "Text Files"
 msgstr "Tekstbestanden"
 
@@ -852,7 +866,6 @@ msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - Teksteditor"
 
 #: src/editor-window.c:1130
-#| msgid "Failed to save document"
 msgid "There are unsaved documents"
 msgstr "Er zijn nog niet opgeslagen documenten"
 
@@ -988,11 +1001,7 @@ msgstr "Naar een nieuw venster _verplaatsen"
 msgid "Close _Other Tabs"
 msgstr "_Andere tabbladen sluiten"
 
-#: src/editor-window.ui:359
-msgid "_Close"
-msgstr "Sl_uiten"
-
-#: src/enchant/editor-enchant-spell-provider.c:92
+#: src/enchant/editor-enchant-spell-provider.c:123
 msgid "Enchant 2"
 msgstr "Enchant 2"
 
@@ -1164,12 +1173,12 @@ msgstr "Zoeken en vervangen binnen het document"
 #: src/help-overlay.ui:197
 msgctxt "shortcut window"
 msgid "Increment number at cursor"
-msgstr "Getal bij muisaanwijzer verhogen"
+msgstr "Getal bij aanwijzer verhogen"
 
 #: src/help-overlay.ui:203
 msgctxt "shortcut window"
 msgid "Decrement number at cursor"
-msgstr "Getal bij muisaanwijzer verlagen"
+msgstr "Getal bij aanwijzer verlagen"
 
 #: src/help-overlay.ui:209
 msgctxt "shortcut window"
@@ -1249,27 +1258,33 @@ msgstr "Verwijderen"
 #: src/help-overlay.ui:296
 msgctxt "shortcut window"
 msgid "Delete from cursor to word start"
-msgstr "Verwijderen vanaf cursor tot begin woord"
+msgstr "Verwijderen vanaf aanwijzer tot begin woord"
 
 #: src/help-overlay.ui:302
 msgctxt "shortcut window"
 msgid "Delete from cursor to word end"
-msgstr "Verwijderen vanaf cursor tot einde woord"
+msgstr "Verwijderen vanaf aanwijzer tot einde woord"
 
 #: src/help-overlay.ui:308
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph start"
-msgstr "Verwijderen vanaf cursor tot begin alinea"
+msgstr "Verwijderen vanaf aanwijzer tot begin alinea"
 
 #: src/help-overlay.ui:314
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph end"
-msgstr "Verwijderen vanaf cursor tot einde alinea"
+msgstr "Verwijderen vanaf aanwijzer tot einde alinea"
 
 #: src/help-overlay.ui:320
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "De huidige regel verwijderen"
+
+#~ msgid "Text Editor Website"
+#~ msgstr "Website van Teksteditor"
+
+#~ msgid "Discard"
+#~ msgstr "Verwerpen"
 
 #~ msgid "Highlight Mode"
 #~ msgstr "Markeermodus"
