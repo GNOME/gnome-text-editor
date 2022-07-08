@@ -35,7 +35,7 @@
 #include "editor-session-private.h"
 #include "editor-window.h"
 
-static const gchar *authors[] = {
+static const gchar *developers[] = {
   "Christian Hergert",
   "Christopher Davis",
   "Günther Wagner",
@@ -48,7 +48,7 @@ static const gchar *authors[] = {
   NULL
 };
 
-static const gchar *artists[] = {
+static const gchar *designers[] = {
   "Allan Day",
   "Jakub Steiner",
   "Tobias Bernard",
@@ -183,37 +183,33 @@ editor_application_actions_about_cb (GSimpleAction *action,
 {
   EditorApplication *self = user_data;
   g_autofree char *system_information = NULL;
-  GtkAboutDialog *dialog;
   EditorWindow *window;
 
   g_assert (EDITOR_IS_APPLICATION (self));
 
-  dialog = GTK_ABOUT_DIALOG (gtk_about_dialog_new ());
-  gtk_about_dialog_set_program_name (dialog, _("Text Editor"));
-  gtk_about_dialog_set_logo_icon_name (dialog, PACKAGE_ICON_NAME);
-  gtk_about_dialog_set_authors (dialog, authors);
-  gtk_about_dialog_set_artists (dialog, artists);
-#if DEVELOPMENT_BUILD
-  gtk_about_dialog_set_version (dialog, EDITOR_BUILD_IDENTIFIER);
-  gtk_widget_add_css_class (GTK_WIDGET (dialog), "devel");
-#else
-  gtk_about_dialog_set_version (dialog, PACKAGE_VERSION);
-#endif
-  gtk_about_dialog_set_copyright (dialog, "© 2020-2022 Christian Hergert, et al.");
-  gtk_about_dialog_set_documenters (dialog, documenters);
-  gtk_about_dialog_set_license_type (dialog, GTK_LICENSE_GPL_3_0);
-  gtk_about_dialog_set_website (dialog, PACKAGE_WEBSITE);
-  gtk_about_dialog_set_website_label (dialog, _("Learn More about Text Editor"));
-  gtk_about_dialog_set_translator_credits (dialog, _("translator-credits"));
-
   system_information = get_system_information ();
-  gtk_about_dialog_set_system_information (dialog, system_information);
 
   window = editor_application_get_current_window (self);
-  gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (window));
-  gtk_window_set_modal (GTK_WINDOW (dialog), TRUE);
 
-  gtk_window_present (GTK_WINDOW (dialog));
+  adw_show_about_window (GTK_WINDOW (window),
+                         "application-name", _("Text Editor"),
+                         "application-icon", PACKAGE_ICON_NAME,
+                         "developer-name", _("The GNOME Project"),
+#if DEVELOPMENT_BUILD
+                         "version", EDITOR_BUILD_IDENTIFIER,
+#else
+                         "version", PACKAGE_VERSION,
+#endif
+                         "website", PACKAGE_WEBSITE,
+                         "issue-url", "https://gitlab.gnome.org/GNOME/gnome-text-editor/-/issues/new",
+                         "developers", developers,
+                         "designers", designers,
+                         "copyright", "© 2020-2022 Christian Hergert, et al.",
+                         "documenters", documenters,
+                         "license-type", GTK_LICENSE_GPL_3_0,
+                         "translator-credits", _("translator-credits"),
+                         "debug-info", system_information,
+                         NULL);
 }
 
 static void
