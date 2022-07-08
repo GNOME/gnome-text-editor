@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-06-19 23:05+0000\n"
-"PO-Revision-Date: 2022-06-28 15:05+0430\n"
+"POT-Creation-Date: 2022-07-08 17:43+0000\n"
+"PO-Revision-Date: 2022-07-09 01:53+0430\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "Language: fa\n"
@@ -26,7 +26,7 @@ msgstr "کریستین هرگرت و همکاران."
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:7
 #: data/org.gnome.TextEditor.desktop.in.in:8
-#: src/editor-application-actions.c:192
+#: src/editor-application-actions.c:195
 msgid "Text Editor"
 msgstr "ویرایشگر متن"
 
@@ -273,11 +273,11 @@ msgstr "شکست در یافتن ویژگی %s در%s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "شکست در دریافت مقدار va_list: %s"
 
-#: src/editor-application-actions.c:206
-msgid "Learn More about Text Editor"
-msgstr "دربارهٔ ویرایشگر متن بیش‌تر بدانید"
+#: src/editor-application-actions.c:197
+msgid "The GNOME Project"
+msgstr "پروژهٔ گنوم"
 
-#: src/editor-application-actions.c:207
+#: src/editor-application-actions.c:210
 msgid "translator-credits"
 msgstr "دانیال بهزادی <dani.behzi@ubuntu.com>"
 
@@ -422,24 +422,27 @@ msgstr "%s (مدیر)"
 msgid "Document Portal"
 msgstr "درگاه سند"
 
-#: src/editor-page.c:1080
+#: src/editor-page.c:1075
 msgid "Failed to save document"
 msgstr "شکست در ذخیرهٔ سند"
 
-#: src/editor-page.c:1168
+#: src/editor-page.c:1076 src/editor-window.ui:359
+msgid "_Close"
+msgstr "_بستن"
+
+#: src/editor-page.c:1160
 msgid "Save As"
 msgstr "ذخیره به شکل"
 
-#: src/editor-page.c:1171 src/editor-window-actions.c:133
+#: src/editor-page.c:1163
 msgid "Save"
 msgstr "ذخیره"
 
-#: src/editor-page.c:1172 src/editor-window-actions.c:132
-#: src/editor-window-actions.c:271 src/editor-window-actions.c:380
+#: src/editor-page.c:1164 src/editor-window-actions.c:352
 msgid "Cancel"
 msgstr "لغو"
 
-#: src/editor-page.c:1318
+#: src/editor-page.c:1310
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "خ %Iu، س %Iu"
@@ -613,19 +616,19 @@ msgstr "نویسه، بدون فاصله"
 msgid "All Characters"
 msgstr "کل نویسه‌ها"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:254 src/editor-window-actions.c:242
 msgid "_Discard"
 msgstr "_دور انداختن"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:254
 msgid "_Discard All"
 msgstr "_دور انداختن همه"
 
-#: src/editor-save-changes-dialog.c:264
+#: src/editor-save-changes-dialog.c:257
 msgid "Save Changes?"
 msgstr "ذخیرهٔ تغییرات؟"
 
-#: src/editor-save-changes-dialog.c:266
+#: src/editor-save-changes-dialog.c:258
 msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
@@ -633,25 +636,27 @@ msgstr ""
 "سندهای گشوده، تغییراتی ذخیره نشده دارند. تغییراتی که ذخیره نشده‌اند از دست "
 "خواهند رفت."
 
-#: src/editor-save-changes-dialog.c:268
+#: src/editor-save-changes-dialog.c:261 src/editor-window-actions.c:116
+#: src/editor-window-actions.c:241
 msgid "_Cancel"
 msgstr "_لغو"
 
-#: src/editor-save-changes-dialog.c:270 src/editor-window.ui:210
+#: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:117
+#: src/editor-window.ui:210
 msgid "_Save"
 msgstr "_ذخیره"
 
-#: src/editor-save-changes-dialog.c:303
+#: src/editor-save-changes-dialog.c:293
 msgid "Untitled Document"
 msgstr "سند بی‌عنوان"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:306
+#: src/editor-save-changes-dialog.c:296
 #, c-format
 msgid "%s (new)"
 msgstr "%s (جدید)"
 
-#: src/editor-save-changes-dialog.c:327
+#: src/editor-save-changes-dialog.c:317
 msgid "Save changes for this document"
 msgstr "ذخیرهٔ تغییرات برای این سند"
 
@@ -705,21 +710,21 @@ msgstr "فقط تطبیق واژهٔ _کامل"
 msgid "%u of %u"
 msgstr "%Iu از %Iu"
 
-#: src/editor-spell-menu.c:191
-msgid "Languages"
-msgstr "زبان‌ها"
-
-#: src/editor-spell-menu.c:192
+#: src/editor-spell-menu.c:248
 msgid "Add to Dictionary"
 msgstr "افزودن به واژه‌نامه"
 
-#: src/editor-spell-menu.c:193
+#: src/editor-spell-menu.c:249
 msgid "Ignore"
 msgstr "چشم‌پوشی"
 
-#: src/editor-spell-menu.c:194
+#: src/editor-spell-menu.c:250
 msgid "Check Spelling"
 msgstr "بررسی نوشتاری"
+
+#: src/editor-spell-menu.c:259
+msgid "Languages"
+msgstr "زبان‌ها"
 
 #: src/editor-theme-selector.ui:22 src/editor-theme-selector.ui:24
 msgid "Follow system style"
@@ -779,43 +784,39 @@ msgstr "رمزگذاری نویسه:"
 msgid "Line Ending:"
 msgstr "پایان خط:"
 
-#. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:128
-#, c-format
-msgid "Save Changes to “%s”?"
-msgstr "ذخیرهٔ تغییرات «%s»؟"
-
-#: src/editor-window-actions.c:131
+#: src/editor-window-actions.c:110
 msgid "Saving changes will replace the previously saved version."
 msgstr "ذخیرهٔ تغییرات، نگارش ذخیره شدهٔ پیشین را جایگزین خواهد کرد."
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:267
+#: src/editor-window-actions.c:113
+#, c-format
+msgid "Save Changes to “%s”?"
+msgstr "ذخیرهٔ تغییرات «%s»؟"
+
+#: src/editor-window-actions.c:235
+msgid "Unsaved changes will be permanently lost."
+msgstr "تغییرات ذخیره نشده برای همیشه از دست خواهند رفت."
+
+#. translators: %s is replaced with the document title
+#: src/editor-window-actions.c:238
 #, c-format
 msgid "Discard Changes to “%s”?"
 msgstr "دور انداختن تغییرات «%s»؟"
 
-#: src/editor-window-actions.c:270
-msgid "Unsaved changes will be permanently lost."
-msgstr "تغییرات ذخیره نشده برای همیشه از دست خواهند رفت."
-
-#: src/editor-window-actions.c:272
-msgid "Discard"
-msgstr "دور انداختن"
-
-#: src/editor-window-actions.c:376
+#: src/editor-window-actions.c:348
 msgid "Open File"
 msgstr "گشودن پرونده"
 
-#: src/editor-window-actions.c:379
+#: src/editor-window-actions.c:351
 msgid "Open"
 msgstr "گشودن"
 
-#: src/editor-window-actions.c:404
+#: src/editor-window-actions.c:376
 msgid "All Files"
 msgstr "تمامی پرونده‌ها"
 
-#: src/editor-window-actions.c:409
+#: src/editor-window-actions.c:381
 msgid "Text Files"
 msgstr "پرونده‌های متنی"
 
@@ -966,11 +967,7 @@ msgstr "_جابه‌جایی به پنجرهٔ جدید"
 msgid "Close _Other Tabs"
 msgstr "بستن _دیگر زبانه‌ها"
 
-#: src/editor-window.ui:359
-msgid "_Close"
-msgstr "_بستن"
-
-#: src/enchant/editor-enchant-spell-provider.c:92
+#: src/enchant/editor-enchant-spell-provider.c:123
 msgid "Enchant 2"
 msgstr "نگارش ۲ Enchant"
 
@@ -1248,6 +1245,12 @@ msgstr "حذف از نشانگر تا پایان بند"
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "حذف خط کنونی"
+
+#~ msgid "Learn More about Text Editor"
+#~ msgstr "دربارهٔ ویرایشگر متن بیش‌تر بدانید"
+
+#~ msgid "Discard"
+#~ msgstr "دور انداختن"
 
 #~ msgid "Text Editor Website"
 #~ msgstr "پایگاه وب ویرایشگر متن"
