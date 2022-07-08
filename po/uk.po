@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues"
 "\n"
-"POT-Creation-Date: 2022-06-19 23:05+0000\n"
-"PO-Revision-Date: 2022-06-20 18:30+0300\n"
+"POT-Creation-Date: 2022-07-08 17:43+0000\n"
+"PO-Revision-Date: 2022-07-08 22:06+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -27,7 +27,7 @@ msgstr "Christian Hergert та інші"
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:7
 #: data/org.gnome.TextEditor.desktop.in.in:8
-#: src/editor-application-actions.c:192
+#: src/editor-application-actions.c:195
 msgid "Text Editor"
 msgstr "Текстовий редактор"
 
@@ -72,7 +72,8 @@ msgid "Indentation Style"
 msgstr "Стиль відступів"
 
 #: data/org.gnome.TextEditor.gschema.xml:36
-msgid "If the editor should insert multiple spaces characters instead of tabs."
+msgid ""
+"If the editor should insert multiple spaces characters instead of tabs."
 msgstr ""
 "Чи слід редактору вставляти декілька пробілів замість символів табуляції."
 
@@ -81,7 +82,8 @@ msgid "Auto Indent"
 msgstr "Автовідступ"
 
 #: data/org.gnome.TextEditor.gschema.xml:41
-msgid "Automatically indent new lines copying the previous line's indentation."
+msgid ""
+"Automatically indent new lines copying the previous line's indentation."
 msgstr ""
 "Автоматично додавати відступ у нових рядках, копіюючи відступ у попередньому "
 "рядку."
@@ -145,7 +147,8 @@ msgid "Show Background Grid"
 msgstr "Показувати фонову ґратку"
 
 #: data/org.gnome.TextEditor.gschema.xml:79
-msgid "If enabled, a blueprint style grid is printed on the editor background."
+msgid ""
+"If enabled, a blueprint style grid is printed on the editor background."
 msgstr "Якщо увімкнено, на тлі редактора буде показано ескізну сітку."
 
 #: data/org.gnome.TextEditor.gschema.xml:83
@@ -287,12 +290,11 @@ msgstr "Не вдалося знайти властивість %s у %s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Не вдалося отримати значення va_list: %s"
 
-#: src/editor-application-actions.c:206
-#| msgid "A_bout Text Editor"
-msgid "Learn More about Text Editor"
-msgstr "Дізнатися більше про «Текстовий редактор»"
+#: src/editor-application-actions.c:197
+msgid "The GNOME Project"
+msgstr "Проєкт GNOME"
 
-#: src/editor-application-actions.c:207
+#: src/editor-application-actions.c:210
 msgid "translator-credits"
 msgstr "Юрій Чорноіван <yurchor@ukr.net>, 2021–2022"
 
@@ -443,24 +445,27 @@ msgstr "%s (адміністратор)"
 msgid "Document Portal"
 msgstr "Портал документів"
 
-#: src/editor-page.c:1080
+#: src/editor-page.c:1075
 msgid "Failed to save document"
 msgstr "Не вдалося зберегти документ"
 
-#: src/editor-page.c:1168
+#: src/editor-page.c:1076 src/editor-window.ui:359
+msgid "_Close"
+msgstr "З_акрити"
+
+#: src/editor-page.c:1160
 msgid "Save As"
 msgstr "Зберегти як"
 
-#: src/editor-page.c:1171 src/editor-window-actions.c:133
+#: src/editor-page.c:1163
 msgid "Save"
 msgstr "Зберегти"
 
-#: src/editor-page.c:1172 src/editor-window-actions.c:132
-#: src/editor-window-actions.c:271 src/editor-window-actions.c:380
+#: src/editor-page.c:1164 src/editor-window-actions.c:352
 msgid "Cancel"
 msgstr "Скасувати"
 
-#: src/editor-page.c:1318
+#: src/editor-page.c:1310
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Рд %u, Поз %u"
@@ -636,19 +641,19 @@ msgstr "Символи (без пробілів)"
 msgid "All Characters"
 msgstr "Всі символи"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:254 src/editor-window-actions.c:242
 msgid "_Discard"
 msgstr "_Відкинути"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:254
 msgid "_Discard All"
 msgstr "Від_кинути усе"
 
-#: src/editor-save-changes-dialog.c:264
+#: src/editor-save-changes-dialog.c:257
 msgid "Save Changes?"
 msgstr "Зберегти зміни?"
 
-#: src/editor-save-changes-dialog.c:266
+#: src/editor-save-changes-dialog.c:258
 msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
@@ -656,25 +661,27 @@ msgstr ""
 "У відкритих документах містяться незбережені зміни. Ці незбережені зміни "
 "буде втрачено без можливості відновлення."
 
-#: src/editor-save-changes-dialog.c:268
+#: src/editor-save-changes-dialog.c:261 src/editor-window-actions.c:116
+#: src/editor-window-actions.c:241
 msgid "_Cancel"
 msgstr "_Скасувати"
 
-#: src/editor-save-changes-dialog.c:270 src/editor-window.ui:210
+#: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:117
+#: src/editor-window.ui:210
 msgid "_Save"
 msgstr "З_берегти"
 
-#: src/editor-save-changes-dialog.c:303
+#: src/editor-save-changes-dialog.c:293
 msgid "Untitled Document"
 msgstr "Документ без назви"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:306
+#: src/editor-save-changes-dialog.c:296
 #, c-format
 msgid "%s (new)"
 msgstr "%s (новий)"
 
-#: src/editor-save-changes-dialog.c:327
+#: src/editor-save-changes-dialog.c:317
 msgid "Save changes for this document"
 msgstr "Зберегти зміни у цьому документі"
 
@@ -728,21 +735,21 @@ msgstr "Шукати лише _цілі слова"
 msgid "%u of %u"
 msgstr "%u з %u"
 
-#: src/editor-spell-menu.c:191
-msgid "Languages"
-msgstr "Мови"
-
-#: src/editor-spell-menu.c:192
+#: src/editor-spell-menu.c:248
 msgid "Add to Dictionary"
 msgstr "Додати до словника"
 
-#: src/editor-spell-menu.c:193
+#: src/editor-spell-menu.c:249
 msgid "Ignore"
 msgstr "Ігнорувати"
 
-#: src/editor-spell-menu.c:194
+#: src/editor-spell-menu.c:250
 msgid "Check Spelling"
 msgstr "Перевірка правопису"
+
+#: src/editor-spell-menu.c:259
+msgid "Languages"
+msgstr "Мови"
 
 #: src/editor-theme-selector.ui:22 src/editor-theme-selector.ui:24
 msgid "Follow system style"
@@ -805,43 +812,39 @@ msgstr "Кодування символів:"
 msgid "Line Ending:"
 msgstr "Кодування рядка:"
 
-#. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:128
-#, c-format
-msgid "Save Changes to “%s”?"
-msgstr "Зберегти зміни у «%s»?"
-
-#: src/editor-window-actions.c:131
+#: src/editor-window-actions.c:110
 msgid "Saving changes will replace the previously saved version."
 msgstr "Збереження змін призведе до заміщення раніше збереженої версії."
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:267
+#: src/editor-window-actions.c:113
+#, c-format
+msgid "Save Changes to “%s”?"
+msgstr "Зберегти зміни у «%s»?"
+
+#: src/editor-window-actions.c:235
+msgid "Unsaved changes will be permanently lost."
+msgstr "Незбережені зміни буде втрачено без можливості відновлення."
+
+#. translators: %s is replaced with the document title
+#: src/editor-window-actions.c:238
 #, c-format
 msgid "Discard Changes to “%s”?"
 msgstr "Відкинути зміни у «%s»?"
 
-#: src/editor-window-actions.c:270
-msgid "Unsaved changes will be permanently lost."
-msgstr "Незбережені зміни буде втрачено без можливості відновлення."
-
-#: src/editor-window-actions.c:272
-msgid "Discard"
-msgstr "Відкинути"
-
-#: src/editor-window-actions.c:376
+#: src/editor-window-actions.c:348
 msgid "Open File"
 msgstr "Відкрити файл"
 
-#: src/editor-window-actions.c:379
+#: src/editor-window-actions.c:351
 msgid "Open"
 msgstr "Відкрити"
 
-#: src/editor-window-actions.c:404
+#: src/editor-window-actions.c:376
 msgid "All Files"
 msgstr "усі файли"
 
-#: src/editor-window-actions.c:409
+#: src/editor-window-actions.c:381
 msgid "Text Files"
 msgstr "текстові файли"
 
@@ -992,11 +995,7 @@ msgstr "П_ересунути до нового вікна"
 msgid "Close _Other Tabs"
 msgstr "Закрити _інші вкладки"
 
-#: src/editor-window.ui:359
-msgid "_Close"
-msgstr "З_акрити"
-
-#: src/enchant/editor-enchant-spell-provider.c:92
+#: src/enchant/editor-enchant-spell-provider.c:123
 msgid "Enchant 2"
 msgstr "Enchant 2"
 
@@ -1274,6 +1273,13 @@ msgstr "Вилучити текст від курсора до кінця абз
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "Вилучити поточний рядок"
+
+#~| msgid "A_bout Text Editor"
+#~ msgid "Learn More about Text Editor"
+#~ msgstr "Дізнатися більше про «Текстовий редактор»"
+
+#~ msgid "Discard"
+#~ msgstr "Відкинути"
 
 #~ msgid "Text Editor Website"
 #~ msgstr "Сайт «Текстового редактора»"
