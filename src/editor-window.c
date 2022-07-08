@@ -1203,6 +1203,9 @@ _editor_window_remove_page (EditorWindow *self,
         editor_page_grab_focus (self->visible_page);
     }
 
+  if (self->visible_page == NULL)
+    gtk_window_set_title (GTK_WINDOW (self), _("Text Editor"));
+
   editor_window_update_inhibit (self);
 }
 
