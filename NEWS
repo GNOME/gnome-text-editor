@@ -1,3 +1,26 @@
+# Text Editor 43.alpha0
+
+This is a development release not intended for end-users.
+
+Distributions are encouraged to set the bugreport_url to their own
+bug tracker before upstream.
+
+Changes since 42.1
+
+ • Text Editor has been updated to use new dialogs from libadwaita
+   such as the message about dialogs
+ • Translation improvements
+ • Support for opening local and remove STDIN streams
+ • Suggest new filenames based on current syntax language
+ • Maximized window state is now persisted across sessions
+ • Spellchecking improvements
+ • The modified bit is dropped from draft-only documents when
+   discarding to prevent re-opening on next launch
+ • Text Editor now knows if the previous session crashed
+ • A new --version command line argument
+ • Improvements to --new-window command line argument
+ • Window title is fixed when last document is closed
+
 # Text Editor 42.1
 
 Changes since 42.0
