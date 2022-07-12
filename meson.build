@@ -29,7 +29,7 @@ enchant_req = '>= @0@'.format(enchant_req_version)
 libglib_dep = dependency('gio-2.0', version: glib_req)
 libgtk_dep = dependency('gtk4', version: gtk_req)
 libgtksourceview_dep = dependency('gtksourceview-5', version: gtksourceview_req)
-libadwaita_dep = dependency('libadwaita-1')
+libadwaita_dep = dependency('libadwaita-1', version: '>= 1.2.alpha')
 
 # Specify minimum library versions
 glib_major = glib_req_version.split('.')[0].to_int()
