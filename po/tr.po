@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-02-22 01:46+0000\n"
-"PO-Revision-Date: 2022-02-22 20:36+0300\n"
+"POT-Creation-Date: 2022-07-08 17:50+0000\n"
+"PO-Revision-Date: 2022-07-16 01:11+0300\n"
 "Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
 "Language: tr\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
 msgid "Christian Hergert, et al."
@@ -30,7 +30,7 @@ msgstr "Christian Hergert ve diğerleri"
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:7
 #: data/org.gnome.TextEditor.desktop.in.in:8
-#: src/editor-application-actions.c:192
+#: src/editor-application-actions.c:195 src/editor-window.c:1207
 msgid "Text Editor"
 msgstr "Metin Düzenleyici"
 
@@ -175,7 +175,7 @@ msgstr "Sistem Yazı Tipi Kullan"
 msgid "If the default system monospace font should be used."
 msgstr "Öntanımlı sistem tek aralıklı yazı tipi kullanılmalıysa."
 
-#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:60
+#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:57
 msgid "Custom Font"
 msgstr "Özel Yazı Tipi"
 
@@ -276,35 +276,62 @@ msgstr "Satır Yüksekliği"
 msgid "The line height to use for the selected font."
 msgstr "Seçili yazı tipi için kullanılacak satır yüksekliği."
 
-#: src/editor-animation.c:1051
+#: src/editor-animation.c:1038
 #, c-format
 msgid "Failed to find property %s in %s"
 msgstr "%2$s içinde %1$s özelliği bulmada hata oluştu"
 
-#: src/editor-animation.c:1060
+#: src/editor-animation.c:1047
 #, c-format
 msgid "Failed to retrieve va_list value: %s"
 msgstr "va_list değeri alınamadı: %s"
 
-#: src/editor-application-actions.c:206
-msgid "Text Editor Website"
-msgstr "Metin Düzenleyici Web Sitesi"
+#: src/editor-application-actions.c:197
+msgid "The GNOME Project"
+msgstr "GNOME Projesi"
 
-#: src/editor-application-actions.c:207
+#: src/editor-application-actions.c:210
 msgid "translator-credits"
-msgstr "Emin Tufan Çetin <etcetin@gmail.com>"
+msgstr "Emin Tufan Çetin <etcetin@gmail.com>\n"
+"Hasan Merkit <hasanmerkit@outlook.com>\n"
+"Mehmet Kerem Gökcek <mehmetkeremgokcek654@gmail.com>"
 
-#: src/editor-application.c:599
+#: src/editor-application.c:460
+msgid "Standard input was requested multiple times. Ignoring request."
+msgstr "Birden çok kez standart girdi istendi. İstem görmezden geliniyor."
+
+#: src/editor-application.c:464
+msgid "Standard input is not supported on this platform. Ignoring request."
+msgstr "Bu platformda standart girdi desteklenmiyor. İstem görmezden geliniyor."
+
+#: src/editor-application.c:552
+msgid "Bugs may be reported at:"
+msgstr "Hatalar şuraya bildirilebilir:"
+
+#: src/editor-application.c:666
 msgid "Do not restore session at startup"
 msgstr "Başlangıçta oturumu kurtarma"
 
-#: src/editor-application.c:600
+#: src/editor-application.c:667
 msgid "Open provided files in a new window"
 msgstr "Sağlanan dosyaları yeni pencerede aç"
 
-#: src/editor-document.c:1938
+#: src/editor-application.c:668
+msgid "Run a new instance of Text Editor (implies --ignore-session)"
+msgstr "Metin Düzenleyici’nin yeni örneğini çalıştır (--ignore-session imlenir)"
+
+#: src/editor-application.c:669
+msgid "Print version information and exit"
+msgstr "Sürüm bilgisini yazdır ve çık"
+
+#: src/editor-document.c:1948
 msgid "[Read-Only]"
 msgstr "[Salt Okunur]"
+
+#: src/editor-document.c:2236 src/editor-page.c:987
+#: src/editor-sidebar-item.c:489
+msgid "New Document"
+msgstr "Yeni Belge"
 
 #: src/editor-file-manager.c:99
 msgid "File path is NULL"
@@ -339,11 +366,11 @@ msgstr "Dosya başka yazılımca değiştirildi."
 msgid "Save _As…"
 msgstr "Farklı _Kaydet…"
 
-#: src/editor-info-bar.c:91 src/editor-info-bar.ui:61
+#: src/editor-info-bar.c:91 src/editor-info-bar.ui:63
 msgid "Document Restored"
 msgstr "Belge Kurtarıldı"
 
-#: src/editor-info-bar.c:92 src/editor-info-bar.ui:70
+#: src/editor-info-bar.c:92 src/editor-info-bar.ui:73
 msgid "Unsaved document has been restored."
 msgstr "Kaydedilmemiş belge kurtarıldı."
 
@@ -351,7 +378,7 @@ msgstr "Kaydedilmemiş belge kurtarıldı."
 msgid "_Save…"
 msgstr "_Kaydet…"
 
-#: src/editor-info-bar.c:100 src/editor-info-bar.ui:77
+#: src/editor-info-bar.c:100 src/editor-info-bar.ui:81
 msgid "_Discard…"
 msgstr "_Görmezden Gel…"
 
@@ -367,15 +394,15 @@ msgstr "Belgede kaydedilmemiş değişiklikler geri yüklendi."
 msgid "Could Not Open File"
 msgstr "Dosya Açılamadı"
 
-#: src/editor-info-bar.ui:28
+#: src/editor-info-bar.ui:29
 msgid "You do not have permission to open the file."
 msgstr "Dosyayı açacak izniniz yok."
 
-#: src/editor-info-bar.ui:35
+#: src/editor-info-bar.ui:37
 msgid "_Retry"
 msgstr "_Yeniden Dene"
 
-#: src/editor-info-bar.ui:42
+#: src/editor-info-bar.ui:44
 msgid "Open As _Administrator"
 msgstr "_Yönetici Olarak Aç"
 
@@ -395,10 +422,6 @@ msgstr "Son Kullanılan Belge Yok"
 msgid "No Results Found"
 msgstr "Sonuç Bulunamadı"
 
-#: src/editor-page.c:987 src/editor-sidebar-item.c:489
-msgid "New Document"
-msgstr "Yeni Belge"
-
 #: src/editor-page.c:1009 src/editor-properties-dialog.c:74
 #: src/editor-sidebar-item.c:84
 msgid "Draft"
@@ -414,77 +437,81 @@ msgstr "%s (Yönetici)"
 msgid "Document Portal"
 msgstr "Belge Geçidi"
 
-#: src/editor-page.c:1080
+#: src/editor-page.c:1075
 msgid "Failed to save document"
 msgstr "Belge kaydedilirken hata"
 
-#: src/editor-page.c:1165
+#: src/editor-page.c:1076 src/editor-window.ui:359
+msgid "_Close"
+msgstr "_Kapat"
+
+#: src/editor-page.c:1160
 msgid "Save As"
 msgstr "Farklı Kaydet"
 
-#: src/editor-page.c:1168 src/editor-window-actions.c:133
+#: src/editor-page.c:1163
 msgid "Save"
 msgstr "Kaydet"
 
-#: src/editor-page.c:1169 src/editor-window-actions.c:132
-#: src/editor-window-actions.c:271 src/editor-window-actions.c:380
+#: src/editor-page.c:1164 src/editor-window-actions.c:352
 msgid "Cancel"
 msgstr "İptal"
 
-#: src/editor-page.c:1309
+#: src/editor-page.c:1310
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "St %u, Süt %u"
 
-#: src/editor-page.ui:101
+#: src/editor-page.ui:98
 msgid "Go to Line"
 msgstr "Satıra Git"
 
-#: src/editor-page.ui:119
+#: src/editor-page.ui:116
 msgid "Go"
 msgstr "Git"
 
-#: src/editor-page.ui:156 src/editor-window.ui:277
+#: src/editor-page.ui:153 src/editor-window.ui:277
 msgid "Indentation"
 msgstr "Girintile"
 
-#: src/editor-page.ui:159 src/editor-window.ui:279
+#: src/editor-page.ui:156 src/editor-window.ui:279
 msgid "_Automatic Indentation"
 msgstr "_Kendiliğinden Girintile"
 
-#: src/editor-page.ui:165 src/editor-window.ui:283
+#. Translators: this is a tab character, not a browser tab
+#: src/editor-page.ui:162 src/editor-window.ui:283
 msgid "_Tabs"
 msgstr "_Sekmeler"
 
-#: src/editor-page.ui:170 src/editor-window.ui:288
+#: src/editor-page.ui:167 src/editor-window.ui:288
 msgid "_Spaces"
 msgstr "_Boşluklar"
 
-#: src/editor-page.ui:177 src/editor-window.ui:293
+#: src/editor-page.ui:174 src/editor-window.ui:293
 msgid "Spaces _Per Tab"
 msgstr "Sekme _Başına Boşluk"
 
-#: src/editor-page.ui:179 src/editor-page.ui:207
+#: src/editor-page.ui:176 src/editor-page.ui:204
 msgid "2"
 msgstr "2"
 
-#: src/editor-page.ui:184 src/editor-page.ui:212
+#: src/editor-page.ui:181 src/editor-page.ui:209
 msgid "4"
 msgstr "4"
 
-#: src/editor-page.ui:189 src/editor-page.ui:217
+#: src/editor-page.ui:186 src/editor-page.ui:214
 msgid "6"
 msgstr "6"
 
-#: src/editor-page.ui:194 src/editor-page.ui:222
+#: src/editor-page.ui:191 src/editor-page.ui:219
 msgid "8"
 msgstr "8"
 
-#: src/editor-page.ui:200
+#: src/editor-page.ui:197
 msgid "Spaces Per Indent"
 msgstr "Girinti Başına Boşluk"
 
-#: src/editor-page.ui:202
+#: src/editor-page.ui:199
 msgid "Use Tab Size"
 msgstr "Sekme Boyutu Kullan"
 
@@ -502,48 +529,48 @@ msgstr "Süt"
 msgid "Appearance"
 msgstr "Görünüm"
 
-#: src/editor-preferences-dialog.ui:82
+#: src/editor-preferences-dialog.ui:79
 msgid "Display Grid Pattern"
 msgstr "Izgara Desenini Göster"
 
-#: src/editor-preferences-dialog.ui:88
+#: src/editor-preferences-dialog.ui:85
 msgid "Highlight Current Line"
 msgstr "Geçerli Satırı Vurgula"
 
-#: src/editor-preferences-dialog.ui:94
+#: src/editor-preferences-dialog.ui:91
 msgid "Display Overview Map"
 msgstr "Genel Bakış Haritasını Göster"
 
-#: src/editor-preferences-dialog.ui:102
+#: src/editor-preferences-dialog.ui:99
 msgid "Right Margin"
 msgstr "Sağ Kenar Boşluğu"
 
-#: src/editor-preferences-dialog.ui:105
+#: src/editor-preferences-dialog.ui:102
 msgid "Margin Position"
-msgstr "Kenar Boşluk Konum"
+msgstr "Kenar Boşluk Konumu"
 
-#: src/editor-preferences-dialog.ui:113
+#: src/editor-preferences-dialog.ui:110
 msgid "Behavior"
 msgstr "Davranış"
 
-#: src/editor-preferences-dialog.ui:116
+#: src/editor-preferences-dialog.ui:113
 msgid "Discover Document Settings"
 msgstr "Dosya Ayarlarını Keşfet"
 
-#: src/editor-preferences-dialog.ui:117
+#: src/editor-preferences-dialog.ui:114
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr ""
 "Modeline, editorconfig veya duyarlı öntanımlıları kullanarak ayarları uygula"
 
-#: src/editor-preferences-dialog.ui:123
+#: src/editor-preferences-dialog.ui:120
 msgid "Restore Session"
 msgstr "Oturumu Kurtar"
 
-#: src/editor-preferences-dialog.ui:124
+#: src/editor-preferences-dialog.ui:121
 msgid "Return to your previous session when Text Editor is started"
 msgstr "Metin Düzenleyici başladığında önceki oturumunuza geri dönün"
 
-#: src/editor-preferences-dialog.ui:139
+#: src/editor-preferences-dialog.ui:136
 msgid "_Clear History"
 msgstr "Geçmişi _Temizle"
 
@@ -604,19 +631,19 @@ msgstr "Karakterler, Boşluksuz"
 msgid "All Characters"
 msgstr "Tüm Karakterler"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:254 src/editor-window-actions.c:242
 msgid "_Discard"
 msgstr "_Görmezden Gel"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:254
 msgid "_Discard All"
 msgstr "Tümünü _Görmezden Gel"
 
-#: src/editor-save-changes-dialog.c:264
+#: src/editor-save-changes-dialog.c:257
 msgid "Save Changes?"
 msgstr "Değişiklikleri Kaydet?"
 
-#: src/editor-save-changes-dialog.c:266
+#: src/editor-save-changes-dialog.c:258
 msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
@@ -624,25 +651,27 @@ msgstr ""
 "Açık belgeler kaydedilmemiş değişiklikler içeriyor. Kaydedilmeyen "
 "değişiklikler kalıcı olarak yitirilecek."
 
-#: src/editor-save-changes-dialog.c:268
+#: src/editor-save-changes-dialog.c:261 src/editor-window-actions.c:116
+#: src/editor-window-actions.c:241
 msgid "_Cancel"
 msgstr "_İptal"
 
-#: src/editor-save-changes-dialog.c:270 src/editor-window.ui:210
+#: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:117
+#: src/editor-window.ui:210
 msgid "_Save"
 msgstr "_Kaydet"
 
-#: src/editor-save-changes-dialog.c:303
+#: src/editor-save-changes-dialog.c:293
 msgid "Untitled Document"
 msgstr "Adsız Belge"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:306
+#: src/editor-save-changes-dialog.c:296
 #, c-format
 msgid "%s (new)"
 msgstr "%s (yeni)"
 
-#: src/editor-save-changes-dialog.c:327
+#: src/editor-save-changes-dialog.c:317
 msgid "Save changes for this document"
 msgstr "Bu belge için değişiklikleri kaydet"
 
@@ -678,15 +707,15 @@ msgstr "_Değiştir"
 msgid "Replace _All"
 msgstr "_Tümünü değiştir"
 
-#: src/editor-search-bar.ui:141
+#: src/editor-search-bar.ui:140
 msgid "Re_gular expressions"
 msgstr "_Düzenli İfadeler"
 
-#: src/editor-search-bar.ui:147
+#: src/editor-search-bar.ui:146
 msgid "_Case sensitive"
 msgstr "_Büyük/küçük harf duyarlılığı"
 
-#: src/editor-search-bar.ui:153
+#: src/editor-search-bar.ui:152
 msgid "Match whole _word only"
 msgstr "Yalnızca tüm _sözcüğü eşleştir"
 
@@ -696,21 +725,21 @@ msgstr "Yalnızca tüm _sözcüğü eşleştir"
 msgid "%u of %u"
 msgstr "%u/%u"
 
-#: src/editor-spell-menu.c:191
-msgid "Languages"
-msgstr "Diller"
-
-#: src/editor-spell-menu.c:192
+#: src/editor-spell-menu.c:248
 msgid "Add to Dictionary"
 msgstr "Sözlüğe Ekle"
 
-#: src/editor-spell-menu.c:193
+#: src/editor-spell-menu.c:249
 msgid "Ignore"
 msgstr "Görmezden Gel"
 
-#: src/editor-spell-menu.c:194
+#: src/editor-spell-menu.c:250
 msgid "Check Spelling"
 msgstr "Denetimi Kapat"
+
+#: src/editor-spell-menu.c:259
+msgid "Languages"
+msgstr "Diller"
 
 #: src/editor-theme-selector.ui:22 src/editor-theme-selector.ui:24
 msgid "Follow system style"
@@ -724,90 +753,86 @@ msgstr "Açık biçem"
 msgid "Dark style"
 msgstr "Koyu biçem"
 
-#: src/editor-utils.c:346
+#: src/editor-utils.c:348
 msgid "Just now"
 msgstr "Şimdi"
 
-#: src/editor-utils.c:348
+#: src/editor-utils.c:350
 msgid "An hour ago"
 msgstr "Bir saat önce"
 
-#: src/editor-utils.c:350
+#: src/editor-utils.c:352
 msgid "Yesterday"
 msgstr "Dün"
 
-#: src/editor-utils.c:356
+#: src/editor-utils.c:358
 msgid "About a year ago"
 msgstr "Bir yıl önce"
 
-#: src/editor-utils.c:360
+#: src/editor-utils.c:362
 #, c-format
 msgid "About %u year ago"
 msgid_plural "About %u years ago"
 msgstr[0] "%u yıl önce"
 
-#: src/editor-utils.c:368
+#: src/editor-utils.c:370
 msgid "Unix/Linux (LF)"
 msgstr "Unix/Linux (LF)"
 
-#: src/editor-utils.c:369
+#: src/editor-utils.c:371
 msgid "Mac OS Classic (CR)"
 msgstr "Mac OS Classic (CR)"
 
-#: src/editor-utils.c:370
+#: src/editor-utils.c:372
 msgid "Windows (CR+LF)"
 msgstr "Windows (CR+LF)"
 
-#: src/editor-utils.c:400
+#: src/editor-utils.c:402
 msgid "Automatically Detected"
 msgstr "Kendiliğinden Saptandı"
 
-#: src/editor-utils.c:416
+#: src/editor-utils.c:418
 msgid "Character Encoding:"
 msgstr "Karakter Kodlaması:"
 
-#: src/editor-utils.c:451
+#: src/editor-utils.c:453
 msgid "Line Ending:"
 msgstr "Satır Sonu:"
 
-#. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:128
-#, c-format
-msgid "Save Changes to “%s”?"
-msgstr "“%s” Değişikliklerini Kaydet?"
-
-#: src/editor-window-actions.c:131
+#: src/editor-window-actions.c:110
 msgid "Saving changes will replace the previously saved version."
 msgstr ""
 "Değişikliklerin kaydedilmesi, önceden kaydedilmiş sürümün yerini alacaktır."
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:267
+#: src/editor-window-actions.c:113
+#, c-format
+msgid "Save Changes to “%s”?"
+msgstr "“%s” Değişikliklerini Kaydet?"
+
+#: src/editor-window-actions.c:235
+msgid "Unsaved changes will be permanently lost."
+msgstr "Kaydedilmemiş değişiklikler kalıcı olarak yitirilecek."
+
+#. translators: %s is replaced with the document title
+#: src/editor-window-actions.c:238
 #, c-format
 msgid "Discard Changes to “%s”?"
 msgstr "“%s” Değişikliklerini Görmezden Gel?"
 
-#: src/editor-window-actions.c:270
-msgid "Unsaved changes will be permanently lost."
-msgstr "Kaydedilmemiş değişiklikler kalıcı olarak yitirilecek."
-
-#: src/editor-window-actions.c:272
-msgid "Discard"
-msgstr "Görmezden Gel"
-
-#: src/editor-window-actions.c:376
+#: src/editor-window-actions.c:348
 msgid "Open File"
 msgstr "Dosya Aç"
 
-#: src/editor-window-actions.c:379
+#: src/editor-window-actions.c:351
 msgid "Open"
 msgstr "Aç"
 
-#: src/editor-window-actions.c:404
+#: src/editor-window-actions.c:376
 msgid "All Files"
 msgstr "Tüm Dosyalar"
 
-#: src/editor-window-actions.c:409
+#: src/editor-window-actions.c:381
 msgid "Text Files"
 msgstr "Metin Dosyaları"
 
@@ -817,10 +842,14 @@ msgid "Document Type: %s"
 msgstr "Belge Türü: %s"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:725
+#: src/editor-window.c:727
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - Metin Düzenleyici"
+
+#: src/editor-window.c:1130
+msgid "There are unsaved documents"
+msgstr "Kaydedilmemiş belgeler var"
 
 #: src/editor-window.ui:78
 msgid "_Open"
@@ -954,11 +983,7 @@ msgstr "Yeni Pencereye _Taşı"
 msgid "Close _Other Tabs"
 msgstr "D_iğer Sekmeleri Kapat"
 
-#: src/editor-window.ui:359
-msgid "_Close"
-msgstr "_Kapat"
-
-#: src/enchant/editor-enchant-spell-provider.c:92
+#: src/enchant/editor-enchant-spell-provider.c:123
 msgid "Enchant 2"
 msgstr "Enchant 2"
 
@@ -1236,6 +1261,12 @@ msgstr "İmleçten paragraf sonuna dek sil"
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "Geçerli satırı sil"
+
+#~ msgid "Text Editor Website"
+#~ msgstr "Metin Düzenleyici Web Sitesi"
+
+#~ msgid "Discard"
+#~ msgstr "Görmezden Gel"
 
 #~ msgid "Highlight Mode"
 #~ msgstr "Vurgulama Modu"
