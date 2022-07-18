@@ -14,7 +14,21 @@ if get_option('development')
 else
   app_id = 'org.gnome.TextEditor'
 endif
-
+# Various optimizations for non-debug builds including disabling of
+# cast checks, asserts, and additional link options.
+release_link_args = []
+test_link_args = [
+  '-Wl,-z,defs',   # Detect and reject underlinking
+  '-Wl,-z,now',    # Disable lazy binding
+  '-Wl,-z,relro',  # Read-only segments after relocation
+]
+if not get_option('buildtype').startswith('debug')
+  add_global_arguments([
+    '-DG_DISABLE_ASSERT',
+    '-DG_DISABLE_CAST_CHECKS',
+  ], language: 'c')
+  test_link_args += ['-Wl,-Bsymbolic', '-fno-plt']
+endif
 # Check dependencies
 glib_req_version = '2.73'
 gtk_req_version = '4.7'
@@ -136,21 +150,6 @@ endif
 
 add_project_arguments(global_c_args, language: 'c')
 
-# Various optimizations for non-debug builds including disabling of
-# cast checks, asserts, and additional link options.
-release_link_args = []
-test_link_args = [
-  '-Wl,-z,defs',   # Detect and reject underlinking
-  '-Wl,-z,now',    # Disable lazy binding
-  '-Wl,-z,relro',  # Read-only segments after relocation
-]
-if not get_option('buildtype').startswith('debug')
-  add_global_arguments([
-    '-DG_DISABLE_ASSERT',
-    '-DG_DISABLE_CAST_CHECKS',
-  ], language: 'c')
-  test_link_args += ['-Wl,-Bsymbolic', '-fno-plt']
-endif
 foreach link_arg: test_link_args
   if cc.has_link_argument(link_arg)
     release_link_args += link_arg
