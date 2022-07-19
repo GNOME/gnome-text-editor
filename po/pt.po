@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor gnome-41\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-07-08 17:43+0000\n"
-"PO-Revision-Date: 2022-07-11 16:12+0100\n"
+"POT-Creation-Date: 2022-07-16 16:47+0000\n"
+"PO-Revision-Date: 2022-07-19 14:10+0100\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese < https://l10n.gnome.org/teams/pt/>\n"
 "Language: pt\n"
@@ -31,9 +31,9 @@ msgid "Christian Hergert, et al."
 msgstr "Christian Hergert, et al."
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
-#: data/org.gnome.TextEditor.desktop.in.in:7
 #: data/org.gnome.TextEditor.desktop.in.in:8
-#: src/editor-application-actions.c:195
+#: data/org.gnome.TextEditor.desktop.in.in:9
+#: src/editor-application-actions.c:195 src/editor-window.c:1207
 msgid "Text Editor"
 msgstr "Editor de texto"
 
@@ -49,7 +49,11 @@ msgstr ""
 "O Editor de texto para GNOME é um editor simples focado numa experiência "
 "agradável por omissão."
 
-#: data/org.gnome.TextEditor.desktop.in.in:9
+#: data/org.gnome.TextEditor.desktop.in.in:4
+msgid "write;notepad;"
+msgstr "escrever;bloco de notas;"
+
+#: data/org.gnome.TextEditor.desktop.in.in:10
 msgid "View and edit text files"
 msgstr "Ver e editar ficheiros de texto"
 
