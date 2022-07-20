@@ -503,6 +503,9 @@ editor_window_constructed (GObject *object)
                           NULL);
   gtk_widget_add_css_class (zoom_in, "circular");
   gtk_widget_add_css_class (zoom_in, "flat");
+  gtk_accessible_update_property (GTK_ACCESSIBLE (zoom_in),
+                                  GTK_ACCESSIBLE_PROPERTY_LABEL,
+                                  _("Zoom in"), -1);
   zoom_out = g_object_new (GTK_TYPE_BUTTON,
                            "action-name", "page.zoom-out",
                           "child", g_object_new (GTK_TYPE_IMAGE,
@@ -512,6 +515,9 @@ editor_window_constructed (GObject *object)
                            NULL);
   gtk_widget_add_css_class (zoom_out, "circular");
   gtk_widget_add_css_class (zoom_out, "flat");
+  gtk_accessible_update_property (GTK_ACCESSIBLE (zoom_out),
+                                  GTK_ACCESSIBLE_PROPERTY_LABEL,
+                                  _("Zoom out"), -1);
   self->zoom_label = g_object_new (GTK_TYPE_LABEL,
                                    "hexpand", TRUE,
                                    "label", "100%",
