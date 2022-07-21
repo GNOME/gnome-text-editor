@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues\n"
-"POT-Creation-Date: 2022-06-06 10:55+0000\n"
+"POT-Creation-Date: 2022-07-20 17:44+0000\n"
 "PO-Revision-Date: 2022-01-18 18:08+0100\n"
 "Last-Translator: Jordi Mas i Hernàndez <jmas@softcatala.org>\n"
 "Language-Team: Catalan <gnome@llistes.softcatala.org>\n"
@@ -23,9 +23,9 @@ msgid "Christian Hergert, et al."
 msgstr "Christian Hergert, et al."
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
-#: data/org.gnome.TextEditor.desktop.in.in:7
 #: data/org.gnome.TextEditor.desktop.in.in:8
-#: src/editor-application-actions.c:192
+#: data/org.gnome.TextEditor.desktop.in.in:9
+#: src/editor-application-actions.c:195 src/editor-window.c:1213
 msgid "Text Editor"
 msgstr "Editor de text"
 
@@ -41,7 +41,11 @@ msgstr ""
 "L'editor de text del GNOME és un editor de text simple centrat en una "
 "experiència per defecte agradable."
 
-#: data/org.gnome.TextEditor.desktop.in.in:9
+#: data/org.gnome.TextEditor.desktop.in.in:4
+msgid "write;notepad;"
+msgstr "escriure;bloc de notes;"
+
+#: data/org.gnome.TextEditor.desktop.in.in:10
 msgid "View and edit text files"
 msgstr "Visualitza i edita fitxers de text"
 
@@ -294,11 +298,11 @@ msgstr "No s'ha pogut trobar la propietat %s a %s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "No s'ha pogut recuperar el valor va_list: %s"
 
-#: src/editor-application-actions.c:206
-msgid "Text Editor Website"
-msgstr "Lloc web de l'Editor de text"
+#: src/editor-application-actions.c:197
+msgid "The GNOME Project"
+msgstr "El projecte GNOME"
 
-#: src/editor-application-actions.c:207
+#: src/editor-application-actions.c:210
 msgid "translator-credits"
 msgstr "Jordi Mas i Hernàndez <jmas@softcatala.org>, 2021-2022"
 
@@ -313,24 +317,32 @@ msgstr ""
 "L'entrada estàndard no és compatible en aquesta plataforma. S'ignora la "
 "sol·licitud."
 
-#: src/editor-application.c:660
+#: src/editor-application.c:552
+msgid "Bugs may be reported at:"
+msgstr "Es pot informar d'errors a:"
+
+#: src/editor-application.c:666
 msgid "Do not restore session at startup"
 msgstr "No restauris la sessió a l'inici"
 
-#: src/editor-application.c:661
+#: src/editor-application.c:667
 msgid "Open provided files in a new window"
 msgstr "Obre els fitxers proporcionats en una finestra nova"
 
-#: src/editor-application.c:662
+#: src/editor-application.c:668
 msgid "Run a new instance of Text Editor (implies --ignore-session)"
 msgstr ""
 "Executa una nova instància de l'Editor de text (implica --ignore-session)"
 
-#: src/editor-document.c:1939
+#: src/editor-application.c:669
+msgid "Print version information and exit"
+msgstr "Imprimeix la informació de la versió i surt"
+
+#: src/editor-document.c:1948
 msgid "[Read-Only]"
 msgstr "[Només lectura]"
 
-#: src/editor-document.c:2227 src/editor-page.c:987
+#: src/editor-document.c:2236 src/editor-page.c:987
 #: src/editor-sidebar-item.c:489
 msgid "New Document"
 msgstr "Document nou"
@@ -440,24 +452,27 @@ msgstr "%s (administrador)"
 msgid "Document Portal"
 msgstr "Portal del document"
 
-#: src/editor-page.c:1080
+#: src/editor-page.c:1075
 msgid "Failed to save document"
 msgstr "Ha fallat en desar el document"
 
-#: src/editor-page.c:1165
+#: src/editor-page.c:1076 src/editor-window.ui:359
+msgid "_Close"
+msgstr "_Tanca"
+
+#: src/editor-page.c:1160
 msgid "Save As"
 msgstr "Anomena i desa"
 
-#: src/editor-page.c:1168 src/editor-window-actions.c:133
+#: src/editor-page.c:1163
 msgid "Save"
 msgstr "Desa"
 
-#: src/editor-page.c:1169 src/editor-window-actions.c:132
-#: src/editor-window-actions.c:271 src/editor-window-actions.c:380
+#: src/editor-page.c:1164 src/editor-window-actions.c:352
 msgid "Cancel"
 msgstr "Cancel·la"
 
-#: src/editor-page.c:1315
+#: src/editor-page.c:1310
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Ln %u, Col %u"
@@ -631,19 +646,19 @@ msgstr "Personatges, sense espais"
 msgid "All Characters"
 msgstr "Tots els caràcters"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:254 src/editor-window-actions.c:242
 msgid "_Discard"
 msgstr "_Descarta"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:254
 msgid "_Discard All"
 msgstr "_Descarta-ho tot"
 
-#: src/editor-save-changes-dialog.c:264
+#: src/editor-save-changes-dialog.c:257
 msgid "Save Changes?"
 msgstr "Voleu desar els canvis?"
 
-#: src/editor-save-changes-dialog.c:266
+#: src/editor-save-changes-dialog.c:258
 msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
@@ -651,25 +666,27 @@ msgstr ""
 "Els documents oberts contenen canvis sense desar. Els canvis que no es desen"
 " es perdran permanentment."
 
-#: src/editor-save-changes-dialog.c:268
+#: src/editor-save-changes-dialog.c:261 src/editor-window-actions.c:116
+#: src/editor-window-actions.c:241
 msgid "_Cancel"
 msgstr "_Cancel·la"
 
-#: src/editor-save-changes-dialog.c:270 src/editor-window.ui:210
+#: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:117
+#: src/editor-window.ui:210
 msgid "_Save"
 msgstr "_Desa"
 
-#: src/editor-save-changes-dialog.c:303
+#: src/editor-save-changes-dialog.c:293
 msgid "Untitled Document"
 msgstr "Document sense títol"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:306
+#: src/editor-save-changes-dialog.c:296
 #, c-format
 msgid "%s (new)"
 msgstr "%s (nou)"
 
-#: src/editor-save-changes-dialog.c:327
+#: src/editor-save-changes-dialog.c:317
 msgid "Save changes for this document"
 msgstr "Desa els canvis d'aquest document"
 
@@ -724,21 +741,21 @@ msgstr "_Coincideix només amb la paraula sencera"
 msgid "%u of %u"
 msgstr "%u de %u"
 
-#: src/editor-spell-menu.c:191
-msgid "Languages"
-msgstr "Idiomes"
-
-#: src/editor-spell-menu.c:192
+#: src/editor-spell-menu.c:248
 msgid "Add to Dictionary"
 msgstr "Afegeix al diccionari"
 
-#: src/editor-spell-menu.c:193
+#: src/editor-spell-menu.c:249
 msgid "Ignore"
 msgstr "Ignora"
 
-#: src/editor-spell-menu.c:194
+#: src/editor-spell-menu.c:250
 msgid "Check Spelling"
 msgstr "Comprova l'ortografia"
+
+#: src/editor-spell-menu.c:259
+msgid "Languages"
+msgstr "Idiomes"
 
 #: src/editor-theme-selector.ui:22 src/editor-theme-selector.ui:24
 msgid "Follow system style"
@@ -799,43 +816,39 @@ msgstr "Codificació de caràcters:"
 msgid "Line Ending:"
 msgstr "Final de línia:"
 
-#. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:128
-#, c-format
-msgid "Save Changes to “%s”?"
-msgstr "Voleu desar els canvis de «%s»?"
-
-#: src/editor-window-actions.c:131
+#: src/editor-window-actions.c:110
 msgid "Saving changes will replace the previously saved version."
 msgstr "Desar els canvis substituirà la versió desada prèviament."
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:267
+#: src/editor-window-actions.c:113
+#, c-format
+msgid "Save Changes to “%s”?"
+msgstr "Voleu desar els canvis de «%s»?"
+
+#: src/editor-window-actions.c:235
+msgid "Unsaved changes will be permanently lost."
+msgstr "Els canvis no desats es perdran permanentment."
+
+#. translators: %s is replaced with the document title
+#: src/editor-window-actions.c:238
 #, c-format
 msgid "Discard Changes to “%s”?"
 msgstr "Voleu descartar els canvis de «%s»?"
 
-#: src/editor-window-actions.c:270
-msgid "Unsaved changes will be permanently lost."
-msgstr "Els canvis no desats es perdran permanentment."
-
-#: src/editor-window-actions.c:272
-msgid "Discard"
-msgstr "Descarta"
-
-#: src/editor-window-actions.c:376
+#: src/editor-window-actions.c:348
 msgid "Open File"
 msgstr "Obre un fitxer"
 
-#: src/editor-window-actions.c:379
+#: src/editor-window-actions.c:351
 msgid "Open"
 msgstr "Obre"
 
-#: src/editor-window-actions.c:404
+#: src/editor-window-actions.c:376
 msgid "All Files"
 msgstr "Tots els fitxers"
 
-#: src/editor-window-actions.c:409
+#: src/editor-window-actions.c:381
 msgid "Text Files"
 msgstr "Fitxers de text"
 
@@ -844,14 +857,22 @@ msgstr "Fitxers de text"
 msgid "Document Type: %s"
 msgstr "Tipus de document: %s"
 
+#: src/editor-window.c:508
+msgid "Zoom in"
+msgstr "Apropa"
+
+#: src/editor-window.c:520
+msgid "Zoom out"
+msgstr "Allunya"
+
 #. translators: the first %s is replaced with the title, the second %s is
 #. replaced with the subtitle
-#: src/editor-window.c:727
+#: src/editor-window.c:733
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - Editor de text"
 
-#: src/editor-window.c:1130
+#: src/editor-window.c:1136
 msgid "There are unsaved documents"
 msgstr "Hi ha documents sense desar"
 
@@ -987,11 +1008,7 @@ msgstr "_Mou a una finestra nova"
 msgid "Close _Other Tabs"
 msgstr "T_anca les altres pestanyes"
 
-#: src/editor-window.ui:359
-msgid "_Close"
-msgstr "_Tanca"
-
-#: src/enchant/editor-enchant-spell-provider.c:92
+#: src/enchant/editor-enchant-spell-provider.c:123
 msgid "Enchant 2"
 msgstr "Enchant 2"
 
@@ -1269,3 +1286,9 @@ msgstr "Suprimeix del cursor al final del paràgraf"
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "Suprimeix la línia actual"
+
+#~ msgid "Text Editor Website"
+#~ msgstr "Lloc web de l'Editor de text"
+
+#~ msgid "Discard"
+#~ msgstr "Descarta"
