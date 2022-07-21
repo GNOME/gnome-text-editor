@@ -9,17 +9,17 @@ msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-06-20 21:14+0000\n"
-"PO-Revision-Date: 2022-06-21 23:47+1000\n"
-"Last-Translator: Ser82-png <asvmail.as@gmail.com>\n"
+"POT-Creation-Date: 2022-07-20 17:44+0000\n"
+"PO-Revision-Date: 2022-07-20 20:57+0300\n"
+"Last-Translator: Aleksandr Melman <Alexmelman88@gmail.com>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 2.3\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 3.1\n"
 "X-DL-Team: ru\n"
 "X-DL-Module: gnome-text-editor\n"
 "X-DL-Branch: main\n"
@@ -31,9 +31,9 @@ msgid "Christian Hergert, et al."
 msgstr "Christian Hergert и др."
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
-#: data/org.gnome.TextEditor.desktop.in.in:7
 #: data/org.gnome.TextEditor.desktop.in.in:8
-#: src/editor-application-actions.c:192
+#: data/org.gnome.TextEditor.desktop.in.in:9
+#: src/editor-application-actions.c:195 src/editor-window.c:1213
 msgid "Text Editor"
 msgstr "Текстовый редактор"
 
@@ -49,7 +49,11 @@ msgstr ""
 "GNOME Text Editor - это простой текстовый редактор, нацеленный на "
 "положительный опыт использования."
 
-#: data/org.gnome.TextEditor.desktop.in.in:9
+#: data/org.gnome.TextEditor.desktop.in.in:4
+msgid "write;notepad;"
+msgstr "write;notepad;писать;блокнот;"
+
+#: data/org.gnome.TextEditor.desktop.in.in:10
 msgid "View and edit text files"
 msgstr "Просмотр и редактирование текстовых файлов"
 
@@ -290,11 +294,11 @@ msgstr "Не удалось найти свойство %s в %s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Не удалось получить значение va_list: %s"
 
-#: src/editor-application-actions.c:206
-msgid "Learn More about Text Editor"
-msgstr "Узнать больше о текстовом редакторе"
+#: src/editor-application-actions.c:197
+msgid "The GNOME Project"
+msgstr "The GNOME Project"
 
-#: src/editor-application-actions.c:207
+#: src/editor-application-actions.c:210
 msgid "translator-credits"
 msgstr "Ser82-png <asvmail.as@gmail.com>, 2022"
 
@@ -442,24 +446,27 @@ msgstr "%s (Администратор)"
 msgid "Document Portal"
 msgstr "Портал документов"
 
-#: src/editor-page.c:1080
+#: src/editor-page.c:1075
 msgid "Failed to save document"
 msgstr "Ошибка при сохранении документа"
 
-#: src/editor-page.c:1168
+#: src/editor-page.c:1076 src/editor-window.ui:359
+msgid "_Close"
+msgstr "_Закрыть"
+
+#: src/editor-page.c:1160
 msgid "Save As"
 msgstr "Сохранить как"
 
-#: src/editor-page.c:1171 src/editor-window-actions.c:133
+#: src/editor-page.c:1163
 msgid "Save"
 msgstr "Сохранить"
 
-#: src/editor-page.c:1172 src/editor-window-actions.c:132
-#: src/editor-window-actions.c:271 src/editor-window-actions.c:380
+#: src/editor-page.c:1164 src/editor-window-actions.c:352
 msgid "Cancel"
 msgstr "Отмена"
 
-#: src/editor-page.c:1318
+#: src/editor-page.c:1310
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Стр. %u, Поз. %u"
@@ -634,19 +641,19 @@ msgstr "Символов без пробелов"
 msgid "All Characters"
 msgstr "Всего символов"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:254 src/editor-window-actions.c:242
 msgid "_Discard"
 msgstr "_Не сохранять"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:254
 msgid "_Discard All"
 msgstr "Не сохранять _все"
 
-#: src/editor-save-changes-dialog.c:264
+#: src/editor-save-changes-dialog.c:257
 msgid "Save Changes?"
 msgstr "Сохранить изменения?"
 
-#: src/editor-save-changes-dialog.c:266
+#: src/editor-save-changes-dialog.c:258
 msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
@@ -654,25 +661,27 @@ msgstr ""
 "В открытых документах есть несохраненные изменения. Изменения, которые не "
 "были сохранены, будут безвозвратно потеряны."
 
-#: src/editor-save-changes-dialog.c:268
+#: src/editor-save-changes-dialog.c:261 src/editor-window-actions.c:116
+#: src/editor-window-actions.c:241
 msgid "_Cancel"
 msgstr "_Отменить"
 
-#: src/editor-save-changes-dialog.c:270 src/editor-window.ui:210
+#: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:117
+#: src/editor-window.ui:210
 msgid "_Save"
 msgstr "Со_хранить"
 
-#: src/editor-save-changes-dialog.c:303
+#: src/editor-save-changes-dialog.c:293
 msgid "Untitled Document"
 msgstr "Безымянный документ"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:306
+#: src/editor-save-changes-dialog.c:296
 #, c-format
 msgid "%s (new)"
 msgstr "%s (новый)"
 
-#: src/editor-save-changes-dialog.c:327
+#: src/editor-save-changes-dialog.c:317
 msgid "Save changes for this document"
 msgstr "Сохранить изменения для этого документа"
 
@@ -726,21 +735,21 @@ msgstr "Искать только слово _целиком"
 msgid "%u of %u"
 msgstr "%u из %u"
 
-#: src/editor-spell-menu.c:191
-msgid "Languages"
-msgstr "Языки"
-
-#: src/editor-spell-menu.c:192
+#: src/editor-spell-menu.c:248
 msgid "Add to Dictionary"
 msgstr "Добавить в словарь"
 
-#: src/editor-spell-menu.c:193
+#: src/editor-spell-menu.c:249
 msgid "Ignore"
 msgstr "Игнорировать"
 
-#: src/editor-spell-menu.c:194
+#: src/editor-spell-menu.c:250
 msgid "Check Spelling"
 msgstr "Проверять орфографию"
+
+#: src/editor-spell-menu.c:259
+msgid "Languages"
+msgstr "Языки"
 
 #: src/editor-theme-selector.ui:22 src/editor-theme-selector.ui:24
 msgid "Follow system style"
@@ -802,43 +811,39 @@ msgstr "Кодировка символов:"
 msgid "Line Ending:"
 msgstr "Окончание строки:"
 
-#. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:128
-#, c-format
-msgid "Save Changes to “%s”?"
-msgstr "Сохранить изменения в «%s»?"
-
-#: src/editor-window-actions.c:131
+#: src/editor-window-actions.c:110
 msgid "Saving changes will replace the previously saved version."
 msgstr "Сохранение изменений заменит ранее сохраненную версию."
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:267
+#: src/editor-window-actions.c:113
+#, c-format
+msgid "Save Changes to “%s”?"
+msgstr "Сохранить изменения в «%s»?"
+
+#: src/editor-window-actions.c:235
+msgid "Unsaved changes will be permanently lost."
+msgstr "Несохраненные изменения будут безвозвратно утеряны."
+
+#. translators: %s is replaced with the document title
+#: src/editor-window-actions.c:238
 #, c-format
 msgid "Discard Changes to “%s”?"
 msgstr "Отменить изменения в «%s»?"
 
-#: src/editor-window-actions.c:270
-msgid "Unsaved changes will be permanently lost."
-msgstr "Несохраненные изменения будут безвозвратно утеряны."
-
-#: src/editor-window-actions.c:272
-msgid "Discard"
-msgstr "Не сохранять"
-
-#: src/editor-window-actions.c:376
+#: src/editor-window-actions.c:348
 msgid "Open File"
 msgstr "Открыть файл"
 
-#: src/editor-window-actions.c:379
+#: src/editor-window-actions.c:351
 msgid "Open"
 msgstr "Открыть"
 
-#: src/editor-window-actions.c:404
+#: src/editor-window-actions.c:376
 msgid "All Files"
 msgstr "Все файлы"
 
-#: src/editor-window-actions.c:409
+#: src/editor-window-actions.c:381
 msgid "Text Files"
 msgstr "Текстовые файлы"
 
@@ -847,13 +852,21 @@ msgstr "Текстовые файлы"
 msgid "Document Type: %s"
 msgstr "Тип документа: %s"
 
+#: src/editor-window.c:508
+msgid "Zoom in"
+msgstr "Увеличить"
+
+#: src/editor-window.c:520
+msgid "Zoom out"
+msgstr "Уменьшить"
+
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:727
+#: src/editor-window.c:733
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - текстовый редактор"
 
-#: src/editor-window.c:1130
+#: src/editor-window.c:1136
 msgid "There are unsaved documents"
 msgstr "Имеются несохранённые документы"
 
@@ -989,11 +1002,7 @@ msgstr "Переместить в _новое окно"
 msgid "Close _Other Tabs"
 msgstr "Закрыть _остальные вкладки"
 
-#: src/editor-window.ui:359
-msgid "_Close"
-msgstr "_Закрыть"
-
-#: src/enchant/editor-enchant-spell-provider.c:92
+#: src/enchant/editor-enchant-spell-provider.c:123
 msgid "Enchant 2"
 msgstr "Enchant 2"
 
@@ -1271,6 +1280,12 @@ msgstr "Удалить от курсора до конца абзаца"
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "Удалить текущую строку"
+
+#~ msgid "Learn More about Text Editor"
+#~ msgstr "Узнать больше о текстовом редакторе"
+
+#~ msgid "Discard"
+#~ msgstr "Не сохранять"
 
 #~ msgid "Text Editor Website"
 #~ msgstr "Домашняя страница текстового редактора"
