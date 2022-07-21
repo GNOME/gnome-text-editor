@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-07-16 16:47+0000\n"
-"PO-Revision-Date: 2022-07-18 00:07+0430\n"
+"POT-Creation-Date: 2022-07-20 17:44+0000\n"
+"PO-Revision-Date: 2022-07-21 16:10+0430\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "Language: fa\n"
@@ -26,7 +26,7 @@ msgstr "کریستین هرگرت و همکاران."
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:9
-#: src/editor-application-actions.c:195 src/editor-window.c:1207
+#: src/editor-application-actions.c:195 src/editor-window.c:1213
 msgid "Text Editor"
 msgstr "ویرایشگر متن"
 
@@ -829,13 +829,21 @@ msgstr "پرونده‌های متنی"
 msgid "Document Type: %s"
 msgstr "گونهٔ سند: %s"
 
+#: src/editor-window.c:508
+msgid "Zoom in"
+msgstr "بزرگ‌نمایی به داخل"
+
+#: src/editor-window.c:520
+msgid "Zoom out"
+msgstr "بزرگ‌نمایی به خارج"
+
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:727
+#: src/editor-window.c:733
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - ویرایشگر متن"
 
-#: src/editor-window.c:1130
+#: src/editor-window.c:1136
 msgid "There are unsaved documents"
 msgstr "سندهای ذخیره نشده‌ای وجود دارند"
 
