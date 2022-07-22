@@ -2,7 +2,6 @@
 # Copyright (C) 2021 gnome-text-editor's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-text-editor package.
 #
-#
 # Hasan Merkit <hasanmerkit@outlook.com>, 2022.
 # Mehmet Kerem Gökcek <mehmetkeremgokcek654@gmail.com>, 2022.
 # Emin Tufan Çetin <etcetin@gmail.com>, 2022.
@@ -12,8 +11,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-07-08 17:50+0000\n"
-"PO-Revision-Date: 2022-07-16 01:11+0300\n"
+"POT-Creation-Date: 2022-07-22 18:35+0000\n"
+"PO-Revision-Date: 2022-07-22 01:23+0300\n"
 "Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
 "Language: tr\n"
@@ -28,9 +27,9 @@ msgid "Christian Hergert, et al."
 msgstr "Christian Hergert ve diğerleri"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
-#: data/org.gnome.TextEditor.desktop.in.in:7
 #: data/org.gnome.TextEditor.desktop.in.in:8
-#: src/editor-application-actions.c:195 src/editor-window.c:1207
+#: data/org.gnome.TextEditor.desktop.in.in:9
+#: src/editor-application-actions.c:195 src/editor-window.c:1213
 msgid "Text Editor"
 msgstr "Metin Düzenleyici"
 
@@ -46,7 +45,11 @@ msgstr ""
 "GNOME Metin Düzenleyici, hoş ve basitliğin deneyimine odaklanan metin "
 "düzenleyicidir."
 
-#: data/org.gnome.TextEditor.desktop.in.in:9
+#: data/org.gnome.TextEditor.desktop.in.in:4
+msgid "write;notepad;"
+msgstr "yaz;not defteri;not kağıdı;bloknot;"
+
+#: data/org.gnome.TextEditor.desktop.in.in:10
 msgid "View and edit text files"
 msgstr "Metin dosyalarını görüntüle ve düzenle"
 
@@ -292,7 +295,8 @@ msgstr "GNOME Projesi"
 
 #: src/editor-application-actions.c:210
 msgid "translator-credits"
-msgstr "Emin Tufan Çetin <etcetin@gmail.com>\n"
+msgstr ""
+"Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Hasan Merkit <hasanmerkit@outlook.com>\n"
 "Mehmet Kerem Gökcek <mehmetkeremgokcek654@gmail.com>"
 
@@ -302,7 +306,8 @@ msgstr "Birden çok kez standart girdi istendi. İstem görmezden geliniyor."
 
 #: src/editor-application.c:464
 msgid "Standard input is not supported on this platform. Ignoring request."
-msgstr "Bu platformda standart girdi desteklenmiyor. İstem görmezden geliniyor."
+msgstr ""
+"Bu platformda standart girdi desteklenmiyor. İstem görmezden geliniyor."
 
 #: src/editor-application.c:552
 msgid "Bugs may be reported at:"
@@ -318,7 +323,8 @@ msgstr "Sağlanan dosyaları yeni pencerede aç"
 
 #: src/editor-application.c:668
 msgid "Run a new instance of Text Editor (implies --ignore-session)"
-msgstr "Metin Düzenleyici’nin yeni örneğini çalıştır (--ignore-session imlenir)"
+msgstr ""
+"Metin Düzenleyici’nin yeni örneğini çalıştır (--ignore-session imlenir)"
 
 #: src/editor-application.c:669
 msgid "Print version information and exit"
@@ -841,13 +847,21 @@ msgstr "Metin Dosyaları"
 msgid "Document Type: %s"
 msgstr "Belge Türü: %s"
 
+#: src/editor-window.c:508
+msgid "Zoom in"
+msgstr "Yakınlaştır"
+
+#: src/editor-window.c:520
+msgid "Zoom out"
+msgstr "Uzaklaştır"
+
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:727
+#: src/editor-window.c:733
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - Metin Düzenleyici"
 
-#: src/editor-window.c:1130
+#: src/editor-window.c:1136
 msgid "There are unsaved documents"
 msgstr "Kaydedilmemiş belgeler var"
 
