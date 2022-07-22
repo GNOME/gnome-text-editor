@@ -1,5 +1,3 @@
-subdir('libeditorconfig')
-
 editor_deps += [libeditorconfig_dep]
 
 editor_sources += files([

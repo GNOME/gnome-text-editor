@@ -96,8 +96,7 @@ subdir('editorconfig')
 
 editor = executable('gnome-text-editor', editor_sources + editor_enums + [build_ident_h],
   include_directories: [include_directories('..'),
-                        include_directories('editorconfig'),
-                        include_directories('editorconfig/libeditorconfig')],
+                        include_directories('editorconfig')],
                c_args: editor_c_args,
          dependencies: editor_deps,
               install: true,
