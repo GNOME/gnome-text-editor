@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-07-08 17:43+0000\n"
-"PO-Revision-Date: 2022-07-10 16:12+0700\n"
+"POT-Creation-Date: 2022-07-22 18:35+0000\n"
+"PO-Revision-Date: 2022-07-24 11:34+0700\n"
 "Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
 "Language-Team: Indonesian <gnome-l10n-id@googlegroups.com>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n!=1;\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 3.1.1\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
@@ -24,9 +24,9 @@ msgid "Christian Hergert, et al."
 msgstr "Christian Hergert, dkk."
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
-#: data/org.gnome.TextEditor.desktop.in.in:7
 #: data/org.gnome.TextEditor.desktop.in.in:8
-#: src/editor-application-actions.c:195
+#: data/org.gnome.TextEditor.desktop.in.in:9
+#: src/editor-application-actions.c:195 src/editor-window.c:1213
 msgid "Text Editor"
 msgstr "Penyunting Teks"
 
@@ -42,7 +42,11 @@ msgstr ""
 "GNOME Penyunting Teks adalah penyunting teks sederhana yang berfokus pada "
 "pengalaman baku yang menyenangkan."
 
-#: data/org.gnome.TextEditor.desktop.in.in:9
+#: data/org.gnome.TextEditor.desktop.in.in:4
+msgid "write;notepad;"
+msgstr "tulis;notepad;"
+
+#: data/org.gnome.TextEditor.desktop.in.in:10
 msgid "View and edit text files"
 msgstr "Melihat dan menyunting berkas teks"
 
@@ -774,7 +778,6 @@ msgstr "Sekitar setahun lalu"
 msgid "About %u year ago"
 msgid_plural "About %u years ago"
 msgstr[0] "Sekitar %u tahun yang lalu"
-msgstr[1] "Sekitar %u tahun yang lalu"
 
 #: src/editor-utils.c:370
 msgid "Unix/Linux (LF)"
@@ -841,13 +844,21 @@ msgstr "Berkas Teks"
 msgid "Document Type: %s"
 msgstr "Tipe Dokumen: %s"
 
+#: src/editor-window.c:508
+msgid "Zoom in"
+msgstr "Perbesar"
+
+#: src/editor-window.c:520
+msgid "Zoom out"
+msgstr "Perkecil"
+
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:727
+#: src/editor-window.c:733
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - Penyunting Teks"
 
-#: src/editor-window.c:1130
+#: src/editor-window.c:1136
 msgid "There are unsaved documents"
 msgstr "Ada dokumen yang belum disimpan"
 
