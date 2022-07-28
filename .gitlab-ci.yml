@@ -43,6 +43,7 @@ fedora:
                 libjpeg-turbo-devel
                 libpng-devel
                 shared-mime-info
+                editorconfig-devel
         - mkdir -p pfx/
         - meson --prefix=${PWD}/pfx
                 -Dwerror=true
