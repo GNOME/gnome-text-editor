@@ -366,6 +366,6 @@ _editor_source_style_scheme_get_variant (GtkSourceStyleScheme *scheme,
     return ret;
 
   /* Fallback to what we were provided */
-  return ret;
+  return scheme;
 }
 
