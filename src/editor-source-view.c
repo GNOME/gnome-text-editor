@@ -43,6 +43,7 @@ struct _EditorSourceView
   char *spelling_word;
   int font_scale;
   double line_height;
+  guint overscroll_source;
 };
 
 G_DEFINE_TYPE (EditorSourceView, editor_source_view, GTK_SOURCE_TYPE_VIEW)
@@ -57,6 +58,26 @@ enum {
 };
 
 static GParamSpec *properties [N_PROPS];
+
+static gboolean
+editor_source_view_update_overscroll (gpointer user_data)
+{
+  EditorSourceView *self = user_data;
+
+  g_assert (EDITOR_IS_SOURCE_VIEW (self));
+
+  self->overscroll_source = 0;
+
+  if (gtk_widget_get_mapped (GTK_WIDGET (self)))
+    {
+      GdkRectangle visible_rect;
+
+      gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (self), &visible_rect);
+      gtk_text_view_set_bottom_margin (GTK_TEXT_VIEW (self), visible_rect.height * .75);
+    }
+
+  return G_SOURCE_REMOVE;
+}
 
 static void
 editor_source_view_update_css (EditorSourceView *self)
@@ -728,6 +749,22 @@ editor_source_view_root (GtkWidget *widget)
 }
 
 static void
+editor_source_view_size_allocate (GtkWidget *widget,
+                                  int        width,
+                                  int        height,
+                                  int        baseline)
+{
+  EditorSourceView *self = (EditorSourceView *)widget;
+
+  g_assert (EDITOR_IS_SOURCE_VIEW (self));
+
+  GTK_WIDGET_CLASS (editor_source_view_parent_class)->size_allocate (widget, width, height, baseline);
+
+  if (self->overscroll_source == 0)
+    self->overscroll_source = g_idle_add (editor_source_view_update_overscroll, self);
+}
+
+static void
 editor_source_view_constructed (GObject *object)
 {
   EditorSourceView *self = (EditorSourceView *)object;
@@ -741,6 +778,8 @@ static void
 editor_source_view_dispose (GObject *object)
 {
   EditorSourceView *self = (EditorSourceView *)object;
+
+  g_clear_handle_id (&self->overscroll_source, g_source_remove);
 
   gtk_text_view_set_extra_menu (GTK_TEXT_VIEW (self), NULL);
   gtk_widget_insert_action_group (GTK_WIDGET (self), "spelling", NULL);
@@ -826,6 +865,7 @@ editor_source_view_class_init (EditorSourceViewClass *klass)
   object_class->set_property = editor_source_view_set_property;
 
   widget_class->root = editor_source_view_root;
+  widget_class->size_allocate = editor_source_view_size_allocate;
 
   text_view_class->snapshot_layer = editor_source_view_snapshot_layer;
 
