@@ -1484,7 +1484,7 @@ editor_document_do_load (EditorDocument *self,
       /* We are creating a new file. */
       editor_document_set_busy_progress (self, 1, 2, 1.0);
       _editor_document_unmark_busy (self);
-      gtk_source_buffer_set_highlight_syntax (GTK_SOURCE_BUFFER (self), TRUE);
+      gtk_source_buffer_set_highlight_syntax (GTK_SOURCE_BUFFER (self), load->highlight_syntax);
       editor_text_buffer_spell_adapter_set_enabled (self->spell_adapter, load->check_spelling);
       g_task_return_boolean (task, TRUE);
       return;
@@ -1714,8 +1714,8 @@ _editor_document_load_async (EditorDocument      *self,
   else
     load->mount_operation = g_mount_operation_new ();
 
-  if (gtk_source_buffer_get_highlight_syntax (GTK_SOURCE_BUFFER (self)))
-    load->highlight_syntax = TRUE;
+  load->highlight_syntax =
+      gtk_source_buffer_get_highlight_syntax (GTK_SOURCE_BUFFER (self));
   load->check_spelling =
       editor_text_buffer_spell_adapter_get_enabled (self->spell_adapter);
 
