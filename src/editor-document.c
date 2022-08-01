@@ -83,6 +83,7 @@ typedef struct
   gint64           modified_at;
   guint            n_active;
 
+  guint            highlight_matching_brackets : 1;
   guint            highlight_syntax : 1;
   guint            check_spelling : 1;
   guint            has_draft : 1;
@@ -1403,6 +1404,7 @@ editor_document_query_info_cb (GObject      *object,
 
   editor_buffer_monitor_reset (self->monitor);
 
+  gtk_source_buffer_set_highlight_matching_brackets (GTK_SOURCE_BUFFER (self), load->highlight_matching_brackets);
   gtk_source_buffer_set_highlight_syntax (GTK_SOURCE_BUFFER (self), load->highlight_syntax);
   editor_text_buffer_spell_adapter_set_enabled (self->spell_adapter, load->check_spelling);
 
@@ -1484,6 +1486,7 @@ editor_document_do_load (EditorDocument *self,
       /* We are creating a new file. */
       editor_document_set_busy_progress (self, 1, 2, 1.0);
       _editor_document_unmark_busy (self);
+      gtk_source_buffer_set_highlight_matching_brackets (GTK_SOURCE_BUFFER (self), load->highlight_matching_brackets);
       gtk_source_buffer_set_highlight_syntax (GTK_SOURCE_BUFFER (self), load->highlight_syntax);
       editor_text_buffer_spell_adapter_set_enabled (self->spell_adapter, load->check_spelling);
       g_task_return_boolean (task, TRUE);
@@ -1714,6 +1717,8 @@ _editor_document_load_async (EditorDocument      *self,
   else
     load->mount_operation = g_mount_operation_new ();
 
+  load->highlight_matching_brackets =
+      gtk_source_buffer_get_highlight_matching_brackets (GTK_SOURCE_BUFFER (self));
   load->highlight_syntax =
       gtk_source_buffer_get_highlight_syntax (GTK_SOURCE_BUFFER (self));
   load->check_spelling =
@@ -1737,6 +1742,7 @@ _editor_document_load_async (EditorDocument      *self,
    * and reduce the chances that syntax highlights can hit scenarios
    * where text changes during the main loop idle callbacks.
    */
+  gtk_source_buffer_set_highlight_matching_brackets (GTK_SOURCE_BUFFER (self), FALSE);
   gtk_source_buffer_set_highlight_syntax (GTK_SOURCE_BUFFER (self), FALSE);
   editor_text_buffer_spell_adapter_set_enabled (self->spell_adapter, FALSE);
 
