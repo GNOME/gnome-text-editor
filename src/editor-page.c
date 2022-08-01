@@ -139,6 +139,23 @@ editor_page_document_modified_changed_cb (EditorPage     *self,
 }
 
 static void
+editor_page_document_notify_loading_cb (EditorPage     *self,
+                                        GParamSpec     *pspec,
+                                        EditorDocument *document)
+{
+  gboolean loading;
+
+  g_assert (EDITOR_IS_PAGE (self));
+  g_assert (EDITOR_IS_DOCUMENT (document));
+
+  /* Don't allow focus on the textview while loading as it can
+   * cause GTK to try to keep a11y operations up to date.
+   */
+  loading = _editor_document_get_loading (document);
+  gtk_widget_set_can_focus (GTK_WIDGET (self), !loading);
+}
+
+static void
 editor_page_document_notify_title_cb (EditorPage     *self,
                                       GParamSpec     *pspec,
                                       EditorDocument *document)
@@ -268,6 +285,11 @@ editor_page_set_document (EditorPage     *self,
       gtk_text_view_set_buffer (GTK_TEXT_VIEW (self->view),
                                 GTK_TEXT_BUFFER (document));
 
+      g_signal_connect_object (document,
+                               "notify::loading",
+                               G_CALLBACK (editor_page_document_notify_loading_cb),
+                               self,
+                               G_CONNECT_SWAPPED);
       g_signal_connect_object (document,
                                "notify::title",
                                G_CALLBACK (editor_page_document_notify_title_cb),
