@@ -31,6 +31,7 @@ void                      _editor_document_set_draft_id            (EditorDocume
                                                                     const gchar              *draft_id);
 GFile                    *_editor_document_get_draft_file          (EditorDocument           *self);
 gchar                    *_editor_document_dup_uri                 (EditorDocument           *self);
+gboolean                  _editor_document_get_loading             (EditorDocument           *self);
 void                      _editor_document_mark_busy               (EditorDocument           *self);
 void                      _editor_document_unmark_busy             (EditorDocument           *self);
 void                      _editor_document_set_externally_modified (EditorDocument           *self,

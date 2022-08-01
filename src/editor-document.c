@@ -283,8 +283,6 @@ editor_document_load_notify_completed_cb (EditorDocument *self,
                                           GParamSpec     *pspec,
                                           GTask          *task)
 {
-  EditorSession *session;
-
   g_assert (EDITOR_IS_DOCUMENT (self));
   g_assert (G_IS_TASK (task));
 
@@ -293,8 +291,10 @@ editor_document_load_notify_completed_cb (EditorDocument *self,
   if (!g_task_had_error (task))
     editor_document_track_error (self, NULL);
 
-  session = editor_application_get_session (EDITOR_APPLICATION_DEFAULT);
-  _editor_session_document_seen (session, self);
+  _editor_session_document_seen (EDITOR_SESSION_DEFAULT, self);
+
+  /* Notify position so that consumers update */
+  g_signal_emit_by_name (self, "cursor-moved");
 }
 
 static void
@@ -1242,6 +1242,14 @@ _editor_document_unmark_busy (EditorDocument *self)
        */
       g_signal_emit_by_name (self, "cursor-moved");
     }
+}
+
+gboolean
+_editor_document_get_loading (EditorDocument *self)
+{
+  g_return_val_if_fail (EDITOR_IS_DOCUMENT (self), FALSE);
+
+  return self->loading;
 }
 
 gboolean

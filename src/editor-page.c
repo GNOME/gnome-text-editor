@@ -27,6 +27,7 @@
 #include <unistd.h>
 
 #include "editor-application-private.h"
+#include "editor-document-private.h"
 #include "editor-info-bar-private.h"
 #include "editor-page-private.h"
 #include "editor-sidebar-model-private.h"
@@ -189,7 +190,8 @@ editor_page_document_cursor_moved_cb (EditorPage     *self,
   g_assert (EDITOR_IS_PAGE (self));
   g_assert (EDITOR_IS_DOCUMENT (document));
 
-  g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_POSITION_LABEL]);
+  if (!_editor_document_get_loading (document))
+    g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_POSITION_LABEL]);
 }
 
 static void
@@ -1304,6 +1306,9 @@ editor_page_dup_position_label (EditorPage *self)
   guint column;
 
   g_return_val_if_fail (EDITOR_IS_PAGE (self), NULL);
+
+  if (_editor_document_get_loading (self->document))
+    return NULL;
 
   editor_page_get_visual_position (self, &line, &column);
 
