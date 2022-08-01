@@ -288,6 +288,8 @@ editor_document_load_notify_completed_cb (EditorDocument *self,
 
   self->loading = FALSE;
 
+  editor_text_buffer_spell_adapter_invalidate_all (self->spell_adapter);
+
   if (!g_task_had_error (task))
     editor_document_track_error (self, NULL);
 
@@ -382,6 +384,15 @@ editor_document_insert_text (GtkTextBuffer *buffer,
   g_assert (pos != NULL);
   g_assert (new_text != NULL);
 
+  /* Short-circuit during loading, we'll handle the followup
+   * actions after loading has completed.
+   */
+  if (self->loading)
+    {
+      GTK_TEXT_BUFFER_CLASS (editor_document_parent_class)->insert_text (buffer, pos, new_text, new_text_length);
+      return;
+    }
+
   line = gtk_text_iter_get_line (pos);
   offset = gtk_text_iter_get_offset (pos);
   length = g_utf8_strlen (new_text, new_text_length);
@@ -414,6 +425,16 @@ editor_document_delete_range (GtkTextBuffer *buffer,
   g_assert (start != NULL);
   g_assert (end != NULL);
   g_assert (gtk_text_iter_compare (start, end) <= 0);
+
+  /* Unlikely, but short circuit during loading incase something
+   * beneath us has to delete/replace as part of resolving invalid
+   * characters.
+   */
+  if (self->loading)
+    {
+      GTK_TEXT_BUFFER_CLASS (editor_document_parent_class)->delete_range (buffer, start, end);
+      return;
+    }
 
   offset = gtk_text_iter_get_offset (start);
   length = gtk_text_iter_get_offset (end) - offset;
