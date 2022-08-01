@@ -525,6 +525,9 @@ on_cursor_moved_cb (EditorDocument *self)
   GtkTextMark *mark;
   GtkTextIter iter;
 
+  if (_editor_document_get_loading (self))
+    return;
+
   mark = gtk_text_buffer_get_insert (GTK_TEXT_BUFFER (self));
   gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (self), &iter, mark);
 
