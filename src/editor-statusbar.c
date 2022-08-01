@@ -21,6 +21,7 @@
 #include "config.h"
 
 #include "editor-binding-group.h"
+#include "editor-document-private.h"
 #include "editor-page-private.h"
 #include "editor-signal-group.h"
 #include "editor-statusbar-private.h"
@@ -68,6 +69,9 @@ editor_statusbar_cursor_moved_cb (EditorStatusbar *self,
 
   g_assert (EDITOR_IS_STATUSBAR (self));
   g_assert (EDITOR_IS_DOCUMENT (document));
+
+  if (_editor_document_get_loading (document))
+    return;
 
   if (gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER (document), &begin, &end))
     {
