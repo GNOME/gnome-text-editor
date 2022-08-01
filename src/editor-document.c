@@ -97,6 +97,7 @@ enum {
   PROP_EXTERNALLY_MODIFIED,
   PROP_FILE,
   PROP_HAD_ERROR,
+  PROP_LOADING,
   PROP_SPELL_CHECKER,
   PROP_SUGGEST_ADMIN,
   PROP_TITLE,
@@ -297,6 +298,8 @@ editor_document_load_notify_completed_cb (EditorDocument *self,
 
   /* Notify position so that consumers update */
   g_signal_emit_by_name (self, "cursor-moved");
+
+  g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_LOADING]);
 }
 
 static void
@@ -621,6 +624,10 @@ editor_document_get_property (GObject    *object,
       g_value_set_object (value, editor_document_get_file (self));
       break;
 
+    case PROP_LOADING:
+      g_value_set_boolean (value, _editor_document_get_loading (self));
+      break;
+
     case PROP_TITLE:
       g_value_take_string (value, editor_document_dup_title (self));
       break;
@@ -713,6 +720,13 @@ editor_document_class_init (EditorDocumentClass *klass)
                          "The documents file on disk",
                          G_TYPE_FILE,
                          (G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
+
+  properties [PROP_LOADING] =
+    g_param_spec_boolean ("loading",
+                          "Loading",
+                          "If the document is currently loading",
+                          FALSE,
+                          (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
   properties [PROP_SPELL_CHECKER] =
     g_param_spec_object ("spell-checker",
@@ -1750,6 +1764,8 @@ _editor_document_load_async (EditorDocument      *self,
                                      editor_document_load_file_mount_cb,
                                      g_object_ref (task));
     }
+
+  g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_LOADING]);
 }
 
 gboolean
