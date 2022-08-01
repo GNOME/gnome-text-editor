@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-07-08 17:43+0000\n"
-"PO-Revision-Date: 2022-07-10 09:47+0800\n"
+"POT-Creation-Date: 2022-07-22 18:35+0000\n"
+"PO-Revision-Date: 2022-07-29 19:47+0800\n"
 "Last-Translator: lumingzh <lumingzh@qq.com>\n"
 "Language-Team: Chinese - China <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
@@ -25,9 +25,9 @@ msgid "Christian Hergert, et al."
 msgstr "Christian Hergert, et al."
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
-#: data/org.gnome.TextEditor.desktop.in.in:7
 #: data/org.gnome.TextEditor.desktop.in.in:8
-#: src/editor-application-actions.c:195
+#: data/org.gnome.TextEditor.desktop.in.in:9
+#: src/editor-application-actions.c:195 src/editor-window.c:1213
 msgid "Text Editor"
 msgstr "文本编辑器"
 
@@ -41,7 +41,11 @@ msgid ""
 "experience."
 msgstr "GNOME 文本编辑器是一个简单的文本编辑器，专注于令人满意的默认体验。"
 
-#: data/org.gnome.TextEditor.desktop.in.in:9
+#: data/org.gnome.TextEditor.desktop.in.in:4
+msgid "write;notepad;"
+msgstr "write;notepad;写作;编写;笔记本;记事本;"
+
+#: data/org.gnome.TextEditor.desktop.in.in:10
 msgid "View and edit text files"
 msgstr "查看和编辑文本文件"
 
@@ -817,13 +821,21 @@ msgstr "文本文件"
 msgid "Document Type: %s"
 msgstr "文档类型：%s"
 
+#: src/editor-window.c:508
+msgid "Zoom in"
+msgstr "放大"
+
+#: src/editor-window.c:520
+msgid "Zoom out"
+msgstr "缩小"
+
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:727
+#: src/editor-window.c:733
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - 文本编辑器"
 
-#: src/editor-window.c:1130
+#: src/editor-window.c:1136
 msgid "There are unsaved documents"
 msgstr "存在未保存的文档"
 
