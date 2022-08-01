@@ -13,25 +13,25 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-05-31 19:59+0000\n"
-"PO-Revision-Date: 2022-06-03 23:47+0200\n"
-"Last-Translator: Christian Kirbach <christian.kirbach@gmail.com>\n"
+"POT-Creation-Date: 2022-07-20 17:44+0000\n"
+"PO-Revision-Date: 2022-07-22 19:01+0200\n"
+"Last-Translator: Jürgen Benvenuti <gastornis@posteo.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
 msgid "Christian Hergert, et al."
 msgstr "Christian Hergert, et al."
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
-#: data/org.gnome.TextEditor.desktop.in.in:7
 #: data/org.gnome.TextEditor.desktop.in.in:8
-#: src/editor-application-actions.c:192
+#: data/org.gnome.TextEditor.desktop.in.in:9
+#: src/editor-application-actions.c:195 src/editor-window.c:1213
 msgid "Text Editor"
 msgstr "Texteditor"
 
@@ -47,7 +47,11 @@ msgstr ""
 "Texteditor ist ein einfacher Texteditor mit dem Ziel einer angenehmen "
 "Handhabung."
 
-#: data/org.gnome.TextEditor.desktop.in.in:9
+#: data/org.gnome.TextEditor.desktop.in.in:4
+msgid "write;notepad;"
+msgstr "write;notepad;schreiben;Notiz;Editor;Texteditor;"
+
+#: data/org.gnome.TextEditor.desktop.in.in:10
 msgid "View and edit text files"
 msgstr "Textdateien ansehen und bearbeiten"
 
@@ -301,11 +305,11 @@ msgstr "Eigenschaft %s in %s konnte nicht gefunden werden"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Empfangen des va_list-Wertes ist gescheitert: %s"
 
-#: src/editor-application-actions.c:206
-msgid "Text Editor Website"
-msgstr "Internetseite von Texteditor"
+#: src/editor-application-actions.c:197
+msgid "The GNOME Project"
+msgstr "Das GNOME-Projekt"
 
-#: src/editor-application-actions.c:207
+#: src/editor-application-actions.c:210
 msgid "translator-credits"
 msgstr ""
 "Philipp Kiemle <philipp.kiemle@gmail.com>\n"
@@ -323,25 +327,33 @@ msgstr ""
 "Standardeingabe wird auf dieser Plattform nicht unterstützt. Anfrage wird "
 "ignoriert."
 
-#: src/editor-application.c:660
+#: src/editor-application.c:552
+msgid "Bugs may be reported at:"
+msgstr "Fehler können hier gemeldet werden:"
+
+#: src/editor-application.c:666
 msgid "Do not restore session at startup"
 msgstr "Die Sitzung beim Start nicht wiederherstellen"
 
 # Hier geht es um Dateien, die beim Start der Anwendung als CLI-Argument angegeben wurden
-#: src/editor-application.c:661
+#: src/editor-application.c:667
 msgid "Open provided files in a new window"
 msgstr "Angegebene Dateien in einem neuen Fenster öffnen"
 
-#: src/editor-application.c:662
+#: src/editor-application.c:668
 msgid "Run a new instance of Text Editor (implies --ignore-session)"
 msgstr ""
 "Eine neue Instanz von Texteditor ausführen (impliziert --ignore-session)"
 
-#: src/editor-document.c:1939
+#: src/editor-application.c:669
+msgid "Print version information and exit"
+msgstr "Versionsinformationen anzeigen und beenden"
+
+#: src/editor-document.c:1948
 msgid "[Read-Only]"
 msgstr "[Nur lesen]"
 
-#: src/editor-document.c:2227 src/editor-page.c:987
+#: src/editor-document.c:2236 src/editor-page.c:987
 #: src/editor-sidebar-item.c:489
 msgid "New Document"
 msgstr "Neues Dokument"
@@ -379,11 +391,11 @@ msgstr "Die Datei wurde durch ein anderes Programm geändert."
 msgid "Save _As…"
 msgstr "_Speichern unter …"
 
-#: src/editor-info-bar.c:91 src/editor-info-bar.ui:61
+#: src/editor-info-bar.c:91 src/editor-info-bar.ui:63
 msgid "Document Restored"
 msgstr "Dokument wiederhergestellt"
 
-#: src/editor-info-bar.c:92 src/editor-info-bar.ui:70
+#: src/editor-info-bar.c:92 src/editor-info-bar.ui:73
 msgid "Unsaved document has been restored."
 msgstr "Ungespeichertes Dokument wurde wiederhergestellt."
 
@@ -391,7 +403,7 @@ msgstr "Ungespeichertes Dokument wurde wiederhergestellt."
 msgid "_Save…"
 msgstr "_Speichern …"
 
-#: src/editor-info-bar.c:100 src/editor-info-bar.ui:77
+#: src/editor-info-bar.c:100 src/editor-info-bar.ui:81
 msgid "_Discard…"
 msgstr "_Verwerfen …"
 
@@ -407,15 +419,15 @@ msgstr "Ungespeicherte Änderungen am Dokument wurden wiederhergestellt."
 msgid "Could Not Open File"
 msgstr "Datei konnte nicht geöffnet werden"
 
-#: src/editor-info-bar.ui:28
+#: src/editor-info-bar.ui:29
 msgid "You do not have permission to open the file."
 msgstr "Sie sind nicht dazu berechtigt, diese Datei zu öffnen."
 
-#: src/editor-info-bar.ui:35
+#: src/editor-info-bar.ui:37
 msgid "_Retry"
 msgstr "_Wiederholen"
 
-#: src/editor-info-bar.ui:42
+#: src/editor-info-bar.ui:44
 msgid "Open As _Administrator"
 msgstr "Als _Systemverwalter öffnen"
 
@@ -450,24 +462,27 @@ msgstr "%s (Systemverwalter)"
 msgid "Document Portal"
 msgstr "Dokumentenportal"
 
-#: src/editor-page.c:1080
+#: src/editor-page.c:1075
 msgid "Failed to save document"
 msgstr "Speichern des Dokuments ist fehlgeschlagen"
 
-#: src/editor-page.c:1165
+#: src/editor-page.c:1076 src/editor-window.ui:359
+msgid "_Close"
+msgstr "S_chließen"
+
+#: src/editor-page.c:1160
 msgid "Save As"
 msgstr "Speichern unter"
 
-#: src/editor-page.c:1168 src/editor-window-actions.c:133
+#: src/editor-page.c:1163
 msgid "Save"
 msgstr "Speichern"
 
-#: src/editor-page.c:1169 src/editor-window-actions.c:132
-#: src/editor-window-actions.c:271 src/editor-window-actions.c:380
+#: src/editor-page.c:1164 src/editor-window-actions.c:352
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: src/editor-page.c:1315
+#: src/editor-page.c:1310
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Z %u, Sp %u"
@@ -644,19 +659,19 @@ msgstr "Zeichen, ohne Leerzeichen"
 msgid "All Characters"
 msgstr "Alle Zeichen"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:254 src/editor-window-actions.c:242
 msgid "_Discard"
 msgstr "_Verwerfen"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:254
 msgid "_Discard All"
 msgstr "Alles ver_werfen"
 
-#: src/editor-save-changes-dialog.c:264
+#: src/editor-save-changes-dialog.c:257
 msgid "Save Changes?"
 msgstr "Änderungen speichern?"
 
-#: src/editor-save-changes-dialog.c:266
+#: src/editor-save-changes-dialog.c:258
 msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
@@ -664,25 +679,27 @@ msgstr ""
 "Offene Dokumente enthalten ungesicherte Änderungen. Diese werden "
 "unwiederbringlich verloren gehen."
 
-#: src/editor-save-changes-dialog.c:268
+#: src/editor-save-changes-dialog.c:261 src/editor-window-actions.c:116
+#: src/editor-window-actions.c:241
 msgid "_Cancel"
 msgstr "_Abbrechen"
 
-#: src/editor-save-changes-dialog.c:270 src/editor-window.ui:210
+#: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:117
+#: src/editor-window.ui:210
 msgid "_Save"
 msgstr "_Speichern"
 
-#: src/editor-save-changes-dialog.c:303
+#: src/editor-save-changes-dialog.c:293
 msgid "Untitled Document"
 msgstr "Unbenanntes Dokument"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:306
+#: src/editor-save-changes-dialog.c:296
 #, c-format
 msgid "%s (new)"
 msgstr "%s (neu)"
 
-#: src/editor-save-changes-dialog.c:327
+#: src/editor-save-changes-dialog.c:317
 msgid "Save changes for this document"
 msgstr "Änderungen an diesem Dokument speichern"
 
@@ -736,21 +753,21 @@ msgstr "Nur ganze _Wörter"
 msgid "%u of %u"
 msgstr "%u von %u"
 
-#: src/editor-spell-menu.c:191
-msgid "Languages"
-msgstr "Sprachen"
-
-#: src/editor-spell-menu.c:192
+#: src/editor-spell-menu.c:248
 msgid "Add to Dictionary"
 msgstr "Zum Wörterbuch hinzufügen"
 
-#: src/editor-spell-menu.c:193
+#: src/editor-spell-menu.c:249
 msgid "Ignore"
 msgstr "Ignorieren"
 
-#: src/editor-spell-menu.c:194
+#: src/editor-spell-menu.c:250
 msgid "Check Spelling"
 msgstr "Rechtschreibung prüfen"
+
+#: src/editor-spell-menu.c:259
+msgid "Languages"
+msgstr "Sprachen"
 
 #: src/editor-theme-selector.ui:22 src/editor-theme-selector.ui:24
 msgid "Follow system style"
@@ -811,44 +828,40 @@ msgstr "Zeichenkodierung:"
 msgid "Line Ending:"
 msgstr "Zeilenende:"
 
-#. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:128
-#, c-format
-msgid "Save Changes to “%s”?"
-msgstr "Die Änderungen an der Datei »%s« speichern?"
-
-#: src/editor-window-actions.c:131
+#: src/editor-window-actions.c:110
 msgid "Saving changes will replace the previously saved version."
 msgstr ""
 "Das Speichern von Änderungen wird die vorher gespeicherte Version ersetzen."
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:267
+#: src/editor-window-actions.c:113
+#, c-format
+msgid "Save Changes to “%s”?"
+msgstr "Die Änderungen an der Datei »%s« speichern?"
+
+#: src/editor-window-actions.c:235
+msgid "Unsaved changes will be permanently lost."
+msgstr "Ungespeicherte Änderungen gehen für immer verloren."
+
+#. translators: %s is replaced with the document title
+#: src/editor-window-actions.c:238
 #, c-format
 msgid "Discard Changes to “%s”?"
 msgstr "Änderungen an »%s« _verwerfen?"
 
-#: src/editor-window-actions.c:270
-msgid "Unsaved changes will be permanently lost."
-msgstr "Ungespeicherte Änderungen gehen für immer verloren."
-
-#: src/editor-window-actions.c:272
-msgid "Discard"
-msgstr "Verwerfen"
-
-#: src/editor-window-actions.c:376
+#: src/editor-window-actions.c:348
 msgid "Open File"
 msgstr "Datei öffnen"
 
-#: src/editor-window-actions.c:379
+#: src/editor-window-actions.c:351
 msgid "Open"
 msgstr "Öffnen"
 
-#: src/editor-window-actions.c:404
+#: src/editor-window-actions.c:376
 msgid "All Files"
 msgstr "Alle Dateien"
 
-#: src/editor-window-actions.c:409
+#: src/editor-window-actions.c:381
 msgid "Text Files"
 msgstr "Textdateien"
 
@@ -857,13 +870,21 @@ msgstr "Textdateien"
 msgid "Document Type: %s"
 msgstr "Dokumententyp: %s"
 
+#: src/editor-window.c:508
+msgid "Zoom in"
+msgstr "Vergrößern"
+
+#: src/editor-window.c:520
+msgid "Zoom out"
+msgstr "Verkleinern"
+
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:727
+#: src/editor-window.c:733
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - Texteditor"
 
-#: src/editor-window.c:1130
+#: src/editor-window.c:1136
 msgid "There are unsaved documents"
 msgstr "Es gibt ungespeicherte Dokumente"
 
@@ -1000,11 +1021,7 @@ msgstr "In neues Fenster _springen"
 msgid "Close _Other Tabs"
 msgstr "Andere Reiter sc_hließen"
 
-#: src/editor-window.ui:359
-msgid "_Close"
-msgstr "S_chließen"
-
-#: src/enchant/editor-enchant-spell-provider.c:92
+#: src/enchant/editor-enchant-spell-provider.c:123
 msgid "Enchant 2"
 msgstr "Enchant 2"
 
@@ -1286,6 +1303,12 @@ msgstr "Von der Eingabemarke bis zum Ende des Absatzes löschen"
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "Aktuelle Zeile löschen"
+
+#~ msgid "Text Editor Website"
+#~ msgstr "Internetseite von Texteditor"
+
+#~ msgid "Discard"
+#~ msgstr "Verwerfen"
 
 #~ msgid "Highlight Mode"
 #~ msgstr "Hervorhebungsmodus"
