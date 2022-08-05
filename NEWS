@@ -1,3 +1,19 @@
+# Text Editor 43.alpha1
+
+This is a development release not intended for end-users.
+
+Changes since 43.alpha0
+
+ • Many performance improvements during loading of documents
+ • libeditorconfig (editorconfig-core-c) is now required instead of
+   the in-tree copy. This ensures that only PCRE2 is needed
+ • Avoid editable/focusable pages while loading document so that
+   a11y peers are not spammed with updates
+ • UI recoloring improvements
+ • Fix horizontal two-finger non-kinetic scrolling
+ • Desktop integration improvements
+ • Translation updates
+
 # Text Editor 43.alpha0
 
 This is a development release not intended for end-users.
