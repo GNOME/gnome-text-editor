@@ -6,8 +6,8 @@
 msgid ""
 msgstr "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues\n"
-"POT-Creation-Date: 2022-06-19 23:05+0000\n"
-"PO-Revision-Date: 2022-06-22 01:54+0000\n"
+"POT-Creation-Date: 2022-07-22 18:35+0000\n"
+"PO-Revision-Date: 2022-08-07 01:54+0000\n"
 "Last-Translator: Asier Sarasua Garmendia <asiersarasua@ni.eus>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
@@ -21,9 +21,9 @@ msgid "Christian Hergert, et al."
 msgstr "Christian Hergert, et al."
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
-#: data/org.gnome.TextEditor.desktop.in.in:7
 #: data/org.gnome.TextEditor.desktop.in.in:8
-#: src/editor-application-actions.c:192
+#: data/org.gnome.TextEditor.desktop.in.in:9
+#: src/editor-application-actions.c:195 src/editor-window.c:1213
 msgid "Text Editor"
 msgstr "Testu-editorea"
 
@@ -37,7 +37,11 @@ msgid ""
 "experience."
 msgstr "GNOME Testu-editorea testuak editatzeko aplikazio sinplea da, esperientzia lehenetsi atsegina eskaintzeko pentsatuta dagoena."
 
-#: data/org.gnome.TextEditor.desktop.in.in:9
+#: data/org.gnome.TextEditor.desktop.in.in:4
+msgid "write;notepad;"
+msgstr "idatzi;notepad;"
+
+#: data/org.gnome.TextEditor.desktop.in.in:10
 msgid "View and edit text files"
 msgstr "Bistaratu eta editatu testu-fitxategiak"
 
@@ -262,11 +266,11 @@ msgstr "Ez da aurkitu %s propietatea %s(e)n"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Huts egin du zerrendako ba_lioa atzitzeak: %s"
 
-#: src/editor-application-actions.c:206
-msgid "Learn More about Text Editor"
-msgstr "Ikasi gehiagi testu-editoreari buruz"
+#: src/editor-application-actions.c:197
+msgid "The GNOME Project"
+msgstr "GNOME proiektua"
 
-#: src/editor-application-actions.c:207
+#: src/editor-application-actions.c:210
 msgid "translator-credits"
 msgstr "translator-credits"
 
@@ -411,24 +415,27 @@ msgstr "%s (administratzailea)"
 msgid "Document Portal"
 msgstr "Dokumentu-ataria"
 
-#: src/editor-page.c:1080
+#: src/editor-page.c:1075
 msgid "Failed to save document"
 msgstr "Huts egin du dokumentua gordetzeak"
 
-#: src/editor-page.c:1168
+#: src/editor-page.c:1076 src/editor-window.ui:359
+msgid "_Close"
+msgstr "It_xi"
+
+#: src/editor-page.c:1160
 msgid "Save As"
 msgstr "Gorde honela"
 
-#: src/editor-page.c:1171 src/editor-window-actions.c:133
+#: src/editor-page.c:1163
 msgid "Save"
 msgstr "Gorde"
 
-#: src/editor-page.c:1172 src/editor-window-actions.c:132
-#: src/editor-window-actions.c:271 src/editor-window-actions.c:380
+#: src/editor-page.c:1164 src/editor-window-actions.c:352
 msgid "Cancel"
 msgstr "Utzi"
 
-#: src/editor-page.c:1318
+#: src/editor-page.c:1310
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "%u lerr., %u zut."
@@ -601,43 +608,45 @@ msgstr "Karaktereak, zuriunerik ez"
 msgid "All Characters"
 msgstr "Karaktere guztiak"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:254 src/editor-window-actions.c:242
 msgid "_Discard"
 msgstr "_Baztertu"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:254
 msgid "_Discard All"
 msgstr "Baztertu _dena"
 
-#: src/editor-save-changes-dialog.c:264
+#: src/editor-save-changes-dialog.c:257
 msgid "Save Changes?"
 msgstr "Gorde aldaketak?"
 
-#: src/editor-save-changes-dialog.c:266
+#: src/editor-save-changes-dialog.c:258
 msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
 msgstr "Dokumentu irekiek gorde gabeko aldaketak dituzte. Gorde ez diren aldaketak betiko gordeko dira."
 
-#: src/editor-save-changes-dialog.c:268
+#: src/editor-save-changes-dialog.c:261 src/editor-window-actions.c:116
+#: src/editor-window-actions.c:241
 msgid "_Cancel"
 msgstr "_Utzi"
 
-#: src/editor-save-changes-dialog.c:270 src/editor-window.ui:210
+#: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:117
+#: src/editor-window.ui:210
 msgid "_Save"
 msgstr "_Gorde"
 
-#: src/editor-save-changes-dialog.c:303
+#: src/editor-save-changes-dialog.c:293
 msgid "Untitled Document"
 msgstr "Izenik gabeko dokumentua"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:306
+#: src/editor-save-changes-dialog.c:296
 #, c-format
 msgid "%s (new)"
 msgstr "%s (berria)"
 
-#: src/editor-save-changes-dialog.c:327
+#: src/editor-save-changes-dialog.c:317
 msgid "Save changes for this document"
 msgstr "Gorde dokumentu honen aldaketak"
 
@@ -691,21 +700,21 @@ msgstr "Bat etorri hitz o_soarekin soilik"
 msgid "%u of %u"
 msgstr "%u / %u"
 
-#: src/editor-spell-menu.c:191
-msgid "Languages"
-msgstr "Hizkuntzak"
-
-#: src/editor-spell-menu.c:192
+#: src/editor-spell-menu.c:248
 msgid "Add to Dictionary"
 msgstr "Gehitu hiztegiari"
 
-#: src/editor-spell-menu.c:193
+#: src/editor-spell-menu.c:249
 msgid "Ignore"
 msgstr "Ez ikusi egin"
 
-#: src/editor-spell-menu.c:194
+#: src/editor-spell-menu.c:250
 msgid "Check Spelling"
 msgstr "Ortografia-egiaztapena"
+
+#: src/editor-spell-menu.c:259
+msgid "Languages"
+msgstr "Hizkuntzak"
 
 #: src/editor-theme-selector.ui:22 src/editor-theme-selector.ui:24
 msgid "Follow system style"
@@ -766,43 +775,39 @@ msgstr "Karaktere-kodeketa:"
 msgid "Line Ending:"
 msgstr "Lerroaren amaiera:"
 
-#. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:128
-#, c-format
-msgid "Save Changes to “%s”?"
-msgstr "Gorde aldaketak “%s” fitxategian?"
-
-#: src/editor-window-actions.c:131
+#: src/editor-window-actions.c:110
 msgid "Saving changes will replace the previously saved version."
 msgstr "Aldaketak gordetzen badira, aurretik gordetako bertsioak ordeztuko dira."
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:267
+#: src/editor-window-actions.c:113
+#, c-format
+msgid "Save Changes to “%s”?"
+msgstr "Gorde aldaketak “%s” fitxategian?"
+
+#: src/editor-window-actions.c:235
+msgid "Unsaved changes will be permanently lost."
+msgstr "Gorde gabeko aldaketak betiko galduko dira."
+
+#. translators: %s is replaced with the document title
+#: src/editor-window-actions.c:238
 #, c-format
 msgid "Discard Changes to “%s”?"
 msgstr "Baztertu “%s” fitxategiaren aldaketak?"
 
-#: src/editor-window-actions.c:270
-msgid "Unsaved changes will be permanently lost."
-msgstr "Gorde gabeko aldaketak betiko galduko dira."
-
-#: src/editor-window-actions.c:272
-msgid "Discard"
-msgstr "Baztertu"
-
-#: src/editor-window-actions.c:376
+#: src/editor-window-actions.c:348
 msgid "Open File"
 msgstr "Ireki fitxategia"
 
-#: src/editor-window-actions.c:379
+#: src/editor-window-actions.c:351
 msgid "Open"
 msgstr "Ireki"
 
-#: src/editor-window-actions.c:404
+#: src/editor-window-actions.c:376
 msgid "All Files"
 msgstr "Fitxategi guztiak"
 
-#: src/editor-window-actions.c:409
+#: src/editor-window-actions.c:381
 msgid "Text Files"
 msgstr "Testu-fitxategiak"
 
@@ -811,13 +816,21 @@ msgstr "Testu-fitxategiak"
 msgid "Document Type: %s"
 msgstr "Dokumentu mota: %s"
 
+#: src/editor-window.c:508
+msgid "Zoom in"
+msgstr "Handiagotu"
+
+#: src/editor-window.c:520
+msgid "Zoom out"
+msgstr "Txikiagotu"
+
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:727
+#: src/editor-window.c:733
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - Testu-editorea"
 
-#: src/editor-window.c:1130
+#: src/editor-window.c:1136
 msgid "There are unsaved documents"
 msgstr "Gorde gabeko dokumentuak daude"
 
@@ -952,11 +965,7 @@ msgstr "_Eraman leiho berrira"
 msgid "Close _Other Tabs"
 msgstr "Itxi _beste fitxak"
 
-#: src/editor-window.ui:359
-msgid "_Close"
-msgstr "It_xi"
-
-#: src/enchant/editor-enchant-spell-provider.c:92
+#: src/enchant/editor-enchant-spell-provider.c:123
 msgid "Enchant 2"
 msgstr "Enchant 2"
 
@@ -1234,6 +1243,12 @@ msgstr "Ezabatu kurtsoretik paragrafoaren amaierara"
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "Ezabatu uneko lerroa"
+
+#~ msgid "Learn More about Text Editor"
+#~ msgstr "Ikasi gehiagi testu-editoreari buruz"
+
+#~ msgid "Discard"
+#~ msgstr "Baztertu"
 
 #~ msgid "Text Editor Website"
 #~ msgstr "Testu-editorea aplikazioaren webgunea"
