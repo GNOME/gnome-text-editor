@@ -65,6 +65,13 @@ check_early_opts (int        *argc,
 #ifdef HAVE_ENCHANT
       g_printerr ("        Enchant: %s\n", enchant_get_version ());
 #endif
+
+      g_printerr ("\n\
+Copyright 2020-2022 Christian Hergert, et al.\n\
+This is free software; see the source for copying conditions. There is NO\n\
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\
+");
+
       exit (EXIT_SUCCESS);
     }
 }
