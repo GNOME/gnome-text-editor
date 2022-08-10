@@ -21,8 +21,13 @@
 #include "config.h"
 
 #include <glib/gi18n.h>
+
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksource.h>
+
+#ifdef HAVE_ENCHANT
+# include <enchant.h>
+#endif
 
 #include "build-ident.h"
 #include "editor-application-private.h"
@@ -49,12 +54,17 @@ check_early_opts (int        *argc,
   if (version)
     {
       g_printerr ("%s %s (%s)\n", PACKAGE_NAME, PACKAGE_VERSION, EDITOR_BUILD_IDENTIFIER);
+      g_printerr ("\n");
       g_printerr ("            GTK: %d.%d.%d (Compiled against %d.%d.%d)\n",
                   gtk_get_major_version (), gtk_get_minor_version (), gtk_get_micro_version (),
                   GTK_MAJOR_VERSION, GTK_MINOR_VERSION, GTK_MICRO_VERSION);
       g_printerr ("  GtkSourceView: %d.%d.%d (Compiled against %d.%d.%d)\n",
                   gtk_source_get_major_version (), gtk_source_get_minor_version (), gtk_source_get_micro_version (),
                   GTK_SOURCE_MAJOR_VERSION, GTK_SOURCE_MINOR_VERSION, GTK_SOURCE_MICRO_VERSION);
+
+#ifdef HAVE_ENCHANT
+      g_printerr ("        Enchant: %s\n", enchant_get_version ());
+#endif
       exit (EXIT_SUCCESS);
     }
 }
