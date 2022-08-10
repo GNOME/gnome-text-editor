@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-07-20 17:44+0000\n"
-"PO-Revision-Date: 2022-07-21 16:10+0430\n"
+"POT-Creation-Date: 2022-08-10 20:10+0000\n"
+"PO-Revision-Date: 2022-08-11 00:51+0430\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "Language: fa\n"
@@ -17,11 +17,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.1\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
-msgid "Christian Hergert, et al."
-msgstr "کریستین هرگرت و همکاران."
+#: src/editor-application-actions.c:197
+msgid "The GNOME Project"
+msgstr "پروژهٔ گنوم"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:8
@@ -277,10 +278,6 @@ msgstr "شکست در یافتن ویژگی %s در%s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "شکست در دریافت مقدار va_list: %s"
 
-#: src/editor-application-actions.c:197
-msgid "The GNOME Project"
-msgstr "پروژهٔ گنوم"
-
 #: src/editor-application-actions.c:210
 msgid "translator-credits"
 msgstr "دانیال بهزادی <dani.behzi@ubuntu.com>"
@@ -297,27 +294,31 @@ msgstr "ورودی استاندارد روی این بن‌سازه پشتیبا
 msgid "Bugs may be reported at:"
 msgstr "مشکلات می‌توانند این‌جا گزارش شوند:"
 
-#: src/editor-application.c:666
+#: src/editor-application.c:554
+msgid "[FILES…]"
+msgstr "[FILES…]"
+
+#: src/editor-application.c:667
 msgid "Do not restore session at startup"
 msgstr "باز نگرداندن نشست هنگام آغاز"
 
-#: src/editor-application.c:667
+#: src/editor-application.c:668
 msgid "Open provided files in a new window"
 msgstr "گشودن پرونده‌های فراهم شده در پنجره‌ای جدید"
 
-#: src/editor-application.c:668
+#: src/editor-application.c:669
 msgid "Run a new instance of Text Editor (implies --ignore-session)"
 msgstr "اجرای نمونه‌ای جدید از ویرایشگر متن (پیاده‌سازی ‪--ignore-session‬)"
 
-#: src/editor-application.c:669
+#: src/editor-application.c:670
 msgid "Print version information and exit"
 msgstr "چاپ اطّلاعات نگارش و خروج"
 
-#: src/editor-document.c:1948
+#: src/editor-document.c:2003
 msgid "[Read-Only]"
 msgstr "[فقط خواندنی]"
 
-#: src/editor-document.c:2236 src/editor-page.c:987
+#: src/editor-document.c:2291 src/editor-page.c:1015
 #: src/editor-sidebar-item.c:489
 msgid "New Document"
 msgstr "سند جدید"
@@ -411,42 +412,42 @@ msgstr "بدون سندهای اخیر"
 msgid "No Results Found"
 msgstr "هیچ نتیجه‌ای پیدا نشد"
 
-#: src/editor-page.c:1009 src/editor-properties-dialog.c:74
+#: src/editor-page.c:1041 src/editor-properties-dialog.c:74
 #: src/editor-sidebar-item.c:84
 msgid "Draft"
 msgstr "پیش‌نویس"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1021
+#: src/editor-page.c:1053
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (مدیر)"
 
-#: src/editor-page.c:1029 src/editor-sidebar-item.c:98
+#: src/editor-page.c:1063 src/editor-sidebar-item.c:98
 msgid "Document Portal"
 msgstr "درگاه سند"
 
-#: src/editor-page.c:1075
+#: src/editor-page.c:1110
 msgid "Failed to save document"
 msgstr "شکست در ذخیرهٔ سند"
 
-#: src/editor-page.c:1076 src/editor-window.ui:359
+#: src/editor-page.c:1111 src/editor-window.ui:359
 msgid "_Close"
 msgstr "_بستن"
 
-#: src/editor-page.c:1160
+#: src/editor-page.c:1195
 msgid "Save As"
 msgstr "ذخیره به شکل"
 
-#: src/editor-page.c:1163
+#: src/editor-page.c:1198
 msgid "Save"
 msgstr "ذخیره"
 
-#: src/editor-page.c:1164 src/editor-window-actions.c:352
+#: src/editor-page.c:1199 src/editor-window-actions.c:352
 msgid "Cancel"
 msgstr "لغو"
 
-#: src/editor-page.c:1310
+#: src/editor-page.c:1348
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "خ %Iu، س %Iu"
@@ -1257,6 +1258,9 @@ msgstr "حذف از نشانگر تا پایان بند"
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "حذف خط کنونی"
+
+#~ msgid "Christian Hergert, et al."
+#~ msgstr "کریستین هرگرت و همکاران."
 
 #~ msgid "Learn More about Text Editor"
 #~ msgstr "دربارهٔ ویرایشگر متن بیش‌تر بدانید"
