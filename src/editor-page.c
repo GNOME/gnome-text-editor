@@ -22,9 +22,11 @@
 
 #include "config.h"
 
-#include <adwaita.h>
-#include <glib/gi18n.h>
 #include <unistd.h>
+
+#include <glib/gi18n.h>
+
+#include <adwaita.h>
 
 #include "editor-application-private.h"
 #include "editor-document-private.h"
@@ -1018,7 +1020,9 @@ editor_page_dup_title (EditorPage *self)
 gchar *
 editor_page_dup_subtitle (EditorPage *self)
 {
+#ifdef G_OS_UNIX
   static char *docportal = NULL;
+#endif
   g_autoptr(GFile) dir = NULL;
   const char *peek;
   GFile *file;
@@ -1026,8 +1030,10 @@ editor_page_dup_subtitle (EditorPage *self)
   g_return_val_if_fail (EDITOR_IS_PAGE (self), NULL);
   g_return_val_if_fail (EDITOR_IS_DOCUMENT (self->document), NULL);
 
+#ifdef G_OS_UNIX
   if (docportal == NULL)
     docportal = g_strdup_printf ("/run/user/%u/doc/", getuid ());
+#endif
 
   file = editor_document_get_file (self->document);
 
@@ -1051,8 +1057,11 @@ editor_page_dup_subtitle (EditorPage *self)
     }
 
   peek = g_file_peek_path (dir);
+
+#ifdef G_OS_UNIX
   if (g_str_has_prefix (peek, docportal))
     return g_strdup (_("Document Portal"));
+#endif
 
   return _editor_path_collapse (peek);
 }
