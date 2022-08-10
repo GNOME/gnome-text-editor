@@ -551,6 +551,7 @@ editor_application_constructed (GObject *object)
 
   description = g_strdup_printf ("%s %s", _("Bugs may be reported at:"), PACKAGE_BUGREPORTS);
   g_application_set_option_context_description (G_APPLICATION (self), description);
+  g_application_set_option_context_parameter_string (G_APPLICATION (self), _("[FILES…]"));
 }
 
 static void
