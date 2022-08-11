@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues"
 "\n"
-"POT-Creation-Date: 2022-07-20 17:44+0000\n"
-"PO-Revision-Date: 2022-07-21 09:33+0300\n"
+"POT-Creation-Date: 2022-08-10 20:10+0000\n"
+"PO-Revision-Date: 2022-08-11 08:50+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -21,8 +21,9 @@ msgstr ""
 "X-Generator: Lokalize 20.12.0\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
-msgid "Christian Hergert, et al."
-msgstr "Christian Hergert та інші"
+#: src/editor-application-actions.c:197
+msgid "The GNOME Project"
+msgstr "Проєкт GNOME"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:8
@@ -294,10 +295,6 @@ msgstr "Не вдалося знайти властивість %s у %s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Не вдалося отримати значення va_list: %s"
 
-#: src/editor-application-actions.c:197
-msgid "The GNOME Project"
-msgstr "Проєкт GNOME"
-
 #: src/editor-application-actions.c:210
 msgid "translator-credits"
 msgstr "Юрій Чорноіван <yurchor@ukr.net>, 2021–2022"
@@ -318,29 +315,33 @@ msgstr ""
 msgid "Bugs may be reported at:"
 msgstr "Про вади можна повідомляти тут:"
 
-#: src/editor-application.c:666
+#: src/editor-application.c:554
+msgid "[FILES…]"
+msgstr "[ФАЙЛИ…]"
+
+#: src/editor-application.c:667
 msgid "Do not restore session at startup"
 msgstr "Не відновлювати сеанс після запуску"
 
-#: src/editor-application.c:667
+#: src/editor-application.c:668
 msgid "Open provided files in a new window"
 msgstr "Відкрити задані файли у новому вікні"
 
-#: src/editor-application.c:668
+#: src/editor-application.c:669
 msgid "Run a new instance of Text Editor (implies --ignore-session)"
 msgstr ""
 "Запустити новий екземпляр «Текстового редактора» (неявним чином --ignore-"
 "session)"
 
-#: src/editor-application.c:669
+#: src/editor-application.c:670
 msgid "Print version information and exit"
 msgstr "Показати дані щодо версії і завершити роботу"
 
-#: src/editor-document.c:1948
+#: src/editor-document.c:2003
 msgid "[Read-Only]"
 msgstr "[Лише читання]"
 
-#: src/editor-document.c:2236 src/editor-page.c:987
+#: src/editor-document.c:2291 src/editor-page.c:1015
 #: src/editor-sidebar-item.c:489
 msgid "New Document"
 msgstr "Новий документ"
@@ -434,42 +435,42 @@ msgstr "Немає недавніх документів"
 msgid "No Results Found"
 msgstr "Нічого не знайдено"
 
-#: src/editor-page.c:1009 src/editor-properties-dialog.c:74
+#: src/editor-page.c:1041 src/editor-properties-dialog.c:74
 #: src/editor-sidebar-item.c:84
 msgid "Draft"
 msgstr "Чернетка"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1021
+#: src/editor-page.c:1053
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (адміністратор)"
 
-#: src/editor-page.c:1029 src/editor-sidebar-item.c:98
+#: src/editor-page.c:1063 src/editor-sidebar-item.c:98
 msgid "Document Portal"
 msgstr "Портал документів"
 
-#: src/editor-page.c:1075
+#: src/editor-page.c:1110
 msgid "Failed to save document"
 msgstr "Не вдалося зберегти документ"
 
-#: src/editor-page.c:1076 src/editor-window.ui:359
+#: src/editor-page.c:1111 src/editor-window.ui:359
 msgid "_Close"
 msgstr "З_акрити"
 
-#: src/editor-page.c:1160
+#: src/editor-page.c:1195
 msgid "Save As"
 msgstr "Зберегти як"
 
-#: src/editor-page.c:1163
+#: src/editor-page.c:1198
 msgid "Save"
 msgstr "Зберегти"
 
-#: src/editor-page.c:1164 src/editor-window-actions.c:352
+#: src/editor-page.c:1199 src/editor-window-actions.c:352
 msgid "Cancel"
 msgstr "Скасувати"
 
-#: src/editor-page.c:1310
+#: src/editor-page.c:1348
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Рд %u, Поз %u"
@@ -858,14 +859,10 @@ msgid "Document Type: %s"
 msgstr "Тип документа: %s"
 
 #: src/editor-window.c:508
-#| msgctxt "shortcut window"
-#| msgid "Zoom In"
 msgid "Zoom in"
 msgstr "Збільшити"
 
 #: src/editor-window.c:520
-#| msgctxt "shortcut window"
-#| msgid "Zoom Out"
 msgid "Zoom out"
 msgstr "Зменшити"
 
@@ -1289,6 +1286,9 @@ msgstr "Вилучити текст від курсора до кінця абз
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "Вилучити поточний рядок"
+
+#~ msgid "Christian Hergert, et al."
+#~ msgstr "Christian Hergert та інші"
 
 #~| msgid "A_bout Text Editor"
 #~ msgid "Learn More about Text Editor"
