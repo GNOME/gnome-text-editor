@@ -250,6 +250,7 @@ _editor_sidebar_row_set_item (EditorSidebarRow  *self,
   g_clear_pointer (&self->subtitle_binding, g_binding_unbind);
   g_clear_pointer (&self->empty_binding, g_binding_unbind);
   g_clear_pointer (&self->modified_binding, g_binding_unbind);
+  g_clear_pointer (&self->age_binding, g_binding_unbind);
 
   self->item = item;
 
