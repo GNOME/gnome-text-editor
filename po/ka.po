@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-07-26 01:06+0000\n"
-"PO-Revision-Date: 2022-07-26 08:04+0200\n"
+"POT-Creation-Date: 2022-08-11 19:06+0000\n"
+"PO-Revision-Date: 2022-08-12 06:06+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: \n"
 "Language: ka\n"
@@ -20,8 +20,9 @@ msgstr ""
 "X-Generator: Poedit 3.1.1\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
-msgid "Christian Hergert, et al."
-msgstr "Christian Hergert და სხვ."
+#: src/editor-application-actions.c:197
+msgid "The GNOME Project"
+msgstr "პროექტი \"GNOME\""
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:8
@@ -31,8 +32,10 @@ msgid "Text Editor"
 msgstr "ტექსტური რედაქტორი"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:10
-msgid "A Text Editor for GNOME"
-msgstr ""
+#, fuzzy
+#| msgid "Text Files"
+msgid "Edit text files"
+msgstr "ტექსტური ფაილები"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:12
 msgid ""
@@ -269,10 +272,6 @@ msgstr ""
 msgid "Failed to retrieve va_list value: %s"
 msgstr ""
 
-#: src/editor-application-actions.c:197
-msgid "The GNOME Project"
-msgstr "პროექტი \"GNOME\""
-
 #: src/editor-application-actions.c:210
 msgid "translator-credits"
 msgstr "temuri doghonadze"
@@ -289,27 +288,31 @@ msgstr ""
 msgid "Bugs may be reported at:"
 msgstr ""
 
-#: src/editor-application.c:666
-msgid "Do not restore session at startup"
+#: src/editor-application.c:554
+msgid "[FILES…]"
 msgstr ""
 
 #: src/editor-application.c:667
-msgid "Open provided files in a new window"
+msgid "Do not restore session at startup"
 msgstr ""
 
 #: src/editor-application.c:668
-msgid "Run a new instance of Text Editor (implies --ignore-session)"
+msgid "Open provided files in a new window"
 msgstr ""
 
 #: src/editor-application.c:669
+msgid "Run a new instance of Text Editor (implies --ignore-session)"
+msgstr ""
+
+#: src/editor-application.c:670
 msgid "Print version information and exit"
 msgstr "ვერსიის ინფორმაციის დაბეჭდვა და გასვლა"
 
-#: src/editor-document.c:1948
+#: src/editor-document.c:2003
 msgid "[Read-Only]"
 msgstr ""
 
-#: src/editor-document.c:2236 src/editor-page.c:987
+#: src/editor-document.c:2291 src/editor-page.c:1015
 #: src/editor-sidebar-item.c:489
 msgid "New Document"
 msgstr "ახალი დოკუმენტი"
@@ -357,7 +360,7 @@ msgstr ""
 
 #: src/editor-info-bar.c:98
 msgid "_Save…"
-msgstr "_შენახვა..."
+msgstr "_შენახვა…"
 
 #: src/editor-info-bar.c:100 src/editor-info-bar.ui:81
 msgid "_Discard…"
@@ -403,42 +406,42 @@ msgstr "ახლახანს გასნილი დოკუმენტ�
 msgid "No Results Found"
 msgstr "ძებნამ ვერაფერი იპოვა"
 
-#: src/editor-page.c:1009 src/editor-properties-dialog.c:74
+#: src/editor-page.c:1041 src/editor-properties-dialog.c:74
 #: src/editor-sidebar-item.c:84
 msgid "Draft"
 msgstr "მონახაზი"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1021
+#: src/editor-page.c:1053
 #, c-format
 msgid "%s (Administrator)"
 msgstr ""
 
-#: src/editor-page.c:1029 src/editor-sidebar-item.c:98
+#: src/editor-page.c:1063 src/editor-sidebar-item.c:98
 msgid "Document Portal"
 msgstr ""
 
-#: src/editor-page.c:1075
+#: src/editor-page.c:1110
 msgid "Failed to save document"
 msgstr ""
 
-#: src/editor-page.c:1076 src/editor-window.ui:359
+#: src/editor-page.c:1111 src/editor-window.ui:359
 msgid "_Close"
 msgstr "_დახურვა"
 
-#: src/editor-page.c:1160
+#: src/editor-page.c:1195
 msgid "Save As"
 msgstr "შენახვა"
 
-#: src/editor-page.c:1163
+#: src/editor-page.c:1198
 msgid "Save"
 msgstr "შენახვა"
 
-#: src/editor-page.c:1164 src/editor-window-actions.c:352
+#: src/editor-page.c:1199 src/editor-window-actions.c:352
 msgid "Cancel"
 msgstr "გაუქმება"
 
-#: src/editor-page.c:1310
+#: src/editor-page.c:1348
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr ""
@@ -885,7 +888,7 @@ msgstr ""
 
 #: src/editor-window.ui:234
 msgid "_Print"
-msgstr ""
+msgstr "_ბეჭდვა"
 
 #: src/editor-window.ui:240
 msgid "Documen_t Properties"
@@ -1241,3 +1244,6 @@ msgstr ""
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr ""
+
+#~ msgid "Christian Hergert, et al."
+#~ msgstr "Christian Hergert და სხვ."
