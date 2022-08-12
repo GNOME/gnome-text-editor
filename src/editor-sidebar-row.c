@@ -44,6 +44,7 @@ struct _EditorSidebarRow
   GtkLabel          *age;
   GtkStack          *stack;
   GtkButton         *remove;
+  GtkLabel          *tooltip;
 
   GBinding          *title_binding;
   GBinding          *subtitle_binding;
@@ -125,6 +126,34 @@ on_remove_clicked_cb (EditorSidebarRow *self,
                               draft_id ? draft_id : "");
 }
 
+static gboolean
+query_tooltip_cb (GtkWidget  *widget,
+                  int         x,
+                  int         y,
+                  gboolean    keyboard,
+                  GtkTooltip *tooltip)
+{
+  EditorSidebarRow *self = (EditorSidebarRow *)widget;
+  g_autofree char *text = NULL;
+  GFile *file;
+
+  g_assert (EDITOR_IS_SIDEBAR_ROW (self));
+
+  if (!(file = _editor_sidebar_item_get_file (self->item)))
+    return FALSE;
+
+  if (g_file_is_native (file))
+    text = g_file_get_path (file);
+  else
+    text = g_file_get_uri (file);
+
+  gtk_label_set_text (self->tooltip, text);
+
+  gtk_tooltip_set_custom (tooltip, GTK_WIDGET (self->tooltip));
+
+  return TRUE;
+}
+
 static void
 editor_sidebar_row_dispose (GObject *object)
 {
@@ -199,7 +228,9 @@ editor_sidebar_row_class_init (EditorSidebarRowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorSidebarRow, stack);
   gtk_widget_class_bind_template_child (widget_class, EditorSidebarRow, subtitle);
   gtk_widget_class_bind_template_child (widget_class, EditorSidebarRow, title);
+  gtk_widget_class_bind_template_child (widget_class, EditorSidebarRow, tooltip);
   gtk_widget_class_bind_template_callback (widget_class, on_remove_clicked_cb);
+  gtk_widget_class_bind_template_callback (widget_class, query_tooltip_cb);
 
   properties [PROP_ITEM] =
     g_param_spec_object ("item",

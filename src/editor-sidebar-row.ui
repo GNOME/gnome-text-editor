@@ -2,6 +2,8 @@
 <interface>
   <requires lib="gtk" version="4.0"/>
   <template class="EditorSidebarRow" parent="GtkListBoxRow">
+    <property name="has-tooltip">true</property>
+    <signal name="query-tooltip" handler="query_tooltip_cb"/>
     <child>
       <object class="GtkGrid" id="grid">
         <property name="margin-top">3</property>
@@ -95,4 +97,8 @@
       </object>
     </child>
   </template>
+  <object class="GtkLabel" id="tooltip">
+    <property name="ellipsize">end</property>
+    <property name="wrap">false</property>
+  </object>
 </interface>
