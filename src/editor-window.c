@@ -760,6 +760,36 @@ on_show_help_overlay_cb (GtkWidget  *widget,
 }
 
 static gboolean
+title_query_tooltip_cb (EditorWindow *self,
+                        int           x,
+                        int           y,
+                        gboolean      keyboard,
+                        GtkTooltip   *tooltip)
+{
+  g_autofree char *text = NULL;
+  EditorDocument *document;
+  EditorPage *page;
+  GFile *file;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+  g_assert (GTK_IS_TOOLTIP (tooltip));
+
+  if (!(page = editor_window_get_visible_page (self)) ||
+      !(document = editor_page_get_document (page)) ||
+      !(file = editor_document_get_file (document)))
+    return FALSE;
+
+  if (g_file_is_native (file))
+    text = g_file_get_path (file);
+  else
+    text = g_file_get_uri (file);
+
+  gtk_tooltip_set_text (tooltip, text);
+
+  return TRUE;
+}
+
+static gboolean
 indicator_to_boolean (GBinding     *binding,
                       const GValue *from_value,
                       GValue       *to_value,
@@ -894,6 +924,7 @@ editor_window_class_init (EditorWindowClass *klass)
   gtk_widget_class_bind_template_callback (widget_class, on_tab_view_close_page_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_tab_view_setup_menu_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_tab_view_create_window_cb);
+  gtk_widget_class_bind_template_callback (widget_class, title_query_tooltip_cb);
 
   gtk_widget_class_install_action (widget_class, "win.alternate-help-overlay", NULL, on_show_help_overlay_cb);
   gtk_widget_class_install_action (widget_class, "win.undo-close-page", NULL, on_undo_close_page_cb);

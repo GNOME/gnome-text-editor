@@ -22,6 +22,8 @@
                 <child>
                   <object class="GtkCenterBox">
                     <property name="hexpand">true</property>
+                    <property name="has-tooltip">true</property>
+                    <signal name="query-tooltip" handler="title_query_tooltip_cb" object="EditorWindow" swapped="true"/>
                     <child type="start">
                       <object class="GtkLabel" id="is_modified">
                         <property name="halign">end</property>
@@ -44,6 +46,8 @@
                 </child>
                 <child>
                   <object class="GtkCenterBox">
+                    <property name="has-tooltip">true</property>
+                    <signal name="query-tooltip" handler="title_query_tooltip_cb" object="EditorWindow" swapped="true"/>
                     <child type="start">
                       <object class="GtkImage" id="indicator">
                         <property name="hexpand">true</property>
