@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor gnome-41\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-07-20 17:44+0000\n"
-"PO-Revision-Date: 2022-07-21 13:33+0100\n"
+"POT-Creation-Date: 2022-08-11 17:58+0000\n"
+"PO-Revision-Date: 2022-08-12 12:47+0100\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese < https://l10n.gnome.org/teams/pt/>\n"
 "Language: pt\n"
@@ -27,8 +27,9 @@ msgstr ""
 "X-Generator: Poedit 3.1.1\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
-msgid "Christian Hergert, et al."
-msgstr "Christian Hergert, et al."
+#: src/editor-application-actions.c:197
+msgid "The GNOME Project"
+msgstr "O Projeto GNOME"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:8
@@ -38,8 +39,8 @@ msgid "Text Editor"
 msgstr "Editor de texto"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:10
-msgid "A Text Editor for GNOME"
-msgstr "Um editor de texto para GNOME"
+msgid "Edit text files"
+msgstr "Editar ficheiros de texto"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:12
 msgid ""
@@ -291,10 +292,6 @@ msgstr "Falha ao localizar a propriedade %s em %s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Falha ao obter o valor 'va_list': %s"
 
-#: src/editor-application-actions.c:197
-msgid "The GNOME Project"
-msgstr "O Projeto GNOME"
-
 #: src/editor-application-actions.c:210
 msgid "translator-credits"
 msgstr ""
@@ -314,28 +311,32 @@ msgstr ""
 msgid "Bugs may be reported at:"
 msgstr "Os bugs podem ser reportados em:"
 
-#: src/editor-application.c:666
+#: src/editor-application.c:554
+msgid "[FILES…]"
+msgstr "[FICHEIROS...]"
+
+#: src/editor-application.c:667
 msgid "Do not restore session at startup"
 msgstr "Não carregar a última sessão ao iniciar"
 
-#: src/editor-application.c:667
+#: src/editor-application.c:668
 msgid "Open provided files in a new window"
 msgstr "Abrir ficheiros fornecidos numa nova janela"
 
-#: src/editor-application.c:668
+#: src/editor-application.c:669
 msgid "Run a new instance of Text Editor (implies --ignore-session)"
 msgstr ""
 "Executar uma nova instância do Editor de texto (implica --ignore-session)"
 
-#: src/editor-application.c:669
+#: src/editor-application.c:670
 msgid "Print version information and exit"
 msgstr "Mostrar informação da versão e sair"
 
-#: src/editor-document.c:1948
+#: src/editor-document.c:2003
 msgid "[Read-Only]"
 msgstr "[Apenas-Leitura]"
 
-#: src/editor-document.c:2236 src/editor-page.c:987
+#: src/editor-document.c:2291 src/editor-page.c:1015
 #: src/editor-sidebar-item.c:489
 msgid "New Document"
 msgstr "Novo documento"
@@ -429,42 +430,42 @@ msgstr "Sem documentos recentes"
 msgid "No Results Found"
 msgstr "Sem resultados"
 
-#: src/editor-page.c:1009 src/editor-properties-dialog.c:74
+#: src/editor-page.c:1041 src/editor-properties-dialog.c:74
 #: src/editor-sidebar-item.c:84
 msgid "Draft"
 msgstr "Rascunho"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1021
+#: src/editor-page.c:1053
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (Administrador)"
 
-#: src/editor-page.c:1029 src/editor-sidebar-item.c:98
+#: src/editor-page.c:1063 src/editor-sidebar-item.c:98
 msgid "Document Portal"
 msgstr "Portal do documento"
 
-#: src/editor-page.c:1075
+#: src/editor-page.c:1110
 msgid "Failed to save document"
 msgstr "Falha ao gravar documento"
 
-#: src/editor-page.c:1076 src/editor-window.ui:359
+#: src/editor-page.c:1111 src/editor-window.ui:359
 msgid "_Close"
 msgstr "Fe_char"
 
-#: src/editor-page.c:1160
+#: src/editor-page.c:1195
 msgid "Save As"
 msgstr "Gravar como"
 
-#: src/editor-page.c:1163
+#: src/editor-page.c:1198
 msgid "Save"
 msgstr "Gravar"
 
-#: src/editor-page.c:1164 src/editor-window-actions.c:352
+#: src/editor-page.c:1199 src/editor-window-actions.c:352
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: src/editor-page.c:1310
+#: src/editor-page.c:1348
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Ln %u, Col %u"
@@ -1276,6 +1277,12 @@ msgstr "Eliminar do cursor ao fim do parágrafo"
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "Eliminar a linha atual"
+
+#~ msgid "Christian Hergert, et al."
+#~ msgstr "Christian Hergert, et al."
+
+#~ msgid "A Text Editor for GNOME"
+#~ msgstr "Um editor de texto para GNOME"
 
 #~ msgid "Learn More about Text Editor"
 #~ msgstr "Saiba mais acerca do Editor de texto"
