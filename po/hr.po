@@ -8,32 +8,33 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-05-13 19:23+0000\n"
-"PO-Revision-Date: 2022-05-14 15:42+0200\n"
-"Last-Translator: Milo Ivir <mail@milotype.de>\n"
+"POT-Creation-Date: 2022-08-11 17:58+0000\n"
+"PO-Revision-Date: 2022-08-13 16:20+0200\n"
+"Last-Translator: \n"
 "Language-Team: Croatian <hr@li.org>\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.0\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
-msgid "Christian Hergert, et al."
-msgstr "Christian Hergert i sur."
+#: src/editor-application-actions.c:197
+msgid "The GNOME Project"
+msgstr "GNOME projekt"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
-#: data/org.gnome.TextEditor.desktop.in.in:7
 #: data/org.gnome.TextEditor.desktop.in.in:8
-#: src/editor-application-actions.c:192
+#: data/org.gnome.TextEditor.desktop.in.in:9
+#: src/editor-application-actions.c:195 src/editor-window.c:1213
 msgid "Text Editor"
 msgstr "Uređivač teksta"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:10
-msgid "A Text Editor for GNOME"
-msgstr "Uređivač teksta za GNOME"
+msgid "Edit text files"
+msgstr "Uređivanje tekstovnih datoteka"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:12
 msgid ""
@@ -43,7 +44,11 @@ msgstr ""
 "GNOME uređivač teksta je jednostavan uređivač teksta usredotočen na ugodno "
 "iskustvo."
 
-#: data/org.gnome.TextEditor.desktop.in.in:9
+#: data/org.gnome.TextEditor.desktop.in.in:4
+msgid "write;notepad;"
+msgstr "piši;bilježnica;"
+
+#: data/org.gnome.TextEditor.desktop.in.in:10
 msgid "View and edit text files"
 msgstr "Pregledaj i uredi tekstne datoteke"
 
@@ -73,15 +78,15 @@ msgstr "Izgled uvlačenja"
 
 #: data/org.gnome.TextEditor.gschema.xml:36
 msgid "If the editor should insert multiple spaces characters instead of tabs."
-msgstr "Treba li uređivač umetnuti više znakova razmaka umjesto tabulatora."
+msgstr "Treba li uređivač umetnuti više znakova razmak umjesto tabulatora."
 
 #: data/org.gnome.TextEditor.gschema.xml:40
 msgid "Auto Indent"
-msgstr "Automatsko uvlačenje"
+msgstr "Automatsko poravnanje"
 
 #: data/org.gnome.TextEditor.gschema.xml:41
 msgid "Automatically indent new lines copying the previous line's indentation."
-msgstr "Automatski uvuci nove retke kopirajući uvlačenje prethodnog retka."
+msgstr "Automatski uvuci nove retke kopirajući uvlačenje prijašnjeg retka."
 
 #: data/org.gnome.TextEditor.gschema.xml:46
 msgid "Tab Width"
@@ -128,14 +133,14 @@ msgstr "Položaj u znakovima na kojem bi se desni rub trebao prikazati."
 
 #: data/org.gnome.TextEditor.gschema.xml:73
 msgid "Show Overview Map"
-msgstr "Prikaži kartu pregleda"
+msgstr "Prikaži okvir pregleda"
 
 #: data/org.gnome.TextEditor.gschema.xml:74
 msgid ""
 "If enabled, an overview map of the file will be displayed to the side of the "
 "editor."
 msgstr ""
-"Ako je omogućeno, karta pregleda datoteke bit će prikazana u bočnoj strani "
+"Ako je omogućeno, okvir pregleda datoteke biti će prikazan u bočnoj strani "
 "uređivača."
 
 #: data/org.gnome.TextEditor.gschema.xml:78
@@ -144,7 +149,8 @@ msgstr "Prikaži pozadinsku mrežu"
 
 #: data/org.gnome.TextEditor.gschema.xml:79
 msgid "If enabled, a blueprint style grid is printed on the editor background."
-msgstr "Ako je omogućeno, prikazat će se plavkasta mreža u pozadini uređivača."
+msgstr ""
+"Ako je omogućeno, plavkasta mreža će se prikazati u pozadini uređivača."
 
 #: data/org.gnome.TextEditor.gschema.xml:83
 msgid "Highlight current line"
@@ -168,7 +174,7 @@ msgstr "Koristi slova sustava"
 
 #: data/org.gnome.TextEditor.gschema.xml:94
 msgid "If the default system monospace font should be used."
-msgstr "Treba li koristiti zadana slova fiksne širine sustava."
+msgstr "Treba li koristiti monospace zadana slova sustava."
 
 #: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:57
 msgid "Custom Font"
@@ -199,7 +205,7 @@ msgid ""
 "If enabled then Text Editor will try to discover file settings from "
 "modelines, editorconfig, or per-language defaults."
 msgstr ""
-"Ako je omogućeno, uređivač teksta će pokušati otkriti postavke datoteke iz "
+"Ako je omogućeno uređivač teksta će pokušati otkriti postavke datoteke iz "
 "modela, podešavanja uređivača ili zadanih postavki jezika."
 
 #: data/org.gnome.TextEditor.gschema.xml:113
@@ -209,7 +215,7 @@ msgstr "Automatski provjeri pravopis"
 #: data/org.gnome.TextEditor.gschema.xml:114
 msgid "If enabled, then Text Editor will check spelling as you type."
 msgstr ""
-"Ako je omogućeno, tada će uređivač tektsa provjeravati pravopis tijekom "
+"Ako je omogućeno, tada će uređivač retka provjeravati pravopis tijekom "
 "tipkanja."
 
 #: data/org.gnome.TextEditor.gschema.xml:118
@@ -218,7 +224,7 @@ msgstr "Obnovi sesiju"
 
 #: data/org.gnome.TextEditor.gschema.xml:119
 msgid "When Text Editor is run, restore the previous session."
-msgstr "Kada se uređivač teksta pokrene, obnovi prethodnu sesiju."
+msgstr "Kada se uređivač teksta pokrene, prijašnja sesija će se obnoviti."
 
 #: data/org.gnome.TextEditor.gschema.xml:123
 msgid "Recolor Window"
@@ -275,43 +281,61 @@ msgstr "Visina retka koja se koristi za odabrana slova."
 #: src/editor-animation.c:1038
 #, c-format
 msgid "Failed to find property %s in %s"
-msgstr "Neuspjelo pronalaženje svojstva %s u %s"
+msgstr "Neuspjeli pronalazak svojstva %s u %s"
 
 #: src/editor-animation.c:1047
 #, c-format
 msgid "Failed to retrieve va_list value: %s"
-msgstr "Neuspjelo dohvaćanje va_list vrijednosti: %s"
+msgstr "Neuspjelo primanje va_list vrijednosti: %s"
 
-#: src/editor-application-actions.c:206
-msgid "Text Editor Website"
-msgstr "Web stranica uređivača teksta"
-
-#: src/editor-application-actions.c:207
+#: src/editor-application-actions.c:210
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
-"  gogo https://launchpad.net/~trebelnik-stefina\n"
-"Milo Ivir <mail@milotype.de>"
+"  gogo https://launchpad.net/~trebelnik-stefina"
 
 #: src/editor-application.c:460
 msgid "Standard input was requested multiple times. Ignoring request."
-msgstr "Standardni unos je zatražen više puta. Zahtjev se zanemaruje."
+msgstr "Standardan unos je zatražen više puta. Zanemarujem zahtjev."
 
 #: src/editor-application.c:464
 msgid "Standard input is not supported on this platform. Ignoring request."
-msgstr "Standardni unos nije podržan na ovoj platformi. Zahtjev se zanemaruje."
+msgstr "Standardan unos nije podržan na ovoj platformi. Zanemarujem zahtjev."
 
-#: src/editor-application.c:659
+#: src/editor-application.c:552
+msgid "Bugs may be reported at:"
+msgstr "Greške možete prijaviti na:"
+
+#: src/editor-application.c:554
+msgid "[FILES…]"
+msgstr "[DATOTEKE…]"
+
+#: src/editor-application.c:667
 msgid "Do not restore session at startup"
 msgstr "Ne obnavljaj sesiju pri pokretanju"
 
-#: src/editor-application.c:660
+#: src/editor-application.c:668
 msgid "Open provided files in a new window"
 msgstr "Otvori navedene datoteke u novom prozoru"
 
-#: src/editor-document.c:1938
+#: src/editor-application.c:669
+msgid "Run a new instance of Text Editor (implies --ignore-session)"
+msgstr ""
+"Pokreni novi primjerak Uređivača teksta (podrazumjeva korištenje --ignore-"
+"session)"
+
+#: src/editor-application.c:670
+msgid "Print version information and exit"
+msgstr "Prikaži informaciju inačice i izađi"
+
+#: src/editor-document.c:2003
 msgid "[Read-Only]"
 msgstr "[Samo-za-čitanje]"
+
+#: src/editor-document.c:2291 src/editor-page.c:1015
+#: src/editor-sidebar-item.c:489
+msgid "New Document"
+msgstr "Novi dokument"
 
 #: src/editor-file-manager.c:99
 msgid "File path is NULL"
@@ -328,7 +352,7 @@ msgstr "ILCreateFromPath() je neuspjelo"
 #: src/editor-file-manager.c:164
 #, c-format
 msgid "Cannot convert “%s” into a valid NSURL."
-msgstr "Nije moguće pretvoriti „%s” u valjani NSURL."
+msgstr "Nemoguća pretvorba “%s” u valjan NSURL."
 
 #: src/editor-info-bar.c:76
 msgid "_Discard Changes and Reload"
@@ -340,17 +364,17 @@ msgstr "Datoteka je promijenjena na disku"
 
 #: src/editor-info-bar.c:80
 msgid "The file has been changed by another program."
-msgstr "Datoteka je promijenjena s jednim drugim programom."
+msgstr "Datoteka je promijenjena od strane drugog programa."
 
 #: src/editor-info-bar.c:89 src/editor-window.ui:216
 msgid "Save _As…"
 msgstr "_Spremi kao…"
 
-#: src/editor-info-bar.c:91 src/editor-info-bar.ui:61
+#: src/editor-info-bar.c:91 src/editor-info-bar.ui:63
 msgid "Document Restored"
 msgstr "Dokument je obnovljen"
 
-#: src/editor-info-bar.c:92 src/editor-info-bar.ui:70
+#: src/editor-info-bar.c:92 src/editor-info-bar.ui:73
 msgid "Unsaved document has been restored."
 msgstr "Nespremljeni dokument je obnovljen."
 
@@ -358,7 +382,7 @@ msgstr "Nespremljeni dokument je obnovljen."
 msgid "_Save…"
 msgstr "_Spremi…"
 
-#: src/editor-info-bar.c:100 src/editor-info-bar.ui:77
+#: src/editor-info-bar.c:100 src/editor-info-bar.ui:81
 msgid "_Discard…"
 msgstr "_Odbaci…"
 
@@ -374,15 +398,15 @@ msgstr "Nespremljene promjene u dokumentu su obnovljene."
 msgid "Could Not Open File"
 msgstr "Nemoguće otvaranje datoteke"
 
-#: src/editor-info-bar.ui:28
+#: src/editor-info-bar.ui:29
 msgid "You do not have permission to open the file."
 msgstr "Nemate dozvolu za otvaranje datoteke."
 
-#: src/editor-info-bar.ui:35
+#: src/editor-info-bar.ui:37
 msgid "_Retry"
 msgstr "_Pokušaj ponovno"
 
-#: src/editor-info-bar.ui:42
+#: src/editor-info-bar.ui:44
 msgid "Open As _Administrator"
 msgstr "Otvori kao _administrator"
 
@@ -402,43 +426,42 @@ msgstr "Nema nedavnih dokumenata"
 msgid "No Results Found"
 msgstr "Nema pronađenih rezultata"
 
-#: src/editor-page.c:987 src/editor-sidebar-item.c:489
-msgid "New Document"
-msgstr "Novi dokument"
-
-#: src/editor-page.c:1009 src/editor-properties-dialog.c:74
+#: src/editor-page.c:1041 src/editor-properties-dialog.c:74
 #: src/editor-sidebar-item.c:84
 msgid "Draft"
 msgstr "Skica"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1021
+#: src/editor-page.c:1053
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (Administrator)"
 
-#: src/editor-page.c:1029 src/editor-sidebar-item.c:98
+#: src/editor-page.c:1063 src/editor-sidebar-item.c:98
 msgid "Document Portal"
 msgstr "Portal dokumenta"
 
-#: src/editor-page.c:1080
+#: src/editor-page.c:1110
 msgid "Failed to save document"
-msgstr "Neuspjelo spremanje dokumenta"
+msgstr "Neuspješno spremanje dokumenta"
 
-#: src/editor-page.c:1165
+#: src/editor-page.c:1111 src/editor-window.ui:359
+msgid "_Close"
+msgstr "_Zatvori"
+
+#: src/editor-page.c:1195
 msgid "Save As"
 msgstr "Spremi kao"
 
-#: src/editor-page.c:1168 src/editor-window-actions.c:133
+#: src/editor-page.c:1198
 msgid "Save"
 msgstr "Spremi"
 
-#: src/editor-page.c:1169 src/editor-window-actions.c:132
-#: src/editor-window-actions.c:271 src/editor-window-actions.c:380
+#: src/editor-page.c:1199 src/editor-window-actions.c:352
 msgid "Cancel"
 msgstr "Odustani"
 
-#: src/editor-page.c:1309
+#: src/editor-page.c:1348
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Redak %u, Stupac %u"
@@ -490,7 +513,7 @@ msgstr "8"
 
 #: src/editor-page.ui:197
 msgid "Spaces Per Indent"
-msgstr "Broj znakova razmaka za uvlaku"
+msgstr "Broj znakova razmaka za tabulator"
 
 #: src/editor-page.ui:199
 msgid "Use Tab Size"
@@ -520,7 +543,7 @@ msgstr "Istakni trenutni redak"
 
 #: src/editor-preferences-dialog.ui:91
 msgid "Display Overview Map"
-msgstr "Prikaži kartu pregleda"
+msgstr "Prikaži okvir pregleda"
 
 #: src/editor-preferences-dialog.ui:99
 msgid "Right Margin"
@@ -550,7 +573,7 @@ msgstr "Obnovi sesiju"
 
 #: src/editor-preferences-dialog.ui:121
 msgid "Return to your previous session when Text Editor is started"
-msgstr "Vrati prethodnu sesiju kada se uređivač teksta pokrene"
+msgstr "Vrati prijašnju sesiju kada se uređivač teksta pokrene"
 
 #: src/editor-preferences-dialog.ui:136
 msgid "_Clear History"
@@ -599,7 +622,7 @@ msgstr "Statistika"
 
 #: src/editor-properties-dialog.ui:66
 msgid "Lines"
-msgstr "Redci"
+msgstr "Redova"
 
 #: src/editor-properties-dialog.ui:81
 msgid "Words"
@@ -607,25 +630,25 @@ msgstr "Riječi"
 
 #: src/editor-properties-dialog.ui:96
 msgid "Characters, No Spaces"
-msgstr "Znakovi, bez razmaka"
+msgstr "Znakova (bez razmaka)"
 
 #: src/editor-properties-dialog.ui:111
 msgid "All Characters"
 msgstr "Svi znakovi"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:254 src/editor-window-actions.c:242
 msgid "_Discard"
 msgstr "_Odbaci"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:254
 msgid "_Discard All"
 msgstr "_Odbaci sve"
 
-#: src/editor-save-changes-dialog.c:264
+#: src/editor-save-changes-dialog.c:257
 msgid "Save Changes?"
-msgstr "Spremiti promjene?"
+msgstr "Spremi promjene?"
 
-#: src/editor-save-changes-dialog.c:266
+#: src/editor-save-changes-dialog.c:258
 msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
@@ -633,25 +656,27 @@ msgstr ""
 "Otvoreni dokumenti sadrže nespremljene promjene. Promjene koje nisu "
 "spremljene bit će trajno izgubljene."
 
-#: src/editor-save-changes-dialog.c:268
+#: src/editor-save-changes-dialog.c:261 src/editor-window-actions.c:116
+#: src/editor-window-actions.c:241
 msgid "_Cancel"
 msgstr "_Odustani"
 
-#: src/editor-save-changes-dialog.c:270 src/editor-window.ui:210
+#: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:117
+#: src/editor-window.ui:210
 msgid "_Save"
 msgstr "_Spremi"
 
-#: src/editor-save-changes-dialog.c:303
+#: src/editor-save-changes-dialog.c:293
 msgid "Untitled Document"
 msgstr "Neimenovani dokument"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:306
+#: src/editor-save-changes-dialog.c:296
 #, c-format
 msgid "%s (new)"
 msgstr "%s (novo)"
 
-#: src/editor-save-changes-dialog.c:327
+#: src/editor-save-changes-dialog.c:317
 msgid "Save changes for this document"
 msgstr "Spremi promjene za ovaj dokument"
 
@@ -661,11 +686,11 @@ msgstr "Zamijeni"
 
 #: src/editor-search-bar.ui:51
 msgid "Move to previous match (Ctrl+Shift+G)"
-msgstr "Prijeđi na prethodno podudaranje (Ctrl+Shift+G)"
+msgstr "Idi na prijašnje podudaranje (Ctrl+Shift+G)"
 
 #: src/editor-search-bar.ui:59
 msgid "Move to next match (Ctrl+G)"
-msgstr "Prijeđi na sljedeće podudaranje (Ctrl+G)"
+msgstr "Idi na sljedeće podudaranje (Ctrl+G)"
 
 #: src/editor-search-bar.ui:71
 msgid "Search & Replace (Ctrl+H)"
@@ -687,15 +712,15 @@ msgstr "_Zamijeni"
 msgid "Replace _All"
 msgstr "Zamijeni _sve"
 
-#: src/editor-search-bar.ui:141
+#: src/editor-search-bar.ui:140
 msgid "Re_gular expressions"
-msgstr "Re_gularni izrazi"
+msgstr "Ob_ičan izraz"
 
-#: src/editor-search-bar.ui:147
+#: src/editor-search-bar.ui:146
 msgid "_Case sensitive"
-msgstr "Razlikovanje velikih i malih _slova"
+msgstr "Mala/Velika slova"
 
-#: src/editor-search-bar.ui:153
+#: src/editor-search-bar.ui:152
 msgid "Match whole _word only"
 msgstr "Podudaraj samo _cijelu riječ"
 
@@ -705,25 +730,25 @@ msgstr "Podudaraj samo _cijelu riječ"
 msgid "%u of %u"
 msgstr "%u od %u"
 
-#: src/editor-spell-menu.c:191
-msgid "Languages"
-msgstr "Jezici"
-
-#: src/editor-spell-menu.c:192
+#: src/editor-spell-menu.c:248
 msgid "Add to Dictionary"
 msgstr "Dodaj u rječnik"
 
-#: src/editor-spell-menu.c:193
+#: src/editor-spell-menu.c:249
 msgid "Ignore"
 msgstr "Zanemari"
 
-#: src/editor-spell-menu.c:194
+#: src/editor-spell-menu.c:250
 msgid "Check Spelling"
 msgstr "Provjera pravopisa"
 
+#: src/editor-spell-menu.c:259
+msgid "Languages"
+msgstr "Jezici"
+
 #: src/editor-theme-selector.ui:22 src/editor-theme-selector.ui:24
 msgid "Follow system style"
-msgstr "Koristi izgled sustava"
+msgstr "Izgled sustava"
 
 #: src/editor-theme-selector.ui:39 src/editor-theme-selector.ui:41
 msgid "Light style"
@@ -733,91 +758,87 @@ msgstr "Svjetli izgled"
 msgid "Dark style"
 msgstr "Tamni izgled"
 
-#: src/editor-utils.c:346
+#: src/editor-utils.c:348
 msgid "Just now"
 msgstr "Upravo sada"
 
-#: src/editor-utils.c:348
-msgid "An hour ago"
-msgstr "Prije sat vremena"
-
 #: src/editor-utils.c:350
+msgid "An hour ago"
+msgstr "Prije jednog sata"
+
+#: src/editor-utils.c:352
 msgid "Yesterday"
 msgstr "Jučer"
 
-#: src/editor-utils.c:356
+#: src/editor-utils.c:358
 msgid "About a year ago"
-msgstr "Otprilike prije jedne godine"
+msgstr "Oko jedne godine"
 
-#: src/editor-utils.c:360
+#: src/editor-utils.c:362
 #, c-format
 msgid "About %u year ago"
 msgid_plural "About %u years ago"
-msgstr[0] "Otprilike prije %u godine"
-msgstr[1] "Otprilike prije %u godine"
-msgstr[2] "Otprilike prije %u godina"
+msgstr[0] "Oko %u godine"
+msgstr[1] "Oko %u godine"
+msgstr[2] "Oko %u godina"
 
-#: src/editor-utils.c:368
+#: src/editor-utils.c:370
 msgid "Unix/Linux (LF)"
 msgstr "Unix/Linux (LF)"
 
-#: src/editor-utils.c:369
+#: src/editor-utils.c:371
 msgid "Mac OS Classic (CR)"
 msgstr "Mac OS Classic (CR)"
 
-#: src/editor-utils.c:370
+#: src/editor-utils.c:372
 msgid "Windows (CR+LF)"
 msgstr "Windows (CR+LF)"
 
-#: src/editor-utils.c:400
+#: src/editor-utils.c:402
 msgid "Automatically Detected"
 msgstr "Automatski otkriveno"
 
-#: src/editor-utils.c:416
+#: src/editor-utils.c:418
 msgid "Character Encoding:"
-msgstr "Kodiranje znakova:"
+msgstr "Kôdne stranice:"
 
-#: src/editor-utils.c:451
+#: src/editor-utils.c:453
 msgid "Line Ending:"
-msgstr "Kraj retka:"
+msgstr "Završetak retka:"
+
+#: src/editor-window-actions.c:110
+msgid "Saving changes will replace the previously saved version."
+msgstr "Spremanje promjena će zamijeniti prije spremljenu inačicu."
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:128
+#: src/editor-window-actions.c:113
 #, c-format
 msgid "Save Changes to “%s”?"
-msgstr "Spremiti promjene za „%s”?"
+msgstr "Spremi promjene u “%s”?"
 
-#: src/editor-window-actions.c:131
-msgid "Saving changes will replace the previously saved version."
-msgstr "Spremanje promjena će zamijeniti prethodno spremljenu inačicu."
-
-#. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:267
-#, c-format
-msgid "Discard Changes to “%s”?"
-msgstr "Odbaciti promjene za „%s”?"
-
-#: src/editor-window-actions.c:270
+#: src/editor-window-actions.c:235
 msgid "Unsaved changes will be permanently lost."
 msgstr "Nespremljene promjene biti će trajno izgubljene."
 
-#: src/editor-window-actions.c:272
-msgid "Discard"
-msgstr "Odbaci"
+#. translators: %s is replaced with the document title
+#: src/editor-window-actions.c:238
+#, c-format
+msgid "Discard Changes to “%s”?"
+msgstr "Odbaci promjene za “%s”?"
 
-#: src/editor-window-actions.c:376
+#: src/editor-window-actions.c:348
 msgid "Open File"
 msgstr "Otvori datoteku"
 
-#: src/editor-window-actions.c:379
+#: src/editor-window-actions.c:351
 msgid "Open"
 msgstr "Otvori"
 
-#: src/editor-window-actions.c:404
+#: src/editor-window-actions.c:376
 msgid "All Files"
 msgstr "Sve datoteke"
 
-#: src/editor-window-actions.c:409
+#: src/editor-window-actions.c:381
 msgid "Text Files"
 msgstr "Datoteke teksta"
 
@@ -826,11 +847,23 @@ msgstr "Datoteke teksta"
 msgid "Document Type: %s"
 msgstr "Vrsta dokumenta: %s"
 
+#: src/editor-window.c:508
+msgid "Zoom in"
+msgstr "Uvećaj"
+
+#: src/editor-window.c:520
+msgid "Zoom out"
+msgstr "Umanji"
+
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:727
+#: src/editor-window.c:733
 #, c-format
 msgid "%s (%s) - Text Editor"
-msgstr "%s (%s) – uređivač teksta"
+msgstr "%s (%s) - Uređivač teksta"
+
+#: src/editor-window.c:1136
+msgid "There are unsaved documents"
+msgstr "Postoje nespremljeni dokumenti"
 
 #: src/editor-window.ui:78
 msgid "_Open"
@@ -882,7 +915,7 @@ msgstr "_Odbaci promjene"
 
 #: src/editor-window.ui:228
 msgid "_Find/Replace…"
-msgstr "_Pronađi/Zamijeni…"
+msgstr "_Pretraži/Zamijeni…"
 
 #: src/editor-window.ui:234
 msgid "_Print"
@@ -902,7 +935,7 @@ msgstr "_Prečaci tipkovnice"
 
 #: src/editor-window.ui:255
 msgid "_Help"
-msgstr "_Pomoć"
+msgstr "_Priručnik"
 
 #: src/editor-window.ui:259
 msgid "A_bout Text Editor"
@@ -946,29 +979,31 @@ msgstr "Provjer_a pravopisa"
 
 #: src/editor-window.ui:328
 msgid "_Document Type"
-msgstr "_Vrsta dokumenta"
+msgstr ""
+"_ • Pritisni Otvori tipku\n"
+"• Pritisni Nova kartica tipku\n"
+"• Pritisni Ctrl+N za početak novog dokumenta\n"
+"• Pritisni Ctrl+O za pregled dokumenta\n"
+"\n"
+"Ili, pritisni Ctrl+W za zatvaranje dokumenta.rsta dokumenta"
 
 #: src/editor-window.ui:336
 msgid "Move _Left"
-msgstr "Pomakni se u_lijevo"
+msgstr "Premjesti _lijevo"
 
 #: src/editor-window.ui:341
 msgid "Move _Right"
-msgstr "Pomakni se u_desno"
+msgstr "Premjesti _desno"
 
 #: src/editor-window.ui:348
 msgid "_Move to New Window"
-msgstr "_Prijeđi u novi prozor"
+msgstr "_Premjesti u novi prozor"
 
 #: src/editor-window.ui:355
 msgid "Close _Other Tabs"
 msgstr "Zatvori _ostale kartice"
 
-#: src/editor-window.ui:359
-msgid "_Close"
-msgstr "_Zatvori"
-
-#: src/enchant/editor-enchant-spell-provider.c:92
+#: src/enchant/editor-enchant-spell-provider.c:123
 msgid "Enchant 2"
 msgstr "Enchant 2"
 
@@ -990,32 +1025,32 @@ msgstr "Novi prozor"
 #: src/help-overlay.ui:21
 msgctxt "shortcut window"
 msgid "Move document to new window"
-msgstr "Pomakni dokument u novi prozor"
+msgstr "Premjesti dokument u novi prozor"
 
 #: src/help-overlay.ui:28
 msgctxt "shortcut window"
 msgid "Move to next tab"
-msgstr "Prijeđi na sljedeću karticu"
+msgstr "Idi u sljedeću karticu"
 
 #: src/help-overlay.ui:34
 msgctxt "shortcut window"
 msgid "Move to previous tab"
-msgstr "Prijeđi na prethodnu karticu"
+msgstr "Idi u prijašnju karticu"
 
 #: src/help-overlay.ui:40
 msgctxt "shortcut window"
 msgid "Reorder after next tab"
-msgstr "Prerasporedi iza sljedeće kartice"
+msgstr "Pomakni nakon sljedeće kartice"
 
 #: src/help-overlay.ui:46
 msgctxt "shortcut window"
 msgid "Reorder before previous tab"
-msgstr "Prerasporedi ispred prethodne kartice"
+msgstr "Pomakni prije prijašnje kartice"
 
 #: src/help-overlay.ui:52
 msgctxt "shortcut window"
 msgid "Restore previously closed tab"
-msgstr "Obnovi prethodno zatvorenu karticu"
+msgstr "Otvori prije zatvorenu karticu"
 
 #: src/help-overlay.ui:59
 msgctxt "shortcut window"
@@ -1055,7 +1090,7 @@ msgstr "Otvori dokument"
 #: src/help-overlay.ui:97
 msgctxt "shortcut window"
 msgid "Find document by name"
-msgstr "Pronađi dokument po nazivu"
+msgstr "Potraži dokument po nazivu"
 
 #: src/help-overlay.ui:103
 msgctxt "shortcut window"
@@ -1070,7 +1105,7 @@ msgstr "Spremi kao"
 #: src/help-overlay.ui:115
 msgctxt "shortcut window"
 msgid "Find/Replace"
-msgstr "Pronađi/Zamijeni"
+msgstr "Pretraži/Zamijeni"
 
 #: src/help-overlay.ui:121
 msgctxt "shortcut window"
@@ -1110,12 +1145,12 @@ msgstr "Poništi i ponovi"
 #: src/help-overlay.ui:162
 msgctxt "shortcut window"
 msgid "Undo previous command"
-msgstr "Poništi prethodnu naredbu"
+msgstr "Poništi prijašnju naredbu"
 
 #: src/help-overlay.ui:168
 msgctxt "shortcut window"
 msgid "Redo previous command"
-msgstr "Ponovi prethodnu naredbu"
+msgstr "Ponovi prijašnju naredbu"
 
 #: src/help-overlay.ui:175
 msgctxt "shortcut window"
@@ -1180,37 +1215,37 @@ msgstr "Odaberi trenutni redak"
 #: src/help-overlay.ui:245
 msgctxt "shortcut window"
 msgid "Movements"
-msgstr "Pomicanja"
+msgstr "Pomicanje"
 
 #: src/help-overlay.ui:249
 msgctxt "shortcut window"
 msgid "Move to beginning of document"
-msgstr "Prijeđi na početak dokumenta"
+msgstr "Pomakni na početak dokumenta"
 
 #: src/help-overlay.ui:255
 msgctxt "shortcut window"
 msgid "Move to end of document"
-msgstr "Prijeđi na kraj dokumenta"
+msgstr "Pomakni na kraj dokumenta"
 
 #: src/help-overlay.ui:261
 msgctxt "shortcut window"
 msgid "Move to start of previous paragraph"
-msgstr "Prijeđi na početak prethodnog odlomka"
+msgstr "Pomakni na početak prijašnjeg odlomka"
 
 #: src/help-overlay.ui:267
 msgctxt "shortcut window"
 msgid "Move to end of next paragraph"
-msgstr "Prijeđi na kraj sljedećeg odlomka"
+msgstr "Pomakni na kraj prijašnjeg odlomka"
 
 #: src/help-overlay.ui:273
 msgctxt "shortcut window"
 msgid "Move current or selected lines up"
-msgstr "Pomakni trenutni redak ili odabrane retke prema gore"
+msgstr "Pomakni trenutni ili odabrani redak gore"
 
 #: src/help-overlay.ui:279
 msgctxt "shortcut window"
 msgid "Move current or selected lines down"
-msgstr "Pomakni trenutni redak ili odabrane retke prema dolje"
+msgstr "Pomakni trenutni ili odabrani redak dolje"
 
 #: src/help-overlay.ui:285
 msgctxt "shortcut window"
@@ -1246,3 +1281,15 @@ msgstr "Obriši od pokazivača do kraja odlomka"
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "Obriši trenutni redak"
+
+#~ msgid "Christian Hergert, et al."
+#~ msgstr "Christian Hergert i sur."
+
+#~ msgid "A Text Editor for GNOME"
+#~ msgstr "Uređivač teksta za GNOME"
+
+#~ msgid "Text Editor Website"
+#~ msgstr "Web stranica uređivača teksta"
+
+#~ msgid "Discard"
+#~ msgstr "Odbaci"
