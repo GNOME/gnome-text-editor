@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
 "POT-Creation-Date: 2022-08-11 17:58+0000\n"
-"PO-Revision-Date: 2022-08-13 16:20+0200\n"
+"PO-Revision-Date: 2022-08-13 16:28+0200\n"
 "Last-Translator: \n"
 "Language-Team: Croatian <hr@li.org>\n"
 "Language: hr\n"
@@ -82,7 +82,7 @@ msgstr "Treba li uređivač umetnuti više znakova razmak umjesto tabulatora."
 
 #: data/org.gnome.TextEditor.gschema.xml:40
 msgid "Auto Indent"
-msgstr "Automatsko poravnanje"
+msgstr "Automatsko uvlačenje"
 
 #: data/org.gnome.TextEditor.gschema.xml:41
 msgid "Automatically indent new lines copying the previous line's indentation."
@@ -215,7 +215,7 @@ msgstr "Automatski provjeri pravopis"
 #: data/org.gnome.TextEditor.gschema.xml:114
 msgid "If enabled, then Text Editor will check spelling as you type."
 msgstr ""
-"Ako je omogućeno, tada će uređivač retka provjeravati pravopis tijekom "
+"Ako je omogućeno, tada će uređivač teksta provjeravati pravopis tijekom "
 "tipkanja."
 
 #: data/org.gnome.TextEditor.gschema.xml:118
@@ -513,7 +513,7 @@ msgstr "8"
 
 #: src/editor-page.ui:197
 msgid "Spaces Per Indent"
-msgstr "Broj znakova razmaka za tabulator"
+msgstr "Broj znakova razmaka za uvlaku"
 
 #: src/editor-page.ui:199
 msgid "Use Tab Size"
@@ -979,13 +979,7 @@ msgstr "Provjer_a pravopisa"
 
 #: src/editor-window.ui:328
 msgid "_Document Type"
-msgstr ""
-"_ • Pritisni Otvori tipku\n"
-"• Pritisni Nova kartica tipku\n"
-"• Pritisni Ctrl+N za početak novog dokumenta\n"
-"• Pritisni Ctrl+O za pregled dokumenta\n"
-"\n"
-"Ili, pritisni Ctrl+W za zatvaranje dokumenta.rsta dokumenta"
+msgstr "_Vrsta dokumenta"
 
 #: src/editor-window.ui:336
 msgid "Move _Left"
@@ -1235,7 +1229,7 @@ msgstr "Pomakni na početak prijašnjeg odlomka"
 #: src/help-overlay.ui:267
 msgctxt "shortcut window"
 msgid "Move to end of next paragraph"
-msgstr "Pomakni na kraj prijašnjeg odlomka"
+msgstr "Pomakni na kraj sljedećeg odlomka"
 
 #: src/help-overlay.ui:273
 msgctxt "shortcut window"
