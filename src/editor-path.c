@@ -22,15 +22,20 @@
 
 #include "config.h"
 
+#include <glib.h>
 #include <string.h>
-#include <unistd.h>
-#include <wordexp.h>
+
+#ifdef G_OS_UNIX
+# include <unistd.h>
+# include <wordexp.h>
+#endif
 
 #include "editor-path-private.h"
 
-gchar *
+char *
 _editor_path_expand (const gchar *path)
 {
+#ifdef G_OS_UNIX
   wordexp_t state = { 0 };
   char *escaped = NULL;
   char *ret = NULL;
@@ -55,11 +60,15 @@ _editor_path_expand (const gchar *path)
   g_free (escaped);
 
   return ret;
+#else
+  return g_strdup (path);
+#endif
 }
 
-gchar *
+char *
 _editor_path_collapse (const gchar *path)
 {
+#ifdef G_OS_UNIX
   g_autofree gchar *expanded = NULL;
 
   if (path == NULL)
@@ -77,4 +86,7 @@ _editor_path_collapse (const gchar *path)
                              NULL);
 
   return g_steal_pointer (&expanded);
+#else
+  return g_strdup (path);
+#endif
 }
