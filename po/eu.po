@@ -6,8 +6,8 @@
 msgid ""
 msgstr "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues\n"
-"POT-Creation-Date: 2022-07-22 18:35+0000\n"
-"PO-Revision-Date: 2022-08-07 01:54+0000\n"
+"POT-Creation-Date: 2022-08-11 17:58+0000\n"
+"PO-Revision-Date: 2022-08-16 01:54+0000\n"
 "Last-Translator: Asier Sarasua Garmendia <asiersarasua@ni.eus>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
@@ -17,8 +17,9 @@ msgstr "Project-Id-Version: gnome-text-editor master\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
-msgid "Christian Hergert, et al."
-msgstr "Christian Hergert, et al."
+#: src/editor-application-actions.c:197
+msgid "The GNOME Project"
+msgstr "GNOME proiektua"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:8
@@ -28,8 +29,8 @@ msgid "Text Editor"
 msgstr "Testu-editorea"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:10
-msgid "A Text Editor for GNOME"
-msgstr "GNOMErako testu-editorea"
+msgid "Edit text files"
+msgstr "Editatu testu-fitxategiak"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:12
 msgid ""
@@ -266,10 +267,6 @@ msgstr "Ez da aurkitu %s propietatea %s(e)n"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Huts egin du zerrendako ba_lioa atzitzeak: %s"
 
-#: src/editor-application-actions.c:197
-msgid "The GNOME Project"
-msgstr "GNOME proiektua"
-
 #: src/editor-application-actions.c:210
 msgid "translator-credits"
 msgstr "translator-credits"
@@ -286,27 +283,31 @@ msgstr "Sarrera estandarra ez da onartzen plataforma honetan. Eskariari ez ikusi
 msgid "Bugs may be reported at:"
 msgstr "Eman akatsen berri hemen:"
 
-#: src/editor-application.c:666
+#: src/editor-application.c:554
+msgid "[FILES…]"
+msgstr "[FITXATEGIAK…]"
+
+#: src/editor-application.c:667
 msgid "Do not restore session at startup"
 msgstr "Ez berrezarri saioa abioan"
 
-#: src/editor-application.c:667
+#: src/editor-application.c:668
 msgid "Open provided files in a new window"
 msgstr "Ireki emandako fitxategiak leiho berrian"
 
-#: src/editor-application.c:668
+#: src/editor-application.c:669
 msgid "Run a new instance of Text Editor (implies --ignore-session)"
 msgstr "Exekutatu testu-editorearen beste instantzia bat (--ignore-session inplikatzen du)"
 
-#: src/editor-application.c:669
+#: src/editor-application.c:670
 msgid "Print version information and exit"
 msgstr "Erakutsi bertsioaren informazioa eta irten"
 
-#: src/editor-document.c:1948
+#: src/editor-document.c:2003
 msgid "[Read-Only]"
 msgstr "[Irakurtzeko soilik]"
 
-#: src/editor-document.c:2236 src/editor-page.c:987
+#: src/editor-document.c:2291 src/editor-page.c:1015
 #: src/editor-sidebar-item.c:489
 msgid "New Document"
 msgstr "Dokumentu berria"
@@ -400,42 +401,42 @@ msgstr "Ez dago azken aldiko dokumenturik"
 msgid "No Results Found"
 msgstr "Ez da emaitzarik aurkitu"
 
-#: src/editor-page.c:1009 src/editor-properties-dialog.c:74
+#: src/editor-page.c:1041 src/editor-properties-dialog.c:74
 #: src/editor-sidebar-item.c:84
 msgid "Draft"
 msgstr "Zirriborroa"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1021
+#: src/editor-page.c:1053
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (administratzailea)"
 
-#: src/editor-page.c:1029 src/editor-sidebar-item.c:98
+#: src/editor-page.c:1063 src/editor-sidebar-item.c:98
 msgid "Document Portal"
 msgstr "Dokumentu-ataria"
 
-#: src/editor-page.c:1075
+#: src/editor-page.c:1110
 msgid "Failed to save document"
 msgstr "Huts egin du dokumentua gordetzeak"
 
-#: src/editor-page.c:1076 src/editor-window.ui:359
+#: src/editor-page.c:1111 src/editor-window.ui:359
 msgid "_Close"
 msgstr "It_xi"
 
-#: src/editor-page.c:1160
+#: src/editor-page.c:1195
 msgid "Save As"
 msgstr "Gorde honela"
 
-#: src/editor-page.c:1163
+#: src/editor-page.c:1198
 msgid "Save"
 msgstr "Gorde"
 
-#: src/editor-page.c:1164 src/editor-window-actions.c:352
+#: src/editor-page.c:1199 src/editor-window-actions.c:352
 msgid "Cancel"
 msgstr "Utzi"
 
-#: src/editor-page.c:1310
+#: src/editor-page.c:1348
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "%u lerr., %u zut."
@@ -1243,6 +1244,12 @@ msgstr "Ezabatu kurtsoretik paragrafoaren amaierara"
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "Ezabatu uneko lerroa"
+
+#~ msgid "Christian Hergert, et al."
+#~ msgstr "Christian Hergert, et al."
+
+#~ msgid "A Text Editor for GNOME"
+#~ msgstr "GNOMErako testu-editorea"
 
 #~ msgid "Learn More about Text Editor"
 #~ msgstr "Ikasi gehiagi testu-editoreari buruz"
