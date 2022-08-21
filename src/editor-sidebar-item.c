@@ -66,16 +66,33 @@ G_DEFINE_TYPE (EditorSidebarItem, editor_sidebar_item, G_TYPE_OBJECT)
 
 static GParamSpec *properties [N_PROPS];
 
+static gboolean
+file_is_from_document_portal (GFile *file)
+{
+#ifdef G_OS_UNIX
+  static char *docportal;
+
+  if G_UNLIKELY (docportal == NULL)
+    docportal = g_strdup_printf ("/run/user/%u/doc/", getuid ());
+
+  if (g_file_is_native (file))
+    {
+      const char *path = g_file_peek_path (file);
+
+      if (g_str_has_prefix (path, docportal))
+        return TRUE;
+    }
+#endif
+
+  return FALSE;
+}
+
 static void
 editor_sidebar_item_update_subtitle (EditorSidebarItem *self)
 {
-  static char *docportal = NULL;
   g_autoptr(GFile) dir = NULL;
 
   g_assert (EDITOR_IS_SIDEBAR_ITEM (self));
-
-  if (docportal == NULL)
-    docportal = g_strdup_printf ("/run/user/%u/doc/", getuid ());
 
   g_free (self->subtitle);
 
@@ -87,22 +104,13 @@ editor_sidebar_item_update_subtitle (EditorSidebarItem *self)
 
   /* Can happen, but implausible since someone tried to open "/" */
   if (!(dir = g_file_get_parent (self->file)))
-    {
-      self->subtitle = g_strdup ("");
-    }
+    self->subtitle = g_strdup ("");
+  else if (file_is_from_document_portal (dir))
+    self->subtitle = g_strdup (_("Document Portal"));
   else if (g_file_is_native (dir))
-    {
-      const char *peek = g_file_peek_path (dir);
-
-      if (g_str_has_prefix (peek, docportal))
-        self->subtitle = g_strdup (_("Document Portal"));
-      else
-        self->subtitle = _editor_path_collapse (g_file_peek_path (dir));
-    }
+    self->subtitle = _editor_path_collapse (g_file_peek_path (dir));
   else
-    {
-      self->subtitle = g_file_get_uri (dir);
-    }
+    self->subtitle = g_file_get_uri (dir);
 }
 
 static void
