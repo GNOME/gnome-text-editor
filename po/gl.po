@@ -10,10 +10,10 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-05-13 19:23+0000\n"
-"PO-Revision-Date: 2022-05-16 10:05+0200\n"
+"POT-Creation-Date: 2022-08-11 17:58+0000\n"
+"PO-Revision-Date: 2022-08-21 17:37+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
-"Language-Team: Galician <Proxecto Trasno <proxecto@trasno.gal>>\n"
+"Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,19 +27,22 @@ msgstr ""
 "X-Generator: Gtranslator 40.0\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
-msgid "Christian Hergert, et al."
-msgstr "Christian Hergert, e outros."
+#: src/editor-application-actions.c:197
+msgid "The GNOME Project"
+msgstr "O Proxecto GNOME"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
-#: data/org.gnome.TextEditor.desktop.in.in:7
 #: data/org.gnome.TextEditor.desktop.in.in:8
-#: src/editor-application-actions.c:192
+#: data/org.gnome.TextEditor.desktop.in.in:9
+#: src/editor-application-actions.c:195 src/editor-window.c:1213
 msgid "Text Editor"
 msgstr "Editor de texto"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:10
-msgid "A Text Editor for GNOME"
-msgstr "Un editor de texto para GNOME"
+#, fuzzy
+#| msgid "View and edit text files"
+msgid "Edit text files"
+msgstr "Ver e editar ficheiros de texto"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:12
 msgid ""
@@ -49,7 +52,11 @@ msgstr ""
 "Editor de Texto de GNOME é un editor de texto sinxelo enfocado unha "
 "experiencia predeterminada agradábel."
 
-#: data/org.gnome.TextEditor.desktop.in.in:9
+#: data/org.gnome.TextEditor.desktop.in.in:4
+msgid "write;notepad;"
+msgstr "escribir;caderno de notas"
+
+#: data/org.gnome.TextEditor.desktop.in.in:10
 msgid "View and edit text files"
 msgstr "Ver e editar ficheiros de texto"
 
@@ -291,11 +298,7 @@ msgstr "Produciuse un erro ao buscar a propiedade %s en %s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Produciuse un erro ao recuperar o valor da va_list: %s"
 
-#: src/editor-application-actions.c:206
-msgid "Text Editor Website"
-msgstr "Sitio web do Editor de texto"
-
-#: src/editor-application-actions.c:207
+#: src/editor-application-actions.c:210
 msgid "translator-credits"
 msgstr "Fran Diéguez <frandieguez@gnome.org>, 2022"
 
@@ -309,17 +312,39 @@ msgid "Standard input is not supported on this platform. Ignoring request."
 msgstr ""
 "A entrada estándar non é compatíbel nesta plataforma. Ignorando a solicitude."
 
-#: src/editor-application.c:659
+#: src/editor-application.c:552
+msgid "Bugs may be reported at:"
+msgstr "Os erros deben reportarse a:"
+
+#: src/editor-application.c:554
+msgid "[FILES…]"
+msgstr "[FICHEIROS…]"
+
+#: src/editor-application.c:667
 msgid "Do not restore session at startup"
 msgstr "Non restaurar sesión ao iniciar"
 
-#: src/editor-application.c:660
+#: src/editor-application.c:668
 msgid "Open provided files in a new window"
 msgstr "Abrir os ficheiros fornecidos nunha nova xanela"
 
-#: src/editor-document.c:1938
+#: src/editor-application.c:669
+msgid "Run a new instance of Text Editor (implies --ignore-session)"
+msgstr ""
+"Executar unha nova instancia do Editor de texto (implica --ignore-session)"
+
+#: src/editor-application.c:670
+msgid "Print version information and exit"
+msgstr "Imprimir a información da versión e saír"
+
+#: src/editor-document.c:2003
 msgid "[Read-Only]"
 msgstr "[Só lectura]"
+
+#: src/editor-document.c:2291 src/editor-page.c:1015
+#: src/editor-sidebar-item.c:489
+msgid "New Document"
+msgstr "Novo documento"
 
 #: src/editor-file-manager.c:99
 msgid "File path is NULL"
@@ -355,11 +380,11 @@ msgstr "O ficheiro foi cambiado por outro programa."
 msgid "Save _As…"
 msgstr "Gardar _como…"
 
-#: src/editor-info-bar.c:91 src/editor-info-bar.ui:61
+#: src/editor-info-bar.c:91 src/editor-info-bar.ui:63
 msgid "Document Restored"
 msgstr "Documento restaurado"
 
-#: src/editor-info-bar.c:92 src/editor-info-bar.ui:70
+#: src/editor-info-bar.c:92 src/editor-info-bar.ui:73
 msgid "Unsaved document has been restored."
 msgstr "Restaurouse o documento sen cargar."
 
@@ -367,7 +392,7 @@ msgstr "Restaurouse o documento sen cargar."
 msgid "_Save…"
 msgstr "_Gardar…"
 
-#: src/editor-info-bar.c:100 src/editor-info-bar.ui:77
+#: src/editor-info-bar.c:100 src/editor-info-bar.ui:81
 msgid "_Discard…"
 msgstr "_Rexeitar…"
 
@@ -383,15 +408,15 @@ msgstr "Restauráronse os cambios sen gardar do documento."
 msgid "Could Not Open File"
 msgstr "Non hai ningún ficheiro aberto"
 
-#: src/editor-info-bar.ui:28
+#: src/editor-info-bar.ui:29
 msgid "You do not have permission to open the file."
 msgstr "Non ten permisos para abrir o ficheiro."
 
-#: src/editor-info-bar.ui:35
+#: src/editor-info-bar.ui:37
 msgid "_Retry"
 msgstr "_Reintentar"
 
-#: src/editor-info-bar.ui:42
+#: src/editor-info-bar.ui:44
 msgid "Open As _Administrator"
 msgstr "Abrir como _administrador"
 
@@ -411,43 +436,42 @@ msgstr "Non hai documentos recentes"
 msgid "No Results Found"
 msgstr "Non se atoparon resultados"
 
-#: src/editor-page.c:987 src/editor-sidebar-item.c:489
-msgid "New Document"
-msgstr "Novo documento"
-
-#: src/editor-page.c:1009 src/editor-properties-dialog.c:74
+#: src/editor-page.c:1041 src/editor-properties-dialog.c:74
 #: src/editor-sidebar-item.c:84
 msgid "Draft"
 msgstr "Borrador"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1021
+#: src/editor-page.c:1053
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (Administrador)"
 
-#: src/editor-page.c:1029 src/editor-sidebar-item.c:98
+#: src/editor-page.c:1063 src/editor-sidebar-item.c:98
 msgid "Document Portal"
 msgstr "Portal de documentos"
 
-#: src/editor-page.c:1080
+#: src/editor-page.c:1110
 msgid "Failed to save document"
 msgstr "Produciuse un fallo ao gardar o documento"
 
-#: src/editor-page.c:1165
+#: src/editor-page.c:1111 src/editor-window.ui:359
+msgid "_Close"
+msgstr "Pecha_r"
+
+#: src/editor-page.c:1195
 msgid "Save As"
 msgstr "Gardar como"
 
-#: src/editor-page.c:1168 src/editor-window-actions.c:133
+#: src/editor-page.c:1198
 msgid "Save"
 msgstr "Gardar"
 
-#: src/editor-page.c:1169 src/editor-window-actions.c:132
-#: src/editor-window-actions.c:271 src/editor-window-actions.c:380
+#: src/editor-page.c:1199 src/editor-window-actions.c:352
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: src/editor-page.c:1309
+#: src/editor-page.c:1348
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Li %u, Col %u"
@@ -622,19 +646,19 @@ msgstr "Caracteres, sen espacios"
 msgid "All Characters"
 msgstr "Todos os caracters"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:254 src/editor-window-actions.c:242
 msgid "_Discard"
 msgstr "_Rexeitar"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:254
 msgid "_Discard All"
 msgstr "_Rexeitar todo"
 
-#: src/editor-save-changes-dialog.c:264
+#: src/editor-save-changes-dialog.c:257
 msgid "Save Changes?"
 msgstr "Desexas gardar os cambios?"
 
-#: src/editor-save-changes-dialog.c:266
+#: src/editor-save-changes-dialog.c:258
 msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
@@ -642,25 +666,27 @@ msgstr ""
 "Abrir documentos que conteñen cambios sen gardar. Os cambios non gardados "
 "perderanse de forma permanente."
 
-#: src/editor-save-changes-dialog.c:268
+#: src/editor-save-changes-dialog.c:261 src/editor-window-actions.c:116
+#: src/editor-window-actions.c:241
 msgid "_Cancel"
 msgstr "_Cancelar"
 
-#: src/editor-save-changes-dialog.c:270 src/editor-window.ui:210
+#: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:117
+#: src/editor-window.ui:210
 msgid "_Save"
 msgstr "_Gardar"
 
-#: src/editor-save-changes-dialog.c:303
+#: src/editor-save-changes-dialog.c:293
 msgid "Untitled Document"
 msgstr "Documento sen título"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:306
+#: src/editor-save-changes-dialog.c:296
 #, c-format
 msgid "%s (new)"
 msgstr "%s (novo)"
 
-#: src/editor-save-changes-dialog.c:327
+#: src/editor-save-changes-dialog.c:317
 msgid "Save changes for this document"
 msgstr "Buscar e substituír nun documento"
 
@@ -696,15 +722,15 @@ msgstr "S_ubstituír"
 msgid "Replace _All"
 msgstr "Substituír _todo"
 
-#: src/editor-search-bar.ui:141
+#: src/editor-search-bar.ui:140
 msgid "Re_gular expressions"
 msgstr "Expresións re_gulares"
 
-#: src/editor-search-bar.ui:147
+#: src/editor-search-bar.ui:146
 msgid "_Case sensitive"
 msgstr "_Coincidir con maiúsculas e minúsculas"
 
-#: src/editor-search-bar.ui:153
+#: src/editor-search-bar.ui:152
 msgid "Match whole _word only"
 msgstr "Coincidir só coa _palabra enteira"
 
@@ -714,21 +740,21 @@ msgstr "Coincidir só coa _palabra enteira"
 msgid "%u of %u"
 msgstr "%u de %u"
 
-#: src/editor-spell-menu.c:191
-msgid "Languages"
-msgstr "Linguaxes"
-
-#: src/editor-spell-menu.c:192
+#: src/editor-spell-menu.c:248
 msgid "Add to Dictionary"
 msgstr "Engadir ao dicionario"
 
-#: src/editor-spell-menu.c:193
+#: src/editor-spell-menu.c:249
 msgid "Ignore"
 msgstr "Ignorar"
 
-#: src/editor-spell-menu.c:194
+#: src/editor-spell-menu.c:250
 msgid "Check Spelling"
 msgstr "Verificación ortográfica"
+
+#: src/editor-spell-menu.c:259
+msgid "Languages"
+msgstr "Linguaxes"
 
 #: src/editor-theme-selector.ui:22 src/editor-theme-selector.ui:24
 msgid "Follow system style"
@@ -742,90 +768,86 @@ msgstr "Estilo claro"
 msgid "Dark style"
 msgstr "Estilo escuro"
 
-#: src/editor-utils.c:346
+#: src/editor-utils.c:348
 msgid "Just now"
 msgstr "Agora mesmo"
 
-#: src/editor-utils.c:348
+#: src/editor-utils.c:350
 msgid "An hour ago"
 msgstr "Hai unha hora"
 
-#: src/editor-utils.c:350
+#: src/editor-utils.c:352
 msgid "Yesterday"
 msgstr "Onte"
 
-#: src/editor-utils.c:356
+#: src/editor-utils.c:358
 msgid "About a year ago"
 msgstr "Hai un ano"
 
-#: src/editor-utils.c:360
+#: src/editor-utils.c:362
 #, c-format
 msgid "About %u year ago"
 msgid_plural "About %u years ago"
 msgstr[0] "Hai %u ano"
 msgstr[1] "Hai %u anos"
 
-#: src/editor-utils.c:368
+#: src/editor-utils.c:370
 msgid "Unix/Linux (LF)"
 msgstr "Unix/Linux (LF)"
 
-#: src/editor-utils.c:369
+#: src/editor-utils.c:371
 msgid "Mac OS Classic (CR)"
 msgstr "Mac OS Classic (CR)"
 
-#: src/editor-utils.c:370
+#: src/editor-utils.c:372
 msgid "Windows (CR+LF)"
 msgstr "Windows (CR+LF)"
 
-#: src/editor-utils.c:400
+#: src/editor-utils.c:402
 msgid "Automatically Detected"
 msgstr "Detectado automáticamente"
 
-#: src/editor-utils.c:416
+#: src/editor-utils.c:418
 msgid "Character Encoding:"
 msgstr "Codificación de caracteres:"
 
-#: src/editor-utils.c:451
+#: src/editor-utils.c:453
 msgid "Line Ending:"
 msgstr "Final de liña:"
 
-#. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:128
-#, c-format
-msgid "Save Changes to “%s”?"
-msgstr "Gardar cambios a “%s”?"
-
-#: src/editor-window-actions.c:131
+#: src/editor-window-actions.c:110
 msgid "Saving changes will replace the previously saved version."
 msgstr "Ao gardar os cambios subsituirá a versión gardada anteriormente."
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:267
+#: src/editor-window-actions.c:113
+#, c-format
+msgid "Save Changes to “%s”?"
+msgstr "Gardar cambios a “%s”?"
+
+#: src/editor-window-actions.c:235
+msgid "Unsaved changes will be permanently lost."
+msgstr "Os cambios non gardados perderanse."
+
+#. translators: %s is replaced with the document title
+#: src/editor-window-actions.c:238
 #, c-format
 msgid "Discard Changes to “%s”?"
 msgstr "Desexa rexeitar os cambios de «%s»?"
 
-#: src/editor-window-actions.c:270
-msgid "Unsaved changes will be permanently lost."
-msgstr "Os cambios non gardados perderanse."
-
-#: src/editor-window-actions.c:272
-msgid "Discard"
-msgstr "Rexeitar"
-
-#: src/editor-window-actions.c:376
+#: src/editor-window-actions.c:348
 msgid "Open File"
 msgstr "Abrir ficheiro"
 
-#: src/editor-window-actions.c:379
+#: src/editor-window-actions.c:351
 msgid "Open"
 msgstr "Abrir"
 
-#: src/editor-window-actions.c:404
+#: src/editor-window-actions.c:376
 msgid "All Files"
 msgstr "Todos os ficheiros"
 
-#: src/editor-window-actions.c:409
+#: src/editor-window-actions.c:381
 msgid "Text Files"
 msgstr "Ficheiros de texto"
 
@@ -834,11 +856,28 @@ msgstr "Ficheiros de texto"
 msgid "Document Type: %s"
 msgstr "Tipo de documento: %s"
 
+#: src/editor-window.c:508
+#| msgctxt "shortcut window"
+#| msgid "Zoom In"
+msgid "Zoom in"
+msgstr "Ampliar"
+
+#: src/editor-window.c:520
+#| msgctxt "shortcut window"
+#| msgid "Zoom Out"
+msgid "Zoom out"
+msgstr "Afastar"
+
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:727
+#: src/editor-window.c:733
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - Editor de texto"
+
+#: src/editor-window.c:1136
+#| msgid "Failed to save document"
+msgid "There are unsaved documents"
+msgstr "Hai documentos sen gardar"
 
 #: src/editor-window.ui:78
 msgid "_Open"
@@ -972,11 +1011,7 @@ msgstr "Mover a unha _xanela nova"
 msgid "Close _Other Tabs"
 msgstr "Pechar as _outras lapelas"
 
-#: src/editor-window.ui:359
-msgid "_Close"
-msgstr "Pecha_r"
-
-#: src/enchant/editor-enchant-spell-provider.c:92
+#: src/enchant/editor-enchant-spell-provider.c:123
 msgid "Enchant 2"
 msgstr "Enchant 2"
 
@@ -1254,6 +1289,18 @@ msgstr "Eliminar desde o cursor ao final do parágrafo"
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "Eliminar a liña actual"
+
+#~ msgid "Christian Hergert, et al."
+#~ msgstr "Christian Hergert, e outros."
+
+#~ msgid "A Text Editor for GNOME"
+#~ msgstr "Un editor de texto para GNOME"
+
+#~ msgid "Text Editor Website"
+#~ msgstr "Sitio web do Editor de texto"
+
+#~ msgid "Discard"
+#~ msgstr "Rexeitar"
 
 #~ msgid "Highlight Mode"
 #~ msgstr "Modo de realce"
