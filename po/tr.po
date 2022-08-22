@@ -1,5 +1,5 @@
 # Turkish translation for gnome-text-editor.
-# Copyright (C) 2021 gnome-text-editor's COPYRIGHT HOLDER
+# Copyright (C) 2021-2022 gnome-text-editor's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-text-editor package.
 #
 # Hasan Merkit <hasanmerkit@outlook.com>, 2022.
@@ -11,20 +11,21 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-07-22 18:35+0000\n"
-"PO-Revision-Date: 2022-07-22 01:23+0300\n"
-"Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
+"POT-Creation-Date: 2022-08-11 17:58+0000\n"
+"PO-Revision-Date: 2022-08-18 18:16+0300\n"
+"Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
-msgid "Christian Hergert, et al."
-msgstr "Christian Hergert ve diğerleri"
+#: src/editor-application-actions.c:197
+msgid "The GNOME Project"
+msgstr "GNOME Projesi"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:8
@@ -34,8 +35,8 @@ msgid "Text Editor"
 msgstr "Metin Düzenleyici"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:10
-msgid "A Text Editor for GNOME"
-msgstr "GNOME için Metin Düzenleyici"
+msgid "Edit text files"
+msgstr "Metin dosyalarını düzenle"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:12
 msgid ""
@@ -233,7 +234,7 @@ msgstr "Pencereyi Yeniden Renklendir"
 
 #: data/org.gnome.TextEditor.gschema.xml:124
 msgid "Use the style-scheme to recolor the application window."
-msgstr "Uygulama penceresini yeniden renklendirmek için biçem şemasını kullan"
+msgstr "Uygulama penceresini yeniden renklendirmek için biçem şemasını kullan."
 
 #: data/org.gnome.TextEditor.gschema.xml:132
 msgid "Keybindings"
@@ -289,10 +290,6 @@ msgstr "%2$s içinde %1$s özelliği bulmada hata oluştu"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "va_list değeri alınamadı: %s"
 
-#: src/editor-application-actions.c:197
-msgid "The GNOME Project"
-msgstr "GNOME Projesi"
-
 #: src/editor-application-actions.c:210
 msgid "translator-credits"
 msgstr ""
@@ -313,28 +310,32 @@ msgstr ""
 msgid "Bugs may be reported at:"
 msgstr "Hatalar şuraya bildirilebilir:"
 
-#: src/editor-application.c:666
+#: src/editor-application.c:554
+msgid "[FILES…]"
+msgstr "[DOSYALAR…]"
+
+#: src/editor-application.c:667
 msgid "Do not restore session at startup"
 msgstr "Başlangıçta oturumu kurtarma"
 
-#: src/editor-application.c:667
+#: src/editor-application.c:668
 msgid "Open provided files in a new window"
 msgstr "Sağlanan dosyaları yeni pencerede aç"
 
-#: src/editor-application.c:668
+#: src/editor-application.c:669
 msgid "Run a new instance of Text Editor (implies --ignore-session)"
 msgstr ""
 "Metin Düzenleyici’nin yeni örneğini çalıştır (--ignore-session imlenir)"
 
-#: src/editor-application.c:669
+#: src/editor-application.c:670
 msgid "Print version information and exit"
 msgstr "Sürüm bilgisini yazdır ve çık"
 
-#: src/editor-document.c:1948
+#: src/editor-document.c:2003
 msgid "[Read-Only]"
 msgstr "[Salt Okunur]"
 
-#: src/editor-document.c:2236 src/editor-page.c:987
+#: src/editor-document.c:2291 src/editor-page.c:1015
 #: src/editor-sidebar-item.c:489
 msgid "New Document"
 msgstr "Yeni Belge"
@@ -428,42 +429,42 @@ msgstr "Son Kullanılan Belge Yok"
 msgid "No Results Found"
 msgstr "Sonuç Bulunamadı"
 
-#: src/editor-page.c:1009 src/editor-properties-dialog.c:74
+#: src/editor-page.c:1041 src/editor-properties-dialog.c:74
 #: src/editor-sidebar-item.c:84
 msgid "Draft"
 msgstr "Taslak"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1021
+#: src/editor-page.c:1053
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (Yönetici)"
 
-#: src/editor-page.c:1029 src/editor-sidebar-item.c:98
+#: src/editor-page.c:1063 src/editor-sidebar-item.c:98
 msgid "Document Portal"
 msgstr "Belge Geçidi"
 
-#: src/editor-page.c:1075
+#: src/editor-page.c:1110
 msgid "Failed to save document"
 msgstr "Belge kaydedilirken hata"
 
-#: src/editor-page.c:1076 src/editor-window.ui:359
+#: src/editor-page.c:1111 src/editor-window.ui:359
 msgid "_Close"
 msgstr "_Kapat"
 
-#: src/editor-page.c:1160
+#: src/editor-page.c:1195
 msgid "Save As"
 msgstr "Farklı Kaydet"
 
-#: src/editor-page.c:1163
+#: src/editor-page.c:1198
 msgid "Save"
 msgstr "Kaydet"
 
-#: src/editor-page.c:1164 src/editor-window-actions.c:352
+#: src/editor-page.c:1199 src/editor-window-actions.c:352
 msgid "Cancel"
 msgstr "İptal"
 
-#: src/editor-page.c:1310
+#: src/editor-page.c:1348
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "St %u, Süt %u"
@@ -1275,42 +1276,3 @@ msgstr "İmleçten paragraf sonuna dek sil"
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "Geçerli satırı sil"
-
-#~ msgid "Text Editor Website"
-#~ msgstr "Metin Düzenleyici Web Sitesi"
-
-#~ msgid "Discard"
-#~ msgstr "Görmezden Gel"
-
-#~ msgid "Highlight Mode"
-#~ msgstr "Vurgulama Modu"
-
-#~ msgid "Recent Documents"
-#~ msgstr "Son Belgeler"
-
-#~ msgid "Br_owse Files…"
-#~ msgstr "_Dosyaları Gözat …"
-
-#~ msgid "Search"
-#~ msgstr "Ara"
-
-#~ msgid "Search documents (Ctrl+K)"
-#~ msgstr "Belgeleri ara (Ctrl+K)"
-
-#~ msgid "Open document (Ctrl+O)"
-#~ msgstr "Belge aç (Strg+O)"
-
-#~ msgid "Font"
-#~ msgstr "Yazı Tipi"
-
-#~ msgid "_Copy All"
-#~ msgstr "_Hepsini Seç"
-
-#~ msgid "_Preferences"
-#~ msgstr "_Özellikler"
-
-#~ msgid "_Highlight Mode"
-#~ msgstr "_Vurgulama Modu"
-
-#~ msgid " Website"
-#~ msgstr " Web Sitesi"
