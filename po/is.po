@@ -8,7 +8,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues"
 "\n"
 "POT-Creation-Date: 2022-07-22 18:34+0000\n"
-"PO-Revision-Date: 2022-08-23 11:56+0000\n"
+"PO-Revision-Date: 2022-08-23 13:18+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic\n"
 "Language: is\n"
@@ -41,7 +41,7 @@ msgstr ""
 
 #: data/org.gnome.TextEditor.desktop.in.in:9
 msgid "View and edit text files"
-msgstr ""
+msgstr "Skoða og breyta textaskrám"
 
 #: data/org.gnome.TextEditor.gschema.xml:16
 msgid "Auto Save Delay"
@@ -53,7 +53,7 @@ msgstr ""
 
 #: data/org.gnome.TextEditor.gschema.xml:26
 msgid "Style Variant"
-msgstr ""
+msgstr "Tilbrigði stíls"
 
 #: data/org.gnome.TextEditor.gschema.xml:27
 msgid ""
@@ -63,7 +63,7 @@ msgstr ""
 
 #: data/org.gnome.TextEditor.gschema.xml:35
 msgid "Indentation Style"
-msgstr ""
+msgstr "Stíll inndráttar"
 
 #: data/org.gnome.TextEditor.gschema.xml:36
 msgid "If the editor should insert multiple spaces characters instead of tabs."
@@ -87,16 +87,15 @@ msgstr ""
 
 #: data/org.gnome.TextEditor.gschema.xml:52
 msgid "Indent Width"
-msgstr ""
+msgstr "Breidd inndráttar"
 
 #: data/org.gnome.TextEditor.gschema.xml:53
 msgid "The number of spaces to indent or -1 to use tab-width."
 msgstr ""
 
 #: data/org.gnome.TextEditor.gschema.xml:57
-#, fuzzy
 msgid "Show Line Numbers"
-msgstr "Sýna &línunúmer"
+msgstr "Birta línunúmer"
 
 #: data/org.gnome.TextEditor.gschema.xml:58
 msgid "If line numbers should be displayed next to each line."
@@ -104,7 +103,7 @@ msgstr ""
 
 #: data/org.gnome.TextEditor.gschema.xml:62
 msgid "Show Right Margin"
-msgstr ""
+msgstr "Sýna hægri spássíu"
 
 #: data/org.gnome.TextEditor.gschema.xml:63
 msgid "If a margin line should be displayed on the right of the editor."
@@ -120,7 +119,6 @@ msgid ""
 msgstr ""
 
 #: data/org.gnome.TextEditor.gschema.xml:73
-#, fuzzy
 msgid "Show Overview Map"
 msgstr "Birta yfirlitskort"
 
@@ -132,7 +130,7 @@ msgstr ""
 
 #: data/org.gnome.TextEditor.gschema.xml:78
 msgid "Show Background Grid"
-msgstr ""
+msgstr "Birta bakgrunnshnitanet"
 
 #: data/org.gnome.TextEditor.gschema.xml:79
 msgid "If enabled, a blueprint style grid is printed on the editor background."
@@ -163,7 +161,6 @@ msgid "If the default system monospace font should be used."
 msgstr ""
 
 #: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:57
-#, fuzzy
 msgid "Custom Font"
 msgstr "Sérsniðið letur"
 
@@ -209,7 +206,7 @@ msgstr ""
 
 #: data/org.gnome.TextEditor.gschema.xml:123
 msgid "Recolor Window"
-msgstr ""
+msgstr "Endurlita glugga"
 
 #: data/org.gnome.TextEditor.gschema.xml:124
 msgid "Use the style-scheme to recolor the application window."
@@ -217,14 +214,13 @@ msgstr ""
 
 #: data/org.gnome.TextEditor.gschema.xml:132
 msgid "Keybindings"
-msgstr ""
+msgstr "Flýtilyklar (lyklabindingar)"
 
 #: data/org.gnome.TextEditor.gschema.xml:133
 msgid "The keybindings to use within Text Editor."
 msgstr ""
 
 #: data/org.gnome.TextEditor.gschema.xml:137
-#, fuzzy
 msgid "Last Save Directory"
 msgstr "Síðasta mappa sem vistað var í"
 
@@ -233,9 +229,8 @@ msgid "The directory last used in a save or save-as dialog."
 msgstr ""
 
 #: data/org.gnome.TextEditor.gschema.xml:142
-#, fuzzy
 msgid "Draw Spaces"
-msgstr "Vista"
+msgstr "Teikna bil"
 
 #: data/org.gnome.TextEditor.gschema.xml:143
 msgid "The various types of spaces to draw in the editor."
@@ -243,7 +238,7 @@ msgstr ""
 
 #: data/org.gnome.TextEditor.gschema.xml:147
 msgid "Enable Snippets"
-msgstr ""
+msgstr "Virkja úrklippur (snippets)"
 
 #: data/org.gnome.TextEditor.gschema.xml:148
 msgid ""
@@ -271,7 +266,7 @@ msgstr ""
 
 #: src/editor-application-actions.c:206
 msgid "Text Editor Website"
-msgstr ""
+msgstr "Vefsvæði Textaritilsins"
 
 #: src/editor-application-actions.c:207
 msgid "translator-credits"
@@ -286,9 +281,8 @@ msgid "Open provided files in a new window"
 msgstr ""
 
 #: src/editor-document.c:1938
-#, fuzzy
 msgid "[Read-Only]"
-msgstr "Skrifvarið"
+msgstr "[Skrifvarið]"
 
 #: src/editor-file-manager.c:99
 msgid "File path is NULL"
@@ -303,14 +297,13 @@ msgid "ILCreateFromPath() failed"
 msgstr "ILCreateFromPath() mistókst"
 
 #: src/editor-file-manager.c:164
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot convert “%s” into a valid NSURL."
 msgstr "Get ekki umbreytt '%s' í gilt NSURL."
 
 #: src/editor-info-bar.c:76
-#, fuzzy
 msgid "_Discard Changes and Reload"
-msgstr "Henda breytingum og endurlesa"
+msgstr "_Henda breytingum og endurlesa"
 
 #: src/editor-info-bar.c:79
 msgid "File Has Changed on Disk"
@@ -326,21 +319,19 @@ msgstr "Vist_a sem..."
 
 #: src/editor-info-bar.c:91 src/editor-info-bar.ui:61
 msgid "Document Restored"
-msgstr ""
+msgstr "Skjal endurheimt"
 
 #: src/editor-info-bar.c:92 src/editor-info-bar.ui:70
 msgid "Unsaved document has been restored."
 msgstr ""
 
 #: src/editor-info-bar.c:98
-#, fuzzy
 msgid "_Save…"
-msgstr "Vista"
+msgstr "_Vista…"
 
 #: src/editor-info-bar.c:100 src/editor-info-bar.ui:77
-#, fuzzy
 msgid "_Discard…"
-msgstr "_Henda"
+msgstr "_Henda…"
 
 #: src/editor-info-bar.c:102
 msgid "Draft Changes Restored"
@@ -356,16 +347,15 @@ msgstr "Get ekki opnað skrá"
 
 #: src/editor-info-bar.ui:28
 msgid "You do not have permission to open the file."
-msgstr ""
+msgstr "Þú hefur ekki réttindi til að opna skrána."
 
 #: src/editor-info-bar.ui:35
 msgid "_Retry"
 msgstr "_Reyna aftur"
 
 #: src/editor-info-bar.ui:42
-#, fuzzy
 msgid "Open As _Administrator"
-msgstr "Opna sem kerfisstjóri"
+msgstr "Opn_a sem kerfisstjóri"
 
 #: src/editor-language-dialog.ui:6 src/editor-window.c:194
 msgid "Document Type"
@@ -377,10 +367,9 @@ msgstr "Engar samsvaranir"
 
 #: src/editor-open-popover.ui:67
 msgid "No Recent Documents"
-msgstr ""
+msgstr "Engin nýleg skjöl"
 
 #: src/editor-open-popover.ui:94
-#, fuzzy
 msgid "No Results Found"
 msgstr "Engar niðurstöður fundust"
 
@@ -389,16 +378,15 @@ msgid "New Document"
 msgstr "Nýtt skjal"
 
 #: src/editor-page.c:1009 src/editor-properties-dialog.c:74
-#, fuzzy
 #: src/editor-sidebar-item.c:84
 msgid "Draft"
 msgstr "Drög"
 
 #. translators: %s is replaced with the path on the filesystem
 #: src/editor-page.c:1021
-#, fuzzy, c-format
+#, c-format
 msgid "%s (Administrator)"
-msgstr "Kerfisstjóri %s"
+msgstr "%s (kerfisstjóri)"
 
 #: src/editor-page.c:1029 src/editor-sidebar-item.c:98
 msgid "Document Portal"
@@ -406,10 +394,9 @@ msgstr ""
 
 #: src/editor-page.c:1080
 msgid "Failed to save document"
-msgstr ""
+msgstr "Tókst ekki að vista skjalið"
 
 #: src/editor-page.c:1165
-#, fuzzy
 msgid "Save As"
 msgstr "Vista sem"
 
@@ -418,7 +405,6 @@ msgid "Save"
 msgstr "Vista"
 
 #: src/editor-page.c:1169 src/editor-window-actions.c:132
-#, fuzzy
 #: src/editor-window-actions.c:271 src/editor-window-actions.c:380
 msgid "Cancel"
 msgstr "Hætta við"
@@ -426,66 +412,60 @@ msgstr "Hætta við"
 #: src/editor-page.c:1309
 #, c-format
 msgid "Ln %u, Col %u"
-msgstr ""
+msgstr "Lín %u, Dál %u"
 
 #: src/editor-page.ui:98
-#, fuzzy
 msgid "Go to Line"
-msgstr "Fara að línu"
+msgstr "Fara í línu"
 
 #: src/editor-page.ui:116
-#, fuzzy
 msgid "Go"
 msgstr "Fara"
 
 #: src/editor-page.ui:153 src/editor-window.ui:277
-#, fuzzy
 msgid "Indentation"
 msgstr "Inndráttur"
 
 #: src/editor-page.ui:156 src/editor-window.ui:279
-#, fuzzy
 msgid "_Automatic Indentation"
-msgstr "Sjálfvirkur inndráttur"
+msgstr "Sjálfvirkur _inndráttur"
 
 #. Translators: this is a tab character, not a browser tab
 #: src/editor-page.ui:162 src/editor-window.ui:283
-#, fuzzy
 msgid "_Tabs"
-msgstr "F_lipar"
+msgstr "_Dálkar"
 
 #: src/editor-page.ui:167 src/editor-window.ui:288
-#, fuzzy
 msgid "_Spaces"
-msgstr "Bil"
+msgstr "_Bil"
 
 #: src/editor-page.ui:174 src/editor-window.ui:293
 msgid "Spaces _Per Tab"
-msgstr ""
+msgstr "_Bil á dálk"
 
 #: src/editor-page.ui:176 src/editor-page.ui:204
 msgid "2"
-msgstr ""
+msgstr "2"
 
 #: src/editor-page.ui:181 src/editor-page.ui:209
 msgid "4"
-msgstr ""
+msgstr "4"
 
 #: src/editor-page.ui:186 src/editor-page.ui:214
 msgid "6"
-msgstr ""
+msgstr "6"
 
 #: src/editor-page.ui:191 src/editor-page.ui:219
 msgid "8"
-msgstr ""
+msgstr "8"
 
 #: src/editor-page.ui:197
 msgid "Spaces Per Indent"
-msgstr ""
+msgstr "_Bil á inndráttarbreidd"
 
 #: src/editor-page.ui:199
 msgid "Use Tab Size"
-msgstr ""
+msgstr "Nota stærð inndráttar"
 
 #. translators: Ln is short for "Line Number"
 #: src/editor-position-label.ui:15
@@ -494,19 +474,16 @@ msgstr "Ln"
 
 #. translators: Col is short for "Column"
 #: src/editor-position-label.ui:35
-#, fuzzy
 msgid "Col"
 msgstr "Dál"
 
 #: src/editor-preferences-dialog.ui:17
-#, fuzzy
 msgid "Appearance"
 msgstr "Útlit"
 
 #: src/editor-preferences-dialog.ui:79
-#, fuzzy
 msgid "Display Grid Pattern"
-msgstr "Birta _möskvamynstur"
+msgstr "Birta möskvamynstur"
 
 #: src/editor-preferences-dialog.ui:85
 msgid "Highlight Current Line"
@@ -522,16 +499,15 @@ msgstr "Hægri spássía"
 
 #: src/editor-preferences-dialog.ui:102
 msgid "Margin Position"
-msgstr ""
+msgstr "Staðsetning spássíu"
 
 #: src/editor-preferences-dialog.ui:110
-#, fuzzy
 msgid "Behavior"
 msgstr "Hegðun"
 
 #: src/editor-preferences-dialog.ui:113
 msgid "Discover Document Settings"
-msgstr ""
+msgstr "Skoða stillingar skjals"
 
 #: src/editor-preferences-dialog.ui:114
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
@@ -550,7 +526,6 @@ msgid "_Clear History"
 msgstr "_Hreinsa feril"
 
 #: src/editor-preferences-font.c:100
-#, fuzzy
 msgid "Select Font"
 msgstr "Veldu letur"
 
@@ -600,22 +575,20 @@ msgid "Words"
 msgstr "Orð"
 
 #: src/editor-properties-dialog.ui:96
-#, fuzzy
 msgid "Characters, No Spaces"
-msgstr "Bókstafir (án bila)"
+msgstr "Bókstafir, án bila"
 
 #: src/editor-properties-dialog.ui:111
 msgid "All Characters"
 msgstr "Allir stafir"
 
 #: src/editor-save-changes-dialog.c:258
-#, fuzzy
 msgid "_Discard"
 msgstr "_Henda"
 
 #: src/editor-save-changes-dialog.c:258
 msgid "_Discard All"
-msgstr ""
+msgstr "_Henda öllu"
 
 #: src/editor-save-changes-dialog.c:264
 msgid "Save Changes?"
@@ -636,7 +609,6 @@ msgid "_Save"
 msgstr "_Vista"
 
 #: src/editor-save-changes-dialog.c:303
-#, fuzzy
 msgid "Untitled Document"
 msgstr "Ónefnt skjal"
 
@@ -644,28 +616,27 @@ msgstr "Ónefnt skjal"
 #: src/editor-save-changes-dialog.c:306
 #, c-format
 msgid "%s (new)"
-msgstr ""
+msgstr "%s (nýtt)"
 
 #: src/editor-save-changes-dialog.c:327
 msgid "Save changes for this document"
-msgstr ""
+msgstr "Vista breytingar á þessu skjali"
 
 #: src/editor-search-bar.ui:33
-#, fuzzy
 msgid "Replace"
 msgstr "Skipta út"
 
 #: src/editor-search-bar.ui:51
 msgid "Move to previous match (Ctrl+Shift+G)"
-msgstr ""
+msgstr "Fara á fyrri samsvörun (Ctrl+Shift+G)"
 
 #: src/editor-search-bar.ui:59
 msgid "Move to next match (Ctrl+G)"
-msgstr ""
+msgstr "Fara á næstu samsvörun (Ctrl+G)"
 
 #: src/editor-search-bar.ui:71
 msgid "Search & Replace (Ctrl+H)"
-msgstr ""
+msgstr "Leita og skipta út (Ctrl+H)"
 
 #: src/editor-search-bar.ui:81
 msgid "Toggle search options"
@@ -688,13 +659,12 @@ msgid "Re_gular expressions"
 msgstr "Re_glulegar segðir"
 
 #: src/editor-search-bar.ui:146
-#, fuzzy
 msgid "_Case sensitive"
 msgstr "_Næmt fyrir há og lágstöfum"
 
 #: src/editor-search-bar.ui:152
 msgid "Match whole _word only"
-msgstr ""
+msgstr "Passa einungis við _heil orð"
 
 #. translators: the first %u is replaced with the current position, the second with the number of search results
 #: src/editor-search-entry.c:197
@@ -703,7 +673,6 @@ msgid "%u of %u"
 msgstr "%u af %u"
 
 #: src/editor-spell-menu.c:191
-#, fuzzy
 msgid "Languages"
 msgstr "Tungumál"
 
@@ -712,26 +681,24 @@ msgid "Add to Dictionary"
 msgstr "Bæta við orðalista"
 
 #: src/editor-spell-menu.c:193
-#, fuzzy
 msgid "Ignore"
 msgstr "Hunsa"
 
 #: src/editor-spell-menu.c:194
-#, fuzzy
 msgid "Check Spelling"
 msgstr "Yfirfara stafsetningu"
 
 #: src/editor-theme-selector.ui:22 src/editor-theme-selector.ui:24
 msgid "Follow system style"
-msgstr ""
+msgstr "Fylgja stíl kerfis"
 
 #: src/editor-theme-selector.ui:39 src/editor-theme-selector.ui:41
 msgid "Light style"
-msgstr ""
+msgstr "Ljós stíll"
 
 #: src/editor-theme-selector.ui:57 src/editor-theme-selector.ui:59
 msgid "Dark style"
-msgstr ""
+msgstr "Dökkur stíll"
 
 #: src/editor-utils.c:348
 msgid "Just now"
@@ -742,21 +709,19 @@ msgid "An hour ago"
 msgstr "Fyrir klukkustund"
 
 #: src/editor-utils.c:352
-#, fuzzy
 msgid "Yesterday"
 msgstr "Í gær"
 
 #: src/editor-utils.c:358
-#, fuzzy
 msgid "About a year ago"
-msgstr "fyrir um einu ári síðan"
+msgstr "Fyrir um einu ári síðan"
 
 #: src/editor-utils.c:362
-#, fuzzy, c-format
+#, c-format
 msgid "About %u year ago"
 msgid_plural "About %u years ago"
-msgstr[0] ""
-msgstr[1] "daginn"
+msgstr[0] "Fyrir um %u ári síðan"
+msgstr[1] "Fyrir um %u árum síðan"
 
 #: src/editor-utils.c:370
 msgid "Unix/Linux (LF)"
@@ -784,9 +749,9 @@ msgstr "Línuendingar:"
 
 #. translators: %s is replaced with the document title
 #: src/editor-window-actions.c:128
-#, fuzzy, c-format
+#, c-format
 msgid "Save Changes to “%s”?"
-msgstr "Vista breytingar til '%s'?"
+msgstr "Vista breytingar á '%s'?"
 
 #: src/editor-window-actions.c:131
 msgid "Saving changes will replace the previously saved version."
@@ -796,11 +761,11 @@ msgstr ""
 #: src/editor-window-actions.c:267
 #, c-format
 msgid "Discard Changes to “%s”?"
-msgstr ""
+msgstr "Henda breytingum á “%s”?"
 
 #: src/editor-window-actions.c:270
 msgid "Unsaved changes will be permanently lost."
-msgstr ""
+msgstr "Óvistaðar breytingar munu tapast endanlega."
 
 #: src/editor-window-actions.c:272
 msgid "Discard"
@@ -855,7 +820,7 @@ msgstr "Valmynd"
 
 #: src/editor-window.ui:166
 msgid "Start or Open a Document"
-msgstr ""
+msgstr "Byrja eða opna skjal"
 
 #: src/editor-window.ui:169
 msgid ""
@@ -900,24 +865,20 @@ msgid "_Help"
 msgstr "_Hjálp"
 
 #: src/editor-window.ui:259
-#, fuzzy
 msgid "A_bout Text Editor"
-msgstr "_Um textaritilinn"
+msgstr "U_m textaritilinn"
 
 #: src/editor-window.ui:266
-#, fuzzy
 msgid "Show"
-msgstr "Sýna"
+msgstr "Birta"
 
 #: src/editor-window.ui:268
-#, fuzzy
 msgid "_Line Numbers"
-msgstr "Línunúmer"
+msgstr "_Línunúmer"
 
 #: src/editor-window.ui:272
-#, fuzzy
 msgid "_Right Margin"
-msgstr "Hægri spássía"
+msgstr "Hægr_i spássía"
 
 #: src/editor-window.ui:296
 msgid "_2"
@@ -936,19 +897,16 @@ msgid "_8"
 msgstr "_8"
 
 #: src/editor-window.ui:320
-#, fuzzy
 msgid "T_ext Wrapping"
-msgstr "Textaskrið"
+msgstr "T_extaskrið"
 
 #: src/editor-window.ui:324
-#, fuzzy
 msgid "Chec_k Spelling"
-msgstr "Athuga stafsetningu"
+msgstr "At_huga stafsetningu"
 
 #: src/editor-window.ui:328
-#, fuzzy
 msgid "_Document Type"
-msgstr "Tegund skjals"
+msgstr "Tegun_d skjals"
 
 #: src/editor-window.ui:336
 msgid "Move _Left"
@@ -963,24 +921,21 @@ msgid "_Move to New Window"
 msgstr "_Færa í nýjan glugga"
 
 #: src/editor-window.ui:355
-#, fuzzy
 msgid "Close _Other Tabs"
-msgstr "Loka öðrum flipum"
+msgstr "L_oka öðrum flipum"
 
 #: src/editor-window.ui:359
 msgid "_Close"
 msgstr "_Loka"
 
 #: src/enchant/editor-enchant-spell-provider.c:92
-#, fuzzy
 msgid "Enchant 2"
-msgstr "Enchant"
+msgstr "Enchant 2"
 
 #: src/help-overlay.ui:9
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Editor Shortcuts"
-msgstr "Flýtilyklar"
+msgstr "Flýtilyklar ritils"
 
 #: src/help-overlay.ui:12
 msgctxt "shortcut window"
@@ -988,27 +943,24 @@ msgid "Windows"
 msgstr "Windows"
 
 #: src/help-overlay.ui:15
-#, fuzzy
 msgctxt "shortcut window"
 msgid "New window"
-msgstr "Loka glugga"
+msgstr "Nýr gluggi"
 
 #: src/help-overlay.ui:21
 msgctxt "shortcut window"
 msgid "Move document to new window"
-msgstr ""
+msgstr "Færa skjal í nýjan glugga"
 
 #: src/help-overlay.ui:28
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Move to next tab"
-msgstr "Virkja næsta flipa"
+msgstr "Fara á næsta dálk"
 
 #: src/help-overlay.ui:34
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Move to previous tab"
-msgstr "Virkja fyrri flipa"
+msgstr "Fara á fyrri dálk"
 
 #: src/help-overlay.ui:40
 msgctxt "shortcut window"
@@ -1026,28 +978,24 @@ msgid "Restore previously closed tab"
 msgstr ""
 
 #: src/help-overlay.ui:59
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Zoom"
-msgstr "Renna _að"
+msgstr "Aðdráttur"
 
 #: src/help-overlay.ui:63
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Zoom In"
-msgstr "Renna frá"
+msgstr "Renna að"
 
 #: src/help-overlay.ui:69
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Zoom Out"
-msgstr "Renna _að"
+msgstr "Renna frá"
 
 #: src/help-overlay.ui:75
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Reset Zoom"
-msgstr "Renna _að"
+msgstr "Endurstilla aðdrátt"
 
 #: src/help-overlay.ui:82
 msgctxt "shortcut window"
@@ -1055,27 +1003,24 @@ msgid "Documents"
 msgstr "Skjöl"
 
 #: src/help-overlay.ui:85
-#, fuzzy
 msgctxt "shortcut window"
 msgid "New document"
-msgstr "Byrja nýtt skjal"
+msgstr "Nýtt skjal"
 
 #: src/help-overlay.ui:91
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Browse to open document"
-msgstr "Opna nýtt skjal"
+msgstr "Fara í opið skjal"
 
 #: src/help-overlay.ui:97
 msgctxt "shortcut window"
 msgid "Find document by name"
-msgstr ""
+msgstr "Finna skjal eftir nafni"
 
 #: src/help-overlay.ui:103
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Save"
-msgstr "Vista núverandi skjal"
+msgstr "Vista"
 
 #: src/help-overlay.ui:109
 msgctxt "shortcut window"
@@ -1083,16 +1028,14 @@ msgid "Save As"
 msgstr "Vista sem"
 
 #: src/help-overlay.ui:115
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Find/Replace"
-msgstr "Finna og skipta út"
+msgstr "Finna/Skipta út"
 
 #: src/help-overlay.ui:121
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Close document"
-msgstr "Opna nýtt skjal"
+msgstr "Loka skjali"
 
 #: src/help-overlay.ui:129
 msgctxt "shortcut window"
@@ -1142,19 +1085,17 @@ msgstr "Breytingar"
 #: src/help-overlay.ui:179
 msgctxt "shortcut window"
 msgid "Insert emoji into document"
-msgstr ""
+msgstr "Setja emoji-tákn inn í skjal"
 
 #: src/help-overlay.ui:185
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Search within the document"
-msgstr "Leita:"
+msgstr "Leita innan skjalsins"
 
 #: src/help-overlay.ui:191
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Search and replace within the document"
-msgstr "Leita:"
+msgstr "Leita og skipta út innan skjalsins"
 
 #: src/help-overlay.ui:197
 msgctxt "shortcut window"
@@ -1174,7 +1115,7 @@ msgstr "Víxla á milli Innsetning / Yfirskrifun"
 #: src/help-overlay.ui:215
 msgctxt "shortcut window"
 msgid "Toggle visibility of insertion caret"
-msgstr ""
+msgstr "Víxla sýnileika innsetningarbendils af/á"
 
 #: src/help-overlay.ui:222
 msgctxt "shortcut window"
@@ -1182,22 +1123,19 @@ msgid "Selections"
 msgstr "Myndval"
 
 #: src/help-overlay.ui:226
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Select all"
-msgstr "Velja allan texta"
+msgstr "Velja allt"
 
 #: src/help-overlay.ui:232
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Unselect all"
-msgstr "Velja _Allt"
+msgstr "Fjalægja allt val"
 
 #: src/help-overlay.ui:238
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Select current line"
-msgstr "Eyða núverandi línu"
+msgstr "Velja núverandi línu"
 
 #: src/help-overlay.ui:245
 msgctxt "shortcut window"
@@ -1210,7 +1148,6 @@ msgid "Move to beginning of document"
 msgstr "Fara á upphaf skjalsins"
 
 #: src/help-overlay.ui:255
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Move to end of document"
 msgstr "Fara í enda skjals"
@@ -1218,22 +1155,22 @@ msgstr "Fara í enda skjals"
 #: src/help-overlay.ui:261
 msgctxt "shortcut window"
 msgid "Move to start of previous paragraph"
-msgstr ""
+msgstr "Fara í byrjun fyrri málsgreinar"
 
 #: src/help-overlay.ui:267
 msgctxt "shortcut window"
 msgid "Move to end of next paragraph"
-msgstr ""
+msgstr "Fara á enda næstu málsgreinar"
 
 #: src/help-overlay.ui:273
 msgctxt "shortcut window"
 msgid "Move current or selected lines up"
-msgstr ""
+msgstr "Færa núverandi eða valdar línur upp"
 
 #: src/help-overlay.ui:279
 msgctxt "shortcut window"
 msgid "Move current or selected lines down"
-msgstr ""
+msgstr "Færa núverandi eða valdar línur niður"
 
 #: src/help-overlay.ui:285
 msgctxt "shortcut window"
@@ -1248,25 +1185,24 @@ msgstr "Eytt"
 #: src/help-overlay.ui:296
 msgctxt "shortcut window"
 msgid "Delete from cursor to word start"
-msgstr ""
+msgstr "Eyða frá bendli til byrjunar á orði"
 
 #: src/help-overlay.ui:302
 msgctxt "shortcut window"
 msgid "Delete from cursor to word end"
-msgstr ""
+msgstr "Eyða frá bendli til enda orðs"
 
 #: src/help-overlay.ui:308
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph start"
-msgstr ""
+msgstr "Eyða frá bendli til byrjunar á málsgrein"
 
 #: src/help-overlay.ui:314
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph end"
-msgstr ""
+msgstr "Eyða frá bendli til enda málsgreinar"
 
 #: src/help-overlay.ui:320
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "Eyða núverandi línu"
