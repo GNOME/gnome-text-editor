@@ -8,7 +8,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues"
 "\n"
 "POT-Creation-Date: 2022-07-22 18:34+0000\n"
-"PO-Revision-Date: 2022-08-23 13:18+0000\n"
+"PO-Revision-Date: 2022-08-23 16:02+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic\n"
 "Language: is\n"
@@ -38,6 +38,8 @@ msgid ""
 "GNOME Text Editor is a simple text editor focused on a pleasing default "
 "experience."
 msgstr ""
+"GNOME-textaritillinn er einfaldur textaritill með áherslu á að sjálfgefið"
+" fyrirkomulag sé sem þægilegast."
 
 #: data/org.gnome.TextEditor.desktop.in.in:9
 msgid "View and edit text files"
@@ -45,11 +47,11 @@ msgstr "Skoða og breyta textaskrám"
 
 #: data/org.gnome.TextEditor.gschema.xml:16
 msgid "Auto Save Delay"
-msgstr ""
+msgstr "Töf við sjálfvirka vistun"
 
 #: data/org.gnome.TextEditor.gschema.xml:17
 msgid "The delay in seconds to wait before auto-saving a draft."
-msgstr ""
+msgstr "Töf í sekúndum áður en drög eru vistuð sjálfvirkt."
 
 #: data/org.gnome.TextEditor.gschema.xml:26
 msgid "Style Variant"
@@ -76,6 +78,7 @@ msgstr "Sjálfvirkur inndráttur"
 #: data/org.gnome.TextEditor.gschema.xml:41
 msgid "Automatically indent new lines copying the previous line's indentation."
 msgstr ""
+"Draga sjálfkrafa inn nýjar línur með því að herma eftir inndrætti fyrri línu."
 
 #: data/org.gnome.TextEditor.gschema.xml:46
 msgid "Tab Width"
@@ -83,7 +86,7 @@ msgstr "Breidd inndráttar"
 
 #: data/org.gnome.TextEditor.gschema.xml:47
 msgid "The number of spaces represented by a tab."
-msgstr ""
+msgstr "Fjöldi bila sem inndráttur dregur inn (dálkur)."
 
 #: data/org.gnome.TextEditor.gschema.xml:52
 msgid "Indent Width"
@@ -99,7 +102,7 @@ msgstr "Birta línunúmer"
 
 #: data/org.gnome.TextEditor.gschema.xml:58
 msgid "If line numbers should be displayed next to each line."
-msgstr ""
+msgstr "Hvort birta eigi línunúmer við hverja línu."
 
 #: data/org.gnome.TextEditor.gschema.xml:62
 msgid "Show Right Margin"
@@ -142,7 +145,7 @@ msgstr "Áherslulita núverandi línu"
 
 #: data/org.gnome.TextEditor.gschema.xml:84
 msgid "If enabled, the current line will be highlighted."
-msgstr ""
+msgstr "Ef þetta er virkt, er fyrirliggjandi lína áherslulituð."
 
 #: data/org.gnome.TextEditor.gschema.xml:88
 msgid "Text Wrapping"
@@ -166,7 +169,7 @@ msgstr "Sérsniðið letur"
 
 #: data/org.gnome.TextEditor.gschema.xml:99
 msgid "A custom font to use in the editor."
-msgstr ""
+msgstr "Sérsniðið letur sem á að nota í ritlinum."
 
 #: data/org.gnome.TextEditor.gschema.xml:103
 msgid "Style Scheme"
@@ -180,7 +183,7 @@ msgstr ""
 
 #: data/org.gnome.TextEditor.gschema.xml:108
 msgid "Discover File Settings"
-msgstr ""
+msgstr "Uppgötva skráarstillingar"
 
 #: data/org.gnome.TextEditor.gschema.xml:109
 msgid ""
@@ -190,7 +193,7 @@ msgstr ""
 
 #: data/org.gnome.TextEditor.gschema.xml:113
 msgid "Automatically check spelling"
-msgstr ""
+msgstr "Athuga stafsetningu sjálfvirkt"
 
 #: data/org.gnome.TextEditor.gschema.xml:114
 msgid "If enabled, then Text Editor will check spelling as you type."
@@ -252,7 +255,7 @@ msgstr "Línuhæð"
 
 #: data/org.gnome.TextEditor.gschema.xml:154
 msgid "The line height to use for the selected font."
-msgstr ""
+msgstr "Línuhæð sem á að nota fyrir valið letur."
 
 #: src/editor-animation.c:1038
 #, c-format
@@ -274,11 +277,11 @@ msgstr "Sveinn í Felli, sv1@fellsnet.is"
 
 #: src/editor-application.c:599
 msgid "Do not restore session at startup"
-msgstr ""
+msgstr "Ekki endurheimta setu í ræsingu"
 
 #: src/editor-application.c:600
 msgid "Open provided files in a new window"
-msgstr ""
+msgstr "Opna uppgefnar skrár í nýjum glugga"
 
 #: src/editor-document.c:1938
 msgid "[Read-Only]"
@@ -307,11 +310,11 @@ msgstr "_Henda breytingum og endurlesa"
 
 #: src/editor-info-bar.c:79
 msgid "File Has Changed on Disk"
-msgstr ""
+msgstr "Skránni var breytt á diski"
 
 #: src/editor-info-bar.c:80
 msgid "The file has been changed by another program."
-msgstr ""
+msgstr "Skránni hefur verið breytt af öðru forriti."
 
 #: src/editor-info-bar.c:89 src/editor-window.ui:216
 msgid "Save _As…"
@@ -323,7 +326,7 @@ msgstr "Skjal endurheimt"
 
 #: src/editor-info-bar.c:92 src/editor-info-bar.ui:70
 msgid "Unsaved document has been restored."
-msgstr ""
+msgstr "Óvistað skjal hefur verið endurheimt."
 
 #: src/editor-info-bar.c:98
 msgid "_Save…"
@@ -335,11 +338,11 @@ msgstr "_Henda…"
 
 #: src/editor-info-bar.c:102
 msgid "Draft Changes Restored"
-msgstr ""
+msgstr "Breytingar á drögum endurheimt"
 
 #: src/editor-info-bar.c:103
 msgid "Unsaved changes to the document have been restored."
-msgstr ""
+msgstr "Óvistaðar breytingar á skjalinu hafa verið endurheimtar."
 
 #: src/editor-info-bar.ui:19
 msgid "Could Not Open File"
@@ -390,7 +393,7 @@ msgstr "%s (kerfisstjóri)"
 
 #: src/editor-page.c:1029 src/editor-sidebar-item.c:98
 msgid "Document Portal"
-msgstr ""
+msgstr "Skjalagátt"
 
 #: src/editor-page.c:1080
 msgid "Failed to save document"
@@ -599,6 +602,8 @@ msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
 msgstr ""
+"Opin skjöl innihalda óvistaðar breytingar. Breytingar sem ekki eru vistaðar"
+" munu tapast endanlega."
 
 #: src/editor-save-changes-dialog.c:268
 msgid "_Cancel"
