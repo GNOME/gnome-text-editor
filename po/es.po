@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-07-22 18:35+0000\n"
-"PO-Revision-Date: 2022-08-01 13:56+0200\n"
+"POT-Creation-Date: 2022-08-11 17:58+0000\n"
+"PO-Revision-Date: 2022-08-24 08:16+0200\n"
 "Last-Translator: Daniel Mustieles García <daniel.mustieles@gmail.com>\n"
 "Language-Team: Spanish - Spain <gnome-es-list@gnome.org>\n"
 "Language: es_ES\n"
@@ -23,8 +23,9 @@ msgstr ""
 "X-Generator: Gtranslator 42.0\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
-msgid "Christian Hergert, et al."
-msgstr "Christian Hergert y otros"
+#: src/editor-application-actions.c:197
+msgid "The GNOME Project"
+msgstr "El Proyecto GNOME"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:8
@@ -34,15 +35,15 @@ msgid "Text Editor"
 msgstr "Editor de texto"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:10
-msgid "A Text Editor for GNOME"
-msgstr "Un editor de texto para GNOME"
+msgid "Edit text files"
+msgstr "Editar archivos de texto"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:12
 msgid ""
 "GNOME Text Editor is a simple text editor focused on a pleasing default "
 "experience."
 msgstr ""
-"El «Editor de texto de GNOME» es un editor de texto simple enfocado en una "
+"El editor de texto de GNOME es un editor de texto simple enfocado en una "
 "agradable experiencia predeterminada."
 
 #: data/org.gnome.TextEditor.desktop.in.in:4
@@ -299,10 +300,6 @@ msgstr "Falló al encontrar la propiedad %s en %s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Falló al recuperar el valor va_list: %s"
 
-#: src/editor-application-actions.c:197
-msgid "The GNOME Project"
-msgstr "El Proyecto GNOME"
-
 #: src/editor-application-actions.c:210
 msgid "translator-credits"
 msgstr "Daniel Mustieles <Daniel.mustieles@gmail.com>, 2021 - 2022"
@@ -320,28 +317,32 @@ msgstr ""
 msgid "Bugs may be reported at:"
 msgstr "Los errores se pueden reportar en:"
 
-#: src/editor-application.c:666
+#: src/editor-application.c:554
+msgid "[FILES…]"
+msgstr "[ARCHIVOS…]"
+
+#: src/editor-application.c:667
 msgid "Do not restore session at startup"
 msgstr "No restaurar la sesión al inicio"
 
-#: src/editor-application.c:667
+#: src/editor-application.c:668
 msgid "Open provided files in a new window"
 msgstr "Abrir los archivos proporcionados en una ventana nueva"
 
-#: src/editor-application.c:668
+#: src/editor-application.c:669
 msgid "Run a new instance of Text Editor (implies --ignore-session)"
 msgstr ""
 "Ejecutar una instancia nueva del editor de texto (implica --ignore-session)"
 
-#: src/editor-application.c:669
+#: src/editor-application.c:670
 msgid "Print version information and exit"
 msgstr "Mostrar información de la versión y salir"
 
-#: src/editor-document.c:1948
+#: src/editor-document.c:2003
 msgid "[Read-Only]"
 msgstr "[Sólo lectura]"
 
-#: src/editor-document.c:2236 src/editor-page.c:987
+#: src/editor-document.c:2291 src/editor-page.c:1015
 #: src/editor-sidebar-item.c:489
 msgid "New Document"
 msgstr "Documento nuevo"
@@ -435,42 +436,42 @@ msgstr "No hay documentos recientes"
 msgid "No Results Found"
 msgstr "No se encontraron resultados"
 
-#: src/editor-page.c:1009 src/editor-properties-dialog.c:74
+#: src/editor-page.c:1041 src/editor-properties-dialog.c:74
 #: src/editor-sidebar-item.c:84
 msgid "Draft"
 msgstr "Borrador"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1021
+#: src/editor-page.c:1053
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (Administrador)"
 
-#: src/editor-page.c:1029 src/editor-sidebar-item.c:98
+#: src/editor-page.c:1063 src/editor-sidebar-item.c:98
 msgid "Document Portal"
 msgstr "Portal de documentos"
 
-#: src/editor-page.c:1075
+#: src/editor-page.c:1110
 msgid "Failed to save document"
 msgstr "Falló al guardar el documento"
 
-#: src/editor-page.c:1076 src/editor-window.ui:359
+#: src/editor-page.c:1111 src/editor-window.ui:359
 msgid "_Close"
 msgstr "_Cerrar"
 
-#: src/editor-page.c:1160
+#: src/editor-page.c:1195
 msgid "Save As"
 msgstr "Guardar como"
 
-#: src/editor-page.c:1163
+#: src/editor-page.c:1198
 msgid "Save"
 msgstr "Guardar"
 
-#: src/editor-page.c:1164 src/editor-window-actions.c:352
+#: src/editor-page.c:1199 src/editor-window-actions.c:352
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: src/editor-page.c:1310
+#: src/editor-page.c:1348
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Ln %u, Col %u"
@@ -1283,6 +1284,12 @@ msgstr "Eliminar desde el cursor hasta el final del párrafo"
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "Eliminar la línea actual"
+
+#~ msgid "Christian Hergert, et al."
+#~ msgstr "Christian Hergert y otros"
+
+#~ msgid "A Text Editor for GNOME"
+#~ msgstr "Un editor de texto para GNOME"
 
 #~ msgid "Learn More about Text Editor"
 #~ msgstr "Saber más sobre el editor de texto"
