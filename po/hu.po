@@ -2,14 +2,15 @@
 # Copyright (C) 2022 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-text-editor package.
 #
+# Balázs Meskó <mesko.balazs at fsf dot hu>, 2022.
 # Balázs Úr <ur.balazs at fsf dot hu>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues"
 "\n"
-"POT-Creation-Date: 2022-03-12 09:44+0000\n"
-"PO-Revision-Date: 2022-03-14 23:12+0100\n"
+"POT-Creation-Date: 2022-08-11 17:58+0000\n"
+"PO-Revision-Date: 2022-08-30 01:25+0200\n"
 "Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
 "Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
 "Language: hu\n"
@@ -20,29 +21,35 @@ msgstr ""
 "X-Generator: Lokalize 19.12.3\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
-msgid "Christian Hergert, et al."
-msgstr "Christian Hergert és mások"
+#: src/editor-application-actions.c:197
+msgid "The GNOME Project"
+msgstr "A GNOME projekt"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
-#: data/org.gnome.TextEditor.desktop.in.in:7
 #: data/org.gnome.TextEditor.desktop.in.in:8
-#: src/editor-application-actions.c:192
+#: data/org.gnome.TextEditor.desktop.in.in:9
+#: src/editor-application-actions.c:195 src/editor-window.c:1213
 msgid "Text Editor"
 msgstr "Szövegszerkesztő"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:10
-msgid "A Text Editor for GNOME"
-msgstr "Egy szövegszerkesztő a GNOME-hoz"
+#| msgid "View and edit text files"
+msgid "Edit text files"
+msgstr "Szövegfájlok szerkesztése"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:12
 msgid ""
 "GNOME Text Editor is a simple text editor focused on a pleasing default "
 "experience."
 msgstr ""
-"A GNOME Szövegszerkesztő egy egyszerű szövegszerkesztő, amely a kellemes"
-" alapértelmezett élményre összpontosít."
+"A GNOME Szövegszerkesztő egy egyszerű szövegszerkesztő, amely a kellemes "
+"alapértelmezett élményre összpontosít."
 
-#: data/org.gnome.TextEditor.desktop.in.in:9
+#: data/org.gnome.TextEditor.desktop.in.in:4
+msgid "write;notepad;"
+msgstr "írás;jegyzettömb;"
+
+#: data/org.gnome.TextEditor.desktop.in.in:10
 msgid "View and edit text files"
 msgstr "Szövegfájlok megtekintése és szerkesztése"
 
@@ -63,8 +70,8 @@ msgid ""
 "Use the light or dark variant of the GTK theme and/or GtkSourceView style "
 "scheme."
 msgstr ""
-"A GTK-téma és/vagy a GtkSourceView stílusséma világos vagy sötét változatának"
-" használata."
+"A GTK-téma és/vagy a GtkSourceView stílusséma világos vagy sötét "
+"változatának használata."
 
 #: data/org.gnome.TextEditor.gschema.xml:35
 msgid "Indentation Style"
@@ -123,8 +130,8 @@ msgstr "Jobb oldali margó pozíciója"
 msgid ""
 "The position in characters at which the right margin should be displayed."
 msgstr ""
-"A karakterekben megadott pozíció, ahol a jobb oldali margónak meg kell"
-" jelennie."
+"A karakterekben megadott pozíció, ahol a jobb oldali margónak meg kell "
+"jelennie."
 
 #: data/org.gnome.TextEditor.gschema.xml:73
 msgid "Show Overview Map"
@@ -135,8 +142,8 @@ msgid ""
 "If enabled, an overview map of the file will be displayed to the side of the "
 "editor."
 msgstr ""
-"Ha engedélyezve van, akkor a szerkesztő oldalán megjelenik a fájl áttekintő"
-" térképe."
+"Ha engedélyezve van, akkor a szerkesztő oldalán megjelenik a fájl áttekintő "
+"térképe."
 
 #: data/org.gnome.TextEditor.gschema.xml:78
 msgid "Show Background Grid"
@@ -145,8 +152,8 @@ msgstr "Háttérrács megjelenítése"
 #: data/org.gnome.TextEditor.gschema.xml:79
 msgid "If enabled, a blueprint style grid is printed on the editor background."
 msgstr ""
-"Ha engedélyezve van, akkor a szerkesztő hátterére egy tervrajz stílusú rács"
-" kerül nyomtatásra."
+"Ha engedélyezve van, akkor a szerkesztő hátterére egy tervrajz stílusú rács "
+"kerül nyomtatásra."
 
 #: data/org.gnome.TextEditor.gschema.xml:83
 msgid "Highlight current line"
@@ -173,7 +180,7 @@ msgid "If the default system monospace font should be used."
 msgstr ""
 "Használja-e a rendszer alapértelmezett rögzített szélességű betűkészletét."
 
-#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:60
+#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:57
 msgid "Custom Font"
 msgstr "Egyéni betűkészlet"
 
@@ -190,8 +197,8 @@ msgid ""
 "The style scheme to use by the editor. It may translate this into a dark "
 "format when available."
 msgstr ""
-"A szerkesztő által használandó stílusséma. Ezt lefordíthatja sötét"
-" formátumra, ha rendelkezésre áll."
+"A szerkesztő által használandó stílusséma. Ezt lefordíthatja sötét "
+"formátumra, ha rendelkezésre áll."
 
 #: data/org.gnome.TextEditor.gschema.xml:108
 msgid "Discover File Settings"
@@ -202,9 +209,9 @@ msgid ""
 "If enabled then Text Editor will try to discover file settings from "
 "modelines, editorconfig, or per-language defaults."
 msgstr ""
-"Ha engedélyezve van, akkor a Szövegszerkesztő megpróbálja felderíteni a"
-" modelines, az editorconfig vagy a nyelvenkénti alapértelmezések"
-" fájlbeállításait."
+"Ha engedélyezve van, akkor a Szövegszerkesztő megpróbálja felderíteni a "
+"modelines, az editorconfig vagy a nyelvenkénti alapértelmezések "
+"fájlbeállításait."
 
 #: data/org.gnome.TextEditor.gschema.xml:113
 msgid "Automatically check spelling"
@@ -213,8 +220,8 @@ msgstr "Automatikus helyesírás-ellenőrzés"
 #: data/org.gnome.TextEditor.gschema.xml:114
 msgid "If enabled, then Text Editor will check spelling as you type."
 msgstr ""
-"Ha engedélyezve van, akkor a Szövegszerkesztő gépelés közben ellenőrzi a"
-" helyesírást."
+"Ha engedélyezve van, akkor a Szövegszerkesztő gépelés közben ellenőrzi a "
+"helyesírást."
 
 #: data/org.gnome.TextEditor.gschema.xml:118
 msgid "Restore session"
@@ -266,8 +273,8 @@ msgid ""
 "Enable the use of snippets registered with GtkSourceView from within the "
 "editor."
 msgstr ""
-"A GtkSourceView programmal regisztrált kódrészletek használatának"
-" engedélyezése a szerkesztőből."
+"A GtkSourceView programmal regisztrált kódrészletek használatának "
+"engedélyezése a szerkesztőből."
 
 #: data/org.gnome.TextEditor.gschema.xml:153
 msgid "Line Height"
@@ -277,35 +284,67 @@ msgstr "Sormagasság"
 msgid "The line height to use for the selected font."
 msgstr "A kiválasztott betűkészletnél használandó sormagasság."
 
-#: src/editor-animation.c:1051
+#: src/editor-animation.c:1038
 #, c-format
 msgid "Failed to find property %s in %s"
 msgstr "Nem sikerült a(z) %s tulajdonság megkeresése ebben: %s"
 
-#: src/editor-animation.c:1060
+#: src/editor-animation.c:1047
 #, c-format
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Nem sikerült lekérni a va_list értéket: %s"
 
-#: src/editor-application-actions.c:206
-msgid "Text Editor Website"
-msgstr "A Szövegszerkesztő weboldala"
-
-#: src/editor-application-actions.c:207
+#: src/editor-application-actions.c:210
 msgid "translator-credits"
-msgstr "Úr Balázs <ur dot balazs at fsf dot hu>, 2022."
+msgstr ""
+"Meskó Balázs <mesko dot balazs at fsf dot hu>, 2022.\n"
+"Úr Balázs <ur dot balazs at fsf dot hu>, 2022."
 
-#: src/editor-application.c:599
+#: src/editor-application.c:460
+msgid "Standard input was requested multiple times. Ignoring request."
+msgstr ""
+"A szabványos bemenet többször volt kérve. Kérés figyelmen kívül hagyása."
+
+#: src/editor-application.c:464
+msgid "Standard input is not supported on this platform. Ignoring request."
+msgstr ""
+"A szabványos bemenet nem támogatott ezen a platformon. Kérés figyelmen kívül "
+"hagyása."
+
+#: src/editor-application.c:552
+msgid "Bugs may be reported at:"
+msgstr "A hibákat itt lehet jelenteni:"
+
+#: src/editor-application.c:554
+msgid "[FILES…]"
+msgstr "[FÁJLOK…]"
+
+#: src/editor-application.c:667
 msgid "Do not restore session at startup"
 msgstr "Ne állítsa helyre a munkamenetet indításkor"
 
-#: src/editor-application.c:600
+#: src/editor-application.c:668
 msgid "Open provided files in a new window"
 msgstr "A megadott fájlok megnyitása új ablakban"
 
-#: src/editor-document.c:1938
+#: src/editor-application.c:669
+msgid "Run a new instance of Text Editor (implies --ignore-session)"
+msgstr ""
+"A Szövegszerkesztő új példányának futtatása (az --ignore-session kapcsolót is"
+" maga után vonja)"
+
+#: src/editor-application.c:670
+msgid "Print version information and exit"
+msgstr "Verzióinformációk kiírása és kilépés"
+
+#: src/editor-document.c:2003
 msgid "[Read-Only]"
 msgstr "[csak olvasható]"
+
+#: src/editor-document.c:2291 src/editor-page.c:1015
+#: src/editor-sidebar-item.c:489
+msgid "New Document"
+msgstr "Új dokumentum"
 
 #: src/editor-file-manager.c:99
 msgid "File path is NULL"
@@ -340,11 +379,11 @@ msgstr "A fájlt egy másik program megváltoztatta."
 msgid "Save _As…"
 msgstr "Me_ntés másként…"
 
-#: src/editor-info-bar.c:91 src/editor-info-bar.ui:61
+#: src/editor-info-bar.c:91 src/editor-info-bar.ui:63
 msgid "Document Restored"
 msgstr "Dokumentum helyreállítva"
 
-#: src/editor-info-bar.c:92 src/editor-info-bar.ui:70
+#: src/editor-info-bar.c:92 src/editor-info-bar.ui:73
 msgid "Unsaved document has been restored."
 msgstr "A mentetlen dokumentum helyre lett állítva."
 
@@ -352,7 +391,7 @@ msgstr "A mentetlen dokumentum helyre lett állítva."
 msgid "_Save…"
 msgstr "_Mentés…"
 
-#: src/editor-info-bar.c:100 src/editor-info-bar.ui:77
+#: src/editor-info-bar.c:100 src/editor-info-bar.ui:81
 msgid "_Discard…"
 msgstr "_Elvetés…"
 
@@ -368,15 +407,15 @@ msgstr "A dokumentum mentetlen változtatásai helyre lettek állítva."
 msgid "Could Not Open File"
 msgstr "Nem sikerült megnyitni a fájlt"
 
-#: src/editor-info-bar.ui:28
+#: src/editor-info-bar.ui:29
 msgid "You do not have permission to open the file."
 msgstr "Nincs jogosultsága a fájl megnyitásához."
 
-#: src/editor-info-bar.ui:35
+#: src/editor-info-bar.ui:37
 msgid "_Retry"
 msgstr "Új_rapróbálkozás"
 
-#: src/editor-info-bar.ui:42
+#: src/editor-info-bar.ui:44
 msgid "Open As _Administrator"
 msgstr "Megnyitás _rendszergazdaként"
 
@@ -396,43 +435,42 @@ msgstr "Nincsenek legutóbbi dokumentumok"
 msgid "No Results Found"
 msgstr "Nincsenek találatok"
 
-#: src/editor-page.c:987 src/editor-sidebar-item.c:489
-msgid "New Document"
-msgstr "Új dokumentum"
-
-#: src/editor-page.c:1009 src/editor-properties-dialog.c:74
+#: src/editor-page.c:1041 src/editor-properties-dialog.c:74
 #: src/editor-sidebar-item.c:84
 msgid "Draft"
 msgstr "Piszkozat"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1021
+#: src/editor-page.c:1053
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (rendszergazda)"
 
-#: src/editor-page.c:1029 src/editor-sidebar-item.c:98
+#: src/editor-page.c:1063 src/editor-sidebar-item.c:98
 msgid "Document Portal"
 msgstr "Dokumentumportál"
 
-#: src/editor-page.c:1080
+#: src/editor-page.c:1110
 msgid "Failed to save document"
 msgstr "Nem sikerült elmenteni a dokumentumot"
 
-#: src/editor-page.c:1165
+#: src/editor-page.c:1111 src/editor-window.ui:359
+msgid "_Close"
+msgstr "_Bezárás"
+
+#: src/editor-page.c:1195
 msgid "Save As"
 msgstr "Mentés másként"
 
-#: src/editor-page.c:1168 src/editor-window-actions.c:133
+#: src/editor-page.c:1198
 msgid "Save"
 msgstr "Mentés"
 
-#: src/editor-page.c:1169 src/editor-window-actions.c:132
-#: src/editor-window-actions.c:271 src/editor-window-actions.c:380
+#: src/editor-page.c:1199 src/editor-window-actions.c:352
 msgid "Cancel"
 msgstr "Mégse"
 
-#: src/editor-page.c:1309
+#: src/editor-page.c:1348
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "%u. sor, %u. oszlop"
@@ -453,6 +491,7 @@ msgstr "Behúzás"
 msgid "_Automatic Indentation"
 msgstr "_Automatikus behúzás"
 
+#. Translators: this is a tab character, not a browser tab
 #: src/editor-page.ui:162 src/editor-window.ui:283
 msgid "_Tabs"
 msgstr "_Tabulátorok"
@@ -503,49 +542,49 @@ msgstr "Oszlop"
 msgid "Appearance"
 msgstr "Megjelenés"
 
-#: src/editor-preferences-dialog.ui:82
+#: src/editor-preferences-dialog.ui:79
 msgid "Display Grid Pattern"
 msgstr "Rácsminta megjelenítése"
 
-#: src/editor-preferences-dialog.ui:88
+#: src/editor-preferences-dialog.ui:85
 msgid "Highlight Current Line"
 msgstr "Aktuális sor kiemelése"
 
-#: src/editor-preferences-dialog.ui:94
+#: src/editor-preferences-dialog.ui:91
 msgid "Display Overview Map"
 msgstr "Áttekintő térkép megjelenítése"
 
-#: src/editor-preferences-dialog.ui:102
+#: src/editor-preferences-dialog.ui:99
 msgid "Right Margin"
 msgstr "Jobb oldali margó"
 
-#: src/editor-preferences-dialog.ui:105
+#: src/editor-preferences-dialog.ui:102
 msgid "Margin Position"
 msgstr "Margó pozíciója"
 
-#: src/editor-preferences-dialog.ui:113
+#: src/editor-preferences-dialog.ui:110
 msgid "Behavior"
 msgstr "Viselkedés"
 
-#: src/editor-preferences-dialog.ui:116
+#: src/editor-preferences-dialog.ui:113
 msgid "Discover Document Settings"
 msgstr "Dokumentumbeállítások felderítése"
 
-#: src/editor-preferences-dialog.ui:117
+#: src/editor-preferences-dialog.ui:114
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr ""
-"Modelines, editorconfig vagy észszerű alapértelmezések használatával való"
-" beállítások alkalmazása"
+"Modelines, editorconfig vagy észszerű alapértelmezések használatával való "
+"beállítások alkalmazása"
 
-#: src/editor-preferences-dialog.ui:123
+#: src/editor-preferences-dialog.ui:120
 msgid "Restore Session"
 msgstr "Munkamenet helyreállítása"
 
-#: src/editor-preferences-dialog.ui:124
+#: src/editor-preferences-dialog.ui:121
 msgid "Return to your previous session when Text Editor is started"
 msgstr "Visszatérés az előző munkamenethez a Szövegszerkesztő indításakor"
 
-#: src/editor-preferences-dialog.ui:139
+#: src/editor-preferences-dialog.ui:136
 msgid "_Clear History"
 msgstr "_Előzmények törlése"
 
@@ -606,45 +645,47 @@ msgstr "Karakterek szóközök nélkül"
 msgid "All Characters"
 msgstr "Összes karakter"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:254 src/editor-window-actions.c:242
 msgid "_Discard"
 msgstr "_Elvetés"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:254
 msgid "_Discard All"
 msgstr "Összes _elvetése"
 
-#: src/editor-save-changes-dialog.c:264
+#: src/editor-save-changes-dialog.c:257
 msgid "Save Changes?"
 msgstr "Menti a változtatásokat?"
 
-#: src/editor-save-changes-dialog.c:266
+#: src/editor-save-changes-dialog.c:258
 msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
 msgstr ""
-"A megnyitott dokumentumok mentetlen változtatásokat tartalmaznak. Az el nem"
-" mentett változtatások véglegesen el fognak veszni."
+"A megnyitott dokumentumok mentetlen változtatásokat tartalmaznak. Az el nem "
+"mentett változtatások véglegesen el fognak veszni."
 
-#: src/editor-save-changes-dialog.c:268
+#: src/editor-save-changes-dialog.c:261 src/editor-window-actions.c:116
+#: src/editor-window-actions.c:241
 msgid "_Cancel"
 msgstr "_Mégse"
 
-#: src/editor-save-changes-dialog.c:270 src/editor-window.ui:210
+#: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:117
+#: src/editor-window.ui:210
 msgid "_Save"
 msgstr "M_entés"
 
-#: src/editor-save-changes-dialog.c:303
+#: src/editor-save-changes-dialog.c:293
 msgid "Untitled Document"
 msgstr "Névtelen dokumentum"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:306
+#: src/editor-save-changes-dialog.c:296
 #, c-format
 msgid "%s (new)"
 msgstr "%s (új)"
 
-#: src/editor-save-changes-dialog.c:327
+#: src/editor-save-changes-dialog.c:317
 msgid "Save changes for this document"
 msgstr "A dokumentum változtatásainak mentése"
 
@@ -680,15 +721,15 @@ msgstr "_Csere"
 msgid "Replace _All"
 msgstr "Öss_zes cseréje"
 
-#: src/editor-search-bar.ui:141
+#: src/editor-search-bar.ui:140
 msgid "Re_gular expressions"
 msgstr "_Reguláris kifejezések"
 
-#: src/editor-search-bar.ui:147
+#: src/editor-search-bar.ui:146
 msgid "_Case sensitive"
 msgstr "Kis- és nagybetűk _megkülönböztetése"
 
-#: src/editor-search-bar.ui:153
+#: src/editor-search-bar.ui:152
 msgid "Match whole _word only"
 msgstr "Illesztés csak teljes _szóra"
 
@@ -698,21 +739,21 @@ msgstr "Illesztés csak teljes _szóra"
 msgid "%u of %u"
 msgstr "%u / %u"
 
-#: src/editor-spell-menu.c:191
-msgid "Languages"
-msgstr "Nyelvek"
-
-#: src/editor-spell-menu.c:192
+#: src/editor-spell-menu.c:248
 msgid "Add to Dictionary"
 msgstr "Hozzáadás a szótárhoz"
 
-#: src/editor-spell-menu.c:193
+#: src/editor-spell-menu.c:249
 msgid "Ignore"
 msgstr "Mellőzés"
 
-#: src/editor-spell-menu.c:194
+#: src/editor-spell-menu.c:250
 msgid "Check Spelling"
 msgstr "Helyesírás-ellenőrzés"
+
+#: src/editor-spell-menu.c:259
+msgid "Languages"
+msgstr "Nyelvek"
 
 #: src/editor-theme-selector.ui:22 src/editor-theme-selector.ui:24
 msgid "Follow system style"
@@ -726,90 +767,86 @@ msgstr "Világos stílus"
 msgid "Dark style"
 msgstr "Sötét stílus"
 
-#: src/editor-utils.c:346
+#: src/editor-utils.c:348
 msgid "Just now"
 msgstr "Épp most"
 
-#: src/editor-utils.c:348
+#: src/editor-utils.c:350
 msgid "An hour ago"
 msgstr "Egy órával ezelőtt"
 
-#: src/editor-utils.c:350
+#: src/editor-utils.c:352
 msgid "Yesterday"
 msgstr "Tegnap"
 
-#: src/editor-utils.c:356
+#: src/editor-utils.c:358
 msgid "About a year ago"
 msgstr "Körülbelül egy évvel ezelőtt"
 
-#: src/editor-utils.c:360
+#: src/editor-utils.c:362
 #, c-format
 msgid "About %u year ago"
 msgid_plural "About %u years ago"
 msgstr[0] "Körülbelül %u évvel ezelőtt"
 msgstr[1] "Körülbelül %u évvel ezelőtt"
 
-#: src/editor-utils.c:368
+#: src/editor-utils.c:370
 msgid "Unix/Linux (LF)"
 msgstr "Unix/Linux (LF)"
 
-#: src/editor-utils.c:369
+#: src/editor-utils.c:371
 msgid "Mac OS Classic (CR)"
 msgstr "Klasszikus Mac OS (CR)"
 
-#: src/editor-utils.c:370
+#: src/editor-utils.c:372
 msgid "Windows (CR+LF)"
 msgstr "Windows (CR+LF)"
 
-#: src/editor-utils.c:400
+#: src/editor-utils.c:402
 msgid "Automatically Detected"
 msgstr "Automatikusan felismert"
 
-#: src/editor-utils.c:416
+#: src/editor-utils.c:418
 msgid "Character Encoding:"
 msgstr "Karakterkódolás:"
 
-#: src/editor-utils.c:451
+#: src/editor-utils.c:453
 msgid "Line Ending:"
 msgstr "Sorvégződés:"
 
-#. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:128
-#, c-format
-msgid "Save Changes to “%s”?"
-msgstr "Menti a(z) „%s” dokumentum változtatásait?"
-
-#: src/editor-window-actions.c:131
+#: src/editor-window-actions.c:110
 msgid "Saving changes will replace the previously saved version."
 msgstr "A változtatások mentése le fogja cserélni az előzőleg mentett verziót."
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:267
+#: src/editor-window-actions.c:113
+#, c-format
+msgid "Save Changes to “%s”?"
+msgstr "Menti a(z) „%s” dokumentum változtatásait?"
+
+#: src/editor-window-actions.c:235
+msgid "Unsaved changes will be permanently lost."
+msgstr "A mentetlen változtatások véglegesen el fognak veszni."
+
+#. translators: %s is replaced with the document title
+#: src/editor-window-actions.c:238
 #, c-format
 msgid "Discard Changes to “%s”?"
 msgstr "Elveti a(z) „%s” dokumentum változtatásait?"
 
-#: src/editor-window-actions.c:270
-msgid "Unsaved changes will be permanently lost."
-msgstr "A mentetlen változtatások véglegesen el fognak veszni."
-
-#: src/editor-window-actions.c:272
-msgid "Discard"
-msgstr "Elvetés"
-
-#: src/editor-window-actions.c:376
+#: src/editor-window-actions.c:348
 msgid "Open File"
 msgstr "Fájl megnyitása"
 
-#: src/editor-window-actions.c:379
+#: src/editor-window-actions.c:351
 msgid "Open"
 msgstr "Megnyitás"
 
-#: src/editor-window-actions.c:404
+#: src/editor-window-actions.c:376
 msgid "All Files"
 msgstr "Összes fájl"
 
-#: src/editor-window-actions.c:409
+#: src/editor-window-actions.c:381
 msgid "Text Files"
 msgstr "Szövegfájlok"
 
@@ -818,11 +855,28 @@ msgstr "Szövegfájlok"
 msgid "Document Type: %s"
 msgstr "Dokumentum típusa: %s"
 
+#: src/editor-window.c:508
+#| msgctxt "shortcut window"
+#| msgid "Zoom In"
+msgid "Zoom in"
+msgstr "Nagyítás"
+
+#: src/editor-window.c:520
+#| msgctxt "shortcut window"
+#| msgid "Zoom Out"
+msgid "Zoom out"
+msgstr "Kicsinyítés"
+
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:725
+#: src/editor-window.c:733
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) – Szövegszerkesztő"
+
+#: src/editor-window.c:1136
+#| msgid "Failed to save document"
+msgid "There are unsaved documents"
+msgstr "Mentetlen dokumentumok vannak"
 
 #: src/editor-window.ui:78
 msgid "_Open"
@@ -956,11 +1010,7 @@ msgstr "Mozgatás új _ablakba"
 msgid "Close _Other Tabs"
 msgstr "_Egyéb lapok bezárása"
 
-#: src/editor-window.ui:359
-msgid "_Close"
-msgstr "_Bezárás"
-
-#: src/enchant/editor-enchant-spell-provider.c:92
+#: src/enchant/editor-enchant-spell-provider.c:123
 msgid "Enchant 2"
 msgstr "Elbűvölés 2"
 
