@@ -344,6 +344,9 @@ editor_application_startup (GApplication *application)
                                               GTK_STYLE_PROVIDER (self->recoloring),
                                               GTK_STYLE_PROVIDER_PRIORITY_THEME+1);
 
+  gtk_icon_theme_add_resource_path (gtk_icon_theme_get_for_display (display),
+                                    "/org/gnome/TextEditor/icons");
+
   gtk_application_set_accels_for_action (GTK_APPLICATION (self), "app.quit", quit_accels);
   gtk_application_set_accels_for_action (GTK_APPLICATION (self), "app.help", help_accels);
 
