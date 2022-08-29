@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues\n"
-"POT-Creation-Date: 2022-07-20 17:44+0000\n"
-"PO-Revision-Date: 2022-01-18 18:08+0100\n"
+"POT-Creation-Date: 2022-08-23 16:04+0000\n"
+"PO-Revision-Date: 2022-08-29 18:08+0100\n"
 "Last-Translator: Jordi Mas i Hernàndez <jmas@softcatala.org>\n"
 "Language-Team: Catalan <gnome@llistes.softcatala.org>\n"
 "Language: ca\n"
@@ -19,19 +19,20 @@ msgstr ""
 "X-Generator: Poedit 3.0.1\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
-msgid "Christian Hergert, et al."
-msgstr "Christian Hergert, et al."
+#: src/editor-application-actions.c:197
+msgid "The GNOME Project"
+msgstr "El projecte GNOME"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:9
-#: src/editor-application-actions.c:195 src/editor-window.c:1213
+#: src/editor-application-actions.c:195 src/editor-window.c:1244
 msgid "Text Editor"
 msgstr "Editor de text"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:10
-msgid "A Text Editor for GNOME"
-msgstr "Un editor de text pel GNOME"
+msgid "Edit text files"
+msgstr "Editeu fitxers de text"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:12
 msgid ""
@@ -298,10 +299,6 @@ msgstr "No s'ha pogut trobar la propietat %s a %s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "No s'ha pogut recuperar el valor va_list: %s"
 
-#: src/editor-application-actions.c:197
-msgid "The GNOME Project"
-msgstr "El projecte GNOME"
-
 #: src/editor-application-actions.c:210
 msgid "translator-credits"
 msgstr "Jordi Mas i Hernàndez <jmas@softcatala.org>, 2021-2022"
@@ -321,29 +318,33 @@ msgstr ""
 msgid "Bugs may be reported at:"
 msgstr "Es pot informar d'errors a:"
 
-#: src/editor-application.c:666
+#: src/editor-application.c:554
+msgid "[FILES…]"
+msgstr "[FITXERS…]"
+
+#: src/editor-application.c:667
 msgid "Do not restore session at startup"
 msgstr "No restauris la sessió a l'inici"
 
-#: src/editor-application.c:667
+#: src/editor-application.c:668
 msgid "Open provided files in a new window"
 msgstr "Obre els fitxers proporcionats en una finestra nova"
 
-#: src/editor-application.c:668
+#: src/editor-application.c:669
 msgid "Run a new instance of Text Editor (implies --ignore-session)"
 msgstr ""
 "Executa una nova instància de l'Editor de text (implica --ignore-session)"
 
-#: src/editor-application.c:669
+#: src/editor-application.c:670
 msgid "Print version information and exit"
 msgstr "Imprimeix la informació de la versió i surt"
 
-#: src/editor-document.c:1948
+#: src/editor-document.c:2003
 msgid "[Read-Only]"
 msgstr "[Només lectura]"
 
-#: src/editor-document.c:2236 src/editor-page.c:987
-#: src/editor-sidebar-item.c:489
+#: src/editor-document.c:2291 src/editor-page.c:1015
+#: src/editor-sidebar-item.c:497
 msgid "New Document"
 msgstr "Document nou"
 
@@ -377,7 +378,7 @@ msgstr "El fitxer ha canviat al disc"
 msgid "The file has been changed by another program."
 msgstr "Un altre programa ha canviat el fitxer."
 
-#: src/editor-info-bar.c:89 src/editor-window.ui:216
+#: src/editor-info-bar.c:89 src/editor-window.ui:220
 msgid "Save _As…"
 msgstr "_Anomena i desa…"
 
@@ -437,42 +438,42 @@ msgstr "No hi ha documents recents"
 msgid "No Results Found"
 msgstr "No s'ha trobat cap resultat"
 
-#: src/editor-page.c:1009 src/editor-properties-dialog.c:74
-#: src/editor-sidebar-item.c:84
+#: src/editor-page.c:1041 src/editor-properties-dialog.c:74
+#: src/editor-sidebar-item.c:101
 msgid "Draft"
 msgstr "Esborrany"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1021
+#: src/editor-page.c:1053
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (administrador)"
 
-#: src/editor-page.c:1029 src/editor-sidebar-item.c:98
+#: src/editor-page.c:1063 src/editor-sidebar-item.c:109
 msgid "Document Portal"
 msgstr "Portal del document"
 
-#: src/editor-page.c:1075
+#: src/editor-page.c:1110
 msgid "Failed to save document"
 msgstr "Ha fallat en desar el document"
 
-#: src/editor-page.c:1076 src/editor-window.ui:359
+#: src/editor-page.c:1111 src/editor-window.ui:363
 msgid "_Close"
 msgstr "_Tanca"
 
-#: src/editor-page.c:1160
+#: src/editor-page.c:1195
 msgid "Save As"
 msgstr "Anomena i desa"
 
-#: src/editor-page.c:1163
+#: src/editor-page.c:1198
 msgid "Save"
 msgstr "Desa"
 
-#: src/editor-page.c:1164 src/editor-window-actions.c:352
+#: src/editor-page.c:1199 src/editor-window-actions.c:352
 msgid "Cancel"
 msgstr "Cancel·la"
 
-#: src/editor-page.c:1310
+#: src/editor-page.c:1348
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Ln %u, Col %u"
@@ -485,24 +486,24 @@ msgstr "Ves a la línia"
 msgid "Go"
 msgstr "Ves"
 
-#: src/editor-page.ui:153 src/editor-window.ui:277
+#: src/editor-page.ui:153 src/editor-window.ui:281
 msgid "Indentation"
 msgstr "Sagnat"
 
-#: src/editor-page.ui:156 src/editor-window.ui:279
+#: src/editor-page.ui:156 src/editor-window.ui:283
 msgid "_Automatic Indentation"
 msgstr "_Sagnat automàtic"
 
 #. Translators: this is a tab character, not a browser tab
-#: src/editor-page.ui:162 src/editor-window.ui:283
+#: src/editor-page.ui:162 src/editor-window.ui:287
 msgid "_Tabs"
 msgstr "_Tabuladors"
 
-#: src/editor-page.ui:167 src/editor-window.ui:288
+#: src/editor-page.ui:167 src/editor-window.ui:292
 msgid "_Spaces"
 msgstr "_Espais"
 
-#: src/editor-page.ui:174 src/editor-window.ui:293
+#: src/editor-page.ui:174 src/editor-window.ui:297
 msgid "Spaces _Per Tab"
 msgstr "_Espais per tabulador"
 
@@ -672,7 +673,7 @@ msgid "_Cancel"
 msgstr "_Cancel·la"
 
 #: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:117
-#: src/editor-window.ui:210
+#: src/editor-window.ui:214
 msgid "_Save"
 msgstr "_Desa"
 
@@ -872,35 +873,35 @@ msgstr "Allunya"
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - Editor de text"
 
-#: src/editor-window.c:1136
+#: src/editor-window.c:1167
 msgid "There are unsaved documents"
 msgstr "Hi ha documents sense desar"
 
-#: src/editor-window.ui:78
+#: src/editor-window.ui:82
 msgid "_Open"
 msgstr "O_bre"
 
-#: src/editor-window.ui:80
+#: src/editor-window.ui:84
 msgid "Open recent document (Ctrl+K)"
 msgstr "Obre el document recent (Ctrl+K)"
 
-#: src/editor-window.ui:92 src/editor-window.ui:94
+#: src/editor-window.ui:96 src/editor-window.ui:98
 msgid "New tab (Ctrl+T)"
 msgstr "Pestanya nova (Ctrl+T)"
 
-#: src/editor-window.ui:120 src/editor-window.ui:124
+#: src/editor-window.ui:124 src/editor-window.ui:128
 msgid "View"
 msgstr "Visualitza"
 
-#: src/editor-window.ui:133
+#: src/editor-window.ui:137
 msgid "Menu"
 msgstr "Menú"
 
-#: src/editor-window.ui:166
+#: src/editor-window.ui:170
 msgid "Start or Open a Document"
 msgstr "Inicia o obre un document"
 
-#: src/editor-window.ui:169
+#: src/editor-window.ui:173
 msgid ""
 "• Press the Open button\n"
 "• Press the New tab button\n"
@@ -916,95 +917,95 @@ msgstr ""
 "\n"
 "O bé, premeu Ctrl+W per a tancar la finestra."
 
-#: src/editor-window.ui:202
+#: src/editor-window.ui:206
 msgid "_New Window"
 msgstr "_Finestra nova"
 
-#: src/editor-window.ui:222
+#: src/editor-window.ui:226
 msgid "_Discard Changes"
 msgstr "D_escarta els canvis"
 
-#: src/editor-window.ui:228
+#: src/editor-window.ui:232
 msgid "_Find/Replace…"
 msgstr "_Cerca i reemplaça…"
 
-#: src/editor-window.ui:234
+#: src/editor-window.ui:238
 msgid "_Print"
 msgstr "_Imprimeix"
 
-#: src/editor-window.ui:240
+#: src/editor-window.ui:244
 msgid "Documen_t Properties"
 msgstr "Propietats del documen_t"
 
-#: src/editor-window.ui:246
+#: src/editor-window.ui:250
 msgid "P_references"
 msgstr "P_referències"
 
-#: src/editor-window.ui:251
+#: src/editor-window.ui:255
 msgid "_Keyboard Shortcuts"
 msgstr "D_receres de teclat"
 
-#: src/editor-window.ui:255
+#: src/editor-window.ui:259
 msgid "_Help"
 msgstr "_Ajuda"
 
-#: src/editor-window.ui:259
+#: src/editor-window.ui:263
 msgid "A_bout Text Editor"
 msgstr "Q_uant a l'editor de text"
 
-#: src/editor-window.ui:266
+#: src/editor-window.ui:270
 msgid "Show"
 msgstr "Mostra"
 
-#: src/editor-window.ui:268
+#: src/editor-window.ui:272
 msgid "_Line Numbers"
 msgstr "_Números de línia"
 
-#: src/editor-window.ui:272
+#: src/editor-window.ui:276
 msgid "_Right Margin"
 msgstr "_Marge dret"
 
-#: src/editor-window.ui:296
+#: src/editor-window.ui:300
 msgid "_2"
 msgstr "_2"
 
-#: src/editor-window.ui:301
+#: src/editor-window.ui:305
 msgid "_4"
 msgstr "_4"
 
-#: src/editor-window.ui:306
+#: src/editor-window.ui:310
 msgid "_6"
 msgstr "_6"
 
-#: src/editor-window.ui:311
+#: src/editor-window.ui:315
 msgid "_8"
 msgstr "_8"
 
-#: src/editor-window.ui:320
+#: src/editor-window.ui:324
 msgid "T_ext Wrapping"
 msgstr "_Ajustament del text"
 
-#: src/editor-window.ui:324
+#: src/editor-window.ui:328
 msgid "Chec_k Spelling"
 msgstr "C_omprova l'ortografia"
 
-#: src/editor-window.ui:328
+#: src/editor-window.ui:332
 msgid "_Document Type"
 msgstr "Tipus de _document"
 
-#: src/editor-window.ui:336
+#: src/editor-window.ui:340
 msgid "Move _Left"
 msgstr "_Mou a l'esquerra"
 
-#: src/editor-window.ui:341
+#: src/editor-window.ui:345
 msgid "Move _Right"
 msgstr "M_ou a la dreta"
 
-#: src/editor-window.ui:348
+#: src/editor-window.ui:352
 msgid "_Move to New Window"
 msgstr "_Mou a una finestra nova"
 
-#: src/editor-window.ui:355
+#: src/editor-window.ui:359
 msgid "Close _Other Tabs"
 msgstr "T_anca les altres pestanyes"
 
@@ -1286,9 +1287,3 @@ msgstr "Suprimeix del cursor al final del paràgraf"
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "Suprimeix la línia actual"
-
-#~ msgid "Text Editor Website"
-#~ msgstr "Lloc web de l'Editor de text"
-
-#~ msgid "Discard"
-#~ msgstr "Descarta"
