@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-03-03 11:52+0000\n"
-"PO-Revision-Date: 2022-03-06 12:41+0100\n"
+"POT-Creation-Date: 2022-08-11 17:58+0000\n"
+"PO-Revision-Date: 2022-08-29 19:32+0200\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
@@ -20,19 +20,20 @@ msgstr ""
 "X-Generator: Poedit 2.3\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
-msgid "Christian Hergert, et al."
-msgstr "Christian Hergert m.fl."
+#: src/editor-application-actions.c:197
+msgid "The GNOME Project"
+msgstr "GNOME-projektet"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
-#: data/org.gnome.TextEditor.desktop.in.in:7
 #: data/org.gnome.TextEditor.desktop.in.in:8
-#: src/editor-application-actions.c:192
+#: data/org.gnome.TextEditor.desktop.in.in:9
+#: src/editor-application-actions.c:195 src/editor-window.c:1213
 msgid "Text Editor"
 msgstr "Tekstredigering"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:10
-msgid "A Text Editor for GNOME"
-msgstr "Et tekstredigeringsprogram til GNOME"
+msgid "Edit text files"
+msgstr "Redigér tekstfiler"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:12
 msgid ""
@@ -42,7 +43,11 @@ msgstr ""
 "GNOME-tekstredigering er et enkelt tekstredigeringsprogram med fokus på en "
 "behagelig oplevelse."
 
-#: data/org.gnome.TextEditor.desktop.in.in:9
+#: data/org.gnome.TextEditor.desktop.in.in:4
+msgid "write;notepad;"
+msgstr "skriv;notesblok;"
+
+#: data/org.gnome.TextEditor.desktop.in.in:10
 msgid "View and edit text files"
 msgstr "Se og redigér tekstfiler"
 
@@ -169,7 +174,7 @@ msgstr "Brug systemets skrifttype"
 msgid "If the default system monospace font should be used."
 msgstr "Hvorvidt systemets standardskrifttype med fast bredde skal bruges."
 
-#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:60
+#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:57
 msgid "Custom Font"
 msgstr "Brugervalgt skrifttype"
 
@@ -269,21 +274,17 @@ msgstr "Linjehøjde"
 msgid "The line height to use for the selected font."
 msgstr "Linjehøjden der skal bruges til den valgte skrifttype."
 
-#: src/editor-animation.c:1051
+#: src/editor-animation.c:1038
 #, c-format
 msgid "Failed to find property %s in %s"
 msgstr "Kunne ikke finde egenskaben %s i %s"
 
-#: src/editor-animation.c:1060
+#: src/editor-animation.c:1047
 #, c-format
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Kunne ikke hente va_list-værdien: %s"
 
-#: src/editor-application-actions.c:206
-msgid "Text Editor Website"
-msgstr "Tekstredigerings websted"
-
-#: src/editor-application-actions.c:207
+#: src/editor-application-actions.c:210
 msgid "translator-credits"
 msgstr ""
 "Alan Mortensen\n"
@@ -292,18 +293,48 @@ msgstr ""
 "Websted <dansk@dansk-gruppen.dk>\n"
 "Mere info http://www.dansk-gruppen.dk"
 
-#: src/editor-application.c:599
+#: src/editor-application.c:460
+msgid "Standard input was requested multiple times. Ignoring request."
+msgstr "Der blev anmodet om standardinput flere gange. Ignorerer anmodning."
+
+#: src/editor-application.c:464
+msgid "Standard input is not supported on this platform. Ignoring request."
+msgstr ""
+"Standardinput understøttes ikke på denne platform. Ignorerer anmodning."
+
+#: src/editor-application.c:552
+msgid "Bugs may be reported at:"
+msgstr "Fejl kan rapporteres på:"
+
+#: src/editor-application.c:554
+msgid "[FILES…]"
+msgstr "[FILER…]"
+
+#: src/editor-application.c:667
 msgid "Do not restore session at startup"
 msgstr "Gendan ikke sessionen ved opstart"
 
 # provided?
-#: src/editor-application.c:600
+#: src/editor-application.c:668
 msgid "Open provided files in a new window"
 msgstr "Åbn filerne i et nyt vindue"
 
-#: src/editor-document.c:1938
+#: src/editor-application.c:669
+msgid "Run a new instance of Text Editor (implies --ignore-session)"
+msgstr "Kør en ny session af Tekstredigering (forudsætter --ignore-session)"
+
+#: src/editor-application.c:670
+msgid "Print version information and exit"
+msgstr "Udskriv versionsoplysninger og afslut"
+
+#: src/editor-document.c:2003
 msgid "[Read-Only]"
 msgstr "[Skrivebeskyttet]"
+
+#: src/editor-document.c:2291 src/editor-page.c:1015
+#: src/editor-sidebar-item.c:489
+msgid "New Document"
+msgstr "Nyt dokument"
 
 #: src/editor-file-manager.c:99
 msgid "File path is NULL"
@@ -338,11 +369,11 @@ msgstr "Filen er blevet ændret af et andet program."
 msgid "Save _As…"
 msgstr "Gem _som …"
 
-#: src/editor-info-bar.c:91 src/editor-info-bar.ui:61
+#: src/editor-info-bar.c:91 src/editor-info-bar.ui:63
 msgid "Document Restored"
 msgstr "Dokument gendannet"
 
-#: src/editor-info-bar.c:92 src/editor-info-bar.ui:70
+#: src/editor-info-bar.c:92 src/editor-info-bar.ui:73
 msgid "Unsaved document has been restored."
 msgstr "Dokumentet, som ikke blev gemt, er blevet gendannet."
 
@@ -350,7 +381,7 @@ msgstr "Dokumentet, som ikke blev gemt, er blevet gendannet."
 msgid "_Save…"
 msgstr "_Gem …"
 
-#: src/editor-info-bar.c:100 src/editor-info-bar.ui:77
+#: src/editor-info-bar.c:100 src/editor-info-bar.ui:81
 msgid "_Discard…"
 msgstr "_Kassér …"
 
@@ -366,15 +397,15 @@ msgstr "Ændringer til dokumentet, som ikke blev gemt, er blevet gendannet."
 msgid "Could Not Open File"
 msgstr "Kunne ikke åbne filen"
 
-#: src/editor-info-bar.ui:28
+#: src/editor-info-bar.ui:29
 msgid "You do not have permission to open the file."
 msgstr "Du har ikke de nødvendige rettigheder til at åbne filen."
 
-#: src/editor-info-bar.ui:35
+#: src/editor-info-bar.ui:37
 msgid "_Retry"
 msgstr "_Prøv igen"
 
-#: src/editor-info-bar.ui:42
+#: src/editor-info-bar.ui:44
 msgid "Open As _Administrator"
 msgstr "Åbn som _administrator"
 
@@ -394,43 +425,42 @@ msgstr "Ingen seneste dokumenter"
 msgid "No Results Found"
 msgstr "Ingen resultater fundet"
 
-#: src/editor-page.c:987 src/editor-sidebar-item.c:489
-msgid "New Document"
-msgstr "Nyt dokument"
-
-#: src/editor-page.c:1009 src/editor-properties-dialog.c:74
+#: src/editor-page.c:1041 src/editor-properties-dialog.c:74
 #: src/editor-sidebar-item.c:84
 msgid "Draft"
 msgstr "Kladde"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1021
+#: src/editor-page.c:1053
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (Administrator)"
 
-#: src/editor-page.c:1029 src/editor-sidebar-item.c:98
+#: src/editor-page.c:1063 src/editor-sidebar-item.c:98
 msgid "Document Portal"
 msgstr "Dokumentportal"
 
-#: src/editor-page.c:1080
+#: src/editor-page.c:1110
 msgid "Failed to save document"
 msgstr "Kunne ikke gemme dokumentet"
 
-#: src/editor-page.c:1165
+#: src/editor-page.c:1111 src/editor-window.ui:359
+msgid "_Close"
+msgstr "_Luk"
+
+#: src/editor-page.c:1195
 msgid "Save As"
 msgstr "Gem som"
 
-#: src/editor-page.c:1168 src/editor-window-actions.c:133
+#: src/editor-page.c:1198
 msgid "Save"
 msgstr "Gem"
 
-#: src/editor-page.c:1169 src/editor-window-actions.c:132
-#: src/editor-window-actions.c:271 src/editor-window-actions.c:380
+#: src/editor-page.c:1199 src/editor-window-actions.c:352
 msgid "Cancel"
 msgstr "Annullér"
 
-#: src/editor-page.c:1309
+#: src/editor-page.c:1348
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Lnj. %u, kol. %u"
@@ -451,6 +481,7 @@ msgstr "Indrykning"
 msgid "_Automatic Indentation"
 msgstr "A_utomatisk indrykning"
 
+#. Translators: this is a tab character, not a browser tab
 #: src/editor-page.ui:162 src/editor-window.ui:283
 msgid "_Tabs"
 msgstr "_Faneblade"
@@ -501,49 +532,49 @@ msgstr "Kol."
 msgid "Appearance"
 msgstr "Udseende"
 
-#: src/editor-preferences-dialog.ui:82
+#: src/editor-preferences-dialog.ui:79
 msgid "Display Grid Pattern"
 msgstr "Vis gittermønster"
 
-#: src/editor-preferences-dialog.ui:88
+#: src/editor-preferences-dialog.ui:85
 msgid "Highlight Current Line"
 msgstr "Fremhæv aktuelle linje"
 
-#: src/editor-preferences-dialog.ui:94
+#: src/editor-preferences-dialog.ui:91
 msgid "Display Overview Map"
 msgstr "Vis oversigtskort"
 
-#: src/editor-preferences-dialog.ui:102
+#: src/editor-preferences-dialog.ui:99
 msgid "Right Margin"
 msgstr "Højre margen"
 
-#: src/editor-preferences-dialog.ui:105
+#: src/editor-preferences-dialog.ui:102
 msgid "Margin Position"
 msgstr "Margenposition"
 
-#: src/editor-preferences-dialog.ui:113
+#: src/editor-preferences-dialog.ui:110
 msgid "Behavior"
 msgstr "Opførsel"
 
-#: src/editor-preferences-dialog.ui:116
+#: src/editor-preferences-dialog.ui:113
 msgid "Discover Document Settings"
 msgstr "Registrér dokumentindstillinger"
 
-#: src/editor-preferences-dialog.ui:117
+#: src/editor-preferences-dialog.ui:114
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr ""
 "Anvend indstillinger med brug af tilstandslinjer, editorconfig eller "
 "rimelige standarder"
 
-#: src/editor-preferences-dialog.ui:123
+#: src/editor-preferences-dialog.ui:120
 msgid "Restore Session"
 msgstr "Gendan session"
 
-#: src/editor-preferences-dialog.ui:124
+#: src/editor-preferences-dialog.ui:121
 msgid "Return to your previous session when Text Editor is started"
 msgstr "Vend tilbage til din tidligere session, når Tekstredigering startes"
 
-#: src/editor-preferences-dialog.ui:139
+#: src/editor-preferences-dialog.ui:136
 msgid "_Clear History"
 msgstr "_Ryd historik"
 
@@ -604,19 +635,19 @@ msgstr "Tegn (uden mellemrum)"
 msgid "All Characters"
 msgstr "Alle tegn"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:254 src/editor-window-actions.c:242
 msgid "_Discard"
 msgstr "_Kassér"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:254
 msgid "_Discard All"
 msgstr "_Kassér alt"
 
-#: src/editor-save-changes-dialog.c:264
+#: src/editor-save-changes-dialog.c:257
 msgid "Save Changes?"
 msgstr "Gem ændringer?"
 
-#: src/editor-save-changes-dialog.c:266
+#: src/editor-save-changes-dialog.c:258
 msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
@@ -624,25 +655,27 @@ msgstr ""
 "Åbne dokumenter indeholder ændringer, der ikke er gemt. Ændringer, som ikke "
 "gemmes, vil blive tabt for altid."
 
-#: src/editor-save-changes-dialog.c:268
+#: src/editor-save-changes-dialog.c:261 src/editor-window-actions.c:116
+#: src/editor-window-actions.c:241
 msgid "_Cancel"
 msgstr "_Annullér"
 
-#: src/editor-save-changes-dialog.c:270 src/editor-window.ui:210
+#: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:117
+#: src/editor-window.ui:210
 msgid "_Save"
 msgstr "_Gem"
 
-#: src/editor-save-changes-dialog.c:303
+#: src/editor-save-changes-dialog.c:293
 msgid "Untitled Document"
 msgstr "Unavngivet dokument"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:306
+#: src/editor-save-changes-dialog.c:296
 #, c-format
 msgid "%s (new)"
 msgstr "%s (ny)"
 
-#: src/editor-save-changes-dialog.c:327
+#: src/editor-save-changes-dialog.c:317
 msgid "Save changes for this document"
 msgstr "Gem ændringer til dette dokument"
 
@@ -678,15 +711,15 @@ msgstr "_Erstat"
 msgid "Replace _All"
 msgstr "Erstat _alle"
 
-#: src/editor-search-bar.ui:141
+#: src/editor-search-bar.ui:140
 msgid "Re_gular expressions"
 msgstr "_Regulære udtryk"
 
-#: src/editor-search-bar.ui:147
+#: src/editor-search-bar.ui:146
 msgid "_Case sensitive"
 msgstr "Forskel på _store og små bogstaver"
 
-#: src/editor-search-bar.ui:153
+#: src/editor-search-bar.ui:152
 msgid "Match whole _word only"
 msgstr "S_øg kun efter hele ord"
 
@@ -696,21 +729,21 @@ msgstr "S_øg kun efter hele ord"
 msgid "%u of %u"
 msgstr "%u af %u"
 
-#: src/editor-spell-menu.c:191
-msgid "Languages"
-msgstr "Sprog"
-
-#: src/editor-spell-menu.c:192
+#: src/editor-spell-menu.c:248
 msgid "Add to Dictionary"
 msgstr "Tilføj til ordbog"
 
-#: src/editor-spell-menu.c:193
+#: src/editor-spell-menu.c:249
 msgid "Ignore"
 msgstr "Ignorér"
 
-#: src/editor-spell-menu.c:194
+#: src/editor-spell-menu.c:250
 msgid "Check Spelling"
 msgstr "Stavekontrol"
+
+#: src/editor-spell-menu.c:259
+msgid "Languages"
+msgstr "Sprog"
 
 #: src/editor-theme-selector.ui:22 src/editor-theme-selector.ui:24
 msgid "Follow system style"
@@ -724,90 +757,86 @@ msgstr "Lys stil"
 msgid "Dark style"
 msgstr "Mørk stil"
 
-#: src/editor-utils.c:346
+#: src/editor-utils.c:348
 msgid "Just now"
 msgstr "Lige nu"
 
-#: src/editor-utils.c:348
+#: src/editor-utils.c:350
 msgid "An hour ago"
 msgstr "En time siden"
 
-#: src/editor-utils.c:350
+#: src/editor-utils.c:352
 msgid "Yesterday"
 msgstr "I går"
 
-#: src/editor-utils.c:356
+#: src/editor-utils.c:358
 msgid "About a year ago"
 msgstr "Cirka et år siden"
 
-#: src/editor-utils.c:360
+#: src/editor-utils.c:362
 #, c-format
 msgid "About %u year ago"
 msgid_plural "About %u years ago"
 msgstr[0] "Cirka %u år siden"
 msgstr[1] "Cirka %u år siden"
 
-#: src/editor-utils.c:368
+#: src/editor-utils.c:370
 msgid "Unix/Linux (LF)"
 msgstr "Unix/Linux (LF)"
 
-#: src/editor-utils.c:369
+#: src/editor-utils.c:371
 msgid "Mac OS Classic (CR)"
 msgstr "Mac OS Classic (CR)"
 
-#: src/editor-utils.c:370
+#: src/editor-utils.c:372
 msgid "Windows (CR+LF)"
 msgstr "Windows (CR+LF)"
 
-#: src/editor-utils.c:400
+#: src/editor-utils.c:402
 msgid "Automatically Detected"
 msgstr "Automatisk registreret"
 
-#: src/editor-utils.c:416
+#: src/editor-utils.c:418
 msgid "Character Encoding:"
 msgstr "Tegnkodning:"
 
-#: src/editor-utils.c:451
+#: src/editor-utils.c:453
 msgid "Line Ending:"
 msgstr "Linjeafslutning:"
 
-#. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:128
-#, c-format
-msgid "Save Changes to “%s”?"
-msgstr "Gem ændringer til “%s”?"
-
-#: src/editor-window-actions.c:131
+#: src/editor-window-actions.c:110
 msgid "Saving changes will replace the previously saved version."
 msgstr "Gemmes ændringerne erstattes den tidligere gemte version."
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:267
+#: src/editor-window-actions.c:113
+#, c-format
+msgid "Save Changes to “%s”?"
+msgstr "Gem ændringer til “%s”?"
+
+#: src/editor-window-actions.c:235
+msgid "Unsaved changes will be permanently lost."
+msgstr "Ændringer, der ikke er gemt, vil gå tabt for altid."
+
+#. translators: %s is replaced with the document title
+#: src/editor-window-actions.c:238
 #, c-format
 msgid "Discard Changes to “%s”?"
 msgstr "Kassér ændringer til “%s”?"
 
-#: src/editor-window-actions.c:270
-msgid "Unsaved changes will be permanently lost."
-msgstr "Ændringer, der ikke er gemt, vil gå tabt for altid."
-
-#: src/editor-window-actions.c:272
-msgid "Discard"
-msgstr "Kassér"
-
-#: src/editor-window-actions.c:376
+#: src/editor-window-actions.c:348
 msgid "Open File"
 msgstr "Åbn fil"
 
-#: src/editor-window-actions.c:379
+#: src/editor-window-actions.c:351
 msgid "Open"
 msgstr "Åbn"
 
-#: src/editor-window-actions.c:404
+#: src/editor-window-actions.c:376
 msgid "All Files"
 msgstr "Alle filer"
 
-#: src/editor-window-actions.c:409
+#: src/editor-window-actions.c:381
 msgid "Text Files"
 msgstr "Tekstfiler"
 
@@ -816,11 +845,23 @@ msgstr "Tekstfiler"
 msgid "Document Type: %s"
 msgstr "Dokumenttype: %s"
 
+#: src/editor-window.c:508
+msgid "Zoom in"
+msgstr "Zoom ind"
+
+#: src/editor-window.c:520
+msgid "Zoom out"
+msgstr "Zoom ud"
+
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:725
+#: src/editor-window.c:733
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) — Tekstredigering"
+
+#: src/editor-window.c:1136
+msgid "There are unsaved documents"
+msgstr "Der er dokumenter, som ikke er gemte"
 
 #: src/editor-window.ui:78
 msgid "_Open"
@@ -954,11 +995,7 @@ msgstr "Fl_yt til nyt vindue"
 msgid "Close _Other Tabs"
 msgstr "Lu_k andre faneblade"
 
-#: src/editor-window.ui:359
-msgid "_Close"
-msgstr "_Luk"
-
-#: src/enchant/editor-enchant-spell-provider.c:92
+#: src/enchant/editor-enchant-spell-provider.c:123
 msgid "Enchant 2"
 msgstr "Enchant 2"
 
@@ -1236,3 +1273,15 @@ msgstr "Slet fra markøren til slutningen af afsnittet"
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "Slet den aktuelle linje"
+
+#~ msgid "Christian Hergert, et al."
+#~ msgstr "Christian Hergert m.fl."
+
+#~ msgid "A Text Editor for GNOME"
+#~ msgstr "Et tekstredigeringsprogram til GNOME"
+
+#~ msgid "Text Editor Website"
+#~ msgstr "Tekstredigerings websted"
+
+#~ msgid "Discard"
+#~ msgstr "Kassér"
