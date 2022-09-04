@@ -2,17 +2,18 @@
 # Copyright (C) 2022 gnome-text-editor's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-text-editor package.
 # Franck Albaret <contact@dansleru.sh>, 2022
-# Alexandre Franke <afranke@gnome.org>, 2022	
+# Alexandre Franke <afranke@gnome.org>, 2022
 # Charles Monzat <charles.monzat@free.fr>, 2022.
+# Irénée THIRION <irenee.thirion@e.email>, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-04-22 16:58+0000\n"
-"PO-Revision-Date: 2022-04-24 22:13+0200\n"
-"Last-Translator: Charles Monzat <charles.monzat@free.fr>\n"
+"POT-Creation-Date: 2022-05-27 23:54+0000\n"
+"PO-Revision-Date: 2022-05-28 13:55+0200\n"
+"Last-Translator: Irénée THIRION <irenee.thirion@e.email>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -302,19 +303,39 @@ msgstr "Site web de l’éditeur de texte"
 msgid "translator-credits"
 msgstr ""
 "Franck Albaret\n"
-"Alexandre Franke"
+"Alexandre Franke\n"
+"Irénée Thirion"
 
-#: src/editor-application.c:599
+#: src/editor-application.c:460
+msgid "Standard input was requested multiple times. Ignoring request."
+msgstr "L’entrée standard a été demandée plusieurs fois. Demande ignorée."
+
+#: src/editor-application.c:464
+msgid "Standard input is not supported on this platform. Ignoring request."
+msgstr ""
+"L’entrée standard n’est pas prise en charge sur cette plate-forme. Demande "
+"ignorée."
+
+#: src/editor-application.c:660
 msgid "Do not restore session at startup"
 msgstr "Ne pas restaurer la session au démarrage"
 
-#: src/editor-application.c:600
+#: src/editor-application.c:661
 msgid "Open provided files in a new window"
 msgstr "Ouvrir les fichiers fournis dans une nouvelle fenêtre"
 
-#: src/editor-document.c:1938
+#: src/editor-application.c:662
+msgid "Run a new instance of Text Editor (implies --ignore-session)"
+msgstr ""
+
+#: src/editor-document.c:1939
 msgid "[Read-Only]"
 msgstr "[Lecture-Seule]"
+
+#: src/editor-document.c:2227 src/editor-page.c:987
+#: src/editor-sidebar-item.c:489
+msgid "New Document"
+msgstr "Nouveau document"
 
 #: src/editor-file-manager.c:99
 msgid "File path is NULL"
@@ -405,10 +426,6 @@ msgstr "Aucun document récent"
 msgid "No Results Found"
 msgstr "Aucun résultat"
 
-#: src/editor-page.c:987 src/editor-sidebar-item.c:489
-msgid "New Document"
-msgstr "Nouveau document"
-
 #: src/editor-page.c:1009 src/editor-properties-dialog.c:74
 #: src/editor-sidebar-item.c:84
 msgid "Draft"
@@ -441,7 +458,7 @@ msgstr "Enregistrer"
 msgid "Cancel"
 msgstr "Annuler"
 
-#: src/editor-page.c:1309
+#: src/editor-page.c:1315
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Lig %u, Col %u"
@@ -462,6 +479,7 @@ msgstr "Indentation"
 msgid "_Automatic Indentation"
 msgstr "Indentation _automatique"
 
+#. Translators: this is a tab character, not a browser tab
 #: src/editor-page.ui:162 src/editor-window.ui:283
 msgid "_Tabs"
 msgstr "_Tabulations"
@@ -689,15 +707,15 @@ msgstr "_Remplacer"
 msgid "Replace _All"
 msgstr "_Tout remplacer"
 
-#: src/editor-search-bar.ui:141
+#: src/editor-search-bar.ui:140
 msgid "Re_gular expressions"
 msgstr "Expressions ré_gulières"
 
-#: src/editor-search-bar.ui:147
+#: src/editor-search-bar.ui:146
 msgid "_Case sensitive"
 msgstr "Sensible à la _casse"
 
-#: src/editor-search-bar.ui:153
+#: src/editor-search-bar.ui:152
 msgid "Match whole _word only"
 msgstr "Correspondance uniquement avec l’ensemble du _mot"
 
@@ -735,50 +753,50 @@ msgstr "Thème clair"
 msgid "Dark style"
 msgstr "Thème sombre"
 
-#: src/editor-utils.c:346
+#: src/editor-utils.c:348
 msgid "Just now"
 msgstr "À l’instant"
 
-#: src/editor-utils.c:348
+#: src/editor-utils.c:350
 msgid "An hour ago"
 msgstr "Il y a une heure"
 
-#: src/editor-utils.c:350
+#: src/editor-utils.c:352
 msgid "Yesterday"
 msgstr "Hier"
 
-#: src/editor-utils.c:356
+#: src/editor-utils.c:358
 msgid "About a year ago"
 msgstr "Il y a un an"
 
-#: src/editor-utils.c:360
+#: src/editor-utils.c:362
 #, c-format
 msgid "About %u year ago"
 msgid_plural "About %u years ago"
 msgstr[0] "Il y a %u an"
 msgstr[1] "Il y a %u ans"
 
-#: src/editor-utils.c:368
+#: src/editor-utils.c:370
 msgid "Unix/Linux (LF)"
 msgstr "Unix/Linux (LF)"
 
-#: src/editor-utils.c:369
+#: src/editor-utils.c:371
 msgid "Mac OS Classic (CR)"
 msgstr "Mac OS classique (CR)"
 
-#: src/editor-utils.c:370
+#: src/editor-utils.c:372
 msgid "Windows (CR+LF)"
 msgstr "Windows (CR+LF)"
 
-#: src/editor-utils.c:400
+#: src/editor-utils.c:402
 msgid "Automatically Detected"
 msgstr "Détecté automatiquement"
 
-#: src/editor-utils.c:416
+#: src/editor-utils.c:418
 msgid "Character Encoding:"
 msgstr "Codage des caractères :"
 
-#: src/editor-utils.c:451
+#: src/editor-utils.c:453
 msgid "Line Ending:"
 msgstr "Fin de ligne :"
 
@@ -832,6 +850,10 @@ msgstr "Type de document : %s"
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - Éditeur de texte"
+
+#: src/editor-window.c:1130
+msgid "There are unsaved documents"
+msgstr "Il y a des documents non enregistrés"
 
 #: src/editor-window.ui:78
 msgid "_Open"
