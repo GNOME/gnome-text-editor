@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues"
 "\n"
-"POT-Creation-Date: 2022-07-22 18:34+0000\n"
-"PO-Revision-Date: 2022-08-23 16:02+0000\n"
+"POT-Creation-Date: 2022-08-23 16:04+0000\n"
+"PO-Revision-Date: 2022-09-05 10:29+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic\n"
 "Language: is\n"
@@ -38,8 +38,8 @@ msgid ""
 "GNOME Text Editor is a simple text editor focused on a pleasing default "
 "experience."
 msgstr ""
-"GNOME-textaritillinn er einfaldur textaritill með áherslu á að sjálfgefið"
-" fyrirkomulag sé sem þægilegast."
+"GNOME-textaritillinn er einfaldur textaritill með áherslu á að sjálfgefið "
+"fyrirkomulag sé sem þægilegast."
 
 #: data/org.gnome.TextEditor.desktop.in.in:9
 msgid "View and edit text files"
@@ -70,6 +70,8 @@ msgstr "Stíll inndráttar"
 #: data/org.gnome.TextEditor.gschema.xml:36
 msgid "If the editor should insert multiple spaces characters instead of tabs."
 msgstr ""
+"Hvort ritillinn eigi að setja mörg stafbil í stað inndráttarmerkja"
+" (dálkar/TAB)."
 
 #: data/org.gnome.TextEditor.gschema.xml:40
 msgid "Auto Indent"
@@ -94,7 +96,7 @@ msgstr "Breidd inndráttar"
 
 #: data/org.gnome.TextEditor.gschema.xml:53
 msgid "The number of spaces to indent or -1 to use tab-width."
-msgstr ""
+msgstr "Fjöldi bila við inndrátt eða -1 til að nota dálkbreidd (TAB)."
 
 #: data/org.gnome.TextEditor.gschema.xml:57
 msgid "Show Line Numbers"
@@ -110,7 +112,7 @@ msgstr "Sýna hægri spássíu"
 
 #: data/org.gnome.TextEditor.gschema.xml:63
 msgid "If a margin line should be displayed on the right of the editor."
-msgstr ""
+msgstr "Ef birta skal spássíulínu hægra megin í ritlinum."
 
 #: data/org.gnome.TextEditor.gschema.xml:68
 msgid "Right Margin Position"
@@ -153,7 +155,7 @@ msgstr "Textaskrið"
 
 #: data/org.gnome.TextEditor.gschema.xml:89
 msgid "If text should be wrapped."
-msgstr ""
+msgstr "Hvort skipta eigi texta á milli lína"
 
 #: data/org.gnome.TextEditor.gschema.xml:93
 msgid "Use System Font"
@@ -161,7 +163,7 @@ msgstr "Nota kerfisletur"
 
 #: data/org.gnome.TextEditor.gschema.xml:94
 msgid "If the default system monospace font should be used."
-msgstr ""
+msgstr "Hvort nota eigi jafnbreitt letur kerfisins."
 
 #: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:57
 msgid "Custom Font"
@@ -198,6 +200,7 @@ msgstr "Athuga stafsetningu sjálfvirkt"
 #: data/org.gnome.TextEditor.gschema.xml:114
 msgid "If enabled, then Text Editor will check spelling as you type."
 msgstr ""
+"Ef þetta er virkt mun textaritillinn yfirfara stafsetningu á meðan þú skrifar."
 
 #: data/org.gnome.TextEditor.gschema.xml:118
 msgid "Restore session"
@@ -205,7 +208,7 @@ msgstr "Endurheimta setu"
 
 #: data/org.gnome.TextEditor.gschema.xml:119
 msgid "When Text Editor is run, restore the previous session."
-msgstr ""
+msgstr "Þegar textaritillinn er keyrður skal hlaða inn fyrri setu."
 
 #: data/org.gnome.TextEditor.gschema.xml:123
 msgid "Recolor Window"
@@ -213,7 +216,7 @@ msgstr "Endurlita glugga"
 
 #: data/org.gnome.TextEditor.gschema.xml:124
 msgid "Use the style-scheme to recolor the application window."
-msgstr ""
+msgstr "Nota stískemað til að endurlita forritsgluggann."
 
 #: data/org.gnome.TextEditor.gschema.xml:132
 msgid "Keybindings"
@@ -221,7 +224,7 @@ msgstr "Flýtilyklar (lyklabindingar)"
 
 #: data/org.gnome.TextEditor.gschema.xml:133
 msgid "The keybindings to use within Text Editor."
-msgstr ""
+msgstr "Flýtilyklar sem hægt er að nota í textaritlinum."
 
 #: data/org.gnome.TextEditor.gschema.xml:137
 msgid "Last Save Directory"
@@ -229,7 +232,7 @@ msgstr "Síðasta mappa sem vistað var í"
 
 #: data/org.gnome.TextEditor.gschema.xml:138
 msgid "The directory last used in a save or save-as dialog."
-msgstr ""
+msgstr "Mappan sem síðast var notuð í vistunar eða vista-sem glugga."
 
 #: data/org.gnome.TextEditor.gschema.xml:142
 msgid "Draw Spaces"
@@ -237,7 +240,7 @@ msgstr "Teikna bil"
 
 #: data/org.gnome.TextEditor.gschema.xml:143
 msgid "The various types of spaces to draw in the editor."
-msgstr ""
+msgstr "Hinar ýmsu gerðir bilmerkja sem teikna á í ritlinum."
 
 #: data/org.gnome.TextEditor.gschema.xml:147
 msgid "Enable Snippets"
@@ -260,12 +263,12 @@ msgstr "Línuhæð sem á að nota fyrir valið letur."
 #: src/editor-animation.c:1038
 #, c-format
 msgid "Failed to find property %s in %s"
-msgstr ""
+msgstr "Mistókst að finna eiginleikann %s í %s"
 
 #: src/editor-animation.c:1047
 #, c-format
 msgid "Failed to retrieve va_list value: %s"
-msgstr ""
+msgstr "Mistókst að ná í va_list gildi: %s"
 
 #: src/editor-application-actions.c:206
 msgid "Text Editor Website"
@@ -522,7 +525,7 @@ msgstr "Endurheimta setu"
 
 #: src/editor-preferences-dialog.ui:121
 msgid "Return to your previous session when Text Editor is started"
-msgstr ""
+msgstr "Fara aftur í fyrri setuna þína þegar textaritillinn er ræstur"
 
 #: src/editor-preferences-dialog.ui:136
 msgid "_Clear History"
@@ -602,8 +605,8 @@ msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
 msgstr ""
-"Opin skjöl innihalda óvistaðar breytingar. Breytingar sem ekki eru vistaðar"
-" munu tapast endanlega."
+"Opin skjöl innihalda óvistaðar breytingar. Breytingar sem ekki eru vistaðar "
+"munu tapast endanlega."
 
 #: src/editor-save-changes-dialog.c:268
 msgid "_Cancel"
@@ -760,7 +763,7 @@ msgstr "Vista breytingar á '%s'?"
 
 #: src/editor-window-actions.c:131
 msgid "Saving changes will replace the previously saved version."
-msgstr ""
+msgstr "Vistun breytinga mun skipta út síðustu vistuðu útgáfu."
 
 #. translators: %s is replaced with the document title
 #: src/editor-window-actions.c:267
@@ -836,6 +839,12 @@ msgid ""
 "\n"
 "Or, press Ctrl+W to close the window."
 msgstr ""
+"• Ýttu á Opna-hnappinn\n"
+"• Ýttu á Nýr flipi-hnappinn\n"
+"• Ýttu á Ctrl+N til að byrja með nýtt skjal\n"
+"• Ýttu á Ctrl+O til að leita að skjali\n"
+"\n"
+"Eða ýttu á Ctrl+W til að loka glugganum."
 
 #: src/editor-window.ui:202
 msgid "_New Window"
@@ -970,17 +979,17 @@ msgstr "Fara á fyrri dálk"
 #: src/help-overlay.ui:40
 msgctxt "shortcut window"
 msgid "Reorder after next tab"
-msgstr ""
+msgstr "Endurraða eftir næsta flipa"
 
 #: src/help-overlay.ui:46
 msgctxt "shortcut window"
 msgid "Reorder before previous tab"
-msgstr ""
+msgstr "Endurraða á undan fyrri flipa"
 
 #: src/help-overlay.ui:52
 msgctxt "shortcut window"
 msgid "Restore previously closed tab"
-msgstr ""
+msgstr "Endurheimta áður lokaðan flipa"
 
 #: src/help-overlay.ui:59
 msgctxt "shortcut window"
