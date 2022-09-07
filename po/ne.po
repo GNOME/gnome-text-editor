@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gnome Nepali Translation Project\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues\n"
-"POT-Creation-Date: 2022-05-02 16:43+0000\n"
-"PO-Revision-Date: 2022-05-23 11:04+0545\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2022-08-11 17:58+0000\n"
+"PO-Revision-Date: 2022-09-08 01:30+0545\n"
+"Last-Translator: Pawan Chitrakar <chautari@gmail.com>\n"
 "Language-Team: Nepali Team <chautari@gmail.com>\n"
 "Language: ne\n"
 "MIME-Version: 1.0\n"
@@ -18,24 +18,29 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:6
-msgid "Christian Hergert, et al."
-msgstr "क्रिस्चियन हर्गर्ट, इट अल."
+#: data/org.gnome.TextEditor.appdata.xml.in.in:6 src/editor-application-actions.c:197
+msgid "The GNOME Project"
+msgstr "जिनोम परियोजना"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:8 data/org.gnome.TextEditor.desktop.in.in:7
-#: data/org.gnome.TextEditor.desktop.in.in:8 src/editor-application-actions.c:192
+#: data/org.gnome.TextEditor.appdata.xml.in.in:8 data/org.gnome.TextEditor.desktop.in.in:8
+#: data/org.gnome.TextEditor.desktop.in.in:9 src/editor-application-actions.c:195
+#: src/editor-window.c:1213
 msgid "Text Editor"
 msgstr "पाठ सम्पादक"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:10
-msgid "A Text Editor for GNOME"
-msgstr "जिनोमका लागि एउटा पाठ सम्पादक"
+msgid "Edit text files"
+msgstr "पाठ फाइल सम्पादन गर्नुहोस्"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:12
 msgid "GNOME Text Editor is a simple text editor focused on a pleasing default experience."
 msgstr "जिनोम पाठ सम्पादक एउटा मनग्य पूर्वनिर्धारित अनुभवमा केन्द्रित साधारण पाठ सम्पादक हो ।"
 
-#: data/org.gnome.TextEditor.desktop.in.in:9
+#: data/org.gnome.TextEditor.desktop.in.in:4
+msgid "write;notepad;"
+msgstr "लेखन;नोटप्याड;"
+
+#: data/org.gnome.TextEditor.desktop.in.in:10
 msgid "View and edit text files"
 msgstr "पाठ फाइल हेर्नुहोस् र सम्पादन गर्नुहोस्"
 
@@ -254,28 +259,52 @@ msgstr "%s मा %s गुण फेला पार्न असफल"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "va_list मान पुन: प्राप्त गर्न असफल: %s"
 
-#: src/editor-application-actions.c:206
-msgid "Text Editor Website"
-msgstr "पाठ सम्पादक वेबसाइट"
-
-#: src/editor-application-actions.c:207
+#: src/editor-application-actions.c:210
 msgid "translator-credits"
 msgstr ""
 "pawan chitrakar <chautari@gmail.com>,Jyotsna Shrestha <jyoshrestha@hotmail.com>,Ganesh Ghimire "
 "<gghimire@gmail.com>,Shiva  Pokharel <pokharelshiva@hotmail.com>,Jaydeep Bhusal <zaydeep@hotmail."
 "com>,Mahesh Subedi <submanesh@hotmail.com>,Shyam Krishna Bal <shyamkrishna_bal@yahoo.com>.#"
 
-#: src/editor-application.c:599
+#: src/editor-application.c:460
+msgid "Standard input was requested multiple times. Ignoring request."
+msgstr "मानक आगत धेरै पटक अनुरोध गरिएको थियो । अनुरोध उपेक्षा गर्दैछ ।"
+
+#: src/editor-application.c:464
+msgid "Standard input is not supported on this platform. Ignoring request."
+msgstr "यो प्लेटफर्ममा मानक आगत समर्थित छैन । अनुरोध उपेक्षा गर्दैछ ।"
+
+#: src/editor-application.c:552
+msgid "Bugs may be reported at:"
+msgstr "त्रुटिहरू यहाँ रिपोर्ट गर्न सकिन्छ:"
+
+#: src/editor-application.c:554
+msgid "[FILES…]"
+msgstr "[FILES…]"
+
+#: src/editor-application.c:667
 msgid "Do not restore session at startup"
 msgstr "सुरुआतमा सत्र पूर्वावस्थामा नल्याउनुहोस्"
 
-#: src/editor-application.c:600
+#: src/editor-application.c:668
 msgid "Open provided files in a new window"
 msgstr "प्रदान गरिएको फाइलहरू नयाँ सञ्झ्यालमा खोल्नुहोस्"
 
-#: src/editor-document.c:1938
+#: src/editor-application.c:669
+msgid "Run a new instance of Text Editor (implies --ignore-session)"
+msgstr "पाठ सम्पादकको नयाँ दृष्टान्त चलाउनुहोस् (तात्पर्य --उपेक्षा-सत्र)"
+
+#: src/editor-application.c:670
+msgid "Print version information and exit"
+msgstr "मुद्रण संस्करण विवरण अनि बाहिरनुहोस्"
+
+#: src/editor-document.c:2003
 msgid "[Read-Only]"
 msgstr "[पढ्ने मात्र]"
+
+#: src/editor-document.c:2291 src/editor-page.c:1015 src/editor-sidebar-item.c:489
+msgid "New Document"
+msgstr "नयाँ कागजात"
 
 #: src/editor-file-manager.c:99
 msgid "File path is NULL"
@@ -310,11 +339,11 @@ msgstr "अर्को कार्यक्रमद्वारा फाइ�
 msgid "Save _As…"
 msgstr "बचत गर्नुहोस्…"
 
-#: src/editor-info-bar.c:91 src/editor-info-bar.ui:61
+#: src/editor-info-bar.c:91 src/editor-info-bar.ui:63
 msgid "Document Restored"
 msgstr "कागजात पूर्वावस्थामा ल्याइयो"
 
-#: src/editor-info-bar.c:92 src/editor-info-bar.ui:70
+#: src/editor-info-bar.c:92 src/editor-info-bar.ui:73
 msgid "Unsaved document has been restored."
 msgstr "बचत नगरिएका कागजात पूर्वावस्थामा ल्याइएको छ ।"
 
@@ -322,7 +351,7 @@ msgstr "बचत नगरिएका कागजात पूर्वाव
 msgid "_Save…"
 msgstr "बचत गर्नुहोस्…"
 
-#: src/editor-info-bar.c:100 src/editor-info-bar.ui:77
+#: src/editor-info-bar.c:100 src/editor-info-bar.ui:81
 msgid "_Discard…"
 msgstr "छोड्नुहोस्…"
 
@@ -338,15 +367,15 @@ msgstr "कागजातमा बचत नगरिएका परिवर
 msgid "Could Not Open File"
 msgstr "फाइल खोल्न सकेन"
 
-#: src/editor-info-bar.ui:28
+#: src/editor-info-bar.ui:29
 msgid "You do not have permission to open the file."
 msgstr "यो फाइल खोल्न तपाईँसँग आवश्यक अनुमतिहरू छैनन् ।"
 
-#: src/editor-info-bar.ui:35
+#: src/editor-info-bar.ui:37
 msgid "_Retry"
 msgstr "पुन:प्रयास गर्नुहोस्"
 
-#: src/editor-info-bar.ui:42
+#: src/editor-info-bar.ui:44
 msgid "Open As _Administrator"
 msgstr "प्रशासक रुपमा खोल्नुहोस्"
 
@@ -366,42 +395,41 @@ msgstr "हालको कागजात छैन"
 msgid "No Results Found"
 msgstr "नतिजा भेटिएन"
 
-#: src/editor-page.c:987 src/editor-sidebar-item.c:489
-msgid "New Document"
-msgstr "नयाँ कागजात"
-
-#: src/editor-page.c:1009 src/editor-properties-dialog.c:74 src/editor-sidebar-item.c:84
+#: src/editor-page.c:1041 src/editor-properties-dialog.c:74 src/editor-sidebar-item.c:84
 msgid "Draft"
 msgstr "ड्राफ्ट"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1021
+#: src/editor-page.c:1053
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (प्रशासक)"
 
-#: src/editor-page.c:1029 src/editor-sidebar-item.c:98
+#: src/editor-page.c:1063 src/editor-sidebar-item.c:98
 msgid "Document Portal"
 msgstr "कागजात पोर्टल"
 
-#: src/editor-page.c:1080
+#: src/editor-page.c:1110
 msgid "Failed to save document"
 msgstr "कागजात बचत असफल"
 
-#: src/editor-page.c:1165
+#: src/editor-page.c:1111 src/editor-window.ui:359
+msgid "_Close"
+msgstr "_Close"
+
+#: src/editor-page.c:1195
 msgid "Save As"
 msgstr "यसमा बचत गर्नुहोस्"
 
-#: src/editor-page.c:1168 src/editor-window-actions.c:133
+#: src/editor-page.c:1198
 msgid "Save"
 msgstr "बचत गर्नुस"
 
-#: src/editor-page.c:1169 src/editor-window-actions.c:132 src/editor-window-actions.c:271
-#: src/editor-window-actions.c:380
+#: src/editor-page.c:1199 src/editor-window-actions.c:352
 msgid "Cancel"
 msgstr "_रद्द"
 
-#: src/editor-page.c:1309
+#: src/editor-page.c:1348
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Ln %u, Col %u"
@@ -574,43 +602,44 @@ msgstr "वर्णहरू, खाली स्थान छैन"
 msgid "All Characters"
 msgstr "सबै वर्ण"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:254 src/editor-window-actions.c:242
 msgid "_Discard"
 msgstr "छोड्नुहोस्"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:254
 msgid "_Discard All"
 msgstr "सबै छोड्नुहोस्"
 
-#: src/editor-save-changes-dialog.c:264
+#: src/editor-save-changes-dialog.c:257
 msgid "Save Changes?"
 msgstr "परिवर्तनहरू बचत गर्नुहुन्छ?"
 
-#: src/editor-save-changes-dialog.c:266
+#: src/editor-save-changes-dialog.c:258
 msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be permanently lost."
 msgstr ""
 "खुला कागजातले बचत नगरिएको परिवर्तनहरू समाविष्ट गर्दछ । बचत नगरिएका परिवर्तनहरू स्थायी रूपले नष्ट हुनेछन् ।"
 
-#: src/editor-save-changes-dialog.c:268
+#: src/editor-save-changes-dialog.c:261 src/editor-window-actions.c:116
+#: src/editor-window-actions.c:241
 msgid "_Cancel"
 msgstr "रद्द गर्नुहोस्"
 
-#: src/editor-save-changes-dialog.c:270 src/editor-window.ui:210
+#: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:117 src/editor-window.ui:210
 msgid "_Save"
 msgstr "बचत गर्नुस"
 
-#: src/editor-save-changes-dialog.c:303
+#: src/editor-save-changes-dialog.c:293
 msgid "Untitled Document"
 msgstr "शीर्षक विहिन कागजात"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:306
+#: src/editor-save-changes-dialog.c:296
 #, c-format
 msgid "%s (new)"
 msgstr "%s( नयाँ )"
 
-#: src/editor-save-changes-dialog.c:327
+#: src/editor-save-changes-dialog.c:317
 msgid "Save changes for this document"
 msgstr "यो कागजातका लागि परिवर्तनहरू बचत गर्नुहोस्"
 
@@ -646,15 +675,15 @@ msgstr "बदल्नुहोस्"
 msgid "Replace _All"
 msgstr "सबै बदल्नुहोस्"
 
-#: src/editor-search-bar.ui:141
+#: src/editor-search-bar.ui:140
 msgid "Re_gular expressions"
 msgstr "नियमित अभिव्यक्ति"
 
-#: src/editor-search-bar.ui:147
+#: src/editor-search-bar.ui:146
 msgid "_Case sensitive"
 msgstr "संवेदनशिल केस"
 
-#: src/editor-search-bar.ui:153
+#: src/editor-search-bar.ui:152
 msgid "Match whole _word only"
 msgstr "पुर्ण शब्द मात्र मिलाउनुहोस्"
 
@@ -664,21 +693,21 @@ msgstr "पुर्ण शब्द मात्र मिलाउनुहो
 msgid "%u of %u"
 msgstr "%u of %u"
 
-#: src/editor-spell-menu.c:191
-msgid "Languages"
-msgstr "भाषा"
-
-#: src/editor-spell-menu.c:192
+#: src/editor-spell-menu.c:248
 msgid "Add to Dictionary"
 msgstr "शब्दकोशमा थप्नुहोस्"
 
-#: src/editor-spell-menu.c:193
+#: src/editor-spell-menu.c:249
 msgid "Ignore"
 msgstr "वेवास्ता गर्नुहोस"
 
-#: src/editor-spell-menu.c:194
+#: src/editor-spell-menu.c:250
 msgid "Check Spelling"
 msgstr "र्हिज्जे जाँच गर्नुहोस्"
+
+#: src/editor-spell-menu.c:259
+msgid "Languages"
+msgstr "भाषा"
 
 #: src/editor-theme-selector.ui:22 src/editor-theme-selector.ui:24
 msgid "Follow system style"
@@ -692,90 +721,86 @@ msgstr "हल्का शैली"
 msgid "Dark style"
 msgstr "गाढा शैली"
 
-#: src/editor-utils.c:346
+#: src/editor-utils.c:348
 msgid "Just now"
 msgstr "अहिले"
 
-#: src/editor-utils.c:348
+#: src/editor-utils.c:350
 msgid "An hour ago"
 msgstr "एक धण्टा अगाडि"
 
-#: src/editor-utils.c:350
+#: src/editor-utils.c:352
 msgid "Yesterday"
 msgstr "हिजो"
 
-#: src/editor-utils.c:356
+#: src/editor-utils.c:358
 msgid "About a year ago"
 msgstr "करिव १ वर्ष अगाडि"
 
-#: src/editor-utils.c:360
+#: src/editor-utils.c:362
 #, c-format
 msgid "About %u year ago"
 msgid_plural "About %u years ago"
 msgstr[0] "करिब %u वर्ष अघि"
 msgstr[1] "करिब %u वर्ष अघि"
 
-#: src/editor-utils.c:368
+#: src/editor-utils.c:370
 msgid "Unix/Linux (LF)"
 msgstr "युनिक्स्/लिनक्स् (LF)"
 
-#: src/editor-utils.c:369
+#: src/editor-utils.c:371
 msgid "Mac OS Classic (CR)"
 msgstr "म्याक ओएस्  क्लासिक (CR)"
 
-#: src/editor-utils.c:370
+#: src/editor-utils.c:372
 msgid "Windows (CR+LF)"
 msgstr "विन्डोहरू (CR+LF)"
 
-#: src/editor-utils.c:400
+#: src/editor-utils.c:402
 msgid "Automatically Detected"
 msgstr "स्वचालित रूपमा पत्ता लगाइयो"
 
-#: src/editor-utils.c:416
+#: src/editor-utils.c:418
 msgid "Character Encoding:"
 msgstr "वर्ण सङ्केतन"
 
-#: src/editor-utils.c:451
+#: src/editor-utils.c:453
 msgid "Line Ending:"
 msgstr "पङ्ति समाप्त:"
 
-#. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:128
-#, c-format
-msgid "Save Changes to “%s”?"
-msgstr "\"%s\" मा परिवर्तनहरू बचत गर्नुहुन्छ?"
-
-#: src/editor-window-actions.c:131
+#: src/editor-window-actions.c:110
 msgid "Saving changes will replace the previously saved version."
 msgstr "परिवर्तनहरू बचत गर्दा पहिले बचत गरिएको संस्करण प्रतिस्थापन हुनेछ ।"
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:267
+#: src/editor-window-actions.c:113
+#, c-format
+msgid "Save Changes to “%s”?"
+msgstr "\"%s\" मा परिवर्तनहरू बचत गर्नुहुन्छ?"
+
+#: src/editor-window-actions.c:235
+msgid "Unsaved changes will be permanently lost."
+msgstr "यदि तपाईँले बचत गर्नुभएन भने, तपाईँका सबै परिवर्तनहरू नष्ट हुनेछन् ।"
+
+#. translators: %s is replaced with the document title
+#: src/editor-window-actions.c:238
 #, c-format
 msgid "Discard Changes to “%s”?"
 msgstr "\"%s\" मा परिवर्तनहरू छोड्नुहुन्छ?"
 
-#: src/editor-window-actions.c:270
-msgid "Unsaved changes will be permanently lost."
-msgstr "यदि तपाईँले बचत गर्नुभएन भने, तपाईँका सबै परिवर्तनहरू नष्ट हुनेछन् ।"
-
-#: src/editor-window-actions.c:272
-msgid "Discard"
-msgstr "छाडनुहोस्"
-
-#: src/editor-window-actions.c:376
+#: src/editor-window-actions.c:348
 msgid "Open File"
 msgstr "फाइल खोल्नुहोस्"
 
-#: src/editor-window-actions.c:379
+#: src/editor-window-actions.c:351
 msgid "Open"
 msgstr "खुला"
 
-#: src/editor-window-actions.c:404
+#: src/editor-window-actions.c:376
 msgid "All Files"
 msgstr "सबै फाइल"
 
-#: src/editor-window-actions.c:409
+#: src/editor-window-actions.c:381
 msgid "Text Files"
 msgstr "पाठ फाइलहरू"
 
@@ -784,11 +809,23 @@ msgstr "पाठ फाइलहरू"
 msgid "Document Type: %s"
 msgstr "कागजात प्रकार: %s"
 
+#: src/editor-window.c:508
+msgid "Zoom in"
+msgstr "जूम गर्नुहोस्"
+
+#: src/editor-window.c:520
+msgid "Zoom out"
+msgstr "जुम घटाउनुहोस््"
+
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:727
+#: src/editor-window.c:733
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - पाठ सम्पादक"
+
+#: src/editor-window.c:1136
+msgid "There are unsaved documents"
+msgstr "बचत नभएको कागजातहरू"
 
 #: src/editor-window.ui:78
 msgid "_Open"
@@ -922,11 +959,7 @@ msgstr "नयाँ सञ्झ्याल सार्नुहोस्"
 msgid "Close _Other Tabs"
 msgstr "अन्य ट्याबहरू बन्द गर्नुहोस्"
 
-#: src/editor-window.ui:359
-msgid "_Close"
-msgstr "_Close"
-
-#: src/enchant/editor-enchant-spell-provider.c:92
+#: src/enchant/editor-enchant-spell-provider.c:123
 msgid "Enchant 2"
 msgstr "इनच्ञाट २"
 
@@ -1063,7 +1096,7 @@ msgstr "क्लिपबोर्डमा सबै प्रतिलिप�
 #: src/help-overlay.ui:158
 msgctxt "shortcut window"
 msgid "Undo and Redo"
-msgstr ""
+msgstr "पूर्वस्थितिमा फर्काउने र फेरि गर्नुहोस्"
 
 #: src/help-overlay.ui:162
 msgctxt "shortcut window"
@@ -1204,3 +1237,15 @@ msgstr "कर्सरबाट अनुच्छेद अन्त्यम�
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "हालको पंक्ति मेट्नुहोस्"
+
+#~ msgid "Christian Hergert, et al."
+#~ msgstr "क्रिस्चियन हर्गर्ट, इट अल."
+
+#~ msgid "A Text Editor for GNOME"
+#~ msgstr "जिनोमका लागि एउटा पाठ सम्पादक"
+
+#~ msgid "Text Editor Website"
+#~ msgstr "पाठ सम्पादक वेबसाइट"
+
+#~ msgid "Discard"
+#~ msgstr "छाडनुहोस्"
