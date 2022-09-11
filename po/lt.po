@@ -8,32 +8,34 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-03-03 11:52+0000\n"
-"PO-Revision-Date: 2022-03-07 19:04+0200\n"
+"POT-Creation-Date: 2022-08-11 17:58+0000\n"
+"PO-Revision-Date: 2022-09-11 16:00+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
-"%100<10 || n%100>=20) ? 1 : 2)\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"(n%100<10 || n%100>=20) ? 1 : 2)\n"
 "X-Generator: Gtranslator 40.0\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
-msgid "Christian Hergert, et al."
-msgstr "Christian Hergert iri kiti"
+#: src/editor-application-actions.c:197
+msgid "The GNOME Project"
+msgstr "GNOME projektas"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
-#: data/org.gnome.TextEditor.desktop.in.in:7
 #: data/org.gnome.TextEditor.desktop.in.in:8
-#: src/editor-application-actions.c:192
+#: data/org.gnome.TextEditor.desktop.in.in:9
+#: src/editor-application-actions.c:195 src/editor-window.c:1213
 msgid "Text Editor"
 msgstr "Tekstų redaktorius"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:10
-msgid "A Text Editor for GNOME"
-msgstr "Tekstų redaktorius GNOME aplinkai"
+#| msgid "View and edit text files"
+msgid "Edit text files"
+msgstr "Redaguoti tekstinius failus"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:12
 msgid ""
@@ -43,7 +45,11 @@ msgstr ""
 "GNOME Tekstų redaktorius yra paprastas tekstų redaktorius, siekiantis turėti "
 "puikia numatytąją veikseną."
 
-#: data/org.gnome.TextEditor.desktop.in.in:9
+#: data/org.gnome.TextEditor.desktop.in.in:4
+msgid "write;notepad;"
+msgstr "rašyti;užrašinė;"
+
+#: data/org.gnome.TextEditor.desktop.in.in:10
 msgid "View and edit text files"
 msgstr "Rodyti ir redaguoti tekstinius failus"
 
@@ -168,7 +174,7 @@ msgstr "Naudoti sisteminį šriftą"
 msgid "If the default system monospace font should be used."
 msgstr "Ar turėtų būti naudojamas sistemos numatytasis lygiaplotis šriftas."
 
-#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:60
+#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:57
 msgid "Custom Font"
 msgstr "Pasirinktinis šriftas"
 
@@ -266,37 +272,63 @@ msgstr "Eilutės aukštis"
 msgid "The line height to use for the selected font."
 msgstr "Pasirinktam šriftui naudojamas eilutės aukštis."
 
-#: src/editor-animation.c:1051
+#: src/editor-animation.c:1038
 #, c-format
 msgid "Failed to find property %s in %s"
 msgstr "%2$s nepavyko rasti savybės %1$s"
 
-#: src/editor-animation.c:1060
+#: src/editor-animation.c:1047
 #, c-format
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Nepavyko gauti va_list vertės: %s"
 
-#: src/editor-application-actions.c:206
-msgid "Text Editor Website"
-msgstr "Tekstų redaktoriaus tinklalapis"
-
-#: src/editor-application-actions.c:207
+#: src/editor-application-actions.c:210
 msgid "translator-credits"
 msgstr ""
 "Išvertė:\n"
 "Aurimas Černius <aurisc4@gmail.com>"
 
-#: src/editor-application.c:599
+#: src/editor-application.c:460
+msgid "Standard input was requested multiple times. Ignoring request."
+msgstr "Standartinės įvesties paprašyta kelis kartus. Nepaisoma."
+
+#: src/editor-application.c:464
+msgid "Standard input is not supported on this platform. Ignoring request."
+msgstr ""
+"Standartinė įvestis šioje platformoje nepalaikoma. Nepaisoma užklausos."
+
+#: src/editor-application.c:552
+msgid "Bugs may be reported at:"
+msgstr "Apie klaidas galima pranešti:"
+
+#: src/editor-application.c:554
+msgid "[FILES…]"
+msgstr "[FAILAI…]"
+
+#: src/editor-application.c:667
 msgid "Do not restore session at startup"
 msgstr "Neatkurti seanso paleidžiant"
 
-#: src/editor-application.c:600
+#: src/editor-application.c:668
 msgid "Open provided files in a new window"
 msgstr "Atverti pateiktus failus naujame lange"
 
-#: src/editor-document.c:1938
+#: src/editor-application.c:669
+msgid "Run a new instance of Text Editor (implies --ignore-session)"
+msgstr "Paleisti naują teksto redaktoriaus vienetą (reiškia --ignore-session)"
+
+#: src/editor-application.c:670
+msgid "Print version information and exit"
+msgstr "Atspausdinti versijos informaciją ir išeiti"
+
+#: src/editor-document.c:2003
 msgid "[Read-Only]"
 msgstr "[Tik skaitymui]"
+
+#: src/editor-document.c:2291 src/editor-page.c:1015
+#: src/editor-sidebar-item.c:489
+msgid "New Document"
+msgstr "Naujas dokumentas"
 
 #: src/editor-file-manager.c:99
 msgid "File path is NULL"
@@ -331,11 +363,11 @@ msgstr "Kita programa pakeitė fialą."
 msgid "Save _As…"
 msgstr "Įrašyti _taip…"
 
-#: src/editor-info-bar.c:91 src/editor-info-bar.ui:61
+#: src/editor-info-bar.c:91 src/editor-info-bar.ui:63
 msgid "Document Restored"
 msgstr "Dokumentas atkurtas"
 
-#: src/editor-info-bar.c:92 src/editor-info-bar.ui:70
+#: src/editor-info-bar.c:92 src/editor-info-bar.ui:73
 msgid "Unsaved document has been restored."
 msgstr "Neįrašytas dokumentas buvo atkurtas."
 
@@ -343,7 +375,7 @@ msgstr "Neįrašytas dokumentas buvo atkurtas."
 msgid "_Save…"
 msgstr "Į_rašyti…"
 
-#: src/editor-info-bar.c:100 src/editor-info-bar.ui:77
+#: src/editor-info-bar.c:100 src/editor-info-bar.ui:81
 msgid "_Discard…"
 msgstr "_Atmesti…"
 
@@ -359,15 +391,15 @@ msgstr "Buvo atkurti neįrašyti dokumento pakeitimai."
 msgid "Could Not Open File"
 msgstr "Nepavyko atverti failo"
 
-#: src/editor-info-bar.ui:28
+#: src/editor-info-bar.ui:29
 msgid "You do not have permission to open the file."
 msgstr "Neturite leidimo atverti failą."
 
-#: src/editor-info-bar.ui:35
+#: src/editor-info-bar.ui:37
 msgid "_Retry"
 msgstr "_Bandyti vėl"
 
-#: src/editor-info-bar.ui:42
+#: src/editor-info-bar.ui:44
 msgid "Open As _Administrator"
 msgstr "Atverti kaip _Administrator"
 
@@ -387,43 +419,42 @@ msgstr "Nėra nesenų dokumentų"
 msgid "No Results Found"
 msgstr "Nerasta rezultatų"
 
-#: src/editor-page.c:987 src/editor-sidebar-item.c:489
-msgid "New Document"
-msgstr "Naujas dokumentas"
-
-#: src/editor-page.c:1009 src/editor-properties-dialog.c:74
+#: src/editor-page.c:1041 src/editor-properties-dialog.c:74
 #: src/editor-sidebar-item.c:84
 msgid "Draft"
 msgstr "Juodraštis"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1021
+#: src/editor-page.c:1053
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (Administratorius)"
 
-#: src/editor-page.c:1029 src/editor-sidebar-item.c:98
+#: src/editor-page.c:1063 src/editor-sidebar-item.c:98
 msgid "Document Portal"
 msgstr "Dokumento portalas"
 
-#: src/editor-page.c:1080
+#: src/editor-page.c:1110
 msgid "Failed to save document"
 msgstr "Nepavyko įrašyti dokumento"
 
-#: src/editor-page.c:1165
+#: src/editor-page.c:1111 src/editor-window.ui:359
+msgid "_Close"
+msgstr "_Užverti"
+
+#: src/editor-page.c:1195
 msgid "Save As"
 msgstr "Įrašyti taip"
 
-#: src/editor-page.c:1168 src/editor-window-actions.c:133
+#: src/editor-page.c:1198
 msgid "Save"
 msgstr "Įrašyti"
 
-#: src/editor-page.c:1169 src/editor-window-actions.c:132
-#: src/editor-window-actions.c:271 src/editor-window-actions.c:380
+#: src/editor-page.c:1199 src/editor-window-actions.c:352
 msgid "Cancel"
 msgstr "Atsisakyti"
 
-#: src/editor-page.c:1309
+#: src/editor-page.c:1348
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Eil %u, Stulp %u"
@@ -444,6 +475,7 @@ msgstr "Įtrauka"
 msgid "_Automatic Indentation"
 msgstr "_Automatinė įtrauka"
 
+#. Translators: this is a tab character, not a browser tab
 #: src/editor-page.ui:162 src/editor-window.ui:283
 msgid "_Tabs"
 msgstr "_Tabuliacija"
@@ -457,27 +489,22 @@ msgid "Spaces _Per Tab"
 msgstr "Tar_pai tabuliacijai"
 
 #: src/editor-page.ui:176 src/editor-page.ui:204
-#| msgid "_2"
 msgid "2"
 msgstr "2"
 
 #: src/editor-page.ui:181 src/editor-page.ui:209
-#| msgid "_4"
 msgid "4"
 msgstr "4"
 
 #: src/editor-page.ui:186 src/editor-page.ui:214
-#| msgid "_6"
 msgid "6"
 msgstr "6"
 
 #: src/editor-page.ui:191 src/editor-page.ui:219
-#| msgid "_8"
 msgid "8"
 msgstr "8"
 
 #: src/editor-page.ui:197
-#| msgid "Spaces _Per Tab"
 msgid "Spaces Per Indent"
 msgstr "Tarpai tabuliacijai"
 
@@ -499,49 +526,49 @@ msgstr "Stulp"
 msgid "Appearance"
 msgstr "Išvaizda"
 
-#: src/editor-preferences-dialog.ui:82
+#: src/editor-preferences-dialog.ui:79
 msgid "Display Grid Pattern"
 msgstr "Rodyti tinklelio šabloną"
 
-#: src/editor-preferences-dialog.ui:88
+#: src/editor-preferences-dialog.ui:85
 msgid "Highlight Current Line"
 msgstr "Paryškinti dabartinę eilutę"
 
-#: src/editor-preferences-dialog.ui:94
+#: src/editor-preferences-dialog.ui:91
 msgid "Display Overview Map"
 msgstr "Rodyti apžvalgos žemėlapį"
 
-#: src/editor-preferences-dialog.ui:102
+#: src/editor-preferences-dialog.ui:99
 msgid "Right Margin"
 msgstr "Dešinė paraštė"
 
-#: src/editor-preferences-dialog.ui:105
+#: src/editor-preferences-dialog.ui:102
 msgid "Margin Position"
 msgstr "Paraštės padėtis"
 
-#: src/editor-preferences-dialog.ui:113
+#: src/editor-preferences-dialog.ui:110
 msgid "Behavior"
 msgstr "Elgsena"
 
-#: src/editor-preferences-dialog.ui:116
+#: src/editor-preferences-dialog.ui:113
 msgid "Discover Document Settings"
 msgstr "Aptikti dokumento nuostatas"
 
-#: src/editor-preferences-dialog.ui:117
+#: src/editor-preferences-dialog.ui:114
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr ""
 "Pritaikyti nuostatas naudojant modelius, redaktoriaus nuostatas ar "
 "numatytąsias nuostatas"
 
-#: src/editor-preferences-dialog.ui:123
+#: src/editor-preferences-dialog.ui:120
 msgid "Restore Session"
 msgstr "Atkurti seansą"
 
-#: src/editor-preferences-dialog.ui:124
+#: src/editor-preferences-dialog.ui:121
 msgid "Return to your previous session when Text Editor is started"
 msgstr "Grįžti į ankstesnį seansą, kai Tekstų redaktorius paleidžiamas"
 
-#: src/editor-preferences-dialog.ui:139
+#: src/editor-preferences-dialog.ui:136
 msgid "_Clear History"
 msgstr "Iš_valyti istoriją"
 
@@ -602,19 +629,19 @@ msgstr "Simboliai, be tarpų"
 msgid "All Characters"
 msgstr "Visi simboliai"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:254 src/editor-window-actions.c:242
 msgid "_Discard"
 msgstr "_Atmesti"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:254
 msgid "_Discard All"
 msgstr "_Atmesti viską"
 
-#: src/editor-save-changes-dialog.c:264
+#: src/editor-save-changes-dialog.c:257
 msgid "Save Changes?"
 msgstr "Įrašyti pakeitimus?"
 
-#: src/editor-save-changes-dialog.c:266
+#: src/editor-save-changes-dialog.c:258
 msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
@@ -622,25 +649,27 @@ msgstr ""
 "Atverti dokumentai turi neįrašytų pakeitimų. Neįrašyti pakeitimai bus "
 "negrįžtamai prarasti."
 
-#: src/editor-save-changes-dialog.c:268
+#: src/editor-save-changes-dialog.c:261 src/editor-window-actions.c:116
+#: src/editor-window-actions.c:241
 msgid "_Cancel"
 msgstr "_Atsisakyti"
 
-#: src/editor-save-changes-dialog.c:270 src/editor-window.ui:210
+#: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:117
+#: src/editor-window.ui:210
 msgid "_Save"
 msgstr "Į_rašyti"
 
-#: src/editor-save-changes-dialog.c:303
+#: src/editor-save-changes-dialog.c:293
 msgid "Untitled Document"
 msgstr "Nepavadintas dokumentas"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:306
+#: src/editor-save-changes-dialog.c:296
 #, c-format
 msgid "%s (new)"
 msgstr "%s (naujas)"
 
-#: src/editor-save-changes-dialog.c:327
+#: src/editor-save-changes-dialog.c:317
 msgid "Save changes for this document"
 msgstr "Įrašyti šio dokumento pakeitimus"
 
@@ -676,15 +705,15 @@ msgstr "_Pakeisti"
 msgid "Replace _All"
 msgstr "Pakeisti _visur"
 
-#: src/editor-search-bar.ui:141
+#: src/editor-search-bar.ui:140
 msgid "Re_gular expressions"
 msgstr "Re_guliarios išraiškos"
 
-#: src/editor-search-bar.ui:147
+#: src/editor-search-bar.ui:146
 msgid "_Case sensitive"
 msgstr "_Skirti raidžių dydį"
 
-#: src/editor-search-bar.ui:153
+#: src/editor-search-bar.ui:152
 msgid "Match whole _word only"
 msgstr "Atitikti tik _visą žodį"
 
@@ -694,21 +723,21 @@ msgstr "Atitikti tik _visą žodį"
 msgid "%u of %u"
 msgstr "%u iš %u"
 
-#: src/editor-spell-menu.c:191
-msgid "Languages"
-msgstr "Kalbos"
-
-#: src/editor-spell-menu.c:192
+#: src/editor-spell-menu.c:248
 msgid "Add to Dictionary"
 msgstr "Pridėti į žodyną"
 
-#: src/editor-spell-menu.c:193
+#: src/editor-spell-menu.c:249
 msgid "Ignore"
 msgstr "Nepaisyti"
 
-#: src/editor-spell-menu.c:194
+#: src/editor-spell-menu.c:250
 msgid "Check Spelling"
 msgstr "Tikrinti rašybą"
+
+#: src/editor-spell-menu.c:259
+msgid "Languages"
+msgstr "Kalbos"
 
 #: src/editor-theme-selector.ui:22 src/editor-theme-selector.ui:24
 msgid "Follow system style"
@@ -722,23 +751,23 @@ msgstr "Šviesus stilius"
 msgid "Dark style"
 msgstr "Tamsus stilius"
 
-#: src/editor-utils.c:346
+#: src/editor-utils.c:348
 msgid "Just now"
 msgstr "Ką tik"
 
-#: src/editor-utils.c:348
+#: src/editor-utils.c:350
 msgid "An hour ago"
 msgstr "Prie valandą"
 
-#: src/editor-utils.c:350
+#: src/editor-utils.c:352
 msgid "Yesterday"
 msgstr "Vakar"
 
-#: src/editor-utils.c:356
+#: src/editor-utils.c:358
 msgid "About a year ago"
 msgstr "Maždaug prieš metus"
 
-#: src/editor-utils.c:360
+#: src/editor-utils.c:362
 #, c-format
 msgid "About %u year ago"
 msgid_plural "About %u years ago"
@@ -746,67 +775,63 @@ msgstr[0] "Maždaug prieš %u metus"
 msgstr[1] "Maždaug prieš %u metus"
 msgstr[2] "Maždaug prieš %u metų"
 
-#: src/editor-utils.c:368
+#: src/editor-utils.c:370
 msgid "Unix/Linux (LF)"
 msgstr "Unix/Linux (LF)"
 
-#: src/editor-utils.c:369
+#: src/editor-utils.c:371
 msgid "Mac OS Classic (CR)"
 msgstr "Mac OS klasikinės (CR)"
 
-#: src/editor-utils.c:370
+#: src/editor-utils.c:372
 msgid "Windows (CR+LF)"
 msgstr "Windows (CR+LF)"
 
-#: src/editor-utils.c:400
+#: src/editor-utils.c:402
 msgid "Automatically Detected"
 msgstr "Automatiškai aptikta"
 
-#: src/editor-utils.c:416
+#: src/editor-utils.c:418
 msgid "Character Encoding:"
 msgstr "Simbolių koduotė:"
 
-#: src/editor-utils.c:451
+#: src/editor-utils.c:453
 msgid "Line Ending:"
 msgstr "Eilutės pabaiga:"
 
-#. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:128
-#, c-format
-msgid "Save Changes to “%s”?"
-msgstr "Įrašyti „%s“ pakeitimus?"
-
-#: src/editor-window-actions.c:131
+#: src/editor-window-actions.c:110
 msgid "Saving changes will replace the previously saved version."
 msgstr "Pakeitimų įrašymas ankstesnę įrašytą versiją."
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:267
+#: src/editor-window-actions.c:113
+#, c-format
+msgid "Save Changes to “%s”?"
+msgstr "Įrašyti „%s“ pakeitimus?"
+
+#: src/editor-window-actions.c:235
+msgid "Unsaved changes will be permanently lost."
+msgstr "Neįrašyti pakeitimai bus negrįžtamai prarasti."
+
+#. translators: %s is replaced with the document title
+#: src/editor-window-actions.c:238
 #, c-format
 msgid "Discard Changes to “%s”?"
 msgstr "Išmesti „%s“ pakeitimus?"
 
-#: src/editor-window-actions.c:270
-msgid "Unsaved changes will be permanently lost."
-msgstr "Neįrašyti pakeitimai bus negrįžtamai prarasti."
-
-#: src/editor-window-actions.c:272
-msgid "Discard"
-msgstr "Išmesti"
-
-#: src/editor-window-actions.c:376
+#: src/editor-window-actions.c:348
 msgid "Open File"
 msgstr "Atverti failą"
 
-#: src/editor-window-actions.c:379
+#: src/editor-window-actions.c:351
 msgid "Open"
 msgstr "Atverti"
 
-#: src/editor-window-actions.c:404
+#: src/editor-window-actions.c:376
 msgid "All Files"
 msgstr "Visi failai"
 
-#: src/editor-window-actions.c:409
+#: src/editor-window-actions.c:381
 msgid "Text Files"
 msgstr "Tekstų failai"
 
@@ -815,11 +840,28 @@ msgstr "Tekstų failai"
 msgid "Document Type: %s"
 msgstr "Dokumento tipas: %s"
 
+#: src/editor-window.c:508
+#| msgctxt "shortcut window"
+#| msgid "Zoom In"
+msgid "Zoom in"
+msgstr "Priartinti"
+
+#: src/editor-window.c:520
+#| msgctxt "shortcut window"
+#| msgid "Zoom Out"
+msgid "Zoom out"
+msgstr "Atitolinti"
+
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:725
+#: src/editor-window.c:733
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - Tekstų redaktorius"
+
+#: src/editor-window.c:1136
+#| msgid "Failed to save document"
+msgid "There are unsaved documents"
+msgstr "Yra neįrašytų dokumentų"
 
 #: src/editor-window.ui:78
 msgid "_Open"
@@ -953,11 +995,7 @@ msgstr "_Perkelti į naują langą"
 msgid "Close _Other Tabs"
 msgstr "Užverti _kitas korteles"
 
-#: src/editor-window.ui:359
-msgid "_Close"
-msgstr "_Užverti"
-
-#: src/enchant/editor-enchant-spell-provider.c:92
+#: src/enchant/editor-enchant-spell-provider.c:123
 msgid "Enchant 2"
 msgstr "Enchant 2"
 
@@ -1235,3 +1273,15 @@ msgstr "Ištrinti nuo žymeklio iki pastraipos pabaigos"
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "Ištrinti dabartinę eilutę"
+
+#~ msgid "Christian Hergert, et al."
+#~ msgstr "Christian Hergert iri kiti"
+
+#~ msgid "A Text Editor for GNOME"
+#~ msgstr "Tekstų redaktorius GNOME aplinkai"
+
+#~ msgid "Text Editor Website"
+#~ msgstr "Tekstų redaktoriaus tinklalapis"
+
+#~ msgid "Discard"
+#~ msgstr "Išmesti"
