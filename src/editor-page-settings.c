@@ -130,7 +130,7 @@ editor_page_settings_update (EditorPageSettings *self)
               {                                                                       \
                 free_func (self->name);                                               \
                 self->name = dup_func (name);                                         \
-                g_debug ("using %s from %s\n", #name, G_OBJECT_TYPE_NAME (p));        \
+                g_debug ("using %s from %s", #name, G_OBJECT_TYPE_NAME (p));          \
                 g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_##NAME]); \
               }                                                                       \
             break;                                                                    \
