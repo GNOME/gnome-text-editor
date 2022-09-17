@@ -2230,7 +2230,8 @@ _editor_document_get_spelling_tag (EditorDocument *self)
 }
 
 void
-_editor_document_use_admin (EditorDocument *self)
+_editor_document_use_admin (EditorDocument *self,
+                            EditorWindow   *window)
 {
   GFile *file;
   g_autofree char *uri = NULL;
@@ -2240,18 +2241,27 @@ _editor_document_use_admin (EditorDocument *self)
   g_return_if_fail (EDITOR_IS_DOCUMENT (self));
 
   if (!(file = editor_document_get_file (self)))
-    return;
+    {
+      g_warning ("No file, cannot change to admin:// protocol");
+      return;
+    }
 
   uri = g_file_get_uri (file);
+
   if (!g_str_has_prefix (uri, "file:///"))
-    return;
+    {
+      g_warning ("URI \"%s\" does not start with \"file:///\"", uri);
+      return;
+    }
 
   admin_uri = g_strdup_printf ("admin://%s", g_file_get_path (file));
   admin_file = g_file_new_for_uri (admin_uri);
 
+  g_debug ("Changing URI from \"%s\" to \"%s\"", uri, admin_uri);
   gtk_source_file_set_location (self->file, admin_file);
-
   g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_FILE]);
+
+  _editor_document_load_async (self, window, NULL, NULL, NULL);
 }
 
 gboolean

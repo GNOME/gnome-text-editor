@@ -153,10 +153,14 @@ static void
 on_try_admin_cb (EditorInfoBar *self,
                  GtkButton     *button)
 {
+  GtkRoot *root;
+
   g_assert (EDITOR_IS_INFO_BAR (self));
   g_assert (GTK_IS_BUTTON (button));
 
-  _editor_document_use_admin (self->document);
+  root = gtk_widget_get_root (GTK_WIDGET (self));
+
+  _editor_document_use_admin (self->document, EDITOR_WINDOW (root));
 }
 
 static void
