@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-03-12 09:44+0000\n"
-"PO-Revision-Date: 2022-03-13 11:26+0500\n"
+"POT-Creation-Date: 2022-09-15 08:52+0000\n"
+"PO-Revision-Date: 2022-09-18 13:00+0600\n"
 "Last-Translator: \n"
 "Language-Team: Kazakh <kk_KZ@googlegroups.com>\n"
 "Language: kk\n"
@@ -17,22 +17,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
-msgid "Christian Hergert, et al."
-msgstr "Christian Hergert, et al."
+#: src/editor-application-actions.c:197
+msgid "The GNOME Project"
+msgstr "GNOME жобасы"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
-#: data/org.gnome.TextEditor.desktop.in.in:7
 #: data/org.gnome.TextEditor.desktop.in.in:8
-#: src/editor-application-actions.c:192
+#: data/org.gnome.TextEditor.desktop.in.in:9
+#: src/editor-application-actions.c:195 src/editor-window.c:1244
 msgid "Text Editor"
 msgstr "Мәтін түзеткіші"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:10
-msgid "A Text Editor for GNOME"
-msgstr "GNOME үшін мәтін түзеткіші"
+msgid "Edit text files"
+msgstr "Мәтіндік файлдарды түзету"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:12
 msgid ""
@@ -42,7 +43,11 @@ msgstr ""
 "GNOME мәтін түзеткіші - тамаша әдепкі қолдануға арналған қарапайым мәтін "
 "түзеткіші."
 
-#: data/org.gnome.TextEditor.desktop.in.in:9
+#: data/org.gnome.TextEditor.desktop.in.in:4
+msgid "write;notepad;"
+msgstr "write;notepad;жазу;блокнот;"
+
+#: data/org.gnome.TextEditor.desktop.in.in:10
 msgid "View and edit text files"
 msgstr "Мәтіндік файлдарды қарау және түзету"
 
@@ -168,7 +173,7 @@ msgstr "Жүйелік қаріпті қолдану"
 msgid "If the default system monospace font should be used."
 msgstr "Жүйелік незігзі тең енді қаріпті қолдану керек пе."
 
-#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:60
+#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:57
 msgid "Custom Font"
 msgstr "Таңдауыңызша қаріп"
 
@@ -270,35 +275,63 @@ msgstr "Жол биіктігі"
 msgid "The line height to use for the selected font."
 msgstr "Таңдалған қаріп үшін жол биіктігі."
 
-#: src/editor-animation.c:1051
+#: src/editor-animation.c:1038
 #, c-format
 msgid "Failed to find property %s in %s"
 msgstr "%s қасиетін %s ішінен табу сәтсіз аяқталды"
 
-#: src/editor-animation.c:1060
+#: src/editor-animation.c:1047
 #, c-format
 msgid "Failed to retrieve va_list value: %s"
 msgstr "va_list мәнін алу сәтсіз аяқталды: %s"
 
-#: src/editor-application-actions.c:206
-msgid "Text Editor Website"
-msgstr "Мәтін түзеткіші веб-сайты"
-
-#: src/editor-application-actions.c:207
+#: src/editor-application-actions.c:210
 msgid "translator-credits"
 msgstr "Baurzhan Muftakhidinov <baurthefirst@gmail.com>"
 
-#: src/editor-application.c:599
+#: src/editor-application.c:450
+msgid "Standard input was requested multiple times. Ignoring request."
+msgstr "Стандартты кіріс бірнеше рет сұралды. Сұрауды елемеу."
+
+#: src/editor-application.c:454
+msgid "Standard input is not supported on this platform. Ignoring request."
+msgstr ""
+"Бұл платформада стандартты кіріске қолдау көрсетілмейді. Сұрауды елемеу."
+
+#: src/editor-application.c:542
+msgid "Bugs may be reported at:"
+msgstr "Ақаулықтарды хабарлау адресі:"
+
+#: src/editor-application.c:544
+msgid "[FILES…]"
+msgstr "[ФАЙЛДАР…]"
+
+#: src/editor-application.c:657
 msgid "Do not restore session at startup"
 msgstr "Іске қосылу кезінде сессияны қалпына келтірмеу"
 
-#: src/editor-application.c:600
+#: src/editor-application.c:658
 msgid "Open provided files in a new window"
 msgstr "Берілген файлдарды жаңа терезеде ашу"
 
-#: src/editor-document.c:1938
+#: src/editor-application.c:659
+msgid "Run a new instance of Text Editor (implies --ignore-session)"
+msgstr ""
+"Мәтін түзеткішінің жаңа данасын іске қосу (--ignore-session дегенді "
+"білдіреді)"
+
+#: src/editor-application.c:660
+msgid "Print version information and exit"
+msgstr "Нұсқа ақпаратын шығару және шығу"
+
+#: src/editor-document.c:2003
 msgid "[Read-Only]"
 msgstr "[Тек оқу үшін]"
+
+#: src/editor-document.c:2291 src/editor-page.c:1015
+#: src/editor-sidebar-item.c:497
+msgid "New Document"
+msgstr "Жаңа құжат"
 
 #: src/editor-file-manager.c:99
 msgid "File path is NULL"
@@ -329,15 +362,15 @@ msgstr "Дискідегі файл өзгерді"
 msgid "The file has been changed by another program."
 msgstr "Файл басқа бағдарламамен өзгертілді."
 
-#: src/editor-info-bar.c:89 src/editor-window.ui:216
+#: src/editor-info-bar.c:89 src/editor-window.ui:220
 msgid "Save _As…"
 msgstr "Қала_йша сақтау…"
 
-#: src/editor-info-bar.c:91 src/editor-info-bar.ui:61
+#: src/editor-info-bar.c:91 src/editor-info-bar.ui:63
 msgid "Document Restored"
 msgstr "Құжат қалпына келтірілді"
 
-#: src/editor-info-bar.c:92 src/editor-info-bar.ui:70
+#: src/editor-info-bar.c:92 src/editor-info-bar.ui:73
 msgid "Unsaved document has been restored."
 msgstr "Сақталмаған құжат қалпына келтірілді."
 
@@ -345,7 +378,7 @@ msgstr "Сақталмаған құжат қалпына келтірілді."
 msgid "_Save…"
 msgstr "_Сақтау…"
 
-#: src/editor-info-bar.c:100 src/editor-info-bar.ui:77
+#: src/editor-info-bar.c:100 src/editor-info-bar.ui:81
 msgid "_Discard…"
 msgstr "_Елемеу…"
 
@@ -361,15 +394,15 @@ msgstr "Құжатқа сақталмаған өзгерістер қалпын�
 msgid "Could Not Open File"
 msgstr "Файлды ашу мүмкін емес"
 
-#: src/editor-info-bar.ui:28
+#: src/editor-info-bar.ui:29
 msgid "You do not have permission to open the file."
 msgstr "Файлды ашуға рұқсатыңыз жоқ."
 
-#: src/editor-info-bar.ui:35
+#: src/editor-info-bar.ui:37
 msgid "_Retry"
 msgstr "Қа_йталау"
 
-#: src/editor-info-bar.ui:42
+#: src/editor-info-bar.ui:44
 msgid "Open As _Administrator"
 msgstr "Ә_кімші ретінде ашу"
 
@@ -389,43 +422,42 @@ msgstr "Жуырдағы құжаттар жоқ"
 msgid "No Results Found"
 msgstr "Нәтижелер табылмады"
 
-#: src/editor-page.c:987 src/editor-sidebar-item.c:489
-msgid "New Document"
-msgstr "Жаңа құжат"
-
-#: src/editor-page.c:1009 src/editor-properties-dialog.c:74
-#: src/editor-sidebar-item.c:84
+#: src/editor-page.c:1041 src/editor-properties-dialog.c:74
+#: src/editor-sidebar-item.c:101
 msgid "Draft"
 msgstr "Шимай қағаз"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1021
+#: src/editor-page.c:1053
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (Әкімші)"
 
-#: src/editor-page.c:1029 src/editor-sidebar-item.c:98
+#: src/editor-page.c:1063 src/editor-sidebar-item.c:109
 msgid "Document Portal"
 msgstr "Құжаттар порталы"
 
-#: src/editor-page.c:1080
+#: src/editor-page.c:1110
 msgid "Failed to save document"
 msgstr "Құжатты сақтау сәтсіз аяқталды"
 
-#: src/editor-page.c:1165
+#: src/editor-page.c:1111 src/editor-window.ui:363
+msgid "_Close"
+msgstr "Жа_бу"
+
+#: src/editor-page.c:1195
 msgid "Save As"
 msgstr "Қалайша сақтау"
 
-#: src/editor-page.c:1168 src/editor-window-actions.c:133
+#: src/editor-page.c:1198
 msgid "Save"
 msgstr "Сақтау"
 
-#: src/editor-page.c:1169 src/editor-window-actions.c:132
-#: src/editor-window-actions.c:271 src/editor-window-actions.c:380
+#: src/editor-page.c:1199 src/editor-window-actions.c:352
 msgid "Cancel"
 msgstr "Бас тарту"
 
-#: src/editor-page.c:1309
+#: src/editor-page.c:1348
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Жол %u, Бағ %u"
@@ -438,23 +470,24 @@ msgstr "Жолға өту"
 msgid "Go"
 msgstr "Өту"
 
-#: src/editor-page.ui:153 src/editor-window.ui:277
+#: src/editor-page.ui:153 src/editor-window.ui:281
 msgid "Indentation"
 msgstr "Шегіну"
 
-#: src/editor-page.ui:156 src/editor-window.ui:279
+#: src/editor-page.ui:156 src/editor-window.ui:283
 msgid "_Automatic Indentation"
 msgstr "_Автошегіну"
 
-#: src/editor-page.ui:162 src/editor-window.ui:283
+#. Translators: this is a tab character, not a browser tab
+#: src/editor-page.ui:162 src/editor-window.ui:287
 msgid "_Tabs"
 msgstr "_Табуляция"
 
-#: src/editor-page.ui:167 src/editor-window.ui:288
+#: src/editor-page.ui:167 src/editor-window.ui:292
 msgid "_Spaces"
 msgstr "Бо_с аралықтар"
 
-#: src/editor-page.ui:174 src/editor-window.ui:293
+#: src/editor-page.ui:174 src/editor-window.ui:297
 msgid "Spaces _Per Tab"
 msgstr "Табуляция і_шіндегі бос аралықтар"
 
@@ -496,49 +529,49 @@ msgstr "Бағ"
 msgid "Appearance"
 msgstr "Сыртқы түрі"
 
-#: src/editor-preferences-dialog.ui:82
+#: src/editor-preferences-dialog.ui:79
 msgid "Display Grid Pattern"
 msgstr "Тор үлгісін көрсету"
 
-#: src/editor-preferences-dialog.ui:88
+#: src/editor-preferences-dialog.ui:85
 msgid "Highlight Current Line"
 msgstr "Ағымдағы жолды түспен ерекшелеу"
 
-#: src/editor-preferences-dialog.ui:94
+#: src/editor-preferences-dialog.ui:91
 msgid "Display Overview Map"
 msgstr "Шолу картасын көрсету"
 
-#: src/editor-preferences-dialog.ui:102
+#: src/editor-preferences-dialog.ui:99
 msgid "Right Margin"
 msgstr "Оң жақ шет өрісі"
 
-#: src/editor-preferences-dialog.ui:105
+#: src/editor-preferences-dialog.ui:102
 msgid "Margin Position"
 msgstr "Шет өрісінің орны"
 
-#: src/editor-preferences-dialog.ui:113
+#: src/editor-preferences-dialog.ui:110
 msgid "Behavior"
 msgstr "Мінез-құлығы"
 
-#: src/editor-preferences-dialog.ui:116
+#: src/editor-preferences-dialog.ui:113
 msgid "Discover Document Settings"
 msgstr "Құжат параметрлерін табу"
 
-#: src/editor-preferences-dialog.ui:117
+#: src/editor-preferences-dialog.ui:114
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr ""
 "Баптауларды modelines, editorconfig немесе мағынасы бар бастапқы мәндерді "
 "қолданып іске асыру"
 
-#: src/editor-preferences-dialog.ui:123
+#: src/editor-preferences-dialog.ui:120
 msgid "Restore Session"
 msgstr "Сессияны қалпына келтіру"
 
-#: src/editor-preferences-dialog.ui:124
+#: src/editor-preferences-dialog.ui:121
 msgid "Return to your previous session when Text Editor is started"
 msgstr "Мәтін түзеткіші іске қосылған кезде алдыңғы сессияға оралу"
 
-#: src/editor-preferences-dialog.ui:139
+#: src/editor-preferences-dialog.ui:136
 msgid "_Clear History"
 msgstr "Тарихты та_зарту"
 
@@ -599,19 +632,19 @@ msgstr "Таңбалар, бос аралықтар жоқ"
 msgid "All Characters"
 msgstr "Барлық таңбалар"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:254 src/editor-window-actions.c:242
 msgid "_Discard"
 msgstr "_Елемеу"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:254
 msgid "_Discard All"
 msgstr "Барлығын ел_емеу"
 
-#: src/editor-save-changes-dialog.c:264
+#: src/editor-save-changes-dialog.c:257
 msgid "Save Changes?"
 msgstr "Өзгерістерді сақтау керек пе?"
 
-#: src/editor-save-changes-dialog.c:266
+#: src/editor-save-changes-dialog.c:258
 msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
@@ -619,25 +652,27 @@ msgstr ""
 "Ашық құжаттарда сақталмаған өзгерістер бар. Сақталмаған өзгерістер "
 "қайтарылмастай жоғалады."
 
-#: src/editor-save-changes-dialog.c:268
+#: src/editor-save-changes-dialog.c:261 src/editor-window-actions.c:116
+#: src/editor-window-actions.c:241
 msgid "_Cancel"
 msgstr "Ба_с тарту"
 
-#: src/editor-save-changes-dialog.c:270 src/editor-window.ui:210
+#: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:117
+#: src/editor-window.ui:214
 msgid "_Save"
 msgstr "_сақтау"
 
-#: src/editor-save-changes-dialog.c:303
+#: src/editor-save-changes-dialog.c:293
 msgid "Untitled Document"
 msgstr "Атаусыз құжат"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:306
+#: src/editor-save-changes-dialog.c:296
 #, c-format
 msgid "%s (new)"
 msgstr "%s (жаңа)"
 
-#: src/editor-save-changes-dialog.c:327
+#: src/editor-save-changes-dialog.c:317
 msgid "Save changes for this document"
 msgstr "Бұл құжаттың өзгерістерін сақтау"
 
@@ -673,15 +708,15 @@ msgstr "Ал_мастыру"
 msgid "Replace _All"
 msgstr "Б_арлығын алмастыру"
 
-#: src/editor-search-bar.ui:141
+#: src/editor-search-bar.ui:140
 msgid "Re_gular expressions"
 msgstr "Тұрақты өрн_ектер"
 
-#: src/editor-search-bar.ui:147
+#: src/editor-search-bar.ui:146
 msgid "_Case sensitive"
 msgstr "Реги_стрді ескеру"
 
-#: src/editor-search-bar.ui:153
+#: src/editor-search-bar.ui:152
 msgid "Match whole _word only"
 msgstr "Тек толық сөзді сә_йкестендіру"
 
@@ -691,21 +726,21 @@ msgstr "Тек толық сөзді сә_йкестендіру"
 msgid "%u of %u"
 msgstr "%u, барлығы %u"
 
-#: src/editor-spell-menu.c:191
-msgid "Languages"
-msgstr "Тілдер"
-
-#: src/editor-spell-menu.c:192
+#: src/editor-spell-menu.c:248
 msgid "Add to Dictionary"
 msgstr "Сөздікке қосу"
 
-#: src/editor-spell-menu.c:193
+#: src/editor-spell-menu.c:249
 msgid "Ignore"
 msgstr "Елемеу"
 
-#: src/editor-spell-menu.c:194
+#: src/editor-spell-menu.c:250
 msgid "Check Spelling"
 msgstr "Емлені тексеру"
+
+#: src/editor-spell-menu.c:259
+msgid "Languages"
+msgstr "Тілдер"
 
 #: src/editor-theme-selector.ui:22 src/editor-theme-selector.ui:24
 msgid "Follow system style"
@@ -719,89 +754,85 @@ msgstr "Ашық түсті"
 msgid "Dark style"
 msgstr "Күңгірт"
 
-#: src/editor-utils.c:346
+#: src/editor-utils.c:348
 msgid "Just now"
 msgstr "Жаңа ғана"
 
-#: src/editor-utils.c:348
+#: src/editor-utils.c:350
 msgid "An hour ago"
 msgstr "%d сағат бұрын"
 
-#: src/editor-utils.c:350
+#: src/editor-utils.c:352
 msgid "Yesterday"
 msgstr "Кеше"
 
-#: src/editor-utils.c:356
+#: src/editor-utils.c:358
 msgid "About a year ago"
 msgstr "Шамамен бір жыл бұрын"
 
-#: src/editor-utils.c:360
+#: src/editor-utils.c:362
 #, c-format
 msgid "About %u year ago"
 msgid_plural "About %u years ago"
 msgstr[0] "Шамамен %u жыл бұрын"
 
-#: src/editor-utils.c:368
+#: src/editor-utils.c:370
 msgid "Unix/Linux (LF)"
 msgstr "Unix/Linux (LF)"
 
-#: src/editor-utils.c:369
+#: src/editor-utils.c:371
 msgid "Mac OS Classic (CR)"
 msgstr "Mac OS Classic (CR)"
 
-#: src/editor-utils.c:370
+#: src/editor-utils.c:372
 msgid "Windows (CR+LF)"
 msgstr "Windows (CR+LF)"
 
-#: src/editor-utils.c:400
+#: src/editor-utils.c:402
 msgid "Automatically Detected"
 msgstr "Автоматты түрде анықталды"
 
-#: src/editor-utils.c:416
+#: src/editor-utils.c:418
 msgid "Character Encoding:"
 msgstr "Таңбалар кодталуы:"
 
-#: src/editor-utils.c:451
+#: src/editor-utils.c:453
 msgid "Line Ending:"
 msgstr "Жолдың аяқталуы:"
 
-#. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:128
-#, c-format
-msgid "Save Changes to “%s”?"
-msgstr "\"%s\" өзгерістерін сақтау керек пе?"
-
-#: src/editor-window-actions.c:131
+#: src/editor-window-actions.c:110
 msgid "Saving changes will replace the previously saved version."
 msgstr "Өзгерістерді сақтау алдыңғы сақталған нұсқаны алмастырады."
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:267
+#: src/editor-window-actions.c:113
+#, c-format
+msgid "Save Changes to “%s”?"
+msgstr "\"%s\" өзгерістерін сақтау керек пе?"
+
+#: src/editor-window-actions.c:235
+msgid "Unsaved changes will be permanently lost."
+msgstr "Сақталмаған өзгерістер қайтарылмастай жоғалады."
+
+#. translators: %s is replaced with the document title
+#: src/editor-window-actions.c:238
 #, c-format
 msgid "Discard Changes to “%s”?"
 msgstr "\"%s\" өзгерістерін елемеу керек пе?"
 
-#: src/editor-window-actions.c:270
-msgid "Unsaved changes will be permanently lost."
-msgstr "Сақталмаған өзгерістер қайтарылмастай жоғалады."
-
-#: src/editor-window-actions.c:272
-msgid "Discard"
-msgstr "Елемеу"
-
-#: src/editor-window-actions.c:376
+#: src/editor-window-actions.c:348
 msgid "Open File"
 msgstr "Файлды ашу"
 
-#: src/editor-window-actions.c:379
+#: src/editor-window-actions.c:351
 msgid "Open"
 msgstr "Ашу"
 
-#: src/editor-window-actions.c:404
+#: src/editor-window-actions.c:376
 msgid "All Files"
 msgstr "Барлық файлдар"
 
-#: src/editor-window-actions.c:409
+#: src/editor-window-actions.c:381
 msgid "Text Files"
 msgstr "Мәтін файлдары"
 
@@ -810,37 +841,49 @@ msgstr "Мәтін файлдары"
 msgid "Document Type: %s"
 msgstr "Құжат түрі: %s"
 
+#: src/editor-window.c:508
+msgid "Zoom in"
+msgstr "Үлкейту"
+
+#: src/editor-window.c:520
+msgid "Zoom out"
+msgstr "Кішірейту"
+
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:725
+#: src/editor-window.c:733
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - Мәтін түзеткіші"
 
-#: src/editor-window.ui:78
+#: src/editor-window.c:1167
+msgid "There are unsaved documents"
+msgstr "Сақталмаған құжаттар бар"
+
+#: src/editor-window.ui:82
 msgid "_Open"
 msgstr "_Ашу"
 
-#: src/editor-window.ui:80
+#: src/editor-window.ui:84
 msgid "Open recent document (Ctrl+K)"
 msgstr "Жуырдағы құжатты ашу (Ctrl+K)"
 
-#: src/editor-window.ui:92 src/editor-window.ui:94
+#: src/editor-window.ui:96 src/editor-window.ui:98
 msgid "New tab (Ctrl+T)"
 msgstr "Жаңа бет (Ctrl+T)"
 
-#: src/editor-window.ui:120 src/editor-window.ui:124
+#: src/editor-window.ui:124 src/editor-window.ui:128
 msgid "View"
 msgstr "Көрініс"
 
-#: src/editor-window.ui:133
+#: src/editor-window.ui:137
 msgid "Menu"
 msgstr "Мәзір"
 
-#: src/editor-window.ui:166
+#: src/editor-window.ui:170
 msgid "Start or Open a Document"
 msgstr "Құжатты бастау немесе ашу"
 
-#: src/editor-window.ui:169
+#: src/editor-window.ui:173
 msgid ""
 "• Press the Open button\n"
 "• Press the New tab button\n"
@@ -856,103 +899,99 @@ msgstr ""
 "\n"
 "Немесе, терезені жабу үшін Ctrl+W ашыңыз."
 
-#: src/editor-window.ui:202
+#: src/editor-window.ui:206
 msgid "_New Window"
 msgstr "Жаңа тере_зе"
 
-#: src/editor-window.ui:222
+#: src/editor-window.ui:226
 msgid "_Discard Changes"
 msgstr "Өз_герістерді елемеу"
 
-#: src/editor-window.ui:228
+#: src/editor-window.ui:232
 msgid "_Find/Replace…"
 msgstr "_Табу/алмастыру…"
 
-#: src/editor-window.ui:234
+#: src/editor-window.ui:238
 msgid "_Print"
 msgstr "Бас_паға шығару"
 
-#: src/editor-window.ui:240
+#: src/editor-window.ui:244
 msgid "Documen_t Properties"
 msgstr "Құжа_т қасиеттері"
 
-#: src/editor-window.ui:246
+#: src/editor-window.ui:250
 msgid "P_references"
 msgstr "Бап_таулар"
 
-#: src/editor-window.ui:251
+#: src/editor-window.ui:255
 msgid "_Keyboard Shortcuts"
 msgstr "П_ернетақта жарлықтары"
 
-#: src/editor-window.ui:255
+#: src/editor-window.ui:259
 msgid "_Help"
 msgstr "Кө_мек"
 
-#: src/editor-window.ui:259
+#: src/editor-window.ui:263
 msgid "A_bout Text Editor"
 msgstr "Мәтін түзеткіші ту_ралы"
 
-#: src/editor-window.ui:266
+#: src/editor-window.ui:270
 msgid "Show"
 msgstr "Көрсету"
 
-#: src/editor-window.ui:268
+#: src/editor-window.ui:272
 msgid "_Line Numbers"
 msgstr "Жо_лдар нөмірлері"
 
-#: src/editor-window.ui:272
+#: src/editor-window.ui:276
 msgid "_Right Margin"
 msgstr "_Оң жақ шет өрісі"
 
-#: src/editor-window.ui:296
+#: src/editor-window.ui:300
 msgid "_2"
 msgstr "_2"
 
-#: src/editor-window.ui:301
+#: src/editor-window.ui:305
 msgid "_4"
 msgstr "_4"
 
-#: src/editor-window.ui:306
+#: src/editor-window.ui:310
 msgid "_6"
 msgstr "_6"
 
-#: src/editor-window.ui:311
+#: src/editor-window.ui:315
 msgid "_8"
 msgstr "_8"
 
-#: src/editor-window.ui:320
+#: src/editor-window.ui:324
 msgid "T_ext Wrapping"
 msgstr "Мәтін_ді тасымалдау"
 
-#: src/editor-window.ui:324
+#: src/editor-window.ui:328
 msgid "Chec_k Spelling"
 msgstr "Емлені те_ксеру"
 
-#: src/editor-window.ui:328
+#: src/editor-window.ui:332
 msgid "_Document Type"
 msgstr "Құ_жат түрі"
 
-#: src/editor-window.ui:336
+#: src/editor-window.ui:340
 msgid "Move _Left"
 msgstr "Со_лға жылжыту"
 
-#: src/editor-window.ui:341
+#: src/editor-window.ui:345
 msgid "Move _Right"
 msgstr "_Оңға жылжыту"
 
-#: src/editor-window.ui:348
+#: src/editor-window.ui:352
 msgid "_Move to New Window"
 msgstr "Жаңа терезеге жы_лжыту"
 
-#: src/editor-window.ui:355
+#: src/editor-window.ui:359
 msgid "Close _Other Tabs"
 msgstr "Б_асқа беттерді жабу"
 
-#: src/editor-window.ui:359
-msgid "_Close"
-msgstr "Жа_бу"
-
-#: src/enchant/editor-enchant-spell-provider.c:92
+#: src/enchant/editor-enchant-spell-provider.c:123
 msgid "Enchant 2"
 msgstr "Enchant 2"
 
@@ -1230,3 +1269,15 @@ msgstr "Курсордан бастап, абзац соңына дейін өш
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "Ағымдағы жолды өшіру"
+
+#~ msgid "Christian Hergert, et al."
+#~ msgstr "Christian Hergert, et al."
+
+#~ msgid "A Text Editor for GNOME"
+#~ msgstr "GNOME үшін мәтін түзеткіші"
+
+#~ msgid "Text Editor Website"
+#~ msgstr "Мәтін түзеткіші веб-сайты"
+
+#~ msgid "Discard"
+#~ msgstr "Елемеу"
