@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-08-11 17:58+0000\n"
+"POT-Creation-Date: 2022-09-15 08:52+0000\n"
 "PO-Revision-Date: 2022-08-18 18:16+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
@@ -30,7 +30,7 @@ msgstr "GNOME Projesi"
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:9
-#: src/editor-application-actions.c:195 src/editor-window.c:1213
+#: src/editor-application-actions.c:195 src/editor-window.c:1244
 msgid "Text Editor"
 msgstr "Metin Düzenleyici"
 
@@ -297,37 +297,37 @@ msgstr ""
 "Hasan Merkit <hasanmerkit@outlook.com>\n"
 "Mehmet Kerem Gökcek <mehmetkeremgokcek654@gmail.com>"
 
-#: src/editor-application.c:460
+#: src/editor-application.c:450
 msgid "Standard input was requested multiple times. Ignoring request."
 msgstr "Birden çok kez standart girdi istendi. İstem görmezden geliniyor."
 
-#: src/editor-application.c:464
+#: src/editor-application.c:454
 msgid "Standard input is not supported on this platform. Ignoring request."
 msgstr ""
 "Bu platformda standart girdi desteklenmiyor. İstem görmezden geliniyor."
 
-#: src/editor-application.c:552
+#: src/editor-application.c:542
 msgid "Bugs may be reported at:"
 msgstr "Hatalar şuraya bildirilebilir:"
 
-#: src/editor-application.c:554
+#: src/editor-application.c:544
 msgid "[FILES…]"
 msgstr "[DOSYALAR…]"
 
-#: src/editor-application.c:667
+#: src/editor-application.c:657
 msgid "Do not restore session at startup"
 msgstr "Başlangıçta oturumu kurtarma"
 
-#: src/editor-application.c:668
+#: src/editor-application.c:658
 msgid "Open provided files in a new window"
 msgstr "Sağlanan dosyaları yeni pencerede aç"
 
-#: src/editor-application.c:669
+#: src/editor-application.c:659
 msgid "Run a new instance of Text Editor (implies --ignore-session)"
 msgstr ""
 "Metin Düzenleyici’nin yeni örneğini çalıştır (--ignore-session imlenir)"
 
-#: src/editor-application.c:670
+#: src/editor-application.c:660
 msgid "Print version information and exit"
 msgstr "Sürüm bilgisini yazdır ve çık"
 
@@ -336,7 +336,7 @@ msgid "[Read-Only]"
 msgstr "[Salt Okunur]"
 
 #: src/editor-document.c:2291 src/editor-page.c:1015
-#: src/editor-sidebar-item.c:489
+#: src/editor-sidebar-item.c:497
 msgid "New Document"
 msgstr "Yeni Belge"
 
@@ -369,7 +369,7 @@ msgstr "Dosya Diskte Değiştirildi"
 msgid "The file has been changed by another program."
 msgstr "Dosya başka yazılımca değiştirildi."
 
-#: src/editor-info-bar.c:89 src/editor-window.ui:216
+#: src/editor-info-bar.c:89 src/editor-window.ui:220
 msgid "Save _As…"
 msgstr "Farklı _Kaydet…"
 
@@ -430,7 +430,7 @@ msgid "No Results Found"
 msgstr "Sonuç Bulunamadı"
 
 #: src/editor-page.c:1041 src/editor-properties-dialog.c:74
-#: src/editor-sidebar-item.c:84
+#: src/editor-sidebar-item.c:101
 msgid "Draft"
 msgstr "Taslak"
 
@@ -440,7 +440,7 @@ msgstr "Taslak"
 msgid "%s (Administrator)"
 msgstr "%s (Yönetici)"
 
-#: src/editor-page.c:1063 src/editor-sidebar-item.c:98
+#: src/editor-page.c:1063 src/editor-sidebar-item.c:109
 msgid "Document Portal"
 msgstr "Belge Geçidi"
 
@@ -448,7 +448,7 @@ msgstr "Belge Geçidi"
 msgid "Failed to save document"
 msgstr "Belge kaydedilirken hata"
 
-#: src/editor-page.c:1111 src/editor-window.ui:359
+#: src/editor-page.c:1111 src/editor-window.ui:363
 msgid "_Close"
 msgstr "_Kapat"
 
@@ -477,24 +477,24 @@ msgstr "Satıra Git"
 msgid "Go"
 msgstr "Git"
 
-#: src/editor-page.ui:153 src/editor-window.ui:277
+#: src/editor-page.ui:153 src/editor-window.ui:281
 msgid "Indentation"
 msgstr "Girintile"
 
-#: src/editor-page.ui:156 src/editor-window.ui:279
+#: src/editor-page.ui:156 src/editor-window.ui:283
 msgid "_Automatic Indentation"
 msgstr "_Kendiliğinden Girintile"
 
 #. Translators: this is a tab character, not a browser tab
-#: src/editor-page.ui:162 src/editor-window.ui:283
+#: src/editor-page.ui:162 src/editor-window.ui:287
 msgid "_Tabs"
 msgstr "_Sekmeler"
 
-#: src/editor-page.ui:167 src/editor-window.ui:288
+#: src/editor-page.ui:167 src/editor-window.ui:292
 msgid "_Spaces"
 msgstr "_Boşluklar"
 
-#: src/editor-page.ui:174 src/editor-window.ui:293
+#: src/editor-page.ui:174 src/editor-window.ui:297
 msgid "Spaces _Per Tab"
 msgstr "Sekme _Başına Boşluk"
 
@@ -664,7 +664,7 @@ msgid "_Cancel"
 msgstr "_İptal"
 
 #: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:117
-#: src/editor-window.ui:210
+#: src/editor-window.ui:214
 msgid "_Save"
 msgstr "_Kaydet"
 
@@ -862,35 +862,35 @@ msgstr "Uzaklaştır"
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - Metin Düzenleyici"
 
-#: src/editor-window.c:1136
+#: src/editor-window.c:1167
 msgid "There are unsaved documents"
 msgstr "Kaydedilmemiş belgeler var"
 
-#: src/editor-window.ui:78
+#: src/editor-window.ui:82
 msgid "_Open"
 msgstr "_Aç"
 
-#: src/editor-window.ui:80
+#: src/editor-window.ui:84
 msgid "Open recent document (Ctrl+K)"
 msgstr "Son belgeyi aç (Ctrl+K)"
 
-#: src/editor-window.ui:92 src/editor-window.ui:94
+#: src/editor-window.ui:96 src/editor-window.ui:98
 msgid "New tab (Ctrl+T)"
 msgstr "Yeni sekme (Ctrl+T)"
 
-#: src/editor-window.ui:120 src/editor-window.ui:124
+#: src/editor-window.ui:124 src/editor-window.ui:128
 msgid "View"
 msgstr "Göster"
 
-#: src/editor-window.ui:133
+#: src/editor-window.ui:137
 msgid "Menu"
 msgstr "Menü"
 
-#: src/editor-window.ui:166
+#: src/editor-window.ui:170
 msgid "Start or Open a Document"
 msgstr "Belge Aç veya Başlat"
 
-#: src/editor-window.ui:169
+#: src/editor-window.ui:173
 msgid ""
 "• Press the Open button\n"
 "• Press the New tab button\n"
@@ -906,95 +906,95 @@ msgstr ""
 "\n"
 "Veya pencereyi kapatmak için Ctrl+W'ya bas."
 
-#: src/editor-window.ui:202
+#: src/editor-window.ui:206
 msgid "_New Window"
 msgstr "_Yeni Pencere"
 
-#: src/editor-window.ui:222
+#: src/editor-window.ui:226
 msgid "_Discard Changes"
 msgstr "Değişiklikleri _Görmezden Gel"
 
-#: src/editor-window.ui:228
+#: src/editor-window.ui:232
 msgid "_Find/Replace…"
 msgstr "_Bul/Değiştir…"
 
-#: src/editor-window.ui:234
+#: src/editor-window.ui:238
 msgid "_Print"
 msgstr "_Yazdır"
 
-#: src/editor-window.ui:240
+#: src/editor-window.ui:244
 msgid "Documen_t Properties"
 msgstr "Belg_e Özellikleri"
 
-#: src/editor-window.ui:246
+#: src/editor-window.ui:250
 msgid "P_references"
 msgstr "Te_rcihler"
 
-#: src/editor-window.ui:251
+#: src/editor-window.ui:255
 msgid "_Keyboard Shortcuts"
 msgstr "_Klavye Kısayolları"
 
-#: src/editor-window.ui:255
+#: src/editor-window.ui:259
 msgid "_Help"
 msgstr "_Yardım"
 
-#: src/editor-window.ui:259
+#: src/editor-window.ui:263
 msgid "A_bout Text Editor"
 msgstr "Metin Düzenleyici _Hakkında"
 
-#: src/editor-window.ui:266
+#: src/editor-window.ui:270
 msgid "Show"
 msgstr "Göster"
 
-#: src/editor-window.ui:268
+#: src/editor-window.ui:272
 msgid "_Line Numbers"
 msgstr "_Satır Numaraları"
 
-#: src/editor-window.ui:272
+#: src/editor-window.ui:276
 msgid "_Right Margin"
 msgstr "_Sağ Kenar Boşluğu"
 
-#: src/editor-window.ui:296
+#: src/editor-window.ui:300
 msgid "_2"
 msgstr "_2"
 
-#: src/editor-window.ui:301
+#: src/editor-window.ui:305
 msgid "_4"
 msgstr "_4"
 
-#: src/editor-window.ui:306
+#: src/editor-window.ui:310
 msgid "_6"
 msgstr "_6"
 
-#: src/editor-window.ui:311
+#: src/editor-window.ui:315
 msgid "_8"
 msgstr "_8"
 
-#: src/editor-window.ui:320
+#: src/editor-window.ui:324
 msgid "T_ext Wrapping"
 msgstr "_Metin Kaydırma"
 
-#: src/editor-window.ui:324
+#: src/editor-window.ui:328
 msgid "Chec_k Spelling"
 msgstr "Yazım _Denetimi"
 
-#: src/editor-window.ui:328
+#: src/editor-window.ui:332
 msgid "_Document Type"
 msgstr "_Belge Türü"
 
-#: src/editor-window.ui:336
+#: src/editor-window.ui:340
 msgid "Move _Left"
 msgstr "S_ola Taşı"
 
-#: src/editor-window.ui:341
+#: src/editor-window.ui:345
 msgid "Move _Right"
 msgstr "_Sağa Taşı"
 
-#: src/editor-window.ui:348
+#: src/editor-window.ui:352
 msgid "_Move to New Window"
 msgstr "Yeni Pencereye _Taşı"
 
-#: src/editor-window.ui:355
+#: src/editor-window.ui:359
 msgid "Close _Other Tabs"
 msgstr "D_iğer Sekmeleri Kapat"
 
