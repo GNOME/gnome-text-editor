@@ -201,7 +201,13 @@ editor_page_document_notify_busy_cb (EditorPage     *self,
   g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_SUBTITLE]);
   g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_TITLE]);
 
+#if 0
+  /* https://gitlab.gnome.org/GNOME/gnome-text-editor/-/issues/454
+   * Setting editable == FALSE breaks input methods so we need to
+   * find another way to prevent editing during transactions.
+   */
   gtk_text_view_set_editable (GTK_TEXT_VIEW (self->view), !busy);
+#endif
 }
 
 static void
