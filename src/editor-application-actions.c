@@ -201,7 +201,7 @@ editor_application_actions_about_cb (GSimpleAction *action,
                          "version", PACKAGE_VERSION,
 #endif
                          "website", PACKAGE_WEBSITE,
-                         "issue-url", "https://gitlab.gnome.org/GNOME/gnome-text-editor/-/issues/new",
+                         "issue-url", PACKAGE_BUGREPORTS,
                          "developers", developers,
                          "designers", designers,
                          "copyright", "© 2020-2022 Christian Hergert, et al.",
