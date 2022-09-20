@@ -53,20 +53,20 @@ check_early_opts (int        *argc,
 
   if (version)
     {
-      g_printerr ("%s %s (%s)\n", PACKAGE_NAME, PACKAGE_VERSION, EDITOR_BUILD_IDENTIFIER);
-      g_printerr ("\n");
-      g_printerr ("            GTK: %d.%d.%d (Compiled against %d.%d.%d)\n",
+      g_print ("%s %s (%s)\n", PACKAGE_NAME, PACKAGE_VERSION, EDITOR_BUILD_IDENTIFIER);
+      g_print ("\n");
+      g_print ("            GTK: %d.%d.%d (Compiled against %d.%d.%d)\n",
                   gtk_get_major_version (), gtk_get_minor_version (), gtk_get_micro_version (),
                   GTK_MAJOR_VERSION, GTK_MINOR_VERSION, GTK_MICRO_VERSION);
-      g_printerr ("  GtkSourceView: %d.%d.%d (Compiled against %d.%d.%d)\n",
+      g_print ("  GtkSourceView: %d.%d.%d (Compiled against %d.%d.%d)\n",
                   gtk_source_get_major_version (), gtk_source_get_minor_version (), gtk_source_get_micro_version (),
                   GTK_SOURCE_MAJOR_VERSION, GTK_SOURCE_MINOR_VERSION, GTK_SOURCE_MICRO_VERSION);
 
 #ifdef HAVE_ENCHANT
-      g_printerr ("        Enchant: %s\n", enchant_get_version ());
+      g_print ("        Enchant: %s\n", enchant_get_version ());
 #endif
 
-      g_printerr ("\n\
+      g_print ("\n\
 Copyright 2020-2022 Christian Hergert, et al.\n\
 This is free software; see the source for copying conditions. There is NO\n\
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\
