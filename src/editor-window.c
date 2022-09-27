@@ -1185,15 +1185,43 @@ page_notify_is_modified_cb (EditorWindow *self,
   editor_window_update_inhibit (self);
 }
 
+static void
+buffer_notify_file_cb (EditorDocument *document,
+                       GParamSpec     *pspec,
+                       AdwTabPage     *tab_page)
+{
+  g_autofree char *tooltip = NULL;
+  GFile *file;
+
+  g_assert (EDITOR_IS_DOCUMENT (document));
+  g_assert (ADW_IS_TAB_PAGE (tab_page));
+
+  if ((file = editor_document_get_file (document)))
+    {
+      if (g_file_is_native (file))
+        tooltip = g_file_get_path (file);
+      else
+        tooltip = g_file_get_uri (file);
+    }
+  else
+    {
+      tooltip = editor_document_dup_title (document);
+    }
+
+  adw_tab_page_set_tooltip (tab_page, tooltip);
+}
+
 void
 _editor_window_add_page (EditorWindow *self,
                          EditorPage   *page)
 {
   AdwTabPage *tab_page;
+  EditorDocument *document;
 
   g_return_if_fail (EDITOR_IS_WINDOW (self));
   g_return_if_fail (EDITOR_IS_PAGE (page));
 
+  document = editor_page_get_document (page);
   tab_page = adw_tab_view_append (self->tab_view, GTK_WIDGET (page));
 
   g_object_bind_property (page, "title", tab_page, "title", G_BINDING_SYNC_CREATE);
@@ -1210,6 +1238,13 @@ _editor_window_add_page (EditorWindow *self,
                            G_CALLBACK (page_notify_is_modified_cb),
                            self,
                            G_CONNECT_SWAPPED);
+
+  g_signal_connect_object (document,
+                           "notify::file",
+                           G_CALLBACK (buffer_notify_file_cb),
+                           tab_page,
+                           0);
+  buffer_notify_file_cb (document, NULL, tab_page);
 
   adw_tab_view_set_selected_page (self->tab_view, tab_page);
 
