@@ -539,6 +539,53 @@ editor_source_view_action_delete_line (GtkWidget  *widget,
   gdk_clipboard_set_text (gtk_widget_get_primary_clipboard (widget), text);
 }
 
+static void
+editor_source_view_action_duplicate_line (GtkWidget  *widget,
+                                          const char *action_name,
+                                          GVariant   *param)
+{
+  EditorSourceView *self = (EditorSourceView *)widget;
+  GtkTextBuffer *buffer;
+  GtkTextIter begin, end;
+  g_autofree char *text = NULL;
+
+  g_assert (EDITOR_IS_SOURCE_VIEW (self));
+
+  buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (self));
+  gtk_text_buffer_get_selection_bounds (buffer, &begin, &end);
+  gtk_text_iter_order (&begin, &end);
+
+  /* Move beginning of selection/cursor to position 0 of first */
+  if (!gtk_text_iter_starts_line (&begin))
+    gtk_text_iter_set_line_offset (&begin, 0);
+
+  /* Move end of selection/cursor to end of line */
+  if (!gtk_text_iter_ends_line (&end))
+    gtk_text_iter_forward_to_line_end (&end);
+
+  /* Swallow the \n with the selection */
+  if (!gtk_text_iter_is_end (&end))
+    gtk_text_iter_forward_char (&end);
+
+  /* Copy the text of the line to memory */
+  text = gtk_text_buffer_get_text (buffer, &begin, &end, true);
+
+  /* Empty line, nothing to copy */
+  if (strlen (text) == 0) return;
+
+  if (strchr (text, '\r')) {
+    g_message ("Line duplication not implemented for Carriage Return (Mac or Windows) files at this time.\n");
+    return;
+  }
+
+  /* Insert line endings, before duplicating row */
+  if (!strchr (text, '\n'))
+    gtk_text_buffer_insert (buffer, &end, "\n", 1);
+
+  /* Insert a duplicate of the current line, below it */
+  gtk_text_buffer_insert (buffer, &end, text, strlen (text));
+}
+
 static GtkSourceSearchContext *
 get_search_context (EditorSourceView *self)
 {
@@ -907,6 +954,7 @@ editor_source_view_class_init (EditorSourceViewClass *klass)
   gtk_widget_class_install_action (widget_class, "spelling.correct", "s", editor_source_view_action_spelling_correct);
   gtk_widget_class_install_action (widget_class, "buffer.select-line", NULL, editor_source_view_action_select_line);
   gtk_widget_class_install_action (widget_class, "buffer.delete-line", NULL, editor_source_view_action_delete_line);
+  gtk_widget_class_install_action (widget_class, "buffer.duplicate-line", NULL, editor_source_view_action_duplicate_line);
 
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_plus, GDK_CONTROL_MASK, "page.zoom-in", NULL);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_KP_Add, GDK_CONTROL_MASK, "page.zoom-in", NULL);
@@ -916,6 +964,7 @@ editor_source_view_class_init (EditorSourceViewClass *klass)
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_0, GDK_CONTROL_MASK, "page.zoom-one", NULL);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_l, GDK_CONTROL_MASK, "buffer.select-line", NULL);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_d, GDK_CONTROL_MASK, "buffer.delete-line", NULL);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_d, GDK_CONTROL_MASK|GDK_ALT_MASK, "buffer.duplicate-line", NULL);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_g, GDK_CONTROL_MASK, "search.move-next", "b", FALSE);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_g, GDK_CONTROL_MASK|GDK_SHIFT_MASK, "search.move-previous", "b", FALSE);
 }
