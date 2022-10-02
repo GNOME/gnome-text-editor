@@ -986,6 +986,12 @@ editor_window_init (EditorWindow *self)
   gtk_window_set_title (GTK_WINDOW (self), _(PACKAGE_NAME));
   gtk_window_set_default_size (GTK_WINDOW (self), 700, 520);
 
+  adw_tab_view_remove_shortcuts (self->tab_view,
+                                 ADW_TAB_VIEW_SHORTCUT_CONTROL_END |
+                                 ADW_TAB_VIEW_SHORTCUT_CONTROL_HOME |
+                                 ADW_TAB_VIEW_SHORTCUT_CONTROL_SHIFT_END |
+                                 ADW_TAB_VIEW_SHORTCUT_CONTROL_SHIFT_HOME);
+
   adw_status_page_set_icon_name (ADW_STATUS_PAGE (self->empty), APP_ID"-symbolic");
 
   self->settings = g_settings_new ("org.gnome.TextEditor");
