@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-07-22 02:30+0000\n"
+"POT-Creation-Date: 2022-09-15 08:52+0000\n"
 "Last-Translator: Нанба Наала <naala-nanba@rambler.ru>\n"
 "Language-Team: Abkhazian <daniel.abzakh@gmail.com>\n"
 "Language: ab\n"
@@ -12,18 +12,19 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
-msgid "Christian Hergert, et al."
-msgstr ""
+#: src/editor-application-actions.c:197
+msgid "The GNOME Project"
+msgstr "The GNOME Project"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:9
-#: src/editor-application-actions.c:195 src/editor-window.c:1213
+#: src/editor-application-actions.c:195 src/editor-window.c:1244
 msgid "Text Editor"
 msgstr ""
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:10
-msgid "A Text Editor for GNOME"
+msgid "Edit text files"
 msgstr ""
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:12
@@ -68,7 +69,7 @@ msgstr ""
 
 #: data/org.gnome.TextEditor.gschema.xml:40
 msgid "Auto Indent"
-msgstr "Автоматикалатәи ахьаҵ"
+msgstr "Автоматикалатәи  ахьаҵ"
 
 #: data/org.gnome.TextEditor.gschema.xml:41
 msgid "Automatically indent new lines copying the previous line's indentation."
@@ -153,7 +154,7 @@ msgstr ""
 
 #: data/org.gnome.TextEditor.gschema.xml:93
 msgid "Use System Font"
-msgstr ""
+msgstr "Асистемтә шрифт ахархәара"
 
 #: data/org.gnome.TextEditor.gschema.xml:94
 msgid "If the default system monospace font should be used."
@@ -263,48 +264,48 @@ msgstr ""
 msgid "Failed to retrieve va_list value: %s"
 msgstr ""
 
-#: src/editor-application-actions.c:197
-msgid "The GNOME Project"
-msgstr "The GNOME Project"
-
 #: src/editor-application-actions.c:210
 msgid "translator-credits"
 msgstr "Нанба Наала <naala-nanba@rambler.ru>, 2022"
 
-#: src/editor-application.c:460
+#: src/editor-application.c:450
 msgid "Standard input was requested multiple times. Ignoring request."
 msgstr ""
 
-#: src/editor-application.c:464
+#: src/editor-application.c:454
 msgid "Standard input is not supported on this platform. Ignoring request."
 msgstr ""
 
-#: src/editor-application.c:552
+#: src/editor-application.c:542
 msgid "Bugs may be reported at:"
 msgstr ""
 
-#: src/editor-application.c:666
+#: src/editor-application.c:544
+msgid "[FILES…]"
+msgstr ""
+
+#: src/editor-application.c:657
 msgid "Do not restore session at startup"
 msgstr ""
 
-#: src/editor-application.c:667
+#: src/editor-application.c:658
 msgid "Open provided files in a new window"
 msgstr ""
 
-#: src/editor-application.c:668
+#: src/editor-application.c:659
 msgid "Run a new instance of Text Editor (implies --ignore-session)"
 msgstr ""
 
-#: src/editor-application.c:669
+#: src/editor-application.c:660
 msgid "Print version information and exit"
 msgstr ""
 
-#: src/editor-document.c:1948
+#: src/editor-document.c:2003
 msgid "[Read-Only]"
 msgstr ""
 
-#: src/editor-document.c:2236 src/editor-page.c:987
-#: src/editor-sidebar-item.c:489
+#: src/editor-document.c:2291 src/editor-page.c:1015
+#: src/editor-sidebar-item.c:497
 msgid "New Document"
 msgstr ""
 
@@ -337,7 +338,7 @@ msgstr ""
 msgid "The file has been changed by another program."
 msgstr ""
 
-#: src/editor-info-bar.c:89 src/editor-window.ui:216
+#: src/editor-info-bar.c:89 src/editor-window.ui:220
 msgid "Save _As…"
 msgstr ""
 
@@ -379,7 +380,7 @@ msgstr ""
 
 #: src/editor-info-bar.ui:44
 msgid "Open As _Administrator"
-msgstr ""
+msgstr "_Администратор еиԥш аартра"
 
 #: src/editor-language-dialog.ui:6 src/editor-window.c:194
 msgid "Document Type"
@@ -395,74 +396,74 @@ msgstr ""
 
 #: src/editor-open-popover.ui:94
 msgid "No Results Found"
-msgstr ""
+msgstr "Алҵшәақәа ыҟаӡам"
 
-#: src/editor-page.c:1009 src/editor-properties-dialog.c:74
-#: src/editor-sidebar-item.c:84
+#: src/editor-page.c:1041 src/editor-properties-dialog.c:74
+#: src/editor-sidebar-item.c:101
 msgid "Draft"
-msgstr ""
+msgstr "Аҟьашьы"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1021
+#: src/editor-page.c:1053
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s(Анаԥхгаҩы)"
 
-#: src/editor-page.c:1029 src/editor-sidebar-item.c:98
+#: src/editor-page.c:1063 src/editor-sidebar-item.c:109
 msgid "Document Portal"
 msgstr ""
 
-#: src/editor-page.c:1075
+#: src/editor-page.c:1110
 msgid "Failed to save document"
 msgstr ""
 
-#: src/editor-page.c:1076 src/editor-window.ui:359
+#: src/editor-page.c:1111 src/editor-window.ui:363
 msgid "_Close"
-msgstr ""
+msgstr "_Аркра"
 
-#: src/editor-page.c:1160
+#: src/editor-page.c:1195
 msgid "Save As"
 msgstr ""
 
-#: src/editor-page.c:1163
+#: src/editor-page.c:1198
 msgid "Save"
 msgstr ""
 
-#: src/editor-page.c:1164 src/editor-window-actions.c:352
+#: src/editor-page.c:1199 src/editor-window-actions.c:352
 msgid "Cancel"
-msgstr ""
+msgstr "Аԥыхры"
 
-#: src/editor-page.c:1310
+#: src/editor-page.c:1348
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr ""
 
 #: src/editor-page.ui:98
 msgid "Go to Line"
-msgstr ""
+msgstr "Ацәаҳәа ахь аиасра"
 
 #: src/editor-page.ui:116
 msgid "Go"
-msgstr ""
+msgstr "Аиасра"
 
-#: src/editor-page.ui:153 src/editor-window.ui:277
+#: src/editor-page.ui:153 src/editor-window.ui:281
 msgid "Indentation"
 msgstr ""
 
-#: src/editor-page.ui:156 src/editor-window.ui:279
+#: src/editor-page.ui:156 src/editor-window.ui:283
 msgid "_Automatic Indentation"
 msgstr "_Автоматикалатәи ахьаҵ"
 
 #. Translators: this is a tab character, not a browser tab
-#: src/editor-page.ui:162 src/editor-window.ui:283
+#: src/editor-page.ui:162 src/editor-window.ui:287
 msgid "_Tabs"
 msgstr ""
 
-#: src/editor-page.ui:167 src/editor-window.ui:288
+#: src/editor-page.ui:167 src/editor-window.ui:292
 msgid "_Spaces"
 msgstr ""
 
-#: src/editor-page.ui:174 src/editor-window.ui:293
+#: src/editor-page.ui:174 src/editor-window.ui:297
 msgid "Spaces _Per Tab"
 msgstr ""
 
@@ -571,7 +572,7 @@ msgstr ""
 
 #: src/editor-properties-dialog.ui:6
 msgid "Properties"
-msgstr ""
+msgstr "Аҟазшьаҷыдақәа"
 
 #: src/editor-properties-dialog.ui:27
 msgid "File"
@@ -579,7 +580,7 @@ msgstr ""
 
 #: src/editor-properties-dialog.ui:30
 msgid "Name"
-msgstr ""
+msgstr "Ахьӡ"
 
 #: src/editor-properties-dialog.ui:45
 msgid "Location"
@@ -591,7 +592,7 @@ msgstr ""
 
 #: src/editor-properties-dialog.ui:66
 msgid "Lines"
-msgstr ""
+msgstr "Ацәаҳәақәа"
 
 #: src/editor-properties-dialog.ui:81
 msgid "Words"
@@ -607,7 +608,7 @@ msgstr ""
 
 #: src/editor-save-changes-dialog.c:254 src/editor-window-actions.c:242
 msgid "_Discard"
-msgstr ""
+msgstr "_Мап ацәкра"
 
 #: src/editor-save-changes-dialog.c:254
 msgid "_Discard All"
@@ -626,12 +627,12 @@ msgstr ""
 #: src/editor-save-changes-dialog.c:261 src/editor-window-actions.c:116
 #: src/editor-window-actions.c:241
 msgid "_Cancel"
-msgstr ""
+msgstr "_Аԥыхра"
 
 #: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:117
-#: src/editor-window.ui:210
+#: src/editor-window.ui:214
 msgid "_Save"
-msgstr ""
+msgstr "_Аиқәырхара"
 
 #: src/editor-save-changes-dialog.c:293
 msgid "Untitled Document"
@@ -673,7 +674,7 @@ msgstr ""
 
 #: src/editor-search-bar.ui:112
 msgid "_Replace"
-msgstr ""
+msgstr "_Аҧсахра"
 
 #: src/editor-search-bar.ui:124
 msgid "Replace _All"
@@ -707,7 +708,7 @@ msgstr ""
 
 #: src/editor-spell-menu.c:250
 msgid "Check Spelling"
-msgstr ""
+msgstr "Аиашаҩыра агәаҭара"
 
 #: src/editor-spell-menu.c:259
 msgid "Languages"
@@ -794,11 +795,11 @@ msgstr ""
 
 #: src/editor-window-actions.c:348
 msgid "Open File"
-msgstr ""
+msgstr "Афаил аартра"
 
 #: src/editor-window-actions.c:351
 msgid "Open"
-msgstr ""
+msgstr "Аартра"
 
 #: src/editor-window-actions.c:376
 msgid "All Files"
@@ -827,35 +828,35 @@ msgstr ""
 msgid "%s (%s) - Text Editor"
 msgstr ""
 
-#: src/editor-window.c:1136
+#: src/editor-window.c:1167
 msgid "There are unsaved documents"
 msgstr ""
 
-#: src/editor-window.ui:78
+#: src/editor-window.ui:82
 msgid "_Open"
-msgstr ""
+msgstr "_Аартра"
 
-#: src/editor-window.ui:80
+#: src/editor-window.ui:84
 msgid "Open recent document (Ctrl+K)"
-msgstr ""
+msgstr "Ааигәатәи адокумент аартра  (Ctrl+K)"
 
-#: src/editor-window.ui:92 src/editor-window.ui:94
+#: src/editor-window.ui:96 src/editor-window.ui:98
 msgid "New tab (Ctrl+T)"
 msgstr ""
 
-#: src/editor-window.ui:120 src/editor-window.ui:124
+#: src/editor-window.ui:124 src/editor-window.ui:128
 msgid "View"
 msgstr "Аԥшра"
 
-#: src/editor-window.ui:133
+#: src/editor-window.ui:137
 msgid "Menu"
 msgstr ""
 
-#: src/editor-window.ui:166
+#: src/editor-window.ui:170
 msgid "Start or Open a Document"
 msgstr ""
 
-#: src/editor-window.ui:169
+#: src/editor-window.ui:173
 msgid ""
 "• Press the Open button\n"
 "• Press the New tab button\n"
@@ -865,95 +866,95 @@ msgid ""
 "Or, press Ctrl+W to close the window."
 msgstr ""
 
-#: src/editor-window.ui:202
+#: src/editor-window.ui:206
 msgid "_New Window"
-msgstr ""
+msgstr "_Аҧенџьыр ҿыц"
 
-#: src/editor-window.ui:222
+#: src/editor-window.ui:226
 msgid "_Discard Changes"
 msgstr ""
 
-#: src/editor-window.ui:228
+#: src/editor-window.ui:232
 msgid "_Find/Replace…"
-msgstr ""
+msgstr "_Аҧшаара/Аҧсахра…"
 
-#: src/editor-window.ui:234
+#: src/editor-window.ui:238
 msgid "_Print"
-msgstr ""
+msgstr "_Акьыҧхьра"
 
-#: src/editor-window.ui:240
+#: src/editor-window.ui:244
 msgid "Documen_t Properties"
-msgstr ""
+msgstr "А_документ аҟазшьаҷыдақәа"
 
-#: src/editor-window.ui:246
+#: src/editor-window.ui:250
 msgid "P_references"
-msgstr ""
-
-#: src/editor-window.ui:251
-msgid "_Keyboard Shortcuts"
-msgstr ""
+msgstr "_Ахышәарақәа"
 
 #: src/editor-window.ui:255
-msgid "_Help"
-msgstr ""
+msgid "_Keyboard Shortcuts"
+msgstr "_Ицоу арыдқәа"
 
 #: src/editor-window.ui:259
+msgid "_Help"
+msgstr "_Аилыркаа"
+
+#: src/editor-window.ui:263
 msgid "A_bout Text Editor"
 msgstr ""
 
-#: src/editor-window.ui:266
+#: src/editor-window.ui:270
 msgid "Show"
-msgstr ""
-
-#: src/editor-window.ui:268
-msgid "_Line Numbers"
-msgstr ""
+msgstr "Агәарҿыхарақәа"
 
 #: src/editor-window.ui:272
+msgid "_Line Numbers"
+msgstr "_ Ацәаҳәақәа  рномер"
+
+#: src/editor-window.ui:276
 msgid "_Right Margin"
 msgstr ""
 
-#: src/editor-window.ui:296
+#: src/editor-window.ui:300
 msgid "_2"
 msgstr "_2"
 
-#: src/editor-window.ui:301
+#: src/editor-window.ui:305
 msgid "_4"
 msgstr "_4"
 
-#: src/editor-window.ui:306
+#: src/editor-window.ui:310
 msgid "_6"
 msgstr "_6"
 
-#: src/editor-window.ui:311
+#: src/editor-window.ui:315
 msgid "_8"
 msgstr "_8"
 
-#: src/editor-window.ui:320
+#: src/editor-window.ui:324
 msgid "T_ext Wrapping"
 msgstr ""
 
-#: src/editor-window.ui:324
+#: src/editor-window.ui:328
 msgid "Chec_k Spelling"
 msgstr ""
 
-#: src/editor-window.ui:328
+#: src/editor-window.ui:332
 msgid "_Document Type"
 msgstr ""
 
-#: src/editor-window.ui:336
+#: src/editor-window.ui:340
 msgid "Move _Left"
 msgstr ""
 
-#: src/editor-window.ui:341
+#: src/editor-window.ui:345
 msgid "Move _Right"
 msgstr ""
 
-#: src/editor-window.ui:348
+#: src/editor-window.ui:352
 msgid "_Move to New Window"
 msgstr ""
 
-#: src/editor-window.ui:355
+#: src/editor-window.ui:359
 msgid "Close _Other Tabs"
 msgstr ""
 
@@ -1235,3 +1236,3894 @@ msgstr ""
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr ""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#, fuzzy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#, fuzzy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#, fuzzy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#, fuzzy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#, fuzzy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#, fuzzy
+
+
+
+#, fuzzy
+
+#, fuzzy
+
+
+
+
+
+
+#, fuzzy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#, fuzzy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#, fuzzy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#, fuzzy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#, fuzzy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#, fuzzy
