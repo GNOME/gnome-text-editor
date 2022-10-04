@@ -544,46 +544,46 @@ editor_source_view_action_duplicate_line (GtkWidget  *widget,
                                           const char *action_name,
                                           GVariant   *param)
 {
-  EditorSourceView *self = (EditorSourceView *)widget;
-  GtkTextBuffer *buffer;
-  GtkTextIter begin, end;
   g_autofree char *text = NULL;
+  g_autofree char *duplicate_line = NULL;
+  GtkTextIter begin, end;
+  GtkTextMark *cursor;
+  GtkTextBuffer *buffer;
+  gboolean selected;
 
-  g_assert (EDITOR_IS_SOURCE_VIEW (self));
+  g_assert (EDITOR_IS_SOURCE_VIEW (widget));
 
-  buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (self));
-  gtk_text_buffer_get_selection_bounds (buffer, &begin, &end);
-  gtk_text_iter_order (&begin, &end);
+  buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (widget));
+  cursor = gtk_text_buffer_get_insert (buffer);
 
-  /* Move beginning of selection/cursor to position 0 of first */
-  if (!gtk_text_iter_starts_line (&begin))
-    gtk_text_iter_set_line_offset (&begin, 0);
+  gtk_text_buffer_begin_user_action (buffer);
 
-  /* Move end of selection/cursor to end of line */
-  if (!gtk_text_iter_ends_line (&end))
-    gtk_text_iter_forward_to_line_end (&end);
+  selected = gtk_text_buffer_get_selection_bounds (buffer, &begin, &end);
 
-  /* Swallow the \n with the selection */
-  if (!gtk_text_iter_is_end (&end))
-    gtk_text_iter_forward_char (&end);
+  if (selected)
+    {
+      duplicate_line = gtk_text_iter_get_text (&begin, &end);
+      gtk_text_buffer_insert (buffer, &begin, duplicate_line, -1);
+    }
+  else
+    {
+      gtk_text_buffer_get_iter_at_mark (buffer, &begin, cursor);
+      end = begin;
 
-  /* Copy the text of the line to memory */
-  text = gtk_text_buffer_get_text (buffer, &begin, &end, true);
+      gtk_text_iter_set_line_offset (&begin, 0);
 
-  /* Empty line, nothing to copy */
-  if (strlen (text) == 0) return;
+      if (!gtk_text_iter_ends_line (&end))
+        gtk_text_iter_forward_to_line_end (&end);
 
-  if (strchr (text, '\r')) {
-    g_message ("Line duplication not implemented for Carriage Return (Mac or Windows) files at this time.\n");
-    return;
-  }
+      if (gtk_text_iter_get_line (&begin) == gtk_text_iter_get_line (&end))
+        {
+          text = gtk_text_iter_get_text (&begin, &end);
+          duplicate_line = g_strconcat (text, "\n", NULL);
+          gtk_text_buffer_insert (buffer, &begin, duplicate_line, -1);
+        }
+    }
 
-  /* Insert line endings, before duplicating row */
-  if (!strchr (text, '\n'))
-    gtk_text_buffer_insert (buffer, &end, "\n", 1);
-
-  /* Insert a duplicate of the current line, below it */
-  gtk_text_buffer_insert (buffer, &end, text, strlen (text));
+  gtk_text_buffer_end_user_action (buffer);
 }
 
 static GtkSourceSearchContext *
