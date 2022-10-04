@@ -2,25 +2,25 @@
 # Copyright (C) 2022 gnome-text-editor's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-text-editor package.
 # Enrico Nicoletto <hiko@duck.com>, 2021, 2022.
-# Rafael Fontenelle <rafaelff@gnome.org>, 2021-2022.
 # Matheus Barbosa <mdpb.matheus@gmail.com>, 2022.
 # Leônidas Araújo <leorusvellt@hotmail.com>, 2022.
+# Rafael Fontenelle <rafaelff@gnome.org>, 2021-2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-08-31 04:27+0000\n"
-"PO-Revision-Date: 2022-08-31 08:52-0300\n"
-"Last-Translator: Leônidas Araújo <leorusvellt@hotmail.com>\n"
+"POT-Creation-Date: 2022-10-04 02:14+0000\n"
+"PO-Revision-Date: 2022-10-04 14:08-0300\n"
+"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
-"X-Generator: Gtranslator 40.0\n"
+"X-Generator: Gtranslator 42.0\n"
 "X-DL-Team: pt_BR\n"
 "X-DL-Module: gnome-text-editor\n"
 "X-DL-Branch: main\n"
@@ -35,7 +35,7 @@ msgstr "O Projeto GNOME"
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:9
-#: src/editor-application-actions.c:195 src/editor-window.c:1244
+#: src/editor-application-actions.c:195 src/editor-window.c:1285
 msgid "Text Editor"
 msgstr "Editor de Texto"
 
@@ -303,37 +303,37 @@ msgstr ""
 "Matheus Barbosa <mdpb.matheus@gmail.com>\n"
 "Leônidas Araújo <leorusvellt@hotmail.com>"
 
-#: src/editor-application.c:463
+#: src/editor-application.c:450
 msgid "Standard input was requested multiple times. Ignoring request."
 msgstr "A entrada padrão foi solicitada várias vezes. Ignorando pedido."
 
-#: src/editor-application.c:467
+#: src/editor-application.c:454
 msgid "Standard input is not supported on this platform. Ignoring request."
 msgstr ""
 "A entrada padrão não é compatível com esta plataforma. Ignorando pedido."
 
-#: src/editor-application.c:555
+#: src/editor-application.c:542
 msgid "Bugs may be reported at:"
 msgstr "Bugs podem ser reportados em:"
 
-#: src/editor-application.c:557
+#: src/editor-application.c:544
 msgid "[FILES…]"
 msgstr "[ARQUIVOS…]"
 
-#: src/editor-application.c:670
+#: src/editor-application.c:657
 msgid "Do not restore session at startup"
 msgstr "Não restaura a sessão na inicialização"
 
-#: src/editor-application.c:671
+#: src/editor-application.c:658
 msgid "Open provided files in a new window"
 msgstr "Abre os arquivos fornecidos em uma nova janela"
 
-#: src/editor-application.c:672
+#: src/editor-application.c:659
 msgid "Run a new instance of Text Editor (implies --ignore-session)"
 msgstr ""
 "Executa uma nova instância do Editor de Texto (implica em --ignore-session)"
 
-#: src/editor-application.c:673
+#: src/editor-application.c:660
 msgid "Print version information and exit"
 msgstr "Imprime informações da versão e sai"
 
@@ -341,7 +341,7 @@ msgstr "Imprime informações da versão e sai"
 msgid "[Read-Only]"
 msgstr "[Somente leitura]"
 
-#: src/editor-document.c:2291 src/editor-page.c:1015
+#: src/editor-document.c:2301 src/editor-page.c:1021
 #: src/editor-sidebar-item.c:497
 msgid "New Document"
 msgstr "Novo documento"
@@ -435,42 +435,42 @@ msgstr "Nenhum documento recente"
 msgid "No Results Found"
 msgstr "Nenhum resultado encontrado"
 
-#: src/editor-page.c:1041 src/editor-properties-dialog.c:74
+#: src/editor-page.c:1047 src/editor-properties-dialog.c:74
 #: src/editor-sidebar-item.c:101
 msgid "Draft"
 msgstr "Rascunho"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1053
+#: src/editor-page.c:1059
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (Administrador)"
 
-#: src/editor-page.c:1063 src/editor-sidebar-item.c:109
+#: src/editor-page.c:1069 src/editor-sidebar-item.c:109
 msgid "Document Portal"
 msgstr "Portal de documento"
 
-#: src/editor-page.c:1110
+#: src/editor-page.c:1116
 msgid "Failed to save document"
 msgstr "Falha ao salvar o documento"
 
-#: src/editor-page.c:1111 src/editor-window.ui:363
+#: src/editor-page.c:1117 src/editor-window.ui:363
 msgid "_Close"
 msgstr "F_echar"
 
-#: src/editor-page.c:1195
+#: src/editor-page.c:1201
 msgid "Save As"
 msgstr "Salvar como"
 
-#: src/editor-page.c:1198
+#: src/editor-page.c:1204
 msgid "Save"
 msgstr "Salvar"
 
-#: src/editor-page.c:1199 src/editor-window-actions.c:352
+#: src/editor-page.c:1205 src/editor-window-actions.c:352
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: src/editor-page.c:1348
+#: src/editor-page.c:1354
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Lin %u, Col %u"
@@ -869,7 +869,7 @@ msgstr "Reduzir"
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - Editor de Texto"
 
-#: src/editor-window.c:1167
+#: src/editor-window.c:1173
 msgid "There are unsaved documents"
 msgstr "Existem documentos não salvos"
 
@@ -1139,147 +1139,152 @@ msgctxt "shortcut window"
 msgid "Copy all to clipboard"
 msgstr "Copia tudo para a área de transferência"
 
-#: src/help-overlay.ui:158
+#: src/help-overlay.ui:156
+msgctxt "shortcut window"
+msgid "Copy current line down"
+msgstr "Copia a linha atual para baixo"
+
+#: src/help-overlay.ui:164
 msgctxt "shortcut window"
 msgid "Undo and Redo"
 msgstr "Desfaz e refaz"
 
-#: src/help-overlay.ui:162
+#: src/help-overlay.ui:168
 msgctxt "shortcut window"
 msgid "Undo previous command"
 msgstr "Desfaz o comando anterior"
 
-#: src/help-overlay.ui:168
+#: src/help-overlay.ui:174
 msgctxt "shortcut window"
 msgid "Redo previous command"
 msgstr "Refaz o comando anterior"
 
-#: src/help-overlay.ui:175
+#: src/help-overlay.ui:181
 msgctxt "shortcut window"
 msgid "Editing"
 msgstr "Edição"
 
-#: src/help-overlay.ui:179
+#: src/help-overlay.ui:185
 msgctxt "shortcut window"
 msgid "Insert emoji into document"
 msgstr "Insere um emoji no documento"
 
-#: src/help-overlay.ui:185
+#: src/help-overlay.ui:191
 msgctxt "shortcut window"
 msgid "Search within the document"
 msgstr "Pesquisa dentro do documento"
 
-#: src/help-overlay.ui:191
+#: src/help-overlay.ui:197
 msgctxt "shortcut window"
 msgid "Search and replace within the document"
 msgstr "Pesquisa e substitui dentro do documento"
 
-#: src/help-overlay.ui:197
+#: src/help-overlay.ui:203
 msgctxt "shortcut window"
 msgid "Increment number at cursor"
 msgstr "Incrementa o número no cursor"
 
-#: src/help-overlay.ui:203
+#: src/help-overlay.ui:209
 msgctxt "shortcut window"
 msgid "Decrement number at cursor"
 msgstr "Decrementa o número no cursor"
 
-#: src/help-overlay.ui:209
+#: src/help-overlay.ui:215
 msgctxt "shortcut window"
 msgid "Toggle overwrite"
 msgstr "Ativa sobrescrever"
 
-#: src/help-overlay.ui:215
+#: src/help-overlay.ui:221
 msgctxt "shortcut window"
 msgid "Toggle visibility of insertion caret"
 msgstr "Alterna a visibilidade do cursor de inserção"
 
-#: src/help-overlay.ui:222
+#: src/help-overlay.ui:228
 msgctxt "shortcut window"
 msgid "Selections"
 msgstr "Seleções"
 
-#: src/help-overlay.ui:226
+#: src/help-overlay.ui:232
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Seleciona tudo"
 
-#: src/help-overlay.ui:232
+#: src/help-overlay.ui:238
 msgctxt "shortcut window"
 msgid "Unselect all"
 msgstr "Desmarca tudo"
 
-#: src/help-overlay.ui:238
+#: src/help-overlay.ui:244
 msgctxt "shortcut window"
 msgid "Select current line"
 msgstr "Seleciona a linha atual"
 
-#: src/help-overlay.ui:245
+#: src/help-overlay.ui:251
 msgctxt "shortcut window"
 msgid "Movements"
 msgstr "Movimentos"
 
-#: src/help-overlay.ui:249
+#: src/help-overlay.ui:255
 msgctxt "shortcut window"
 msgid "Move to beginning of document"
 msgstr "Move para o começo do documento"
 
-#: src/help-overlay.ui:255
+#: src/help-overlay.ui:261
 msgctxt "shortcut window"
 msgid "Move to end of document"
 msgstr "Move para o fim do documento"
 
-#: src/help-overlay.ui:261
+#: src/help-overlay.ui:267
 msgctxt "shortcut window"
 msgid "Move to start of previous paragraph"
 msgstr "Move para o início do parágrafo anterior"
 
-#: src/help-overlay.ui:267
+#: src/help-overlay.ui:273
 msgctxt "shortcut window"
 msgid "Move to end of next paragraph"
 msgstr "Move para o fim do próximo parágrafo"
 
-#: src/help-overlay.ui:273
+#: src/help-overlay.ui:279
 msgctxt "shortcut window"
 msgid "Move current or selected lines up"
 msgstr "Move para cima a linha atual ou linhas selecionadas"
 
-#: src/help-overlay.ui:279
+#: src/help-overlay.ui:285
 msgctxt "shortcut window"
 msgid "Move current or selected lines down"
 msgstr "Move para baixo a linha atual ou linhas selecionadas"
 
-#: src/help-overlay.ui:285
+#: src/help-overlay.ui:291
 msgctxt "shortcut window"
 msgid "Go to line"
 msgstr "Vai para a linha"
 
-#: src/help-overlay.ui:292
+#: src/help-overlay.ui:298
 msgctxt "shortcut window"
 msgid "Deletion"
 msgstr "Exclusão"
 
-#: src/help-overlay.ui:296
+#: src/help-overlay.ui:302
 msgctxt "shortcut window"
 msgid "Delete from cursor to word start"
 msgstr "Exclui do cursor até o início da palavra"
 
-#: src/help-overlay.ui:302
+#: src/help-overlay.ui:308
 msgctxt "shortcut window"
 msgid "Delete from cursor to word end"
 msgstr "Exclui do cursor até o fim da palavra"
 
-#: src/help-overlay.ui:308
+#: src/help-overlay.ui:314
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph start"
 msgstr "Exclui do cursor até o início da parágrafo"
 
-#: src/help-overlay.ui:314
+#: src/help-overlay.ui:320
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph end"
 msgstr "Exclui do cursor até o fim da parágrafo"
 
-#: src/help-overlay.ui:320
+#: src/help-overlay.ui:326
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "Exclui a linha atual"
