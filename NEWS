@@ -1,3 +1,19 @@
+# Text Editor 43.1
+
+This is a bug-fix release intended for end-users.
+
+ • Don't toggle editability during (auto)save operations as they can
+   break input methods and cause input stalls.
+ • Fix ctrl+home/end keyboard shortcut usage
+ • Spellcheck improvements
+ • Provide full document paths in tab tooltips
+ • Fix bugreport_url in about dialog
+ • Use stdout for --version output
+ • Documentation updates
+ • Translation updates
+
+Thanks to everyone that reported issues and patches!
+
 # Text Editor 43.0
 
 This release is a recommended update for distributions.
