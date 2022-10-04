@@ -1,6 +1,6 @@
 project('gnome-text-editor', 'c',
-          version: '43.1',
-    meson_version: '>= 0.59.1',
+          version: '44.alpha',
+    meson_version: '>= 0.60.0',
   default_options: [ 'warning_level=2', 'c_std=gnu17' ],
 )
 
