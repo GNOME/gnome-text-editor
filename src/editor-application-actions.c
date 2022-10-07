@@ -129,6 +129,9 @@ get_system_information (void)
   g_string_append_printf (str, "GTK_THEME: %s\n", g_getenv ("GTK_THEME") ?: "unset");
 
   g_string_append (str, "\n");
+  g_string_append_printf (str, "Documents Directory: %s\n", g_get_user_special_dir (G_USER_DIRECTORY_DOCUMENTS));
+
+  g_string_append (str, "\n");
   keys = g_settings_schema_list_keys (schema);
   for (guint i = 0; keys[i]; i++)
     {
