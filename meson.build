@@ -31,7 +31,7 @@ if not get_option('buildtype').startswith('debug')
 endif
 # Check dependencies
 glib_req_version = '2.73'
-gtk_req_version = '4.7'
+gtk_req_version = '4.9.4'
 gtksourceview_req_version = '5.5.0'
 enchant_req_version = '2.2.0'
 
@@ -43,7 +43,7 @@ enchant_req = '>= @0@'.format(enchant_req_version)
 libglib_dep = dependency('gio-2.0', version: glib_req)
 libgtk_dep = dependency('gtk4', version: gtk_req)
 libgtksourceview_dep = dependency('gtksourceview-5', version: gtksourceview_req)
-libadwaita_dep = dependency('libadwaita-1', version: '>= 1.2.alpha')
+libadwaita_dep = dependency('libadwaita-1', version: '>= 1.3.beta')
 libeditorconfig_dep = dependency('editorconfig')
 libcairo_dep = dependency('cairo')
 libicu_dep = dependency('icu-uc')

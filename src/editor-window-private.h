@@ -50,12 +50,14 @@ struct _EditorWindow
   EditorPositionLabel  *position_label;
   GtkStack             *stack;
   GtkMenuButton        *open_menu_button;
+  GtkMenuButton        *narrow_menu_button;
   GtkMenuButton        *primary_menu;
   GtkMenuButton        *options_menu;
   GtkMenuButton        *export_menu;
   GtkWidget            *zoom_label;
   GMenu                *options_menu_model;
   EditorStatusbar      *statusbar;
+  AdwAdaptiveState     *narrow_state;
 
   /* Borrowed References */
   EditorPage           *visible_page;

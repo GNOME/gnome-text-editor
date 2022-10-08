@@ -135,6 +135,12 @@ restore_closed_document (EditorWindow *self)
                                  self->closed_items->len > 0);
 }
 
+static gboolean
+is_narrow (EditorWindow *self)
+{
+  return adw_application_window_get_current_state (ADW_APPLICATION_WINDOW (self)) == self->narrow_state;
+}
+
 static void
 on_undo_close_page_cb (GtkWidget  *widget,
                        const char *action_name,
@@ -183,7 +189,8 @@ update_subtitle_visibility_cb (EditorWindow *self)
 
   if (visible)
     gtk_widget_set_visible (GTK_WIDGET (self->position_box),
-                            g_settings_get_boolean (self->settings, "show-line-numbers"));
+                            g_settings_get_boolean (self->settings, "show-line-numbers")
+                            && !is_narrow (self));
   else
     gtk_widget_hide (GTK_WIDGET (self->position_box));
 }
@@ -304,7 +311,8 @@ editor_window_notify_selected_page_cb (EditorWindow *self,
   gtk_widget_set_visible (GTK_WIDGET (self->is_modified), FALSE);
   gtk_widget_set_visible (GTK_WIDGET (self->subtitle), FALSE);
   gtk_widget_set_visible (GTK_WIDGET (self->position_box),
-                          page && g_settings_get_boolean (self->settings, "show-line-numbers"));
+                          page && g_settings_get_boolean (self->settings, "show-line-numbers")
+                          && !is_narrow (self));
   gtk_widget_set_visible (GTK_WIDGET (self->indicator), FALSE);
 
   self->visible_page = page;
@@ -530,6 +538,34 @@ editor_window_constructed (GObject *object)
   gtk_box_append (GTK_BOX (zoom_box), self->zoom_label);
   gtk_box_append (GTK_BOX (zoom_box), zoom_in);
   gtk_popover_menu_add_child (GTK_POPOVER_MENU (popover), zoom_box, "zoom");
+}
+
+static void
+on_narrow_state_entered_cb (EditorWindow *self)
+{
+  g_assert (EDITOR_IS_WINDOW (self));
+
+  gtk_menu_button_set_popover (self->open_menu_button, NULL);
+  gtk_menu_button_set_popover (self->narrow_menu_button, GTK_WIDGET (self->open_menu_popover));
+}
+
+static void
+on_narrow_state_exited_cb (EditorWindow *self)
+{
+  g_assert (EDITOR_IS_WINDOW (self));
+
+  gtk_menu_button_set_popover (self->narrow_menu_button, NULL);
+  gtk_menu_button_set_popover (self->open_menu_button, GTK_WIDGET (self->open_menu_popover));
+}
+
+static AdwTabPage *
+on_tab_overview_create_page_cb (EditorWindow *self)
+{
+  g_assert (EDITOR_IS_WINDOW (self));
+
+  gtk_widget_activate_action (GTK_WIDGET (self), "session.new-draft", NULL);
+
+  return adw_tab_view_get_selected_page (self->tab_view);
 }
 
 static gboolean
@@ -919,6 +955,7 @@ editor_window_class_init (EditorWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, indicator);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, is_modified);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, open_menu_button);
+  gtk_widget_class_bind_template_child (widget_class, EditorWindow, narrow_menu_button);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, open_menu_popover);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, options_menu);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, options_menu_model);
@@ -932,7 +969,11 @@ editor_window_class_init (EditorWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, tab_bar);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, tab_view);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, title);
+  gtk_widget_class_bind_template_child (widget_class, EditorWindow, narrow_state);
 
+  gtk_widget_class_bind_template_callback (widget_class, on_narrow_state_entered_cb);
+  gtk_widget_class_bind_template_callback (widget_class, on_narrow_state_exited_cb);
+  gtk_widget_class_bind_template_callback (widget_class, on_tab_overview_create_page_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_tab_view_close_page_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_tab_view_setup_menu_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_tab_view_create_window_cb);
@@ -1377,7 +1418,14 @@ editor_window_get_n_pages (EditorWindow *self)
 void
 _editor_window_focus_search (EditorWindow *self)
 {
+  GtkMenuButton *menu_button;
+
   g_return_if_fail (EDITOR_IS_WINDOW (self));
 
-  gtk_menu_button_popup (self->open_menu_button);
+  if (is_narrow (self))
+    menu_button = self->narrow_menu_button;
+  else
+    menu_button = self->open_menu_button;
+
+  gtk_menu_button_popup (menu_button);
 }
