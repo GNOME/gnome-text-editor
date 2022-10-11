@@ -290,6 +290,7 @@ editor_info_bar_init (EditorInfoBar *self)
    */
   editor_info_bar_wrap_button_label (self->access_try_admin);
   editor_info_bar_wrap_button_label (self->discard);
+  editor_info_bar_wrap_button_label (self->save);
 
   g_signal_connect_object (self->discard_infobar,
                            "response",
