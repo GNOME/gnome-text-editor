@@ -380,6 +380,7 @@ editor_window_actions_open_cb (GtkWidget  *widget,
   text_files = gtk_file_filter_new ();
   gtk_file_filter_set_name (text_files, _("Text Files"));
   gtk_file_filter_add_mime_type (text_files, "text/plain");
+  gtk_file_filter_add_mime_type (text_files, "application/x-zerosize");
   gtk_file_chooser_add_filter (GTK_FILE_CHOOSER (native), g_object_ref (text_files));
 
 #ifdef __APPLE__
