@@ -127,6 +127,7 @@ get_system_information (void)
   g_string_append (str, "\n");
   g_string_append_printf (str, "gtk-theme-name: %s\n", theme_name);
   g_string_append_printf (str, "GTK_THEME: %s\n", g_getenv ("GTK_THEME") ?: "unset");
+  g_string_append_printf (str, "GdkDisplay: %s\n", G_OBJECT_TYPE_NAME (gdk_display_get_default ()));
 
   g_string_append (str, "\n");
   g_string_append_printf (str, "Documents Directory: %s\n", g_get_user_special_dir (G_USER_DIRECTORY_DOCUMENTS));
