@@ -1083,6 +1083,29 @@ recent_compare (gconstpointer a,
   else return 0;
 }
 
+static GSettings *
+find_g_settings (const char* schema_id)
+{
+  static GSettings *settings;
+  static gboolean initialized;
+
+  if (initialized == FALSE)
+    {
+      GSettingsSchemaSource *source = g_settings_schema_source_get_default ();
+      g_autoptr(GSettingsSchema) schema = g_settings_schema_source_lookup (source, schema_id, TRUE);
+
+      if (schema != NULL)
+        settings = g_settings_new (schema_id);
+      else
+        g_warning ("couldn't find g_settings schema ID \"%s\", "
+                   "it is probably not supported by your OS.\n", schema_id);
+
+      initialized = TRUE;
+    }
+
+  return settings;
+}
+
 static void
 editor_session_update_recent_worker (GTask        *task,
                                      gpointer      source_object,
@@ -1100,9 +1123,10 @@ editor_session_update_recent_worker (GTask        *task,
   g_assert (save != NULL);
   g_assert (!cancellable || G_IS_CANCELLABLE (cancellable));
 
-  settings = g_settings_new ("org.gnome.desktop.privacy");
+  settings = find_g_settings ("org.gnome.desktop.privacy");
 
-  if (!g_settings_get_boolean (settings, "remember-recent-files"))
+  /* We check \"settings\" beforehand to avoid assertions in case the search fails. */
+  if (settings && !g_settings_get_boolean (settings, "remember-recent-files"))
     {
       /* Just delete recent files if the user doesn't want them */
       g_autofree gchar *path = get_bookmarks_filename ();
