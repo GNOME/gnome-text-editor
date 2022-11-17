@@ -44,6 +44,7 @@ typedef struct
   GPtrArray    *seen;
   GPtrArray    *forgot;
   guint         n_active;
+  guint         remember_recent_files : 1;
 } EditorSessionSave;
 
 typedef struct
@@ -87,6 +88,15 @@ static GParamSpec *properties [N_PROPS];
 static guint signals[N_SIGNALS];
 static guint default_width;
 static guint default_height;
+
+static GSettings *
+find_g_settings (const char* schema_id)
+{
+  GSettingsSchemaSource *source = g_settings_schema_source_get_default ();
+  g_autoptr(GSettingsSchema) schema = g_settings_schema_source_lookup (source, schema_id, TRUE);
+
+  return schema != NULL ? g_settings_new (schema_id) : NULL;
+}
 
 static void
 selection_free (Selection *selection)
@@ -371,6 +381,7 @@ editor_session_dispose (GObject *object)
     g_ptr_array_remove_range (self->windows, 0, self->windows->len);
 
   g_clear_handle_id (&self->auto_save_source, g_source_remove);
+  g_clear_object (&self->privacy);
 
   G_OBJECT_CLASS (editor_session_parent_class)->dispose (object);
 }
@@ -608,6 +619,8 @@ editor_session_init (EditorSession *self)
                                                 NULL);
   self->drafts = g_array_new (FALSE, FALSE, sizeof (EditorSessionDraft));
   g_array_set_clear_func (self->drafts, (GDestroyNotify) clear_draft);
+
+  self->privacy = find_g_settings ("org.gnome.desktop.privacy");
 }
 
 EditorSession *
@@ -1083,29 +1096,6 @@ recent_compare (gconstpointer a,
   else return 0;
 }
 
-static GSettings *
-find_g_settings (const char* schema_id)
-{
-  static GSettings *settings;
-  static gboolean initialized;
-
-  if (initialized == FALSE)
-    {
-      GSettingsSchemaSource *source = g_settings_schema_source_get_default ();
-      g_autoptr(GSettingsSchema) schema = g_settings_schema_source_lookup (source, schema_id, TRUE);
-
-      if (schema != NULL)
-        settings = g_settings_new (schema_id);
-      else
-        g_warning ("couldn't find g_settings schema ID \"%s\", "
-                   "it is probably not supported by your OS.\n", schema_id);
-
-      initialized = TRUE;
-    }
-
-  return settings;
-}
-
 static void
 editor_session_update_recent_worker (GTask        *task,
                                      gpointer      source_object,
@@ -1113,7 +1103,6 @@ editor_session_update_recent_worker (GTask        *task,
                                      GCancellable *cancellable)
 {
   EditorSessionSave *save = task_data;
-  g_autoptr(GSettings) settings = NULL;
   g_autoptr(GBookmarkFile) bookmarks = NULL;
   g_autofree gchar *filename = NULL;
   g_autoptr(GError) error = NULL;
@@ -1123,10 +1112,7 @@ editor_session_update_recent_worker (GTask        *task,
   g_assert (save != NULL);
   g_assert (!cancellable || G_IS_CANCELLABLE (cancellable));
 
-  settings = find_g_settings ("org.gnome.desktop.privacy");
-
-  /* We check \"settings\" beforehand to avoid assertions in case the search fails. */
-  if (settings && !g_settings_get_boolean (settings, "remember-recent-files"))
+  if (!save->remember_recent_files)
     {
       /* Just delete recent files if the user doesn't want them */
       g_autofree gchar *path = get_bookmarks_filename ();
@@ -1285,6 +1271,8 @@ editor_session_save_async (EditorSession       *self,
   state->state_file = g_file_dup (self->state_file);
   state->state_bytes = g_variant_get_data_as_bytes (vstate);
   state->app = g_application_get_default ();
+  if (self->privacy && g_settings_get_boolean (self->privacy, "remember-recent-files"))
+    state->remember_recent_files = TRUE;
 
   if (g_hash_table_size (self->seen) > 0)
     {

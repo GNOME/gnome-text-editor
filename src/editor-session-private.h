@@ -43,6 +43,7 @@ struct _EditorSession
   GHashTable         *forgot;
   GArray             *drafts;
   EditorSidebarModel *recents;
+  GSettings          *privacy;
 
   guint               auto_save_delay;
   guint               auto_save_source;
