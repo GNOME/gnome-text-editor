@@ -27,6 +27,7 @@
 #include "editor-application.h"
 #include "editor-document.h"
 #include "editor-open-popover-private.h"
+#include "editor-page-private.h"
 #include "editor-save-changes-dialog-private.h"
 #include "editor-session-private.h"
 #include "editor-theme-selector-private.h"
@@ -714,7 +715,7 @@ notify_focus_widget_cb (EditorWindow *self)
       EditorPage *page = editor_window_get_visible_page (self);
 
       if (page != NULL)
-        gtk_root_set_focus (GTK_ROOT (self), GTK_WIDGET (page));
+        gtk_root_set_focus (GTK_ROOT (self), GTK_WIDGET (page->view));
     }
 }
 
