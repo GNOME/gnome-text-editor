@@ -249,6 +249,11 @@ _editor_page_actions_init (EditorPage *self)
                            G_CALLBACK (on_notify_can_replace_cb),
                            self,
                            G_CONNECT_SWAPPED);
+
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "search.move-next", FALSE);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "search.move-previous", FALSE);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "search.replace-all", FALSE);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "search.replace-one", FALSE);
 }
 
 void
