@@ -40,7 +40,7 @@ typedef struct
   const GtkSourceEncoding *encoding;
 } ClosedItem;
 
-G_DEFINE_TYPE (EditorWindow, editor_window, ADW_TYPE_APPLICATION_WINDOW)
+G_DEFINE_FINAL_TYPE (EditorWindow, editor_window, ADW_TYPE_APPLICATION_WINDOW)
 
 enum {
   PROP_0,
