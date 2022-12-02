@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-10-04 20:08+0000\n"
+"POT-Creation-Date: 2022-11-01 22:13+0000\n"
 "Last-Translator: Нанба Наала <naala-nanba@rambler.ru>\n"
 "Language-Team: Abkhazian <daniel.abzakh@gmail.com>\n"
 "Language: ab\n"
@@ -42,9 +42,31 @@ msgstr ""
 msgid "View and edit text files"
 msgstr ""
 
+#: data/org.gnome.TextEditor.gschema.xml:16
+msgid "Auto Save Delay"
+msgstr ""
+
+#: data/org.gnome.TextEditor.gschema.xml:17
+msgid "The delay in seconds to wait before auto-saving a draft."
+msgstr ""
+
 #: data/org.gnome.TextEditor.gschema.xml:26
 msgid "Style Variant"
 msgstr "Астиль авариант"
+
+#: data/org.gnome.TextEditor.gschema.xml:27
+msgid ""
+"Use the light or dark variant of the GTK theme and/or GtkSourceView style "
+"scheme."
+msgstr ""
+
+#: data/org.gnome.TextEditor.gschema.xml:35
+msgid "Indentation Style"
+msgstr ""
+
+#: data/org.gnome.TextEditor.gschema.xml:36
+msgid "If the editor should insert multiple spaces characters instead of tabs."
+msgstr ""
 
 #: data/org.gnome.TextEditor.gschema.xml:40
 msgid "Auto Indent"
@@ -56,13 +78,182 @@ msgstr ""
 "Автоматла ацәаҳәа ҿыцқәа рзы ахьаҵ ҟаҵалатәуп, уаанӡатәи ацәаҳәа ахьаҵ "
 "хҩылааны."
 
+#: data/org.gnome.TextEditor.gschema.xml:46
+msgid "Tab Width"
+msgstr ""
+
+#: data/org.gnome.TextEditor.gschema.xml:47
+msgid "The number of spaces represented by a tab."
+msgstr ""
+
+#: data/org.gnome.TextEditor.gschema.xml:52
+msgid "Indent Width"
+msgstr ""
+
+#: data/org.gnome.TextEditor.gschema.xml:53
+msgid "The number of spaces to indent or -1 to use tab-width."
+msgstr ""
+
+#: data/org.gnome.TextEditor.gschema.xml:57
+msgid "Show Line Numbers"
+msgstr "_ Ацәаҳәақәа рномер"
+
+#: data/org.gnome.TextEditor.gschema.xml:58
+msgid "If line numbers should be displayed next to each line."
+msgstr ""
+
+#: data/org.gnome.TextEditor.gschema.xml:62
+msgid "Show Right Margin"
+msgstr ""
+
+#: data/org.gnome.TextEditor.gschema.xml:63
+msgid "If a margin line should be displayed on the right of the editor."
+msgstr ""
+
+#: data/org.gnome.TextEditor.gschema.xml:68
+msgid "Right Margin Position"
+msgstr ""
+
+#: data/org.gnome.TextEditor.gschema.xml:69
+msgid ""
+"The position in characters at which the right margin should be displayed."
+msgstr ""
+
+#: data/org.gnome.TextEditor.gschema.xml:73
+msgid "Show Overview Map"
+msgstr ""
+
+#: data/org.gnome.TextEditor.gschema.xml:74
+msgid ""
+"If enabled, an overview map of the file will be displayed to the side of the "
+"editor."
+msgstr ""
+
+#: data/org.gnome.TextEditor.gschema.xml:78
+msgid "Show Background Grid"
+msgstr ""
+
+#: data/org.gnome.TextEditor.gschema.xml:79
+msgid "If enabled, a blueprint style grid is printed on the editor background."
+msgstr ""
+
+#: data/org.gnome.TextEditor.gschema.xml:83
+msgid "Highlight current line"
+msgstr ""
+
+#: data/org.gnome.TextEditor.gschema.xml:84
+msgid "If enabled, the current line will be highlighted."
+msgstr ""
+
+#: data/org.gnome.TextEditor.gschema.xml:88
+msgid "Text Wrapping"
+msgstr ""
+
+#: data/org.gnome.TextEditor.gschema.xml:89
+msgid "If text should be wrapped."
+msgstr ""
+
 #: data/org.gnome.TextEditor.gschema.xml:93
 msgid "Use System Font"
 msgstr "Асистемтә шрифт ахархәара"
 
+#: data/org.gnome.TextEditor.gschema.xml:94
+msgid "If the default system monospace font should be used."
+msgstr ""
+
+#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:57
+msgid "Custom Font"
+msgstr "Асистемтә шрифт ахархәара"
+
+#: data/org.gnome.TextEditor.gschema.xml:99
+msgid "A custom font to use in the editor."
+msgstr ""
+
+#: data/org.gnome.TextEditor.gschema.xml:103
+msgid "Style Scheme"
+msgstr ""
+
+#: data/org.gnome.TextEditor.gschema.xml:104
+msgid ""
+"The style scheme to use by the editor. It may translate this into a dark "
+"format when available."
+msgstr ""
+
+#: data/org.gnome.TextEditor.gschema.xml:108
+msgid "Discover File Settings"
+msgstr "Адокумент автоматикла архиарақәа рышьақәыргылара"
+
+#: data/org.gnome.TextEditor.gschema.xml:109
+msgid ""
+"If enabled then Text Editor will try to discover file settings from "
+"modelines, editorconfig, or per-language defaults."
+msgstr ""
+
 #: data/org.gnome.TextEditor.gschema.xml:113
 msgid "Automatically check spelling"
 msgstr "Автоматикла аиашаҩыра агәаҭара"
+
+#: data/org.gnome.TextEditor.gschema.xml:114
+msgid "If enabled, then Text Editor will check spelling as you type."
+msgstr ""
+
+#: data/org.gnome.TextEditor.gschema.xml:118
+msgid "Restore session"
+msgstr ""
+
+#: data/org.gnome.TextEditor.gschema.xml:119
+msgid "When Text Editor is run, restore the previous session."
+msgstr ""
+
+#: data/org.gnome.TextEditor.gschema.xml:123
+msgid "Recolor Window"
+msgstr "_Аҧенџьыр ҿыц"
+
+#: data/org.gnome.TextEditor.gschema.xml:124
+msgid "Use the style-scheme to recolor the application window."
+msgstr ""
+
+#: data/org.gnome.TextEditor.gschema.xml:132
+msgid "Keybindings"
+msgstr ""
+
+#: data/org.gnome.TextEditor.gschema.xml:133
+msgid "The keybindings to use within Text Editor."
+msgstr ""
+
+#: data/org.gnome.TextEditor.gschema.xml:137
+msgid "Last Save Directory"
+msgstr ""
+
+#: data/org.gnome.TextEditor.gschema.xml:138
+msgid "The directory last used in a save or save-as dialog."
+msgstr ""
+
+#: data/org.gnome.TextEditor.gschema.xml:142
+msgid "Draw Spaces"
+msgstr ""
+
+#: data/org.gnome.TextEditor.gschema.xml:143
+msgid "The various types of spaces to draw in the editor."
+msgstr ""
+
+#: data/org.gnome.TextEditor.gschema.xml:147
+msgid "Enable Snippets"
+msgstr "Ахәҭақәа"
+
+#: data/org.gnome.TextEditor.gschema.xml:148
+msgid ""
+"Enable the use of snippets registered with GtkSourceView from within the "
+"editor."
+msgstr "ахархәара аҿакра"
+
+#: data/org.gnome.TextEditor.gschema.xml:153
+msgid "Line Height"
+msgstr "Илашоу"
+
+#: data/org.gnome.TextEditor.gschema.xml:154
+msgid "The line height to use for the selected font."
+msgstr ""
 
 #: src/editor-animation.c:1038
 #, c-format
@@ -246,7 +437,7 @@ msgstr "Аԥыхры"
 #: src/editor-page.c:1354
 #, c-format
 msgid "Ln %u, Col %u"
-msgstr ""
+msgstr "Ацәаҳәа%u, аиҵагыла %u"
 
 #: src/editor-page.ui:98
 msgid "Go to Line"
@@ -361,7 +552,7 @@ msgstr ""
 
 #: src/editor-preferences-font.c:100
 msgid "Select Font"
-msgstr ""
+msgstr "Ашрифт алхра"
 
 #: src/editor-print-operation.c:176
 #, c-format
@@ -480,7 +671,7 @@ msgstr ""
 
 #: src/editor-search-bar.ui:95
 msgid "Close search"
-msgstr ""
+msgstr "Аԥшаара аркра"
 
 #: src/editor-search-bar.ui:112
 msgid "_Replace"
@@ -522,7 +713,7 @@ msgstr "Аиашаҩыра агәаҭара"
 
 #: src/editor-spell-menu.c:259
 msgid "Languages"
-msgstr ""
+msgstr "Абызшәақәа"
 
 #: src/editor-theme-selector.ui:22 src/editor-theme-selector.ui:24
 msgid "Follow system style"
@@ -626,11 +817,11 @@ msgstr ""
 
 #: src/editor-window.c:508
 msgid "Zoom in"
-msgstr ""
+msgstr "Ардура"
 
 #: src/editor-window.c:520
 msgid "Zoom out"
-msgstr ""
+msgstr "Архәҷра"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
 #: src/editor-window.c:733
@@ -766,7 +957,7 @@ msgstr ""
 
 #: src/editor-window.ui:359
 msgid "Close _Other Tabs"
-msgstr ""
+msgstr "_Егьырҭ агәылаҵақәа рыркра"
 
 #: src/enchant/editor-enchant-spell-provider.c:123
 msgid "Enchant 2"
@@ -1046,847 +1237,3 @@ msgstr ""
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr ""
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#, fuzzy
