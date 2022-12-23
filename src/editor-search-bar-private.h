@@ -53,6 +53,8 @@ struct _EditorSearchBar
   GtkToggleButton         *replace_mode_button;
   GtkBox                  *options_box;
 
+  GtkTextTag              *current_tag;
+
   guint                    offset_when_shown;
 
   guint                    can_move : 1;

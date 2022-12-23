@@ -49,6 +49,86 @@ static GParamSpec *properties [N_PROPS];
 static guint signals [N_SIGNALS];
 
 static void
+notify_style_scheme_cb (EditorSearchBar *self,
+                        GParamSpec      *pspec,
+                        EditorDocument  *document)
+{
+  GtkTextTagTable *table;
+  GtkSourceStyleScheme *scheme;
+
+  g_assert (EDITOR_IS_SEARCH_BAR (self));
+  g_assert (EDITOR_IS_DOCUMENT (document));
+
+  table = gtk_text_buffer_get_tag_table (GTK_TEXT_BUFFER (document));
+  scheme = gtk_source_buffer_get_style_scheme (GTK_SOURCE_BUFFER (document));
+
+  if (self->current_tag != NULL)
+    gtk_text_tag_table_remove (table, self->current_tag);
+  self->current_tag = gtk_text_buffer_create_tag (GTK_TEXT_BUFFER (document), NULL, NULL);
+
+  if (scheme != NULL)
+    {
+      GtkSourceStyle *style = gtk_source_style_scheme_get_style (scheme, "search-match");
+
+      if (style != NULL)
+        {
+          g_autoptr(GdkRGBA) rgba = NULL;
+
+          gtk_source_style_apply (style, self->current_tag);
+
+          g_object_get (self->current_tag,
+                        "background-rgba", &rgba,
+                        NULL);
+
+          if (rgba != NULL)
+            {
+              rgba->alpha = 1.0;
+              g_object_set (self->current_tag,
+                            "background-rgba", rgba,
+                            NULL);
+            }
+        }
+    }
+
+  gtk_text_tag_set_priority (self->current_tag,
+                             gtk_text_tag_table_get_size (table)-1);
+}
+
+static void
+editor_search_bar_root (GtkWidget *widget)
+{
+  EditorSearchBar *self = (EditorSearchBar *)widget;
+  EditorPage *page;
+
+  g_assert (EDITOR_IS_SEARCH_BAR (self));
+
+  GTK_WIDGET_CLASS (editor_search_bar_parent_class)->root (widget);
+
+  if (!(page = EDITOR_PAGE (gtk_widget_get_ancestor (widget, EDITOR_TYPE_PAGE))))
+    return;
+
+  g_signal_connect_object (page->document,
+                           "notify::style-scheme",
+                           G_CALLBACK (notify_style_scheme_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+
+  notify_style_scheme_cb (self, NULL, page->document);
+}
+
+static void
+editor_search_bar_unroot (GtkWidget *widget)
+{
+  EditorSearchBar *self = (EditorSearchBar *)widget;
+
+  g_assert (EDITOR_IS_SEARCH_BAR (self));
+
+  self->current_tag = NULL;
+
+  GTK_WIDGET_CLASS (editor_search_bar_parent_class)->unroot (widget);
+}
+
+static void
 update_properties (EditorSearchBar *self)
 {
   gboolean can_move = _editor_search_bar_get_can_move (self);
@@ -79,8 +159,20 @@ update_properties (EditorSearchBar *self)
       GtkTextBuffer *buffer = GTK_TEXT_BUFFER (gtk_source_search_context_get_buffer (self->context));
       GtkTextIter begin, end;
 
+      gtk_text_buffer_get_bounds (buffer, &begin, &end);
+      gtk_text_buffer_remove_tag (buffer, self->current_tag, &begin, &end);
+
       if (gtk_text_buffer_get_selection_bounds (buffer, &begin, &end))
-        occurrence_position = gtk_source_search_context_get_occurrence_position (self->context, &begin, &end);
+        {
+          occurrence_position = gtk_source_search_context_get_occurrence_position (self->context, &begin, &end);
+
+          if (occurrence_position > 0)
+            {
+              gtk_text_buffer_apply_tag (buffer, self->current_tag, &begin, &end);
+              gtk_text_tag_set_priority (self->current_tag,
+                                         gtk_text_tag_table_get_size (gtk_text_buffer_get_tag_table (buffer))-1);
+            }
+        }
     }
 
   editor_search_entry_set_occurrence_position (self->search_entry, occurrence_position);
@@ -394,6 +486,9 @@ editor_search_bar_class_init (EditorSearchBarClass *klass)
   object_class->get_property = editor_search_bar_get_property;
   object_class->set_property = editor_search_bar_set_property;
 
+  widget_class->root = editor_search_bar_root;
+  widget_class->unroot = editor_search_bar_unroot;
+
   gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
   gtk_widget_class_set_css_name (widget_class, "searchbar");
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-search-bar.ui");
@@ -627,9 +722,13 @@ _editor_search_bar_detach (EditorSearchBar *self)
     {
       EditorDocument *document = EDITOR_DOCUMENT (gtk_source_search_context_get_buffer (self->context));
       GtkWidget *page = gtk_widget_get_ancestor (GTK_WIDGET (self), EDITOR_TYPE_PAGE);
+      GtkTextIter begin, end;
 
       if (self->jump_back_on_hide)
         _editor_page_scroll_to_insert (EDITOR_PAGE (page));
+
+      gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (document), &begin, &end);
+      gtk_text_buffer_remove_tag (GTK_TEXT_BUFFER (document), self->current_tag, &begin, &end);
 
       g_signal_handlers_disconnect_by_func (self->context,
                                             G_CALLBACK (editor_search_bar_notify_occurrences_count_cb),
