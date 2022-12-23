@@ -85,9 +85,6 @@ editor_source_view_update_css (EditorSourceView *self)
   const PangoFontDescription *font_desc;
   PangoFontDescription *scaled = NULL;
   PangoFontDescription *system_font = NULL;
-  GtkSourceStyleScheme *scheme;
-  GtkSourceStyle *style;
-  GtkTextBuffer *buffer;
   g_autoptr(GString) str = NULL;
   g_autofree char *font_css = NULL;
   int size = 11; /* 11pt */
@@ -96,29 +93,6 @@ editor_source_view_update_css (EditorSourceView *self)
   g_assert (EDITOR_IS_SOURCE_VIEW (self));
 
   str = g_string_new (NULL);
-
-  /* Get information for search bubbles */
-  buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (self));
-  if ((scheme = gtk_source_buffer_get_style_scheme (GTK_SOURCE_BUFFER (buffer))) &&
-      (style = gtk_source_style_scheme_get_style (scheme, "search-match")))
-    {
-      g_autofree char *background = NULL;
-      gboolean background_set = FALSE;
-
-      g_object_get (style,
-                    "background", &background,
-                    "background-set", &background_set,
-                    NULL);
-
-      if (background != NULL && background_set)
-        g_string_append_printf (str,
-                                ".search-match {"
-                                " background:mix(%s,currentColor,0.0125);"
-                                " border-radius:7px;"
-                                " box-shadow: 0 1px 3px mix(%s,currentColor,.2);"
-                                "}\n",
-                                background, background);
-    }
 
   g_string_append (str, "textview {\n");
 
@@ -586,181 +560,6 @@ editor_source_view_action_duplicate_line (GtkWidget  *widget,
   gtk_text_buffer_end_user_action (buffer);
 }
 
-static GtkSourceSearchContext *
-get_search_context (EditorSourceView *self)
-{
-  EditorPage *page = EDITOR_PAGE (gtk_widget_get_ancestor (GTK_WIDGET (self), EDITOR_TYPE_PAGE));
-
-  if (page->search_bar->context &&
-      gtk_source_search_context_get_highlight (page->search_bar->context))
-    return page->search_bar->context;
-
-  return NULL;
-}
-
-static inline void
-add_match (GtkTextView       *text_view,
-           cairo_region_t    *region,
-           const GtkTextIter *begin,
-           const GtkTextIter *end)
-{
-  GdkRectangle begin_rect;
-  GdkRectangle end_rect;
-  cairo_rectangle_int_t rect;
-
-  /* NOTE: @end is not inclusive of the match. */
-  if (gtk_text_iter_get_line (begin) == gtk_text_iter_get_line (end))
-    {
-      gtk_text_view_get_iter_location (text_view, begin, &begin_rect);
-      gtk_text_view_get_iter_location (text_view, end, &end_rect);
-      rect.x = begin_rect.x;
-      rect.y = begin_rect.y;
-      rect.width = end_rect.x - begin_rect.x;
-      rect.height = MAX (begin_rect.height, end_rect.height);
-
-      cairo_region_union_rectangle (region, &rect);
-
-      return;
-    }
-
-  /*
-   * TODO: Add support for multi-line matches. When @begin and @end are not
-   *       on the same line, we need to add the match region to @region so
-   *       ide_source_view_draw_search_bubbles() can draw search bubbles
-   *       around it.
-   */
-}
-
-static guint
-add_matches (GtkTextView            *text_view,
-             cairo_region_t         *region,
-             GtkSourceSearchContext *search_context,
-             const GtkTextIter      *begin,
-             const GtkTextIter      *end)
-{
-  GtkTextIter first_begin;
-  GtkTextIter new_begin;
-  GtkTextIter match_begin;
-  GtkTextIter match_end;
-  gboolean has_wrapped;
-  guint count = 1;
-
-  g_assert (GTK_IS_TEXT_VIEW (text_view));
-  g_assert (region != NULL);
-  g_assert (GTK_SOURCE_IS_SEARCH_CONTEXT (search_context));
-  g_assert (begin != NULL);
-  g_assert (end != NULL);
-
-  if (!gtk_source_search_context_forward (search_context,
-                                          begin,
-                                          &first_begin,
-                                          &match_end,
-                                          &has_wrapped))
-    return 0;
-
-  add_match (text_view, region, &first_begin, &match_end);
-
-  for (;;)
-    {
-      new_begin = match_end;
-
-      if (gtk_source_search_context_forward (search_context,
-                                             &new_begin,
-                                             &match_begin,
-                                             &match_end,
-                                             &has_wrapped) &&
-          (gtk_text_iter_compare (&match_begin, end) < 0) &&
-          (gtk_text_iter_compare (&first_begin, &match_begin) != 0))
-        {
-          add_match (text_view, region, &match_begin, &match_end);
-          count++;
-          continue;
-        }
-
-      break;
-    }
-
-  return count;
-}
-
-G_GNUC_UNUSED static void
-editor_source_view_draw_search_bubbles (EditorSourceView *self,
-                                        GtkSnapshot      *snapshot)
-{
-  GtkStyleContext *style_context;
-  cairo_region_t *clip_region;
-  cairo_region_t *match_region;
-  GtkSourceSearchContext *context;
-  GdkRectangle area;
-  GtkTextIter begin, end;
-
-  g_assert (EDITOR_IS_SOURCE_VIEW (self));
-  g_assert (GTK_IS_SNAPSHOT (snapshot));
-
-  if (self->font_scale < MIN_BUBBLE_SCALE ||
-      self->font_scale > MAX_BUBBLE_SCALE ||
-      !(context = get_search_context (self)))
-    return;
-
-  style_context = gtk_widget_get_style_context (GTK_WIDGET (self));
-
-  gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (self), &area);
-  gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (self), &begin,
-                                      area.x, area.y);
-  gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (self), &end,
-                                      area.x + area.width,
-                                      area.y + area.height);
-
-  clip_region = cairo_region_create_rectangle (&area);
-  match_region = cairo_region_create ();
-
-  if (add_matches (GTK_TEXT_VIEW (self), match_region, context, &begin, &end))
-    {
-      int n_rects;
-
-      cairo_region_subtract (clip_region, match_region);
-
-      n_rects = cairo_region_num_rectangles (match_region);
-
-      gtk_style_context_save (style_context);
-      gtk_style_context_add_class (style_context, "search-match");
-      for (guint i = 0; i < n_rects; i++)
-        {
-          cairo_rectangle_int_t r;
-
-          cairo_region_get_rectangle (match_region, i, &r);
-
-          r.x -= X_PAD;
-          r.width += 2*X_PAD;
-          r.y -= Y_PAD;
-          r.height += 2*Y_PAD;
-
-          gtk_snapshot_render_background (snapshot, style_context, r.x, r.y, r.width, r.height);
-          gtk_snapshot_render_frame (snapshot, style_context, r.x, r.y, r.width, r.height);
-        }
-      gtk_style_context_restore (style_context);
-    }
-
-  cairo_region_destroy (clip_region);
-  cairo_region_destroy (match_region);
-}
-
-static void
-editor_source_view_snapshot_layer (GtkTextView      *text_view,
-                                   GtkTextViewLayer  layer,
-                                   GtkSnapshot      *snapshot)
-{
-  EditorSourceView *self = (EditorSourceView *)text_view;
-
-  g_assert (EDITOR_IS_SOURCE_VIEW (self));
-  g_assert (GTK_IS_SNAPSHOT (snapshot));
-
-  GTK_TEXT_VIEW_CLASS (editor_source_view_parent_class)->snapshot_layer (text_view, layer, snapshot);
-
-  if (layer == GTK_TEXT_VIEW_LAYER_BELOW_TEXT)
-    editor_source_view_draw_search_bubbles (self, snapshot);
-}
-
 static gboolean
 editor_source_view_scroll_to_insert_in_idle_cb (gpointer user_data)
 {
@@ -904,7 +703,6 @@ editor_source_view_class_init (EditorSourceViewClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
-  GtkTextViewClass *text_view_class = GTK_TEXT_VIEW_CLASS (klass);
 
   object_class->constructed = editor_source_view_constructed;
   object_class->dispose = editor_source_view_dispose;
@@ -913,8 +711,6 @@ editor_source_view_class_init (EditorSourceViewClass *klass)
 
   widget_class->root = editor_source_view_root;
   widget_class->size_allocate = editor_source_view_size_allocate;
-
-  text_view_class->snapshot_layer = editor_source_view_snapshot_layer;
 
   properties [PROP_LINE_HEIGHT] =
     g_param_spec_double ("line-height",
