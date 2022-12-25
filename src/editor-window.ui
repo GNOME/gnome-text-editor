@@ -81,7 +81,7 @@
                   <object class="GtkMenuButton" id="open_menu_button">
                     <property name="label" translatable="yes">_Open</property>
                     <property name="use-underline">True</property>
-                    <property name="tooltip-text" translatable="yes">Open recent document (Ctrl+K)</property>
+                    <property name="tooltip-text" translatable="yes">Recently Used Documents (Ctrl+K)</property>
                     <property name="popover">
                       <object class="EditorOpenPopover" id="open_menu_popover">
                       </object>
@@ -93,7 +93,7 @@
                     <property name="action-name">session.new-draft</property>
                     <property name="icon-name">tab-new-symbolic</property>
                     <property name="has-tooltip">true</property>
-                    <property name="tooltip-text" translatable="yes">New tab (Ctrl+T)</property>
+                    <property name="tooltip-text" translatable="yes">New Tab (Ctrl+T)</property>
                     <accessibility>
                       <property name="label" translatable="yes">New tab (Ctrl+T)</property>
                     </accessibility>
@@ -121,7 +121,7 @@
                 </child>
                 <child>
                   <object class="GtkMenuButton" id="options_menu">
-                    <property name="tooltip-text" translatable="yes">View</property>
+                    <property name="tooltip-text" translatable="yes">View Options</property>
                     <property name="icon-name">document-properties-symbolic</property>
                     <property name="menu-model">options_menu_model</property>
                     <accessibility>
@@ -131,6 +131,7 @@
                 </child>
                 <child>
                   <object class="GtkMenuButton" id="primary_menu">
+                    <property name="tooltip-text" translatable="yes">Main Menu</property>
                     <property name="icon-name">open-menu-symbolic</property>
                     <property name="menu-model">primary_menu_model</property>
                     <accessibility>
