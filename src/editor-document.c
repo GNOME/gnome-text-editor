@@ -334,8 +334,11 @@ editor_document_changed (GtkTextBuffer *buffer)
 
   g_assert (EDITOR_IS_DOCUMENT (self));
 
-  /* Track separately from :modified for drafts */
-  self->needs_autosave = TRUE;
+  if (!self->loading)
+    {
+      /* Track separately from :modified for drafts */
+      self->needs_autosave = TRUE;
+    }
 
   GTK_TEXT_BUFFER_CLASS (editor_document_parent_class)->changed (buffer);
 }
@@ -1705,6 +1708,7 @@ _editor_document_load_async (EditorDocument      *self,
   g_return_if_fail (self->loading == FALSE);
 
   self->loading = TRUE;
+  self->needs_autosave = FALSE;
 
   file = editor_document_get_file (self);
 
