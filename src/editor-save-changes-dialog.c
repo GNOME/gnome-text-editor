@@ -242,6 +242,7 @@ _editor_save_changes_dialog_new (GtkWindow *parent,
   PangoAttrList *smaller;
   GtkWidget *dialog;
   GtkWidget *group;
+  GtkWidget *prefs_page;
 
   g_return_val_if_fail (!parent || GTK_IS_WINDOW (parent), NULL);
   g_return_val_if_fail (pages != NULL, NULL);
@@ -256,6 +257,7 @@ _editor_save_changes_dialog_new (GtkWindow *parent,
   dialog = adw_message_dialog_new (parent,
                                    _("Save Changes?"),
                                    _("Open documents contain unsaved changes. Changes which are not saved will be permanently lost."));
+  gtk_widget_add_css_class (dialog, "save-changes");
 
   adw_message_dialog_add_responses (ADW_MESSAGE_DIALOG (dialog),
                                     "cancel", _("_Cancel"),
@@ -267,8 +269,12 @@ _editor_save_changes_dialog_new (GtkWindow *parent,
   adw_message_dialog_set_response_appearance (ADW_MESSAGE_DIALOG (dialog),
                                               "save", ADW_RESPONSE_SUGGESTED);
 
+  prefs_page = adw_preferences_page_new ();
+  adw_message_dialog_set_extra_child (ADW_MESSAGE_DIALOG (dialog), prefs_page);
+
   group = adw_preferences_group_new ();
-  adw_message_dialog_set_extra_child (ADW_MESSAGE_DIALOG (dialog), group);
+  adw_preferences_page_add (ADW_PREFERENCES_PAGE (prefs_page),
+                            ADW_PREFERENCES_GROUP (group));
 
   smaller = pango_attr_list_new ();
   pango_attr_list_insert (smaller, pango_attr_scale_new (0.8333));
