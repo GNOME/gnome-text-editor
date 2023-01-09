@@ -588,9 +588,18 @@ editor_window_actions_close_page_confirm_cb (GObject      *object,
   for (guint i = 0; i < pages->len; i++)
     {
       EditorPage *epage = g_ptr_array_index (pages, i);
-      AdwTabPage *page = adw_tab_view_get_page (self->tab_view, GTK_WIDGET (epage));
+      AdwTabPage *page;
 
       g_assert (EDITOR_IS_PAGE (epage));
+
+      /* Make sure the page is still around and attached across the async
+       * operations. Otherwise, skip it as it's already cleaned up.
+       */
+      if (gtk_widget_get_ancestor (GTK_WIDGET (epage), ADW_TYPE_TAB_VIEW) != GTK_WIDGET (self->tab_view))
+        continue;
+
+      page = adw_tab_view_get_page (self->tab_view, GTK_WIDGET (epage));
+
       g_assert (ADW_IS_TAB_PAGE (page));
 
       if (epage->close_requested)
