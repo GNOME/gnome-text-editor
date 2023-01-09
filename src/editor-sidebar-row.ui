@@ -82,6 +82,7 @@
             <property name="valign">center</property>
             <property name="halign">end</property>
             <property name="icon-name">window-close-symbolic</property>
+            <property name="tooltip-text">Remove</property>
             <signal name="clicked" handler="on_remove_clicked_cb" swapped="true" object="EditorSidebarRow"/>
             <style>
               <class name="circular"/>
