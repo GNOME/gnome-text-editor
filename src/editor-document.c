@@ -39,6 +39,7 @@
 #define METADATA_SYNTAX     "metadata::gte-syntax"
 #define TITLE_LAST_WORD_POS 20
 #define TITLE_MAX_LEN       100
+#define IS_LARGE_FILE(size) ((size) >= 1024UL*1024UL) /* 1MB */
 
 struct _EditorDocument
 {
@@ -1331,6 +1332,7 @@ editor_document_query_info_cb (GObject      *object,
   const gchar *syntax;
   gboolean readonly;
   gboolean is_modified;
+  goffset size;
   guint line = 0;
   guint line_offset = 0;
   Load *load;
@@ -1358,6 +1360,7 @@ editor_document_query_info_cb (GObject      *object,
   position = g_file_info_get_attribute_string (info, METADATA_CURSOR);
   spelling_language = g_file_info_get_attribute_string (info, METADATA_SPELLING);
   syntax = g_file_info_get_attribute_string (info, METADATA_SYNTAX);
+  size = g_file_info_get_size (info);
 
   editor_document_set_readonly (self, readonly);
 
@@ -1407,9 +1410,31 @@ editor_document_query_info_cb (GObject      *object,
 
   editor_buffer_monitor_reset (self->monitor);
 
-  gtk_source_buffer_set_highlight_matching_brackets (GTK_SOURCE_BUFFER (self), load->highlight_matching_brackets);
-  gtk_source_buffer_set_highlight_syntax (GTK_SOURCE_BUFFER (self), load->highlight_syntax);
-  editor_text_buffer_spell_adapter_set_enabled (self->spell_adapter, load->check_spelling);
+  /* Check to see if we should disable features that are likely to
+   * cause problems on large buffers. We'll consider anything >= 1MB
+   * a "large file" from this standpoint.
+   */
+  if (IS_LARGE_FILE (size))
+    {
+      g_autofree char *title = editor_document_dup_title (self);
+      g_autofree char *sizestr = g_format_size (size);
+
+      g_debug ("Disabling features for buffer \"%s\" due to size (%s)",
+               title, sizestr);
+
+      /* Document settings may try to override these as the load completes
+       * so we need to clear them again.
+       */
+      gtk_source_buffer_set_highlight_matching_brackets (GTK_SOURCE_BUFFER (self), FALSE);
+      gtk_source_buffer_set_highlight_syntax (GTK_SOURCE_BUFFER (self), FALSE);
+      editor_text_buffer_spell_adapter_set_enabled (self->spell_adapter, FALSE);
+    }
+  else
+    {
+      gtk_source_buffer_set_highlight_matching_brackets (GTK_SOURCE_BUFFER (self), load->highlight_matching_brackets);
+      gtk_source_buffer_set_highlight_syntax (GTK_SOURCE_BUFFER (self), load->highlight_syntax);
+      editor_text_buffer_spell_adapter_set_enabled (self->spell_adapter, load->check_spelling);
+    }
 
   _editor_document_unmark_busy (self);
 
@@ -1460,6 +1485,7 @@ editor_document_load_cb (GObject      *object,
         file = draft_file = editor_document_get_draft_file (self);
 
       g_file_query_info_async (file,
+                               G_FILE_ATTRIBUTE_STANDARD_SIZE","
                                G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE","
                                G_FILE_ATTRIBUTE_FILESYSTEM_READONLY","
                                METADATA_CURSOR","
