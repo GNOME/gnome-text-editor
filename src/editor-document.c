@@ -1,6 +1,6 @@
 /* editor-document.c
  *
- * Copyright 2020 Christian Hergert <chergert@redhat.com>
+ * Copyright 2020-2023 Christian Hergert <chergert@redhat.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -431,7 +431,7 @@ editor_document_delete_range (GtkTextBuffer *buffer,
   g_assert (end != NULL);
   g_assert (gtk_text_iter_compare (start, end) <= 0);
 
-  /* Unlikely, but short circuit during loading incase something
+  /* Unlikely, but short circuit during loading in-case something
    * beneath us has to delete/replace as part of resolving invalid
    * characters.
    */
