@@ -32,11 +32,16 @@ struct _EditorApplication
   GtkCssProvider *recoloring;
   GDBusProxy     *portal;
   char           *system_font_name;
+  GHashTable     *open_at_position;
   guint           standalone : 1;
 };
 
-EditorApplication    *_editor_application_new             (gboolean           standalone);
-void                  _editor_application_actions_init    (EditorApplication *self);
-PangoFontDescription *_editor_application_get_system_font (EditorApplication *self);
+EditorApplication    *_editor_application_new              (gboolean           standalone);
+void                  _editor_application_actions_init     (EditorApplication *self);
+PangoFontDescription *_editor_application_get_system_font  (EditorApplication *self);
+gboolean              _editor_application_consume_position (EditorApplication *self,
+                                                            GFile             *file,
+                                                            guint             *line,
+                                                            guint             *line_offset);
 
 G_END_DECLS

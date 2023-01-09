@@ -155,6 +155,20 @@ editor_page_document_notify_loading_cb (EditorPage     *self,
    */
   loading = _editor_document_get_loading (document);
   gtk_widget_set_can_focus (GTK_WIDGET (self), !loading);
+
+  if (!loading)
+    {
+      GtkTextIter iter;
+
+      /* Scroll to the cursor position, which may have moved
+       * on very slow loading (large documents).
+       */
+      gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (document),
+                                        &iter,
+                                        gtk_text_buffer_get_insert (GTK_TEXT_BUFFER (document)));
+      editor_source_view_jump_to_iter (GTK_TEXT_VIEW (self->view),
+                                       &iter, .25, TRUE, .5, .5);
+    }
 }
 
 static void

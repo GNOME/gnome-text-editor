@@ -35,7 +35,14 @@
 #define PORTAL_OBJECT_PATH "/org/freedesktop/portal/desktop"
 #define PORTAL_SETTINGS_INTERFACE "org.freedesktop.portal.Settings"
 
-typedef struct
+typedef struct _OpenPosition
+{
+  GFile *file;
+  guint line;
+  guint line_offset;
+} OpenPosition;
+
+typedef struct _Restore
 {
   GPtrArray *files;
   char *hint;
@@ -414,6 +421,71 @@ load_stdin_stream_cb (gpointer user_data)
   return G_SOURCE_REMOVE;
 }
 
+static void
+open_position_free (gpointer data)
+{
+  OpenPosition *op = data;
+
+  g_clear_object (&op->file);
+  g_free (op);
+}
+
+static OpenPosition *
+open_position_copy (OpenPosition *op)
+{
+  g_object_ref (op->file);
+  return g_memdup2 (op, sizeof *op);
+}
+
+static void
+set_open_position (EditorApplication *self,
+                   OpenPosition       position)
+{
+  g_assert (EDITOR_IS_APPLICATION (self));
+  g_assert (G_IS_FILE (position.file));
+
+  g_hash_table_insert (self->open_at_position,
+                       position.file,
+                       open_position_copy (&position));
+}
+
+gboolean
+_editor_application_consume_position (EditorApplication *self,
+                                      GFile             *file,
+                                      guint             *line,
+                                      guint             *line_offset)
+{
+  OpenPosition *op;
+
+  g_return_val_if_fail (EDITOR_IS_APPLICATION (self), FALSE);
+  g_return_val_if_fail (self->open_at_position != NULL, FALSE);
+
+  if (g_hash_table_steal_extended (self->open_at_position, file, NULL, (gpointer *)&op))
+    {
+      *line = op->line;
+      *line_offset = op->line_offset;
+
+      open_position_free (op);
+
+      return TRUE;
+    }
+
+  return FALSE;
+}
+
+static gboolean
+parse_line_and_offset (const char *str,
+                       guint      *line,
+                       guint      *line_offset)
+{
+  int ret = sscanf (str, "+%u:%u", line, line_offset);
+
+  if (ret == 1)
+    line_offset = 0;
+
+  return ret > 0;
+}
+
 static int
 editor_application_command_line (GApplication            *app,
                                  GApplicationCommandLine *command_line)
@@ -441,8 +513,11 @@ editor_application_command_line (GApplication            *app,
 
   for (int i = 1; i < argc; i++)
     {
+      const char *filename = argv[i];
+      g_autoptr(GFile) file = NULL;
+
       /* We want to read stdin into temporary file if we get '-' */
-      if (g_strcmp0 (argv[i], "-") == 0)
+      if (g_strcmp0 (filename, "-") == 0)
         {
           if (stdin_stream != NULL)
             g_application_command_line_printerr (command_line,
@@ -455,12 +530,27 @@ editor_application_command_line (GApplication            *app,
           continue;
         }
 
+      file = g_application_command_line_create_file_for_arg (command_line, filename);
+
+      /* If the next argument is +[line:[column]] we want to jump to
+       * the line:column of the file.
+       */
+      if (i+1 < argc && argv[i+1][0] == '+')
+        {
+          guint line;
+          guint line_offset;
+
+          if (argv[i+1][1] == '\0')
+            set_open_position (self, (OpenPosition) { file, 0, 0 }), i++;
+          else if (parse_line_and_offset (argv[i+1], &line, &line_offset))
+            set_open_position (self, (OpenPosition) { file, line, line_offset }), i++;
+        }
+
       /* Otherwise add the file to the list of files we need to open, taking
        * into account the other directory a remote instance could be running
        * from.
        */
-      g_ptr_array_add (files,
-                       g_application_command_line_create_file_for_arg (command_line, argv[i]));
+      g_ptr_array_add (files, g_steal_pointer (&file));
     }
 
   /* Only accept --new-window if this is a remote instance, we already
@@ -553,6 +643,7 @@ editor_application_shutdown (GApplication *application)
   g_clear_object (&self->recoloring);
   g_clear_object (&self->portal);
   g_clear_pointer (&self->system_font_name, g_free);
+  g_clear_pointer (&self->open_at_position, g_hash_table_unref);
 
   G_APPLICATION_CLASS (editor_application_parent_class)->shutdown (application);
 }
@@ -667,6 +758,10 @@ editor_application_init (EditorApplication *self)
   self->settings = g_settings_new ("org.gnome.TextEditor");
   self->session = _editor_session_new ();
   self->system_font_name = g_strdup ("Monospace 11");
+  self->open_at_position = g_hash_table_new_full ((GHashFunc)g_file_hash,
+                                                  (GEqualFunc)g_file_equal,
+                                                  NULL,
+                                                  open_position_free);
 
   g_signal_connect_object (self->settings,
                            "changed::style-scheme",

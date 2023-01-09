@@ -26,7 +26,7 @@
 
 #include <glib/gi18n.h>
 
-#include "editor-application.h"
+#include "editor-application-private.h"
 #include "editor-buffer-monitor-private.h"
 #include "editor-document-private.h"
 #include "editor-spell-checker.h"
@@ -1375,9 +1375,42 @@ editor_document_query_info_cb (GObject      *object,
   gtk_source_buffer_set_language (GTK_SOURCE_BUFFER (self), language);
   gtk_source_buffer_set_highlight_syntax (GTK_SOURCE_BUFFER (self), language != NULL);
 
-  /* Parse metadata for cursor position */
-  if (position != NULL &&
-      sscanf (position, "%u:%u", &line, &line_offset) >= 1)
+  /* If the cursor position was provided at app startup, then steal
+   * that position from the hashtable and restore it.
+   *
+   * Otherwise, if the metadata for the file has the position, use that
+   * so that the session looks similar to when we closed.
+   */
+  if (_editor_application_consume_position (EDITOR_APPLICATION_DEFAULT, file, &line, &line_offset))
+    {
+      GtkTextIter iter;
+
+      g_debug ("Moving cursor to requested position %u:%u",
+               line, line_offset);
+
+      if (line == 0)
+        gtk_text_buffer_get_end_iter (GTK_TEXT_BUFFER (self), &iter);
+      else
+        gtk_text_buffer_get_iter_at_line_offset (GTK_TEXT_BUFFER (self),
+                                                 &iter,
+                                                 line - 1,
+                                                 line_offset > 0 ? line_offset - 1 : 0);
+
+      /* Move to first non-space character if offset is not provided */
+      if (line_offset == 0)
+        {
+          while (!gtk_text_iter_ends_line (&iter) &&
+                 g_unichar_isspace (gtk_text_iter_get_char (&iter)))
+            {
+              if (!gtk_text_iter_forward_char (&iter))
+                break;
+            }
+        }
+
+      gtk_text_buffer_select_range (GTK_TEXT_BUFFER (self), &iter, &iter);
+    }
+  else if (position != NULL &&
+           sscanf (position, "%u:%u", &line, &line_offset) >= 1)
     {
       GtkTextIter iter;
 

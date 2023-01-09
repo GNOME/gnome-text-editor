@@ -24,7 +24,7 @@
 
 #include <glib/gstdio.h>
 
-#include "editor-application.h"
+#include "editor-application-private.h"
 #include "editor-document-private.h"
 #include "editor-page-private.h"
 #include "editor-session-private.h"
@@ -1659,6 +1659,8 @@ editor_session_restore_v1_pages (EditorSession *self,
       const char *uri;
       gboolean is_active;
       Selection sel;
+      guint line;
+      guint line_offset;
 
       if (!g_variant_lookup (page, "draft-id", "&s", &draft_id))
         draft_id = NULL;
@@ -1687,6 +1689,18 @@ editor_session_restore_v1_pages (EditorSession *self,
 
       if (uri != NULL)
         file = g_file_new_for_uri (uri);
+
+      /* If the file was also requested from command line arguments
+       * and a +line:column was requested, prefer that to session state.
+       */
+      if (_editor_application_consume_position (EDITOR_APPLICATION_DEFAULT,
+                                                file,
+                                                &line,
+                                                &line_offset))
+        {
+          sel.end.line = sel.begin.line = MAX (1, line) - 1;
+          sel.end.line_offset = sel.begin.line_offset = MAX (1, line_offset) - 1;
+        }
 
       document = _editor_document_new (file, draft_id);
 
