@@ -23,6 +23,11 @@
             <child>
               <object class="GtkSearchEntry" id="search_entry">
                 <property name="hexpand">True</property>
+                <binding name="sensitive">
+                  <lookup name="n-items" type="EditorSidebarModel">
+                    <lookup name="model">EditorOpenPopover</lookup>
+                  </lookup>
+                </binding>
                 <signal name="changed" handler="on_search_entry_changed_cb" swapped="true" object="EditorOpenPopover"/>
                 <signal name="activate" handler="on_search_entry_activate_cb" swapped="true" object="EditorOpenPopover"/>
                 <signal name="stop-search" handler="on_search_entry_stop_search_cb" swapped="true" object="EditorOpenPopover"/>
