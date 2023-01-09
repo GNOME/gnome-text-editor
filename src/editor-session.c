@@ -1168,8 +1168,13 @@ editor_session_update_recent_worker (GTask        *task,
       for (guint i = 0; i < save->seen->len; i++)
         {
           GFile *file = g_ptr_array_index (save->seen, i);
-          g_autofree gchar *uri = g_file_get_uri (file);
+          g_autofree char *uri = g_file_get_uri (file);
+          GDateTime *visited = g_object_get_data (G_OBJECT (file), "VISITED_AT");
+
           g_bookmark_file_add_application (bookmarks, uri, NULL, NULL);
+
+          if (visited != NULL)
+            g_bookmark_file_set_visited_date_time (bookmarks, uri, visited);
         }
     }
 
@@ -1283,7 +1288,7 @@ editor_session_save_async (EditorSession       *self,
 
       g_hash_table_iter_init (&iter, self->seen);
       while (g_hash_table_iter_next (&iter, (gpointer *)&file, NULL))
-        g_ptr_array_add (state->seen, g_file_dup (file));
+        g_ptr_array_add (state->seen, g_object_ref (file));
     }
 
   if (g_hash_table_size (self->forgot) > 0)
@@ -1295,7 +1300,7 @@ editor_session_save_async (EditorSession       *self,
 
       g_hash_table_iter_init (&iter, self->forgot);
       while (g_hash_table_iter_next (&iter, (gpointer *)&file, NULL))
-        g_ptr_array_add (state->forgot, g_file_dup (file));
+        g_ptr_array_add (state->forgot, g_object_ref (file));
     }
 
   g_application_hold (state->app);
@@ -2132,8 +2137,21 @@ _editor_session_document_seen (EditorSession  *self,
 
   if ((file = editor_document_get_file (document)))
     {
-      if (!g_hash_table_contains (self->seen, file))
-        g_hash_table_insert (self->seen, g_file_dup (file), NULL);
+      g_autoptr(GFile) copy = g_file_dup (file);
+
+      /* We copy the file to make it easier to track down any sort of
+       * leaks during development. It's minor overhead and very helpful.
+       *
+       * Additionally, we set the current time on the file data so that
+       * we can update "visited" fields in the bookmarks file as it is
+       * persisted back to storage.
+       */
+
+      g_object_set_data_full (G_OBJECT (copy),
+                              "VISITED_AT",
+                              g_date_time_new_now_local (),
+                              (GDestroyNotify) g_date_time_unref);
+      g_hash_table_insert (self->seen, g_steal_pointer (&copy), NULL);
     }
 
   _editor_session_mark_dirty (self);
