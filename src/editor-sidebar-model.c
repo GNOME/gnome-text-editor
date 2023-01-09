@@ -1,6 +1,6 @@
 /* editor-sidebar-model.c
  *
- * Copyright 2020 Christian Hergert <chergert@redhat.com>
+ * Copyright 2020-2023 Christian Hergert <chergert@redhat.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -41,6 +41,7 @@ struct _EditorSidebarModel
 
 enum {
   PROP_0,
+  PROP_N_ITEMS,
   PROP_SESSION,
   N_PROPS
 };
@@ -57,6 +58,9 @@ items_changed (EditorSidebarModel *self,
   self->length += added;
 
   g_list_model_items_changed (G_LIST_MODEL (self), position, removed, added);
+
+  if (removed != added)
+    g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_N_ITEMS]);
 }
 
 static gboolean
@@ -510,6 +514,10 @@ editor_sidebar_model_get_property (GObject    *object,
 
   switch (prop_id)
     {
+    case PROP_N_ITEMS:
+      g_value_set_uint (value, self->length);
+      break;
+
     case PROP_SESSION:
       g_value_set_object (value, self->session);
       break;
@@ -547,6 +555,11 @@ editor_sidebar_model_class_init (EditorSidebarModelClass *klass)
   object_class->finalize = editor_sidebar_model_finalize;
   object_class->get_property = editor_sidebar_model_get_property;
   object_class->set_property = editor_sidebar_model_set_property;
+
+  properties [PROP_N_ITEMS] =
+    g_param_spec_uint ("n-items", NULL, NULL,
+                       0, G_MAXUINT, 0,
+                       (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
   properties [PROP_SESSION] =
     g_param_spec_object ("session",
