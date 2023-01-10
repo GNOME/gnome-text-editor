@@ -504,6 +504,7 @@ editor_window_constructed (GObject *object)
                           NULL);
   gtk_widget_add_css_class (zoom_in, "circular");
   gtk_widget_add_css_class (zoom_in, "flat");
+  gtk_widget_set_tooltip_text (zoom_in, _("Zoom In"));
   gtk_accessible_update_property (GTK_ACCESSIBLE (zoom_in),
                                   GTK_ACCESSIBLE_PROPERTY_LABEL,
                                   _("Zoom in"), -1);
@@ -516,6 +517,7 @@ editor_window_constructed (GObject *object)
                            NULL);
   gtk_widget_add_css_class (zoom_out, "circular");
   gtk_widget_add_css_class (zoom_out, "flat");
+  gtk_widget_set_tooltip_text (zoom_out, _("Zoom Out"));
   gtk_accessible_update_property (GTK_ACCESSIBLE (zoom_out),
                                   GTK_ACCESSIBLE_PROPERTY_LABEL,
                                   _("Zoom out"), -1);
