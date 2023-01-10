@@ -23,6 +23,7 @@
 #include "config.h"
 
 #include "editor-enums.h"
+#include "editor-focus-chain.h"
 #include "editor-page-private.h"
 #include "editor-search-bar-private.h"
 #include "editor-search-entry-private.h"
@@ -401,12 +402,24 @@ on_search_key_pressed_cb (GtkEventControllerKey *key,
   return FALSE;
 }
 
+static gboolean
+editor_search_bar_focus (GtkWidget        *widget,
+                         GtkDirectionType  dir)
+{
+  EditorSearchBar *self = EDITOR_SEARCH_BAR (widget);
+
+  return _editor_focus_chain_focus_child (widget, &self->focus_chain, dir);
+}
+
 static void
 editor_search_bar_dispose (GObject *object)
 {
   EditorSearchBar *self = (EditorSearchBar *)object;
 
   g_clear_pointer ((GtkWidget **)&self->grid, gtk_widget_unparent);
+
+  if (self->focus_chain.length > 0)
+    g_queue_clear (&self->focus_chain);
 
   G_OBJECT_CLASS (editor_search_bar_parent_class)->dispose (object);
 }
@@ -488,12 +501,16 @@ editor_search_bar_class_init (EditorSearchBarClass *klass)
 
   widget_class->root = editor_search_bar_root;
   widget_class->unroot = editor_search_bar_unroot;
+  widget_class->focus = editor_search_bar_focus;
 
   gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
   gtk_widget_class_set_css_name (widget_class, "searchbar");
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-search-bar.ui");
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, case_button);
+  gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, close_button);
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, grid);
+  gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, move_previous);
+  gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, move_next);
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, options_box);
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, options_button);
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, regex_button);
@@ -563,6 +580,20 @@ static void
 editor_search_bar_init (EditorSearchBar *self)
 {
   gtk_widget_init_template (GTK_WIDGET (self));
+
+  /* Setup focus chain */
+  g_queue_push_tail (&self->focus_chain, GTK_WIDGET (self->search_entry));
+  g_queue_push_tail (&self->focus_chain, GTK_WIDGET (self->replace_entry));
+  g_queue_push_tail (&self->focus_chain, GTK_WIDGET (self->move_previous));
+  g_queue_push_tail (&self->focus_chain, GTK_WIDGET (self->move_next));
+  g_queue_push_tail (&self->focus_chain, GTK_WIDGET (self->replace_mode_button));
+  g_queue_push_tail (&self->focus_chain, GTK_WIDGET (self->options_button));
+  g_queue_push_tail (&self->focus_chain, GTK_WIDGET (self->replace_button));
+  g_queue_push_tail (&self->focus_chain, GTK_WIDGET (self->replace_all_button));
+  g_queue_push_tail (&self->focus_chain, GTK_WIDGET (self->regex_button));
+  g_queue_push_tail (&self->focus_chain, GTK_WIDGET (self->case_button));
+  g_queue_push_tail (&self->focus_chain, GTK_WIDGET (self->word_button));
+  g_queue_push_tail (&self->focus_chain, GTK_WIDGET (self->close_button));
 
   g_signal_connect_object (self->replace_entry,
                            "notify::text",

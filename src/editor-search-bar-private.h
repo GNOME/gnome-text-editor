@@ -40,12 +40,16 @@ struct _EditorSearchBar
 
   GtkSourceSearchContext  *context;
   GtkSourceSearchSettings *settings;
+  GQueue                   focus_chain;
 
   GtkGrid                 *grid;
   EditorSearchEntry       *search_entry;
   GtkEntry                *replace_entry;
   GtkButton               *replace_button;
   GtkButton               *replace_all_button;
+  GtkButton               *move_previous;
+  GtkButton               *move_next;
+  GtkButton               *close_button;
   GtkCheckButton          *case_button;
   GtkCheckButton          *regex_button;
   GtkCheckButton          *word_button;
