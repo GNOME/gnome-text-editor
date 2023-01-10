@@ -22,6 +22,7 @@
             <property name="margin-end">6</property>
             <child>
               <object class="GtkSearchEntry" id="search_entry">
+                <property name="placeholder-text">Search documents</property>
                 <property name="hexpand">True</property>
                 <binding name="sensitive">
                   <lookup name="n-items" type="EditorSidebarModel">
