@@ -89,7 +89,9 @@ msys2-mingw64:
       $env:CHERE_INVOKING = 'yes' #preserve cwd
       $env:MSYSTEM = 'MINGW64'
       C:/msys64/usr/bin/bash -lc "./build-aux/win32/build-mingw.sh"
-
+    artifacts:
+        paths:
+            - ./*.zip
 
 #macos:
 #    extends: .only-default
