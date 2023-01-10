@@ -1693,7 +1693,8 @@ editor_session_restore_v1_pages (EditorSession *self,
       /* If the file was also requested from command line arguments
        * and a +line:column was requested, prefer that to session state.
        */
-      if (_editor_application_consume_position (EDITOR_APPLICATION_DEFAULT,
+      if (file != NULL &&
+          _editor_application_consume_position (EDITOR_APPLICATION_DEFAULT,
                                                 file,
                                                 &line,
                                                 &line_offset))
