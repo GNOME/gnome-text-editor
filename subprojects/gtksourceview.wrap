@@ -1,0 +1,10 @@
+[wrap-git]
+directory=gtksourceview
+url=https://gitlab.gnome.org/GNOME/gtksourceview.git
+push-url=ssh://git@ssh.gitlab.gnome.org:GNOME/gtksourceview.git
+revision=master
+depth=1
+
+[provide]
+gtksourceview-5 = gtksource_dep
+dependency_names = gtksourceview-5
