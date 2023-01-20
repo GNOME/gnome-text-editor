@@ -1,15 +1,15 @@
 # Belarusian translation for gnome-text-editor.
 # Copyright (C) 2022 gnome-text-editor's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-text-editor package.
-# Vasil Pupkin <3abac@3a.by>, 2022.
+# Yuras Shumovich <shumovichy@gmail.com>, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor gnome-43\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-11-17 22:53+0000\n"
-"PO-Revision-Date: 2022-12-13 09:24+0300\n"
+"POT-Creation-Date: 2022-12-13 06:25+0000\n"
+"PO-Revision-Date: 2023-01-21 02:07+0300\n"
 "Last-Translator: Yuras Shumovich <shumovichy@gmail.com>\n"
 "Language-Team: Belarusian <i18n-bel-gnome@googlegroups.com>\n"
 "Language: be\n"
@@ -28,7 +28,7 @@ msgstr "Праект GNOME"
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:9
-#: src/editor-application-actions.c:199 src/editor-window.c:1285
+#: src/editor-application-actions.c:199 src/editor-window.c:1286
 msgid "Text Editor"
 msgstr "Тэкставы рэдактар"
 
@@ -41,8 +41,8 @@ msgid ""
 "GNOME Text Editor is a simple text editor focused on a pleasing default "
 "experience."
 msgstr ""
-"Тэкставы рэдактар GNOME - гэта просты тэкставы рэдактар, апрыёры накіраваны "
-"на прыемнае выкарыстанне."
+"Тэкставы рэдактар GNOME - гэта просты тэкставы рэдактар, перш за ўсё "
+"накіраваны на прыемнае выкарыстанне."
 
 #: data/org.gnome.TextEditor.desktop.in.in:4
 msgid "write;notepad;"
@@ -58,7 +58,7 @@ msgstr "Інтэрвал аўтазахавання"
 
 #: data/org.gnome.TextEditor.gschema.xml:17
 msgid "The delay in seconds to wait before auto-saving a draft."
-msgstr ""
+msgstr "Затрымка ў секундах да аўтазахавання чарнавіка."
 
 #: data/org.gnome.TextEditor.gschema.xml:26
 msgid "Style Variant"
@@ -69,6 +69,8 @@ msgid ""
 "Use the light or dark variant of the GTK theme and/or GtkSourceView style "
 "scheme."
 msgstr ""
+"Выкарыстоўваць светлы або цёмны варыянт тэмы GTK і/або схемы стыляў "
+"GtkSourceView."
 
 #: data/org.gnome.TextEditor.gschema.xml:35
 msgid "Indentation Style"
@@ -76,7 +78,7 @@ msgstr "Стыль водступаў"
 
 #: data/org.gnome.TextEditor.gschema.xml:36
 msgid "If the editor should insert multiple spaces characters instead of tabs."
-msgstr ""
+msgstr "Калі рэдактар павінен устаўляць некалькі прабелаў замест табуляцыі."
 
 #: data/org.gnome.TextEditor.gschema.xml:40
 msgid "Auto Indent"
@@ -84,7 +86,7 @@ msgstr "Аўтаматычныя водступы"
 
 #: data/org.gnome.TextEditor.gschema.xml:41
 msgid "Automatically indent new lines copying the previous line's indentation."
-msgstr ""
+msgstr "Аўтаматычна капіяваць водступ з папярэдняга радка на новым радку."
 
 #: data/org.gnome.TextEditor.gschema.xml:46
 msgid "Tab Width"
@@ -92,7 +94,7 @@ msgstr "Шырыня табуляцыі"
 
 #: data/org.gnome.TextEditor.gschema.xml:47
 msgid "The number of spaces represented by a tab."
-msgstr ""
+msgstr "Колькасць прабелаў, якая адпавядае табуляцыі."
 
 #: data/org.gnome.TextEditor.gschema.xml:52
 msgid "Indent Width"
@@ -101,6 +103,8 @@ msgstr "Шырыня водступу"
 #: data/org.gnome.TextEditor.gschema.xml:53
 msgid "The number of spaces to indent or -1 to use tab-width."
 msgstr ""
+"Колькасць прабелаў для водступу або -1 для выкарыстання значэння з ключа "
+"«шырыня табуляцыі»."
 
 #: data/org.gnome.TextEditor.gschema.xml:57
 msgid "Show Line Numbers"
@@ -108,7 +112,7 @@ msgstr "Паказваць нумары радкоў"
 
 #: data/org.gnome.TextEditor.gschema.xml:58
 msgid "If line numbers should be displayed next to each line."
-msgstr ""
+msgstr "Ці трэба паказваць нумар радка побач з кожным радком."
 
 #: data/org.gnome.TextEditor.gschema.xml:62
 msgid "Show Right Margin"
@@ -116,16 +120,16 @@ msgstr "Паказваць правае поле"
 
 #: data/org.gnome.TextEditor.gschema.xml:63
 msgid "If a margin line should be displayed on the right of the editor."
-msgstr ""
+msgstr "Ці трэба паказваць мяжу поля ў правай частцы рэдактара."
 
 #: data/org.gnome.TextEditor.gschema.xml:68
 msgid "Right Margin Position"
-msgstr "Размяшчэнне правага поля"
+msgstr "Пазіцыя правага поля"
 
 #: data/org.gnome.TextEditor.gschema.xml:69
 msgid ""
 "The position in characters at which the right margin should be displayed."
-msgstr ""
+msgstr "Пазіцыя (у сімвалах) на якой павінна паказвацца мяжа правага поля."
 
 #: data/org.gnome.TextEditor.gschema.xml:73
 msgid "Show Overview Map"
@@ -136,6 +140,8 @@ msgid ""
 "If enabled, an overview map of the file will be displayed to the side of the "
 "editor."
 msgstr ""
+"Калі ўключана, у правай частцы рэдактара будзе паказвацца аглядная карта "
+"файла."
 
 #: data/org.gnome.TextEditor.gschema.xml:78
 msgid "Show Background Grid"
@@ -144,6 +150,8 @@ msgstr "Паказваць у фоне сетку"
 #: data/org.gnome.TextEditor.gschema.xml:79
 msgid "If enabled, a blueprint style grid is printed on the editor background."
 msgstr ""
+"Калі ўключана, на заднім фоне рэдактара паказваецца сетка ў стылі сшытка ў "
+"клетачку."
 
 #: data/org.gnome.TextEditor.gschema.xml:83
 msgid "Highlight current line"
@@ -151,7 +159,7 @@ msgstr "Падсвечваць бягучы радок"
 
 #: data/org.gnome.TextEditor.gschema.xml:84
 msgid "If enabled, the current line will be highlighted."
-msgstr ""
+msgstr "Калі ўключана, будзе падсвечвацца бягучы радок."
 
 #: data/org.gnome.TextEditor.gschema.xml:88
 msgid "Text Wrapping"
@@ -159,7 +167,7 @@ msgstr "Перанос радкоў"
 
 #: data/org.gnome.TextEditor.gschema.xml:89
 msgid "If text should be wrapped."
-msgstr ""
+msgstr "Ці трэба пераносіць тэкст."
 
 #: data/org.gnome.TextEditor.gschema.xml:93
 msgid "Use System Font"
@@ -167,7 +175,7 @@ msgstr "Выкарыстоўваць сістэмны шрыфт"
 
 #: data/org.gnome.TextEditor.gschema.xml:94
 msgid "If the default system monospace font should be used."
-msgstr ""
+msgstr "Ці трэба выкарыстоўваць прадвызначаны сістэмны монашырынны шрыфт."
 
 #: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:57
 msgid "Custom Font"
@@ -175,27 +183,31 @@ msgstr "Уласны шрыфт"
 
 #: data/org.gnome.TextEditor.gschema.xml:99
 msgid "A custom font to use in the editor."
-msgstr ""
+msgstr "Уласны шрыфт, які выкарыстоўваецца ў рэдактары."
 
 #: data/org.gnome.TextEditor.gschema.xml:103
 msgid "Style Scheme"
-msgstr "Схема афармлення"
+msgstr "Схема стыляў"
 
 #: data/org.gnome.TextEditor.gschema.xml:104
 msgid ""
 "The style scheme to use by the editor. It may translate this into a dark "
 "format when available."
 msgstr ""
+"Схема стыляў, якая выкарыстоўваецца рэдактарам. Магчыма пераўтварыць у цёмны "
+"фармат, калі ён ёсць."
 
 #: data/org.gnome.TextEditor.gschema.xml:108
 msgid "Discover File Settings"
-msgstr "Вызначаць налады дакумента"
+msgstr "Вызначаць налады файла"
 
 #: data/org.gnome.TextEditor.gschema.xml:109
 msgid ""
 "If enabled then Text Editor will try to discover file settings from "
 "modelines, editorconfig, or per-language defaults."
 msgstr ""
+"Калі ўключана, Тэкставы рэдактар будзе спрабаваць вызначыць налады файла з "
+"modellines, editorconfig або прадвызначаных значэнняў для кожнай мовы."
 
 #: data/org.gnome.TextEditor.gschema.xml:113
 msgid "Automatically check spelling"
@@ -220,7 +232,7 @@ msgstr "Змяніць колер акна"
 
 #: data/org.gnome.TextEditor.gschema.xml:124
 msgid "Use the style-scheme to recolor the application window."
-msgstr ""
+msgstr "Выкарыстоўваць схему стыляў, каб змяніць колер акна праграмы."
 
 #: data/org.gnome.TextEditor.gschema.xml:132
 msgid "Keybindings"
@@ -228,7 +240,7 @@ msgstr "Спалучэнні клавіш"
 
 #: data/org.gnome.TextEditor.gschema.xml:133
 msgid "The keybindings to use within Text Editor."
-msgstr ""
+msgstr "Спалучэнні клавіш, якія выкарыстоўваюцца ў Тэкставым рэдактары."
 
 #: data/org.gnome.TextEditor.gschema.xml:137
 msgid "Last Save Directory"
@@ -237,6 +249,8 @@ msgstr "Апошні каталог захавання"
 #: data/org.gnome.TextEditor.gschema.xml:138
 msgid "The directory last used in a save or save-as dialog."
 msgstr ""
+"Каталог, які апошні раз выкарыстоўваўся ў дыялогавым акне «Захаваць» або "
+"«Захаваць як»."
 
 #: data/org.gnome.TextEditor.gschema.xml:142
 msgid "Draw Spaces"
@@ -244,17 +258,19 @@ msgstr "Паказ прабелаў"
 
 #: data/org.gnome.TextEditor.gschema.xml:143
 msgid "The various types of spaces to draw in the editor."
-msgstr ""
+msgstr "Розныя тыпы прабелаў, які паказваюцца ў рэдактары."
 
 #: data/org.gnome.TextEditor.gschema.xml:147
 msgid "Enable Snippets"
-msgstr "Уключыць урыўкі"
+msgstr "Уключыць фрагменты"
 
 #: data/org.gnome.TextEditor.gschema.xml:148
 msgid ""
 "Enable the use of snippets registered with GtkSourceView from within the "
 "editor."
 msgstr ""
+"Уключыць выкарыстанне фрагментаў, якія зарэгістраваны ў GtkSourceView з "
+"рэдактара."
 
 #: data/org.gnome.TextEditor.gschema.xml:153
 msgid "Line Height"
@@ -395,7 +411,7 @@ msgstr "_Паўтарыць"
 msgid "Open As _Administrator"
 msgstr "Адкрыць з правамі _адміністратара"
 
-#: src/editor-language-dialog.ui:6 src/editor-window.c:194
+#: src/editor-language-dialog.ui:6 src/editor-window.c:195
 msgid "Document Type"
 msgstr "Тып дакумента"
 
@@ -827,26 +843,26 @@ msgstr "Усе файлы"
 msgid "Text Files"
 msgstr "Тэкставыя файлы"
 
-#: src/editor-window.c:206
+#: src/editor-window.c:207
 #, c-format
 msgid "Document Type: %s"
 msgstr "Тып дакумента: %s"
 
-#: src/editor-window.c:508
+#: src/editor-window.c:509
 msgid "Zoom in"
 msgstr "Павялічыць"
 
-#: src/editor-window.c:520
+#: src/editor-window.c:521
 msgid "Zoom out"
 msgstr "Паменшыць"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:733
+#: src/editor-window.c:734
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - тэкставы рэдактар"
 
-#: src/editor-window.c:1173
+#: src/editor-window.c:1174
 msgid "There are unsaved documents"
 msgstr "Маюцца дакументы з незахаванымі змены"
 
@@ -1094,12 +1110,12 @@ msgstr "Закрыць дакумент"
 #: src/help-overlay.ui:129
 msgctxt "shortcut window"
 msgid "Copy and Paste"
-msgstr "Капіраванне і ўстаўка"
+msgstr "Капіяванне і ўстаўка"
 
 #: src/help-overlay.ui:133
 msgctxt "shortcut window"
 msgid "Copy selected text to clipboard"
-msgstr "Капіраваць выбраны тэкст у буфер абмену"
+msgstr "Капіяваць выбраны тэкст у буфер абмену"
 
 #: src/help-overlay.ui:139
 msgctxt "shortcut window"
@@ -1265,3 +1281,23 @@ msgstr "Выдаліць тэкст ад курсора да канца абза
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "Выдаліць бягучы радок"
+
+#: src/help-overlay.ui:333
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Агульныя"
+
+#: src/help-overlay.ui:337
+msgctxt "shortcut window"
+msgid "Show preferences"
+msgstr "Паказаць налады"
+
+#: src/help-overlay.ui:343
+msgctxt "shortcut window"
+msgid "Show keyboard shortcuts"
+msgstr "Паказаць спалучэнні клавіш"
+
+#: src/help-overlay.ui:349
+msgctxt "shortcut window"
+msgid "Show help"
+msgstr "Паказаць даведку"
