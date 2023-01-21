@@ -810,7 +810,8 @@ editor_source_view_init (EditorSourceView *self)
                     self);
   gtk_widget_add_controller (GTK_WIDGET (self), controller);
 
-  controller = gtk_event_controller_scroll_new (GTK_EVENT_CONTROLLER_SCROLL_VERTICAL);
+  controller = gtk_event_controller_scroll_new (GTK_EVENT_CONTROLLER_SCROLL_VERTICAL |
+                                                GTK_EVENT_CONTROLLER_SCROLL_DISCRETE);
   gtk_event_controller_set_propagation_phase (controller, GTK_PHASE_CAPTURE);
   g_signal_connect (controller,
                     "scroll",
