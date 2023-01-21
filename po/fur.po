@@ -6,28 +6,28 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
-"issues\n"
-"POT-Creation-Date: 2022-09-15 08:52+0000\n"
-"PO-Revision-Date: 2022-10-03 09:47+0200\n"
-"Last-Translator: Fabio Tomat <f.t.public@gmail.com>\n"
-"Language-Team: Friulian <fur@li.org>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues\n"
+"POT-Creation-Date: 2022-12-13 06:25+0000\n"
+"PO-Revision-Date: 2023-01-21 11:01+0000\n"
+"Last-Translator: Fabio T. <f.t.public@gmail.com>\n"
+"Language-Team: Friulian <f.t.public@gmail.com>\n"
 "Language: fur\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Editor: HaiPO 1.4 beta\n"
 "X-Generator: Poedit 3.1.1\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
-#: src/editor-application-actions.c:197
+#: src/editor-application-actions.c:201
 msgid "The GNOME Project"
 msgstr "Il progjet GNOME"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:9
-#: src/editor-application-actions.c:195 src/editor-window.c:1244
+#: src/editor-application-actions.c:199 src/editor-window.c:1286
 msgid "Text Editor"
 msgstr "Editôr di test"
 
@@ -57,7 +57,8 @@ msgstr "Ritart di salvament automatic"
 
 #: data/org.gnome.TextEditor.gschema.xml:17
 msgid "The delay in seconds to wait before auto-saving a draft."
-msgstr "Il ritart in seconts di spietâ prime di salvâ in automatic un stampon."
+msgstr ""
+"Il ritart in seconts di spietâ prime di salvâ in automatic un stampon."
 
 #: data/org.gnome.TextEditor.gschema.xml:26
 msgid "Style Variant"
@@ -76,17 +77,19 @@ msgid "Indentation Style"
 msgstr "Stîl di tornade in posizion"
 
 #: data/org.gnome.TextEditor.gschema.xml:36
-msgid "If the editor should insert multiple spaces characters instead of tabs."
+msgid ""
+"If the editor should insert multiple spaces characters instead of tabs."
 msgstr ""
-"Al definìs se l'editôr al à di inserî plui caratars di spazis invezit che di "
-"tabulazions."
+"Al definìs se l'editôr al à di inserî plui caratars di spazis invezit che di"
+" tabulazions."
 
 #: data/org.gnome.TextEditor.gschema.xml:40
 msgid "Auto Indent"
 msgstr "Tornade in posizion automatiche"
 
 #: data/org.gnome.TextEditor.gschema.xml:41
-msgid "Automatically indent new lines copying the previous line's indentation."
+msgid ""
+"Automatically indent new lines copying the previous line's indentation."
 msgstr ""
 "Stabilìs in automatic la tornade in posizion pes gnovis riis, copiant la "
 "tornade in posizion de rie precedente."
@@ -143,8 +146,8 @@ msgstr "Mostre la mape panoramiche"
 
 #: data/org.gnome.TextEditor.gschema.xml:74
 msgid ""
-"If enabled, an overview map of the file will be displayed to the side of the "
-"editor."
+"If enabled, an overview map of the file will be displayed to the side of the"
+" editor."
 msgstr ""
 "Se abilitât, e vignarà visualizade une mape panoramiche dal file in bande "
 "dal editôr."
@@ -154,7 +157,8 @@ msgid "Show Background Grid"
 msgstr "Mostre gridele di fonts"
 
 #: data/org.gnome.TextEditor.gschema.xml:79
-msgid "If enabled, a blueprint style grid is printed on the editor background."
+msgid ""
+"If enabled, a blueprint style grid is printed on the editor background."
 msgstr ""
 "Se abilitât, une gridele di planimetrie e ven stampade sul fonts dal editôr."
 
@@ -182,7 +186,8 @@ msgstr "Dopre caratar di sisteme"
 msgid "If the default system monospace font should be used."
 msgstr "Stabilìs se si à di doprâ il caratar a spaziadure fisse di sisteme."
 
-#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:57
+#: data/org.gnome.TextEditor.gschema.xml:98
+#: src/editor-preferences-dialog.ui:57
 msgid "Custom Font"
 msgstr "Caratar personalizât"
 
@@ -298,7 +303,7 @@ msgstr "Impussibil cjatâ la proprietât %s in %s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Impussibil recuperâ il valôr va_list: %s"
 
-#: src/editor-application-actions.c:210
+#: src/editor-application-actions.c:214
 msgid "translator-credits"
 msgstr "Fabio Tomat <f.t.public@gmail.com>, 2022"
 
@@ -342,7 +347,7 @@ msgstr "Scrîf informazions de version e jes"
 msgid "[Read-Only]"
 msgstr "[dome-leture]"
 
-#: src/editor-document.c:2291 src/editor-page.c:1015
+#: src/editor-document.c:2301 src/editor-page.c:1021
 #: src/editor-sidebar-item.c:497
 msgid "New Document"
 msgstr "Gnûf document"
@@ -376,7 +381,7 @@ msgstr "Il file sul disc al è cambiât"
 msgid "The file has been changed by another program."
 msgstr "Il file al è stât modificât di un altri program."
 
-#: src/editor-info-bar.c:89 src/editor-window.ui:220
+#: src/editor-info-bar.c:89 src/editor-window.ui:221
 msgid "Save _As…"
 msgstr "S_alve Come…"
 
@@ -388,7 +393,7 @@ msgstr "Document ripristinât"
 msgid "Unsaved document has been restored."
 msgstr "Il document no salvât al è stât ripristinât."
 
-#: src/editor-info-bar.c:98
+#: src/editor-info-bar.c:98 src/editor-info-bar.ui:87
 msgid "_Save…"
 msgstr "_Salve…"
 
@@ -420,7 +425,7 @@ msgstr "_Torne prove"
 msgid "Open As _Administrator"
 msgstr "Vierç come _aministradôr"
 
-#: src/editor-language-dialog.ui:6 src/editor-window.c:194
+#: src/editor-language-dialog.ui:6 src/editor-window.c:195
 msgid "Document Type"
 msgstr "Gjenar di document"
 
@@ -436,42 +441,42 @@ msgstr "Nissun document resint"
 msgid "No Results Found"
 msgstr "Nissun risultât cjatât"
 
-#: src/editor-page.c:1041 src/editor-properties-dialog.c:74
+#: src/editor-page.c:1047 src/editor-properties-dialog.c:74
 #: src/editor-sidebar-item.c:101
 msgid "Draft"
 msgstr "Stampon"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1053
+#: src/editor-page.c:1059
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (Aministradôr)"
 
-#: src/editor-page.c:1063 src/editor-sidebar-item.c:109
+#: src/editor-page.c:1069 src/editor-sidebar-item.c:109
 msgid "Document Portal"
 msgstr "Portâl dal document"
 
-#: src/editor-page.c:1110
+#: src/editor-page.c:1116
 msgid "Failed to save document"
 msgstr "Impussibil salvâ il document"
 
-#: src/editor-page.c:1111 src/editor-window.ui:363
+#: src/editor-page.c:1117 src/editor-window.ui:364
 msgid "_Close"
 msgstr "_Siere"
 
-#: src/editor-page.c:1195
+#: src/editor-page.c:1201
 msgid "Save As"
 msgstr "Salve come"
 
-#: src/editor-page.c:1198
+#: src/editor-page.c:1204
 msgid "Save"
 msgstr "Salve"
 
-#: src/editor-page.c:1199 src/editor-window-actions.c:352
+#: src/editor-page.c:1205 src/editor-window-actions.c:352
 msgid "Cancel"
 msgstr "Anule"
 
-#: src/editor-page.c:1348
+#: src/editor-page.c:1354
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Rie %u, Col %u"
@@ -484,24 +489,24 @@ msgstr "Va ae rie"
 msgid "Go"
 msgstr "Va"
 
-#: src/editor-page.ui:153 src/editor-window.ui:281
+#: src/editor-page.ui:153 src/editor-window.ui:282
 msgid "Indentation"
 msgstr "Tornade in posizion"
 
-#: src/editor-page.ui:156 src/editor-window.ui:283
+#: src/editor-page.ui:156 src/editor-window.ui:284
 msgid "_Automatic Indentation"
 msgstr "Tornade in posizion _automatiche"
 
 #. Translators: this is a tab character, not a browser tab
-#: src/editor-page.ui:162 src/editor-window.ui:287
+#: src/editor-page.ui:162 src/editor-window.ui:288
 msgid "_Tabs"
 msgstr "_Tabulazions"
 
-#: src/editor-page.ui:167 src/editor-window.ui:292
+#: src/editor-page.ui:167 src/editor-window.ui:293
 msgid "_Spaces"
 msgstr "_Spazis"
 
-#: src/editor-page.ui:174 src/editor-window.ui:297
+#: src/editor-page.ui:174 src/editor-window.ui:298
 msgid "Spaces _Per Tab"
 msgstr "Spazis _par tabulazion"
 
@@ -605,7 +610,6 @@ msgstr "File: %s"
 
 #. Translators: %N is the current page number, %Q is the total
 #. * number of pages (ex. Page 2 of 10)
-#.
 #: src/editor-print-operation.c:189
 msgid "Page %N of %Q"
 msgstr "Pagjine %N di %Q"
@@ -672,7 +676,7 @@ msgid "_Cancel"
 msgstr "_Anule"
 
 #: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:117
-#: src/editor-window.ui:214
+#: src/editor-window.ui:215
 msgid "_Save"
 msgstr "_Salve"
 
@@ -734,7 +738,8 @@ msgstr "Ten _cont des maiusculis o minusculis"
 msgid "Match whole _word only"
 msgstr "Corispondence dome di peraulis interiis"
 
-#. translators: the first %u is replaced with the current position, the second with the number of search results
+#. translators: the first %u is replaced with the current position, the second
+#. with the number of search results
 #: src/editor-search-entry.c:197
 #, c-format
 msgid "%u of %u"
@@ -852,26 +857,27 @@ msgstr "Ducj i files"
 msgid "Text Files"
 msgstr "Files di test"
 
-#: src/editor-window.c:206
+#: src/editor-window.c:207
 #, c-format
 msgid "Document Type: %s"
 msgstr "Gjenar di document: %s"
 
-#: src/editor-window.c:508
+#: src/editor-window.c:509
 msgid "Zoom in"
 msgstr "Ingrandî"
 
-#: src/editor-window.c:520
+#: src/editor-window.c:521
 msgid "Zoom out"
 msgstr "Impiçulî"
 
-#. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:733
+#. translators: the first %s is replaced with the title, the second %s is
+#. replaced with the subtitle
+#: src/editor-window.c:734
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - Editôr di test"
 
-#: src/editor-window.c:1167
+#: src/editor-window.c:1174
 msgid "There are unsaved documents"
 msgstr "A son documents no salvâts"
 
@@ -915,95 +921,95 @@ msgstr ""
 "\n"
 "O frache Ctrl+W par sierâ il barcon."
 
-#: src/editor-window.ui:206
+#: src/editor-window.ui:207
 msgid "_New Window"
 msgstr "_Gnûf Barcon"
 
-#: src/editor-window.ui:226
+#: src/editor-window.ui:227
 msgid "_Discard Changes"
 msgstr "_Scarte modifichis"
 
-#: src/editor-window.ui:232
+#: src/editor-window.ui:233
 msgid "_Find/Replace…"
 msgstr "_Cjate/Sostituìs…"
 
-#: src/editor-window.ui:238
+#: src/editor-window.ui:239
 msgid "_Print"
 msgstr "Stam_pe"
 
-#: src/editor-window.ui:244
+#: src/editor-window.ui:245
 msgid "Documen_t Properties"
 msgstr "Proprietâts dal documen_t"
 
-#: src/editor-window.ui:250
+#: src/editor-window.ui:251
 msgid "P_references"
 msgstr "P_referencis"
 
-#: src/editor-window.ui:255
+#: src/editor-window.ui:256
 msgid "_Keyboard Shortcuts"
 msgstr "_Scurtis di tastiere"
 
-#: src/editor-window.ui:259
+#: src/editor-window.ui:260
 msgid "_Help"
 msgstr "_Jutori"
 
-#: src/editor-window.ui:263
+#: src/editor-window.ui:264
 msgid "A_bout Text Editor"
 msgstr "I_nformazions su Editôr di test"
 
-#: src/editor-window.ui:270
+#: src/editor-window.ui:271
 msgid "Show"
 msgstr "Mostre"
 
-#: src/editor-window.ui:272
+#: src/editor-window.ui:273
 msgid "_Line Numbers"
 msgstr "Numars di _rie"
 
-#: src/editor-window.ui:276
+#: src/editor-window.ui:277
 msgid "_Right Margin"
 msgstr "Margjin a _diestre"
 
-#: src/editor-window.ui:300
+#: src/editor-window.ui:301
 msgid "_2"
 msgstr "_2"
 
-#: src/editor-window.ui:305
+#: src/editor-window.ui:306
 msgid "_4"
 msgstr "_4"
 
-#: src/editor-window.ui:310
+#: src/editor-window.ui:311
 msgid "_6"
 msgstr "_6"
 
-#: src/editor-window.ui:315
+#: src/editor-window.ui:316
 msgid "_8"
 msgstr "_8"
 
-#: src/editor-window.ui:324
+#: src/editor-window.ui:325
 msgid "T_ext Wrapping"
 msgstr "Rie gnov_e automatiche"
 
-#: src/editor-window.ui:328
+#: src/editor-window.ui:329
 msgid "Chec_k Spelling"
 msgstr "Control orto_grafie"
 
-#: src/editor-window.ui:332
+#: src/editor-window.ui:333
 msgid "_Document Type"
 msgstr "Gjenar di _document"
 
-#: src/editor-window.ui:340
+#: src/editor-window.ui:341
 msgid "Move _Left"
 msgstr "Sposte a _çampe"
 
-#: src/editor-window.ui:345
+#: src/editor-window.ui:346
 msgid "Move _Right"
 msgstr "Sposte a _drete"
 
-#: src/editor-window.ui:352
+#: src/editor-window.ui:353
 msgid "_Move to New Window"
 msgstr "_Sposte suntun gnûf barcon"
 
-#: src/editor-window.ui:359
+#: src/editor-window.ui:360
 msgid "Close _Other Tabs"
 msgstr "Siere _altris schedis"
 
@@ -1141,150 +1147,175 @@ msgctxt "shortcut window"
 msgid "Copy all to clipboard"
 msgstr "Copie dut intes notis"
 
-#: src/help-overlay.ui:158
+#: src/help-overlay.ui:156
+msgctxt "shortcut window"
+msgid "Copy current line down"
+msgstr "Copie la rie corinte in jù"
+
+#: src/help-overlay.ui:164
 msgctxt "shortcut window"
 msgid "Undo and Redo"
 msgstr "Disfe e torne fâs"
 
-#: src/help-overlay.ui:162
+#: src/help-overlay.ui:168
 msgctxt "shortcut window"
 msgid "Undo previous command"
 msgstr "Disfe il comant precedent"
 
-#: src/help-overlay.ui:168
+#: src/help-overlay.ui:174
 msgctxt "shortcut window"
 msgid "Redo previous command"
 msgstr "Torne fâs il comant precedent"
 
-#: src/help-overlay.ui:175
+#: src/help-overlay.ui:181
 msgctxt "shortcut window"
 msgid "Editing"
 msgstr "Modifiche"
 
-#: src/help-overlay.ui:179
+#: src/help-overlay.ui:185
 msgctxt "shortcut window"
 msgid "Insert emoji into document"
 msgstr "Inserìs emoji tal document"
 
-#: src/help-overlay.ui:185
+#: src/help-overlay.ui:191
 msgctxt "shortcut window"
 msgid "Search within the document"
 msgstr "Cîr dentri dal document"
 
-#: src/help-overlay.ui:191
+#: src/help-overlay.ui:197
 msgctxt "shortcut window"
 msgid "Search and replace within the document"
 msgstr "Cîr e sostituìs dentri dal document"
 
-#: src/help-overlay.ui:197
+#: src/help-overlay.ui:203
 msgctxt "shortcut window"
 msgid "Increment number at cursor"
 msgstr "Aumente il numar sul cursôr"
 
-#: src/help-overlay.ui:203
+#: src/help-overlay.ui:209
 msgctxt "shortcut window"
 msgid "Decrement number at cursor"
 msgstr "Diminuìs il numar sul cursôr"
 
-#: src/help-overlay.ui:209
+#: src/help-overlay.ui:215
 msgctxt "shortcut window"
 msgid "Toggle overwrite"
 msgstr "Inseriment/sorescriture"
 
-#: src/help-overlay.ui:215
+#: src/help-overlay.ui:221
 msgctxt "shortcut window"
 msgid "Toggle visibility of insertion caret"
 msgstr "Comute visibilitât dal cursôr di inserzion"
 
-#: src/help-overlay.ui:222
+#: src/help-overlay.ui:228
 msgctxt "shortcut window"
 msgid "Selections"
 msgstr "Selezions"
 
-#: src/help-overlay.ui:226
+#: src/help-overlay.ui:232
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Selezione dut"
 
-#: src/help-overlay.ui:232
+#: src/help-overlay.ui:238
 msgctxt "shortcut window"
 msgid "Unselect all"
 msgstr "Deselezione dut"
 
-#: src/help-overlay.ui:238
+#: src/help-overlay.ui:244
 msgctxt "shortcut window"
 msgid "Select current line"
 msgstr "Selezione la rie corinte"
 
-#: src/help-overlay.ui:245
+#: src/help-overlay.ui:251
 msgctxt "shortcut window"
 msgid "Movements"
 msgstr "Moviments"
 
-#: src/help-overlay.ui:249
+#: src/help-overlay.ui:255
 msgctxt "shortcut window"
 msgid "Move to beginning of document"
 msgstr "Sposte al inizi dal document"
 
-#: src/help-overlay.ui:255
+#: src/help-overlay.ui:261
 msgctxt "shortcut window"
 msgid "Move to end of document"
 msgstr "Sposte ae fin dal document"
 
-#: src/help-overlay.ui:261
+#: src/help-overlay.ui:267
 msgctxt "shortcut window"
 msgid "Move to start of previous paragraph"
 msgstr "Sposte al inizi dal paragraf precedente"
 
-#: src/help-overlay.ui:267
+#: src/help-overlay.ui:273
 msgctxt "shortcut window"
 msgid "Move to end of next paragraph"
 msgstr "Sposte ae fin dal paragraf sucessîf"
 
-#: src/help-overlay.ui:273
+#: src/help-overlay.ui:279
 msgctxt "shortcut window"
 msgid "Move current or selected lines up"
 msgstr "Sposte lis riis selezionadis o chê corinte in sù"
 
-#: src/help-overlay.ui:279
+#: src/help-overlay.ui:285
 msgctxt "shortcut window"
 msgid "Move current or selected lines down"
 msgstr "Sposte lis riis selezionadis o chê corinte in jù"
 
-#: src/help-overlay.ui:285
+#: src/help-overlay.ui:291
 msgctxt "shortcut window"
 msgid "Go to line"
 msgstr "Va ae rie"
 
-#: src/help-overlay.ui:292
+#: src/help-overlay.ui:298
 msgctxt "shortcut window"
 msgid "Deletion"
 msgstr "Eliminazion"
 
-#: src/help-overlay.ui:296
+#: src/help-overlay.ui:302
 msgctxt "shortcut window"
 msgid "Delete from cursor to word start"
 msgstr "Elimine dal cursôr al inizi de peraule"
 
-#: src/help-overlay.ui:302
+#: src/help-overlay.ui:308
 msgctxt "shortcut window"
 msgid "Delete from cursor to word end"
 msgstr "Elimine dal cursôr ae fin de peraule"
 
-#: src/help-overlay.ui:308
+#: src/help-overlay.ui:314
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph start"
 msgstr "Elimine dal cursôr al inizi dal paragraf"
 
-#: src/help-overlay.ui:314
+#: src/help-overlay.ui:320
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph end"
 msgstr "Elimine dal cursôr ae fin dal paragraf"
 
-#: src/help-overlay.ui:320
+#: src/help-overlay.ui:326
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "Elimine la rie corinte"
+
+#: src/help-overlay.ui:333
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Gjenerâl"
+
+#: src/help-overlay.ui:337
+msgctxt "shortcut window"
+msgid "Show preferences"
+msgstr "Mostre preferencis"
+
+#: src/help-overlay.ui:343
+msgctxt "shortcut window"
+msgid "Show keyboard shortcuts"
+msgstr "Mostre scurtis di tastiere"
+
+#: src/help-overlay.ui:349
+msgctxt "shortcut window"
+msgid "Show help"
+msgstr "Mostre jutori"
 
 #~ msgid "Christian Hergert, et al."
 #~ msgstr "Christian Hergert e altris"
