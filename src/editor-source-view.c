@@ -313,6 +313,33 @@ on_scroll_scrolled_cb (GtkEventControllerScroll *scroll,
 }
 
 static void
+on_scroll_begin_cb (GtkEventControllerScroll *scroll,
+                    EditorSourceView         *self)
+{
+  GdkModifierType state;
+
+  g_assert (GTK_IS_EVENT_CONTROLLER_SCROLL (scroll));
+  g_assert (EDITOR_IS_SOURCE_VIEW (self));
+
+  state = gtk_event_controller_get_current_event_state (GTK_EVENT_CONTROLLER (scroll));
+
+  if (state & GDK_CONTROL_MASK)
+    gtk_event_controller_scroll_set_flags (scroll,
+                                           GTK_EVENT_CONTROLLER_SCROLL_VERTICAL |
+                                           GTK_EVENT_CONTROLLER_SCROLL_DISCRETE);
+}
+
+static void
+on_scroll_end_cb (GtkEventControllerScroll *scroll,
+                  EditorSourceView         *self)
+{
+  g_assert (GTK_IS_EVENT_CONTROLLER_SCROLL (scroll));
+  g_assert (EDITOR_IS_SOURCE_VIEW (self));
+
+  gtk_event_controller_scroll_set_flags (scroll, GTK_EVENT_CONTROLLER_SCROLL_VERTICAL);
+}
+
+static void
 on_notify_buffer_cb (EditorSourceView *self,
                      GParamSpec       *pspec,
                      gpointer          unused)
@@ -810,12 +837,19 @@ editor_source_view_init (EditorSourceView *self)
                     self);
   gtk_widget_add_controller (GTK_WIDGET (self), controller);
 
-  controller = gtk_event_controller_scroll_new (GTK_EVENT_CONTROLLER_SCROLL_VERTICAL |
-                                                GTK_EVENT_CONTROLLER_SCROLL_DISCRETE);
+  controller = gtk_event_controller_scroll_new (GTK_EVENT_CONTROLLER_SCROLL_VERTICAL);
   gtk_event_controller_set_propagation_phase (controller, GTK_PHASE_CAPTURE);
   g_signal_connect (controller,
                     "scroll",
                     G_CALLBACK (on_scroll_scrolled_cb),
+                    self);
+  g_signal_connect (controller,
+                    "scroll-begin",
+                    G_CALLBACK (on_scroll_begin_cb),
+                    self);
+  g_signal_connect (controller,
+                    "scroll-end",
+                    G_CALLBACK (on_scroll_end_cb),
                     self);
   gtk_widget_add_controller (GTK_WIDGET (self), controller);
 
