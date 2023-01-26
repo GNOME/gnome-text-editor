@@ -35,13 +35,15 @@
 static void
 check_early_opts (int        *argc,
                   char     ***argv,
-                  gboolean   *standalone)
+                  gboolean   *standalone,
+                  gboolean   *exit_after_startup)
 {
   g_autoptr(GOptionContext) context = NULL;
   gboolean version = FALSE;
   GOptionEntry entries[] = {
     { "standalone", 's', 0, G_OPTION_ARG_NONE, standalone },
     { "version", 0, 0, G_OPTION_ARG_NONE, &version },
+    { "exit-after-startup", 0, G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_NONE, exit_after_startup },
     { NULL }
   };
 
@@ -82,18 +84,26 @@ main (int   argc,
 {
   g_autoptr(EditorApplication) app = NULL;
   gboolean standalone = FALSE;
+  gboolean exit_after_startup = FALSE;
   int ret;
 
   bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
-  check_early_opts (&argc, &argv, &standalone);
+  check_early_opts (&argc, &argv, &standalone, &exit_after_startup);
 
   gtk_init ();
   gtk_source_init ();
 
   app = _editor_application_new (standalone);
+
+  if (exit_after_startup)
+    g_signal_connect_after (app,
+                            "startup",
+                            G_CALLBACK (g_application_quit),
+                            NULL);
+
   ret = g_application_run (G_APPLICATION (app), argc, argv);
 
   gtk_source_finalize ();
