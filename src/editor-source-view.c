@@ -463,6 +463,29 @@ editor_source_view_action_zoom (GtkWidget  *widget,
 }
 
 static void
+select_line (GtkTextBuffer *buffer,
+             GtkTextIter   *begin,
+             GtkTextIter   *end)
+{
+  g_assert (GTK_IS_TEXT_BUFFER (buffer));
+
+  gtk_text_buffer_get_selection_bounds (buffer, begin, end);
+  gtk_text_iter_order (begin, end);
+
+  /* Move beginning of selection/cursor to position 0 of first */
+  if (!gtk_text_iter_starts_line (begin))
+    gtk_text_iter_set_line_offset (begin, 0);
+
+  /* Move end of selection/cursor to end of line */
+  if (!gtk_text_iter_ends_line (end))
+    gtk_text_iter_forward_to_line_end (end);
+
+  /* Swallow the \n with the selection */
+  if (!gtk_text_iter_is_end (end))
+    gtk_text_iter_forward_char (end);
+}
+
+static void
 editor_source_view_action_select_line (GtkWidget  *widget,
                                        const char *action_name,
                                        GVariant   *param)
@@ -474,21 +497,7 @@ editor_source_view_action_select_line (GtkWidget  *widget,
   g_assert (EDITOR_IS_SOURCE_VIEW (self));
 
   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (self));
-  gtk_text_buffer_get_selection_bounds (buffer, &begin, &end);
-  gtk_text_iter_order (&begin, &end);
-
-  /* Move beginning of selection/cursor to position 0 of first */
-  if (!gtk_text_iter_starts_line (&begin))
-    gtk_text_iter_set_line_offset (&begin, 0);
-
-  /* Move end of selection/cursor to end of line */
-  if (!gtk_text_iter_ends_line (&end))
-    gtk_text_iter_forward_to_line_end (&end);
-
-  /* Swallow the \n with the selection */
-  if (!gtk_text_iter_is_end (&end))
-    gtk_text_iter_forward_char (&end);
-
+  select_line (buffer, &begin, &end);
   gtk_text_buffer_select_range (buffer, &begin, &end);
 
   /* NOTE: This shouldn't be needed, but due to some invalidation issues in
@@ -510,7 +519,6 @@ editor_source_view_action_delete_line (GtkWidget  *widget,
 
   g_assert (EDITOR_IS_SOURCE_VIEW (self));
 
-  editor_source_view_action_select_line (widget, NULL, NULL);
   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (self));
 
   /* If we're at the end of the buffer, then we need to remove the
@@ -518,7 +526,7 @@ editor_source_view_action_delete_line (GtkWidget  *widget,
    * user that a line was removed.
    */
   gtk_text_buffer_begin_user_action (buffer);
-  gtk_text_buffer_get_selection_bounds (buffer, &begin, &end);
+  select_line (buffer, &begin, &end);
   gtk_text_iter_order (&begin, &end);
   if (gtk_text_iter_is_end (&end) &&
       gtk_text_iter_get_line (&begin) == gtk_text_iter_get_line (&end))
