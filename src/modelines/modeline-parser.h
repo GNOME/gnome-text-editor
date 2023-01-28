@@ -1,5 +1,5 @@
 /*
- * modelie-parser.h
+ * modeline-parser.h
  * Emacs, Kate and Vim-style modelines support for gedit.
  *
  * Copyright 2005-2007 Steve Frécinaux <code@istique.net>
@@ -65,3 +65,4 @@ modeline_has_option (const ModelineOptions *options,
 G_END_DECLS
 
 /* ex:set ts=8 noet: */
+
