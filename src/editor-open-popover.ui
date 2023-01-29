@@ -22,7 +22,7 @@
             <property name="margin-end">6</property>
             <child>
               <object class="GtkSearchEntry" id="search_entry">
-                <property name="placeholder-text">Search documents</property>
+                <property name="placeholder-text" translatable="yes">Search documents</property>
                 <property name="hexpand">True</property>
                 <binding name="sensitive">
                   <lookup name="n-items" type="EditorSidebarModel">
@@ -36,7 +36,7 @@
             </child>
             <child>
               <object class="GtkButton">
-                <property name="tooltip-text">Open New Document (Ctrl+O)</property>
+                <property name="tooltip-text" translatable="yes">Open New Document (Ctrl+O)</property>
                 <property name="icon-name">document-open-symbolic</property>
                 <property name="action-name">win.open</property>
               </object>
