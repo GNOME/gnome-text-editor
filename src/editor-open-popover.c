@@ -334,6 +334,8 @@ editor_open_popover_class_init (EditorOpenPopoverClass *klass)
   gtk_widget_class_bind_template_callback (widget_class, on_search_entry_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_search_entry_changed_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_search_entry_stop_search_cb);
+
+  g_type_ensure (EDITOR_TYPE_SIDEBAR_MODEL);
 }
 
 static void
