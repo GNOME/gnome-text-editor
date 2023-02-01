@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2023-01-23 16:32+0000\n"
-"PO-Revision-Date: 2023-01-23 20:58+0100\n"
+"POT-Creation-Date: 2023-02-01 03:51+0000\n"
+"PO-Revision-Date: 2023-02-01 13:12+0100\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: \n"
 "Language: ka\n"
@@ -244,7 +244,7 @@ msgstr ""
 
 #: data/org.gnome.TextEditor.gschema.xml:147
 msgid "Enable Snippets"
-msgstr ""
+msgstr "ფრაგმენტების ჩართვა"
 
 #: data/org.gnome.TextEditor.gschema.xml:148
 msgid ""
@@ -395,6 +395,14 @@ msgstr "დოკუმენტს ტიპი"
 #: src/editor-language-dialog.ui:52
 msgid "No Matches"
 msgstr "დათხვევა არ არსებობს"
+
+#: src/editor-open-popover.ui:25
+msgid "Search documents"
+msgstr "დოკუმენტების ძებნა"
+
+#: src/editor-open-popover.ui:39
+msgid "Open New Document (Ctrl+O)"
+msgstr "ახალი დოკუმენტის გახსნა (Ctrl+O)"
 
 #: src/editor-open-popover.ui:74
 msgid "No Recent Documents"
@@ -704,6 +712,10 @@ msgstr "_მხოლოდ მთლიანი სიტყვის და�
 msgid "%u of %u"
 msgstr "%u %u-დან"
 
+#: src/editor-sidebar-row.ui:85
+msgid "Remove"
+msgstr "წაშლა"
+
 #: src/editor-spell-menu.c:248
 msgid "Add to Dictionary"
 msgstr "სიტყვის ლექსიკონში ჩამატება"
@@ -995,11 +1007,6 @@ msgstr "_სხვა ჩანართების დახურვა"
 #: src/enchant/editor-enchant-spell-provider.c:123
 msgid "Enchant 2"
 msgstr ""
-
-#: src/help-overlay.ui:9
-msgctxt "shortcut window"
-msgid "Editor Shortcuts"
-msgstr "რედაქტორის მალსახმობები"
 
 #: src/help-overlay.ui:12
 msgctxt "shortcut window"
@@ -1295,6 +1302,10 @@ msgstr "კლავიატურის მალსახმობები�
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "დახმარების ჩვენება"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Editor Shortcuts"
+#~ msgstr "რედაქტორის მალსახმობები"
 
 #~ msgid "Show"
 #~ msgstr "ჩვენება"
