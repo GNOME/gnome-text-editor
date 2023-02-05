@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor gnome-41\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2023-01-23 16:32+0000\n"
-"PO-Revision-Date: 2023-01-25 10:25+0200\n"
+"POT-Creation-Date: 2023-02-01 03:51+0000\n"
+"PO-Revision-Date: 2023-02-05 11:02+0200\n"
 "Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
-"Language-Team: Hebrew <yoseforb@gmail.com>\n"
+"Language-Team: Hebrew <>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -414,6 +414,14 @@ msgstr "סוג מסמך"
 msgid "No Matches"
 msgstr "אין התאמות"
 
+#: src/editor-open-popover.ui:25
+msgid "Search documents"
+msgstr "חיפוש מסמכים"
+
+#: src/editor-open-popover.ui:39
+msgid "Open New Document (Ctrl+O)"
+msgstr "פתיחת מסמך חדש (Ctrl+O)"
+
 #: src/editor-open-popover.ui:74
 msgid "No Recent Documents"
 msgstr "אין מסמכים אחרונים"
@@ -722,6 +730,10 @@ msgstr "התאמה למילים שלמות _בלבד"
 msgid "%u of %u"
 msgstr "%u מתוך %u"
 
+#: src/editor-sidebar-row.ui:85
+msgid "Remove"
+msgstr "הסרה"
+
 #: src/editor-spell-menu.c:248
 msgid "Add to Dictionary"
 msgstr "הוספה למילון"
@@ -852,8 +864,8 @@ msgstr "קובצי טקסט"
 msgid "Document Type: %s"
 msgstr "סוג מסמך: %s"
 
-#: src/editor-window.c:507
 # msgctxt "shortcut window"
+#: src/editor-window.c:507
 msgid "Zoom In"
 msgstr "התקרבות"
 
@@ -861,8 +873,8 @@ msgstr "התקרבות"
 msgid "Zoom in"
 msgstr "התקרבות"
 
-#: src/editor-window.c:520
 # msgctxt "shortcut window"
+#: src/editor-window.c:520
 msgid "Zoom Out"
 msgstr "התרחקות"
 
@@ -1024,11 +1036,6 @@ msgstr "סגירת _שאר הלשוניות"
 msgid "Enchant 2"
 msgstr "Enchant 2"
 
-#: src/help-overlay.ui:9
-msgctxt "shortcut window"
-msgid "Editor Shortcuts"
-msgstr "צירופי מקשים לעורך"
-
 #: src/help-overlay.ui:12
 msgctxt "shortcut window"
 msgid "Windows"
@@ -1154,8 +1161,8 @@ msgctxt "shortcut window"
 msgid "Copy all to clipboard"
 msgstr "העתקת הכל ללוח הגזירים"
 
-#: src/help-overlay.ui:156
 # msgctxt "shortcut window"
+#: src/help-overlay.ui:156
 msgctxt "shortcut window"
 msgid "Copy current line down"
 msgstr "העתקת השורה הנוכחית מטה"
@@ -1325,6 +1332,10 @@ msgctxt "shortcut window"
 msgid "Show help"
 msgstr "הצגת עזרה"
 
+#~ msgctxt "shortcut window"
+#~ msgid "Editor Shortcuts"
+#~ msgstr "צירופי מקשים לעורך"
+
 #~ msgid "_Line Numbers"
 #~ msgstr "_מספרי שורות"
 
@@ -1354,12 +1365,6 @@ msgstr "הצגת עזרה"
 
 #~ msgid "Search"
 #~ msgstr "חיפוש"
-
-#~ msgid "Search documents (Ctrl+K)"
-#~ msgstr "חיפוש מסמכים (Ctrl+K)"
-
-#~ msgid "Open document (Ctrl+O)"
-#~ msgstr "פתיחת מסמך (Ctrl+O)"
 
 #~ msgid "Font"
 #~ msgstr "גופן"
