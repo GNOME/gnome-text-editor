@@ -6,33 +6,33 @@
 # Philipp Kiemle <philipp.kiemle@gmail.com>, 2021-2022.
 # Christian Kirbach <christian.kirbach@gmail.com>, 2021, 2022.
 # Tim Sabsch <tim@sabsch.com>, 2022.
-# Jürgen Benvenuti <gastornis@posteo.org>, 2022.
+# Jürgen Benvenuti <gastornis@posteo.org>, 2022, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-10-04 02:14+0000\n"
-"PO-Revision-Date: 2022-10-04 18:33+0200\n"
-"Last-Translator: Jürgen Benvenuti <gastornis@posteo.org>\n"
+"POT-Creation-Date: 2023-02-02 19:20+0000\n"
+"PO-Revision-Date: 2023-02-04 22:22+0100\n"
+"Last-Translator: Tim Sabsch <tim@sabsch.com>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
-#: src/editor-application-actions.c:197
+#: src/editor-application-actions.c:201
 msgid "The GNOME Project"
 msgstr "Das GNOME-Projekt"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:9
-#: src/editor-application-actions.c:195 src/editor-window.c:1285
+#: src/editor-application-actions.c:199 src/editor-window.c:1297
 msgid "Text Editor"
 msgstr "Texteditor"
 
@@ -306,7 +306,7 @@ msgstr "Eigenschaft %s in %s konnte nicht gefunden werden"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Empfangen des va_list-Wertes ist gescheitert: %s"
 
-#: src/editor-application-actions.c:210
+#: src/editor-application-actions.c:214
 msgid "translator-credits"
 msgstr ""
 "Philipp Kiemle <philipp.kiemle@gmail.com>\n"
@@ -314,47 +314,47 @@ msgstr ""
 "Tim Sabsch <tim@sabsch.com>\n"
 "Jürgen Benvenuti <gastornis@posteo.org>"
 
-#: src/editor-application.c:450
+#: src/editor-application.c:525
 msgid "Standard input was requested multiple times. Ignoring request."
 msgstr "Standardeingabe wurde mehrfach angefragt. Anfrage wird ignoriert."
 
-#: src/editor-application.c:454
+#: src/editor-application.c:529
 msgid "Standard input is not supported on this platform. Ignoring request."
 msgstr ""
 "Standardeingabe wird auf dieser Plattform nicht unterstützt. Anfrage wird "
 "ignoriert."
 
-#: src/editor-application.c:542
+#: src/editor-application.c:632
 msgid "Bugs may be reported at:"
 msgstr "Fehler können hier gemeldet werden:"
 
-#: src/editor-application.c:544
+#: src/editor-application.c:634
 msgid "[FILES…]"
 msgstr "[DATEIEN …]"
 
-#: src/editor-application.c:657
+#: src/editor-application.c:748
 msgid "Do not restore session at startup"
 msgstr "Die Sitzung beim Start nicht wiederherstellen"
 
 # Hier geht es um Dateien, die beim Start der Anwendung als CLI-Argument angegeben wurden
-#: src/editor-application.c:658
+#: src/editor-application.c:749
 msgid "Open provided files in a new window"
 msgstr "Angegebene Dateien in einem neuen Fenster öffnen"
 
-#: src/editor-application.c:659
+#: src/editor-application.c:750
 msgid "Run a new instance of Text Editor (implies --ignore-session)"
 msgstr ""
 "Eine neue Instanz von Texteditor ausführen (impliziert --ignore-session)"
 
-#: src/editor-application.c:660
+#: src/editor-application.c:751
 msgid "Print version information and exit"
 msgstr "Versionsinformationen anzeigen und beenden"
 
-#: src/editor-document.c:2003
+#: src/editor-document.c:2066
 msgid "[Read-Only]"
 msgstr "[Nur lesen]"
 
-#: src/editor-document.c:2301 src/editor-page.c:1021
+#: src/editor-document.c:2364 src/editor-page.c:1035
 #: src/editor-sidebar-item.c:497
 msgid "New Document"
 msgstr "Neues Dokument"
@@ -388,7 +388,7 @@ msgstr "Datei wurde auf dem Datenträger geändert"
 msgid "The file has been changed by another program."
 msgstr "Die Datei wurde durch ein anderes Programm geändert."
 
-#: src/editor-info-bar.c:89 src/editor-window.ui:220
+#: src/editor-info-bar.c:89 src/editor-window.ui:222
 msgid "Save _As…"
 msgstr "_Speichern unter …"
 
@@ -400,7 +400,7 @@ msgstr "Dokument wiederhergestellt"
 msgid "Unsaved document has been restored."
 msgstr "Ungespeichertes Dokument wurde wiederhergestellt."
 
-#: src/editor-info-bar.c:98
+#: src/editor-info-bar.c:98 src/editor-info-bar.ui:87
 msgid "_Save…"
 msgstr "_Speichern …"
 
@@ -432,7 +432,7 @@ msgstr "_Wiederholen"
 msgid "Open As _Administrator"
 msgstr "Als _Systemverwalter öffnen"
 
-#: src/editor-language-dialog.ui:6 src/editor-window.c:194
+#: src/editor-language-dialog.ui:6 src/editor-window.c:195
 msgid "Document Type"
 msgstr "Dokumententyp"
 
@@ -440,104 +440,112 @@ msgstr "Dokumententyp"
 msgid "No Matches"
 msgstr "Keine Treffer"
 
-#: src/editor-open-popover.ui:67
+#: src/editor-open-popover.ui:25
+msgid "Search documents"
+msgstr "Dokumente durchsuchen"
+
+#: src/editor-open-popover.ui:39
+msgid "Open New Document (Ctrl+O)"
+msgstr "Neues Dokument öffnen (Strg+O)"
+
+#: src/editor-open-popover.ui:74
 msgid "No Recent Documents"
 msgstr "Keine zuletzt geöffneten Dokumente"
 
-#: src/editor-open-popover.ui:94
+#: src/editor-open-popover.ui:101
 msgid "No Results Found"
 msgstr "Keine Ergebnisse gefunden"
 
-#: src/editor-page.c:1047 src/editor-properties-dialog.c:74
+#: src/editor-page.c:1061 src/editor-properties-dialog.c:74
 #: src/editor-sidebar-item.c:101
 msgid "Draft"
 msgstr "Entwurf"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1059
+#: src/editor-page.c:1073
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (Systemverwalter)"
 
-#: src/editor-page.c:1069 src/editor-sidebar-item.c:109
+#: src/editor-page.c:1083 src/editor-sidebar-item.c:109
 msgid "Document Portal"
 msgstr "Dokumentenportal"
 
-#: src/editor-page.c:1116
+#: src/editor-page.c:1130
 msgid "Failed to save document"
 msgstr "Speichern des Dokuments ist fehlgeschlagen"
 
-#: src/editor-page.c:1117 src/editor-window.ui:363
+#: src/editor-page.c:1131 src/editor-window.ui:363
 msgid "_Close"
 msgstr "S_chließen"
 
-#: src/editor-page.c:1201
+#: src/editor-page.c:1215
 msgid "Save As"
 msgstr "Speichern unter"
 
-#: src/editor-page.c:1204
+#: src/editor-page.c:1218
 msgid "Save"
 msgstr "Speichern"
 
-#: src/editor-page.c:1205 src/editor-window-actions.c:352
+#: src/editor-page.c:1219 src/editor-window-actions.c:352
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: src/editor-page.c:1354
+#: src/editor-page.c:1368
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Z %u, Sp %u"
 
-#: src/editor-page.ui:98
+#: src/editor-page.ui:97
 msgid "Go to Line"
 msgstr "Gehe zu Zeile"
 
-#: src/editor-page.ui:116
+#: src/editor-page.ui:115
 msgid "Go"
 msgstr "Navigieren"
 
-#: src/editor-page.ui:153 src/editor-window.ui:281
+#: src/editor-page.ui:152
 msgid "Indentation"
 msgstr "Einrückung"
 
-#: src/editor-page.ui:156 src/editor-window.ui:283
+#: src/editor-page.ui:155 src/editor-window.ui:283
 msgid "_Automatic Indentation"
 msgstr "_Automatische Einrückung"
 
 #. Translators: this is a tab character, not a browser tab
-#: src/editor-page.ui:162 src/editor-window.ui:287
+#: src/editor-page.ui:161 src/editor-window.ui:287
 msgid "_Tabs"
 msgstr "_Tabulatoren"
 
-#: src/editor-page.ui:167 src/editor-window.ui:292
+#: src/editor-page.ui:166 src/editor-window.ui:292
 msgid "_Spaces"
 msgstr "_Leerzeichen"
 
-#: src/editor-page.ui:174 src/editor-window.ui:297
+#: src/editor-page.ui:173 src/editor-window.ui:297
 msgid "Spaces _Per Tab"
 msgstr "Leerzeichen _pro Tabulator"
 
-#: src/editor-page.ui:176 src/editor-page.ui:204
+#: src/editor-page.ui:175 src/editor-page.ui:203
 msgid "2"
 msgstr "2"
 
-#: src/editor-page.ui:181 src/editor-page.ui:209
+#: src/editor-page.ui:180 src/editor-page.ui:208
 msgid "4"
 msgstr "4"
 
-#: src/editor-page.ui:186 src/editor-page.ui:214
+#: src/editor-page.ui:185 src/editor-page.ui:213
 msgid "6"
 msgstr "6"
 
-#: src/editor-page.ui:191 src/editor-page.ui:219
+#: src/editor-page.ui:190 src/editor-page.ui:218
 msgid "8"
 msgstr "8"
 
-#: src/editor-page.ui:197
+#: src/editor-page.ui:196
 msgid "Spaces Per Indent"
 msgstr "Leerzeichen pro Einrückung"
 
-#: src/editor-page.ui:199
+#: src/editor-page.ui:198
 msgid "Use Tab Size"
 msgstr "Tabulatorbreite verwenden"
 
@@ -660,19 +668,19 @@ msgstr "Zeichen, ohne Leerzeichen"
 msgid "All Characters"
 msgstr "Alle Zeichen"
 
-#: src/editor-save-changes-dialog.c:254 src/editor-window-actions.c:242
+#: src/editor-save-changes-dialog.c:255 src/editor-window-actions.c:242
 msgid "_Discard"
 msgstr "_Verwerfen"
 
-#: src/editor-save-changes-dialog.c:254
+#: src/editor-save-changes-dialog.c:255
 msgid "_Discard All"
 msgstr "Alles ver_werfen"
 
-#: src/editor-save-changes-dialog.c:257
+#: src/editor-save-changes-dialog.c:258
 msgid "Save Changes?"
 msgstr "Änderungen speichern?"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:259
 msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
@@ -680,27 +688,27 @@ msgstr ""
 "Offene Dokumente enthalten ungesicherte Änderungen. Diese werden "
 "unwiederbringlich verloren gehen."
 
-#: src/editor-save-changes-dialog.c:261 src/editor-window-actions.c:116
+#: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:116
 #: src/editor-window-actions.c:241
 msgid "_Cancel"
 msgstr "_Abbrechen"
 
-#: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:117
-#: src/editor-window.ui:214
+#: src/editor-save-changes-dialog.c:265 src/editor-window-actions.c:117
+#: src/editor-window.ui:216
 msgid "_Save"
 msgstr "_Speichern"
 
-#: src/editor-save-changes-dialog.c:293
+#: src/editor-save-changes-dialog.c:299
 msgid "Untitled Document"
 msgstr "Unbenanntes Dokument"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:296
+#: src/editor-save-changes-dialog.c:302
 #, c-format
 msgid "%s (new)"
 msgstr "%s (neu)"
 
-#: src/editor-save-changes-dialog.c:317
+#: src/editor-save-changes-dialog.c:323
 msgid "Save changes for this document"
 msgstr "Änderungen an diesem Dokument speichern"
 
@@ -754,6 +762,10 @@ msgstr "Nur ganze _Wörter"
 msgid "%u of %u"
 msgstr "%u von %u"
 
+#: src/editor-sidebar-row.ui:85
+msgid "Remove"
+msgstr "Entfernen"
+
 #: src/editor-spell-menu.c:248
 msgid "Add to Dictionary"
 msgstr "Zum Wörterbuch hinzufügen"
@@ -770,15 +782,27 @@ msgstr "Rechtschreibung prüfen"
 msgid "Languages"
 msgstr "Sprachen"
 
-#: src/editor-theme-selector.ui:22 src/editor-theme-selector.ui:24
+#: src/editor-theme-selector.ui:22
+msgid "Follow System Style"
+msgstr "Systemstil folgen"
+
+#: src/editor-theme-selector.ui:24
 msgid "Follow system style"
 msgstr "Systemstil folgen"
 
-#: src/editor-theme-selector.ui:39 src/editor-theme-selector.ui:41
+#: src/editor-theme-selector.ui:39
+msgid "Light Style"
+msgstr "Heller Stil"
+
+#: src/editor-theme-selector.ui:41
 msgid "Light style"
 msgstr "Heller Stil"
 
-#: src/editor-theme-selector.ui:57 src/editor-theme-selector.ui:59
+#: src/editor-theme-selector.ui:57
+msgid "Dark Style"
+msgstr "Dunkler Stil"
+
+#: src/editor-theme-selector.ui:59
 msgid "Dark style"
 msgstr "Dunkler Stil"
 
@@ -866,26 +890,34 @@ msgstr "Alle Dateien"
 msgid "Text Files"
 msgstr "Textdateien"
 
-#: src/editor-window.c:206
+#: src/editor-window.c:207
 #, c-format
 msgid "Document Type: %s"
 msgstr "Dokumententyp: %s"
 
-#: src/editor-window.c:508
+#: src/editor-window.c:507
+msgid "Zoom In"
+msgstr "Vergrößern"
+
+#: src/editor-window.c:510
 msgid "Zoom in"
 msgstr "Vergrößern"
 
 #: src/editor-window.c:520
+msgid "Zoom Out"
+msgstr "Verkleinern"
+
+#: src/editor-window.c:523
 msgid "Zoom out"
 msgstr "Verkleinern"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:733
+#: src/editor-window.c:745
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - Texteditor"
 
-#: src/editor-window.c:1173
+#: src/editor-window.c:1185
 msgid "There are unsaved documents"
 msgstr "Es gibt ungespeicherte Dokumente"
 
@@ -894,26 +926,38 @@ msgid "_Open"
 msgstr "_Öffnen"
 
 #: src/editor-window.ui:84
-msgid "Open recent document (Ctrl+K)"
-msgstr "Zuletzt geöffnetes Dokument öffnen (Strg+K)"
+msgid "Recently Used Documents (Ctrl+K)"
+msgstr "Zuletzt verwendete Dokumente (Strg+K)"
 
-#: src/editor-window.ui:96 src/editor-window.ui:98
+#: src/editor-window.ui:96
+msgid "New Tab (Ctrl+T)"
+msgstr "Neuer Reiter (Strg+T)"
+
+#: src/editor-window.ui:98
 msgid "New tab (Ctrl+T)"
 msgstr "Neuer Reiter (Strg+T)"
 
-#: src/editor-window.ui:124 src/editor-window.ui:128
+#: src/editor-window.ui:124
+msgid "View Options"
+msgstr "Ansichtsoptionen"
+
+#: src/editor-window.ui:128
 msgid "View"
 msgstr "Ansicht"
 
-#: src/editor-window.ui:137
-msgid "Menu"
-msgstr "Menü"
+#: src/editor-window.ui:134
+msgid "Main Menu"
+msgstr "Hauptmenü"
 
-#: src/editor-window.ui:170
+#: src/editor-window.ui:138
+msgid "Main menu"
+msgstr "Hauptmenü"
+
+#: src/editor-window.ui:171
 msgid "Start or Open a Document"
 msgstr "Ein Dokument beginnen oder öffnen"
 
-#: src/editor-window.ui:173
+#: src/editor-window.ui:174
 msgid ""
 "• Press the Open button\n"
 "• Press the New tab button\n"
@@ -929,53 +973,49 @@ msgstr ""
 "\n"
 "Oder drücken Sie Strg+W, um das Fenster zu schließen."
 
-#: src/editor-window.ui:206
+#: src/editor-window.ui:208
 msgid "_New Window"
 msgstr "_Neues Fenster"
 
-#: src/editor-window.ui:226
+#: src/editor-window.ui:228
 msgid "_Discard Changes"
 msgstr "Änderungen _verwerfen"
 
-#: src/editor-window.ui:232
+#: src/editor-window.ui:234
 msgid "_Find/Replace…"
 msgstr "S_uchen/Ersetzen …"
 
-#: src/editor-window.ui:238
-msgid "_Print"
-msgstr "_Drucken"
+#: src/editor-window.ui:240
+msgid "_Print…"
+msgstr "_Drucken …"
 
-#: src/editor-window.ui:244
+#: src/editor-window.ui:246
 msgid "Documen_t Properties"
 msgstr "D_okumenteigenschaften"
 
-#: src/editor-window.ui:250
+#: src/editor-window.ui:252
 msgid "P_references"
 msgstr "_Einstellungen"
 
-#: src/editor-window.ui:255
+#: src/editor-window.ui:257
 msgid "_Keyboard Shortcuts"
 msgstr "Tasten_kürzel"
 
-#: src/editor-window.ui:259
+#: src/editor-window.ui:261
 msgid "_Help"
 msgstr "_Hilfe"
 
-#: src/editor-window.ui:263
+#: src/editor-window.ui:265
 msgid "A_bout Text Editor"
 msgstr "_Info zu Texteditor"
 
-#: src/editor-window.ui:270
-msgid "Show"
-msgstr "Zeigen"
+#: src/editor-window.ui:273
+msgid "Show _Line Numbers"
+msgstr "Zei_lennummern anzeigen"
 
-#: src/editor-window.ui:272
-msgid "_Line Numbers"
-msgstr "_Zeilennummern"
-
-#: src/editor-window.ui:276
-msgid "_Right Margin"
-msgstr "_Rechter Rand"
+#: src/editor-window.ui:277
+msgid "Show _Right Margin"
+msgstr "_Rechten Rand anzeigen"
 
 #: src/editor-window.ui:300
 msgid "_2"
@@ -1025,11 +1065,6 @@ msgstr "Andere Reiter sc_hließen"
 #: src/enchant/editor-enchant-spell-provider.c:123
 msgid "Enchant 2"
 msgstr "Enchant 2"
-
-#: src/help-overlay.ui:9
-msgctxt "shortcut window"
-msgid "Editor Shortcuts"
-msgstr "Editor-Tastenkombinationen"
 
 #: src/help-overlay.ui:12
 msgctxt "shortcut window"
@@ -1310,6 +1345,39 @@ msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "Aktuelle Zeile löschen"
 
+#: src/help-overlay.ui:333
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Allgemein"
+
+#: src/help-overlay.ui:337
+msgctxt "shortcut window"
+msgid "Show preferences"
+msgstr "Einstellungen anzeigen"
+
+#: src/help-overlay.ui:343
+msgctxt "shortcut window"
+msgid "Show keyboard shortcuts"
+msgstr "Tastenkürzel anzeigen"
+
+#: src/help-overlay.ui:349
+msgctxt "shortcut window"
+msgid "Show help"
+msgstr "Hilfe anzeigen"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Editor Shortcuts"
+#~ msgstr "Editor-Tastenkombinationen"
+
+#~ msgid "Show"
+#~ msgstr "Zeigen"
+
+#~ msgid "_Line Numbers"
+#~ msgstr "_Zeilennummern"
+
+#~ msgid "_Right Margin"
+#~ msgstr "_Rechter Rand"
+
 #~ msgid "Christian Hergert, et al."
 #~ msgstr "Christian Hergert, et al."
 
@@ -1333,12 +1401,6 @@ msgstr "Aktuelle Zeile löschen"
 
 #~ msgid "Search"
 #~ msgstr "Suchen"
-
-#~ msgid "Search documents (Ctrl+K)"
-#~ msgstr "Dokumente durchsuchen (Strg+K)"
-
-#~ msgid "Open document (Ctrl+O)"
-#~ msgstr "Dokument öffnen (Strg+O)"
 
 #~ msgid "Font"
 #~ msgstr "Schriftart"
