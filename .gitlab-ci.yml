@@ -4,6 +4,12 @@ include:
 
 variables:
     FEDORA_IMAGE: "registry.gitlab.gnome.org/gnome/gtksourceview/fedora:latest"
+    MANIFEST_PATH: "org.gnome.TextEditor.Devel.json"
+    MESON_ARGS: "-Ddevelopment=true"
+    FLATPAK_MODULE: "gnome-text-editor"
+    APP_ID: "org.gnome.TextEditor.Devel"
+    RUNTIME_REPO: "https://nightly.gnome.org/gnome-nightly.flatpakrepo"
+    BUNDLE: "org.gnome.TextEditor.Devel.flatpak"
 
 .only-default:
     only:
@@ -12,20 +18,21 @@ variables:
         - tags
 
 flatpak:
-    variables:
-        MANIFEST_PATH: "org.gnome.TextEditor.Devel.json"
-        MESON_ARGS: "-Ddevelopment=true"
-        FLATPAK_MODULE: "gnome-text-editor"
-        APP_ID: "org.gnome.TextEditor.Devel"
-        RUNTIME_REPO: "https://nightly.gnome.org/gnome-nightly.flatpakrepo"
-        BUNDLE: "org.gnome.TextEditor.Devel.flatpak"
-    extends: .flatpak
+    extends: '.flatpak@x86_64'
+
+flatpak-aarch64:
+    extends: '.flatpak@aarch64'
 
 nightly:
     extends: '.publish_nightly'
     needs: ['flatpak']
     dependencies: ['flatpak']
     
+nightly-aarch64:
+    extends: '.publish_nightly'
+    needs: ['flatpak-aarch64']
+    dependencies: ['flatpak-aarch64']
+
 fedora:
     extends: .only-default
     only:
