@@ -6,8 +6,8 @@
 msgid ""
 msgstr "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues\n"
-"POT-Creation-Date: 2023-01-25 19:45+0000\n"
-"PO-Revision-Date: 2023-01-26 01:54+0000\n"
+"POT-Creation-Date: 2023-02-01 03:51+0000\n"
+"PO-Revision-Date: 2023-02-12 01:54+0000\n"
 "Last-Translator: Asier Sarasua Garmendia <asiersarasua@ni.eus>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
@@ -393,6 +393,14 @@ msgstr "Dokumentu mota"
 msgid "No Matches"
 msgstr "Bat etortzerik ez"
 
+#: src/editor-open-popover.ui:25
+msgid "Search documents"
+msgstr "Bilatu dokumentuak"
+
+#: src/editor-open-popover.ui:39
+msgid "Open New Document (Ctrl+O)"
+msgstr "Ireki dokumentu berria (Ctrl+O)"
+
 #: src/editor-open-popover.ui:74
 msgid "No Recent Documents"
 msgstr "Ez dago azken aldiko dokumenturik"
@@ -625,7 +633,7 @@ msgstr "Gorde aldaketak?"
 msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
-msgstr "Dokumentu irekiek gabeko aldaketak dituzte. Gorde ez diren aldaketak betiko galduko dira."
+msgstr "Dokumentu irekiek gorde gabeko aldaketak dituzte. Gorde ez diren aldaketak betiko galduko dira."
 
 #: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:116
 #: src/editor-window-actions.c:241
@@ -700,6 +708,10 @@ msgstr "Bat etorri hitz o_soarekin soilik"
 #, c-format
 msgid "%u of %u"
 msgstr "%u / %u"
+
+#: src/editor-sidebar-row.ui:85
+msgid "Remove"
+msgstr "Kendu"
 
 #: src/editor-spell-menu.c:248
 msgid "Add to Dictionary"
@@ -1291,7 +1303,7 @@ msgstr "Erakutsi laster-teklak"
 #: src/help-overlay.ui:349
 msgctxt "shortcut window"
 msgid "Show help"
-msgstr "Erakutsi laguntza"
+msgstr "sErakutsi laguntza"
 
 #~ msgid "_Line Numbers"
 #~ msgstr "_Lerro-zenbakiak"
@@ -1329,12 +1341,6 @@ msgstr "Erakutsi laguntza"
 
 #~ msgid "Search"
 #~ msgstr "Bilatu"
-
-#~ msgid "Search documents (Ctrl+K)"
-#~ msgstr "Bilatu dokumentuetan(Ctrl+K)"
-
-#~ msgid "Open document (Ctrl+O)"
-#~ msgstr "Ireki dokumentua (Ctrl+O)"
 
 #~ msgid "Font"
 #~ msgstr "Letra-tipoa"
