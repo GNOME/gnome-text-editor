@@ -53,6 +53,39 @@ enum {
 static GParamSpec *properties [N_PROPS];
 
 static gboolean
+file_to_tooltip (GBinding     *binding,
+                 const GValue *from_value,
+                 GValue       *to_value,
+                 gpointer      user_data)
+{
+  g_autoptr(GFile) parent = NULL;
+  g_autofree char *uri = NULL;
+  g_autofree char *title = NULL;
+  GFile *file;
+
+  g_assert (G_IS_BINDING (binding));
+  g_assert (from_value != NULL);
+  g_assert (G_VALUE_HOLDS (from_value, G_TYPE_FILE));
+
+  if (!(file = g_value_get_object (from_value)))
+    return TRUE;
+
+  if (!(parent = g_file_get_parent (file)))
+    return FALSE;
+
+  uri = g_file_get_uri (file);
+
+  if (g_file_is_native (parent))
+    title = _editor_path_collapse (g_file_peek_path (parent));
+  else
+    title = g_file_get_uri (parent);
+
+  g_value_take_string (to_value, g_steal_pointer (&title));
+
+  return TRUE;
+}
+
+static gboolean
 file_to_location (GBinding     *binding,
                   const GValue *from_value,
                   GValue       *to_value,
@@ -224,10 +257,17 @@ editor_properties_dialog_set_document (EditorPropertiesDialog *self,
       g_object_bind_property (self->document, "title",
                               self->name, "label",
                               G_BINDING_SYNC_CREATE);
+      g_object_bind_property (self->document, "title",
+                              self->name, "tooltip-text",
+                              G_BINDING_SYNC_CREATE);
       g_object_bind_property_full (self->document, "file",
                                    self->location, "label",
                                    G_BINDING_SYNC_CREATE,
                                    file_to_location, NULL, NULL, NULL);
+      g_object_bind_property_full (self->document, "file",
+                                   self->location, "tooltip-text",
+                                   G_BINDING_SYNC_CREATE,
+                                   file_to_tooltip, NULL, NULL, NULL);
       g_signal_connect_object (self->document,
                                "save",
                                G_CALLBACK (editor_properties_dialog_save_cb),
