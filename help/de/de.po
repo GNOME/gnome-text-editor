@@ -2,27 +2,29 @@
 # Copyright (C) 2022 gnome-text-editor's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-text-editor package.
 # Tim Sabsch <tim@sabsch.com>, 2022.
+# Jürgen Benvenuti <gastornis@posteo.org>, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
-"POT-Creation-Date: 2022-03-23 11:43+0000\n"
-"PO-Revision-Date: 2022-05-22 00:42+0200\n"
-"Last-Translator: Christian Kirbach <christian.kirbach@gmail.com>\n"
+"POT-Creation-Date: 2023-02-04 01:32+0000\n"
+"PO-Revision-Date: 2023-02-06 19:15+0100\n"
+"Last-Translator: Jürgen Benvenuti <gastornis@posteo.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
 msgstr ""
 "Tim Sabsch <tim@sabsch.com>, 2022\n"
-"Christian Kirbach <christian.kirbach@googlemail.com>, 2022."
+"Christian Kirbach <christian.kirbach@googlemail.com>, 2022.\n"
+"Jürgen Benvenuti <gastornis@posteo.org>, 2023."
 
 #. (itstool) path: info/title
 #: C/index.page:7
@@ -90,12 +92,12 @@ msgstr "Eine Datei öffnen"
 #: C/basics-open-file.page:13
 msgid ""
 "To open a file in GNOME Text Editor use <gui style=\"button\">Open</gui> in "
-"the Headerbar and <gui>Browse Files...</gui> or the shortcut "
+"the Headerbar and <gui>Open New Document</gui> or the shortcut "
 "<keyseq><key>Ctrl</key><key>O</key></keyseq>."
 msgstr ""
-"Um eine Datei in GNOME Texteditor zu öffnen, klicken Sie auf <gui "
-"style=\"button\">Öffnen</gui> in der Kopfleiste und anschließend "
-"<gui>Dateien durchsuchen …</gui> oder drücken Sie die Tastenkombination "
+"Um eine Datei in GNOME Texteditor zu öffnen, klicken Sie auf <gui style="
+"\"button\">Öffnen</gui> in der Kopfleiste und anschließend <gui>Neues "
+"Dokument öffnen</gui> oder drücken Sie die Tastenkombination "
 "<keyseq><key>Strg</key><key>O</key></keyseq>."
 
 #. (itstool) path: page/p
@@ -138,9 +140,14 @@ msgstr ""
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
 #: C/basics-open-file.page:27
+#, fuzzy
+#| msgctxt "_"
+#| msgid ""
+#| "external ref='media/search-recent.png' "
+#| "md5='f57950a08e6c7159429d030eb349814f'"
 msgctxt "_"
 msgid ""
-"external ref='media/search-recent.png' md5='f57950a08e6c7159429d030eb349814f'"
+"external ref='media/search-recent.png' md5='8ddac07e5fb592e68c6208171a52d52f'"
 msgstr "ok"
 
 #. (itstool) path: info/keywords
@@ -253,12 +260,12 @@ msgstr "Nach Text suchen"
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:45
 msgid ""
-"Activate the search panel via <guiseq><gui>Hamburger Menu</gui><gui>Find/"
+"Activate the search panel via <guiseq><gui>Main Menu</gui><gui>Find/"
 "Replace...</gui></guiseq> or activate it via <keyseq><key>Ctrl</key><key>F</"
 "key></keyseq>."
 msgstr ""
-"Öffnen Sie die Suchleiste über <guiseq><gui>Menü</gui><gui>Suchen/Ersetzen …"
-"</gui></guiseq> oder über die Tastenkombination <keyseq><key>Strg</"
+"Öffnen Sie die Suchleiste über <guiseq><gui>Hauptmenü</gui><gui>Suchen/"
+"Ersetzen …</gui></guiseq> oder über die Tastenkombination <keyseq><key>Strg</"
 "key><key>F</key></keyseq>."
 
 #. (itstool) path: item/p
@@ -272,7 +279,7 @@ msgid ""
 "The search is performed as you type. You can now iterate the search result "
 "with <key>↑</key> or <key>↓</key> or with the buttons beside the entry."
 msgstr ""
-"Die Suche beginnt bereits während Sie tippen. Mit <key>↑</key> und <key>↓</"
+"Die Suche beginnt bereits, während Sie tippen. Mit <key>↑</key> und <key>↓</"
 "key> oder den Knöpfen neben dem Eingabefeld können Sie durch die "
 "Suchergebnisse springen."
 
@@ -332,7 +339,7 @@ msgstr "Reguläre Ausdrücke als Suchbegriff verwenden"
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:59
 msgid "Respecting case sensitivity of the search term"
-msgstr "Groß-/Kleinschreibung beachten"
+msgstr "Groß-/Kleinschreibung des Suchbegriffs beachten"
 
 #. (itstool) path: list/title
 #: C/edit-search-and-replace.page:65
@@ -342,22 +349,22 @@ msgstr "Ersetzen von Text"
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:66
 msgid ""
-"Activate the search panel via <guiseq><gui>Hamburger Menu</gui><gui>Find/"
+"Activate the search panel via <guiseq><gui>Main Menu</gui><gui>Find/"
 "Replace...</gui></guiseq> or activate it via <keyseq><key>Ctrl</key><key>H</"
 "key></keyseq>."
 msgstr ""
-"Öffnen Sie die Suchleiste über <guiseq><gui>Menü</gui><gui>Suchen/Ersetzen …"
-"</gui></guiseq> oder über die Tastenkombination <keyseq><key>Strg</"
+"Öffnen Sie die Suchleiste über <guiseq><gui>Hauptmenü</gui><gui>Suchen/"
+"Ersetzen …</gui></guiseq> oder über die Tastenkombination <keyseq><key>Strg</"
 "key><key>H</key></keyseq>."
 
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:67
 msgid ""
-"In case you opened the search panel via the <gui>Hamburger Menu</gui> you "
-"have to click the button for activating the replace functionality."
+"In case you opened the search panel via the <gui>Main Menu</gui> you have to "
+"click the button for activating the replace functionality."
 msgstr ""
-"Falls Sie die Suchleiste über das <gui>Menü</gui> geöffnet haben, müssen Sie "
-"zusätzlich auf den Knopf <gui>Suchen und Ersetzen</gui> klicken."
+"Falls Sie die Suchleiste über das <gui>Hauptmenü</gui> geöffnet haben, "
+"müssen Sie zusätzlich auf den Knopf <gui>Suchen und Ersetzen</gui> klicken."
 
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:68
@@ -470,12 +477,12 @@ msgstr "Alle Änderungen seit dem letzten Speichern verwerfen"
 #. (itstool) path: section/p
 #: C/edit-undo-redo.page:75
 msgid ""
-"<guiseq> <gui>Menu</gui> <gui>Discard Changes</gui> </guiseq> will "
+"<guiseq> <gui>Main Menu</gui> <gui>Discard Changes</gui> </guiseq> will "
 "permanently discard all changes made to a file since it was last saved."
 msgstr ""
-"Klicken Sie <guiseq><gui>Menü</gui><gui>Änderungen verwerfen</gui></guiseq>, "
-"um alle Änderungen unwiderruflich zu verwerfen, die Sie seit dem letzten "
-"Speichern vorgenommen haben."
+"Klicken Sie <guiseq><gui>Hauptmenü</gui><gui>Änderungen verwerfen</gui></"
+"guiseq>, um alle Änderungen unwiderruflich zu verwerfen, die Sie seit dem "
+"letzten Speichern vorgenommen haben."
 
 #. (itstool) path: p/link
 #: C/legal.xml:4
