@@ -6,28 +6,25 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
-"issues\n"
-"POT-Creation-Date: 2022-08-11 17:58+0000\n"
-"PO-Revision-Date: 2022-08-12 22:39+0430\n"
-"Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues\n"
+"POT-Creation-Date: 2023-02-01 03:51+0000\n"
+"PO-Revision-Date: 2023-03-06 15:30+0330\n"
+"Last-Translator: MohammadSaleh Kamyab <mskf1383@envs.net>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:6
-#: src/editor-application-actions.c:197
+#: data/org.gnome.TextEditor.appdata.xml.in.in:6 src/editor-application-actions.c:201
 msgid "The GNOME Project"
 msgstr "پروژهٔ گنوم"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:8
-#: data/org.gnome.TextEditor.desktop.in.in:8
-#: data/org.gnome.TextEditor.desktop.in.in:9
-#: src/editor-application-actions.c:195 src/editor-window.c:1213
+#: data/org.gnome.TextEditor.appdata.xml.in.in:8 data/org.gnome.TextEditor.desktop.in.in:8
+#: data/org.gnome.TextEditor.desktop.in.in:9 src/editor-application-actions.c:199
+#: src/editor-window.c:1297
 msgid "Text Editor"
 msgstr "ویرایشگر متن"
 
@@ -37,11 +34,9 @@ msgstr "ویرایش پرونده‌های متنی"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:12
 msgid ""
-"GNOME Text Editor is a simple text editor focused on a pleasing default "
-"experience."
+"GNOME Text Editor is a simple text editor focused on a pleasing default experience."
 msgstr ""
-"ویرایشگر متن گنوم،‌ویرایشگر متنی ساده با تمرکز بر رضایت‌بخش کردن تجربهٔ پیش‌گزیده "
-"است."
+"ویرایشگر متن گنوم،‌ویرایشگر متنی ساده با تمرکز بر رضایت‌بخش کردن تجربهٔ پیش‌گزیده است."
 
 #: data/org.gnome.TextEditor.desktop.in.in:4
 msgid "write;notepad;"
@@ -64,9 +59,7 @@ msgid "Style Variant"
 msgstr "دگرگونهٔ سبک"
 
 #: data/org.gnome.TextEditor.gschema.xml:27
-msgid ""
-"Use the light or dark variant of the GTK theme and/or GtkSourceView style "
-"scheme."
+msgid "Use the light or dark variant of the GTK theme and/or GtkSourceView style scheme."
 msgstr "استفاده از دگرگونهٔ روشن یا تیرهٔ زمینهٔ GTK یا شمای سبک GtkSourceView."
 
 #: data/org.gnome.TextEditor.gschema.xml:35
@@ -122,8 +115,7 @@ msgid "Right Margin Position"
 msgstr "موقعیت حاشیهٔ راست"
 
 #: data/org.gnome.TextEditor.gschema.xml:69
-msgid ""
-"The position in characters at which the right margin should be displayed."
+msgid "The position in characters at which the right margin should be displayed."
 msgstr "موقعیت بر حسب نویسه که حاشیهٔ راست باید آن‌جا نشان داده شود."
 
 #: data/org.gnome.TextEditor.gschema.xml:73
@@ -132,10 +124,8 @@ msgstr "نمایش نقشهٔ نمای کلّی"
 
 #: data/org.gnome.TextEditor.gschema.xml:74
 msgid ""
-"If enabled, an overview map of the file will be displayed to the side of the "
-"editor."
-msgstr ""
-"اگر به کار بیفتد، یک نقشهٔ نمای کلّی از پرونده در کنار ویرایشگر نشان داده می‌شود."
+"If enabled, an overview map of the file will be displayed to the side of the editor."
+msgstr "اگر به کار بیفتد، یک نقشهٔ نمای کلّی از پرونده در کنار ویرایشگر نشان داده می‌شود."
 
 #: data/org.gnome.TextEditor.gschema.xml:78
 msgid "Show Background Grid"
@@ -183,11 +173,10 @@ msgstr "شمای سبک"
 
 #: data/org.gnome.TextEditor.gschema.xml:104
 msgid ""
-"The style scheme to use by the editor. It may translate this into a dark "
-"format when available."
+"The style scheme to use by the editor. It may translate this into a dark format when "
+"available."
 msgstr ""
-"شمای سبک برای استفاده به دست ویرایشگر. ممکن است هنگام وجود، به قالبی تیره "
-"ترجمه شود."
+"شمای سبک برای استفاده به دست ویرایشگر. ممکن است هنگام وجود، به قالبی تیره ترجمه شود."
 
 #: data/org.gnome.TextEditor.gschema.xml:108
 msgid "Discover File Settings"
@@ -195,11 +184,11 @@ msgstr "کشف تنظیمات پرونده"
 
 #: data/org.gnome.TextEditor.gschema.xml:109
 msgid ""
-"If enabled then Text Editor will try to discover file settings from "
-"modelines, editorconfig, or per-language defaults."
+"If enabled then Text Editor will try to discover file settings from modelines, "
+"editorconfig, or per-language defaults."
 msgstr ""
-"اگر به کار بیفتد، ویرایشگر متن تلاش خواهد کرد که تنظیمات پرونده را از "
-"modelines، editorconfig یا پیش‌گزیده‌های زبانی کشف کند."
+"اگر به کار بیفتد، ویرایشگر متن تلاش خواهد کرد که تنظیمات پرونده را از modelines، "
+"editorconfig یا پیش‌گزیده‌های زبانی کشف کند."
 
 #: data/org.gnome.TextEditor.gschema.xml:113
 msgid "Automatically check spelling"
@@ -207,8 +196,7 @@ msgstr "بررسی نوشتاری خودکار"
 
 #: data/org.gnome.TextEditor.gschema.xml:114
 msgid "If enabled, then Text Editor will check spelling as you type."
-msgstr ""
-"اگر به کار بیفتد،‌ویرایشگر متن هنگام نوشتنتان، نوشتار را بررسی خواهد کرد."
+msgstr "اگر به کار بیفتد،‌ویرایشگر متن هنگام نوشتنتان، نوشتار را بررسی خواهد کرد."
 
 #: data/org.gnome.TextEditor.gschema.xml:118
 msgid "Restore session"
@@ -255,9 +243,7 @@ msgid "Enable Snippets"
 msgstr "به کار انداختن قطعه‌ها"
 
 #: data/org.gnome.TextEditor.gschema.xml:148
-msgid ""
-"Enable the use of snippets registered with GtkSourceView from within the "
-"editor."
+msgid "Enable the use of snippets registered with GtkSourceView from within the editor."
 msgstr "به کار انداختن استفاده از قطعه‌های ثبت شده با GtkSourceView در ویرایشگر."
 
 #: data/org.gnome.TextEditor.gschema.xml:153
@@ -278,48 +264,47 @@ msgstr "شکست در یافتن ویژگی %s در%s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "شکست در دریافت مقدار va_list: %s"
 
-#: src/editor-application-actions.c:210
+#: src/editor-application-actions.c:214
 msgid "translator-credits"
 msgstr "دانیال بهزادی <dani.behzi@ubuntu.com>"
 
-#: src/editor-application.c:460
+#: src/editor-application.c:525
 msgid "Standard input was requested multiple times. Ignoring request."
 msgstr ",ورودی استاندارد چندین بار درخواست شد. چشم‌پوشی از درخواست."
 
-#: src/editor-application.c:464
+#: src/editor-application.c:529
 msgid "Standard input is not supported on this platform. Ignoring request."
 msgstr "ورودی استاندارد روی این بن‌سازه پشتیبانی نمی‌شود. چشم‌پوشی از درخواست."
 
-#: src/editor-application.c:552
+#: src/editor-application.c:632
 msgid "Bugs may be reported at:"
 msgstr "مشکلات می‌توانند این‌جا گزارش شوند:"
 
-#: src/editor-application.c:554
+#: src/editor-application.c:634
 msgid "[FILES…]"
 msgstr "[FILES…]"
 
-#: src/editor-application.c:667
+#: src/editor-application.c:748
 msgid "Do not restore session at startup"
 msgstr "باز نگرداندن نشست هنگام آغاز"
 
-#: src/editor-application.c:668
+#: src/editor-application.c:749
 msgid "Open provided files in a new window"
 msgstr "گشودن پرونده‌های فراهم شده در پنجره‌ای جدید"
 
-#: src/editor-application.c:669
+#: src/editor-application.c:750
 msgid "Run a new instance of Text Editor (implies --ignore-session)"
 msgstr "اجرای نمونه‌ای جدید از ویرایشگر متن (پیاده‌سازی ‪--ignore-session‬)"
 
-#: src/editor-application.c:670
+#: src/editor-application.c:751
 msgid "Print version information and exit"
 msgstr "چاپ اطّلاعات نگارش و خروج"
 
-#: src/editor-document.c:2003
+#: src/editor-document.c:2066
 msgid "[Read-Only]"
 msgstr "[فقط خواندنی]"
 
-#: src/editor-document.c:2291 src/editor-page.c:1015
-#: src/editor-sidebar-item.c:489
+#: src/editor-document.c:2364 src/editor-page.c:1035 src/editor-sidebar-item.c:497
 msgid "New Document"
 msgstr "سند جدید"
 
@@ -352,7 +337,7 @@ msgstr "پرونده روی دیسک تفییر کرده"
 msgid "The file has been changed by another program."
 msgstr "پرونده به دست برنامه‌ای دیگر تغییر کرده."
 
-#: src/editor-info-bar.c:89 src/editor-window.ui:216
+#: src/editor-info-bar.c:89 src/editor-window.ui:222
 msgid "Save _As…"
 msgstr "ذخیره به _شکل…"
 
@@ -364,7 +349,7 @@ msgstr "سند بازیابی شد"
 msgid "Unsaved document has been restored."
 msgstr "سند ذخیره نشده بازیابی شد."
 
-#: src/editor-info-bar.c:98
+#: src/editor-info-bar.c:98 src/editor-info-bar.ui:87
 msgid "_Save…"
 msgstr "_ذخیره…"
 
@@ -396,7 +381,7 @@ msgstr "_تلاش دوباره"
 msgid "Open As _Administrator"
 msgstr "گشودن به عنوان _مدیر"
 
-#: src/editor-language-dialog.ui:6 src/editor-window.c:194
+#: src/editor-language-dialog.ui:6 src/editor-window.c:195
 msgid "Document Type"
 msgstr "گونهٔ سند"
 
@@ -404,104 +389,111 @@ msgstr "گونهٔ سند"
 msgid "No Matches"
 msgstr "بدون مطابقت"
 
-#: src/editor-open-popover.ui:67
+#: src/editor-open-popover.ui:25
+msgid "Search documents"
+msgstr "جست‌وجوی سندها"
+
+#: src/editor-open-popover.ui:39
+msgid "Open New Document (Ctrl+O)"
+msgstr "گشودن سند جدید (مهار+خ)"
+
+#: src/editor-open-popover.ui:74
 msgid "No Recent Documents"
 msgstr "بدون سندهای اخیر"
 
-#: src/editor-open-popover.ui:94
+#: src/editor-open-popover.ui:101
 msgid "No Results Found"
 msgstr "هیچ نتیجه‌ای پیدا نشد"
 
-#: src/editor-page.c:1041 src/editor-properties-dialog.c:74
-#: src/editor-sidebar-item.c:84
+#: src/editor-page.c:1061 src/editor-properties-dialog.c:74 src/editor-sidebar-item.c:101
 msgid "Draft"
 msgstr "پیش‌نویس"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1053
+#: src/editor-page.c:1073
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (مدیر)"
 
-#: src/editor-page.c:1063 src/editor-sidebar-item.c:98
+#: src/editor-page.c:1083 src/editor-sidebar-item.c:109
 msgid "Document Portal"
 msgstr "درگاه سند"
 
-#: src/editor-page.c:1110
+#: src/editor-page.c:1130
 msgid "Failed to save document"
 msgstr "شکست در ذخیرهٔ سند"
 
-#: src/editor-page.c:1111 src/editor-window.ui:359
+#: src/editor-page.c:1131 src/editor-window.ui:363
 msgid "_Close"
 msgstr "_بستن"
 
-#: src/editor-page.c:1195
+#: src/editor-page.c:1215
 msgid "Save As"
 msgstr "ذخیره به شکل"
 
-#: src/editor-page.c:1198
+#: src/editor-page.c:1218
 msgid "Save"
 msgstr "ذخیره"
 
-#: src/editor-page.c:1199 src/editor-window-actions.c:352
+#: src/editor-page.c:1219 src/editor-window-actions.c:352
 msgid "Cancel"
 msgstr "لغو"
 
-#: src/editor-page.c:1348
+#: src/editor-page.c:1368
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "خ %Iu، س %Iu"
 
-#: src/editor-page.ui:98
+#: src/editor-page.ui:97
 msgid "Go to Line"
 msgstr "رفتن به خط"
 
-#: src/editor-page.ui:116
+#: src/editor-page.ui:115
 msgid "Go"
 msgstr "رفتن"
 
-#: src/editor-page.ui:153 src/editor-window.ui:277
+#: src/editor-page.ui:152
 msgid "Indentation"
 msgstr "تورفتگی"
 
-#: src/editor-page.ui:156 src/editor-window.ui:279
+#: src/editor-page.ui:155 src/editor-window.ui:283
 msgid "_Automatic Indentation"
 msgstr "_تورفتگی خودکار"
 
 #. Translators: this is a tab character, not a browser tab
-#: src/editor-page.ui:162 src/editor-window.ui:283
+#: src/editor-page.ui:161 src/editor-window.ui:287
 msgid "_Tabs"
 msgstr "_جهش"
 
-#: src/editor-page.ui:167 src/editor-window.ui:288
+#: src/editor-page.ui:166 src/editor-window.ui:292
 msgid "_Spaces"
 msgstr "_فاصله"
 
-#: src/editor-page.ui:174 src/editor-window.ui:293
+#: src/editor-page.ui:173 src/editor-window.ui:297
 msgid "Spaces _Per Tab"
 msgstr "فاصله‌ها _به ازای جهش"
 
-#: src/editor-page.ui:176 src/editor-page.ui:204
+#: src/editor-page.ui:175 src/editor-page.ui:203
 msgid "2"
 msgstr "۲"
 
-#: src/editor-page.ui:181 src/editor-page.ui:209
+#: src/editor-page.ui:180 src/editor-page.ui:208
 msgid "4"
 msgstr "۴"
 
-#: src/editor-page.ui:186 src/editor-page.ui:214
+#: src/editor-page.ui:185 src/editor-page.ui:213
 msgid "6"
 msgstr "۶"
 
-#: src/editor-page.ui:191 src/editor-page.ui:219
+#: src/editor-page.ui:190 src/editor-page.ui:218
 msgid "8"
 msgstr "۸"
 
-#: src/editor-page.ui:197
+#: src/editor-page.ui:196
 msgid "Spaces Per Indent"
 msgstr "فاصله‌ها به ازای جهش"
 
-#: src/editor-page.ui:199
+#: src/editor-page.ui:198
 msgid "Use Tab Size"
 msgstr "استفاده از اندازهٔ جهش"
 
@@ -549,8 +541,7 @@ msgstr "کشف تنظیمات سند"
 
 #: src/editor-preferences-dialog.ui:114
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
-msgstr ""
-"اعمال تغییرات با استفاده از modelines، editorconfig یا پیش‌گزیده‌های معقول"
+msgstr "اعمال تغییرات با استفاده از modelines، editorconfig یا پیش‌گزیده‌های معقول"
 
 #: src/editor-preferences-dialog.ui:120
 msgid "Restore Session"
@@ -621,47 +612,46 @@ msgstr "نویسه، بدون فاصله"
 msgid "All Characters"
 msgstr "کل نویسه‌ها"
 
-#: src/editor-save-changes-dialog.c:254 src/editor-window-actions.c:242
+#: src/editor-save-changes-dialog.c:255 src/editor-window-actions.c:242
 msgid "_Discard"
 msgstr "_دور انداختن"
 
-#: src/editor-save-changes-dialog.c:254
+#: src/editor-save-changes-dialog.c:255
 msgid "_Discard All"
 msgstr "_دور انداختن همه"
 
-#: src/editor-save-changes-dialog.c:257
+#: src/editor-save-changes-dialog.c:258
 msgid "Save Changes?"
 msgstr "ذخیرهٔ تغییرات؟"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:259
 msgid ""
-"Open documents contain unsaved changes. Changes which are not saved will be "
-"permanently lost."
+"Open documents contain unsaved changes. Changes which are not saved will be permanently "
+"lost."
 msgstr ""
-"سندهای گشوده، تغییراتی ذخیره نشده دارند. تغییراتی که ذخیره نشده‌اند از دست "
-"خواهند رفت."
+"سندهای گشوده، تغییراتی ذخیره نشده دارند. تغییراتی که ذخیره نشده‌اند از دست خواهند رفت."
 
-#: src/editor-save-changes-dialog.c:261 src/editor-window-actions.c:116
+#: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:116
 #: src/editor-window-actions.c:241
 msgid "_Cancel"
 msgstr "_لغو"
 
-#: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:117
-#: src/editor-window.ui:210
+#: src/editor-save-changes-dialog.c:265 src/editor-window-actions.c:117
+#: src/editor-window.ui:216
 msgid "_Save"
 msgstr "_ذخیره"
 
-#: src/editor-save-changes-dialog.c:293
+#: src/editor-save-changes-dialog.c:299
 msgid "Untitled Document"
 msgstr "سند بی‌عنوان"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:296
+#: src/editor-save-changes-dialog.c:302
 #, c-format
 msgid "%s (new)"
 msgstr "%s (جدید)"
 
-#: src/editor-save-changes-dialog.c:317
+#: src/editor-save-changes-dialog.c:323
 msgid "Save changes for this document"
 msgstr "ذخیرهٔ تغییرات برای این سند"
 
@@ -715,6 +705,10 @@ msgstr "فقط تطبیق واژهٔ _کامل"
 msgid "%u of %u"
 msgstr "%Iu از %Iu"
 
+#: src/editor-sidebar-row.ui:85
+msgid "Remove"
+msgstr "برداشتن"
+
 #: src/editor-spell-menu.c:248
 msgid "Add to Dictionary"
 msgstr "افزودن به واژه‌نامه"
@@ -731,15 +725,27 @@ msgstr "بررسی نوشتاری"
 msgid "Languages"
 msgstr "زبان‌ها"
 
-#: src/editor-theme-selector.ui:22 src/editor-theme-selector.ui:24
+#: src/editor-theme-selector.ui:22
+msgid "Follow System Style"
+msgstr "پیروی از سبک سامانه"
+
+#: src/editor-theme-selector.ui:24
 msgid "Follow system style"
 msgstr "پیروی از سبک سامانه"
 
-#: src/editor-theme-selector.ui:39 src/editor-theme-selector.ui:41
+#: src/editor-theme-selector.ui:39
+msgid "Light Style"
+msgstr "سبک روشن"
+
+#: src/editor-theme-selector.ui:41
 msgid "Light style"
 msgstr "سبک روشن"
 
-#: src/editor-theme-selector.ui:57 src/editor-theme-selector.ui:59
+#: src/editor-theme-selector.ui:57
+msgid "Dark Style"
+msgstr "سبک تیره"
+
+#: src/editor-theme-selector.ui:59
 msgid "Dark style"
 msgstr "سبک تیره"
 
@@ -825,54 +831,74 @@ msgstr "تمامی پرونده‌ها"
 msgid "Text Files"
 msgstr "پرونده‌های متنی"
 
-#: src/editor-window.c:206
+#: src/editor-window.c:207
 #, c-format
 msgid "Document Type: %s"
 msgstr "گونهٔ سند: %s"
 
-#: src/editor-window.c:508
+#: src/editor-window.c:507
+msgid "Zoom In"
+msgstr "بزرگ‌نمایی"
+
+#: src/editor-window.c:510
 msgid "Zoom in"
 msgstr "بزرگ‌نمایی به داخل"
 
 #: src/editor-window.c:520
+msgid "Zoom Out"
+msgstr "کوچک‌نمایی"
+
+#: src/editor-window.c:523
 msgid "Zoom out"
 msgstr "بزرگ‌نمایی به خارج"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:733
+#: src/editor-window.c:745
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - ویرایشگر متن"
 
-#: src/editor-window.c:1136
+#: src/editor-window.c:1185
 msgid "There are unsaved documents"
 msgstr "سندهای ذخیره نشده‌ای وجود دارند"
 
-#: src/editor-window.ui:78
+#: src/editor-window.ui:82
 msgid "_Open"
 msgstr "_گشودن"
 
-#: src/editor-window.ui:80
-msgid "Open recent document (Ctrl+K)"
-msgstr "گشودن سند اخیر (مهار+ن)"
+#: src/editor-window.ui:84
+msgid "Recently Used Documents (Ctrl+K)"
+msgstr "سندهای اخیراً استفاده شده (مهار+ن)"
 
-#: src/editor-window.ui:92 src/editor-window.ui:94
+#: src/editor-window.ui:96
+msgid "New Tab (Ctrl+T)"
+msgstr "زبانهٔ جدید (مهار+ف)"
+
+#: src/editor-window.ui:98
 msgid "New tab (Ctrl+T)"
 msgstr "زبانهٔ جدید (مهار+ف)"
 
-#: src/editor-window.ui:120 src/editor-window.ui:124
+#: src/editor-window.ui:124
+msgid "View Options"
+msgstr "گزینه‌های نما"
+
+#: src/editor-window.ui:128
 msgid "View"
 msgstr "نما"
 
-#: src/editor-window.ui:133
-msgid "Menu"
-msgstr "فهرست"
+#: src/editor-window.ui:134
+msgid "Main Menu"
+msgstr "فهرست اصلی"
 
-#: src/editor-window.ui:166
+#: src/editor-window.ui:138
+msgid "Main menu"
+msgstr "فهرست اصلی"
+
+#: src/editor-window.ui:171
 msgid "Start or Open a Document"
 msgstr "آغاز یا گشودن یک سند"
 
-#: src/editor-window.ui:169
+#: src/editor-window.ui:174
 msgid ""
 "• Press the Open button\n"
 "• Press the New tab button\n"
@@ -888,106 +914,97 @@ msgstr ""
 "\n"
 "یا زدن مهار+ص برای بستن پنجره."
 
-#: src/editor-window.ui:202
+#: src/editor-window.ui:208
 msgid "_New Window"
 msgstr "پنجرهٔ _جدید"
 
-#: src/editor-window.ui:222
+#: src/editor-window.ui:228
 msgid "_Discard Changes"
 msgstr "_دور انداختن تغییرات"
 
-#: src/editor-window.ui:228
+#: src/editor-window.ui:234
 msgid "_Find/Replace…"
 msgstr "_جست‌وجو و جایگزینی…"
 
-#: src/editor-window.ui:234
-msgid "_Print"
-msgstr "_چاپ"
-
 #: src/editor-window.ui:240
+msgid "_Print…"
+msgstr "_چاپ…"
+
+#: src/editor-window.ui:246
 msgid "Documen_t Properties"
 msgstr "_ویژگی‌های سند"
 
-#: src/editor-window.ui:246
+#: src/editor-window.ui:252
 msgid "P_references"
 msgstr "_ترجیحات"
 
-#: src/editor-window.ui:251
+#: src/editor-window.ui:257
 msgid "_Keyboard Shortcuts"
 msgstr "_میان‌برهای صفحه‌کلید"
 
-#: src/editor-window.ui:255
+#: src/editor-window.ui:261
 msgid "_Help"
 msgstr "_راهنما"
 
-#: src/editor-window.ui:259
+#: src/editor-window.ui:265
 msgid "A_bout Text Editor"
 msgstr "دربارهٔ ویرایشگر متن"
 
-#: src/editor-window.ui:266
-msgid "Show"
-msgstr "نمایش"
+#: src/editor-window.ui:273
+msgid "Show _Line Numbers"
+msgstr "نمایش _شماره‌های خط"
 
-#: src/editor-window.ui:268
-msgid "_Line Numbers"
-msgstr "_شمارهٔ خط‌ها"
+#: src/editor-window.ui:277
+msgid "Show _Right Margin"
+msgstr "نمایش _حاشیهٔ راست"
 
-#: src/editor-window.ui:272
-msgid "_Right Margin"
-msgstr "_حاشیهٔ راست"
-
-#: src/editor-window.ui:296
+#: src/editor-window.ui:300
 msgid "_2"
 msgstr "_۲"
 
-#: src/editor-window.ui:301
+#: src/editor-window.ui:305
 msgid "_4"
 msgstr "_۴"
 
-#: src/editor-window.ui:306
+#: src/editor-window.ui:310
 msgid "_6"
 msgstr "_۶"
 
-#: src/editor-window.ui:311
+#: src/editor-window.ui:315
 msgid "_8"
 msgstr "_۸"
 
-#: src/editor-window.ui:320
+#: src/editor-window.ui:324
 msgid "T_ext Wrapping"
 msgstr "_شکاندن متن"
 
-#: src/editor-window.ui:324
+#: src/editor-window.ui:328
 msgid "Chec_k Spelling"
 msgstr "_بررسی نوشتاری"
 
-#: src/editor-window.ui:328
+#: src/editor-window.ui:332
 msgid "_Document Type"
 msgstr "_گونهٔ سند"
 
-#: src/editor-window.ui:336
+#: src/editor-window.ui:340
 msgid "Move _Left"
 msgstr "جابه‌جایی به _چپ"
 
-#: src/editor-window.ui:341
+#: src/editor-window.ui:345
 msgid "Move _Right"
 msgstr "جابه‌جایی به _راست"
 
-#: src/editor-window.ui:348
+#: src/editor-window.ui:352
 msgid "_Move to New Window"
 msgstr "_جابه‌جایی به پنجرهٔ جدید"
 
-#: src/editor-window.ui:355
+#: src/editor-window.ui:359
 msgid "Close _Other Tabs"
 msgstr "بستن _دیگر زبانه‌ها"
 
 #: src/enchant/editor-enchant-spell-provider.c:123
 msgid "Enchant 2"
 msgstr "نگارش ۲ Enchant"
-
-#: src/help-overlay.ui:9
-msgctxt "shortcut window"
-msgid "Editor Shortcuts"
-msgstr "میان‌برهای ویرایشگر"
 
 #: src/help-overlay.ui:12
 msgctxt "shortcut window"
@@ -1114,150 +1131,185 @@ msgctxt "shortcut window"
 msgid "Copy all to clipboard"
 msgstr "رونوشت همه به تخته‌گیره"
 
-#: src/help-overlay.ui:158
+#: src/help-overlay.ui:156
+msgctxt "shortcut window"
+msgid "Copy current line down"
+msgstr "رونوشت خط‌ کنونی به پایین"
+
+#: src/help-overlay.ui:164
 msgctxt "shortcut window"
 msgid "Undo and Redo"
 msgstr "برگردان و انجام دوباره"
 
-#: src/help-overlay.ui:162
+#: src/help-overlay.ui:168
 msgctxt "shortcut window"
 msgid "Undo previous command"
 msgstr "برگردان فرمان پیشین"
 
-#: src/help-overlay.ui:168
+#: src/help-overlay.ui:174
 msgctxt "shortcut window"
 msgid "Redo previous command"
 msgstr "انجام دوبارهٔ فرمان پیشین"
 
-#: src/help-overlay.ui:175
+#: src/help-overlay.ui:181
 msgctxt "shortcut window"
 msgid "Editing"
 msgstr "ویرایش"
 
-#: src/help-overlay.ui:179
+#: src/help-overlay.ui:185
 msgctxt "shortcut window"
 msgid "Insert emoji into document"
 msgstr "درج ایموجی در سند"
 
-#: src/help-overlay.ui:185
+#: src/help-overlay.ui:191
 msgctxt "shortcut window"
 msgid "Search within the document"
 msgstr "جست‌وجو در سند"
 
-#: src/help-overlay.ui:191
+#: src/help-overlay.ui:197
 msgctxt "shortcut window"
 msgid "Search and replace within the document"
 msgstr "جست‌وجو و جایگذاری در سند"
 
-#: src/help-overlay.ui:197
+#: src/help-overlay.ui:203
 msgctxt "shortcut window"
 msgid "Increment number at cursor"
 msgstr "افزایش عدد زیر مکان‌نما"
 
-#: src/help-overlay.ui:203
+#: src/help-overlay.ui:209
 msgctxt "shortcut window"
 msgid "Decrement number at cursor"
 msgstr "کاهش عدد زیر مکان‌نما"
 
-#: src/help-overlay.ui:209
+#: src/help-overlay.ui:215
 msgctxt "shortcut window"
 msgid "Toggle overwrite"
 msgstr "تغییر وضعیت رونویسی"
 
-#: src/help-overlay.ui:215
+#: src/help-overlay.ui:221
 msgctxt "shortcut window"
 msgid "Toggle visibility of insertion caret"
 msgstr "تغییر وضعیت نمایانی درج مکان‌نما"
 
-#: src/help-overlay.ui:222
+#: src/help-overlay.ui:228
 msgctxt "shortcut window"
 msgid "Selections"
 msgstr "گزینش‌ها"
 
-#: src/help-overlay.ui:226
+#: src/help-overlay.ui:232
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "گزینش همه"
 
-#: src/help-overlay.ui:232
+#: src/help-overlay.ui:238
 msgctxt "shortcut window"
 msgid "Unselect all"
 msgstr "ناگزینش همه"
 
-#: src/help-overlay.ui:238
+#: src/help-overlay.ui:244
 msgctxt "shortcut window"
 msgid "Select current line"
 msgstr "گزینش خط کنونی"
 
-#: src/help-overlay.ui:245
+#: src/help-overlay.ui:251
 msgctxt "shortcut window"
 msgid "Movements"
 msgstr "جابه‌جایی‌ها"
 
-#: src/help-overlay.ui:249
+#: src/help-overlay.ui:255
 msgctxt "shortcut window"
 msgid "Move to beginning of document"
 msgstr "رفتن به آغاز سند"
 
-#: src/help-overlay.ui:255
+#: src/help-overlay.ui:261
 msgctxt "shortcut window"
 msgid "Move to end of document"
 msgstr "رفتن به پایان خط سند"
 
-#: src/help-overlay.ui:261
+#: src/help-overlay.ui:267
 msgctxt "shortcut window"
 msgid "Move to start of previous paragraph"
 msgstr "رفتن به آغاز بند پیشین"
 
-#: src/help-overlay.ui:267
+#: src/help-overlay.ui:273
 msgctxt "shortcut window"
 msgid "Move to end of next paragraph"
 msgstr "رفتن به پایان بند بعدی"
 
-#: src/help-overlay.ui:273
+#: src/help-overlay.ui:279
 msgctxt "shortcut window"
 msgid "Move current or selected lines up"
 msgstr "جابه‌جایی خط‌های گزیده یا کنونی به بالا"
 
-#: src/help-overlay.ui:279
+#: src/help-overlay.ui:285
 msgctxt "shortcut window"
 msgid "Move current or selected lines down"
 msgstr "جابه‌جایی خط‌های گزیده یا کنونی به پایین"
 
-#: src/help-overlay.ui:285
+#: src/help-overlay.ui:291
 msgctxt "shortcut window"
 msgid "Go to line"
 msgstr "رفتن به خط"
 
-#: src/help-overlay.ui:292
+#: src/help-overlay.ui:298
 msgctxt "shortcut window"
 msgid "Deletion"
 msgstr "حذف"
 
-#: src/help-overlay.ui:296
+#: src/help-overlay.ui:302
 msgctxt "shortcut window"
 msgid "Delete from cursor to word start"
 msgstr "حذف از نشانگر تا آغاز واژه"
 
-#: src/help-overlay.ui:302
+#: src/help-overlay.ui:308
 msgctxt "shortcut window"
 msgid "Delete from cursor to word end"
 msgstr "حذف از نشانگر تا پایان واژه"
 
-#: src/help-overlay.ui:308
+#: src/help-overlay.ui:314
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph start"
 msgstr "حذف از نشانگر تا آغاز بند"
 
-#: src/help-overlay.ui:314
+#: src/help-overlay.ui:320
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph end"
 msgstr "حذف از نشانگر تا پایان بند"
 
-#: src/help-overlay.ui:320
+#: src/help-overlay.ui:326
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "حذف خط کنونی"
+
+#: src/help-overlay.ui:333
+msgctxt "shortcut window"
+msgid "General"
+msgstr "عمومی"
+
+#: src/help-overlay.ui:337
+msgctxt "shortcut window"
+msgid "Show preferences"
+msgstr "نمایش ترجیحات"
+
+#: src/help-overlay.ui:343
+msgctxt "shortcut window"
+msgid "Show keyboard shortcuts"
+msgstr "نمایش میان‌برهای صفحه‌کلید"
+
+#: src/help-overlay.ui:349
+msgctxt "shortcut window"
+msgid "Show help"
+msgstr "نمایش راهنما"
+
+#~ msgid "_Line Numbers"
+#~ msgstr "_شمارهٔ خط‌ها"
+
+#~ msgid "_Right Margin"
+#~ msgstr "_حاشیهٔ راست"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Editor Shortcuts"
+#~ msgstr "میان‌برهای ویرایشگر"
 
 #~ msgid "A Text Editor for GNOME"
 #~ msgstr "ویرایشگر متنی برای گنوم"
