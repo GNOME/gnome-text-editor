@@ -1,13 +1,13 @@
 # Swedish translation for gnome-text-editor.
-# Copyright © 2021 gnome-text-editor's COPYRIGHT HOLDER
+# Copyright © 2021-2023 gnome-text-editor's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-text-editor package.
-# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2021.
+# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2021, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
-"POT-Creation-Date: 2021-08-23 20:13+0000\n"
-"PO-Revision-Date: 2021-09-13 20:37+0200\n"
+"POT-Creation-Date: 2023-02-04 01:32+0000\n"
+"PO-Revision-Date: 2023-03-08 23:56+0100\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -87,12 +87,12 @@ msgstr "Öppna en fil"
 #: C/basics-open-file.page:13
 msgid ""
 "To open a file in GNOME Text Editor use <gui style=\"button\">Open</gui> in "
-"the Headerbar and <gui>Browse Files...</gui> or the shortcut "
+"the Headerbar and <gui>Open New Document</gui> or the shortcut "
 "<keyseq><key>Ctrl</key><key>O</key></keyseq>."
 msgstr ""
-"För att öppna en fil i GNOME Textredigerare, använd <gui style=\"button"
-"\">Öppna</gui> i rubrikraden och <gui>Bläddra bland filer…</gui> eller "
-"kortkommandot <keyseq><key>Ctrl</key><key>O</key></keyseq>."
+"För att öppna en fil i GNOME Textredigerare, använd <gui "
+"style=\"button\">Öppna</gui> i rubrikraden och <gui>Öppna nytt dokument</"
+"gui> eller kortkommandot <keyseq><key>Ctrl</key><key>O</key></keyseq>."
 
 #. (itstool) path: page/p
 #: C/basics-open-file.page:17
@@ -135,9 +135,9 @@ msgstr ""
 #: C/basics-open-file.page:27
 msgctxt "_"
 msgid ""
-"external ref='media/search-recent.png' md5='f57950a08e6c7159429d030eb349814f'"
+"external ref='media/search-recent.png' md5='8ddac07e5fb592e68c6208171a52d52f'"
 msgstr ""
-"external ref='media/search-recent.png' md5='f57950a08e6c7159429d030eb349814f'"
+"external ref='media/search-recent.png' md5='8ddac07e5fb592e68c6208171a52d52f'"
 
 #. (itstool) path: info/keywords
 #: C/basics-create-new-file.page:19
@@ -247,13 +247,12 @@ msgstr "Sök efter text"
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:45
 msgid ""
-"Activate the search panel via <guiseq><gui>Hamburger Menu</gui><gui>Find/"
+"Activate the search panel via <guiseq><gui>Main Menu</gui><gui>Find/"
 "Replace...</gui></guiseq> or activate it via <keyseq><key>Ctrl</key><key>F</"
 "key></keyseq>."
 msgstr ""
-"Aktivera sökpanelen via <guiseq><gui>Hamburgermeny</gui><gui>Sök/ersätt…</"
-"gui></guiseq> eller aktivera den via <keyseq><key>Ctrl</key><key>F</key></"
-"keyseq>."
+"Aktivera sökpanelen via <guiseq><gui>Huvudmeny</gui><gui>Sök/ersätt…</gui></"
+"guiseq> eller aktivera den med <keyseq><key>Ctrl</key><key>F</key></keyseq>."
 
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:46
@@ -333,22 +332,21 @@ msgstr "Ersätt text"
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:66
 msgid ""
-"Activate the search panel via <guiseq><gui>Hamburger Menu</gui><gui>Find/"
+"Activate the search panel via <guiseq><gui>Main Menu</gui><gui>Find/"
 "Replace...</gui></guiseq> or activate it via <keyseq><key>Ctrl</key><key>H</"
 "key></keyseq>."
 msgstr ""
-"Aktivera sökpanelen via <guiseq><gui>Hamburgermeny</gui><gui>Sök/ersätt…</"
-"gui></guiseq> eller aktivera den med <keyseq><key>Ctrl</key><key>H</key></"
-"keyseq>."
+"Aktivera sökpanelen via <guiseq><gui>Huvudmeny</gui><gui>Sök/ersätt…</gui></"
+"guiseq> eller aktivera den med <keyseq><key>Ctrl</key><key>H</key></keyseq>."
 
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:67
 msgid ""
-"In case you opened the search panel via the <gui>Hamburger Menu</gui> you "
-"have to click the button for activating the replace functionality."
+"In case you opened the search panel via the <gui>Main Menu</gui> you have to "
+"click the button for activating the replace functionality."
 msgstr ""
-"Ifall du öppnade sökpanelen genom <gui>Hamburgermenyn</gui> behöver du "
-"klicka på knappen för att aktivera ersättningsfunktionen."
+"Ifall du öppnade sökpanelen genom <gui>Huvudmenyn</gui> behöver du klicka på "
+"knappen för att aktivera ersättningsfunktionen."
 
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:68
@@ -461,10 +459,10 @@ msgstr "Förkasta alla ändringar sedan senaste sparning"
 #. (itstool) path: section/p
 #: C/edit-undo-redo.page:75
 msgid ""
-"<guiseq> <gui>Menu</gui> <gui>Discard Changes</gui> </guiseq> will "
+"<guiseq> <gui>Main Menu</gui> <gui>Discard Changes</gui> </guiseq> will "
 "permanently discard all changes made to a file since it was last saved."
 msgstr ""
-"<guiseq> <gui>Meny</gui> <gui>Förkasta ändringar</gui> </guiseq> kommer "
+"<guiseq> <gui>Huvudmeny</gui> <gui>Förkasta ändringar</gui> </guiseq> kommer "
 "oåterkalleligt förkasta alla ändringar som gjorts till en fil sedan den "
 "senast sparades."
 
