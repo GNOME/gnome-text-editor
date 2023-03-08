@@ -1,26 +1,26 @@
 # Hungarian translation for gnome-text-editor.
-# Copyright (C) 2022 Free Software Foundation, Inc.
+# Copyright (C) 2022, 2023 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-text-editor package.
 #
-# Balázs Úr <ur.balazs at fsf dot hu>, 2022.
+# Balázs Úr <ur.balazs at fsf dot hu>, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
-"POT-Creation-Date: 2022-09-12 19:19+0000\n"
-"PO-Revision-Date: 2022-09-15 01:27+0200\n"
+"POT-Creation-Date: 2023-02-04 01:32+0000\n"
+"PO-Revision-Date: 2023-03-08 22:10+0100\n"
 "Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
 "Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
+"Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: hu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 19.12.3\n"
+"X-Generator: Lokalize 22.08.2\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr "Úr Balázs <ur dot balazs at fsf dot hu>, 2022."
+msgstr "Úr Balázs <ur dot balazs at fsf dot hu>, 2022, 2023."
 
 #. (itstool) path: info/title
 #: C/index.page:7
@@ -86,15 +86,19 @@ msgstr "Fájl megnyitása"
 
 #. (itstool) path: page/p
 #: C/basics-open-file.page:13
+#| msgid ""
+#| "To open a file in GNOME Text Editor use <gui style=\"button\">Open</gui> "
+#| "in the Headerbar and <gui>Browse Files...</gui> or the shortcut "
+#| "<keyseq><key>Ctrl</key><key>O</key></keyseq>."
 msgid ""
 "To open a file in GNOME Text Editor use <gui style=\"button\">Open</gui> in "
-"the Headerbar and <gui>Browse Files...</gui> or the shortcut "
+"the Headerbar and <gui>Open New Document</gui> or the shortcut "
 "<keyseq><key>Ctrl</key><key>O</key></keyseq>."
 msgstr ""
-"A GNOME Szövegszerkesztőben egy fájl megnyitásához használja a fejlécsávon "
-"lévő <gui style=\"button\">Megnyitás</gui> gombot és a <gui>Fájlok tallózása…"
-"</gui> gombot, vagy a <keyseq><key>Ctrl</key><key>O</key></keyseq> "
-"billentyűkombinációt."
+"A GNOME Szövegszerkesztőben egy fájl megnyitásához használja a fejlécsávon"
+" lévő <gui style=\"button\">Megnyitás</gui> gombot és az <gui>Új dokumentum"
+" megnyitása</gui> gombot, vagy a <keyseq><key>Ctrl</key><key>O</key></keyseq>"
+" billentyűkombinációt."
 
 #. (itstool) path: page/p
 #: C/basics-open-file.page:17
@@ -136,11 +140,15 @@ msgstr ""
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
 #: C/basics-open-file.page:27
+#| msgctxt "_"
+#| msgid ""
+#| "external ref='media/search-recent.png' "
+#| "md5='f57950a08e6c7159429d030eb349814f'"
 msgctxt "_"
 msgid ""
-"external ref='media/search-recent.png' md5='f57950a08e6c7159429d030eb349814f'"
+"external ref='media/search-recent.png' md5='8ddac07e5fb592e68c6208171a52d52f'"
 msgstr ""
-"external ref='media/search-recent.png' md5='b64c572827bfc3f0576351dff3620a97'"
+"external ref='media/search-recent.png' md5='8ddac07e5fb592e68c6208171a52d52f'"
 
 #. (itstool) path: info/keywords
 #: C/basics-create-new-file.page:19
@@ -254,12 +262,16 @@ msgstr "Szöveg keresése"
 
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:45
+#| msgid ""
+#| "Activate the search panel via <guiseq><gui>Hamburger Menu</gui><gui>Find/"
+#| "Replace...</gui></guiseq> or activate it via <keyseq><key>Ctrl</"
+#| "key><key>F</key></keyseq>."
 msgid ""
-"Activate the search panel via <guiseq><gui>Hamburger Menu</gui><gui>Find/"
+"Activate the search panel via <guiseq><gui>Main Menu</gui><gui>Find/"
 "Replace...</gui></guiseq> or activate it via <keyseq><key>Ctrl</key><key>F</"
 "key></keyseq>."
 msgstr ""
-"Aktiválja a keresési panelt <guiseq><gui>Hamburger menü</gui><gui>Keresés és "
+"Aktiválja a keresési panelt a <guiseq><gui>Főmenü</gui><gui>Keresés és "
 "csere…</gui></guiseq> menüpontjával, vagy aktiválja a <keyseq><key>Ctrl</"
 "key><key>F</key></keyseq> billentyűkombinációval."
 
@@ -343,24 +355,31 @@ msgstr "Szöveg cseréje"
 
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:66
+#| msgid ""
+#| "Activate the search panel via <guiseq><gui>Hamburger Menu</gui><gui>Find/"
+#| "Replace...</gui></guiseq> or activate it via <keyseq><key>Ctrl</"
+#| "key><key>H</key></keyseq>."
 msgid ""
-"Activate the search panel via <guiseq><gui>Hamburger Menu</gui><gui>Find/"
+"Activate the search panel via <guiseq><gui>Main Menu</gui><gui>Find/"
 "Replace...</gui></guiseq> or activate it via <keyseq><key>Ctrl</key><key>H</"
 "key></keyseq>."
 msgstr ""
-"Aktiválja a keresési panelt <guiseq><gui>Hamburger menü</gui><gui>Keresés és "
+"Aktiválja a keresési panelt a <guiseq><gui>Főmenü</gui><gui>Keresés és "
 "csere…</gui></guiseq> menüpontjával, vagy aktiválja a <keyseq><key>Ctrl</"
 "key><key>H</key></keyseq> billentyűkombinációval."
 
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:67
+#| msgid ""
+#| "In case you opened the search panel via the <gui>Hamburger Menu</gui> you "
+#| "have to click the button for activating the replace functionality."
 msgid ""
-"In case you opened the search panel via the <gui>Hamburger Menu</gui> you "
-"have to click the button for activating the replace functionality."
+"In case you opened the search panel via the <gui>Main Menu</gui> you have to "
+"click the button for activating the replace functionality."
 msgstr ""
-"Abban az esetben, ha a keresési panelt a <gui>Hamburger menü</gui> "
-"segítségével nyitotta meg, akkor rá kell kattintani a gombra a csere funkció "
-"aktiválásához."
+"Abban az esetben, ha a keresési panelt a <gui>Főmenü</gui> segítségével"
+" nyitotta meg, akkor rá kell kattintani a gombra a csere funkció"
+" aktiválásához."
 
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:68
@@ -472,11 +491,14 @@ msgstr "Az utolsó mentés óta végrehajtott összes változtatás elvetése"
 
 #. (itstool) path: section/p
 #: C/edit-undo-redo.page:75
+#| msgid ""
+#| "<guiseq> <gui>Menu</gui> <gui>Discard Changes</gui> </guiseq> will "
+#| "permanently discard all changes made to a file since it was last saved."
 msgid ""
-"<guiseq> <gui>Menu</gui> <gui>Discard Changes</gui> </guiseq> will "
+"<guiseq> <gui>Main Menu</gui> <gui>Discard Changes</gui> </guiseq> will "
 "permanently discard all changes made to a file since it was last saved."
 msgstr ""
-"A <guiseq><gui>Menü</gui><gui>Változtatások elvetése</gui></guiseq> "
+"A <guiseq><gui>Főmenü</gui><gui>Változtatások elvetése</gui></guiseq> "
 "véglegesen elveti a fájlban az utolsó mentés óta végrehajtott összes "
 "változtatást."
 
