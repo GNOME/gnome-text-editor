@@ -6,16 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
-"POT-Creation-Date: 2022-02-16 20:58+0000\n"
-"PO-Revision-Date: 2022-03-01 19:20+0100\n"
+"POT-Creation-Date: 2023-02-04 01:32+0000\n"
+"PO-Revision-Date: 2023-02-25 16:20+0100\n"
+"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: da\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -92,9 +92,12 @@ msgstr "Åbn en fil"
 #: C/basics-open-file.page:13
 msgid ""
 "To open a file in GNOME Text Editor use <gui style=\"button\">Open</gui> in "
-"the Headerbar and <gui>Browse Files...</gui> or the shortcut "
+"the Headerbar and <gui>Open New Document</gui> or the shortcut "
 "<keyseq><key>Ctrl</key><key>O</key></keyseq>."
-msgstr "Åbn en fil i GNOME Tekstredigering ved at klikke <gui style=\"button\">Åbn</gui> i hovedlinjen og <gui>Gennemse filer …</gui> eller bruge genvejen <keyseq><key>Ctrl</key><key>O</key></keyseq>."
+msgstr ""
+"Åbn en fil i GNOME Tekstredigering ved at klikke <gui style=\"button\">Åbn</"
+"gui> i hovedlinjen og <gui>Åbn nyt dokument</gui> eller bruge genvejen "
+"<keyseq><key>Ctrl</key><key>O</key></keyseq>."
 
 #. (itstool) path: page/p
 #: C/basics-open-file.page:17
@@ -137,7 +140,7 @@ msgstr ""
 #: C/basics-open-file.page:27
 msgctxt "_"
 msgid ""
-"external ref='media/search-recent.png' md5='f57950a08e6c7159429d030eb349814f'"
+"external ref='media/search-recent.png' md5='8ddac07e5fb592e68c6208171a52d52f'"
 msgstr "[Anvendes ikke]"
 
 #. (itstool) path: info/keywords
@@ -247,10 +250,13 @@ msgstr "Søg efter tekst"
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:45
 msgid ""
-"Activate the search panel via <guiseq><gui>Hamburger Menu</gui><gui>Find/"
+"Activate the search panel via <guiseq><gui>Main Menu</gui><gui>Find/"
 "Replace...</gui></guiseq> or activate it via <keyseq><key>Ctrl</key><key>F</"
 "key></keyseq>."
-msgstr "Aktivér søgepanelet via <guiseq><gui>Hamburgermenu</gui><gui>Find/erstat …</gui></guiseq> eller aktivér det ved at trykke <keyseq><key>Ctrl</key><key>F</key></keyseq>."
+msgstr ""
+"Aktivér søgepanelet via <guiseq><gui>Hovedmenu</gui><gui>Find/erstat …</"
+"gui></guiseq> eller aktivér det ved at trykke <keyseq><key>Ctrl</key><key>F</"
+"key></keyseq>."
 
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:46
@@ -330,19 +336,22 @@ msgstr "Erstat tekst"
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:66
 msgid ""
-"Activate the search panel via <guiseq><gui>Hamburger Menu</gui><gui>Find/"
+"Activate the search panel via <guiseq><gui>Main Menu</gui><gui>Find/"
 "Replace...</gui></guiseq> or activate it via <keyseq><key>Ctrl</key><key>H</"
 "key></keyseq>."
-msgstr "Aktivér søgepanelet via <guiseq><gui>Hamburgermenu</gui><gui>Find/erstat …</gui></guiseq> eller aktivér det ved at trykke <keyseq><key>Ctrl</key><key>H</key></keyseq>."
+msgstr ""
+"Aktivér søgepanelet via <guiseq><gui>Hovedmenu</gui><gui>Find/erstat …</"
+"gui></guiseq> eller aktivér det ved at trykke <keyseq><key>Ctrl</key><key>H</"
+"key></keyseq>."
 
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:67
 msgid ""
-"In case you opened the search panel via the <gui>Hamburger Menu</gui> you "
-"have to click the button for activating the replace functionality."
+"In case you opened the search panel via the <gui>Main Menu</gui> you have to "
+"click the button for activating the replace functionality."
 msgstr ""
-"Åbnede du søgepanelet med <gui>Hamburgermenu</gui>, skal du klikke på "
-"knappen for at aktivere erstatningsfunktionen."
+"Åbnede du søgepanelet med <gui>Hovedmenu</gui>, skal du klikke på knappen "
+"for at aktivere erstatningsfunktionen."
 
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:68
@@ -453,11 +462,12 @@ msgstr "Kassér alle ændringer, siden der sidst blev gemt"
 #. (itstool) path: section/p
 #: C/edit-undo-redo.page:75
 msgid ""
-"<guiseq> <gui>Menu</gui> <gui>Discard Changes</gui> </guiseq> will "
+"<guiseq> <gui>Main Menu</gui> <gui>Discard Changes</gui> </guiseq> will "
 "permanently discard all changes made to a file since it was last saved."
 msgstr ""
-"Med <guiseq><gui>Menu</gui><gui>Kassér ændringer</gui> </guiseq> kasseres "
-"alle ændringer foretaget i en fil, siden den sidst blev gemt, for altid."
+"Med <guiseq><gui>Hovedmenu</gui><gui>Kassér ændringer</gui> </guiseq> "
+"kasseres alle ændringer foretaget i en fil, siden den sidst blev gemt, for "
+"altid."
 
 #. (itstool) path: p/link
 #: C/legal.xml:4
