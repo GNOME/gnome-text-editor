@@ -62,6 +62,7 @@ editor_deps = [
   libgtk_dep,
   libgtksourceview_dep,
   libadwaita_dep,
+  libcairo_dep,
 ]
 
 editor_sources += gnome.compile_resources('editor-resources',
