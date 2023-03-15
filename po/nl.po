@@ -10,9 +10,9 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2022-10-05 16:50+0000\n"
-"PO-Revision-Date: 2022-10-05 20:58+0200\n"
-"Last-Translator: Nathan Follens <nfollens@gnome.org>\n"
+"POT-Creation-Date: 2023-02-01 03:51+0000\n"
+"PO-Revision-Date: 2023-02-01 11:01+0100\n"
+"Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <gnome-nl-list@gnome.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 "X-Generator: Poedit 3.1.1\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
-#: src/editor-application-actions.c:197
+#: src/editor-application-actions.c:201
 msgid "The GNOME Project"
 msgstr "Het Gnome-project"
 
@@ -31,7 +31,7 @@ msgstr "Het Gnome-project"
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:9
-#: src/editor-application-actions.c:195 src/editor-window.c:1285
+#: src/editor-application-actions.c:199 src/editor-window.c:1297
 msgid "Text Editor"
 msgstr "Tekstbewerker"
 
@@ -301,7 +301,7 @@ msgstr "Eigenschap %s niet gevonden in %s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Ophalen van va_list-waarde is mislukt: %s"
 
-#: src/editor-application-actions.c:210
+#: src/editor-application-actions.c:214
 msgid "translator-credits"
 msgstr ""
 "Nathan Follens <nfollens@gnome.org>\n"
@@ -309,47 +309,47 @@ msgstr ""
 "Philip Goto <philip.goto@gmail.com>\n"
 "Meer info over Gnome-NL https://nl.gnome.org"
 
-#: src/editor-application.c:450
+#: src/editor-application.c:525
 msgid "Standard input was requested multiple times. Ignoring request."
 msgstr ""
 "Standaardinvoer is meerdere keren aangevraagd. Verzoek wordt genegeerd."
 
-#: src/editor-application.c:454
+#: src/editor-application.c:529
 msgid "Standard input is not supported on this platform. Ignoring request."
 msgstr ""
 "Standaardinvoer wordt niet ondersteund op dit platform. Verzoek wordt "
 "genegeerd."
 
-#: src/editor-application.c:542
+#: src/editor-application.c:632
 msgid "Bugs may be reported at:"
 msgstr "Gelieve fouten te melden aan:"
 
-#: src/editor-application.c:544
+#: src/editor-application.c:634
 msgid "[FILES…]"
 msgstr "[BESTANDEN…]"
 
-#: src/editor-application.c:657
+#: src/editor-application.c:748
 msgid "Do not restore session at startup"
 msgstr "Sessie niet herstellen bij opstarten"
 
-#: src/editor-application.c:658
+#: src/editor-application.c:749
 msgid "Open provided files in a new window"
 msgstr "Aangeleverde bestanden openen in een nieuw venster"
 
-#: src/editor-application.c:659
+#: src/editor-application.c:750
 msgid "Run a new instance of Text Editor (implies --ignore-session)"
 msgstr ""
 "Opent een nieuwe instantie van Tekstbewerker (veronderstelt --ignore-session)"
 
-#: src/editor-application.c:660
+#: src/editor-application.c:751
 msgid "Print version information and exit"
 msgstr "Versieinformatie tonen en afsluiten"
 
-#: src/editor-document.c:2003
+#: src/editor-document.c:2066
 msgid "[Read-Only]"
 msgstr "[alleen-lezen]"
 
-#: src/editor-document.c:2301 src/editor-page.c:1021
+#: src/editor-document.c:2364 src/editor-page.c:1035
 #: src/editor-sidebar-item.c:497
 msgid "New Document"
 msgstr "Nieuw document"
@@ -383,7 +383,7 @@ msgstr "Bestand is gewijzigd op schijf"
 msgid "The file has been changed by another program."
 msgstr "Het bestand is gewijzigd door een ander programma."
 
-#: src/editor-info-bar.c:89 src/editor-window.ui:220
+#: src/editor-info-bar.c:89 src/editor-window.ui:222
 msgid "Save _As…"
 msgstr "Opslaan _als…"
 
@@ -395,7 +395,7 @@ msgstr "Document hersteld"
 msgid "Unsaved document has been restored."
 msgstr "Niet-opgeslagen document is hersteld."
 
-#: src/editor-info-bar.c:98
+#: src/editor-info-bar.c:98 src/editor-info-bar.ui:87
 msgid "_Save…"
 msgstr "Op_slaan…"
 
@@ -427,7 +427,7 @@ msgstr "_Opnieuw proberen"
 msgid "Open As _Administrator"
 msgstr "Openen als _administrator"
 
-#: src/editor-language-dialog.ui:6 src/editor-window.c:194
+#: src/editor-language-dialog.ui:6 src/editor-window.c:195
 msgid "Document Type"
 msgstr "Documenttype"
 
@@ -435,104 +435,112 @@ msgstr "Documenttype"
 msgid "No Matches"
 msgstr "Geen overeenkomsten"
 
-#: src/editor-open-popover.ui:67
+#: src/editor-open-popover.ui:25
+msgid "Search documents"
+msgstr "Documenten zoeken"
+
+#: src/editor-open-popover.ui:39
+msgid "Open New Document (Ctrl+O)"
+msgstr "Nieuw document openen (Ctrl+O)"
+
+#: src/editor-open-popover.ui:74
 msgid "No Recent Documents"
 msgstr "Geen recente documenten"
 
-#: src/editor-open-popover.ui:94
+#: src/editor-open-popover.ui:101
 msgid "No Results Found"
 msgstr "Geen resultaten gevonden"
 
-#: src/editor-page.c:1047 src/editor-properties-dialog.c:74
+#: src/editor-page.c:1061 src/editor-properties-dialog.c:74
 #: src/editor-sidebar-item.c:101
 msgid "Draft"
 msgstr "Concept"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1059
+#: src/editor-page.c:1073
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (Administrator)"
 
-#: src/editor-page.c:1069 src/editor-sidebar-item.c:109
+#: src/editor-page.c:1083 src/editor-sidebar-item.c:109
 msgid "Document Portal"
 msgstr "Documentportaal"
 
-#: src/editor-page.c:1116
+#: src/editor-page.c:1130
 msgid "Failed to save document"
 msgstr "Opslaan van document is mislukt"
 
-#: src/editor-page.c:1117 src/editor-window.ui:363
+#: src/editor-page.c:1131 src/editor-window.ui:363
 msgid "_Close"
 msgstr "Sl_uiten"
 
-#: src/editor-page.c:1201
+#: src/editor-page.c:1215
 msgid "Save As"
 msgstr "Opslaan als"
 
-#: src/editor-page.c:1204
+#: src/editor-page.c:1218
 msgid "Save"
 msgstr "Opslaan"
 
-#: src/editor-page.c:1205 src/editor-window-actions.c:352
+#: src/editor-page.c:1219 src/editor-window-actions.c:352
 msgid "Cancel"
 msgstr "Annuleren"
 
-#: src/editor-page.c:1354
+#: src/editor-page.c:1368
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Rg %u, kol %u"
 
-#: src/editor-page.ui:98
+#: src/editor-page.ui:97
 msgid "Go to Line"
 msgstr "Ga naar regel"
 
-#: src/editor-page.ui:116
+#: src/editor-page.ui:115
 msgid "Go"
 msgstr "Gaan"
 
-#: src/editor-page.ui:153 src/editor-window.ui:281
+#: src/editor-page.ui:152
 msgid "Indentation"
 msgstr "Inspringing"
 
-#: src/editor-page.ui:156 src/editor-window.ui:283
+#: src/editor-page.ui:155 src/editor-window.ui:283
 msgid "_Automatic Indentation"
 msgstr "_Automatische inspringing"
 
 #. Translators: this is a tab character, not a browser tab
-#: src/editor-page.ui:162 src/editor-window.ui:287
+#: src/editor-page.ui:161 src/editor-window.ui:287
 msgid "_Tabs"
 msgstr "_Tabs"
 
-#: src/editor-page.ui:167 src/editor-window.ui:292
+#: src/editor-page.ui:166 src/editor-window.ui:292
 msgid "_Spaces"
 msgstr "_Spaties"
 
-#: src/editor-page.ui:174 src/editor-window.ui:297
+#: src/editor-page.ui:173 src/editor-window.ui:297
 msgid "Spaces _Per Tab"
 msgstr "Spaties _per tab"
 
-#: src/editor-page.ui:176 src/editor-page.ui:204
+#: src/editor-page.ui:175 src/editor-page.ui:203
 msgid "2"
 msgstr "2"
 
-#: src/editor-page.ui:181 src/editor-page.ui:209
+#: src/editor-page.ui:180 src/editor-page.ui:208
 msgid "4"
 msgstr "4"
 
-#: src/editor-page.ui:186 src/editor-page.ui:214
+#: src/editor-page.ui:185 src/editor-page.ui:213
 msgid "6"
 msgstr "6"
 
-#: src/editor-page.ui:191 src/editor-page.ui:219
+#: src/editor-page.ui:190 src/editor-page.ui:218
 msgid "8"
 msgstr "8"
 
-#: src/editor-page.ui:197
+#: src/editor-page.ui:196
 msgid "Spaces Per Indent"
 msgstr "Spaties per inspringing"
 
-#: src/editor-page.ui:199
+#: src/editor-page.ui:198
 msgid "Use Tab Size"
 msgstr "Tabgrootte gebruiken"
 
@@ -653,19 +661,19 @@ msgstr "Tekens, geen spaties"
 msgid "All Characters"
 msgstr "Alle tekens"
 
-#: src/editor-save-changes-dialog.c:254 src/editor-window-actions.c:242
+#: src/editor-save-changes-dialog.c:255 src/editor-window-actions.c:242
 msgid "_Discard"
 msgstr "_Verwerpen"
 
-#: src/editor-save-changes-dialog.c:254
+#: src/editor-save-changes-dialog.c:255
 msgid "_Discard All"
 msgstr "_Alles verwerpen"
 
-#: src/editor-save-changes-dialog.c:257
+#: src/editor-save-changes-dialog.c:258
 msgid "Save Changes?"
 msgstr "Wijzigingen opslaan?"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:259
 msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
@@ -673,27 +681,27 @@ msgstr ""
 "De geopende documenten bevatten niet-opgeslagen wijzigingen. Wijzigingen die "
 "u niet opslaat zullen definitief verloren gaan."
 
-#: src/editor-save-changes-dialog.c:261 src/editor-window-actions.c:116
+#: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:116
 #: src/editor-window-actions.c:241
 msgid "_Cancel"
 msgstr "_Annuleren"
 
-#: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:117
-#: src/editor-window.ui:214
+#: src/editor-save-changes-dialog.c:265 src/editor-window-actions.c:117
+#: src/editor-window.ui:216
 msgid "_Save"
 msgstr "Op_slaan"
 
-#: src/editor-save-changes-dialog.c:293
+#: src/editor-save-changes-dialog.c:299
 msgid "Untitled Document"
 msgstr "Naamloos document"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:296
+#: src/editor-save-changes-dialog.c:302
 #, c-format
 msgid "%s (new)"
 msgstr "%s (nieuw)"
 
-#: src/editor-save-changes-dialog.c:317
+#: src/editor-save-changes-dialog.c:323
 msgid "Save changes for this document"
 msgstr "Wijzigingen opslaan voor dit document"
 
@@ -747,6 +755,10 @@ msgstr "Alleen met  hele _woord overeenkomen"
 msgid "%u of %u"
 msgstr "%u van %u"
 
+#: src/editor-sidebar-row.ui:85
+msgid "Remove"
+msgstr "Verwijderen"
+
 #: src/editor-spell-menu.c:248
 msgid "Add to Dictionary"
 msgstr "Toevoegen aan woordenboek"
@@ -763,15 +775,27 @@ msgstr "Spelling controleren"
 msgid "Languages"
 msgstr "Talen"
 
-#: src/editor-theme-selector.ui:22 src/editor-theme-selector.ui:24
+#: src/editor-theme-selector.ui:22
+msgid "Follow System Style"
+msgstr "Systeemstijl volgen"
+
+#: src/editor-theme-selector.ui:24
 msgid "Follow system style"
 msgstr "Systeemstijl volgen"
 
-#: src/editor-theme-selector.ui:39 src/editor-theme-selector.ui:41
+#: src/editor-theme-selector.ui:39
+msgid "Light Style"
+msgstr "Lichte stijl"
+
+#: src/editor-theme-selector.ui:41
 msgid "Light style"
 msgstr "Lichte stijl"
 
-#: src/editor-theme-selector.ui:57 src/editor-theme-selector.ui:59
+#: src/editor-theme-selector.ui:57
+msgid "Dark Style"
+msgstr "Donkere stijl"
+
+#: src/editor-theme-selector.ui:59
 msgid "Dark style"
 msgstr "Donkere stijl"
 
@@ -860,26 +884,34 @@ msgstr "Alle bestanden"
 msgid "Text Files"
 msgstr "Tekstbestanden"
 
-#: src/editor-window.c:206
+#: src/editor-window.c:207
 #, c-format
 msgid "Document Type: %s"
 msgstr "Documenttype: %s"
 
-#: src/editor-window.c:508
+#: src/editor-window.c:507
+msgid "Zoom In"
+msgstr "Inzoomen"
+
+#: src/editor-window.c:510
 msgid "Zoom in"
 msgstr "Inzoomen"
 
 #: src/editor-window.c:520
+msgid "Zoom Out"
+msgstr "Uitzoomen"
+
+#: src/editor-window.c:523
 msgid "Zoom out"
 msgstr "Uitzoomen"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:733
+#: src/editor-window.c:745
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - Tekstbewerker"
 
-#: src/editor-window.c:1173
+#: src/editor-window.c:1185
 msgid "There are unsaved documents"
 msgstr "Er zijn nog niet opgeslagen documenten"
 
@@ -888,26 +920,38 @@ msgid "_Open"
 msgstr "_Openen"
 
 #: src/editor-window.ui:84
-msgid "Open recent document (Ctrl+K)"
-msgstr "Recent document openen (Ctrl+K)"
+msgid "Recently Used Documents (Ctrl+K)"
+msgstr "Recente documenten (Ctrl+K)"
 
-#: src/editor-window.ui:96 src/editor-window.ui:98
+#: src/editor-window.ui:96
+msgid "New Tab (Ctrl+T)"
+msgstr "Nieuw tabblad (Ctrl+T)"
+
+#: src/editor-window.ui:98
 msgid "New tab (Ctrl+T)"
 msgstr "Nieuw tabblad (Ctrl+T)"
 
-#: src/editor-window.ui:124 src/editor-window.ui:128
+#: src/editor-window.ui:124
+msgid "View Options"
+msgstr "Weergaveopties"
+
+#: src/editor-window.ui:128
 msgid "View"
-msgstr "Bekijken"
+msgstr "Weergave"
 
-#: src/editor-window.ui:137
-msgid "Menu"
-msgstr "Menu"
+#: src/editor-window.ui:134
+msgid "Main Menu"
+msgstr "Hoofdmenu"
 
-#: src/editor-window.ui:170
+#: src/editor-window.ui:138
+msgid "Main menu"
+msgstr "Hoofdmenu"
+
+#: src/editor-window.ui:171
 msgid "Start or Open a Document"
 msgstr "Een document beginnen of openen"
 
-#: src/editor-window.ui:173
+#: src/editor-window.ui:174
 msgid ""
 "• Press the Open button\n"
 "• Press the New tab button\n"
@@ -923,53 +967,49 @@ msgstr ""
 "\n"
 "Of druk op Ctrl+W om het venster te sluiten."
 
-#: src/editor-window.ui:206
+#: src/editor-window.ui:208
 msgid "_New Window"
 msgstr "_Nieuw venster"
 
-#: src/editor-window.ui:226
+#: src/editor-window.ui:228
 msgid "_Discard Changes"
 msgstr "Wijzigingen _verwerpen"
 
-#: src/editor-window.ui:232
+#: src/editor-window.ui:234
 msgid "_Find/Replace…"
 msgstr "Zoeken/_vervangen…"
 
-#: src/editor-window.ui:238
-msgid "_Print"
-msgstr "_Afdrukken"
+#: src/editor-window.ui:240
+msgid "_Print…"
+msgstr "_Afdrukken…"
 
-#: src/editor-window.ui:244
+#: src/editor-window.ui:246
 msgid "Documen_t Properties"
 msgstr "Documen_teigenschappen"
 
-#: src/editor-window.ui:250
+#: src/editor-window.ui:252
 msgid "P_references"
 msgstr "_Voorkeuren"
 
-#: src/editor-window.ui:255
+#: src/editor-window.ui:257
 msgid "_Keyboard Shortcuts"
 msgstr "_Sneltoetsen"
 
-#: src/editor-window.ui:259
+#: src/editor-window.ui:261
 msgid "_Help"
 msgstr "_Hulp"
 
-#: src/editor-window.ui:263
+#: src/editor-window.ui:265
 msgid "A_bout Text Editor"
 msgstr "_Over Tekstbewerker"
 
-#: src/editor-window.ui:270
-msgid "Show"
-msgstr "Tonen"
+#: src/editor-window.ui:273
+msgid "Show _Line Numbers"
+msgstr "_Regelnummers weergeven"
 
-#: src/editor-window.ui:272
-msgid "_Line Numbers"
-msgstr "Rege_lnummers"
-
-#: src/editor-window.ui:276
-msgid "_Right Margin"
-msgstr "_Rechtermarge"
+#: src/editor-window.ui:277
+msgid "Show _Right Margin"
+msgstr "_Rechtermarge weergeven"
 
 #: src/editor-window.ui:300
 msgid "_2"
@@ -1018,11 +1058,6 @@ msgstr "_Andere tabbladen sluiten"
 #: src/enchant/editor-enchant-spell-provider.c:123
 msgid "Enchant 2"
 msgstr "Enchant 2"
-
-#: src/help-overlay.ui:9
-msgctxt "shortcut window"
-msgid "Editor Shortcuts"
-msgstr "Sneltoetsen voor editor"
 
 #: src/help-overlay.ui:12
 msgctxt "shortcut window"
@@ -1299,6 +1334,36 @@ msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "De huidige regel verwijderen"
 
+#: src/help-overlay.ui:333
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Algemeen"
+
+#: src/help-overlay.ui:337
+msgctxt "shortcut window"
+msgid "Show preferences"
+msgstr "Voorkeuren tonen"
+
+#: src/help-overlay.ui:343
+msgctxt "shortcut window"
+msgid "Show keyboard shortcuts"
+msgstr "Sneltoetsen tonen"
+
+#: src/help-overlay.ui:349
+msgctxt "shortcut window"
+msgid "Show help"
+msgstr "Hulp tonen"
+
+#~ msgid "_Line Numbers"
+#~ msgstr "Rege_lnummers"
+
+#~ msgid "_Right Margin"
+#~ msgstr "_Rechtermarge"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Editor Shortcuts"
+#~ msgstr "Sneltoetsen voor editor"
+
 #~ msgid "Christian Hergert, et al."
 #~ msgstr "Christian Hergert, et al."
 
@@ -1325,12 +1390,6 @@ msgstr "De huidige regel verwijderen"
 
 #~ msgid "Search"
 #~ msgstr "Zoeken"
-
-#~ msgid "Search documents (Ctrl+K)"
-#~ msgstr "Documenten zoeken (Ctrl+K)"
-
-#~ msgid "Open document (Ctrl+O)"
-#~ msgstr "Document openen (Ctrl+O)"
 
 #~ msgid "Font"
 #~ msgstr "Lettertype"
