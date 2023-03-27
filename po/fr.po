@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2023-02-01 03:51+0000\n"
+"POT-Creation-Date: 2023-03-05 10:33+0000\n"
 "PO-Revision-Date: 2023-03-05 11:19+0100\n"
 "Last-Translator: Irénée Thirion <irenee.thirion@e.email>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
@@ -186,7 +186,7 @@ msgid "If the default system monospace font should be used."
 msgstr ""
 "Indique si la police à chasse fixe par défaut du système doit être utilisée."
 
-#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:57
+#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:59
 msgid "Custom Font"
 msgstr "Police personnalisée"
 
@@ -445,11 +445,11 @@ msgstr "Ouvrir un nouveau document (Ctrl+O)"
 msgid "No Recent Documents"
 msgstr "Aucun document récent"
 
-#: src/editor-open-popover.ui:101
+#: src/editor-open-popover.ui:104
 msgid "No Results Found"
 msgstr "Aucun résultat"
 
-#: src/editor-page.c:1061 src/editor-properties-dialog.c:74
+#: src/editor-page.c:1061 src/editor-properties-dialog.c:107
 #: src/editor-sidebar-item.c:101
 msgid "Draft"
 msgstr "Brouillon"
@@ -552,53 +552,53 @@ msgstr "Lig"
 msgid "Col"
 msgstr "Col"
 
-#: src/editor-preferences-dialog.ui:17
+#: src/editor-preferences-dialog.ui:19
 msgid "Appearance"
 msgstr "Apparence"
 
-#: src/editor-preferences-dialog.ui:79
+#: src/editor-preferences-dialog.ui:81
 msgid "Display Grid Pattern"
 msgstr "Afficher le motif de grille"
 
-#: src/editor-preferences-dialog.ui:85
+#: src/editor-preferences-dialog.ui:87
 msgid "Highlight Current Line"
 msgstr "Surligner la ligne actuelle"
 
-#: src/editor-preferences-dialog.ui:91
+#: src/editor-preferences-dialog.ui:93
 msgid "Display Overview Map"
 msgstr "Afficher la vue d’ensemble"
 
-#: src/editor-preferences-dialog.ui:99
+#: src/editor-preferences-dialog.ui:101
 msgid "Right Margin"
 msgstr "Marge à droite"
 
-#: src/editor-preferences-dialog.ui:102
+#: src/editor-preferences-dialog.ui:104
 msgid "Margin Position"
 msgstr "Position de la marge"
 
-#: src/editor-preferences-dialog.ui:110
+#: src/editor-preferences-dialog.ui:112
 msgid "Behavior"
 msgstr "Comportement"
 
-#: src/editor-preferences-dialog.ui:113
+#: src/editor-preferences-dialog.ui:115
 msgid "Discover Document Settings"
 msgstr "Découvrir les paramètres du document"
 
-#: src/editor-preferences-dialog.ui:114
+#: src/editor-preferences-dialog.ui:116
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr ""
 "Appliquer les paramètres à l’aide de lignes de modes, d’editorconfig ou des "
 "valeurs par défaut"
 
-#: src/editor-preferences-dialog.ui:120
+#: src/editor-preferences-dialog.ui:122
 msgid "Restore Session"
 msgstr "Restaurer la session"
 
-#: src/editor-preferences-dialog.ui:121
+#: src/editor-preferences-dialog.ui:123
 msgid "Return to your previous session when Text Editor is started"
 msgstr "Revenir à votre session précédente au lancement de l’éditeur de texte"
 
-#: src/editor-preferences-dialog.ui:136
+#: src/editor-preferences-dialog.ui:138
 msgid "_Clear History"
 msgstr "_Effacer l’historique"
 
@@ -635,27 +635,27 @@ msgstr "Fichier"
 msgid "Name"
 msgstr "Nom"
 
-#: src/editor-properties-dialog.ui:45
+#: src/editor-properties-dialog.ui:43
 msgid "Location"
 msgstr "Emplacement"
 
-#: src/editor-properties-dialog.ui:63
+#: src/editor-properties-dialog.ui:59
 msgid "Statistics"
 msgstr "Statistiques"
 
-#: src/editor-properties-dialog.ui:66
+#: src/editor-properties-dialog.ui:62
 msgid "Lines"
 msgstr "Lignes"
 
-#: src/editor-properties-dialog.ui:81
+#: src/editor-properties-dialog.ui:77
 msgid "Words"
 msgstr "Mots"
 
-#: src/editor-properties-dialog.ui:96
+#: src/editor-properties-dialog.ui:92
 msgid "Characters, No Spaces"
 msgstr "Caractères, sans espace"
 
-#: src/editor-properties-dialog.ui:111
+#: src/editor-properties-dialog.ui:107
 msgid "All Characters"
 msgstr "Tous les caractères"
 
@@ -717,7 +717,7 @@ msgstr "Occurrence suivante (Ctrl+G)"
 
 #: src/editor-search-bar.ui:71
 msgid "Search & Replace (Ctrl+H)"
-msgstr "Chercher & remplacer (Ctrl+H)"
+msgstr "Chercher et remplacer (Ctrl+H)"
 
 #: src/editor-search-bar.ui:81
 msgid "Toggle search options"
