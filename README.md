@@ -22,10 +22,11 @@ You can come back to your work even if you've never saved it to a file.
 
 ## Dependencies
 
- * GTK 4.6 or newer
- * GtkSourceView 5.4 or newer
- * Libadwaita
- * libpcre (for .editorconfig support)
+ * GTK 4.10 or newer
+ * GtkSourceView 5.6 or newer
+ * Libadwaita 1.3 or newer
+ * libeditorconfig for .editorconfig support
+ * enchant-2 for spellcheck support
  * icu (for language code ids)
 
 Refer to the [org.gnome.TextEditor.Devel.json](https://gitlab.gnome.org/GNOME/gnome-text-editor/tree/master/org.gnome.TextEditor.Devel.json) Flatpak manifest for additional details.
