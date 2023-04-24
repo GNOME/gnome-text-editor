@@ -9,9 +9,9 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2023-02-28 19:50+0000\n"
-"PO-Revision-Date: 2023-02-28 21:48+0100\n"
-"Last-Translator: Matej Urbančič <mateju@src.gnome.org>\n"
+"POT-Creation-Date: 2023-04-24 16:42+0000\n"
+"PO-Revision-Date: 2023-04-24 22:09+0200\n"
+"Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
 "n%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.3\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
 #: src/editor-application-actions.c:201
@@ -274,6 +274,14 @@ msgstr "Višina vrstice"
 msgid "The line height to use for the selected font."
 msgstr "Višina vrstice, ki naj bo v uporabi za izbrano pisavo."
 
+#: data/org.gnome.TextEditor.gschema.xml:158
+msgid "Highlight Matching Brackets"
+msgstr "Poudari ujemajoče oklepaje"
+
+#: data/org.gnome.TextEditor.gschema.xml:159
+msgid "Highlight matching brackets and braces."
+msgstr "Poudari ujemajoče oklepaje."
+
 #: src/editor-animation.c:1038
 #, c-format
 msgid "Failed to find property %s in %s"
@@ -325,7 +333,7 @@ msgstr "Izpiši podatke o različici in končaj"
 msgid "[Read-Only]"
 msgstr "[le za branje]"
 
-#: src/editor-document.c:2364 src/editor-page.c:1035
+#: src/editor-document.c:2364 src/editor-page.c:1038
 #: src/editor-sidebar-item.c:497
 msgid "New Document"
 msgstr "Nov dokument"
@@ -427,42 +435,42 @@ msgstr "Ni nedavnih dokumentov"
 msgid "No Results Found"
 msgstr "Ni najdenih zadetkov."
 
-#: src/editor-page.c:1061 src/editor-properties-dialog.c:107
+#: src/editor-page.c:1064 src/editor-properties-dialog.c:107
 #: src/editor-sidebar-item.c:101
 msgid "Draft"
 msgstr "Osnutek"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1073
+#: src/editor-page.c:1076
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (skrbniško urejanje)"
 
-#: src/editor-page.c:1083 src/editor-sidebar-item.c:109
+#: src/editor-page.c:1086 src/editor-sidebar-item.c:109
 msgid "Document Portal"
 msgstr "Portal dokumentov"
 
-#: src/editor-page.c:1130
+#: src/editor-page.c:1133
 msgid "Failed to save document"
 msgstr "Shranjevanje dokumenta je spodletelo."
 
-#: src/editor-page.c:1131 src/editor-window.ui:363
+#: src/editor-page.c:1134 src/editor-window.ui:363
 msgid "_Close"
 msgstr "_Zapri"
 
-#: src/editor-page.c:1215
+#: src/editor-page.c:1218
 msgid "Save As"
 msgstr "Shrani kot"
 
-#: src/editor-page.c:1218
+#: src/editor-page.c:1221
 msgid "Save"
 msgstr "Shrani"
 
-#: src/editor-page.c:1219 src/editor-window-actions.c:352
+#: src/editor-page.c:1222 src/editor-window-actions.c:352
 msgid "Cancel"
 msgstr "Prekliči"
 
-#: src/editor-page.c:1368
+#: src/editor-page.c:1371
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Vrstica: %u, Stolpec %u"
@@ -1329,49 +1337,3 @@ msgstr "Pokaže tipkovne bližnjice‫"
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Pokaže pomoč"
-
-#~ msgid "_Line Numbers"
-#~ msgstr "_Številke vrstic"
-
-#~ msgid "_Right Margin"
-#~ msgstr "_Desni rob"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Editor Shortcuts"
-#~ msgstr "Tipkovne bližnjice urejevalnika"
-
-#~ msgid "Christian Hergert, et al."
-#~ msgstr "Christian Hergert in drugi"
-
-#~ msgid "A Text Editor for GNOME"
-#~ msgstr "Urejevalnik besedil za namizje GNOME"
-
-#~ msgid "Text Editor Website"
-#~ msgstr "Spletišče urejevalnika besedil"
-
-#~ msgid "Discard"
-#~ msgstr "Zavrzi"
-
-#~ msgid "Highlight Mode"
-#~ msgstr "Način poudarjanja"
-
-#~ msgid "Recent Documents"
-#~ msgstr "Nedavni dokumenti"
-
-#~ msgid "Br_owse Files…"
-#~ msgstr "_Prebrskaj datoteke …"
-
-#~ msgid "Search"
-#~ msgstr "Iskanje"
-
-#~ msgid "Font"
-#~ msgstr "Pisava"
-
-#~ msgid "_Copy All"
-#~ msgstr "Kopiraj _vse"
-
-#~ msgid "_Preferences"
-#~ msgstr "_Nastavitve"
-
-#~ msgid "_Highlight Mode"
-#~ msgstr "_Način poudarjanja"
