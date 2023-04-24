@@ -467,10 +467,21 @@ select_line (GtkTextBuffer *buffer,
              GtkTextIter   *begin,
              GtkTextIter   *end)
 {
+  gboolean had_selection;
+
   g_assert (GTK_IS_TEXT_BUFFER (buffer));
 
-  gtk_text_buffer_get_selection_bounds (buffer, begin, end);
+  had_selection = gtk_text_buffer_get_selection_bounds (buffer, begin, end);
   gtk_text_iter_order (begin, end);
+
+  /* Leave existing line-wise selections in place, such as those
+   * from using ctrl+l to select line.
+   */
+  if (had_selection &&
+      gtk_text_iter_starts_line (begin) &&
+      gtk_text_iter_starts_line (end) &&
+      gtk_text_iter_get_line (begin) != gtk_text_iter_get_line (end))
+    return;
 
   /* Move beginning of selection/cursor to position 0 of first */
   if (!gtk_text_iter_starts_line (begin))
@@ -482,7 +493,7 @@ select_line (GtkTextBuffer *buffer,
 
   /* Swallow the \n with the selection */
   if (!gtk_text_iter_is_end (end))
-    gtk_text_iter_forward_char (end);
+    gtk_text_iter_forward_line (end);
 }
 
 static void
@@ -493,11 +504,25 @@ editor_source_view_action_select_line (GtkWidget  *widget,
   EditorSourceView *self = (EditorSourceView *)widget;
   GtkTextBuffer *buffer;
   GtkTextIter begin, end;
+  GtkTextIter cur_begin, cur_end;
 
   g_assert (EDITOR_IS_SOURCE_VIEW (self));
 
   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (self));
+
   select_line (buffer, &begin, &end);
+
+  /* If our guessed selection matches what we already have selected,
+   * then we want to extend the selection one more line.
+   */
+  if (gtk_text_buffer_get_selection_bounds (buffer, &cur_begin, &cur_end))
+    {
+      gtk_text_iter_order (&cur_begin, &cur_end);
+      if (gtk_text_iter_equal (&cur_begin, &begin) &&
+          gtk_text_iter_equal (&cur_end, &end))
+        gtk_text_iter_forward_line (&end);
+    }
+
   gtk_text_buffer_select_range (buffer, &begin, &end);
 
   /* NOTE: This shouldn't be needed, but due to some invalidation issues in
