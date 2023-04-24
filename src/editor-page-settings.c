@@ -58,6 +58,23 @@ struct _EditorPageSettings
   guint use_system_font : 1;
   guint wrap_text : 1;
   guint auto_indent : 1;
+
+  guint custom_font_set : 1;
+  guint style_scheme_set : 1;
+  guint style_variant_set : 1;
+  guint right_margin_position_set : 1;
+  guint tab_width_set : 1;
+  guint indent_width_set : 1;
+  guint highlight_current_line_set : 1;
+  guint highlight_matching_brackets_set : 1;
+  guint insert_spaces_instead_of_tabs_set : 1;
+  guint show_line_numbers_set : 1;
+  guint show_grid_set : 1;
+  guint show_map_set : 1;
+  guint show_right_margin_set : 1;
+  guint use_system_font_set : 1;
+  guint wrap_text_set : 1;
+  guint auto_indent_set : 1;
 };
 
 enum {
@@ -123,6 +140,11 @@ editor_page_settings_update (EditorPageSettings *self)
 #define UPDATE_SETTING(type, name, NAME, cmp, free_func, dup_func)                    \
   G_STMT_START {                                                                      \
     type name = 0;                                                                    \
+    if (self->name##_set)                                                             \
+      {                                                                               \
+        g_debug ("ignoring providers for %s from user override", #name);              \
+        break;                                                                        \
+      }                                                                               \
     for (guint i = 0; i < self->providers->len; i++)                                  \
       {                                                                               \
         EditorPageSettingsProvider *p = g_ptr_array_index (self->providers, i);       \
@@ -356,6 +378,7 @@ editor_page_settings_set_property (GObject      *object,
     {
     case PROP_AUTO_INDENT:
       self->auto_indent = g_value_get_boolean (value);
+      self->auto_indent_set = TRUE;
       break;
 
     case PROP_DOCUMENT:
@@ -365,70 +388,86 @@ editor_page_settings_set_property (GObject      *object,
     case PROP_CUSTOM_FONT:
       g_free (self->custom_font);
       self->custom_font = g_value_dup_string (value);
+      self->custom_font_set = TRUE;
       break;
 
     case PROP_RIGHT_MARGIN_POSITION:
       self->right_margin_position = g_value_get_uint (value);
+      self->right_margin_position_set = TRUE;
       break;
 
     case PROP_STYLE_SCHEME:
       g_free (self->style_scheme);
       self->style_scheme = g_value_dup_string (value);
+      self->style_scheme_set = TRUE;
       break;
 
     case PROP_STYLE_VARIANT:
       g_free (self->style_variant);
       self->style_variant = g_value_dup_string (value);
+      self->style_variant_set = TRUE;
       break;
 
     case PROP_HIGHLIGHT_CURRENT_LINE:
       self->highlight_current_line = g_value_get_boolean (value);
+      self->highlight_current_line_set = TRUE;
       break;
 
     case PROP_HIGHLIGHT_MATCHING_BRACKETS:
       self->highlight_matching_brackets = g_value_get_boolean (value);
+      self->highlight_matching_brackets_set = TRUE;
       break;
 
     case PROP_INSERT_SPACES_INSTEAD_OF_TABS:
       self->insert_spaces_instead_of_tabs = g_value_get_boolean (value);
+      self->insert_spaces_instead_of_tabs_set = TRUE;
       g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_INDENT_STYLE]);
       break;
 
     case PROP_INDENT_STYLE:
       self->insert_spaces_instead_of_tabs = !!g_value_get_enum (value);
+      self->insert_spaces_instead_of_tabs_set = TRUE;
       g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_INSERT_SPACES_INSTEAD_OF_TABS]);
       break;
 
     case PROP_SHOW_LINE_NUMBERS:
       self->show_line_numbers = g_value_get_boolean (value);
+      self->show_line_numbers_set = TRUE;
       break;
 
     case PROP_SHOW_GRID:
       self->show_grid = g_value_get_boolean (value);
+      self->show_grid_set = TRUE;
       break;
 
     case PROP_SHOW_MAP:
       self->show_map = g_value_get_boolean (value);
+      self->show_map_set = TRUE;
       break;
 
     case PROP_SHOW_RIGHT_MARGIN:
       self->show_right_margin = g_value_get_boolean (value);
+      self->show_right_margin_set = TRUE;
       break;
 
     case PROP_TAB_WIDTH:
       self->tab_width = g_value_get_uint (value);
+      self->tab_width_set = TRUE;
       break;
 
     case PROP_INDENT_WIDTH:
       self->indent_width = g_value_get_int (value);
+      self->indent_width_set = TRUE;
       break;
 
     case PROP_USE_SYSTEM_FONT:
       self->use_system_font = g_value_get_boolean (value);
+      self->use_system_font_set = TRUE;
       break;
 
     case PROP_WRAP_TEXT:
       self->wrap_text = g_value_get_boolean (value);
+      self->wrap_text_set = TRUE;
       break;
 
     default:
