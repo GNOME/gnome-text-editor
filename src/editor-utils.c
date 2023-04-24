@@ -399,7 +399,7 @@ _editor_file_chooser_add_encodings (GtkFileChooser *chooser)
     g_ptr_array_add(labels, (char *)name); \
   } G_STMT_END
 
-  ADD_ENCODING ("auto", g_strdup (N_("Automatically Detected")));
+  ADD_ENCODING ("auto", g_strdup (_("Automatically Detected")));
 
   for (const GSList *l = all; l; l = l->next)
     {
