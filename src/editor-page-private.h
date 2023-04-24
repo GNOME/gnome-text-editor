@@ -23,7 +23,6 @@
 #include <gtksourceview/gtksource.h>
 
 #include "editor-animation.h"
-#include "editor-binding-group.h"
 #include "editor-document-private.h"
 #include "editor-page.h"
 #include "editor-page-settings.h"
@@ -41,7 +40,7 @@ struct _EditorPage
 
   EditorDocument          *document;
   EditorPageSettings      *settings;
-  EditorBindingGroup      *settings_bindings;
+  GBindingGroup           *settings_bindings;
 
   EditorAnimation         *progress_animation;
 

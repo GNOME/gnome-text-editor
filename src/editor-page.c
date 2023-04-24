@@ -124,7 +124,7 @@ editor_page_set_settings (EditorPage         *self,
   g_assert (EDITOR_IS_PAGE_SETTINGS (settings));
 
   if (g_set_object (&self->settings, settings))
-    editor_binding_group_set_source (self->settings_bindings, settings);
+    g_binding_group_set_source (self->settings_bindings, settings);
 }
 
 static void
@@ -385,16 +385,16 @@ font_desc_from_string (GBinding     *binding,
 }
 
 static void
-on_settings_changed_cb (EditorPage         *self,
-                        GParamSpec         *pspec,
-                        EditorBindingGroup *group)
+on_settings_changed_cb (EditorPage    *self,
+                        GParamSpec    *pspec,
+                        GBindingGroup *group)
 {
-  EditorPageSettings *settings;
+  g_autoptr(EditorPageSettings) settings = NULL;
 
   g_assert (EDITOR_IS_PAGE (self));
-  g_assert (EDITOR_IS_BINDING_GROUP (group));
+  g_assert (G_IS_BINDING_GROUP (group));
 
-  settings = EDITOR_PAGE_SETTINGS (editor_binding_group_get_source (group));
+  settings = EDITOR_PAGE_SETTINGS (g_binding_group_dup_source (group));
 
   _editor_page_actions_bind_settings (self, settings);
 }
@@ -409,7 +409,7 @@ editor_page_constructed (GObject *object)
 
   G_OBJECT_CLASS (editor_page_parent_class)->constructed (object);
 
-  self->settings_bindings = editor_binding_group_new ();
+  self->settings_bindings = g_binding_group_new ();
 
   g_signal_connect_object (self->settings_bindings,
                            "notify::source",
@@ -417,67 +417,67 @@ editor_page_constructed (GObject *object)
                            self,
                            G_CONNECT_SWAPPED);
 
-  editor_binding_group_bind_full (self->settings_bindings, "custom-font",
-                                  self->view, "font-desc",
-                                  G_BINDING_SYNC_CREATE,
-                                  font_desc_from_string, NULL, NULL, NULL);
-  editor_binding_group_bind (self->settings_bindings, "insert-spaces-instead-of-tabs",
-                             self->view, "insert-spaces-instead-of-tabs",
-                             G_BINDING_SYNC_CREATE);
-  editor_binding_group_bind (self->settings_bindings, "right-margin-position",
-                             self->view, "right-margin-position",
-                             G_BINDING_SYNC_CREATE);
-  editor_binding_group_bind (self->settings_bindings, "show-line-numbers",
-                             self->view, "show-line-numbers",
-                             G_BINDING_SYNC_CREATE);
-  editor_binding_group_bind (self->settings_bindings, "show-right-margin",
-                             self->view, "show-right-margin",
-                             G_BINDING_SYNC_CREATE);
-  editor_binding_group_bind (self->settings_bindings, "highlight-current-line",
-                             self->view, "highlight-current-line",
-                             G_BINDING_SYNC_CREATE);
-  editor_binding_group_bind (self->settings_bindings, "highlight-matching-brackets",
-                             self->document, "highlight-matching-brackets",
-                             G_BINDING_SYNC_CREATE);
-  editor_binding_group_bind_full (self->settings_bindings, "show-grid",
-                                  self->view, "background-pattern",
-                                  G_BINDING_SYNC_CREATE,
-                                  _editor_gboolean_to_background_pattern,
-                                  NULL, NULL, NULL);
-  editor_binding_group_bind (self->settings_bindings, "show-map",
-                             self->map, "visible",
-                             G_BINDING_SYNC_CREATE);
-  editor_binding_group_bind_full (self->settings_bindings, "show-map",
-                                  self->scroller, "vscrollbar-policy",
-                                  G_BINDING_SYNC_CREATE,
-                                  _editor_gboolean_to_scroll_policy,
-                                  NULL, NULL, NULL);
-  editor_binding_group_bind (self->settings_bindings, "tab-width",
-                             self->view, "tab-width",
-                             G_BINDING_SYNC_CREATE);
-  editor_binding_group_bind (self->settings_bindings, "indent-width",
-                             self->view, "indent-width",
-                             G_BINDING_SYNC_CREATE);
-  editor_binding_group_bind (self->settings_bindings, "auto-indent",
-                             self->view, "auto-indent",
-                             G_BINDING_SYNC_CREATE);
-  editor_binding_group_bind_full (self->settings_bindings, "wrap-text",
-                                  self->view, "wrap-mode",
-                                  G_BINDING_SYNC_CREATE,
-                                  _editor_gboolean_to_wrap_mode,
-                                  NULL, NULL, NULL);
-  editor_binding_group_bind_full (self->settings_bindings, "style-scheme",
-                                  self->document, "style-scheme",
-                                  G_BINDING_SYNC_CREATE,
-                                  _editor_gchararray_to_style_scheme,
-                                  NULL, NULL, NULL);
+  g_binding_group_bind_full (self->settings_bindings, "custom-font",
+                             self->view, "font-desc",
+                             G_BINDING_SYNC_CREATE,
+                             font_desc_from_string, NULL, NULL, NULL);
+  g_binding_group_bind (self->settings_bindings, "insert-spaces-instead-of-tabs",
+                        self->view, "insert-spaces-instead-of-tabs",
+                        G_BINDING_SYNC_CREATE);
+  g_binding_group_bind (self->settings_bindings, "right-margin-position",
+                        self->view, "right-margin-position",
+                        G_BINDING_SYNC_CREATE);
+  g_binding_group_bind (self->settings_bindings, "show-line-numbers",
+                        self->view, "show-line-numbers",
+                        G_BINDING_SYNC_CREATE);
+  g_binding_group_bind (self->settings_bindings, "show-right-margin",
+                        self->view, "show-right-margin",
+                        G_BINDING_SYNC_CREATE);
+  g_binding_group_bind (self->settings_bindings, "highlight-current-line",
+                        self->view, "highlight-current-line",
+                        G_BINDING_SYNC_CREATE);
+  g_binding_group_bind (self->settings_bindings, "highlight-matching-brackets",
+                        self->document, "highlight-matching-brackets",
+                        G_BINDING_SYNC_CREATE);
+  g_binding_group_bind_full (self->settings_bindings, "show-grid",
+                             self->view, "background-pattern",
+                             G_BINDING_SYNC_CREATE,
+                             _editor_gboolean_to_background_pattern,
+                             NULL, NULL, NULL);
+  g_binding_group_bind (self->settings_bindings, "show-map",
+                        self->map, "visible",
+                        G_BINDING_SYNC_CREATE);
+  g_binding_group_bind_full (self->settings_bindings, "show-map",
+                             self->scroller, "vscrollbar-policy",
+                             G_BINDING_SYNC_CREATE,
+                             _editor_gboolean_to_scroll_policy,
+                             NULL, NULL, NULL);
+  g_binding_group_bind (self->settings_bindings, "tab-width",
+                        self->view, "tab-width",
+                        G_BINDING_SYNC_CREATE);
+  g_binding_group_bind (self->settings_bindings, "indent-width",
+                        self->view, "indent-width",
+                        G_BINDING_SYNC_CREATE);
+  g_binding_group_bind (self->settings_bindings, "auto-indent",
+                        self->view, "auto-indent",
+                        G_BINDING_SYNC_CREATE);
+  g_binding_group_bind_full (self->settings_bindings, "wrap-text",
+                             self->view, "wrap-mode",
+                             G_BINDING_SYNC_CREATE,
+                             _editor_gboolean_to_wrap_mode,
+                             NULL, NULL, NULL);
+  g_binding_group_bind_full (self->settings_bindings, "style-scheme",
+                             self->document, "style-scheme",
+                             G_BINDING_SYNC_CREATE,
+                             _editor_gchararray_to_style_scheme,
+                             NULL, NULL, NULL);
 
   /* Setup margin tweaks for line numbers */
-  editor_binding_group_bind_full (self->settings_bindings, "show-line-numbers",
-                                  self->view, "left-margin",
-                                  G_BINDING_SYNC_CREATE,
-                                  boolean_to_left_margin,
-                                  NULL, NULL, NULL);
+  g_binding_group_bind_full (self->settings_bindings, "show-line-numbers",
+                             self->view, "left-margin",
+                             G_BINDING_SYNC_CREATE,
+                             boolean_to_left_margin,
+                             NULL, NULL, NULL);
 
   editor_page_document_notify_busy_cb (self, NULL, self->document);
   editor_page_document_notify_language_cb (self, NULL, self->document);

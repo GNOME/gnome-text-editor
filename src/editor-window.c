@@ -239,19 +239,19 @@ editor_window_cursor_moved_cb (EditorWindow   *self,
 }
 
 static void
-editor_window_page_bind_cb (EditorWindow      *self,
-                            EditorPage        *page,
-                            EditorSignalGroup *group)
+editor_window_page_bind_cb (EditorWindow *self,
+                            EditorPage   *page,
+                            GSignalGroup *group)
 {
   EditorDocument *document;
 
   g_assert (EDITOR_IS_WINDOW (self));
   g_assert (EDITOR_IS_PAGE (page));
-  g_assert (EDITOR_IS_SIGNAL_GROUP (group));
+  g_assert (G_IS_SIGNAL_GROUP (group));
 
   document = editor_page_get_document (page);
 
-  editor_signal_group_set_target (self->document_signals, document);
+  g_signal_group_set_target (self->document_signals, document);
   editor_window_cursor_moved_cb (self, document);
 
   _editor_window_actions_update (self, page);
@@ -261,11 +261,11 @@ editor_window_page_bind_cb (EditorWindow      *self,
 }
 
 static void
-editor_window_page_unbind_cb (EditorWindow      *self,
-                              EditorSignalGroup *group)
+editor_window_page_unbind_cb (EditorWindow *self,
+                              GSignalGroup *group)
 {
   g_assert (EDITOR_IS_WINDOW (self));
-  g_assert (EDITOR_IS_SIGNAL_GROUP (group));
+  g_assert (G_IS_SIGNAL_GROUP (group));
 
   _editor_window_actions_update (self, NULL);
 }
@@ -309,8 +309,8 @@ editor_window_notify_selected_page_cb (EditorWindow *self,
 
   self->visible_page = page;
 
-  editor_binding_group_set_source (self->page_bindings, page);
-  editor_signal_group_set_target (self->page_signals, page);
+  g_binding_group_set_source (self->page_bindings, page);
+  g_signal_group_set_target (self->page_signals, page);
   editor_statusbar_bind_page (self->statusbar, page);
 
   _editor_window_actions_update (self, page);
@@ -525,7 +525,7 @@ editor_window_constructed (GObject *object)
                                    "hexpand", TRUE,
                                    "label", "100%",
                                    NULL);
-  editor_binding_group_bind (self->page_bindings, "zoom-label", self->zoom_label, "label", 0);
+  g_binding_group_bind (self->page_bindings, "zoom-label", self->zoom_label, "label", 0);
   gtk_box_append (GTK_BOX (zoom_box), zoom_out);
   gtk_box_append (GTK_BOX (zoom_box), self->zoom_label);
   gtk_box_append (GTK_BOX (zoom_box), zoom_in);
@@ -822,9 +822,9 @@ editor_window_dispose (GObject *object)
 
   g_clear_object (&self->settings);
 
-  editor_binding_group_set_source (self->page_bindings, NULL);
-  editor_signal_group_set_target (self->page_signals, NULL);
-  editor_signal_group_set_target (self->document_signals, NULL);
+  g_binding_group_set_source (self->page_bindings, NULL);
+  g_signal_group_set_target (self->page_signals, NULL);
+  g_signal_group_set_target (self->document_signals, NULL);
 
   if (self->inhibit_cookie != 0)
     {
@@ -1028,7 +1028,7 @@ editor_window_init (EditorWindow *self)
                             G_CALLBACK (editor_window_notify_selected_page_cb),
                             self);
 
-  self->page_signals = editor_signal_group_new (EDITOR_TYPE_PAGE);
+  self->page_signals = g_signal_group_new (EDITOR_TYPE_PAGE);
 
   g_signal_connect_object (self->page_signals,
                            "bind",
@@ -1042,62 +1042,62 @@ editor_window_init (EditorWindow *self)
                            self,
                            G_CONNECT_SWAPPED);
 
-  editor_signal_group_connect_object (self->page_signals,
-                                      "notify::can-save",
-                                      G_CALLBACK (editor_window_update_actions),
-                                      self,
-                                      G_CONNECT_SWAPPED);
-  editor_signal_group_connect_object (self->page_signals,
-                                      "notify::is-modified",
-                                      G_CALLBACK (editor_window_update_actions),
-                                      self,
-                                      G_CONNECT_SWAPPED);
-  editor_signal_group_connect_object (self->page_signals,
-                                      "notify::can-discard",
-                                      G_CALLBACK (update_subtitle_visibility_cb),
-                                      self,
-                                      G_CONNECT_SWAPPED);
-  editor_signal_group_connect_object (self->page_signals,
-                                      "notify::subtitle",
-                                      G_CALLBACK (update_subtitle_visibility_cb),
-                                      self,
-                                      G_CONNECT_SWAPPED);
-  editor_signal_group_connect_object (self->page_signals,
-                                      "notify::language-name",
-                                      G_CALLBACK (update_language_name_cb),
-                                      self,
-                                      G_CONNECT_SWAPPED);
+  g_signal_group_connect_object (self->page_signals,
+                                 "notify::can-save",
+                                 G_CALLBACK (editor_window_update_actions),
+                                 self,
+                                 G_CONNECT_SWAPPED);
+  g_signal_group_connect_object (self->page_signals,
+                                 "notify::is-modified",
+                                 G_CALLBACK (editor_window_update_actions),
+                                 self,
+                                 G_CONNECT_SWAPPED);
+  g_signal_group_connect_object (self->page_signals,
+                                 "notify::can-discard",
+                                 G_CALLBACK (update_subtitle_visibility_cb),
+                                 self,
+                                 G_CONNECT_SWAPPED);
+  g_signal_group_connect_object (self->page_signals,
+                                 "notify::subtitle",
+                                 G_CALLBACK (update_subtitle_visibility_cb),
+                                 self,
+                                 G_CONNECT_SWAPPED);
+  g_signal_group_connect_object (self->page_signals,
+                                 "notify::language-name",
+                                 G_CALLBACK (update_language_name_cb),
+                                 self,
+                                 G_CONNECT_SWAPPED);
 
-  self->document_signals = editor_signal_group_new (EDITOR_TYPE_DOCUMENT);
+  self->document_signals = g_signal_group_new (EDITOR_TYPE_DOCUMENT);
 
-  editor_signal_group_connect_object (self->document_signals,
-                                      "cursor-moved",
-                                      G_CALLBACK (editor_window_cursor_moved_cb),
-                                      self,
-                                      G_CONNECT_SWAPPED);
+  g_signal_group_connect_object (self->document_signals,
+                                 "cursor-moved",
+                                 G_CALLBACK (editor_window_cursor_moved_cb),
+                                 self,
+                                 G_CONNECT_SWAPPED);
 
-  self->page_bindings = editor_binding_group_new ();
+  self->page_bindings = g_binding_group_new ();
 
-  editor_binding_group_bind_full (self->page_bindings, "title",
-                                  self, "title",
-                                  G_BINDING_SYNC_CREATE,
-                                  transform_window_title, NULL, NULL, NULL);
-  editor_binding_group_bind_full (self->page_bindings, "indicator",
-                                  self->indicator, "visible",
-                                  G_BINDING_SYNC_CREATE,
-                                  indicator_to_boolean, NULL, NULL, NULL);
-  editor_binding_group_bind (self->page_bindings, "indicator",
-                             self->indicator, "gicon",
-                             G_BINDING_SYNC_CREATE);
-  editor_binding_group_bind (self->page_bindings, "title",
-                             self->title, "label",
-                             G_BINDING_SYNC_CREATE);
-  editor_binding_group_bind (self->page_bindings, "subtitle",
-                             self->subtitle, "label",
-                             G_BINDING_SYNC_CREATE);
-  editor_binding_group_bind (self->page_bindings, "is-modified",
-                             self->is_modified, "visible",
-                             G_BINDING_SYNC_CREATE);
+  g_binding_group_bind_full (self->page_bindings, "title",
+                             self, "title",
+                             G_BINDING_SYNC_CREATE,
+                             transform_window_title, NULL, NULL, NULL);
+  g_binding_group_bind_full (self->page_bindings, "indicator",
+                             self->indicator, "visible",
+                             G_BINDING_SYNC_CREATE,
+                             indicator_to_boolean, NULL, NULL, NULL);
+  g_binding_group_bind (self->page_bindings, "indicator",
+                        self->indicator, "gicon",
+                        G_BINDING_SYNC_CREATE);
+  g_binding_group_bind (self->page_bindings, "title",
+                        self->title, "label",
+                        G_BINDING_SYNC_CREATE);
+  g_binding_group_bind (self->page_bindings, "subtitle",
+                        self->subtitle, "label",
+                        G_BINDING_SYNC_CREATE);
+  g_binding_group_bind (self->page_bindings, "is-modified",
+                        self->is_modified, "visible",
+                        G_BINDING_SYNC_CREATE);
 
   _editor_window_dnd_init (self);
 

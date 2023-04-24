@@ -20,19 +20,17 @@
 
 #include "config.h"
 
-#include "editor-binding-group.h"
 #include "editor-document-private.h"
 #include "editor-page-private.h"
-#include "editor-signal-group.h"
 #include "editor-statusbar-private.h"
 
 struct _EditorStatusbar
 {
   GtkWidget           parent_instance;
 
-  EditorBindingGroup *page_bindings;
-  EditorSignalGroup  *document_signals;
-  EditorBindingGroup *vim_bindings;
+  GBindingGroup      *page_bindings;
+  GSignalGroup       *document_signals;
+  GBindingGroup      *vim_bindings;
 
   GtkWidget          *box;
   GtkLabel           *command_bar_text;
@@ -190,25 +188,25 @@ editor_statusbar_init (EditorStatusbar *self)
 {
   gtk_widget_init_template (GTK_WIDGET (self));
 
-  self->vim_bindings = editor_binding_group_new ();
-  editor_binding_group_bind (self->vim_bindings, "command-bar-text",
-                             self, "command-bar-text",
-                             G_BINDING_SYNC_CREATE);
-  editor_binding_group_bind (self->vim_bindings, "command-text",
-                             self, "command-text",
-                             G_BINDING_SYNC_CREATE);
+  self->vim_bindings = g_binding_group_new ();
+  g_binding_group_bind (self->vim_bindings, "command-bar-text",
+                        self, "command-bar-text",
+                        G_BINDING_SYNC_CREATE);
+  g_binding_group_bind (self->vim_bindings, "command-text",
+                        self, "command-text",
+                        G_BINDING_SYNC_CREATE);
 
-  self->page_bindings = editor_binding_group_new ();
-  editor_binding_group_bind (self->page_bindings, "position-label",
-                             self->position, "label",
-                             G_BINDING_SYNC_CREATE);
+  self->page_bindings = g_binding_group_new ();
+  g_binding_group_bind (self->page_bindings, "position-label",
+                        self->position, "label",
+                        G_BINDING_SYNC_CREATE);
 
-  self->document_signals = editor_signal_group_new (EDITOR_TYPE_DOCUMENT);
-  editor_signal_group_connect_object (self->document_signals,
-                                      "cursor-moved",
-                                      G_CALLBACK (editor_statusbar_cursor_moved_cb),
-                                      self,
-                                      G_CONNECT_SWAPPED);
+  self->document_signals = g_signal_group_new (EDITOR_TYPE_DOCUMENT);
+  g_signal_group_connect_object (self->document_signals,
+                                 "cursor-moved",
+                                 G_CALLBACK (editor_statusbar_cursor_moved_cb),
+                                 self,
+                                 G_CONNECT_SWAPPED);
 }
 
 const char *
@@ -310,9 +308,9 @@ editor_statusbar_bind_page (EditorStatusbar *self,
       document = page->document;
     }
 
-  editor_binding_group_set_source (self->page_bindings, page);
-  editor_binding_group_set_source (self->vim_bindings, vim);
-  editor_signal_group_set_target (self->document_signals, document);
+  g_binding_group_set_source (self->page_bindings, page);
+  g_binding_group_set_source (self->vim_bindings, vim);
+  g_signal_group_set_target (self->document_signals, document);
 
   if (document != NULL)
     editor_statusbar_cursor_moved_cb (self, document);

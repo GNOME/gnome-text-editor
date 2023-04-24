@@ -22,11 +22,9 @@
 
 #include <adwaita.h>
 
-#include "editor-binding-group.h"
 #include "editor-open-popover-private.h"
 #include "editor-page-private.h"
 #include "editor-position-label-private.h"
-#include "editor-signal-group.h"
 #include "editor-statusbar-private.h"
 #include "editor-window.h"
 
@@ -61,9 +59,9 @@ struct _EditorWindow
   EditorPage           *visible_page;
 
   /* Owned References */
-  EditorBindingGroup   *page_bindings;
-  EditorSignalGroup    *page_signals;
-  EditorSignalGroup    *document_signals;
+  GBindingGroup        *page_bindings;
+  GSignalGroup         *page_signals;
+  GSignalGroup         *document_signals;
   GSettings            *settings;
   GArray               *closed_items;
 

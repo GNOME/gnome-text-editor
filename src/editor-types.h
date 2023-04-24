@@ -28,7 +28,6 @@
 G_BEGIN_DECLS
 
 typedef struct _EditorApplication          EditorApplication;
-typedef struct _EditorBindingGroup         EditorBindingGroup;
 typedef struct _EditorDocument             EditorDocument;
 typedef struct _EditorLanguageDialog       EditorLanguageDialog;
 typedef struct _EditorPage                 EditorPage;
@@ -39,7 +38,6 @@ typedef struct _EditorPreferencesSpin      EditorPreferencesSpin;
 typedef struct _EditorPreferencesSwitch    EditorPreferencesSwitch;
 typedef struct _EditorPreferencesWindow    EditorPreferencesWindow;
 typedef struct _EditorSession              EditorSession;
-typedef struct _EditorSignalGroup          EditorSignalGroup;
 typedef struct _EditorSpellChecker         EditorSpellChecker;
 typedef struct _EditorSpellLanguage        EditorSpellLanguage;
 typedef struct _EditorSpellLanguageInfo    EditorSpellLanguageInfo;
