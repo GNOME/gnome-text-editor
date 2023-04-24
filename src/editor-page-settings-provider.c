@@ -409,3 +409,25 @@ editor_page_settings_provider_get_highlight_current_line (EditorPageSettingsProv
 
   return FALSE;
 }
+
+/**
+ * editor_page_settings_provider_get_highlight_matching_brackets:
+ * @self: a #EditorPageSettingsProvider
+ * @highlight_matching_brackets: (out) (optional): a location to store the setting
+ *
+ * Returns: %TRUE if @highlight_matching_brackets was set by the provider.
+ */
+gboolean
+editor_page_settings_provider_get_highlight_matching_brackets (EditorPageSettingsProvider *self,
+                                                               gboolean                   *highlight_matching_brackets)
+{
+  g_return_val_if_fail (EDITOR_IS_PAGE_SETTINGS_PROVIDER (self), FALSE);
+
+  if (highlight_matching_brackets != NULL)
+    *highlight_matching_brackets = FALSE;
+
+  if (EDITOR_PAGE_SETTINGS_PROVIDER_GET_IFACE (self)->get_highlight_matching_brackets)
+    return EDITOR_PAGE_SETTINGS_PROVIDER_GET_IFACE (self)->get_highlight_matching_brackets (self, highlight_matching_brackets);
+
+  return FALSE;
+}

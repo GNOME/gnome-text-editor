@@ -39,6 +39,7 @@ gboolean            editor_page_settings_get_show_line_numbers             (Edit
 gboolean            editor_page_settings_get_show_grid                     (EditorPageSettings *self);
 gboolean            editor_page_settings_get_show_map                      (EditorPageSettings *self);
 gboolean            editor_page_settings_get_show_right_margin             (EditorPageSettings *self);
+gboolean            editor_page_settings_get_highlight_matching_brackets   (EditorPageSettings *self);
 gboolean            editor_page_settings_get_use_system_font               (EditorPageSettings *self);
 gboolean            editor_page_settings_get_wrap_text                     (EditorPageSettings *self);
 guint               editor_page_settings_get_tab_width                     (EditorPageSettings *self);

@@ -52,6 +52,7 @@ GSETTINGS_GETTER (gboolean, boolean, auto_indent, "auto-indent")
 GSETTINGS_GETTER (gboolean, boolean, show_map, "show-map")
 GSETTINGS_GETTER (gboolean, boolean, show_grid, "show-grid")
 GSETTINGS_GETTER (gboolean, boolean, highlight_current_line, "highlight-current-line")
+GSETTINGS_GETTER (gboolean, boolean, highlight_matching_brackets, "highlight-matching-brackets")
 GSETTINGS_GETTER (guint, uint, right_margin_position, "right-margin-position")
 
 static gboolean
@@ -129,6 +130,7 @@ page_settings_provider_iface_init (EditorPageSettingsProviderInterface *iface)
   iface->get_style_scheme = editor_page_gsettings_get_style_scheme;
   iface->get_style_variant = editor_page_gsettings_get_style_variant;
   iface->get_highlight_current_line = editor_page_gsettings_get_highlight_current_line;
+  iface->get_highlight_matching_brackets = editor_page_gsettings_get_highlight_matching_brackets;
 }
 
 G_DEFINE_TYPE_WITH_CODE (EditorPageGsettings, editor_page_gsettings, G_TYPE_OBJECT,

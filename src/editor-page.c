@@ -436,6 +436,9 @@ editor_page_constructed (GObject *object)
   editor_binding_group_bind (self->settings_bindings, "highlight-current-line",
                              self->view, "highlight-current-line",
                              G_BINDING_SYNC_CREATE);
+  editor_binding_group_bind (self->settings_bindings, "highlight-matching-brackets",
+                             self->document, "highlight-matching-brackets",
+                             G_BINDING_SYNC_CREATE);
   editor_binding_group_bind_full (self->settings_bindings, "show-grid",
                                   self->view, "background-pattern",
                                   G_BINDING_SYNC_CREATE,

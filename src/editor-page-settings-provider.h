@@ -65,6 +65,8 @@ struct _EditorPageSettingsProviderInterface
                                                   gboolean                   *auto_indent);
   gboolean  (*get_indent_width)                  (EditorPageSettingsProvider *self,
                                                   int                        *indent_width);
+  gboolean  (*get_highlight_matching_brackets)   (EditorPageSettingsProvider *self,
+                                                  gboolean                   *highlight_matching_brackets);
 };
 
 void     editor_page_settings_provider_emit_changed                      (EditorPageSettingsProvider  *self);
@@ -101,6 +103,8 @@ gboolean editor_page_settings_provider_get_show_map                      (Editor
 gboolean editor_page_settings_provider_get_show_grid                     (EditorPageSettingsProvider  *self,
                                                                           gboolean                    *show_grid);
 gboolean editor_page_settings_provider_get_highlight_current_line        (EditorPageSettingsProvider  *self,
+                                                                          gboolean                    *highlight_current_line);
+gboolean editor_page_settings_provider_get_highlight_matching_brackets   (EditorPageSettingsProvider  *self,
                                                                           gboolean                    *highlight_current_line);
 
 G_END_DECLS

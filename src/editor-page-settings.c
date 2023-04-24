@@ -49,6 +49,7 @@ struct _EditorPageSettings
   int indent_width;
 
   guint highlight_current_line : 1;
+  guint highlight_matching_brackets : 1;
   guint insert_spaces_instead_of_tabs : 1;
   guint show_line_numbers : 1;
   guint show_grid : 1;
@@ -66,6 +67,7 @@ enum {
   PROP_STYLE_VARIANT,
   PROP_DOCUMENT,
   PROP_HIGHLIGHT_CURRENT_LINE,
+  PROP_HIGHLIGHT_MATCHING_BRACKETS,
   PROP_INDENT_WIDTH,
   PROP_INDENT_STYLE,
   PROP_INSERT_SPACES_INSTEAD_OF_TABS,
@@ -144,6 +146,7 @@ editor_page_settings_update (EditorPageSettings *self)
   UPDATE_SETTING (gboolean, show_map, SHOW_MAP, cmp_boolean, (void), (gboolean));
   UPDATE_SETTING (gboolean, show_right_margin, SHOW_RIGHT_MARGIN, cmp_boolean, (void), (gboolean));
   UPDATE_SETTING (gboolean, highlight_current_line, HIGHLIGHT_CURRENT_LINE, cmp_boolean, (void), (gboolean));
+  UPDATE_SETTING (gboolean, highlight_matching_brackets, HIGHLIGHT_MATCHING_BRACKETS, cmp_boolean, (void), (gboolean));
   UPDATE_SETTING (gboolean, use_system_font, USE_SYSTEM_FONT, cmp_boolean, (void), (gboolean));
   UPDATE_SETTING (gboolean, wrap_text, WRAP_TEXT, cmp_boolean, (void), (gboolean));
   UPDATE_SETTING (gboolean, auto_indent, AUTO_INDENT, cmp_boolean, (void), (gboolean));
@@ -284,6 +287,10 @@ editor_page_settings_get_property (GObject    *object,
       g_value_set_boolean (value, editor_page_settings_get_highlight_current_line (self));
       break;
 
+    case PROP_HIGHLIGHT_MATCHING_BRACKETS:
+      g_value_set_boolean (value, editor_page_settings_get_highlight_matching_brackets (self));
+      break;
+
     case PROP_INSERT_SPACES_INSTEAD_OF_TABS:
       g_value_set_boolean (value, editor_page_settings_get_insert_spaces_instead_of_tabs (self));
       break;
@@ -376,6 +383,10 @@ editor_page_settings_set_property (GObject      *object,
 
     case PROP_HIGHLIGHT_CURRENT_LINE:
       self->highlight_current_line = g_value_get_boolean (value);
+      break;
+
+    case PROP_HIGHLIGHT_MATCHING_BRACKETS:
+      self->highlight_matching_brackets = g_value_get_boolean (value);
       break;
 
     case PROP_INSERT_SPACES_INSTEAD_OF_TABS:
@@ -471,6 +482,11 @@ editor_page_settings_class_init (EditorPageSettingsClass *klass)
                           FALSE,
                           (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
+  properties [PROP_HIGHLIGHT_MATCHING_BRACKETS] =
+    g_param_spec_boolean ("highlight-matching-brackets", NULL, NULL,
+                          TRUE,
+                          (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+
   properties [PROP_INSERT_SPACES_INSTEAD_OF_TABS] =
     g_param_spec_boolean ("insert-spaces-instead-of-tabs",
                           "Insert Spaces Instead of Tabs",
@@ -563,6 +579,7 @@ editor_page_settings_init (EditorPageSettings *self)
   self->providers = g_ptr_array_new_with_free_func (g_object_unref);
   self->auto_indent = TRUE;
   self->use_system_font = TRUE;
+  self->highlight_matching_brackets = TRUE;
   self->right_margin_position = 80;
   self->tab_width = 8;
   self->indent_width = -1;
@@ -701,4 +718,12 @@ editor_page_settings_get_highlight_current_line (EditorPageSettings *self)
   g_return_val_if_fail (EDITOR_IS_PAGE_SETTINGS (self), FALSE);
 
   return self->highlight_current_line;
+}
+
+gboolean
+editor_page_settings_get_highlight_matching_brackets (EditorPageSettings *self)
+{
+  g_return_val_if_fail (EDITOR_IS_PAGE_SETTINGS (self), FALSE);
+
+  return self->highlight_matching_brackets;
 }
