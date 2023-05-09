@@ -1,26 +1,26 @@
 # Indonesian translation for gnome-text-editor.
 # Copyright (C) 2022 gnome-text-editor's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-text-editor package.
-# Andika Triwidada <atriwidada@gnome.org>, 2022.
+# Andika Triwidada <andika@gmail.com>, 2022, 2023.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-text-editor main\n"
-"POT-Creation-Date: 2022-03-04 14:25+0000\n"
-"PO-Revision-Date: 2022-03-06 18:35+0700\n"
+"Project-Id-Version: gnome-text-editor help gnome-44\n"
+"POT-Creation-Date: 2023-04-24 20:22+0000\n"
+"PO-Revision-Date: 2023-05-09 11:56+0700\n"
+"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: Indonesian <gnome-l10n-id@googlegroups.com>\n"
+"Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: id\n"
-"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
-"X-Generator: Poedit 2.4.2\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr "Andika Triwidada <andika@gmail.com>, 2022."
+msgstr "Andika Triwidada <andika@gmail.com>, 2022, 2023."
 
 #. (itstool) path: info/title
 #: C/index.page:7
@@ -87,12 +87,12 @@ msgstr "Membuka berkas"
 #: C/basics-open-file.page:13
 msgid ""
 "To open a file in GNOME Text Editor use <gui style=\"button\">Open</gui> in "
-"the Headerbar and <gui>Browse Files...</gui> or the shortcut "
+"the Headerbar and <gui>Open New Document</gui> or the shortcut "
 "<keyseq><key>Ctrl</key><key>O</key></keyseq>."
 msgstr ""
-"Untuk membuka sebuah berkas dalam GNOME Penyunting Teks gunakan <gui style="
-"\"button\">Buka</gui> dalam Bilah Kepala dan <gui>Ramban Berkas...</gui> "
-"atau pintasan <keyseq><key>Ctrl</key><key>O</key></keyseq>."
+"Untuk membuka sebuah berkas dalam GNOME Penyunting Teks gunakan <gui "
+"style=\"button\">Buka</gui> dalam Bilah Kepala dan <gui>Buka Berkas Baru</"
+"gui> atau pintasan <keyseq><key>Ctrl</key><key>O</key></keyseq>."
 
 #. (itstool) path: page/p
 #: C/basics-open-file.page:17
@@ -132,11 +132,15 @@ msgstr ""
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
 #: C/basics-open-file.page:27
+#| msgctxt "_"
+#| msgid ""
+#| "external ref='media/search-recent.png' "
+#| "md5='f57950a08e6c7159429d030eb349814f'"
 msgctxt "_"
 msgid ""
-"external ref='media/search-recent.png' md5='f57950a08e6c7159429d030eb349814f'"
+"external ref='media/search-recent.png' md5='8ddac07e5fb592e68c6208171a52d52f'"
 msgstr ""
-"external ref='media/search-recent.png' md5='f57950a08e6c7159429d030eb349814f'"
+"external ref='media/search-recent.png' md5='8ddac07e5fb592e68c6208171a52d52f'"
 
 #. (itstool) path: info/keywords
 #: C/basics-create-new-file.page:19
@@ -220,7 +224,7 @@ msgstr ""
 #. (itstool) path: info/desc
 #: C/edit-search-and-replace.page:33
 msgid "Search and replace text"
-msgstr "Cari dan ganti teks"
+msgstr "Mencari dan mengganti teks"
 
 #. (itstool) path: info/keywords
 #: C/edit-search-and-replace.page:35
@@ -250,11 +254,11 @@ msgstr "Cari teks"
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:45
 msgid ""
-"Activate the search panel via <guiseq><gui>Hamburger Menu</gui><gui>Find/"
+"Activate the search panel via <guiseq><gui>Main Menu</gui><gui>Find/"
 "Replace...</gui></guiseq> or activate it via <keyseq><key>Ctrl</key><key>F</"
 "key></keyseq>."
 msgstr ""
-"Aktifkan panel pencarian melalui <guiseq><gui>Menu Hamburger</gui><gui>Cari/"
+"Aktifkan panel pencarian melalui <guiseq><gui>Menu Utama</gui><gui>Cari/"
 "Ganti...</gui></guiseq> atau aktifkan itu melalui <keyseq><key>Ctrl</"
 "key><key>F</key></keyseq>."
 
@@ -338,22 +342,22 @@ msgstr "Mengganti teks"
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:66
 msgid ""
-"Activate the search panel via <guiseq><gui>Hamburger Menu</gui><gui>Find/"
+"Activate the search panel via <guiseq><gui>Main Menu</gui><gui>Find/"
 "Replace...</gui></guiseq> or activate it via <keyseq><key>Ctrl</key><key>H</"
 "key></keyseq>."
 msgstr ""
-"Aktifkan panel pencarian melalui <guiseq><gui>Menu Hamburger</gui><gui>Cari/"
+"Aktifkan panel pencarian melalui <guiseq><gui>Menu Utama</gui><gui>Cari/"
 "Ganti...</gui></guiseq> atau aktifkan itu melalui <keyseq><key>Ctrl</"
-"key><key>F</key></keyseq>."
+"key><key>H</key></keyseq>."
 
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:67
 msgid ""
-"In case you opened the search panel via the <gui>Hamburger Menu</gui> you "
-"have to click the button for activating the replace functionality."
+"In case you opened the search panel via the <gui>Main Menu</gui> you have to "
+"click the button for activating the replace functionality."
 msgstr ""
-"Dalam hal Anda membuka panel pencarian melalui <gui>Menu Hamburger</gui> "
-"Anda harus mengklik tombol untuk mengaktifkan fungsionalitas penggantian."
+"Dalam hal Anda membuka panel pencarian melalui <gui>Menu Utama</gui> Anda "
+"harus mengklik tombol untuk mengaktifkan fungsionalitas penggantian."
 
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:68
@@ -467,12 +471,12 @@ msgstr "Membuang semua perubahan sejak penyimpanan terakhir"
 #. (itstool) path: section/p
 #: C/edit-undo-redo.page:75
 msgid ""
-"<guiseq> <gui>Menu</gui> <gui>Discard Changes</gui> </guiseq> will "
+"<guiseq> <gui>Main Menu</gui> <gui>Discard Changes</gui> </guiseq> will "
 "permanently discard all changes made to a file since it was last saved."
 msgstr ""
-"<guiseq> <gui>Menu</gui> <gui>Buang Perubahan</gui> </guiseq> akan secara "
-"permanen membuang semua perubahan yang dibuat ke suatu berkas sejak itu "
-"terakhir kali disimpan."
+"<guiseq> <gui>Menu Utama</gui> <gui>Buang Perubahan</gui> </guiseq> akan "
+"secara permanen membuang semua perubahan yang dibuat ke suatu berkas sejak "
+"itu terakhir kali disimpan."
 
 #. (itstool) path: p/link
 #: C/legal.xml:4
