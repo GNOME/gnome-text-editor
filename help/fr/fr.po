@@ -1,26 +1,31 @@
 # French translation for gnome-text-editor.
 # Copyright (C) 2022 gnome-text-editor's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-text-editor package.
-# Irénée THIRION <irenee.thirion@e.email>, 2022.
+# Irénée THIRION <irenee.thirion@e.email>, 2022-2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
-"POT-Creation-Date: 2022-05-29 14:50+0000\n"
-"PO-Revision-Date: 2022-05-29 11:25+0200\n"
-"Last-Translator: Irénée THIRION <irenee.thirion@e.email>\n"
-"Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
+"POT-Creation-Date: 2023-05-16 08:18+0000\n"
+"PO-Revision-Date: 2023-03-03 18:20+0100\n"
+"Last-Translator: Irénée Thirion <irenee.thirion@e.email>\n"
+"Language-Team: French <gnomefr@traduc.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Gtranslator 40.0\n"
+"X-Generator: Poedit 3.2.2\n"
+"X-DL-Team: fr\n"
+"X-DL-Module: gnome-text-editor\n"
+"X-DL-Branch: main\n"
+"X-DL-Domain: help\n"
+"X-DL-State: Translating\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr "Irénée Thirion <irenee.thirion@outlook.fr>, 2022"
+msgstr "Irénée Thirion <irenee.thirion@outlook.fr>, 2023"
 
 #. (itstool) path: info/title
 #: C/index.page:7
@@ -89,13 +94,13 @@ msgstr "Ouverture d’un fichier"
 #: C/basics-open-file.page:13
 msgid ""
 "To open a file in GNOME Text Editor use <gui style=\"button\">Open</gui> in "
-"the Headerbar and <gui>Browse Files...</gui> or the shortcut "
+"the Headerbar and <gui>Open New Document</gui> or the shortcut "
 "<keyseq><key>Ctrl</key><key>O</key></keyseq>."
 msgstr ""
 "Pour ouvrir un fichier dans l’Éditeur de texte de GNOME, utilisez le bouton "
-"<gui style=\"button\">Ouvrir</gui> dans la barre d’en-tête et "
-"<gui>Parcourir</gui> ou le raccourci clavier <keyseq><key>Ctrl</key><key>O</"
-"key></keyseq>."
+"<gui style=\"button\">Ouvrir</gui> dans la barre d’en-tête et <gui>Ouvrir un "
+"nouveau document</gui> ou le raccourci clavier <keyseq><key>Ctrl</"
+"key><key>O</key></keyseq>."
 
 #. (itstool) path: page/p
 #: C/basics-open-file.page:17
@@ -137,9 +142,14 @@ msgstr ""
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
 #: C/basics-open-file.page:27
+#, fuzzy
+#| msgctxt "_"
+#| msgid ""
+#| "external ref='media/search-recent.png' "
+#| "md5='f57950a08e6c7159429d030eb349814f'"
 msgctxt "_"
 msgid ""
-"external ref='media/search-recent.png' md5='f57950a08e6c7159429d030eb349814f'"
+"external ref='media/search-recent.png' md5='8ddac07e5fb592e68c6208171a52d52f'"
 msgstr ""
 "external ref='media/search-recent.png' md5='f57950a08e6c7159429d030eb349814f'"
 
@@ -226,7 +236,7 @@ msgstr ""
 #. (itstool) path: info/desc
 #: C/edit-search-and-replace.page:33
 msgid "Search and replace text"
-msgstr "Chercher et remplacer du texte."
+msgstr "Chercher et remplacer du texte"
 
 #. (itstool) path: info/keywords
 #: C/edit-search-and-replace.page:35
@@ -256,11 +266,11 @@ msgstr "Rechercher du texte"
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:45
 msgid ""
-"Activate the search panel via <guiseq><gui>Hamburger Menu</gui><gui>Find/"
+"Activate the search panel via <guiseq><gui>Main Menu</gui><gui>Find/"
 "Replace...</gui></guiseq> or activate it via <keyseq><key>Ctrl</key><key>F</"
 "key></keyseq>."
 msgstr ""
-"Activez le panneau de recherche depuis le <guiseq><gui>Menu hamburger</"
+"Activez le panneau de recherche depuis le <guiseq><gui>Menu principal</"
 "gui><gui>Chercher/remplacer</gui></guiseq> ou via <keyseq><key>Ctrl</"
 "key><key>F</key></keyseq>."
 
@@ -345,21 +355,21 @@ msgstr "Remplacer du texte"
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:66
 msgid ""
-"Activate the search panel via <guiseq><gui>Hamburger Menu</gui><gui>Find/"
+"Activate the search panel via <guiseq><gui>Main Menu</gui><gui>Find/"
 "Replace...</gui></guiseq> or activate it via <keyseq><key>Ctrl</key><key>H</"
 "key></keyseq>."
 msgstr ""
-"Activez le panneau de recherche depuis le <guiseq><gui>Menu hamburger</"
+"Activez le panneau de recherche depuis le <guiseq><gui>Menu principal</"
 "gui><gui>Chercher/remplacer</gui></guiseq> ou via <keyseq><key>Ctrl</"
 "key><key>H</key></keyseq>."
 
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:67
 msgid ""
-"In case you opened the search panel via the <gui>Hamburger Menu</gui> you "
-"have to click the button for activating the replace functionality."
+"In case you opened the search panel via the <gui>Main Menu</gui> you have to "
+"click the button for activating the replace functionality."
 msgstr ""
-"Si vous avez ouvert le panneau de recherche via le <gui>Menu hamburger</"
+"Si vous avez ouvert le panneau de recherche via le <gui>Menu principal</"
 "gui>, vous devez cliquer sur le bouton d’activation de la fonctionnalité "
 "remplacer."
 
@@ -392,7 +402,7 @@ msgstr "Fionn Kelleher"
 #. (itstool) path: info/desc
 #: C/edit-undo-redo.page:19
 msgid "Fix mistakes made during editing"
-msgstr "Corriger les erreurs pendant la modification."
+msgstr "Corriger les erreurs pendant la modification"
 
 #. (itstool) path: info/keywords
 #: C/edit-undo-redo.page:20
@@ -477,12 +487,12 @@ msgstr ""
 #. (itstool) path: section/p
 #: C/edit-undo-redo.page:75
 msgid ""
-"<guiseq> <gui>Menu</gui> <gui>Discard Changes</gui> </guiseq> will "
+"<guiseq> <gui>Main Menu</gui> <gui>Discard Changes</gui> </guiseq> will "
 "permanently discard all changes made to a file since it was last saved."
 msgstr ""
-"<guiseq> <gui>Menu</gui> <gui>Abandonner les modifications</gui> </guiseq> "
-"supprime définitivement toutes les modifications apportées à un fichier "
-"depuis son dernier enregistrement."
+"<guiseq> <gui>Menu principal</gui> <gui>Abandonner les modifications</gui> </"
+"guiseq> supprimera définitivement toutes les modifications apportées à un "
+"fichier depuis son dernier enregistrement."
 
 #. (itstool) path: p/link
 #: C/legal.xml:4
