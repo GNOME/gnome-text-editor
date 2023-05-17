@@ -6,14 +6,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
-"POT-Creation-Date: 2022-02-22 20:08+0000\n"
-"PO-Revision-Date: 2022-12-21 20:08+0000\n"
+"POT-Creation-Date: 2023-04-21 20:23+0000\n"
+"PO-Revision-Date: 2023-05-16 22:32+0200\n"
 "Last-Translator: Jordi Mas i Hernàndez <jmas@softcatala.org>\n"
 "Language-Team: Catalan <gnome@llistes.softcatala.org>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.2\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -86,23 +87,21 @@ msgstr "Obrir un fitxer"
 #: C/basics-open-file.page:13
 msgid ""
 "To open a file in GNOME Text Editor use <gui style=\"button\">Open</gui> in "
-"the Headerbar and <gui>Browse Files...</gui> or the shortcut "
+"the Headerbar and <gui>Open New Document</gui> or the shortcut "
 "<keyseq><key>Ctrl</key><key>O</key></keyseq>."
 msgstr ""
-"Per a obrir un fitxer a l'editor de text del GNOME utilitzeu <gui "
-"style=\"button\">Obre</gui> a la barra de capçalera i <gui>Navega pels "
-"fitxers...</gui> o la drecera <keyseq><key>Ctrl</key><key>O</key></keyseq>."
+"Per a obrir un fitxer a l'editor de text del GNOME utilitzeu <gui style="
+"\"button\">Obre</gui> a la barra de capçalera i <gui>Obre un document nou</"
+"gui> o la drecera <keyseq><key>Ctrl</key><key>O</key></keyseq>."
 
 #. (itstool) path: page/p
 #: C/basics-open-file.page:17
 msgid ""
-"In the dialog choose your file(s) you want to open and click "
-"<gui>Open</gui>. It is possible to select multiple files to open these at "
-"once."
+"In the dialog choose your file(s) you want to open and click <gui>Open</"
+"gui>. It is possible to select multiple files to open these at once."
 msgstr ""
-"En el diàleg trieu els fitxers que voleu obrir i feu clic a "
-"<gui>Obre</gui>. És possible seleccionar múltiples fitxers per a obrir-los "
-"alhora."
+"En el diàleg trieu els fitxers que voleu obrir i feu clic a <gui>Obre</gui>. "
+"És possible seleccionar múltiples fitxers per a obrir-los alhora."
 
 #. (itstool) path: page/p
 #: C/basics-open-file.page:20
@@ -110,8 +109,8 @@ msgid ""
 "Closing the dialog without opening a file can be achieved by clicking "
 "<gui>Cancel</gui>."
 msgstr ""
-"Podeu tancar el diàleg sense obrir un fitxer fent clic a "
-"<gui>Cancel·la</gui>."
+"Podeu tancar el diàleg sense obrir un fitxer fent clic a <gui>Cancel·la</"
+"gui>."
 
 #. (itstool) path: section/title
 #: C/basics-open-file.page:23
@@ -121,9 +120,8 @@ msgstr "Obre per nom"
 #. (itstool) path: section/p
 #: C/basics-open-file.page:25
 msgid ""
-"You can search in the <gui>Open</gui> Popup or press "
-"<keyseq><key>Ctrl</key><key>K</key></keyseq> to search for recently edited "
-"files."
+"You can search in the <gui>Open</gui> Popup or press <keyseq><key>Ctrl</"
+"key><key>K</key></keyseq> to search for recently edited files."
 msgstr ""
 "Podeu cercar en l'element emergent <gui>Obre</gui> o prémer "
 "<keyseq><key>Ctrl</key><key>K</key></keyseq> per a cercar fitxers editats "
@@ -135,13 +133,16 @@ msgstr ""
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
 #: C/basics-open-file.page:27
+#, fuzzy
+#| msgctxt "_"
+#| msgid ""
+#| "external ref='media/search-recent.png' "
+#| "md5='f57950a08e6c7159429d030eb349814f'"
 msgctxt "_"
 msgid ""
-"external ref='media/search-recent.png' "
-"md5='f57950a08e6c7159429d030eb349814f'"
+"external ref='media/search-recent.png' md5='8ddac07e5fb592e68c6208171a52d52f'"
 msgstr ""
-"external ref='media/search-recent.png' "
-"md5='f57950a08e6c7159429d030eb349814f'"
+"external ref='media/search-recent.png' md5='f57950a08e6c7159429d030eb349814f'"
 
 #. (itstool) path: info/keywords
 #: C/basics-create-new-file.page:19
@@ -172,14 +173,13 @@ msgstr "Premeu <keyseq><key>Ctrl</key><key>N</key></keyseq>"
 #. (itstool) path: page/p
 #: C/basics-create-new-file.page:31
 msgid ""
-"A new document is by default in a state called <gui>Draft</gui>. The meaning"
-" of this is that the document is automatically saved in the draft folder of "
+"A new document is by default in a state called <gui>Draft</gui>. The meaning "
+"of this is that the document is automatically saved in the draft folder of "
 "GNOME Text Editor."
 msgstr ""
-"Un document nou és per defecte en un estat anomenat <gui>Esborrany</gui>. Això "
-"vol dir que el document es desa automàticament a la carpeta "
+"Un document nou és per defecte en un estat anomenat <gui>Esborrany</gui>. "
+"Això vol dir que el document es desa automàticament a la carpeta "
 "d'esborranys de l'editor de text del GNOME."
-
 
 #. (itstool) path: info/desc
 #: C/basics-draft-folder.page:18
@@ -199,17 +199,17 @@ msgstr "Carpeta d'esborranys"
 #. (itstool) path: page/p
 #: C/basics-draft-folder.page:25
 msgid ""
-"GNOME Text Editor will automatically save every unsaved file. This folder is"
-" located in the application data directory (~/.local/share/gnome-text-editor"
-" or in the respective flatpak folder). You should normally not care about "
-"that folder as every draft file is always accessible via the <gui>Open</gui>"
-" menu."
+"GNOME Text Editor will automatically save every unsaved file. This folder is "
+"located in the application data directory (~/.local/share/gnome-text-editor "
+"or in the respective flatpak folder). You should normally not care about "
+"that folder as every draft file is always accessible via the <gui>Open</gui> "
+"menu."
 msgstr ""
 "L'editor de text del GNOME desarà automàticament tots els fitxers sense "
-"desar. Aquesta carpeta es troba al directori de dades de l'aplicació "
-"(~/.local/share/gnome-text-editor o a la carpeta corresponent de flatpak). "
-"Normalment no us hauria de preocupar on és aquesta carpeta, ja que els fitxers "
-"d'esborrany són accessibles a través del menú <gui>Obre</gui>."
+"desar. Aquesta carpeta es troba al directori de dades de l'aplicació (~/."
+"local/share/gnome-text-editor o a la carpeta corresponent de flatpak). "
+"Normalment no us hauria de preocupar on és aquesta carpeta, ja que els "
+"fitxers d'esborrany són accessibles a través del menú <gui>Obre</gui>."
 
 #. (itstool) path: page/p
 #: C/basics-draft-folder.page:30
@@ -218,9 +218,9 @@ msgid ""
 "subtitle 'Draft' if your current document is not saved and will reside in "
 "the draft folder."
 msgstr ""
-"Podeu identificar un esborrany en el títol de l'editor de text del GNOME. Hi"
-" ha un subtítol «esborrany» si el document actual no es desa i es trobarà a la "
-"carpeta d'esborranys."
+"Podeu identificar un esborrany en el títol de l'editor de text del GNOME. Hi "
+"ha un subtítol «esborrany» si el document actual no es desa i es trobarà a "
+"la carpeta d'esborranys."
 
 #. (itstool) path: info/desc
 #: C/edit-search-and-replace.page:33
@@ -243,9 +243,9 @@ msgid ""
 "GNOME text editor allows you to quickly search in big text files for a "
 "specific text parts. Oftentimes these text parts need to be replaced also."
 msgstr ""
-"L'editor de text del GNOME us permet cercar ràpidament parts del text específiques "
-"en fitxers de text grans. Sovint, aquestes parts del text "
-"també han de ser substituïdes."
+"L'editor de text del GNOME us permet cercar ràpidament parts del text "
+"específiques en fitxers de text grans. Sovint, aquestes parts del text també "
+"han de ser substituïdes."
 
 #. (itstool) path: list/title
 #: C/edit-search-and-replace.page:44
@@ -255,12 +255,12 @@ msgstr "Cercar text"
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:45
 msgid ""
-"Activate the search panel via <guiseq><gui>Hamburger "
-"Menu</gui><gui>Find/Replace...</gui></guiseq> or activate it via "
-"<keyseq><key>Ctrl</key><key>F</key></keyseq>."
+"Activate the search panel via <guiseq><gui>Main Menu</gui><gui>Find/"
+"Replace...</gui></guiseq> or activate it via <keyseq><key>Ctrl</key><key>F</"
+"key></keyseq>."
 msgstr ""
-"Activeu el tauler de cerca a través de <guiseq><gui>"
-"Menú</gui><gui>Cerca/Reemplaça...</gui></guiseq> o activeu-lo mitjançant "
+"Activeu el tauler de cerca a través de <guiseq><gui>Menú principal</"
+"gui><gui>Cerca/Reemplaça...</gui></guiseq> o activeu-lo mitjançant "
 "<keyseq><key>Ctrl</key><key>F</key></keyseq>."
 
 #. (itstool) path: item/p
@@ -293,8 +293,8 @@ msgid ""
 "Pressing <key>Escape</key> will discard the search panel and the search "
 "result."
 msgstr ""
-"En prémer <key>Esc</key> es descartarà el tauler de cerca i el resultat "
-"de la cerca."
+"En prémer <key>Esc</key> es descartarà el tauler de cerca i el resultat de "
+"la cerca."
 
 #. (itstool) path: list/title
 #: C/edit-search-and-replace.page:53
@@ -305,8 +305,8 @@ msgstr "Consells de cerca i trucs"
 #: C/edit-search-and-replace.page:54
 msgid ""
 "In order to quickly search for a word highlight the word and press "
-"<keyseq><key>Ctrl</key><key>F</key></keyseq>. The word will be automatically"
-" entered into the search entry."
+"<keyseq><key>Ctrl</key><key>F</key></keyseq>. The word will be automatically "
+"entered into the search entry."
 msgstr ""
 "Per tal de cercar ràpidament una paraula ressalteu la paraula i premeu "
 "<keyseq><key>Ctrl</key><key>F</key></keyseq>. La paraula s'introduirà "
@@ -318,8 +318,8 @@ msgid ""
 "The search can be refined with additional options in the <gui>gear</gui> "
 "menu."
 msgstr ""
-"La cerca es pot refinar amb opcions addicionals al menú "
-"<gui>engranatge</gui>."
+"La cerca es pot refinar amb opcions addicionals al menú <gui>engranatge</"
+"gui>."
 
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:57
@@ -334,8 +334,7 @@ msgstr "Usa expressions regulars com a terme de cerca"
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:59
 msgid "Respecting case sensitivity of the search term"
-msgstr ""
-"Respecta la sensibilitat de majúscules i minúscules del terme de cerca"
+msgstr "Respecta la sensibilitat de majúscules i minúscules del terme de cerca"
 
 #. (itstool) path: list/title
 #: C/edit-search-and-replace.page:65
@@ -345,25 +344,25 @@ msgstr "Reemplaçar el text"
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:66
 msgid ""
-"Activate the search panel via <guiseq><gui>Hamburger "
-"Menu</gui><gui>Find/Replace...</gui></guiseq> or activate it via "
-"<keyseq><key>Ctrl</key><key>H</key></keyseq>."
+"Activate the search panel via <guiseq><gui>Main Menu</gui><gui>Find/"
+"Replace...</gui></guiseq> or activate it via <keyseq><key>Ctrl</key><key>H</"
+"key></keyseq>."
 msgstr ""
-"Activeu el tauler de cerca a través de <guiseq><gui>"
-"Menú</gui><gui>Cerca/Reemplaça...</gui></guiseq> o activeu-lo a través de "
+"Activeu el tauler de cerca a través de <guiseq><gui>Menú principal</"
+"gui><gui>Cerca/Reemplaça...</gui></guiseq> o activeu-lo a través de "
 "<keyseq><key>Ctrl</key><key>H</key></keyseq>."
 
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:67
 msgid ""
-"In case you opened the search panel via the <gui>Hamburger Menu</gui> you "
-"have to click the button for activating the replace functionality."
+"In case you opened the search panel via the <gui>Main Menu</gui> you have to "
+"click the button for activating the replace functionality."
 msgstr ""
-"En el cas que obriu el tauler de cerca a través del "
-"<gui>Menú</gui> heu de fer clic al botó per a activar la funcionalitat de"
-" reemplaçament."
+"En el cas que obriu el tauler de cerca a través del <gui>Menú principal</"
+"gui> heu de fer clic al botó per a activar la funcionalitat de reemplaçament."
 
 #. (itstool) path: item/p
+#: C/edit-search-and-replace.page:68
 msgid "Add your search term which should be replaced into the entry field."
 msgstr "Afegiu el terme de cerca que s'ha de reemplaçar al camp d'entrada."
 
@@ -376,8 +375,8 @@ msgstr "Afegiu el terme de substitució al segon camp d'entrada."
 #: C/edit-search-and-replace.page:71
 msgid ""
 "It is now possible to only replace the current search result element via "
-"<gui>Replace</gui> or you can replace all occurrences via <gui>Replace "
-"All</gui>."
+"<gui>Replace</gui> or you can replace all occurrences via <gui>Replace All</"
+"gui>."
 msgstr ""
 "És possible només reemplaçar l'element de resultat de la cerca actual a "
 "través de <gui>Reemplaça</gui> o podeu reemplaçar totes les ocurrències a "
@@ -435,9 +434,9 @@ msgid ""
 "change made to a file. Using this shortcut repeatedly will continue undoing "
 "changes as they were originally made."
 msgstr ""
-"En prémer <keyseq> <key>Ctrl</key> <key>Z</key> </keyseq> es desfarà l'últim"
-" canvi fet a un fitxer. Aquesta drecera continuarà desfent els canvis "
-"tal i com es van fer originalment."
+"En prémer <keyseq> <key>Ctrl</key> <key>Z</key> </keyseq> es desfarà l'últim "
+"canvi fet a un fitxer. Aquesta drecera continuarà desfent els canvis tal i "
+"com es van fer originalment."
 
 #. (itstool) path: section/p
 #: C/edit-undo-redo.page:52
@@ -457,10 +456,9 @@ msgid ""
 "undo or redo. For example, typing text into a file directly after undoing a "
 "change will prevent redoing the last undone change."
 msgstr ""
-"Els canvis poden refer <em>només</em> si l'operació d'edició anterior"
-" ha estat desfés o refer. Per exemple, escriure text en un fitxer "
-"directament després de desfer un canvi evitarà que es torni a fer l'últim "
-"canvi desfet."
+"Els canvis poden refer <em>només</em> si l'operació d'edició anterior ha "
+"estat desfés o refer. Per exemple, escriure text en un fitxer directament "
+"després de desfer un canvi evitarà que es torni a fer l'últim canvi desfet."
 
 #. (itstool) path: section/title
 #: C/edit-undo-redo.page:74
@@ -470,10 +468,10 @@ msgstr "Descartar tots els canvis des de l'últim desament"
 #. (itstool) path: section/p
 #: C/edit-undo-redo.page:75
 msgid ""
-"<guiseq> <gui>Menu</gui> <gui>Discard Changes</gui> </guiseq> will "
+"<guiseq> <gui>Main Menu</gui> <gui>Discard Changes</gui> </guiseq> will "
 "permanently discard all changes made to a file since it was last saved."
 msgstr ""
-"<guiseq> <gui>Menú</gui> <gui>Descarta els canvis</gui> </guiseq> "
+"<guiseq> <gui>Menú principal</gui> <gui>Descarta els canvis</gui> </guiseq> "
 "descartarà permanentment tots els canvis fets a un fitxer des que es va "
 "desar per última vegada."
 
