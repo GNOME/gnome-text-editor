@@ -101,7 +101,7 @@ main (int   argc,
   if (exit_after_startup)
     g_signal_connect_after (app,
                             "startup",
-                            G_CALLBACK (g_application_quit),
+                            G_CALLBACK (g_application_activate),
                             NULL);
 
   ret = g_application_run (G_APPLICATION (app), argc, argv);

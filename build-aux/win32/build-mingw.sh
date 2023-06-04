@@ -9,7 +9,6 @@ pacman -S --noconfirm mingw-w64-x86_64-pkg-config \
             mingw-w64-x86_64-editorconfig-core-c \
             mingw-w64-x86_64-meson \
             itstool \
-            mingw-w64-x86_64-libssp \
             mingw-w64-x86_64-gcc \
             base-devel \
             mingw-w64-x86_64-toolchain \
