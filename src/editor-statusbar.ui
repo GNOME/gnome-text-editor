@@ -5,76 +5,66 @@
     <property name="height-request">24</property>
     <child>
       <object class="GtkBox" id="box">
-        <property name="orientation">vertical</property>
+        <property name="orientation">horizontal</property>
+        <property name="spacing">6</property>
+        <property name="margin-top">3</property>
+        <property name="margin-bottom">3</property>
+        <property name="margin-start">12</property>
+        <property name="margin-end">12</property>
         <child>
-          <object class="GtkSeparator">
-            <property name="orientation">horizontal</property>
+          <object class="GtkLabel" id="command_bar_text">
+            <property name="hexpand">true</property>
+            <property name="valign">center</property>
+            <property name="xalign">0</property>
+            <attributes>
+              <attribute name="family" value="Monospace"/>
+            </attributes>
           </object>
         </child>
         <child>
-          <object class="GtkBox">
-            <property name="orientation">horizontal</property>
-            <property name="spacing">6</property>
-            <property name="margin-top">3</property>
-            <property name="margin-bottom">3</property>
-            <property name="margin-start">12</property>
-            <property name="margin-end">12</property>
-            <child>
-              <object class="GtkLabel" id="command_bar_text">
-                <property name="hexpand">true</property>
-                <property name="valign">center</property>
-                <property name="xalign">0</property>
-                <attributes>
-                  <attribute name="family" value="Monospace"/>
-                </attributes>
-              </object>
-            </child>
-            <child>
-              <object class="GtkLabel" id="command_text">
-                <property name="width-chars">6</property>
-                <property name="max-width-chars">6</property>
-                <property name="valign">center</property>
-                <property name="xalign">0</property>
-                <attributes>
-                  <attribute name="family" value="Monospace"/>
-                  <attribute name="font-features" value="tnum"/>
-                </attributes>
-              </object>
-            </child>
-            <child>
-              <object class="GtkLabel" id="selection_count">
-                <property name="width-chars">4</property>
-                <property name="max-width-chars">4</property>
-                <property name="valign">center</property>
-                <property name="xalign">0</property>
-                <attributes>
-                  <attribute name="family" value="Monospace"/>
-                  <attribute name="font-features" value="tnum"/>
-                </attributes>
-              </object>
-            </child>
-            <child>
-              <object class="GtkLabel" id="mode">
-                <property name="width-chars">3</property>
-                <property name="max-width-chars">3</property>
-                <property name="valign">center</property>
-                <attributes>
-                  <attribute name="family" value="Monospace"/>
-                </attributes>
-              </object>
-            </child>
-            <child>
-              <object class="GtkLabel" id="position">
-                <property name="width-chars">12</property>
-                <property name="max-width-chars">12</property>
-                <property name="valign">center</property>
-                <property name="xalign">0</property>
-                <attributes>
-                  <attribute name="family" value="Monospace"/>
-                  <attribute name="font-features" value="tnum"/>
-                </attributes>
-              </object>
-            </child>
+          <object class="GtkLabel" id="command_text">
+            <property name="width-chars">6</property>
+            <property name="max-width-chars">6</property>
+            <property name="valign">center</property>
+            <property name="xalign">0</property>
+            <attributes>
+              <attribute name="family" value="Monospace"/>
+              <attribute name="font-features" value="tnum"/>
+            </attributes>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel" id="selection_count">
+            <property name="width-chars">4</property>
+            <property name="max-width-chars">4</property>
+            <property name="valign">center</property>
+            <property name="xalign">0</property>
+            <attributes>
+              <attribute name="family" value="Monospace"/>
+              <attribute name="font-features" value="tnum"/>
+            </attributes>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel" id="mode">
+            <property name="width-chars">3</property>
+            <property name="max-width-chars">3</property>
+            <property name="valign">center</property>
+            <attributes>
+              <attribute name="family" value="Monospace"/>
+            </attributes>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel" id="position">
+            <property name="width-chars">12</property>
+            <property name="max-width-chars">12</property>
+            <property name="valign">center</property>
+            <property name="xalign">0</property>
+            <attributes>
+              <attribute name="family" value="Monospace"/>
+              <attribute name="font-features" value="tnum"/>
+            </attributes>
           </object>
         </child>
       </object>

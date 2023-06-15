@@ -338,7 +338,7 @@ editor_window_items_changed_cb (EditorWindow      *self,
   g_assert (GTK_IS_SELECTION_MODEL (model));
 
   if (editor_window_get_n_pages (self) > 0)
-    gtk_stack_set_visible_child (self->stack, GTK_WIDGET (self->pages));
+    gtk_stack_set_visible_child (self->stack, GTK_WIDGET (self->tab_view));
   else
     gtk_stack_set_visible_child (self->stack, GTK_WIDGET (self->empty));
 }
@@ -922,7 +922,6 @@ editor_window_class_init (EditorWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, open_menu_popover);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, options_menu);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, options_menu_model);
-  gtk_widget_class_bind_template_child (widget_class, EditorWindow, pages);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, position_box);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, position_label);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, primary_menu);

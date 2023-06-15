@@ -36,7 +36,6 @@ struct _EditorWindow
 
   /* Template Widgets */
   GtkWidget            *empty;
-  GtkWidget            *pages;
   AdwTabView           *tab_view;
   AdwTabBar            *tab_bar;
   GtkLabel             *title;
