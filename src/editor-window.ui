@@ -7,11 +7,11 @@
       <class name="org-gnome-TextEditor"/>
     </style>
     <child>
-      <object class="GtkBox">
-        <property name="orientation">vertical</property>
-        <child>
-          <object class="GtkHeaderBar" id="header_bar">
-            <property name="show-title-buttons">True</property>
+      <object class="AdwToolbarView">
+        <property name="top-bar-style">raised</property>
+        <property name="bottom-bar-style">raised</property>
+        <child type="top">
+          <object class="AdwHeaderBar" id="header_bar">
             <child type="title">
               <object class="GtkBox">
                 <property name="hexpand">true</property>
@@ -143,27 +143,21 @@
             </child>
           </object>
         </child>
-        <child>
+        <child type="top">
+          <object class="AdwTabBar" id="tab_bar">
+            <property name="view">tab_view</property>
+          </object>
+        </child>
+        <property name="content">
           <object class="GtkStack" id="stack">
             <property name="hexpand">true</property>
             <child>
-              <object class="GtkBox" id="pages">
-                <property name="orientation">vertical</property>
-                <child>
-                  <object class="AdwTabBar" id="tab_bar">
-                    <property name="view">tab_view</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="AdwTabView" id="tab_view">
-                    <property name="hexpand">true</property>
-                    <property name="vexpand">true</property>
-                    <property name="menu-model">tab_menu</property>
-                    <signal name="close-page" handler="on_tab_view_close_page_cb" swapped="true"/>
-                    <signal name="setup-menu" handler="on_tab_view_setup_menu_cb" swapped="true"/>
-                    <signal name="create-window" handler="on_tab_view_create_window_cb" swapped="true"/>
-                  </object>
-                </child>
+              <object class="AdwTabView" id="tab_view">
+                <property name="hexpand">true</property>
+                <property name="menu-model">tab_menu</property>
+                <signal name="close-page" handler="on_tab_view_close_page_cb" swapped="true"/>
+                <signal name="setup-menu" handler="on_tab_view_setup_menu_cb" swapped="true"/>
+                <signal name="create-window" handler="on_tab_view_create_window_cb" swapped="true"/>
               </object>
             </child>
             <child>
@@ -183,8 +177,8 @@ Or, press Ctrl+W to close the window.</property>
               </object>
             </child>
           </object>
-        </child>
-        <child>
+        </property>
+        <child type="bottom">
           <object class="EditorStatusbar" id="statusbar">
             <property name="visible">false</property>
           </object>
