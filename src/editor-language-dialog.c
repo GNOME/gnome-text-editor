@@ -28,7 +28,7 @@
 
 struct _EditorLanguageDialog
 {
-  GtkWindow          parent_instance;
+  AdwWindow          parent_instance;
 
   GtkListBox        *list_box;
   GtkEntry          *search_entry;
@@ -43,7 +43,7 @@ enum {
   N_PROPS
 };
 
-G_DEFINE_TYPE (EditorLanguageDialog, editor_language_dialog, GTK_TYPE_WINDOW)
+G_DEFINE_TYPE (EditorLanguageDialog, editor_language_dialog, ADW_TYPE_WINDOW)
 
 static GParamSpec *properties [N_PROPS];
 

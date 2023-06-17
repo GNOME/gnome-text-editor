@@ -2,19 +2,18 @@
 <interface>
   <requires lib="gtk" version="4.0"/>
   <requires lib="Adw" version="1.0"/>
-  <template class="EditorLanguageDialog" parent="GtkWindow">
+  <template class="EditorLanguageDialog" parent="AdwWindow">
     <property name="title" translatable="yes">Document Type</property>
     <style>
       <class name="org-gnome-TextEditor"/>
       <class name="language-dialog"/>
     </style>
-    <child type="titlebar">
-      <object class="GtkHeaderBar"/>
-    </child>
-    <child>
-      <object class="GtkBox">
-        <property name="orientation">vertical</property>
-        <child>
+    <property name="content">
+      <object class="AdwToolbarView">
+        <child type="top">
+          <object class="GtkHeaderBar"/>
+        </child>
+        <child type="top">
           <object class="GtkSearchBar">
             <property name="search-mode-enabled">True</property>
             <property name="child">
@@ -33,9 +32,8 @@
             </property>
           </object>
         </child>
-        <child>
+        <property name="content">
           <object class="GtkScrolledWindow">
-            <property name="vexpand">true</property>
             <property name="max-content-height">400</property>
             <property name="propagate-natural-height">true</property>
             <property name="hscrollbar-policy">never</property>
@@ -43,7 +41,7 @@
               <object class="AdwClamp">
                 <property name="margin-start">42</property>
                 <property name="margin-end">42</property>
-                <property name="margin-top">42</property>
+                <property name="margin-top">12</property>
                 <property name="margin-bottom">42</property>
                 <property name="child">
                   <object class="GtkListBox" id="list_box">
@@ -65,8 +63,8 @@
               </object>
             </child>
           </object>
-        </child>
+        </property>
       </object>
-    </child>
+    </property>
   </template>
 </interface>
