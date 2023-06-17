@@ -20,7 +20,7 @@
 
 #pragma once
 
-#include <gtk/gtk.h>
+#include <adwaita.h>
 
 #include "editor-types-private.h"
 
@@ -28,7 +28,7 @@ G_BEGIN_DECLS
 
 #define EDITOR_TYPE_PROPERTIES_DIALOG (editor_properties_dialog_get_type())
 
-G_DECLARE_FINAL_TYPE (EditorPropertiesDialog, editor_properties_dialog, EDITOR, PROPERTIES_DIALOG, GtkWindow)
+G_DECLARE_FINAL_TYPE (EditorPropertiesDialog, editor_properties_dialog, EDITOR, PROPERTIES_DIALOG, AdwWindow)
 
 GtkWidget      *editor_properties_dialog_new          (EditorWindow           *parent_window,
                                                        EditorDocument         *document);
