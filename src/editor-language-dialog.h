@@ -20,13 +20,15 @@
 
 #pragma once
 
+#include <adwaita.h>
+
 #include "editor-types.h"
 
 G_BEGIN_DECLS
 
 #define EDITOR_TYPE_LANGUAGE_DIALOG (editor_language_dialog_get_type())
 
-G_DECLARE_FINAL_TYPE (EditorLanguageDialog, editor_language_dialog, EDITOR, LANGUAGE_DIALOG, GtkWindow)
+G_DECLARE_FINAL_TYPE (EditorLanguageDialog, editor_language_dialog, EDITOR, LANGUAGE_DIALOG, AdwWindow)
 
 EditorLanguageDialog *editor_language_dialog_new          (EditorApplication    *application);
 GtkSourceLanguage    *editor_language_dialog_get_language (EditorLanguageDialog *self);

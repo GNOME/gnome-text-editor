@@ -30,7 +30,7 @@
 
 struct _EditorPropertiesDialog
 {
-  GtkWindow       parent_instance;
+  AdwWindow       parent_instance;
 
   EditorDocument *document;
 
@@ -42,7 +42,7 @@ struct _EditorPropertiesDialog
   GtkLabel       *words;
 };
 
-G_DEFINE_TYPE (EditorPropertiesDialog, editor_properties_dialog, GTK_TYPE_WINDOW)
+G_DEFINE_TYPE (EditorPropertiesDialog, editor_properties_dialog, ADW_TYPE_WINDOW)
 
 enum {
   PROP_0,
