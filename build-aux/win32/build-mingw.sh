@@ -113,9 +113,10 @@ DESTDIR=./portable_install meson install
 cd portable_install/msys64/mingw64
 mv *.dll *.exe bin
 mv ./gtksourceview-5 ./fontconfig share
-mv fonts.conf share/fontconfig
-cp -r /mingw64/share/glib-2.0/schemas/* ./share/glib-2.0/schemas
-cp share/glib-2.0/schemas/org.gnome.TextEditor.gschema.xml /mingw64/share/glib-2.0/schemas/
+mkdir -p etc/fonts
+mv fonts.conf etc/fonts
+cp -rn /mingw64/share/glib-2.0/schemas/* ./share/glib-2.0/schemas
+
 #compile the schemas to prevent issues because of their absence
 bin/glib-compile-schemas.exe share/glib-2.0/schemas
 bin/glib-compile-schemas.exe /mingw64/share/glib-2.0/schemas/
