@@ -224,6 +224,8 @@ editor_language_dialog_constructed (GObject *object)
                            editor_language_dialog_create_row_cb,
                            self,
                            NULL);
+
+  gtk_widget_grab_focus (GTK_WIDGET (self->search_entry));
 }
 
 static void
