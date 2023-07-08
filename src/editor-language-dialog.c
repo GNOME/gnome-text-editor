@@ -80,20 +80,6 @@ editor_language_dialog_select (EditorLanguageDialog *self,
     }
 }
 
-static GtkWidget *
-editor_language_dialog_create_row_cb (gpointer item,
-                                      gpointer user_data)
-{
-  GtkSourceLanguage *language = item;
-  EditorLanguageRow *row;
-
-  g_assert (GTK_SOURCE_IS_LANGUAGE (language));
-
-  row = _editor_language_row_new (language);
-
-  return GTK_WIDGET (row);
-}
-
 static void
 editor_language_dialog_row_activated_cb (EditorLanguageDialog *self,
                                          EditorLanguageRow    *row,
@@ -210,20 +196,16 @@ editor_language_dialog_constructed (GObject *object)
   ids = gtk_source_language_manager_get_language_ids (lm);
   store = g_list_store_new (GTK_SOURCE_TYPE_LANGUAGE);
 
+  gtk_list_box_append (self->list_box, _editor_language_row_new (NULL));
+
   for (guint i = 0; ids[i]; i++)
     {
       const gchar *id = ids[i];
       GtkSourceLanguage *language = gtk_source_language_manager_get_language (lm, id);
 
       if (!gtk_source_language_get_hidden (language))
-        g_list_store_append (store, language);
+        gtk_list_box_append (self->list_box, _editor_language_row_new (language));
     }
-
-  gtk_list_box_bind_model (self->list_box,
-                           G_LIST_MODEL (store),
-                           editor_language_dialog_create_row_cb,
-                           self,
-                           NULL);
 
   gtk_widget_grab_focus (GTK_WIDGET (self->search_entry));
 }

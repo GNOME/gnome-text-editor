@@ -22,6 +22,8 @@
 
 #include "config.h"
 
+#include <glib/gi18n.h>
+
 #include "editor-language-row-private.h"
 
 struct _EditorLanguageRow
@@ -29,8 +31,8 @@ struct _EditorLanguageRow
   AdwActionRow       parent_instance;
 
   GtkSourceLanguage *language;
-  gchar             *id;
-  gchar             *name;
+  char              *id;
+  char              *name;
 
   GtkImage          *image;
 };
@@ -49,16 +51,17 @@ static void
 editor_language_row_constructed (GObject *object)
 {
   EditorLanguageRow *self = (EditorLanguageRow *)object;
-  const gchar *name;
+  const char *name;
 
   g_assert (EDITOR_IS_LANGUAGE_ROW (self));
 
   G_OBJECT_CLASS (editor_language_row_parent_class)->constructed (object);
 
   if (self->language == NULL)
-    return;
+    name = _("Plain Text");
+  else
+    name = gtk_source_language_get_name (self->language);
 
-  name = gtk_source_language_get_name (self->language);
   adw_preferences_row_set_title (ADW_PREFERENCES_ROW (self), name);
 }
 
@@ -104,9 +107,18 @@ editor_language_row_set_property (GObject      *object,
   switch (prop_id)
     {
     case PROP_LANGUAGE:
-      self->language = g_value_dup_object (value);
-      self->id = g_utf8_strdown (gtk_source_language_get_id (self->language), -1);
-      self->name = g_utf8_strdown (gtk_source_language_get_name (self->language), -1);
+      if (g_value_get_object (value))
+        {
+          self->language = g_value_dup_object (value);
+          self->id = g_utf8_strdown (gtk_source_language_get_id (self->language), -1);
+          self->name = g_utf8_strdown (gtk_source_language_get_name (self->language), -1);
+        }
+      else
+        {
+          self->id = g_strdup ("plaintext");
+          self->name = g_utf8_strdown (_("Plain Text"), -1);
+        }
+
       break;
 
     default:
