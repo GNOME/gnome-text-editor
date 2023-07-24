@@ -156,7 +156,7 @@ editor_language_row_init (EditorLanguageRow *self)
   gtk_widget_init_template (GTK_WIDGET (self));
 }
 
-EditorLanguageRow *
+GtkWidget *
 _editor_language_row_new (GtkSourceLanguage *language)
 {
   g_return_val_if_fail (!language || GTK_SOURCE_IS_LANGUAGE (language), NULL);

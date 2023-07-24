@@ -30,7 +30,7 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (EditorLanguageRow, editor_language_row, EDITOR, LANGUAGE_ROW, AdwActionRow)
 
-EditorLanguageRow *_editor_language_row_new          (GtkSourceLanguage *language);
+GtkWidget         *_editor_language_row_new          (GtkSourceLanguage *language);
 GtkSourceLanguage *_editor_language_row_get_language (EditorLanguageRow *self);
 void               _editor_language_row_set_selected (EditorLanguageRow *self,
                                                       gboolean           selected);
