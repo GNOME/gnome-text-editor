@@ -9,9 +9,9 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2023-04-24 16:42+0000\n"
-"PO-Revision-Date: 2023-04-24 22:09+0200\n"
-"Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
+"POT-Creation-Date: 2023-07-29 08:36+0000\n"
+"PO-Revision-Date: 2023-07-29 15:45+0200\n"
+"Last-Translator: Matej Urbančič <mateju@src.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
 "n%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 3.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
 #: src/editor-application-actions.c:201
@@ -30,7 +30,7 @@ msgstr "Projekt GNOME"
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:9
-#: src/editor-application-actions.c:199 src/editor-window.c:1297
+#: src/editor-application-actions.c:199 src/editor-window.c:1296
 msgid "Text Editor"
 msgstr "Urejevalnik besedil"
 
@@ -276,11 +276,11 @@ msgstr "Višina vrstice, ki naj bo v uporabi za izbrano pisavo."
 
 #: data/org.gnome.TextEditor.gschema.xml:158
 msgid "Highlight Matching Brackets"
-msgstr "Poudari ujemajoče oklepaje"
+msgstr "Poudari ujemajoče oglate oklepaje"
 
 #: data/org.gnome.TextEditor.gschema.xml:159
 msgid "Highlight matching brackets and braces."
-msgstr "Poudari ujemajoče oklepaje."
+msgstr "Poudari ujemajoče oglate in zavite oklepaje"
 
 #: src/editor-animation.c:1038
 #, c-format
@@ -367,7 +367,7 @@ msgstr "Datoteka se je spremenila na disku"
 msgid "The file has been changed by another program."
 msgstr "Datoteko je bila spremenjena v drugem programu."
 
-#: src/editor-info-bar.c:89 src/editor-window.ui:222
+#: src/editor-info-bar.c:89 src/editor-window.ui:216
 msgid "Save _As…"
 msgstr "Shrani _kot …"
 
@@ -415,9 +415,13 @@ msgstr "Odpri kot _skrbnik"
 msgid "Document Type"
 msgstr "Vrsta dokumenta"
 
-#: src/editor-language-dialog.ui:52
+#: src/editor-language-dialog.ui:50
 msgid "No Matches"
 msgstr "Ni zadetkov"
+
+#: src/editor-language-row.c:61 src/editor-language-row.c:119
+msgid "Plain Text"
+msgstr "Običajno besedilo"
 
 #: src/editor-open-popover.ui:25
 msgid "Search documents"
@@ -454,7 +458,7 @@ msgstr "Portal dokumentov"
 msgid "Failed to save document"
 msgstr "Shranjevanje dokumenta je spodletelo."
 
-#: src/editor-page.c:1134 src/editor-window.ui:363
+#: src/editor-page.c:1134 src/editor-window.ui:357
 msgid "_Close"
 msgstr "_Zapri"
 
@@ -487,20 +491,20 @@ msgstr "Skoči na"
 msgid "Indentation"
 msgstr "Zamikanje"
 
-#: src/editor-page.ui:155 src/editor-window.ui:283
+#: src/editor-page.ui:155 src/editor-window.ui:277
 msgid "_Automatic Indentation"
 msgstr "_Samodejna dopolnjevanje"
 
 #. Translators: this is a tab character, not a browser tab
-#: src/editor-page.ui:161 src/editor-window.ui:287
+#: src/editor-page.ui:161 src/editor-window.ui:281
 msgid "_Tabs"
 msgstr "_Tabulatorji"
 
-#: src/editor-page.ui:166 src/editor-window.ui:292
+#: src/editor-page.ui:166 src/editor-window.ui:286
 msgid "_Spaces"
 msgstr "_Presledki"
 
-#: src/editor-page.ui:173 src/editor-window.ui:297
+#: src/editor-page.ui:173 src/editor-window.ui:291
 msgid "Spaces _Per Tab"
 msgstr "Presledki _na tabulator"
 
@@ -671,7 +675,7 @@ msgid "_Cancel"
 msgstr "_Prekliči"
 
 #: src/editor-save-changes-dialog.c:265 src/editor-window-actions.c:117
-#: src/editor-window.ui:216
+#: src/editor-window.ui:210
 msgid "_Save"
 msgstr "_Shrani"
 
@@ -895,7 +899,7 @@ msgstr "Oddalji"
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) – Urejevalnik besedil"
 
-#: src/editor-window.c:1185
+#: src/editor-window.c:1184
 msgid "There are unsaved documents"
 msgstr "Odprti so neshranjeni dokumenti"
 
@@ -931,11 +935,11 @@ msgstr "Glavni meni"
 msgid "Main menu"
 msgstr "Glavni meni"
 
-#: src/editor-window.ui:171
+#: src/editor-window.ui:165
 msgid "Start or Open a Document"
 msgstr "Začni ali odpri dokument"
 
-#: src/editor-window.ui:174
+#: src/editor-window.ui:168
 msgid ""
 "• Press the Open button\n"
 "• Press the New tab button\n"
@@ -951,91 +955,91 @@ msgstr ""
 "\n"
 "Ali pa pritisnite krmilka+W, da zaprete okno."
 
-#: src/editor-window.ui:208
+#: src/editor-window.ui:202
 msgid "_New Window"
 msgstr "_Novo okno"
 
-#: src/editor-window.ui:228
+#: src/editor-window.ui:222
 msgid "_Discard Changes"
 msgstr "_Prezri spremembe"
 
-#: src/editor-window.ui:234
+#: src/editor-window.ui:228
 msgid "_Find/Replace…"
 msgstr "_Najdi in zamenjaj …"
 
-#: src/editor-window.ui:240
+#: src/editor-window.ui:234
 msgid "_Print…"
 msgstr "_Natisni …"
 
-#: src/editor-window.ui:246
+#: src/editor-window.ui:240
 msgid "Documen_t Properties"
 msgstr "_Lastnosti dokumenta"
 
-#: src/editor-window.ui:252
+#: src/editor-window.ui:246
 msgid "P_references"
 msgstr "_Možnosti"
 
-#: src/editor-window.ui:257
+#: src/editor-window.ui:251
 msgid "_Keyboard Shortcuts"
 msgstr "_Tipkovne bližnjice"
 
-#: src/editor-window.ui:261
+#: src/editor-window.ui:255
 msgid "_Help"
 msgstr "Pomo_č"
 
-#: src/editor-window.ui:265
+#: src/editor-window.ui:259
 msgid "A_bout Text Editor"
 msgstr "_O programu"
 
-#: src/editor-window.ui:273
+#: src/editor-window.ui:267
 msgid "Show _Line Numbers"
 msgstr "Pokaži _številke vrstic"
 
-#: src/editor-window.ui:277
+#: src/editor-window.ui:271
 msgid "Show _Right Margin"
 msgstr "Pokaži _desni rob"
 
-#: src/editor-window.ui:300
+#: src/editor-window.ui:294
 msgid "_2"
 msgstr "_2"
 
-#: src/editor-window.ui:305
+#: src/editor-window.ui:299
 msgid "_4"
 msgstr "_4"
 
-#: src/editor-window.ui:310
+#: src/editor-window.ui:304
 msgid "_6"
 msgstr "_6"
 
-#: src/editor-window.ui:315
+#: src/editor-window.ui:309
 msgid "_8"
 msgstr "_8"
 
-#: src/editor-window.ui:324
+#: src/editor-window.ui:318
 msgid "T_ext Wrapping"
 msgstr "Prelom _besedila"
 
-#: src/editor-window.ui:328
+#: src/editor-window.ui:322
 msgid "Chec_k Spelling"
 msgstr "_Preveri črkovanje"
 
-#: src/editor-window.ui:332
+#: src/editor-window.ui:326
 msgid "_Document Type"
 msgstr "_Vrsta dokumenta"
 
-#: src/editor-window.ui:340
+#: src/editor-window.ui:334
 msgid "Move _Left"
 msgstr "Premakni _levo"
 
-#: src/editor-window.ui:345
+#: src/editor-window.ui:339
 msgid "Move _Right"
 msgstr "Premakni _desno"
 
-#: src/editor-window.ui:352
+#: src/editor-window.ui:346
 msgid "_Move to New Window"
 msgstr "_Prestavi na novo okno"
 
-#: src/editor-window.ui:359
+#: src/editor-window.ui:353
 msgid "Close _Other Tabs"
 msgstr "Zapri _preostale zavihke"
 
@@ -1337,3 +1341,49 @@ msgstr "Pokaže tipkovne bližnjice‫"
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Pokaže pomoč"
+
+#~ msgid "_Line Numbers"
+#~ msgstr "_Številke vrstic"
+
+#~ msgid "_Right Margin"
+#~ msgstr "_Desni rob"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Editor Shortcuts"
+#~ msgstr "Tipkovne bližnjice urejevalnika"
+
+#~ msgid "Christian Hergert, et al."
+#~ msgstr "Christian Hergert in drugi"
+
+#~ msgid "A Text Editor for GNOME"
+#~ msgstr "Urejevalnik besedil za namizje GNOME"
+
+#~ msgid "Text Editor Website"
+#~ msgstr "Spletišče urejevalnika besedil"
+
+#~ msgid "Discard"
+#~ msgstr "Zavrzi"
+
+#~ msgid "Highlight Mode"
+#~ msgstr "Način poudarjanja"
+
+#~ msgid "Recent Documents"
+#~ msgstr "Nedavni dokumenti"
+
+#~ msgid "Br_owse Files…"
+#~ msgstr "_Prebrskaj datoteke …"
+
+#~ msgid "Search"
+#~ msgstr "Iskanje"
+
+#~ msgid "Font"
+#~ msgstr "Pisava"
+
+#~ msgid "_Copy All"
+#~ msgstr "Kopiraj _vse"
+
+#~ msgid "_Preferences"
+#~ msgstr "_Nastavitve"
+
+#~ msgid "_Highlight Mode"
+#~ msgstr "_Način poudarjanja"
