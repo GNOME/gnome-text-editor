@@ -5,7 +5,7 @@ We welcome contributions of all types!
 ## Code of Conduct
 
 The Text Editor project is governed by the
-[https://wiki.gnome.org/Foundation/CodeOfConduct](GNOME Code of Conduct)
+[GNOME Code of Conduct](https://wiki.gnome.org/Foundation/CodeOfConduct)
 and contributors are expected to adhere to that.
 
 ## Design First
@@ -16,7 +16,7 @@ mockups and think through how the feature will affect other features. Often
 times, adding a new feature can alter how we present other features.
 
 You can find mockups for Text Editor on the GNOME Design Team's
-[https://gitlab.gnome.org/Teams/Design/app-mockups/-/tree/master/text-editor](text editor mockups)
+[text editor mockups](https://gitlab.gnome.org/Teams/Design/app-mockups/-/tree/master/text-editor)
 repository.
 
 File an issue at [Teams/Design/Whiteboards](https://gitlab.gnome.org/Teams/Design/whiteboards/) to start that process.
