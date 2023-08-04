@@ -81,7 +81,7 @@
                   <object class="GtkMenuButton" id="open_menu_button">
                     <property name="label" translatable="yes">_Open</property>
                     <property name="use-underline">True</property>
-                    <property name="tooltip-text" translatable="yes">Recently Used Documents (Ctrl+K)</property>
+                    <property name="tooltip-text" translatable="yes">Recently Used Documents</property>
                     <property name="popover">
                       <object class="EditorOpenPopover" id="open_menu_popover">
                       </object>
@@ -93,9 +93,9 @@
                     <property name="action-name">session.new-draft</property>
                     <property name="icon-name">tab-new-symbolic</property>
                     <property name="has-tooltip">true</property>
-                    <property name="tooltip-text" translatable="yes">New Tab (Ctrl+T)</property>
+                    <property name="tooltip-text" translatable="yes">New Tab</property>
                     <accessibility>
-                      <property name="label" translatable="yes">New tab (Ctrl+T)</property>
+                      <property name="label" translatable="yes">New tab</property>
                     </accessibility>
                   </object>
                 </child>
