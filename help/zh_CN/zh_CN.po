@@ -6,20 +6,22 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
-"POT-Creation-Date: 2022-04-22 16:58+0000\n"
-"PO-Revision-Date: 2022-04-25 12:41-0400\n"
+"POT-Creation-Date: 2023-04-24 20:22+0000\n"
+"PO-Revision-Date: 2023-08-17 22:10+0800\n"
 "Last-Translator: Boyuan Yang <073plan@gmail.com>\n"
 "Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr "Luke Luo <njlyf2011@hotmail.com>"
+msgstr ""
+"Luke Luo <njlyf2011@hotmail.com> \n"
+"SuGotLand <sugotland@outlook.com>"
 
 #. (itstool) path: info/title
 #: C/index.page:7
@@ -86,11 +88,11 @@ msgstr "打开一个文件"
 #: C/basics-open-file.page:13
 msgid ""
 "To open a file in GNOME Text Editor use <gui style=\"button\">Open</gui> in "
-"the Headerbar and <gui>Browse Files...</gui> or the shortcut "
+"the Headerbar and <gui>Open New Document</gui> or the shortcut "
 "<keyseq><key>Ctrl</key><key>O</key></keyseq>."
 msgstr ""
 "若要在 GNOME 文本编辑器中打开文件，请使用标题栏中的 <gui style=\"button\">打"
-"开</gui> 和 <gui>浏览文件...</gui> 按钮或按快捷键 <keyseq><key>Ctrl</"
+"开</gui> 和 <gui>新建文件</gui> 按钮或按快捷键 <keyseq><key>Ctrl</"
 "key><key>O</key></keyseq>。"
 
 #. (itstool) path: page/p
@@ -129,9 +131,14 @@ msgstr ""
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
 #: C/basics-open-file.page:27
+#, fuzzy
+#| msgctxt "_"
+#| msgid ""
+#| "external ref='media/search-recent.png' "
+#| "md5='f57950a08e6c7159429d030eb349814f'"
 msgctxt "_"
 msgid ""
-"external ref='media/search-recent.png' md5='f57950a08e6c7159429d030eb349814f'"
+"external ref='media/search-recent.png' md5='8ddac07e5fb592e68c6208171a52d52f'"
 msgstr ""
 "external ref='media/search-recent.png' md5='f57950a08e6c7159429d030eb349814f'"
 
@@ -240,10 +247,12 @@ msgstr "按文本搜索"
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:45
 msgid ""
-"Activate the search panel via <guiseq><gui>Hamburger Menu</gui><gui>Find/"
+"Activate the search panel via <guiseq><gui>Main Menu</gui><gui>Find/"
 "Replace...</gui></guiseq> or activate it via <keyseq><key>Ctrl</key><key>F</"
 "key></keyseq>."
 msgstr ""
+"从<guiseq><gui>菜单</gui><gui>查找/替换...</gui></guiseq>激活 搜索框，或者通"
+"过快捷键<keyseq><key>Ctrl</key><key>F</key></keyseq>。"
 
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:46
@@ -318,19 +327,20 @@ msgstr "替换文本"
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:66
 msgid ""
-"Activate the search panel via <guiseq><gui>Hamburger Menu</gui><gui>Find/"
+"Activate the search panel via <guiseq><gui>Main Menu</gui><gui>Find/"
 "Replace...</gui></guiseq> or activate it via <keyseq><key>Ctrl</key><key>H</"
 "key></keyseq>."
 msgstr ""
+"从<guiseq><gui>菜单</gui><gui>查找/替换...</gui></guiseq>激活 搜索框，或者通"
+"过快捷键<keyseq><key>Ctrl</key><key>H</key></keyseq>。"
 
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:67
 msgid ""
-"In case you opened the search panel via the <gui>Hamburger Menu</gui> you "
-"have to click the button for activating the replace functionality."
+"In case you opened the search panel via the <gui>Main Menu</gui> you have to "
+"click the button for activating the replace functionality."
 msgstr ""
-"如果您通过 <gui>Hamburger Menu</gui> 打开搜索面板，则必须单击按钮以激活替换功"
-"能。"
+"如果您通过 <gui>菜单</gui> 打开搜索面板，则必须单击按钮以激活替换功能。"
 
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:68
@@ -436,7 +446,7 @@ msgstr "放弃自上次保存后的所有更改"
 #. (itstool) path: section/p
 #: C/edit-undo-redo.page:75
 msgid ""
-"<guiseq> <gui>Menu</gui> <gui>Discard Changes</gui> </guiseq> will "
+"<guiseq> <gui>Main Menu</gui> <gui>Discard Changes</gui> </guiseq> will "
 "permanently discard all changes made to a file since it was last saved."
 msgstr ""
 "<guiseq> <gui>菜单</gui> <gui>放弃更改</gui> </guiseq> 将永久放弃自上次保存以"
