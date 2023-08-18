@@ -1125,6 +1125,36 @@ editor_document_save_cb (GObject      *object,
 
   if (!gtk_source_file_saver_save_finish (saver, result, &error))
     {
+      g_autofree char *uri = g_file_get_uri (file);
+
+      /* Try again as admin:// */
+      if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_PERMISSION_DENIED) &&
+          g_str_has_prefix (uri, "file://"))
+        {
+          g_autofree char *admin_uri = g_strdup_printf ("admin://%s", uri + strlen ("file://"));
+          g_autoptr(GFile) admin_file = g_file_new_for_uri (admin_uri);
+          g_autoptr(GtkSourceFileSaver) admin_saver = NULL;
+
+          gtk_source_file_set_location (source_file, admin_file);
+
+          admin_saver = gtk_source_file_saver_new (GTK_SOURCE_BUFFER (self), source_file);
+          gtk_source_file_saver_set_compression_type (admin_saver, gtk_source_file_saver_get_compression_type (saver));
+          gtk_source_file_saver_set_encoding (admin_saver, gtk_source_file_saver_get_encoding (saver));
+          gtk_source_file_saver_set_flags (admin_saver, gtk_source_file_saver_get_flags (saver));
+          gtk_source_file_saver_set_newline_type (admin_saver, gtk_source_file_saver_get_newline_type (saver));
+
+          gtk_source_file_saver_save_async (admin_saver,
+                                            G_PRIORITY_DEFAULT,
+                                            NULL,
+                                            editor_document_progress,
+                                            self,
+                                            NULL,
+                                            editor_document_save_cb,
+                                            g_steal_pointer (&task));
+
+          return;
+        }
+
       _editor_document_unmark_busy (self);
       g_task_return_error (task, g_steal_pointer (&error));
       return;
