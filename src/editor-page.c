@@ -1204,6 +1204,7 @@ _editor_page_save_as (EditorPage *self,
   GtkFileChooserNative *native;
   EditorWindow *window;
   g_autofree char *uri = NULL;
+  GFile *file;
 
   g_return_if_fail (EDITOR_IS_PAGE (self));
 
@@ -1227,8 +1228,9 @@ _editor_page_save_as (EditorPage *self,
 
   if (filename != NULL)
     {
-      GFile *file = editor_document_get_file (self->document);
       g_autoptr(GFile) selected = NULL;
+
+      file = editor_document_get_file (self->document);
 
       if (file != NULL && !g_path_is_absolute (filename))
         {
@@ -1241,6 +1243,12 @@ _editor_page_save_as (EditorPage *self,
         }
 
       gtk_file_chooser_set_file (GTK_FILE_CHOOSER (native), selected, NULL);
+    }
+  else if ((file = editor_document_get_file (self->document)))
+    {
+      g_autoptr(GFile) parent = g_file_get_parent (file);
+
+      gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (native), parent, NULL);
     }
   else if (directory != NULL)
     {
