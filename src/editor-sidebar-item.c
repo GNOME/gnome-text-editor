@@ -580,11 +580,16 @@ _editor_sidebar_item_matches (EditorSidebarItem *self,
       const char *keyword = g_ptr_array_index (self->keywords, i);
       guint score = 0;
 
-      if (gtk_source_completion_fuzzy_match (keyword, search, &score))
+      if (g_str_has_prefix (keyword, search))
+        {
+          matches = TRUE;
+          self->score = 0;
+          break;
+        }
+      else if (gtk_source_completion_fuzzy_match (keyword, search, &score))
         {
           if (score > self->score)
             self->score = score;
-
           matches = TRUE;
         }
     }
