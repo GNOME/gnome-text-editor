@@ -39,11 +39,14 @@ struct _EditorSidebarItem
 
   GFile      *file;
   EditorPage *page;
-  gchar      *search_text;
   gchar      *draft_id;
   gchar      *title;
   gchar      *subtitle;
   gint64      age;
+
+  GPtrArray  *keywords;
+
+  guint       score;
 
   guint       is_modified_set : 1;
   guint       is_modified : 1;
@@ -211,7 +214,7 @@ editor_sidebar_item_notify_title_cb (EditorSidebarItem *self,
   g_assert (EDITOR_IS_SIDEBAR_ITEM (self));
   g_assert (EDITOR_IS_PAGE (page));
 
-  g_clear_pointer (&self->search_text, g_free);
+  g_clear_pointer (&self->keywords, g_ptr_array_unref);
 
   g_clear_pointer (&self->title, g_free);
   self->title = editor_page_dup_title (page);
@@ -227,7 +230,8 @@ editor_sidebar_item_notify_subtitle_cb (EditorSidebarItem *self,
   g_assert (EDITOR_IS_SIDEBAR_ITEM (self));
   g_assert (EDITOR_IS_PAGE (page));
 
-  g_clear_pointer (&self->search_text, g_free);
+  g_clear_pointer (&self->keywords, g_ptr_array_unref);
+
   g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_SUBTITLE]);
 }
 
@@ -280,7 +284,7 @@ editor_sidebar_item_finalize (GObject *object)
 
   g_clear_object (&self->file);
   g_clear_object (&self->page);
-  g_clear_pointer (&self->search_text, g_free);
+  g_clear_pointer (&self->keywords, g_ptr_array_unref);
   g_clear_pointer (&self->draft_id, g_free);
   g_clear_pointer (&self->subtitle, g_free);
 
@@ -544,21 +548,38 @@ gboolean
 _editor_sidebar_item_matches (EditorSidebarItem *self,
                               const char        *search)
 {
-  guint prio;
+  gboolean matches = FALSE;
 
   if (search == NULL)
     return TRUE;
 
-  if G_UNLIKELY (self->search_text == NULL)
+  if G_UNLIKELY (self->keywords == NULL)
     {
       g_autofree gchar *title = _editor_sidebar_item_dup_title (self);
-      g_autofree gchar *title_fold = g_utf8_casefold (title, -1);
-      g_autofree gchar *subtitle_fold = g_utf8_casefold (self->subtitle, -1);
 
-      self->search_text = g_strdup_printf ("%s %s", title_fold, subtitle_fold);
+      self->keywords = g_ptr_array_new_with_free_func (g_free);
+
+      g_ptr_array_add (self->keywords, g_utf8_casefold (title, -1));
+      g_ptr_array_add (self->keywords, g_utf8_casefold (self->subtitle, -1));
     }
 
-  return gtk_source_completion_fuzzy_match (self->search_text, search, &prio);
+  self->score = 0;
+
+  for (guint i = 0; i < self->keywords->len; i++)
+    {
+      const char *keyword = g_ptr_array_index (self->keywords, i);
+      guint score = 0;
+
+      if (gtk_source_completion_fuzzy_match (keyword, search, &score))
+        {
+          if (score > self->score)
+            self->score = score;
+
+          matches = TRUE;
+        }
+    }
+
+  return matches;
 }
 
 void
