@@ -35,6 +35,7 @@ struct _EditorOpenPopover
 
   GListModel        *model;
   GListModel        *filtered_model;
+  GListModel        *sorted_model;
 
   GtkListBox        *list_box;
   GtkWidget         *box;
@@ -65,8 +66,8 @@ editor_open_popover_get_model (EditorOpenPopover *self)
 {
   g_assert (EDITOR_IS_OPEN_POPOVER (self));
 
-  if (self->filtered_model)
-    return self->filtered_model;
+  if (self->sorted_model)
+    return self->sorted_model;
 
   return self->model;
 }
@@ -132,8 +133,9 @@ on_search_entry_changed_cb (EditorOpenPopover *self,
                             GtkSearchEntry    *search_entry)
 {
   g_autoptr(GtkFilterListModel) filter = NULL;
-  const gchar *text;
+  g_autoptr(GtkSortListModel) sorted = NULL;
   GListModel *model;
+  const char *text;
 
   g_assert (EDITOR_IS_OPEN_POPOVER (self));
   g_assert (GTK_IS_SEARCH_ENTRY (search_entry));
@@ -148,14 +150,19 @@ on_search_entry_changed_cb (EditorOpenPopover *self,
     {
       g_autofree gchar *text_fold = g_utf8_casefold (text, -1);
       g_autoptr(GtkCustomFilter) custom = NULL;
+      g_autoptr(GtkNumericSorter) sorter = NULL;
 
       custom = gtk_custom_filter_new (editor_sidebar_filter_func_cb,
                                       g_steal_pointer (&text_fold),
                                       g_free);
       filter = gtk_filter_list_model_new (g_object_ref (G_LIST_MODEL (self->model)),
                                           g_object_ref (GTK_FILTER (custom)));
-      gtk_filter_list_model_set_incremental (filter, TRUE);
-      model = G_LIST_MODEL (filter);
+      sorter = gtk_numeric_sorter_new (gtk_property_expression_new (EDITOR_TYPE_SIDEBAR_ITEM, NULL, "score"));
+      gtk_numeric_sorter_set_sort_order (sorter, GTK_SORT_ASCENDING);
+      sorted = gtk_sort_list_model_new (g_object_ref (G_LIST_MODEL (filter)),
+                                        g_object_ref (GTK_SORTER (sorter)));
+
+      model = G_LIST_MODEL (sorted);
     }
 
   g_assert (model != NULL);
@@ -259,6 +266,7 @@ editor_open_popover_dispose (GObject *object)
 
   g_clear_pointer (&self->box, gtk_widget_unparent);
   g_clear_object (&self->model);
+  g_clear_object (&self->sorted_model);
   g_clear_object (&self->filtered_model);
 
   G_OBJECT_CLASS (editor_open_popover_parent_class)->dispose (object);
@@ -392,6 +400,7 @@ _editor_open_popover_set_model (EditorOpenPopover *self,
   if (g_set_object (&self->model, model))
     {
       g_clear_object (&self->filtered_model);
+      g_clear_object (&self->sorted_model);
 
       if (model != NULL)
         {
