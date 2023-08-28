@@ -60,6 +60,7 @@ enum {
   PROP_FILE,
   PROP_IS_MODIFIED,
   PROP_PAGE,
+  PROP_SCORE,
   PROP_SUBTITLE,
   PROP_TITLE,
   N_PROPS
@@ -325,6 +326,10 @@ editor_sidebar_item_get_property (GObject    *object,
       g_value_set_boolean (value, _editor_sidebar_item_get_is_modified (self));
       break;
 
+    case PROP_SCORE:
+      g_value_set_uint (value, self->score);
+      break;
+
     case PROP_TITLE:
       if (self->title != NULL)
         g_value_set_string (value, self->title);
@@ -418,6 +423,11 @@ editor_sidebar_item_class_init (EditorSidebarItemClass *klass)
                           "If the page or draft is modified",
                           FALSE,
                           (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
+  properties [PROP_SCORE] =
+    g_param_spec_uint ("score", NULL, NULL,
+                       0, G_MAXUINT, 0,
+                       (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
   properties [PROP_TITLE] =
     g_param_spec_string ("title",
@@ -578,6 +588,9 @@ _editor_sidebar_item_matches (EditorSidebarItem *self,
           matches = TRUE;
         }
     }
+
+  if (matches)
+    g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_SCORE]);
 
   return matches;
 }
