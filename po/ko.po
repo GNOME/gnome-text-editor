@@ -2,22 +2,23 @@
 # Copyright (C) 2022 gnome-text-editor's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-text-editor package.
 # Seong-ho Cho <shcho@gnome.org>, 2022, 2023.
+# DaeHyun Sung <sungdh86+git@gmail.com> 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2023-02-01 03:51+0000\n"
-"PO-Revision-Date: 2023-03-03 02:43+0900\n"
-"Last-Translator: Seong-ho Cho <shcho@gnome.org>\n"
+"POT-Creation-Date: 2023-08-04 17:20+0000\n"
+"PO-Revision-Date: 2023-08-27 01:44+0900\n"
+"Last-Translator: DaeHyun Sung <sungdh86+git@gmail.com>\n"
 "Language-Team: Korean <gnome-kr@googlegroups.com>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
 #: src/editor-application-actions.c:201
@@ -27,7 +28,7 @@ msgstr "그놈 프로젝트"
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:9
-#: src/editor-application-actions.c:199 src/editor-window.c:1297
+#: src/editor-application-actions.c:199 src/editor-window.c:1296
 msgid "Text Editor"
 msgstr "텍스트 편집기"
 
@@ -171,7 +172,7 @@ msgstr "시스템 글꼴 사용"
 msgid "If the default system monospace font should be used."
 msgstr "기본 시스템 고정폭 글꼴을 사용할 경우."
 
-#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:57
+#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:59
 msgid "Custom Font"
 msgstr "개별 설정 글꼴"
 
@@ -268,6 +269,14 @@ msgstr "행 높이"
 msgid "The line height to use for the selected font."
 msgstr "선택한 글꼴에 적용할 행 높이입니다."
 
+#: data/org.gnome.TextEditor.gschema.xml:158
+msgid "Highlight Matching Brackets"
+msgstr "일치하는 대괄호 강조"
+
+#: data/org.gnome.TextEditor.gschema.xml:159
+msgid "Highlight matching brackets and braces."
+msgstr "일치하는 대괄호 및 중괄호 강조."
+
 #: src/editor-animation.c:1038
 #, c-format
 msgid "Failed to find property %s in %s"
@@ -280,7 +289,9 @@ msgstr "va_list 값 가져오기 실패: %s"
 
 #: src/editor-application-actions.c:214
 msgid "translator-credits"
-msgstr "조성호 <shcho@gnome.org>, 2022, 2023"
+msgstr ""
+"조성호 <shcho@gnome.org>, 2022, 2023\n"
+"성대현 <sungdh86+git@gmail.com>, 2023"
 
 #: src/editor-application.c:525
 msgid "Standard input was requested multiple times. Ignoring request."
@@ -318,7 +329,7 @@ msgstr "버전 정보를 출력하고 나갑니다"
 msgid "[Read-Only]"
 msgstr "[읽기전용]"
 
-#: src/editor-document.c:2364 src/editor-page.c:1035
+#: src/editor-document.c:2364 src/editor-page.c:1038
 #: src/editor-sidebar-item.c:497
 msgid "New Document"
 msgstr "새 문서"
@@ -352,7 +363,7 @@ msgstr "디스크의 파일 바뀜"
 msgid "The file has been changed by another program."
 msgstr "다른 프로그램에서 파일의 내용을 바꾸었습니다."
 
-#: src/editor-info-bar.c:89 src/editor-window.ui:222
+#: src/editor-info-bar.c:89 src/editor-window.ui:216
 msgid "Save _As…"
 msgstr "다른 이름으로 저장(_A)…"
 
@@ -400,9 +411,13 @@ msgstr "관리자 권한으로 열기(_A)"
 msgid "Document Type"
 msgstr "문서 형식"
 
-#: src/editor-language-dialog.ui:52
+#: src/editor-language-dialog.ui:50
 msgid "No Matches"
 msgstr "일치하는 항목 없음"
+
+#: src/editor-language-row.c:61 src/editor-language-row.c:119
+msgid "Plain Text"
+msgstr ""
 
 #: src/editor-open-popover.ui:25
 msgid "Search documents"
@@ -416,46 +431,46 @@ msgstr "새 문서 열기 (Ctrl+O)"
 msgid "No Recent Documents"
 msgstr "최근 문서 없음"
 
-#: src/editor-open-popover.ui:101
+#: src/editor-open-popover.ui:104
 msgid "No Results Found"
 msgstr "결과 없음"
 
-#: src/editor-page.c:1061 src/editor-properties-dialog.c:74
+#: src/editor-page.c:1064 src/editor-properties-dialog.c:107
 #: src/editor-sidebar-item.c:101
 msgid "Draft"
 msgstr "초안"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1073
+#: src/editor-page.c:1076
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (관리자)"
 
-#: src/editor-page.c:1083 src/editor-sidebar-item.c:109
+#: src/editor-page.c:1086 src/editor-sidebar-item.c:109
 msgid "Document Portal"
 msgstr "문서 포털"
 
-#: src/editor-page.c:1130
+#: src/editor-page.c:1133
 msgid "Failed to save document"
 msgstr "문서 저장에 실패했습니다"
 
-#: src/editor-page.c:1131 src/editor-window.ui:363
+#: src/editor-page.c:1134 src/editor-window.ui:357
 msgid "_Close"
 msgstr "닫기(_C)"
 
-#: src/editor-page.c:1215
+#: src/editor-page.c:1218
 msgid "Save As"
 msgstr "다른 이름으로 저장"
 
-#: src/editor-page.c:1218
+#: src/editor-page.c:1221
 msgid "Save"
 msgstr "저장"
 
-#: src/editor-page.c:1219 src/editor-window-actions.c:352
+#: src/editor-page.c:1222 src/editor-window-actions.c:352
 msgid "Cancel"
 msgstr "취소"
 
-#: src/editor-page.c:1368
+#: src/editor-page.c:1371
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "행 %u, %u번째 문자"
@@ -472,20 +487,20 @@ msgstr "이동"
 msgid "Indentation"
 msgstr "들여쓰기"
 
-#: src/editor-page.ui:155 src/editor-window.ui:283
+#: src/editor-page.ui:155 src/editor-window.ui:277
 msgid "_Automatic Indentation"
 msgstr "자동 들여쓰기(_A)"
 
 #. Translators: this is a tab character, not a browser tab
-#: src/editor-page.ui:161 src/editor-window.ui:287
+#: src/editor-page.ui:161 src/editor-window.ui:281
 msgid "_Tabs"
 msgstr "탭(_T)"
 
-#: src/editor-page.ui:166 src/editor-window.ui:292
+#: src/editor-page.ui:166 src/editor-window.ui:286
 msgid "_Spaces"
 msgstr "간격(_S)"
 
-#: src/editor-page.ui:173 src/editor-window.ui:297
+#: src/editor-page.ui:173 src/editor-window.ui:291
 msgid "Spaces _Per Tab"
 msgstr "탭 당 간격(_P)"
 
@@ -523,51 +538,51 @@ msgstr "행"
 msgid "Col"
 msgstr "글자"
 
-#: src/editor-preferences-dialog.ui:17
+#: src/editor-preferences-dialog.ui:19
 msgid "Appearance"
 msgstr "모양새"
 
-#: src/editor-preferences-dialog.ui:79
+#: src/editor-preferences-dialog.ui:81
 msgid "Display Grid Pattern"
 msgstr "격자 모양 표시"
 
-#: src/editor-preferences-dialog.ui:85
+#: src/editor-preferences-dialog.ui:87
 msgid "Highlight Current Line"
 msgstr "현재 행 강조"
 
-#: src/editor-preferences-dialog.ui:91
+#: src/editor-preferences-dialog.ui:93
 msgid "Display Overview Map"
 msgstr "전체 개요 보기 표시"
 
-#: src/editor-preferences-dialog.ui:99
+#: src/editor-preferences-dialog.ui:101
 msgid "Right Margin"
 msgstr "우측 여백"
 
-#: src/editor-preferences-dialog.ui:102
+#: src/editor-preferences-dialog.ui:104
 msgid "Margin Position"
 msgstr "여백 위치"
 
-#: src/editor-preferences-dialog.ui:110
+#: src/editor-preferences-dialog.ui:112
 msgid "Behavior"
 msgstr "동작"
 
-#: src/editor-preferences-dialog.ui:113
+#: src/editor-preferences-dialog.ui:115
 msgid "Discover Document Settings"
 msgstr "문서 설정 표시"
 
-#: src/editor-preferences-dialog.ui:114
+#: src/editor-preferences-dialog.ui:116
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr "modelines, editorconfig, 발견 가능한 기본 값으로 설정을 적용합니다"
 
-#: src/editor-preferences-dialog.ui:120
+#: src/editor-preferences-dialog.ui:122
 msgid "Restore Session"
 msgstr "세션 복원"
 
-#: src/editor-preferences-dialog.ui:121
+#: src/editor-preferences-dialog.ui:123
 msgid "Return to your previous session when Text Editor is started"
 msgstr "텍스트 편집기를 시작할 때 이전 세션으로 돌아갑니다"
 
-#: src/editor-preferences-dialog.ui:136
+#: src/editor-preferences-dialog.ui:138
 msgid "_Clear History"
 msgstr "기록 지우기(_C)"
 
@@ -604,27 +619,27 @@ msgstr "파일"
 msgid "Name"
 msgstr "이름"
 
-#: src/editor-properties-dialog.ui:45
+#: src/editor-properties-dialog.ui:43
 msgid "Location"
 msgstr "위치"
 
-#: src/editor-properties-dialog.ui:63
+#: src/editor-properties-dialog.ui:59
 msgid "Statistics"
 msgstr "통계"
 
-#: src/editor-properties-dialog.ui:66
+#: src/editor-properties-dialog.ui:62
 msgid "Lines"
 msgstr "행"
 
-#: src/editor-properties-dialog.ui:81
+#: src/editor-properties-dialog.ui:77
 msgid "Words"
 msgstr "단어"
 
-#: src/editor-properties-dialog.ui:96
+#: src/editor-properties-dialog.ui:92
 msgid "Characters, No Spaces"
 msgstr "문자, 공백제외"
 
-#: src/editor-properties-dialog.ui:111
+#: src/editor-properties-dialog.ui:107
 msgid "All Characters"
 msgstr "모든 문자"
 
@@ -654,7 +669,7 @@ msgid "_Cancel"
 msgstr "취소(_C)"
 
 #: src/editor-save-changes-dialog.c:265 src/editor-window-actions.c:117
-#: src/editor-window.ui:216
+#: src/editor-window.ui:210
 msgid "_Save"
 msgstr "저장(_S)"
 
@@ -875,7 +890,7 @@ msgstr "축소"
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - 텍스트 편집기"
 
-#: src/editor-window.c:1185
+#: src/editor-window.c:1184
 msgid "There are unsaved documents"
 msgstr "저장하지 않은 문서가 있습니다"
 
@@ -884,16 +899,16 @@ msgid "_Open"
 msgstr "열기(_O)"
 
 #: src/editor-window.ui:84
-msgid "Recently Used Documents (Ctrl+K)"
-msgstr "최근 사용한 문서 (Ctrl+K)"
+msgid "Recently Used Documents"
+msgstr "최근 사용한 문서"
 
 #: src/editor-window.ui:96
-msgid "New Tab (Ctrl+T)"
-msgstr "새 탭 (Ctrl+T)"
+msgid "New Tab"
+msgstr "새 탭"
 
 #: src/editor-window.ui:98
-msgid "New tab (Ctrl+T)"
-msgstr "새 탭 (Ctrl+T)"
+msgid "New tab"
+msgstr "새 탭"
 
 #: src/editor-window.ui:124
 msgid "View Options"
@@ -911,11 +926,11 @@ msgstr "주 메뉴"
 msgid "Main menu"
 msgstr "주 메뉴"
 
-#: src/editor-window.ui:171
+#: src/editor-window.ui:165
 msgid "Start or Open a Document"
 msgstr "시작 또는 문서 열기"
 
-#: src/editor-window.ui:174
+#: src/editor-window.ui:168
 msgid ""
 "• Press the Open button\n"
 "• Press the New tab button\n"
@@ -931,91 +946,91 @@ msgstr ""
 "\n"
 "또는, Ctrl+W 키를 눌러 창을 닫습니다."
 
-#: src/editor-window.ui:208
+#: src/editor-window.ui:202
 msgid "_New Window"
 msgstr "새 창(_N)"
 
-#: src/editor-window.ui:228
+#: src/editor-window.ui:222
 msgid "_Discard Changes"
 msgstr "바뀐 내용 버리기(_D)"
 
-#: src/editor-window.ui:234
+#: src/editor-window.ui:228
 msgid "_Find/Replace…"
 msgstr "찾기/바꾸기(_F)…"
 
-#: src/editor-window.ui:240
+#: src/editor-window.ui:234
 msgid "_Print…"
 msgstr "인쇄(_P)…"
 
-#: src/editor-window.ui:246
+#: src/editor-window.ui:240
 msgid "Documen_t Properties"
 msgstr "문서 속성(_T)"
 
-#: src/editor-window.ui:252
+#: src/editor-window.ui:246
 msgid "P_references"
 msgstr "기본 설정(_R)"
 
-#: src/editor-window.ui:257
+#: src/editor-window.ui:251
 msgid "_Keyboard Shortcuts"
 msgstr "키보드 바로 가기(_K)"
 
-#: src/editor-window.ui:261
+#: src/editor-window.ui:255
 msgid "_Help"
 msgstr "도움말(_H)"
 
-#: src/editor-window.ui:265
+#: src/editor-window.ui:259
 msgid "A_bout Text Editor"
 msgstr "텍스트 편집기 정보(_B)"
 
-#: src/editor-window.ui:273
+#: src/editor-window.ui:267
 msgid "Show _Line Numbers"
 msgstr "행 번호 표시(_L)"
 
-#: src/editor-window.ui:277
+#: src/editor-window.ui:271
 msgid "Show _Right Margin"
 msgstr "우측 여백 표시(_R)"
 
-#: src/editor-window.ui:300
+#: src/editor-window.ui:294
 msgid "_2"
 msgstr "_2"
 
-#: src/editor-window.ui:305
+#: src/editor-window.ui:299
 msgid "_4"
 msgstr "_4"
 
-#: src/editor-window.ui:310
+#: src/editor-window.ui:304
 msgid "_6"
 msgstr "_6"
 
-#: src/editor-window.ui:315
+#: src/editor-window.ui:309
 msgid "_8"
 msgstr "_8"
 
-#: src/editor-window.ui:324
+#: src/editor-window.ui:318
 msgid "T_ext Wrapping"
 msgstr "텍스트 줄 바꿈(_E)"
 
-#: src/editor-window.ui:328
+#: src/editor-window.ui:322
 msgid "Chec_k Spelling"
 msgstr "철자 검사(_K)"
 
-#: src/editor-window.ui:332
+#: src/editor-window.ui:326
 msgid "_Document Type"
 msgstr "문서 형식(_D)"
 
-#: src/editor-window.ui:340
+#: src/editor-window.ui:334
 msgid "Move _Left"
 msgstr "왼쪽으로 이동(_L)"
 
-#: src/editor-window.ui:345
+#: src/editor-window.ui:339
 msgid "Move _Right"
 msgstr "오른쪽으로 이동(_R)"
 
-#: src/editor-window.ui:352
+#: src/editor-window.ui:346
 msgid "_Move to New Window"
 msgstr "새 창으로 이동(_M)"
 
-#: src/editor-window.ui:359
+#: src/editor-window.ui:353
 msgid "Close _Other Tabs"
 msgstr "다른 탭 닫기(_O)"
 
