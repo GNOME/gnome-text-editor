@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2023-08-04 17:20+0000\n"
+"POT-Creation-Date: 2023-08-27 16:54+0000\n"
 "PO-Revision-Date: 2023-08-27 18:53+0200\n"
 "Last-Translator: Nathan Follens <nfollens@gnome.org>\n"
 "Language-Team: GNOME-NL https://matrix.to/#/#nl:gnome.org\n"
@@ -353,11 +353,11 @@ msgstr ""
 msgid "Print version information and exit"
 msgstr "Versieinformatie tonen en afsluiten"
 
-#: src/editor-document.c:2066
+#: src/editor-document.c:2096
 msgid "[Read-Only]"
 msgstr "[alleen-lezen]"
 
-#: src/editor-document.c:2364 src/editor-page.c:1038
+#: src/editor-document.c:2394 src/editor-page.c:1038
 #: src/editor-sidebar-item.c:497
 msgid "New Document"
 msgstr "Nieuw document"
@@ -486,19 +486,19 @@ msgstr "Opslaan van document is mislukt"
 msgid "_Close"
 msgstr "Sl_uiten"
 
-#: src/editor-page.c:1218
+#: src/editor-page.c:1219
 msgid "Save As"
 msgstr "Opslaan als"
 
-#: src/editor-page.c:1221
+#: src/editor-page.c:1222
 msgid "Save"
 msgstr "Opslaan"
 
-#: src/editor-page.c:1222 src/editor-window-actions.c:352
+#: src/editor-page.c:1223 src/editor-window-actions.c:352
 msgid "Cancel"
 msgstr "Annuleren"
 
-#: src/editor-page.c:1371
+#: src/editor-page.c:1379
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Rg %u, kol %u"
@@ -961,7 +961,7 @@ msgstr "Hoofdmenu"
 
 #: src/editor-window.ui:165
 msgid "Start or Open a Document"
-msgstr "Een document beginnen of openen"
+msgstr "Open een nieuw of bestaand document"
 
 #: src/editor-window.ui:168
 msgid ""
