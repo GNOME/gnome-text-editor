@@ -7,26 +7,26 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
-"POT-Creation-Date: 2022-02-14 20:44+0000\n"
-"PO-Revision-Date: 2022-02-14 22:35+0100\n"
+"POT-Creation-Date: 2023-02-04 01:32+0000\n"
+"PO-Revision-Date: 2023-09-06 09:30+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
+"Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: gl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-DL-Team: gl\n"
 "X-DL-Module: gnome-text-editor\n"
 "X-DL-Branch: main\n"
 "X-DL-Domain: help\n"
 "X-DL-State: Translating\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Gtranslator 40.0\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr "Fran Diéguez <frandieguez@gnome.org>, 2022"
+msgstr "Fran Diéguez <frandieguez@gnome.org>, 2022-2023"
 
 #. (itstool) path: info/title
 #: C/index.page:7
@@ -94,12 +94,13 @@ msgstr "Abrir un ficheiro"
 #: C/basics-open-file.page:13
 msgid ""
 "To open a file in GNOME Text Editor use <gui style=\"button\">Open</gui> in "
-"the Headerbar and <gui>Browse Files...</gui> or the shortcut "
+"the Headerbar and <gui>Open New Document</gui> or the shortcut "
 "<keyseq><key>Ctrl</key><key>O</key></keyseq>."
 msgstr ""
-"Para abrir un ficheiro no Editor de texto de GNOME use <gui style=\"button"
-"\">Abrir</gui> desde a barra de cabeceira e prema <gui>Explorar ficheiros…</"
-"gui> ou use o atallo de teclado <keyseq><key>Ctrl</key><key>O</key></keyseq>."
+"Para abrir un ficheiro no Editor de texto de GNOME use <gui "
+"style=\"button\">Abrir</gui> desde a barra de cabeceira e prema <gui>Abrir "
+"novo documento</gui> ou use o atallo de teclado <keyseq><key>Ctrl</"
+"key><key>O</key></keyseq>."
 
 #. (itstool) path: page/p
 #: C/basics-open-file.page:17
@@ -139,11 +140,15 @@ msgstr ""
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
 #: C/basics-open-file.page:27
+#| msgctxt "_"
+#| msgid ""
+#| "external ref='media/search-recent.png' "
+#| "md5='f57950a08e6c7159429d030eb349814f'"
 msgctxt "_"
 msgid ""
-"external ref='media/search-recent.png' md5='f57950a08e6c7159429d030eb349814f'"
+"external ref='media/search-recent.png' md5='8ddac07e5fb592e68c6208171a52d52f'"
 msgstr ""
-"external ref='media/search-recent.png' md5='f57950a08e6c7159429d030eb349814f'"
+"external ref='media/search-recent.png' md5='8ddac07e5fb592e68c6208171a52d52f'"
 
 #. (itstool) path: info/keywords
 #: C/basics-create-new-file.page:19
@@ -255,12 +260,13 @@ msgstr "Buscar texto"
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:45
 msgid ""
-"Activate the search panel via <guiseq><gui>Hamburger Menu</gui><gui>Find/"
+"Activate the search panel via <guiseq><gui>Main Menu</gui><gui>Find/"
 "Replace...</gui></guiseq> or activate it via <keyseq><key>Ctrl</key><key>F</"
 "key></keyseq>."
 msgstr ""
-"Active o panel de busca mediante o <guiseq><gui>Menú hamburguesa</"
-"gui><gui>Buscar/Substituír…</gui></guiseq>"
+"Active o panel de busca mediante o <guiseq><gui>Menú principal</"
+"gui><gui>Buscar/Substituír…</gui></guiseq> ou mediante <keyseq><key>Ctrl</"
+"key><key>F</key></keyseq>."
 
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:46
@@ -317,7 +323,7 @@ msgid ""
 "The search can be refined with additional options in the <gui>gear</gui> "
 "menu."
 msgstr ""
-"A busca pode refinarse con opcións adicionais no menú <gui>engranaxe</gui>"
+"A busca pode refinarse con opcións adicionais no menú <gui>engranaxe</gui>."
 
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:57
@@ -342,22 +348,22 @@ msgstr "Substituír texto"
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:66
 msgid ""
-"Activate the search panel via <guiseq><gui>Hamburger Menu</gui><gui>Find/"
+"Activate the search panel via <guiseq><gui>Main Menu</gui><gui>Find/"
 "Replace...</gui></guiseq> or activate it via <keyseq><key>Ctrl</key><key>H</"
 "key></keyseq>."
 msgstr ""
-"Active o panel de busca usando o <guiseq><gui>Menú de hamburguesa</"
+"Active o panel de busca usando o <guiseq><gui>Menú principal</"
 "gui><gui>Buscar/Substituír…</gui></guiseq> ou actíveo mediante "
 "<keyseq><key>Ctrl</key><key>H</key></keyseq>."
 
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:67
 msgid ""
-"In case you opened the search panel via the <gui>Hamburger Menu</gui> you "
-"have to click the button for activating the replace functionality."
+"In case you opened the search panel via the <gui>Main Menu</gui> you have to "
+"click the button for activating the replace functionality."
 msgstr ""
-"Se abreu o panel de busca mediante o <gui>Menú de hamburguesa</gui> debe "
-"premer o botón para activar a funcionalidade de substitución."
+"Se abriu o panel de busca mediante o <gui>Menú principal</gui> debe premer o "
+"botón para activar a funcionalidade de substitución."
 
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:68
@@ -468,12 +474,12 @@ msgstr "Rexeitar todos os cambios desde o último gardado"
 #. (itstool) path: section/p
 #: C/edit-undo-redo.page:75
 msgid ""
-"<guiseq> <gui>Menu</gui> <gui>Discard Changes</gui> </guiseq> will "
+"<guiseq> <gui>Main Menu</gui> <gui>Discard Changes</gui> </guiseq> will "
 "permanently discard all changes made to a file since it was last saved."
 msgstr ""
-"<guiseq> <gui>Menú</gui> <gui>Rexeitar cambios</gui> </guiseq> rexeitará "
-"todos os cambios feitos nun ficheiro de forma permanente desde o último "
-"gardado."
+"<guiseq> <gui>Menú principal</gui> <gui>Rexeitar cambios</gui> </guiseq> "
+"rexeitará todos os cambios feitos nun ficheiro de forma permanente desde o "
+"último gardado."
 
 #. (itstool) path: p/link
 #: C/legal.xml:4
