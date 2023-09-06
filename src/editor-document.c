@@ -1615,7 +1615,7 @@ editor_document_do_load (EditorDocument *self,
     }
 
   gtk_source_file_loader_load_async (loader,
-                                     G_PRIORITY_DEFAULT,
+                                     G_PRIORITY_LOW,
                                      g_task_get_cancellable (task),
                                      editor_document_progress,
                                      self,
