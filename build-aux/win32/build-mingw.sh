@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+pacman -Sy
 # Install dependencies
 pacman -S --noconfirm mingw-w64-x86_64-pkg-config \
             mingw-w64-x86_64-libadwaita \
@@ -10,7 +10,6 @@ pacman -S --noconfirm mingw-w64-x86_64-pkg-config \
             mingw-w64-x86_64-meson \
             itstool \
             mingw-w64-x86_64-gcc \
-            base-devel \
             mingw-w64-x86_64-toolchain \
             mingw-w64-x86_64-icu \
             mingw-w64-x86_64-gettext \
@@ -34,7 +33,18 @@ pacman -S --noconfirm mingw-w64-x86_64-pkg-config \
             mingw-w64-x86_64-gsettings-desktop-schemas \
             mingw-w64-x86_64-zlib \
             zip \
-            mingw-w64-ucrt-x86_64-libwebp 
+            mingw-w64-ucrt-x86_64-libwebp \
+            mingw-w64-x86_64-curl \
+            mingw-w64-x86_64-autotools \
+            mingw-w64-x86_64-binutils \
+            bison \
+            mingw-w64-x86_64-libyaml \
+            mingw-w64-x86_64-libstemmer \
+            coreutils
+
+            #it wasn't installing pkgconfig because base-devel was installing pkgconf. We'll install everything but that manually
+
+
 
 #update all packages
 pacman -Syu --noconfirm --ignore=pacman
@@ -111,6 +121,18 @@ mv *.dll *.exe ./gtksourceview-5 ./fontconfig ./portable_install/msys64/mingw64
 mv fonts.conf ./portable_install/msys64/mingw64
 DESTDIR=./portable_install meson install
 cd portable_install/msys64/mingw64
+#check for existence of gnometexteditor exe to check if compilation succeeded. If not exit with an error.
+CHECK_FILE="./gnome-text-editor.exe"
+if test -f "$CHECK_FILE"
+then
+    echo "$CHECK_FILE exists. Windows build can proceed."
+else
+    echo "$CHECK_FILE does not exist. Compilation failed."
+    exit 1
+fi
+
+
+
 mv *.dll *.exe bin
 mv ./gtksourceview-5 ./fontconfig share
 mkdir -p etc/fonts
