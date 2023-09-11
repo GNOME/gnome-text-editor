@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2023-07-29 08:36+0000\n"
-"PO-Revision-Date: 2023-07-29 15:45+0200\n"
+"POT-Creation-Date: 2023-09-10 14:50+0000\n"
+"PO-Revision-Date: 2023-09-10 22:33+0200\n"
 "Last-Translator: Matej Urbančič <mateju@src.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -329,12 +329,12 @@ msgstr "Zaženi nov primerek programa (vključuje možnost --ignore-session"
 msgid "Print version information and exit"
 msgstr "Izpiši podatke o različici in končaj"
 
-#: src/editor-document.c:2066
+#: src/editor-document.c:2096
 msgid "[Read-Only]"
 msgstr "[le za branje]"
 
-#: src/editor-document.c:2364 src/editor-page.c:1038
-#: src/editor-sidebar-item.c:497
+#: src/editor-document.c:2394 src/editor-page.c:1038
+#: src/editor-sidebar-item.c:511
 msgid "New Document"
 msgstr "Nov dokument"
 
@@ -440,7 +440,7 @@ msgid "No Results Found"
 msgstr "Ni najdenih zadetkov."
 
 #: src/editor-page.c:1064 src/editor-properties-dialog.c:107
-#: src/editor-sidebar-item.c:101
+#: src/editor-sidebar-item.c:105
 msgid "Draft"
 msgstr "Osnutek"
 
@@ -450,7 +450,7 @@ msgstr "Osnutek"
 msgid "%s (Administrator)"
 msgstr "%s (skrbniško urejanje)"
 
-#: src/editor-page.c:1086 src/editor-sidebar-item.c:109
+#: src/editor-page.c:1086 src/editor-sidebar-item.c:113
 msgid "Document Portal"
 msgstr "Portal dokumentov"
 
@@ -462,19 +462,19 @@ msgstr "Shranjevanje dokumenta je spodletelo."
 msgid "_Close"
 msgstr "_Zapri"
 
-#: src/editor-page.c:1218
+#: src/editor-page.c:1219
 msgid "Save As"
 msgstr "Shrani kot"
 
-#: src/editor-page.c:1221
+#: src/editor-page.c:1222
 msgid "Save"
 msgstr "Shrani"
 
-#: src/editor-page.c:1222 src/editor-window-actions.c:352
+#: src/editor-page.c:1223 src/editor-window-actions.c:352
 msgid "Cancel"
 msgstr "Prekliči"
 
-#: src/editor-page.c:1371
+#: src/editor-page.c:1379
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Vrstica: %u, Stolpec %u"
@@ -908,16 +908,16 @@ msgid "_Open"
 msgstr "_Odpri"
 
 #: src/editor-window.ui:84
-msgid "Recently Used Documents (Ctrl+K)"
-msgstr "Nedavno odprti dokumenti (Ctrl+K)"
+msgid "Recently Used Documents"
+msgstr "Nedavno odprti dokumenti"
 
 #: src/editor-window.ui:96
-msgid "New Tab (Ctrl+T)"
-msgstr "Nov zavihek (Ctrl+T)"
+msgid "New Tab"
+msgstr "Nov zavihek"
 
 #: src/editor-window.ui:98
-msgid "New tab (Ctrl+T)"
-msgstr "Nov zavihek (Ctrl+T)"
+msgid "New tab"
+msgstr "Nov zavihek"
 
 #: src/editor-window.ui:124
 msgid "View Options"
