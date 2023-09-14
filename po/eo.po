@@ -1,0 +1,1391 @@
+# Esperanto translation for gnome-text-editor.
+# Copyright (C) 2023 gnome-text-editor's COPYRIGHT HOLDER
+# This file is distributed under the same license as the gnome-text-editor package.
+# Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-text-editor main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
+"issues\n"
+"POT-Creation-Date: 2023-09-11 13:52+0000\n"
+"PO-Revision-Date: 2023-09-14 17:08+0200\n"
+"Last-Translator: Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>\n"
+"Language-Team: Esperanto <gnome-eo-list@gnome.org>\n"
+"Language: eo\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Generator: Gtranslator 42.0\n"
+
+#: data/org.gnome.TextEditor.appdata.xml.in.in:6
+#: src/editor-application-actions.c:201
+msgid "The GNOME Project"
+msgstr "La GNOME-Projekto"
+
+#: data/org.gnome.TextEditor.appdata.xml.in.in:8
+#: data/org.gnome.TextEditor.desktop.in.in:8
+#: data/org.gnome.TextEditor.desktop.in.in:9
+#: src/editor-application-actions.c:199 src/editor-window.c:1296
+msgid "Text Editor"
+msgstr "Tekstredaktilo"
+
+#: data/org.gnome.TextEditor.appdata.xml.in.in:10
+msgid "Edit text files"
+msgstr "Redakti tekstajn dosierojn"
+
+#: data/org.gnome.TextEditor.appdata.xml.in.in:12
+msgid ""
+"GNOME Text Editor is a simple text editor focused on a pleasing default "
+"experience."
+msgstr ""
+"La Tekstredaktilo de GNOME estas simpla teksta redaktilo, kiu celas je plaĉa "
+"sperto."
+
+#: data/org.gnome.TextEditor.desktop.in.in:4
+msgid "write;notepad;"
+msgstr "skribi;notbloko;"
+
+#: data/org.gnome.TextEditor.desktop.in.in:10
+msgid "View and edit text files"
+msgstr "Vidi kaj redakti tekstajn dosierojn"
+
+#: data/org.gnome.TextEditor.gschema.xml:16
+msgid "Auto Save Delay"
+msgstr "Aŭtomata konserva prokrasto"
+
+#: data/org.gnome.TextEditor.gschema.xml:17
+msgid "The delay in seconds to wait before auto-saving a draft."
+msgstr ""
+"La prokrasta tempo en sekundoj atendota antaŭ aŭtomate konservado de malneto."
+
+#: data/org.gnome.TextEditor.gschema.xml:26
+msgid "Style Variant"
+msgstr "Stila varianto"
+
+#: data/org.gnome.TextEditor.gschema.xml:27
+msgid ""
+"Use the light or dark variant of the GTK theme and/or GtkSourceView style "
+"scheme."
+msgstr ""
+"Uzu la varianton de la GTK-etoso kiu plej allogas al vi: la helan aŭ "
+"malhelan varianton, kaj/aŭ la stilŝemion de GtkSourceView."
+
+#: data/org.gnome.TextEditor.gschema.xml:35
+msgid "Indentation Style"
+msgstr "Stilo de indentigo"
+
+#: data/org.gnome.TextEditor.gschema.xml:36
+msgid "If the editor should insert multiple spaces characters instead of tabs."
+msgstr ""
+"Ĉu la redaktilo devas enigi plurezerĉajn spacajn signojn anstataŭ "
+"tabulatoroj?"
+
+#: data/org.gnome.TextEditor.gschema.xml:40
+msgid "Auto Indent"
+msgstr "Aŭtomata indentigo"
+
+#: data/org.gnome.TextEditor.gschema.xml:41
+msgid "Automatically indent new lines copying the previous line's indentation."
+msgstr ""
+"Aŭtomate identigi novajn liniojn kopiantajn la antaŭan linian indentigon."
+
+#: data/org.gnome.TextEditor.gschema.xml:46
+msgid "Tab Width"
+msgstr "Larĝo de tabo"
+
+#: data/org.gnome.TextEditor.gschema.xml:47
+msgid "The number of spaces represented by a tab."
+msgstr "La nombro de spacaj signoj reprezentataj per unu tabo."
+
+#: data/org.gnome.TextEditor.gschema.xml:52
+msgid "Indent Width"
+msgstr "Indentiglarĝo"
+
+#: data/org.gnome.TextEditor.gschema.xml:53
+msgid "The number of spaces to indent or -1 to use tab-width."
+msgstr "La nombro de spacaj signoj por indentigo aŭ -1 por uzi tabo-larĝon."
+
+#: data/org.gnome.TextEditor.gschema.xml:57
+msgid "Show Line Numbers"
+msgstr "Montri lininumerojn"
+
+#: data/org.gnome.TextEditor.gschema.xml:58
+msgid "If line numbers should be displayed next to each line."
+msgstr "Ĉu lininumeroj devas esti montrataj apud ĉiu linio."
+
+#: data/org.gnome.TextEditor.gschema.xml:62
+msgid "Show Right Margin"
+msgstr "Montri dekstran marĝenon"
+
+#: data/org.gnome.TextEditor.gschema.xml:63
+msgid "If a margin line should be displayed on the right of the editor."
+msgstr ""
+"Ĉu linio de marĝeno devas esti montrata en la dekstra flanko de la redaktilo."
+
+#: data/org.gnome.TextEditor.gschema.xml:68
+msgid "Right Margin Position"
+msgstr "Dekstra marĝeno-pozicio"
+
+#: data/org.gnome.TextEditor.gschema.xml:69
+msgid ""
+"The position in characters at which the right margin should be displayed."
+msgstr "La loko en signoj, kie la dekstra marĝeno devas esti montrata."
+
+#: data/org.gnome.TextEditor.gschema.xml:73
+msgid "Show Overview Map"
+msgstr "Montri superrigardan mapon"
+
+#: data/org.gnome.TextEditor.gschema.xml:74
+msgid ""
+"If enabled, an overview map of the file will be displayed to the side of the "
+"editor."
+msgstr ""
+"Se ebligite, supervidiga mapo de la dosiero estos montrata apud la redaktilo."
+
+#: data/org.gnome.TextEditor.gschema.xml:78
+msgid "Show Background Grid"
+msgstr "Montri fonan kradon"
+
+#: data/org.gnome.TextEditor.gschema.xml:79
+msgid "If enabled, a blueprint style grid is printed on the editor background."
+msgstr ""
+"Se ebligite, stiltipo fona krado estas montrata sur la fono de la redaktilo."
+
+#: data/org.gnome.TextEditor.gschema.xml:83
+msgid "Highlight current line"
+msgstr "Emfazi aktualan linion"
+
+#: data/org.gnome.TextEditor.gschema.xml:84
+msgid "If enabled, the current line will be highlighted."
+msgstr "Se ebligite, aktuala linio estas emfaza."
+
+#: data/org.gnome.TextEditor.gschema.xml:88
+msgid "Text Wrapping"
+msgstr "Teksto envolvado"
+
+#: data/org.gnome.TextEditor.gschema.xml:89
+msgid "If text should be wrapped."
+msgstr "Se teksto devus esti envolvita."
+
+#: data/org.gnome.TextEditor.gschema.xml:93
+msgid "Use System Font"
+msgstr "Uzi la sistemfonton"
+
+#: data/org.gnome.TextEditor.gschema.xml:94
+msgid "If the default system monospace font should be used."
+msgstr "Se la defaŭlta sistema monospaca tiparo estu uzata."
+
+#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:59
+msgid "Custom Font"
+msgstr "Propra tiparo"
+
+#: data/org.gnome.TextEditor.gschema.xml:99
+msgid "A custom font to use in the editor."
+msgstr "Propra tiparo por uzi en la redaktilo."
+
+#: data/org.gnome.TextEditor.gschema.xml:103
+msgid "Style Scheme"
+msgstr "Stila ŝablono"
+
+#: data/org.gnome.TextEditor.gschema.xml:104
+msgid ""
+"The style scheme to use by the editor. It may translate this into a dark "
+"format when available."
+msgstr ""
+"La stila ŝablono uzata de la redaktilo. Ĝi povas traduki tion en helan "
+"formaton, se disponeblas."
+
+#: data/org.gnome.TextEditor.gschema.xml:108
+msgid "Discover File Settings"
+msgstr "Malkovri dosierajn agordojn"
+
+#: data/org.gnome.TextEditor.gschema.xml:109
+msgid ""
+"If enabled then Text Editor will try to discover file settings from "
+"modelines, editorconfig, or per-language defaults."
+msgstr ""
+"Se ebligite, tiam Tekstredaktilo provos malkovri dosiersetojn de modelinioj, "
+"editorconfig, aŭ la per-lingvaj defaŭltoj."
+
+#: data/org.gnome.TextEditor.gschema.xml:113
+msgid "Automatically check spelling"
+msgstr "Aŭtomate kontroli literumon"
+
+#: data/org.gnome.TextEditor.gschema.xml:114
+msgid "If enabled, then Text Editor will check spelling as you type."
+msgstr "Se ebligite, Tekstaredaktilo kontrolos literumadon dum vi tajpas."
+
+#: data/org.gnome.TextEditor.gschema.xml:118
+msgid "Restore session"
+msgstr "Restaŭri sesion"
+
+#: data/org.gnome.TextEditor.gschema.xml:119
+msgid "When Text Editor is run, restore the previous session."
+msgstr "Kiam Tekstredaktilo estas lanĉita, restaŭri la antaŭan sesion."
+
+#: data/org.gnome.TextEditor.gschema.xml:123
+msgid "Recolor Window"
+msgstr "Rekolorigi la fenestron"
+
+#: data/org.gnome.TextEditor.gschema.xml:124
+msgid "Use the style-scheme to recolor the application window."
+msgstr "Uzi la stila ŝablono por rekolorigi la aplika fenestron."
+
+#: data/org.gnome.TextEditor.gschema.xml:132
+msgid "Keybindings"
+msgstr "Klavoligoj"
+
+#: data/org.gnome.TextEditor.gschema.xml:133
+msgid "The keybindings to use within Text Editor."
+msgstr "La klavoligoj uzeblaj en la Tekstredaktilo."
+
+#: data/org.gnome.TextEditor.gschema.xml:137
+msgid "Last Save Directory"
+msgstr "Lasta konservita dosierujo"
+
+#: data/org.gnome.TextEditor.gschema.xml:138
+msgid "The directory last used in a save or save-as dialog."
+msgstr "La dosierujo laste uzita en dialogo pri konservado aŭ konservado kiel."
+
+#: data/org.gnome.TextEditor.gschema.xml:142
+msgid "Draw Spaces"
+msgstr "Desegni Spacojn"
+
+#: data/org.gnome.TextEditor.gschema.xml:143
+msgid "The various types of spaces to draw in the editor."
+msgstr "La diversaj tipoj de spacoj por desegni en la redaktilo."
+
+#: data/org.gnome.TextEditor.gschema.xml:147
+msgid "Enable Snippets"
+msgstr "Ebligi fragmentojn"
+
+#: data/org.gnome.TextEditor.gschema.xml:148
+msgid ""
+"Enable the use of snippets registered with GtkSourceView from within the "
+"editor."
+msgstr ""
+"Ebligi la uzon de fragmentoj registritaj per GtkSourceView en la redaktilo."
+
+#: data/org.gnome.TextEditor.gschema.xml:153
+msgid "Line Height"
+msgstr "Linialteco"
+
+#: data/org.gnome.TextEditor.gschema.xml:154
+msgid "The line height to use for the selected font."
+msgstr "La linialteco uzebla por la elektita tiparo."
+
+#: data/org.gnome.TextEditor.gschema.xml:158
+msgid "Highlight Matching Brackets"
+msgstr "Emfazi kongruajn krampojn"
+
+#: data/org.gnome.TextEditor.gschema.xml:159
+msgid "Highlight matching brackets and braces."
+msgstr "Emfazi kongruajn krampojn."
+
+#: src/editor-animation.c:1038
+#, c-format
+msgid "Failed to find property %s in %s"
+msgstr "Malsukcesis trovi econ %s en %s"
+
+#: src/editor-animation.c:1047
+#, c-format
+msgid "Failed to retrieve va_list value: %s"
+msgstr "Malsukcesis alporti va_list-valoron: %s"
+
+#: src/editor-application-actions.c:214
+msgid "translator-credits"
+msgstr "Kristjan SCHMIDT"
+
+#: src/editor-application.c:525
+msgid "Standard input was requested multiple times. Ignoring request."
+msgstr "Petita norma enigo plurfoje. Ignoras la peton."
+
+#: src/editor-application.c:529
+msgid "Standard input is not supported on this platform. Ignoring request."
+msgstr "Norma enigo ne estas subtenata sur tiu platformo. Ignoras la peton."
+
+#: src/editor-application.c:632
+msgid "Bugs may be reported at:"
+msgstr "Eraroj povas esti raportataj ĉe:"
+
+#: src/editor-application.c:634
+msgid "[FILES…]"
+msgstr "[DOSIEROJ…]"
+
+#: src/editor-application.c:748
+msgid "Do not restore session at startup"
+msgstr "Ne restaŭri sesion ĉe lanĉo"
+
+#: src/editor-application.c:749
+msgid "Open provided files in a new window"
+msgstr "Malfermi provizatajn dosierojn en nova fenestro"
+
+#: src/editor-application.c:750
+msgid "Run a new instance of Text Editor (implies --ignore-session)"
+msgstr "Lanĉi novan instancon de la Tekstredaktilo (implicas --ignore-session)"
+
+#: src/editor-application.c:751
+msgid "Print version information and exit"
+msgstr "Montri informon pri versio kaj eliri"
+
+#: src/editor-document.c:2096
+msgid "[Read-Only]"
+msgstr "[Nur-lega]"
+
+#: src/editor-document.c:2394 src/editor-page.c:1038
+#: src/editor-sidebar-item.c:511
+msgid "New Document"
+msgstr "Nova dokumento"
+
+#: src/editor-file-manager.c:99
+msgid "File path is NULL"
+msgstr "Dosiervojo estas NULL"
+
+#: src/editor-file-manager.c:108 src/editor-file-manager.c:119
+msgid "Error converting UTF-8 filename to wide char"
+msgstr "Eraro konvertante UTF-8-dosiernomo al larĝa signo"
+
+#: src/editor-file-manager.c:127
+msgid "ILCreateFromPath() failed"
+msgstr "ILCreateFromPath() malsukcesis"
+
+#: src/editor-file-manager.c:164
+#, c-format
+msgid "Cannot convert “%s” into a valid NSURL."
+msgstr "Ne eblas konverti “%s” en validan NSURL."
+
+#: src/editor-info-bar.c:76
+msgid "_Discard Changes and Reload"
+msgstr "_Forĵeti Ŝanĝojn kaj reŝargi"
+
+#: src/editor-info-bar.c:79
+msgid "File Has Changed on Disk"
+msgstr "Dosiero ŝanĝiĝis sur disko"
+
+#: src/editor-info-bar.c:80
+msgid "The file has been changed by another program."
+msgstr "La dosiero estis ŝanĝita de alia programo."
+
+#: src/editor-info-bar.c:89 src/editor-window.ui:216
+msgid "Save _As…"
+msgstr "Konservi _kiel…"
+
+#: src/editor-info-bar.c:91 src/editor-info-bar.ui:63
+msgid "Document Restored"
+msgstr "Dokumento restaŭrata"
+
+#: src/editor-info-bar.c:92 src/editor-info-bar.ui:73
+msgid "Unsaved document has been restored."
+msgstr "Nekonservita dokumento estis restaŭrata."
+
+#: src/editor-info-bar.c:98 src/editor-info-bar.ui:87
+msgid "_Save…"
+msgstr "_Konservi…"
+
+#: src/editor-info-bar.c:100 src/editor-info-bar.ui:81
+msgid "_Discard…"
+msgstr "_Forĵeti…"
+
+#: src/editor-info-bar.c:102
+msgid "Draft Changes Restored"
+msgstr "Malnetaj ŝanĝoj reestigitaj"
+
+#: src/editor-info-bar.c:103
+msgid "Unsaved changes to the document have been restored."
+msgstr "Nekonservitaj ŝanĝoj al la dokumento estis restaŭritaj."
+
+#: src/editor-info-bar.ui:19
+msgid "Could Not Open File"
+msgstr "Ne eblis malfermi la dosieron"
+
+#: src/editor-info-bar.ui:29
+msgid "You do not have permission to open the file."
+msgstr "Vi ne havas permeson malfermi la dosieron."
+
+#: src/editor-info-bar.ui:37
+msgid "_Retry"
+msgstr "_Reprovi"
+
+#: src/editor-info-bar.ui:44
+msgid "Open As _Administrator"
+msgstr "Malfermi kiel _adminstranto"
+
+#: src/editor-language-dialog.ui:6 src/editor-window.c:195
+msgid "Document Type"
+msgstr "Dokumenta tipo"
+
+#: src/editor-language-dialog.ui:50
+msgid "No Matches"
+msgstr "Neniuj matĉoj"
+
+#: src/editor-language-row.c:61 src/editor-language-row.c:119
+msgid "Plain Text"
+msgstr "Simpla teksto"
+
+#: src/editor-open-popover.ui:25
+msgid "Search documents"
+msgstr "Serĉi dokumentojn"
+
+#: src/editor-open-popover.ui:39
+msgid "Open New Document (Ctrl+O)"
+msgstr "Malfermi novan dokumenton (Ctrl+O)"
+
+#: src/editor-open-popover.ui:74
+msgid "No Recent Documents"
+msgstr "Neniuj lastaj dokumentoj"
+
+#: src/editor-open-popover.ui:104
+msgid "No Results Found"
+msgstr "Neniu rezulto troviĝis"
+
+#: src/editor-page.c:1064 src/editor-properties-dialog.c:107
+#: src/editor-sidebar-item.c:105
+msgid "Draft"
+msgstr "Malneto"
+
+#. translators: %s is replaced with the path on the filesystem
+#: src/editor-page.c:1076
+#, c-format
+msgid "%s (Administrator)"
+msgstr "%s (Administranto)"
+
+#: src/editor-page.c:1086 src/editor-sidebar-item.c:113
+msgid "Document Portal"
+msgstr "Dokumenta portalo"
+
+#: src/editor-page.c:1133
+msgid "Failed to save document"
+msgstr "Malsukcesis konservi la dokumenton"
+
+#: src/editor-page.c:1134 src/editor-window.ui:357
+msgid "_Close"
+msgstr "_Fermi"
+
+#: src/editor-page.c:1219
+msgid "Save As"
+msgstr "Konservi kiel"
+
+#: src/editor-page.c:1222
+msgid "Save"
+msgstr "Konservi"
+
+#: src/editor-page.c:1223 src/editor-window-actions.c:352
+msgid "Cancel"
+msgstr "Nuligi"
+
+#: src/editor-page.c:1379
+#, c-format
+msgid "Ln %u, Col %u"
+msgstr "Ln %u, Kol %u"
+
+#: src/editor-page.ui:97
+msgid "Go to Line"
+msgstr "Iri al linio"
+
+#: src/editor-page.ui:115
+msgid "Go"
+msgstr "Iri"
+
+#: src/editor-page.ui:152
+msgid "Indentation"
+msgstr "Indentaĵo"
+
+#: src/editor-page.ui:155 src/editor-window.ui:277
+msgid "_Automatic Indentation"
+msgstr "_Aŭtomata indentaĵo"
+
+#. Translators: this is a tab character, not a browser tab
+#: src/editor-page.ui:161 src/editor-window.ui:281
+msgid "_Tabs"
+msgstr "_Langetoj"
+
+#: src/editor-page.ui:166 src/editor-window.ui:286
+msgid "_Spaces"
+msgstr "_Spacoj"
+
+#: src/editor-page.ui:173 src/editor-window.ui:291
+msgid "Spaces _Per Tab"
+msgstr "Spacoj _per tabo"
+
+#: src/editor-page.ui:175 src/editor-page.ui:203
+msgid "2"
+msgstr "2"
+
+#: src/editor-page.ui:180 src/editor-page.ui:208
+msgid "4"
+msgstr "4"
+
+#: src/editor-page.ui:185 src/editor-page.ui:213
+msgid "6"
+msgstr "6"
+
+#: src/editor-page.ui:190 src/editor-page.ui:218
+msgid "8"
+msgstr "8"
+
+#: src/editor-page.ui:196
+msgid "Spaces Per Indent"
+msgstr "Spacoj per indentigo"
+
+#: src/editor-page.ui:198
+msgid "Use Tab Size"
+msgstr "Uzi la grandon de la tabo"
+
+#. translators: Ln is short for "Line Number"
+#: src/editor-position-label.ui:15
+msgid "Ln"
+msgstr "Ln"
+
+#. translators: Col is short for "Column"
+#: src/editor-position-label.ui:35
+msgid "Col"
+msgstr "Kol"
+
+#: src/editor-preferences-dialog.ui:19
+msgid "Appearance"
+msgstr "Aspekto"
+
+#: src/editor-preferences-dialog.ui:81
+msgid "Display Grid Pattern"
+msgstr "Montri krado-ŝablonon"
+
+#: src/editor-preferences-dialog.ui:87
+msgid "Highlight Current Line"
+msgstr "Emfazi aktualan linion"
+
+#: src/editor-preferences-dialog.ui:93
+msgid "Display Overview Map"
+msgstr "Montri superrigardan mapon"
+
+#: src/editor-preferences-dialog.ui:101
+msgid "Right Margin"
+msgstr "Dekstra marĝeno"
+
+#: src/editor-preferences-dialog.ui:104
+msgid "Margin Position"
+msgstr "Marĝena pozicio"
+
+#: src/editor-preferences-dialog.ui:112
+msgid "Behavior"
+msgstr "Konduto"
+
+#: src/editor-preferences-dialog.ui:115
+msgid "Discover Document Settings"
+msgstr "Ekscii dokumentajn agordojn"
+
+#: src/editor-preferences-dialog.ui:116
+msgid "Apply settings using modelines, editorconfig, or sensible defaults"
+msgstr "Apliki agordojn per modelinioj, editorconfig, aŭ prudentaj defaŭltoj"
+
+#: src/editor-preferences-dialog.ui:122
+msgid "Restore Session"
+msgstr "Restaŭri la sesion"
+
+#: src/editor-preferences-dialog.ui:123
+msgid "Return to your previous session when Text Editor is started"
+msgstr "Reiri al via antaŭa sesio kiam Tekstredaktilo estas lanĉita"
+
+#: src/editor-preferences-dialog.ui:138
+msgid "_Clear History"
+msgstr "_Forigi la historion"
+
+#: src/editor-preferences-font.c:100
+msgid "Select Font"
+msgstr "Elekti tiparon"
+
+#: src/editor-print-operation.c:176
+#, c-format
+msgid "Draft: %s"
+msgstr "Malneto: %s"
+
+#: src/editor-print-operation.c:178
+#, c-format
+msgid "File: %s"
+msgstr "Dosiero: %s"
+
+#. Translators: %N is the current page number, %Q is the total
+#. * number of pages (ex. Page 2 of 10)
+#.
+#: src/editor-print-operation.c:189
+msgid "Page %N of %Q"
+msgstr "Paĝo %N el %Q"
+
+#: src/editor-properties-dialog.ui:6
+msgid "Properties"
+msgstr "Atributoj"
+
+#: src/editor-properties-dialog.ui:27
+msgid "File"
+msgstr "Dosiero"
+
+#: src/editor-properties-dialog.ui:30
+msgid "Name"
+msgstr "Nomo"
+
+#: src/editor-properties-dialog.ui:43
+msgid "Location"
+msgstr "Loko"
+
+#: src/editor-properties-dialog.ui:59
+msgid "Statistics"
+msgstr "Statistikoj"
+
+#: src/editor-properties-dialog.ui:62
+msgid "Lines"
+msgstr "Linioj"
+
+#: src/editor-properties-dialog.ui:77
+msgid "Words"
+msgstr "Vortoj"
+
+#: src/editor-properties-dialog.ui:92
+msgid "Characters, No Spaces"
+msgstr "Literoj, Sen spacoj"
+
+#: src/editor-properties-dialog.ui:107
+msgid "All Characters"
+msgstr "Ĉiuj lLiteroj"
+
+#: src/editor-save-changes-dialog.c:255 src/editor-window-actions.c:242
+msgid "_Discard"
+msgstr "_Ignori"
+
+#: src/editor-save-changes-dialog.c:255
+msgid "_Discard All"
+msgstr "_Ignori ĉiujn"
+
+#: src/editor-save-changes-dialog.c:258
+msgid "Save Changes?"
+msgstr "Ĉu konservi ŝanĝojn?"
+
+#: src/editor-save-changes-dialog.c:259
+msgid ""
+"Open documents contain unsaved changes. Changes which are not saved will be "
+"permanently lost."
+msgstr ""
+"Malfermitaj dokumentoj enhavas nekonservitajn ŝanĝojn. Ŝanĝoj kiuj ne estas "
+"konservitaj estos por ĉiam perdita."
+
+#: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:116
+#: src/editor-window-actions.c:241
+msgid "_Cancel"
+msgstr "_Nuligi"
+
+#: src/editor-save-changes-dialog.c:265 src/editor-window-actions.c:117
+#: src/editor-window.ui:210
+msgid "_Save"
+msgstr "_Konservi"
+
+#: src/editor-save-changes-dialog.c:299
+msgid "Untitled Document"
+msgstr "Sentitola dokumento"
+
+#. translators: %s is replaced with the title of the file
+#: src/editor-save-changes-dialog.c:302
+#, c-format
+msgid "%s (new)"
+msgstr "%s (nova)"
+
+#: src/editor-save-changes-dialog.c:323
+msgid "Save changes for this document"
+msgstr "Konservi ŝanĝojn por ĉi tiu dokumento"
+
+#: src/editor-search-bar.ui:33
+msgid "Replace"
+msgstr "Anstataŭigi"
+
+#: src/editor-search-bar.ui:51
+msgid "Move to previous match (Ctrl+Shift+G)"
+msgstr "Iri al la antaŭa kongruo (Ctrl+Shift+G)"
+
+#: src/editor-search-bar.ui:59
+msgid "Move to next match (Ctrl+G)"
+msgstr "Iri al la venonta kongruo (Ctrl+G)"
+
+#: src/editor-search-bar.ui:71
+msgid "Search & Replace (Ctrl+H)"
+msgstr "Serĉi & anstataŭigi (Ktrl+H)"
+
+#: src/editor-search-bar.ui:81
+msgid "Toggle search options"
+msgstr "Ŝalti serĉajn opciojn"
+
+#: src/editor-search-bar.ui:95
+msgid "Close search"
+msgstr "Fermi la serĉon"
+
+#: src/editor-search-bar.ui:112
+msgid "_Replace"
+msgstr "_Anstataŭigi"
+
+#: src/editor-search-bar.ui:124
+msgid "Replace _All"
+msgstr "Anstataŭigi _ĉiujn"
+
+#: src/editor-search-bar.ui:140
+msgid "Re_gular expressions"
+msgstr "Regulaj _esprimoj"
+
+#: src/editor-search-bar.ui:146
+msgid "_Case sensitive"
+msgstr "_Usklecodistinga"
+
+#: src/editor-search-bar.ui:152
+msgid "Match whole _word only"
+msgstr "Kongrui _tutvorte nur"
+
+#. translators: the first %u is replaced with the current position, the second with the number of search results
+#: src/editor-search-entry.c:197
+#, c-format
+msgid "%u of %u"
+msgstr "%u el %u"
+
+#: src/editor-sidebar-row.ui:85
+msgid "Remove"
+msgstr "Forigi"
+
+#: src/editor-spell-menu.c:248
+msgid "Add to Dictionary"
+msgstr "Aldoni al la vortaro"
+
+#: src/editor-spell-menu.c:249
+msgid "Ignore"
+msgstr "Ignori"
+
+#: src/editor-spell-menu.c:250
+msgid "Check Spelling"
+msgstr "Kontrolu literumadon"
+
+#: src/editor-spell-menu.c:259
+msgid "Languages"
+msgstr "Lingvoj"
+
+#: src/editor-theme-selector.ui:22
+msgid "Follow System Style"
+msgstr "Sekvi la stilon de la sistemo"
+
+#: src/editor-theme-selector.ui:24
+msgid "Follow system style"
+msgstr "Sekvi la stilon de la sistemo"
+
+#: src/editor-theme-selector.ui:39
+msgid "Light Style"
+msgstr "Hela stilo"
+
+#: src/editor-theme-selector.ui:41
+msgid "Light style"
+msgstr "Hela stilo"
+
+#: src/editor-theme-selector.ui:57
+msgid "Dark Style"
+msgstr "Malhela stilo"
+
+#: src/editor-theme-selector.ui:59
+msgid "Dark style"
+msgstr "Malhela stilo"
+
+#: src/editor-utils.c:348
+msgid "Just now"
+msgstr "Nur nun"
+
+#: src/editor-utils.c:350
+msgid "An hour ago"
+msgstr "Antaŭ unu horo"
+
+#: src/editor-utils.c:352
+msgid "Yesterday"
+msgstr "Hieraŭ"
+
+#: src/editor-utils.c:358
+msgid "About a year ago"
+msgstr "Proksimume antaŭ jaro"
+
+#: src/editor-utils.c:362
+#, c-format
+msgid "About %u year ago"
+msgid_plural "About %u years ago"
+msgstr[0] "Proksimume antaŭ %u jaro"
+msgstr[1] "Proksimume antaŭ %u jaroj"
+
+#: src/editor-utils.c:370
+msgid "Unix/Linux (LF)"
+msgstr "Unikso/Linukso (LF)"
+
+#: src/editor-utils.c:371
+msgid "Mac OS Classic (CR)"
+msgstr "Mac OS Classic (CR)"
+
+#: src/editor-utils.c:372
+msgid "Windows (CR+LF)"
+msgstr "Vindozo (CR+LF)"
+
+#: src/editor-utils.c:402
+msgid "Automatically Detected"
+msgstr "Aŭtomate detektita"
+
+#: src/editor-utils.c:418
+msgid "Character Encoding:"
+msgstr "Karakterkodado:"
+
+#: src/editor-utils.c:453
+msgid "Line Ending:"
+msgstr "Finaĵo de linio:"
+
+#: src/editor-window-actions.c:110
+msgid "Saving changes will replace the previously saved version."
+msgstr "Konservado de ŝanĝoj anstataŭigos la antaŭe konservitan version."
+
+#. translators: %s is replaced with the document title
+#: src/editor-window-actions.c:113
+#, c-format
+msgid "Save Changes to “%s”?"
+msgstr "Ĉu konservi ŝanĝojn en “%s”?"
+
+#: src/editor-window-actions.c:235
+msgid "Unsaved changes will be permanently lost."
+msgstr "nekonservitaj ŝanĝoj estos por ĉiam perdita."
+
+#. translators: %s is replaced with the document title
+#: src/editor-window-actions.c:238
+#, c-format
+msgid "Discard Changes to “%s”?"
+msgstr "Ĉu forigi ŝanĝojn en “%s”?"
+
+#: src/editor-window-actions.c:348
+msgid "Open File"
+msgstr "Malfermi dosieron"
+
+#: src/editor-window-actions.c:351
+msgid "Open"
+msgstr "Malfermi"
+
+#: src/editor-window-actions.c:376
+msgid "All Files"
+msgstr "Ĉiuj dosieroj"
+
+#: src/editor-window-actions.c:381
+msgid "Text Files"
+msgstr "Tekstaj dosieroj"
+
+#: src/editor-window.c:207
+#, c-format
+msgid "Document Type: %s"
+msgstr "Tipo de dokumento: %s"
+
+#: src/editor-window.c:507
+msgid "Zoom In"
+msgstr "Enzomi"
+
+#: src/editor-window.c:510
+msgid "Zoom in"
+msgstr "Enzomi"
+
+#: src/editor-window.c:520
+msgid "Zoom Out"
+msgstr "Fari Malpligrandigon"
+
+#: src/editor-window.c:523
+msgid "Zoom out"
+msgstr "Elzomi"
+
+#. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
+#: src/editor-window.c:745
+#, c-format
+msgid "%s (%s) - Text Editor"
+msgstr "%s (%s) - Tekstredaktilo"
+
+#: src/editor-window.c:1184
+msgid "There are unsaved documents"
+msgstr "Estas nekonservitaj dokumentoj"
+
+#: src/editor-window.ui:82
+msgid "_Open"
+msgstr "Mal_fermi"
+
+#: src/editor-window.ui:84
+msgid "Recently Used Documents"
+msgstr "Lastatempe uzitaj dokumentoj"
+
+#: src/editor-window.ui:96
+msgid "New Tab"
+msgstr "Nova langeto"
+
+#: src/editor-window.ui:98
+msgid "New tab"
+msgstr "Nova langeto"
+
+#: src/editor-window.ui:124
+msgid "View Options"
+msgstr "Vidi opciojn"
+
+#: src/editor-window.ui:128
+msgid "View"
+msgstr "Vidi"
+
+#: src/editor-window.ui:134
+msgid "Main Menu"
+msgstr "Ĉefa menuo"
+
+#: src/editor-window.ui:138
+msgid "Main menu"
+msgstr "Ĉefa menuo"
+
+#: src/editor-window.ui:165
+msgid "Start or Open a Document"
+msgstr "Komenci aŭ malfermi dokumenton"
+
+#: src/editor-window.ui:168
+msgid ""
+"• Press the Open button\n"
+"• Press the New tab button\n"
+"• Press Ctrl+N to start a new document\n"
+"• Press Ctrl+O to browse for a document\n"
+"\n"
+"Or, press Ctrl+W to close the window."
+msgstr ""
+"• Premu la Malfermi-butonon\n"
+"• Premu la Nova langeto-butonon\n"
+"• Premu Ktrl+N por krei novan dokumenton\n"
+"• Premu Ktrl+O por rigardi dosieron\n"
+"\n"
+"Aŭ, premu Ktrl+W por fermi la fenestron."
+
+#: src/editor-window.ui:202
+msgid "_New Window"
+msgstr "Nova fenestro"
+
+#: src/editor-window.ui:222
+msgid "_Discard Changes"
+msgstr "_Forigi ŝanĝojn"
+
+#: src/editor-window.ui:228
+msgid "_Find/Replace…"
+msgstr "_Serĉi/Anstataŭigi…"
+
+#: src/editor-window.ui:234
+msgid "_Print…"
+msgstr "_Presi…"
+
+#: src/editor-window.ui:240
+msgid "Documen_t Properties"
+msgstr "Dokumen_taj atributoj"
+
+#: src/editor-window.ui:246
+msgid "P_references"
+msgstr "_Agordoj"
+
+#: src/editor-window.ui:251
+msgid "_Keyboard Shortcuts"
+msgstr "_Klavkombinoj"
+
+#: src/editor-window.ui:255
+msgid "_Help"
+msgstr "_Helpo"
+
+#: src/editor-window.ui:259
+msgid "A_bout Text Editor"
+msgstr "_Pri Tekstredaktilo"
+
+#: src/editor-window.ui:267
+msgid "Show _Line Numbers"
+msgstr "Montri _lininumerojn"
+
+#: src/editor-window.ui:271
+msgid "Show _Right Margin"
+msgstr "Montri _dekstran marĝenon"
+
+#: src/editor-window.ui:294
+msgid "_2"
+msgstr "_2"
+
+#: src/editor-window.ui:299
+msgid "_4"
+msgstr "_4"
+
+#: src/editor-window.ui:304
+msgid "_6"
+msgstr "_6"
+
+#: src/editor-window.ui:309
+msgid "_8"
+msgstr "_8"
+
+#: src/editor-window.ui:318
+msgid "T_ext Wrapping"
+msgstr "T_eksta envolvado"
+
+#: src/editor-window.ui:322
+msgid "Chec_k Spelling"
+msgstr "_Kontroli literumadon"
+
+#: src/editor-window.ui:326
+msgid "_Document Type"
+msgstr "Tipo de _dokumento"
+
+#: src/editor-window.ui:334
+msgid "Move _Left"
+msgstr "Movi _maldekstren"
+
+#: src/editor-window.ui:339
+msgid "Move _Right"
+msgstr "Movi _dekstren"
+
+#: src/editor-window.ui:346
+msgid "_Move to New Window"
+msgstr "Movi al _nova fenestro"
+
+#: src/editor-window.ui:353
+msgid "Close _Other Tabs"
+msgstr "Fermi aliajn _langetojn"
+
+#: src/enchant/editor-enchant-spell-provider.c:123
+msgid "Enchant 2"
+msgstr "Enchant 2"
+
+#: src/help-overlay.ui:12
+msgctxt "shortcut window"
+msgid "Windows"
+msgstr "Fenestroj"
+
+#: src/help-overlay.ui:15
+msgctxt "shortcut window"
+msgid "New window"
+msgstr "Nova fenestro"
+
+#: src/help-overlay.ui:21
+msgctxt "shortcut window"
+msgid "Move document to new window"
+msgstr "Movi la dokumenton al nova fenestro"
+
+#: src/help-overlay.ui:28
+msgctxt "shortcut window"
+msgid "Move to next tab"
+msgstr "Movi al sekva langeto"
+
+#: src/help-overlay.ui:34
+msgctxt "shortcut window"
+msgid "Move to previous tab"
+msgstr "Movi al antaŭa langeto"
+
+#: src/help-overlay.ui:40
+msgctxt "shortcut window"
+msgid "Reorder after next tab"
+msgstr "Reordigi post la sekva langeto"
+
+#: src/help-overlay.ui:46
+msgctxt "shortcut window"
+msgid "Reorder before previous tab"
+msgstr "Reordigi antaŭ la antaŭa langeto"
+
+#: src/help-overlay.ui:52
+msgctxt "shortcut window"
+msgid "Restore previously closed tab"
+msgstr "Restarigi antaŭe fermitan langeton"
+
+#: src/help-overlay.ui:59
+msgctxt "shortcut window"
+msgid "Zoom"
+msgstr "Zomi"
+
+#: src/help-overlay.ui:63
+msgctxt "shortcut window"
+msgid "Zoom In"
+msgstr "Enzomi"
+
+#: src/help-overlay.ui:69
+msgctxt "shortcut window"
+msgid "Zoom Out"
+msgstr "Elzomi"
+
+#: src/help-overlay.ui:75
+msgctxt "shortcut window"
+msgid "Reset Zoom"
+msgstr "Restarigi zomon"
+
+#: src/help-overlay.ui:82
+msgctxt "shortcut window"
+msgid "Documents"
+msgstr "Dokumentoj"
+
+#: src/help-overlay.ui:85
+msgctxt "shortcut window"
+msgid "New document"
+msgstr "Nova dokumento"
+
+#: src/help-overlay.ui:91
+msgctxt "shortcut window"
+msgid "Browse to open document"
+msgstr "Foliumi por malfermi dokumenton"
+
+#: src/help-overlay.ui:97
+msgctxt "shortcut window"
+msgid "Find document by name"
+msgstr "Trovi dokumenton laŭ nomo"
+
+#: src/help-overlay.ui:103
+msgctxt "shortcut window"
+msgid "Save"
+msgstr "Konservi"
+
+#: src/help-overlay.ui:109
+msgctxt "shortcut window"
+msgid "Save As"
+msgstr "Konservi kiel"
+
+#: src/help-overlay.ui:115
+msgctxt "shortcut window"
+msgid "Find/Replace"
+msgstr "Serĉi/Anstataŭigi"
+
+#: src/help-overlay.ui:121
+msgctxt "shortcut window"
+msgid "Close document"
+msgstr "Fermi dokumenton"
+
+#: src/help-overlay.ui:129
+msgctxt "shortcut window"
+msgid "Copy and Paste"
+msgstr "Kopii kaj enmeti"
+
+#: src/help-overlay.ui:133
+msgctxt "shortcut window"
+msgid "Copy selected text to clipboard"
+msgstr "Kopii elektitan tekston al tondujo"
+
+#: src/help-overlay.ui:139
+msgctxt "shortcut window"
+msgid "Cut selected text to clipboard"
+msgstr "Tranĉi elektitan tekston al tondujo"
+
+#: src/help-overlay.ui:145
+msgctxt "shortcut window"
+msgid "Paste text from clipboard"
+msgstr "Alglui tekston el la tondujo"
+
+#: src/help-overlay.ui:150
+msgctxt "shortcut window"
+msgid "Copy all to clipboard"
+msgstr "Kopii ĉion al tondujo"
+
+#: src/help-overlay.ui:156
+msgctxt "shortcut window"
+msgid "Copy current line down"
+msgstr "Kopii nunan linion malsupren"
+
+#: src/help-overlay.ui:164
+msgctxt "shortcut window"
+msgid "Undo and Redo"
+msgstr "Malfari kaj refari"
+
+#: src/help-overlay.ui:168
+msgctxt "shortcut window"
+msgid "Undo previous command"
+msgstr "Malfari antaŭan komandon"
+
+#: src/help-overlay.ui:174
+msgctxt "shortcut window"
+msgid "Redo previous command"
+msgstr "Refari antaŭan komandon"
+
+#: src/help-overlay.ui:181
+msgctxt "shortcut window"
+msgid "Editing"
+msgstr "Redaktado"
+
+#: src/help-overlay.ui:185
+msgctxt "shortcut window"
+msgid "Insert emoji into document"
+msgstr "Enigi emoĝion en dokumenton"
+
+#: src/help-overlay.ui:191
+msgctxt "shortcut window"
+msgid "Search within the document"
+msgstr "Serĉi en la dokumento"
+
+#: src/help-overlay.ui:197
+msgctxt "shortcut window"
+msgid "Search and replace within the document"
+msgstr "Serĉu kaj anstataŭigu ene de la dokumento"
+
+#: src/help-overlay.ui:203
+msgctxt "shortcut window"
+msgid "Increment number at cursor"
+msgstr "Pliigi nombron ĉe kursoro"
+
+#: src/help-overlay.ui:209
+msgctxt "shortcut window"
+msgid "Decrement number at cursor"
+msgstr "Malpliigi nombron ĉe kursoro"
+
+#: src/help-overlay.ui:215
+msgctxt "shortcut window"
+msgid "Toggle overwrite"
+msgstr "Baskuligi anstataŭigon"
+
+#: src/help-overlay.ui:221
+msgctxt "shortcut window"
+msgid "Toggle visibility of insertion caret"
+msgstr "Baskuligi videblecon de enmeta signo"
+
+#: src/help-overlay.ui:228
+msgctxt "shortcut window"
+msgid "Selections"
+msgstr "Elektoj"
+
+#: src/help-overlay.ui:232
+msgctxt "shortcut window"
+msgid "Select all"
+msgstr "Elekti ĉiujn"
+
+#: src/help-overlay.ui:238
+msgctxt "shortcut window"
+msgid "Unselect all"
+msgstr "Malelekti ĉiujn"
+
+#: src/help-overlay.ui:244
+msgctxt "shortcut window"
+msgid "Select current line"
+msgstr "Elekti aktualan linion"
+
+#: src/help-overlay.ui:251
+msgctxt "shortcut window"
+msgid "Movements"
+msgstr "Movoj"
+
+#: src/help-overlay.ui:255
+msgctxt "shortcut window"
+msgid "Move to beginning of document"
+msgstr "Movi al la komenco de la dokumento"
+
+#: src/help-overlay.ui:261
+msgctxt "shortcut window"
+msgid "Move to end of document"
+msgstr "Movi al la fino de la dokumento"
+
+#: src/help-overlay.ui:267
+msgctxt "shortcut window"
+msgid "Move to start of previous paragraph"
+msgstr "Movi al la komenco de la antaŭa alineo"
+
+#: src/help-overlay.ui:273
+msgctxt "shortcut window"
+msgid "Move to end of next paragraph"
+msgstr "Movi al la fino de la sekva alineo"
+
+#: src/help-overlay.ui:279
+msgctxt "shortcut window"
+msgid "Move current or selected lines up"
+msgstr "Movi aktualajn aŭ elektitajn liniojn supren"
+
+#: src/help-overlay.ui:285
+msgctxt "shortcut window"
+msgid "Move current or selected lines down"
+msgstr "Movi aktualajn aŭ elektitajn liniojn malsupren"
+
+#: src/help-overlay.ui:291
+msgctxt "shortcut window"
+msgid "Go to line"
+msgstr "Iri al linio"
+
+#: src/help-overlay.ui:298
+msgctxt "shortcut window"
+msgid "Deletion"
+msgstr "Forigo"
+
+#: src/help-overlay.ui:302
+msgctxt "shortcut window"
+msgid "Delete from cursor to word start"
+msgstr "Forigi de kursoro ĝis vortkomenco"
+
+#: src/help-overlay.ui:308
+msgctxt "shortcut window"
+msgid "Delete from cursor to word end"
+msgstr "Forigi de kursoro ĝis vortfino"
+
+#: src/help-overlay.ui:314
+msgctxt "shortcut window"
+msgid "Delete from cursor to paragraph start"
+msgstr "Forigi de kursoro ĝis alinea komenco"
+
+#: src/help-overlay.ui:320
+msgctxt "shortcut window"
+msgid "Delete from cursor to paragraph end"
+msgstr "Forigi de kursoro ĝis alinea fino"
+
+#: src/help-overlay.ui:326
+msgctxt "shortcut window"
+msgid "Delete the current line"
+msgstr "forigi la aktualan linion"
+
+#: src/help-overlay.ui:333
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Ĝenerala"
+
+#: src/help-overlay.ui:337
+msgctxt "shortcut window"
+msgid "Show preferences"
+msgstr "Montri agordojn"
+
+#: src/help-overlay.ui:343
+msgctxt "shortcut window"
+msgid "Show keyboard shortcuts"
+msgstr "Montri klavkombinojn"
+
+#: src/help-overlay.ui:349
+msgctxt "shortcut window"
+msgid "Show help"
+msgstr "Montri helpon"
+
+#~ msgid "Close _All Tabs"
+#~ msgstr "Fermi _ĉiujn langetojn"
+
+#~ msgid "Creating Text Editor window"
+#~ msgstr "Krei Tekstredaktilan fenestron"
+
+#~ msgid "Showing the Text Editor window"
+#~ msgstr "Montri la Tekstredaktilan fenestron"
+
+#~ msgid "Exiting Text Editor"
+#~ msgstr "Eliras de Tekstredaktilo"
+
+#~ msgid "Allow multiple editor windows"
+#~ msgstr "Permesi plurajn redaktilajn fenestrojn"
+
+#~ msgid "Create a new editor window"
+#~ msgstr "Krei novan redaktilan fenestron"
+
+#~ msgid "Open a file"
+#~ msgstr "Malfermi dosieron"
+
+#~ msgid "Open a new empty document"
+#~ msgstr "Malfermi novan malplenan dokumenton"
+
+#~ msgid "Show the about dialog"
+#~ msgstr "Montri la Pri-dialogon"
+
+#~ msgid "Specify the document to open"
+#~ msgstr "Precizigi la dokumenton por malfermi"
+
+#~ msgid "Specify the document to print"
+#~ msgstr "Precizigi la dokumenton por presi"
+
+#~ msgid "Document Statistics"
+#~ msgstr "Dokumentaj statistikoj"
+
+#~ msgid "Syntax Highlighting"
+#~ msgstr "Sintakso markigo"
+
+#~ msgid "Search"
+#~ msgstr "Serĉo"
+
+#~ msgid "Spell Checking"
+#~ msgstr "Literuma kontrolo"
+
+#~ msgid "Interface"
+#~ msgstr "Interfaco"
+
+#~ msgid "User Interface"
+#~ msgstr "Uzanto-interfaco"
