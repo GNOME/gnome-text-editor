@@ -1,26 +1,26 @@
 # Brazilian Portuguese translation for gnome-text-editor.
-# Copyright (C) 2022 gnome-text-editor's COPYRIGHT HOLDER
+# Copyright (C) 2023 gnome-text-editor's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-text-editor package.
 # Enrico Nicoletto <hiko@duck.com>, 2021, 2022.
 # Matheus Barbosa <mdpb.matheus@gmail.com>, 2022.
 # Leônidas Araújo <leorusvellt@hotmail.com>, 2022.
-# Rafael Fontenelle <rafaelff@gnome.org>, 2021-2022.
+# Rafael Fontenelle <rafaelff@gnome.org>, 2021-2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2023-05-22 09:20+0000\n"
-"PO-Revision-Date: 2023-06-01 12:08-0300\n"
-"Last-Translator: Leônidas Araújo <leorusvellt@hotmail.com>\n"
-"Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
+"POT-Creation-Date: 2023-08-04 17:20+0000\n"
+"PO-Revision-Date: 2023-09-25 10:17-0300\n"
+"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
+"Language-Team: Brazilian Portuguese <https://br.gnome.org/traducao>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"Plural-Forms: nplurals=2; plural=(n > 1)\n"
+"X-Generator: Gtranslator 45.alpha0\n"
 "X-DL-Team: pt_BR\n"
 "X-DL-Module: gnome-text-editor\n"
 "X-DL-Branch: main\n"
@@ -35,7 +35,7 @@ msgstr "O Projeto GNOME"
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:9
-#: src/editor-application-actions.c:199 src/editor-window.c:1297
+#: src/editor-application-actions.c:199 src/editor-window.c:1296
 msgid "Text Editor"
 msgstr "Editor de Texto"
 
@@ -285,6 +285,14 @@ msgstr "Altura da linha"
 msgid "The line height to use for the selected font."
 msgstr "A altura da linha para utilizar na fonte selecionada."
 
+#: data/org.gnome.TextEditor.gschema.xml:158
+msgid "Highlight Matching Brackets"
+msgstr "Realçar chaves e colchetes correspondentes"
+
+#: data/org.gnome.TextEditor.gschema.xml:159
+msgid "Highlight matching brackets and braces."
+msgstr "Realçar chaves e colchetes correspondentes"
+
 #: src/editor-animation.c:1038
 #, c-format
 msgid "Failed to find property %s in %s"
@@ -341,7 +349,7 @@ msgstr "Imprime informações da versão e sai"
 msgid "[Read-Only]"
 msgstr "[Somente leitura]"
 
-#: src/editor-document.c:2364 src/editor-page.c:1035
+#: src/editor-document.c:2364 src/editor-page.c:1038
 #: src/editor-sidebar-item.c:497
 msgid "New Document"
 msgstr "Novo documento"
@@ -375,7 +383,7 @@ msgstr "Arquivo alterado no disco"
 msgid "The file has been changed by another program."
 msgstr "O arquivo foi alterado por outro programa."
 
-#: src/editor-info-bar.c:89 src/editor-window.ui:222
+#: src/editor-info-bar.c:89 src/editor-window.ui:216
 msgid "Save _As…"
 msgstr "Salvar _como…"
 
@@ -423,9 +431,13 @@ msgstr "Abrir como _administrador"
 msgid "Document Type"
 msgstr "Tipo do documento"
 
-#: src/editor-language-dialog.ui:52
+#: src/editor-language-dialog.ui:50
 msgid "No Matches"
 msgstr "Nenhuma correspondência"
+
+#: src/editor-language-row.c:61 src/editor-language-row.c:119
+msgid "Plain Text"
+msgstr "Texto simples"
 
 #: src/editor-open-popover.ui:25
 msgid "Search documents"
@@ -443,42 +455,42 @@ msgstr "Nenhum documento recente"
 msgid "No Results Found"
 msgstr "Nenhum resultado encontrado"
 
-#: src/editor-page.c:1061 src/editor-properties-dialog.c:107
+#: src/editor-page.c:1064 src/editor-properties-dialog.c:107
 #: src/editor-sidebar-item.c:101
 msgid "Draft"
 msgstr "Rascunho"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1073
+#: src/editor-page.c:1076
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (Administrador)"
 
-#: src/editor-page.c:1083 src/editor-sidebar-item.c:109
+#: src/editor-page.c:1086 src/editor-sidebar-item.c:109
 msgid "Document Portal"
 msgstr "Portal de documento"
 
-#: src/editor-page.c:1130
+#: src/editor-page.c:1133
 msgid "Failed to save document"
 msgstr "Falha ao salvar o documento"
 
-#: src/editor-page.c:1131 src/editor-window.ui:363
+#: src/editor-page.c:1134 src/editor-window.ui:357
 msgid "_Close"
 msgstr "F_echar"
 
-#: src/editor-page.c:1215
+#: src/editor-page.c:1218
 msgid "Save As"
 msgstr "Salvar como"
 
-#: src/editor-page.c:1218
+#: src/editor-page.c:1221
 msgid "Save"
 msgstr "Salvar"
 
-#: src/editor-page.c:1219 src/editor-window-actions.c:352
+#: src/editor-page.c:1222 src/editor-window-actions.c:352
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: src/editor-page.c:1368
+#: src/editor-page.c:1371
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Lin %u, Col %u"
@@ -495,20 +507,20 @@ msgstr "Ir"
 msgid "Indentation"
 msgstr "Recuo"
 
-#: src/editor-page.ui:155 src/editor-window.ui:283
+#: src/editor-page.ui:155 src/editor-window.ui:277
 msgid "_Automatic Indentation"
 msgstr "Recuo _automático"
 
 #. Translators: this is a tab character, not a browser tab
-#: src/editor-page.ui:161 src/editor-window.ui:287
+#: src/editor-page.ui:161 src/editor-window.ui:281
 msgid "_Tabs"
 msgstr "_Tabulações"
 
-#: src/editor-page.ui:166 src/editor-window.ui:292
+#: src/editor-page.ui:166 src/editor-window.ui:286
 msgid "_Spaces"
 msgstr "_Espaços"
 
-#: src/editor-page.ui:173 src/editor-window.ui:297
+#: src/editor-page.ui:173 src/editor-window.ui:291
 msgid "Spaces _Per Tab"
 msgstr "Espaços _por tabulação"
 
@@ -679,7 +691,7 @@ msgid "_Cancel"
 msgstr "_Cancelar"
 
 #: src/editor-save-changes-dialog.c:265 src/editor-window-actions.c:117
-#: src/editor-window.ui:216
+#: src/editor-window.ui:210
 msgid "_Save"
 msgstr "_Salvar"
 
@@ -901,7 +913,7 @@ msgstr "Reduzir"
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - Editor de Texto"
 
-#: src/editor-window.c:1185
+#: src/editor-window.c:1184
 msgid "There are unsaved documents"
 msgstr "Existem documentos não salvos"
 
@@ -910,16 +922,16 @@ msgid "_Open"
 msgstr "_Abrir"
 
 #: src/editor-window.ui:84
-msgid "Recently Used Documents (Ctrl+K)"
-msgstr "Documentos usados recentemente (Ctrl+K)"
+msgid "Recently Used Documents"
+msgstr "Documentos usados recentemente"
 
 #: src/editor-window.ui:96
-msgid "New Tab (Ctrl+T)"
-msgstr "Nova aba (Ctrl+T)"
+msgid "New Tab"
+msgstr "Nova aba"
 
 #: src/editor-window.ui:98
-msgid "New tab (Ctrl+T)"
-msgstr "Nova aba (Ctrl+T)"
+msgid "New tab"
+msgstr "Nova aba"
 
 #: src/editor-window.ui:124
 msgid "View Options"
@@ -937,11 +949,11 @@ msgstr "Menu principal"
 msgid "Main menu"
 msgstr "Menu principal"
 
-#: src/editor-window.ui:171
+#: src/editor-window.ui:165
 msgid "Start or Open a Document"
 msgstr "Inicie ou abra um documento"
 
-#: src/editor-window.ui:174
+#: src/editor-window.ui:168
 msgid ""
 "• Press the Open button\n"
 "• Press the New tab button\n"
@@ -957,91 +969,91 @@ msgstr ""
 "\n"
 "Ou pressione Ctrl+W para fechar esta janela."
 
-#: src/editor-window.ui:208
+#: src/editor-window.ui:202
 msgid "_New Window"
 msgstr "_Nova janela"
 
-#: src/editor-window.ui:228
+#: src/editor-window.ui:222
 msgid "_Discard Changes"
 msgstr "_Descartar alterações"
 
-#: src/editor-window.ui:234
+#: src/editor-window.ui:228
 msgid "_Find/Replace…"
 msgstr "_Localizar/substituir…"
 
-#: src/editor-window.ui:240
+#: src/editor-window.ui:234
 msgid "_Print…"
 msgstr "_Imprimir…"
 
-#: src/editor-window.ui:246
+#: src/editor-window.ui:240
 msgid "Documen_t Properties"
 msgstr "_Propriedades do documento"
 
-#: src/editor-window.ui:252
+#: src/editor-window.ui:246
 msgid "P_references"
 msgstr "P_referências"
 
-#: src/editor-window.ui:257
+#: src/editor-window.ui:251
 msgid "_Keyboard Shortcuts"
 msgstr "A_talhos de teclado"
 
-#: src/editor-window.ui:261
+#: src/editor-window.ui:255
 msgid "_Help"
 msgstr "Aj_uda"
 
-#: src/editor-window.ui:265
+#: src/editor-window.ui:259
 msgid "A_bout Text Editor"
 msgstr "_Sobre o Editor de texto"
 
-#: src/editor-window.ui:273
+#: src/editor-window.ui:267
 msgid "Show _Line Numbers"
 msgstr "Mostrar números de _linhas"
 
-#: src/editor-window.ui:277
+#: src/editor-window.ui:271
 msgid "Show _Right Margin"
 msgstr "Mostrar a margem di_reita"
 
-#: src/editor-window.ui:300
+#: src/editor-window.ui:294
 msgid "_2"
 msgstr "_2"
 
-#: src/editor-window.ui:305
+#: src/editor-window.ui:299
 msgid "_4"
 msgstr "_4"
 
-#: src/editor-window.ui:310
+#: src/editor-window.ui:304
 msgid "_6"
 msgstr "_6"
 
-#: src/editor-window.ui:315
+#: src/editor-window.ui:309
 msgid "_8"
 msgstr "_8"
 
-#: src/editor-window.ui:324
+#: src/editor-window.ui:318
 msgid "T_ext Wrapping"
 msgstr "Quebra de t_exto"
 
-#: src/editor-window.ui:328
+#: src/editor-window.ui:322
 msgid "Chec_k Spelling"
 msgstr "_Verificação ortográfica"
 
-#: src/editor-window.ui:332
+#: src/editor-window.ui:326
 msgid "_Document Type"
 msgstr "Tipo do _documento"
 
-#: src/editor-window.ui:340
+#: src/editor-window.ui:334
 msgid "Move _Left"
 msgstr "Mover para _esquerda"
 
-#: src/editor-window.ui:345
+#: src/editor-window.ui:339
 msgid "Move _Right"
 msgstr "Mover para _direita"
 
-#: src/editor-window.ui:352
+#: src/editor-window.ui:346
 msgid "_Move to New Window"
 msgstr "_Mover para nova janela"
 
-#: src/editor-window.ui:359
+#: src/editor-window.ui:353
 msgid "Close _Other Tabs"
 msgstr "Fechar _outras abas"
 
