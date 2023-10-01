@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2023-08-04 17:20+0000\n"
-"PO-Revision-Date: 2023-08-05 06:52+0200\n"
+"POT-Creation-Date: 2023-08-17 16:29+0000\n"
+"PO-Revision-Date: 2023-10-01 04:20+0200\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: Georgian <(nothing)>\n"
 "Language: ka\n"
@@ -40,6 +40,8 @@ msgid ""
 "GNOME Text Editor is a simple text editor focused on a pleasing default "
 "experience."
 msgstr ""
+"GNOME-ის ტექსტური რედაქტორი მარტივი რედაქტორია, რომლის ფოკუსიც სასიამოვნო "
+"სამუშაო გარემოა."
 
 #: data/org.gnome.TextEditor.desktop.in.in:4
 msgid "write;notepad;"
@@ -55,7 +57,7 @@ msgstr "ავტომატური შენახვის დაყოვ�
 
 #: data/org.gnome.TextEditor.gschema.xml:17
 msgid "The delay in seconds to wait before auto-saving a draft."
-msgstr ""
+msgstr "დაყოვნება, წამებში, მონახაზის ავტომატურ შენახვამდე."
 
 #: data/org.gnome.TextEditor.gschema.xml:26
 msgid "Style Variant"
@@ -66,6 +68,8 @@ msgid ""
 "Use the light or dark variant of the GTK theme and/or GtkSourceView style "
 "scheme."
 msgstr ""
+"GTK-ის თემის ან/და GtkSourceView-ის სტილის სქემის ღია ან მუქი ვარიანტის "
+"გამოყენება."
 
 #: data/org.gnome.TextEditor.gschema.xml:35
 msgid "Indentation Style"
@@ -73,7 +77,7 @@ msgstr "სწორების სტილი"
 
 #: data/org.gnome.TextEditor.gschema.xml:36
 msgid "If the editor should insert multiple spaces characters instead of tabs."
-msgstr ""
+msgstr "უნდა ჩასვას რედაქტორმა ტაბულაციის მაგიერ ბევრი გამოტოვება, თუ არა."
 
 #: data/org.gnome.TextEditor.gschema.xml:40
 msgid "Auto Indent"
@@ -81,7 +85,7 @@ msgstr "ავტომატური სწორება"
 
 #: data/org.gnome.TextEditor.gschema.xml:41
 msgid "Automatically indent new lines copying the previous line's indentation."
-msgstr ""
+msgstr "ახალი ხაზების შეწევა წინა ხაზის შეწევის კოპირებით."
 
 #: data/org.gnome.TextEditor.gschema.xml:46
 msgid "Tab Width"
@@ -89,7 +93,7 @@ msgstr "ტაბის სიგანე"
 
 #: data/org.gnome.TextEditor.gschema.xml:47
 msgid "The number of spaces represented by a tab."
-msgstr ""
+msgstr "ტაბი რამდენ გამოტოვებას უდრის."
 
 #: data/org.gnome.TextEditor.gschema.xml:52
 msgid "Indent Width"
@@ -98,6 +102,8 @@ msgstr "სწორების სიგანე"
 #: data/org.gnome.TextEditor.gschema.xml:53
 msgid "The number of spaces to indent or -1 to use tab-width."
 msgstr ""
+"შესაწევი გამოტოვებების რაოდენობა. ტაბულაციის სიგანის გამოსაყენებლად მიუთითეთ "
+"-1."
 
 #: data/org.gnome.TextEditor.gschema.xml:57
 msgid "Show Line Numbers"
@@ -105,7 +111,7 @@ msgstr "ხაზის ნომრების ჩვენება"
 
 #: data/org.gnome.TextEditor.gschema.xml:58
 msgid "If line numbers should be displayed next to each line."
-msgstr ""
+msgstr "უნდა იყოს თუ არა ნაჩვენები ყოველ ხაზთან მისი ნომერი."
 
 #: data/org.gnome.TextEditor.gschema.xml:62
 msgid "Show Right Margin"
@@ -113,7 +119,7 @@ msgstr "მარჯვენა ზღვრის ჩვენება"
 
 #: data/org.gnome.TextEditor.gschema.xml:63
 msgid "If a margin line should be displayed on the right of the editor."
-msgstr ""
+msgstr "საზღვრის ხაზი რედაქტორის მარჯვენა მხარეს უნდა გამოჩნდეს, თუ არა."
 
 #: data/org.gnome.TextEditor.gschema.xml:68
 msgid "Right Margin Position"
@@ -122,7 +128,7 @@ msgstr "მარცხენა ზღვრის პოზიცია"
 #: data/org.gnome.TextEditor.gschema.xml:69
 msgid ""
 "The position in characters at which the right margin should be displayed."
-msgstr ""
+msgstr "სიმბოლოების მდებარეობა, რომელთანაც მარჯვენა საზღვარი უნდა გამოჩნდეს."
 
 #: data/org.gnome.TextEditor.gschema.xml:73
 msgid "Show Overview Map"
@@ -132,7 +138,7 @@ msgstr "მიმოხილვის რუკის ჩვენება"
 msgid ""
 "If enabled, an overview map of the file will be displayed to the side of the "
 "editor."
-msgstr ""
+msgstr "თუ ჩართულია, რედაქტორის გვერდით ფაილის გადახედვის რუკა გამოჩნდება."
 
 #: data/org.gnome.TextEditor.gschema.xml:78
 msgid "Show Background Grid"
@@ -140,7 +146,7 @@ msgstr "ფონის ბადის ჩვენება"
 
 #: data/org.gnome.TextEditor.gschema.xml:79
 msgid "If enabled, a blueprint style grid is printed on the editor background."
-msgstr ""
+msgstr "თუ ჩართულია, რედაქტორის ფონზე ბადე დაიხატება."
 
 #: data/org.gnome.TextEditor.gschema.xml:83
 msgid "Highlight current line"
@@ -183,16 +189,20 @@ msgid ""
 "The style scheme to use by the editor. It may translate this into a dark "
 "format when available."
 msgstr ""
+"სტილის სქემა რედაქტორისთვის. ის შეიძლება გადავიდეს ბნელ ფორმატში, როცა ის "
+"ხელმისაწვდომია."
 
 #: data/org.gnome.TextEditor.gschema.xml:108
 msgid "Discover File Settings"
-msgstr ""
+msgstr "აღმოაჩინეთ ფაილის პარამეტრები"
 
 #: data/org.gnome.TextEditor.gschema.xml:109
 msgid ""
 "If enabled then Text Editor will try to discover file settings from "
 "modelines, editorconfig, or per-language defaults."
 msgstr ""
+"თუ ჩართულია, ტექსტური რედაქტორი შეეცდება, ფაილის პარამეტრები modeline-დან, "
+"editorconfig-დან და თითოეული ენის ნაგულისხმევი მნიშვნელობებიდან მიიღოს."
 
 #: data/org.gnome.TextEditor.gschema.xml:113
 msgid "Automatically check spelling"
@@ -200,7 +210,7 @@ msgstr "მართლწერის ავტომატური შემ�
 
 #: data/org.gnome.TextEditor.gschema.xml:114
 msgid "If enabled, then Text Editor will check spelling as you type."
-msgstr ""
+msgstr "თუ ჩართულია, ტექსტური რედაქტორი მართლწერას კრეფის დროს შეამოწმებს."
 
 #: data/org.gnome.TextEditor.gschema.xml:118
 msgid "Restore session"
@@ -208,7 +218,7 @@ msgstr "სესიის აღდგენა"
 
 #: data/org.gnome.TextEditor.gschema.xml:119
 msgid "When Text Editor is run, restore the previous session."
-msgstr ""
+msgstr "როცა ტექსტური რედაქტორი გაეშვება, წინა სესის აღდგენა."
 
 #: data/org.gnome.TextEditor.gschema.xml:123
 msgid "Recolor Window"
@@ -216,15 +226,15 @@ msgstr "ფანჯრის გადახატვა"
 
 #: data/org.gnome.TextEditor.gschema.xml:124
 msgid "Use the style-scheme to recolor the application window."
-msgstr ""
+msgstr "აპლიკაციის ფანჯრის თავიდან გასაფერადებლად სქემის სტილის გამოყენება."
 
 #: data/org.gnome.TextEditor.gschema.xml:132
 msgid "Keybindings"
-msgstr ""
+msgstr "მალსახმობები"
 
 #: data/org.gnome.TextEditor.gschema.xml:133
 msgid "The keybindings to use within Text Editor."
-msgstr ""
+msgstr "ტექსტური რედაქტორის შიგნით გამოყენებული მალსახმობებ."
 
 #: data/org.gnome.TextEditor.gschema.xml:137
 msgid "Last Save Directory"
@@ -232,7 +242,7 @@ msgstr "ბოლოს შენახული საქაღლდე"
 
 #: data/org.gnome.TextEditor.gschema.xml:138
 msgid "The directory last used in a save or save-as dialog."
-msgstr ""
+msgstr "საქაღალდე, რომელიც ბოლოს შესანახად გამოიყენეთ."
 
 #: data/org.gnome.TextEditor.gschema.xml:142
 msgid "Draw Spaces"
@@ -240,7 +250,7 @@ msgstr "ჰარეების დახატვა"
 
 #: data/org.gnome.TextEditor.gschema.xml:143
 msgid "The various types of spaces to draw in the editor."
-msgstr ""
+msgstr "სხვადასხვა ტიპის გამოტოვებები რედაქტორში დასახატად."
 
 #: data/org.gnome.TextEditor.gschema.xml:147
 msgid "Enable Snippets"
@@ -251,6 +261,7 @@ msgid ""
 "Enable the use of snippets registered with GtkSourceView from within the "
 "editor."
 msgstr ""
+"GtkSourceView-თან რეგისტრირებული ფრაგმენტების გამოყენების დაშვება რედაქტორში."
 
 #: data/org.gnome.TextEditor.gschema.xml:153
 msgid "Line Height"
@@ -258,7 +269,7 @@ msgstr "ხაზის სიმაღლე"
 
 #: data/org.gnome.TextEditor.gschema.xml:154
 msgid "The line height to use for the selected font."
-msgstr ""
+msgstr "მონიშნული ფონტის გამოყენებული ხაზის სიმაღლე."
 
 #: data/org.gnome.TextEditor.gschema.xml:158
 msgid "Highlight Matching Brackets"
@@ -266,7 +277,7 @@ msgstr "შესაბამისი ბრჭყალების გამ�
 
 #: data/org.gnome.TextEditor.gschema.xml:159
 msgid "Highlight matching brackets and braces."
-msgstr ""
+msgstr "შესატყვისი ფრჩხილებისა და ბრჭყალების გამოკვეთა."
 
 #: src/editor-animation.c:1038
 #, c-format
@@ -284,15 +295,16 @@ msgstr "temuri doghonadze"
 
 #: src/editor-application.c:525
 msgid "Standard input was requested multiple times. Ignoring request."
-msgstr ""
+msgstr "სტანდარტული შეყვანა ერთზე მეტჯერაა მოთხოვნილი. მოთხოვნა დაიგნორდება."
 
 #: src/editor-application.c:529
 msgid "Standard input is not supported on this platform. Ignoring request."
 msgstr ""
+"ამ პლატფორმაზე სტანდარტული შეყვანა მხარდაჭერილი არაა. მოთხოვნა დაიგნორდება."
 
 #: src/editor-application.c:632
 msgid "Bugs may be reported at:"
-msgstr ""
+msgstr "შეცდომების შესახებ მოგვწერეთ:"
 
 #: src/editor-application.c:634
 msgid "[FILES…]"
@@ -309,6 +321,8 @@ msgstr "მითითებული ფაილების ახალ ფ
 #: src/editor-application.c:750
 msgid "Run a new instance of Text Editor (implies --ignore-session)"
 msgstr ""
+"ტექსტური რედაქტორის ახალი გაშვებული ასლის შესრულება (შეიცავს პარამეტრს --"
+"ignore-session)"
 
 #: src/editor-application.c:751
 msgid "Print version information and exit"
@@ -378,7 +392,7 @@ msgstr "მონახაზის ცვლილებები აღდგ�
 
 #: src/editor-info-bar.c:103
 msgid "Unsaved changes to the document have been restored."
-msgstr ""
+msgstr "დოკუმენტის შეუნახავი ცვლილებები აღდგენილია."
 
 #: src/editor-info-bar.ui:19
 msgid "Could Not Open File"
@@ -386,7 +400,7 @@ msgstr "ფაილის გახსნის შეცდომა"
 
 #: src/editor-info-bar.ui:29
 msgid "You do not have permission to open the file."
-msgstr ""
+msgstr "ფაილის გასახსნელად საკმარისი წვდომა არ გაგაჩნიათ."
 
 #: src/editor-info-bar.ui:37
 msgid "_Retry"
@@ -557,11 +571,13 @@ msgstr "ქცევა"
 
 #: src/editor-preferences-dialog.ui:115
 msgid "Discover Document Settings"
-msgstr ""
+msgstr "დოკუმენტის პარამეტრების ავტომატური აღმოჩენა"
 
 #: src/editor-preferences-dialog.ui:116
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr ""
+"პარამეტრების modelines, editorconfig ან აზრიანი ნაგულისხმევი მნიშვნელობებით "
+"გადატარება"
 
 #: src/editor-preferences-dialog.ui:122
 msgid "Restore Session"
@@ -569,7 +585,7 @@ msgstr "სესიის აღდგენა"
 
 #: src/editor-preferences-dialog.ui:123
 msgid "Return to your previous session when Text Editor is started"
-msgstr ""
+msgstr "თქვენს წინა სესიაში დაბრუნება ტექსტური რედაქტორის გაშვებისას"
 
 #: src/editor-preferences-dialog.ui:138
 msgid "_Clear History"
@@ -649,6 +665,8 @@ msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
 msgstr ""
+"ღია დოკუმენტები შეუნახავ ცვლილებებს შეიცავს. ცვლილებები, რომლებსაც არ "
+"შეინახავთ, სამუდამოდ დაიკარგება."
 
 #: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:116
 #: src/editor-window-actions.c:241
@@ -927,6 +945,12 @@ msgid ""
 "\n"
 "Or, press Ctrl+W to close the window."
 msgstr ""
+"• დააწექით გახსნის ღილაკს\n"
+"• დააწექით ახალ ჩანართის ღილაკს\n"
+"• ახალი დოკუმენტის დასაწყებად დააწექით Ctrl+N\n"
+"• დოკუმენტის საპოვნელად დააწექით Ctrl+O\n"
+"\n"
+"ან, ფანჯრის დასახურად, დააწექით Ctrl+W."
 
 #: src/editor-window.ui:202
 msgid "_New Window"
@@ -1018,7 +1042,7 @@ msgstr "_სხვა ჩანართების დახურვა"
 
 #: src/enchant/editor-enchant-spell-provider.c:123
 msgid "Enchant 2"
-msgstr ""
+msgstr "Enchant 2"
 
 #: src/help-overlay.ui:12
 msgctxt "shortcut window"
@@ -1148,7 +1172,7 @@ msgstr "ყველაფრის ბუფერში კოპირებ�
 #: src/help-overlay.ui:156
 msgctxt "shortcut window"
 msgid "Copy current line down"
-msgstr ""
+msgstr "მიმდინარე ხაზის ქვემოთ კოპირება"
 
 #: src/help-overlay.ui:164
 msgctxt "shortcut window"
