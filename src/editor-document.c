@@ -1167,9 +1167,13 @@ editor_document_save_cb (GObject      *object,
   draft = editor_document_get_draft_file (self);
   g_file_delete_async (draft, G_PRIORITY_DEFAULT, NULL, delete_draft_cb, NULL);
 
+  /* gtk_source_file_saver_save_finish() may cause our GFile to change
+   * if we did a save as operation. Make sure we save state on the new
+   * file instead of the old file (which is currently @file).
+   */
   info = g_file_info_new ();
   g_file_info_set_attribute_string (info, METADATA_CURSOR, save->position);
-  g_file_set_attributes_async (file,
+  g_file_set_attributes_async (editor_document_get_file (self),
                                info,
                                G_FILE_QUERY_INFO_NONE,
                                G_PRIORITY_DEFAULT,
