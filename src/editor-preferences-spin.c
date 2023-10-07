@@ -120,6 +120,8 @@ editor_preferences_spin_constructed (GObject *object)
                    G_SETTINGS_BIND_DEFAULT);
 
   gtk_list_box_row_set_activatable (GTK_LIST_BOX_ROW (object), TRUE);
+
+  gtk_widget_add_css_class (GTK_WIDGET (self), "spin");
 }
 
 static void
