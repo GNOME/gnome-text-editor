@@ -326,6 +326,7 @@ editor_window_actions_open_response_cb (EditorWindow         *self,
     }
 
   gtk_native_dialog_destroy (GTK_NATIVE_DIALOG (native));
+  g_object_unref (native);
 }
 
 static void
