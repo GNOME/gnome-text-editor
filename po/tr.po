@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2023-10-04 19:23+0000\n"
-"PO-Revision-Date: 2023-10-14 11:32+0300\n"
+"POT-Creation-Date: 2023-10-14 12:50+0000\n"
+"PO-Revision-Date: 2023-10-17 18:11+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Turkish <takim@gnome.org.tr>\n"
 "Language: tr\n"
@@ -340,11 +340,11 @@ msgstr ""
 msgid "Print version information and exit"
 msgstr "Sürüm bilgisini yazdır ve çık"
 
-#: src/editor-document.c:2096
+#: src/editor-document.c:2100
 msgid "[Read-Only]"
 msgstr "[Salt Okunur]"
 
-#: src/editor-document.c:2394 src/editor-page.c:1038
+#: src/editor-document.c:2398 src/editor-page.c:1038
 #: src/editor-sidebar-item.c:511
 msgid "New Document"
 msgstr "Yeni Belge"
@@ -368,7 +368,7 @@ msgstr "“%s” geçerli NSURL’ye dönüştürülemedi."
 
 #: src/editor-info-bar.c:76
 msgid "_Discard Changes and Reload"
-msgstr "Değişikliklerden _Vazgeç ve Yeniden Yükle"
+msgstr "Değişiklikleri _Gözden Çıkar ve Yeniden Yükle"
 
 #: src/editor-info-bar.c:79
 msgid "File Has Changed on Disk"
@@ -396,7 +396,7 @@ msgstr "_Kaydet…"
 
 #: src/editor-info-bar.c:100 src/editor-info-bar.ui:81
 msgid "_Discard…"
-msgstr "_Vazgeç…"
+msgstr "_Gözden Çıkar…"
 
 #: src/editor-info-bar.c:102
 msgid "Draft Changes Restored"
@@ -659,15 +659,13 @@ msgstr "Karakterler, Boşluksuz"
 msgid "All Characters"
 msgstr "Tüm Karakterler"
 
-# Düğme olarak kullanılıyor ve olduğu yerde iptal tuşu ile yan yana olduğundan daha bariz durması için bu şekilde çevirmek daha uygun.
 #: src/editor-save-changes-dialog.c:255 src/editor-window-actions.c:242
 msgid "_Discard"
-msgstr "_Vazgeç"
+msgstr "_Gözden Çıkar"
 
-# Düğme olarak kullanılıyor ve olduğu yerde iptal tuşu ile yan yana olduğundan daha bariz durması için bu şekilde çevirmek daha uygun.
 #: src/editor-save-changes-dialog.c:255
 msgid "_Discard All"
-msgstr "Tümünden _Vazgeç"
+msgstr "Tümünü _Gözden Çıkar"
 
 #: src/editor-save-changes-dialog.c:258
 msgid "Save Changes?"
@@ -864,7 +862,7 @@ msgstr "Kaydedilmemiş değişiklikler kalıcı olarak yitirilecek."
 #: src/editor-window-actions.c:238
 #, c-format
 msgid "Discard Changes to “%s”?"
-msgstr "“%s” Değişikliklerinden Vazgeçilsin Mi?"
+msgstr "“%s” Değişiklikleri Gözden Çıkarılsın Mı?"
 
 #: src/editor-window-actions.c:348
 msgid "Open File"
@@ -971,7 +969,7 @@ msgstr "_Yeni Pencere"
 
 #: src/editor-window.ui:222
 msgid "_Discard Changes"
-msgstr "Değişikliklerden _Vazgeç"
+msgstr "Değişiklikleri _Gözden Çıkar"
 
 #: src/editor-window.ui:228
 msgid "_Find/Replace…"
