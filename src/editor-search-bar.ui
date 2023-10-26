@@ -48,7 +48,7 @@
               <object class="GtkButton" id="move_previous">
                 <property name="action-name">search.move-previous</property>
                 <property name="action-target">false</property>
-                <property name="tooltip-text" translatable="yes">Move to previous match (Ctrl+Shift+G)</property>
+                <property name="tooltip-text" translatable="yes">Previous Match</property>
                 <property name="icon-name">go-up-symbolic</property>
               </object>
             </child>
@@ -56,7 +56,7 @@
               <object class="GtkButton" id="move_next">
                 <property name="action-name">search.move-next</property>
                 <property name="action-target">false</property>
-                <property name="tooltip-text" translatable="yes">Move to next match (Ctrl+G)</property>
+                <property name="tooltip-text" translatable="yes">Next Match</property>
                 <property name="icon-name">go-down-symbolic</property>
               </object>
             </child>
@@ -68,7 +68,7 @@
         </child>
         <child>
           <object class="GtkToggleButton" id="replace_mode_button">
-            <property name="tooltip-text" translatable="yes">Search &amp; Replace (Ctrl+H)</property>
+            <property name="tooltip-text" translatable="yes">Search &amp; Replace</property>
             <property name="icon-name">edit-find-replace-symbolic</property>
             <layout>
               <property name="row">0</property>
@@ -78,7 +78,7 @@
         </child>
         <child>
           <object class="GtkToggleButton" id="options_button">
-            <property name="tooltip-text" translatable="yes">Toggle search options</property>
+            <property name="tooltip-text" translatable="yes">Search Options</property>
             <property name="icon-name">emblem-system-symbolic</property>
             <layout>
               <property name="row">0</property>
@@ -92,7 +92,7 @@
             <property name="action-name">search.hide</property>
             <property name="halign">center</property>
             <property name="valign">center</property>
-            <property name="tooltip-text" translatable="yes">Close search</property>
+            <property name="tooltip-text" translatable="yes">Close Search</property>
             <property name="icon-name">window-close-symbolic</property>
             <style>
               <class name="flat"/>
