@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2023-08-17 16:29+0000\n"
-"PO-Revision-Date: 2023-10-09 18:03+0300\n"
+"POT-Creation-Date: 2023-10-26 19:36+0000\n"
+"PO-Revision-Date: 2023-10-27 19:49+0300\n"
 "Last-Translator: Florentina Mușat <florentina [dot] musat [dot] 28 [at] "
 "gmail [dot] com>\n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);\n"
-"X-Generator: Poedit 3.4\n"
+"X-Generator: Poedit 3.4.1\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
 #: src/editor-application-actions.c:201
@@ -180,7 +180,7 @@ msgstr "Utilizează fontul sistemului"
 msgid "If the default system monospace font should be used."
 msgstr "Dacă fontul monospațiat implicit al sistemului ar trebui utilizat."
 
-#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:59
+#: data/org.gnome.TextEditor.gschema.xml:98
 msgid "Custom Font"
 msgstr "Font personalizat"
 
@@ -338,12 +338,12 @@ msgstr "Rulează o instanță nouă a Editor text (implică --ignore-session)"
 msgid "Print version information and exit"
 msgstr "Tipărește informațiile de versiune și ieși"
 
-#: src/editor-document.c:2066
+#: src/editor-document.c:2100
 msgid "[Read-Only]"
 msgstr "[Doar citire]"
 
-#: src/editor-document.c:2364 src/editor-page.c:1038
-#: src/editor-sidebar-item.c:497
+#: src/editor-document.c:2398 src/editor-page.c:1038
+#: src/editor-sidebar-item.c:511
 msgid "New Document"
 msgstr "Document nou"
 
@@ -437,8 +437,8 @@ msgid "Search documents"
 msgstr "Caută documentele"
 
 #: src/editor-open-popover.ui:39
-msgid "Open New Document (Ctrl+O)"
-msgstr "Deschide document nou (Ctrl+O)"
+msgid "Open New Document"
+msgstr "Deschide un document nou"
 
 #: src/editor-open-popover.ui:74
 msgid "No Recent Documents"
@@ -449,7 +449,7 @@ msgid "No Results Found"
 msgstr "Nu au fost găsite rezultate"
 
 #: src/editor-page.c:1064 src/editor-properties-dialog.c:107
-#: src/editor-sidebar-item.c:101
+#: src/editor-sidebar-item.c:105
 msgid "Draft"
 msgstr "Ciornă"
 
@@ -459,7 +459,7 @@ msgstr "Ciornă"
 msgid "%s (Administrator)"
 msgstr "%s (Administrator)"
 
-#: src/editor-page.c:1086 src/editor-sidebar-item.c:109
+#: src/editor-page.c:1086 src/editor-sidebar-item.c:113
 msgid "Document Portal"
 msgstr "Portal de documente"
 
@@ -471,19 +471,19 @@ msgstr "Nu s-a putut salva documentul"
 msgid "_Close"
 msgstr "În_chide"
 
-#: src/editor-page.c:1218
+#: src/editor-page.c:1220
 msgid "Save As"
 msgstr "Salvează ca"
 
-#: src/editor-page.c:1221
+#: src/editor-page.c:1223
 msgid "Save"
 msgstr "Salvează"
 
-#: src/editor-page.c:1222 src/editor-window-actions.c:352
+#: src/editor-page.c:1224 src/editor-window-actions.c:353
 msgid "Cancel"
 msgstr "Anulează"
 
-#: src/editor-page.c:1371
+#: src/editor-page.c:1380
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Ln %u, Col %u"
@@ -555,49 +555,53 @@ msgstr "Col"
 msgid "Appearance"
 msgstr "Aspect"
 
-#: src/editor-preferences-dialog.ui:81
-msgid "Display Grid Pattern"
-msgstr "Afișează modelul de grilă"
+#: src/editor-preferences-dialog.ui:59
+msgid "Custom _Font"
+msgstr "_Font personalizat"
 
-#: src/editor-preferences-dialog.ui:87
-msgid "Highlight Current Line"
-msgstr "Evidențiază linia curentă"
+#: src/editor-preferences-dialog.ui:82
+msgid "Display _Grid Pattern"
+msgstr "Afișează modelul de _grilă"
 
-#: src/editor-preferences-dialog.ui:93
-msgid "Display Overview Map"
-msgstr "Afișează harta de ansamblu"
+#: src/editor-preferences-dialog.ui:89
+msgid "_Highlight Current Line"
+msgstr "_Evidențiază linia curentă"
 
-#: src/editor-preferences-dialog.ui:101
+#: src/editor-preferences-dialog.ui:96
+msgid "Display _Overview Map"
+msgstr "Afișează harta de _ansamblu"
+
+#: src/editor-preferences-dialog.ui:105
 msgid "Right Margin"
 msgstr "Marginea din dreapta"
 
-#: src/editor-preferences-dialog.ui:104
-msgid "Margin Position"
-msgstr "Poziția marginii"
+#: src/editor-preferences-dialog.ui:108
+msgid "_Margin Position"
+msgstr "Poziția _marginii"
 
-#: src/editor-preferences-dialog.ui:112
+#: src/editor-preferences-dialog.ui:117
 msgid "Behavior"
 msgstr "Comportament"
 
-#: src/editor-preferences-dialog.ui:115
-msgid "Discover Document Settings"
-msgstr "Descoperă configurările documentului"
+#: src/editor-preferences-dialog.ui:120
+msgid "_Discover Document Settings"
+msgstr "_Descoperă configurările documentului"
 
-#: src/editor-preferences-dialog.ui:116
+#: src/editor-preferences-dialog.ui:122
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr ""
 "Aplicați setările utilizând liniile de mod, editorconfig sau valori "
 "implicite sensibile"
 
-#: src/editor-preferences-dialog.ui:122
-msgid "Restore Session"
-msgstr "Restaurează sesiunea"
+#: src/editor-preferences-dialog.ui:128
+msgid "_Restore Session"
+msgstr "_Restaurează sesiunea"
 
-#: src/editor-preferences-dialog.ui:123
+#: src/editor-preferences-dialog.ui:130
 msgid "Return to your previous session when Text Editor is started"
 msgstr "Întoarce-te la sesiunea anterioară când Editor text este pornit"
 
-#: src/editor-preferences-dialog.ui:138
+#: src/editor-preferences-dialog.ui:145
 msgid "_Clear History"
 msgstr "_Curăță istoricul"
 
@@ -707,23 +711,23 @@ msgid "Replace"
 msgstr "Înlocuiește"
 
 #: src/editor-search-bar.ui:51
-msgid "Move to previous match (Ctrl+Shift+G)"
-msgstr "Mută la potrivirea anterioară (Ctrl+Shift+G)"
+msgid "Previous Match"
+msgstr "Potrivirea anterioară"
 
 #: src/editor-search-bar.ui:59
-msgid "Move to next match (Ctrl+G)"
-msgstr "Mută la potrivirea următoare (Ctrl+G)"
+msgid "Next Match"
+msgstr "Potrivirea următoare"
 
 #: src/editor-search-bar.ui:71
-msgid "Search & Replace (Ctrl+H)"
-msgstr "Caută și înlocuiește (Ctrl+H)"
+msgid "Search & Replace"
+msgstr "Caută și înlocuiește"
 
 #: src/editor-search-bar.ui:81
-msgid "Toggle search options"
-msgstr "Comută opțiunile de căutare"
+msgid "Search Options"
+msgstr "Opțiuni de căutare"
 
 #: src/editor-search-bar.ui:95
-msgid "Close search"
+msgid "Close Search"
 msgstr "Închide căutarea"
 
 #: src/editor-search-bar.ui:112
@@ -864,19 +868,19 @@ msgstr "Modificările nesalvate vor fi pierdute permanent."
 msgid "Discard Changes to “%s”?"
 msgstr "Se ignoră modificările la „%s”?"
 
-#: src/editor-window-actions.c:348
+#: src/editor-window-actions.c:349
 msgid "Open File"
 msgstr "Deschide fișierul"
 
-#: src/editor-window-actions.c:351
+#: src/editor-window-actions.c:352
 msgid "Open"
 msgstr "Deschide"
 
-#: src/editor-window-actions.c:376
+#: src/editor-window-actions.c:377
 msgid "All Files"
 msgstr "Toate fișierele"
 
-#: src/editor-window-actions.c:381
+#: src/editor-window-actions.c:382
 msgid "Text Files"
 msgstr "Fișiere text"
 
@@ -1032,8 +1036,8 @@ msgid "Chec_k Spelling"
 msgstr "Verifi_că ortografia"
 
 #: src/editor-window.ui:326
-msgid "_Document Type"
-msgstr "Tip de _document"
+msgid "_Document Type…"
+msgstr "Tip de _document…"
 
 #: src/editor-window.ui:334
 msgid "Move _Left"
@@ -1349,3 +1353,15 @@ msgstr "Arată scurtăturile de tastatură"
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Arată ajutorul"
+
+#~ msgid "Open New Document (Ctrl+O)"
+#~ msgstr "Deschide document nou (Ctrl+O)"
+
+#~ msgid "Move to previous match (Ctrl+Shift+G)"
+#~ msgstr "Mută la potrivirea anterioară (Ctrl+Shift+G)"
+
+#~ msgid "Move to next match (Ctrl+G)"
+#~ msgstr "Mută la potrivirea următoare (Ctrl+G)"
+
+#~ msgid "Toggle search options"
+#~ msgstr "Comută opțiunile de căutare"
