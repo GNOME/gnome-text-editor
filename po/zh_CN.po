@@ -9,16 +9,16 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2023-08-04 17:20+0000\n"
-"PO-Revision-Date: 2023-08-05 15:10+0800\n"
+"POT-Creation-Date: 2023-10-26 19:36+0000\n"
+"PO-Revision-Date: 2023-10-27 17:42+0800\n"
 "Last-Translator: lumingzh <lumingzh@qq.com>\n"
 "Language-Team: Chinese - China <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
-"X-Generator: Gtranslator 42.0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.4\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
 #: src/editor-application-actions.c:201
@@ -167,7 +167,7 @@ msgstr "使用系统字体"
 msgid "If the default system monospace font should be used."
 msgstr "是否应该使用默认的系统等宽字体。"
 
-#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:59
+#: data/org.gnome.TextEditor.gschema.xml:98
 msgid "Custom Font"
 msgstr "自定义字体"
 
@@ -319,12 +319,12 @@ msgstr "运行文本编辑器的新实例（暗示 --ignore-session）"
 msgid "Print version information and exit"
 msgstr "显示版本信息并退出"
 
-#: src/editor-document.c:2066
+#: src/editor-document.c:2100
 msgid "[Read-Only]"
 msgstr "[只读]"
 
-#: src/editor-document.c:2364 src/editor-page.c:1038
-#: src/editor-sidebar-item.c:497
+#: src/editor-document.c:2398 src/editor-page.c:1038
+#: src/editor-sidebar-item.c:511
 msgid "New Document"
 msgstr "新建文档"
 
@@ -418,8 +418,8 @@ msgid "Search documents"
 msgstr "搜索文档"
 
 #: src/editor-open-popover.ui:39
-msgid "Open New Document (Ctrl+O)"
-msgstr "打开新文档 (Ctrl+O)"
+msgid "Open New Document"
+msgstr "打开新文档"
 
 #: src/editor-open-popover.ui:74
 msgid "No Recent Documents"
@@ -430,7 +430,7 @@ msgid "No Results Found"
 msgstr "未找到结果"
 
 #: src/editor-page.c:1064 src/editor-properties-dialog.c:107
-#: src/editor-sidebar-item.c:101
+#: src/editor-sidebar-item.c:105
 msgid "Draft"
 msgstr "草稿"
 
@@ -440,7 +440,7 @@ msgstr "草稿"
 msgid "%s (Administrator)"
 msgstr "%s（管理员）"
 
-#: src/editor-page.c:1086 src/editor-sidebar-item.c:109
+#: src/editor-page.c:1086 src/editor-sidebar-item.c:113
 msgid "Document Portal"
 msgstr "文档门户"
 
@@ -452,19 +452,19 @@ msgstr "保存文档失败"
 msgid "_Close"
 msgstr "关闭(_C)"
 
-#: src/editor-page.c:1218
+#: src/editor-page.c:1220
 msgid "Save As"
 msgstr "另存为"
 
-#: src/editor-page.c:1221
+#: src/editor-page.c:1223
 msgid "Save"
 msgstr "保存"
 
-#: src/editor-page.c:1222 src/editor-window-actions.c:352
+#: src/editor-page.c:1224 src/editor-window-actions.c:353
 msgid "Cancel"
 msgstr "取消"
 
-#: src/editor-page.c:1371
+#: src/editor-page.c:1380
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "%u 行，%u 列"
@@ -536,47 +536,51 @@ msgstr "列"
 msgid "Appearance"
 msgstr "外观"
 
-#: src/editor-preferences-dialog.ui:81
-msgid "Display Grid Pattern"
-msgstr "显示网格图案"
+#: src/editor-preferences-dialog.ui:59
+msgid "Custom _Font"
+msgstr "自定义字体(_F)"
 
-#: src/editor-preferences-dialog.ui:87
-msgid "Highlight Current Line"
-msgstr "高亮当前行"
+#: src/editor-preferences-dialog.ui:82
+msgid "Display _Grid Pattern"
+msgstr "显示网格图案(_G)"
 
-#: src/editor-preferences-dialog.ui:93
-msgid "Display Overview Map"
-msgstr "显示概览图"
+#: src/editor-preferences-dialog.ui:89
+msgid "_Highlight Current Line"
+msgstr "高亮当前行(_H)"
 
-#: src/editor-preferences-dialog.ui:101
+#: src/editor-preferences-dialog.ui:96
+msgid "Display _Overview Map"
+msgstr "显示概览图(_O)"
+
+#: src/editor-preferences-dialog.ui:105
 msgid "Right Margin"
 msgstr "右边界"
 
-#: src/editor-preferences-dialog.ui:104
-msgid "Margin Position"
-msgstr "边界位置"
+#: src/editor-preferences-dialog.ui:108
+msgid "_Margin Position"
+msgstr "边界位置(_M)"
 
-#: src/editor-preferences-dialog.ui:112
+#: src/editor-preferences-dialog.ui:117
 msgid "Behavior"
 msgstr "行为"
 
-#: src/editor-preferences-dialog.ui:115
-msgid "Discover Document Settings"
-msgstr "发现文档设置"
+#: src/editor-preferences-dialog.ui:120
+msgid "_Discover Document Settings"
+msgstr "发现文档设置(_D)"
 
-#: src/editor-preferences-dialog.ui:116
+#: src/editor-preferences-dialog.ui:122
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr "使用模式行、编辑器配置或合理的默认值应用设置"
 
-#: src/editor-preferences-dialog.ui:122
-msgid "Restore Session"
-msgstr "恢复会话"
+#: src/editor-preferences-dialog.ui:128
+msgid "_Restore Session"
+msgstr "恢复会话(_R)"
 
-#: src/editor-preferences-dialog.ui:123
+#: src/editor-preferences-dialog.ui:130
 msgid "Return to your previous session when Text Editor is started"
 msgstr "文本编辑器启动时返回您的上次会话"
 
-#: src/editor-preferences-dialog.ui:138
+#: src/editor-preferences-dialog.ui:145
 msgid "_Clear History"
 msgstr "清除历史(_C)"
 
@@ -684,23 +688,23 @@ msgid "Replace"
 msgstr "替换"
 
 #: src/editor-search-bar.ui:51
-msgid "Move to previous match (Ctrl+Shift+G)"
-msgstr "移动到上一个匹配项 (Ctrl+Shift+G)"
+msgid "Previous Match"
+msgstr "上一个匹配项"
 
 #: src/editor-search-bar.ui:59
-msgid "Move to next match (Ctrl+G)"
-msgstr "移动到下一个匹配项 (Ctrl+G)"
+msgid "Next Match"
+msgstr "下一个匹配项"
 
 #: src/editor-search-bar.ui:71
-msgid "Search & Replace (Ctrl+H)"
-msgstr "搜索和替换 (Ctrl+H)"
+msgid "Search & Replace"
+msgstr "搜索和替换"
 
 #: src/editor-search-bar.ui:81
-msgid "Toggle search options"
-msgstr "切换搜索选项"
+msgid "Search Options"
+msgstr "搜索选项"
 
 #: src/editor-search-bar.ui:95
-msgid "Close search"
+msgid "Close Search"
 msgstr "关闭搜索"
 
 #: src/editor-search-bar.ui:112
@@ -839,19 +843,19 @@ msgstr "未保存的更改将永久丢失。"
 msgid "Discard Changes to “%s”?"
 msgstr "丢弃对“%s”的更改？"
 
-#: src/editor-window-actions.c:348
+#: src/editor-window-actions.c:349
 msgid "Open File"
 msgstr "打开文件"
 
-#: src/editor-window-actions.c:351
+#: src/editor-window-actions.c:352
 msgid "Open"
 msgstr "打开"
 
-#: src/editor-window-actions.c:376
+#: src/editor-window-actions.c:377
 msgid "All Files"
 msgstr "所有文件"
 
-#: src/editor-window-actions.c:381
+#: src/editor-window-actions.c:382
 msgid "Text Files"
 msgstr "文本文件"
 
@@ -1007,8 +1011,8 @@ msgid "Chec_k Spelling"
 msgstr "检查拼写(_K)"
 
 #: src/editor-window.ui:326
-msgid "_Document Type"
-msgstr "文档类型(_D)"
+msgid "_Document Type…"
+msgstr "文档类型(_D)…"
 
 #: src/editor-window.ui:334
 msgid "Move _Left"
@@ -1324,6 +1328,18 @@ msgstr "显示键盘快捷键(_K)"
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "显示帮助"
+
+#~ msgid "Open New Document (Ctrl+O)"
+#~ msgstr "打开新文档 (Ctrl+O)"
+
+#~ msgid "Move to previous match (Ctrl+Shift+G)"
+#~ msgstr "移动到上一个匹配项 (Ctrl+Shift+G)"
+
+#~ msgid "Move to next match (Ctrl+G)"
+#~ msgstr "移动到下一个匹配项 (Ctrl+G)"
+
+#~ msgid "Toggle search options"
+#~ msgstr "切换搜索选项"
 
 #~ msgid "_Line Numbers"
 #~ msgstr "行号(_L)"
