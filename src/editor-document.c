@@ -2411,14 +2411,23 @@ _editor_document_suggest_file (EditorDocument *self,
 {
   static GFile *documents;
   g_autofree char *name = NULL;
+  const char *documents_dir;
 
   g_return_val_if_fail (EDITOR_IS_DOCUMENT (self), NULL);
   g_return_val_if_fail (!directory || G_IS_FILE (directory), NULL);
 
+  documents_dir = g_get_user_special_dir (G_USER_DIRECTORY_DOCUMENTS);
+
+  if (documents_dir == NULL)
+    {
+      g_warning_once ("Your system has an improperly configured XDG_DOCUMENTS_DIR. Using $HOME instead.");
+      documents_dir = g_get_home_dir ();
+    }
+
   if (directory == NULL)
     {
       if (documents == NULL)
-        documents = g_file_new_for_path (g_get_user_special_dir (G_USER_DIRECTORY_DOCUMENTS));
+        documents = g_file_new_for_path (documents_dir);
       directory = documents;
     }
 
