@@ -6,9 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues\n"
-"POT-Creation-Date: 2023-08-17 16:29+0000\n"
-"PO-Revision-Date: 2023-09-04 22:25+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
+"issues\n"
+"POT-Creation-Date: 2023-10-26 19:36+0000\n"
+"PO-Revision-Date: 2023-10-30 19:06+0100\n"
 "Last-Translator: Jordi Mas i Hernàndez <jmas@softcatala.org>\n"
 "Language-Team: Catalan <gnome@llistes.softcatala.org>\n"
 "Language: ca\n"
@@ -76,8 +77,7 @@ msgid "Indentation Style"
 msgstr "Estil de sagnat"
 
 #: data/org.gnome.TextEditor.gschema.xml:36
-msgid ""
-"If the editor should insert multiple spaces characters instead of tabs."
+msgid "If the editor should insert multiple spaces characters instead of tabs."
 msgstr ""
 "Si l'editor ha d'inserir múltiples caràcters d'espai en lloc de tabuladors."
 
@@ -86,11 +86,9 @@ msgid "Auto Indent"
 msgstr "Sagnat automàtic"
 
 #: data/org.gnome.TextEditor.gschema.xml:41
-msgid ""
-"Automatically indent new lines copying the previous line's indentation."
+msgid "Automatically indent new lines copying the previous line's indentation."
 msgstr ""
-"Sagna automàticament les línies noves copiant el sagnat de la línia "
-"anterior."
+"Sagna automàticament les línies noves copiant el sagnat de la línia anterior."
 
 #: data/org.gnome.TextEditor.gschema.xml:46
 msgid "Tab Width"
@@ -141,8 +139,8 @@ msgstr "Mostra el mapa general"
 
 #: data/org.gnome.TextEditor.gschema.xml:74
 msgid ""
-"If enabled, an overview map of the file will be displayed to the side of the"
-" editor."
+"If enabled, an overview map of the file will be displayed to the side of the "
+"editor."
 msgstr ""
 "Si s'habilita, es mostrarà un mapa general del fitxer al costat de l'editor."
 
@@ -151,8 +149,7 @@ msgid "Show Background Grid"
 msgstr "Mostra la quadrícula del fons"
 
 #: data/org.gnome.TextEditor.gschema.xml:79
-msgid ""
-"If enabled, a blueprint style grid is printed on the editor background."
+msgid "If enabled, a blueprint style grid is printed on the editor background."
 msgstr ""
 "Si està habilitada, s'imprimirà una graella d'estil impressió blava en el "
 "fons de l'editor."
@@ -183,7 +180,6 @@ msgstr ""
 "Si s'ha d'utilitzar el tipus de lletra monoespai per defecte del sistema."
 
 #: data/org.gnome.TextEditor.gschema.xml:98
-#: src/editor-preferences-dialog.ui:59
 msgid "Custom Font"
 msgstr "Tipus de lletra personalitzada"
 
@@ -347,12 +343,12 @@ msgstr ""
 msgid "Print version information and exit"
 msgstr "Imprimeix la informació de la versió i surt"
 
-#: src/editor-document.c:2066
+#: src/editor-document.c:2100
 msgid "[Read-Only]"
 msgstr "[Només lectura]"
 
-#: src/editor-document.c:2364 src/editor-page.c:1038
-#: src/editor-sidebar-item.c:497
+#: src/editor-document.c:2398 src/editor-page.c:1038
+#: src/editor-sidebar-item.c:511
 msgid "New Document"
 msgstr "Document nou"
 
@@ -447,8 +443,8 @@ msgid "Search documents"
 msgstr "Cerca als documents"
 
 #: src/editor-open-popover.ui:39
-msgid "Open New Document (Ctrl+O)"
-msgstr "Obre un document nou (Ctrl+O)"
+msgid "Open New Document"
+msgstr "Obre un document nou"
 
 #: src/editor-open-popover.ui:74
 msgid "No Recent Documents"
@@ -459,7 +455,7 @@ msgid "No Results Found"
 msgstr "No s'ha trobat cap resultat"
 
 #: src/editor-page.c:1064 src/editor-properties-dialog.c:107
-#: src/editor-sidebar-item.c:101
+#: src/editor-sidebar-item.c:105
 msgid "Draft"
 msgstr "Esborrany"
 
@@ -469,7 +465,7 @@ msgstr "Esborrany"
 msgid "%s (Administrator)"
 msgstr "%s (administrador)"
 
-#: src/editor-page.c:1086 src/editor-sidebar-item.c:109
+#: src/editor-page.c:1086 src/editor-sidebar-item.c:113
 msgid "Document Portal"
 msgstr "Portal del document"
 
@@ -481,19 +477,19 @@ msgstr "Ha fallat en desar el document"
 msgid "_Close"
 msgstr "_Tanca"
 
-#: src/editor-page.c:1218
+#: src/editor-page.c:1220
 msgid "Save As"
 msgstr "Anomena i desa"
 
-#: src/editor-page.c:1221
+#: src/editor-page.c:1223
 msgid "Save"
 msgstr "Desa"
 
-#: src/editor-page.c:1222 src/editor-window-actions.c:352
+#: src/editor-page.c:1224 src/editor-window-actions.c:353
 msgid "Cancel"
 msgstr "Cancel·la"
 
-#: src/editor-page.c:1371
+#: src/editor-page.c:1380
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Ln %u, Col %u"
@@ -565,49 +561,53 @@ msgstr "Col"
 msgid "Appearance"
 msgstr "Aparença"
 
-#: src/editor-preferences-dialog.ui:81
-msgid "Display Grid Pattern"
-msgstr "Mostra el patró de la quadrícula"
+#: src/editor-preferences-dialog.ui:59
+msgid "Custom _Font"
+msgstr "Tipus de lletra _personalitzada"
 
-#: src/editor-preferences-dialog.ui:87
-msgid "Highlight Current Line"
-msgstr "Ressalta la línia actual"
+#: src/editor-preferences-dialog.ui:82
+msgid "Display _Grid Pattern"
+msgstr "Mostra el patró de la _quadrícula"
 
-#: src/editor-preferences-dialog.ui:93
-msgid "Display Overview Map"
-msgstr "Mostra el mapa general"
+#: src/editor-preferences-dialog.ui:89
+msgid "_Highlight Current Line"
+msgstr "_Ressalta la línia actual"
 
-#: src/editor-preferences-dialog.ui:101
+#: src/editor-preferences-dialog.ui:96
+msgid "Display _Overview Map"
+msgstr "Mostra el mapa _general"
+
+#: src/editor-preferences-dialog.ui:105
 msgid "Right Margin"
 msgstr "Marge dret"
 
-#: src/editor-preferences-dialog.ui:104
-msgid "Margin Position"
-msgstr "Posició del marge"
+#: src/editor-preferences-dialog.ui:108
+msgid "_Margin Position"
+msgstr "Posició del _marge"
 
-#: src/editor-preferences-dialog.ui:112
+#: src/editor-preferences-dialog.ui:117
 msgid "Behavior"
 msgstr "Comportament"
 
-#: src/editor-preferences-dialog.ui:115
-msgid "Discover Document Settings"
-msgstr "Descobreix la configuració del document"
-
-#: src/editor-preferences-dialog.ui:116
-msgid "Apply settings using modelines, editorconfig, or sensible defaults"
-msgstr ""
-"Apliqueu la configuració mitjançant línies de mode, configuració de l'editor"
-" o valors predeterminats sensats"
+#: src/editor-preferences-dialog.ui:120
+msgid "_Discover Document Settings"
+msgstr "_Descobreix la configuració del document"
 
 #: src/editor-preferences-dialog.ui:122
-msgid "Restore Session"
-msgstr "Restaura la sessió"
+msgid "Apply settings using modelines, editorconfig, or sensible defaults"
+msgstr ""
+"Apliqueu la configuració mitjançant línies de mode, configuració de l'editor "
+"o valors predeterminats sensats"
 
-#: src/editor-preferences-dialog.ui:123
+#: src/editor-preferences-dialog.ui:128
+msgid "_Restore Session"
+msgstr "_Restaura la sessió"
+
+#: src/editor-preferences-dialog.ui:130
 msgid "Return to your previous session when Text Editor is started"
 msgstr "Torna a la sessió anterior quan s'iniciï l'Editor de text"
 
-#: src/editor-preferences-dialog.ui:138
+#: src/editor-preferences-dialog.ui:145
 msgid "_Clear History"
 msgstr "_Neteja l'historial"
 
@@ -627,6 +627,7 @@ msgstr "Fitxer: %s"
 
 #. Translators: %N is the current page number, %Q is the total
 #. * number of pages (ex. Page 2 of 10)
+#.
 #: src/editor-print-operation.c:189
 msgid "Page %N of %Q"
 msgstr "Pàgina %N de %Q"
@@ -684,8 +685,8 @@ msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
 msgstr ""
-"Els documents oberts contenen canvis sense desar. Els canvis que no es desin"
-" es perdran permanentment."
+"Els documents oberts contenen canvis sense desar. Els canvis que no es desin "
+"es perdran permanentment."
 
 #: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:116
 #: src/editor-window-actions.c:241
@@ -716,23 +717,23 @@ msgid "Replace"
 msgstr "Substitueix"
 
 #: src/editor-search-bar.ui:51
-msgid "Move to previous match (Ctrl+Shift+G)"
-msgstr "Mou a la coincidència anterior (Ctrl+Maj+G)"
+msgid "Previous Match"
+msgstr "Coincidència anterior"
 
 #: src/editor-search-bar.ui:59
-msgid "Move to next match (Ctrl+G)"
-msgstr "Mou a la coincidència següent (Ctrl+G)"
+msgid "Next Match"
+msgstr "Coincidència posterior"
 
 #: src/editor-search-bar.ui:71
-msgid "Search & Replace (Ctrl+H)"
-msgstr "Cerca i reemplaça (Ctrl+H)"
+msgid "Search & Replace"
+msgstr "Cerca i reemplaça"
 
 #: src/editor-search-bar.ui:81
-msgid "Toggle search options"
-msgstr "Commuta les opcions de cerca"
+msgid "Search Options"
+msgstr "Opcions de cerca"
 
 #: src/editor-search-bar.ui:95
-msgid "Close search"
+msgid "Close Search"
 msgstr "Tanca la cerca"
 
 #: src/editor-search-bar.ui:112
@@ -755,8 +756,7 @@ msgstr "_Distingeix entre majúscules i minúscules"
 msgid "Match whole _word only"
 msgstr "_Coincideix només amb la paraula sencera"
 
-#. translators: the first %u is replaced with the current position, the second
-#. with the number of search results
+#. translators: the first %u is replaced with the current position, the second with the number of search results
 #: src/editor-search-entry.c:197
 #, c-format
 msgid "%u of %u"
@@ -873,19 +873,19 @@ msgstr "Els canvis no desats es perdran permanentment."
 msgid "Discard Changes to “%s”?"
 msgstr "Voleu descartar els canvis de «%s»?"
 
-#: src/editor-window-actions.c:348
+#: src/editor-window-actions.c:349
 msgid "Open File"
 msgstr "Obre un fitxer"
 
-#: src/editor-window-actions.c:351
+#: src/editor-window-actions.c:352
 msgid "Open"
 msgstr "Obre"
 
-#: src/editor-window-actions.c:376
+#: src/editor-window-actions.c:377
 msgid "All Files"
 msgstr "Tots els fitxers"
 
-#: src/editor-window-actions.c:381
+#: src/editor-window-actions.c:382
 msgid "Text Files"
 msgstr "Fitxers de text"
 
@@ -910,8 +910,7 @@ msgstr "Redueix"
 msgid "Zoom out"
 msgstr "Allunya"
 
-#. translators: the first %s is replaced with the title, the second %s is
-#. replaced with the subtitle
+#. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
 #: src/editor-window.c:745
 #, c-format
 msgid "%s (%s) - Text Editor"
@@ -1042,8 +1041,8 @@ msgid "Chec_k Spelling"
 msgstr "C_omprova l'ortografia"
 
 #: src/editor-window.ui:326
-msgid "_Document Type"
-msgstr "Tipus de _document"
+msgid "_Document Type…"
+msgstr "Tipus de _document…"
 
 #: src/editor-window.ui:334
 msgid "Move _Left"
@@ -1359,3 +1358,15 @@ msgstr "Mostra les dreceres de teclat"
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Mostra l'ajuda"
+
+#~ msgid "Open New Document (Ctrl+O)"
+#~ msgstr "Obre un document nou (Ctrl+O)"
+
+#~ msgid "Move to previous match (Ctrl+Shift+G)"
+#~ msgstr "Mou a la coincidència anterior (Ctrl+Maj+G)"
+
+#~ msgid "Move to next match (Ctrl+G)"
+#~ msgstr "Mou a la coincidència següent (Ctrl+G)"
+
+#~ msgid "Toggle search options"
+#~ msgstr "Commuta les opcions de cerca"
