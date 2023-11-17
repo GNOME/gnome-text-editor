@@ -34,12 +34,12 @@ struct _EditorPropertiesDialog
 
   EditorDocument *document;
 
-  GtkLabel       *all_chars;
-  GtkLabel       *chars;
-  GtkLabel       *lines;
+  AdwActionRow   *all_chars;
+  AdwActionRow   *chars;
+  AdwActionRow   *lines;
   GtkLabel       *location;
-  GtkLabel       *name;
-  GtkLabel       *words;
+  AdwActionRow   *name;
+  AdwActionRow   *words;
 };
 
 G_DEFINE_TYPE (EditorPropertiesDialog, editor_properties_dialog, ADW_TYPE_WINDOW)
@@ -219,19 +219,19 @@ editor_properties_dialog_rescan (EditorPropertiesDialog *self)
                   &chars, &words, &white_chars);
 
   str = g_strdup_printf("%'d", lines);
-  gtk_label_set_label (self->lines, str);
+  adw_action_row_set_subtitle (self->lines, str);
   g_free (str);
 
   str = g_strdup_printf("%'d", words);
-  gtk_label_set_label (self->words, str);
+  adw_action_row_set_subtitle (self->words, str);
   g_free (str);
 
   str = g_strdup_printf("%'d", chars);
-  gtk_label_set_label (self->all_chars, str);
+  adw_action_row_set_subtitle (self->all_chars, str);
   g_free (str);
 
   str = g_strdup_printf("%'d", chars - white_chars);
-  gtk_label_set_label (self->chars, str);
+  adw_action_row_set_subtitle (self->chars, str);
   g_free (str);
 }
 
@@ -255,7 +255,7 @@ editor_properties_dialog_set_document (EditorPropertiesDialog *self,
   if (g_set_object (&self->document, document))
     {
       g_object_bind_property (self->document, "title",
-                              self->name, "label",
+                              self->name, "subtitle",
                               G_BINDING_SYNC_CREATE);
       g_object_bind_property (self->document, "title",
                               self->name, "tooltip-text",
