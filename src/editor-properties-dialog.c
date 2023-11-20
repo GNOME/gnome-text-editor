@@ -254,6 +254,8 @@ editor_properties_dialog_set_document (EditorPropertiesDialog *self,
 
   if (g_set_object (&self->document, document))
     {
+      GFile *file = editor_document_get_file (document);
+
       g_object_bind_property (self->document, "title",
                               self->name, "subtitle",
                               G_BINDING_SYNC_CREATE);
@@ -268,6 +270,9 @@ editor_properties_dialog_set_document (EditorPropertiesDialog *self,
                                    self->location, "tooltip-text",
                                    G_BINDING_SYNC_CREATE,
                                    file_to_tooltip, NULL, NULL, NULL);
+      gtk_widget_action_set_enabled (GTK_WIDGET (self),
+                                     "open-folder",
+                                     file != NULL);
       g_signal_connect_object (self->document,
                                "save",
                                G_CALLBACK (editor_properties_dialog_save_cb),
@@ -312,6 +317,20 @@ activate_link_cb (EditorPropertiesDialog *self,
   file = g_file_new_for_uri (uri);
 
   return editor_file_manager_show (file, NULL);
+}
+
+static void
+open_folder_cb (GtkWidget  *widget,
+                const char *action_name,
+                GVariant   *param)
+{
+  EditorPropertiesDialog *self = (EditorPropertiesDialog *)widget;
+  GFile *file = NULL;
+
+  g_assert (EDITOR_IS_PROPERTIES_DIALOG (self));
+
+  if ((file = editor_document_get_file (self->document)))
+    editor_file_manager_show (file, NULL);
 }
 
 static void
@@ -396,8 +415,10 @@ editor_properties_dialog_class_init (EditorPropertiesDialogClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorPropertiesDialog, location);
   gtk_widget_class_bind_template_child (widget_class, EditorPropertiesDialog, name);
   gtk_widget_class_bind_template_child (widget_class, EditorPropertiesDialog, words);
+
   gtk_widget_class_bind_template_callback (widget_class, activate_link_cb);
 
+  gtk_widget_class_install_action (widget_class, "open-folder", NULL, open_folder_cb);
   gtk_widget_class_install_action (widget_class, "win.close", NULL, win_close_cb);
 
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Escape, 0, "win.close", NULL);
