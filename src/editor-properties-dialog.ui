@@ -26,28 +26,54 @@
               <object class="AdwPreferencesGroup">
                 <property name="title" translatable="yes">File</property>
                 <child>
-                  <object class="AdwActionRow">
+                  <object class="AdwActionRow" id="name">
                     <property name="title" translatable="yes">Name</property>
-                    <child type="suffix">
-                      <object class="GtkLabel" id="name">
-                        <property name="hexpand">true</property>
-                        <property name="xalign">1</property>
-                        <property name="ellipsize">start</property>
-                        <property name="use-markup">true</property>
-                      </object>
-                    </child>
+                    <style>
+                      <class name="property"/>
+                    </style>
                   </object>
                 </child>
                 <child>
                   <object class="AdwActionRow">
-                    <property name="title" translatable="yes">Location</property>
+                    <child type="prefix">
+                      <object class="GtkBox">
+                        <property name="orientation">vertical</property>
+                        <property name="spacing">3</property>
+                        <property name="halign">start</property>
+                        <property name="valign">center</property>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="label" translatable="yes">Location</property>
+                            <property name="hexpand">True</property>
+                            <property name="ellipsize">end</property>
+                            <property name="halign">start</property>
+                            <style>
+                              <class name="subtitle"/>
+                            </style>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="location">
+                            <property name="xalign">0</property>
+                            <property name="ellipsize">start</property>
+                            <property name="use-markup">true</property>
+                            <signal name="activate-link" handler="activate_link_cb" swapped="true"/>
+                            <accessibility>
+                              <property name="has-popup">true</property>
+                            </accessibility>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
                     <child type="suffix">
-                      <object class="GtkLabel" id="location">
-                        <property name="hexpand">true</property>
-                        <property name="xalign">1</property>
-                        <property name="ellipsize">start</property>
-                        <property name="use-markup">true</property>
-                        <signal name="activate-link" handler="activate_link_cb" swapped="true"/>
+                      <object class="GtkButton">
+                        <style>
+                          <class name="flat"/>
+                        </style>
+                        <property name="action-name">open-folder</property>
+                        <property name="icon-name">document-open-symbolic</property>
+                        <property name="tooltip-text">Open in File Manager</property>
+                        <property name="valign">center</property>
                       </object>
                     </child>
                   </object>
@@ -58,63 +84,35 @@
               <object class="AdwPreferencesGroup">
                 <property name="title" translatable="yes">Statistics</property>
                 <child>
-                  <object class="AdwActionRow">
+                  <object class="AdwActionRow" id="lines">
                     <property name="title" translatable="yes">Lines</property>
-                    <child type="suffix">
-                      <object class="GtkLabel" id="lines">
-                        <property name="xalign">1</property>
-                        <property name="ellipsize">middle</property>
-                        <property name="label">0</property>
-                        <style>
-                          <class name="numeric"/>
-                        </style>
-                      </object>
-                    </child>
+                    <style>
+                      <class name="property"/>
+                    </style>
                   </object>
                 </child>
                 <child>
-                  <object class="AdwActionRow">
+                  <object class="AdwActionRow" id="words">
                     <property name="title" translatable="yes">Words</property>
-                    <child type="suffix">
-                      <object class="GtkLabel" id="words">
-                        <property name="xalign">1</property>
-                        <property name="ellipsize">middle</property>
-                        <property name="label">0</property>
-                        <style>
-                          <class name="numeric"/>
-                        </style>
-                      </object>
-                    </child>
+                    <style>
+                      <class name="property"/>
+                    </style>
                   </object>
                 </child>
                 <child>
-                  <object class="AdwActionRow">
+                  <object class="AdwActionRow" id="chars">
                     <property name="title" translatable="yes">Characters, No Spaces</property>
-                    <child type="suffix">
-                      <object class="GtkLabel" id="chars">
-                        <property name="xalign">1</property>
-                        <property name="ellipsize">middle</property>
-                        <property name="label">0</property>
-                        <style>
-                          <class name="numeric"/>
-                        </style>
-                      </object>
-                    </child>
+                    <style>
+                      <class name="property"/>
+                    </style>
                   </object>
                 </child>
                 <child>
-                  <object class="AdwActionRow">
+                  <object class="AdwActionRow" id="all_chars">
                     <property name="title" translatable="yes">All Characters</property>
-                    <child type="suffix">
-                      <object class="GtkLabel" id="all_chars">
-                        <property name="xalign">1</property>
-                        <property name="ellipsize">middle</property>
-                        <property name="label">0</property>
-                        <style>
-                          <class name="numeric"/>
-                        </style>
-                      </object>
-                    </child>
+                    <style>
+                      <class name="property"/>
+                    </style>
                   </object>
                 </child>
               </object>
