@@ -58,6 +58,9 @@
                             <property name="ellipsize">start</property>
                             <property name="use-markup">true</property>
                             <signal name="activate-link" handler="activate_link_cb" swapped="true"/>
+                            <accessibility>
+                              <property name="has-popup">true</property>
+                            </accessibility>
                           </object>
                         </child>
                       </object>
