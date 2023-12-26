@@ -8,17 +8,17 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor gnome-41\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2023-08-04 17:20+0000\n"
-"PO-Revision-Date: 2023-08-08 16:31+0300\n"
+"POT-Creation-Date: 2023-11-20 20:03+0000\n"
+"PO-Revision-Date: 2023-12-26 08:26+0200\n"
 "Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
-"Language-Team: Hebrew <yoseforb@gmail.com>\n"
+"Language-Team: Hebrew\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n==2 ? 1 : n>10 && n%10==0 ? "
 "2 : 3)\n"
-"X-Generator: Gtranslator 42.0\n"
+"X-Generator: Gtranslator 45.3\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
 #: src/editor-application-actions.c:201
@@ -176,7 +176,7 @@ msgstr "שימוש בגופן מערכת"
 msgid "If the default system monospace font should be used."
 msgstr "If the default system monospace font should be used."
 
-#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:59
+#: data/org.gnome.TextEditor.gschema.xml:98
 msgid "Custom Font"
 msgstr "גופן מותאם אישית"
 
@@ -332,12 +332,12 @@ msgstr "הרצת מופע חדש של עורך הטקסט (מרמז ‎--ignore-
 msgid "Print version information and exit"
 msgstr "הצגת נתוני הגרסה ויציאה"
 
-#: src/editor-document.c:2066
+#: src/editor-document.c:2100
 msgid "[Read-Only]"
 msgstr "[קריאה בלבד]"
 
-#: src/editor-document.c:2364 src/editor-page.c:1038
-#: src/editor-sidebar-item.c:497
+#: src/editor-document.c:2398 src/editor-page.c:1038
+#: src/editor-sidebar-item.c:511
 msgid "New Document"
 msgstr "מסמך חדש"
 
@@ -418,7 +418,11 @@ msgstr "פתיחה כ_מנהל מערכת"
 msgid "Document Type"
 msgstr "סוג מסמך"
 
-#: src/editor-language-dialog.ui:50
+#: src/editor-language-dialog.ui:28
+msgid "Search document types"
+msgstr "חיפוש סוגי מסמכים"
+
+#: src/editor-language-dialog.ui:51
 msgid "No Matches"
 msgstr "אין התאמות"
 
@@ -431,8 +435,8 @@ msgid "Search documents"
 msgstr "חיפוש מסמכים"
 
 #: src/editor-open-popover.ui:39
-msgid "Open New Document (Ctrl+O)"
-msgstr "פתיחת מסמך חדש (Ctrl+O)"
+msgid "Open New Document"
+msgstr "פתיחת מסמך חדש"
 
 #: src/editor-open-popover.ui:74
 msgid "No Recent Documents"
@@ -443,7 +447,7 @@ msgid "No Results Found"
 msgstr "לא נמצאו תוצאות"
 
 #: src/editor-page.c:1064 src/editor-properties-dialog.c:107
-#: src/editor-sidebar-item.c:101
+#: src/editor-sidebar-item.c:105
 msgid "Draft"
 msgstr "טיוטה"
 
@@ -453,7 +457,7 @@ msgstr "טיוטה"
 msgid "%s (Administrator)"
 msgstr "‏‎%s (מנהל)"
 
-#: src/editor-page.c:1086 src/editor-sidebar-item.c:109
+#: src/editor-page.c:1086 src/editor-sidebar-item.c:113
 msgid "Document Portal"
 msgstr "שער מסמך"
 
@@ -465,19 +469,19 @@ msgstr "שמירת המסמך נכשלה"
 msgid "_Close"
 msgstr "_סגירה"
 
-#: src/editor-page.c:1218
+#: src/editor-page.c:1220
 msgid "Save As"
 msgstr "שמירה בשם"
 
-#: src/editor-page.c:1221
+#: src/editor-page.c:1223
 msgid "Save"
 msgstr "שמירה"
 
-#: src/editor-page.c:1222 src/editor-window-actions.c:352
+#: src/editor-page.c:1224 src/editor-window-actions.c:353
 msgid "Cancel"
 msgstr "ביטול"
 
-#: src/editor-page.c:1371
+#: src/editor-page.c:1380
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "שורה %u, עמודה %u"
@@ -549,47 +553,51 @@ msgstr "עמודה"
 msgid "Appearance"
 msgstr "מראה"
 
-#: src/editor-preferences-dialog.ui:81
-msgid "Display Grid Pattern"
-msgstr "הצגת קווי רשת"
+#: src/editor-preferences-dialog.ui:59
+msgid "Custom _Font"
+msgstr "_גופן מותאם אישית"
 
-#: src/editor-preferences-dialog.ui:87
-msgid "Highlight Current Line"
-msgstr "הדגשת השורה הנוכחית"
+#: src/editor-preferences-dialog.ui:82
+msgid "Display _Grid Pattern"
+msgstr "הצגת קווי _רשת"
 
-#: src/editor-preferences-dialog.ui:93
-msgid "Display Overview Map"
-msgstr "הצגת מפת ממוזערת"
+#: src/editor-preferences-dialog.ui:89
+msgid "_Highlight Current Line"
+msgstr "ה_דגשת השורה הנוכחית"
 
-#: src/editor-preferences-dialog.ui:101
+#: src/editor-preferences-dialog.ui:96
+msgid "Display _Overview Map"
+msgstr "הצגת מפת _ממוזערת"
+
+#: src/editor-preferences-dialog.ui:105
 msgid "Right Margin"
 msgstr "שוליים ימניים"
 
-#: src/editor-preferences-dialog.ui:104
-msgid "Margin Position"
-msgstr "מיקום שוליים"
+#: src/editor-preferences-dialog.ui:108
+msgid "_Margin Position"
+msgstr "מיקום _שוליים"
 
-#: src/editor-preferences-dialog.ui:112
+#: src/editor-preferences-dialog.ui:117
 msgid "Behavior"
 msgstr "התנהגות"
 
-#: src/editor-preferences-dialog.ui:115
-msgid "Discover Document Settings"
-msgstr "גילוי הגדרות מסמך"
+#: src/editor-preferences-dialog.ui:120
+msgid "_Discover Document Settings"
+msgstr "_גילוי הגדרות מסמך"
 
-#: src/editor-preferences-dialog.ui:116
+#: src/editor-preferences-dialog.ui:122
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr "החלת הגדרות באמצעות מצב שורות, הגדרות עורך או הגיון בבררת מחדל"
 
-#: src/editor-preferences-dialog.ui:122
-msgid "Restore Session"
-msgstr "שחזור הפעלה"
+#: src/editor-preferences-dialog.ui:128
+msgid "_Restore Session"
+msgstr "_שחזור הפעלה"
 
-#: src/editor-preferences-dialog.ui:123
+#: src/editor-preferences-dialog.ui:130
 msgid "Return to your previous session when Text Editor is started"
 msgstr "חזרה להפעלה הקודמת שלך ברגע הפעלת עורך הטקסט"
 
-#: src/editor-preferences-dialog.ui:138
+#: src/editor-preferences-dialog.ui:145
 msgid "_Clear History"
 msgstr "_ניקוי היסטוריה"
 
@@ -626,27 +634,27 @@ msgstr "קובץ"
 msgid "Name"
 msgstr "שם"
 
-#: src/editor-properties-dialog.ui:43
+#: src/editor-properties-dialog.ui:46
 msgid "Location"
 msgstr "מיקום"
 
-#: src/editor-properties-dialog.ui:59
+#: src/editor-properties-dialog.ui:85
 msgid "Statistics"
 msgstr "סטטיסטיקה"
 
-#: src/editor-properties-dialog.ui:62
+#: src/editor-properties-dialog.ui:88
 msgid "Lines"
 msgstr "שורות"
 
-#: src/editor-properties-dialog.ui:77
+#: src/editor-properties-dialog.ui:96
 msgid "Words"
 msgstr "מילים"
 
-#: src/editor-properties-dialog.ui:92
+#: src/editor-properties-dialog.ui:104
 msgid "Characters, No Spaces"
 msgstr "תווים, ללא רווחים"
 
-#: src/editor-properties-dialog.ui:107
+#: src/editor-properties-dialog.ui:112
 msgid "All Characters"
 msgstr "כל התאאים"
 
@@ -697,23 +705,23 @@ msgid "Replace"
 msgstr "החלפה"
 
 #: src/editor-search-bar.ui:51
-msgid "Move to previous match (Ctrl+Shift+G)"
-msgstr "מעבר להתאמה הקודמת (Ctrl+Shift+G)"
+msgid "Previous Match"
+msgstr "תוצאה קודמת"
 
 #: src/editor-search-bar.ui:59
-msgid "Move to next match (Ctrl+G)"
-msgstr "מעבר להתאמה הבאה (Ctrl+G)"
+msgid "Next Match"
+msgstr "תוצאה הבאה"
 
 #: src/editor-search-bar.ui:71
-msgid "Search & Replace (Ctrl+H)"
-msgstr "חיפוש והחלפה (Ctrl+H)"
+msgid "Search & Replace"
+msgstr "חיפוש והחלפה"
 
 #: src/editor-search-bar.ui:81
-msgid "Toggle search options"
-msgstr "הצגת אפשרויות חיפוש"
+msgid "Search Options"
+msgstr "אפשרויות חיפוש"
 
 #: src/editor-search-bar.ui:95
-msgid "Close search"
+msgid "Close Search"
 msgstr "סגירת החיפוש"
 
 #: src/editor-search-bar.ui:112
@@ -855,19 +863,19 @@ msgstr "שינויים שלא נשמרו יאבדו לנצח."
 msgid "Discard Changes to “%s”?"
 msgstr "השלכת השינויים בקובץ „%s”?"
 
-#: src/editor-window-actions.c:348
+#: src/editor-window-actions.c:349
 msgid "Open File"
 msgstr "פתיחת קובץ"
 
-#: src/editor-window-actions.c:351
+#: src/editor-window-actions.c:352
 msgid "Open"
 msgstr "פתיחה"
 
-#: src/editor-window-actions.c:376
+#: src/editor-window-actions.c:377
 msgid "All Files"
 msgstr "כל הקבצים"
 
-#: src/editor-window-actions.c:381
+#: src/editor-window-actions.c:382
 msgid "Text Files"
 msgstr "קובצי טקסט"
 
@@ -1025,8 +1033,8 @@ msgid "Chec_k Spelling"
 msgstr "_בדיקת איות"
 
 #: src/editor-window.ui:326
-msgid "_Document Type"
-msgstr "סוג _מסמך"
+msgid "_Document Type…"
+msgstr "סוג _מסמך…"
 
 #: src/editor-window.ui:334
 msgid "Move _Left"
@@ -1343,6 +1351,18 @@ msgstr "הצגת צירופי מקשים"
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "הצגת עזרה"
+
+#~ msgid "Open New Document (Ctrl+O)"
+#~ msgstr "פתיחת מסמך חדש (Ctrl+O)"
+
+#~ msgid "Move to previous match (Ctrl+Shift+G)"
+#~ msgstr "מעבר להתאמה הקודמת (Ctrl+Shift+G)"
+
+#~ msgid "Move to next match (Ctrl+G)"
+#~ msgstr "מעבר להתאמה הבאה (Ctrl+G)"
+
+#~ msgid "Toggle search options"
+#~ msgstr "הצגת אפשרויות חיפוש"
 
 #~ msgctxt "shortcut window"
 #~ msgid "Editor Shortcuts"
