@@ -1,3 +1,4 @@
+
 #!/usr/bin/env bash
 pacman -Sy
 # Install dependencies
@@ -40,6 +41,7 @@ pacman -S --noconfirm mingw-w64-x86_64-pkg-config \
             bison \
             mingw-w64-x86_64-libyaml \
             mingw-w64-x86_64-libstemmer \
+            mingw-w64-x86_64-appstream \
             coreutils
 
             #it wasn't installing pkgconfig because base-devel was installing pkgconf. We'll install everything but that manually
@@ -55,59 +57,7 @@ meson test -C builddir --suite gnome-text-editor
 #move required files into builddir
 cp -R /mingw64/bin/gdbus.exe builddir
 cp -R /mingw64/bin/glib-compile-schemas.exe builddir
-cp -R /mingw64/bin/libadwaita-1-0.dll builddir
-cp -R /mingw64/bin/libbrotlicommon.dll builddir
-cp -R /mingw64/bin/libbrotlidec.dll builddir
-cp -R /mingw64/bin/libbz2-1.dll builddir
-cp -R /mingw64/bin/libcairo-2.dll builddir
-cp -R /mingw64/bin/libcairo-gobject-2.dll builddir
-cp -R /mingw64/bin/libcairo-script-interpreter-2.dll builddir
-cp -R /mingw64/bin/libdatrie-1.dll builddir
-cp -R /mingw64/bin/libdeflate.dll builddir
-cp -R /mingw64/bin/libeditorconfig.dll builddir
-cp -R /mingw64/bin/libenchant-2.dll builddir 
-cp -R /mingw64/bin/libepoxy-0.dll builddir
-cp -R /mingw64/bin/libexpat-1.dll builddir
-cp -R /mingw64/bin/libffi-8.dll builddir
-cp -R /mingw64/bin/libfontconfig-1.dll builddir
-cp -R /mingw64/bin/libfreetype-6.dll builddir
-cp -R /mingw64/bin/libfribidi-0.dll builddir
-cp -R /mingw64/bin/libgcc_s_seh-1.dll builddir
-cp -R /mingw64/bin/libgdk_pixbuf-2.0-0.dll builddir
-cp -R /mingw64/bin/libgio-2.0-0.dll builddir
-cp -R /mingw64/bin/libglib-2.0-0.dll builddir
-cp -R /mingw64/bin/libgmodule-2.0-0.dll builddir
-cp -R /mingw64/bin/libgobject-2.0-0.dll builddir
-cp -R /mingw64/bin/libgraphene-1.0-0.dll builddir
-cp -R /mingw64/bin/libgraphite2.dll builddir
-cp -R /mingw64/bin/libgtk-4-1.dll builddir
-cp -R /mingw64/bin/libgtksourceview-5-0.dll builddir
-cp -R /mingw64/bin/libharfbuzz-0.dll builddir
-cp -R /mingw64/bin/libiconv-2.dll builddir
-cp -R /mingw64/bin/libicudt72.dll builddir
-cp -R /mingw64/bin/libicuuc72.dll builddir
-cp -R /mingw64/bin/libintl-8.dll builddir
-cp -R /mingw64/bin/libjbig-0.dll builddir
-cp -R /mingw64/bin/libjpeg-8.dll builddir
-cp -R /mingw64/bin/libLerc.dll builddir
-cp -R /mingw64/bin/liblzma-5.dll builddir
-cp -R /mingw64/bin/liblzo2-2.dll builddir
-cp -R /mingw64/bin/libpango-1.0-0.dll builddir
-cp -R /mingw64/bin/libpangocairo-1.0-0.dll builddir
-cp -R /mingw64/bin/libpangoft2-1.0-0.dll builddir
-cp -R /mingw64/bin/libpangowin32-1.0-0.dll builddir
-cp -R /mingw64/bin/libpcre2-8-0.dll builddir
-cp -R /mingw64/bin/libpixman-1-0.dll builddir
-cp -R /mingw64/bin/libpng16-16.dll builddir
-cp -R /mingw64/bin/libsharpyuv-0.dll builddir
-cp -R /mingw64/bin/libstdc++-6.dll builddir
-cp -R /mingw64/bin/libthai-0.dll builddir
-cp -R /mingw64/bin/libtiff-6.dll builddir
-cp -R /mingw64/bin/libwebp-7.dll builddir
-cp -R /mingw64/bin/libwinpthread-1.dll  builddir
-cp -R /mingw64/bin/libxml2-2.dll builddir
-cp -R /mingw64/bin/libxml2-2.dll builddir
-cp -R /mingw64/bin/libzstd.dll builddir
+cp -R /mingw64/bin/lib*.dll builddir
 cp -R /mingw64/bin/zlib1.dll builddir
 cp -R /mingw64/etc/fonts/fonts.conf builddir
 cp -R /mingw64/share/fontconfig builddir
@@ -122,7 +72,7 @@ mv fonts.conf ./portable_install/msys64/mingw64
 DESTDIR=./portable_install meson install
 cd portable_install/msys64/mingw64
 #check for existence of gnometexteditor exe to check if compilation succeeded. If not exit with an error.
-CHECK_FILE="./gnome-text-editor.exe"
+CHECK_FILE="./bin/gnome-text-editor.exe"
 if test -f "$CHECK_FILE"
 then
     echo "$CHECK_FILE exists. Windows build can proceed."
@@ -145,6 +95,10 @@ bin/glib-compile-schemas.exe /mingw64/share/glib-2.0/schemas/
 #write batch file to execute gte with proper environment variables
 echo "@echo off" >> ./execute_gte_proper_environent_variables.bat
 echo "set GSK_RENDERER=cairo"  >> ./execute_gte_proper_environent_variables.bat
+#echo "set GSETTINGS_SCHEMA_DIR=%~dp0\share\glib-2.0\schemas" >> ./execute_gte_proper_environent_variables.bat
+#echo "glib-compile-schemas.exe share\glib-2.0\schemas" >> ./execute_gte_proper_environent_variables.bat
 echo "bin\gnome-text-editor.exe --standalone --exit-after-startup" >> ./execute_gte_proper_environent_variables.bat
+pwd
+mv ./execute_gte_proper_environent_variables ../
 timeout 1m ./execute_gte_proper_environent_variables.bat
 zip -r ../../../../gnome-text-editor_${version}_$(uname -m).zip ./*
