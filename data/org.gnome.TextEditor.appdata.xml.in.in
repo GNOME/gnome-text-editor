@@ -3,7 +3,11 @@
 	<id>@app_id@.desktop</id>
 	<metadata_license>CC0-1.0</metadata_license>
 	<project_license>GPL-3.0-or-later</project_license>
+  <!-- developer_name tag deprecated with Appstream 1.0 -->
   <developer_name>The GNOME Project</developer_name>
+  <developer id="gnome.org">
+    <name>The GNOME Project</name>
+  </developer>
   <launchable type="desktop-id">org.gnome.TextEditor.desktop</launchable>
   <name>Text Editor</name>
   <project_group>GNOME</project_group>
@@ -30,7 +34,10 @@
   <translation type="gettext">gnome-text-editor</translation>
 
   <releases>
-    <release version="45.alpha" date="2023-06-30"/>
+    <release version="45.1" date="2023-10-30"/>
+    <release version="45" date="2023-09-17"/>
+    <release version="45~beta" date="2023-08-08"/>
+    <release version="45~alpha" date="2023-06-30"/>
   </releases>
 
   <kudos>
