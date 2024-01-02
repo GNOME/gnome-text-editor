@@ -348,6 +348,8 @@ editor_window_do_close (EditorWindow *self)
 {
   g_assert (EDITOR_IS_WINDOW (self));
 
+  g_cancellable_cancel (self->cancellable);
+
   g_signal_handlers_disconnect_by_func (adw_tab_view_get_pages (self->tab_view),
                                         G_CALLBACK (editor_window_items_changed_cb),
                                         self);
@@ -846,6 +848,7 @@ editor_window_finalize (GObject *object)
   g_clear_object (&self->page_bindings);
   g_clear_object (&self->page_signals);
   g_clear_object (&self->document_signals);
+  g_clear_object (&self->cancellable);
   g_clear_pointer (&self->closed_items, g_array_unref);
 
   G_OBJECT_CLASS (editor_window_parent_class)->finalize (object);
@@ -983,6 +986,8 @@ editor_window_class_init (EditorWindowClass *klass)
 static void
 editor_window_init (EditorWindow *self)
 {
+  self->cancellable = g_cancellable_new ();
+
   gtk_widget_init_template (GTK_WIDGET (self));
 
   self->closed_items = g_array_new (FALSE, FALSE, sizeof (ClosedItem));
@@ -1379,4 +1384,12 @@ _editor_window_focus_search (EditorWindow *self)
   g_return_if_fail (EDITOR_IS_WINDOW (self));
 
   gtk_menu_button_popup (self->open_menu_button);
+}
+
+GCancellable *
+_editor_window_get_cancellable (EditorWindow *self)
+{
+  g_return_val_if_fail (EDITOR_IS_WINDOW (self), NULL);
+
+  return self->cancellable;
 }

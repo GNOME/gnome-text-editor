@@ -32,7 +32,7 @@
 #include "editor-spell-checker.h"
 #include "editor-text-buffer-spell-adapter.h"
 #include "editor-session-private.h"
-#include "editor-window.h"
+#include "editor-window-private.h"
 
 #define METADATA_CURSOR     "metadata::gte-cursor"
 #define METADATA_SPELLING   "metadata::gte-spelling"
@@ -1799,6 +1799,9 @@ _editor_document_load_async (EditorDocument      *self,
   g_return_if_fail (!window || EDITOR_IS_WINDOW (window));
   g_return_if_fail (!cancellable || G_IS_CANCELLABLE (cancellable));
   g_return_if_fail (self->loading == FALSE);
+
+  if (cancellable == NULL && window != NULL)
+    cancellable = _editor_window_get_cancellable (window);
 
   self->loading = TRUE;
   self->needs_autosave = FALSE;
