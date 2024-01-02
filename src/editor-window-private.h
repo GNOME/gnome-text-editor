@@ -34,6 +34,9 @@ struct _EditorWindow
 {
   GtkApplicationWindow  parent_instance;
 
+  /* Cancellable which cancels when window closes */
+  GCancellable         *cancellable;
+
   /* Template Widgets */
   GtkWidget            *empty;
   AdwTabView           *tab_view;
@@ -89,5 +92,6 @@ gboolean      _editor_window_request_close_page   (EditorWindow      *self,
 gboolean      _editor_window_request_close_pages  (EditorWindow      *self,
                                                    GList             *pages,
                                                    gboolean           close_saved);
+GCancellable *_editor_window_get_cancellable      (EditorWindow      *self);
 
 G_END_DECLS
