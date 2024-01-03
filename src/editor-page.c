@@ -667,6 +667,9 @@ editor_page_dispose (GObject *object)
 {
   EditorPage *self = (EditorPage *)object;
 
+  g_cancellable_cancel (self->cancellable);
+  g_clear_object (&self->cancellable);
+
   gtk_widget_dispose_template (GTK_WIDGET (self), EDITOR_TYPE_PAGE);
 
   g_clear_pointer (&self->progress_animation, editor_animation_stop);
@@ -891,6 +894,8 @@ static void
 editor_page_init (EditorPage *self)
 {
   GtkDropTarget *dest;
+
+  self->cancellable = g_cancellable_new ();
 
   gtk_widget_init_template (GTK_WIDGET (self));
 
@@ -1707,4 +1712,12 @@ _editor_page_zoom_one (EditorPage *self)
   g_return_if_fail (EDITOR_IS_PAGE (self));
 
   g_object_set (self->view, "font-scale", 0, NULL);
+}
+
+GCancellable *
+_editor_page_get_cancellable (EditorPage *self)
+{
+  g_return_val_if_fail (EDITOR_IS_PAGE (self), NULL);
+
+  return self->cancellable;
 }
