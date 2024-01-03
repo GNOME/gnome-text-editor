@@ -1432,7 +1432,10 @@ editor_session_open (EditorSession           *self,
   if (remove)
     editor_session_remove_page (self, remove);
 
-  _editor_document_load_async (document, window, NULL, NULL, NULL);
+  _editor_document_load_async (document,
+                               window,
+                               _editor_page_get_cancellable (page),
+                               NULL, NULL);
 
   _editor_session_mark_dirty (self);
 
@@ -1500,7 +1503,10 @@ _editor_session_open_draft (EditorSession *self,
 
   new_document = _editor_document_new (NULL, draft_id);
   new_page = editor_session_add_document (self, window, new_document);
-  _editor_document_load_async (new_document, window, NULL, NULL, NULL);
+  _editor_document_load_async (new_document,
+                               window,
+                               _editor_page_get_cancellable (new_page),
+                               NULL, NULL);
 
   if (remove)
     editor_session_remove_page (self, remove);
@@ -1713,7 +1719,7 @@ editor_session_restore_v1_pages (EditorSession *self,
 
       _editor_document_load_async (document,
                                    window,
-                                   NULL,
+                                   _editor_page_get_cancellable (epage),
                                    editor_session_load_cb,
                                    g_slice_dup (Selection, &sel));
 

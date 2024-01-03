@@ -38,6 +38,8 @@ struct _EditorPage
 {
   GtkWidget                parent_instance;
 
+  GCancellable            *cancellable;
+
   EditorDocument          *document;
   EditorPageSettings      *settings;
   GBindingGroup           *settings_bindings;
@@ -101,5 +103,6 @@ void          _editor_page_zoom_in                (EditorPage           *self);
 void          _editor_page_zoom_out               (EditorPage           *self);
 void          _editor_page_zoom_one               (EditorPage           *self);
 char         *_editor_page_get_zoom_label         (EditorPage           *self);
+GCancellable *_editor_page_get_cancellable        (EditorPage           *self);
 
 G_END_DECLS
