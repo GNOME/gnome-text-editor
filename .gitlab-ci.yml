@@ -41,16 +41,29 @@ fedora:
     needs: []
     script:
         - sudo dnf -y install
+                ccache
                 desktop-file-utils
+                editorconfig-devel
                 enchant2-devel
                 expat-devel
+                gcc
+                gcc-c++
+                gettext
                 git
+                glib2-devel
+                gobject-introspection-devel
+                gtk4-devel
                 itstool
+                libadwaita-devel
                 libicu-devel
                 libjpeg-turbo-devel
                 libpng-devel
+                meson
+                meson
+                ninja-build
+                redhat-rpm-config
                 shared-mime-info
-                editorconfig-devel
+                xorg-x11-server-Xvfb
         - mkdir -p pfx/
         - meson --prefix=${PWD}/pfx
                 -Dwerror=true
