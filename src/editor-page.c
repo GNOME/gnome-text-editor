@@ -667,6 +667,8 @@ editor_page_dispose (GObject *object)
 {
   EditorPage *self = (EditorPage *)object;
 
+  gtk_widget_dispose_template (GTK_WIDGET (self), EDITOR_TYPE_PAGE);
+
   g_clear_pointer (&self->progress_animation, editor_animation_stop);
   g_clear_pointer ((GtkWidget **)&self->box, gtk_widget_unparent);
 
