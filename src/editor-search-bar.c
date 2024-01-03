@@ -416,6 +416,8 @@ editor_search_bar_dispose (GObject *object)
 {
   EditorSearchBar *self = (EditorSearchBar *)object;
 
+  gtk_widget_dispose_template (GTK_WIDGET (self), EDITOR_TYPE_SEARCH_BAR);
+
   g_clear_pointer ((GtkWidget **)&self->grid, gtk_widget_unparent);
 
   if (self->focus_chain.length > 0)
