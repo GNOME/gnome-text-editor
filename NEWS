@@ -1,3 +1,18 @@
+# Text Editor 46.alpha
+
+ Changes since 45.0
+
+ • Make various UI elements conform better to GNOME HIG
+ • Fix etag usage when comparing changes from GFileMonitor
+ • Cancel document loading when tab or window closes. This fixes an issue
+   where you could have 100% CPU doing Pango line breaking on extremely large
+   files even after closing a window or tab.
+ • Improve margin for RTL languages
+ • Updated appdata/metainfo
+ • Fix memory leak in usage of GtkNativeDialog
+ • Work around some broken user configurations for XDG special directories
+ • Translation updates
+
 # Text Editor 45.0
 
  • Fix tab closing while documents are loading
