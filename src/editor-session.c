@@ -1696,6 +1696,12 @@ editor_session_restore_v1_pages (EditorSession *self,
       if (uri != NULL)
         file = g_file_new_for_uri (uri);
 
+      if (file != NULL && !g_file_query_exists (file, NULL))
+        {
+          g_clear_object (&file);
+          continue;
+        }
+
       /* If the file was also requested from command line arguments
        * and a +line:column was requested, prefer that to session state.
        */
@@ -1836,6 +1842,15 @@ editor_session_restore_v1 (EditorSession *self,
               gtk_window_destroy (GTK_WINDOW (ewin));
               g_ptr_array_remove (self->windows, ewin);
               continue;
+            }
+
+          /* We might have restored session where all files and drafts were removed.
+           * In this case, we want to create a new draft page.
+           */
+          if (self->pages->len == 0)
+            {
+              g_autoptr(EditorDocument) document = editor_document_new_draft ();
+              editor_session_add_document (self, ewin, document);
             }
 
           if (maximized)
