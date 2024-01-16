@@ -32,7 +32,7 @@ endif
 # Check dependencies
 glib_req_version = '2.73'
 gtk_req_version = '4.7'
-gtksourceview_req_version = '5.5.0'
+gtksourceview_req_version = '5.10.0'
 enchant_req_version = '2.2.0'
 
 glib_req = '>= @0@'.format(glib_req_version)

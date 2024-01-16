@@ -682,6 +682,10 @@ _editor_window_request_close_pages (EditorWindow *self,
   for (const GList *iter = pages; iter; iter = iter->next)
     {
       EditorPage *page = iter->data;
+      EditorDocument *document = editor_page_get_document (page);
+
+      if (gtk_source_buffer_get_loading (GTK_SOURCE_BUFFER (document)))
+        continue;
 
       if (editor_page_get_is_modified (page))
         g_ptr_array_add (ar, g_object_ref (page));
