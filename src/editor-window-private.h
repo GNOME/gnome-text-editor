@@ -59,6 +59,7 @@ struct _EditorWindow
 
   /* Borrowed References */
   EditorPage           *visible_page;
+  EditorPage           *removing_page;
 
   /* Owned References */
   GBindingGroup        *page_bindings;

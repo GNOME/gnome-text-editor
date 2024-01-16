@@ -655,6 +655,9 @@ _editor_window_request_close_page (EditorWindow *self,
   if (page->moving)
     return TRUE;
 
+  if (page == self->removing_page)
+    return TRUE;
+
   list = g_list_append (NULL, page);
   ret = _editor_window_request_close_pages (self, list, FALSE);
   g_list_free (list);
@@ -1311,7 +1314,10 @@ _editor_window_remove_page (EditorWindow *self,
                                         self);
 
   tab_page = adw_tab_view_get_page (self->tab_view, GTK_WIDGET (page));
+
+  self->removing_page = page;
   adw_tab_view_close_page (self->tab_view, tab_page);
+  self->removing_page = NULL;
 
   if (self->visible_page == page)
     {
