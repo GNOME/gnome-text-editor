@@ -1696,7 +1696,9 @@ editor_session_restore_v1_pages (EditorSession *self,
       if (uri != NULL)
         file = g_file_new_for_uri (uri);
 
-      if (file != NULL && !g_file_query_exists (file, NULL))
+      if (file != NULL &&
+          g_file_is_native (file) &&
+          !g_file_query_exists (file, NULL))
         {
           g_clear_object (&file);
           continue;
