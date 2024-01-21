@@ -13,3 +13,8 @@ StartupNotify=true
 Terminal=false
 Type=Application
 X-Flatpak-RenamedFrom=gnome-text-editor
+Actions=new-window;
+
+[Desktop Action new-window]
+Name=New Window
+Exec=gnome-text-editor --new-window
