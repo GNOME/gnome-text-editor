@@ -635,9 +635,14 @@ on_tab_view_page_detached_cb (EditorWindow *self,
 
   if (EDITOR_IS_PAGE (child))
     {
+      EditorPage *epage = EDITOR_PAGE (child);
       GtkWidget *parent = gtk_widget_get_parent (child);
 
-      if (ADW_IS_BIN (parent))
+      /* Force clear the child so that destruction of the
+       * GtkTextView occurs. That is the only way to ensure
+       * that forward textbuffer validation will stop.
+       */
+      if (!epage->moving && ADW_IS_BIN (parent))
         adw_bin_set_child (ADW_BIN (parent), NULL);
     }
 }
