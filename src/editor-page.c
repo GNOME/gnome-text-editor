@@ -57,6 +57,26 @@ G_DEFINE_TYPE (EditorPage, editor_page, GTK_TYPE_WIDGET)
 
 static GParamSpec *properties [N_PROPS];
 
+static gboolean
+get_tab_info (EditorPage  *self,
+              AdwTabView **tab_view,
+              AdwTabPage **tab_page)
+{
+  GtkWidget *widget;
+
+  *tab_view = NULL;
+  *tab_page = NULL;
+
+  widget = gtk_widget_get_ancestor (GTK_WIDGET (self), ADW_TYPE_TAB_VIEW);
+  if (widget == NULL)
+    return FALSE;
+
+  *tab_view = ADW_TAB_VIEW (widget);
+  *tab_page = adw_tab_view_get_page (*tab_view, GTK_WIDGET (self));
+
+  return *tab_view != NULL && *tab_page != NULL;
+}
+
 static void
 on_draw_spaces_changed (EditorPage  *self,
                         const gchar *key,
@@ -1020,10 +1040,10 @@ editor_page_is_active (EditorPage *self)
 
   g_return_val_if_fail (EDITOR_IS_PAGE (self), FALSE);
 
-  tab_view = ADW_TAB_VIEW (gtk_widget_get_ancestor (GTK_WIDGET (self), ADW_TYPE_TAB_VIEW));
-  tab_page = adw_tab_view_get_page (tab_view, GTK_WIDGET (self));
+  if (get_tab_info (self, &tab_view, &tab_page))
+    return tab_page == adw_tab_view_get_selected_page (tab_view);
 
-  return tab_page == adw_tab_view_get_selected_page (tab_view);
+  return FALSE;
 }
 
 gchar *
@@ -1108,9 +1128,8 @@ _editor_page_raise (EditorPage *self)
   title = editor_page_dup_title (self);
   g_debug ("Attempting to raise page: \"%s\"", title);
 
-  tab_view = ADW_TAB_VIEW (gtk_widget_get_ancestor (GTK_WIDGET (self), ADW_TYPE_TAB_VIEW));
-  tab_page = adw_tab_view_get_page (tab_view, GTK_WIDGET (self));
-  adw_tab_view_set_selected_page (tab_view, tab_page);
+  if (get_tab_info (self, &tab_view, &tab_page))
+    adw_tab_view_set_selected_page (tab_view, tab_page);
 }
 
 static void
@@ -1428,10 +1447,10 @@ _editor_page_position (EditorPage *self)
 
   g_return_val_if_fail (EDITOR_IS_PAGE (self), -1);
 
-  tab_view = ADW_TAB_VIEW (gtk_widget_get_ancestor (GTK_WIDGET (self), ADW_TYPE_TAB_VIEW));
-  tab_page = adw_tab_view_get_page (tab_view, GTK_WIDGET (self));
+  if (get_tab_info (self, &tab_view, &tab_page))
+    return adw_tab_view_get_page_position (tab_view, tab_page);
 
-  return adw_tab_view_get_page_position (tab_view, tab_page);
+  return -1;
 }
 
 gboolean
