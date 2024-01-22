@@ -1374,8 +1374,8 @@ editor_page_get_visual_position (EditorPage *self,
 gchar *
 editor_page_dup_position_label (EditorPage *self)
 {
-  guint line;
-  guint column;
+  guint line = 0;
+  guint column = 0;
 
   g_return_val_if_fail (EDITOR_IS_PAGE (self), NULL);
 
