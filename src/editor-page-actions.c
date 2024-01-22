@@ -24,23 +24,6 @@
 #include "editor-language-dialog.h"
 
 static void
-editor_page_actions_language (GtkWidget  *widget,
-                              const char *action_name,
-                              GVariant   *param)
-{
-  EditorPage *self = (EditorPage *)widget;
-  EditorLanguageDialog *dialog;
-
-  g_assert (EDITOR_IS_PAGE (self));
-
-  dialog = editor_language_dialog_new (NULL);
-  g_object_bind_property (dialog, "language",
-                          self, "language",
-                          (G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL));
-  gtk_window_present (GTK_WINDOW (dialog));
-}
-
-static void
 editor_page_actions_search_hide (GtkWidget  *widget,
                                  const char *action_name,
                                  GVariant   *param)
@@ -211,8 +194,6 @@ _editor_page_class_actions_init (EditorPageClass *klass)
 {
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
-  gtk_widget_class_install_action (widget_class, "page.language", NULL,
-                                   editor_page_actions_language);
   gtk_widget_class_install_action (widget_class, "page.show-goto-line", NULL,
                                    editor_page_actions_show_goto_line);
   gtk_widget_class_install_action (widget_class, "page.goto-line", NULL,
