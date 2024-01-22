@@ -181,7 +181,7 @@ editor_window_actions_change_language_cb (GtkWidget  *widget,
   dialog = editor_language_dialog_new (EDITOR_APPLICATION_DEFAULT);
   gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (self));
   gtk_window_set_destroy_with_parent (GTK_WINDOW (dialog), TRUE);
-  gtk_window_set_modal (GTK_WINDOW (dialog), FALSE);
+  gtk_window_set_modal (GTK_WINDOW (dialog), TRUE);
 
   g_object_bind_property (document, "language", dialog, "language",
                           G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL);
