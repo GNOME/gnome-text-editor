@@ -374,7 +374,25 @@ editor_document_guess_content_type (EditorDocument *self)
   manager = gtk_source_language_manager_get_default ();
   language = guess_language (manager, filename, content_type);
 
-  if (language)
+  /* Special case for Markdown which is extremely common and tends
+   * to follow a '# title' format on the first line.
+   */
+  if (language == NULL)
+    {
+      if (content[0] == '#')
+        {
+          for (guint i = 1; content[i]; i++)
+            {
+              if (content[i] == ' ')
+                {
+                  language = gtk_source_language_manager_get_language (manager, "markdown");
+                  break;
+                }
+            }
+        }
+    }
+
+  if (language != NULL)
     gtk_source_buffer_set_language (GTK_SOURCE_BUFFER (self), language);
 }
 
