@@ -100,17 +100,28 @@ fedora:
         - meson test --suite gnome-text-editor
         - ninja install
 
-msys2-mingw64:
+.msys2-common:
     tags:
       - win32-ps
-    script: |
-      $env:CHERE_INVOKING = 'yes' #preserve cwd
-      $env:MSYSTEM = 'MINGW64'
-      C:/msys64/usr/bin/bash -lc "./build-aux/win32/build-mingw.sh"
+    script:
+      - C:\msys64\usr\bin\pacman --noconfirm -Syyuu
+      - C:\msys64\usr\bin\bash -lc "./build-aux/win32/build-mingw.sh"
     artifacts:
         paths:
             - './*.zip'
         when: always
+
+msys2-mingw64:
+    extends: .msys2-common
+    variables:
+      MSYSTEM: "MINGW64"
+      CHERE_INVOKING: "yes"
+
+msys2-ucrt64:
+    extends: .msys2-common
+    variables:
+      MSYSTEM: "UCRT64"
+      CHERE_INVOKING: "yes"
 
 #macos:
 #    extends: .only-default
