@@ -195,7 +195,7 @@ editor_application_actions_about_cb (GSimpleAction *action,
 
   window = editor_application_get_current_window (self);
 
-  adw_show_about_window (GTK_WINDOW (window),
+  adw_show_about_dialog (GTK_WIDGET (window),
                          "application-name", _("Text Editor"),
                          "application-icon", PACKAGE_ICON_NAME,
                          "developer-name", _("The GNOME Project"),
