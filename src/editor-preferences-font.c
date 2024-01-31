@@ -69,20 +69,26 @@ editor_preferences_font_constructed (GObject *object)
 }
 
 static void
-editor_preferences_font_dialog_response_cb (EditorPreferencesFont *self,
-                                            int                    response,
-                                            GtkFontChooserDialog  *dialog)
+editor_preferences_font_dialog_choose_font_cb (GtkFontDialog *dialog,
+                                               GAsyncResult  *res,
+                                               EditorPreferencesFont *self)
 {
-  g_assert (EDITOR_IS_PREFERENCES_FONT (self));
-  g_assert (GTK_IS_FONT_CHOOSER_DIALOG (dialog));
+  PangoFontDescription* font_desc;
 
-  if (response == GTK_RESPONSE_OK)
+  g_assert (EDITOR_IS_PREFERENCES_FONT (self));
+  g_assert (GTK_IS_FONT_DIALOG (dialog));
+
+  font_desc = gtk_font_dialog_choose_font_finish (dialog,
+                                                  res,
+                                                  NULL);
+
+  if (font_desc)
     {
-      g_autofree gchar *font = gtk_font_chooser_get_font (GTK_FONT_CHOOSER (dialog));
+      g_autofree gchar *font = pango_font_description_to_string (font_desc);
       g_settings_set_string (self->settings, self->schema_key, font);
     }
 
-  gtk_window_destroy (GTK_WINDOW (dialog));
+  g_clear_pointer (&font_desc, pango_font_description_free);
 }
 
 static void
@@ -91,26 +97,24 @@ editor_preferences_font_activated (AdwActionRow *row)
   EditorPreferencesFont *self = (EditorPreferencesFont *)row;
   PangoFontDescription *font_desc;
   g_autofree gchar *font = NULL;
-  GtkWidget *dialog;
+  GtkFontDialog *dialog;
   GtkWidget *window;
 
   g_assert (ADW_IS_ACTION_ROW (self));
 
   window = gtk_widget_get_ancestor (GTK_WIDGET (row), GTK_TYPE_WINDOW);
-  dialog = gtk_font_chooser_dialog_new (_("Select Font"), GTK_WINDOW (window));
+  dialog = gtk_font_dialog_new ();
   gtk_window_set_modal (GTK_WINDOW (window), TRUE);
 
   font = g_settings_get_string (self->settings, self->schema_key);
   font_desc = pango_font_description_from_string (font);
-  gtk_font_chooser_set_font_desc (GTK_FONT_CHOOSER (dialog), font_desc);
 
-  g_signal_connect_object (dialog,
-                           "response",
-                           G_CALLBACK (editor_preferences_font_dialog_response_cb),
-                           self,
-                           G_CONNECT_SWAPPED);
-
-  gtk_window_present (GTK_WINDOW (dialog));
+  gtk_font_dialog_choose_font(dialog,
+                              GTK_WINDOW (window),
+                              font_desc,
+                              NULL,
+                              (GAsyncReadyCallback)editor_preferences_font_dialog_choose_font_cb,
+                              self);
 
   g_clear_pointer (&font_desc, pango_font_description_free);
 }
