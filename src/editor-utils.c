@@ -225,7 +225,7 @@ hide_callback (gpointer data)
   GtkWidget *widget = data;
 
   g_object_set_data (data, "EDITOR_FADE_ANIMATION", NULL);
-  gtk_widget_hide (widget);
+  gtk_widget_set_visible (widget, FALSE);
   gtk_widget_set_opacity (widget, 1.0);
   g_object_unref (widget);
 }
@@ -513,7 +513,7 @@ revealer_autohide (gpointer data)
     {
       if (!gtk_revealer_get_reveal_child (revealer) &&
           !gtk_revealer_get_child_revealed (revealer))
-        gtk_widget_hide (GTK_WIDGET (revealer));
+        gtk_widget_set_visible (GTK_WIDGET (revealer), FALSE);
     }
 
   return G_SOURCE_REMOVE;
@@ -541,7 +541,7 @@ revealer_queue_autohide (GtkRevealer *revealer)
   if ((gtk_revealer_get_reveal_child (revealer) ||
        gtk_revealer_get_child_revealed (revealer)) &&
       !gtk_widget_get_visible (GTK_WIDGET (revealer)))
-    gtk_widget_show (GTK_WIDGET (revealer));
+    gtk_widget_set_visible (GTK_WIDGET (revealer), TRUE);
 }
 
 /* Try to get a revealer out of the size request machinery
