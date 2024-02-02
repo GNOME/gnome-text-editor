@@ -228,7 +228,7 @@ editor_page_document_notify_busy_cb (EditorPage     *self,
   if (!busy)
     _editor_widget_hide_with_fade (GTK_WIDGET (self->progress_bar));
   else
-    gtk_widget_show (GTK_WIDGET (self->progress_bar));
+    gtk_widget_set_visible (GTK_WIDGET (self->progress_bar), TRUE);
 
   g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_BUSY]);
   g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_CAN_SAVE]);
