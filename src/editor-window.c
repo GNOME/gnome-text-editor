@@ -180,12 +180,8 @@ update_subtitle_visibility_cb (EditorWindow *self)
     }
 
   gtk_widget_set_visible (GTK_WIDGET (self->subtitle), visible);
-
-  if (visible)
-    gtk_widget_set_visible (GTK_WIDGET (self->position_box),
-                            g_settings_get_boolean (self->settings, "show-line-numbers"));
-  else
-    gtk_widget_hide (GTK_WIDGET (self->position_box));
+  gtk_widget_set_visible (GTK_WIDGET (self->position_box),
+                          visible && g_settings_get_boolean (self->settings, "show-line-numbers"));
 }
 
 static void
