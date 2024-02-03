@@ -10,11 +10,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2024-01-22 18:52+0000\n"
-"PO-Revision-Date: 2024-01-25 08:00+0300\n"
-"Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
+"POT-Creation-Date: 2024-01-31 18:17+0000\n"
+"PO-Revision-Date: 2024-02-02 15:05+0300\n"
+"Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Turkish <takim@gnome.org.tr>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -345,11 +345,11 @@ msgstr ""
 msgid "Print version information and exit"
 msgstr "Sürüm bilgisini yazdır ve çık"
 
-#: src/editor-document.c:2103
+#: src/editor-document.c:2121
 msgid "[Read-Only]"
 msgstr "[Salt Okunur]"
 
-#: src/editor-document.c:2401 src/editor-page.c:1065
+#: src/editor-document.c:2419 src/editor-page.c:1065
 #: src/editor-sidebar-item.c:511
 msgid "New Document"
 msgstr "Yeni Belge"
@@ -615,10 +615,6 @@ msgstr "Metin Düzenleyici başladığında önceki oturumunuza geri dönün"
 msgid "_Clear History"
 msgstr "Geçmişi _Temizle"
 
-#: src/editor-preferences-font.c:100
-msgid "Select Font"
-msgstr "Yazı Tipi Seç"
-
 #: src/editor-print-operation.c:176
 #, c-format
 msgid "Draft: %s"
@@ -651,6 +647,10 @@ msgstr "Ad"
 #: src/editor-properties-dialog.ui:46
 msgid "Location"
 msgstr "Konum"
+
+#: src/editor-properties-dialog.ui:75
+msgid "Open in File Manager"
+msgstr "Dosya Yöneticisinde Aç"
 
 #: src/editor-properties-dialog.ui:85
 msgid "Statistics"
@@ -1362,3 +1362,6 @@ msgstr "Klavye kısayollarını göster"
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Yardımı göster"
+
+#~ msgid "Select Font"
+#~ msgstr "Yazı Tipi Seç"
