@@ -7,10 +7,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2024-01-21 00:10+0000\n"
-"PO-Revision-Date: 2024-01-22 15:58+0100\n"
+"POT-Creation-Date: 2024-01-31 18:17+0000\n"
+"PO-Revision-Date: 2024-02-07 00:48+0100\n"
 "Last-Translator: Daniel Rusek <mail@asciiwolf.com>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -29,7 +29,7 @@ msgstr "Projekt GNOME"
 #: data/org.gnome.TextEditor.appdata.xml.in.in:12
 #: data/org.gnome.TextEditor.desktop.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:9
-#: src/editor-application-actions.c:199 src/editor-window.c:1335
+#: src/editor-application-actions.c:199 src/editor-window.c:1340
 msgid "Text Editor"
 msgstr "Textový editor"
 
@@ -338,11 +338,11 @@ msgstr ""
 msgid "Print version information and exit"
 msgstr "Vypsat informace o verzi a skončit"
 
-#: src/editor-document.c:2103
+#: src/editor-document.c:2121
 msgid "[Read-Only]"
 msgstr "[jen ke čtení]"
 
-#: src/editor-document.c:2401 src/editor-page.c:1045
+#: src/editor-document.c:2419 src/editor-page.c:1065
 #: src/editor-sidebar-item.c:511
 msgid "New Document"
 msgstr "Nový dokument"
@@ -452,42 +452,42 @@ msgstr "Žádné nedávné dokumenty"
 msgid "No Results Found"
 msgstr "Nebyly nalezeny žádné výsledky"
 
-#: src/editor-page.c:1071 src/editor-properties-dialog.c:107
+#: src/editor-page.c:1091 src/editor-properties-dialog.c:107
 #: src/editor-sidebar-item.c:105
 msgid "Draft"
 msgstr "Koncept"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1083
+#: src/editor-page.c:1103
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (správce)"
 
-#: src/editor-page.c:1093 src/editor-sidebar-item.c:113
+#: src/editor-page.c:1113 src/editor-sidebar-item.c:113
 msgid "Document Portal"
 msgstr "Portál dokumentů"
 
-#: src/editor-page.c:1140
+#: src/editor-page.c:1159
 msgid "Failed to save document"
 msgstr "Selhalo uložení dokumentu"
 
-#: src/editor-page.c:1141 src/editor-window.ui:358
+#: src/editor-page.c:1160 src/editor-window.ui:358
 msgid "_Close"
 msgstr "_Zavřít"
 
-#: src/editor-page.c:1227
+#: src/editor-page.c:1246
 msgid "Save As"
 msgstr "Uložení jako"
 
-#: src/editor-page.c:1230
+#: src/editor-page.c:1249
 msgid "Save"
 msgstr "Uložit"
 
-#: src/editor-page.c:1231 src/editor-window-actions.c:353
+#: src/editor-page.c:1250 src/editor-window-actions.c:353
 msgid "Cancel"
 msgstr "Zrušit"
 
-#: src/editor-page.c:1387
+#: src/editor-page.c:1406
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Ř. %u, Sl. %u"
@@ -609,10 +609,6 @@ msgstr "Při spuštění Textového editoru se vrátit k předchozímu sezení"
 msgid "_Clear History"
 msgstr "_Smazat historii"
 
-#: src/editor-preferences-font.c:100
-msgid "Select Font"
-msgstr "Výběr písma"
-
 #: src/editor-print-operation.c:176
 #, c-format
 msgid "Draft: %s"
@@ -645,6 +641,10 @@ msgstr "Název"
 #: src/editor-properties-dialog.ui:46
 msgid "Location"
 msgstr "Umístění"
+
+#: src/editor-properties-dialog.ui:75
+msgid "Open in File Manager"
+msgstr "Otevřít ve Správci souborů"
 
 #: src/editor-properties-dialog.ui:85
 msgid "Statistics"
@@ -910,12 +910,12 @@ msgid "Zoom out"
 msgstr "Oddálit"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:777
+#: src/editor-window.c:782
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) – Textový editor"
 
-#: src/editor-window.c:1220
+#: src/editor-window.c:1225
 msgid "There are unsaved documents"
 msgstr "Jsou zde neuložené dokumenty"
 
@@ -1357,6 +1357,9 @@ msgstr "Zobrazit klávesové zkratky"
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Zobrazit nápovědu"
+
+#~ msgid "Select Font"
+#~ msgstr "Výběr písma"
 
 #~ msgid "Open New Document (Ctrl+O)"
 #~ msgstr "Otevřít nový dokument (Ctrl+O)"
