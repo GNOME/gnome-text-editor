@@ -959,7 +959,7 @@ _editor_document_save_draft_async (EditorDocument      *self,
   task = g_task_new (self, cancellable, callback, user_data);
   g_task_set_source_tag (task, _editor_document_save_draft_async);
 
-  if (!self->needs_autosave)
+  if (!self->needs_autosave || self->loading)
     {
       /* Do nothing if we are already up to date */
       g_task_return_boolean (task, TRUE);
