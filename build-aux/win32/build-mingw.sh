@@ -20,7 +20,7 @@ pacman -S --noconfirm  base-devel zip \
             ${MINGW_PACKAGE_PREFIX}-gtk-update-icon-cache
 
 # Compile the application
-MSYS2_ARG_CONV_EXCL="--prefix=" meson setup builddir --prefix="${MINGW_PREFIX}" -Dlibadwaita:vapi=false -Dgtksourceview:vapi=false -Dgtk4:media-gstreamer=disabled
+MSYS2_ARG_CONV_EXCL="--prefix=" meson setup builddir --prefix="${MINGW_PREFIX}" -Dlibadwaita:vapi=false -Dlibadwaita:examples=false -Dgtksourceview:vapi=false -Dgtk4:media-gstreamer=disabled
 meson compile -C builddir
 meson test -C builddir --suite gnome-text-editor
 
