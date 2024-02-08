@@ -1,0 +1,30 @@
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+
+GTE_ICON ICON "../build-aux/win32/org.gnome.TextEditor.ico"
+
+VS_VERSION_INFO VERSIONINFO
+FILEVERSION @GTE_MAJOR_VERSION@,0,0,0
+PRODUCTVERSION @GTE_MAJOR_VERSION@,0,0,0
+FILEOS VOS__WINDOWS32
+FILETYPE VFT_APP
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "040904B0"
+    BEGIN
+      VALUE "CompanyName", "The GNOME Project"
+      VALUE "FileDescription", "GNOME Text Editor"
+      VALUE "FileVersion", "@GTE_VERSION@"
+      VALUE "InternalName", "gnome-text-editor"
+      VALUE "LegalCopyright", "Copyright (C) 2020-2024 The GNOME Project."
+      VALUE "OriginalFilename", "gnome-text-editor.exe"
+      VALUE "ProductName", "GNOME Text Editor"
+      VALUE "ProductVersion", "@GTE_VERSION@"
+    END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x409, 1200
+  END
+END

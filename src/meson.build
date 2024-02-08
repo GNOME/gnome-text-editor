@@ -87,6 +87,21 @@ build_ident_h = vcs_tag(
        output: 'build-ident.h',
 )
 
+if host_machine.system() == 'windows'
+  rc_data = configuration_data()
+  rc_data.set('GTE_MAJOR_VERSION', meson.project_version().split('.')[0].to_int())
+  rc_data.set('GTE_VERSION', meson.project_version())
+
+  win32rc = configure_file(input: 'win32.rc.in',
+    output: 'win32.rc',
+    configuration: rc_data,
+  )
+
+  win32res = import('windows').compile_resources(win32rc)
+
+  editor_sources += win32res
+endif
+
 editor_c_args = []
 
 subdir('enchant')
