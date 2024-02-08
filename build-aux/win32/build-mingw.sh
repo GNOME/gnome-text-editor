@@ -31,8 +31,8 @@ cp -R ${MINGW_PREFIX}/bin/zlib1.dll builddir
 
 cd builddir
 mkdir -p portable_install${MINGW_PREFIX}/{bin,etc,lib,share}
-DESTDIR=./portable_install meson install
 mv *.dll *.exe ./portable_install${MINGW_PREFIX}/bin/
+DESTDIR=./portable_install meson install
 cd portable_install${MINGW_PREFIX}
 
 # Check for existence of gnometexteditor exe to check if compilation succeeded. If not exit with an error.

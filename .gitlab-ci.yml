@@ -74,7 +74,7 @@ fedora:
                 -Dgtk:demos=false
                 -Dgtk:media-gstreamer=disabled
                 -Dgtk:werror=false
-                -Dgtksourceview:gtk_doc=false
+                -Dgtksourceview:documentation=false
                 -Dgtksourceview:introspection=disabled
                 -Dgtksourceview:vapi=false
                 -Dgtksourceview:werror=false
@@ -151,7 +151,7 @@ msys2-ucrt64:
 #                -Dgtk:media-gstreamer=disabled
 #                -Dgtk:werror=false
 #                -Dgtk:x11-backend=false
-#                -Dgtksourceview:gtk_doc=false
+#                -Dgtksourceview:documentation=false
 #                -Dgtksourceview:introspection=disabled
 #                -Dgtksourceview:vapi=false
 #                -Dgtksourceview:werror=false
