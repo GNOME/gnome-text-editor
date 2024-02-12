@@ -1,3 +1,19 @@
+# Text Editor 46.beta
+
+Changes since 46.alpha
+
+ • Use AdwAboutDialog
+ • Fix keyboard access to light/dark/follow theme selectors
+ • Use GtkFontDialog instead of deprecated GtkFontChooserDialog
+ • Check for files on disk before restoring drafts to avoid displaying
+   deleted files.
+ • Performance improvements to the minimap on GTKs new renderer
+ • Avoid draft auto-save file the document is still loading
+ • The language selection dialog is now modal
+ • A new-window action was added to .desktop file for GNOME Shell
+ • Improve support for closing a page while it is still loading
+ • Updated translations
+
 # Text Editor 46.alpha
 
  Changes since 45.0
