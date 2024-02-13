@@ -2,14 +2,14 @@
 # Copyright (C) 2021 gnome-text-editor's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-text-editor package.
 #
-# Yuri Chornoivan <yurchor@ukr.net>, 2021, 2022, 2023.
+# Yuri Chornoivan <yurchor@ukr.net>, 2021, 2022, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues"
-"\n"
-"POT-Creation-Date: 2023-10-26 19:36+0000\n"
-"PO-Revision-Date: 2023-10-26 22:47+0300\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/iss"
+"ues\n"
+"POT-Creation-Date: 2024-01-31 18:17+0000\n"
+"PO-Revision-Date: 2024-02-13 20:59+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -18,25 +18,26 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Lokalize 20.12.0\n"
+"X-Generator: Lokalize 23.04.1\n"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:6
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.TextEditor.appdata.xml.in.in:7
 #: src/editor-application-actions.c:201
 msgid "The GNOME Project"
 msgstr "Проєкт GNOME"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:8
+#: data/org.gnome.TextEditor.appdata.xml.in.in:12
 #: data/org.gnome.TextEditor.desktop.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:9
-#: src/editor-application-actions.c:199 src/editor-window.c:1296
+#: src/editor-application-actions.c:199 src/editor-window.c:1340
 msgid "Text Editor"
 msgstr "Текстовий редактор"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:10
+#: data/org.gnome.TextEditor.appdata.xml.in.in:14
 msgid "Edit text files"
 msgstr "Редактор текстових файлів"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:12
+#: data/org.gnome.TextEditor.appdata.xml.in.in:16
 msgid ""
 "GNOME Text Editor is a simple text editor focused on a pleasing default "
 "experience."
@@ -51,6 +52,11 @@ msgstr "write;notepad;запис;нотатник;"
 #: data/org.gnome.TextEditor.desktop.in.in:10
 msgid "View and edit text files"
 msgstr "Перегляд і редагування текстових файлів"
+
+#: data/org.gnome.TextEditor.desktop.in.in:20
+#| msgid "_New Window"
+msgid "New Window"
+msgstr "Нове вікно"
 
 #: data/org.gnome.TextEditor.gschema.xml:16
 msgid "Auto Save Delay"
@@ -345,11 +351,11 @@ msgstr ""
 msgid "Print version information and exit"
 msgstr "Показати дані щодо версії і завершити роботу"
 
-#: src/editor-document.c:2100
+#: src/editor-document.c:2121
 msgid "[Read-Only]"
 msgstr "[Лише читання]"
 
-#: src/editor-document.c:2398 src/editor-page.c:1038
+#: src/editor-document.c:2419 src/editor-page.c:1065
 #: src/editor-sidebar-item.c:511
 msgid "New Document"
 msgstr "Новий документ"
@@ -383,7 +389,7 @@ msgstr "Файл змінено на диску"
 msgid "The file has been changed by another program."
 msgstr "Сторонньою програмою було внесено зміни до файла."
 
-#: src/editor-info-bar.c:89 src/editor-window.ui:216
+#: src/editor-info-bar.c:89 src/editor-window.ui:217
 msgid "Save _As…"
 msgstr "Зберегти _як…"
 
@@ -431,7 +437,12 @@ msgstr "Відкрити від імені _адміністратора"
 msgid "Document Type"
 msgstr "Тип документа"
 
-#: src/editor-language-dialog.ui:50
+#: src/editor-language-dialog.ui:28
+#| msgid "Search documents"
+msgid "Search document types"
+msgstr "Шукати за типом документа"
+
+#: src/editor-language-dialog.ui:51
 msgid "No Matches"
 msgstr "Немає відповідників"
 
@@ -444,7 +455,6 @@ msgid "Search documents"
 msgstr "Шукати у документах"
 
 #: src/editor-open-popover.ui:39
-#| msgid "New Document"
 msgid "Open New Document"
 msgstr "Новий документ"
 
@@ -456,96 +466,96 @@ msgstr "Немає недавніх документів"
 msgid "No Results Found"
 msgstr "Нічого не знайдено"
 
-#: src/editor-page.c:1064 src/editor-properties-dialog.c:107
+#: src/editor-page.c:1091 src/editor-properties-dialog.c:107
 #: src/editor-sidebar-item.c:105
 msgid "Draft"
 msgstr "Чернетка"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1076
+#: src/editor-page.c:1103
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (адміністратор)"
 
-#: src/editor-page.c:1086 src/editor-sidebar-item.c:113
+#: src/editor-page.c:1113 src/editor-sidebar-item.c:113
 msgid "Document Portal"
 msgstr "Портал документів"
 
-#: src/editor-page.c:1133
+#: src/editor-page.c:1159
 msgid "Failed to save document"
 msgstr "Не вдалося зберегти документ"
 
-#: src/editor-page.c:1134 src/editor-window.ui:357
+#: src/editor-page.c:1160 src/editor-window.ui:358
 msgid "_Close"
 msgstr "З_акрити"
 
-#: src/editor-page.c:1220
+#: src/editor-page.c:1246
 msgid "Save As"
 msgstr "Зберегти як"
 
-#: src/editor-page.c:1223
+#: src/editor-page.c:1249
 msgid "Save"
 msgstr "Зберегти"
 
-#: src/editor-page.c:1224 src/editor-window-actions.c:353
+#: src/editor-page.c:1250 src/editor-window-actions.c:353
 msgid "Cancel"
 msgstr "Скасувати"
 
-#: src/editor-page.c:1380
+#: src/editor-page.c:1406
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Рд %u, Поз %u"
 
-#: src/editor-page.ui:97
+#: src/editor-page.ui:99
 msgid "Go to Line"
 msgstr "Перейти до рядка"
 
-#: src/editor-page.ui:115
+#: src/editor-page.ui:117
 msgid "Go"
 msgstr "Перейти"
 
-#: src/editor-page.ui:152
+#: src/editor-page.ui:154
 msgid "Indentation"
 msgstr "Відступ"
 
-#: src/editor-page.ui:155 src/editor-window.ui:277
+#: src/editor-page.ui:157 src/editor-window.ui:278
 msgid "_Automatic Indentation"
 msgstr "_Автоматичні відступи"
 
 #. Translators: this is a tab character, not a browser tab
-#: src/editor-page.ui:161 src/editor-window.ui:281
+#: src/editor-page.ui:163 src/editor-window.ui:282
 msgid "_Tabs"
 msgstr "_Табуляції"
 
-#: src/editor-page.ui:166 src/editor-window.ui:286
+#: src/editor-page.ui:168 src/editor-window.ui:287
 msgid "_Spaces"
 msgstr "_Пробіли"
 
-#: src/editor-page.ui:173 src/editor-window.ui:291
+#: src/editor-page.ui:175 src/editor-window.ui:292
 msgid "Spaces _Per Tab"
 msgstr "Пробілів _на табуляцію"
 
-#: src/editor-page.ui:175 src/editor-page.ui:203
+#: src/editor-page.ui:177 src/editor-page.ui:205
 msgid "2"
 msgstr "2"
 
-#: src/editor-page.ui:180 src/editor-page.ui:208
+#: src/editor-page.ui:182 src/editor-page.ui:210
 msgid "4"
 msgstr "4"
 
-#: src/editor-page.ui:185 src/editor-page.ui:213
+#: src/editor-page.ui:187 src/editor-page.ui:215
 msgid "6"
 msgstr "6"
 
-#: src/editor-page.ui:190 src/editor-page.ui:218
+#: src/editor-page.ui:192 src/editor-page.ui:220
 msgid "8"
 msgstr "8"
 
-#: src/editor-page.ui:196
+#: src/editor-page.ui:198
 msgid "Spaces Per Indent"
 msgstr "Пробілів на відступ"
 
-#: src/editor-page.ui:198
+#: src/editor-page.ui:200
 msgid "Use Tab Size"
 msgstr "Використати розмір табуляції"
 
@@ -564,22 +574,18 @@ msgid "Appearance"
 msgstr "Вигляд"
 
 #: src/editor-preferences-dialog.ui:59
-#| msgid "Custom Font"
 msgid "Custom _Font"
 msgstr "Нетиповий _шрифт"
 
 #: src/editor-preferences-dialog.ui:82
-#| msgid "Display Grid Pattern"
 msgid "Display _Grid Pattern"
 msgstr "Показати шаблон _ґратки"
 
 #: src/editor-preferences-dialog.ui:89
-#| msgid "Highlight Current Line"
 msgid "_Highlight Current Line"
 msgstr "Пі_дсвічувати поточний рядок"
 
 #: src/editor-preferences-dialog.ui:96
-#| msgid "Display Overview Map"
 msgid "Display _Overview Map"
 msgstr "Показати мапу _огляду"
 
@@ -588,7 +594,6 @@ msgid "Right Margin"
 msgstr "Правий відступ"
 
 #: src/editor-preferences-dialog.ui:108
-#| msgid "Margin Position"
 msgid "_Margin Position"
 msgstr "Розта_шування поля"
 
@@ -597,7 +602,6 @@ msgid "Behavior"
 msgstr "Поведінка"
 
 #: src/editor-preferences-dialog.ui:120
-#| msgid "Discover Document Settings"
 msgid "_Discover Document Settings"
 msgstr "Визна_чити параметри документа"
 
@@ -608,7 +612,6 @@ msgstr ""
 "типових значень"
 
 #: src/editor-preferences-dialog.ui:128
-#| msgid "Restore Session"
 msgid "_Restore Session"
 msgstr "Від_новлювати сеанс"
 
@@ -620,10 +623,6 @@ msgstr ""
 #: src/editor-preferences-dialog.ui:145
 msgid "_Clear History"
 msgstr "О_чистити журнал"
-
-#: src/editor-preferences-font.c:100
-msgid "Select Font"
-msgstr "Виберіть шрифт"
 
 #: src/editor-print-operation.c:176
 #, c-format
@@ -654,27 +653,32 @@ msgstr "Файл"
 msgid "Name"
 msgstr "Назва"
 
-#: src/editor-properties-dialog.ui:43
+#: src/editor-properties-dialog.ui:46
 msgid "Location"
 msgstr "Розташування"
 
-#: src/editor-properties-dialog.ui:59
+#: src/editor-properties-dialog.ui:75
+#| msgid "Open File"
+msgid "Open in File Manager"
+msgstr "Відкрити у програмі для керування файлами"
+
+#: src/editor-properties-dialog.ui:85
 msgid "Statistics"
 msgstr "Статистика"
 
-#: src/editor-properties-dialog.ui:62
+#: src/editor-properties-dialog.ui:88
 msgid "Lines"
 msgstr "Рядки"
 
-#: src/editor-properties-dialog.ui:77
+#: src/editor-properties-dialog.ui:96
 msgid "Words"
 msgstr "Слова"
 
-#: src/editor-properties-dialog.ui:92
+#: src/editor-properties-dialog.ui:104
 msgid "Characters, No Spaces"
 msgstr "Символи (без пробілів)"
 
-#: src/editor-properties-dialog.ui:107
+#: src/editor-properties-dialog.ui:112
 msgid "All Characters"
 msgstr "Всі символи"
 
@@ -704,7 +708,7 @@ msgid "_Cancel"
 msgstr "_Скасувати"
 
 #: src/editor-save-changes-dialog.c:265 src/editor-window-actions.c:117
-#: src/editor-window.ui:210
+#: src/editor-window.ui:211
 msgid "_Save"
 msgstr "З_берегти"
 
@@ -731,22 +735,18 @@ msgid "Previous Match"
 msgstr "Попередній відповідник"
 
 #: src/editor-search-bar.ui:59
-#| msgid "No Matches"
 msgid "Next Match"
 msgstr "Наступний відповідник"
 
 #: src/editor-search-bar.ui:71
-#| msgid "Search & Replace (Ctrl+H)"
 msgid "Search & Replace"
 msgstr "Пошук і заміна"
 
 #: src/editor-search-bar.ui:81
-#| msgid "View Options"
 msgid "Search Options"
 msgstr "Параметри перегляду"
 
 #: src/editor-search-bar.ui:95
-#| msgid "Close search"
 msgid "Close Search"
 msgstr "Закрити вікно пошуку"
 
@@ -796,27 +796,27 @@ msgstr "Перевірка правопису"
 msgid "Languages"
 msgstr "Мови"
 
-#: src/editor-theme-selector.ui:22
+#: src/editor-theme-selector.ui:23
 msgid "Follow System Style"
 msgstr "Використовувати стиль системи"
 
-#: src/editor-theme-selector.ui:24
+#: src/editor-theme-selector.ui:25
 msgid "Follow system style"
 msgstr "Використовувати стиль системи"
 
-#: src/editor-theme-selector.ui:39
+#: src/editor-theme-selector.ui:40
 msgid "Light Style"
 msgstr "Світлий стиль"
 
-#: src/editor-theme-selector.ui:41
+#: src/editor-theme-selector.ui:42
 msgid "Light style"
 msgstr "Світлий стиль"
 
-#: src/editor-theme-selector.ui:57
+#: src/editor-theme-selector.ui:58
 msgid "Dark Style"
 msgstr "Темний стиль"
 
-#: src/editor-theme-selector.ui:59
+#: src/editor-theme-selector.ui:60
 msgid "Dark style"
 msgstr "Темний стиль"
 
@@ -910,29 +910,29 @@ msgstr "текстові файли"
 msgid "Document Type: %s"
 msgstr "Тип документа: %s"
 
-#: src/editor-window.c:507
+#: src/editor-window.c:509
 msgid "Zoom In"
 msgstr "Збільшити"
 
-#: src/editor-window.c:510
+#: src/editor-window.c:512
 msgid "Zoom in"
 msgstr "Збільшити"
 
-#: src/editor-window.c:520
+#: src/editor-window.c:522
 msgid "Zoom Out"
 msgstr "Зменшити"
 
-#: src/editor-window.c:523
+#: src/editor-window.c:525
 msgid "Zoom out"
 msgstr "Зменшити"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:745
+#: src/editor-window.c:782
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) – Текстовий редактор"
 
-#: src/editor-window.c:1184
+#: src/editor-window.c:1225
 msgid "There are unsaved documents"
 msgstr "Є незбережені документи"
 
@@ -968,11 +968,11 @@ msgstr "Головне меню"
 msgid "Main menu"
 msgstr "Головне меню"
 
-#: src/editor-window.ui:165
+#: src/editor-window.ui:166
 msgid "Start or Open a Document"
 msgstr "Запуск або відкриття документа"
 
-#: src/editor-window.ui:168
+#: src/editor-window.ui:169
 msgid ""
 "• Press the Open button\n"
 "• Press the New tab button\n"
@@ -988,92 +988,91 @@ msgstr ""
 "\n"
 "або натисніть комбінацію Ctrl+W, щоб закрити вікно."
 
-#: src/editor-window.ui:202
+#: src/editor-window.ui:203
 msgid "_New Window"
 msgstr "С_творити вікно"
 
-#: src/editor-window.ui:222
+#: src/editor-window.ui:223
 msgid "_Discard Changes"
 msgstr "_Відкинути зміни"
 
-#: src/editor-window.ui:228
+#: src/editor-window.ui:229
 msgid "_Find/Replace…"
 msgstr "Знайти і з_амінити…"
 
-#: src/editor-window.ui:234
+#: src/editor-window.ui:235
 msgid "_Print…"
 msgstr "Над_рукувати…"
 
-#: src/editor-window.ui:240
+#: src/editor-window.ui:241
 msgid "Documen_t Properties"
 msgstr "В_ластивості документа"
 
-#: src/editor-window.ui:246
+#: src/editor-window.ui:247
 msgid "P_references"
 msgstr "На_лаштування"
 
-#: src/editor-window.ui:251
+#: src/editor-window.ui:252
 msgid "_Keyboard Shortcuts"
 msgstr "_Клавіатурні скорочення"
 
-#: src/editor-window.ui:255
+#: src/editor-window.ui:256
 msgid "_Help"
 msgstr "_Довідка"
 
-#: src/editor-window.ui:259
+#: src/editor-window.ui:260
 msgid "A_bout Text Editor"
 msgstr "_Про «Текстовий редактор»"
 
-#: src/editor-window.ui:267
+#: src/editor-window.ui:268
 msgid "Show _Line Numbers"
 msgstr "Показувати но_мери рядків"
 
-#: src/editor-window.ui:271
+#: src/editor-window.ui:272
 msgid "Show _Right Margin"
 msgstr "Показувати п_раве поле"
 
-#: src/editor-window.ui:294
+#: src/editor-window.ui:295
 msgid "_2"
 msgstr "_2"
 
-#: src/editor-window.ui:299
+#: src/editor-window.ui:300
 msgid "_4"
 msgstr "_4"
 
-#: src/editor-window.ui:304
+#: src/editor-window.ui:305
 msgid "_6"
 msgstr "_6"
 
-#: src/editor-window.ui:309
+#: src/editor-window.ui:310
 msgid "_8"
 msgstr "_8"
 
-#: src/editor-window.ui:318
+#: src/editor-window.ui:319
 msgid "T_ext Wrapping"
 msgstr "Пере_несення рядків"
 
-#: src/editor-window.ui:322
+#: src/editor-window.ui:323
 msgid "Chec_k Spelling"
 msgstr "П_еревіряти правопис"
 
-#: src/editor-window.ui:326
-#| msgid "_Document Type"
+#: src/editor-window.ui:327
 msgid "_Document Type…"
 msgstr "_Тип документа…"
 
-#: src/editor-window.ui:334
+#: src/editor-window.ui:335
 msgid "Move _Left"
 msgstr "Пересунути _ліворуч"
 
-#: src/editor-window.ui:339
+#: src/editor-window.ui:340
 msgid "Move _Right"
 msgstr "Пересунути _праворуч"
 
-#: src/editor-window.ui:346
+#: src/editor-window.ui:347
 msgid "_Move to New Window"
 msgstr "П_ересунути до нового вікна"
 
-#: src/editor-window.ui:353
+#: src/editor-window.ui:354
 msgid "Close _Other Tabs"
 msgstr "Закрити _інші вкладки"
 
@@ -1375,6 +1374,9 @@ msgstr "Показати клавіатурні скорочення"
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Показати довідку"
+
+#~ msgid "Select Font"
+#~ msgstr "Виберіть шрифт"
 
 #~ msgid "Open New Document (Ctrl+O)"
 #~ msgstr "Відкрити новий документ (Ctrl+O)"
