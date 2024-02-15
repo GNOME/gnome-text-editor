@@ -8,10 +8,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2024-01-21 00:10+0000\n"
-"PO-Revision-Date: 2024-01-23 22:21+0100\n"
+"POT-Creation-Date: 2024-01-31 18:17+0000\n"
+"PO-Revision-Date: 2024-02-15 02:58+0100\n"
 "Last-Translator: Fran Dieguez <fran.dieguez@gnome.org>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -35,7 +35,7 @@ msgstr "O Proxecto GNOME"
 #: data/org.gnome.TextEditor.appdata.xml.in.in:12
 #: data/org.gnome.TextEditor.desktop.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:9
-#: src/editor-application-actions.c:199 src/editor-window.c:1335
+#: src/editor-application-actions.c:199 src/editor-window.c:1340
 msgid "Text Editor"
 msgstr "Editor de texto"
 
@@ -348,11 +348,11 @@ msgstr ""
 msgid "Print version information and exit"
 msgstr "Imprimir a información da versión e saír"
 
-#: src/editor-document.c:2103
+#: src/editor-document.c:2121
 msgid "[Read-Only]"
 msgstr "[Só lectura]"
 
-#: src/editor-document.c:2401 src/editor-page.c:1045
+#: src/editor-document.c:2419 src/editor-page.c:1065
 #: src/editor-sidebar-item.c:511
 msgid "New Document"
 msgstr "Novo documento"
@@ -463,42 +463,42 @@ msgstr "Non hai documentos recentes"
 msgid "No Results Found"
 msgstr "Non se atoparon resultados"
 
-#: src/editor-page.c:1071 src/editor-properties-dialog.c:107
+#: src/editor-page.c:1091 src/editor-properties-dialog.c:107
 #: src/editor-sidebar-item.c:105
 msgid "Draft"
 msgstr "Borrador"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1083
+#: src/editor-page.c:1103
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (Administrador)"
 
-#: src/editor-page.c:1093 src/editor-sidebar-item.c:113
+#: src/editor-page.c:1113 src/editor-sidebar-item.c:113
 msgid "Document Portal"
 msgstr "Portal de documentos"
 
-#: src/editor-page.c:1140
+#: src/editor-page.c:1159
 msgid "Failed to save document"
 msgstr "Produciuse un fallo ao gardar o documento"
 
-#: src/editor-page.c:1141 src/editor-window.ui:358
+#: src/editor-page.c:1160 src/editor-window.ui:358
 msgid "_Close"
 msgstr "Pecha_r"
 
-#: src/editor-page.c:1227
+#: src/editor-page.c:1246
 msgid "Save As"
 msgstr "Gardar como"
 
-#: src/editor-page.c:1230
+#: src/editor-page.c:1249
 msgid "Save"
 msgstr "Gardar"
 
-#: src/editor-page.c:1231 src/editor-window-actions.c:353
+#: src/editor-page.c:1250 src/editor-window-actions.c:353
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: src/editor-page.c:1387
+#: src/editor-page.c:1406
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Li %u, Col %u"
@@ -620,10 +620,6 @@ msgstr "Volver á súa anterior sesión cando inicia o Editor de Texto"
 msgid "_Clear History"
 msgstr "_Limpar historial"
 
-#: src/editor-preferences-font.c:100
-msgid "Select Font"
-msgstr "Seleccionar tipo de letra"
-
 #: src/editor-print-operation.c:176
 #, c-format
 msgid "Draft: %s"
@@ -656,6 +652,10 @@ msgstr "Nome"
 #: src/editor-properties-dialog.ui:46
 msgid "Location"
 msgstr "Localización"
+
+#: src/editor-properties-dialog.ui:75
+msgid "Open in File Manager"
+msgstr "Abrir no xestor de ficheiros"
 
 #: src/editor-properties-dialog.ui:85
 msgid "Statistics"
@@ -920,12 +920,12 @@ msgid "Zoom out"
 msgstr "Afastar"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:777
+#: src/editor-window.c:782
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - Editor de texto"
 
-#: src/editor-window.c:1220
+#: src/editor-window.c:1225
 msgid "There are unsaved documents"
 msgstr "Hai documentos sen gardar"
 
@@ -1367,6 +1367,9 @@ msgstr "Mostrar atallos de teclado"
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Mostrar axuda"
+
+#~ msgid "Select Font"
+#~ msgstr "Seleccionar tipo de letra"
 
 #~ msgid "Open New Document (Ctrl+O)"
 #~ msgstr "Abrir documento novo (Ctrl+O)"
