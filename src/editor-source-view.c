@@ -356,6 +356,9 @@ on_notify_buffer_cb (EditorSourceView *self,
                            self,
                            G_CONNECT_SWAPPED);
 
+  g_object_bind_property (buffer, "loading", self, "editable",
+                          G_BINDING_SYNC_CREATE | G_BINDING_INVERT_BOOLEAN);
+
   if (EDITOR_IS_DOCUMENT (buffer))
     _editor_document_attach_actions (EDITOR_DOCUMENT (buffer), GTK_WIDGET (self));
 }
