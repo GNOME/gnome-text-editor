@@ -6,37 +6,38 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor gnome-41\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2023-11-20 20:03+0000\n"
-"PO-Revision-Date: 2023-12-26 08:26+0200\n"
-"Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
+"POT-Creation-Date: 2024-01-31 18:17+0000\n"
+"PO-Revision-Date: 2024-02-16 23:05+0200\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n==2 ? 1 : n>10 && n%10==0 ? "
-"2 : 3)\n"
-"X-Generator: Gtranslator 45.3\n"
+"2 : 3);\n"
+"X-Generator: Poedit 3.4.1\n"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:6
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.TextEditor.appdata.xml.in.in:7
 #: src/editor-application-actions.c:201
 msgid "The GNOME Project"
 msgstr "מיזם GNOME"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:8
+#: data/org.gnome.TextEditor.appdata.xml.in.in:12
 #: data/org.gnome.TextEditor.desktop.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:9
-#: src/editor-application-actions.c:199 src/editor-window.c:1296
+#: src/editor-application-actions.c:199 src/editor-window.c:1340
 msgid "Text Editor"
 msgstr "עורך טקסט"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:10
+#: data/org.gnome.TextEditor.appdata.xml.in.in:14
 msgid "Edit text files"
 msgstr "עריכת קובצי טקסט"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:12
+#: data/org.gnome.TextEditor.appdata.xml.in.in:16
 msgid ""
 "GNOME Text Editor is a simple text editor focused on a pleasing default "
 "experience."
@@ -50,6 +51,10 @@ msgstr "כתיבה;כתבן;עורך;עורך טקסט;"
 #: data/org.gnome.TextEditor.desktop.in.in:10
 msgid "View and edit text files"
 msgstr "הצגת ועריכת קובצי טקסט"
+
+#: data/org.gnome.TextEditor.desktop.in.in:20
+msgid "New Window"
+msgstr "חלון חדש"
 
 #: data/org.gnome.TextEditor.gschema.xml:16
 msgid "Auto Save Delay"
@@ -282,17 +287,17 @@ msgstr "הדגשת סוגרים מתאימים"
 
 #: data/org.gnome.TextEditor.gschema.xml:159
 msgid "Highlight matching brackets and braces."
-msgstr "הדגשת סוגריים מרובעים ומסולסלים מתאימים"
+msgstr "הדגשת סוגריים מרובעים ומסולסלים מתאימים."
 
 #: src/editor-animation.c:1038
 #, c-format
 msgid "Failed to find property %s in %s"
-msgstr "ארע כשל במציאת מאפיים %s בתוך %s"
+msgstr "מציאת מאפיין %s בתוך %s נכשלה"
 
 #: src/editor-animation.c:1047
 #, c-format
 msgid "Failed to retrieve va_list value: %s"
-msgstr "ארע כשל בשליפת ערך va_list: ‏%s"
+msgstr "שליפת ערך va_list נכשלה: ‏%s"
 
 #: src/editor-application-actions.c:214
 msgid "translator-credits"
@@ -330,13 +335,13 @@ msgstr "הרצת מופע חדש של עורך הטקסט (מרמז ‎--ignore-
 
 #: src/editor-application.c:751
 msgid "Print version information and exit"
-msgstr "הצגת נתוני הגרסה ויציאה"
+msgstr "הצגת נתוני הגרסה ולצאת"
 
-#: src/editor-document.c:2100
+#: src/editor-document.c:2121
 msgid "[Read-Only]"
 msgstr "[קריאה בלבד]"
 
-#: src/editor-document.c:2398 src/editor-page.c:1038
+#: src/editor-document.c:2419 src/editor-page.c:1065
 #: src/editor-sidebar-item.c:511
 msgid "New Document"
 msgstr "מסמך חדש"
@@ -370,7 +375,7 @@ msgstr "הקובץ שונה בכונן"
 msgid "The file has been changed by another program."
 msgstr "הקובץ שונה על ידי תכנה אחרת."
 
-#: src/editor-info-bar.c:89 src/editor-window.ui:216
+#: src/editor-info-bar.c:89 src/editor-window.ui:217
 msgid "Save _As…"
 msgstr "שמירה _בשם…"
 
@@ -446,96 +451,96 @@ msgstr "אין מסמכים אחרונים"
 msgid "No Results Found"
 msgstr "לא נמצאו תוצאות"
 
-#: src/editor-page.c:1064 src/editor-properties-dialog.c:107
+#: src/editor-page.c:1091 src/editor-properties-dialog.c:107
 #: src/editor-sidebar-item.c:105
 msgid "Draft"
 msgstr "טיוטה"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1076
+#: src/editor-page.c:1103
 #, c-format
 msgid "%s (Administrator)"
 msgstr "‏‎%s (מנהל)"
 
-#: src/editor-page.c:1086 src/editor-sidebar-item.c:113
+#: src/editor-page.c:1113 src/editor-sidebar-item.c:113
 msgid "Document Portal"
 msgstr "שער מסמך"
 
-#: src/editor-page.c:1133
+#: src/editor-page.c:1159
 msgid "Failed to save document"
 msgstr "שמירת המסמך נכשלה"
 
-#: src/editor-page.c:1134 src/editor-window.ui:357
+#: src/editor-page.c:1160 src/editor-window.ui:358
 msgid "_Close"
 msgstr "_סגירה"
 
-#: src/editor-page.c:1220
+#: src/editor-page.c:1246
 msgid "Save As"
 msgstr "שמירה בשם"
 
-#: src/editor-page.c:1223
+#: src/editor-page.c:1249
 msgid "Save"
 msgstr "שמירה"
 
-#: src/editor-page.c:1224 src/editor-window-actions.c:353
+#: src/editor-page.c:1250 src/editor-window-actions.c:353
 msgid "Cancel"
 msgstr "ביטול"
 
-#: src/editor-page.c:1380
+#: src/editor-page.c:1406
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "שורה %u, עמודה %u"
 
-#: src/editor-page.ui:97
+#: src/editor-page.ui:99
 msgid "Go to Line"
 msgstr "מעבר לשורה"
 
-#: src/editor-page.ui:115
+#: src/editor-page.ui:117
 msgid "Go"
 msgstr "מעבר"
 
-#: src/editor-page.ui:152
+#: src/editor-page.ui:154
 msgid "Indentation"
 msgstr "הזחה"
 
-#: src/editor-page.ui:155 src/editor-window.ui:277
+#: src/editor-page.ui:157 src/editor-window.ui:278
 msgid "_Automatic Indentation"
 msgstr "הזחה _אוטומטית"
 
 #. Translators: this is a tab character, not a browser tab
-#: src/editor-page.ui:161 src/editor-window.ui:281
+#: src/editor-page.ui:163 src/editor-window.ui:282
 msgid "_Tabs"
-msgstr "_טאב"
+msgstr "_טאבים"
 
-#: src/editor-page.ui:166 src/editor-window.ui:286
+#: src/editor-page.ui:168 src/editor-window.ui:287
 msgid "_Spaces"
 msgstr "רוו_חים"
 
-#: src/editor-page.ui:173 src/editor-window.ui:291
+#: src/editor-page.ui:175 src/editor-window.ui:292
 msgid "Spaces _Per Tab"
 msgstr "רווחים _לכל טאב"
 
-#: src/editor-page.ui:175 src/editor-page.ui:203
+#: src/editor-page.ui:177 src/editor-page.ui:205
 msgid "2"
 msgstr "2"
 
-#: src/editor-page.ui:180 src/editor-page.ui:208
+#: src/editor-page.ui:182 src/editor-page.ui:210
 msgid "4"
 msgstr "4"
 
-#: src/editor-page.ui:185 src/editor-page.ui:213
+#: src/editor-page.ui:187 src/editor-page.ui:215
 msgid "6"
 msgstr "6"
 
-#: src/editor-page.ui:190 src/editor-page.ui:218
+#: src/editor-page.ui:192 src/editor-page.ui:220
 msgid "8"
 msgstr "8"
 
-#: src/editor-page.ui:196
+#: src/editor-page.ui:198
 msgid "Spaces Per Indent"
 msgstr "רווחים לכל טאב"
 
-#: src/editor-page.ui:198
+#: src/editor-page.ui:200
 msgid "Use Tab Size"
 msgstr "שימוש בטאב בגודל"
 
@@ -601,10 +606,6 @@ msgstr "חזרה להפעלה הקודמת שלך ברגע הפעלת עורך �
 msgid "_Clear History"
 msgstr "_ניקוי היסטוריה"
 
-#: src/editor-preferences-font.c:100
-msgid "Select Font"
-msgstr "בחירת גופן"
-
 #: src/editor-print-operation.c:176
 #, c-format
 msgid "Draft: %s"
@@ -638,6 +639,10 @@ msgstr "שם"
 msgid "Location"
 msgstr "מיקום"
 
+#: src/editor-properties-dialog.ui:75
+msgid "Open in File Manager"
+msgstr "פתיחה במנהל הקבצים"
+
 #: src/editor-properties-dialog.ui:85
 msgid "Statistics"
 msgstr "סטטיסטיקה"
@@ -656,7 +661,7 @@ msgstr "תווים, ללא רווחים"
 
 #: src/editor-properties-dialog.ui:112
 msgid "All Characters"
-msgstr "כל התאאים"
+msgstr "כל התווים"
 
 #: src/editor-save-changes-dialog.c:255 src/editor-window-actions.c:242
 msgid "_Discard"
@@ -664,7 +669,7 @@ msgstr "השל_כה"
 
 #: src/editor-save-changes-dialog.c:255
 msgid "_Discard All"
-msgstr "השלכת ה_כל"
+msgstr "השלכה של ה_כול"
 
 #: src/editor-save-changes-dialog.c:258
 msgid "Save Changes?"
@@ -682,7 +687,7 @@ msgid "_Cancel"
 msgstr "_ביטול"
 
 #: src/editor-save-changes-dialog.c:265 src/editor-window-actions.c:117
-#: src/editor-window.ui:210
+#: src/editor-window.ui:211
 msgid "_Save"
 msgstr "_שמירה"
 
@@ -726,11 +731,11 @@ msgstr "סגירת החיפוש"
 
 #: src/editor-search-bar.ui:112
 msgid "_Replace"
-msgstr "_החלפה"
+msgstr "ה_חלפה"
 
 #: src/editor-search-bar.ui:124
 msgid "Replace _All"
-msgstr "החלפת ה_כול"
+msgstr "החלפה של ה_כול"
 
 #: src/editor-search-bar.ui:140
 msgid "Re_gular expressions"
@@ -738,11 +743,11 @@ msgstr "ביטוי _רגולרי"
 
 #: src/editor-search-bar.ui:146
 msgid "_Case sensitive"
-msgstr "התאמת _רישיות"
+msgstr "תלוי _רישיות"
 
 #: src/editor-search-bar.ui:152
 msgid "Match whole _word only"
-msgstr "התאמה למילים שלמות _בלבד"
+msgstr "לכידת מילים שלמות _בלבד"
 
 #. translators: the first %u is replaced with the current position, the second with the number of search results
 #: src/editor-search-entry.c:197
@@ -764,33 +769,33 @@ msgstr "התעלמות"
 
 #: src/editor-spell-menu.c:250
 msgid "Check Spelling"
-msgstr "_בדיקת איות…"
+msgstr "בדיקת איות"
 
 #: src/editor-spell-menu.c:259
 msgid "Languages"
 msgstr "שפות"
 
-#: src/editor-theme-selector.ui:22
+#: src/editor-theme-selector.ui:23
 msgid "Follow System Style"
 msgstr "שימוש בסגנון מערכת"
 
-#: src/editor-theme-selector.ui:24
+#: src/editor-theme-selector.ui:25
 msgid "Follow system style"
 msgstr "שימוש בסגנון מערכת"
 
-#: src/editor-theme-selector.ui:39
+#: src/editor-theme-selector.ui:40
 msgid "Light Style"
 msgstr "סגנון בהיר"
 
-#: src/editor-theme-selector.ui:41
+#: src/editor-theme-selector.ui:42
 msgid "Light style"
 msgstr "סגנון בהיר"
 
-#: src/editor-theme-selector.ui:57
+#: src/editor-theme-selector.ui:58
 msgid "Dark Style"
 msgstr "סגנון כהה"
 
-#: src/editor-theme-selector.ui:59
+#: src/editor-theme-selector.ui:60
 msgid "Dark style"
 msgstr "סגנון כהה"
 
@@ -814,10 +819,10 @@ msgstr "לפני כשנה"
 #, c-format
 msgid "About %u year ago"
 msgid_plural "About %u years ago"
-msgstr[0] "לפני שנה"
-msgstr[1] "לפני שנתיים"
-msgstr[2] "לפני %u שנים"
-msgstr[3] "לפני %u שנים"
+msgstr[0] "בערך לפני שנה"
+msgstr[1] "בערך לפני שנתיים"
+msgstr[2] "בערך לפני %u שנים"
+msgstr[3] "בערך לפני %u שנים"
 
 #: src/editor-utils.c:370
 msgid "Unix/Linux (LF)"
@@ -885,30 +890,30 @@ msgid "Document Type: %s"
 msgstr "סוג מסמך: %s"
 
 # msgctxt "shortcut window"
-#: src/editor-window.c:507
+#: src/editor-window.c:509
 msgid "Zoom In"
 msgstr "התקרבות"
 
-#: src/editor-window.c:510
+#: src/editor-window.c:512
 msgid "Zoom in"
 msgstr "התקרבות"
 
 # msgctxt "shortcut window"
-#: src/editor-window.c:520
+#: src/editor-window.c:522
 msgid "Zoom Out"
 msgstr "התרחקות"
 
-#: src/editor-window.c:523
+#: src/editor-window.c:525
 msgid "Zoom out"
 msgstr "התרחקות"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:745
+#: src/editor-window.c:782
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "‏‎%s ‏(%s) - עורך טקסט"
 
-#: src/editor-window.c:1184
+#: src/editor-window.c:1225
 msgid "There are unsaved documents"
 msgstr "ישנם מסמכים שלא נשמרו"
 
@@ -944,11 +949,11 @@ msgstr "תפריט ראשי"
 msgid "Main menu"
 msgstr "תפריט ראשי"
 
-#: src/editor-window.ui:165
+#: src/editor-window.ui:166
 msgid "Start or Open a Document"
 msgstr "התחלה או פתיחת מסמך"
 
-#: src/editor-window.ui:168
+#: src/editor-window.ui:169
 msgid ""
 "• Press the Open button\n"
 "• Press the New tab button\n"
@@ -964,91 +969,91 @@ msgstr ""
 "\n"
 "או, לחיצה על Ctrl+W לסגירת החלון."
 
-#: src/editor-window.ui:202
+#: src/editor-window.ui:203
 msgid "_New Window"
 msgstr "_חלון חדש"
 
-#: src/editor-window.ui:222
+#: src/editor-window.ui:223
 msgid "_Discard Changes"
 msgstr "הת_עלמות מהשינויים"
 
-#: src/editor-window.ui:228
+#: src/editor-window.ui:229
 msgid "_Find/Replace…"
 msgstr "_חיפוש והחלפה…"
 
-#: src/editor-window.ui:234
+#: src/editor-window.ui:235
 msgid "_Print…"
 msgstr "_הדפסה…"
 
-#: src/editor-window.ui:240
+#: src/editor-window.ui:241
 msgid "Documen_t Properties"
 msgstr "מאפייני _מסמך"
 
-#: src/editor-window.ui:246
+#: src/editor-window.ui:247
 msgid "P_references"
 msgstr "_העדפות"
 
-#: src/editor-window.ui:251
+#: src/editor-window.ui:252
 msgid "_Keyboard Shortcuts"
 msgstr "_צירופי מקשים"
 
-#: src/editor-window.ui:255
+#: src/editor-window.ui:256
 msgid "_Help"
 msgstr "_עזרה"
 
-#: src/editor-window.ui:259
+#: src/editor-window.ui:260
 msgid "A_bout Text Editor"
 msgstr "_על אודות עורך טקסט"
 
-#: src/editor-window.ui:267
+#: src/editor-window.ui:268
 msgid "Show _Line Numbers"
 msgstr "הצגת מספור _שורות"
 
-#: src/editor-window.ui:271
+#: src/editor-window.ui:272
 msgid "Show _Right Margin"
 msgstr "הצגת שול _ימני"
 
-#: src/editor-window.ui:294
+#: src/editor-window.ui:295
 msgid "_2"
 msgstr "_2"
 
-#: src/editor-window.ui:299
+#: src/editor-window.ui:300
 msgid "_4"
 msgstr "_4"
 
-#: src/editor-window.ui:304
+#: src/editor-window.ui:305
 msgid "_6"
 msgstr "_6"
 
-#: src/editor-window.ui:309
+#: src/editor-window.ui:310
 msgid "_8"
 msgstr "_8"
 
-#: src/editor-window.ui:318
+#: src/editor-window.ui:319
 msgid "T_ext Wrapping"
 msgstr "גלישת _טקסט"
 
-#: src/editor-window.ui:322
+#: src/editor-window.ui:323
 msgid "Chec_k Spelling"
 msgstr "_בדיקת איות"
 
-#: src/editor-window.ui:326
+#: src/editor-window.ui:327
 msgid "_Document Type…"
 msgstr "סוג _מסמך…"
 
-#: src/editor-window.ui:334
+#: src/editor-window.ui:335
 msgid "Move _Left"
 msgstr "העברה ל_שמאל"
 
-#: src/editor-window.ui:339
+#: src/editor-window.ui:340
 msgid "Move _Right"
 msgstr "העברה ל_ימין"
 
-#: src/editor-window.ui:346
+#: src/editor-window.ui:347
 msgid "_Move to New Window"
 msgstr "ה_עברה לחלון חדש"
 
-#: src/editor-window.ui:353
+#: src/editor-window.ui:354
 msgid "Close _Other Tabs"
 msgstr "סגירת _שאר הלשוניות"
 
@@ -1351,6 +1356,9 @@ msgstr "הצגת צירופי מקשים"
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "הצגת עזרה"
+
+#~ msgid "Select Font"
+#~ msgstr "בחירת גופן"
 
 #~ msgid "Open New Document (Ctrl+O)"
 #~ msgstr "פתיחת מסמך חדש (Ctrl+O)"
