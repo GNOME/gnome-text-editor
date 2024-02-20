@@ -1435,6 +1435,10 @@ editor_page_get_can_discard (EditorPage *self)
 {
   g_return_val_if_fail (EDITOR_IS_PAGE (self), FALSE);
 
+  /* Still loading? Abandon it out of precaution */
+  if (gtk_source_buffer_get_loading (GTK_SOURCE_BUFFER (self->document)))
+    return TRUE;
+
   return editor_page_is_draft (self) &&
          !gtk_text_buffer_get_modified (GTK_TEXT_BUFFER (self->document));
 }
