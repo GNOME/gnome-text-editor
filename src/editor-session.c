@@ -1015,6 +1015,11 @@ editor_session_save_for_shutdown_cb (GObject      *object,
 
   if (!editor_session_save_finish (self, result, &error))
     g_warning ("Failed to save session: %s", error->message);
+
+  /* Ensure that we don't spin here on shutdown if we have some
+   * out of control text validation going on.
+   */
+  g_application_quit (g_application_get_default ());
 }
 
 void

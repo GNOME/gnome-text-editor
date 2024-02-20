@@ -1744,3 +1744,11 @@ _editor_page_get_cancellable (EditorPage *self)
 
   return self->cancellable;
 }
+
+void
+editor_page_destroy (EditorPage *self)
+{
+  g_return_if_fail (EDITOR_IS_PAGE (self));
+
+  g_object_run_dispose (G_OBJECT (self));
+}
