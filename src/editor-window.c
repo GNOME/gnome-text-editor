@@ -607,9 +607,16 @@ editor_window_actions_close_page_confirm_cb (GObject      *object,
       g_assert (ADW_IS_TAB_PAGE (page));
 
       if (epage->close_requested)
-        adw_tab_view_close_page_finish (self->tab_view, page, confirm_close);
+        {
+          g_object_ref (epage);
+          adw_tab_view_close_page_finish (self->tab_view, page, confirm_close);
+          editor_page_destroy (epage);
+          g_object_unref (epage);
+        }
       else if (confirm_close)
-        adw_tab_view_close_page (self->tab_view, page);
+        {
+          adw_tab_view_close_page (self->tab_view, page);
+        }
 
       epage->close_requested = FALSE;
     }
@@ -617,34 +624,6 @@ editor_window_actions_close_page_confirm_cb (GObject      *object,
   g_signal_handlers_unblock_by_func (self->tab_view,
                                      G_CALLBACK (on_tab_view_close_page_cb),
                                      self);
-}
-
-static void
-on_tab_view_page_detached_cb (EditorWindow *self,
-                              AdwTabPage   *tab_page,
-                              int           position,
-                              AdwTabView   *tab_view)
-{
-  GtkWidget *child;
-
-  g_assert (EDITOR_IS_WINDOW (self));
-  g_assert (ADW_IS_TAB_PAGE (tab_page));
-  g_assert (ADW_IS_TAB_VIEW (tab_view));
-
-  child = adw_tab_page_get_child (tab_page);
-
-  if (EDITOR_IS_PAGE (child))
-    {
-      EditorPage *epage = EDITOR_PAGE (child);
-      GtkWidget *parent = gtk_widget_get_parent (child);
-
-      /* Force clear the child so that destruction of the
-       * GtkTextView occurs. That is the only way to ensure
-       * that forward textbuffer validation will stop.
-       */
-      if (!epage->moving && ADW_IS_BIN (parent))
-        adw_bin_set_child (ADW_BIN (parent), NULL);
-    }
 }
 
 gboolean
@@ -967,7 +946,6 @@ editor_window_class_init (EditorWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, title);
 
   gtk_widget_class_bind_template_callback (widget_class, on_tab_view_close_page_cb);
-  gtk_widget_class_bind_template_callback (widget_class, on_tab_view_page_detached_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_tab_view_setup_menu_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_tab_view_create_window_cb);
   gtk_widget_class_bind_template_callback (widget_class, title_query_tooltip_cb);
