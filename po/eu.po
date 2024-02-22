@@ -5,9 +5,9 @@
 #
 msgid ""
 msgstr "Project-Id-Version: gnome-text-editor master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues\n"
-"POT-Creation-Date: 2023-10-26 19:36+0000\n"
-"PO-Revision-Date: 2023-10-27 01:54+0000\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/issues\n"
+"POT-Creation-Date: 2024-02-20 13:29+0000\n"
+"PO-Revision-Date: 2024-02-22 01:54+0000\n"
 "Last-Translator: Asier Sarasua Garmendia <asiersarasua@ni.eus>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
@@ -16,23 +16,24 @@ msgstr "Project-Id-Version: gnome-text-editor master\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);9\n"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:6
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.TextEditor.appdata.xml.in.in:7
 #: src/editor-application-actions.c:201
 msgid "The GNOME Project"
 msgstr "GNOME proiektua"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:8
+#: data/org.gnome.TextEditor.appdata.xml.in.in:12
 #: data/org.gnome.TextEditor.desktop.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:9
-#: src/editor-application-actions.c:199 src/editor-window.c:1296
+#: src/editor-application-actions.c:199 src/editor-window.c:1314
 msgid "Text Editor"
 msgstr "Testu-editorea"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:10
+#: data/org.gnome.TextEditor.appdata.xml.in.in:14
 msgid "Edit text files"
 msgstr "Editatu testu-fitxategiak"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:12
+#: data/org.gnome.TextEditor.appdata.xml.in.in:16
 msgid ""
 "GNOME Text Editor is a simple text editor focused on a pleasing default "
 "experience."
@@ -45,6 +46,10 @@ msgstr "idatzi;notepad;"
 #: data/org.gnome.TextEditor.desktop.in.in:10
 msgid "View and edit text files"
 msgstr "Bistaratu eta editatu testu-fitxategiak"
+
+#: data/org.gnome.TextEditor.desktop.in.in:20
+msgid "New Window"
+msgstr "Leiho berria"
 
 #: data/org.gnome.TextEditor.gschema.xml:16
 msgid "Auto Save Delay"
@@ -311,11 +316,11 @@ msgstr "Exekutatu testu-editorearen beste instantzia bat (--ignore-session inpli
 msgid "Print version information and exit"
 msgstr "Erakutsi bertsioaren informazioa eta irten"
 
-#: src/editor-document.c:2100
+#: src/editor-document.c:2121
 msgid "[Read-Only]"
 msgstr "[Irakurtzeko soilik]"
 
-#: src/editor-document.c:2398 src/editor-page.c:1038
+#: src/editor-document.c:2419 src/editor-page.c:1065
 #: src/editor-sidebar-item.c:511
 msgid "New Document"
 msgstr "Dokumentu berria"
@@ -349,7 +354,7 @@ msgstr "Fitxategia diskoan aldatu da"
 msgid "The file has been changed by another program."
 msgstr "Fitxategia beste programa batek aldatu du."
 
-#: src/editor-info-bar.c:89 src/editor-window.ui:216
+#: src/editor-info-bar.c:89 src/editor-window.ui:217
 msgid "Save _As…"
 msgstr "Gorde _honela..."
 
@@ -393,11 +398,15 @@ msgstr "_Saiatu berriro"
 msgid "Open As _Administrator"
 msgstr "Ireki _administrazaile gisa"
 
-#: src/editor-language-dialog.ui:6 src/editor-window.c:195
+#: src/editor-language-dialog.ui:6 src/editor-window.c:191
 msgid "Document Type"
 msgstr "Dokumentu mota"
 
-#: src/editor-language-dialog.ui:50
+#: src/editor-language-dialog.ui:28
+msgid "Search document types"
+msgstr "Bilatu dokumentu motak"
+
+#: src/editor-language-dialog.ui:51
 msgid "No Matches"
 msgstr "Bat etortzerik ez"
 
@@ -421,96 +430,96 @@ msgstr "Ez dago azken aldiko dokumenturik"
 msgid "No Results Found"
 msgstr "Ez da emaitzarik aurkitu"
 
-#: src/editor-page.c:1064 src/editor-properties-dialog.c:107
+#: src/editor-page.c:1091 src/editor-properties-dialog.c:107
 #: src/editor-sidebar-item.c:105
 msgid "Draft"
 msgstr "Zirriborroa"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1076
+#: src/editor-page.c:1103
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (administratzailea)"
 
-#: src/editor-page.c:1086 src/editor-sidebar-item.c:113
+#: src/editor-page.c:1113 src/editor-sidebar-item.c:113
 msgid "Document Portal"
 msgstr "Dokumentu-ataria"
 
-#: src/editor-page.c:1133
+#: src/editor-page.c:1159
 msgid "Failed to save document"
 msgstr "Huts egin du dokumentua gordetzeak"
 
-#: src/editor-page.c:1134 src/editor-window.ui:357
+#: src/editor-page.c:1160 src/editor-window.ui:358
 msgid "_Close"
 msgstr "It_xi"
 
-#: src/editor-page.c:1220
+#: src/editor-page.c:1246
 msgid "Save As"
 msgstr "Gorde honela"
 
-#: src/editor-page.c:1223
+#: src/editor-page.c:1249
 msgid "Save"
 msgstr "Gorde"
 
-#: src/editor-page.c:1224 src/editor-window-actions.c:353
+#: src/editor-page.c:1250 src/editor-window-actions.c:353
 msgid "Cancel"
 msgstr "Utzi"
 
-#: src/editor-page.c:1380
+#: src/editor-page.c:1406
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "%u lerr., %u zut."
 
-#: src/editor-page.ui:97
+#: src/editor-page.ui:99
 msgid "Go to Line"
 msgstr "Joan lerrora"
 
-#: src/editor-page.ui:115
+#: src/editor-page.ui:117
 msgid "Go"
 msgstr "Joan"
 
-#: src/editor-page.ui:152
+#: src/editor-page.ui:154
 msgid "Indentation"
 msgstr "Koskak"
 
-#: src/editor-page.ui:155 src/editor-window.ui:277
+#: src/editor-page.ui:157 src/editor-window.ui:278
 msgid "_Automatic Indentation"
 msgstr "_Koska automatikoak"
 
 #. Translators: this is a tab character, not a browser tab
-#: src/editor-page.ui:161 src/editor-window.ui:281
+#: src/editor-page.ui:163 src/editor-window.ui:282
 msgid "_Tabs"
 msgstr "_Fitxak"
 
-#: src/editor-page.ui:166 src/editor-window.ui:286
+#: src/editor-page.ui:168 src/editor-window.ui:287
 msgid "_Spaces"
 msgstr "Z_uriuneak"
 
-#: src/editor-page.ui:173 src/editor-window.ui:291
+#: src/editor-page.ui:175 src/editor-window.ui:292
 msgid "Spaces _Per Tab"
 msgstr "Zuriuneak t_abulazioko"
 
-#: src/editor-page.ui:175 src/editor-page.ui:203
+#: src/editor-page.ui:177 src/editor-page.ui:205
 msgid "2"
 msgstr "2"
 
-#: src/editor-page.ui:180 src/editor-page.ui:208
+#: src/editor-page.ui:182 src/editor-page.ui:210
 msgid "4"
 msgstr "4"
 
-#: src/editor-page.ui:185 src/editor-page.ui:213
+#: src/editor-page.ui:187 src/editor-page.ui:215
 msgid "6"
 msgstr "6"
 
-#: src/editor-page.ui:190 src/editor-page.ui:218
+#: src/editor-page.ui:192 src/editor-page.ui:220
 msgid "8"
 msgstr "8"
 
-#: src/editor-page.ui:196
+#: src/editor-page.ui:198
 msgid "Spaces Per Indent"
 msgstr "Zuriuneak koskako"
 
-#: src/editor-page.ui:198
+#: src/editor-page.ui:200
 msgid "Use Tab Size"
 msgstr "Erabili tabuladorearen tamaina"
 
@@ -576,10 +585,6 @@ msgstr "Itzuli aurreko saiora testu-editorea abiarazten denean"
 msgid "_Clear History"
 msgstr "_Garbitu historia"
 
-#: src/editor-preferences-font.c:100
-msgid "Select Font"
-msgstr "Hautatu letra-tipoa"
-
 #: src/editor-print-operation.c:176
 #, c-format
 msgid "Draft: %s"
@@ -609,27 +614,31 @@ msgstr "Fitxategia"
 msgid "Name"
 msgstr "Izena"
 
-#: src/editor-properties-dialog.ui:43
+#: src/editor-properties-dialog.ui:46
 msgid "Location"
 msgstr "Kokalekua"
 
-#: src/editor-properties-dialog.ui:59
+#: src/editor-properties-dialog.ui:75
+msgid "Open in File Manager"
+msgstr "Ireki fitxategi-kudeatzailearekin"
+
+#: src/editor-properties-dialog.ui:85
 msgid "Statistics"
 msgstr "Estatistikak"
 
-#: src/editor-properties-dialog.ui:62
+#: src/editor-properties-dialog.ui:88
 msgid "Lines"
 msgstr "Lerroak"
 
-#: src/editor-properties-dialog.ui:77
+#: src/editor-properties-dialog.ui:96
 msgid "Words"
 msgstr "Hitzak"
 
-#: src/editor-properties-dialog.ui:92
+#: src/editor-properties-dialog.ui:104
 msgid "Characters, No Spaces"
 msgstr "Karaktereak, zuriunerik ez"
 
-#: src/editor-properties-dialog.ui:107
+#: src/editor-properties-dialog.ui:112
 msgid "All Characters"
 msgstr "Karaktere guztiak"
 
@@ -649,7 +658,7 @@ msgstr "Gorde aldaketak?"
 msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
-msgstr "Dokumentu irekiek gabeko aldaketak dituzte. Gorde ez diren aldaketak betiko galduko dira."
+msgstr "Dokumentu irekiek gorde gabeko aldaketak dituzte. Gorde ez diren aldaketak betiko galduko dira."
 
 #: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:116
 #: src/editor-window-actions.c:241
@@ -657,7 +666,7 @@ msgid "_Cancel"
 msgstr "_Utzi"
 
 #: src/editor-save-changes-dialog.c:265 src/editor-window-actions.c:117
-#: src/editor-window.ui:210
+#: src/editor-window.ui:211
 msgid "_Save"
 msgstr "_Gorde"
 
@@ -745,27 +754,27 @@ msgstr "Ortografia-egiaztapena"
 msgid "Languages"
 msgstr "Hizkuntzak"
 
-#: src/editor-theme-selector.ui:22
+#: src/editor-theme-selector.ui:23
 msgid "Follow System Style"
 msgstr "Jarraitu sistemaren estiloa"
 
-#: src/editor-theme-selector.ui:24
+#: src/editor-theme-selector.ui:25
 msgid "Follow system style"
 msgstr "Jarraitu sistemaren estiloa"
 
-#: src/editor-theme-selector.ui:39
+#: src/editor-theme-selector.ui:40
 msgid "Light Style"
 msgstr "Estilo argia"
 
-#: src/editor-theme-selector.ui:41
+#: src/editor-theme-selector.ui:42
 msgid "Light style"
 msgstr "Estilo argia"
 
-#: src/editor-theme-selector.ui:57
+#: src/editor-theme-selector.ui:58
 msgid "Dark Style"
 msgstr "Estilo iluna"
 
-#: src/editor-theme-selector.ui:59
+#: src/editor-theme-selector.ui:60
 msgid "Dark style"
 msgstr "Estilo iluna"
 
@@ -852,74 +861,74 @@ msgstr "Fitxategi guztiak"
 msgid "Text Files"
 msgstr "Testu-fitxategiak"
 
-#: src/editor-window.c:207
+#: src/editor-window.c:203
 #, c-format
 msgid "Document Type: %s"
 msgstr "Dokumentu mota: %s"
 
-#: src/editor-window.c:507
+#: src/editor-window.c:505
 msgid "Zoom In"
 msgstr "Handiagotu"
 
-#: src/editor-window.c:510
+#: src/editor-window.c:508
 msgid "Zoom in"
 msgstr "Handiagotu"
 
-#: src/editor-window.c:520
+#: src/editor-window.c:518
 msgid "Zoom Out"
 msgstr "Txikiagotu"
 
-#: src/editor-window.c:523
+#: src/editor-window.c:521
 msgid "Zoom out"
 msgstr "Txikiagotu"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:745
+#: src/editor-window.c:757
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - Testu-editorea"
 
-#: src/editor-window.c:1184
+#: src/editor-window.c:1199
 msgid "There are unsaved documents"
 msgstr "Gorde gabeko dokumentuak daude"
 
-#: src/editor-window.ui:82
+#: src/editor-window.ui:83
 msgid "_Open"
 msgstr "_Ireki"
 
-#: src/editor-window.ui:84
+#: src/editor-window.ui:85
 msgid "Recently Used Documents"
 msgstr "Azken aldiko dokumentuak"
 
-#: src/editor-window.ui:96
+#: src/editor-window.ui:97
 msgid "New Tab"
 msgstr "Fitxa berria"
 
-#: src/editor-window.ui:98
+#: src/editor-window.ui:99
 msgid "New tab"
 msgstr "Fitxa berria"
 
-#: src/editor-window.ui:124
+#: src/editor-window.ui:125
 msgid "View Options"
 msgstr "Ikusteko aukerak"
 
-#: src/editor-window.ui:128
+#: src/editor-window.ui:129
 msgid "View"
 msgstr "Ikusi"
 
-#: src/editor-window.ui:134
+#: src/editor-window.ui:135
 msgid "Main Menu"
 msgstr "Menu nagusia"
 
-#: src/editor-window.ui:138
+#: src/editor-window.ui:139
 msgid "Main menu"
 msgstr "Menu nagusia"
 
-#: src/editor-window.ui:165
+#: src/editor-window.ui:166
 msgid "Start or Open a Document"
 msgstr "Hasi edo ireki dokumentu bat"
 
-#: src/editor-window.ui:168
+#: src/editor-window.ui:169
 msgid ""
 "• Press the Open button\n"
 "• Press the New tab button\n"
@@ -934,91 +943,91 @@ msgstr "• Sakatu 'Ireki' botoia\n"
 "\n"
 "Edo sakatu Ctrl+W leihoa ixteko."
 
-#: src/editor-window.ui:202
+#: src/editor-window.ui:203
 msgid "_New Window"
 msgstr "_Leiho berria"
 
-#: src/editor-window.ui:222
+#: src/editor-window.ui:223
 msgid "_Discard Changes"
 msgstr "Ba_ztertu aldaketak"
 
-#: src/editor-window.ui:228
+#: src/editor-window.ui:229
 msgid "_Find/Replace…"
 msgstr "_Bilatu/ordeztu…"
 
-#: src/editor-window.ui:234
+#: src/editor-window.ui:235
 msgid "_Print…"
 msgstr "_Inprimatu…"
 
-#: src/editor-window.ui:240
+#: src/editor-window.ui:241
 msgid "Documen_t Properties"
 msgstr "Dokumentu-_propietateak"
 
-#: src/editor-window.ui:246
+#: src/editor-window.ui:247
 msgid "P_references"
 msgstr "H_obespenak"
 
-#: src/editor-window.ui:251
+#: src/editor-window.ui:252
 msgid "_Keyboard Shortcuts"
 msgstr "Las_ter-teklak"
 
-#: src/editor-window.ui:255
+#: src/editor-window.ui:256
 msgid "_Help"
 msgstr "L_aguntza"
 
-#: src/editor-window.ui:259
+#: src/editor-window.ui:260
 msgid "A_bout Text Editor"
 msgstr "Testu-editoreari b_uruz"
 
-#: src/editor-window.ui:267
+#: src/editor-window.ui:268
 msgid "Show _Line Numbers"
 msgstr "Erakutsi _lerro-zenbakiak"
 
-#: src/editor-window.ui:271
+#: src/editor-window.ui:272
 msgid "Show _Right Margin"
 msgstr "Erakutsi e_skuineko marjina"
 
-#: src/editor-window.ui:294
+#: src/editor-window.ui:295
 msgid "_2"
 msgstr "_2"
 
-#: src/editor-window.ui:299
+#: src/editor-window.ui:300
 msgid "_4"
 msgstr "_4"
 
-#: src/editor-window.ui:304
+#: src/editor-window.ui:305
 msgid "_6"
 msgstr "_6"
 
-#: src/editor-window.ui:309
+#: src/editor-window.ui:310
 msgid "_8"
 msgstr "_8"
 
-#: src/editor-window.ui:318
+#: src/editor-window.ui:319
 msgid "T_ext Wrapping"
 msgstr "T_estua egokitzea"
 
-#: src/editor-window.ui:322
+#: src/editor-window.ui:323
 msgid "Chec_k Spelling"
 msgstr "O_rtografia-egiaztapena"
 
-#: src/editor-window.ui:326
+#: src/editor-window.ui:327
 msgid "_Document Type…"
 msgstr "_Dokumentu mota…"
 
-#: src/editor-window.ui:334
+#: src/editor-window.ui:335
 msgid "Move _Left"
 msgstr "Eraman e_zkerrera"
 
-#: src/editor-window.ui:339
+#: src/editor-window.ui:340
 msgid "Move _Right"
 msgstr "Eraman e_skuinera"
 
-#: src/editor-window.ui:346
+#: src/editor-window.ui:347
 msgid "_Move to New Window"
 msgstr "_Eraman leiho berrira"
 
-#: src/editor-window.ui:353
+#: src/editor-window.ui:354
 msgid "Close _Other Tabs"
 msgstr "Itxi _beste fitxak"
 
@@ -1320,6 +1329,9 @@ msgstr "Erakutsi laster-teklak"
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "sErakutsi laguntza"
+
+#~ msgid "Select Font"
+#~ msgstr "Hautatu letra-tipoa"
 
 #~ msgid "Open New Document (Ctrl+O)"
 #~ msgstr "Ireki dokumentu berria (Ctrl+O)"
