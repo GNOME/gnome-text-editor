@@ -1,14 +1,14 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
-# Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>, 2022, 2023.
+# SPDX-FileCopyrightText: 2022, 2023, 2024 Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues"
-"\n"
-"POT-Creation-Date: 2023-02-01 03:51+0000\n"
-"PO-Revision-Date: 2023-03-25 13:18+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/issu"
+"es\n"
+"POT-Creation-Date: 2024-01-31 18:17+0000\n"
+"PO-Revision-Date: 2024-02-25 12:46+0200\n"
 "Last-Translator: Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>\n"
 "Language-Team: Latvian <lata-l10n@googlegroups.com>\n"
 "Language: lv\n"
@@ -17,25 +17,26 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 :"
 " 2);\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 23.08.1\n"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:6
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.TextEditor.appdata.xml.in.in:7
 #: src/editor-application-actions.c:201
 msgid "The GNOME Project"
 msgstr "GNOME projekts"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:8
+#: data/org.gnome.TextEditor.appdata.xml.in.in:12
 #: data/org.gnome.TextEditor.desktop.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:9
-#: src/editor-application-actions.c:199 src/editor-window.c:1297
+#: src/editor-application-actions.c:199 src/editor-window.c:1340
 msgid "Text Editor"
 msgstr "Teksta redaktors"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:10
+#: data/org.gnome.TextEditor.appdata.xml.in.in:14
 msgid "Edit text files"
 msgstr "Rediģēt teksta datnes"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:12
+#: data/org.gnome.TextEditor.appdata.xml.in.in:16
 msgid ""
 "GNOME Text Editor is a simple text editor focused on a pleasing default "
 "experience."
@@ -50,6 +51,11 @@ msgstr "rakstīt;notepad;"
 #: data/org.gnome.TextEditor.desktop.in.in:10
 msgid "View and edit text files"
 msgstr "Skatīt un rediģēt testa datnes"
+
+#: data/org.gnome.TextEditor.desktop.in.in:20
+#| msgid "_New Window"
+msgid "New Window"
+msgstr "Jauns logs"
 
 #: data/org.gnome.TextEditor.gschema.xml:16
 msgid "Auto Save Delay"
@@ -172,7 +178,7 @@ msgstr "Izmantot sistēmas fontu"
 msgid "If the default system monospace font should be used."
 msgstr "Vai vajadzētu izmantot sistēmas noklusējuma vienplatuma fontu."
 
-#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:57
+#: data/org.gnome.TextEditor.gschema.xml:98
 msgid "Custom Font"
 msgstr "Pielāgots fonts"
 
@@ -272,6 +278,14 @@ msgstr "Rindu augstums"
 msgid "The line height to use for the selected font."
 msgstr "Rindu augstums, ko izmantot izvēlētajam fontam."
 
+#: data/org.gnome.TextEditor.gschema.xml:158
+msgid "Highlight Matching Brackets"
+msgstr "Izcelt atbilstošās iekavas"
+
+#: data/org.gnome.TextEditor.gschema.xml:159
+msgid "Highlight matching brackets and braces."
+msgstr "Izcelt atbilstošās iekavas."
+
 #: src/editor-animation.c:1038
 #, c-format
 msgid "Failed to find property %s in %s"
@@ -319,12 +333,12 @@ msgstr "Palaist jaunu teksta redaktora instanci (ietver --ignore-session)"
 msgid "Print version information and exit"
 msgstr "Parādīt informāciju par versiju un iziet"
 
-#: src/editor-document.c:2066
+#: src/editor-document.c:2121
 msgid "[Read-Only]"
 msgstr "[Tikai lasāms]"
 
-#: src/editor-document.c:2364 src/editor-page.c:1035
-#: src/editor-sidebar-item.c:497
+#: src/editor-document.c:2419 src/editor-page.c:1065
+#: src/editor-sidebar-item.c:511
 msgid "New Document"
 msgstr "Jauns dokuments"
 
@@ -357,7 +371,7 @@ msgstr "Datne ir mainījusies uz diska"
 msgid "The file has been changed by another program."
 msgstr "Cita programma ir mainījusi datni."
 
-#: src/editor-info-bar.c:89 src/editor-window.ui:222
+#: src/editor-info-bar.c:89 src/editor-window.ui:217
 msgid "Save _As…"
 msgstr "S_aglabāt kā…"
 
@@ -405,119 +419,126 @@ msgstr "_Atvērt kā administratoram"
 msgid "Document Type"
 msgstr "Dokumenta tips"
 
-#: src/editor-language-dialog.ui:52
+#: src/editor-language-dialog.ui:28
+#| msgid "Search documents"
+msgid "Search document types"
+msgstr "Meklēt dokumentu tipus"
+
+#: src/editor-language-dialog.ui:51
 msgid "No Matches"
 msgstr "Nekas neatbilst"
 
+#: src/editor-language-row.c:61 src/editor-language-row.c:119
+msgid "Plain Text"
+msgstr "Vienkāršs teksts"
+
 #: src/editor-open-popover.ui:25
-#| msgctxt "shortcut window"
-#| msgid "Search within the document"
 msgid "Search documents"
 msgstr "Meklēt dokumentus"
 
 #: src/editor-open-popover.ui:39
-#| msgid "Open recent document (Ctrl+K)"
-msgid "Open New Document (Ctrl+O)"
-msgstr "Atvērt jaunu dokumentu (Ctrl+O)"
+#| msgid "New Document"
+msgid "Open New Document"
+msgstr "Atvērt jaunu dokumentu"
 
 #: src/editor-open-popover.ui:74
 msgid "No Recent Documents"
 msgstr "Nav neseno dokumentu"
 
-#: src/editor-open-popover.ui:101
+#: src/editor-open-popover.ui:104
 msgid "No Results Found"
 msgstr "Nav atrastu rezultātu"
 
-#: src/editor-page.c:1061 src/editor-properties-dialog.c:74
-#: src/editor-sidebar-item.c:101
+#: src/editor-page.c:1091 src/editor-properties-dialog.c:107
+#: src/editor-sidebar-item.c:105
 msgid "Draft"
 msgstr "Melnraksts"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1073
+#: src/editor-page.c:1103
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (administrators)"
 
-#: src/editor-page.c:1083 src/editor-sidebar-item.c:109
+#: src/editor-page.c:1113 src/editor-sidebar-item.c:113
 msgid "Document Portal"
 msgstr "Dokumenta portāls"
 
-#: src/editor-page.c:1130
+#: src/editor-page.c:1159
 msgid "Failed to save document"
 msgstr "Neizdevās saglabāt dokumentu"
 
-#: src/editor-page.c:1131 src/editor-window.ui:363
+#: src/editor-page.c:1160 src/editor-window.ui:358
 msgid "_Close"
 msgstr "_Aizvērt"
 
-#: src/editor-page.c:1215
+#: src/editor-page.c:1246
 msgid "Save As"
 msgstr "Saglabāt kā"
 
-#: src/editor-page.c:1218
+#: src/editor-page.c:1249
 msgid "Save"
 msgstr "Saglabāt"
 
-#: src/editor-page.c:1219 src/editor-window-actions.c:352
+#: src/editor-page.c:1250 src/editor-window-actions.c:353
 msgid "Cancel"
 msgstr "Atcelt"
 
-#: src/editor-page.c:1368
+#: src/editor-page.c:1406
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Rin %u, Kol %u"
 
-#: src/editor-page.ui:97
+#: src/editor-page.ui:99
 msgid "Go to Line"
 msgstr "Iet uz rindu"
 
-#: src/editor-page.ui:115
+#: src/editor-page.ui:117
 msgid "Go"
 msgstr "Iet"
 
-#: src/editor-page.ui:152
+#: src/editor-page.ui:154
 msgid "Indentation"
 msgstr "Atkāpju veidošana"
 
-#: src/editor-page.ui:155 src/editor-window.ui:283
+#: src/editor-page.ui:157 src/editor-window.ui:278
 msgid "_Automatic Indentation"
 msgstr "_Automātiskās atkāpes"
 
 #. Translators: this is a tab character, not a browser tab
-#: src/editor-page.ui:161 src/editor-window.ui:287
+#: src/editor-page.ui:163 src/editor-window.ui:282
 msgid "_Tabs"
 msgstr "_Tabulācijas"
 
-#: src/editor-page.ui:166 src/editor-window.ui:292
+#: src/editor-page.ui:168 src/editor-window.ui:287
 msgid "_Spaces"
 msgstr "_Atstarpes"
 
-#: src/editor-page.ui:173 src/editor-window.ui:297
+#: src/editor-page.ui:175 src/editor-window.ui:292
 msgid "Spaces _Per Tab"
 msgstr "Atstar_pes tabulācijā"
 
-#: src/editor-page.ui:175 src/editor-page.ui:203
+#: src/editor-page.ui:177 src/editor-page.ui:205
 msgid "2"
 msgstr "2"
 
-#: src/editor-page.ui:180 src/editor-page.ui:208
+#: src/editor-page.ui:182 src/editor-page.ui:210
 msgid "4"
 msgstr "4"
 
-#: src/editor-page.ui:185 src/editor-page.ui:213
+#: src/editor-page.ui:187 src/editor-page.ui:215
 msgid "6"
 msgstr "6"
 
-#: src/editor-page.ui:190 src/editor-page.ui:218
+#: src/editor-page.ui:192 src/editor-page.ui:220
 msgid "8"
 msgstr "8"
 
-#: src/editor-page.ui:196
+#: src/editor-page.ui:198
 msgid "Spaces Per Indent"
 msgstr "Atstarpes atkāpē"
 
-#: src/editor-page.ui:198
+#: src/editor-page.ui:200
 msgid "Use Tab Size"
 msgstr "Izmantot tabulācijas izmēru"
 
@@ -531,60 +552,67 @@ msgstr "Rin"
 msgid "Col"
 msgstr "Kol"
 
-#: src/editor-preferences-dialog.ui:17
+#: src/editor-preferences-dialog.ui:19
 msgid "Appearance"
 msgstr "Izskats"
 
-#: src/editor-preferences-dialog.ui:79
-msgid "Display Grid Pattern"
-msgstr "Rādīt režģa rakstu"
+#: src/editor-preferences-dialog.ui:59
+#| msgid "Custom Font"
+msgid "Custom _Font"
+msgstr "Pielāgots _fonts"
 
-#: src/editor-preferences-dialog.ui:85
-msgid "Highlight Current Line"
-msgstr "Izcelt aktīvo rindu"
+#: src/editor-preferences-dialog.ui:82
+#| msgid "Display Grid Pattern"
+msgid "Display _Grid Pattern"
+msgstr "_Rādīt režģa rakstu"
 
-#: src/editor-preferences-dialog.ui:91
-msgid "Display Overview Map"
-msgstr "Rādīt pārskata karti"
+#: src/editor-preferences-dialog.ui:89
+#| msgid "Highlight Current Line"
+msgid "_Highlight Current Line"
+msgstr "_Izcelt aktīvo rindu"
 
-#: src/editor-preferences-dialog.ui:99
+#: src/editor-preferences-dialog.ui:96
+#| msgid "Display Overview Map"
+msgid "Display _Overview Map"
+msgstr "Rādīt _pārskata karti"
+
+#: src/editor-preferences-dialog.ui:105
 msgid "Right Margin"
 msgstr "Labā mala"
 
-#: src/editor-preferences-dialog.ui:102
-msgid "Margin Position"
-msgstr "Malas pozīcija"
+#: src/editor-preferences-dialog.ui:108
+#| msgid "Margin Position"
+msgid "_Margin Position"
+msgstr "_Malas pozīcija"
 
-#: src/editor-preferences-dialog.ui:110
+#: src/editor-preferences-dialog.ui:117
 msgid "Behavior"
 msgstr "Uzvedība"
 
-#: src/editor-preferences-dialog.ui:113
-msgid "Discover Document Settings"
-msgstr "Atklāt dokumenta iestatījumus"
+#: src/editor-preferences-dialog.ui:120
+#| msgid "Discover Document Settings"
+msgid "_Discover Document Settings"
+msgstr "Atklāt _dokumenta iestatījumus"
 
-#: src/editor-preferences-dialog.ui:114
+#: src/editor-preferences-dialog.ui:122
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr ""
 "Pielietot iestatījumus, izmantojot modelines, editorconfig vai saprātīgus "
 "noklusējumus"
 
-#: src/editor-preferences-dialog.ui:120
-msgid "Restore Session"
-msgstr "Atjaunot sesiju"
+#: src/editor-preferences-dialog.ui:128
+#| msgid "Restore Session"
+msgid "_Restore Session"
+msgstr "_Atjaunot sesiju"
 
-#: src/editor-preferences-dialog.ui:121
+#: src/editor-preferences-dialog.ui:130
 msgid "Return to your previous session when Text Editor is started"
 msgstr ""
 "Atgriezties uz iepriekšējo sesiju, kad ir palaista teksta redaktora lietotne"
 
-#: src/editor-preferences-dialog.ui:136
+#: src/editor-preferences-dialog.ui:145
 msgid "_Clear History"
 msgstr "_Attīrīt vēsturi"
-
-#: src/editor-preferences-font.c:100
-msgid "Select Font"
-msgstr "Izvēlieties fontu"
 
 #: src/editor-print-operation.c:176
 #, c-format
@@ -615,27 +643,32 @@ msgstr "Datne"
 msgid "Name"
 msgstr "Nosaukums"
 
-#: src/editor-properties-dialog.ui:45
+#: src/editor-properties-dialog.ui:46
 msgid "Location"
 msgstr "Vieta"
 
-#: src/editor-properties-dialog.ui:63
+#: src/editor-properties-dialog.ui:75
+#| msgid "Open File"
+msgid "Open in File Manager"
+msgstr "Atvērt datņu pārvaldniekā"
+
+#: src/editor-properties-dialog.ui:85
 msgid "Statistics"
 msgstr "Statistika"
 
-#: src/editor-properties-dialog.ui:66
+#: src/editor-properties-dialog.ui:88
 msgid "Lines"
 msgstr "Rindas"
 
-#: src/editor-properties-dialog.ui:81
+#: src/editor-properties-dialog.ui:96
 msgid "Words"
 msgstr "Vārdi"
 
-#: src/editor-properties-dialog.ui:96
+#: src/editor-properties-dialog.ui:104
 msgid "Characters, No Spaces"
 msgstr "Rakstzīmes, bez atstarpēm"
 
-#: src/editor-properties-dialog.ui:111
+#: src/editor-properties-dialog.ui:112
 msgid "All Characters"
 msgstr "Visas rakstzīmes"
 
@@ -665,7 +698,7 @@ msgid "_Cancel"
 msgstr "At_celt"
 
 #: src/editor-save-changes-dialog.c:265 src/editor-window-actions.c:117
-#: src/editor-window.ui:216
+#: src/editor-window.ui:211
 msgid "_Save"
 msgstr "_Saglabāt"
 
@@ -688,23 +721,27 @@ msgid "Replace"
 msgstr "Aizstāt"
 
 #: src/editor-search-bar.ui:51
-msgid "Move to previous match (Ctrl+Shift+G)"
-msgstr "Iet uz iepriekšējo atbilstību (Ctrl+Shift+G)"
+msgid "Previous Match"
+msgstr "Iepriekšējā atbilsme"
 
 #: src/editor-search-bar.ui:59
-msgid "Move to next match (Ctrl+G)"
-msgstr "Iet uz nākamo atbilstību (Ctrl+G)"
+#| msgid "No Matches"
+msgid "Next Match"
+msgstr "Nākamā atbilsme"
 
 #: src/editor-search-bar.ui:71
-msgid "Search & Replace (Ctrl+H)"
-msgstr "Meklēt un aizstāt (Ctrl+H)"
+#| msgid "Search & Replace (Ctrl+H)"
+msgid "Search & Replace"
+msgstr "Meklēt un aizstāt"
 
 #: src/editor-search-bar.ui:81
-msgid "Toggle search options"
-msgstr "Pārslēgt meklēšanas opcijas"
+#| msgid "View Options"
+msgid "Search Options"
+msgstr "Meklēšanas opcijas"
 
 #: src/editor-search-bar.ui:95
-msgid "Close search"
+#| msgid "Close search"
+msgid "Close Search"
 msgstr "Aizvērt meklēšanu"
 
 #: src/editor-search-bar.ui:112
@@ -753,30 +790,27 @@ msgstr "Pārbaudīt pareizrakstību"
 msgid "Languages"
 msgstr "Valodas"
 
-#: src/editor-theme-selector.ui:22
-#| msgid "Follow system style"
+#: src/editor-theme-selector.ui:23
 msgid "Follow System Style"
 msgstr "Sekot sistēmas stilam"
 
-#: src/editor-theme-selector.ui:24
+#: src/editor-theme-selector.ui:25
 msgid "Follow system style"
 msgstr "Sekot sistēmas stilam"
 
-#: src/editor-theme-selector.ui:39
-#| msgid "Light style"
+#: src/editor-theme-selector.ui:40
 msgid "Light Style"
 msgstr "Gaišais stils"
 
-#: src/editor-theme-selector.ui:41
+#: src/editor-theme-selector.ui:42
 msgid "Light style"
 msgstr "Gaišais stils"
 
-#: src/editor-theme-selector.ui:57
-#| msgid "Dark style"
+#: src/editor-theme-selector.ui:58
 msgid "Dark Style"
 msgstr "Tumšais stils"
 
-#: src/editor-theme-selector.ui:59
+#: src/editor-theme-selector.ui:60
 msgid "Dark style"
 msgstr "Tumšais stils"
 
@@ -848,19 +882,19 @@ msgstr "Nesaglabātās izmaiņas tiks neatgriezeniski zaudētas."
 msgid "Discard Changes to “%s”?"
 msgstr "Nesaglabāt izmaiņas dokumentā “%s”?"
 
-#: src/editor-window-actions.c:348
+#: src/editor-window-actions.c:349
 msgid "Open File"
 msgstr "Atvērt datni"
 
-#: src/editor-window-actions.c:351
+#: src/editor-window-actions.c:352
 msgid "Open"
 msgstr "Atvērt"
 
-#: src/editor-window-actions.c:376
+#: src/editor-window-actions.c:377
 msgid "All Files"
 msgstr "Visas datnes"
 
-#: src/editor-window-actions.c:381
+#: src/editor-window-actions.c:382
 msgid "Text Files"
 msgstr "Teksta datnes"
 
@@ -869,33 +903,29 @@ msgstr "Teksta datnes"
 msgid "Document Type: %s"
 msgstr "Dokumenta tips: %s"
 
-#: src/editor-window.c:507
-#| msgctxt "shortcut window"
-#| msgid "Zoom In"
+#: src/editor-window.c:509
 msgid "Zoom In"
 msgstr "Tuvināt"
 
-#: src/editor-window.c:510
+#: src/editor-window.c:512
 msgid "Zoom in"
 msgstr "Tuvināt"
 
-#: src/editor-window.c:520
-#| msgctxt "shortcut window"
-#| msgid "Zoom Out"
+#: src/editor-window.c:522
 msgid "Zoom Out"
 msgstr "Tālināt"
 
-#: src/editor-window.c:523
+#: src/editor-window.c:525
 msgid "Zoom out"
 msgstr "Tālināt"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:745
+#: src/editor-window.c:782
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - Teksta redaktors"
 
-#: src/editor-window.c:1185
+#: src/editor-window.c:1225
 msgid "There are unsaved documents"
 msgstr "Ir nesaglabāti dokumenti"
 
@@ -904,18 +934,19 @@ msgid "_Open"
 msgstr "_Atvērt"
 
 #: src/editor-window.ui:84
-#| msgid "Open recent document (Ctrl+K)"
-msgid "Recently Used Documents (Ctrl+K)"
-msgstr "Nesenie dokumenti (Ctrl+K)"
+#| msgid "Recently Used Documents (Ctrl+K)"
+msgid "Recently Used Documents"
+msgstr "Nesenie dokumenti"
 
 #: src/editor-window.ui:96
-#| msgid "New tab (Ctrl+T)"
-msgid "New Tab (Ctrl+T)"
-msgstr "Jauna cilne (Ctrl+T)"
+#| msgid "New Tab (Ctrl+T)"
+msgid "New Tab"
+msgstr "Jauna cilne"
 
 #: src/editor-window.ui:98
-msgid "New tab (Ctrl+T)"
-msgstr "Jauna cilne (Ctrl+T)"
+#| msgid "New tab (Ctrl+T)"
+msgid "New tab"
+msgstr "Jauna cilne"
 
 #: src/editor-window.ui:124
 msgid "View Options"
@@ -926,7 +957,6 @@ msgid "View"
 msgstr "Skats"
 
 #: src/editor-window.ui:134
-#| msgid "Menu"
 msgid "Main Menu"
 msgstr "Galvenā izvēlne"
 
@@ -934,11 +964,11 @@ msgstr "Galvenā izvēlne"
 msgid "Main menu"
 msgstr "Galvenā izvēlne"
 
-#: src/editor-window.ui:171
+#: src/editor-window.ui:166
 msgid "Start or Open a Document"
 msgstr "Sākt vai atvērt dokumentu"
 
-#: src/editor-window.ui:174
+#: src/editor-window.ui:169
 msgid ""
 "• Press the Open button\n"
 "• Press the New tab button\n"
@@ -954,94 +984,92 @@ msgstr ""
 "\n"
 "Vai spiediet Ctrl+W, lai aizvērtu logu."
 
-#: src/editor-window.ui:208
+#: src/editor-window.ui:203
 msgid "_New Window"
 msgstr "Jau_ns logs"
 
-#: src/editor-window.ui:228
+#: src/editor-window.ui:223
 msgid "_Discard Changes"
 msgstr "Nesa_glabāt izmaiņas"
 
-#: src/editor-window.ui:234
+#: src/editor-window.ui:229
 msgid "_Find/Replace…"
 msgstr "_Meklēt/aizstāt…"
 
-#: src/editor-window.ui:240
-#| msgid "_Print"
+#: src/editor-window.ui:235
 msgid "_Print…"
 msgstr "_Drukāt…"
 
-#: src/editor-window.ui:246
+#: src/editor-window.ui:241
 msgid "Documen_t Properties"
 msgstr "Dokumen_ta īpašības"
 
-#: src/editor-window.ui:252
+#: src/editor-window.ui:247
 msgid "P_references"
 msgstr "Ie_statījumi"
 
-#: src/editor-window.ui:257
+#: src/editor-window.ui:252
 msgid "_Keyboard Shortcuts"
 msgstr "_Tastatūras īsinājumtaustiņi"
 
-#: src/editor-window.ui:261
+#: src/editor-window.ui:256
 msgid "_Help"
 msgstr "_Palīdzība"
 
-#: src/editor-window.ui:265
+#: src/editor-window.ui:260
 msgid "A_bout Text Editor"
 msgstr "_Par teksta redaktoru"
 
-#: src/editor-window.ui:273
-#| msgid "Show Line Numbers"
+#: src/editor-window.ui:268
 msgid "Show _Line Numbers"
 msgstr "Rādīt _rindu numurus"
 
-#: src/editor-window.ui:277
-#| msgid "Show Right Margin"
+#: src/editor-window.ui:272
 msgid "Show _Right Margin"
 msgstr "Rādīt _labo malu"
 
-#: src/editor-window.ui:300
+#: src/editor-window.ui:295
 msgid "_2"
 msgstr "_2"
 
-#: src/editor-window.ui:305
+#: src/editor-window.ui:300
 msgid "_4"
 msgstr "_4"
 
-#: src/editor-window.ui:310
+#: src/editor-window.ui:305
 msgid "_6"
 msgstr "_6"
 
-#: src/editor-window.ui:315
+#: src/editor-window.ui:310
 msgid "_8"
 msgstr "_8"
 
-#: src/editor-window.ui:324
+#: src/editor-window.ui:319
 msgid "T_ext Wrapping"
 msgstr "T_eksta aplaušana"
 
-#: src/editor-window.ui:328
+#: src/editor-window.ui:323
 msgid "Chec_k Spelling"
 msgstr "Pār_baudīt pareizrakstību"
 
-#: src/editor-window.ui:332
-msgid "_Document Type"
-msgstr "_Dokumenta tips"
+#: src/editor-window.ui:327
+#| msgid "_Document Type"
+msgid "_Document Type…"
+msgstr "_Dokumenta tips…"
 
-#: src/editor-window.ui:340
+#: src/editor-window.ui:335
 msgid "Move _Left"
 msgstr "Pārvietot pa _kreisi"
 
-#: src/editor-window.ui:345
+#: src/editor-window.ui:340
 msgid "Move _Right"
 msgstr "Pārvietot pa _labi"
 
-#: src/editor-window.ui:352
+#: src/editor-window.ui:347
 msgid "_Move to New Window"
 msgstr "_Pārvietot uz jaunu logu"
 
-#: src/editor-window.ui:359
+#: src/editor-window.ui:354
 msgid "Close _Other Tabs"
 msgstr "Aizvērt _citas cilnes"
 
@@ -1175,8 +1203,6 @@ msgid "Copy all to clipboard"
 msgstr "Kopēt visu uz starpliktuvi"
 
 #: src/help-overlay.ui:156
-#| msgctxt "shortcut window"
-#| msgid "Move current or selected lines down"
 msgctxt "shortcut window"
 msgid "Copy current line down"
 msgstr "Kopēt aktīvo rindu"
@@ -1332,22 +1358,35 @@ msgid "General"
 msgstr "Vispārīgi"
 
 #: src/help-overlay.ui:337
-#| msgid "P_references"
 msgctxt "shortcut window"
 msgid "Show preferences"
 msgstr "Rādīt iestatījumus"
 
 #: src/help-overlay.ui:343
-#| msgid "_Keyboard Shortcuts"
 msgctxt "shortcut window"
 msgid "Show keyboard shortcuts"
 msgstr "Rādīt tastatūras saīsnes"
 
 #: src/help-overlay.ui:349
-#| msgid "Show"
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Rādīt palīdzību"
+
+#~| msgid "Open recent document (Ctrl+K)"
+#~ msgid "Open New Document (Ctrl+O)"
+#~ msgstr "Atvērt jaunu dokumentu (Ctrl+O)"
+
+#~ msgid "Select Font"
+#~ msgstr "Izvēlieties fontu"
+
+#~ msgid "Move to previous match (Ctrl+Shift+G)"
+#~ msgstr "Iet uz iepriekšējo atbilstību (Ctrl+Shift+G)"
+
+#~ msgid "Move to next match (Ctrl+G)"
+#~ msgstr "Iet uz nākamo atbilstību (Ctrl+G)"
+
+#~ msgid "Toggle search options"
+#~ msgstr "Pārslēgt meklēšanas opcijas"
 
 #~ msgid "_Line Numbers"
 #~ msgstr "_Rindu numuri"
@@ -1358,3 +1397,4 @@ msgstr "Rādīt palīdzību"
 #~ msgctxt "shortcut window"
 #~ msgid "Editor Shortcuts"
 #~ msgstr "Redaktora saīsnes"
+
