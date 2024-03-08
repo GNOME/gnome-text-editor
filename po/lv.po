@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/issu"
 "es\n"
-"POT-Creation-Date: 2024-01-31 18:17+0000\n"
-"PO-Revision-Date: 2024-02-25 12:46+0200\n"
+"POT-Creation-Date: 2024-03-02 19:03+0000\n"
+"PO-Revision-Date: 2024-03-08 22:54+0200\n"
 "Last-Translator: Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>\n"
 "Language-Team: Latvian <lata-l10n@googlegroups.com>\n"
 "Language: lv\n"
@@ -28,7 +28,7 @@ msgstr "GNOME projekts"
 #: data/org.gnome.TextEditor.appdata.xml.in.in:12
 #: data/org.gnome.TextEditor.desktop.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:9
-#: src/editor-application-actions.c:199 src/editor-window.c:1340
+#: src/editor-application-actions.c:199 src/editor-window.c:1314
 msgid "Text Editor"
 msgstr "Teksta redaktors"
 
@@ -53,7 +53,6 @@ msgid "View and edit text files"
 msgstr "Skatīt un rediģēt testa datnes"
 
 #: data/org.gnome.TextEditor.desktop.in.in:20
-#| msgid "_New Window"
 msgid "New Window"
 msgstr "Jauns logs"
 
@@ -246,11 +245,11 @@ msgstr "Tastatūras taustiņu sasaiste, ko izmantot teksta redaktora lietotnē."
 
 #: data/org.gnome.TextEditor.gschema.xml:137
 msgid "Last Save Directory"
-msgstr "Pēdējā saglabāšanas direktorija"
+msgstr "Pēdējais saglabāšanas direktorijs"
 
 #: data/org.gnome.TextEditor.gschema.xml:138
 msgid "The directory last used in a save or save-as dialog."
-msgstr "Direktorija, ko pēdējo reizi izmantoja saglabāšanas dialoglodziņš."
+msgstr "Direktorijs, ko pēdējo reizi izmantoja saglabāšanas dialoglodziņš."
 
 #: data/org.gnome.TextEditor.gschema.xml:142
 msgid "Draw Spaces"
@@ -415,12 +414,11 @@ msgstr "Vēl_reiz"
 msgid "Open As _Administrator"
 msgstr "_Atvērt kā administratoram"
 
-#: src/editor-language-dialog.ui:6 src/editor-window.c:195
+#: src/editor-language-dialog.ui:6 src/editor-window.c:191
 msgid "Document Type"
 msgstr "Dokumenta tips"
 
 #: src/editor-language-dialog.ui:28
-#| msgid "Search documents"
 msgid "Search document types"
 msgstr "Meklēt dokumentu tipus"
 
@@ -437,7 +435,6 @@ msgid "Search documents"
 msgstr "Meklēt dokumentus"
 
 #: src/editor-open-popover.ui:39
-#| msgid "New Document"
 msgid "Open New Document"
 msgstr "Atvērt jaunu dokumentu"
 
@@ -557,22 +554,18 @@ msgid "Appearance"
 msgstr "Izskats"
 
 #: src/editor-preferences-dialog.ui:59
-#| msgid "Custom Font"
 msgid "Custom _Font"
 msgstr "Pielāgots _fonts"
 
 #: src/editor-preferences-dialog.ui:82
-#| msgid "Display Grid Pattern"
 msgid "Display _Grid Pattern"
 msgstr "_Rādīt režģa rakstu"
 
 #: src/editor-preferences-dialog.ui:89
-#| msgid "Highlight Current Line"
 msgid "_Highlight Current Line"
 msgstr "_Izcelt aktīvo rindu"
 
 #: src/editor-preferences-dialog.ui:96
-#| msgid "Display Overview Map"
 msgid "Display _Overview Map"
 msgstr "Rādīt _pārskata karti"
 
@@ -581,7 +574,6 @@ msgid "Right Margin"
 msgstr "Labā mala"
 
 #: src/editor-preferences-dialog.ui:108
-#| msgid "Margin Position"
 msgid "_Margin Position"
 msgstr "_Malas pozīcija"
 
@@ -590,7 +582,6 @@ msgid "Behavior"
 msgstr "Uzvedība"
 
 #: src/editor-preferences-dialog.ui:120
-#| msgid "Discover Document Settings"
 msgid "_Discover Document Settings"
 msgstr "Atklāt _dokumenta iestatījumus"
 
@@ -601,7 +592,6 @@ msgstr ""
 "noklusējumus"
 
 #: src/editor-preferences-dialog.ui:128
-#| msgid "Restore Session"
 msgid "_Restore Session"
 msgstr "_Atjaunot sesiju"
 
@@ -648,7 +638,6 @@ msgid "Location"
 msgstr "Vieta"
 
 #: src/editor-properties-dialog.ui:75
-#| msgid "Open File"
 msgid "Open in File Manager"
 msgstr "Atvērt datņu pārvaldniekā"
 
@@ -725,22 +714,18 @@ msgid "Previous Match"
 msgstr "Iepriekšējā atbilsme"
 
 #: src/editor-search-bar.ui:59
-#| msgid "No Matches"
 msgid "Next Match"
 msgstr "Nākamā atbilsme"
 
 #: src/editor-search-bar.ui:71
-#| msgid "Search & Replace (Ctrl+H)"
 msgid "Search & Replace"
 msgstr "Meklēt un aizstāt"
 
 #: src/editor-search-bar.ui:81
-#| msgid "View Options"
 msgid "Search Options"
 msgstr "Meklēšanas opcijas"
 
 #: src/editor-search-bar.ui:95
-#| msgid "Close search"
 msgid "Close Search"
 msgstr "Aizvērt meklēšanu"
 
@@ -898,69 +883,66 @@ msgstr "Visas datnes"
 msgid "Text Files"
 msgstr "Teksta datnes"
 
-#: src/editor-window.c:207
+#: src/editor-window.c:203
 #, c-format
 msgid "Document Type: %s"
 msgstr "Dokumenta tips: %s"
 
-#: src/editor-window.c:509
+#: src/editor-window.c:505
 msgid "Zoom In"
 msgstr "Tuvināt"
 
-#: src/editor-window.c:512
+#: src/editor-window.c:508
 msgid "Zoom in"
 msgstr "Tuvināt"
 
-#: src/editor-window.c:522
+#: src/editor-window.c:518
 msgid "Zoom Out"
 msgstr "Tālināt"
 
-#: src/editor-window.c:525
+#: src/editor-window.c:521
 msgid "Zoom out"
 msgstr "Tālināt"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:782
+#: src/editor-window.c:757
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - Teksta redaktors"
 
-#: src/editor-window.c:1225
+#: src/editor-window.c:1199
 msgid "There are unsaved documents"
 msgstr "Ir nesaglabāti dokumenti"
 
-#: src/editor-window.ui:82
+#: src/editor-window.ui:83
 msgid "_Open"
 msgstr "_Atvērt"
 
-#: src/editor-window.ui:84
-#| msgid "Recently Used Documents (Ctrl+K)"
+#: src/editor-window.ui:85
 msgid "Recently Used Documents"
 msgstr "Nesenie dokumenti"
 
-#: src/editor-window.ui:96
-#| msgid "New Tab (Ctrl+T)"
+#: src/editor-window.ui:97
 msgid "New Tab"
 msgstr "Jauna cilne"
 
-#: src/editor-window.ui:98
-#| msgid "New tab (Ctrl+T)"
+#: src/editor-window.ui:99
 msgid "New tab"
 msgstr "Jauna cilne"
 
-#: src/editor-window.ui:124
+#: src/editor-window.ui:125
 msgid "View Options"
 msgstr "Skatīt opcijas"
 
-#: src/editor-window.ui:128
+#: src/editor-window.ui:129
 msgid "View"
 msgstr "Skats"
 
-#: src/editor-window.ui:134
+#: src/editor-window.ui:135
 msgid "Main Menu"
 msgstr "Galvenā izvēlne"
 
-#: src/editor-window.ui:138
+#: src/editor-window.ui:139
 msgid "Main menu"
 msgstr "Galvenā izvēlne"
 
@@ -1053,7 +1035,6 @@ msgid "Chec_k Spelling"
 msgstr "Pār_baudīt pareizrakstību"
 
 #: src/editor-window.ui:327
-#| msgid "_Document Type"
 msgid "_Document Type…"
 msgstr "_Dokumenta tips…"
 
