@@ -34,6 +34,7 @@
 #include "editor-page-private.h"
 #include "editor-sidebar-model-private.h"
 #include "editor-session-private.h"
+#include "editor-source-map.h"
 #include "editor-source-view.h"
 #include "editor-utils-private.h"
 
@@ -907,6 +908,7 @@ editor_page_class_init (EditorPageClass *klass)
 
   g_type_ensure (EDITOR_TYPE_INFO_BAR);
   g_type_ensure (EDITOR_TYPE_SEARCH_BAR);
+  g_type_ensure (EDITOR_TYPE_SOURCE_MAP);
   g_type_ensure (EDITOR_TYPE_SOURCE_VIEW);
 }
 

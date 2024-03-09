@@ -31,7 +31,7 @@ if not get_option('buildtype').startswith('debug')
 endif
 # Check dependencies
 glib_req_version = '2.73'
-gtk_req_version = '4.10'
+gtk_req_version = '4.12'
 gtksourceview_req_version = '5.10.0'
 enchant_req_version = '2.2.0'
 
