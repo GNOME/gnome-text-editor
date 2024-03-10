@@ -21,56 +21,166 @@
 
 #include "config.h"
 
+#include <gtksourceview/gtksource.h>
+
 #include "editor-source-map.h"
 
 struct _EditorSourceMap
 {
-  GtkSourceMap parent_instance;
+  GtkWidget     parent_instance;
+  GtkSourceMap *map;
+  GdkRGBA       background;
 };
 
-G_DEFINE_FINAL_TYPE (EditorSourceMap, editor_source_map, GTK_SOURCE_TYPE_MAP)
+enum {
+  PROP_0,
+  PROP_VIEW,
+  PROP_BACKGROUND,
+  N_PROPS
+};
+
+G_DEFINE_FINAL_TYPE (EditorSourceMap, editor_source_map, GTK_TYPE_WIDGET)
+
+static GParamSpec *properties[N_PROPS];
+
+static void
+editor_source_map_set_background (EditorSourceMap *self,
+                                  const GdkRGBA   *background)
+{
+  static const GdkRGBA transparent;
+
+  g_assert (EDITOR_IS_SOURCE_MAP (self));
+
+  if (background == NULL)
+    background = &transparent;
+
+  if (!gdk_rgba_equal (&self->background, background))
+    {
+      self->background = *background;
+      gtk_widget_queue_draw (GTK_WIDGET (self));
+      g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_BACKGROUND]);
+    }
+}
 
 static void
 editor_source_map_snapshot (GtkWidget   *widget,
                             GtkSnapshot *snapshot)
 {
-  GdkSurface *surface;
-  GtkRoot *root;
+  EditorSourceMap *self = (EditorSourceMap *)widget;
 
-  g_assert (EDITOR_IS_SOURCE_MAP (widget));
+  g_assert (GTK_IS_WIDGET (widget));
   g_assert (GTK_IS_SNAPSHOT (snapshot));
 
-  /* Try to clip the outer edge on fractional scaling so that we don't
-   * end up damaging the shadows causing additonal draw/blends.
-   *
-   * Ideally, GTK would handle this for us by having shadows cached
-   * but that is not the case (yet) on NGL/Vulkan.
-   *
-   * This helps avoid a number of frame dropouts.
-   */
-
-  if ((root = gtk_widget_get_root (widget)) &&
-      GTK_IS_WINDOW (root) &&
-      !gtk_window_is_maximized (GTK_WINDOW (root)) &&
-      (surface = gtk_native_get_surface (GTK_NATIVE (root))) &&
-      (double)gdk_surface_get_scale (surface) != gdk_surface_get_scale_factor (surface))
+  if (self->background.alpha > 0)
     {
-      graphene_rect_t rect;
-      int w = gtk_widget_get_width (widget);
-      int h = gtk_widget_get_height (widget);
+      GtkStyleContext *style_context;
+      GtkBorder padding;
 
-      if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL)
-        rect = GRAPHENE_RECT_INIT (1, 1, w-1, h-2);
-      else
-        rect = GRAPHENE_RECT_INIT (0, 1, w-1, h-2);
+      G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+      style_context = gtk_widget_get_style_context (widget);
+      gtk_style_context_get_padding (style_context, &padding);
+      G_GNUC_END_IGNORE_DEPRECATIONS
 
-      gtk_snapshot_push_clip (snapshot, &rect);
-      GTK_WIDGET_CLASS (editor_source_map_parent_class)->snapshot (widget, snapshot);
-      gtk_snapshot_pop (snapshot);
+      gtk_snapshot_append_color (snapshot,
+                                 &self->background,
+                                 &GRAPHENE_RECT_INIT (-padding.left,
+                                                      0,
+                                                      padding.left + gtk_widget_get_width (widget) + padding.right,
+                                                      gtk_widget_get_height (widget)));
     }
-  else
+
+  GTK_WIDGET_CLASS (editor_source_map_parent_class)->snapshot (widget, snapshot);
+}
+
+static gboolean
+style_scheme_to_background (GBinding     *binding,
+                            const GValue *from,
+                            GValue       *to,
+                            gpointer      user_data)
+{
+  GtkSourceStyleScheme *scheme = g_value_get_object (from);
+
+  if (scheme)
     {
-      GTK_WIDGET_CLASS (editor_source_map_parent_class)->snapshot (widget, snapshot);
+      GtkSourceStyle *style = gtk_source_style_scheme_get_style (scheme, "text");
+      g_autofree char *bg = NULL;
+      GdkRGBA rgba = {0};
+
+      g_object_get (style, "background", &bg, NULL);
+
+      if (bg)
+        gdk_rgba_parse (&rgba, bg);
+
+      g_value_set_boxed (to, &rgba);
+    }
+
+  return TRUE;
+}
+
+static void
+editor_source_map_dispose (GObject *object)
+{
+  EditorSourceMap *self = (EditorSourceMap *)object;
+
+  g_clear_pointer ((GtkWidget **)&self->map, gtk_widget_unparent);
+
+  G_OBJECT_CLASS (editor_source_map_parent_class)->dispose (object);
+}
+
+static void
+editor_source_map_get_property (GObject    *object,
+                                guint       prop_id,
+                                GValue     *value,
+                                GParamSpec *pspec)
+{
+  EditorSourceMap *self = EDITOR_SOURCE_MAP (object);
+
+  switch (prop_id)
+    {
+    case PROP_BACKGROUND:
+      g_value_set_boxed (value, &self->background);
+      break;
+
+    case PROP_VIEW:
+      g_value_set_object (value, gtk_source_map_get_view (self->map));
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+    }
+}
+
+static void
+editor_source_map_set_property (GObject      *object,
+                                guint         prop_id,
+                                const GValue *value,
+                                GParamSpec   *pspec)
+{
+  EditorSourceMap *self = EDITOR_SOURCE_MAP (object);
+
+  switch (prop_id)
+    {
+    case PROP_BACKGROUND:
+      editor_source_map_set_background (self, g_value_get_boxed (value));
+      break;
+
+    case PROP_VIEW:
+      {
+        GtkSourceView *view = g_value_get_object (value);
+        GtkTextBuffer *buffer;
+
+        gtk_source_map_set_view (self->map, view);
+
+        if ((buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view))))
+          g_object_bind_property_full (buffer, "style-scheme",
+                                       self, "background",
+                                       G_BINDING_SYNC_CREATE,
+                                       style_scheme_to_background, NULL, NULL, NULL);
+        break;
+      }
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
     }
 }
 
@@ -78,11 +188,34 @@ static void
 editor_source_map_class_init (EditorSourceMapClass *klass)
 {
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+  GObjectClass *object_class = G_OBJECT_CLASS (klass);
+
+  object_class->dispose = editor_source_map_dispose;
+  object_class->get_property = editor_source_map_get_property;
+  object_class->set_property = editor_source_map_set_property;
 
   widget_class->snapshot = editor_source_map_snapshot;
+
+  properties[PROP_BACKGROUND] =
+    g_param_spec_boxed ("background", NULL, NULL,
+                        GDK_TYPE_RGBA,
+                        (G_PARAM_READWRITE | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_STRINGS));
+
+  properties[PROP_VIEW] =
+    g_param_spec_object ("view", NULL, NULL,
+                         GTK_SOURCE_TYPE_VIEW,
+                         (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+
+  g_object_class_install_properties (object_class, N_PROPS, properties);
+
+  gtk_widget_class_set_css_name (widget_class, "EditorSourceMap");
+  gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
+  gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-source-map.ui");
+  gtk_widget_class_bind_template_child (widget_class, EditorSourceMap, map);
 }
 
 static void
 editor_source_map_init (EditorSourceMap *self)
 {
+  gtk_widget_init_template (GTK_WIDGET (self));
 }

@@ -114,25 +114,30 @@ window.org-gnome-TextEditor page .searchbar button.flat.circular {
   padding: 3px;
 }
 
-textview.GtkSourceMap slider {
+EditorSourceMap {
+  padding-left: 13px;
+  padding-right: 13px;
 }
-
-textview.GtkSourceMap {
+EditorSourceMap:dir(ltr) {
+  border-left: 1px solid alpha(@borders, .3);
+}
+EditorSourceMap:dir(rtl) {
+  border-right: 1px solid alpha(@borders, .3);
+}
+EditorSourceMap textview.GtkSourceMap {
+  background: transparent;
   font-family: BuilderBlocks;
   font-size: 1.75pt;
   line-height: 5px;
-  /* on macOS this would need to be 1 0 2 0 likely due to how
-   * CoreText is being used. It just looks off. Anyway, maybe
-   * someday when we have media-query we can fix that.
-   */
   margin: 0;
 }
-textview.GtkSourceMap:dir(ltr) {
-  border-left: 1px solid @borders;
+EditorSourceMap textview.GtkSourceMap slider {
+  padding-left: 13px;
+  padding-right: 13px;
+  margin-left: -13px;
+  margin-right: -13px;
 }
-textview.GtkSourceMap:dir(rtl) {
-  border-right: 1px solid @borders;
-}
+
 
 box.statusbar {
   font-family: monospace;
