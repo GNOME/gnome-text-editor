@@ -118,6 +118,23 @@ style_scheme_to_background (GBinding     *binding,
 }
 
 static void
+update_buffer (EditorSourceMap *self,
+               GParamSpec      *pspec,
+               GtkSourceView   *view)
+{
+  GtkTextBuffer *buffer;
+
+  g_assert (EDITOR_IS_SOURCE_MAP (self));
+  g_assert (GTK_SOURCE_IS_VIEW (view));
+
+  if ((buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view))))
+    g_object_bind_property_full (buffer, "style-scheme",
+                                 self, "background",
+                                 G_BINDING_SYNC_CREATE,
+                                 style_scheme_to_background, NULL, NULL, NULL);
+}
+
+static void
 editor_source_map_dispose (GObject *object)
 {
   EditorSourceMap *self = (EditorSourceMap *)object;
@@ -167,15 +184,19 @@ editor_source_map_set_property (GObject      *object,
     case PROP_VIEW:
       {
         GtkSourceView *view = g_value_get_object (value);
-        GtkTextBuffer *buffer;
 
         gtk_source_map_set_view (self->map, view);
 
-        if ((buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view))))
-          g_object_bind_property_full (buffer, "style-scheme",
-                                       self, "background",
-                                       G_BINDING_SYNC_CREATE,
-                                       style_scheme_to_background, NULL, NULL, NULL);
+        if (view != NULL)
+          {
+            g_signal_connect_object (view,
+                                     "notify::buffer",
+                                     G_CALLBACK (update_buffer),
+                                     self,
+                                     G_CONNECT_SWAPPED);
+            update_buffer (self, NULL, view);
+          }
+
         break;
       }
 
