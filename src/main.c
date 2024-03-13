@@ -87,6 +87,15 @@ main (int   argc,
   gboolean exit_after_startup = FALSE;
   int ret;
 
+  {
+    /* For GNOME 46, we are disablign ngl/fractional-scaling at least until
+     * GTK 4.14.1 is out or when text rendering performance is a bit faster.
+     */
+    g_setenv ("GSK_RENDERER", "gl", FALSE);
+    if (g_strcmp0 (g_getenv ("GSK_RENDERER"), "gl") == 0)
+      g_setenv ("GDK_DEBUG", "gl-no-fractional", FALSE);
+  }
+
   bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
