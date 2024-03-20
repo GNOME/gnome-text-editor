@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/iss"
 "ues\n"
-"POT-Creation-Date: 2024-01-31 18:17+0000\n"
-"PO-Revision-Date: 2024-02-13 20:59+0200\n"
+"POT-Creation-Date: 2024-03-19 21:33+0000\n"
+"PO-Revision-Date: 2024-03-20 08:51+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -29,7 +29,7 @@ msgstr "Проєкт GNOME"
 #: data/org.gnome.TextEditor.appdata.xml.in.in:12
 #: data/org.gnome.TextEditor.desktop.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:9
-#: src/editor-application-actions.c:199 src/editor-window.c:1340
+#: src/editor-application-actions.c:199 src/editor-window.c:1314
 msgid "Text Editor"
 msgstr "Текстовий редактор"
 
@@ -54,7 +54,6 @@ msgid "View and edit text files"
 msgstr "Перегляд і редагування текстових файлів"
 
 #: data/org.gnome.TextEditor.desktop.in.in:20
-#| msgid "_New Window"
 msgid "New Window"
 msgstr "Нове вікно"
 
@@ -83,8 +82,10 @@ msgid "Indentation Style"
 msgstr "Стиль відступів"
 
 #: data/org.gnome.TextEditor.gschema.xml:36
+#| msgid ""
+#| "If the editor should insert multiple spaces characters instead of tabs."
 msgid ""
-"If the editor should insert multiple spaces characters instead of tabs."
+"Whether the editor should insert multiple spaces characters instead of tabs."
 msgstr ""
 "Чи слід редактору вставляти декілька пробілів замість символів табуляції."
 
@@ -122,7 +123,8 @@ msgid "Show Line Numbers"
 msgstr "Показувати номери рядків"
 
 #: data/org.gnome.TextEditor.gschema.xml:58
-msgid "If line numbers should be displayed next to each line."
+#| msgid "If line numbers should be displayed next to each line."
+msgid "Whether line numbers should be displayed next to each line."
 msgstr "Чи слід показувати поряд із кожним рядком його номер."
 
 #: data/org.gnome.TextEditor.gschema.xml:62
@@ -130,7 +132,8 @@ msgid "Show Right Margin"
 msgstr "Показувати праве поле"
 
 #: data/org.gnome.TextEditor.gschema.xml:63
-msgid "If a margin line should be displayed on the right of the editor."
+#| msgid "If a margin line should be displayed on the right of the editor."
+msgid "Whether a margin line should be displayed on the right of the editor."
 msgstr "Чи слід показувати лінію поля у правій частині редактора."
 
 #: data/org.gnome.TextEditor.gschema.xml:68
@@ -175,7 +178,8 @@ msgid "Text Wrapping"
 msgstr "Перенесення тексту"
 
 #: data/org.gnome.TextEditor.gschema.xml:89
-msgid "If text should be wrapped."
+#| msgid "If text should be wrapped."
+msgid "Whether text should be wrapped."
 msgstr "Чи слід переносити рядки тексту."
 
 #: data/org.gnome.TextEditor.gschema.xml:93
@@ -183,7 +187,8 @@ msgid "Use System Font"
 msgstr "Використовувати системний шрифт"
 
 #: data/org.gnome.TextEditor.gschema.xml:94
-msgid "If the default system monospace font should be used."
+#| msgid "If the default system monospace font should be used."
+msgid "Whether the default system monospace font should be used."
 msgstr "Чи слід типово використовувати загальносистемний моноширинний шрифт."
 
 #: data/org.gnome.TextEditor.gschema.xml:98
@@ -211,8 +216,11 @@ msgid "Discover File Settings"
 msgstr "Визначати параметри файла"
 
 #: data/org.gnome.TextEditor.gschema.xml:109
+#| msgid ""
+#| "If enabled then Text Editor will try to discover file settings from "
+#| "modelines, editorconfig, or per-language defaults."
 msgid ""
-"If enabled then Text Editor will try to discover file settings from "
+"If enabled, then Text Editor will try to discover file settings from "
 "modelines, editorconfig, or per-language defaults."
 msgstr ""
 "Якщо увімкнено, «Текстовий редактор» намагатиметься визначити параметри "
@@ -234,7 +242,8 @@ msgid "Restore session"
 msgstr "Відновлювати сеанс"
 
 #: data/org.gnome.TextEditor.gschema.xml:119
-msgid "When Text Editor is run, restore the previous session."
+#| msgid "When Text Editor is run, restore the previous session."
+msgid "When Text Editor is running, restore the previous session."
 msgstr "Після запуску «Текстового редактора» відновити попередній сеанс."
 
 #: data/org.gnome.TextEditor.gschema.xml:123
@@ -355,7 +364,7 @@ msgstr "Показати дані щодо версії і завершити р
 msgid "[Read-Only]"
 msgstr "[Лише читання]"
 
-#: src/editor-document.c:2419 src/editor-page.c:1065
+#: src/editor-document.c:2419 src/editor-page.c:1067
 #: src/editor-sidebar-item.c:511
 msgid "New Document"
 msgstr "Новий документ"
@@ -433,12 +442,11 @@ msgstr "_Повторити"
 msgid "Open As _Administrator"
 msgstr "Відкрити від імені _адміністратора"
 
-#: src/editor-language-dialog.ui:6 src/editor-window.c:195
+#: src/editor-language-dialog.ui:6 src/editor-window.c:191
 msgid "Document Type"
 msgstr "Тип документа"
 
 #: src/editor-language-dialog.ui:28
-#| msgid "Search documents"
 msgid "Search document types"
 msgstr "Шукати за типом документа"
 
@@ -466,96 +474,96 @@ msgstr "Немає недавніх документів"
 msgid "No Results Found"
 msgstr "Нічого не знайдено"
 
-#: src/editor-page.c:1091 src/editor-properties-dialog.c:107
+#: src/editor-page.c:1093 src/editor-properties-dialog.c:107
 #: src/editor-sidebar-item.c:105
 msgid "Draft"
 msgstr "Чернетка"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1103
+#: src/editor-page.c:1105
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (адміністратор)"
 
-#: src/editor-page.c:1113 src/editor-sidebar-item.c:113
+#: src/editor-page.c:1115 src/editor-sidebar-item.c:113
 msgid "Document Portal"
 msgstr "Портал документів"
 
-#: src/editor-page.c:1159
+#: src/editor-page.c:1161
 msgid "Failed to save document"
 msgstr "Не вдалося зберегти документ"
 
-#: src/editor-page.c:1160 src/editor-window.ui:358
+#: src/editor-page.c:1162 src/editor-window.ui:358
 msgid "_Close"
 msgstr "З_акрити"
 
-#: src/editor-page.c:1246
+#: src/editor-page.c:1248
 msgid "Save As"
 msgstr "Зберегти як"
 
-#: src/editor-page.c:1249
+#: src/editor-page.c:1251
 msgid "Save"
 msgstr "Зберегти"
 
-#: src/editor-page.c:1250 src/editor-window-actions.c:353
+#: src/editor-page.c:1252 src/editor-window-actions.c:353
 msgid "Cancel"
 msgstr "Скасувати"
 
-#: src/editor-page.c:1406
+#: src/editor-page.c:1408
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Рд %u, Поз %u"
 
-#: src/editor-page.ui:99
+#: src/editor-page.ui:95
 msgid "Go to Line"
 msgstr "Перейти до рядка"
 
-#: src/editor-page.ui:117
+#: src/editor-page.ui:113
 msgid "Go"
 msgstr "Перейти"
 
-#: src/editor-page.ui:154
+#: src/editor-page.ui:150
 msgid "Indentation"
 msgstr "Відступ"
 
-#: src/editor-page.ui:157 src/editor-window.ui:278
+#: src/editor-page.ui:153 src/editor-window.ui:278
 msgid "_Automatic Indentation"
 msgstr "_Автоматичні відступи"
 
 #. Translators: this is a tab character, not a browser tab
-#: src/editor-page.ui:163 src/editor-window.ui:282
+#: src/editor-page.ui:159 src/editor-window.ui:282
 msgid "_Tabs"
 msgstr "_Табуляції"
 
-#: src/editor-page.ui:168 src/editor-window.ui:287
+#: src/editor-page.ui:164 src/editor-window.ui:287
 msgid "_Spaces"
 msgstr "_Пробіли"
 
-#: src/editor-page.ui:175 src/editor-window.ui:292
+#: src/editor-page.ui:171 src/editor-window.ui:292
 msgid "Spaces _Per Tab"
 msgstr "Пробілів _на табуляцію"
 
-#: src/editor-page.ui:177 src/editor-page.ui:205
+#: src/editor-page.ui:173 src/editor-page.ui:201
 msgid "2"
 msgstr "2"
 
-#: src/editor-page.ui:182 src/editor-page.ui:210
+#: src/editor-page.ui:178 src/editor-page.ui:206
 msgid "4"
 msgstr "4"
 
-#: src/editor-page.ui:187 src/editor-page.ui:215
+#: src/editor-page.ui:183 src/editor-page.ui:211
 msgid "6"
 msgstr "6"
 
-#: src/editor-page.ui:192 src/editor-page.ui:220
+#: src/editor-page.ui:188 src/editor-page.ui:216
 msgid "8"
 msgstr "8"
 
-#: src/editor-page.ui:198
+#: src/editor-page.ui:194
 msgid "Spaces Per Indent"
 msgstr "Пробілів на відступ"
 
-#: src/editor-page.ui:200
+#: src/editor-page.ui:196
 msgid "Use Tab Size"
 msgstr "Використати розмір табуляції"
 
@@ -658,7 +666,6 @@ msgid "Location"
 msgstr "Розташування"
 
 #: src/editor-properties-dialog.ui:75
-#| msgid "Open File"
 msgid "Open in File Manager"
 msgstr "Відкрити у програмі для керування файлами"
 
@@ -905,66 +912,66 @@ msgstr "усі файли"
 msgid "Text Files"
 msgstr "текстові файли"
 
-#: src/editor-window.c:207
+#: src/editor-window.c:203
 #, c-format
 msgid "Document Type: %s"
 msgstr "Тип документа: %s"
 
-#: src/editor-window.c:509
+#: src/editor-window.c:505
 msgid "Zoom In"
 msgstr "Збільшити"
 
-#: src/editor-window.c:512
+#: src/editor-window.c:508
 msgid "Zoom in"
 msgstr "Збільшити"
 
-#: src/editor-window.c:522
+#: src/editor-window.c:518
 msgid "Zoom Out"
 msgstr "Зменшити"
 
-#: src/editor-window.c:525
+#: src/editor-window.c:521
 msgid "Zoom out"
 msgstr "Зменшити"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:782
+#: src/editor-window.c:757
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) – Текстовий редактор"
 
-#: src/editor-window.c:1225
+#: src/editor-window.c:1199
 msgid "There are unsaved documents"
 msgstr "Є незбережені документи"
 
-#: src/editor-window.ui:82
+#: src/editor-window.ui:83
 msgid "_Open"
 msgstr "_Відкрити"
 
-#: src/editor-window.ui:84
+#: src/editor-window.ui:85
 msgid "Recently Used Documents"
 msgstr "Нещодавно використані документи"
 
-#: src/editor-window.ui:96
+#: src/editor-window.ui:97
 msgid "New Tab"
 msgstr "Створити вкладку"
 
-#: src/editor-window.ui:98
+#: src/editor-window.ui:99
 msgid "New tab"
 msgstr "Створити вкладку"
 
-#: src/editor-window.ui:124
+#: src/editor-window.ui:125
 msgid "View Options"
 msgstr "Параметри перегляду"
 
-#: src/editor-window.ui:128
+#: src/editor-window.ui:129
 msgid "View"
 msgstr "Перегляд"
 
-#: src/editor-window.ui:134
+#: src/editor-window.ui:135
 msgid "Main Menu"
 msgstr "Головне меню"
 
-#: src/editor-window.ui:138
+#: src/editor-window.ui:139
 msgid "Main menu"
 msgstr "Головне меню"
 
