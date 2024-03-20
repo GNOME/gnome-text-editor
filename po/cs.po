@@ -7,10 +7,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2023-08-04 17:20+0000\n"
-"PO-Revision-Date: 2023-08-15 20:52+0200\n"
+"POT-Creation-Date: 2024-02-20 02:07+0000\n"
+"PO-Revision-Date: 2024-03-20 14:56+0100\n"
 "Last-Translator: Daniel Rusek <mail@asciiwolf.com>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:6
 #: src/editor-application-actions.c:201
@@ -28,7 +28,7 @@ msgstr "Projekt GNOME"
 #: data/org.gnome.TextEditor.appdata.xml.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:9
-#: src/editor-application-actions.c:199 src/editor-window.c:1296
+#: src/editor-application-actions.c:199 src/editor-window.c:1314
 msgid "Text Editor"
 msgstr "Textový editor"
 
@@ -223,7 +223,7 @@ msgstr "Obnovovat sezení"
 
 #: data/org.gnome.TextEditor.gschema.xml:119
 msgid "When Text Editor is run, restore the previous session."
-msgstr "Zda při spuštění Textového editoru obnovit stav předchozí sezení."
+msgstr "Zda při spuštění Textového editoru obnovit stav předchozího sezení."
 
 #: data/org.gnome.TextEditor.gschema.xml:123
 msgid "Recolor Window"
@@ -333,12 +333,12 @@ msgstr ""
 msgid "Print version information and exit"
 msgstr "Vypsat informace o verzi a skončit"
 
-#: src/editor-document.c:2066
+#: src/editor-document.c:2103
 msgid "[Read-Only]"
 msgstr "[jen ke čtení]"
 
-#: src/editor-document.c:2364 src/editor-page.c:1038
-#: src/editor-sidebar-item.c:497
+#: src/editor-document.c:2401 src/editor-page.c:1065
+#: src/editor-sidebar-item.c:511
 msgid "New Document"
 msgstr "Nový dokument"
 
@@ -443,42 +443,42 @@ msgstr "Žádné nedávné dokumenty"
 msgid "No Results Found"
 msgstr "Nebyly nalezeny žádné výsledky"
 
-#: src/editor-page.c:1064 src/editor-properties-dialog.c:107
-#: src/editor-sidebar-item.c:101
+#: src/editor-page.c:1091 src/editor-properties-dialog.c:107
+#: src/editor-sidebar-item.c:105
 msgid "Draft"
 msgstr "Koncept"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1076
+#: src/editor-page.c:1103
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (správce)"
 
-#: src/editor-page.c:1086 src/editor-sidebar-item.c:109
+#: src/editor-page.c:1113 src/editor-sidebar-item.c:113
 msgid "Document Portal"
 msgstr "Portál dokumentů"
 
-#: src/editor-page.c:1133
+#: src/editor-page.c:1159
 msgid "Failed to save document"
 msgstr "Selhalo uložení dokumentu"
 
-#: src/editor-page.c:1134 src/editor-window.ui:357
+#: src/editor-page.c:1160 src/editor-window.ui:357
 msgid "_Close"
 msgstr "_Zavřít"
 
-#: src/editor-page.c:1218
+#: src/editor-page.c:1246
 msgid "Save As"
 msgstr "Uložení jako"
 
-#: src/editor-page.c:1221
+#: src/editor-page.c:1249
 msgid "Save"
 msgstr "Uložit"
 
-#: src/editor-page.c:1222 src/editor-window-actions.c:352
+#: src/editor-page.c:1250 src/editor-window-actions.c:353
 msgid "Cancel"
 msgstr "Zrušit"
 
-#: src/editor-page.c:1371
+#: src/editor-page.c:1406
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Ř. %u, Sl. %u"
@@ -859,19 +859,19 @@ msgstr "Neuložené změny budou nenávratně ztraceny."
 msgid "Discard Changes to “%s”?"
 msgstr "Zahodit změny v „%s“?"
 
-#: src/editor-window-actions.c:348
+#: src/editor-window-actions.c:349
 msgid "Open File"
 msgstr "Otevření souboru"
 
-#: src/editor-window-actions.c:351
+#: src/editor-window-actions.c:352
 msgid "Open"
 msgstr "Otevřít"
 
-#: src/editor-window-actions.c:376
+#: src/editor-window-actions.c:377
 msgid "All Files"
 msgstr "Všechny soubory"
 
-#: src/editor-window-actions.c:381
+#: src/editor-window-actions.c:382
 msgid "Text Files"
 msgstr "Textové soubory"
 
@@ -880,29 +880,29 @@ msgstr "Textové soubory"
 msgid "Document Type: %s"
 msgstr "Typ dokumentu: %s"
 
-#: src/editor-window.c:507
+#: src/editor-window.c:509
 msgid "Zoom In"
 msgstr "Přiblížit"
 
-#: src/editor-window.c:510
+#: src/editor-window.c:512
 msgid "Zoom in"
 msgstr "Přiblížit"
 
-#: src/editor-window.c:520
+#: src/editor-window.c:522
 msgid "Zoom Out"
 msgstr "Oddálit"
 
-#: src/editor-window.c:523
+#: src/editor-window.c:525
 msgid "Zoom out"
 msgstr "Oddálit"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:745
+#: src/editor-window.c:757
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) – Textový editor"
 
-#: src/editor-window.c:1184
+#: src/editor-window.c:1199
 msgid "There are unsaved documents"
 msgstr "Jsou zde neuložené dokumenty"
 
