@@ -36,11 +36,13 @@ struct _EditorPageEditorconfig
   guint           tab_width;
   guint           right_margin_position;
   guint           insert_spaces_instead_of_tabs : 1;
+  guint           implicit_trailing_newline : 1;
 
   guint           indent_width_set : 1;
   guint           tab_width_set : 1;
   guint           right_margin_position_set : 1;
   guint           insert_spaces_instead_of_tabs_set : 1;
+  guint           implicit_trailing_newline_set : 1;
 };
 
 static void
@@ -91,6 +93,11 @@ editor_page_editorconfig_reload (EditorPageEditorconfig *self)
         {
           self->indent_width = g_value_get_int (value);
           self->indent_width_set = TRUE;
+        }
+      else if (g_str_equal (key, "insert_final_newline"))
+        {
+          self->implicit_trailing_newline = g_value_get_boolean (value);
+          self->implicit_trailing_newline_set = TRUE;
         }
     }
 
@@ -163,6 +170,15 @@ editor_page_editorconfig_get_indent_width (EditorPageSettingsProvider *provider,
 }
 
 static gboolean
+editor_page_editorconfig_get_implicit_trailing_newline (EditorPageSettingsProvider *provider,
+                                                        gboolean                   *implicit_trailing_newline)
+{
+  EditorPageEditorconfig *self = EDITOR_PAGE_EDITORCONFIG (provider);
+  *implicit_trailing_newline = self->implicit_trailing_newline;
+  return self->implicit_trailing_newline_set;
+}
+
+static gboolean
 editor_page_editorconfig_get_insert_spaces_instead_of_tabs (EditorPageSettingsProvider *provider,
                                                             gboolean                   *insert_spaces_instead_of_tabs)
 {
@@ -179,6 +195,7 @@ page_settings_provider_iface_init (EditorPageSettingsProviderInterface *iface)
   iface->get_tab_width = editor_page_editorconfig_get_tab_width;
   iface->get_right_margin_position = editor_page_editorconfig_get_right_margin_position;
   iface->get_indent_width = editor_page_editorconfig_get_indent_width;
+  iface->get_implicit_trailing_newline = editor_page_editorconfig_get_implicit_trailing_newline;
 }
 
 G_DEFINE_TYPE_WITH_CODE (EditorPageEditorconfig, editor_page_editorconfig, G_TYPE_OBJECT,

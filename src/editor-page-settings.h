@@ -45,6 +45,7 @@ gboolean            editor_page_settings_get_wrap_text                     (Edit
 guint               editor_page_settings_get_tab_width                     (EditorPageSettings *self);
 int                 editor_page_settings_get_indent_width                  (EditorPageSettings *self);
 gboolean            editor_page_settings_get_highlight_current_line        (EditorPageSettings *self);
+gboolean            editor_page_settings_get_implicit_trailing_newline     (EditorPageSettings *self);
 EditorIndentStyle   editor_page_settings_get_indent_style                  (EditorPageSettings *self);
 
 G_END_DECLS

@@ -445,6 +445,9 @@ editor_page_constructed (GObject *object)
   g_binding_group_bind (self->settings_bindings, "insert-spaces-instead-of-tabs",
                         self->view, "insert-spaces-instead-of-tabs",
                         G_BINDING_SYNC_CREATE);
+  g_binding_group_bind (self->settings_bindings, "implicit-trailing-newline",
+                        self->document, "implicit-trailing-newline",
+                        G_BINDING_SYNC_CREATE);
   g_binding_group_bind (self->settings_bindings, "right-margin-position",
                         self->view, "right-margin-position",
                         G_BINDING_SYNC_CREATE);

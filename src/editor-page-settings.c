@@ -50,6 +50,7 @@ struct _EditorPageSettings
 
   guint highlight_current_line : 1;
   guint highlight_matching_brackets : 1;
+  guint implicit_trailing_newline : 1;
   guint insert_spaces_instead_of_tabs : 1;
   guint show_line_numbers : 1;
   guint show_grid : 1;
@@ -67,6 +68,7 @@ struct _EditorPageSettings
   guint indent_width_set : 1;
   guint highlight_current_line_set : 1;
   guint highlight_matching_brackets_set : 1;
+  guint implicit_trailing_newline_set : 1;
   guint insert_spaces_instead_of_tabs_set : 1;
   guint show_line_numbers_set : 1;
   guint show_grid_set : 1;
@@ -85,6 +87,7 @@ enum {
   PROP_DOCUMENT,
   PROP_HIGHLIGHT_CURRENT_LINE,
   PROP_HIGHLIGHT_MATCHING_BRACKETS,
+  PROP_IMPLICIT_TRAILING_NEWLINE,
   PROP_INDENT_WIDTH,
   PROP_INDENT_STYLE,
   PROP_INSERT_SPACES_INSTEAD_OF_TABS,
@@ -172,6 +175,7 @@ editor_page_settings_update (EditorPageSettings *self)
   UPDATE_SETTING (gboolean, use_system_font, USE_SYSTEM_FONT, cmp_boolean, (void), (gboolean));
   UPDATE_SETTING (gboolean, wrap_text, WRAP_TEXT, cmp_boolean, (void), (gboolean));
   UPDATE_SETTING (gboolean, auto_indent, AUTO_INDENT, cmp_boolean, (void), (gboolean));
+  UPDATE_SETTING (gboolean, implicit_trailing_newline, IMPLICIT_TRAILING_NEWLINE, cmp_boolean, (void), (gboolean));
   UPDATE_SETTING (guint, tab_width, TAB_WIDTH, cmp_uint, (void), (guint));
   UPDATE_SETTING (int, indent_width, INDENT_WIDTH, cmp_int, (void), (int));
   UPDATE_SETTING (guint, right_margin_position, RIGHT_MARGIN_POSITION, cmp_uint, (void), (guint));
@@ -345,6 +349,10 @@ editor_page_settings_get_property (GObject    *object,
       g_value_set_uint (value, editor_page_settings_get_tab_width (self));
       break;
 
+    case PROP_IMPLICIT_TRAILING_NEWLINE:
+      g_value_set_boolean (value, editor_page_settings_get_implicit_trailing_newline (self));
+      break;
+
     case PROP_INDENT_WIDTH:
       g_value_set_int (value, editor_page_settings_get_indent_width (self));
       break;
@@ -422,6 +430,12 @@ editor_page_settings_set_property (GObject      *object,
       self->insert_spaces_instead_of_tabs = g_value_get_boolean (value);
       self->insert_spaces_instead_of_tabs_set = TRUE;
       g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_INDENT_STYLE]);
+      break;
+
+    case PROP_IMPLICIT_TRAILING_NEWLINE:
+      self->implicit_trailing_newline = g_value_get_boolean (value);
+      self->implicit_trailing_newline_set = TRUE;
+      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_IMPLICIT_TRAILING_NEWLINE]);
       break;
 
     case PROP_INDENT_STYLE:
@@ -580,6 +594,11 @@ editor_page_settings_class_init (EditorPageSettingsClass *klass)
                        "The tab width to use",
                        1, 32, 8,
                        (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+
+  properties [PROP_IMPLICIT_TRAILING_NEWLINE] =
+    g_param_spec_boolean ("implicit-trailing-newline", NULL, NULL,
+                          FALSE,
+                          (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
   properties [PROP_INDENT_WIDTH] =
     g_param_spec_int ("indent-width",
@@ -741,6 +760,14 @@ editor_page_settings_get_tab_width (EditorPageSettings *self)
   g_return_val_if_fail (EDITOR_IS_PAGE_SETTINGS (self), 0);
 
   return self->tab_width;
+}
+
+gboolean
+editor_page_settings_get_implicit_trailing_newline (EditorPageSettings *self)
+{
+  g_return_val_if_fail (EDITOR_IS_PAGE_SETTINGS (self), FALSE);
+
+  return self->implicit_trailing_newline;
 }
 
 int
