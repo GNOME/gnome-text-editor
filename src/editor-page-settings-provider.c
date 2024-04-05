@@ -431,3 +431,25 @@ editor_page_settings_provider_get_highlight_matching_brackets (EditorPageSetting
 
   return FALSE;
 }
+
+/**
+ * editor_page_settings_provider_get_implicit_trailing_newline:
+ * @self: a #EditorPageSettingsProvider
+ * @implicit_trailing_newline: (out) (optional): a location to store the setting
+ *
+ * Returns: %TRUE if @implicit_trailing_newline was set by the provider.
+ */
+gboolean
+editor_page_settings_provider_get_implicit_trailing_newline (EditorPageSettingsProvider *self,
+                                                             gboolean                   *implicit_trailing_newline)
+{
+  g_return_val_if_fail (EDITOR_IS_PAGE_SETTINGS_PROVIDER (self), FALSE);
+
+  if (implicit_trailing_newline != NULL)
+    *implicit_trailing_newline = FALSE;
+
+  if (EDITOR_PAGE_SETTINGS_PROVIDER_GET_IFACE (self)->get_implicit_trailing_newline)
+    return EDITOR_PAGE_SETTINGS_PROVIDER_GET_IFACE (self)->get_implicit_trailing_newline (self, implicit_trailing_newline);
+
+  return FALSE;
+}

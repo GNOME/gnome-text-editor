@@ -67,6 +67,8 @@ struct _EditorPageSettingsProviderInterface
                                                   int                        *indent_width);
   gboolean  (*get_highlight_matching_brackets)   (EditorPageSettingsProvider *self,
                                                   gboolean                   *highlight_matching_brackets);
+  gboolean  (*get_implicit_trailing_newline)     (EditorPageSettingsProvider *self,
+                                                  gboolean                   *implicit_trailing_newline);
 };
 
 void     editor_page_settings_provider_emit_changed                      (EditorPageSettingsProvider  *self);
@@ -96,6 +98,8 @@ gboolean editor_page_settings_provider_get_wrap_text                     (Editor
                                                                           gboolean                    *wrap_text);
 gboolean editor_page_settings_provider_get_tab_width                     (EditorPageSettingsProvider  *self,
                                                                           guint                       *tab_width);
+gboolean editor_page_settings_provider_get_implicit_trailing_newline     (EditorPageSettingsProvider  *self,
+                                                                          gboolean                    *implicit_trailing_newline);
 gboolean editor_page_settings_provider_get_indent_width                  (EditorPageSettingsProvider  *self,
                                                                           int                         *indent_width);
 gboolean editor_page_settings_provider_get_show_map                      (EditorPageSettingsProvider  *self,
