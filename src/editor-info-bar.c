@@ -223,6 +223,9 @@ editor_info_bar_set_property (GObject      *object,
           g_object_bind_property (self->document, "suggest-admin",
                                   self->access_try_admin, "visible",
                                   G_BINDING_SYNC_CREATE);
+          g_object_bind_property (self->document, "error-message",
+                                  self->access_subtitle, "label",
+                                  G_BINDING_SYNC_CREATE);
           g_object_bind_property (self->document, "had-error",
                                   self->access_infobar, "revealed",
                                   G_BINDING_SYNC_CREATE);
