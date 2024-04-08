@@ -6,15 +6,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
-"POT-Creation-Date: 2022-04-22 16:58+0000\n"
-"PO-Revision-Date: 2022-04-25 12:41-0400\n"
+"POT-Creation-Date: 2024-03-20 17:41+0000\n"
+"PO-Revision-Date: 2024-04-08 09:40+0800\n"
 "Last-Translator: Boyuan Yang <073plan@gmail.com>\n"
 "Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -86,11 +86,11 @@ msgstr "打开一个文件"
 #: C/basics-open-file.page:13
 msgid ""
 "To open a file in GNOME Text Editor use <gui style=\"button\">Open</gui> in "
-"the Headerbar and <gui>Browse Files...</gui> or the shortcut "
+"the Headerbar and <gui>Open New Document</gui> or the shortcut "
 "<keyseq><key>Ctrl</key><key>O</key></keyseq>."
 msgstr ""
 "若要在 GNOME 文本编辑器中打开文件，请使用标题栏中的 <gui style=\"button\">打"
-"开</gui> 和 <gui>浏览文件...</gui> 按钮或按快捷键 <keyseq><key>Ctrl</"
+"开</gui> 和 <gui>打开新文档</gui> 按钮或按快捷键 <keyseq><key>Ctrl</"
 "key><key>O</key></keyseq>。"
 
 #. (itstool) path: page/p
@@ -131,9 +131,9 @@ msgstr ""
 #: C/basics-open-file.page:27
 msgctxt "_"
 msgid ""
-"external ref='media/search-recent.png' md5='f57950a08e6c7159429d030eb349814f'"
+"external ref='media/search-recent.png' md5='8ddac07e5fb592e68c6208171a52d52f'"
 msgstr ""
-"external ref='media/search-recent.png' md5='f57950a08e6c7159429d030eb349814f'"
+"external ref='media/search-recent.png' md5='8ddac07e5fb592e68c6208171a52d52f'"
 
 #. (itstool) path: info/keywords
 #: C/basics-create-new-file.page:19
@@ -240,10 +240,12 @@ msgstr "按文本搜索"
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:45
 msgid ""
-"Activate the search panel via <guiseq><gui>Hamburger Menu</gui><gui>Find/"
+"Activate the search panel via <guiseq><gui>Main Menu</gui><gui>Find/"
 "Replace...</gui></guiseq> or activate it via <keyseq><key>Ctrl</key><key>F</"
 "key></keyseq>."
 msgstr ""
+"通过 <guiseq><gui>主菜单</gui><gui>查找/替换...</gui></guiseq> 或通过快捷键 "
+"<keyseq><key>Ctrl</key><key>F</key></keyseq> 激活搜索面板。"
 
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:46
@@ -271,7 +273,7 @@ msgstr "按 <key>Enter</key> 键将光标移动到当前突出显示的搜索结
 msgid ""
 "Pressing <key>Escape</key> will discard the search panel and the search "
 "result."
-msgstr "按 <key>Escape</key> 键将放弃搜索面板和搜索结果。"
+msgstr "按 <key>Escape</key> 键将丢弃搜索面板和搜索结果。"
 
 #. (itstool) path: list/title
 #: C/edit-search-and-replace.page:53
@@ -318,19 +320,20 @@ msgstr "替换文本"
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:66
 msgid ""
-"Activate the search panel via <guiseq><gui>Hamburger Menu</gui><gui>Find/"
+"Activate the search panel via <guiseq><gui>Main Menu</gui><gui>Find/"
 "Replace...</gui></guiseq> or activate it via <keyseq><key>Ctrl</key><key>H</"
 "key></keyseq>."
 msgstr ""
+"通过 <guiseq><gui>主菜单</gui><gui>查找/替换...</gui></guiseq> 或通过快捷键 "
+"<keyseq><key>Ctrl</key><key>H</key></keyseq> 激活搜索面板。"
 
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:67
 msgid ""
-"In case you opened the search panel via the <gui>Hamburger Menu</gui> you "
-"have to click the button for activating the replace functionality."
+"In case you opened the search panel via the <gui>Main Menu</gui> you have to "
+"click the button for activating the replace functionality."
 msgstr ""
-"如果您通过 <gui>Hamburger Menu</gui> 打开搜索面板，则必须单击按钮以激活替换功"
-"能。"
+"如果您通过 <gui>主菜单</gui> 打开搜索面板，则必须点击按钮以激活替换功能。"
 
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:68
@@ -365,12 +368,12 @@ msgstr "修复编辑过程中出现的错误"
 #. (itstool) path: info/keywords
 #: C/edit-undo-redo.page:20
 msgid "undo, redo, discard changes"
-msgstr "撤销、重做、放弃更改"
+msgstr "撤销、重做、丢弃更改"
 
 #. (itstool) path: page/title
 #: C/edit-undo-redo.page:23
 msgid "Undoing, redoing, and discarding changes"
-msgstr "撤销、重做或放弃更改"
+msgstr "撤销、重做或丢弃更改"
 
 #. (itstool) path: page/p
 #: C/edit-undo-redo.page:25
@@ -384,12 +387,11 @@ msgstr ""
 
 #. (itstool) path: note/p
 #: C/edit-undo-redo.page:33
-#, fuzzy
 msgid ""
 "Changes tracked for a file will be lost after closing it, or after <link "
 "xref=\"#discard_changes\">discarding changes</link>."
 msgstr ""
-"关闭文件或<link xref=\"#discard_changes\">放弃更改</link>后，跟踪的文件更改将"
+"关闭文件或<link xref=\"#discard_changes\">丢弃更改</link>后，跟踪的文件更改将"
 "会丢失。"
 
 #. (itstool) path: section/title
@@ -419,27 +421,26 @@ msgstr ""
 
 #. (itstool) path: note/p
 #: C/edit-undo-redo.page:64
-#, fuzzy
 msgid ""
 "Changes can be redone <em>only</em> if the previous editing operation was "
 "undo or redo. For example, typing text into a file directly after undoing a "
 "change will prevent redoing the last undone change."
 msgstr ""
-"如果之前的编辑操作是撤消或重做，则<em>仅</em>可以重做更改。 例如，撤消更改后"
-"直接在文件中键入文本将防止重做最后撤消的更改。"
+"<em>仅</em>当先前的编辑操作被撤消或重做时，才可以重做更改。例如，在撤消更改后"
+"直接在文件中键入文本将阻止重做上次撤消的更改。"
 
 #. (itstool) path: section/title
 #: C/edit-undo-redo.page:74
 msgid "Discarding all changes since last save"
-msgstr "放弃自上次保存后的所有更改"
+msgstr "丢弃自上次保存后的所有更改"
 
 #. (itstool) path: section/p
 #: C/edit-undo-redo.page:75
 msgid ""
-"<guiseq> <gui>Menu</gui> <gui>Discard Changes</gui> </guiseq> will "
+"<guiseq> <gui>Main Menu</gui> <gui>Discard Changes</gui> </guiseq> will "
 "permanently discard all changes made to a file since it was last saved."
 msgstr ""
-"<guiseq> <gui>菜单</gui> <gui>放弃更改</gui> </guiseq> 将永久放弃自上次保存以"
+"<guiseq> <gui>菜单</gui> <gui>丢弃更改</gui> </guiseq> 将永久丢弃自上次保存以"
 "来对文件所做的所有更改。"
 
 #. (itstool) path: p/link
