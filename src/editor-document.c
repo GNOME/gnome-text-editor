@@ -100,6 +100,7 @@ enum {
   PROP_EXTERNALLY_MODIFIED,
   PROP_FILE,
   PROP_HAD_ERROR,
+  PROP_ERROR_MESSAGE,
   PROP_LOADING,
   PROP_SPELL_CHECKER,
   PROP_SUGGEST_ADMIN,
@@ -151,9 +152,6 @@ editor_document_track_error (EditorDocument *self,
   if (error == NULL)
     {
       self->suggest_admin = FALSE;
-      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_SUGGEST_ADMIN]);
-      g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_HAD_ERROR]);
-      return;
     }
 
   if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_PERMISSION_DENIED))
@@ -161,10 +159,11 @@ editor_document_track_error (EditorDocument *self,
       if (!is_admin (self))
         {
           self->suggest_admin = TRUE;
-          g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_SUGGEST_ADMIN]);
         }
     }
 
+  g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_SUGGEST_ADMIN]);
+  g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_ERROR_MESSAGE]);
   g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_HAD_ERROR]);
 }
 
@@ -632,6 +631,11 @@ editor_document_get_property (GObject    *object,
       g_value_set_boolean (value, _editor_document_had_error (self));
       break;
 
+    case PROP_ERROR_MESSAGE:
+      if (self->last_error != NULL)
+        g_value_set_string (value, self->last_error->message);
+      break;
+
     case PROP_BUSY:
       g_value_set_boolean (value, editor_document_get_busy (self));
       break;
@@ -715,6 +719,13 @@ editor_document_class_init (EditorDocumentClass *klass)
                           "Had Error",
                           "If there was an error with the document",
                           FALSE,
+                          (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
+  properties [PROP_ERROR_MESSAGE] =
+    g_param_spec_string ("error-message",
+                          "Error Message",
+                          "Error message to be used when Had Error is set",
+                          NULL,
                           (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
   properties [PROP_BUSY] =
