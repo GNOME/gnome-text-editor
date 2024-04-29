@@ -6,36 +6,37 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2023-08-17 16:29+0000\n"
-"PO-Revision-Date: 2023-08-20 23:43+0300\n"
-"Last-Translator: Efstathios Iosifidis <iosifidis@opensuse.org>\n"
+"POT-Creation-Date: 2024-03-20 17:41+0000\n"
+"PO-Revision-Date: 2024-04-29 23:58+0300\n"
+"Last-Translator: Efstathios Iosifidis <eiosifidis@gnome.org>\n"
 "Language-Team: Greek <gnome-el-list@gnome.org>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:6
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.TextEditor.appdata.xml.in.in:7
 #: src/editor-application-actions.c:201
 msgid "The GNOME Project"
 msgstr "Το έργο GNOME"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:8
+#: data/org.gnome.TextEditor.appdata.xml.in.in:12
 #: data/org.gnome.TextEditor.desktop.in.in:8
 #: data/org.gnome.TextEditor.desktop.in.in:9
-#: src/editor-application-actions.c:199 src/editor-window.c:1296
+#: src/editor-application-actions.c:199 src/editor-window.c:1314
 msgid "Text Editor"
 msgstr "Επεξεργαστής κειμένου"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:10
+#: data/org.gnome.TextEditor.appdata.xml.in.in:14
 msgid "Edit text files"
 msgstr "Επεξεργασία αρχείων κειμένου"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:12
+#: data/org.gnome.TextEditor.appdata.xml.in.in:16
 msgid ""
 "GNOME Text Editor is a simple text editor focused on a pleasing default "
 "experience."
@@ -50,6 +51,10 @@ msgstr "γράφω;σημειωματάριο;write;notepad;"
 #: data/org.gnome.TextEditor.desktop.in.in:10
 msgid "View and edit text files"
 msgstr "Προβολή και επεξεργασία αρχείων κειμένου"
+
+#: data/org.gnome.TextEditor.desktop.in.in:20
+msgid "New Window"
+msgstr "Νέο παράθυρο"
 
 #: data/org.gnome.TextEditor.gschema.xml:16
 msgid "Auto Save Delay"
@@ -182,7 +187,7 @@ msgstr ""
 "Εάν πρέπει να χρησιμοποιηθεί η προεπιλεγμένη γραμματοσειρά monospace "
 "συστήματος."
 
-#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:59
+#: data/org.gnome.TextEditor.gschema.xml:98
 msgid "Custom Font"
 msgstr "Προσαρμοσμένη γραμματοσειρά"
 
@@ -352,12 +357,12 @@ msgstr ""
 msgid "Print version information and exit"
 msgstr "Προβολή πληροφοριών έκδοσης και έξοδος"
 
-#: src/editor-document.c:2066
+#: src/editor-document.c:2121
 msgid "[Read-Only]"
 msgstr "[Μόνο για ανάγνωση]"
 
-#: src/editor-document.c:2364 src/editor-page.c:1038
-#: src/editor-sidebar-item.c:497
+#: src/editor-document.c:2419 src/editor-page.c:1067
+#: src/editor-sidebar-item.c:511
 msgid "New Document"
 msgstr "Νέο Έγγραφο"
 
@@ -390,7 +395,7 @@ msgstr "Το αρχείο άλλαξε στον δίσκο"
 msgid "The file has been changed by another program."
 msgstr "Το αρχείο έχει αλλάξει από άλλο πρόγραμμα."
 
-#: src/editor-info-bar.c:89 src/editor-window.ui:216
+#: src/editor-info-bar.c:89 src/editor-window.ui:217
 msgid "Save _As…"
 msgstr "Αποθή_κευση ως…"
 
@@ -434,11 +439,15 @@ msgstr "_Επαναπροσπάθεια"
 msgid "Open As _Administrator"
 msgstr "Άνοιγμα ως _διαχειριστής"
 
-#: src/editor-language-dialog.ui:6 src/editor-window.c:195
+#: src/editor-language-dialog.ui:6 src/editor-window.c:191
 msgid "Document Type"
 msgstr "Τύπος εγγράφου"
 
-#: src/editor-language-dialog.ui:50
+#: src/editor-language-dialog.ui:28
+msgid "Search document types"
+msgstr "Αναζήτηση τύπων εγγράφων"
+
+#: src/editor-language-dialog.ui:51
 msgid "No Matches"
 msgstr "Καμιά αντιστοιχία"
 
@@ -451,8 +460,8 @@ msgid "Search documents"
 msgstr "Αναζήτηση εγγράφων"
 
 #: src/editor-open-popover.ui:39
-msgid "Open New Document (Ctrl+O)"
-msgstr "Άνοιγμα νέου εγγράφου (Ctrl+O)"
+msgid "Open New Document"
+msgstr "Άνοιγμα νέου εγγράφου"
 
 #: src/editor-open-popover.ui:74
 msgid "No Recent Documents"
@@ -462,96 +471,96 @@ msgstr "Κανένα πρόσφατο έγγραφο"
 msgid "No Results Found"
 msgstr "Δεν βρέθηκαν αποτελέσματα"
 
-#: src/editor-page.c:1064 src/editor-properties-dialog.c:107
-#: src/editor-sidebar-item.c:101
+#: src/editor-page.c:1093 src/editor-properties-dialog.c:107
+#: src/editor-sidebar-item.c:105
 msgid "Draft"
 msgstr "Πρόχειρο"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1076
+#: src/editor-page.c:1105
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (Διαχειριστής)"
 
-#: src/editor-page.c:1086 src/editor-sidebar-item.c:109
+#: src/editor-page.c:1115 src/editor-sidebar-item.c:113
 msgid "Document Portal"
 msgstr "Πύλη εγγράφων"
 
-#: src/editor-page.c:1133
+#: src/editor-page.c:1161
 msgid "Failed to save document"
 msgstr "Αποτυχία αποθήκευσης εγγράφου"
 
-#: src/editor-page.c:1134 src/editor-window.ui:357
+#: src/editor-page.c:1162 src/editor-window.ui:358
 msgid "_Close"
 msgstr "_Κλείσιμο"
 
-#: src/editor-page.c:1218
+#: src/editor-page.c:1248
 msgid "Save As"
 msgstr "Αποθήκευση ως"
 
-#: src/editor-page.c:1221
+#: src/editor-page.c:1251
 msgid "Save"
 msgstr "Αποθήκευση"
 
-#: src/editor-page.c:1222 src/editor-window-actions.c:352
+#: src/editor-page.c:1252 src/editor-window-actions.c:353
 msgid "Cancel"
 msgstr "Aκύρωση"
 
-#: src/editor-page.c:1371
+#: src/editor-page.c:1408
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Γρ %u, Στηλ %u"
 
-#: src/editor-page.ui:97
+#: src/editor-page.ui:95
 msgid "Go to Line"
 msgstr "Μετάβαση στη γραμμή"
 
-#: src/editor-page.ui:115
+#: src/editor-page.ui:113
 msgid "Go"
 msgstr "Μετάβαση"
 
-#: src/editor-page.ui:152
+#: src/editor-page.ui:150
 msgid "Indentation"
 msgstr "Εσοχή"
 
-#: src/editor-page.ui:155 src/editor-window.ui:277
+#: src/editor-page.ui:153 src/editor-window.ui:278
 msgid "_Automatic Indentation"
 msgstr "_Αυτόματη εσοχή"
 
 #. Translators: this is a tab character, not a browser tab
-#: src/editor-page.ui:161 src/editor-window.ui:281
+#: src/editor-page.ui:159 src/editor-window.ui:282
 msgid "_Tabs"
 msgstr "_Καρτέλες"
 
-#: src/editor-page.ui:166 src/editor-window.ui:286
+#: src/editor-page.ui:164 src/editor-window.ui:287
 msgid "_Spaces"
 msgstr "_Διαστήματα"
 
-#: src/editor-page.ui:173 src/editor-window.ui:291
+#: src/editor-page.ui:171 src/editor-window.ui:292
 msgid "Spaces _Per Tab"
 msgstr "Κενά _ανά tab"
 
-#: src/editor-page.ui:175 src/editor-page.ui:203
+#: src/editor-page.ui:173 src/editor-page.ui:201
 msgid "2"
 msgstr "2"
 
-#: src/editor-page.ui:180 src/editor-page.ui:208
+#: src/editor-page.ui:178 src/editor-page.ui:206
 msgid "4"
 msgstr "4"
 
-#: src/editor-page.ui:185 src/editor-page.ui:213
+#: src/editor-page.ui:183 src/editor-page.ui:211
 msgid "6"
 msgstr "6"
 
-#: src/editor-page.ui:190 src/editor-page.ui:218
+#: src/editor-page.ui:188 src/editor-page.ui:216
 msgid "8"
 msgstr "8"
 
-#: src/editor-page.ui:196
+#: src/editor-page.ui:194
 msgid "Spaces Per Indent"
 msgstr "Κενά ανά εσοχή"
 
-#: src/editor-page.ui:198
+#: src/editor-page.ui:196
 msgid "Use Tab Size"
 msgstr "Χρήση μεγέθους στηλοθέτη"
 
@@ -569,57 +578,57 @@ msgstr "Στηλ"
 msgid "Appearance"
 msgstr "Εμφάνιση"
 
-#: src/editor-preferences-dialog.ui:81
-msgid "Display Grid Pattern"
-msgstr "Εμφάνιση μοτίβου πλέγματος"
+#: src/editor-preferences-dialog.ui:59
+msgid "Custom _Font"
+msgstr "Προσαρμοσμένη _γραμματοσειρά"
 
-#: src/editor-preferences-dialog.ui:87
-msgid "Highlight Current Line"
-msgstr "Επισήμανση τρέχουσας γραμμής"
+#: src/editor-preferences-dialog.ui:82
+msgid "Display _Grid Pattern"
+msgstr "Εμφάνιση μοτίβου _πλέγματος"
 
-#: src/editor-preferences-dialog.ui:93
-msgid "Display Overview Map"
-msgstr "Εμφάνιση χάρτη επισκόπησης"
+#: src/editor-preferences-dialog.ui:89
+msgid "_Highlight Current Line"
+msgstr "_Επισήμανση τρέχουσας γραμμής"
 
-#: src/editor-preferences-dialog.ui:101
+#: src/editor-preferences-dialog.ui:96
+msgid "Display _Overview Map"
+msgstr "Εμφάνιση χάρτη _επισκόπησης"
+
+#: src/editor-preferences-dialog.ui:105
 msgid "Right Margin"
 msgstr "Δεξιό περιθώριο"
 
-#: src/editor-preferences-dialog.ui:104
-msgid "Margin Position"
-msgstr "Θέση περιθωρίου"
+#: src/editor-preferences-dialog.ui:108
+msgid "_Margin Position"
+msgstr "Θέση _περιθωρίου"
 
-#: src/editor-preferences-dialog.ui:112
+#: src/editor-preferences-dialog.ui:117
 msgid "Behavior"
 msgstr "Συμπεριφορά"
 
-#: src/editor-preferences-dialog.ui:115
-msgid "Discover Document Settings"
-msgstr "Εντοπισμός ρυθμίσεων εγγράφων"
+#: src/editor-preferences-dialog.ui:120
+msgid "_Discover Document Settings"
+msgstr "_Εντοπισμός ρυθμίσεων εγγράφων"
 
-#: src/editor-preferences-dialog.ui:116
+#: src/editor-preferences-dialog.ui:122
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr ""
 "Εφαρμογή ρυθμίσεων χρησιμοποιώντας τις γραμμές μοντέλων, το editorconfig ή "
 "τις λογικές προεπιλογές"
 
-#: src/editor-preferences-dialog.ui:122
-msgid "Restore Session"
-msgstr "Επαναφορά συνεδρίας"
+#: src/editor-preferences-dialog.ui:128
+msgid "_Restore Session"
+msgstr "_Επαναφορά συνεδρίας"
 
-#: src/editor-preferences-dialog.ui:123
+#: src/editor-preferences-dialog.ui:130
 msgid "Return to your previous session when Text Editor is started"
 msgstr ""
 "Επιστροφή στην προηγούμενη συνεδρία σας όταν ξεκινήσει το πρόγραμμα "
 "επεξεργασίας κειμένου"
 
-#: src/editor-preferences-dialog.ui:138
+#: src/editor-preferences-dialog.ui:145
 msgid "_Clear History"
 msgstr "_Εκκαθάριση ιστορικού"
-
-#: src/editor-preferences-font.c:100
-msgid "Select Font"
-msgstr "Επιλογή γραμματοσειράς"
 
 #: src/editor-print-operation.c:176
 #, c-format
@@ -650,27 +659,31 @@ msgstr "Αρχείο"
 msgid "Name"
 msgstr "Όνομα"
 
-#: src/editor-properties-dialog.ui:43
+#: src/editor-properties-dialog.ui:46
 msgid "Location"
 msgstr "Τοποθεσία"
 
-#: src/editor-properties-dialog.ui:59
+#: src/editor-properties-dialog.ui:75
+msgid "Open in File Manager"
+msgstr "Άνοιγμα με τον διαχειριστή αρχείων"
+
+#: src/editor-properties-dialog.ui:85
 msgid "Statistics"
 msgstr "Στατιστικά"
 
-#: src/editor-properties-dialog.ui:62
+#: src/editor-properties-dialog.ui:88
 msgid "Lines"
 msgstr "Γραμμές"
 
-#: src/editor-properties-dialog.ui:77
+#: src/editor-properties-dialog.ui:96
 msgid "Words"
 msgstr "Λέξεις"
 
-#: src/editor-properties-dialog.ui:92
+#: src/editor-properties-dialog.ui:104
 msgid "Characters, No Spaces"
 msgstr "Χαρακτήρες, όχι κενά"
 
-#: src/editor-properties-dialog.ui:107
+#: src/editor-properties-dialog.ui:112
 msgid "All Characters"
 msgstr "Όλοι οι χαρακτήρες"
 
@@ -700,7 +713,7 @@ msgid "_Cancel"
 msgstr "_Aκύρωση"
 
 #: src/editor-save-changes-dialog.c:265 src/editor-window-actions.c:117
-#: src/editor-window.ui:210
+#: src/editor-window.ui:211
 msgid "_Save"
 msgstr "_Αποθήκευση"
 
@@ -723,23 +736,23 @@ msgid "Replace"
 msgstr "Αντικατάσταση"
 
 #: src/editor-search-bar.ui:51
-msgid "Move to previous match (Ctrl+Shift+G)"
-msgstr "Μετακίνηση στον προηγούμενη αντιστοιχία (Ctrl+Shift+G)"
+msgid "Previous Match"
+msgstr "Προηγούμενη αντιστοιχία"
 
 #: src/editor-search-bar.ui:59
-msgid "Move to next match (Ctrl+G)"
-msgstr "Μετάβαση στην επόμενη αντιστοιχία (Ctrl+G)"
+msgid "Next Match"
+msgstr "Επόμενη αντιστοιχία"
 
 #: src/editor-search-bar.ui:71
-msgid "Search & Replace (Ctrl+H)"
-msgstr "Εύρεση και αντικατάσταση (Ctrl+H)"
+msgid "Search & Replace"
+msgstr "Εύρεση και αντικατάσταση"
 
 #: src/editor-search-bar.ui:81
-msgid "Toggle search options"
-msgstr "Εναλλαγή επιλογών αναζήτησης"
+msgid "Search Options"
+msgstr "Επιλογές αναζήτησης"
 
 #: src/editor-search-bar.ui:95
-msgid "Close search"
+msgid "Close Search"
 msgstr "Κλείσιμο αναζήτησης"
 
 #: src/editor-search-bar.ui:112
@@ -788,27 +801,27 @@ msgstr "Έλεγχος ορθογραφίας"
 msgid "Languages"
 msgstr "Γλώσσες"
 
-#: src/editor-theme-selector.ui:22
+#: src/editor-theme-selector.ui:23
 msgid "Follow System Style"
 msgstr "Ακολουθία στυλ συστήματος"
 
-#: src/editor-theme-selector.ui:24
+#: src/editor-theme-selector.ui:25
 msgid "Follow system style"
 msgstr "Ακολουθία στυλ συστήματος"
 
-#: src/editor-theme-selector.ui:39
+#: src/editor-theme-selector.ui:40
 msgid "Light Style"
 msgstr "Φωτεινό στυλ"
 
-#: src/editor-theme-selector.ui:41
+#: src/editor-theme-selector.ui:42
 msgid "Light style"
 msgstr "Φωτεινό στυλ"
 
-#: src/editor-theme-selector.ui:57
+#: src/editor-theme-selector.ui:58
 msgid "Dark Style"
 msgstr "Σκούρο στυλ"
 
-#: src/editor-theme-selector.ui:59
+#: src/editor-theme-selector.ui:60
 msgid "Dark style"
 msgstr "Σκούρο στυλ"
 
@@ -880,90 +893,90 @@ msgstr "Οι μη αποθηκευμένες αλλαγές θα χαθούν ο
 msgid "Discard Changes to “%s”?"
 msgstr "Απόρριψη αλλαγών στο \"%s\";"
 
-#: src/editor-window-actions.c:348
+#: src/editor-window-actions.c:349
 msgid "Open File"
 msgstr "Άνοιγμα αρχείου"
 
-#: src/editor-window-actions.c:351
+#: src/editor-window-actions.c:352
 msgid "Open"
 msgstr "Άνοιγμα"
 
-#: src/editor-window-actions.c:376
+#: src/editor-window-actions.c:377
 msgid "All Files"
 msgstr "Όλα τα αρχεία"
 
-#: src/editor-window-actions.c:381
+#: src/editor-window-actions.c:382
 msgid "Text Files"
 msgstr "Αρχεία κειμένου"
 
-#: src/editor-window.c:207
+#: src/editor-window.c:203
 #, c-format
 msgid "Document Type: %s"
 msgstr "Τύπος εγγράφου: %s"
 
-#: src/editor-window.c:507
+#: src/editor-window.c:505
 msgid "Zoom In"
 msgstr "Μεγέθυνση"
 
-#: src/editor-window.c:510
+#: src/editor-window.c:508
 msgid "Zoom in"
 msgstr "Μεγέθυνση"
 
-#: src/editor-window.c:520
+#: src/editor-window.c:518
 msgid "Zoom Out"
 msgstr "Σμίκρυνση"
 
-#: src/editor-window.c:523
+#: src/editor-window.c:521
 msgid "Zoom out"
 msgstr "Σμίκρυνση"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:745
+#: src/editor-window.c:757
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - Επεξεργαστής κειμένου"
 
-#: src/editor-window.c:1184
+#: src/editor-window.c:1199
 msgid "There are unsaved documents"
 msgstr "Υπάρχουν μη αποθηκευμένα έγγραφα"
 
-#: src/editor-window.ui:82
+#: src/editor-window.ui:83
 msgid "_Open"
 msgstr "Ά_νοιγμα"
 
-#: src/editor-window.ui:84
+#: src/editor-window.ui:85
 msgid "Recently Used Documents"
 msgstr "Έγγραφα που χρησιμοποιήθηκαν πρόσφατα"
 
-#: src/editor-window.ui:96
+#: src/editor-window.ui:97
 msgid "New Tab"
 msgstr "Νέα καρτέλα"
 
-#: src/editor-window.ui:98
+#: src/editor-window.ui:99
 msgid "New tab"
 msgstr "Νέα καρτέλα"
 
-#: src/editor-window.ui:124
+#: src/editor-window.ui:125
 msgid "View Options"
 msgstr "Εμφάνιση επιλογών"
 
-#: src/editor-window.ui:128
+#: src/editor-window.ui:129
 msgid "View"
 msgstr "Προβολή"
 
-#: src/editor-window.ui:134
+#: src/editor-window.ui:135
 msgid "Main Menu"
 msgstr "Κυρίως μενού"
 
-#: src/editor-window.ui:138
+#: src/editor-window.ui:139
 msgid "Main menu"
 msgstr "Κυρίως μενού"
 
-#: src/editor-window.ui:165
+#: src/editor-window.ui:166
 msgid "Start or Open a Document"
 msgstr "Έναρξη ή άνοιγμα ενός εγγράφου"
 
-#: src/editor-window.ui:168
+#: src/editor-window.ui:169
 msgid ""
 "• Press the Open button\n"
 "• Press the New tab button\n"
@@ -979,91 +992,91 @@ msgstr ""
 "\n"
 "Ή, πατήστε Ctrl+W για να κλείσετε το παράθυρο."
 
-#: src/editor-window.ui:202
+#: src/editor-window.ui:203
 msgid "_New Window"
 msgstr "_Νέο παράθυρο"
 
-#: src/editor-window.ui:222
+#: src/editor-window.ui:223
 msgid "_Discard Changes"
 msgstr "Α_πόρριψη αλλαγών"
 
-#: src/editor-window.ui:228
+#: src/editor-window.ui:229
 msgid "_Find/Replace…"
 msgstr "_Εύρεση/Αντικατάσταση…"
 
-#: src/editor-window.ui:234
+#: src/editor-window.ui:235
 msgid "_Print…"
 msgstr "_Εκτύπωση…"
 
-#: src/editor-window.ui:240
+#: src/editor-window.ui:241
 msgid "Documen_t Properties"
 msgstr "Ιδιότητες ε_γγράφου"
 
-#: src/editor-window.ui:246
+#: src/editor-window.ui:247
 msgid "P_references"
 msgstr "_Προτιμήσεις"
 
-#: src/editor-window.ui:251
+#: src/editor-window.ui:252
 msgid "_Keyboard Shortcuts"
 msgstr "Συντομεύσεις _πληκτρολογίου"
 
-#: src/editor-window.ui:255
+#: src/editor-window.ui:256
 msgid "_Help"
 msgstr "_Βοήθεια"
 
-#: src/editor-window.ui:259
+#: src/editor-window.ui:260
 msgid "A_bout Text Editor"
 msgstr "_Περί Επεξεργαστή Κειμένου"
 
-#: src/editor-window.ui:267
+#: src/editor-window.ui:268
 msgid "Show _Line Numbers"
 msgstr "Εμφάνιση αριθμών _γραμμής"
 
-#: src/editor-window.ui:271
+#: src/editor-window.ui:272
 msgid "Show _Right Margin"
 msgstr "Εμφάνιση _δεξιού περιθωρίου"
 
-#: src/editor-window.ui:294
+#: src/editor-window.ui:295
 msgid "_2"
 msgstr "_2"
 
-#: src/editor-window.ui:299
+#: src/editor-window.ui:300
 msgid "_4"
 msgstr "_4"
 
-#: src/editor-window.ui:304
+#: src/editor-window.ui:305
 msgid "_6"
 msgstr "_6"
 
-#: src/editor-window.ui:309
+#: src/editor-window.ui:310
 msgid "_8"
 msgstr "_8"
 
-#: src/editor-window.ui:318
+#: src/editor-window.ui:319
 msgid "T_ext Wrapping"
 msgstr "Αναδίπλωση _κειμένου"
 
-#: src/editor-window.ui:322
+#: src/editor-window.ui:323
 msgid "Chec_k Spelling"
 msgstr "Ορθογραφικός έ_λεγχος"
 
-#: src/editor-window.ui:326
-msgid "_Document Type"
-msgstr "Τύπος _εγγράφου"
+#: src/editor-window.ui:327
+msgid "_Document Type…"
+msgstr "Τύπος _εγγράφου…"
 
-#: src/editor-window.ui:334
+#: src/editor-window.ui:335
 msgid "Move _Left"
 msgstr "Μετακίνηση α_ριστερά"
 
-#: src/editor-window.ui:339
+#: src/editor-window.ui:340
 msgid "Move _Right"
 msgstr "Μετακίνηση _δεξιά"
 
-#: src/editor-window.ui:346
+#: src/editor-window.ui:347
 msgid "_Move to New Window"
 msgstr "_Μετακίνηση σε νέο παράθυρο"
 
-#: src/editor-window.ui:353
+#: src/editor-window.ui:354
 msgid "Close _Other Tabs"
 msgstr "Κλείσιμο ά_λλων καρτελών"
 
@@ -1365,6 +1378,21 @@ msgstr "Εμφάνιση συντομεύσεων πληκτρολογίου"
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Εμφάνιση βοήθειας"
+
+#~ msgid "Open New Document (Ctrl+O)"
+#~ msgstr "Άνοιγμα νέου εγγράφου (Ctrl+O)"
+
+#~ msgid "Select Font"
+#~ msgstr "Επιλογή γραμματοσειράς"
+
+#~ msgid "Move to previous match (Ctrl+Shift+G)"
+#~ msgstr "Μετακίνηση στον προηγούμενη αντιστοιχία (Ctrl+Shift+G)"
+
+#~ msgid "Move to next match (Ctrl+G)"
+#~ msgstr "Μετάβαση στην επόμενη αντιστοιχία (Ctrl+G)"
+
+#~ msgid "Toggle search options"
+#~ msgstr "Εναλλαγή επιλογών αναζήτησης"
 
 #~ msgid "_Line Numbers"
 #~ msgstr "Αριθμοί _γραμμής"
