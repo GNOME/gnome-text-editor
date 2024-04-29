@@ -1201,6 +1201,7 @@ editor_page_save_as_cb (EditorPage           *self,
 
       if ((dest = gtk_file_chooser_get_file (GTK_FILE_CHOOSER (native))))
         {
+          const GtkSourceEncoding *encoding = _editor_file_chooser_get_encoding (GTK_FILE_CHOOSER (native));
           GtkSourceNewlineType crlf = _editor_file_chooser_get_line_ending (GTK_FILE_CHOOSER (native));
           g_autoptr(GFile) directory = gtk_file_chooser_get_current_folder (GTK_FILE_CHOOSER (native));
 
@@ -1214,6 +1215,7 @@ editor_page_save_as_cb (EditorPage           *self,
               g_settings_set_string (settings, "last-save-directory", uri);
             }
 
+          _editor_document_set_encoding (self->document, encoding);
           _editor_document_set_newline_type (self->document, crlf);
           _editor_document_save_async (self->document,
                                        dest,
