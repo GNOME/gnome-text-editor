@@ -4,17 +4,17 @@
 #
 # Hasan Merkit <hasanmerkit@outlook.com>, 2022.
 # Mehmet Kerem Gökcek <mehmetkeremgokcek654@gmail.com>, 2022.
-# Emin Tufan Çetin <etcetin@gmail.com>, 2022, 2023, 2024.
 # Sabri Ünal <libreajans@gmail.com>, 2023, 2024.
+# Emin Tufan Çetin <etcetin@gmail.com>, 2022, 2023, 2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2024-03-21 06:52+0000\n"
-"PO-Revision-Date: 2024-03-25 17:14+0300\n"
-"Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
+"POT-Creation-Date: 2024-04-29 20:59+0000\n"
+"PO-Revision-Date: 2024-05-01 08:00+0300\n"
+"Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Turkish <takim@gnome.org.tr>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -30,8 +30,8 @@ msgid "The GNOME Project"
 msgstr "GNOME Projesi"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:12
-#: data/org.gnome.TextEditor.desktop.in.in:8
-#: data/org.gnome.TextEditor.desktop.in.in:9
+#: data/org.gnome.TextEditor.desktop.in.in:10
+#: data/org.gnome.TextEditor.desktop.in.in:11
 #: src/editor-application-actions.c:199 src/editor-window.c:1314
 msgid "Text Editor"
 msgstr "Metin Düzenleyici"
@@ -52,11 +52,11 @@ msgstr ""
 msgid "write;notepad;"
 msgstr "yaz;not defteri;not kağıdı;bloknot;"
 
-#: data/org.gnome.TextEditor.desktop.in.in:10
+#: data/org.gnome.TextEditor.desktop.in.in:12
 msgid "View and edit text files"
 msgstr "Metin dosyalarını görüntüle ve düzenle"
 
-#: data/org.gnome.TextEditor.desktop.in.in:20
+#: data/org.gnome.TextEditor.desktop.in.in:22
 msgid "New Window"
 msgstr "Yeni Pencere"
 
@@ -347,11 +347,11 @@ msgstr ""
 msgid "Print version information and exit"
 msgstr "Sürüm bilgisini yazdır ve çık"
 
-#: src/editor-document.c:2121
+#: src/editor-document.c:2132
 msgid "[Read-Only]"
 msgstr "[Salt Okunur]"
 
-#: src/editor-document.c:2419 src/editor-page.c:1067
+#: src/editor-document.c:2430 src/editor-page.c:1070
 #: src/editor-sidebar-item.c:511
 msgid "New Document"
 msgstr "Yeni Belge"
@@ -389,19 +389,19 @@ msgstr "Dosya başka yazılımca değiştirildi."
 msgid "Save _As…"
 msgstr "Farklı _Kaydet…"
 
-#: src/editor-info-bar.c:91 src/editor-info-bar.ui:63
+#: src/editor-info-bar.c:91 src/editor-info-bar.ui:62
 msgid "Document Restored"
 msgstr "Belge Geri Yüklendi"
 
-#: src/editor-info-bar.c:92 src/editor-info-bar.ui:73
+#: src/editor-info-bar.c:92 src/editor-info-bar.ui:72
 msgid "Unsaved document has been restored."
 msgstr "Kaydedilmemiş belge geri yüklendi."
 
-#: src/editor-info-bar.c:98 src/editor-info-bar.ui:87
+#: src/editor-info-bar.c:98 src/editor-info-bar.ui:86
 msgid "_Save…"
 msgstr "_Kaydet…"
 
-#: src/editor-info-bar.c:100 src/editor-info-bar.ui:81
+#: src/editor-info-bar.c:100 src/editor-info-bar.ui:80
 msgid "_Discard…"
 msgstr "_Gözden Çıkar…"
 
@@ -417,15 +417,11 @@ msgstr "Belgedeki kaydedilmemiş değişiklikler geri yüklendi."
 msgid "Could Not Open File"
 msgstr "Dosya Açılamadı"
 
-#: src/editor-info-bar.ui:29
-msgid "You do not have permission to open the file."
-msgstr "Dosyayı açacak izniniz yok."
-
-#: src/editor-info-bar.ui:37
+#: src/editor-info-bar.ui:36
 msgid "_Retry"
 msgstr "_Yeniden Dene"
 
-#: src/editor-info-bar.ui:44
+#: src/editor-info-bar.ui:43
 msgid "Open As _Administrator"
 msgstr "_Yönetici Olarak Aç"
 
@@ -461,42 +457,42 @@ msgstr "Son Kullanılan Belge Yok"
 msgid "No Results Found"
 msgstr "Sonuç Bulunamadı"
 
-#: src/editor-page.c:1093 src/editor-properties-dialog.c:107
+#: src/editor-page.c:1096 src/editor-properties-dialog.c:107
 #: src/editor-sidebar-item.c:105
 msgid "Draft"
 msgstr "Taslak"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1105
+#: src/editor-page.c:1108
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (Yönetici)"
 
-#: src/editor-page.c:1115 src/editor-sidebar-item.c:113
+#: src/editor-page.c:1118 src/editor-sidebar-item.c:113
 msgid "Document Portal"
 msgstr "Belge Kapısı"
 
-#: src/editor-page.c:1161
+#: src/editor-page.c:1164
 msgid "Failed to save document"
 msgstr "Belge kaydedilemedi"
 
-#: src/editor-page.c:1162 src/editor-window.ui:358
+#: src/editor-page.c:1165 src/editor-window.ui:358
 msgid "_Close"
 msgstr "_Kapat"
 
-#: src/editor-page.c:1248
+#: src/editor-page.c:1253
 msgid "Save As"
 msgstr "Farklı Kaydet"
 
-#: src/editor-page.c:1251
+#: src/editor-page.c:1256
 msgid "Save"
 msgstr "Kaydet"
 
-#: src/editor-page.c:1252 src/editor-window-actions.c:353
+#: src/editor-page.c:1257 src/editor-window-actions.c:353
 msgid "Cancel"
 msgstr "İptal"
 
-#: src/editor-page.c:1408
+#: src/editor-page.c:1413
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "St %u, Süt %u"
@@ -767,6 +763,10 @@ msgstr "Yalnızca tüm _sözcüğü eşleştir"
 #, c-format
 msgid "%u of %u"
 msgstr "%u/%u"
+
+#: src/editor-search-entry.ui:13
+msgid "Find"
+msgstr "Bul"
 
 #: src/editor-sidebar-row.ui:85
 msgid "Remove"
@@ -1364,6 +1364,9 @@ msgstr "Klavye kısayollarını göster"
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Yardımı göster"
+
+#~ msgid "You do not have permission to open the file."
+#~ msgstr "Dosyayı açacak izniniz yok."
 
 #~ msgid "Select Font"
 #~ msgstr "Yazı Tipi Seç"
