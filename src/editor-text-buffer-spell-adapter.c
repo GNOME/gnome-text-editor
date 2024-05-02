@@ -211,7 +211,8 @@ editor_text_buffer_spell_adapter_update_range (EditorTextBufferSpellAdapter *sel
   g_assert (EDITOR_IS_TEXT_BUFFER_SPELL_ADAPTER (self));
 
   /* Ignore while we are loading or saving */
-  if (editor_document_get_busy (EDITOR_DOCUMENT (self->buffer)))
+  if (editor_document_get_busy (EDITOR_DOCUMENT (self->buffer)) ||
+      _editor_document_did_shutdown (EDITOR_DOCUMENT (self->buffer)))
     return TRUE;
 
   extra_word_chars = editor_spell_checker_get_extra_word_chars (self->checker);
