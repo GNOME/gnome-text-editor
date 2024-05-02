@@ -65,6 +65,7 @@ struct _EditorDocument
   guint                         externally_modified : 1;
   guint                         suggest_admin : 1;
   guint                         load_failed : 1;
+  guint                         did_shutdown : 1;
 };
 
 typedef struct
@@ -2469,4 +2470,25 @@ _editor_document_suggest_file (EditorDocument *self,
   g_assert (name != NULL);
 
   return g_file_get_child (directory, name);
+}
+
+gboolean
+_editor_document_did_shutdown (EditorDocument *self)
+{
+  g_return_val_if_fail (EDITOR_IS_DOCUMENT (self), FALSE);
+
+  return self->did_shutdown;
+}
+
+void
+_editor_document_shutdown (EditorDocument *self)
+{
+  g_return_if_fail (EDITOR_IS_DOCUMENT (self));
+
+  self->did_shutdown = TRUE;
+
+  g_clear_object (&self->spell_checker);
+  g_clear_object (&self->spell_adapter);
+  g_clear_object (&self->monitor);
+  g_clear_object (&self->file);
 }

@@ -691,6 +691,8 @@ editor_page_dispose (GObject *object)
 {
   EditorPage *self = (EditorPage *)object;
 
+  _editor_document_shutdown (self->document);
+
   g_cancellable_cancel (self->cancellable);
   g_clear_object (&self->cancellable);
 
@@ -698,6 +700,8 @@ editor_page_dispose (GObject *object)
 
   g_clear_pointer (&self->progress_animation, editor_animation_stop);
   g_clear_pointer ((GtkWidget **)&self->box, gtk_widget_unparent);
+
+  g_clear_object (&self->document);
 
   G_OBJECT_CLASS (editor_page_parent_class)->dispose (object);
 }
@@ -709,7 +713,6 @@ editor_page_finalize (GObject *object)
 
   g_assert (self->progress_animation == NULL);
 
-  g_clear_object (&self->document);
   g_clear_object (&self->settings);
   g_clear_object (&self->settings_bindings);
 

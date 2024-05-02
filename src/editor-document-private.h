@@ -94,5 +94,7 @@ void                      _editor_document_persist_syntax_language (EditorDocume
 char                     *_editor_document_suggest_filename        (EditorDocument           *self);
 GFile                    *_editor_document_suggest_file            (EditorDocument           *self,
                                                                     GFile                    *directory);
+gboolean                  _editor_document_did_shutdown            (EditorDocument           *self);
+void                      _editor_document_shutdown                (EditorDocument           *self);
 
 G_END_DECLS
