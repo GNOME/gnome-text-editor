@@ -606,7 +606,10 @@ editor_window_actions_close_page_confirm_cb (GObject      *object,
         {
           g_object_ref (epage);
           adw_tab_view_close_page_finish (self->tab_view, page, confirm_close);
-          editor_page_destroy (epage);
+
+          if (confirm_close)
+            editor_page_destroy (epage);
+
           g_object_unref (epage);
         }
       else if (confirm_close)
