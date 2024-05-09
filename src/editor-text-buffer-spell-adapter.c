@@ -22,7 +22,7 @@
 
 #include "cjhtextregionprivate.h"
 
-#include "editor-document.h"
+#include "editor-document-private.h"
 #include "editor-spell-checker.h"
 #include "editor-spell-cursor.h"
 #include "editor-spell-language.h"
