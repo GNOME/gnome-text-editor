@@ -134,7 +134,7 @@ editor_source_view_update_css (EditorSourceView *self)
 
   g_string_append (str, "}\n");
 
-  gtk_css_provider_load_from_data (self->css_provider, str->str, -1);
+  gtk_css_provider_load_from_string (self->css_provider, str->str);
 
   g_clear_pointer (&scaled, pango_font_description_free);
   g_clear_pointer (&system_font, pango_font_description_free);
