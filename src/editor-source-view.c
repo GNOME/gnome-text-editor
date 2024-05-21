@@ -835,7 +835,6 @@ editor_source_view_init (EditorSourceView *self)
   g_autoptr(GMenu) gsv_section = NULL;
   g_autoptr(GMenu) spell_section = NULL;
   GtkEventController *controller;
-  GtkStyleContext *style_context;
   GMenuModel *extra_menu;
 
   g_signal_connect_object (EDITOR_APPLICATION_DEFAULT,
@@ -847,11 +846,16 @@ editor_source_view_init (EditorSourceView *self)
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "spelling.add", FALSE);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "spelling.ignore", FALSE);
 
-  self->css_provider = gtk_css_provider_new ();
-  style_context = gtk_widget_get_style_context (GTK_WIDGET (self));
-  gtk_style_context_add_provider (style_context,
-                                  GTK_STYLE_PROVIDER (self->css_provider),
-                                  GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+  G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+    {
+      GtkStyleContext *style_context = gtk_widget_get_style_context (GTK_WIDGET (self));
+
+      self->css_provider = gtk_css_provider_new ();
+      gtk_style_context_add_provider (style_context,
+                                      GTK_STYLE_PROVIDER (self->css_provider),
+                                      GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+    }
+  G_GNUC_END_IGNORE_DEPRECATIONS
 
   g_signal_connect (self,
                     "notify::buffer",

@@ -358,8 +358,7 @@ update_custom_font_cb (EditorPreferencesDialog *self,
 
   g_string_append (str, "}");
 
-  /* Use -1 instead of str->len to avoid a string copy */
-  gtk_css_provider_load_from_data (self->css_provider, str->str, -1);
+  gtk_css_provider_load_from_string (self->css_provider, str->str);
 }
 
 static void
@@ -545,7 +544,6 @@ static void
 editor_preferences_dialog_init (EditorPreferencesDialog *self)
 {
   AdwStyleManager *style_manager;
-  GtkStyleContext *style_context;
   GtkDropTarget *drop_target;
 
   gtk_widget_init_template (GTK_WIDGET (self));
@@ -562,11 +560,15 @@ editor_preferences_dialog_init (EditorPreferencesDialog *self)
                            G_CONNECT_SWAPPED);
   gtk_widget_add_controller (GTK_WIDGET (self), GTK_EVENT_CONTROLLER (drop_target));
 
-  style_context = gtk_widget_get_style_context (GTK_WIDGET (self->source_view));
-  self->css_provider = gtk_css_provider_new ();
-  gtk_style_context_add_provider (style_context,
-                                  GTK_STYLE_PROVIDER (self->css_provider),
-                                  GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+  G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+    {
+      GtkStyleContext *style_context = gtk_widget_get_style_context (GTK_WIDGET (self->source_view));
+      self->css_provider = gtk_css_provider_new ();
+      gtk_style_context_add_provider (style_context,
+                                      GTK_STYLE_PROVIDER (self->css_provider),
+                                      GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+    }
+  G_GNUC_END_IGNORE_DEPRECATIONS
 
   self->settings = g_settings_new ("org.gnome.TextEditor");
   g_settings_bind (self->settings, "use-system-font",

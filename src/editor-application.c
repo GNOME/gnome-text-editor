@@ -217,7 +217,7 @@ update_css (EditorApplication *self)
       css = _editor_recoloring_generate_css (style_scheme);
     }
 
-  gtk_css_provider_load_from_data (self->recoloring, css ? css : "", -1);
+  gtk_css_provider_load_from_string (self->recoloring, css ? css : "");
 }
 
 static void
