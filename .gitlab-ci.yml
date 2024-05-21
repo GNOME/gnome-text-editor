@@ -3,7 +3,7 @@ include:
     file: 'flatpak/flatpak_ci_initiative.yml'
 
 variables:
-    FEDORA_IMAGE: "registry.fedoraproject.org/fedora:39"
+    FEDORA_IMAGE: "registry.fedoraproject.org/fedora:40"
     MANIFEST_PATH: "org.gnome.TextEditor.Devel.json"
     MESON_ARGS: "-Ddevelopment=true"
     FLATPAK_MODULE: "gnome-text-editor"
