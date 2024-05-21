@@ -222,13 +222,14 @@ editor_application_actions_help_cb (GSimpleAction *action,
                                     gpointer       user_data)
 {
   EditorApplication *self = user_data;
+  g_autoptr(GtkUriLauncher) launcher = NULL;
   EditorWindow *window;
 
   g_assert (EDITOR_IS_APPLICATION (self));
 
   window = editor_application_get_current_window (self);
-
-  gtk_show_uri (GTK_WINDOW (window), "help:gnome-text-editor", GDK_CURRENT_TIME);
+  launcher = gtk_uri_launcher_new ("help:gnome-text-editor");
+  gtk_uri_launcher_launch (launcher, GTK_WINDOW (window), NULL, NULL, NULL);
 }
 
 static void
