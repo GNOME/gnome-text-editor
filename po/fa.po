@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2024-03-20 17:41+0000\n"
-"PO-Revision-Date: 2024-05-25 17:30+0330\n"
+"POT-Creation-Date: 2024-05-26 06:21+0000\n"
+"PO-Revision-Date: 2024-05-27 15:52+0330\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "Language: fa\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-DamnedLies-Scope: partial\n"
-"X-Generator: Poedit 3.4\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #. developer_name tag deprecated with Appstream 1.0
 #: data/org.gnome.TextEditor.appdata.xml.in.in:7
@@ -27,9 +27,9 @@ msgid "The GNOME Project"
 msgstr "پروژهٔ گنوم"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:12
-#: data/org.gnome.TextEditor.desktop.in.in:8
-#: data/org.gnome.TextEditor.desktop.in.in:9
-#: src/editor-application-actions.c:199 src/editor-window.c:1314
+#: data/org.gnome.TextEditor.desktop.in.in:10
+#: data/org.gnome.TextEditor.desktop.in.in:11
+#: src/editor-application-actions.c:199 src/editor-window.c:1317
 msgid "Text Editor"
 msgstr "ویرایشگر متن"
 
@@ -49,11 +49,11 @@ msgstr ""
 msgid "write;notepad;"
 msgstr "write;notepad;نوشتن;یادداشت;متن;"
 
-#: data/org.gnome.TextEditor.desktop.in.in:10
+#: data/org.gnome.TextEditor.desktop.in.in:12
 msgid "View and edit text files"
 msgstr "نمایش و ویرایش پرونده‌های متنی"
 
-#: data/org.gnome.TextEditor.desktop.in.in:20
+#: data/org.gnome.TextEditor.desktop.in.in:22
 msgid "New Window"
 msgstr "پنجرهٔ جدید"
 
@@ -328,11 +328,11 @@ msgstr "اجرای نمونه‌ای جدید از ویرایشگر متن (پی
 msgid "Print version information and exit"
 msgstr "چاپ اطّلاعات نگارش و خروج"
 
-#: src/editor-document.c:2121
+#: src/editor-document.c:2122
 msgid "[Read-Only]"
 msgstr "[فقط خواندنی]"
 
-#: src/editor-document.c:2419 src/editor-page.c:1067
+#: src/editor-document.c:2420 src/editor-page.c:1070
 #: src/editor-sidebar-item.c:511
 msgid "New Document"
 msgstr "سند جدید"
@@ -442,42 +442,42 @@ msgstr "بدون سندهای اخیر"
 msgid "No Results Found"
 msgstr "هیچ نتیجه‌ای پیدا نشد"
 
-#: src/editor-page.c:1093 src/editor-properties-dialog.c:107
+#: src/editor-page.c:1096 src/editor-properties-dialog.c:107
 #: src/editor-sidebar-item.c:105
 msgid "Draft"
 msgstr "پیش‌نویس"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1105
+#: src/editor-page.c:1108
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (مدیر)"
 
-#: src/editor-page.c:1115 src/editor-sidebar-item.c:113
+#: src/editor-page.c:1118 src/editor-sidebar-item.c:113
 msgid "Document Portal"
 msgstr "درگاه سند"
 
-#: src/editor-page.c:1161
+#: src/editor-page.c:1164
 msgid "Failed to save document"
 msgstr "شکست در ذخیرهٔ سند"
 
-#: src/editor-page.c:1162 src/editor-window.ui:358
+#: src/editor-page.c:1165 src/editor-window.ui:358
 msgid "_Close"
 msgstr "_بستن"
 
-#: src/editor-page.c:1248
+#: src/editor-page.c:1251
 msgid "Save As"
 msgstr "ذخیره به شکل"
 
-#: src/editor-page.c:1251
+#: src/editor-page.c:1254
 msgid "Save"
 msgstr "ذخیره"
 
-#: src/editor-page.c:1252 src/editor-window-actions.c:353
+#: src/editor-page.c:1255 src/editor-window-actions.c:353
 msgid "Cancel"
 msgstr "لغو"
 
-#: src/editor-page.c:1408
+#: src/editor-page.c:1411
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "خ %Iu، س %Iu"
@@ -898,12 +898,12 @@ msgid "Zoom out"
 msgstr "بزرگ‌نمایی به خارج"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:757
+#: src/editor-window.c:760
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - ویرایشگر متن"
 
-#: src/editor-window.c:1199
+#: src/editor-window.c:1202
 msgid "There are unsaved documents"
 msgstr "سندهای ذخیره نشده‌ای وجود دارند"
 
@@ -944,7 +944,6 @@ msgid "Start or Open a Document"
 msgstr "آغاز یا گشودن یک سند"
 
 #: src/editor-window.ui:169
-#, fuzzy
 msgid ""
 "• Press the Open button\n"
 "• Press the New tab button\n"
@@ -955,10 +954,10 @@ msgid ""
 msgstr ""
 "• زدن دکمهٔ گشودن\n"
 "• زدن دکمهٔ زبانهٔ جدید\n"
-"• زدن مهار+د برای آغاز سندی جدید\n"
-"• زدن مهار+خ برای مرور یک سند\n"
+"• زدن مهار+N برای آغاز سندی جدید\n"
+"• زدن مهار+O برای مرور یک سند\n"
 "\n"
-"یا زدن مهار+ص برای بستن پنجره."
+"یا زدن مهار+W برای بستن پنجره."
 
 #: src/editor-window.ui:203
 msgid "_New Window"
