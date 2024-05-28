@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Gnome Nepali Translation Project\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/issues\n"
-"POT-Creation-Date: 2022-08-11 17:58+0000\n"
-"PO-Revision-Date: 2022-09-08 01:30+0545\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/issues\n"
+"POT-Creation-Date: 2024-03-20 17:41+0000\n"
+"PO-Revision-Date: 2024-05-28 20:43+0545\n"
 "Last-Translator: Pawan Chitrakar <chautari@gmail.com>\n"
 "Language-Team: Nepali Team <chautari@gmail.com>\n"
 "Language: ne\n"
@@ -16,23 +16,24 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:6 src/editor-application-actions.c:197
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.TextEditor.appdata.xml.in.in:7 src/editor-application-actions.c:201
 msgid "The GNOME Project"
 msgstr "जिनोम परियोजना"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:8 data/org.gnome.TextEditor.desktop.in.in:8
-#: data/org.gnome.TextEditor.desktop.in.in:9 src/editor-application-actions.c:195
-#: src/editor-window.c:1213
+#: data/org.gnome.TextEditor.appdata.xml.in.in:12 data/org.gnome.TextEditor.desktop.in.in:8
+#: data/org.gnome.TextEditor.desktop.in.in:9 src/editor-application-actions.c:199
+#: src/editor-window.c:1314
 msgid "Text Editor"
 msgstr "पाठ सम्पादक"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:10
+#: data/org.gnome.TextEditor.appdata.xml.in.in:14
 msgid "Edit text files"
 msgstr "पाठ फाइल सम्पादन गर्नुहोस्"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:12
+#: data/org.gnome.TextEditor.appdata.xml.in.in:16
 msgid "GNOME Text Editor is a simple text editor focused on a pleasing default experience."
 msgstr "जिनोम पाठ सम्पादक एउटा मनग्य पूर्वनिर्धारित अनुभवमा केन्द्रित साधारण पाठ सम्पादक हो ।"
 
@@ -43,6 +44,10 @@ msgstr "लेखन;नोटप्याड;"
 #: data/org.gnome.TextEditor.desktop.in.in:10
 msgid "View and edit text files"
 msgstr "पाठ फाइल हेर्नुहोस् र सम्पादन गर्नुहोस्"
+
+#: data/org.gnome.TextEditor.desktop.in.in:20
+msgid "New Window"
+msgstr "नयाँ सञ्झ्याल"
 
 #: data/org.gnome.TextEditor.gschema.xml:16
 msgid "Auto Save Delay"
@@ -156,7 +161,7 @@ msgstr "प्रणाली फन्ट प्रयोग गर्ने"
 msgid "If the default system monospace font should be used."
 msgstr "यदि सक्षम पारिएमा, सजावट शैली ग्रिड सम्पादक पृष्ठभूमिमा मुद्रण गरिन्छ ।"
 
-#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:57
+#: data/org.gnome.TextEditor.gschema.xml:98
 msgid "Custom Font"
 msgstr "अनुकूल फन्ट"
 
@@ -249,6 +254,14 @@ msgstr "पङ्ति उचाइ"
 msgid "The line height to use for the selected font."
 msgstr "चयन गरिएको फन्टका लागि प्रयोग हुने लाइन उचाइ ।"
 
+#: data/org.gnome.TextEditor.gschema.xml:158
+msgid "Highlight Matching Brackets"
+msgstr "मिल्ने कोष्ठकलाई हाइलाइट गर्नुहोस्"
+
+#: data/org.gnome.TextEditor.gschema.xml:159
+msgid "Highlight matching brackets and braces."
+msgstr "मिल्दो कोष्ठक र ब्रेसेस हाइलाइट गर्नुहोस् ।"
+
 #: src/editor-animation.c:1038
 #, c-format
 msgid "Failed to find property %s in %s"
@@ -259,50 +272,50 @@ msgstr "%s मा %s गुण फेला पार्न असफल"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "va_list मान पुन: प्राप्त गर्न असफल: %s"
 
-#: src/editor-application-actions.c:210
+#: src/editor-application-actions.c:214
 msgid "translator-credits"
 msgstr ""
 "pawan chitrakar <chautari@gmail.com>,Jyotsna Shrestha <jyoshrestha@hotmail.com>,Ganesh Ghimire "
 "<gghimire@gmail.com>,Shiva  Pokharel <pokharelshiva@hotmail.com>,Jaydeep Bhusal <zaydeep@hotmail."
 "com>,Mahesh Subedi <submanesh@hotmail.com>,Shyam Krishna Bal <shyamkrishna_bal@yahoo.com>.#"
 
-#: src/editor-application.c:460
+#: src/editor-application.c:525
 msgid "Standard input was requested multiple times. Ignoring request."
 msgstr "मानक आगत धेरै पटक अनुरोध गरिएको थियो । अनुरोध उपेक्षा गर्दैछ ।"
 
-#: src/editor-application.c:464
+#: src/editor-application.c:529
 msgid "Standard input is not supported on this platform. Ignoring request."
 msgstr "यो प्लेटफर्ममा मानक आगत समर्थित छैन । अनुरोध उपेक्षा गर्दैछ ।"
 
-#: src/editor-application.c:552
+#: src/editor-application.c:632
 msgid "Bugs may be reported at:"
 msgstr "त्रुटिहरू यहाँ रिपोर्ट गर्न सकिन्छ:"
 
-#: src/editor-application.c:554
+#: src/editor-application.c:634
 msgid "[FILES…]"
 msgstr "[FILES…]"
 
-#: src/editor-application.c:667
+#: src/editor-application.c:748
 msgid "Do not restore session at startup"
 msgstr "सुरुआतमा सत्र पूर्वावस्थामा नल्याउनुहोस्"
 
-#: src/editor-application.c:668
+#: src/editor-application.c:749
 msgid "Open provided files in a new window"
 msgstr "प्रदान गरिएको फाइलहरू नयाँ सञ्झ्यालमा खोल्नुहोस्"
 
-#: src/editor-application.c:669
+#: src/editor-application.c:750
 msgid "Run a new instance of Text Editor (implies --ignore-session)"
 msgstr "पाठ सम्पादकको नयाँ दृष्टान्त चलाउनुहोस् (तात्पर्य --उपेक्षा-सत्र)"
 
-#: src/editor-application.c:670
+#: src/editor-application.c:751
 msgid "Print version information and exit"
 msgstr "मुद्रण संस्करण विवरण अनि बाहिरनुहोस्"
 
-#: src/editor-document.c:2003
+#: src/editor-document.c:2121
 msgid "[Read-Only]"
 msgstr "[पढ्ने मात्र]"
 
-#: src/editor-document.c:2291 src/editor-page.c:1015 src/editor-sidebar-item.c:489
+#: src/editor-document.c:2419 src/editor-page.c:1067 src/editor-sidebar-item.c:511
 msgid "New Document"
 msgstr "नयाँ कागजात"
 
@@ -335,7 +348,7 @@ msgstr "डिस्कमा फाइल परिवर्तन भयो"
 msgid "The file has been changed by another program."
 msgstr "अर्को कार्यक्रमद्वारा फाइल परिवर्तन गरिएको छ ।"
 
-#: src/editor-info-bar.c:89 src/editor-window.ui:216
+#: src/editor-info-bar.c:89 src/editor-window.ui:217
 msgid "Save _As…"
 msgstr "बचत गर्नुहोस्…"
 
@@ -347,7 +360,7 @@ msgstr "कागजात पूर्वावस्थामा ल्या�
 msgid "Unsaved document has been restored."
 msgstr "बचत नगरिएका कागजात पूर्वावस्थामा ल्याइएको छ ।"
 
-#: src/editor-info-bar.c:98
+#: src/editor-info-bar.c:98 src/editor-info-bar.ui:87
 msgid "_Save…"
 msgstr "बचत गर्नुहोस्…"
 
@@ -379,111 +392,127 @@ msgstr "पुन:प्रयास गर्नुहोस्"
 msgid "Open As _Administrator"
 msgstr "प्रशासक रुपमा खोल्नुहोस्"
 
-#: src/editor-language-dialog.ui:6 src/editor-window.c:194
+#: src/editor-language-dialog.ui:6 src/editor-window.c:191
 msgid "Document Type"
 msgstr "कागजातको प्रकार"
 
-#: src/editor-language-dialog.ui:52
+#: src/editor-language-dialog.ui:28
+msgid "Search document types"
+msgstr "कागजात प्रकार खोजी गर्नुहोस्"
+
+#: src/editor-language-dialog.ui:51
 msgid "No Matches"
 msgstr "मिल्दो छैन"
 
-#: src/editor-open-popover.ui:67
+#: src/editor-language-row.c:61 src/editor-language-row.c:119
+msgid "Plain Text"
+msgstr "सादा पाठ"
+
+#: src/editor-open-popover.ui:25
+msgid "Search documents"
+msgstr "कागजातहरू खोजी गर्नुहोस्"
+
+#: src/editor-open-popover.ui:39
+msgid "Open New Document"
+msgstr "नयाँ कागजात खोल्नुहोस्"
+
+#: src/editor-open-popover.ui:74
 msgid "No Recent Documents"
 msgstr "हालको कागजात छैन"
 
-#: src/editor-open-popover.ui:94
+#: src/editor-open-popover.ui:104
 msgid "No Results Found"
 msgstr "नतिजा भेटिएन"
 
-#: src/editor-page.c:1041 src/editor-properties-dialog.c:74 src/editor-sidebar-item.c:84
+#: src/editor-page.c:1093 src/editor-properties-dialog.c:107 src/editor-sidebar-item.c:105
 msgid "Draft"
 msgstr "ड्राफ्ट"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1053
+#: src/editor-page.c:1105
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (प्रशासक)"
 
-#: src/editor-page.c:1063 src/editor-sidebar-item.c:98
+#: src/editor-page.c:1115 src/editor-sidebar-item.c:113
 msgid "Document Portal"
 msgstr "कागजात पोर्टल"
 
-#: src/editor-page.c:1110
+#: src/editor-page.c:1161
 msgid "Failed to save document"
 msgstr "कागजात बचत असफल"
 
-#: src/editor-page.c:1111 src/editor-window.ui:359
+#: src/editor-page.c:1162 src/editor-window.ui:358
 msgid "_Close"
 msgstr "_Close"
 
-#: src/editor-page.c:1195
+#: src/editor-page.c:1248
 msgid "Save As"
 msgstr "यसमा बचत गर्नुहोस्"
 
-#: src/editor-page.c:1198
+#: src/editor-page.c:1251
 msgid "Save"
 msgstr "बचत गर्नुस"
 
-#: src/editor-page.c:1199 src/editor-window-actions.c:352
+#: src/editor-page.c:1252 src/editor-window-actions.c:353
 msgid "Cancel"
 msgstr "_रद्द"
 
-#: src/editor-page.c:1348
+#: src/editor-page.c:1408
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Ln %u, Col %u"
 
-#: src/editor-page.ui:98
+#: src/editor-page.ui:95
 msgid "Go to Line"
 msgstr "लाइनमा जानुहोस्"
 
-#: src/editor-page.ui:116
+#: src/editor-page.ui:113
 msgid "Go"
 msgstr "जानुहोस्"
 
-#: src/editor-page.ui:153 src/editor-window.ui:277
+#: src/editor-page.ui:150
 msgid "Indentation"
 msgstr "इन्डेन्टेसन"
 
-#: src/editor-page.ui:156 src/editor-window.ui:279
+#: src/editor-page.ui:153 src/editor-window.ui:278
 msgid "_Automatic Indentation"
 msgstr "स्वाचालित इण्डेन्टेसन"
 
 #. Translators: this is a tab character, not a browser tab
-#: src/editor-page.ui:162 src/editor-window.ui:283
+#: src/editor-page.ui:159 src/editor-window.ui:282
 msgid "_Tabs"
 msgstr "ट्याबहरु"
 
-#: src/editor-page.ui:167 src/editor-window.ui:288
+#: src/editor-page.ui:164 src/editor-window.ui:287
 msgid "_Spaces"
 msgstr "खालीस्थान"
 
-#: src/editor-page.ui:174 src/editor-window.ui:293
+#: src/editor-page.ui:171 src/editor-window.ui:292
 msgid "Spaces _Per Tab"
 msgstr "प्रत्येक ट्याबमा खालीस्थान"
 
-#: src/editor-page.ui:176 src/editor-page.ui:204
+#: src/editor-page.ui:173 src/editor-page.ui:201
 msgid "2"
 msgstr "२"
 
-#: src/editor-page.ui:181 src/editor-page.ui:209
+#: src/editor-page.ui:178 src/editor-page.ui:206
 msgid "4"
 msgstr "४"
 
-#: src/editor-page.ui:186 src/editor-page.ui:214
+#: src/editor-page.ui:183 src/editor-page.ui:211
 msgid "6"
 msgstr "६"
 
-#: src/editor-page.ui:191 src/editor-page.ui:219
+#: src/editor-page.ui:188 src/editor-page.ui:216
 msgid "8"
 msgstr "८"
 
-#: src/editor-page.ui:197
+#: src/editor-page.ui:194
 msgid "Spaces Per Indent"
 msgstr "प्रति इन्डेन्ट खाली स्थान"
 
-#: src/editor-page.ui:199
+#: src/editor-page.ui:196
 msgid "Use Tab Size"
 msgstr "ट्याब साइज"
 
@@ -497,57 +526,57 @@ msgstr "पंक्ति"
 msgid "Col"
 msgstr "स्तम्भ"
 
-#: src/editor-preferences-dialog.ui:17
+#: src/editor-preferences-dialog.ui:19
 msgid "Appearance"
 msgstr "मोहडा"
 
-#: src/editor-preferences-dialog.ui:79
-msgid "Display Grid Pattern"
+#: src/editor-preferences-dialog.ui:59
+msgid "Custom _Font"
+msgstr "अनुकूल फन्ट"
+
+#: src/editor-preferences-dialog.ui:82
+msgid "Display _Grid Pattern"
 msgstr "ग्रिड बाँन्की प्रदर्शन गर्नुहोस्"
 
-#: src/editor-preferences-dialog.ui:85
-msgid "Highlight Current Line"
+#: src/editor-preferences-dialog.ui:89
+msgid "_Highlight Current Line"
 msgstr "हालको लाइन हाइलाइट गर्नुहोस्"
 
-#: src/editor-preferences-dialog.ui:91
-msgid "Display Overview Map"
-msgstr "सदृश्य मानचित्र प्रदर्शन गर्नुहोस्"
+#: src/editor-preferences-dialog.ui:96
+msgid "Display _Overview Map"
+msgstr "अवलोकन मानचित्र देखाउनुहोस्"
 
-#: src/editor-preferences-dialog.ui:99
+#: src/editor-preferences-dialog.ui:105
 msgid "Right Margin"
 msgstr "दायाँ किनारा"
 
-#: src/editor-preferences-dialog.ui:102
-msgid "Margin Position"
+#: src/editor-preferences-dialog.ui:108
+msgid "_Margin Position"
 msgstr "सीमान्त स्थिति"
 
-#: src/editor-preferences-dialog.ui:110
+#: src/editor-preferences-dialog.ui:117
 msgid "Behavior"
 msgstr "व्यवहार"
 
-#: src/editor-preferences-dialog.ui:113
-msgid "Discover Document Settings"
+#: src/editor-preferences-dialog.ui:120
+msgid "_Discover Document Settings"
 msgstr "कागजात सेटिङ पत्ता लगाउनुहोस्"
 
-#: src/editor-preferences-dialog.ui:114
+#: src/editor-preferences-dialog.ui:122
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr "मोडलाइन, सम्पादक कन्फिग, वा समझदार पूर्वनिर्धारित हरू प्रयोग गरेर सेटिङ लागू गर्नुहोस्"
 
-#: src/editor-preferences-dialog.ui:120
-msgid "Restore Session"
+#: src/editor-preferences-dialog.ui:128
+msgid "_Restore Session"
 msgstr "सत्र पूर्वावस्थामा ल्याउनुहोस्"
 
-#: src/editor-preferences-dialog.ui:121
+#: src/editor-preferences-dialog.ui:130
 msgid "Return to your previous session when Text Editor is started"
 msgstr "पाठ सम्पादक सुरु भएको बेलामा तपाईँको अघिल्लो सत्रमा फर्कनुहोस्"
 
-#: src/editor-preferences-dialog.ui:136
+#: src/editor-preferences-dialog.ui:145
 msgid "_Clear History"
 msgstr "इतिहास खाली गर्नुहोस्"
-
-#: src/editor-preferences-font.c:100
-msgid "Select Font"
-msgstr "फन्ट चयन गर्नुहोस्"
 
 #: src/editor-print-operation.c:176
 #, c-format
@@ -578,68 +607,72 @@ msgstr "फाईल"
 msgid "Name"
 msgstr "नाम"
 
-#: src/editor-properties-dialog.ui:45
+#: src/editor-properties-dialog.ui:46
 msgid "Location"
 msgstr "स्थान"
 
-#: src/editor-properties-dialog.ui:63
+#: src/editor-properties-dialog.ui:75
+msgid "Open in File Manager"
+msgstr "फाइल प्रबन्धकसंग खोल्नुहोस्"
+
+#: src/editor-properties-dialog.ui:85
 msgid "Statistics"
 msgstr "तथ्याङ्क"
 
-#: src/editor-properties-dialog.ui:66
+#: src/editor-properties-dialog.ui:88
 msgid "Lines"
 msgstr "लाइन"
 
-#: src/editor-properties-dialog.ui:81
+#: src/editor-properties-dialog.ui:96
 msgid "Words"
 msgstr "शब्दहरू"
 
-#: src/editor-properties-dialog.ui:96
+#: src/editor-properties-dialog.ui:104
 msgid "Characters, No Spaces"
 msgstr "वर्णहरू, खाली स्थान छैन"
 
-#: src/editor-properties-dialog.ui:111
+#: src/editor-properties-dialog.ui:112
 msgid "All Characters"
 msgstr "सबै वर्ण"
 
-#: src/editor-save-changes-dialog.c:254 src/editor-window-actions.c:242
+#: src/editor-save-changes-dialog.c:255 src/editor-window-actions.c:242
 msgid "_Discard"
 msgstr "छोड्नुहोस्"
 
-#: src/editor-save-changes-dialog.c:254
+#: src/editor-save-changes-dialog.c:255
 msgid "_Discard All"
 msgstr "सबै छोड्नुहोस्"
 
-#: src/editor-save-changes-dialog.c:257
+#: src/editor-save-changes-dialog.c:258
 msgid "Save Changes?"
 msgstr "परिवर्तनहरू बचत गर्नुहुन्छ?"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:259
 msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be permanently lost."
 msgstr ""
 "खुला कागजातले बचत नगरिएको परिवर्तनहरू समाविष्ट गर्दछ । बचत नगरिएका परिवर्तनहरू स्थायी रूपले नष्ट हुनेछन् ।"
 
-#: src/editor-save-changes-dialog.c:261 src/editor-window-actions.c:116
+#: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:116
 #: src/editor-window-actions.c:241
 msgid "_Cancel"
 msgstr "रद्द गर्नुहोस्"
 
-#: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:117 src/editor-window.ui:210
+#: src/editor-save-changes-dialog.c:265 src/editor-window-actions.c:117 src/editor-window.ui:211
 msgid "_Save"
 msgstr "बचत गर्नुस"
 
-#: src/editor-save-changes-dialog.c:293
+#: src/editor-save-changes-dialog.c:299
 msgid "Untitled Document"
 msgstr "शीर्षक विहिन कागजात"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:296
+#: src/editor-save-changes-dialog.c:302
 #, c-format
 msgid "%s (new)"
 msgstr "%s( नयाँ )"
 
-#: src/editor-save-changes-dialog.c:317
+#: src/editor-save-changes-dialog.c:323
 msgid "Save changes for this document"
 msgstr "यो कागजातका लागि परिवर्तनहरू बचत गर्नुहोस्"
 
@@ -648,23 +681,23 @@ msgid "Replace"
 msgstr "बदलनुहोस्"
 
 #: src/editor-search-bar.ui:51
-msgid "Move to previous match (Ctrl+Shift+G)"
-msgstr "अघिल्लो जोडामा सार्नुहोस् (Ctrl+Shift+G)"
+msgid "Previous Match"
+msgstr "अघिल्लो फेला पार्नुहोस्"
 
 #: src/editor-search-bar.ui:59
-msgid "Move to next match (Ctrl+G)"
-msgstr "पछिल्लो जोडामा सार्नुहोस् (Ctrl+G)"
+msgid "Next Match"
+msgstr "पछिल्लो फेला पार्नुहोस्"
 
 #: src/editor-search-bar.ui:71
-msgid "Search & Replace (Ctrl+H)"
-msgstr "खोजी गर्नुहोस् र बदल्नुहोस्"
+msgid "Search & Replace"
+msgstr "खोजी गर्नुहोस् , बदल्नुहोस्"
 
 #: src/editor-search-bar.ui:81
-msgid "Toggle search options"
-msgstr "टगल खोज विकल्प"
+msgid "Search Options"
+msgstr "खोज विकल्प"
 
 #: src/editor-search-bar.ui:95
-msgid "Close search"
+msgid "Close Search"
 msgstr "खोज बन्द गर्नुहोस्"
 
 #: src/editor-search-bar.ui:112
@@ -693,6 +726,10 @@ msgstr "पुर्ण शब्द मात्र मिलाउनुहो
 msgid "%u of %u"
 msgstr "%u of %u"
 
+#: src/editor-sidebar-row.ui:85
+msgid "Remove"
+msgstr "हटाउने"
+
 #: src/editor-spell-menu.c:248
 msgid "Add to Dictionary"
 msgstr "शब्दकोशमा थप्नुहोस्"
@@ -709,15 +746,27 @@ msgstr "र्हिज्जे जाँच गर्नुहोस्"
 msgid "Languages"
 msgstr "भाषा"
 
-#: src/editor-theme-selector.ui:22 src/editor-theme-selector.ui:24
+#: src/editor-theme-selector.ui:23
+msgid "Follow System Style"
+msgstr "प्रणाली शैली पछ्याउनुहोस्"
+
+#: src/editor-theme-selector.ui:25
 msgid "Follow system style"
 msgstr "प्रणाली शैली पछ्याउनुहोस्"
 
-#: src/editor-theme-selector.ui:39 src/editor-theme-selector.ui:41
+#: src/editor-theme-selector.ui:40
+msgid "Light Style"
+msgstr "उज्जयालो शैली"
+
+#: src/editor-theme-selector.ui:42
 msgid "Light style"
 msgstr "हल्का शैली"
 
-#: src/editor-theme-selector.ui:57 src/editor-theme-selector.ui:59
+#: src/editor-theme-selector.ui:58
+msgid "Dark Style"
+msgstr "गाढा शैली"
+
+#: src/editor-theme-selector.ui:60
 msgid "Dark style"
 msgstr "गाढा शैली"
 
@@ -788,64 +837,84 @@ msgstr "यदि तपाईँले बचत गर्नुभएन भ�
 msgid "Discard Changes to “%s”?"
 msgstr "\"%s\" मा परिवर्तनहरू छोड्नुहुन्छ?"
 
-#: src/editor-window-actions.c:348
+#: src/editor-window-actions.c:349
 msgid "Open File"
 msgstr "फाइल खोल्नुहोस्"
 
-#: src/editor-window-actions.c:351
+#: src/editor-window-actions.c:352
 msgid "Open"
 msgstr "खुला"
 
-#: src/editor-window-actions.c:376
+#: src/editor-window-actions.c:377
 msgid "All Files"
 msgstr "सबै फाइल"
 
-#: src/editor-window-actions.c:381
+#: src/editor-window-actions.c:382
 msgid "Text Files"
 msgstr "पाठ फाइलहरू"
 
-#: src/editor-window.c:206
+#: src/editor-window.c:203
 #, c-format
 msgid "Document Type: %s"
 msgstr "कागजात प्रकार: %s"
+
+#: src/editor-window.c:505
+msgid "Zoom In"
+msgstr "जुम बढाउनुहोस्"
 
 #: src/editor-window.c:508
 msgid "Zoom in"
 msgstr "जूम गर्नुहोस्"
 
-#: src/editor-window.c:520
+#: src/editor-window.c:518
+msgid "Zoom Out"
+msgstr "जूम घटाउनुहोस्"
+
+#: src/editor-window.c:521
 msgid "Zoom out"
 msgstr "जुम घटाउनुहोस््"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:733
+#: src/editor-window.c:757
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - पाठ सम्पादक"
 
-#: src/editor-window.c:1136
+#: src/editor-window.c:1199
 msgid "There are unsaved documents"
 msgstr "बचत नभएको कागजातहरू"
 
-#: src/editor-window.ui:78
+#: src/editor-window.ui:83
 msgid "_Open"
 msgstr "खोल्नुहोस्"
 
-#: src/editor-window.ui:80
-msgid "Open recent document (Ctrl+K)"
-msgstr "हालका कागजात खोल्नुहोस् (Ctrl+K)"
+#: src/editor-window.ui:85
+msgid "Recently Used Documents"
+msgstr "हालै प्रयोग गरिएका कागजातहरू"
 
-#: src/editor-window.ui:92 src/editor-window.ui:94
-msgid "New tab (Ctrl+T)"
-msgstr "नयाँ टयाब (Ctrl+T)"
+#: src/editor-window.ui:97
+msgid "New Tab"
+msgstr "नयाँ ट्याब"
 
-#: src/editor-window.ui:120 src/editor-window.ui:124
+#: src/editor-window.ui:99
+msgid "New tab"
+msgstr "नयाँ ट्याब"
+
+#: src/editor-window.ui:125
+msgid "View Options"
+msgstr "विकल्पहरु हेर्नुहोस्"
+
+#: src/editor-window.ui:129
 msgid "View"
 msgstr "दृश्य"
 
-#: src/editor-window.ui:133
-msgid "Menu"
-msgstr "मेनु"
+#: src/editor-window.ui:135
+msgid "Main Menu"
+msgstr "मुख्य मेनु"
+
+#: src/editor-window.ui:139
+msgid "Main menu"
+msgstr "मुख्य मेनु"
 
 #: src/editor-window.ui:166
 msgid "Start or Open a Document"
@@ -867,106 +936,97 @@ msgstr ""
 "\n"
 "वा, सञ्झ्याल बन्द गर्न Ctrl+W थिच्नुहोस् ।"
 
-#: src/editor-window.ui:202
+#: src/editor-window.ui:203
 msgid "_New Window"
 msgstr "नयाँ सञ्झ्याल"
 
-#: src/editor-window.ui:222
+#: src/editor-window.ui:223
 msgid "_Discard Changes"
 msgstr "परिवर्तनहरू छोड्नुहोस्"
 
-#: src/editor-window.ui:228
+#: src/editor-window.ui:229
 msgid "_Find/Replace…"
 msgstr "फेला पार्नुहोस् र प्रतिस्थापन गर्नुहोस्"
 
-#: src/editor-window.ui:234
-msgid "_Print"
-msgstr "मुद्रण गर्नुहोस्"
+#: src/editor-window.ui:235
+msgid "_Print…"
+msgstr "मुद्रण…"
 
-#: src/editor-window.ui:240
+#: src/editor-window.ui:241
 msgid "Documen_t Properties"
 msgstr "कागजात गुणहरू"
 
-#: src/editor-window.ui:246
+#: src/editor-window.ui:247
 msgid "P_references"
 msgstr "प्राथमिकता"
 
-#: src/editor-window.ui:251
+#: src/editor-window.ui:252
 msgid "_Keyboard Shortcuts"
 msgstr "कुञ्जीपाटी सर्टकट"
 
-#: src/editor-window.ui:255
+#: src/editor-window.ui:256
 msgid "_Help"
 msgstr "मद्दत"
 
-#: src/editor-window.ui:259
+#: src/editor-window.ui:260
 msgid "A_bout Text Editor"
 msgstr "पाठ सम्पादकका बारेमा"
 
-#: src/editor-window.ui:266
-msgid "Show"
-msgstr "देखाउने"
-
 #: src/editor-window.ui:268
-msgid "_Line Numbers"
-msgstr "लाइन नम्बर"
+msgid "Show _Line Numbers"
+msgstr "लाइन नम्बरहरू देखाउनुहोस्"
 
 #: src/editor-window.ui:272
-msgid "_Right Margin"
-msgstr "दाहिने किनारा"
+msgid "Show _Right Margin"
+msgstr "दाहिने किनारा देखाउनुहोस्"
 
-#: src/editor-window.ui:296
+#: src/editor-window.ui:295
 msgid "_2"
 msgstr "२"
 
-#: src/editor-window.ui:301
+#: src/editor-window.ui:300
 msgid "_4"
 msgstr "४"
 
-#: src/editor-window.ui:306
+#: src/editor-window.ui:305
 msgid "_6"
 msgstr "६"
 
-#: src/editor-window.ui:311
+#: src/editor-window.ui:310
 msgid "_8"
 msgstr "८"
 
-#: src/editor-window.ui:320
+#: src/editor-window.ui:319
 msgid "T_ext Wrapping"
 msgstr "पाठ बेराई"
 
-#: src/editor-window.ui:324
+#: src/editor-window.ui:323
 msgid "Chec_k Spelling"
 msgstr "हिज्जे परिक्षण गर्नुहोस्"
 
-#: src/editor-window.ui:328
-msgid "_Document Type"
+#: src/editor-window.ui:327
+msgid "_Document Type…"
 msgstr "कागजातको प्रकार"
 
-#: src/editor-window.ui:336
+#: src/editor-window.ui:335
 msgid "Move _Left"
 msgstr "बाँया सार्नुहोस्"
 
-#: src/editor-window.ui:341
+#: src/editor-window.ui:340
 msgid "Move _Right"
 msgstr "दाँया सार्नुहोस्"
 
-#: src/editor-window.ui:348
+#: src/editor-window.ui:347
 msgid "_Move to New Window"
 msgstr "नयाँ सञ्झ्याल सार्नुहोस्"
 
-#: src/editor-window.ui:355
+#: src/editor-window.ui:354
 msgid "Close _Other Tabs"
 msgstr "अन्य ट्याबहरू बन्द गर्नुहोस्"
 
 #: src/enchant/editor-enchant-spell-provider.c:123
 msgid "Enchant 2"
 msgstr "इनच्ञाट २"
-
-#: src/help-overlay.ui:9
-msgctxt "shortcut window"
-msgid "Editor Shortcuts"
-msgstr "सम्पादक सर्टकटहरू"
 
 #: src/help-overlay.ui:12
 msgctxt "shortcut window"
@@ -1093,150 +1153,197 @@ msgctxt "shortcut window"
 msgid "Copy all to clipboard"
 msgstr "क्लिपबोर्डमा सबै प्रतिलिपि गर्नुहोस्"
 
-#: src/help-overlay.ui:158
+#: src/help-overlay.ui:156
+msgctxt "shortcut window"
+msgid "Copy current line down"
+msgstr "हालको रेखा तल प्रतिलिपि बनाउनुहोस्"
+
+#: src/help-overlay.ui:164
 msgctxt "shortcut window"
 msgid "Undo and Redo"
 msgstr "पूर्वस्थितिमा फर्काउने र फेरि गर्नुहोस्"
 
-#: src/help-overlay.ui:162
+#: src/help-overlay.ui:168
 msgctxt "shortcut window"
 msgid "Undo previous command"
 msgstr "अघिल्लो आदेश फर्किनुहोस्"
 
-#: src/help-overlay.ui:168
+#: src/help-overlay.ui:174
 msgctxt "shortcut window"
 msgid "Redo previous command"
 msgstr "अघिल्लो आदेश फेरी गर्नुहोस्"
 
-#: src/help-overlay.ui:175
+#: src/help-overlay.ui:181
 msgctxt "shortcut window"
 msgid "Editing"
 msgstr "सम्पादन गर्ने"
 
-#: src/help-overlay.ui:179
+#: src/help-overlay.ui:185
 msgctxt "shortcut window"
 msgid "Insert emoji into document"
 msgstr "कागजातमा इमोजी घुसाउनुहोस्"
 
-#: src/help-overlay.ui:185
+#: src/help-overlay.ui:191
 msgctxt "shortcut window"
 msgid "Search within the document"
 msgstr "कागजात भित्र खोजी गर्नुहोस्"
 
-#: src/help-overlay.ui:191
+#: src/help-overlay.ui:197
 msgctxt "shortcut window"
 msgid "Search and replace within the document"
 msgstr "कागजात भित्र खोजी गर्नुहोस् र बदल्नुहोस्"
 
-#: src/help-overlay.ui:197
+#: src/help-overlay.ui:203
 msgctxt "shortcut window"
 msgid "Increment number at cursor"
 msgstr "कर्सरमा बढोत्तरी सङ्ख्या"
 
-#: src/help-overlay.ui:203
+#: src/help-overlay.ui:209
 msgctxt "shortcut window"
 msgid "Decrement number at cursor"
 msgstr "कर्सरमा घट्दो सङ्ख्या"
 
-#: src/help-overlay.ui:209
+#: src/help-overlay.ui:215
 msgctxt "shortcut window"
 msgid "Toggle overwrite"
 msgstr "अधिलेखन टगल गर्नुहोस्"
 
-#: src/help-overlay.ui:215
+#: src/help-overlay.ui:221
 msgctxt "shortcut window"
 msgid "Toggle visibility of insertion caret"
 msgstr "घुसाइने क्यारेटको दृश्यात्मकता टगल गर्नुहोस्"
 
-#: src/help-overlay.ui:222
+#: src/help-overlay.ui:228
 msgctxt "shortcut window"
 msgid "Selections"
 msgstr "चयनहरू"
 
-#: src/help-overlay.ui:226
+#: src/help-overlay.ui:232
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "सबै चयन गर्नुहोस्"
 
-#: src/help-overlay.ui:232
+#: src/help-overlay.ui:238
 msgctxt "shortcut window"
 msgid "Unselect all"
 msgstr "सबै चयन हटाउनुहोस्"
 
-#: src/help-overlay.ui:238
+#: src/help-overlay.ui:244
 msgctxt "shortcut window"
 msgid "Select current line"
 msgstr "हालको पंक्ति चयन गर्नुहोस्"
 
-#: src/help-overlay.ui:245
+#: src/help-overlay.ui:251
 msgctxt "shortcut window"
 msgid "Movements"
 msgstr "चालहरू"
 
-#: src/help-overlay.ui:249
+#: src/help-overlay.ui:255
 msgctxt "shortcut window"
 msgid "Move to beginning of document"
 msgstr "कागजातको सुरुआतमा सार्नुहोस्"
 
-#: src/help-overlay.ui:255
+#: src/help-overlay.ui:261
 msgctxt "shortcut window"
 msgid "Move to end of document"
 msgstr "कागजातको अन्त्यमा सार्नुहोस्"
 
-#: src/help-overlay.ui:261
+#: src/help-overlay.ui:267
 msgctxt "shortcut window"
 msgid "Move to start of previous paragraph"
 msgstr "अघिल्लो हरफमा जानुहोस्"
 
-#: src/help-overlay.ui:267
+#: src/help-overlay.ui:273
 msgctxt "shortcut window"
 msgid "Move to end of next paragraph"
 msgstr "पछिल्लो अनुच्छेदको अन्त्यमा सार्नुहोस्"
 
-#: src/help-overlay.ui:273
+#: src/help-overlay.ui:279
 msgctxt "shortcut window"
 msgid "Move current or selected lines up"
 msgstr "हालको वा चयन गरिएका लाइनहरू माथि सार्नुहोस्"
 
-#: src/help-overlay.ui:279
+#: src/help-overlay.ui:285
 msgctxt "shortcut window"
 msgid "Move current or selected lines down"
 msgstr "हालको वा चयन गरिएका लाइनहरू तल सार्नुहोस्"
 
-#: src/help-overlay.ui:285
+#: src/help-overlay.ui:291
 msgctxt "shortcut window"
 msgid "Go to line"
 msgstr "पङ्क्तिमा जानुहोस्"
 
-#: src/help-overlay.ui:292
+#: src/help-overlay.ui:298
 msgctxt "shortcut window"
 msgid "Deletion"
 msgstr "मेटाइने"
 
-#: src/help-overlay.ui:296
+#: src/help-overlay.ui:302
 msgctxt "shortcut window"
 msgid "Delete from cursor to word start"
 msgstr "कर्सरबाट शब्द सुरुआतमा मेट्नुहोस्"
 
-#: src/help-overlay.ui:302
+#: src/help-overlay.ui:308
 msgctxt "shortcut window"
 msgid "Delete from cursor to word end"
 msgstr "कर्सरबाट शब्द को अन्त्यमा मेट्नुहोस्"
 
-#: src/help-overlay.ui:308
+#: src/help-overlay.ui:314
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph start"
 msgstr "कर्सरबाट अनुच्छेद सुरुसम्म मेट्नुहोस्"
 
-#: src/help-overlay.ui:314
+#: src/help-overlay.ui:320
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph end"
 msgstr "कर्सरबाट अनुच्छेद अन्त्यमा मेट्नुहोस्"
 
-#: src/help-overlay.ui:320
+#: src/help-overlay.ui:326
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "हालको पंक्ति मेट्नुहोस्"
+
+#: src/help-overlay.ui:333
+msgctxt "shortcut window"
+msgid "General"
+msgstr "सामान्य"
+
+#: src/help-overlay.ui:337
+msgctxt "shortcut window"
+msgid "Show preferences"
+msgstr "प्राथमिकता देखाउनुहोस्"
+
+#: src/help-overlay.ui:343
+msgctxt "shortcut window"
+msgid "Show keyboard shortcuts"
+msgstr "कुञ्जीपाटी सर्टकट देखाउनुहोस्"
+
+#: src/help-overlay.ui:349
+msgctxt "shortcut window"
+msgid "Show help"
+msgstr "मद्दत देखाउनुहोस्"
+
+#~ msgid "Select Font"
+#~ msgstr "फन्ट चयन गर्नुहोस्"
+
+#~ msgid "Move to previous match (Ctrl+Shift+G)"
+#~ msgstr "अघिल्लो जोडामा सार्नुहोस् (Ctrl+Shift+G)"
+
+#~ msgid "Move to next match (Ctrl+G)"
+#~ msgstr "पछिल्लो जोडामा सार्नुहोस् (Ctrl+G)"
+
+#~ msgid "Open recent document (Ctrl+K)"
+#~ msgstr "हालका कागजात खोल्नुहोस् (Ctrl+K)"
+
+#~ msgid "_Line Numbers"
+#~ msgstr "लाइन नम्बर"
+
+#~ msgid "_Right Margin"
+#~ msgstr "दाहिने किनारा"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Editor Shortcuts"
+#~ msgstr "सम्पादक सर्टकटहरू"
 
 #~ msgid "Christian Hergert, et al."
 #~ msgstr "क्रिस्चियन हर्गर्ट, इट अल."
