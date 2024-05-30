@@ -37,7 +37,7 @@ struct _EditorPropertiesDialog
   AdwActionRow   *all_chars;
   AdwActionRow   *chars;
   AdwActionRow   *lines;
-  GtkLabel       *location;
+  AdwActionRow   *location;
   AdwActionRow   *name;
   AdwActionRow   *words;
 };
@@ -92,10 +92,7 @@ file_to_location (GBinding     *binding,
                   gpointer      user_data)
 {
   g_autoptr(GFile) parent = NULL;
-  g_autofree char *uri = NULL;
   g_autofree char *title = NULL;
-  g_autofree char *markup = NULL;
-  g_autofree char *title_escape = NULL;
   GFile *file;
 
   g_assert (G_IS_BINDING (binding));
@@ -111,17 +108,12 @@ file_to_location (GBinding     *binding,
   if (!(parent = g_file_get_parent (file)))
     return FALSE;
 
-  uri = g_file_get_uri (file);
-
   if (g_file_is_native (parent))
     title = _editor_path_collapse (g_file_peek_path (parent));
   else
     title = g_file_get_uri (parent);
 
-  title_escape = g_markup_escape_text (title, -1);
-  markup = g_strdup_printf ("<a href='%s'>%s</a>", uri, title_escape);
-
-  g_value_take_string (to_value, g_steal_pointer (&markup));
+  g_value_take_string (to_value, g_steal_pointer (&title));
 
   return TRUE;
 }
@@ -263,7 +255,7 @@ editor_properties_dialog_set_document (EditorPropertiesDialog *self,
                               self->name, "tooltip-text",
                               G_BINDING_SYNC_CREATE);
       g_object_bind_property_full (self->document, "file",
-                                   self->location, "label",
+                                   self->location, "subtitle",
                                    G_BINDING_SYNC_CREATE,
                                    file_to_location, NULL, NULL, NULL);
       g_object_bind_property_full (self->document, "file",
@@ -301,22 +293,6 @@ editor_properties_dialog_new (EditorWindow   *window,
                        "document", document,
                        "transient-for", window,
                        NULL);
-}
-
-static gboolean
-activate_link_cb (EditorPropertiesDialog *self,
-                  const char             *uri,
-                  GtkLabel               *label)
-{
-  g_autoptr(GFile) file = NULL;
-
-  g_assert (EDITOR_IS_PROPERTIES_DIALOG (self));
-  g_assert (uri != NULL);
-  g_assert (GTK_IS_LABEL (label));
-
-  file = g_file_new_for_uri (uri);
-
-  return editor_file_manager_show (file, NULL);
 }
 
 static void
@@ -415,8 +391,6 @@ editor_properties_dialog_class_init (EditorPropertiesDialogClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorPropertiesDialog, location);
   gtk_widget_class_bind_template_child (widget_class, EditorPropertiesDialog, name);
   gtk_widget_class_bind_template_child (widget_class, EditorPropertiesDialog, words);
-
-  gtk_widget_class_bind_template_callback (widget_class, activate_link_cb);
 
   gtk_widget_class_install_action (widget_class, "open-folder", NULL, open_folder_cb);
   gtk_widget_class_install_action (widget_class, "win.close", NULL, win_close_cb);

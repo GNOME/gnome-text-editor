@@ -34,37 +34,9 @@
                   </object>
                 </child>
                 <child>
-                  <object class="AdwActionRow">
-                    <child type="prefix">
-                      <object class="GtkBox">
-                        <property name="orientation">vertical</property>
-                        <property name="spacing">3</property>
-                        <property name="halign">start</property>
-                        <property name="valign">center</property>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="label" translatable="yes">Location</property>
-                            <property name="hexpand">True</property>
-                            <property name="ellipsize">end</property>
-                            <property name="halign">start</property>
-                            <style>
-                              <class name="subtitle"/>
-                            </style>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="location">
-                            <property name="xalign">0</property>
-                            <property name="ellipsize">start</property>
-                            <property name="use-markup">true</property>
-                            <signal name="activate-link" handler="activate_link_cb" swapped="true"/>
-                            <accessibility>
-                              <property name="has-popup">true</property>
-                            </accessibility>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
+                  <object class="AdwActionRow" id="location">
+                    <property name="title" translatable="yes">Location</property>
+                    <property name="subtitle-lines">1</property>
                     <child type="suffix">
                       <object class="GtkButton">
                         <style>
@@ -76,6 +48,9 @@
                         <property name="valign">center</property>
                       </object>
                     </child>
+                    <style>
+                      <class name="property"/>
+                    </style>
                   </object>
                 </child>
               </object>
