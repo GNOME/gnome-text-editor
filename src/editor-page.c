@@ -1149,7 +1149,7 @@ editor_page_save_cb (GObject      *object,
   g_autoptr(EditorPage) self = user_data;
   g_autoptr(GError) error = NULL;
   GtkNative *parent;
-  GtkWidget *dialog;
+  AdwDialog *dialog;
 
   g_assert (EDITOR_IS_DOCUMENT (document));
   g_assert (G_IS_ASYNC_RESULT (result));
@@ -1164,10 +1164,10 @@ editor_page_save_cb (GObject      *object,
   g_warning ("Failed to save document: %s", error->message);
 
   parent = gtk_widget_get_native (GTK_WIDGET (self));
-  dialog = adw_message_dialog_new (GTK_WINDOW (parent), _("Failed to save document"), NULL);
-  adw_message_dialog_add_response (ADW_MESSAGE_DIALOG (dialog), "close", _("_Close"));
-  adw_message_dialog_format_body (ADW_MESSAGE_DIALOG (dialog), "%s", error->message);
-  gtk_window_present (GTK_WINDOW (dialog));
+  dialog = adw_alert_dialog_new (_("Failed to save document"), NULL);
+  adw_alert_dialog_add_response (ADW_ALERT_DIALOG (dialog), "close", _("_Close"));
+  adw_alert_dialog_format_body (ADW_ALERT_DIALOG (dialog), "%s", error->message);
+  adw_dialog_present (dialog, GTK_WIDGET (parent));
 }
 
 void
