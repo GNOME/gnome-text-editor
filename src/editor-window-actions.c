@@ -97,7 +97,7 @@ editor_window_actions_confirm_save_cb (GtkWidget  *widget,
   EditorWindow *self = (EditorWindow *)widget;
   g_autofree gchar *title = NULL;
   EditorPage *page;
-  GtkWidget *dialog;
+  AdwDialog *dialog;
 
   g_assert (EDITOR_IS_WINDOW (self));
 
@@ -105,18 +105,17 @@ editor_window_actions_confirm_save_cb (GtkWidget  *widget,
     return;
 
   title = editor_page_dup_title (page);
-  dialog = adw_message_dialog_new (GTK_WINDOW (self),
-                                   NULL,
-                                   _("Saving changes will replace the previously saved version."));
-  adw_message_dialog_format_heading (ADW_MESSAGE_DIALOG (dialog),
+  dialog = adw_alert_dialog_new (NULL,
+                                 _("Saving changes will replace the previously saved version."));
+  adw_alert_dialog_format_heading (ADW_ALERT_DIALOG (dialog),
                                      /* translators: %s is replaced with the document title */
                                      _("Save Changes to “%s”?"),
                                      title);
-  adw_message_dialog_add_responses (ADW_MESSAGE_DIALOG (dialog),
+  adw_alert_dialog_add_responses (ADW_ALERT_DIALOG (dialog),
                                     "cancel", _("_Cancel"),
                                     "save", _("_Save"),
                                     NULL);
-  adw_message_dialog_set_response_appearance (ADW_MESSAGE_DIALOG (dialog),
+  adw_alert_dialog_set_response_appearance (ADW_ALERT_DIALOG (dialog),
                                               "save", ADW_RESPONSE_DESTRUCTIVE);
 
   g_signal_connect_object (dialog,
@@ -125,7 +124,7 @@ editor_window_actions_confirm_save_cb (GtkWidget  *widget,
                            page,
                            G_CONNECT_SWAPPED);
 
-  gtk_window_present (GTK_WINDOW (dialog));
+  adw_dialog_present (dialog, widget);
 }
 
 static void
@@ -222,7 +221,7 @@ editor_window_actions_confirm_discard_changes_cb (GtkWidget  *widget,
   EditorWindow *self = (EditorWindow *)widget;
   g_autofree gchar *title = NULL;
   EditorPage *page;
-  GtkWidget *dialog;
+  AdwDialog *dialog;
 
   g_assert (EDITOR_IS_WINDOW (self));
 
@@ -230,18 +229,16 @@ editor_window_actions_confirm_discard_changes_cb (GtkWidget  *widget,
     return;
 
   title = editor_page_dup_title (page);
-  dialog = adw_message_dialog_new (GTK_WINDOW (self),
-                                   NULL,
-                                   _("Unsaved changes will be permanently lost."));
-  adw_message_dialog_format_heading (ADW_MESSAGE_DIALOG (dialog),
+  dialog = adw_alert_dialog_new (NULL, _("Unsaved changes will be permanently lost."));
+  adw_alert_dialog_format_heading (ADW_ALERT_DIALOG (dialog),
                                      /* translators: %s is replaced with the document title */
                                      _("Discard Changes to “%s”?"),
                                      title);
-  adw_message_dialog_add_responses (ADW_MESSAGE_DIALOG (dialog),
+  adw_alert_dialog_add_responses (ADW_ALERT_DIALOG (dialog),
                                     "cancel", _("_Cancel"),
                                     "discard", _("_Discard"),
                                     NULL);
-  adw_message_dialog_set_response_appearance (ADW_MESSAGE_DIALOG (dialog),
+  adw_alert_dialog_set_response_appearance (ADW_ALERT_DIALOG (dialog),
                                               "discard", ADW_RESPONSE_DESTRUCTIVE);
 
   g_signal_connect_object (dialog,
@@ -250,7 +247,7 @@ editor_window_actions_confirm_discard_changes_cb (GtkWidget  *widget,
                            page,
                            G_CONNECT_SWAPPED);
 
-  gtk_window_present (GTK_WINDOW (dialog));
+  adw_dialog_present (dialog, widget);
 }
 
 static void
