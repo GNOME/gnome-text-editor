@@ -28,7 +28,7 @@
 
 struct _EditorLanguageDialog
 {
-  AdwWindow          parent_instance;
+  AdwDialog          parent_instance;
 
   GtkListBox        *list_box;
   GtkEntry          *search_entry;
@@ -43,7 +43,7 @@ enum {
   N_PROPS
 };
 
-G_DEFINE_TYPE (EditorLanguageDialog, editor_language_dialog, ADW_TYPE_WINDOW)
+G_DEFINE_TYPE (EditorLanguageDialog, editor_language_dialog, ADW_TYPE_DIALOG)
 
 static GParamSpec *properties [N_PROPS];
 
@@ -160,14 +160,6 @@ editor_language_dialog_entry_activate_cb (EditorLanguageDialog *self,
 }
 
 static void
-win_close_cb (GtkWidget  *widget,
-              const char *action_name,
-              GVariant   *param)
-{
-  gtk_window_close (GTK_WINDOW (widget));
-}
-
-static void
 editor_language_dialog_entry_changed_cb (EditorLanguageDialog *self,
                                          GtkEntry             *entry)
 {
@@ -271,10 +263,6 @@ editor_language_dialog_class_init (EditorLanguageDialogClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorLanguageDialog, list_box);
   gtk_widget_class_bind_template_child (widget_class, EditorLanguageDialog, placeholder);
   gtk_widget_class_bind_template_child (widget_class, EditorLanguageDialog, search_entry);
-
-  gtk_widget_class_install_action (widget_class, "win.close", NULL, win_close_cb);
-
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Escape, 0, "win.close", NULL);
 }
 
 static void
@@ -286,8 +274,7 @@ editor_language_dialog_init (EditorLanguageDialog *self)
   gtk_widget_add_css_class (GTK_WIDGET (self), "devel");
 #endif
 
-  gtk_window_set_default_size (GTK_WINDOW (self), 350, -1);
-  gtk_window_set_resizable (GTK_WINDOW (self), FALSE);
+  adw_dialog_set_content_width (ADW_DIALOG (self), 350);
 
   g_signal_connect_object (self->list_box,
                            "row-activated",
@@ -309,20 +296,15 @@ editor_language_dialog_init (EditorLanguageDialog *self)
 
 /**
  * editor_language_dialog_new:
- * @application: (nullable): an #EditorApplication or %NULL
  *
  * Creates a new #EditorLanguageDialog
  *
  * Returns: (transfer full): an #EditorLanguageDialog
  */
 EditorLanguageDialog *
-editor_language_dialog_new (EditorApplication *application)
+editor_language_dialog_new (void)
 {
-  g_return_val_if_fail (!application || EDITOR_IS_APPLICATION (application), NULL);
-
-  return g_object_new (EDITOR_TYPE_LANGUAGE_DIALOG,
-                       "application", application,
-                       NULL);
+  return g_object_new (EDITOR_TYPE_LANGUAGE_DIALOG, NULL);
 }
 
 /**

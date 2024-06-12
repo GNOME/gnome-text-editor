@@ -2,16 +2,16 @@
 <interface>
   <requires lib="gtk" version="4.0"/>
   <requires lib="Adw" version="1.0"/>
-  <template class="EditorLanguageDialog" parent="AdwWindow">
+  <template class="EditorLanguageDialog" parent="AdwDialog">
     <property name="title" translatable="yes">Document Type</property>
     <style>
       <class name="org-gnome-TextEditor"/>
       <class name="language-dialog"/>
     </style>
-    <property name="content">
+    <property name="child">
       <object class="AdwToolbarView">
         <child type="top">
-          <object class="GtkHeaderBar"/>
+          <object class="AdwHeaderBar"/>
         </child>
         <child type="top">
           <object class="GtkSearchBar">
