@@ -579,7 +579,7 @@ editor_window_actions_close_page_confirm_cb (GObject      *object,
       confirm_close = FALSE;
     }
 
-  self = EDITOR_WINDOW (gtk_window_get_transient_for (GTK_WINDOW (object)));
+  self = EDITOR_WINDOW (GTK_WINDOW (object));
 
   g_signal_handlers_block_by_func (self->tab_view,
                                    G_CALLBACK (on_tab_view_close_page_cb),

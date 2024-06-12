@@ -45,7 +45,7 @@ typedef struct
   GtkCheckButton *check;
 
   /* Duplicated backpointer because lazy */
-  AdwMessageDialog *dialog;
+  AdwAlertDialog *dialog;
 } SaveRequest;
 
 static void
@@ -63,7 +63,7 @@ static void
 editor_save_changes_dialog_remove (GArray *requests,
                                    guint   index)
 {
-  g_autoptr(AdwMessageDialog) dialog = NULL;
+  g_autoptr(AdwAlertDialog) dialog = NULL;
 
   g_assert (requests != NULL);
   g_assert (index < requests->len);
@@ -117,10 +117,10 @@ editor_save_changes_dialog_discard_cb (GObject      *object,
 }
 
 static void
-editor_save_changes_dialog_discard (GtkMessageDialog *dialog,
-                                    GArray           *requests)
+editor_save_changes_dialog_discard (AdwAlertDialog *dialog,
+                                    GArray         *requests)
 {
-  g_assert (ADW_IS_MESSAGE_DIALOG (dialog));
+  g_assert (ADW_IS_ALERT_DIALOG (dialog));
   g_assert (requests != NULL);
   g_assert (requests->len > 0);
 
@@ -181,10 +181,10 @@ editor_save_changes_dialog_save_cb (GObject      *object,
 }
 
 static void
-editor_save_changes_dialog_save (GtkMessageDialog *dialog,
-                                 GArray           *requests)
+editor_save_changes_dialog_save (AdwAlertDialog *dialog,
+                                 GArray         *requests)
 {
-  g_assert (ADW_IS_MESSAGE_DIALOG (dialog));
+  g_assert (ADW_IS_ALERT_DIALOG (dialog));
   g_assert (requests != NULL);
   g_assert (requests->len > 0);
 
@@ -209,11 +209,11 @@ editor_save_changes_dialog_save (GtkMessageDialog *dialog,
 }
 
 static void
-editor_save_changes_dialog_response (GtkMessageDialog *dialog,
-                                     const char       *response,
-                                     GArray           *requests)
+editor_save_changes_dialog_response (AdwAlertDialog *dialog,
+                                     const char     *response,
+                                     GArray         *requests)
 {
-  g_assert (ADW_IS_MESSAGE_DIALOG (dialog));
+  g_assert (ADW_IS_ALERT_DIALOG (dialog));
 
   if (!g_strcmp0 (response, "discard"))
     {
@@ -233,14 +233,14 @@ editor_save_changes_dialog_response (GtkMessageDialog *dialog,
     }
 }
 
-static GtkWidget *
+static AdwDialog *
 _editor_save_changes_dialog_new (GtkWindow *parent,
                                  GPtrArray *pages)
 {
   g_autoptr(GArray) requests = NULL;
   const char *discard_label;
   PangoAttrList *smaller;
-  GtkWidget *dialog;
+  AdwDialog *dialog;
   GtkWidget *group;
   GtkWidget *prefs_page;
 
@@ -254,23 +254,22 @@ _editor_save_changes_dialog_new (GtkWindow *parent,
 
   discard_label = g_dngettext (GETTEXT_PACKAGE, _("_Discard"), _("_Discard All"), pages->len);
 
-  dialog = adw_message_dialog_new (parent,
-                                   _("Save Changes?"),
-                                   _("Open documents contain unsaved changes. Changes which are not saved will be permanently lost."));
-  gtk_widget_add_css_class (dialog, "save-changes");
+  dialog = adw_alert_dialog_new (_("Save Changes?"),
+                                 _("Open documents contain unsaved changes. Changes which are not saved will be permanently lost."));
+  gtk_widget_add_css_class (GTK_WIDGET (dialog), "save-changes");
 
-  adw_message_dialog_add_responses (ADW_MESSAGE_DIALOG (dialog),
+  adw_alert_dialog_add_responses (ADW_ALERT_DIALOG (dialog),
                                     "cancel", _("_Cancel"),
                                     "discard", discard_label,
                                     "save", _("_Save"),
                                     NULL);
-  adw_message_dialog_set_response_appearance (ADW_MESSAGE_DIALOG (dialog),
+  adw_alert_dialog_set_response_appearance (ADW_ALERT_DIALOG (dialog),
                                               "discard", ADW_RESPONSE_DESTRUCTIVE);
-  adw_message_dialog_set_response_appearance (ADW_MESSAGE_DIALOG (dialog),
+  adw_alert_dialog_set_response_appearance (ADW_ALERT_DIALOG (dialog),
                                               "save", ADW_RESPONSE_SUGGESTED);
 
   prefs_page = adw_preferences_page_new ();
-  adw_message_dialog_set_extra_child (ADW_MESSAGE_DIALOG (dialog), prefs_page);
+  adw_alert_dialog_set_extra_child (ADW_ALERT_DIALOG (dialog), prefs_page);
 
   group = adw_preferences_group_new ();
   adw_preferences_page_add (ADW_PREFERENCES_PAGE (prefs_page),
@@ -330,7 +329,7 @@ _editor_save_changes_dialog_new (GtkWindow *parent,
       sr.document = g_object_ref (document);
       sr.check = GTK_CHECK_BUTTON (check);
       sr.page = g_object_ref (page);
-      sr.dialog = g_object_ref (ADW_MESSAGE_DIALOG (dialog));
+      sr.dialog = g_object_ref (ADW_ALERT_DIALOG (dialog));
 
       /* Use NULL for the default file, otherwise set a file
        * so that we write to it instead of the draft.
@@ -363,13 +362,13 @@ _editor_save_changes_dialog_run_async (GtkWindow           *parent,
                                        gpointer             user_data)
 {
   g_autoptr(GTask) task = NULL;
-  GtkWidget *dialog;
+  AdwDialog *dialog;
 
   g_return_if_fail (!parent || GTK_IS_WINDOW (parent));
   g_return_if_fail (!cancellable || G_IS_CANCELLABLE (cancellable));
 
   dialog = _editor_save_changes_dialog_new (parent, pages);
-  task = g_task_new (dialog, cancellable, callback, user_data);
+  task = g_task_new (parent, cancellable, callback, user_data);
   g_task_set_source_tag (task, _editor_save_changes_dialog_run_async);
 
   if (pages == NULL || pages->len == 0)
@@ -382,7 +381,7 @@ _editor_save_changes_dialog_run_async (GtkWindow           *parent,
                           "TASK",
                           g_steal_pointer (&task),
                           g_object_unref);
-  gtk_window_present (GTK_WINDOW (dialog));
+  adw_dialog_present (dialog, GTK_WIDGET (parent));
 }
 
 gboolean
