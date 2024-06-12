@@ -529,12 +529,12 @@ editor_window_actions_show_preferences_cb (GtkWidget  *widget,
                                            GVariant   *param)
 {
   EditorWindow *self = (EditorWindow *)widget;
-  GtkWidget *dialog;
+  AdwDialog *dialog;
 
   g_assert (EDITOR_IS_WINDOW (self));
 
-  dialog = editor_preferences_dialog_new (EDITOR_APPLICATION_DEFAULT, self);
-  gtk_window_present (GTK_WINDOW (dialog));
+  dialog = editor_preferences_dialog_new (self);
+  adw_dialog_present (dialog, widget);
 }
 
 static void

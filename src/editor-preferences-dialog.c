@@ -36,7 +36,9 @@
 
 struct _EditorPreferencesDialog
 {
-  AdwPreferencesWindow  parent_instance;
+  AdwPreferencesDialog  parent_instance;
+
+  EditorWindow         *window;
 
   GSettings            *settings;
   GtkCssProvider       *css_provider;
@@ -50,7 +52,15 @@ struct _EditorPreferencesDialog
   guint                 disposed : 1;
 };
 
-G_DEFINE_TYPE (EditorPreferencesDialog, editor_preferences_dialog, ADW_TYPE_PREFERENCES_WINDOW)
+enum {
+  PROP_0,
+  PROP_WINDOW,
+  N_PROPS
+};
+
+G_DEFINE_TYPE (EditorPreferencesDialog, editor_preferences_dialog, ADW_TYPE_PREFERENCES_DIALOG)
+
+static GParamSpec *properties [N_PROPS];
 
 /* TODO: How and what should be translated here? */
 static const struct {
@@ -130,17 +140,14 @@ set_preview_language (EditorPreferencesDialog *self,
 static void
 guess_preview_language (EditorPreferencesDialog *self)
 {
-  GtkWindow *transient_for;
-
   g_assert (EDITOR_IS_PREFERENCES_DIALOG (self));
 
-  if ((transient_for = gtk_window_get_transient_for (GTK_WINDOW (self))) &&
-      EDITOR_IS_WINDOW (transient_for))
+  if (EDITOR_IS_WINDOW (self->window))
     {
       EditorDocument *document;
       EditorPage *page;
 
-      if ((page = editor_window_get_visible_page (EDITOR_WINDOW (transient_for))) &&
+      if ((page = editor_window_get_visible_page (self->window)) &&
           (document = editor_page_get_document (page)))
         {
           GtkSourceLanguage *lang = gtk_source_buffer_get_language (GTK_SOURCE_BUFFER (document));
@@ -512,10 +519,49 @@ editor_preferences_dialog_dispose (GObject *object)
 
   self->disposed = TRUE;
 
+  g_clear_weak_pointer (&self->window);
   g_clear_object (&self->settings);
   g_clear_object (&self->css_provider);
 
   G_OBJECT_CLASS (editor_preferences_dialog_parent_class)->dispose (object);
+}
+
+static void
+editor_preferences_dialog_get_property (GObject    *object,
+                                        guint       prop_id,
+                                        GValue     *value,
+                                        GParamSpec *pspec)
+{
+  EditorPreferencesDialog *self = EDITOR_PREFERENCES_DIALOG (object);
+
+  switch (prop_id)
+    {
+    case PROP_WINDOW:
+      g_value_set_object (value, self->window);
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+    }
+}
+
+static void
+editor_preferences_dialog_set_property (GObject      *object,
+                                        guint         prop_id,
+                                        const GValue *value,
+                                        GParamSpec   *pspec)
+{
+  EditorPreferencesDialog *self = EDITOR_PREFERENCES_DIALOG (object);
+
+  switch (prop_id)
+    {
+    case PROP_WINDOW:
+      g_set_weak_pointer (&self->window, g_value_get_object (value));
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+    }
 }
 
 static void
@@ -526,6 +572,17 @@ editor_preferences_dialog_class_init (EditorPreferencesDialogClass *klass)
 
   object_class->constructed = editor_preferences_dialog_constructed;
   object_class->dispose = editor_preferences_dialog_dispose;
+  object_class->get_property = editor_preferences_dialog_get_property;
+  object_class->set_property = editor_preferences_dialog_set_property;
+
+  properties [PROP_WINDOW] =
+    g_param_spec_object ("window",
+                         "Window",
+                         "The editor window",
+                         EDITOR_TYPE_WINDOW,
+                         (G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
+
+  g_object_class_install_properties (object_class, N_PROPS, properties);
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-preferences-dialog.ui");
   gtk_widget_class_bind_template_child (widget_class, EditorPreferencesDialog, buffer);
@@ -620,14 +677,12 @@ editor_preferences_dialog_init (EditorPreferencesDialog *self)
                            G_CONNECT_SWAPPED);
 }
 
-GtkWidget *
-editor_preferences_dialog_new (EditorApplication *application,
-                               EditorWindow      *transient_for)
+AdwDialog *
+editor_preferences_dialog_new (EditorWindow *window)
 {
-  g_return_val_if_fail (EDITOR_IS_WINDOW (transient_for), NULL);
+  g_return_val_if_fail (EDITOR_IS_WINDOW (window), NULL);
 
   return g_object_new (EDITOR_TYPE_PREFERENCES_DIALOG,
-                       "application", application,
-                       "transient-for", transient_for,
+                       "window", window,
                        NULL);
 }

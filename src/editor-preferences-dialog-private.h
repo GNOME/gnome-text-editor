@@ -28,9 +28,8 @@ G_BEGIN_DECLS
 
 #define EDITOR_TYPE_PREFERENCES_DIALOG (editor_preferences_dialog_get_type())
 
-G_DECLARE_FINAL_TYPE (EditorPreferencesDialog, editor_preferences_dialog, EDITOR, PREFERENCES_DIALOG, AdwPreferencesWindow)
+G_DECLARE_FINAL_TYPE (EditorPreferencesDialog, editor_preferences_dialog, EDITOR, PREFERENCES_DIALOG, AdwPreferencesDialog)
 
-GtkWidget *editor_preferences_dialog_new (EditorApplication *application,
-                                          EditorWindow      *transient_for);
+AdwDialog *editor_preferences_dialog_new (EditorWindow *window);
 
 G_END_DECLS
