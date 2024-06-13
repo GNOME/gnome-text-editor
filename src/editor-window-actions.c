@@ -108,15 +108,15 @@ editor_window_actions_confirm_save_cb (GtkWidget  *widget,
   dialog = adw_alert_dialog_new (NULL,
                                  _("Saving changes will replace the previously saved version."));
   adw_alert_dialog_format_heading (ADW_ALERT_DIALOG (dialog),
-                                     /* translators: %s is replaced with the document title */
-                                     _("Save Changes to “%s”?"),
-                                     title);
+                                   /* translators: %s is replaced with the document title */
+                                   _("Save Changes to “%s”?"),
+                                   title);
   adw_alert_dialog_add_responses (ADW_ALERT_DIALOG (dialog),
-                                    "cancel", _("_Cancel"),
-                                    "save", _("_Save"),
-                                    NULL);
+                                  "cancel", _("_Cancel"),
+                                  "save", _("_Save"),
+                                  NULL);
   adw_alert_dialog_set_response_appearance (ADW_ALERT_DIALOG (dialog),
-                                              "save", ADW_RESPONSE_DESTRUCTIVE);
+                                            "save", ADW_RESPONSE_DESTRUCTIVE);
 
   g_signal_connect_object (dialog,
                            "response::save",
