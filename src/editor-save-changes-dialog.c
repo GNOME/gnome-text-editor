@@ -259,14 +259,14 @@ _editor_save_changes_dialog_new (GtkWindow *parent,
   gtk_widget_add_css_class (GTK_WIDGET (dialog), "save-changes");
 
   adw_alert_dialog_add_responses (ADW_ALERT_DIALOG (dialog),
-                                    "cancel", _("_Cancel"),
-                                    "discard", discard_label,
-                                    "save", _("_Save"),
-                                    NULL);
+                                  "cancel", _("_Cancel"),
+                                  "discard", discard_label,
+                                  "save", _("_Save"),
+                                  NULL);
   adw_alert_dialog_set_response_appearance (ADW_ALERT_DIALOG (dialog),
-                                              "discard", ADW_RESPONSE_DESTRUCTIVE);
+                                            "discard", ADW_RESPONSE_DESTRUCTIVE);
   adw_alert_dialog_set_response_appearance (ADW_ALERT_DIALOG (dialog),
-                                              "save", ADW_RESPONSE_SUGGESTED);
+                                            "save", ADW_RESPONSE_SUGGESTED);
 
   prefs_page = adw_preferences_page_new ();
   adw_alert_dialog_set_extra_child (ADW_ALERT_DIALOG (dialog), prefs_page);
