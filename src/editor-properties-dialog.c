@@ -246,6 +246,7 @@ editor_properties_dialog_set_document (EditorPropertiesDialog *self,
 
   if (g_set_object (&self->document, document))
     {
+      g_autofree char *title = editor_document_dup_title (document);
       GFile *file = editor_document_get_file (document);
 
       g_object_bind_property (self->document, "title",
@@ -270,6 +271,10 @@ editor_properties_dialog_set_document (EditorPropertiesDialog *self,
                                G_CALLBACK (editor_properties_dialog_save_cb),
                                self,
                                G_CONNECT_SWAPPED);
+
+      if (title == NULL)
+        adw_action_row_set_subtitle (self->name, "—");
+
       editor_properties_dialog_rescan (self);
     }
 }
