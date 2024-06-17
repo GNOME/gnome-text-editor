@@ -242,7 +242,6 @@ _editor_save_changes_dialog_new (GtkWindow *parent,
   PangoAttrList *smaller;
   AdwDialog *dialog;
   GtkWidget *group;
-  GtkWidget *prefs_page;
 
   g_return_val_if_fail (!parent || GTK_IS_WINDOW (parent), NULL);
   g_return_val_if_fail (pages != NULL, NULL);
@@ -268,12 +267,8 @@ _editor_save_changes_dialog_new (GtkWindow *parent,
   adw_alert_dialog_set_response_appearance (ADW_ALERT_DIALOG (dialog),
                                             "save", ADW_RESPONSE_SUGGESTED);
 
-  prefs_page = adw_preferences_page_new ();
-  adw_alert_dialog_set_extra_child (ADW_ALERT_DIALOG (dialog), prefs_page);
-
   group = adw_preferences_group_new ();
-  adw_preferences_page_add (ADW_PREFERENCES_PAGE (prefs_page),
-                            ADW_PREFERENCES_GROUP (group));
+  adw_alert_dialog_set_extra_child (ADW_ALERT_DIALOG (dialog), group);
 
   smaller = pango_attr_list_new ();
   pango_attr_list_insert (smaller, pango_attr_scale_new (0.8333));
