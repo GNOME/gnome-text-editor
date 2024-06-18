@@ -31,7 +31,7 @@ struct _EditorLanguageDialog
   AdwDialog          parent_instance;
 
   GtkListBox        *list_box;
-  GtkEntry          *search_entry;
+  GtkSearchEntry    *search_entry;
   GtkStack          *stack;
 
   EditorLanguageRow *selected;
@@ -164,12 +164,12 @@ editor_language_dialog_entry_activate_cb (EditorLanguageDialog *self,
 
 static void
 editor_language_dialog_entry_changed_cb (EditorLanguageDialog *self,
-                                         GtkEntry             *entry)
+                                         GtkSearchEntry       *entry)
 {
   const gchar *text;
 
   g_assert (EDITOR_IS_LANGUAGE_DIALOG (self));
-  g_assert (GTK_IS_ENTRY (entry));
+  g_assert (GTK_IS_SEARCH_ENTRY (entry));
 
   text = gtk_editable_get_text (GTK_EDITABLE (entry));
   editor_language_dialog_filter (self, text);

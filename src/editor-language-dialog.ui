@@ -18,17 +18,11 @@
             <property name="search-mode-enabled">True</property>
             <property name="child">
               <object class="AdwClamp">
-                <property name="hexpand">true</property>
-                <property name="margin-end">30</property>
-                <property name="margin-start">30</property>
-                <property name="margin-top">6</property>
-                <property name="margin-bottom">6</property>
-                <property name="child">
-                  <object class="GtkEntry" id="search_entry">
+                <child>
+                  <object class="GtkSearchEntry" id="search_entry">
                     <property name="placeholder-text" translatable="yes">Search document types</property>
-                    <property name="primary-icon-name">edit-find-symbolic</property>
                   </object>
-                </property>
+                </child>
               </object>
             </property>
           </object>
