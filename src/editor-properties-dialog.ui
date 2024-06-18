@@ -13,15 +13,10 @@
     <property name="content">
       <object class="AdwToolbarView">
         <child type="top">
-          <object class="GtkHeaderBar"/>
+          <object class="AdwHeaderBar"/>
         </child>
         <property name="content">
-          <object class="GtkBox">
-            <property name="orientation">vertical</property>
-            <property name="spacing">24</property>
-            <property name="margin-bottom">24</property>
-            <property name="margin-start">24</property>
-            <property name="margin-end">24</property>
+          <object class="AdwPreferencesPage">
             <child>
               <object class="AdwPreferencesGroup">
                 <property name="title" translatable="yes">File</property>
