@@ -31,8 +31,8 @@ struct _EditorLanguageDialog
   AdwDialog          parent_instance;
 
   GtkListBox        *list_box;
-  GtkEntry          *search_entry;
-  GtkWidget         *placeholder;
+  GtkSearchEntry    *search_entry;
+  GtkStack          *stack;
 
   EditorLanguageRow *selected;
 };
@@ -125,7 +125,10 @@ editor_language_dialog_filter (EditorLanguageDialog *self,
         }
     }
 
-  gtk_widget_set_visible (self->placeholder, !had_match);
+  if (!had_match)
+    gtk_stack_set_visible_child_name (self->stack, "no-search-results-page");
+  else
+    gtk_stack_set_visible_child_name (self->stack, "document-languages-page");
 }
 
 static GtkListBoxRow *
@@ -161,12 +164,12 @@ editor_language_dialog_entry_activate_cb (EditorLanguageDialog *self,
 
 static void
 editor_language_dialog_entry_changed_cb (EditorLanguageDialog *self,
-                                         GtkEntry             *entry)
+                                         GtkSearchEntry       *entry)
 {
   const gchar *text;
 
   g_assert (EDITOR_IS_LANGUAGE_DIALOG (self));
-  g_assert (GTK_IS_ENTRY (entry));
+  g_assert (GTK_IS_SEARCH_ENTRY (entry));
 
   text = gtk_editable_get_text (GTK_EDITABLE (entry));
   editor_language_dialog_filter (self, text);
@@ -261,8 +264,8 @@ editor_language_dialog_class_init (EditorLanguageDialogClass *klass)
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-language-dialog.ui");
   gtk_widget_class_bind_template_child (widget_class, EditorLanguageDialog, list_box);
-  gtk_widget_class_bind_template_child (widget_class, EditorLanguageDialog, placeholder);
   gtk_widget_class_bind_template_child (widget_class, EditorLanguageDialog, search_entry);
+  gtk_widget_class_bind_template_child (widget_class, EditorLanguageDialog, stack);
 }
 
 static void
