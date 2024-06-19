@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2024-04-25 16:21+0000\n"
-"PO-Revision-Date: 2024-04-27 18:11+0200\n"
+"POT-Creation-Date: 2024-06-19 21:35+0000\n"
+"PO-Revision-Date: 2024-06-20 00:05+0200\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -31,7 +31,7 @@ msgstr "Projekt GNOME"
 #: data/org.gnome.TextEditor.appdata.xml.in.in:12
 #: data/org.gnome.TextEditor.desktop.in.in:10
 #: data/org.gnome.TextEditor.desktop.in.in:11
-#: src/editor-application-actions.c:199 src/editor-window.c:1314
+#: src/editor-application-actions.c:199 src/editor-window.c:1317
 msgid "Text Editor"
 msgstr "Urejevalnik besedil"
 
@@ -335,11 +335,11 @@ msgstr "Zaženi nov primerek programa (vključuje možnost --ignore-session"
 msgid "Print version information and exit"
 msgstr "Izpiši podatke o različici in končaj"
 
-#: src/editor-document.c:2132
+#: src/editor-document.c:2133
 msgid "[Read-Only]"
 msgstr "[le za branje]"
 
-#: src/editor-document.c:2430 src/editor-page.c:1070
+#: src/editor-document.c:2431 src/editor-page.c:1073
 #: src/editor-sidebar-item.c:511
 msgid "New Document"
 msgstr "Nov dokument"
@@ -417,13 +417,17 @@ msgstr "Odpri kot _skrbnik"
 msgid "Document Type"
 msgstr "Vrsta dokumenta"
 
-#: src/editor-language-dialog.ui:28
+#: src/editor-language-dialog.ui:25
 msgid "Search document types"
 msgstr "Poišči vrste dokumentov"
 
-#: src/editor-language-dialog.ui:51
-msgid "No Matches"
-msgstr "Ni zadetkov"
+#: src/editor-language-dialog.ui:60 src/editor-open-popover.ui:104
+msgid "No Results Found"
+msgstr "Ni najdenih zadetkov."
+
+#: src/editor-language-dialog.ui:61
+msgid "Try a different search"
+msgstr "Poskusi z drugačnim iskanjem"
 
 #: src/editor-language-row.c:61 src/editor-language-row.c:119
 msgid "Plain Text"
@@ -441,46 +445,42 @@ msgstr "Odpri nov dokument"
 msgid "No Recent Documents"
 msgstr "Ni nedavnih dokumentov"
 
-#: src/editor-open-popover.ui:104
-msgid "No Results Found"
-msgstr "Ni najdenih zadetkov."
-
-#: src/editor-page.c:1096 src/editor-properties-dialog.c:107
+#: src/editor-page.c:1099 src/editor-properties-dialog.c:104
 #: src/editor-sidebar-item.c:105
 msgid "Draft"
 msgstr "Osnutek"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1108
+#: src/editor-page.c:1111
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (skrbniško urejanje)"
 
-#: src/editor-page.c:1118 src/editor-sidebar-item.c:113
+#: src/editor-page.c:1121 src/editor-sidebar-item.c:113
 msgid "Document Portal"
 msgstr "Portal dokumentov"
 
-#: src/editor-page.c:1164
+#: src/editor-page.c:1167
 msgid "Failed to save document"
 msgstr "Shranjevanje dokumenta je spodletelo."
 
-#: src/editor-page.c:1165 src/editor-window.ui:358
+#: src/editor-page.c:1168 src/editor-window.ui:358
 msgid "_Close"
 msgstr "_Zapri"
 
-#: src/editor-page.c:1251
+#: src/editor-page.c:1256
 msgid "Save As"
 msgstr "Shrani kot"
 
-#: src/editor-page.c:1254
+#: src/editor-page.c:1259
 msgid "Save"
 msgstr "Shrani"
 
-#: src/editor-page.c:1255 src/editor-window-actions.c:353
+#: src/editor-page.c:1260 src/editor-window-actions.c:347
 msgid "Cancel"
 msgstr "Prekliči"
 
-#: src/editor-page.c:1411
+#: src/editor-page.c:1416
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Vrstica: %u, Stolpec %u"
@@ -631,47 +631,47 @@ msgstr "Datoteka"
 msgid "Name"
 msgstr "Ime datoteke"
 
-#: src/editor-properties-dialog.ui:46
+#: src/editor-properties-dialog.ui:38
 msgid "Location"
 msgstr "Trenutno mesto"
 
-#: src/editor-properties-dialog.ui:75
+#: src/editor-properties-dialog.ui:47
 msgid "Open in File Manager"
 msgstr "Odpri v upravljalniku datotek"
 
-#: src/editor-properties-dialog.ui:85
+#: src/editor-properties-dialog.ui:60
 msgid "Statistics"
 msgstr "Statistika"
 
-#: src/editor-properties-dialog.ui:88
+#: src/editor-properties-dialog.ui:63
 msgid "Lines"
 msgstr "Število vrstic"
 
-#: src/editor-properties-dialog.ui:96
+#: src/editor-properties-dialog.ui:71
 msgid "Words"
 msgstr "Število besed"
 
-#: src/editor-properties-dialog.ui:104
+#: src/editor-properties-dialog.ui:79
 msgid "Characters, No Spaces"
 msgstr "Število znakov brez presledkov"
 
-#: src/editor-properties-dialog.ui:112
+#: src/editor-properties-dialog.ui:87
 msgid "All Characters"
 msgstr "Število vseh znakov"
 
-#: src/editor-save-changes-dialog.c:255 src/editor-window-actions.c:242
+#: src/editor-save-changes-dialog.c:254 src/editor-window-actions.c:236
 msgid "_Discard"
 msgstr "_Zavrzi"
 
-#: src/editor-save-changes-dialog.c:255
+#: src/editor-save-changes-dialog.c:254
 msgid "_Discard All"
 msgstr "Zavrzi _vse"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:256
 msgid "Save Changes?"
 msgstr "Ali želite shraniti spremembe?"
 
-#: src/editor-save-changes-dialog.c:259
+#: src/editor-save-changes-dialog.c:257
 msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
@@ -679,27 +679,27 @@ msgstr ""
 "Odprti dokumenti vsebujejo spremembe, ki še niso shranjene. Te spremembe, "
 "bodo trajno izgubljene."
 
-#: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:116
-#: src/editor-window-actions.c:241
+#: src/editor-save-changes-dialog.c:261 src/editor-window-actions.c:115
+#: src/editor-window-actions.c:235
 msgid "_Cancel"
 msgstr "_Prekliči"
 
-#: src/editor-save-changes-dialog.c:265 src/editor-window-actions.c:117
+#: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:116
 #: src/editor-window.ui:211
 msgid "_Save"
 msgstr "_Shrani"
 
-#: src/editor-save-changes-dialog.c:299
+#: src/editor-save-changes-dialog.c:293
 msgid "Untitled Document"
 msgstr "Neimenovan dokument"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:302
+#: src/editor-save-changes-dialog.c:296
 #, c-format
 msgid "%s (new)"
 msgstr "%s (novo)"
 
-#: src/editor-save-changes-dialog.c:323
+#: src/editor-save-changes-dialog.c:317
 msgid "Save changes for this document"
 msgstr "Shrani spremembe tega dokumenta"
 
@@ -850,39 +850,39 @@ msgstr "Znakovni nabor:"
 msgid "Line Ending:"
 msgstr "Konec vrstice:"
 
-#: src/editor-window-actions.c:110
+#: src/editor-window-actions.c:109
 msgid "Saving changes will replace the previously saved version."
 msgstr "Shranjevanje sprememb bo nadomestilo predhodno shranjeno različico."
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:113
+#: src/editor-window-actions.c:112
 #, c-format
 msgid "Save Changes to “%s”?"
 msgstr "Ali želite shraniti spremembe v »%s«?"
 
-#: src/editor-window-actions.c:235
+#: src/editor-window-actions.c:229
 msgid "Unsaved changes will be permanently lost."
 msgstr "Neshranjene spremembe bodo trajno izgubljene."
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:238
+#: src/editor-window-actions.c:232
 #, c-format
 msgid "Discard Changes to “%s”?"
 msgstr "Ali želite zavreči spremembe v »%s«?"
 
-#: src/editor-window-actions.c:349
+#: src/editor-window-actions.c:343
 msgid "Open File"
 msgstr "Odpri datoteko"
 
-#: src/editor-window-actions.c:352
+#: src/editor-window-actions.c:346
 msgid "Open"
 msgstr "Odpri"
 
-#: src/editor-window-actions.c:377
+#: src/editor-window-actions.c:371
 msgid "All Files"
 msgstr "Vse datoteke"
 
-#: src/editor-window-actions.c:382
+#: src/editor-window-actions.c:376
 msgid "Text Files"
 msgstr "Besedilne datoteke"
 
@@ -908,12 +908,12 @@ msgid "Zoom out"
 msgstr "Oddalji"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:757
+#: src/editor-window.c:760
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) – Urejevalnik besedil"
 
-#: src/editor-window.c:1199
+#: src/editor-window.c:1202
 msgid "There are unsaved documents"
 msgstr "Odprti so neshranjeni dokumenti"
 
