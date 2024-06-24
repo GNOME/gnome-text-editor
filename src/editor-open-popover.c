@@ -233,6 +233,8 @@ editor_open_popover_show (GtkWidget *widget)
   gtk_editable_set_text (GTK_EDITABLE (self->search_entry), "");
 
   GTK_WIDGET_CLASS (editor_open_popover_parent_class)->show (widget);
+
+  gtk_widget_grab_focus (GTK_WIDGET (self->search_entry));
 }
 
 static gboolean
