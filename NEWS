@@ -1,106 +1,14 @@
-# Text Editor 46.0
+# Text Editor 47.alpha
 
- • Various performance workarounds have been added to the overview
-   map to improve rendering performance and quality with fractional
-   scaling.
- • Translation updates
+ * Various UI elements have been ported to new libadwaita features so
+   this is a good chance to discover bugs early.
+ * A number of papercuts in accordance with the GNOME HIG.
+ * Text Editor will try harder to break out of potential CPU cyclic
+   issues from GTK forward validation of text buffers. This should
+   help reduce CPU usage if/when large files are closed.
+ * Various spellcheck improvements.
+ * Ensure encoding is propagated when using Save As.
+ * More detailed error messages in the error banner.
+ * Many translation updates.
 
-# Text Editor 46.rc
-
-Changes since 46.beta
-
- • Disable editing while document is loading
- • Discard still-loading documents when saving session
- • Fix some tab integration issues with libadwaita
-
-# Text Editor 46.beta
-
-Changes since 46.alpha
-
- • Use AdwAboutDialog
- • Fix keyboard access to light/dark/follow theme selectors
- • Use GtkFontDialog instead of deprecated GtkFontChooserDialog
- • Check for files on disk before restoring drafts to avoid displaying
-   deleted files.
- • Performance improvements to the minimap on GTKs new renderer
- • Avoid draft auto-save file the document is still loading
- • The language selection dialog is now modal
- • A new-window action was added to .desktop file for GNOME Shell
- • Improve support for closing a page while it is still loading
- • Updated translations
-
-# Text Editor 46.alpha
-
- Changes since 45.0
-
- • Make various UI elements conform better to GNOME HIG
- • Fix etag usage when comparing changes from GFileMonitor
- • Cancel document loading when tab or window closes. This fixes an issue
-   where you could have 100% CPU doing Pango line breaking on extremely large
-   files even after closing a window or tab.
- • Improve margin for RTL languages
- • Updated appdata/metainfo
- • Fix memory leak in usage of GtkNativeDialog
- • Work around some broken user configurations for XDG special directories
- • Translation updates
-
-# Text Editor 45.0
-
- • Fix tab closing while documents are loading
- • Shortcuts are removed from tooltips to match GNOME behavior. They continue
-   to be available in the shortcuts window.
- • Focus fixes for the language selection dialog making keyboard use more
-   accessible.
- • You can now set defaults for "Plain Text" in the language dialog.
- • Improved search filtering in the Open popover.
-
-# Text Editor 45.alpha
-
- • Remove keyboard shortcuts from tooltips
- • Fix initial focus of language selection dialog
- • Allow setting "Plain Text" in language selection dialog
-
-# Text Editor 45.alpha
-
- • Styling improvements to match recent libadwaita changes
- • Fixes for various settings in per-tab overrides
- • Various Windows build system improvements
- • Style scheme metadata fixes for light/dark mode
- • Translation updates
-
-# Text Editor 44.0
-
- • Improve spellcheck word boundaries
- • Various build system improvements
- • Translation updates
-
-# Text Editor 44.rc
-
- • Style fixes for open popover
- • Fix a small GtkTextTag name leak
- • Ensure a useful size of preferences dialog
- • Translation updates
-
-# Text Editor 44.beta
-
-Changes since 44.alpha
-
- • Translation updates
- • Help documentation updates
- • Improvements to scroll-to-zoom
- • Style scheme updates
- • Additional shortcuts added to help overlay
-
-# Text Editor 44.alpha
-
-This is the first release towards GNOME 44. It is intended for unstable
-distributions and enthusiastic testers only.
-
-Changes since 43.2
-
- • Various UI improvements across the open popover, menus, status pages,
-   search and preferences.
- • Improvements to handling drafts.
- • Restrict feature set when encountering large files.
- • Translation updates
-
+Thanks to everyone who contributed!
