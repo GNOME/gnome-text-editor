@@ -2,47 +2,61 @@
 # Copyright (C) 2022 gnome-text-editor's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-text-editor package.
 # Dušan Kazik <prescott66@gmail.com>, 2022.
+# Jose Riha <jose1711@gmail.com>, 2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
-"issues\n"
-"POT-Creation-Date: 2022-03-24 07:33+0000\n"
-"PO-Revision-Date: 2022-03-24 11:20+0100\n"
-"Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/issues\n"
+"POT-Creation-Date: 2024-03-20 17:41+0000\n"
+"PO-Revision-Date: 2024-06-29 10:00+0200\n"
+"Last-Translator: Jose Riha <jose1711@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:6
-msgid "Christian Hergert, et al."
-msgstr ""
+#. developer_name tag deprecated with Appstream 1.0
+#: data/org.gnome.TextEditor.appdata.xml.in.in:7
+#: src/editor-application-actions.c:201
+msgid "The GNOME Project"
+msgstr "Projekt GNOME"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:8
-#: data/org.gnome.TextEditor.desktop.in.in:7
+#: data/org.gnome.TextEditor.appdata.xml.in.in:12
 #: data/org.gnome.TextEditor.desktop.in.in:8
-#: src/editor-application-actions.c:192
+#: data/org.gnome.TextEditor.desktop.in.in:9 src/editor-application-actions.c:199
+#: src/editor-window.c:1314
 msgid "Text Editor"
 msgstr "Textový editor"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:10
-msgid "A Text Editor for GNOME"
-msgstr "Textový editor pre prostredie GNOME"
+#: data/org.gnome.TextEditor.appdata.xml.in.in:14
+#| msgid "View and edit text files"
+msgid "Edit text files"
+msgstr "Upravujte textové súbory"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:12
+#: data/org.gnome.TextEditor.appdata.xml.in.in:16
 msgid ""
 "GNOME Text Editor is a simple text editor focused on a pleasing default "
 "experience."
 msgstr ""
+"Textový editor GNOME je jednoduchý editor pre úpravy textu, ktorý má za cieľ byť "
+"použiteľným už po prvom spustení."
 
-#: data/org.gnome.TextEditor.desktop.in.in:9
+#: data/org.gnome.TextEditor.desktop.in.in:4
+msgid "write;notepad;"
+msgstr "písať;písanie;zapísať;zápisník;poznámky;"
+
+#: data/org.gnome.TextEditor.desktop.in.in:10
 msgid "View and edit text files"
 msgstr "Zobrazuje a upravuje textové súbory"
+
+#: data/org.gnome.TextEditor.desktop.in.in:20
+#| msgid "_New Window"
+msgid "New Window"
+msgstr "Nové okno"
 
 #: data/org.gnome.TextEditor.gschema.xml:16
 msgid "Auto Save Delay"
@@ -51,8 +65,7 @@ msgstr "Oneskorenie automatického ukladania"
 #: data/org.gnome.TextEditor.gschema.xml:17
 msgid "The delay in seconds to wait before auto-saving a draft."
 msgstr ""
-"Oneskorenie v sekundách, ktoré má uplynúť pred automatickým uložením "
-"konceptu."
+"Oneskorenie v sekundách, ktoré má uplynúť pred automatickým uložením konceptu."
 
 #: data/org.gnome.TextEditor.gschema.xml:26
 msgid "Style Variant"
@@ -60,9 +73,8 @@ msgstr "Variant štýlu"
 
 #: data/org.gnome.TextEditor.gschema.xml:27
 msgid ""
-"Use the light or dark variant of the GTK theme and/or GtkSourceView style "
-"scheme."
-msgstr ""
+"Use the light or dark variant of the GTK theme and/or GtkSourceView style scheme."
+msgstr "Používať svetlý alebo tmavý variant motívu GTK a štýl schémy GtkSourceView."
 
 #: data/org.gnome.TextEditor.gschema.xml:35
 msgid "Indentation Style"
@@ -79,8 +91,7 @@ msgstr "Automatické odsadenie"
 #: data/org.gnome.TextEditor.gschema.xml:41
 msgid "Automatically indent new lines copying the previous line's indentation."
 msgstr ""
-"Automaticky odsadiť nové riadky skopírovaním odsadenia z predchádzajúceho "
-"riadku."
+"Automaticky odsadiť nové riadky skopírovaním odsadenia z predchádzajúceho riadku."
 
 #: data/org.gnome.TextEditor.gschema.xml:46
 msgid "Tab Width"
@@ -97,6 +108,8 @@ msgstr "Šírka odsadenia"
 #: data/org.gnome.TextEditor.gschema.xml:53
 msgid "The number of spaces to indent or -1 to use tab-width."
 msgstr ""
+"Počet medzier, ktorý sa má používať pre odsadzovanie alebo -1, ak sa má "
+"odsadzovať na šírku tabulátora."
 
 #: data/org.gnome.TextEditor.gschema.xml:57
 msgid "Show Line Numbers"
@@ -104,24 +117,23 @@ msgstr "Zobraziť čísla riadkov"
 
 #: data/org.gnome.TextEditor.gschema.xml:58
 msgid "If line numbers should be displayed next to each line."
-msgstr "Či sa majú zobraziť čísla riadkov vedľa každého riadku."
+msgstr "Či sa má pri každom riadku zobrazovať jeho číslo."
 
 #: data/org.gnome.TextEditor.gschema.xml:62
 msgid "Show Right Margin"
-msgstr ""
+msgstr "Zobrazovať pravý okraj"
 
 #: data/org.gnome.TextEditor.gschema.xml:63
 msgid "If a margin line should be displayed on the right of the editor."
-msgstr ""
+msgstr "Či sa má v editore na pravej strane zobrazovať čiara naznačujúca okraj."
 
 #: data/org.gnome.TextEditor.gschema.xml:68
 msgid "Right Margin Position"
-msgstr ""
+msgstr "Pozícia pravého okraja"
 
 #: data/org.gnome.TextEditor.gschema.xml:69
-msgid ""
-"The position in characters at which the right margin should be displayed."
-msgstr ""
+msgid "The position in characters at which the right margin should be displayed."
+msgstr "Pozícia v znakoch, na ktorej sa má pravý okraj zobrazovať."
 
 #: data/org.gnome.TextEditor.gschema.xml:73
 msgid "Show Overview Map"
@@ -139,7 +151,7 @@ msgstr "Zobraziť mriežku pozadia"
 
 #: data/org.gnome.TextEditor.gschema.xml:79
 msgid "If enabled, a blueprint style grid is printed on the editor background."
-msgstr ""
+msgstr "Ak je zapnuté, bude na pozadí editora vykreslená pomocná mriežka."
 
 #: data/org.gnome.TextEditor.gschema.xml:83
 msgid "Highlight current line"
@@ -165,7 +177,7 @@ msgstr "Použiť systémové písmo"
 msgid "If the default system monospace font should be used."
 msgstr "Či má byť použité predvolené systémové písmo s pevnou šírkou."
 
-#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:60
+#: data/org.gnome.TextEditor.gschema.xml:98
 msgid "Custom Font"
 msgstr "Vlastné písmo"
 
@@ -175,23 +187,27 @@ msgstr "Vlastné písmo, ktoré sa má použiť v editore."
 
 #: data/org.gnome.TextEditor.gschema.xml:103
 msgid "Style Scheme"
-msgstr ""
+msgstr "Schéma štýlu"
 
 #: data/org.gnome.TextEditor.gschema.xml:104
 msgid ""
-"The style scheme to use by the editor. It may translate this into a dark "
-"format when available."
+"The style scheme to use by the editor. It may translate this into a dark format "
+"when available."
 msgstr ""
+"Schéma štýlu, ktorú má editor používať. Môže byť prípadne prevedená do tmavej "
+"podoby, ak je k dispozícii."
 
 #: data/org.gnome.TextEditor.gschema.xml:108
 msgid "Discover File Settings"
-msgstr ""
+msgstr "Zisťovať nastavenia súboru"
 
 #: data/org.gnome.TextEditor.gschema.xml:109
 msgid ""
-"If enabled then Text Editor will try to discover file settings from "
-"modelines, editorconfig, or per-language defaults."
+"If enabled then Text Editor will try to discover file settings from modelines, "
+"editorconfig, or per-language defaults."
 msgstr ""
+"Keď je zapnuté, Textový editor ss pokúsi určiť nastavenia súboru pomocou "
+"modelines, editorconfig alebo predvolených hodnôt daného jazyka."
 
 #: data/org.gnome.TextEditor.gschema.xml:113
 msgid "Automatically check spelling"
@@ -200,58 +216,57 @@ msgstr "Automatická kontrola pravopisu"
 #: data/org.gnome.TextEditor.gschema.xml:114
 msgid "If enabled, then Text Editor will check spelling as you type."
 msgstr ""
-"Ak je voľba povolená, aplikácia Textový editor bude kontrolovať pravopis "
-"počas toho, ako budete písať."
+"Ak je voľba povolená, aplikácia Textový editor bude kontrolovať pravopis počas "
+"toho, ako budete písať."
 
 #: data/org.gnome.TextEditor.gschema.xml:118
 msgid "Restore session"
-msgstr ""
+msgstr "Obnoviť reláciu"
 
 #: data/org.gnome.TextEditor.gschema.xml:119
 msgid "When Text Editor is run, restore the previous session."
-msgstr ""
+msgstr "Či má editor pri spustení obnoviť stav predchádzajúcej relácie."
 
 #: data/org.gnome.TextEditor.gschema.xml:123
 msgid "Recolor Window"
-msgstr ""
+msgstr "Prefarbiť okno"
 
 #: data/org.gnome.TextEditor.gschema.xml:124
 msgid "Use the style-scheme to recolor the application window."
-msgstr ""
+msgstr "Použiť schému štýlu na prefarbenie okna aplikácie."
 
 #: data/org.gnome.TextEditor.gschema.xml:132
 msgid "Keybindings"
-msgstr ""
+msgstr "Klávesové skratky"
 
 #: data/org.gnome.TextEditor.gschema.xml:133
 msgid "The keybindings to use within Text Editor."
-msgstr ""
+msgstr "Klávesové skratky pre použitie v Textovom editore."
 
 #: data/org.gnome.TextEditor.gschema.xml:137
 msgid "Last Save Directory"
-msgstr ""
+msgstr "Posledný adresár pre ukladanie"
 
 #: data/org.gnome.TextEditor.gschema.xml:138
 msgid "The directory last used in a save or save-as dialog."
-msgstr ""
+msgstr "Adresár, ktorý bol naposledy použitý v dialógovom okne pre uloženie súboru."
 
 #: data/org.gnome.TextEditor.gschema.xml:142
 msgid "Draw Spaces"
-msgstr ""
+msgstr "Vykresľovať medzery"
 
 #: data/org.gnome.TextEditor.gschema.xml:143
 msgid "The various types of spaces to draw in the editor."
-msgstr ""
+msgstr "Rôzne typy medzier, ktoré sa majú v editore viditeľne zobrazovať."
 
 #: data/org.gnome.TextEditor.gschema.xml:147
 msgid "Enable Snippets"
-msgstr ""
+msgstr "Povoliť úryvky"
 
 #: data/org.gnome.TextEditor.gschema.xml:148
 msgid ""
-"Enable the use of snippets registered with GtkSourceView from within the "
-"editor."
-msgstr ""
+"Enable the use of snippets registered with GtkSourceView from within the editor."
+msgstr "Povoliť v editore používanie úryvkov registrovaných u GtkSourceView."
 
 #: data/org.gnome.TextEditor.gschema.xml:153
 msgid "Line Height"
@@ -261,52 +276,85 @@ msgstr "Výška riadku"
 msgid "The line height to use for the selected font."
 msgstr "Výška riadku, ktorá sa má použiť pre vybrané písmo."
 
-#: src/editor-animation.c:1051
+#: data/org.gnome.TextEditor.gschema.xml:158
+msgid "Highlight Matching Brackets"
+msgstr "Zvýrazňovať zodpovedajúce zátvorky"
+
+#: data/org.gnome.TextEditor.gschema.xml:159
+msgid "Highlight matching brackets and braces."
+msgstr "Zvýrazňovať zodpovedajúce zátvorky a zložené zátvorky."
+
+#: src/editor-animation.c:1038
 #, c-format
 msgid "Failed to find property %s in %s"
 msgstr "Zlyhalo nájdenie vlastnosti %s v %s"
 
-#: src/editor-animation.c:1060
+#: src/editor-animation.c:1047
 #, c-format
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Zlyhalo získanie hodnoty zoznamu va_list: %s"
 
-#: src/editor-application-actions.c:206
-msgid "Text Editor Website"
-msgstr "Webová stránka Textového editora"
-
-#: src/editor-application-actions.c:207
+#: src/editor-application-actions.c:214
 msgid "translator-credits"
-msgstr "Dušan Kazik <prescott66@gmail.com>"
+msgstr "Dušan Kazik <prescott66@gmail.com>, Jose Riha <jose1711@gmail.com>"
 
-#: src/editor-application.c:599
+#: src/editor-application.c:525
+msgid "Standard input was requested multiple times. Ignoring request."
+msgstr "Štandardný vstup bol požadovaný viackrát. Požiadavka bude ignorovaná."
+
+#: src/editor-application.c:529
+msgid "Standard input is not supported on this platform. Ignoring request."
+msgstr ""
+"Na tejto platforme nie je podporovaný štandardný vstup. Požiadavku ignorujem."
+
+#: src/editor-application.c:632
+msgid "Bugs may be reported at:"
+msgstr "Chyby môžete hlásiť na:"
+
+#: src/editor-application.c:634
+msgid "[FILES…]"
+msgstr "[SÚBORY…]"
+
+#: src/editor-application.c:748
 msgid "Do not restore session at startup"
-msgstr ""
+msgstr "Neobnovovať reláciu pri spúšťaní"
 
-#: src/editor-application.c:600
+#: src/editor-application.c:749
 msgid "Open provided files in a new window"
-msgstr ""
+msgstr "Otvoriť zadané súbory v novom okne"
 
-#: src/editor-document.c:1938
+#: src/editor-application.c:750
+msgid "Run a new instance of Text Editor (implies --ignore-session)"
+msgstr "Spustiť novú inštanciu Textového editora (predpokladá --ignore-session)"
+
+#: src/editor-application.c:751
+msgid "Print version information and exit"
+msgstr "Vypísať informácie o verzii a skončiť"
+
+#: src/editor-document.c:2121
 msgid "[Read-Only]"
 msgstr "[Len na čítanie]"
 
+#: src/editor-document.c:2419 src/editor-page.c:1067 src/editor-sidebar-item.c:511
+msgid "New Document"
+msgstr "Nový dokument"
+
 #: src/editor-file-manager.c:99
 msgid "File path is NULL"
-msgstr "Cesta k súboru je prázdna(NULL)"
+msgstr "Cesta k súboru je prázdna (NULL)"
 
 #: src/editor-file-manager.c:108 src/editor-file-manager.c:119
 msgid "Error converting UTF-8 filename to wide char"
-msgstr ""
+msgstr "Chyba pri prevode názvu súboru z kódovania UTF-8 na wide char"
 
 #: src/editor-file-manager.c:127
 msgid "ILCreateFromPath() failed"
-msgstr ""
+msgstr "Zlyhalo volanie funkcie ILCreateFromPath()"
 
 #: src/editor-file-manager.c:164
 #, c-format
 msgid "Cannot convert “%s” into a valid NSURL."
-msgstr ""
+msgstr "Nepodarilo sa previesť „%s“ na platnú NSURL."
 
 #: src/editor-info-bar.c:76
 msgid "_Discard Changes and Reload"
@@ -320,23 +368,23 @@ msgstr "Súbor bol zmenený na disku"
 msgid "The file has been changed by another program."
 msgstr "Súbor bol zmenený iným programom."
 
-#: src/editor-info-bar.c:89 src/editor-window.ui:216
+#: src/editor-info-bar.c:89 src/editor-window.ui:217
 msgid "Save _As…"
 msgstr "Uložiť _ako…"
 
-#: src/editor-info-bar.c:91 src/editor-info-bar.ui:61
+#: src/editor-info-bar.c:91 src/editor-info-bar.ui:63
 msgid "Document Restored"
-msgstr "Dokument obnovený"
+msgstr "Dokument bol obnovený"
 
-#: src/editor-info-bar.c:92 src/editor-info-bar.ui:70
+#: src/editor-info-bar.c:92 src/editor-info-bar.ui:73
 msgid "Unsaved document has been restored."
 msgstr "Neuložený dokument bol obnovený."
 
-#: src/editor-info-bar.c:98
+#: src/editor-info-bar.c:98 src/editor-info-bar.ui:87
 msgid "_Save…"
 msgstr "_Uložiť…"
 
-#: src/editor-info-bar.c:100 src/editor-info-bar.ui:77
+#: src/editor-info-bar.c:100 src/editor-info-bar.ui:81
 msgid "_Discard…"
 msgstr "_Zahodiť…"
 
@@ -350,128 +398,148 @@ msgstr "Neuložené zmeny v dokumente boli obnovené."
 
 #: src/editor-info-bar.ui:19
 msgid "Could Not Open File"
-msgstr "Nepodarilo sa otvoriť súbor"
+msgstr "Súbor sa nepodarilo otvoriť"
 
-#: src/editor-info-bar.ui:28
+#: src/editor-info-bar.ui:29
 msgid "You do not have permission to open the file."
 msgstr "Nemáte oprávnenie na otvorenie súboru."
 
-#: src/editor-info-bar.ui:35
+#: src/editor-info-bar.ui:37
 msgid "_Retry"
 msgstr "_Skúsiť znovu"
 
-#: src/editor-info-bar.ui:42
+#: src/editor-info-bar.ui:44
 msgid "Open As _Administrator"
 msgstr "Otvoriť ako _správca"
 
-#: src/editor-language-dialog.ui:6 src/editor-window.c:194
+#: src/editor-language-dialog.ui:6 src/editor-window.c:191
 msgid "Document Type"
 msgstr "Typ dokumentu"
 
-#: src/editor-language-dialog.ui:52
+#: src/editor-language-dialog.ui:28
+#| msgid "Document Type"
+msgid "Search document types"
+msgstr "hľadať typy dokumentov"
+
+#: src/editor-language-dialog.ui:51
 msgid "No Matches"
 msgstr "Žiadne zhody"
 
-#: src/editor-open-popover.ui:67
+#: src/editor-language-row.c:61 src/editor-language-row.c:119
+msgid "Plain Text"
+msgstr "Jednoduchý text"
+
+#: src/editor-open-popover.ui:25
+#| msgctxt "shortcut window"
+#| msgid "Search within the document"
+msgid "Search documents"
+msgstr "hľadať dokumenty"
+
+#: src/editor-open-popover.ui:39
+#| msgid "New Document"
+msgid "Open New Document"
+msgstr "Otvoriť nový dokument"
+
+#: src/editor-open-popover.ui:74
 msgid "No Recent Documents"
 msgstr "Žiadne nedávne dokumenty"
 
-#: src/editor-open-popover.ui:94
+#: src/editor-open-popover.ui:104
 msgid "No Results Found"
 msgstr "Nenašli sa žiadne výsledky"
 
-#: src/editor-page.c:987 src/editor-sidebar-item.c:489
-msgid "New Document"
-msgstr "Nový dokument"
-
-#: src/editor-page.c:1009 src/editor-properties-dialog.c:74
-#: src/editor-sidebar-item.c:84
+#: src/editor-page.c:1093 src/editor-properties-dialog.c:107
+#: src/editor-sidebar-item.c:105
 msgid "Draft"
 msgstr "Koncept"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1021
+#: src/editor-page.c:1105
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (správca)"
 
-#: src/editor-page.c:1029 src/editor-sidebar-item.c:98
+#: src/editor-page.c:1115 src/editor-sidebar-item.c:113
 msgid "Document Portal"
-msgstr ""
+msgstr "Portál dokumentov"
 
-#: src/editor-page.c:1080
+#: src/editor-page.c:1161
 msgid "Failed to save document"
-msgstr ""
+msgstr "Dokument sa nepodarilo uložiť"
 
-#: src/editor-page.c:1165
+#: src/editor-page.c:1162 src/editor-window.ui:358
+msgid "_Close"
+msgstr "_Zavrieť"
+
+#: src/editor-page.c:1248
 msgid "Save As"
-msgstr ""
+msgstr "Uložiť ako"
 
-#: src/editor-page.c:1168 src/editor-window-actions.c:133
+#: src/editor-page.c:1251
 msgid "Save"
-msgstr ""
+msgstr "Uložiť"
 
-#: src/editor-page.c:1169 src/editor-window-actions.c:132
-#: src/editor-window-actions.c:271 src/editor-window-actions.c:380
+#: src/editor-page.c:1252 src/editor-window-actions.c:353
 msgid "Cancel"
-msgstr ""
+msgstr "Zrušiť"
 
-#: src/editor-page.c:1309
+#: src/editor-page.c:1408
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Ria %u, Stĺ %u"
 
-#: src/editor-page.ui:98
+#: src/editor-page.ui:95
 msgid "Go to Line"
-msgstr ""
+msgstr "Prejsť na riadok"
 
-#: src/editor-page.ui:116
+#: src/editor-page.ui:113
 msgid "Go"
-msgstr ""
+msgstr "Prejsť"
 
-#: src/editor-page.ui:153 src/editor-window.ui:277
+#: src/editor-page.ui:150
 msgid "Indentation"
 msgstr "Odsadenie"
 
-#: src/editor-page.ui:156 src/editor-window.ui:279
+#: src/editor-page.ui:153 src/editor-window.ui:278
 msgid "_Automatic Indentation"
 msgstr "_Automatické odsadenie"
 
-#: src/editor-page.ui:162 src/editor-window.ui:283
+#. Translators: this is a tab character, not a browser tab
+#: src/editor-page.ui:159 src/editor-window.ui:282
 msgid "_Tabs"
 msgstr "_Tabulátory"
 
-#: src/editor-page.ui:167 src/editor-window.ui:288
+#: src/editor-page.ui:164 src/editor-window.ui:287
 msgid "_Spaces"
 msgstr "_Medzery"
 
-#: src/editor-page.ui:174 src/editor-window.ui:293
+#: src/editor-page.ui:171 src/editor-window.ui:292
 msgid "Spaces _Per Tab"
 msgstr "Medzier _na tabulátor"
 
-#: src/editor-page.ui:176 src/editor-page.ui:204
+#: src/editor-page.ui:173 src/editor-page.ui:201
 msgid "2"
 msgstr "2"
 
-#: src/editor-page.ui:181 src/editor-page.ui:209
+#: src/editor-page.ui:178 src/editor-page.ui:206
 msgid "4"
 msgstr "4"
 
-#: src/editor-page.ui:186 src/editor-page.ui:214
+#: src/editor-page.ui:183 src/editor-page.ui:211
 msgid "6"
 msgstr "6"
 
-#: src/editor-page.ui:191 src/editor-page.ui:219
+#: src/editor-page.ui:188 src/editor-page.ui:216
 msgid "8"
 msgstr "8"
 
-#: src/editor-page.ui:197
+#: src/editor-page.ui:194
 msgid "Spaces Per Indent"
-msgstr ""
+msgstr "Medzier na _odsadenie"
 
-#: src/editor-page.ui:199
+#: src/editor-page.ui:196
 msgid "Use Tab Size"
-msgstr ""
+msgstr "Používať šírku tabulátora"
 
 #. translators: Ln is short for "Line Number"
 #: src/editor-position-label.ui:15
@@ -483,59 +551,63 @@ msgstr "Ria"
 msgid "Col"
 msgstr "Stĺ"
 
-#: src/editor-preferences-dialog.ui:17
+#: src/editor-preferences-dialog.ui:19
 msgid "Appearance"
 msgstr "Vzhľad"
 
+#: src/editor-preferences-dialog.ui:59
+#| msgid "Custom Font"
+msgid "Custom _Font"
+msgstr "Vlastné _písmo"
+
 #: src/editor-preferences-dialog.ui:82
-msgid "Display Grid Pattern"
-msgstr ""
+msgid "Display _Grid Pattern"
+msgstr "Zobrazovať _mriežku na pozadí"
 
-#: src/editor-preferences-dialog.ui:88
-msgid "Highlight Current Line"
-msgstr ""
+#: src/editor-preferences-dialog.ui:89
+#| msgid "Highlight current line"
+msgid "_Highlight Current Line"
+msgstr "Z_výrazňovať aktuálny riadok"
 
-#: src/editor-preferences-dialog.ui:94
-msgid "Display Overview Map"
-msgstr ""
+#: src/editor-preferences-dialog.ui:96
+#| msgid "Show Overview Map"
+msgid "Display _Overview Map"
+msgstr "Zobrazovať mapu s p_rehľadom"
 
-#: src/editor-preferences-dialog.ui:102
+#: src/editor-preferences-dialog.ui:105
 msgid "Right Margin"
 msgstr "Pravý okraj"
 
-#: src/editor-preferences-dialog.ui:105
-msgid "Margin Position"
-msgstr "Pozícia okraju"
+#: src/editor-preferences-dialog.ui:108
+#| msgid "Margin Position"
+msgid "_Margin Position"
+msgstr "Pozícia o_kraja"
 
-#: src/editor-preferences-dialog.ui:113
+#: src/editor-preferences-dialog.ui:117
 msgid "Behavior"
 msgstr "Správanie"
 
-#: src/editor-preferences-dialog.ui:116
-msgid "Discover Document Settings"
-msgstr ""
+#: src/editor-preferences-dialog.ui:120
+msgid "_Discover Document Settings"
+msgstr "Ro_zoznávať nastavenia dokumentu"
 
-#: src/editor-preferences-dialog.ui:117
+#: src/editor-preferences-dialog.ui:122
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
-msgstr ""
+msgstr "Použiť modelines, editorconfig alebo rozumné predvolené hodnoty"
 
-#: src/editor-preferences-dialog.ui:123
-msgid "Restore Session"
-msgstr "Obnoviť reláciu"
+#: src/editor-preferences-dialog.ui:128
+#| msgid "Restore Session"
+msgid "_Restore Session"
+msgstr "O_bnoviť reláciu"
 
-#: src/editor-preferences-dialog.ui:124
+#: src/editor-preferences-dialog.ui:130
 msgid "Return to your previous session when Text Editor is started"
 msgstr ""
-"Návrat k vašej predchádzajúcej relácii po spustení aplikácie Textový editor"
+"Vrátiť sa k vašej predchádzajúcej relácii po spustení aplikácie Textový editor"
 
-#: src/editor-preferences-dialog.ui:139
+#: src/editor-preferences-dialog.ui:145
 msgid "_Clear History"
 msgstr "_Vymazať históriu"
-
-# header
-#: src/editor-preferences-font.c:100
-msgid "Select Font"
-msgstr "Výber písma"
 
 #: src/editor-print-operation.c:176
 #, c-format
@@ -566,100 +638,108 @@ msgstr "Súbor"
 msgid "Name"
 msgstr "Názov"
 
-#: src/editor-properties-dialog.ui:45
+#: src/editor-properties-dialog.ui:46
 msgid "Location"
 msgstr "Umiestnenie"
 
-#: src/editor-properties-dialog.ui:63
+#: src/editor-properties-dialog.ui:75
+msgid "Open in File Manager"
+msgstr "Otvoriť v Správcovi súborov"
+
+#: src/editor-properties-dialog.ui:85
 msgid "Statistics"
 msgstr "Štatistika"
 
-#: src/editor-properties-dialog.ui:66
+#: src/editor-properties-dialog.ui:88
 msgid "Lines"
 msgstr "Riadkov"
 
-#: src/editor-properties-dialog.ui:81
+#: src/editor-properties-dialog.ui:96
 msgid "Words"
 msgstr "Slov"
 
-#: src/editor-properties-dialog.ui:96
+#: src/editor-properties-dialog.ui:104
 msgid "Characters, No Spaces"
 msgstr "Znakov, bez medzier"
 
-#: src/editor-properties-dialog.ui:111
+#: src/editor-properties-dialog.ui:112
 msgid "All Characters"
 msgstr "Všetkých znakov"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:255 src/editor-window-actions.c:242
 msgid "_Discard"
 msgstr "_Zahodiť"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:255
 msgid "_Discard All"
 msgstr "_Zahodiť všetko"
 
-#: src/editor-save-changes-dialog.c:264
+#: src/editor-save-changes-dialog.c:258
 msgid "Save Changes?"
 msgstr "Uložiť zmeny?"
 
-#: src/editor-save-changes-dialog.c:266
+#: src/editor-save-changes-dialog.c:259
 msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
 msgstr ""
-"Otvorené dokumenty obsahujú neuložené zmeny. Zmeny, ktoré nebudú uložené, "
-"budú natrvalo stratené."
+"Otvorené dokumenty obsahujú neuložené zmeny. Zmeny, ktoré nebudú uložené, budú "
+"natrvalo stratené."
 
-#: src/editor-save-changes-dialog.c:268
+#: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:116
+#: src/editor-window-actions.c:241
 msgid "_Cancel"
 msgstr "_Zrušiť"
 
-#: src/editor-save-changes-dialog.c:270 src/editor-window.ui:210
+#: src/editor-save-changes-dialog.c:265 src/editor-window-actions.c:117
+#: src/editor-window.ui:211
 msgid "_Save"
 msgstr "_Uložiť"
 
-#: src/editor-save-changes-dialog.c:303
+#: src/editor-save-changes-dialog.c:299
 msgid "Untitled Document"
 msgstr "Dokument bez názvu"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:306
+#: src/editor-save-changes-dialog.c:302
 #, c-format
 msgid "%s (new)"
 msgstr "%s (nový)"
 
-#: src/editor-save-changes-dialog.c:327
+#: src/editor-save-changes-dialog.c:323
 msgid "Save changes for this document"
-msgstr ""
+msgstr "Uložiť zmeny v tomto dokumente"
 
 #: src/editor-search-bar.ui:33
 msgid "Replace"
 msgstr "Nahradiť"
 
-# tooltip
 #: src/editor-search-bar.ui:51
-msgid "Move to previous match (Ctrl+Shift+G)"
-msgstr "Presunie na predchádzajúcu zhodu (Ctrl+Shift+G)"
+msgid "Previous Match"
+msgstr "Predchádzajúca zhoda"
 
-# tooltip
 #: src/editor-search-bar.ui:59
-msgid "Move to next match (Ctrl+G)"
-msgstr "Presunie na nasledujúcu zhodu (Ctrl+G)"
+#| msgid "No Matches"
+msgid "Next Match"
+msgstr "Žiadna zhoda"
 
 # tooltip
 #: src/editor-search-bar.ui:71
-msgid "Search & Replace (Ctrl+H)"
-msgstr "Vyhľadá a nahradí (Ctrl+H)"
+#| msgid "Search & Replace (Ctrl+H)"
+msgid "Search & Replace"
+msgstr "Hľadať a nahradzovať"
 
 # tooltip
 #: src/editor-search-bar.ui:81
-msgid "Toggle search options"
-msgstr "Prepne voľby vyhľadávania"
+#| msgid "Toggle search options"
+msgid "Search Options"
+msgstr "Možnosti hľadania"
 
 # tooltip
 #: src/editor-search-bar.ui:95
-msgid "Close search"
-msgstr "Zavrie vyhľadávanie"
+#| msgid "Close search"
+msgid "Close Search"
+msgstr "Zavrieť hľadanie"
 
 #: src/editor-search-bar.ui:112
 msgid "_Replace"
@@ -669,17 +749,17 @@ msgstr "Nah_radiť"
 msgid "Replace _All"
 msgstr "N_ahradiť všetko"
 
-#: src/editor-search-bar.ui:141
+#: src/editor-search-bar.ui:140
 msgid "Re_gular expressions"
 msgstr "Re_gulárne výrazy"
 
-#: src/editor-search-bar.ui:147
+#: src/editor-search-bar.ui:146
 msgid "_Case sensitive"
 msgstr "_Rozlišovať veľkosť písmen"
 
-#: src/editor-search-bar.ui:153
+#: src/editor-search-bar.ui:152
 msgid "Match whole _word only"
-msgstr ""
+msgstr "_Iba celé slová"
 
 #. translators: the first %u is replaced with the current position, the second with the number of search results
 #: src/editor-search-entry.c:197
@@ -687,51 +767,69 @@ msgstr ""
 msgid "%u of %u"
 msgstr "%u z/zo %u"
 
-#: src/editor-spell-menu.c:191
+#: src/editor-sidebar-row.ui:85
+msgid "Remove"
+msgstr "Odstrániť"
+
+#: src/editor-spell-menu.c:248
+msgid "Add to Dictionary"
+msgstr "Pridať do slovníka"
+
+#: src/editor-spell-menu.c:249
+msgid "Ignore"
+msgstr "Ignorovať"
+
+#: src/editor-spell-menu.c:250
+msgid "Check Spelling"
+msgstr "Skontrolovať pravopis"
+
+#: src/editor-spell-menu.c:259
 msgid "Languages"
 msgstr "Jazyky"
 
-#: src/editor-spell-menu.c:192
-msgid "Add to Dictionary"
-msgstr ""
+#: src/editor-theme-selector.ui:23
+msgid "Follow System Style"
+msgstr "Riadiť sa štýlom systému"
 
-#: src/editor-spell-menu.c:193
-msgid "Ignore"
-msgstr ""
-
-#: src/editor-spell-menu.c:194
-msgid "Check Spelling"
-msgstr ""
-
-#: src/editor-theme-selector.ui:22 src/editor-theme-selector.ui:24
+#: src/editor-theme-selector.ui:25
 msgid "Follow system style"
-msgstr ""
+msgstr "Riadiť sa štýlom systému"
 
-#: src/editor-theme-selector.ui:39 src/editor-theme-selector.ui:41
+#: src/editor-theme-selector.ui:40
+#| msgid "Light style"
+msgid "Light Style"
+msgstr "Svetlý štýl"
+
+#: src/editor-theme-selector.ui:42
 msgid "Light style"
 msgstr "Svetlý štýl"
 
-#: src/editor-theme-selector.ui:57 src/editor-theme-selector.ui:59
+#: src/editor-theme-selector.ui:58
+#| msgid "Dark style"
+msgid "Dark Style"
+msgstr "Tmavý štýl"
+
+#: src/editor-theme-selector.ui:60
 msgid "Dark style"
 msgstr "Tmavý štýl"
 
-#: src/editor-utils.c:346
+#: src/editor-utils.c:348
 msgid "Just now"
 msgstr "Práve teraz"
 
-#: src/editor-utils.c:348
+#: src/editor-utils.c:350
 msgid "An hour ago"
 msgstr "Pred hodinou"
 
-#: src/editor-utils.c:350
+#: src/editor-utils.c:352
 msgid "Yesterday"
 msgstr "Včera"
 
-#: src/editor-utils.c:356
+#: src/editor-utils.c:358
 msgid "About a year ago"
 msgstr "Pred rokom"
 
-#: src/editor-utils.c:360
+#: src/editor-utils.c:362
 #, c-format
 msgid "About %u year ago"
 msgid_plural "About %u years ago"
@@ -739,105 +837,142 @@ msgstr[0] "Pred %u rokmi"
 msgstr[1] "Pred %u rokom"
 msgstr[2] "Pred %u rokmi"
 
-#: src/editor-utils.c:368
+#: src/editor-utils.c:370
 msgid "Unix/Linux (LF)"
 msgstr "Unix/Linux (LF)"
 
-#: src/editor-utils.c:369
+#: src/editor-utils.c:371
 msgid "Mac OS Classic (CR)"
 msgstr "Klasické Mac OS (CR)"
 
-#: src/editor-utils.c:370
+#: src/editor-utils.c:372
 msgid "Windows (CR+LF)"
 msgstr "Windows (CR+LF)"
 
-#: src/editor-utils.c:400
+#: src/editor-utils.c:402
 msgid "Automatically Detected"
 msgstr "Automaticky zistené"
 
-#: src/editor-utils.c:416
+#: src/editor-utils.c:418
 msgid "Character Encoding:"
 msgstr "Kódovanie znakov:"
 
-#: src/editor-utils.c:451
+#: src/editor-utils.c:453
 msgid "Line Ending:"
 msgstr "Konce riadkov:"
 
-#. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:128
-#, c-format
-msgid "Save Changes to “%s”?"
-msgstr "Uložiť zmeny v dokumente „%s“?"
-
-#: src/editor-window-actions.c:131
+#: src/editor-window-actions.c:110
 msgid "Saving changes will replace the previously saved version."
 msgstr "Uložením zmien sa nahradí predchádzajúca uložená verzia."
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:267
+#: src/editor-window-actions.c:113
+#, c-format
+msgid "Save Changes to “%s”?"
+msgstr "Uložiť zmeny v dokumente „%s“?"
+
+#: src/editor-window-actions.c:235
+msgid "Unsaved changes will be permanently lost."
+msgstr "Neuložené zmeny budú natrvalo stratené."
+
+#. translators: %s is replaced with the document title
+#: src/editor-window-actions.c:238
 #, c-format
 msgid "Discard Changes to “%s”?"
 msgstr "Zahodiť zmeny vykonané v dokumente „%s“?"
 
-#: src/editor-window-actions.c:270
-msgid "Unsaved changes will be permanently lost."
-msgstr "Neuložené zmeny budú natrvalo stratené."
-
-#: src/editor-window-actions.c:272
-msgid "Discard"
-msgstr ""
-
-#: src/editor-window-actions.c:376
+#: src/editor-window-actions.c:349
 msgid "Open File"
-msgstr ""
+msgstr "Otvoriť súbor"
 
-#: src/editor-window-actions.c:379
+#: src/editor-window-actions.c:352
 msgid "Open"
-msgstr ""
+msgstr "Otvoriť"
 
-#: src/editor-window-actions.c:404
+#: src/editor-window-actions.c:377
 msgid "All Files"
 msgstr "Všetky súbory"
 
-#: src/editor-window-actions.c:409
+#: src/editor-window-actions.c:382
 msgid "Text Files"
 msgstr "Textové súbory"
 
-#: src/editor-window.c:206
+#: src/editor-window.c:203
 #, c-format
 msgid "Document Type: %s"
 msgstr "Typ dokumentu: %s"
 
+#: src/editor-window.c:505
+#| msgctxt "shortcut window"
+#| msgid "Zoom In"
+msgid "Zoom In"
+msgstr "Priblíženie"
+
+#: src/editor-window.c:508
+#| msgctxt "shortcut window"
+#| msgid "Zoom In"
+msgid "Zoom in"
+msgstr "Priblížiť"
+
+#: src/editor-window.c:518
+#| msgctxt "shortcut window"
+#| msgid "Zoom Out"
+msgid "Zoom Out"
+msgstr "Oddialiť"
+
+#: src/editor-window.c:521
+#| msgctxt "shortcut window"
+#| msgid "Zoom Out"
+msgid "Zoom out"
+msgstr "Oddialiť"
+
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:725
+#: src/editor-window.c:757
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - Textový editor"
 
-#: src/editor-window.ui:78
+#: src/editor-window.c:1199
+msgid "There are unsaved documents"
+msgstr "Nachádzajú sa tu neuložené dokumenty"
+
+#: src/editor-window.ui:83
 msgid "_Open"
 msgstr "_Otvoriť"
 
-# tooltip
-#: src/editor-window.ui:80
-msgid "Open recent document (Ctrl+K)"
-msgstr "Otvorí nedávny dokument (Ctrl+K)"
+#: src/editor-window.ui:85
+#| msgid "No Recent Documents"
+msgid "Recently Used Documents"
+msgstr "Nedávno použité dokumenty"
 
-#: src/editor-window.ui:92 src/editor-window.ui:94
-msgid "New tab (Ctrl+T)"
-msgstr "Nová karta (Ctrl+T)"
+#: src/editor-window.ui:97
+msgid "New Tab"
+msgstr "Nová karta"
 
-#: src/editor-window.ui:120 src/editor-window.ui:124
+#: src/editor-window.ui:99
+#| msgid "New tab (Ctrl+T)"
+msgid "New tab"
+msgstr "Nová karta"
+
+#: src/editor-window.ui:125
+msgid "View Options"
+msgstr "Možnosti zobrazenia"
+
+#: src/editor-window.ui:129
 msgid "View"
-msgstr ""
+msgstr "Zobraziť"
 
-#: src/editor-window.ui:133
-msgid "Menu"
-msgstr ""
+#: src/editor-window.ui:135
+msgid "Main Menu"
+msgstr "Hlavná ponuka"
+
+#: src/editor-window.ui:139
+msgid "Main menu"
+msgstr "Hlavná ponuka"
 
 #: src/editor-window.ui:166
 msgid "Start or Open a Document"
-msgstr ""
+msgstr "Otvoriť nový alebo existujúci dokument"
 
 #: src/editor-window.ui:169
 msgid ""
@@ -848,111 +983,108 @@ msgid ""
 "\n"
 "Or, press Ctrl+W to close the window."
 msgstr ""
+"• Stlačte tlačidlo Otvoriť\n"
+"• Stlačte tlačidlo Nová karta\n"
+"• Stlačte Ctrl+N pre nový dokument\n"
+"• Stlačte Ctrl+O pre prehliadane dokumentov\n"
+"\n"
+"Alebo stlačením Ctrl+W zavriete okno."
 
-#: src/editor-window.ui:202
+#: src/editor-window.ui:203
 msgid "_New Window"
 msgstr "_Nové okno"
 
-#: src/editor-window.ui:222
+#: src/editor-window.ui:223
 msgid "_Discard Changes"
 msgstr "_Zahodiť zmeny"
 
-#: src/editor-window.ui:228
+#: src/editor-window.ui:229
 msgid "_Find/Replace…"
 msgstr "_Nájsť/nahradiť…"
 
-#: src/editor-window.ui:234
-msgid "_Print"
-msgstr "_Tlač"
+#: src/editor-window.ui:235
+#| msgid "_Print"
+msgid "_Print…"
+msgstr "_Tlač…"
 
-#: src/editor-window.ui:240
+#: src/editor-window.ui:241
 msgid "Documen_t Properties"
 msgstr "Vlastnosti dokumen_tu"
 
-#: src/editor-window.ui:246
+#: src/editor-window.ui:247
 msgid "P_references"
 msgstr "P_redvoľby"
 
-#: src/editor-window.ui:251
+#: src/editor-window.ui:252
 msgid "_Keyboard Shortcuts"
 msgstr "_Klávesové skratky"
 
-#: src/editor-window.ui:255
+#: src/editor-window.ui:256
 msgid "_Help"
 msgstr "_Pomocník"
 
-#: src/editor-window.ui:259
+#: src/editor-window.ui:260
 msgid "A_bout Text Editor"
 msgstr "_O aplikácii Textový editor"
 
-#: src/editor-window.ui:266
-msgid "Show"
-msgstr ""
-
 #: src/editor-window.ui:268
-msgid "_Line Numbers"
-msgstr "Čísla _riadkov"
+#| msgid "Show Line Numbers"
+msgid "Show _Line Numbers"
+msgstr "Zobrazovať čí_sla riadkov"
 
 #: src/editor-window.ui:272
-msgid "_Right Margin"
-msgstr "P_ravý okraj"
+#| msgid "_Right Margin"
+msgid "Show _Right Margin"
+msgstr "Zobrazovať p_ravý okraj"
 
-#: src/editor-window.ui:296
+#: src/editor-window.ui:295
 msgid "_2"
 msgstr "_2"
 
-#: src/editor-window.ui:301
+#: src/editor-window.ui:300
 msgid "_4"
 msgstr "_4"
 
-#: src/editor-window.ui:306
+#: src/editor-window.ui:305
 msgid "_6"
 msgstr "_6"
 
-#: src/editor-window.ui:311
+#: src/editor-window.ui:310
 msgid "_8"
 msgstr "_8"
 
-#: src/editor-window.ui:320
+#: src/editor-window.ui:319
 msgid "T_ext Wrapping"
 msgstr "Zalamovanie t_extu"
 
-#: src/editor-window.ui:324
+#: src/editor-window.ui:323
 msgid "Chec_k Spelling"
 msgstr "_Kontrola pravopisu"
 
-#: src/editor-window.ui:328
-msgid "_Document Type"
-msgstr "Typ _dokumentu"
+#: src/editor-window.ui:327
+#| msgid "_Document Type"
+msgid "_Document Type…"
+msgstr "Typ _dokumentu…"
 
-#: src/editor-window.ui:336
+#: src/editor-window.ui:335
 msgid "Move _Left"
 msgstr "Presunúť doľ_ava"
 
-#: src/editor-window.ui:341
+#: src/editor-window.ui:340
 msgid "Move _Right"
 msgstr "Presunúť dop_rava"
 
-#: src/editor-window.ui:348
+#: src/editor-window.ui:347
 msgid "_Move to New Window"
 msgstr "_Presunúť do nového okna"
 
-#: src/editor-window.ui:355
+#: src/editor-window.ui:354
 msgid "Close _Other Tabs"
 msgstr "Zavrieť _ostatné karty"
 
-#: src/editor-window.ui:359
-msgid "_Close"
-msgstr "_Zavrieť"
-
-#: src/enchant/editor-enchant-spell-provider.c:92
+#: src/enchant/editor-enchant-spell-provider.c:123
 msgid "Enchant 2"
-msgstr ""
-
-#: src/help-overlay.ui:9
-msgctxt "shortcut window"
-msgid "Editor Shortcuts"
-msgstr "Klávesové skratky editora"
+msgstr "Enchant 2"
 
 #: src/help-overlay.ui:12
 msgctxt "shortcut window"
@@ -967,52 +1099,52 @@ msgstr "Nové okno"
 #: src/help-overlay.ui:21
 msgctxt "shortcut window"
 msgid "Move document to new window"
-msgstr "Presun dokumentu do nového okna"
+msgstr "Presunúť dokument do nového okna"
 
 #: src/help-overlay.ui:28
 msgctxt "shortcut window"
 msgid "Move to next tab"
-msgstr "Presun na nasledujúcu kartu"
+msgstr "Presunúť na nasledujúcu kartu"
 
 #: src/help-overlay.ui:34
 msgctxt "shortcut window"
 msgid "Move to previous tab"
-msgstr "Presun na predchádzajúcu kartu"
+msgstr "Presunúť na predchádzajúcu kartu"
 
 #: src/help-overlay.ui:40
 msgctxt "shortcut window"
 msgid "Reorder after next tab"
-msgstr "Znovu usporiadanie po nasledujúcej karte"
+msgstr "Prehodiť za nasledujúcu kartu"
 
 #: src/help-overlay.ui:46
 msgctxt "shortcut window"
 msgid "Reorder before previous tab"
-msgstr "Znovu usporiadanie pred predchádzajúcou kartou"
+msgstr "Prehodiť pred predchádzajúcu kartu"
 
 #: src/help-overlay.ui:52
 msgctxt "shortcut window"
 msgid "Restore previously closed tab"
-msgstr "Obnovenie naposledy zavretej karty"
+msgstr "Obnoviť už zatvorenú kartu"
 
 #: src/help-overlay.ui:59
 msgctxt "shortcut window"
 msgid "Zoom"
-msgstr "Priblíženie"
+msgstr "Priblížiť"
 
 #: src/help-overlay.ui:63
 msgctxt "shortcut window"
 msgid "Zoom In"
-msgstr "Zväčšenie"
+msgstr "Priblížiť"
 
 #: src/help-overlay.ui:69
 msgctxt "shortcut window"
 msgid "Zoom Out"
-msgstr "Zmenšenie"
+msgstr "Oddialiť"
 
 #: src/help-overlay.ui:75
 msgctxt "shortcut window"
 msgid "Reset Zoom"
-msgstr "Obnovenie priblíženia"
+msgstr "Predvolené priblíženie"
 
 #: src/help-overlay.ui:82
 msgctxt "shortcut window"
@@ -1027,32 +1159,32 @@ msgstr "Nový dokument"
 #: src/help-overlay.ui:91
 msgctxt "shortcut window"
 msgid "Browse to open document"
-msgstr "Prehliadanie kvôli otvoreniu dokumentu"
+msgstr "Prehliadať existujúce dokumenty"
 
 #: src/help-overlay.ui:97
 msgctxt "shortcut window"
 msgid "Find document by name"
-msgstr "Nájdenie dokumentu podľa názvu"
+msgstr "Hľadať dokument podľa názvu"
 
 #: src/help-overlay.ui:103
 msgctxt "shortcut window"
 msgid "Save"
-msgstr "Uloženie"
+msgstr "Uložiť"
 
 #: src/help-overlay.ui:109
 msgctxt "shortcut window"
 msgid "Save As"
-msgstr "Uloženie ako"
+msgstr "Uložiť ako"
 
 #: src/help-overlay.ui:115
 msgctxt "shortcut window"
 msgid "Find/Replace"
-msgstr "Nájdenie/nahradenie"
+msgstr "Nájsť/Nahradiť"
 
 #: src/help-overlay.ui:121
 msgctxt "shortcut window"
 msgid "Close document"
-msgstr "Zavretie dokumentu"
+msgstr "Zavrieť dokument"
 
 #: src/help-overlay.ui:129
 msgctxt "shortcut window"
@@ -1062,164 +1194,222 @@ msgstr "Kopírovanie a vkladanie"
 #: src/help-overlay.ui:133
 msgctxt "shortcut window"
 msgid "Copy selected text to clipboard"
-msgstr "Skopírovanie vybratého textu do schránky"
+msgstr "Kopírovať vybraný text do schránky"
 
 #: src/help-overlay.ui:139
 msgctxt "shortcut window"
 msgid "Cut selected text to clipboard"
-msgstr "Vystrihnutie vybratého textu do schránky"
+msgstr "Vystrihnúť vybraný text do schránky"
 
 #: src/help-overlay.ui:145
 msgctxt "shortcut window"
 msgid "Paste text from clipboard"
-msgstr "Vloženie textu zo schránky"
+msgstr "Vložiť text zo schránky"
 
 #: src/help-overlay.ui:150
 msgctxt "shortcut window"
 msgid "Copy all to clipboard"
-msgstr "Skopírovanie všetkého do schránky"
+msgstr "Kopírovať všetko do schránky"
 
-#: src/help-overlay.ui:158
+#: src/help-overlay.ui:156
+#| msgctxt "shortcut window"
+#| msgid "Move current or selected lines down"
+msgctxt "shortcut window"
+msgid "Copy current line down"
+msgstr "Duplikovať aktuálny riadok smerom nadol"
+
+#: src/help-overlay.ui:164
 msgctxt "shortcut window"
 msgid "Undo and Redo"
-msgstr "Vrátenie späť a zopakovanie"
-
-#: src/help-overlay.ui:162
-msgctxt "shortcut window"
-msgid "Undo previous command"
-msgstr "Vrátenie späť predchádzajúceho príkazu"
+msgstr "Späť a znovu"
 
 #: src/help-overlay.ui:168
 msgctxt "shortcut window"
-msgid "Redo previous command"
-msgstr "Zopakovanie predchádzajúceho príkazu"
+msgid "Undo previous command"
+msgstr "Vrátiť späť predchádzajúci príkaz"
 
-#: src/help-overlay.ui:175
+#: src/help-overlay.ui:174
+msgctxt "shortcut window"
+msgid "Redo previous command"
+msgstr "Zopakovať predchádzajúci príkaz"
+
+#: src/help-overlay.ui:181
 msgctxt "shortcut window"
 msgid "Editing"
 msgstr "Úpravy"
 
-#: src/help-overlay.ui:179
-msgctxt "shortcut window"
-msgid "Insert emoji into document"
-msgstr "Vloženie emotikony do dokumentu"
-
 #: src/help-overlay.ui:185
 msgctxt "shortcut window"
-msgid "Search within the document"
-msgstr "Vyhľadávanie v dokumente"
+msgid "Insert emoji into document"
+msgstr "Vložiť emotikonu do dokumentu"
 
 #: src/help-overlay.ui:191
 msgctxt "shortcut window"
-msgid "Search and replace within the document"
-msgstr "Vyhľadanie a nahradenie v dokumente"
+msgid "Search within the document"
+msgstr "Hľadať v dokumente"
 
 #: src/help-overlay.ui:197
 msgctxt "shortcut window"
-msgid "Increment number at cursor"
-msgstr "Prirátanie čísla riadku v mieste kurzoru"
+msgid "Search and replace within the document"
+msgstr "Hľadať a nahradzovať v dokumente"
 
 #: src/help-overlay.ui:203
 msgctxt "shortcut window"
-msgid "Decrement number at cursor"
-msgstr "Odrátanie čísla riadku v mieste kurzoru"
+msgid "Increment number at cursor"
+msgstr "Zvýšiť číslo pod kurzorom"
 
 #: src/help-overlay.ui:209
 msgctxt "shortcut window"
-msgid "Toggle overwrite"
-msgstr "Prepnutie prepisovania"
+msgid "Decrement number at cursor"
+msgstr "Znížiť číslo pod kurzorom"
 
 #: src/help-overlay.ui:215
 msgctxt "shortcut window"
-msgid "Toggle visibility of insertion caret"
-msgstr ""
+msgid "Toggle overwrite"
+msgstr "Prepnúť vkladanie/prepis"
 
-#: src/help-overlay.ui:222
+#: src/help-overlay.ui:221
+msgctxt "shortcut window"
+msgid "Toggle visibility of insertion caret"
+msgstr "Prepnúť viditeľnosť vkladacieho kurzoru"
+
+#: src/help-overlay.ui:228
 msgctxt "shortcut window"
 msgid "Selections"
 msgstr "Výbery"
 
-#: src/help-overlay.ui:226
-msgctxt "shortcut window"
-msgid "Select all"
-msgstr "Výber všetkého"
-
 #: src/help-overlay.ui:232
 msgctxt "shortcut window"
-msgid "Unselect all"
-msgstr "Zrušenie výberu všetkého"
+msgid "Select all"
+msgstr "Vybrať všetko"
 
 #: src/help-overlay.ui:238
 msgctxt "shortcut window"
-msgid "Select current line"
-msgstr "Výber aktuálneho riadku"
+msgid "Unselect all"
+msgstr "Zrušiť akýkoľvek výber"
 
-#: src/help-overlay.ui:245
+#: src/help-overlay.ui:244
+msgctxt "shortcut window"
+msgid "Select current line"
+msgstr "Vybrať aktuálny riadok"
+
+#: src/help-overlay.ui:251
 msgctxt "shortcut window"
 msgid "Movements"
 msgstr "Presuny"
 
-#: src/help-overlay.ui:249
-msgctxt "shortcut window"
-msgid "Move to beginning of document"
-msgstr "Presun na začiatok dokumentu"
-
 #: src/help-overlay.ui:255
 msgctxt "shortcut window"
-msgid "Move to end of document"
-msgstr "Presun na koniec dokumentu"
+msgid "Move to beginning of document"
+msgstr "Prejsť na začiatok dokumentu"
 
 #: src/help-overlay.ui:261
 msgctxt "shortcut window"
-msgid "Move to start of previous paragraph"
-msgstr "Presun na začiatok predchádzajúceho odseku"
+msgid "Move to end of document"
+msgstr "Prejsť na koniec dokumentu"
 
 #: src/help-overlay.ui:267
 msgctxt "shortcut window"
-msgid "Move to end of next paragraph"
-msgstr "Presun na koniec nasledujúceho odseku"
+msgid "Move to start of previous paragraph"
+msgstr "Prejsť na začiatok predchádzajúceho odseku"
 
 #: src/help-overlay.ui:273
 msgctxt "shortcut window"
-msgid "Move current or selected lines up"
-msgstr "Presun aktuálneho alebo vybraných riadkov nahor"
+msgid "Move to end of next paragraph"
+msgstr "Prejsť na koniec nasledujúceho odseku"
 
 #: src/help-overlay.ui:279
 msgctxt "shortcut window"
-msgid "Move current or selected lines down"
-msgstr "Presun aktuálneho alebo vybraných riadkov nadol"
+msgid "Move current or selected lines up"
+msgstr "Presunúť aktuálny alebo vybraný riadok vyššie"
 
 #: src/help-overlay.ui:285
 msgctxt "shortcut window"
-msgid "Go to line"
-msgstr "Prejdenie na riadok"
+msgid "Move current or selected lines down"
+msgstr "Presunúť aktuálny alebo vybraný riadok nižšie"
 
-#: src/help-overlay.ui:292
+#: src/help-overlay.ui:291
+msgctxt "shortcut window"
+msgid "Go to line"
+msgstr "Prejsť na riadok"
+
+#: src/help-overlay.ui:298
 msgctxt "shortcut window"
 msgid "Deletion"
 msgstr "Odstraňovanie"
 
-#: src/help-overlay.ui:296
-msgctxt "shortcut window"
-msgid "Delete from cursor to word start"
-msgstr "Odstránenie od kurzoru po začiatok slova"
-
 #: src/help-overlay.ui:302
 msgctxt "shortcut window"
-msgid "Delete from cursor to word end"
-msgstr "Odstránenie od kurzoru po koniec slova"
+msgid "Delete from cursor to word start"
+msgstr "Odstrániť od kurzora po začiatok slova"
 
 #: src/help-overlay.ui:308
 msgctxt "shortcut window"
-msgid "Delete from cursor to paragraph start"
-msgstr "Odstránenie od kurzoru po začiatok odseku"
+msgid "Delete from cursor to word end"
+msgstr "Odstrániť od kurzora po koniec slova"
 
 #: src/help-overlay.ui:314
 msgctxt "shortcut window"
-msgid "Delete from cursor to paragraph end"
-msgstr "Odstránenie od kurzoru po koniec odseku"
+msgid "Delete from cursor to paragraph start"
+msgstr "Odstrániť od kurzora po začiatok odseku"
 
 #: src/help-overlay.ui:320
 msgctxt "shortcut window"
+msgid "Delete from cursor to paragraph end"
+msgstr "Odstrániť od kurzora po koniec odseku"
+
+#: src/help-overlay.ui:326
+msgctxt "shortcut window"
 msgid "Delete the current line"
-msgstr "Odstránenie aktuálneho riadku"
+msgstr "Odstrániť aktuálny riadok"
+
+#: src/help-overlay.ui:333
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Všeobecné"
+
+#: src/help-overlay.ui:337
+#| msgid "P_references"
+msgctxt "shortcut window"
+msgid "Show preferences"
+msgstr "Zobraziť predvoľby"
+
+#: src/help-overlay.ui:343
+#| msgid "_Keyboard Shortcuts"
+msgctxt "shortcut window"
+msgid "Show keyboard shortcuts"
+msgstr "Zobraziť klávesové skratky"
+
+#: src/help-overlay.ui:349
+msgctxt "shortcut window"
+msgid "Show help"
+msgstr "Zobraziť pomocníka"
+
+#~ msgid "A Text Editor for GNOME"
+#~ msgstr "Textový editor pre prostredie GNOME"
+
+#~ msgid "Text Editor Website"
+#~ msgstr "Webová stránka Textového editora"
+
+# header
+#~ msgid "Select Font"
+#~ msgstr "Výber písma"
+
+# tooltip
+#~ msgid "Move to previous match (Ctrl+Shift+G)"
+#~ msgstr "Presunie na predchádzajúcu zhodu (Ctrl+Shift+G)"
+
+# tooltip
+#~ msgid "Move to next match (Ctrl+G)"
+#~ msgstr "Presunie na nasledujúcu zhodu (Ctrl+G)"
+
+# tooltip
+#~ msgid "Open recent document (Ctrl+K)"
+#~ msgstr "Otvorí nedávny dokument (Ctrl+K)"
+
+#~ msgid "_Line Numbers"
+#~ msgstr "Čísla _riadkov"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Editor Shortcuts"
+#~ msgstr "Klávesové skratky editora"
