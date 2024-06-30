@@ -267,6 +267,8 @@ _editor_save_changes_dialog_new (GtkWindow *parent,
   adw_alert_dialog_set_response_appearance (ADW_ALERT_DIALOG (dialog),
                                             "save", ADW_RESPONSE_SUGGESTED);
 
+  adw_alert_dialog_set_prefer_wide_layout (ADW_ALERT_DIALOG (dialog), TRUE);
+
   group = adw_preferences_group_new ();
   adw_alert_dialog_set_extra_child (ADW_ALERT_DIALOG (dialog), group);
 
