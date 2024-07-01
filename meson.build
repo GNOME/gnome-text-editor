@@ -30,8 +30,9 @@ if not get_option('buildtype').startswith('debug')
   test_link_args += ['-Wl,-Bsymbolic', '-fno-plt']
 endif
 # Check dependencies
-glib_req_version = '2.73'
-gtk_req_version = '4.12'
+glib_req_version = '2.80'
+gtk_req_version = '4.15'
+adwaita_req_version = '1.6.alpha'
 gtksourceview_req_version = '5.10.0'
 enchant_req_version = '2.2.0'
 
@@ -39,11 +40,12 @@ glib_req = '>= @0@'.format(glib_req_version)
 gtk_req = '>= @0@'.format(gtk_req_version)
 gtksourceview_req = '>= @0@'.format(gtksourceview_req_version)
 enchant_req = '>= @0@'.format(enchant_req_version)
+adwaita_req = '>= @0@'.format(adwaita_req_version)
 
 libglib_dep = dependency('gio-2.0', version: glib_req)
 libgtk_dep = dependency('gtk4', version: gtk_req)
 libgtksourceview_dep = dependency('gtksourceview-5', version: gtksourceview_req)
-libadwaita_dep = dependency('libadwaita-1', version: '>= 1.6.alpha')
+libadwaita_dep = dependency('libadwaita-1', version: adwaita_req)
 libeditorconfig_dep = dependency('editorconfig')
 libcairo_dep = dependency('cairo')
 
@@ -52,6 +54,8 @@ glib_major = glib_req_version.split('.')[0].to_int()
 glib_minor = glib_req_version.split('.')[1].to_int()
 gtk_major = gtk_req_version.split('.')[0].to_int()
 gtk_minor = gtk_req_version.split('.')[1].to_int()
+adw_major = adwaita_req_version.split('.')[0].to_int()
+adw_minor = adwaita_req_version.split('.')[1].to_int()
 gtksourceview_major = gtksourceview_req_version.split('.')[0].to_int()
 gtksourceview_minor = gtksourceview_req_version.split('.')[1].to_int()
 
@@ -60,6 +64,9 @@ if glib_minor % 2 == 1
 endif
 if gtk_minor % 2 == 1
   gtk_minor = gtk_minor + 1
+endif
+if adw_minor % 2 == 1
+  adw_minor = adw_minor + 1
 endif
 if gtksourceview_minor % 2 == 1
   gtksourceview_minor = gtksourceview_minor + 1
@@ -82,6 +89,8 @@ global_c_args = [
   '-DGLIB_VERSION_MAX_ALLOWED=GLIB_VERSION_@0@_@1@'.format(glib_major, glib_minor),
   '-DGDK_VERSION_MIN_REQUIRED=GDK_VERSION_@0@_@1@'.format(gtk_major, gtk_minor),
   '-DGDK_VERSION_MAX_ALLOWED=GDK_VERSION_@0@_@1@'.format(gtk_major, gtk_minor),
+  '-DADW_VERSION_MIN_REQUIRED=ADW_VERSION_@0@_@1@'.format(adw_major, adw_minor),
+  '-DADW_VERSION_MAX_ALLOWED=ADW_VERSION_@0@_@1@'.format(adw_major, adw_minor),
   '-DGTK_SOURCE_VERSION_MIN_REQUIRED=GTK_SOURCE_VERSION_@0@_@1@'.format(gtksourceview_major, gtksourceview_minor),
   '-DGTK_SOURCE_VERSION_MAX_ALLOWED=GTK_SOURCE_VERSION_@0@_@1@'.format(gtksourceview_major, gtksourceview_minor),
 ]
