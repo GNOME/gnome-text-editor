@@ -28,6 +28,8 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (EditorPrintOperation, editor_print_operation, EDITOR, PRINT_OPERATION, GtkPrintOperation)
 
-EditorPrintOperation *editor_print_operation_new (GtkSourceView *view);
+EditorPrintOperation *editor_print_operation_new (GtkSourceView          *view);
+gboolean              editor_print_operation_save (EditorPrintOperation  *self,
+                                                   GError               **error);
 
 G_END_DECLS
