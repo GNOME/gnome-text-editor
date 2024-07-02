@@ -5,30 +5,30 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-text-editor gnome-46\n"
+"Project-Id-Version: gnome-text-editor main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2024-04-10 21:42+0000\n"
-"PO-Revision-Date: 2024-04-18 14:26+0530\n"
+"POT-Creation-Date: 2024-06-19 21:35+0000\n"
+"PO-Revision-Date: 2024-07-01 11:17+0530\n"
 "Last-Translator: Scrambled777 <weblate.scrambled777@simplelogin.com>\n"
-"Language-Team: Hindi\n"
+"Language-Team: Hindi <indlinux-hindi@lists.sourceforge.net>\n"
 "Language: hi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Gtranslator 46.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Gtranslator 46.1\n"
 
 #. developer_name tag deprecated with Appstream 1.0
 #: data/org.gnome.TextEditor.appdata.xml.in.in:7
 #: src/editor-application-actions.c:201
 msgid "The GNOME Project"
-msgstr "GNOME परियोजना"
+msgstr "गनोम परियोजना"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:12
 #: data/org.gnome.TextEditor.desktop.in.in:10
 #: data/org.gnome.TextEditor.desktop.in.in:11
-#: src/editor-application-actions.c:199 src/editor-window.c:1314
+#: src/editor-application-actions.c:199 src/editor-window.c:1317
 msgid "Text Editor"
 msgstr "पाठ संपादक"
 
@@ -40,7 +40,7 @@ msgstr "पाठ फाइलें संपादित करें"
 msgid ""
 "GNOME Text Editor is a simple text editor focused on a pleasing default "
 "experience."
-msgstr "GNOME पाठ संपादक एक सरल पाठ संपादक है जो सुखद डिफॉल्ट अनुभव पर केंद्रित है।"
+msgstr "गनोम पाठ संपादक एक सरल पाठ संपादक है जो सुखद तयशुदा अनुभव पर केंद्रित है।"
 
 #: data/org.gnome.TextEditor.desktop.in.in:4
 msgid "write;notepad;"
@@ -52,11 +52,11 @@ msgstr "पाठ फाइलें देखें और संपादि�
 
 #: data/org.gnome.TextEditor.desktop.in.in:22
 msgid "New Window"
-msgstr "नई विंडो"
+msgstr "नई खिड़की"
 
 #: data/org.gnome.TextEditor.gschema.xml:16
 msgid "Auto Save Delay"
-msgstr "स्वतः सहेजें विलंब"
+msgstr "स्वतः सहेजना में विलंब"
 
 #: data/org.gnome.TextEditor.gschema.xml:17
 msgid "The delay in seconds to wait before auto-saving a draft."
@@ -77,8 +77,9 @@ msgid "Indentation Style"
 msgstr "इंडेंटेशन शैली"
 
 #: data/org.gnome.TextEditor.gschema.xml:36
-msgid "If the editor should insert multiple spaces characters instead of tabs."
-msgstr "यदि संपादक को टैब के बजाय एकाधिक रिक्त स्थान वर्ण सम्मिलित करना चाहिए।"
+msgid ""
+"Whether the editor should insert multiple spaces characters instead of tabs."
+msgstr "क्या संपादक को टैब के स्थान पर अनेक रिक्त स्थान वर्ण सम्मिलित करने चाहिए।"
 
 #: data/org.gnome.TextEditor.gschema.xml:40
 msgid "Auto Indent"
@@ -86,7 +87,7 @@ msgstr "ऑटो इंडेंट"
 
 #: data/org.gnome.TextEditor.gschema.xml:41
 msgid "Automatically indent new lines copying the previous line's indentation."
-msgstr "पिछली पंक्ति के इंडेंटेशन की प्रतिलिपि बनाते हुए स्वचालित रूप से नई लाइनें इंडेंट करें।"
+msgstr "पिछली पंक्ति के इंडेंटेशन की प्रतिलिपि बनाते हुए स्वचालित रूप से नई पंक्तियां इंडेंट करें।"
 
 #: data/org.gnome.TextEditor.gschema.xml:46
 msgid "Tab Width"
@@ -109,16 +110,16 @@ msgid "Show Line Numbers"
 msgstr "पंक्ति क्रमांक दिखाएं"
 
 #: data/org.gnome.TextEditor.gschema.xml:58
-msgid "If line numbers should be displayed next to each line."
-msgstr "यदि पंक्ति संख्याएँ प्रत्येक पंक्ति के आगे प्रदर्शित की जानी चाहिए।"
+msgid "Whether line numbers should be displayed next to each line."
+msgstr "क्या प्रत्येक पंक्ति के आगे पंक्ति संख्या प्रदर्शित की जानी चाहिए।"
 
 #: data/org.gnome.TextEditor.gschema.xml:62
 msgid "Show Right Margin"
-msgstr "दायां हाशिये दिखाएं"
+msgstr "दायां हाशिया दिखाएं"
 
 #: data/org.gnome.TextEditor.gschema.xml:63
-msgid "If a margin line should be displayed on the right of the editor."
-msgstr "यदि संपादक के दाहिनी ओर एक हाशिये की रेखा प्रदर्शित होनी चाहिए।"
+msgid "Whether a margin line should be displayed on the right of the editor."
+msgstr "क्या संपादक के दाहिनी ओर हाशिये की रेखा प्रदर्शित की जानी चाहिए।"
 
 #: data/org.gnome.TextEditor.gschema.xml:68
 msgid "Right Margin Position"
@@ -161,24 +162,24 @@ msgid "Text Wrapping"
 msgstr "पाठ रैपिंग"
 
 #: data/org.gnome.TextEditor.gschema.xml:89
-msgid "If text should be wrapped."
-msgstr "यदि पाठ को लपेटा जाना चाहिए।"
+msgid "Whether text should be wrapped."
+msgstr "क्या पाठ को लपेटा जाना चाहिए।"
 
 #: data/org.gnome.TextEditor.gschema.xml:93
 msgid "Use System Font"
 msgstr "सिस्टम फॉन्ट का प्रयोग करें"
 
 #: data/org.gnome.TextEditor.gschema.xml:94
-msgid "If the default system monospace font should be used."
-msgstr "यदि डिफॉल्ट सिस्टम मोनोस्पेस फॉन्ट का उपयोग किया जाना चाहिए।"
+msgid "Whether the default system monospace font should be used."
+msgstr "क्या तयशुदा सिस्टम मोनोस्पेस फॉन्ट का उपयोग किया जाना चाहिए।"
 
 #: data/org.gnome.TextEditor.gschema.xml:98
 msgid "Custom Font"
-msgstr "कस्टम फॉन्ट"
+msgstr "तदनुकूल फॉन्ट"
 
 #: data/org.gnome.TextEditor.gschema.xml:99
 msgid "A custom font to use in the editor."
-msgstr "संपादक में उपयोग के लिए एक कस्टम फॉन्ट।"
+msgstr "संपादक में उपयोग के लिए तदनुकूल फॉन्ट।"
 
 #: data/org.gnome.TextEditor.gschema.xml:103
 msgid "Style Scheme"
@@ -197,11 +198,15 @@ msgid "Discover File Settings"
 msgstr "फाइल सेटिंग्स खोजें"
 
 #: data/org.gnome.TextEditor.gschema.xml:109
+#, fuzzy
+#| msgid ""
+#| "If enabled then Text Editor will try to discover file settings from "
+#| "modelines, editorconfig, or per-language defaults."
 msgid ""
-"If enabled then Text Editor will try to discover file settings from "
+"If enabled, then Text Editor will try to discover file settings from "
 "modelines, editorconfig, or per-language defaults."
 msgstr ""
-"यदि सक्षम है तो पाठ संपादक मॉडलाइंस, एडिटरकॉन्फिग, या प्रति-भाषा डिफॉल्ट से फाइल "
+"यदि सक्षम है तो पाठ संपादक मॉडलाइंस, एडिटरकॉन्फिग, या प्रति-भाषा तयशुदा से फाइल "
 "सेटिंग्स खोजने का प्रयास करेगा।"
 
 #: data/org.gnome.TextEditor.gschema.xml:113
@@ -217,16 +222,18 @@ msgid "Restore session"
 msgstr "सत्र बहाल करें"
 
 #: data/org.gnome.TextEditor.gschema.xml:119
-msgid "When Text Editor is run, restore the previous session."
+#, fuzzy
+#| msgid "When Text Editor is run, restore the previous session."
+msgid "When Text Editor is running, restore the previous session."
 msgstr "जब पाठ संपादक चलाया जाए, तो पिछले सत्र को पुनर्स्थापित करें।"
 
 #: data/org.gnome.TextEditor.gschema.xml:123
 msgid "Recolor Window"
-msgstr "विंडो को दोबारा रंगें"
+msgstr "खिड़की को दोबारा रंगें"
 
 #: data/org.gnome.TextEditor.gschema.xml:124
 msgid "Use the style-scheme to recolor the application window."
-msgstr "एप्लिकेशन विंडो को दोबारा रंगने के लिए शैली-योजना का उपयोग करें।"
+msgstr "अनुप्रयोग खिड़की को दोबारा रंगने के लिए शैली-योजना का उपयोग करें।"
 
 #: data/org.gnome.TextEditor.gschema.xml:132
 msgid "Keybindings"
@@ -281,7 +288,7 @@ msgstr "मेल खाते ब्रैकेट और ब्रेसि�
 #: src/editor-animation.c:1038
 #, c-format
 msgid "Failed to find property %s in %s"
-msgstr "%s में प्रॉपर्टी %s खोजने में विफल"
+msgstr "%2$s में प्रॉपर्टी %1$s खोजने में विफल"
 
 #: src/editor-animation.c:1047
 #, c-format
@@ -314,7 +321,7 @@ msgstr "स्टार्टअप पर सत्र पुनर्स्थ
 
 #: src/editor-application.c:749
 msgid "Open provided files in a new window"
-msgstr "प्रदान की गई फाइलों को एक नई विंडो में खोलें"
+msgstr "प्रदान की गई फाइलों को एक नई खिड़की में खोलें"
 
 #: src/editor-application.c:750
 msgid "Run a new instance of Text Editor (implies --ignore-session)"
@@ -324,11 +331,11 @@ msgstr "पाठ संपादक का एक नया इंस्टे�
 msgid "Print version information and exit"
 msgstr "संस्करण जानकारी प्रिंट करें और बाहर निकलें"
 
-#: src/editor-document.c:2121
+#: src/editor-document.c:2133
 msgid "[Read-Only]"
 msgstr "[केवल-पढ़ें]"
 
-#: src/editor-document.c:2419 src/editor-page.c:1067
+#: src/editor-document.c:2431 src/editor-page.c:1073
 #: src/editor-sidebar-item.c:511
 msgid "New Document"
 msgstr "नया दस्तावेज़"
@@ -348,7 +355,7 @@ msgstr "ILCreateFromPath() विफल रहा"
 #: src/editor-file-manager.c:164
 #, c-format
 msgid "Cannot convert “%s” into a valid NSURL."
-msgstr "“%s” को वैध NSURL में परिवर्तित नहीं किया जा सकता।"
+msgstr "“%s” को मान्य NSURL में परिवर्तित नहीं किया जा सकता।"
 
 #: src/editor-info-bar.c:76
 msgid "_Discard Changes and Reload"
@@ -366,21 +373,21 @@ msgstr "फाइल को किसी अन्य प्रोग्रा�
 msgid "Save _As…"
 msgstr "ऐसे सहेजें (_A)…"
 
-#: src/editor-info-bar.c:91 src/editor-info-bar.ui:63
+#: src/editor-info-bar.c:91 src/editor-info-bar.ui:62
 msgid "Document Restored"
 msgstr "दस्तावेज़ बहाल"
 
-#: src/editor-info-bar.c:92 src/editor-info-bar.ui:73
+#: src/editor-info-bar.c:92 src/editor-info-bar.ui:72
 msgid "Unsaved document has been restored."
 msgstr "सहेजे न गए दस्तावेज़ को पुनर्स्थापित कर दिया गया है।"
 
-#: src/editor-info-bar.c:98 src/editor-info-bar.ui:87
+#: src/editor-info-bar.c:98 src/editor-info-bar.ui:86
 msgid "_Save…"
 msgstr "सहेजें (_S)…"
 
-#: src/editor-info-bar.c:100 src/editor-info-bar.ui:81
+#: src/editor-info-bar.c:100 src/editor-info-bar.ui:80
 msgid "_Discard…"
-msgstr "खारिज (_D)…"
+msgstr "त्यागें (_D)…"
 
 #: src/editor-info-bar.c:102
 msgid "Draft Changes Restored"
@@ -394,15 +401,11 @@ msgstr "दस्तावेज़ में सहेजे नहीं ग�
 msgid "Could Not Open File"
 msgstr "फाइल नहीं खुल सकी"
 
-#: src/editor-info-bar.ui:29
-msgid "You do not have permission to open the file."
-msgstr "आपके पास फाइल खोलने की अनुमति नहीं है।"
-
-#: src/editor-info-bar.ui:37
+#: src/editor-info-bar.ui:36
 msgid "_Retry"
 msgstr "पुन: प्रयास (_R)"
 
-#: src/editor-info-bar.ui:44
+#: src/editor-info-bar.ui:43
 msgid "Open As _Administrator"
 msgstr "प्रशासक के रूप में खोलें (_A)"
 
@@ -410,13 +413,17 @@ msgstr "प्रशासक के रूप में खोलें (_A)"
 msgid "Document Type"
 msgstr "दस्तावेज़ का प्रकार"
 
-#: src/editor-language-dialog.ui:28
+#: src/editor-language-dialog.ui:25
 msgid "Search document types"
 msgstr "दस्तावेज़ प्रकार खोजें"
 
-#: src/editor-language-dialog.ui:51
-msgid "No Matches"
-msgstr "कोई मेल नहीं"
+#: src/editor-language-dialog.ui:60 src/editor-open-popover.ui:104
+msgid "No Results Found"
+msgstr "कोई नतीजा नहीं मिला"
+
+#: src/editor-language-dialog.ui:61
+msgid "Try a different search"
+msgstr "भिन्न खोज का प्रयास करें"
 
 #: src/editor-language-row.c:61 src/editor-language-row.c:119
 msgid "Plain Text"
@@ -434,46 +441,42 @@ msgstr "नया दस्तावेज़ खोलें"
 msgid "No Recent Documents"
 msgstr "कोई नवीनतम दस्तावेज़ नहीं"
 
-#: src/editor-open-popover.ui:104
-msgid "No Results Found"
-msgstr "कोई नतीजा नहीं मिला"
-
-#: src/editor-page.c:1093 src/editor-properties-dialog.c:107
+#: src/editor-page.c:1099 src/editor-properties-dialog.c:104
 #: src/editor-sidebar-item.c:105
 msgid "Draft"
 msgstr "मसौदा"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1105
+#: src/editor-page.c:1111
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (प्रशासक)"
 
-#: src/editor-page.c:1115 src/editor-sidebar-item.c:113
+#: src/editor-page.c:1121 src/editor-sidebar-item.c:113
 msgid "Document Portal"
 msgstr "दस्तावेज़ पोर्टल"
 
-#: src/editor-page.c:1161
+#: src/editor-page.c:1167
 msgid "Failed to save document"
 msgstr "दस्तावेज़ सहेजने में विफल"
 
-#: src/editor-page.c:1162 src/editor-window.ui:358
+#: src/editor-page.c:1168 src/editor-window.ui:358
 msgid "_Close"
-msgstr "बंद (_C)"
+msgstr "बंद करें (_C)"
 
-#: src/editor-page.c:1248
+#: src/editor-page.c:1256
 msgid "Save As"
 msgstr "ऐसे सहेजें"
 
-#: src/editor-page.c:1251
+#: src/editor-page.c:1259
 msgid "Save"
 msgstr "सहेजें"
 
-#: src/editor-page.c:1252 src/editor-window-actions.c:353
+#: src/editor-page.c:1260 src/editor-window-actions.c:347
 msgid "Cancel"
-msgstr "रद्द"
+msgstr "रद्द करें"
 
-#: src/editor-page.c:1408
+#: src/editor-page.c:1416
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "पंक्ति %u, स्तंभ %u"
@@ -547,7 +550,7 @@ msgstr "दिखावट"
 
 #: src/editor-preferences-dialog.ui:59
 msgid "Custom _Font"
-msgstr "कस्टम फॉन्ट (_F)"
+msgstr "तदनुकूल फॉन्ट (_F)"
 
 #: src/editor-preferences-dialog.ui:82
 msgid "Display _Grid Pattern"
@@ -563,11 +566,11 @@ msgstr "अवलोकन मानचित्र प्रदर्शित 
 
 #: src/editor-preferences-dialog.ui:105
 msgid "Right Margin"
-msgstr "दायां मार्जिन"
+msgstr "दायां हाशिया"
 
 #: src/editor-preferences-dialog.ui:108
 msgid "_Margin Position"
-msgstr "मार्जिन स्थिति (_M)"
+msgstr "हाशिया स्थिति (_M)"
 
 #: src/editor-preferences-dialog.ui:117
 msgid "Behavior"
@@ -579,7 +582,7 @@ msgstr "दस्तावेज़ सेटिंग्स खोजें (_D
 
 #: src/editor-preferences-dialog.ui:122
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
-msgstr "मॉडलाइन, एडिटरकॉन्फिग, या समझदार डिफॉल्ट का उपयोग करके सेटिंग्स लागू करें"
+msgstr "मॉडलाइन, एडिटरकॉन्फिग, या समझदार तयशुदा का उपयोग करके सेटिंग्स लागू करें"
 
 #: src/editor-preferences-dialog.ui:128
 msgid "_Restore Session"
@@ -622,47 +625,47 @@ msgstr "फाइल"
 msgid "Name"
 msgstr "नाम"
 
-#: src/editor-properties-dialog.ui:46
+#: src/editor-properties-dialog.ui:38
 msgid "Location"
 msgstr "स्थान"
 
-#: src/editor-properties-dialog.ui:75
+#: src/editor-properties-dialog.ui:47
 msgid "Open in File Manager"
 msgstr "फाइल प्रबंधक में खोलें"
 
-#: src/editor-properties-dialog.ui:85
+#: src/editor-properties-dialog.ui:60
 msgid "Statistics"
 msgstr "आंकड़े"
 
-#: src/editor-properties-dialog.ui:88
+#: src/editor-properties-dialog.ui:63
 msgid "Lines"
 msgstr "पंक्तियां"
 
-#: src/editor-properties-dialog.ui:96
+#: src/editor-properties-dialog.ui:71
 msgid "Words"
 msgstr "शब्द"
 
-#: src/editor-properties-dialog.ui:104
+#: src/editor-properties-dialog.ui:79
 msgid "Characters, No Spaces"
 msgstr "वर्ण, कोई रिक्त स्थान नहीं"
 
-#: src/editor-properties-dialog.ui:112
+#: src/editor-properties-dialog.ui:87
 msgid "All Characters"
 msgstr "सभी वर्ण"
 
-#: src/editor-save-changes-dialog.c:255 src/editor-window-actions.c:242
+#: src/editor-save-changes-dialog.c:254 src/editor-window-actions.c:236
 msgid "_Discard"
 msgstr "त्यागें (_D)"
 
-#: src/editor-save-changes-dialog.c:255
+#: src/editor-save-changes-dialog.c:254
 msgid "_Discard All"
 msgstr "सभी त्यागें (_D)"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:256
 msgid "Save Changes?"
 msgstr "परिवर्तन सहेजें?"
 
-#: src/editor-save-changes-dialog.c:259
+#: src/editor-save-changes-dialog.c:257
 msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
@@ -670,27 +673,27 @@ msgstr ""
 "खुले दस्तावेज़ों में सहेजे न गए परिवर्तन होते हैं। जो परिवर्तन सहेजे नहीं गए वे स्थायी रूप से नष्ट "
 "हो जाएंगे।"
 
-#: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:116
-#: src/editor-window-actions.c:241
+#: src/editor-save-changes-dialog.c:261 src/editor-window-actions.c:115
+#: src/editor-window-actions.c:235
 msgid "_Cancel"
-msgstr "रद्द (_C)"
+msgstr "रद्द करें (_C)"
 
-#: src/editor-save-changes-dialog.c:265 src/editor-window-actions.c:117
+#: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:116
 #: src/editor-window.ui:211
 msgid "_Save"
 msgstr "सहेजें (_S)"
 
-#: src/editor-save-changes-dialog.c:299
+#: src/editor-save-changes-dialog.c:293
 msgid "Untitled Document"
 msgstr "अनाम दस्तावेज़"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:302
+#: src/editor-save-changes-dialog.c:296
 #, c-format
 msgid "%s (new)"
 msgstr "%s (नया)"
 
-#: src/editor-save-changes-dialog.c:323
+#: src/editor-save-changes-dialog.c:317
 msgid "Save changes for this document"
 msgstr "इस दस्तावेज़ के लिए परिवर्तन सहेजें"
 
@@ -743,6 +746,10 @@ msgstr "केवल पूर्ण शब्द मिलाएं (_w)"
 #, c-format
 msgid "%u of %u"
 msgstr "%u का %u"
+
+#: src/editor-search-entry.ui:13
+msgid "Find"
+msgstr "खोजें"
 
 #: src/editor-sidebar-row.ui:85
 msgid "Remove"
@@ -835,39 +842,39 @@ msgstr "वर्ण एन्कोडिंग:"
 msgid "Line Ending:"
 msgstr "पंक्ति समाप्ति:"
 
-#: src/editor-window-actions.c:110
+#: src/editor-window-actions.c:109
 msgid "Saving changes will replace the previously saved version."
 msgstr "परिवर्तन सहेजने से पहले सहेजा गया संस्करण प्रतिस्थापित हो जाएगा।"
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:113
+#: src/editor-window-actions.c:112
 #, c-format
 msgid "Save Changes to “%s”?"
 msgstr "परिवर्तन को “%s” में सहेजें?"
 
-#: src/editor-window-actions.c:235
+#: src/editor-window-actions.c:229
 msgid "Unsaved changes will be permanently lost."
 msgstr "सहेजे न गए परिवर्तन स्थायी रूप से खो जाएंगे।"
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:238
+#: src/editor-window-actions.c:232
 #, c-format
 msgid "Discard Changes to “%s”?"
 msgstr "“%s” में परिवर्तन त्यागें?"
 
-#: src/editor-window-actions.c:349
+#: src/editor-window-actions.c:343
 msgid "Open File"
 msgstr "फाइल खोलें"
 
-#: src/editor-window-actions.c:352
+#: src/editor-window-actions.c:346
 msgid "Open"
 msgstr "खोलें"
 
-#: src/editor-window-actions.c:377
+#: src/editor-window-actions.c:371
 msgid "All Files"
 msgstr "सभी फाइलें"
 
-#: src/editor-window-actions.c:382
+#: src/editor-window-actions.c:376
 msgid "Text Files"
 msgstr "पाठ फाइलें"
 
@@ -878,27 +885,27 @@ msgstr "दस्तावेज़ प्रकार: %s"
 
 #: src/editor-window.c:505
 msgid "Zoom In"
-msgstr "ज़ूम इन"
+msgstr "बड़ा करें"
 
 #: src/editor-window.c:508
 msgid "Zoom in"
-msgstr "ज़ूम इन"
+msgstr "बड़ा करें"
 
 #: src/editor-window.c:518
 msgid "Zoom Out"
-msgstr "ज़ूम आउट"
+msgstr "छोटा करें"
 
 #: src/editor-window.c:521
 msgid "Zoom out"
-msgstr "ज़ूम इन/आउट"
+msgstr "छोटा करें"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:757
+#: src/editor-window.c:760
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - पाठ संपादक"
 
-#: src/editor-window.c:1199
+#: src/editor-window.c:1202
 msgid "There are unsaved documents"
 msgstr "सहेजे न गए दस्तावेज़ हैं"
 
@@ -952,11 +959,11 @@ msgstr ""
 "• नया दस्तावेज़ प्रारंभ करने के लिए Ctrl+N दबाएं\n"
 "• किसी दस्तावेज़ को ब्राउज़ करने के लिए Ctrl+O दबाएं\n"
 "\n"
-"या, विंडो बंद करने के लिए Ctrl+W दबाएं।"
+"या, खिड़की बंद करने के लिए Ctrl+W दबाएं।"
 
 #: src/editor-window.ui:203
 msgid "_New Window"
-msgstr "नई विंडो (_N)"
+msgstr "नई खिड़की (_N)"
 
 #: src/editor-window.ui:223
 msgid "_Discard Changes"
@@ -968,7 +975,7 @@ msgstr "खोजें/बदलें (_F)…"
 
 #: src/editor-window.ui:235
 msgid "_Print…"
-msgstr "प्रिंट (_P)…"
+msgstr "छापें (_P)…"
 
 #: src/editor-window.ui:241
 msgid "Documen_t Properties"
@@ -996,7 +1003,7 @@ msgstr "पंक्ति क्रमांक दिखाएं (_L)"
 
 #: src/editor-window.ui:272
 msgid "Show _Right Margin"
-msgstr "दायां मार्जिन दिखाएं (_R)"
+msgstr "दायां हाशिया दिखाएं (_R)"
 
 #: src/editor-window.ui:295
 msgid "_2"
@@ -1036,7 +1043,7 @@ msgstr "दाएं ले जाएं (_R)"
 
 #: src/editor-window.ui:347
 msgid "_Move to New Window"
-msgstr "नई विंडो पर जाएं (_M)"
+msgstr "नई खिड़की पर जाएं (_M)"
 
 #: src/editor-window.ui:354
 msgid "Close _Other Tabs"
@@ -1049,17 +1056,17 @@ msgstr "मंत्रमुग्ध 2"
 #: src/help-overlay.ui:12
 msgctxt "shortcut window"
 msgid "Windows"
-msgstr "विंडो"
+msgstr "खिड़की"
 
 #: src/help-overlay.ui:15
 msgctxt "shortcut window"
 msgid "New window"
-msgstr "नई विंडो"
+msgstr "नई खिड़की"
 
 #: src/help-overlay.ui:21
 msgctxt "shortcut window"
 msgid "Move document to new window"
-msgstr "दस्तावेज़ को नई विंडो पर ले जाएं"
+msgstr "दस्तावेज़ को नई खिड़की पर ले जाएं"
 
 #: src/help-overlay.ui:28
 msgctxt "shortcut window"
@@ -1094,12 +1101,12 @@ msgstr "ज़ूम"
 #: src/help-overlay.ui:63
 msgctxt "shortcut window"
 msgid "Zoom In"
-msgstr "ज़ूम इन"
+msgstr "बड़ा करें"
 
 #: src/help-overlay.ui:69
 msgctxt "shortcut window"
 msgid "Zoom Out"
-msgstr "ज़ूम आउट"
+msgstr "छोटा करें"
 
 #: src/help-overlay.ui:75
 msgctxt "shortcut window"
