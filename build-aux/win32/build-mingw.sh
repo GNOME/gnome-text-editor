@@ -17,10 +17,13 @@ pacman -S --noconfirm  base-devel zip \
             ${MINGW_PACKAGE_PREFIX}-gcc \
             ${MINGW_PACKAGE_PREFIX}-gtk4 \
             ${MINGW_PACKAGE_PREFIX}-gtksourceview5 \
-            ${MINGW_PACKAGE_PREFIX}-gtk-update-icon-cache
+            ${MINGW_PACKAGE_PREFIX}-gtk-update-icon-cache \
+            ${MINGW_PACKAGE_PREFIX}-shaderc
+            ${MINGW_PACKAGE_PREFIX}-vulkan \
+            ${MINGW_PACKAGE_PREFIX}-vulkan-headers
 
 # Compile the application
-MSYS2_ARG_CONV_EXCL="--prefix=" meson setup builddir --prefix="${MINGW_PREFIX}" -Dlibadwaita:vapi=false -Dlibadwaita:examples=false -Dgtksourceview:vapi=false -Dgtk4:media-gstreamer=disabled
+MSYS2_ARG_CONV_EXCL="--prefix=" meson setup builddir --prefix="${MINGW_PREFIX}" -Dlibadwaita:vapi=false -Dlibadwaita:examples=false -Dgtksourceview:vapi=false -Dlibadwaita:werror=false -Dgtk:media-gstreamer=disabled -Dgtk:x11-backend=false -Dgtk:wayland-backend=false -Dgtk:win32-backend=true -Dgtk:werror=false
 meson compile -C builddir
 meson test -C builddir --suite gnome-text-editor
 
