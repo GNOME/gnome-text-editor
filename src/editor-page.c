@@ -1320,18 +1320,23 @@ handle_print_result (EditorPage              *self,
                      GtkPrintOperation       *operation,
                      GtkPrintOperationResult  result)
 {
+  g_autoptr(GError) error = NULL;
+
   g_assert (EDITOR_IS_PAGE (self));
-  g_assert (GTK_IS_PRINT_OPERATION (operation));
+  g_assert (EDITOR_IS_PRINT_OPERATION (operation));
 
   if (result == GTK_PRINT_OPERATION_RESULT_ERROR)
     {
-      g_autoptr(GError) error = NULL;
-
       gtk_print_operation_get_error (operation, &error);
 
-      g_warning ("%s", error->message);
+      g_warning ("Print Failed: %s", error->message);
 
       /* TODO: Display error message with dialog */
+    }
+  else if (result == GTK_PRINT_OPERATION_RESULT_APPLY)
+    {
+      if (!editor_print_operation_save (EDITOR_PRINT_OPERATION (operation), &error))
+        g_warning ("Failed to save print settings: %s", error->message);
     }
 }
 
@@ -1342,7 +1347,7 @@ print_done (GtkPrintOperation       *operation,
 {
   EditorPage *self = user_data;
 
-  g_assert (GTK_IS_PRINT_OPERATION (operation));
+  g_assert (EDITOR_IS_PRINT_OPERATION (operation));
   g_assert (EDITOR_IS_PAGE (self));
 
   handle_print_result (self, operation, result);

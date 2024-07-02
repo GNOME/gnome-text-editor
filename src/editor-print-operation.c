@@ -31,6 +31,8 @@ struct _EditorPrintOperation
 {
   GtkPrintOperation         parent_instance;
 
+  GtkPageSetup             *page_setup;
+
   GtkSourceView            *view;
   GtkSourcePrintCompositor *compositor;
 };
@@ -51,6 +53,7 @@ editor_print_operation_dispose (GObject *object)
   EditorPrintOperation *self = EDITOR_PRINT_OPERATION (object);
 
   g_clear_object (&self->compositor);
+  g_clear_object (&self->page_setup);
 
   G_OBJECT_CLASS (editor_print_operation_parent_class)->dispose (object);
 }
@@ -235,11 +238,42 @@ editor_print_operation_end_print (GtkPrintOperation *operation,
 }
 
 static void
+editor_print_operation_constructed (GObject *object)
+{
+  EditorPrintOperation *self = (EditorPrintOperation *)object;
+  g_autoptr(GtkPrintSettings) print_settings = NULL;
+  g_autoptr(GtkPageSetup) page_setup = NULL;
+  g_autofree char *print_settings_path = NULL;
+  g_autofree char *page_setup_path = NULL;
+
+  G_OBJECT_CLASS (editor_print_operation_parent_class)->constructed (object);
+
+  print_settings_path = g_build_filename (g_get_user_data_dir (),
+                                          APP_ID,
+                                          "print-settings",
+                                          NULL);
+  page_setup_path = g_build_filename (g_get_user_data_dir (),
+                                      APP_ID,
+                                      "page-setup",
+                                      NULL);
+
+  if (!(print_settings = gtk_print_settings_new_from_file (print_settings_path, NULL)))
+    print_settings = gtk_print_settings_new ();
+
+  if (!(page_setup = gtk_page_setup_new_from_file (page_setup_path, NULL)))
+    page_setup = gtk_page_setup_new ();
+
+  gtk_print_operation_set_default_page_setup (GTK_PRINT_OPERATION (self), page_setup);
+  gtk_print_operation_set_print_settings (GTK_PRINT_OPERATION (self), print_settings);
+}
+
+static void
 editor_print_operation_class_init (EditorPrintOperationClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
   GtkPrintOperationClass *operation_class = GTK_PRINT_OPERATION_CLASS (klass);
 
+  object_class->constructed = editor_print_operation_constructed;
   object_class->dispose = editor_print_operation_dispose;
   object_class->get_property = editor_print_operation_get_property;
   object_class->set_property = editor_print_operation_set_property;
@@ -286,4 +320,37 @@ editor_print_operation_new (GtkSourceView *view)
                        "view", view,
                        "allow-async", TRUE,
                        NULL);
+}
+
+gboolean
+editor_print_operation_save (EditorPrintOperation  *self,
+                             GError               **error)
+{
+  g_autofree char *state_dir = NULL;
+  g_autofree char *page_setup_path = NULL;
+  g_autofree char *print_settings_path = NULL;
+  GtkPrintSettings *print_settings;
+  GtkPageSetup *page_setup;
+
+  g_return_val_if_fail (EDITOR_IS_PRINT_OPERATION (self), FALSE);
+
+  state_dir = g_build_filename (g_get_user_data_dir (), APP_ID, NULL);
+  page_setup_path = g_build_filename (state_dir, "page-setup", NULL);
+  print_settings_path = g_build_filename (state_dir, "print-settings", NULL);
+
+  g_mkdir_with_parents (state_dir, 0770);
+
+  if ((print_settings = gtk_print_operation_get_print_settings (GTK_PRINT_OPERATION (self))))
+    {
+      if (!gtk_print_settings_to_file (print_settings, print_settings_path, error))
+        return FALSE;
+    }
+
+  if ((page_setup = gtk_print_operation_get_default_page_setup (GTK_PRINT_OPERATION (self))))
+    {
+      if (!gtk_page_setup_to_file (page_setup, page_setup_path, error))
+        return FALSE;
+    }
+
+  return TRUE;
 }
