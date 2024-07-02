@@ -108,7 +108,10 @@ editor_c_args = []
 subdir('enchant')
 subdir('defaults')
 subdir('modelines')
-subdir('editorconfig')
+
+if get_option('editorconfig').enabled()
+  subdir('editorconfig')
+endif
 
 editor = executable('gnome-text-editor', editor_sources + editor_enums + [build_ident_h],
   include_directories: [include_directories('..'),

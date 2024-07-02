@@ -29,8 +29,11 @@
 #include "editor-page-settings-provider.h"
 
 #include "defaults/editor-page-defaults-private.h"
-#include "editorconfig/editor-page-editorconfig-private.h"
 #include "modelines/editor-modeline-settings-provider-private.h"
+
+#ifdef HAVE_EDITORCONFIG
+# include "editorconfig/editor-page-editorconfig-private.h"
+#endif
 
 struct _EditorPageSettings
 {
@@ -228,7 +231,9 @@ editor_page_settings_changed_discover_settings_cb (EditorPageSettings *self,
   if (g_settings_get_boolean (settings, "discover-settings"))
     {
       take_provider (self, _editor_modeline_settings_provider_new ());
+#ifdef HAVE_EDITORCONFIG
       take_provider (self, _editor_page_editorconfig_new ());
+#endif
       take_provider (self, _editor_page_defaults_new ());
     }
 
