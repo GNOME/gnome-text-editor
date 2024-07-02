@@ -52,6 +52,8 @@ editor_print_operation_dispose (GObject *object)
 {
   EditorPrintOperation *self = EDITOR_PRINT_OPERATION (object);
 
+  g_clear_weak_pointer (&self->view);
+
   g_clear_object (&self->compositor);
   g_clear_object (&self->page_setup);
 
@@ -88,7 +90,7 @@ editor_print_operation_set_property (GObject      *object,
   switch (prop_id)
     {
     case PROP_VIEW:
-      self->view = g_value_get_object (value);
+      g_set_weak_pointer (&self->view, g_value_get_object (value));
       break;
 
     default:
