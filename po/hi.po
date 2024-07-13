@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2024-06-19 21:35+0000\n"
-"PO-Revision-Date: 2024-07-01 11:17+0530\n"
+"POT-Creation-Date: 2024-07-03 11:46+0000\n"
+"PO-Revision-Date: 2024-07-05 22:15+0530\n"
 "Last-Translator: Scrambled777 <weblate.scrambled777@simplelogin.com>\n"
 "Language-Team: Hindi <indlinux-hindi@lists.sourceforge.net>\n"
 "Language: hi\n"
@@ -52,7 +52,7 @@ msgstr "पाठ फाइलें देखें और संपादि�
 
 #: data/org.gnome.TextEditor.desktop.in.in:22
 msgid "New Window"
-msgstr "नई खिड़की"
+msgstr "नई विंडो"
 
 #: data/org.gnome.TextEditor.gschema.xml:16
 msgid "Auto Save Delay"
@@ -198,15 +198,11 @@ msgid "Discover File Settings"
 msgstr "फाइल सेटिंग्स खोजें"
 
 #: data/org.gnome.TextEditor.gschema.xml:109
-#, fuzzy
-#| msgid ""
-#| "If enabled then Text Editor will try to discover file settings from "
-#| "modelines, editorconfig, or per-language defaults."
 msgid ""
 "If enabled, then Text Editor will try to discover file settings from "
 "modelines, editorconfig, or per-language defaults."
 msgstr ""
-"यदि सक्षम है तो पाठ संपादक मॉडलाइंस, एडिटरकॉन्फिग, या प्रति-भाषा तयशुदा से फाइल "
+"यदि सक्षम है, तो पाठ संपादक मॉडलाइंस, एडिटरकॉन्फिग, या प्रति-भाषा तयशुदा से फाइल "
 "सेटिंग्स खोजने का प्रयास करेगा।"
 
 #: data/org.gnome.TextEditor.gschema.xml:113
@@ -222,18 +218,16 @@ msgid "Restore session"
 msgstr "सत्र बहाल करें"
 
 #: data/org.gnome.TextEditor.gschema.xml:119
-#, fuzzy
-#| msgid "When Text Editor is run, restore the previous session."
 msgid "When Text Editor is running, restore the previous session."
-msgstr "जब पाठ संपादक चलाया जाए, तो पिछले सत्र को पुनर्स्थापित करें।"
+msgstr "जब पाठ संपादक चल रहा हो, तो पिछले सत्र को पुनर्स्थापित करें।"
 
 #: data/org.gnome.TextEditor.gschema.xml:123
 msgid "Recolor Window"
-msgstr "खिड़की को दोबारा रंगें"
+msgstr "विंडो को दोबारा रंगें"
 
 #: data/org.gnome.TextEditor.gschema.xml:124
 msgid "Use the style-scheme to recolor the application window."
-msgstr "अनुप्रयोग खिड़की को दोबारा रंगने के लिए शैली-योजना का उपयोग करें।"
+msgstr "अनुप्रयोग विंडो को दोबारा रंगने के लिए शैली-योजना का उपयोग करें।"
 
 #: data/org.gnome.TextEditor.gschema.xml:132
 msgid "Keybindings"
@@ -321,7 +315,7 @@ msgstr "स्टार्टअप पर सत्र पुनर्स्थ
 
 #: src/editor-application.c:749
 msgid "Open provided files in a new window"
-msgstr "प्रदान की गई फाइलों को एक नई खिड़की में खोलें"
+msgstr "प्रदान की गई फाइलों को एक नई विंडो में खोलें"
 
 #: src/editor-application.c:750
 msgid "Run a new instance of Text Editor (implies --ignore-session)"
@@ -476,7 +470,7 @@ msgstr "सहेजें"
 msgid "Cancel"
 msgstr "रद्द करें"
 
-#: src/editor-page.c:1416
+#: src/editor-page.c:1421
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "पंक्ति %u, स्तंभ %u"
@@ -596,12 +590,12 @@ msgstr "पाठ संपादक प्रारंभ होने पर �
 msgid "_Clear History"
 msgstr "इतिहास साफ़ करें (_C)"
 
-#: src/editor-print-operation.c:176
+#: src/editor-print-operation.c:181
 #, c-format
 msgid "Draft: %s"
 msgstr "मसौदा: %s"
 
-#: src/editor-print-operation.c:178
+#: src/editor-print-operation.c:183
 #, c-format
 msgid "File: %s"
 msgstr "फाइल: %s"
@@ -609,7 +603,7 @@ msgstr "फाइल: %s"
 #. Translators: %N is the current page number, %Q is the total
 #. * number of pages (ex. Page 2 of 10)
 #.
-#: src/editor-print-operation.c:189
+#: src/editor-print-operation.c:194
 msgid "Page %N of %Q"
 msgstr "%Q का पृष्ठ %N"
 
@@ -617,39 +611,39 @@ msgstr "%Q का पृष्ठ %N"
 msgid "Properties"
 msgstr "गुण"
 
-#: src/editor-properties-dialog.ui:27
+#: src/editor-properties-dialog.ui:22
 msgid "File"
 msgstr "फाइल"
 
-#: src/editor-properties-dialog.ui:30
+#: src/editor-properties-dialog.ui:25
 msgid "Name"
 msgstr "नाम"
 
-#: src/editor-properties-dialog.ui:38
+#: src/editor-properties-dialog.ui:33
 msgid "Location"
 msgstr "स्थान"
 
-#: src/editor-properties-dialog.ui:47
+#: src/editor-properties-dialog.ui:42
 msgid "Open in File Manager"
 msgstr "फाइल प्रबंधक में खोलें"
 
-#: src/editor-properties-dialog.ui:60
+#: src/editor-properties-dialog.ui:55
 msgid "Statistics"
 msgstr "आंकड़े"
 
-#: src/editor-properties-dialog.ui:63
+#: src/editor-properties-dialog.ui:58
 msgid "Lines"
 msgstr "पंक्तियां"
 
-#: src/editor-properties-dialog.ui:71
+#: src/editor-properties-dialog.ui:66
 msgid "Words"
 msgstr "शब्द"
 
-#: src/editor-properties-dialog.ui:79
+#: src/editor-properties-dialog.ui:74
 msgid "Characters, No Spaces"
 msgstr "वर्ण, कोई रिक्त स्थान नहीं"
 
-#: src/editor-properties-dialog.ui:87
+#: src/editor-properties-dialog.ui:82
 msgid "All Characters"
 msgstr "सभी वर्ण"
 
@@ -683,17 +677,17 @@ msgstr "रद्द करें (_C)"
 msgid "_Save"
 msgstr "सहेजें (_S)"
 
-#: src/editor-save-changes-dialog.c:293
+#: src/editor-save-changes-dialog.c:295
 msgid "Untitled Document"
 msgstr "अनाम दस्तावेज़"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:296
+#: src/editor-save-changes-dialog.c:298
 #, c-format
 msgid "%s (new)"
 msgstr "%s (नया)"
 
-#: src/editor-save-changes-dialog.c:317
+#: src/editor-save-changes-dialog.c:319
 msgid "Save changes for this document"
 msgstr "इस दस्तावेज़ के लिए परिवर्तन सहेजें"
 
@@ -959,11 +953,11 @@ msgstr ""
 "• नया दस्तावेज़ प्रारंभ करने के लिए Ctrl+N दबाएं\n"
 "• किसी दस्तावेज़ को ब्राउज़ करने के लिए Ctrl+O दबाएं\n"
 "\n"
-"या, खिड़की बंद करने के लिए Ctrl+W दबाएं।"
+"या, विंडो बंद करने के लिए Ctrl+W दबाएं।"
 
 #: src/editor-window.ui:203
 msgid "_New Window"
-msgstr "नई खिड़की (_N)"
+msgstr "नई विंडो (_N)"
 
 #: src/editor-window.ui:223
 msgid "_Discard Changes"
@@ -1043,7 +1037,7 @@ msgstr "दाएं ले जाएं (_R)"
 
 #: src/editor-window.ui:347
 msgid "_Move to New Window"
-msgstr "नई खिड़की पर जाएं (_M)"
+msgstr "नई विंडो पर जाएं (_M)"
 
 #: src/editor-window.ui:354
 msgid "Close _Other Tabs"
@@ -1056,17 +1050,17 @@ msgstr "मंत्रमुग्ध 2"
 #: src/help-overlay.ui:12
 msgctxt "shortcut window"
 msgid "Windows"
-msgstr "खिड़की"
+msgstr "विंडो"
 
 #: src/help-overlay.ui:15
 msgctxt "shortcut window"
 msgid "New window"
-msgstr "नई खिड़की"
+msgstr "नई विंडो"
 
 #: src/help-overlay.ui:21
 msgctxt "shortcut window"
 msgid "Move document to new window"
-msgstr "दस्तावेज़ को नई खिड़की पर ले जाएं"
+msgstr "दस्तावेज़ को नई विंडो पर ले जाएं"
 
 #: src/help-overlay.ui:28
 msgctxt "shortcut window"
