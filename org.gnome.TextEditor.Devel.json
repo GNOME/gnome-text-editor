@@ -33,7 +33,12 @@
         {
             "name" : "libeditorconfig",
             "buildsystem" : "cmake",
-            "config-opts" : [ "-DBUILD_DOCUMENTATION=OFF", "-DINSTALL_HTML_DOC=OFF" ],
+            "config-opts" : [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DCMAKE_INSTALL_LIBDIR:PATH=/app/lib",
+                "-DBUILD_DOCUMENTATION=OFF",
+                "-DINSTALL_HTML_DOC=OFF"
+            ],
             "sources" : [
                 {
                     "type" : "git",
