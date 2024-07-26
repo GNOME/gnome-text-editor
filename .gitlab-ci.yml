@@ -120,17 +120,17 @@ fedora:
             - './*.zip'
         when: always
 
-#msys2-mingw64:
-#    extends: .msys2-common
-#    variables:
-#      MSYSTEM: "MINGW64"
-#      CHERE_INVOKING: "yes"
-#
-#msys2-ucrt64:
-#    extends: .msys2-common
-#    variables:
-#      MSYSTEM: "UCRT64"
-#      CHERE_INVOKING: "yes"
+msys2-mingw64:
+    extends: .msys2-common
+    variables:
+      MSYSTEM: "MINGW64"
+      CHERE_INVOKING: "yes"
+
+msys2-ucrt64:
+    extends: .msys2-common
+    variables:
+      MSYSTEM: "UCRT64"
+      CHERE_INVOKING: "yes"
 
 #macos:
 #    extends: .only-default
