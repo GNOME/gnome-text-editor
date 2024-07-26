@@ -691,7 +691,8 @@ editor_page_dispose (GObject *object)
 {
   EditorPage *self = (EditorPage *)object;
 
-  _editor_document_shutdown (self->document);
+  if (self->document != NULL)
+    _editor_document_shutdown (self->document);
 
   g_cancellable_cancel (self->cancellable);
   g_clear_object (&self->cancellable);
