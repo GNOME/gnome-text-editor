@@ -1247,7 +1247,7 @@ editor_session_save_draft_cb (GObject      *object,
                                          NULL,
                                          FALSE,
                                          G_FILE_CREATE_REPLACE_DESTINATION,
-	                                        NULL,
+                                         NULL,
                                          editor_session_save_replace_contents_cb,
                                          g_steal_pointer (&task));
 }
