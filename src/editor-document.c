@@ -292,7 +292,8 @@ editor_document_load_notify_completed_cb (EditorDocument *self,
 
   self->loading = FALSE;
 
-  editor_text_buffer_spell_adapter_invalidate_all (self->spell_adapter);
+  if (self->spell_adapter != NULL)
+    editor_text_buffer_spell_adapter_invalidate_all (self->spell_adapter);
 
   if (!g_task_had_error (task))
     editor_document_track_error (self, NULL);
