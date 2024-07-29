@@ -59,6 +59,8 @@ enum {
 
 static GParamSpec *properties [N_PROPS];
 
+static void editor_source_view_update_corrections (EditorSourceView *self);
+
 static gboolean
 editor_source_view_update_overscroll (gpointer user_data)
 {
@@ -147,6 +149,21 @@ on_key_pressed_cb (GtkEventControllerKey *key,
                    GdkModifierType        state,
                    GtkWidget             *widget)
 {
+  g_assert (EDITOR_IS_SOURCE_VIEW (widget));
+
+  /* We don't get a callback from GtkTextView when the menu is to be shown
+   * via the `menu.popup` action. This tries to discover that before it does
+   * and ensure our menu is updated to contain the spelling corrections.
+   *
+   * See https://gitlab.gnome.org/GNOME/gnome-text-editor/-/issues/693
+   */
+  if (((state & GDK_SHIFT_MASK) == GDK_SHIFT_MASK && keyval == GDK_KEY_F10) ||
+      keyval == GDK_KEY_Menu)
+    {
+      editor_source_view_update_corrections (EDITOR_SOURCE_VIEW (widget));
+      return FALSE;
+    }
+
   /* This seems to be the easiest way to reliably override the keybindings
    * from GtkTextView into something we want (which is to use them for moving
    * through the tabs.
