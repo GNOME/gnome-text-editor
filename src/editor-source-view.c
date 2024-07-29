@@ -207,41 +207,29 @@ tweak_gutter_spacing (GtkSourceView *view)
 }
 
 static void
-on_click_pressed_cb (GtkGestureClick  *click,
-                     int               n_press,
-                     double            x,
-                     double            y,
-                     EditorSourceView *self)
+editor_source_view_clear_corrections (EditorSourceView *self)
 {
-  GdkEventSequence *sequence;
-  g_auto(GStrv) corrections = NULL;
+  g_assert (EDITOR_IS_SOURCE_VIEW (self));
+
+  g_clear_pointer (&self->spelling_word, g_free);
+
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "spelling.add", FALSE);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "spelling.ignore", FALSE);
+
+  editor_spell_menu_set_corrections (self->spelling_menu, NULL, NULL);
+}
+
+static void
+editor_source_view_update_corrections (EditorSourceView *self)
+{
   g_autofree char *word = NULL;
+  g_auto(GStrv) corrections = NULL;
   GtkTextBuffer *buffer;
-  GdkEvent *event;
   GtkTextIter iter, begin, end;
-  int buf_x, buf_y;
 
   g_assert (EDITOR_IS_SOURCE_VIEW (self));
-  g_assert (GTK_IS_GESTURE_CLICK (click));
 
-  sequence = gtk_gesture_single_get_current_sequence (GTK_GESTURE_SINGLE (click));
-  event = gtk_gesture_get_last_event (GTK_GESTURE (click), sequence);
-
-  if (n_press != 1 || !gdk_event_triggers_context_menu (event))
-    goto cleanup;
-
-  /* Move the cursor position to where the click occurred so that
-   * the context menu will be useful for the click location.
-   */
   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (self));
-  if (gtk_text_buffer_get_selection_bounds (buffer, &begin, &end))
-    goto cleanup;
-
-  gtk_text_view_window_to_buffer_coords (GTK_TEXT_VIEW (self),
-                                         GTK_TEXT_WINDOW_WIDGET,
-                                         x, y, &buf_x, &buf_y);
-  gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (self), &iter, buf_x, buf_y);
-  gtk_text_buffer_select_range (buffer, &iter, &iter);
 
   /* Get the word under the cursor */
   gtk_text_buffer_get_iter_at_mark (buffer, &iter, gtk_text_buffer_get_insert (buffer));
@@ -263,14 +251,59 @@ on_click_pressed_cb (GtkGestureClick  *click,
         g_clear_pointer (&word, g_free);
     }
 
-cleanup:
   g_free (self->spelling_word);
   self->spelling_word = g_steal_pointer (&word);
+
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "spelling.add", self->spelling_word != NULL);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "spelling.ignore", self->spelling_word != NULL);
+
   editor_spell_menu_set_corrections (self->spelling_menu,
                                      self->spelling_word,
                                      (const char * const *)corrections);
+}
+
+static void
+on_click_pressed_cb (GtkGestureClick  *click,
+                     int               n_press,
+                     double            x,
+                     double            y,
+                     EditorSourceView *self)
+{
+  GdkEventSequence *sequence;
+  GtkTextBuffer *buffer;
+  GtkTextIter iter, begin, end;
+  GdkEvent *event;
+  int buf_x, buf_y;
+
+  g_assert (EDITOR_IS_SOURCE_VIEW (self));
+  g_assert (GTK_IS_GESTURE_CLICK (click));
+
+  sequence = gtk_gesture_single_get_current_sequence (GTK_GESTURE_SINGLE (click));
+  event = gtk_gesture_get_last_event (GTK_GESTURE (click), sequence);
+
+  if (n_press != 1 || !gdk_event_triggers_context_menu (event))
+    {
+      editor_source_view_clear_corrections (self);
+      return;
+    }
+
+  /* Move the cursor position to where the click occurred so that
+   * the context menu will be useful for the click location.
+   */
+  buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (self));
+  if (gtk_text_buffer_get_selection_bounds (buffer, &begin, &end))
+    {
+      editor_source_view_clear_corrections (self);
+      return;
+    }
+
+  gtk_text_view_window_to_buffer_coords (GTK_TEXT_VIEW (self),
+                                         GTK_TEXT_WINDOW_WIDGET,
+                                         x, y, &buf_x, &buf_y);
+  gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (self), &iter, buf_x, buf_y);
+  gtk_text_buffer_select_range (buffer, &iter, &iter);
+
+  editor_source_view_update_corrections (self);
 }
 
 static void
