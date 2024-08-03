@@ -285,7 +285,13 @@ _editor_recoloring_generate_css (GtkSourceStyleScheme *style_scheme)
   else
     define_color_mixed (str, "headerbar_fg_color", &text_bg, alt, .025);
 
-  define_color_mixed (str, "popover_bg_color", &text_bg, &white, is_dark ? .07 : .25);
+  if (get_metadata_color (style_scheme, "popover_bg_color", &color))
+    define_color (str, "popover_bg_color", &color);
+  else
+    define_color_mixed (str, "popover_bg_color", &text_bg, &white, is_dark ? .07 : .25);
+
+  if (get_metadata_color (style_scheme, "popover_fg_color", &color))
+    define_color (str, "popover_fg_color", &color);
 
   if (is_dark)
     define_color_mixed (str, "dialog_bg_color", &text_bg, &white, .07);
