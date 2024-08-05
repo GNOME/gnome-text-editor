@@ -1,17 +1,14 @@
 /* EditorPreferencesDialog */
-window.org-gnome-TextEditor.preferences textview.preview {
-  line-height: 1.2;
-}
-window.org-gnome-TextEditor.preferences preferencesgroup flowboxchild {
+dialog.preferences preferencesgroup flowboxchild {
   outline-offset: 2px;
   border-radius: 12px;
   padding: 0;
 }
 
-window.org-gnome-TextEditor.preferences preferencesgroup flowboxchild GtkSourceStyleSchemePreview {
+dialog.preferences preferencesgroup flowboxchild GtkSourceStyleSchemePreview {
   margin: 0;
 }
-window.org-gnome-TextEditor.preferences preferencesgroup flowboxchild GtkSourceStyleSchemePreview:not(.selected) {
+dialog.preferences preferencesgroup flowboxchild GtkSourceStyleSchemePreview:not(.selected) {
   box-shadow: 0 0 0 1px alpha(black, 0.03),
               0 1px 3px 1px alpha(black, .07),
               0 2px 6px 2px alpha(black, .03);
