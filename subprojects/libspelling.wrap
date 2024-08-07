@@ -1,0 +1,10 @@
+[wrap-git]
+directory=libspelling
+url=https://gitlab.gnome.org/GNOME/libspelling.git
+push-url=ssh://git@ssh.gitlab.gnome.org:GNOME/libspelling.git
+revision=main
+depth=1
+
+[provide]
+libspelling-1 = spelling_dep
+dependency_names = libspelling-1
