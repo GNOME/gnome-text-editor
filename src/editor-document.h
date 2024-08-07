@@ -20,6 +20,8 @@
 
 #pragma once
 
+#include <libspelling.h>
+
 #include "editor-types.h"
 
 G_BEGIN_DECLS
@@ -28,15 +30,17 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (EditorDocument, editor_document, EDITOR, DOCUMENT, GtkSourceBuffer)
 
-EditorDocument     *editor_document_new_draft               (void);
-EditorDocument     *editor_document_new_for_file            (GFile              *file);
-gboolean            editor_document_get_busy                (EditorDocument     *self);
-gdouble             editor_document_get_busy_progress       (EditorDocument     *self);
-GFile              *editor_document_get_file                (EditorDocument     *self);
-gchar              *editor_document_dup_title               (EditorDocument     *self);
-gboolean            editor_document_get_externally_modified (EditorDocument     *self);
-EditorSpellChecker *editor_document_get_spell_checker       (EditorDocument     *self);
-void                editor_document_set_spell_checker       (EditorDocument     *self,
-                                                             EditorSpellChecker *spell_checker);
+EditorDocument  *editor_document_new_draft               (void);
+EditorDocument  *editor_document_new_for_file            (GFile           *file);
+gboolean         editor_document_get_busy                (EditorDocument  *self);
+gdouble          editor_document_get_busy_progress       (EditorDocument  *self);
+GFile           *editor_document_get_file                (EditorDocument  *self);
+gchar           *editor_document_dup_title               (EditorDocument  *self);
+gboolean         editor_document_get_externally_modified (EditorDocument  *self);
+SpellingChecker *editor_document_get_spell_checker       (EditorDocument  *self);
+void             editor_document_set_spell_checker       (EditorDocument  *self,
+                                                          SpellingChecker *spell_checker);
+void             editor_document_update_corrections      (EditorDocument  *self);
+GMenuModel      *editor_document_get_spelling_menu       (EditorDocument  *self);
 
 G_END_DECLS

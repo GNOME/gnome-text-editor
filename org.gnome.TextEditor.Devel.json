@@ -48,6 +48,19 @@
             ]
         },
         {
+            "name" : "libspelling",
+            "builddir" : true,
+            "buildsystem" : "meson",
+            "config-opts" : [ "-Ddocs=false", "-Dvapi=false" ],
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/GNOME/libspelling.git",
+                    "branch" : "main"
+                }
+            ]
+        },
+        {
             "name" : "gnome-text-editor",
             "builddir" : true,
             "buildsystem" : "meson",
@@ -56,7 +69,8 @@
                 {
                     "disable-shallow-clone" : true,
                     "type" : "git",
-                    "url" : "https://gitlab.gnome.org/GNOME/gnome-text-editor.git"
+                    "url" : "https://gitlab.gnome.org/GNOME/gnome-text-editor.git",
+                    "branch" : "main"
                 }
             ]
         }
