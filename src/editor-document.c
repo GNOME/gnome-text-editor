@@ -26,11 +26,11 @@
 
 #include <glib/gi18n.h>
 
+#include <libspelling.h>
+
 #include "editor-application-private.h"
 #include "editor-buffer-monitor-private.h"
 #include "editor-document-private.h"
-#include "editor-spell-checker.h"
-#include "editor-text-buffer-spell-adapter.h"
 #include "editor-session-private.h"
 #include "editor-window-private.h"
 
@@ -51,8 +51,8 @@ struct _EditorDocument
   const GtkSourceEncoding      *encoding;
   GError                       *last_error;
 
-  EditorSpellChecker           *spell_checker;
-  EditorTextBufferSpellAdapter *spell_adapter;
+  SpellingChecker              *spell_checker;
+  SpellingTextBufferAdapter    *spell_adapter;
 
   GtkSourceNewlineType          newline_type;
   guint                         busy_count;
@@ -200,23 +200,23 @@ _editor_document_persist_syntax_language (EditorDocument *self,
 }
 
 static void
-on_spelling_language_changed_cb (EditorDocument     *self,
-                                 GParamSpec         *pspec,
-                                 EditorSpellChecker *spell_checker)
+on_spelling_language_changed_cb (EditorDocument  *self,
+                                 GParamSpec      *pspec,
+                                 SpellingChecker *spell_checker)
 {
   g_autoptr(GFileInfo) info = NULL;
   const char *language_id;
   GFile *file;
 
   g_assert (EDITOR_IS_DOCUMENT (self));
-  g_assert (EDITOR_IS_SPELL_CHECKER (spell_checker));
+  g_assert (SPELLING_IS_CHECKER (spell_checker));
 
   /* Only persist the metadata if we have a backing file */
   if (!(file = editor_document_get_file (self)) || !g_file_is_native (file))
     return;
 
   /* Ignore if there is nothing to set */
-  if (!(language_id = editor_spell_checker_get_language (spell_checker)))
+  if (!(language_id = spelling_checker_get_language (spell_checker)))
     return;
 
   info = g_file_info_new ();
@@ -293,7 +293,7 @@ editor_document_load_notify_completed_cb (EditorDocument *self,
   self->loading = FALSE;
 
   if (self->spell_adapter != NULL)
-    editor_text_buffer_spell_adapter_invalidate_all (self->spell_adapter);
+    spelling_text_buffer_adapter_invalidate_all (self->spell_adapter);
 
   if (!g_task_had_error (task))
     editor_document_track_error (self, NULL);
@@ -406,7 +406,6 @@ editor_document_insert_text (GtkTextBuffer *buffer,
   EditorDocument *self = (EditorDocument *)buffer;
   guint line;
   guint offset;
-  guint length;
 
   g_assert (GTK_IS_TEXT_BUFFER (buffer));
   g_assert (pos != NULL);
@@ -423,15 +422,8 @@ editor_document_insert_text (GtkTextBuffer *buffer,
 
   line = gtk_text_iter_get_line (pos);
   offset = gtk_text_iter_get_offset (pos);
-  length = g_utf8_strlen (new_text, new_text_length);
-
-  if (length > 0)
-    editor_text_buffer_spell_adapter_before_insert_text (self->spell_adapter, offset, length);
 
   GTK_TEXT_BUFFER_CLASS (editor_document_parent_class)->insert_text (buffer, pos, new_text, new_text_length);
-
-  if (length > 0)
-    editor_text_buffer_spell_adapter_after_insert_text (self->spell_adapter, offset, length);
 
   if (offset < TITLE_MAX_LEN && editor_document_get_file (self) == NULL)
     g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_TITLE]);
@@ -447,7 +439,6 @@ editor_document_delete_range (GtkTextBuffer *buffer,
 {
   EditorDocument *self = (EditorDocument *)buffer;
   guint offset;
-  guint length;
 
   g_assert (GTK_IS_TEXT_BUFFER (buffer));
   g_assert (start != NULL);
@@ -465,15 +456,8 @@ editor_document_delete_range (GtkTextBuffer *buffer,
     }
 
   offset = gtk_text_iter_get_offset (start);
-  length = gtk_text_iter_get_offset (end) - offset;
-
-  if (length > 0)
-    editor_text_buffer_spell_adapter_before_delete_range (self->spell_adapter, offset, length);
 
   GTK_TEXT_BUFFER_CLASS (editor_document_parent_class)->delete_range (buffer, start, end);
-
-  if (length > 0)
-    editor_text_buffer_spell_adapter_after_delete_range (self->spell_adapter, offset, length);
 
   if (offset < TITLE_MAX_LEN && editor_document_get_file (self) == NULL)
     g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_TITLE]);
@@ -547,23 +531,6 @@ editor_document_monitor_notify_changed_cb (EditorDocument      *self,
   _editor_document_set_externally_modified (self, changed);
 }
 
-static void
-on_cursor_moved_cb (EditorDocument *self)
-{
-  GtkTextMark *mark;
-  GtkTextIter iter;
-
-  if (_editor_document_get_loading (self))
-    return;
-
-  mark = gtk_text_buffer_get_insert (GTK_TEXT_BUFFER (self));
-  gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (self), &iter, mark);
-
-  editor_text_buffer_spell_adapter_cursor_moved (self->spell_adapter,
-                                                 gtk_text_iter_get_offset (&iter));
-
-}
-
 static gboolean
 apply_spellcheck_mapping (GValue   *value,
                           GVariant *variant,
@@ -592,8 +559,8 @@ editor_document_constructed (GObject *object)
 
   G_OBJECT_CLASS (editor_document_parent_class)->constructed (object);
 
-  self->spell_adapter = editor_text_buffer_spell_adapter_new (GTK_TEXT_BUFFER (self),
-                                                              self->spell_checker);
+  self->spell_adapter = spelling_text_buffer_adapter_new (GTK_SOURCE_BUFFER (self),
+                                                          self->spell_checker);
   g_settings_bind_with_mapping (shared_settings, "spellcheck",
                                 self->spell_adapter, "enabled",
                                 G_SETTINGS_BIND_GET,
@@ -769,7 +736,7 @@ editor_document_class_init (EditorDocumentClass *klass)
     g_param_spec_object ("spell-checker",
                          "Spell Checker",
                          "Spell Checker",
-                         EDITOR_TYPE_SPELL_CHECKER,
+                         SPELLING_TYPE_CHECKER,
                          (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
   properties [PROP_TITLE] =
@@ -800,7 +767,7 @@ editor_document_class_init (EditorDocumentClass *klass)
 static void
 editor_document_init (EditorDocument *self)
 {
-  g_autoptr(EditorSpellChecker) spell_checker = editor_spell_checker_new (NULL, NULL);
+  g_autoptr(SpellingChecker) spell_checker = spelling_checker_new (NULL, NULL);
 
   self->newline_type = GTK_SOURCE_NEWLINE_TYPE_DEFAULT;
   self->file = gtk_source_file_new ();
@@ -817,8 +784,6 @@ editor_document_init (EditorDocument *self)
   g_object_bind_property (self->file, "location",
                           self->monitor, "file",
                           G_BINDING_SYNC_CREATE);
-
-  g_signal_connect (self, "cursor-moved", G_CALLBACK (on_cursor_moved_cb), NULL);
 }
 
 EditorDocument *
@@ -1489,7 +1454,7 @@ editor_document_query_info_cb (GObject      *object,
 
   /* Apply metadata for spelling language */
   if (spelling_language != NULL && self->spell_checker != NULL)
-    editor_spell_checker_set_language (self->spell_checker, spelling_language);
+    spelling_checker_set_language (self->spell_checker, spelling_language);
 
   load = g_task_get_task_data (task);
 
@@ -1525,13 +1490,13 @@ editor_document_query_info_cb (GObject      *object,
        */
       gtk_source_buffer_set_highlight_matching_brackets (GTK_SOURCE_BUFFER (self), FALSE);
       gtk_source_buffer_set_highlight_syntax (GTK_SOURCE_BUFFER (self), FALSE);
-      editor_text_buffer_spell_adapter_set_enabled (self->spell_adapter, FALSE);
+      spelling_text_buffer_adapter_set_enabled (self->spell_adapter, FALSE);
     }
   else
     {
       gtk_source_buffer_set_highlight_matching_brackets (GTK_SOURCE_BUFFER (self), load->highlight_matching_brackets);
       gtk_source_buffer_set_highlight_syntax (GTK_SOURCE_BUFFER (self), load->highlight_syntax);
-      editor_text_buffer_spell_adapter_set_enabled (self->spell_adapter, load->check_spelling);
+      spelling_text_buffer_adapter_set_enabled (self->spell_adapter, load->check_spelling);
     }
 
   _editor_document_unmark_busy (self);
@@ -1615,7 +1580,7 @@ editor_document_do_load (EditorDocument *self,
       _editor_document_unmark_busy (self);
       gtk_source_buffer_set_highlight_matching_brackets (GTK_SOURCE_BUFFER (self), load->highlight_matching_brackets);
       gtk_source_buffer_set_highlight_syntax (GTK_SOURCE_BUFFER (self), load->highlight_syntax);
-      editor_text_buffer_spell_adapter_set_enabled (self->spell_adapter, load->check_spelling);
+      spelling_text_buffer_adapter_set_enabled (self->spell_adapter, load->check_spelling);
       g_task_return_boolean (task, TRUE);
       return;
     }
@@ -1853,7 +1818,7 @@ _editor_document_load_async (EditorDocument      *self,
   load->highlight_syntax =
       gtk_source_buffer_get_highlight_syntax (GTK_SOURCE_BUFFER (self));
   load->check_spelling =
-      editor_text_buffer_spell_adapter_get_enabled (self->spell_adapter);
+      spelling_text_buffer_adapter_get_enabled (self->spell_adapter);
 
   task = g_task_new (self, cancellable, callback, user_data);
   g_task_set_source_tag (task, _editor_document_load_async);
@@ -1875,7 +1840,7 @@ _editor_document_load_async (EditorDocument      *self,
    */
   gtk_source_buffer_set_highlight_matching_brackets (GTK_SOURCE_BUFFER (self), FALSE);
   gtk_source_buffer_set_highlight_syntax (GTK_SOURCE_BUFFER (self), FALSE);
-  editor_text_buffer_spell_adapter_set_enabled (self->spell_adapter, FALSE);
+  spelling_text_buffer_adapter_set_enabled (self->spell_adapter, FALSE);
 
   load->n_active++;
   g_file_query_info_async (load->draft_file,
@@ -2231,9 +2196,9 @@ _editor_document_set_newline_type (EditorDocument       *self,
  *
  * Gets the spellchecker to use for the document.
  *
- * Returns: (transfer none) (nullable): an #EditorSpellChecker
+ * Returns: (transfer none) (nullable): an #SpellingChecker
  */
-EditorSpellChecker *
+SpellingChecker *
 editor_document_get_spell_checker (EditorDocument *self)
 {
   g_return_val_if_fail (EDITOR_IS_DOCUMENT (self), NULL);
@@ -2244,16 +2209,16 @@ editor_document_get_spell_checker (EditorDocument *self)
 /**
  * editor_document_set_spell_checker:
  * @self: an #EditorDocument
- * @spell_checker: an #EditorSpellChecker
+ * @spell_checker: an #SpellingChecker
  *
  * Sets the spell checker to use for the document.
  */
 void
-editor_document_set_spell_checker (EditorDocument     *self,
-                                   EditorSpellChecker *spell_checker)
+editor_document_set_spell_checker (EditorDocument  *self,
+                                   SpellingChecker *spell_checker)
 {
   g_return_if_fail (EDITOR_IS_DOCUMENT (self));
-  g_return_if_fail (!spell_checker || EDITOR_IS_SPELL_CHECKER (spell_checker));
+  g_return_if_fail (!spell_checker || SPELLING_IS_CHECKER (spell_checker));
 
   if (spell_checker == self->spell_checker)
     return;
@@ -2277,87 +2242,6 @@ editor_document_set_spell_checker (EditorDocument     *self,
     }
 
   g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_SPELL_CHECKER]);
-}
-
-void
-_editor_document_attach_actions (EditorDocument *self,
-                                 GtkWidget      *widget)
-{
-  g_autoptr(GPropertyAction) check = NULL;
-  g_autoptr(GPropertyAction) language = NULL;
-  g_autoptr(GSimpleActionGroup) group = NULL;
-
-  g_return_if_fail (EDITOR_IS_DOCUMENT (self));
-  g_return_if_fail (GTK_IS_WIDGET (widget));
-
-  group = g_simple_action_group_new ();
-
-  language = g_property_action_new ("language", self->spell_adapter, "language");
-  g_action_map_add_action (G_ACTION_MAP (group), G_ACTION (language));
-
-  check = g_property_action_new ("enabled", self->spell_adapter, "enabled");
-  g_action_map_add_action (G_ACTION_MAP (group), G_ACTION (check));
-
-  gtk_widget_insert_action_group (widget, "spelling", G_ACTION_GROUP (group));
-}
-
-gboolean
-_editor_document_check_spelling (EditorDocument *self,
-                                 const char     *word)
-{
-  g_return_val_if_fail (EDITOR_IS_DOCUMENT (self), FALSE);
-
-  if (self->spell_checker != NULL)
-    return editor_spell_checker_check_word (self->spell_checker, word, -1);
-
-  return TRUE;
-}
-
-char **
-_editor_document_list_corrections (EditorDocument *self,
-                                   const char     *word)
-{
-  g_return_val_if_fail (EDITOR_IS_DOCUMENT (self), NULL);
-  g_return_val_if_fail (word != NULL, NULL);
-
-  if (self->spell_checker == NULL)
-    return NULL;
-
-  return editor_spell_checker_list_corrections (self->spell_checker, word);
-}
-
-void
-_editor_document_add_spelling (EditorDocument *self,
-                               const char     *word)
-{
-  g_return_if_fail (EDITOR_IS_DOCUMENT (self));
-
-  if (self->spell_checker != NULL)
-    {
-      editor_spell_checker_add_word (self->spell_checker, word);
-      editor_text_buffer_spell_adapter_invalidate_all (self->spell_adapter);
-    }
-}
-
-void
-_editor_document_ignore_spelling (EditorDocument *self,
-                                  const char     *word)
-{
-  g_return_if_fail (EDITOR_IS_DOCUMENT (self));
-
-  if (self->spell_checker != NULL)
-    {
-      editor_spell_checker_ignore_word (self->spell_checker, word);
-      editor_text_buffer_spell_adapter_invalidate_all (self->spell_adapter);
-    }
-}
-
-GtkTextTag *
-_editor_document_get_spelling_tag (EditorDocument *self)
-{
-  g_return_val_if_fail (EDITOR_IS_DOCUMENT (self), NULL);
-
-  return editor_text_buffer_spell_adapter_get_tag (self->spell_adapter);
 }
 
 void
@@ -2492,4 +2376,47 @@ _editor_document_shutdown (EditorDocument *self)
   g_clear_object (&self->spell_adapter);
   g_clear_object (&self->monitor);
   g_clear_object (&self->file);
+}
+
+void
+editor_document_update_corrections (EditorDocument *self)
+{
+  g_return_if_fail (EDITOR_IS_DOCUMENT (self));
+
+  if (self->spell_adapter != NULL)
+    spelling_text_buffer_adapter_update_corrections (self->spell_adapter);
+}
+
+GMenuModel *
+editor_document_get_spelling_menu (EditorDocument *self)
+{
+  g_return_val_if_fail (EDITOR_IS_DOCUMENT (self), NULL);
+
+  if (self->spell_adapter != NULL)
+    return spelling_text_buffer_adapter_get_menu_model (self->spell_adapter);
+
+  return NULL;
+}
+
+GtkTextTag *
+_editor_document_get_spelling_tag (EditorDocument *self)
+{
+  g_return_val_if_fail (EDITOR_IS_DOCUMENT (self), NULL);
+
+  if (self->spell_adapter != NULL)
+    return spelling_text_buffer_adapter_get_tag (self->spell_adapter);
+
+  return NULL;
+}
+
+void
+_editor_document_attach_actions (EditorDocument *self,
+                                 GtkWidget      *widget)
+{
+  g_return_if_fail (EDITOR_IS_DOCUMENT (self));
+
+  if (self->spell_adapter != NULL)
+    gtk_widget_insert_action_group (widget,
+                                    "spelling",
+                                    G_ACTION_GROUP (self->spell_adapter));
 }

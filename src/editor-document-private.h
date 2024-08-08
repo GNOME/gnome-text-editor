@@ -77,14 +77,6 @@ gboolean                  _editor_document_guess_language_finish   (EditorDocume
                                                                     GError                  **error);
 void                      _editor_document_attach_actions          (EditorDocument           *self,
                                                                     GtkWidget                *widget);
-gboolean                  _editor_document_check_spelling          (EditorDocument           *self,
-                                                                    const char               *word);
-char                    **_editor_document_list_corrections        (EditorDocument           *self,
-                                                                    const char               *word);
-void                      _editor_document_add_spelling            (EditorDocument           *self,
-                                                                    const char               *word);
-void                      _editor_document_ignore_spelling         (EditorDocument           *self,
-                                                                    const char               *word);
 GtkTextTag               *_editor_document_get_spelling_tag        (EditorDocument           *self);
 void                      _editor_document_use_admin               (EditorDocument           *self,
                                                                     EditorWindow             *window);

@@ -1,12 +1,10 @@
 editor_sources = [
-  'cjhtextregion.c',
   'editor-animation.c',
   'editor-application.c',
   'editor-application-actions.c',
   'editor-buffer-monitor.c',
   'editor-document.c',
   'editor-info-bar.c',
-  'editor-empty-spell-provider.c',
   'editor-file-manager.c',
   'editor-focus-chain.c',
   'editor-frame-source.c',
@@ -39,14 +37,7 @@ editor_sources = [
   'editor-sidebar-row.c',
   'editor-source-map.c',
   'editor-source-view.c',
-  'editor-spell-checker.c',
-  'editor-spell-cursor.c',
-  'editor-spell-language.c',
-  'editor-spell-language-info.c',
-  'editor-spell-menu.c',
-  'editor-spell-provider.c',
   'editor-statusbar.c',
-  'editor-text-buffer-spell-adapter.c',
   'editor-theme-selector.c',
   'editor-utils.c',
   'editor-window.c',
@@ -62,6 +53,7 @@ editor_deps = [
   libgtksourceview_dep,
   libadwaita_dep,
   libcairo_dep,
+  spelling_dep,
 ]
 
 editor_sources += gnome.compile_resources('editor-resources',
@@ -105,7 +97,6 @@ endif
 
 editor_c_args = []
 
-subdir('enchant')
 subdir('defaults')
 subdir('modelines')
 
@@ -120,10 +111,3 @@ editor = executable('gnome-text-editor', editor_sources + editor_enums + [build_
          dependencies: editor_deps,
               install: true,
 )
-
-test_spell_cursor = executable('test-spell-cursor', 'test-spell-cursor.c',
-  dependencies: [libgtk_dep, libgtksourceview_dep],
-  include_directories: [include_directories('..')],
-  c_args: [ '-UG_DISABLE_ASSERT' ],
-)
-test('test-spell-cursor', test_spell_cursor)
