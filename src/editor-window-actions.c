@@ -33,6 +33,7 @@
 #include "editor-save-changes-dialog-private.h"
 #include "editor-session-private.h"
 #include "editor-window-private.h"
+#include "editor-utils-private.h"
 
 static void
 editor_window_actions_new_draft_cb (GtkWidget  *widget,
@@ -296,31 +297,34 @@ editor_window_actions_copy_all_cb (GtkWidget  *widget,
 }
 
 static void
-editor_window_actions_open_response_cb (EditorWindow         *self,
-                                        gint                  response_id,
-                                        GtkFileChooserNative *native)
+editor_window_actions_open_multiple_cb (GObject      *object,
+                                        GAsyncResult *result,
+                                        gpointer      user_data)
 {
+  GtkFileDialog *dialog = (GtkFileDialog *)object;
+  g_autoptr(EditorWindow) self = user_data;
+  g_autoptr(GListModel) files = NULL;
+  const GtkSourceEncoding *encoding;
+  guint n_items;
+
+  g_assert (GTK_IS_FILE_DIALOG (dialog));
+  g_assert (G_IS_ASYNC_RESULT (result));
   g_assert (EDITOR_IS_WINDOW (self));
-  g_assert (GTK_IS_FILE_CHOOSER_NATIVE (native));
 
-  if (response_id == GTK_RESPONSE_ACCEPT)
+  if (!(files = gtk_file_dialog_open_multiple_finish (dialog, result, NULL)))
+    return;
+
+  encoding = _editor_file_dialog_get_encoding (dialog);
+  n_items = g_list_model_get_n_items (G_LIST_MODEL (files));
+
+  for (guint i = 0; i < n_items; i++)
     {
-      g_autoptr(GListModel) files = gtk_file_chooser_get_files (GTK_FILE_CHOOSER (native));
-      guint i = 0;
-      GFile *file = NULL;
-      const GtkSourceEncoding *encoding = _editor_file_chooser_get_encoding (GTK_FILE_CHOOSER (native));
+      g_autoptr(GFile) file = g_list_model_get_item (files, i);
 
-      g_assert (g_list_model_get_item_type (files) == G_TYPE_FILE);
+      g_assert (G_IS_FILE (file));
 
-      while ((file = G_FILE (g_list_model_get_object (files, i++))))
-        {
-          editor_session_open (EDITOR_SESSION_DEFAULT, self, file, encoding);
-          g_object_unref (file);
-        }
+      editor_session_open (EDITOR_SESSION_DEFAULT, self, file, encoding);
     }
-
-  gtk_native_dialog_destroy (GTK_NATIVE_DIALOG (native));
-  g_object_unref (native);
 }
 
 static void
@@ -331,7 +335,8 @@ editor_window_actions_open_cb (GtkWidget  *widget,
   EditorWindow *self = (EditorWindow *)widget;
   g_autoptr(GtkFileFilter) all_files = NULL;
   g_autoptr(GtkFileFilter) text_files = NULL;
-  GtkFileChooserNative *native;
+  g_autoptr(GListStore) filters = NULL;
+  g_autoptr(GtkFileDialog) dialog = NULL;
   EditorDocument *document;
   EditorPage *page;
   GFile *dfile;
@@ -340,11 +345,28 @@ editor_window_actions_open_cb (GtkWidget  *widget,
 
   gtk_menu_button_popdown (self->open_menu_button);
 
-  native = gtk_file_chooser_native_new (_("Open File"),
-                                        GTK_WINDOW (self),
-                                        GTK_FILE_CHOOSER_ACTION_OPEN,
-                                        _("Open"),
-                                        _("Cancel"));
+  filters = g_list_store_new (GTK_TYPE_FILE_FILTER);
+
+  all_files = gtk_file_filter_new ();
+  gtk_file_filter_set_name (all_files, _("All Files"));
+  gtk_file_filter_add_pattern (all_files, "*");
+  g_list_store_append (filters, all_files);
+
+  text_files = gtk_file_filter_new ();
+  gtk_file_filter_set_name (text_files, _("Text Files"));
+  gtk_file_filter_add_mime_type (text_files, "text/plain");
+  gtk_file_filter_add_mime_type (text_files, "application/x-zerosize");
+  g_list_store_append (filters, text_files);
+
+  dialog = gtk_file_dialog_new ();
+  gtk_file_dialog_set_accept_label (dialog, _("Open"));
+  gtk_file_dialog_set_title (dialog, _("Open File"));
+#ifdef __APPLE__
+  /* Apple content-type detect is pretty bad */
+  gtk_file_dialog_set_default_filter (dialog, all_files);
+#else
+  gtk_file_dialog_set_default_filter (dialog, text_files);
+#endif
 
   if ((page = editor_window_get_visible_page (self)) &&
       (document = editor_page_get_document (page)) &&
@@ -353,7 +375,7 @@ editor_window_actions_open_cb (GtkWidget  *widget,
       g_autoptr(GFile) dir = g_file_get_parent (dfile);
 
       if (dir != NULL)
-        gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (native), dir, NULL);
+        gtk_file_dialog_set_initial_folder (dialog, dir);
     }
   else
     {
@@ -363,39 +385,18 @@ editor_window_actions_open_cb (GtkWidget  *widget,
       if (uri && uri[0])
         {
           g_autoptr(GFile) dir = g_file_new_for_uri (uri);
-          gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (native), dir, NULL);
+          gtk_file_dialog_set_initial_folder (dialog, dir);
         }
     }
 
-  all_files = gtk_file_filter_new ();
-  gtk_file_filter_set_name (all_files, _("All Files"));
-  gtk_file_filter_add_pattern (all_files, "*");
-  gtk_file_chooser_add_filter (GTK_FILE_CHOOSER (native), g_object_ref (all_files));
 
-  text_files = gtk_file_filter_new ();
-  gtk_file_filter_set_name (text_files, _("Text Files"));
-  gtk_file_filter_add_mime_type (text_files, "text/plain");
-  gtk_file_filter_add_mime_type (text_files, "application/x-zerosize");
-  gtk_file_chooser_add_filter (GTK_FILE_CHOOSER (native), g_object_ref (text_files));
+  _editor_file_dialog_add_encodings (dialog);
 
-#ifdef __APPLE__
-  /* Apple content-type detect is pretty bad */
-  gtk_file_chooser_set_filter (GTK_FILE_CHOOSER (native), all_files);
-#else
-  gtk_file_chooser_set_filter (GTK_FILE_CHOOSER (native), text_files);
-#endif
-
-  _editor_file_chooser_add_encodings (GTK_FILE_CHOOSER (native));
-
-  gtk_file_chooser_set_select_multiple (GTK_FILE_CHOOSER (native), TRUE);
-
-  g_signal_connect_object (native,
-                           "response",
-                           G_CALLBACK (editor_window_actions_open_response_cb),
-                           self,
-                           G_CONNECT_SWAPPED);
-
-  gtk_native_dialog_show (GTK_NATIVE_DIALOG (native));
+  gtk_file_dialog_open_multiple (dialog,
+                                 GTK_WINDOW (self),
+                                 NULL,
+                                 editor_window_actions_open_multiple_cb,
+                                 g_object_ref (self));
 }
 
 static void

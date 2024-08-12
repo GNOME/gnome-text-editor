@@ -49,11 +49,11 @@ gboolean                 _editor_gchararray_to_style_scheme     (GBinding       
                                                                  GValue                     *to_value,
                                                                  gpointer                    user_data);
 char                    *_editor_date_time_format               (GDateTime                  *self);
-void                     _editor_file_chooser_add_encodings     (GtkFileChooser             *chooser);
-void                     _editor_file_chooser_add_line_endings  (GtkFileChooser             *chooser,
+void                     _editor_file_dialog_add_encodings      (GtkFileDialog              *dialog);
+void                     _editor_file_dialog_add_line_endings   (GtkFileDialog              *dialog,
                                                                  GtkSourceNewlineType        selected);
-const GtkSourceEncoding *_editor_file_chooser_get_encoding      (GtkFileChooser             *chooser);
-GtkSourceNewlineType     _editor_file_chooser_get_line_ending   (GtkFileChooser             *chooser);
+const GtkSourceEncoding *_editor_file_dialog_get_encoding       (GtkFileDialog              *dialog);
+GtkSourceNewlineType     _editor_file_dialog_get_line_ending    (GtkFileDialog              *dialog);
 void                     _editor_revealer_auto_hide             (GtkRevealer                *revealer);
 
 G_END_DECLS

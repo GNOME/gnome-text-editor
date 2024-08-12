@@ -381,13 +381,13 @@ sort_by_name (gconstpointer a,
 }
 
 void
-_editor_file_chooser_add_encodings (GtkFileChooser *chooser)
+_editor_file_dialog_add_encodings (GtkFileDialog *dialog)
 {
   GPtrArray *choices;
   GPtrArray *labels;
   GSList *all;
 
-  g_assert (GTK_IS_FILE_CHOOSER (chooser));
+  g_assert (GTK_IS_FILE_DIALOG (dialog));
 
   all = g_slist_sort (gtk_source_encoding_get_all (), sort_by_name);
   choices = g_ptr_array_new ();
@@ -413,12 +413,12 @@ _editor_file_chooser_add_encodings (GtkFileChooser *chooser)
   ADD_ENCODING (NULL, NULL);
 #undef ADD_ENCODING
 
-  gtk_file_chooser_add_choice (chooser,
+  gtk_file_dialog_add_choice (dialog,
                                "encoding",
                                _("Character Encoding:"),
                                (const char **)(gpointer)choices->pdata,
                                (const char **)(gpointer)labels->pdata);
-  gtk_file_chooser_set_choice (chooser, "encoding", "auto");
+  gtk_file_dialog_set_choice (dialog, "encoding", "auto");
 
   g_slist_free (all);
   g_clear_pointer (&choices, g_ptr_array_unref);
@@ -426,13 +426,13 @@ _editor_file_chooser_add_encodings (GtkFileChooser *chooser)
 }
 
 void
-_editor_file_chooser_add_line_endings (GtkFileChooser       *chooser,
+_editor_file_dialog_add_line_endings (GtkFileDialog       *dialog,
                                        GtkSourceNewlineType  selected)
 {
   static GArray *choices;
   static GArray *labels;
 
-  g_return_if_fail (GTK_IS_FILE_CHOOSER (chooser));
+  g_return_if_fail (GTK_IS_FILE_DIALOG (dialog));
 
   if (choices == NULL)
     {
@@ -448,31 +448,31 @@ _editor_file_chooser_add_line_endings (GtkFileChooser       *chooser,
         }
     }
 
-  gtk_file_chooser_add_choice (chooser,
+  gtk_file_dialog_add_choice (dialog,
                                CHOICE_LINE_ENDING,
                                _("Line Ending:"),
                                (const char **)(gpointer)choices->data,
                                (const char **)(gpointer)labels->data);
-  gtk_file_chooser_set_choice (chooser, CHOICE_LINE_ENDING, "unix");
+  gtk_file_dialog_set_choice (dialog, CHOICE_LINE_ENDING, "unix");
 
   for (guint i = 0; i < G_N_ELEMENTS (line_endings); i++)
     {
       if (line_endings[i].type == selected)
         {
-          gtk_file_chooser_set_choice (chooser, CHOICE_LINE_ENDING, line_endings[i].id);
+          gtk_file_dialog_set_choice (dialog, CHOICE_LINE_ENDING, line_endings[i].id);
           break;
         }
     }
 }
 
 const GtkSourceEncoding *
-_editor_file_chooser_get_encoding (GtkFileChooser *chooser)
+_editor_file_dialog_get_encoding (GtkFileDialog *dialog)
 {
   const char *encoding;
 
-  g_return_val_if_fail (GTK_IS_FILE_CHOOSER (chooser), NULL);
+  g_return_val_if_fail (GTK_IS_FILE_DIALOG (dialog), NULL);
 
-  if ((encoding = gtk_file_chooser_get_choice (chooser, "encoding")))
+  if ((encoding = gtk_file_dialog_get_choice (dialog, "encoding")))
     {
       if (strcmp (encoding, "auto") != 0)
         return gtk_source_encoding_get_from_charset (encoding);
@@ -482,13 +482,13 @@ _editor_file_chooser_get_encoding (GtkFileChooser *chooser)
 }
 
 GtkSourceNewlineType
-_editor_file_chooser_get_line_ending (GtkFileChooser *chooser)
+_editor_file_dialog_get_line_ending (GtkFileDialog *dialog)
 {
   const char *ending;
 
-  g_return_val_if_fail (GTK_IS_FILE_CHOOSER (chooser), 0);
+  g_return_val_if_fail (GTK_IS_FILE_DIALOG (dialog), 0);
 
-  if ((ending = gtk_file_chooser_get_choice (chooser, CHOICE_LINE_ENDING)))
+  if ((ending = gtk_file_dialog_get_choice (dialog, CHOICE_LINE_ENDING)))
     {
       for (guint i = 0; i < G_N_ELEMENTS (line_endings); i++)
         {
