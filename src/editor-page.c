@@ -1194,20 +1194,20 @@ _editor_page_save (EditorPage *self)
 static void
 editor_page_save_as_cb (EditorPage           *self,
                         gint                  response_id,
-                        GtkFileChooserNative *native)
+                        GtkFileChooserDialog *dialog)
 {
   g_assert (EDITOR_IS_PAGE (self));
-  g_assert (GTK_IS_FILE_CHOOSER_NATIVE (native));
+  g_assert (GTK_IS_FILE_CHOOSER_DIALOG (dialog));
 
   if (response_id == GTK_RESPONSE_ACCEPT)
     {
       g_autoptr(GFile) dest = NULL;
 
-      if ((dest = gtk_file_chooser_get_file (GTK_FILE_CHOOSER (native))))
+      if ((dest = gtk_file_chooser_get_file (GTK_FILE_CHOOSER (dialog))))
         {
-          const GtkSourceEncoding *encoding = _editor_file_chooser_get_encoding (GTK_FILE_CHOOSER (native));
-          GtkSourceNewlineType crlf = _editor_file_chooser_get_line_ending (GTK_FILE_CHOOSER (native));
-          g_autoptr(GFile) directory = gtk_file_chooser_get_current_folder (GTK_FILE_CHOOSER (native));
+          const GtkSourceEncoding *encoding = _editor_file_chooser_get_encoding (GTK_FILE_CHOOSER (dialog));
+          GtkSourceNewlineType crlf = _editor_file_chooser_get_line_ending (GTK_FILE_CHOOSER (dialog));
+          g_autoptr(GFile) directory = gtk_file_chooser_get_current_folder (GTK_FILE_CHOOSER (dialog));
 
           if (directory == NULL)
             directory = g_file_get_parent (dest);
@@ -1229,8 +1229,7 @@ editor_page_save_as_cb (EditorPage           *self,
         }
     }
 
-  gtk_native_dialog_destroy (GTK_NATIVE_DIALOG (native));
-  g_object_unref (native);
+  gtk_window_destroy (GTK_WINDOW (dialog));
 }
 
 void
@@ -1239,7 +1238,7 @@ _editor_page_save_as (EditorPage *self,
 {
   g_autoptr(GSettings) settings = NULL;
   g_autoptr(GFile) directory = NULL;
-  GtkFileChooserNative *native;
+  GtkFileChooserDialog *dialog;
   EditorWindow *window;
   g_autofree char *uri = NULL;
   GFile *file;
@@ -1254,14 +1253,16 @@ _editor_page_save_as (EditorPage *self,
   _editor_page_raise (self);
 
   window = _editor_page_get_window (self);
-  native = gtk_file_chooser_native_new (_("Save As"),
-                                        GTK_WINDOW (window),
-                                        GTK_FILE_CHOOSER_ACTION_SAVE,
-                                        _("Save"),
-                                        _("Cancel"));
+  dialog = GTK_FILE_CHOOSER_DIALOG(
+             gtk_file_chooser_dialog_new (_("Save As"),
+                                          GTK_WINDOW (window),
+                                          GTK_FILE_CHOOSER_ACTION_SAVE,
+                                          _("Save"), GTK_RESPONSE_ACCEPT,
+                                          _("Cancel"), GTK_RESPONSE_CANCEL,
+                                          NULL));
 
-  _editor_file_chooser_add_encodings (GTK_FILE_CHOOSER (native));
-  _editor_file_chooser_add_line_endings (GTK_FILE_CHOOSER (native),
+  _editor_file_chooser_add_encodings (GTK_FILE_CHOOSER (dialog));
+  _editor_file_chooser_add_line_endings (GTK_FILE_CHOOSER (dialog),
                                          _editor_document_get_newline_type (self->document));
 
   if (filename != NULL)
@@ -1280,32 +1281,32 @@ _editor_page_save_as (EditorPage *self,
           selected = g_file_new_for_path (filename);
         }
 
-      gtk_file_chooser_set_file (GTK_FILE_CHOOSER (native), selected, NULL);
+      gtk_file_chooser_set_file (GTK_FILE_CHOOSER (dialog), selected, NULL);
     }
   else if ((file = editor_document_get_file (self->document)))
     {
       g_autoptr(GFile) parent = g_file_get_parent (file);
 
-      gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (native), parent, NULL);
+      gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), parent, NULL);
     }
   else if (directory != NULL)
     {
-      gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (native), directory, NULL);
+      gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), directory, NULL);
     }
 
   if (filename == NULL)
     {
       g_autofree char *suggestion = _editor_document_suggest_filename (self->document);
-      gtk_file_chooser_set_current_name (GTK_FILE_CHOOSER (native), suggestion);
+      gtk_file_chooser_set_current_name (GTK_FILE_CHOOSER (dialog), suggestion);
     }
 
-  g_signal_connect_object (native,
+  g_signal_connect_object (dialog,
                            "response",
                            G_CALLBACK (editor_page_save_as_cb),
                            self,
                            G_CONNECT_SWAPPED);
 
-  gtk_native_dialog_show (GTK_NATIVE_DIALOG (native));
+  gtk_window_present (GTK_WINDOW (dialog));
 }
 
 gboolean
