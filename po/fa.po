@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2024-05-26 06:21+0000\n"
-"PO-Revision-Date: 2024-05-27 15:52+0330\n"
+"POT-Creation-Date: 2024-08-12 16:58+0000\n"
+"PO-Revision-Date: 2024-08-27 14:39+0330\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "Language: fa\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-DamnedLies-Scope: partial\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #. developer_name tag deprecated with Appstream 1.0
 #: data/org.gnome.TextEditor.appdata.xml.in.in:7
@@ -80,8 +80,9 @@ msgid "Indentation Style"
 msgstr "سبک تورفتگی"
 
 #: data/org.gnome.TextEditor.gschema.xml:36
-msgid "If the editor should insert multiple spaces characters instead of tabs."
-msgstr "آیا ویرایشگر باید به‌جای جهش، چند نویسهٔ فاصله درج کند."
+msgid ""
+"Whether the editor should insert multiple spaces characters instead of tabs."
+msgstr "این که ویرایشگر باید به‌جای جهش، چند نویسهٔ فاصله درج کند یا نه."
 
 #: data/org.gnome.TextEditor.gschema.xml:40
 msgid "Auto Indent"
@@ -112,16 +113,16 @@ msgid "Show Line Numbers"
 msgstr "نمایش شماره‌های خط"
 
 #: data/org.gnome.TextEditor.gschema.xml:58
-msgid "If line numbers should be displayed next to each line."
-msgstr "آیا در کنار هر خط باید شماره نشان داده شود."
+msgid "Whether line numbers should be displayed next to each line."
+msgstr "این که در کنار هر خط باید شماره نشان داده شود یا نه."
 
 #: data/org.gnome.TextEditor.gschema.xml:62
 msgid "Show Right Margin"
 msgstr "نمایش حاشیهٔ راست"
 
 #: data/org.gnome.TextEditor.gschema.xml:63
-msgid "If a margin line should be displayed on the right of the editor."
-msgstr "آیا در سمت راست ویرایشگر باید خط حاشیه‌ای نشان داده شود."
+msgid "Whether a margin line should be displayed on the right of the editor."
+msgstr "این که در سمت راست ویرایشگر باید خط حاشیه‌ای نشان داده شود. یا نه."
 
 #: data/org.gnome.TextEditor.gschema.xml:68
 msgid "Right Margin Position"
@@ -164,16 +165,16 @@ msgid "Text Wrapping"
 msgstr "شکاندن متن"
 
 #: data/org.gnome.TextEditor.gschema.xml:89
-msgid "If text should be wrapped."
-msgstr "آیا متن باید بشکند."
+msgid "Whether text should be wrapped."
+msgstr "این که متن باید بشکند یا نه."
 
 #: data/org.gnome.TextEditor.gschema.xml:93
 msgid "Use System Font"
 msgstr "استفاده از قلم سامانه"
 
 #: data/org.gnome.TextEditor.gschema.xml:94
-msgid "If the default system monospace font should be used."
-msgstr "آیا باید از قلم تک‌عرض پیش‌گزیدهٔ سامانه استفاده شود."
+msgid "Whether the default system monospace font should be used."
+msgstr "این که باید از قلم تک‌عرض پیش‌گزیدهٔ سامانه استفاده شود یا نه."
 
 #: data/org.gnome.TextEditor.gschema.xml:98
 msgid "Custom Font"
@@ -201,7 +202,7 @@ msgstr "کشف تنظیمات پرونده"
 
 #: data/org.gnome.TextEditor.gschema.xml:109
 msgid ""
-"If enabled then Text Editor will try to discover file settings from "
+"If enabled, then Text Editor will try to discover file settings from "
 "modelines, editorconfig, or per-language defaults."
 msgstr ""
 "اگر به کار بیفتد، ویرایشگر متن تلاش خواهد کرد که تنظیمات پرونده را از "
@@ -221,7 +222,7 @@ msgid "Restore session"
 msgstr "بازگردانی نشست"
 
 #: data/org.gnome.TextEditor.gschema.xml:119
-msgid "When Text Editor is run, restore the previous session."
+msgid "When Text Editor is running, restore the previous session."
 msgstr "هنگام اجرای ویرایشگر، نشست پیشین بازگردانده شود."
 
 #: data/org.gnome.TextEditor.gschema.xml:123
@@ -328,11 +329,11 @@ msgstr "اجرای نمونه‌ای جدید از ویرایشگر متن (پی
 msgid "Print version information and exit"
 msgstr "چاپ اطّلاعات نگارش و خروج"
 
-#: src/editor-document.c:2122
+#: src/editor-document.c:2099
 msgid "[Read-Only]"
 msgstr "[فقط خواندنی]"
 
-#: src/editor-document.c:2420 src/editor-page.c:1070
+#: src/editor-document.c:2316 src/editor-page.c:1074
 #: src/editor-sidebar-item.c:511
 msgid "New Document"
 msgstr "سند جدید"
@@ -370,19 +371,19 @@ msgstr "پرونده به دست برنامه‌ای دیگر تغییر کرد�
 msgid "Save _As…"
 msgstr "ذخیره به _شکل…"
 
-#: src/editor-info-bar.c:91 src/editor-info-bar.ui:63
+#: src/editor-info-bar.c:91 src/editor-info-bar.ui:62
 msgid "Document Restored"
 msgstr "سند بازیابی شد"
 
-#: src/editor-info-bar.c:92 src/editor-info-bar.ui:73
+#: src/editor-info-bar.c:92 src/editor-info-bar.ui:72
 msgid "Unsaved document has been restored."
 msgstr "سند ذخیره نشده بازیابی شد."
 
-#: src/editor-info-bar.c:98 src/editor-info-bar.ui:87
+#: src/editor-info-bar.c:98 src/editor-info-bar.ui:86
 msgid "_Save…"
 msgstr "_ذخیره…"
 
-#: src/editor-info-bar.c:100 src/editor-info-bar.ui:81
+#: src/editor-info-bar.c:100 src/editor-info-bar.ui:80
 msgid "_Discard…"
 msgstr "_دور انداختن…"
 
@@ -398,15 +399,11 @@ msgstr "تغییرات ذخیره نشده روی سند بازیابی شد."
 msgid "Could Not Open File"
 msgstr "نتوانست پرونده را بگشاید"
 
-#: src/editor-info-bar.ui:29
-msgid "You do not have permission to open the file."
-msgstr "اجازهٔ گشودن پرونده را ندارید."
-
-#: src/editor-info-bar.ui:37
+#: src/editor-info-bar.ui:36
 msgid "_Retry"
 msgstr "_تلاش دوباره"
 
-#: src/editor-info-bar.ui:44
+#: src/editor-info-bar.ui:43
 msgid "Open As _Administrator"
 msgstr "گشودن به عنوان _مدیر"
 
@@ -414,13 +411,17 @@ msgstr "گشودن به عنوان _مدیر"
 msgid "Document Type"
 msgstr "گونهٔ سند"
 
-#: src/editor-language-dialog.ui:28
+#: src/editor-language-dialog.ui:25
 msgid "Search document types"
 msgstr "جست‌وجوی گونه‌های سندها"
 
-#: src/editor-language-dialog.ui:51
-msgid "No Matches"
-msgstr "بدون مطابقت"
+#: src/editor-language-dialog.ui:60 src/editor-open-popover.ui:104
+msgid "No Results Found"
+msgstr "هیچ نتیجه‌ای پیدا نشد"
+
+#: src/editor-language-dialog.ui:61
+msgid "Try a different search"
+msgstr "جست‌وجویی دیگر را بیازمایید"
 
 #: src/editor-language-row.c:61 src/editor-language-row.c:119
 msgid "Plain Text"
@@ -438,46 +439,42 @@ msgstr "گشودن سند جدید"
 msgid "No Recent Documents"
 msgstr "بدون سندهای اخیر"
 
-#: src/editor-open-popover.ui:104
-msgid "No Results Found"
-msgstr "هیچ نتیجه‌ای پیدا نشد"
-
-#: src/editor-page.c:1096 src/editor-properties-dialog.c:107
+#: src/editor-page.c:1100 src/editor-properties-dialog.c:104
 #: src/editor-sidebar-item.c:105
 msgid "Draft"
 msgstr "پیش‌نویس"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1108
+#: src/editor-page.c:1112
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (مدیر)"
 
-#: src/editor-page.c:1118 src/editor-sidebar-item.c:113
+#: src/editor-page.c:1122 src/editor-sidebar-item.c:113
 msgid "Document Portal"
 msgstr "درگاه سند"
 
-#: src/editor-page.c:1164
+#: src/editor-page.c:1168
 msgid "Failed to save document"
 msgstr "شکست در ذخیرهٔ سند"
 
-#: src/editor-page.c:1165 src/editor-window.ui:358
+#: src/editor-page.c:1169 src/editor-window.ui:358
 msgid "_Close"
 msgstr "_بستن"
 
-#: src/editor-page.c:1251
+#: src/editor-page.c:1257
 msgid "Save As"
 msgstr "ذخیره به شکل"
 
-#: src/editor-page.c:1254
+#: src/editor-page.c:1260
 msgid "Save"
 msgstr "ذخیره"
 
-#: src/editor-page.c:1255 src/editor-window-actions.c:353
+#: src/editor-page.c:1261 src/editor-window-actions.c:347
 msgid "Cancel"
 msgstr "لغو"
 
-#: src/editor-page.c:1411
+#: src/editor-page.c:1422
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "خ %Iu، س %Iu"
@@ -598,12 +595,12 @@ msgstr "بازگشت به نشست پیشینتان هنگام آغاز ویرا
 msgid "_Clear History"
 msgstr "_پاک‌سازی تاریخچه"
 
-#: src/editor-print-operation.c:176
+#: src/editor-print-operation.c:181
 #, c-format
 msgid "Draft: %s"
 msgstr "پیش‌نویس: %s"
 
-#: src/editor-print-operation.c:178
+#: src/editor-print-operation.c:183
 #, c-format
 msgid "File: %s"
 msgstr "پرونده: %s"
@@ -611,7 +608,7 @@ msgstr "پرونده: %s"
 #. Translators: %N is the current page number, %Q is the total
 #. * number of pages (ex. Page 2 of 10)
 #.
-#: src/editor-print-operation.c:189
+#: src/editor-print-operation.c:194
 msgid "Page %N of %Q"
 msgstr "صفحهٔ %N از %Q"
 
@@ -619,55 +616,55 @@ msgstr "صفحهٔ %N از %Q"
 msgid "Properties"
 msgstr "ویژگی‌ها"
 
-#: src/editor-properties-dialog.ui:27
+#: src/editor-properties-dialog.ui:22
 msgid "File"
 msgstr "پرونده"
 
-#: src/editor-properties-dialog.ui:30
+#: src/editor-properties-dialog.ui:25
 msgid "Name"
 msgstr "نام"
 
-#: src/editor-properties-dialog.ui:46
+#: src/editor-properties-dialog.ui:33
 msgid "Location"
 msgstr "مکان"
 
-#: src/editor-properties-dialog.ui:75
+#: src/editor-properties-dialog.ui:42
 msgid "Open in File Manager"
 msgstr "گشودن در مدیر پرونده"
 
-#: src/editor-properties-dialog.ui:85
+#: src/editor-properties-dialog.ui:55
 msgid "Statistics"
 msgstr "آمار"
 
-#: src/editor-properties-dialog.ui:88
+#: src/editor-properties-dialog.ui:58
 msgid "Lines"
 msgstr "خط"
 
-#: src/editor-properties-dialog.ui:96
+#: src/editor-properties-dialog.ui:66
 msgid "Words"
 msgstr "واژه"
 
-#: src/editor-properties-dialog.ui:104
+#: src/editor-properties-dialog.ui:74
 msgid "Characters, No Spaces"
 msgstr "نویسه، بدون فاصله"
 
-#: src/editor-properties-dialog.ui:112
+#: src/editor-properties-dialog.ui:82
 msgid "All Characters"
 msgstr "کل نویسه‌ها"
 
-#: src/editor-save-changes-dialog.c:255 src/editor-window-actions.c:242
+#: src/editor-save-changes-dialog.c:254 src/editor-window-actions.c:236
 msgid "_Discard"
 msgstr "_دور انداختن"
 
-#: src/editor-save-changes-dialog.c:255
+#: src/editor-save-changes-dialog.c:254
 msgid "_Discard All"
 msgstr "_دور انداختن همه"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:256
 msgid "Save Changes?"
 msgstr "ذخیرهٔ تغییرات؟"
 
-#: src/editor-save-changes-dialog.c:259
+#: src/editor-save-changes-dialog.c:257
 msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
@@ -675,27 +672,27 @@ msgstr ""
 "سندهای گشوده، تغییراتی ذخیره نشده دارند. تغییراتی که ذخیره نشده‌اند از دست "
 "خواهند رفت."
 
-#: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:116
-#: src/editor-window-actions.c:241
+#: src/editor-save-changes-dialog.c:261 src/editor-window-actions.c:115
+#: src/editor-window-actions.c:235
 msgid "_Cancel"
 msgstr "_لغو"
 
-#: src/editor-save-changes-dialog.c:265 src/editor-window-actions.c:117
+#: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:116
 #: src/editor-window.ui:211
 msgid "_Save"
 msgstr "_ذخیره"
 
-#: src/editor-save-changes-dialog.c:299
+#: src/editor-save-changes-dialog.c:295
 msgid "Untitled Document"
 msgstr "سند بی‌عنوان"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:302
+#: src/editor-save-changes-dialog.c:298
 #, c-format
 msgid "%s (new)"
 msgstr "%s (جدید)"
 
-#: src/editor-save-changes-dialog.c:323
+#: src/editor-save-changes-dialog.c:319
 msgid "Save changes for this document"
 msgstr "ذخیرهٔ تغییرات برای این سند"
 
@@ -749,25 +746,13 @@ msgstr "فقط تطبیق واژهٔ _کامل"
 msgid "%u of %u"
 msgstr "%Iu از %Iu"
 
+#: src/editor-search-entry.ui:13
+msgid "Find"
+msgstr "یافتن"
+
 #: src/editor-sidebar-row.ui:85
 msgid "Remove"
 msgstr "برداشتن"
-
-#: src/editor-spell-menu.c:248
-msgid "Add to Dictionary"
-msgstr "افزودن به واژه‌نامه"
-
-#: src/editor-spell-menu.c:249
-msgid "Ignore"
-msgstr "چشم‌پوشی"
-
-#: src/editor-spell-menu.c:250
-msgid "Check Spelling"
-msgstr "بررسی نوشتاری"
-
-#: src/editor-spell-menu.c:259
-msgid "Languages"
-msgstr "زبان‌ها"
 
 #: src/editor-theme-selector.ui:23
 msgid "Follow System Style"
@@ -840,39 +825,39 @@ msgstr "رمزگذاری نویسه:"
 msgid "Line Ending:"
 msgstr "پایان خط:"
 
-#: src/editor-window-actions.c:110
+#: src/editor-window-actions.c:109
 msgid "Saving changes will replace the previously saved version."
 msgstr "ذخیرهٔ تغییرات، نگارش ذخیره شدهٔ پیشین را جایگزین خواهد کرد."
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:113
+#: src/editor-window-actions.c:112
 #, c-format
 msgid "Save Changes to “%s”?"
 msgstr "ذخیرهٔ تغییرات «%s»؟"
 
-#: src/editor-window-actions.c:235
+#: src/editor-window-actions.c:229
 msgid "Unsaved changes will be permanently lost."
 msgstr "تغییرات ذخیره نشده برای همیشه از دست خواهند رفت."
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:238
+#: src/editor-window-actions.c:232
 #, c-format
 msgid "Discard Changes to “%s”?"
 msgstr "دور انداختن تغییرات «%s»؟"
 
-#: src/editor-window-actions.c:349
+#: src/editor-window-actions.c:343
 msgid "Open File"
 msgstr "گشودن پرونده"
 
-#: src/editor-window-actions.c:352
+#: src/editor-window-actions.c:346
 msgid "Open"
 msgstr "گشودن"
 
-#: src/editor-window-actions.c:377
+#: src/editor-window-actions.c:371
 msgid "All Files"
 msgstr "تمامی پرونده‌ها"
 
-#: src/editor-window-actions.c:382
+#: src/editor-window-actions.c:376
 msgid "Text Files"
 msgstr "پرونده‌های متنی"
 
@@ -1046,10 +1031,6 @@ msgstr "_جابه‌جایی به پنجرهٔ جدید"
 #: src/editor-window.ui:354
 msgid "Close _Other Tabs"
 msgstr "بستن _دیگر زبانه‌ها"
-
-#: src/enchant/editor-enchant-spell-provider.c:123
-msgid "Enchant 2"
-msgstr "نگارش ۲ Enchant"
 
 #: src/help-overlay.ui:12
 msgctxt "shortcut window"
@@ -1345,6 +1326,27 @@ msgstr "نمایش میان‌برهای صفحه‌کلید"
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "نمایش راهنما"
+
+#~ msgid "You do not have permission to open the file."
+#~ msgstr "اجازهٔ گشودن پرونده را ندارید."
+
+#~ msgid "No Matches"
+#~ msgstr "بدون مطابقت"
+
+#~ msgid "Add to Dictionary"
+#~ msgstr "افزودن به واژه‌نامه"
+
+#~ msgid "Ignore"
+#~ msgstr "چشم‌پوشی"
+
+#~ msgid "Check Spelling"
+#~ msgstr "بررسی نوشتاری"
+
+#~ msgid "Languages"
+#~ msgstr "زبان‌ها"
+
+#~ msgid "Enchant 2"
+#~ msgstr "نگارش ۲ Enchant"
 
 #~ msgid "Select Font"
 #~ msgstr "گزینش قلم"
