@@ -162,6 +162,14 @@ editor_page_defaults_get_insert_spaces_instead_of_tabs (EditorPageSettingsProvid
   return d != NULL;
 }
 
+static gboolean
+editor_page_defaults_get_implicit_trailing_newline (EditorPageSettingsProvider *provider,
+                                                    gboolean                   *implicit_trailing_newline)
+{
+  *implicit_trailing_newline = TRUE;
+  return TRUE;
+}
+
 static void
 page_settings_provider_iface_init (EditorPageSettingsProviderInterface *iface)
 {
@@ -170,6 +178,7 @@ page_settings_provider_iface_init (EditorPageSettingsProviderInterface *iface)
   iface->get_tab_width = editor_page_defaults_get_tab_width;
   iface->get_insert_spaces_instead_of_tabs = editor_page_defaults_get_insert_spaces_instead_of_tabs;
   iface->get_indent_width = editor_page_defaults_get_indent_width;
+  iface->get_implicit_trailing_newline = editor_page_defaults_get_implicit_trailing_newline;
 }
 
 G_DEFINE_TYPE_WITH_CODE (EditorPageDefaults, editor_page_defaults, G_TYPE_OBJECT,
