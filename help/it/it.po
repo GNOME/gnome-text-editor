@@ -1,19 +1,19 @@
 # Italian translation for gnome-text-editor.
 # Copyright (C) 2022 gnome-text-editor's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-text-editor package.
-# Davide Ferracin <davide.ferracin@protonmail.com>, 2022.
+# Davide Ferracin <davide.ferracin@protonmail.com>, 2022, 2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
-"POT-Creation-Date: 2022-03-29 10:52+0000\n"
-"PO-Revision-Date: 2022-05-10 10:32+0200\n"
+"POT-Creation-Date: 2024-03-20 17:40+0000\n"
+"PO-Revision-Date: 2024-09-07 18:43+0300\n"
 "Last-Translator: Davide Ferracin <davide.ferracin@protonmail.com>\n"
 "Language-Team: Italian <gnome-it-list@gnome.org>\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
@@ -86,12 +86,12 @@ msgstr "Aprire un file"
 #: C/basics-open-file.page:13
 msgid ""
 "To open a file in GNOME Text Editor use <gui style=\"button\">Open</gui> in "
-"the Headerbar and <gui>Browse Files...</gui> or the shortcut "
+"the Headerbar and <gui>Open New Document</gui> or the shortcut "
 "<keyseq><key>Ctrl</key><key>O</key></keyseq>."
 msgstr ""
 "Per aprire un file in Editor di testo GNOME, fare clic su <gui "
-"style=\"button\">Apri</gui> nella barra superiore e usare <gui>Esplora "
-"file…</gui> o la scorciatoia <keyseq><key>Ctrl</key><key>O</key></keyseq>."
+"style=\"button\">Apri</gui> nella barra superiore e usare <gui>Apri nuovo "
+"documento</gui> o la scorciatoia <keyseq><key>Ctrl</key><key>O</key></keyseq>."
 
 #. (itstool) path: page/p
 #: C/basics-open-file.page:17
@@ -99,9 +99,9 @@ msgid ""
 "In the dialog choose your file(s) you want to open and click <gui>Open</"
 "gui>. It is possible to select multiple files to open these at once."
 msgstr ""
-"Nella finestra di dialogo, scegliere i file che si vogliono aprire e "
-"fare clic su <gui>Apri</gui>. È possibile selezionare più file per "
-"aprirli tutti in una sola volta."
+"Nella finestra di dialogo, scegliere i file che si vogliono aprire e fare "
+"clic su <gui>Apri</gui>. È possibile selezionare più file per aprirli tutti "
+"in una sola volta."
 
 #. (itstool) path: page/p
 #: C/basics-open-file.page:20
@@ -124,8 +124,8 @@ msgid ""
 "key><key>K</key></keyseq> to search for recently edited files."
 msgstr ""
 "Selezionando il menù <gui>Apri</gui> o usando la scorciatoia "
-"<keyseq><key>Ctrl</key><key>K</key></keyseq> è possibile cercare tra i "
-"file modificati di recente."
+"<keyseq><key>Ctrl</key><key>K</key></keyseq> è possibile cercare tra i file "
+"modificati di recente."
 
 #. (itstool) path: section/media
 #. This is a reference to an external file such as an image or video. When
@@ -135,8 +135,9 @@ msgstr ""
 #: C/basics-open-file.page:27
 msgctxt "_"
 msgid ""
-"external ref='media/search-recent.png' md5='f57950a08e6c7159429d030eb349814f'"
-msgstr "Immagine tradotta. MD5 del file tradotto: 'f5069ac15d835ab55c970c5163da1e95'"
+"external ref='media/search-recent.png' md5='8ddac07e5fb592e68c6208171a52d52f'"
+msgstr ""
+"Immagine tradotta. MD5 del file tradotto: 'b75335d340bbed39bb44438a1b361b95'"
 
 #. (itstool) path: info/keywords
 #: C/basics-create-new-file.page:19
@@ -201,10 +202,10 @@ msgid ""
 "menu."
 msgstr ""
 "Editor di testo GNOME memorizza automaticamente ogni file non salvato. "
-"Questa cartella si trova nella cartella dei dati dell'applicazione "
-"(~/.local/share/gnome-text-editor o la rispettiva cartella per flatpak). "
-"Normalmente non c'è bisogno di preoccuparsi di questa cartella, poiché "
-"ogni bozza è accessibile tramite il menù <gui>Apri</gui>."
+"Questa cartella si trova nella cartella dei dati dell'applicazione (~/.local/"
+"share/gnome-text-editor o la rispettiva cartella per flatpak). Normalmente "
+"non c'è bisogno di preoccuparsi di questa cartella, poiché ogni bozza è "
+"accessibile tramite il menù <gui>Apri</gui>."
 
 #. (itstool) path: page/p
 #: C/basics-draft-folder.page:30
@@ -213,9 +214,9 @@ msgid ""
 "subtitle 'Draft' if your current document is not saved and will reside in "
 "the draft folder."
 msgstr ""
-"Nella barra del titolo di Editor di testo GNOME si può vedere se si sta lavorando "
-"su una bozza. Il sottotitolo «Bozza» indica che il documento corrente non "
-"è stato salvato, e che si trova nella cartella delle bozze."
+"Nella barra del titolo di Editor di testo GNOME si può vedere se si sta "
+"lavorando su una bozza. Il sottotitolo «Bozza» indica che il documento "
+"corrente non è stato salvato, e che si trova nella cartella delle bozze."
 
 #. (itstool) path: info/desc
 #: C/edit-search-and-replace.page:33
@@ -238,9 +239,9 @@ msgid ""
 "GNOME text editor allows you to quickly search in big text files for a "
 "specific text parts. Oftentimes these text parts need to be replaced also."
 msgstr ""
-"Editor di testo GNOME permette di cercare velocemente dei frammenti di "
-"testo specifici all'interno di file di testo grandi. Tali frammenti "
-"possono anche essere sostituiti."
+"Editor di testo GNOME permette di cercare velocemente dei frammenti di testo "
+"specifici all'interno di file di testo grandi. Tali frammenti possono anche "
+"essere sostituiti."
 
 #. (itstool) path: list/title
 #: C/edit-search-and-replace.page:44
@@ -250,13 +251,13 @@ msgstr "Cercare del testo"
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:45
 msgid ""
-"Activate the search panel via <guiseq><gui>Hamburger Menu</gui><gui>Find/"
+"Activate the search panel via <guiseq><gui>Main Menu</gui><gui>Find/"
 "Replace...</gui></guiseq> or activate it via <keyseq><key>Ctrl</key><key>F</"
 "key></keyseq>."
 msgstr ""
-"Attivare il pannello di ricerca tramite <guiseq><gui>menù hamburger</gui>"
-"<gui>Trova e sostituisci…</gui></guiseq> o tramite <keyseq><key>Ctrl</key>"
-"<key>F</key></keyseq>."
+"Attivare il pannello di ricerca tramite <guiseq><gui>Menù principale</"
+"gui><gui>Trova e sostituisci…</gui></guiseq> o tramite <keyseq><key>Ctrl</"
+"key><key>F</key></keyseq>."
 
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:46
@@ -269,9 +270,9 @@ msgid ""
 "The search is performed as you type. You can now iterate the search result "
 "with <key>↑</key> or <key>↓</key> or with the buttons beside the entry."
 msgstr ""
-"La ricerca viene effettuata mentre si sta digitando. È possibile iterare "
-"tra i risultati della ricerca con  <key>↑</key> o <key>↓</key> o usando "
-"i pulsanti a fianco della casella."
+"La ricerca viene effettuata mentre si sta digitando. È possibile iterare tra "
+"i risultati della ricerca con  <key>↑</key> o <key>↓</key> o usando i "
+"pulsanti a fianco della casella."
 
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:48
@@ -312,8 +313,8 @@ msgid ""
 "The search can be refined with additional options in the <gui>gear</gui> "
 "menu."
 msgstr ""
-"La ricerca può essere affinata con ulteriori opzioni all'interno del "
-"menù indicato dall'<gui>ingranaggio</gui>."
+"La ricerca può essere affinata con ulteriori opzioni all'interno del menù "
+"indicato dall'<gui>ingranaggio</gui>."
 
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:57
@@ -338,21 +339,21 @@ msgstr "Sostituire il testo"
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:66
 msgid ""
-"Activate the search panel via <guiseq><gui>Hamburger Menu</gui><gui>Find/"
+"Activate the search panel via <guiseq><gui>Main Menu</gui><gui>Find/"
 "Replace...</gui></guiseq> or activate it via <keyseq><key>Ctrl</key><key>H</"
 "key></keyseq>."
 msgstr ""
-"Attivare il pannello di ricerca tramite <guiseq><gui>menù hamburger</gui>"
-"<gui>Trova e sostituisci…</gui></guiseq> o tramite <keyseq><key>Ctrl</key>"
-"<key>H</key></keyseq>."
+"Attivare il pannello di ricerca tramite <guiseq><gui>Menù principale</"
+"gui><gui>Trova e sostituisci…</gui></guiseq> o tramite <keyseq><key>Ctrl</"
+"key><key>H</key></keyseq>."
 
 #. (itstool) path: item/p
 #: C/edit-search-and-replace.page:67
 msgid ""
-"In case you opened the search panel via the <gui>Hamburger Menu</gui> you "
-"have to click the button for activating the replace functionality."
+"In case you opened the search panel via the <gui>Main Menu</gui> you have to "
+"click the button for activating the replace functionality."
 msgstr ""
-"Se si è aperto il pannello di ricerca tramite il <gui>menù hamburger</gui> "
+"Se si è aperto il pannello di ricerca tramite il <gui>Menù principale</gui> "
 "si dovrà premere sull'apposito pulsante per attivare le funzionalità di "
 "sostituzione del testo."
 
@@ -408,8 +409,8 @@ msgid ""
 "mistakes."
 msgstr ""
 "Editor di testo GNOME tiene traccia automaticamente dei cambiamenti fatti "
-"nel corso della modifica di un file. Essi possono essere annullati e ripetuti "
-"durante la modifica, semplificando la correzione degli errori."
+"nel corso della modifica di un file. Essi possono essere annullati e "
+"ripetuti durante la modifica, semplificando la correzione degli errori."
 
 #. (itstool) path: note/p
 #: C/edit-undo-redo.page:33
@@ -418,8 +419,8 @@ msgid ""
 "xref=\"#discard_changes\">discarding changes</link>."
 msgstr ""
 "I cambiamenti tracciati fatti a un file saranno persi una volta chiuso il "
-"file, o dopo aver <link xref=\"#discard_changes\">scartato le "
-"modifiche</link>."
+"file, o dopo aver <link xref=\"#discard_changes\">scartato le modifiche</"
+"link>."
 
 #. (itstool) path: section/title
 #: C/edit-undo-redo.page:40
@@ -446,9 +447,9 @@ msgid ""
 "will continue redoing changes as they were originally made."
 msgstr ""
 "Premere <keyseq> <key>Ctrl</key> <key>Shift</key> <key>Z</key> </keyseq> "
-"ripeterà l'ultima modifica fatta a un file che era stata annullata. "
-"Premendo ripetutamente questa scorciatoia si continuerà a ripetere "
-"le modifiche così come erano state applicate in origine."
+"ripeterà l'ultima modifica fatta a un file che era stata annullata. Premendo "
+"ripetutamente questa scorciatoia si continuerà a ripetere le modifiche così "
+"come erano state applicate in origine."
 
 #. (itstool) path: note/p
 #: C/edit-undo-redo.page:64
@@ -457,10 +458,10 @@ msgid ""
 "undo or redo. For example, typing text into a file directly after undoing a "
 "change will prevent redoing the last undone change."
 msgstr ""
-"Le modifiche annullate possono essere ripetute <em>solo</em> se l'azione "
-"di modifica precedente era annulla o ripeti. Per esempio, digitare del "
-"testo in un file subito dopo aver annullato una modifica impedirà di "
-"ripetere tale modifica."
+"Le modifiche annullate possono essere ripetute <em>solo</em> se l'azione di "
+"modifica precedente era annulla o ripeti. Per esempio, digitare del testo in "
+"un file subito dopo aver annullato una modifica impedirà di ripetere tale "
+"modifica."
 
 #. (itstool) path: section/title
 #: C/edit-undo-redo.page:74
@@ -470,11 +471,12 @@ msgstr "Scartare le modifiche dall'ultimo salvataggio"
 #. (itstool) path: section/p
 #: C/edit-undo-redo.page:75
 msgid ""
-"<guiseq> <gui>Menu</gui> <gui>Discard Changes</gui> </guiseq> will "
+"<guiseq> <gui>Main Menu</gui> <gui>Discard Changes</gui> </guiseq> will "
 "permanently discard all changes made to a file since it was last saved."
 msgstr ""
-"<guiseq> <gui>Menù</gui> <gui>Scarta modifiche</gui> </guiseq> scarterà "
-"permanentemente tutte le modifiche fatte a un file dall'ultimo salvataggio."
+"<guiseq> <gui>Menù principale</gui> <gui>Scarta modifiche</gui> </guiseq> "
+"scarterà permanentemente tutte le modifiche fatte a un file dall'ultimo "
+"salvataggio."
 
 #. (itstool) path: p/link
 #: C/legal.xml:4
