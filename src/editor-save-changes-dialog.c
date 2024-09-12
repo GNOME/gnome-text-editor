@@ -314,6 +314,7 @@ _editor_save_changes_dialog_new (GtkWindow *parent,
       row = adw_action_row_new ();
       check = g_object_new (GTK_TYPE_CHECK_BUTTON,
                             "active", TRUE,
+                            "valign", GTK_ALIGN_CENTER,
                             NULL);
 
       gtk_accessible_update_property (GTK_ACCESSIBLE (check), GTK_ACCESSIBLE_PROPERTY_LABEL, _("Save changes for this document"), -1);
