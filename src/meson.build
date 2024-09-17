@@ -84,6 +84,7 @@ if host_machine.system() == 'windows'
   rc_data = configuration_data()
   rc_data.set('GTE_MAJOR_VERSION', meson.project_version().split('.')[0].to_int())
   rc_data.set('GTE_VERSION', meson.project_version())
+  rc_data.set('GTE_ICON', meson.project_source_root() / 'build-aux/win32/org.gnome.TextEditor.ico')
 
   win32rc = configure_file(input: 'win32.rc.in',
     output: 'win32.rc',
