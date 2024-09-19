@@ -33,16 +33,27 @@
             </child>
             <child type="action">
               <object class="GtkButton" id="access_try_again">
-                <property name="label" translatable="yes">_Retry</property>
-                <property name="use-underline">True</property>
+                <property name="child">
+                  <object class="GtkLabel">
+                    <property name="label" translatable="yes">_Retry</property>
+                    <property name="use-underline">True</property>
+                    <property name="wrap">True</property>
+                  </object>
+                </property>
                 <signal name="clicked" handler="on_try_again_cb" swapped="true"/>
               </object>
             </child>
             <child type="action">
               <object class="GtkButton" id="access_try_admin">
-                <property name="label" translatable="yes">Open As _Administrator</property>
-                <property name="use-underline">True</property>
                 <property name="visible">false</property>
+                <property name="child">
+                  <object class="GtkLabel">
+                    <property name="label" translatable="yes">Open As _Administrator</property>
+                    <property name="use-underline">True</property>
+                    <property name="wrap">True</property>
+                    <property name="wrap-mode">word-char</property>
+                  </object>
+                </property>
                 <signal name="clicked" handler="on_try_admin_cb" swapped="true"/>
               </object>
             </child>
@@ -61,6 +72,7 @@
                     <property name="halign">start</property>
                     <property name="label" translatable="yes">Document Restored</property>
                     <property name="wrap">True</property>
+                    <property name="wrap-mode">word-char</property>
                     <attributes>
                       <attribute name="weight" value="bold"/>
                     </attributes>
@@ -71,6 +83,7 @@
                     <property name="halign">start</property>
                     <property name="label" translatable="yes">Unsaved document has been restored.</property>
                     <property name="wrap">True</property>
+                    <property name="wrap-mode">word-char</property>
                   </object>
                 </child>
               </object>
