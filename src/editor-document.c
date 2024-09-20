@@ -773,6 +773,11 @@ editor_document_init (EditorDocument *self)
   self->file = gtk_source_file_new ();
   self->draft_id = g_uuid_string_random ();
 
+  /* Default implicit-trailing-newline to on in case there are
+   * no automatic settings providers.
+   */
+  gtk_source_buffer_set_implicit_trailing_newline (GTK_SOURCE_BUFFER (self), TRUE);
+
   editor_document_set_spell_checker (self, spell_checker);
 
   self->monitor = editor_buffer_monitor_new ();
