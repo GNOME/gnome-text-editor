@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <requires lib="gtk" version="4.0"/>
-  <template class="EditorSidebarRow" parent="GtkListBoxRow">
+  <template class="EditorSidebarRow" parent="GtkWidget">
     <property name="has-tooltip">true</property>
     <signal name="query-tooltip" handler="query_tooltip_cb"/>
     <child>

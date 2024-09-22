@@ -32,7 +32,7 @@
 
 struct _EditorSidebarRow
 {
-  GtkListBoxRow      parent_instance;
+  GtkWidget          parent_instance;
 
   EditorSidebarItem *item;
 
@@ -59,7 +59,7 @@ enum {
   N_PROPS
 };
 
-G_DEFINE_TYPE (EditorSidebarRow, editor_sidebar_row, GTK_TYPE_LIST_BOX_ROW)
+G_DEFINE_FINAL_TYPE (EditorSidebarRow, editor_sidebar_row, GTK_TYPE_WIDGET)
 
 static GParamSpec *properties [N_PROPS];
 
@@ -159,12 +159,16 @@ editor_sidebar_row_dispose (GObject *object)
 {
   EditorSidebarRow *self = (EditorSidebarRow *)object;
 
-  g_clear_pointer (&self->grid, gtk_widget_unparent);
   g_clear_pointer (&self->title_binding, g_binding_unbind);
   g_clear_pointer (&self->subtitle_binding, g_binding_unbind);
   g_clear_pointer (&self->empty_binding, g_binding_unbind);
   g_clear_pointer (&self->modified_binding, g_binding_unbind);
   g_clear_pointer (&self->age_binding, g_binding_unbind);
+
+  gtk_widget_dispose_template (GTK_WIDGET (self), EDITOR_TYPE_SIDEBAR_ROW);
+
+  g_clear_pointer (&self->grid, gtk_widget_unparent);
+
   g_clear_object (&self->item);
 
   G_OBJECT_CLASS (editor_sidebar_row_parent_class)->dispose (object);
@@ -237,7 +241,9 @@ editor_sidebar_row_class_init (EditorSidebarRowClass *klass)
                          "Item",
                          "The item to be displayed",
                          EDITOR_TYPE_SIDEBAR_ITEM,
-                         (G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
+                         (G_PARAM_READWRITE |
+                          G_PARAM_EXPLICIT_NOTIFY |
+                          G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_properties (object_class, N_PROPS, properties);
 }
