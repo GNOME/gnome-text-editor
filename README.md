@@ -22,9 +22,9 @@ You can come back to your work even if you've never saved it to a file.
 
 ## Dependencies
 
- * GTK 4.10 or newer
- * GtkSourceView 5.6 or newer
- * Libadwaita 1.3 or newer
+ * GTK 4.15 or newer
+ * GtkSourceView 5.10 or newer
+ * Libadwaita 1.6.0 or newer
  * libeditorconfig for .editorconfig support
  * enchant-2 for spellcheck support
  * icu (for language code ids)
