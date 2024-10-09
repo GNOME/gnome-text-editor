@@ -28,13 +28,13 @@ endif
 appconf = configuration_data()
 appconf.set('app_id', app_id)
 appstream_file_in = configure_file(
-          input: 'org.gnome.TextEditor.appdata.xml.in.in',
-         output: '@0@.appdata.xml.in'.format(app_id),
+          input: 'org.gnome.TextEditor.metainfo.xml.in.in',
+         output: '@0@.metainfo.xml.in'.format(app_id),
   configuration: appconf,
 )
 appstream_file = i18n.merge_file(
           input: appstream_file_in,
-         output: '@0@.appdata.xml'.format(app_id),
+         output: '@0@.metainfo.xml'.format(app_id),
          po_dir: '../po',
         install: true,
     install_dir: join_paths(get_option('datadir'), 'metainfo')

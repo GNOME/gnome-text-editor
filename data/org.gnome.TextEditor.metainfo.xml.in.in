@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component type="desktop">
-	<id>@app_id@.desktop</id>
+<component type="desktop-application">
+	<id>@app_id@</id>
 	<metadata_license>CC0-1.0</metadata_license>
 	<project_license>GPL-3.0-or-later</project_license>
-  <!-- developer_name tag deprecated with Appstream 1.0 -->
-  <developer_name>The GNOME Project</developer_name>
   <developer id="org.gnome">
     <name>The GNOME Project</name>
   </developer>
@@ -32,26 +30,27 @@
     </screenshot>
   </screenshots>
 
-  <translation type="gettext">gnome-text-editor</translation>
+  <branding>
+    <color type="primary" scheme_preference="light">#e2dfd6</color>
+    <color type="primary" scheme_preference="dark">#676759</color>
+  </branding>
 
-  <recommends>
-    <control>pointing</control>
-    <control>keyboard</control>
-    <control>touch</control>
-  </recommends>
+  <content_rating type="oars-1.1"/>
+
+  <translation type="gettext">gnome-text-editor</translation>
 
   <requires>
     <display_length compare="ge">360</display_length>
+    <internet>offline-only</internet>
   </requires>
+
+  <supports>
+    <control>pointing</control>
+    <control>keyboard</control>
+    <control>touch</control>
+  </supports>
 
   <releases>
     <release version="47.0" date="2024-09-13"/>
   </releases>
-
-  <kudos>
-    <kudo>HiDpiIcon</kudo>
-    <kudo>ModernToolkit</kudo>
-  </kudos>
-
-  <content_rating type="oars-1.1"/>
 </component>
