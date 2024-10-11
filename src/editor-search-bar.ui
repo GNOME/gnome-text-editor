@@ -41,23 +41,30 @@
           <object class="GtkBox">
             <property name="homogeneous">true</property>
             <property name="orientation">horizontal</property>
-            <style>
-              <class name="linked"/>
-            </style>
+            <property name="spacing">3</property>
+            <property name="hexpand">false</property>
             <child>
               <object class="GtkButton" id="move_previous">
+                <property name="hexpand">true</property>
                 <property name="action-name">search.move-previous</property>
                 <property name="action-target">false</property>
                 <property name="tooltip-text" translatable="yes">Previous Match</property>
                 <property name="icon-name">go-up-symbolic</property>
+                <style>
+                  <class name="flat"/>
+                </style>
               </object>
             </child>
             <child>
               <object class="GtkButton" id="move_next">
+                <property name="hexpand">true</property>
                 <property name="action-name">search.move-next</property>
                 <property name="action-target">false</property>
                 <property name="tooltip-text" translatable="yes">Next Match</property>
                 <property name="icon-name">go-down-symbolic</property>
+                <style>
+                  <class name="flat"/>
+                </style>
               </object>
             </child>
             <layout>
@@ -74,6 +81,9 @@
               <property name="row">0</property>
               <property name="column">2</property>
             </layout>
+            <style>
+              <class name="flat"/>
+            </style>
           </object>
         </child>
         <child>
@@ -84,6 +94,9 @@
               <property name="row">0</property>
               <property name="column">3</property>
             </layout>
+            <style>
+              <class name="flat"/>
+            </style>
           </object>
         </child>
         <child>
