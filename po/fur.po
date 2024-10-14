@@ -6,10 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/"
-"issues\n"
-"POT-Creation-Date: 2024-01-31 18:17+0000\n"
-"PO-Revision-Date: 2024-02-11 05:10+0100\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/issues\n"
+"POT-Creation-Date: 2024-10-11 22:09+0000\n"
+"PO-Revision-Date: 2024-10-14 14:16+0000\n"
 "Last-Translator: Fabio T. <f.t.public@gmail.com>\n"
 "Language-Team: Friulian <f.t.public@gmail.com>\n"
 "Language: fur\n"
@@ -17,27 +16,21 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Editor: HaiPO 1.4 beta\n"
+"X-Editor: HaiPO 2.0 beta\n"
 "X-Generator: Poedit 3.4.2\n"
 
-#. developer_name tag deprecated with Appstream 1.0
-#: data/org.gnome.TextEditor.appdata.xml.in.in:7
-#: src/editor-application-actions.c:201
-msgid "The GNOME Project"
-msgstr "Il progjet GNOME"
-
-#: data/org.gnome.TextEditor.appdata.xml.in.in:12
-#: data/org.gnome.TextEditor.desktop.in.in:8
-#: data/org.gnome.TextEditor.desktop.in.in:9
-#: src/editor-application-actions.c:199 src/editor-window.c:1340
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:10
+#: data/org.gnome.TextEditor.desktop.in.in:10
+#: data/org.gnome.TextEditor.desktop.in.in:11
+#: src/editor-application-actions.c:199 src/editor-window.c:1317
 msgid "Text Editor"
 msgstr "Editôr di test"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:14
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:12
 msgid "Edit text files"
 msgstr "Modifiche i files di test"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:16
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:14
 msgid ""
 "GNOME Text Editor is a simple text editor focused on a pleasing default "
 "experience."
@@ -49,11 +42,11 @@ msgstr ""
 msgid "write;notepad;"
 msgstr "scrivi;tacuin;notis;bloc notis;"
 
-#: data/org.gnome.TextEditor.desktop.in.in:10
+#: data/org.gnome.TextEditor.desktop.in.in:12
 msgid "View and edit text files"
 msgstr "Viôt e modifiche i files di test"
 
-#: data/org.gnome.TextEditor.desktop.in.in:20
+#: data/org.gnome.TextEditor.desktop.in.in:24
 msgid "New Window"
 msgstr "Gnûf Barcon"
 
@@ -63,7 +56,8 @@ msgstr "Ritart di salvament automatic"
 
 #: data/org.gnome.TextEditor.gschema.xml:17
 msgid "The delay in seconds to wait before auto-saving a draft."
-msgstr "Il ritart in seconts di spietâ prime di salvâ in automatic un stampon."
+msgstr ""
+"Il ritart in seconts di spietâ prime di salvâ in automatic un stampon."
 
 #: data/org.gnome.TextEditor.gschema.xml:26
 msgid "Style Variant"
@@ -82,9 +76,10 @@ msgid "Indentation Style"
 msgstr "Stîl di tornade in posizion"
 
 #: data/org.gnome.TextEditor.gschema.xml:36
-msgid "If the editor should insert multiple spaces characters instead of tabs."
+msgid ""
+"Whether the editor should insert multiple spaces characters instead of tabs."
 msgstr ""
-"Al definìs se l'editôr al à di inserî plui caratars di spazis invezit che di "
+"Indiche se l'editôr al à di inserî plui caratars di spazi invezit che di "
 "tabulazions."
 
 #: data/org.gnome.TextEditor.gschema.xml:40
@@ -92,7 +87,8 @@ msgid "Auto Indent"
 msgstr "Tornade in posizion automatiche"
 
 #: data/org.gnome.TextEditor.gschema.xml:41
-msgid "Automatically indent new lines copying the previous line's indentation."
+msgid ""
+"Automatically indent new lines copying the previous line's indentation."
 msgstr ""
 "Stabilìs in automatic la tornade in posizion pes gnovis riis, copiant la "
 "tornade in posizion de rie precedente."
@@ -120,17 +116,17 @@ msgid "Show Line Numbers"
 msgstr "Mostre i numars des riis"
 
 #: data/org.gnome.TextEditor.gschema.xml:58
-msgid "If line numbers should be displayed next to each line."
-msgstr "Stabilìs se si à di visualizâ i numars des riis dongje di ogni rie."
+msgid "Whether line numbers should be displayed next to each line."
+msgstr "Indiche se si à di visualizâ i numars des riis dongje di ogni rie."
 
 #: data/org.gnome.TextEditor.gschema.xml:62
 msgid "Show Right Margin"
 msgstr "Mostre il margjin a diestre"
 
 #: data/org.gnome.TextEditor.gschema.xml:63
-msgid "If a margin line should be displayed on the right of the editor."
+msgid "Whether a margin line should be displayed on the right of the editor."
 msgstr ""
-"Stabilìs se si à di visualizâ une linie di margjin te bande diestre dal "
+"Indiche se si à di visualizâ une linie di margjin te bande diestre dal "
 "editôr."
 
 #: data/org.gnome.TextEditor.gschema.xml:68
@@ -149,8 +145,8 @@ msgstr "Mostre la mape panoramiche"
 
 #: data/org.gnome.TextEditor.gschema.xml:74
 msgid ""
-"If enabled, an overview map of the file will be displayed to the side of the "
-"editor."
+"If enabled, an overview map of the file will be displayed to the side of the"
+" editor."
 msgstr ""
 "Se abilitât, e vignarà visualizade une mape panoramiche dal file in bande "
 "dal editôr."
@@ -160,7 +156,8 @@ msgid "Show Background Grid"
 msgstr "Mostre gridele di fonts"
 
 #: data/org.gnome.TextEditor.gschema.xml:79
-msgid "If enabled, a blueprint style grid is printed on the editor background."
+msgid ""
+"If enabled, a blueprint style grid is printed on the editor background."
 msgstr ""
 "Se abilitât, une gridele di planimetrie e ven stampade sul fonts dal editôr."
 
@@ -177,16 +174,16 @@ msgid "Text Wrapping"
 msgstr "Rie gnove automatiche"
 
 #: data/org.gnome.TextEditor.gschema.xml:89
-msgid "If text should be wrapped."
-msgstr "Se il test al à di lâ a rie gnove in automatic."
+msgid "Whether text should be wrapped."
+msgstr "Indiche se il test al à di lâ a rie gnove in automatic."
 
 #: data/org.gnome.TextEditor.gschema.xml:93
 msgid "Use System Font"
 msgstr "Dopre caratar di sisteme"
 
 #: data/org.gnome.TextEditor.gschema.xml:94
-msgid "If the default system monospace font should be used."
-msgstr "Stabilìs se si à di doprâ il caratar a spaziadure fisse di sisteme."
+msgid "Whether the default system monospace font should be used."
+msgstr "Indiche se si à di doprâ il caratar a spaziadure fisse di sisteme."
 
 #: data/org.gnome.TextEditor.gschema.xml:98
 msgid "Custom Font"
@@ -214,10 +211,10 @@ msgstr "Scuvierç lis impostazions dal file"
 
 #: data/org.gnome.TextEditor.gschema.xml:109
 msgid ""
-"If enabled then Text Editor will try to discover file settings from "
+"If enabled, then Text Editor will try to discover file settings from "
 "modelines, editorconfig, or per-language defaults."
 msgstr ""
-"Se abilitât alore l'editôr di test al cirarà di scuvierzi lis impostazion "
+"Se abilitât, alore l'editôr di test al cirarà di scuvierzi lis impostazion "
 "dal file partint dai valôrs predefinîts de lenghe, dai modelines o "
 "editorconfig."
 
@@ -236,7 +233,7 @@ msgid "Restore session"
 msgstr "Ripristine session"
 
 #: data/org.gnome.TextEditor.gschema.xml:119
-msgid "When Text Editor is run, restore the previous session."
+msgid "When Text Editor is running, restore the previous session."
 msgstr ""
 "Cuant che l'editôr di test al è in esecuzion, ripristine la session "
 "precedente."
@@ -312,6 +309,10 @@ msgstr "Impussibil cjatâ la proprietât %s in %s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Impussibil recuperâ il valôr va_list: %s"
 
+#: src/editor-application-actions.c:201
+msgid "The GNOME Project"
+msgstr "Il progjet GNOME"
+
 #: src/editor-application-actions.c:214
 msgid "translator-credits"
 msgstr "Fabio Tomat <f.t.public@gmail.com>, 2024"
@@ -352,11 +353,11 @@ msgstr ""
 msgid "Print version information and exit"
 msgstr "Scrîf informazions de version e jes"
 
-#: src/editor-document.c:2121
+#: src/editor-document.c:2104
 msgid "[Read-Only]"
 msgstr "[dome-leture]"
 
-#: src/editor-document.c:2419 src/editor-page.c:1065
+#: src/editor-document.c:2321 src/editor-page.c:1074
 #: src/editor-sidebar-item.c:511
 msgid "New Document"
 msgstr "Gnûf document"
@@ -394,19 +395,19 @@ msgstr "Il file al è stât modificât di un altri program."
 msgid "Save _As…"
 msgstr "S_alve Come…"
 
-#: src/editor-info-bar.c:91 src/editor-info-bar.ui:63
+#: src/editor-info-bar.c:91 src/editor-info-bar.ui:73
 msgid "Document Restored"
 msgstr "Document ripristinât"
 
-#: src/editor-info-bar.c:92 src/editor-info-bar.ui:73
+#: src/editor-info-bar.c:92 src/editor-info-bar.ui:84
 msgid "Unsaved document has been restored."
 msgstr "Il document no salvât al è stât ripristinât."
 
-#: src/editor-info-bar.c:98 src/editor-info-bar.ui:87
+#: src/editor-info-bar.c:98 src/editor-info-bar.ui:99
 msgid "_Save…"
 msgstr "_Salve…"
 
-#: src/editor-info-bar.c:100 src/editor-info-bar.ui:81
+#: src/editor-info-bar.c:100 src/editor-info-bar.ui:93
 msgid "_Discard…"
 msgstr "_Scarte…"
 
@@ -422,29 +423,29 @@ msgstr "Lis modifichis al document no salvadis a son stadis ripristinadis."
 msgid "Could Not Open File"
 msgstr "Impussibil vierzi il file"
 
-#: src/editor-info-bar.ui:29
-msgid "You do not have permission to open the file."
-msgstr "No tu âs i permès par vierzi il file."
-
-#: src/editor-info-bar.ui:37
+#: src/editor-info-bar.ui:38
 msgid "_Retry"
 msgstr "_Torne prove"
 
-#: src/editor-info-bar.ui:44
+#: src/editor-info-bar.ui:51
 msgid "Open As _Administrator"
 msgstr "Vierç come _aministradôr"
 
-#: src/editor-language-dialog.ui:6 src/editor-window.c:195
+#: src/editor-language-dialog.ui:6 src/editor-window.c:191
 msgid "Document Type"
 msgstr "Gjenar di document"
 
-#: src/editor-language-dialog.ui:28
+#: src/editor-language-dialog.ui:25
 msgid "Search document types"
 msgstr "Cîr gjenars di document"
 
-#: src/editor-language-dialog.ui:51
-msgid "No Matches"
-msgstr "Nissune corispondence"
+#: src/editor-language-dialog.ui:60
+msgid "No Results Found"
+msgstr "Nissun risultât cjatât"
+
+#: src/editor-language-dialog.ui:61
+msgid "Try a different search"
+msgstr "Prove cuntune ricercje diferente"
 
 #: src/editor-language-row.c:61 src/editor-language-row.c:119
 msgid "Plain Text"
@@ -462,100 +463,96 @@ msgstr "Vierç gnûf document"
 msgid "No Recent Documents"
 msgstr "Nissun document resint"
 
-#: src/editor-open-popover.ui:104
-msgid "No Results Found"
-msgstr "Nissun risultât cjatât"
-
-#: src/editor-page.c:1091 src/editor-properties-dialog.c:107
+#: src/editor-page.c:1100 src/editor-properties-dialog.c:104
 #: src/editor-sidebar-item.c:105
 msgid "Draft"
 msgstr "Stampon"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1103
+#: src/editor-page.c:1112
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (Aministradôr)"
 
-#: src/editor-page.c:1113 src/editor-sidebar-item.c:113
+#: src/editor-page.c:1122 src/editor-sidebar-item.c:113
 msgid "Document Portal"
 msgstr "Portâl dal document"
 
-#: src/editor-page.c:1159
+#: src/editor-page.c:1168
 msgid "Failed to save document"
 msgstr "Impussibil salvâ il document"
 
-#: src/editor-page.c:1160 src/editor-window.ui:358
+#: src/editor-page.c:1169 src/editor-window.ui:358
 msgid "_Close"
 msgstr "_Siere"
 
-#: src/editor-page.c:1246
+#: src/editor-page.c:1257
 msgid "Save As"
 msgstr "Salve come"
 
-#: src/editor-page.c:1249
+#: src/editor-page.c:1260
 msgid "Save"
 msgstr "Salve"
 
-#: src/editor-page.c:1250 src/editor-window-actions.c:353
+#: src/editor-page.c:1261 src/editor-window-actions.c:347
 msgid "Cancel"
 msgstr "Anule"
 
-#: src/editor-page.c:1406
+#: src/editor-page.c:1422
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Rie %u, Col %u"
 
-#: src/editor-page.ui:99
+#: src/editor-page.ui:95
 msgid "Go to Line"
 msgstr "Va ae rie"
 
-#: src/editor-page.ui:117
+#: src/editor-page.ui:113
 msgid "Go"
 msgstr "Va"
 
-#: src/editor-page.ui:154
+#: src/editor-page.ui:150
 msgid "Indentation"
 msgstr "Tornade in posizion"
 
-#: src/editor-page.ui:157 src/editor-window.ui:278
+#: src/editor-page.ui:153 src/editor-window.ui:278
 msgid "_Automatic Indentation"
 msgstr "Tornade in posizion _automatiche"
 
 #. Translators: this is a tab character, not a browser tab
-#: src/editor-page.ui:163 src/editor-window.ui:282
+#: src/editor-page.ui:159 src/editor-window.ui:282
 msgid "_Tabs"
 msgstr "_Tabulazions"
 
-#: src/editor-page.ui:168 src/editor-window.ui:287
+#: src/editor-page.ui:164 src/editor-window.ui:287
 msgid "_Spaces"
 msgstr "_Spazis"
 
-#: src/editor-page.ui:175 src/editor-window.ui:292
+#: src/editor-page.ui:171 src/editor-window.ui:292
 msgid "Spaces _Per Tab"
 msgstr "Spazis _par tabulazion"
 
-#: src/editor-page.ui:177 src/editor-page.ui:205
+#: src/editor-page.ui:173 src/editor-page.ui:201
 msgid "2"
 msgstr "2"
 
-#: src/editor-page.ui:182 src/editor-page.ui:210
+#: src/editor-page.ui:178 src/editor-page.ui:206
 msgid "4"
 msgstr "4"
 
-#: src/editor-page.ui:187 src/editor-page.ui:215
+#: src/editor-page.ui:183 src/editor-page.ui:211
 msgid "6"
 msgstr "6"
 
-#: src/editor-page.ui:192 src/editor-page.ui:220
+#: src/editor-page.ui:188 src/editor-page.ui:216
 msgid "8"
 msgstr "8"
 
-#: src/editor-page.ui:198
+#: src/editor-page.ui:194
 msgid "Spaces Per Indent"
 msgstr "Spazis _par tornade in posizion"
 
-#: src/editor-page.ui:200
+#: src/editor-page.ui:196
 msgid "Use Tab Size"
 msgstr "Dopre dimension de tabulazion"
 
@@ -623,20 +620,19 @@ msgstr "Torne ae session precedente cuant che al ven inviât l'editôr di test"
 msgid "_Clear History"
 msgstr "_Nete la cronologjie"
 
-#: src/editor-print-operation.c:176
+#: src/editor-print-operation.c:181
 #, c-format
 msgid "Draft: %s"
 msgstr "Stampon: %s"
 
-#: src/editor-print-operation.c:178
+#: src/editor-print-operation.c:183
 #, c-format
 msgid "File: %s"
 msgstr "File: %s"
 
 #. Translators: %N is the current page number, %Q is the total
 #. * number of pages (ex. Page 2 of 10)
-#.
-#: src/editor-print-operation.c:189
+#: src/editor-print-operation.c:194
 msgid "Page %N of %Q"
 msgstr "Pagjine %N di %Q"
 
@@ -644,55 +640,55 @@ msgstr "Pagjine %N di %Q"
 msgid "Properties"
 msgstr "Proprietâts"
 
-#: src/editor-properties-dialog.ui:27
+#: src/editor-properties-dialog.ui:22
 msgid "File"
 msgstr "File"
 
-#: src/editor-properties-dialog.ui:30
+#: src/editor-properties-dialog.ui:25
 msgid "Name"
 msgstr "Non"
 
-#: src/editor-properties-dialog.ui:46
+#: src/editor-properties-dialog.ui:33
 msgid "Location"
 msgstr "Ubicazion"
 
-#: src/editor-properties-dialog.ui:75
+#: src/editor-properties-dialog.ui:42
 msgid "Open in File Manager"
 msgstr "Vierç tal gjestôr dai files"
 
-#: src/editor-properties-dialog.ui:85
+#: src/editor-properties-dialog.ui:55
 msgid "Statistics"
 msgstr "Statistichis"
 
-#: src/editor-properties-dialog.ui:88
+#: src/editor-properties-dialog.ui:58
 msgid "Lines"
 msgstr "Liniis"
 
-#: src/editor-properties-dialog.ui:96
+#: src/editor-properties-dialog.ui:66
 msgid "Words"
 msgstr "Peraulis"
 
-#: src/editor-properties-dialog.ui:104
+#: src/editor-properties-dialog.ui:74
 msgid "Characters, No Spaces"
 msgstr "Caratars (cence spazis)"
 
-#: src/editor-properties-dialog.ui:112
+#: src/editor-properties-dialog.ui:82
 msgid "All Characters"
 msgstr "Ducj i caratars"
 
-#: src/editor-save-changes-dialog.c:255 src/editor-window-actions.c:242
+#: src/editor-save-changes-dialog.c:254 src/editor-window-actions.c:236
 msgid "_Discard"
 msgstr "_Scarte"
 
-#: src/editor-save-changes-dialog.c:255
+#: src/editor-save-changes-dialog.c:254
 msgid "_Discard All"
 msgstr "Scarte _dut"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:256
 msgid "Save Changes?"
 msgstr "Salvâ lis modifichis?"
 
-#: src/editor-save-changes-dialog.c:259
+#: src/editor-save-changes-dialog.c:257
 msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
@@ -700,27 +696,27 @@ msgstr ""
 "Vierç i document che a contegnin modifichis no salvadis. Lis modifichis che "
 "no son salvadis a vignaran pierdudis par simpri."
 
-#: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:116
-#: src/editor-window-actions.c:241
+#: src/editor-save-changes-dialog.c:261 src/editor-window-actions.c:115
+#: src/editor-window-actions.c:235
 msgid "_Cancel"
 msgstr "_Anule"
 
-#: src/editor-save-changes-dialog.c:265 src/editor-window-actions.c:117
+#: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:116
 #: src/editor-window.ui:211
 msgid "_Save"
 msgstr "_Salve"
 
-#: src/editor-save-changes-dialog.c:299
+#: src/editor-save-changes-dialog.c:295
 msgid "Untitled Document"
 msgstr "Document cence titul"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:302
+#: src/editor-save-changes-dialog.c:298
 #, c-format
 msgid "%s (new)"
 msgstr "%s (gnûf)"
 
-#: src/editor-save-changes-dialog.c:323
+#: src/editor-save-changes-dialog.c:320
 msgid "Save changes for this document"
 msgstr "Salve lis modifichis par chest document"
 
@@ -768,31 +764,20 @@ msgstr "Ten _cont des maiusculis o minusculis"
 msgid "Match whole _word only"
 msgstr "Corispondence dome di peraulis interiis"
 
-#. translators: the first %u is replaced with the current position, the second with the number of search results
+#. translators: the first %u is replaced with the current position, the second
+#. with the number of search results
 #: src/editor-search-entry.c:197
 #, c-format
 msgid "%u of %u"
 msgstr "%u di %u"
 
+#: src/editor-search-entry.ui:13
+msgid "Find"
+msgstr "Cjate"
+
 #: src/editor-sidebar-row.ui:85
 msgid "Remove"
 msgstr "Gjave"
-
-#: src/editor-spell-menu.c:248
-msgid "Add to Dictionary"
-msgstr "Zonte al dizionari"
-
-#: src/editor-spell-menu.c:249
-msgid "Ignore"
-msgstr "Ignore"
-
-#: src/editor-spell-menu.c:250
-msgid "Check Spelling"
-msgstr "Controle la ortografie"
-
-#: src/editor-spell-menu.c:259
-msgid "Languages"
-msgstr "Lenghis"
 
 #: src/editor-theme-selector.ui:23
 msgid "Follow System Style"
@@ -865,103 +850,104 @@ msgstr "Codifiche dai caratars:"
 msgid "Line Ending:"
 msgstr "Fin di rie:"
 
-#: src/editor-window-actions.c:110
+#: src/editor-window-actions.c:109
 msgid "Saving changes will replace the previously saved version."
 msgstr ""
 "Il salvament des modifichis al sostituirà la version salvade in precedence."
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:113
+#: src/editor-window-actions.c:112
 #, c-format
 msgid "Save Changes to “%s”?"
 msgstr "Salvâ lis modifichis a “%s”?"
 
-#: src/editor-window-actions.c:235
+#: src/editor-window-actions.c:229
 msgid "Unsaved changes will be permanently lost."
 msgstr "Lis modifichis no salvadis a laran pierdudis par simpri."
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:238
+#: src/editor-window-actions.c:232
 #, c-format
 msgid "Discard Changes to “%s”?"
 msgstr "Scartâ lis modifichis fatis a “%s”?"
 
-#: src/editor-window-actions.c:349
+#: src/editor-window-actions.c:343
 msgid "Open File"
 msgstr "Vierç file"
 
-#: src/editor-window-actions.c:352
+#: src/editor-window-actions.c:346
 msgid "Open"
 msgstr "Vierç"
 
-#: src/editor-window-actions.c:377
+#: src/editor-window-actions.c:371
 msgid "All Files"
 msgstr "Ducj i files"
 
-#: src/editor-window-actions.c:382
+#: src/editor-window-actions.c:376
 msgid "Text Files"
 msgstr "Files di test"
 
-#: src/editor-window.c:207
+#: src/editor-window.c:203
 #, c-format
 msgid "Document Type: %s"
 msgstr "Gjenar di document: %s"
 
-#: src/editor-window.c:509
+#: src/editor-window.c:505
 msgid "Zoom In"
 msgstr "Ingrandìs"
 
-#: src/editor-window.c:512
+#: src/editor-window.c:508
 msgid "Zoom in"
 msgstr "Ingrandî"
 
-#: src/editor-window.c:522
+#: src/editor-window.c:518
 msgid "Zoom Out"
 msgstr "Impiçulìs"
 
-#: src/editor-window.c:525
+#: src/editor-window.c:521
 msgid "Zoom out"
 msgstr "Impiçulî"
 
-#. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:782
+#. translators: the first %s is replaced with the title, the second %s is
+#. replaced with the subtitle
+#: src/editor-window.c:760
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - Editôr di test"
 
-#: src/editor-window.c:1225
+#: src/editor-window.c:1202
 msgid "There are unsaved documents"
 msgstr "A son documents no salvâts"
 
-#: src/editor-window.ui:82
+#: src/editor-window.ui:83
 msgid "_Open"
 msgstr "_Vierç"
 
-#: src/editor-window.ui:84
+#: src/editor-window.ui:85
 msgid "Recently Used Documents"
 msgstr "Document doprâts di resint"
 
-#: src/editor-window.ui:96
+#: src/editor-window.ui:97
 msgid "New Tab"
 msgstr "Gnove schede"
 
-#: src/editor-window.ui:98
+#: src/editor-window.ui:99
 msgid "New tab"
 msgstr "Gnove schede"
 
-#: src/editor-window.ui:124
+#: src/editor-window.ui:125
 msgid "View Options"
 msgstr "Visualize lis opzions"
 
-#: src/editor-window.ui:128
+#: src/editor-window.ui:129
 msgid "View"
 msgstr "Visualize"
 
-#: src/editor-window.ui:134
+#: src/editor-window.ui:135
 msgid "Main Menu"
 msgstr "Menù principâl"
 
-#: src/editor-window.ui:138
+#: src/editor-window.ui:139
 msgid "Main menu"
 msgstr "Menù principâl"
 
@@ -1072,10 +1058,6 @@ msgstr "_Sposte suntun gnûf barcon"
 #: src/editor-window.ui:354
 msgid "Close _Other Tabs"
 msgstr "Siere _altris schedis"
-
-#: src/enchant/editor-enchant-spell-provider.c:123
-msgid "Enchant 2"
-msgstr "Enchant 2"
 
 #: src/help-overlay.ui:12
 msgctxt "shortcut window"
@@ -1371,6 +1353,27 @@ msgstr "Mostre scurtis di tastiere"
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Mostre jutori"
+
+#~ msgid "You do not have permission to open the file."
+#~ msgstr "No tu âs i permès par vierzi il file."
+
+#~ msgid "No Matches"
+#~ msgstr "Nissune corispondence"
+
+#~ msgid "Add to Dictionary"
+#~ msgstr "Zonte al dizionari"
+
+#~ msgid "Ignore"
+#~ msgstr "Ignore"
+
+#~ msgid "Check Spelling"
+#~ msgstr "Controle la ortografie"
+
+#~ msgid "Languages"
+#~ msgstr "Lenghis"
+
+#~ msgid "Enchant 2"
+#~ msgstr "Enchant 2"
 
 #~ msgid "Select Font"
 #~ msgstr "Selezione il caratar"
