@@ -1314,7 +1314,10 @@ _editor_document_unmark_busy (EditorDocument *self)
   if (self->busy_count == 0)
     {
       g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_BUSY]);
-      editor_buffer_monitor_unpause (self->monitor);
+
+      if (self->monitor != NULL)
+        editor_buffer_monitor_unpause (self->monitor);
+
       /* Now that we are not busy, emit cursor-moved so that anything that
        * wants to watch the cursor position can safely ignore changes while
        * the document is busy.
