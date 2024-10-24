@@ -70,6 +70,7 @@ struct _EditorDocument
 
 typedef struct
 {
+  GFile *file;
   gchar *position;
   guint  line;
   guint  line_offset;
@@ -266,6 +267,7 @@ load_free (Load *load)
 static void
 save_free (Save *save)
 {
+  g_clear_object (&save->file);
   g_clear_pointer (&save->position, g_free);
   g_slice_free (Save, save);
 }
@@ -1101,7 +1103,6 @@ editor_document_save_cb (GObject      *object,
   g_autoptr(GError) error = NULL;
   g_autoptr(GFile) draft = NULL;
   g_autoptr(GTask) task = user_data;
-  g_autoptr(GFile) file = NULL;
   EditorDocument *self;
   GtkSourceFile *source_file;
   Save *save;
@@ -1114,19 +1115,14 @@ editor_document_save_cb (GObject      *object,
   save = g_task_get_task_data (task);
   source_file = gtk_source_file_saver_get_file (saver);
 
-  /* We need a copy of file in case gtk_source_file_saver_save_finish()
-   * causes us to loose our reference.
-   */
-  file = g_object_ref (gtk_source_file_get_location (source_file));
-
   g_assert (EDITOR_IS_DOCUMENT (self));
   g_assert (GTK_SOURCE_IS_FILE (source_file));
-  g_assert (G_IS_FILE (file));
+  g_assert (G_IS_FILE (save->file));
   g_assert (save != NULL);
 
   if (!gtk_source_file_saver_save_finish (saver, result, &error))
     {
-      g_autofree char *uri = g_file_get_uri (file);
+      g_autofree char *uri = g_file_get_uri (save->file);
 
       /* Try again as admin:// */
       if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_PERMISSION_DENIED) &&
@@ -1244,6 +1240,8 @@ _editor_document_save_async (EditorDocument      *self,
     }
 
   g_assert (G_IS_FILE (file));
+
+  save->file = g_object_ref (file);
 
   if (editor_document_get_file (self) == NULL)
     {
