@@ -48,6 +48,24 @@
             ]
         },
         {
+            "name" : "gtksourceview",
+            "buildsystem" : "meson",
+            "config-opts" : [
+                "-Ddocumentation=false",
+                "-Dvapi=false",
+                "-Dintrospection=disabled",
+                "-Dinstall-tests=false",
+                "-Dbuild-testsuite=false"
+            ],
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/GNOME/gtksourceview.git",
+                    "branch" : "master"
+                }
+            ]
+        },
+        {
             "name" : "libspelling",
             "builddir" : true,
             "buildsystem" : "meson",
