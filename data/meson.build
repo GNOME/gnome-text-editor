@@ -71,4 +71,3 @@ install_data('org.gnome.TextEditor.gschema.xml',
 
 subdir('icons')
 subdir('macos')
-subdir('styles')

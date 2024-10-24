@@ -374,7 +374,7 @@ editor_application_startup (GApplication *application)
     }
 
   schemes = gtk_source_style_scheme_manager_get_default ();
-  gtk_source_style_scheme_manager_prepend_search_path (schemes, PACKAGE_DATADIR"/styles");
+  gtk_source_style_scheme_manager_prepend_search_path (schemes, "resource:///org/gnome/TextEditor/gtksourceview/styles/");
   /* add also the user local style folder which is different from the flatpak style folder */
   style_path = g_build_filename (g_get_home_dir (), ".local", "share", "gtksourceview-5", "styles", NULL);
   gtk_source_style_scheme_manager_prepend_search_path (schemes, style_path);
