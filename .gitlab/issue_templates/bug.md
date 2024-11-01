@@ -11,7 +11,20 @@ here to provide us with detailed versions of foundational libraries and settings
 used by your system.
 ```
 
+<!--
+It is very helpful to know if the bug also happens in the latest development version.
+It can be installed alongside the regular version with these instructions:
+
+1. Make sure that Flatpak is installed (see https://flatpak.org/setup )
+
+2. Copy and run the following command in the Terminal or Console app:
+   flatpak install --from https://nightly.gnome.org/repo/appstream/org.gnome.TextEditor.Devel.flatpakref
+
+3. Launch the development version e.g. with:
+   flatpak run org.gnome.TextEditor.Devel
+-->
 Have you tested Nightly to see if the issue has been fixed? If not, why?
+
 
 # Bug information #
 ## Steps to reproduce ##
