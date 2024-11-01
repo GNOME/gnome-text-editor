@@ -1226,6 +1226,7 @@ buffer_notify_file_cb (EditorDocument *document,
                        AdwTabPage     *tab_page)
 {
   g_autofree char *tooltip = NULL;
+  g_autofree char *escaped = NULL;
   GFile *file;
 
   g_assert (EDITOR_IS_DOCUMENT (document));
@@ -1243,7 +1244,9 @@ buffer_notify_file_cb (EditorDocument *document,
       tooltip = editor_document_dup_title (document);
     }
 
-  adw_tab_page_set_tooltip (tab_page, tooltip);
+  escaped = g_markup_escape_text (tooltip, -1);
+
+  adw_tab_page_set_tooltip (tab_page, escaped);
 }
 
 void
