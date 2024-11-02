@@ -646,6 +646,7 @@ editor_page_settings_init (EditorPageSettings *self)
   self->right_margin_position = 80;
   self->tab_width = 8;
   self->indent_width = -1;
+  self->implicit_trailing_newline = TRUE;
   self->settings = g_settings_new ("org.gnome.TextEditor");
 
   g_signal_connect_object (self->settings,
