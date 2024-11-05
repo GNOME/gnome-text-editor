@@ -317,7 +317,6 @@ _editor_save_changes_dialog_new (GtkWindow *parent,
                             "valign", GTK_ALIGN_CENTER,
                             NULL);
 
-      gtk_accessible_update_property (GTK_ACCESSIBLE (check), GTK_ACCESSIBLE_PROPERTY_LABEL, _("Save changes for this document"), -1);
       adw_preferences_row_set_use_markup (ADW_PREFERENCES_ROW (row), FALSE);
       adw_preferences_row_set_title (ADW_PREFERENCES_ROW (row), title_str);
       adw_action_row_set_subtitle (ADW_ACTION_ROW (row), subtitle_str);
