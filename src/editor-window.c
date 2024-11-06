@@ -295,7 +295,6 @@ editor_window_notify_selected_page_cb (EditorWindow *self,
 
   gtk_label_set_label (self->title, _(PACKAGE_NAME));
   gtk_label_set_label (self->subtitle, NULL);
-  gtk_label_set_label (GTK_LABEL (self->zoom_label), "100%");
   gtk_widget_set_sensitive (self->zoom_label, page != NULL);
   gtk_widget_set_visible (GTK_WIDGET (self->is_modified), FALSE);
   gtk_widget_set_visible (GTK_WIDGET (self->subtitle), FALSE);
@@ -519,10 +518,14 @@ editor_window_constructed (GObject *object)
   gtk_accessible_update_property (GTK_ACCESSIBLE (zoom_out),
                                   GTK_ACCESSIBLE_PROPERTY_LABEL,
                                   _("Zoom out"), -1);
-  self->zoom_label = g_object_new (GTK_TYPE_LABEL,
+  self->zoom_label = g_object_new (GTK_TYPE_BUTTON,
+                                   "css-classes", (const char * const[]) {"flat", "pill", NULL},
+                                   "action-name", "page.zoom-one",
                                    "hexpand", TRUE,
+                                   "tooltip-text", _("Reset Zoom"),
                                    "label", "100%",
                                    NULL);
+
   g_binding_group_bind (self->page_bindings, "zoom-label", self->zoom_label, "label", 0);
   gtk_box_append (GTK_BOX (zoom_box), zoom_out);
   gtk_box_append (GTK_BOX (zoom_box), self->zoom_label);
