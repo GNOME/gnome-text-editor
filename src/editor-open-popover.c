@@ -245,6 +245,14 @@ on_search_entry_stop_search_cb (EditorOpenPopover *self,
     }
 }
 
+static gboolean
+editor_open_popover_has_rows (EditorOpenPopover *self)
+{
+  g_assert (EDITOR_IS_OPEN_POPOVER (self));
+
+  return g_list_model_get_n_items (G_LIST_MODEL (gtk_list_view_get_model (self->list_view))) > 0;
+}
+
 static void
 editor_open_popover_show (GtkWidget *widget)
 {
@@ -258,10 +266,11 @@ editor_open_popover_show (GtkWidget *widget)
 
   gtk_editable_set_text (GTK_EDITABLE (self->search_entry), "");
 
-  gtk_list_view_scroll_to (self->list_view,
-                           0,
-                           GTK_LIST_SCROLL_NONE,
-                           NULL);
+  if (editor_open_popover_has_rows (self))
+    gtk_list_view_scroll_to (self->list_view,
+                             0,
+                             GTK_LIST_SCROLL_NONE,
+                             NULL);
 
   GTK_WIDGET_CLASS (editor_open_popover_parent_class)->show (widget);
 
@@ -279,10 +288,13 @@ on_search_key_pressed_cb (EditorOpenPopover     *self,
   g_assert (GTK_IS_EVENT_CONTROLLER_KEY (key));
 
   if (keyval == GDK_KEY_Down || keyval == GDK_KEY_KP_Down)
-    gtk_list_view_scroll_to (self->list_view,
-                             0,
-                             GTK_LIST_SCROLL_FOCUS | GTK_LIST_SCROLL_SELECT,
-                             NULL);
+    {
+      if (editor_open_popover_has_rows (self))
+        gtk_list_view_scroll_to (self->list_view,
+                                 0,
+                                 GTK_LIST_SCROLL_FOCUS | GTK_LIST_SCROLL_SELECT,
+                                 NULL);
+    }
 
   return FALSE;
 }
