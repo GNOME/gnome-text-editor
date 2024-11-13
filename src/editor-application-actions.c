@@ -222,14 +222,16 @@ editor_application_actions_help_cb (GSimpleAction *action,
                                     gpointer       user_data)
 {
   EditorApplication *self = user_data;
-  g_autoptr(GtkUriLauncher) launcher = NULL;
-  EditorWindow *window;
+  GdkAppLaunchContext *context = NULL;
+  g_autoptr(GError) error = NULL;
 
   g_assert (EDITOR_IS_APPLICATION (self));
 
-  window = editor_application_get_current_window (self);
-  launcher = gtk_uri_launcher_new ("help:gnome-text-editor");
-  gtk_uri_launcher_launch (launcher, GTK_WINDOW (window), NULL, NULL, NULL);
+  context = gdk_display_get_app_launch_context (gdk_display_get_default ());
+  if (!g_app_info_launch_default_for_uri ("help:gnome-text-editor",
+                                          G_APP_LAUNCH_CONTEXT (context),
+                                          &error))
+    g_warning ("Failed to launch help: %s", error->message);
 }
 
 static void
