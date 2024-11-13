@@ -44,7 +44,7 @@ struct _EditorPreferencesDialog
   GtkCssProvider       *css_provider;
 
   GtkSwitch            *use_custom_font;
-  GtkSwitch            *restore_session;
+  AdwSwitchRow         *restore_session;
   GtkFlowBox           *scheme_group;
   GtkSourceBuffer      *buffer;
   GtkSourceView        *source_view;
