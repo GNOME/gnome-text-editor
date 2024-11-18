@@ -49,7 +49,8 @@ gboolean                 _editor_gchararray_to_style_scheme     (GBinding       
                                                                  GValue                     *to_value,
                                                                  gpointer                    user_data);
 char                    *_editor_date_time_format               (GDateTime                  *self);
-void                     _editor_file_chooser_add_encodings     (GtkFileChooser             *chooser);
+void                     _editor_file_chooser_add_encodings     (GtkFileChooser             *chooser,
+                                                                 const GtkSourceEncoding    *selected);
 void                     _editor_file_chooser_add_line_endings  (GtkFileChooser             *chooser,
                                                                  GtkSourceNewlineType        selected);
 const GtkSourceEncoding *_editor_file_chooser_get_encoding      (GtkFileChooser             *chooser);

@@ -381,7 +381,8 @@ sort_by_name (gconstpointer a,
 }
 
 void
-_editor_file_chooser_add_encodings (GtkFileChooser *chooser)
+_editor_file_chooser_add_encodings (GtkFileChooser          *chooser,
+                                    const GtkSourceEncoding *selected)
 {
   GPtrArray *choices;
   GPtrArray *labels;
@@ -418,7 +419,16 @@ _editor_file_chooser_add_encodings (GtkFileChooser *chooser)
                                _("Character Encoding:"),
                                (const char **)(gpointer)choices->pdata,
                                (const char **)(gpointer)labels->pdata);
-  gtk_file_chooser_set_choice (chooser, "encoding", "auto");
+
+  if (selected == NULL)
+    {
+      gtk_file_chooser_set_choice (chooser, "encoding", "auto");
+    }
+  else
+    {
+      const char *charset = gtk_source_encoding_get_charset (selected);
+      gtk_file_chooser_set_choice (chooser, "encoding", charset);
+    }
 
   g_slist_free (all);
   g_clear_pointer (&choices, g_ptr_array_unref);

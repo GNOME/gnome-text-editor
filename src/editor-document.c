@@ -1534,6 +1534,7 @@ editor_document_load_cb (GObject      *object,
     }
   else
     {
+      const GtkSourceEncoding *encoding;
       GFile *file = editor_document_get_file (self);
       g_autoptr(GFile) draft_file = NULL;
       GtkTextIter begin;
@@ -1541,6 +1542,14 @@ editor_document_load_cb (GObject      *object,
       g_assert (!file || G_IS_FILE (file));
 
       self->newline_type = gtk_source_file_loader_get_newline_type (loader);
+
+      /* We want to keep the same encoding when saving that was
+       * auto-detected from loading the file.
+       *
+       * See #743
+       */
+      if ((encoding = gtk_source_file_loader_get_encoding (loader)))
+        self->encoding = encoding;
 
       _editor_document_set_externally_modified (self, FALSE);
 
