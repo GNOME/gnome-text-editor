@@ -1260,7 +1260,8 @@ _editor_page_save_as (EditorPage *self,
                                         _("Save"),
                                         _("Cancel"));
 
-  _editor_file_chooser_add_encodings (GTK_FILE_CHOOSER (native));
+  _editor_file_chooser_add_encodings (GTK_FILE_CHOOSER (native),
+                                      _editor_document_get_encoding (self->document));
   _editor_file_chooser_add_line_endings (GTK_FILE_CHOOSER (native),
                                          _editor_document_get_newline_type (self->document));
 

@@ -385,7 +385,7 @@ editor_window_actions_open_cb (GtkWidget  *widget,
   gtk_file_chooser_set_filter (GTK_FILE_CHOOSER (native), text_files);
 #endif
 
-  _editor_file_chooser_add_encodings (GTK_FILE_CHOOSER (native));
+  _editor_file_chooser_add_encodings (GTK_FILE_CHOOSER (native), NULL);
 
   gtk_file_chooser_set_select_multiple (GTK_FILE_CHOOSER (native), TRUE);
 
