@@ -1112,7 +1112,7 @@ editor_page_dup_subtitle (EditorPage *self)
           return g_strdup_printf (_("%s (Administrator)"), path);
         }
 
-      return g_steal_pointer (&uri);
+      return g_uri_unescape_string (uri, NULL);
     }
 
   peek = g_file_peek_path (dir);
