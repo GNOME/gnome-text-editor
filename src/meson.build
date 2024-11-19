@@ -35,6 +35,7 @@ editor_sources = [
   'editor-sidebar-item.c',
   'editor-sidebar-model.c',
   'editor-sidebar-row.c',
+  'editor-source-iter.c',
   'editor-source-map.c',
   'editor-source-view.c',
   'editor-statusbar.c',
