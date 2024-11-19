@@ -25,6 +25,7 @@
 #include "editor-joined-menu-private.h"
 #include "editor-page-private.h"
 #include "editor-search-bar-private.h"
+#include "editor-source-iter.h"
 #include "editor-source-view.h"
 #include "editor-spell-menu.h"
 #include "editor-utils-private.h"
@@ -673,6 +674,32 @@ editor_source_view_size_allocate (GtkWidget *widget,
     self->overscroll_source = g_idle_add (editor_source_view_update_overscroll, self);
 }
 
+static gboolean
+editor_source_view_extend_selection (GtkTextView            *text_view,
+                                     GtkTextExtendSelection  granularity,
+                                     const GtkTextIter      *location,
+                                     GtkTextIter            *start,
+                                     GtkTextIter            *end)
+{
+  g_assert (EDITOR_IS_SOURCE_VIEW (text_view));
+
+  if (granularity == GTK_TEXT_EXTEND_SELECTION_WORD)
+    {
+      /* Use a custom handler to extend selection so that we do not
+       * hit potential slow paths in GtkSourceView which uses visibility
+       * oriented API. We do not have invisible text and it can be
+       * extremely slow with things like minified JSON.
+       *
+       * See: #742
+       */
+      _editor_source_iter_extend_selection_word (location, start, end);
+      return GDK_EVENT_STOP;
+    }
+
+  return GTK_TEXT_VIEW_CLASS (editor_source_view_parent_class)->
+      extend_selection (text_view, granularity, location, start, end);
+}
+
 static void
 editor_source_view_constructed (GObject *object)
 {
@@ -766,6 +793,7 @@ editor_source_view_class_init (EditorSourceViewClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+  GtkTextViewClass *text_view_class = GTK_TEXT_VIEW_CLASS (klass);
 
   object_class->constructed = editor_source_view_constructed;
   object_class->dispose = editor_source_view_dispose;
@@ -774,6 +802,8 @@ editor_source_view_class_init (EditorSourceViewClass *klass)
 
   widget_class->root = editor_source_view_root;
   widget_class->size_allocate = editor_source_view_size_allocate;
+
+  text_view_class->extend_selection = editor_source_view_extend_selection;
 
   properties [PROP_LINE_HEIGHT] =
     g_param_spec_double ("line-height",
