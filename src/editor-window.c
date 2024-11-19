@@ -794,6 +794,7 @@ title_query_tooltip_cb (EditorWindow *self,
                         GtkTooltip   *tooltip)
 {
   g_autofree char *text = NULL;
+  g_autofree char *temp = NULL;
   EditorDocument *document;
   EditorPage *page;
   GFile *file;
@@ -809,7 +810,7 @@ title_query_tooltip_cb (EditorWindow *self,
   if (g_file_is_native (file))
     text = g_file_get_path (file);
   else
-    text = g_file_get_uri (file);
+    text = g_uri_unescape_string ((temp = g_file_get_uri (file)), NULL);
 
   gtk_tooltip_set_text (tooltip, text);
 
@@ -1234,10 +1235,12 @@ buffer_notify_file_cb (EditorDocument *document,
 
   if ((file = editor_document_get_file (document)))
     {
+      g_autofree char *temp = NULL;
+
       if (g_file_is_native (file))
         tooltip = g_file_get_path (file);
       else
-        tooltip = g_file_get_uri (file);
+        tooltip = g_uri_unescape_string ((temp = g_file_get_uri (file)), NULL);
     }
   else
     {
