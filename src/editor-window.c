@@ -1247,7 +1247,8 @@ buffer_notify_file_cb (EditorDocument *document,
       tooltip = editor_document_dup_title (document);
     }
 
-  escaped = g_markup_escape_text (tooltip, -1);
+  if (tooltip != NULL)
+    escaped = g_markup_escape_text (tooltip, -1);
 
   adw_tab_page_set_tooltip (tab_page, escaped);
 }
