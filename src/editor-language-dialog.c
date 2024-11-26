@@ -176,6 +176,14 @@ editor_language_dialog_entry_changed_cb (EditorLanguageDialog *self,
 }
 
 static void
+editor_language_dialog_search_stop_cb (EditorLanguageDialog *self)
+{
+  g_assert (EDITOR_IS_LANGUAGE_DIALOG (self));
+
+  adw_dialog_close (ADW_DIALOG (self));
+}
+
+static void
 editor_language_dialog_constructed (GObject *object)
 {
   EditorLanguageDialog *self = (EditorLanguageDialog *)object;
@@ -293,6 +301,11 @@ editor_language_dialog_init (EditorLanguageDialog *self)
   g_signal_connect_object (self->search_entry,
                            "changed",
                            G_CALLBACK (editor_language_dialog_entry_changed_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+  g_signal_connect_object (self->search_entry,
+                           "stop-search",
+                           G_CALLBACK (editor_language_dialog_search_stop_cb),
                            self,
                            G_CONNECT_SWAPPED);
 }
