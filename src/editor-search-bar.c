@@ -244,7 +244,7 @@ _editor_search_bar_move_next (EditorSearchBar *self,
 
   gtk_source_search_context_forward_async (self->context,
                                            &end,
-                                           NULL,
+                                           self->cancellable,
                                            editor_search_bar_move_next_forward_cb,
                                            g_object_ref (self));
 }
@@ -271,7 +271,7 @@ _editor_search_bar_move_previous (EditorSearchBar *self,
 
   gtk_source_search_context_backward_async (self->context,
                                             &begin,
-                                            NULL,
+                                            self->cancellable,
                                             /* XXX: fixme */
                                             editor_search_bar_move_next_forward_cb,
                                             g_object_ref (self));
@@ -416,6 +416,9 @@ editor_search_bar_dispose (GObject *object)
 {
   EditorSearchBar *self = (EditorSearchBar *)object;
 
+  g_cancellable_cancel (self->cancellable);
+  g_clear_object (&self->context);
+
   gtk_widget_dispose_template (GTK_WIDGET (self), EDITOR_TYPE_SEARCH_BAR);
 
   g_clear_pointer ((GtkWidget **)&self->grid, gtk_widget_unparent);
@@ -433,6 +436,7 @@ editor_search_bar_finalize (GObject *object)
 
   g_clear_object (&self->context);
   g_clear_object (&self->settings);
+  g_clear_object (&self->cancellable);
 
   G_OBJECT_CLASS (editor_search_bar_parent_class)->finalize (object);
 }
@@ -581,6 +585,8 @@ editor_search_bar_class_init (EditorSearchBarClass *klass)
 static void
 editor_search_bar_init (EditorSearchBar *self)
 {
+  self->cancellable = g_cancellable_new ();
+
   gtk_widget_init_template (GTK_WIDGET (self));
 
   /* Setup focus chain */
