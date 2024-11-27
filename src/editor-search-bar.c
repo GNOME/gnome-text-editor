@@ -31,6 +31,31 @@
 
 G_DEFINE_TYPE (EditorSearchBar, editor_search_bar, GTK_TYPE_WIDGET)
 
+typedef struct
+{
+  GWeakRef wr;
+} WeakHold;
+
+static WeakHold *
+weak_hold_new (EditorSearchBar *self)
+{
+  WeakHold *wh = g_new0 (WeakHold, 1);
+  g_weak_ref_init (&wh->wr, self);
+  return wh;
+}
+
+static void
+weak_hold_free (WeakHold *wh)
+{
+  if (wh != NULL)
+    {
+      g_weak_ref_clear (&wh->wr);
+      g_free (wh);
+    }
+}
+
+G_DEFINE_AUTOPTR_CLEANUP_FUNC (WeakHold, weak_hold_free)
+
 enum {
   PROP_0,
   PROP_CAN_MOVE,
@@ -196,16 +221,22 @@ editor_search_bar_move_next_forward_cb (GObject      *object,
                                         gpointer      user_data)
 {
   GtkSourceSearchContext *context = (GtkSourceSearchContext *)object;
-  g_autoptr(EditorSearchBar) self = user_data;
+  g_autoptr(WeakHold) wh = user_data;
+  g_autoptr(EditorSearchBar) self = NULL;
   g_autoptr(GError) error = NULL;
   GtkSourceBuffer *buffer;
   GtkTextIter begin;
   GtkTextIter end;
   gboolean has_wrapped = FALSE;
 
-  g_assert (EDITOR_IS_SEARCH_BAR (self));
+  g_assert (wh != NULL);
   g_assert (G_IS_ASYNC_RESULT (result));
   g_assert (GTK_SOURCE_IS_SEARCH_CONTEXT (context));
+
+  if (!(self = g_weak_ref_get (&wh->wr)))
+    return;
+
+  g_assert (EDITOR_IS_SEARCH_BAR (self));
 
   if (!gtk_source_search_context_forward_finish (context, result, &begin, &end, &has_wrapped, &error))
     {
@@ -246,7 +277,7 @@ _editor_search_bar_move_next (EditorSearchBar *self,
                                            &end,
                                            self->cancellable,
                                            editor_search_bar_move_next_forward_cb,
-                                           g_object_ref (self));
+                                           weak_hold_new (self));
 }
 
 void
@@ -274,7 +305,7 @@ _editor_search_bar_move_previous (EditorSearchBar *self,
                                             self->cancellable,
                                             /* XXX: fixme */
                                             editor_search_bar_move_next_forward_cb,
-                                            g_object_ref (self));
+                                            weak_hold_new (self));
 }
 
 static gboolean
