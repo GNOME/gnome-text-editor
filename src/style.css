@@ -151,20 +151,3 @@ window.org-gnome-TextEditor.language-dialog label.placeholder {
   padding-left: 2px;
   padding-right: 2px;
 }
-
-
-/* Tweak save-changes dialog to scroll but keep scrollbars near the
- * edge of the window rather than constrained by the message box padding.
- */
-window.save-changes > windowhandle > box.vertical > box.message-area.vertical {
-  padding-bottom: 0;
-}
-window.save-changes > windowhandle > box.vertical > box.message-area.vertical > preferencespage {
-  margin-left: -30px;
-  margin-right: -30px;
-}
-window.save-changes > windowhandle > box.vertical > box.message-area.vertical > preferencespage > scrolledwindow > viewport {
-  padding-left: 30px;
-  padding-right: 30px;
-  padding-bottom: 10px;
-}

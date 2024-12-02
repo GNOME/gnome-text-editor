@@ -255,7 +255,6 @@ _editor_save_changes_dialog_new (GtkWindow *parent,
 
   dialog = adw_alert_dialog_new (_("Save Changes?"),
                                  _("Open documents contain unsaved changes. Changes which are not saved will be permanently lost."));
-  gtk_widget_add_css_class (GTK_WIDGET (dialog), "save-changes");
 
   adw_alert_dialog_add_responses (ADW_ALERT_DIALOG (dialog),
                                   "cancel", _("_Cancel"),
