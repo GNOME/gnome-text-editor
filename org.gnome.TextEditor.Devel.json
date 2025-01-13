@@ -79,6 +79,19 @@
             ]
         },
         {
+            "name" : "libdex",
+            "builddir" : true,
+            "buildsystem" : "meson",
+            "config-opts" : ["-Ddocs=false", "-Dvapi=false", "-Dexamples=false"],
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/GNOME/libdex.git",
+                    "branch" : "main"
+                }
+            ]
+        },
+        {
             "name" : "gnome-text-editor",
             "builddir" : true,
             "buildsystem" : "meson",

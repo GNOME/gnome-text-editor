@@ -54,6 +54,7 @@ editor_deps = [
   libgtksourceview_dep,
   libadwaita_dep,
   libcairo_dep,
+  libdex_dep,
   spelling_dep,
 ]
 

@@ -35,12 +35,14 @@ gtk_req_version = '4.15'
 adwaita_req_version = '1.6.0'
 gtksourceview_req_version = '5.15.0'
 spelling_req_version = '0.3.0'
+libdex_req_version = '0.8'
 
 glib_req = '>= @0@'.format(glib_req_version)
 gtk_req = '>= @0@'.format(gtk_req_version)
 gtksourceview_req = '>= @0@'.format(gtksourceview_req_version)
 adwaita_req = '>= @0@'.format(adwaita_req_version)
 spelling_req = '>= @0@'.format(spelling_req_version)
+libdex_req = '>= @0@'.format(libdex_req_version)
 
 libglib_dep = dependency('gio-2.0', version: glib_req)
 libgtk_dep = dependency('gtk4', version: gtk_req)
@@ -48,6 +50,7 @@ libgtksourceview_dep = dependency('gtksourceview-5', version: gtksourceview_req)
 libadwaita_dep = dependency('libadwaita-1', version: adwaita_req)
 libcairo_dep = dependency('cairo')
 spelling_dep = dependency('libspelling-1', version: spelling_req)
+libdex_dep = dependency('libdex-1', version: libdex_req)
 
 # Specify minimum library versions
 glib_major = glib_req_version.split('.')[0].to_int()
