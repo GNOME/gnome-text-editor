@@ -35,7 +35,7 @@ gtk_req_version = '4.15'
 adwaita_req_version = '1.6.0'
 gtksourceview_req_version = '5.15.0'
 spelling_req_version = '0.3.0'
-libdex_req_version = '0.8'
+libdex_req_version = '0.9'
 
 glib_req = '>= @0@'.format(glib_req_version)
 gtk_req = '>= @0@'.format(gtk_req_version)
@@ -170,6 +170,7 @@ foreach link_arg: test_link_args
 endforeach
 
 subdir('data')
+subdir('lib')
 subdir('src')
 subdir('help')
 subdir('po')
