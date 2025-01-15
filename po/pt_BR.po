@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2024-08-23 07:15+0000\n"
+"POT-Creation-Date: 2025-01-12 23:12+0000\n"
 "PO-Revision-Date: 2024-03-28 19:22-0300\n"
 "Last-Translator: Jhonata Fernandes <fjhonata14@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <https://br.gnome.org/traducao>\n"
@@ -37,13 +37,13 @@ msgstr "O Projeto GNOME"
 #: data/org.gnome.TextEditor.appdata.xml.in.in:12
 #: data/org.gnome.TextEditor.desktop.in.in:10
 #: data/org.gnome.TextEditor.desktop.in.in:11
-#: src/editor-application-actions.c:199 src/editor-window.c:1317
+#: src/editor-application-actions.c:199 src/editor-window.c:1324
 msgid "Text Editor"
 msgstr "Editor de Texto"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:14
 msgid "Edit text files"
-msgstr "Editar arquivos de texto"
+msgstr "Edite arquivos de texto"
 
 #: data/org.gnome.TextEditor.appdata.xml.in.in:16
 msgid ""
@@ -61,7 +61,7 @@ msgstr "escrever;escreva;notas;bloco de notas;"
 msgid "View and edit text files"
 msgstr "Veja e edite arquivos de texto"
 
-#: data/org.gnome.TextEditor.desktop.in.in:22
+#: data/org.gnome.TextEditor.desktop.in.in:24
 msgid "New Window"
 msgstr "Nova janela"
 
@@ -353,11 +353,11 @@ msgstr ""
 msgid "Print version information and exit"
 msgstr "Imprime informações da versão e sai"
 
-#: src/editor-document.c:2099
+#: src/editor-document.c:2111
 msgid "[Read-Only]"
 msgstr "[Somente leitura]"
 
-#: src/editor-document.c:2316 src/editor-page.c:1074
+#: src/editor-document.c:2328 src/editor-page.c:1074
 #: src/editor-sidebar-item.c:511
 msgid "New Document"
 msgstr "Novo documento"
@@ -395,19 +395,19 @@ msgstr "O arquivo foi alterado por outro programa."
 msgid "Save _As…"
 msgstr "Salvar _como…"
 
-#: src/editor-info-bar.c:91 src/editor-info-bar.ui:62
+#: src/editor-info-bar.c:91 src/editor-info-bar.ui:73
 msgid "Document Restored"
 msgstr "Documento restaurado"
 
-#: src/editor-info-bar.c:92 src/editor-info-bar.ui:72
+#: src/editor-info-bar.c:92 src/editor-info-bar.ui:84
 msgid "Unsaved document has been restored."
 msgstr "O documento não salvo foi restaurado."
 
-#: src/editor-info-bar.c:98 src/editor-info-bar.ui:86
+#: src/editor-info-bar.c:98 src/editor-info-bar.ui:99
 msgid "_Save…"
 msgstr "_Salvar…"
 
-#: src/editor-info-bar.c:100 src/editor-info-bar.ui:80
+#: src/editor-info-bar.c:100 src/editor-info-bar.ui:93
 msgid "_Discard…"
 msgstr "_Descartar…"
 
@@ -423,11 +423,11 @@ msgstr "As alterações não salvas ao documento foram restauradas."
 msgid "Could Not Open File"
 msgstr "Não foi possível abrir o arquivo"
 
-#: src/editor-info-bar.ui:36
+#: src/editor-info-bar.ui:38
 msgid "_Retry"
 msgstr "_Tentar novamente"
 
-#: src/editor-info-bar.ui:43
+#: src/editor-info-bar.ui:51
 msgid "Open As _Administrator"
 msgstr "Abrir como _administrador"
 
@@ -498,7 +498,7 @@ msgstr "Salvar"
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: src/editor-page.c:1422
+#: src/editor-page.c:1423
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Lin %u, Col %u"
@@ -653,27 +653,27 @@ msgstr "Nome"
 msgid "Location"
 msgstr "Local"
 
-#: src/editor-properties-dialog.ui:42
+#: src/editor-properties-dialog.ui:43
 msgid "Open in File Manager"
 msgstr "Abrir no gerenciador de arquivos"
 
-#: src/editor-properties-dialog.ui:55
+#: src/editor-properties-dialog.ui:56
 msgid "Statistics"
 msgstr "Estatísticas"
 
-#: src/editor-properties-dialog.ui:58
+#: src/editor-properties-dialog.ui:59
 msgid "Lines"
 msgstr "Linhas"
 
-#: src/editor-properties-dialog.ui:66
+#: src/editor-properties-dialog.ui:67
 msgid "Words"
 msgstr "Palavras"
 
-#: src/editor-properties-dialog.ui:74
+#: src/editor-properties-dialog.ui:75
 msgid "Characters, No Spaces"
 msgstr "Caracteres, sem espaços"
 
-#: src/editor-properties-dialog.ui:82
+#: src/editor-properties-dialog.ui:83
 msgid "All Characters"
 msgstr "Todos caracteres"
 
@@ -717,7 +717,7 @@ msgstr "Documento sem título"
 msgid "%s (new)"
 msgstr "%s (novo)"
 
-#: src/editor-save-changes-dialog.c:319
+#: src/editor-save-changes-dialog.c:320
 msgid "Save changes for this document"
 msgstr "Salvar alterações deste documento"
 
@@ -838,15 +838,15 @@ msgstr "Mac pré-OS X (CR)"
 msgid "Windows (CR+LF)"
 msgstr "Windows (CR+LF)"
 
-#: src/editor-utils.c:402
+#: src/editor-utils.c:403
 msgid "Automatically Detected"
 msgstr "Detectado automaticamente"
 
-#: src/editor-utils.c:418
+#: src/editor-utils.c:419
 msgid "Character Encoding:"
 msgstr "Codificação de caracteres:"
 
-#: src/editor-utils.c:453
+#: src/editor-utils.c:463
 msgid "Line Ending:"
 msgstr "Fim de linha:"
 
@@ -913,7 +913,7 @@ msgstr "Reduzir"
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - Editor de Texto"
 
-#: src/editor-window.c:1202
+#: src/editor-window.c:1203
 msgid "There are unsaved documents"
 msgstr "Existem documentos não salvos"
 
