@@ -210,7 +210,7 @@ editor_preferences_font_init (EditorPreferencesFont *self)
   GtkImage *image;
 
   image = g_object_new (GTK_TYPE_IMAGE,
-                        "icon-name", "go-next-symbolic",
+                        "icon-name", "document-font-symbolic",
                         "hexpand", FALSE,
                         "margin-start", 12,
                         "halign", GTK_ALIGN_END,
