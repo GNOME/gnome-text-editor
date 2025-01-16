@@ -31,7 +31,7 @@ if not get_option('buildtype').startswith('debug')
 endif
 # Check dependencies
 glib_req_version = '2.80'
-gtk_req_version = '4.15'
+gtk_req_version = '4.17'
 adwaita_req_version = '1.6.0'
 gtksourceview_req_version = '5.15.0'
 spelling_req_version = '0.3.0'
