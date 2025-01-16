@@ -22,6 +22,7 @@
 
 #include <adwaita.h>
 
+#include "editor-fullscreen-box.h"
 #include "editor-open-popover-private.h"
 #include "editor-page-private.h"
 #include "editor-statusbar-private.h"
@@ -53,6 +54,7 @@ struct _EditorWindow
   GtkWidget            *zoom_label;
   GMenu                *options_menu_model;
   EditorStatusbar      *statusbar;
+  EditorFullscreenBox  *fullscreen_box;
 
   /* Borrowed References */
   EditorPage           *visible_page;

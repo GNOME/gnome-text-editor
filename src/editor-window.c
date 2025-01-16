@@ -797,6 +797,70 @@ indicator_to_boolean (GBinding     *binding,
 }
 
 static void
+editor_window_fullscreen_action (GtkWidget  *widget,
+                                 const char *action_name,
+                                 GVariant   *param)
+{
+  gtk_window_fullscreen (GTK_WINDOW (widget));
+}
+
+static void
+editor_window_unfullscreen_action (GtkWidget  *widget,
+                                   const char *action_name,
+                                   GVariant   *param)
+{
+  gtk_window_unfullscreen (GTK_WINDOW (widget));
+}
+
+static void
+editor_window_toggle_fullscreen (GtkWidget  *widget,
+                                 const char *action_name,
+                                 GVariant   *param)
+{
+  if (gtk_window_is_fullscreen (GTK_WINDOW (widget)))
+    gtk_window_unfullscreen (GTK_WINDOW (widget));
+  else
+    gtk_window_fullscreen (GTK_WINDOW (widget));
+}
+
+static void
+editor_window_toplevel_state_changed_cb (EditorWindow *self,
+                                         GParamSpec   *pspec,
+                                         GdkToplevel  *toplevel)
+{
+  GdkToplevelState state;
+  gboolean is_fullscreen;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+  g_assert (pspec != NULL);
+  g_assert (GDK_IS_TOPLEVEL (toplevel));
+
+  state = gdk_toplevel_get_state (toplevel);
+
+  is_fullscreen = !!(state & GDK_TOPLEVEL_STATE_FULLSCREEN);
+
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "win.fullscreen", !is_fullscreen);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "win.unfullscreen", is_fullscreen);
+
+  editor_fullscreen_box_set_fullscreen (self->fullscreen_box, is_fullscreen);
+}
+
+static void
+editor_window_realize (GtkWidget *widget)
+{
+  GdkSurface *toplevel;
+
+  GTK_WIDGET_CLASS (editor_window_parent_class)->realize (widget);
+
+  if ((toplevel = gtk_native_get_surface (GTK_NATIVE (widget))))
+    g_signal_connect_object (toplevel,
+                             "notify::state",
+                             G_CALLBACK (editor_window_toplevel_state_changed_cb),
+                             widget,
+                             G_CONNECT_SWAPPED);
+}
+
+static void
 editor_window_dispose (GObject *object)
 {
   EditorWindow *self = (EditorWindow *)object;
@@ -886,6 +950,8 @@ editor_window_class_init (EditorWindowClass *klass)
   object_class->get_property = editor_window_get_property;
   object_class->set_property = editor_window_set_property;
 
+  widget_class->realize = editor_window_realize;
+
   window_class->close_request = editor_window_close_request;
 
   properties [PROP_VISIBLE_PAGE] =
@@ -900,6 +966,7 @@ editor_window_class_init (EditorWindowClass *klass)
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-window.ui");
 
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, empty);
+  gtk_widget_class_bind_template_child (widget_class, EditorWindow, fullscreen_box);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, indicator);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, is_modified);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, open_menu_button);
@@ -921,6 +988,9 @@ editor_window_class_init (EditorWindowClass *klass)
 
   gtk_widget_class_install_action (widget_class, "win.alternate-help-overlay", NULL, on_show_help_overlay_cb);
   gtk_widget_class_install_action (widget_class, "win.undo-close-page", NULL, on_undo_close_page_cb);
+  gtk_widget_class_install_action (widget_class, "win.fullscreen", NULL, editor_window_fullscreen_action);
+  gtk_widget_class_install_action (widget_class, "win.unfullscreen", NULL, editor_window_unfullscreen_action);
+  gtk_widget_class_install_action (widget_class, "win.toggle-fullscreen", NULL, editor_window_toggle_fullscreen);
 
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_w, GDK_CONTROL_MASK, "win.close-page-or-window", NULL);
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_o, GDK_CONTROL_MASK, "win.open", NULL);
@@ -957,6 +1027,7 @@ editor_window_class_init (EditorWindowClass *klass)
 
   _editor_window_class_actions_init (klass);
 
+  g_type_ensure (EDITOR_TYPE_FULLSCREEN_BOX);
   g_type_ensure (EDITOR_TYPE_OPEN_POPOVER);
   g_type_ensure (EDITOR_TYPE_POSITION_LABEL);
   g_type_ensure (EDITOR_TYPE_STATUSBAR);

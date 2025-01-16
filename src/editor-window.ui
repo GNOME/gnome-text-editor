@@ -8,9 +8,17 @@
     </style>
     <property name="width-request">360</property>
     <child>
-      <object class="AdwToolbarView">
-        <property name="top-bar-style">raised</property>
-        <property name="bottom-bar-style">raised</property>
+      <object class="GtkShortcutController">
+        <child>
+          <object class="GtkShortcut">
+            <property name="trigger">F11</property>
+            <property name="action">action(win.toggle-fullscreen)</property>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="EditorFullscreenBox" id="fullscreen_box">
         <child type="top">
           <object class="AdwHeaderBar" id="header_bar">
             <child type="title">
@@ -226,6 +234,20 @@ Or, press Ctrl+W to close the window.</property>
         <attribute name="id">properties</attribute>
         <attribute name="label" translatable="yes">Documen_t Properties</attribute>
         <attribute name="action">page.properties</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Fullscreen</attribute>
+        <attribute name="action">win.fullscreen</attribute>
+        <attribute name="hidden-when">action-disabled</attribute>
+        <attribute name="accel">F11</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Leave Fullscreen</attribute>
+        <attribute name="action">win.unfullscreen</attribute>
+        <attribute name="hidden-when">action-disabled</attribute>
+        <attribute name="accel">F11</attribute>
       </item>
     </section>
     <section>
