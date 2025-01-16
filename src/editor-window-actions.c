@@ -303,21 +303,26 @@ editor_window_actions_open_text_file_cb (GObject      *object,
   GtkFileDialog *dialog = (GtkFileDialog *)object;
   g_autoptr(EditorWindow) self = user_data;
   g_autoptr(GError) error = NULL;
-  g_autoptr(GFile) file = NULL;
+  g_autoptr(GListModel) files = NULL;
   const char *encoding = NULL;
 
   g_assert (GTK_IS_FILE_DIALOG (dialog));
   g_assert (G_IS_ASYNC_RESULT (result));
   g_assert (EDITOR_IS_WINDOW (self));
 
-  if ((file = gtk_file_dialog_open_text_file_finish (dialog, result, &encoding, &error)))
+  if ((files = gtk_file_dialog_open_multiple_text_files_finish (dialog, result, &encoding, &error)))
     {
       const GtkSourceEncoding *translated = NULL;
+      guint n_items = g_list_model_get_n_items (files);
 
       if (encoding != NULL && g_strcmp0 (encoding, "automatic") != 0)
         translated = gtk_source_encoding_get_from_charset (encoding);
 
-      editor_session_open (EDITOR_SESSION_DEFAULT, self, file, translated);
+      for (guint i = 0; i < n_items; i++)
+        {
+          g_autoptr(GFile) file = g_list_model_get_item (files, i);
+          editor_session_open (EDITOR_SESSION_DEFAULT, self, file, translated);
+        }
     }
 }
 
@@ -383,11 +388,11 @@ editor_window_actions_open_cb (GtkWidget  *widget,
   gtk_file_dialog_set_default_filter (dialog, text_files);
 #endif
 
-  gtk_file_dialog_open_text_file (dialog,
-                                  GTK_WINDOW (self),
-                                  NULL,
-                                  editor_window_actions_open_text_file_cb,
-                                  g_object_ref (self));
+  gtk_file_dialog_open_multiple_text_files (dialog,
+                                            GTK_WINDOW (self),
+                                            NULL,
+                                            editor_window_actions_open_text_file_cb,
+                                            g_object_ref (self));
 }
 
 static void
