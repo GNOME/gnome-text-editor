@@ -22,8 +22,6 @@
 
 #include "config.h"
 
-#include <unistd.h>
-
 #include <glib/gi18n.h>
 
 #include <adwaita.h>
@@ -1091,7 +1089,7 @@ editor_page_dup_subtitle (EditorPage *self)
 
 #ifdef G_OS_UNIX
   if (docportal == NULL)
-    docportal = g_strdup_printf ("/run/user/%u/doc/", getuid ());
+    docportal = g_strdup_printf ("%s/doc/", g_get_user_runtime_dir ());
 #endif
 
   file = editor_document_get_file (self->document);
@@ -1119,7 +1117,7 @@ editor_page_dup_subtitle (EditorPage *self)
 
 #ifdef G_OS_UNIX
   if (g_str_has_prefix (peek, docportal))
-    return g_strdup (_("Document Portal"));
+    return _editor_get_portal_host_path (dir);
 #endif
 
   return _editor_path_collapse (peek);

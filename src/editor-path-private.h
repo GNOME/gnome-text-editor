@@ -21,10 +21,12 @@
 #pragma once
 
 #include <glib.h>
+#include <gio/gio.h>
 
 G_BEGIN_DECLS
 
-gchar *_editor_path_expand   (const gchar *path);
-gchar *_editor_path_collapse (const gchar *path);
+gchar *_editor_path_expand          (const gchar *path);
+gchar *_editor_path_collapse        (const gchar *path);
+gchar *_editor_get_portal_host_path (GFile       *file);
 
 G_END_DECLS

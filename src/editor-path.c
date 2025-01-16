@@ -23,6 +23,7 @@
 #include "config.h"
 
 #include <glib.h>
+#include <glib/gi18n.h>
 #include <string.h>
 
 #ifdef G_OS_UNIX
@@ -31,6 +32,8 @@
 #endif
 
 #include "editor-path-private.h"
+
+#define FILE_ATTRIBUTE_HOST_PATH "xattr::document-portal.host-path"
 
 char *
 _editor_path_expand (const gchar *path)
@@ -89,4 +92,28 @@ _editor_path_collapse (const gchar *path)
 #else
   return g_strdup (path);
 #endif
+}
+
+char *
+_editor_get_portal_host_path (GFile *file)
+{
+  g_autoptr(GFileInfo) info = NULL;
+
+  g_return_val_if_fail (G_IS_FILE (file), NULL);
+
+  if ((info = g_file_query_info (file,
+                                 FILE_ATTRIBUTE_HOST_PATH,
+                                 G_FILE_QUERY_INFO_NONE,
+                                 NULL, NULL)))
+    {
+      const char *host_path;
+
+      if ((host_path = g_file_info_get_attribute_string (info, FILE_ATTRIBUTE_HOST_PATH)))
+        {
+          g_autofree gchar *path = g_filename_display_name (host_path);
+          return _editor_path_collapse (path);
+        }
+    }
+
+  return g_strdup (_("Document Portal"));
 }

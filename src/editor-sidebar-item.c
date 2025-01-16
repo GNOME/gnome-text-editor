@@ -23,7 +23,6 @@
 #include "config.h"
 
 #include <glib/gi18n.h>
-#include <unistd.h>
 
 #include "editor-application.h"
 #include "editor-document-private.h"
@@ -77,7 +76,7 @@ file_is_from_document_portal (GFile *file)
   static char *docportal;
 
   if G_UNLIKELY (docportal == NULL)
-    docportal = g_strdup_printf ("/run/user/%u/doc/", getuid ());
+    docportal = g_strdup_printf ("%s/doc/", g_get_user_runtime_dir ());
 
   if (g_file_is_native (file))
     {
@@ -110,7 +109,7 @@ editor_sidebar_item_update_subtitle (EditorSidebarItem *self)
   if (!(dir = g_file_get_parent (self->file)))
     self->subtitle = g_strdup ("");
   else if (file_is_from_document_portal (dir))
-    self->subtitle = g_strdup (_("Document Portal"));
+    self->subtitle = _editor_get_portal_host_path (dir);
   else if (g_file_is_native (dir))
     self->subtitle = _editor_path_collapse (g_file_peek_path (dir));
   else
