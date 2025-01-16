@@ -69,7 +69,7 @@ check_early_opts (int        *argc,
 #endif
 
       g_print ("\n\
-Copyright 2020-2022 Christian Hergert, et al.\n\
+Copyright 2020-2025 Christian Hergert, et al.\n\
 This is free software; see the source for copying conditions. There is NO\n\
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\
 ");
