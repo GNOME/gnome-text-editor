@@ -28,6 +28,8 @@ G_BEGIN_DECLS
 
 char                    *_editor_font_description_to_css        (const PangoFontDescription *font_desc);
 void                     _editor_widget_hide_with_fade          (GtkWidget                  *widget);
+void                     _editor_widget_hide_with_fade_delay    (GtkWidget                  *widget,
+                                                                 guint                       delay);
 gboolean                 _editor_gchararray_to_boolean          (GBinding                   *binding,
                                                                  const GValue               *from_value,
                                                                  GValue                     *to_value,

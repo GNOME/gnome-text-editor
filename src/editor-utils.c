@@ -231,7 +231,8 @@ hide_callback (gpointer data)
 }
 
 void
-_editor_widget_hide_with_fade (GtkWidget *widget)
+_editor_widget_hide_with_fade_delay (GtkWidget *widget,
+                                     guint      delay)
 {
   GdkFrameClock *frame_clock;
   EditorAnimation *anim;
@@ -246,8 +247,8 @@ _editor_widget_hide_with_fade (GtkWidget *widget)
 
       frame_clock = gtk_widget_get_frame_clock (widget);
       anim = editor_object_animate_full (widget,
-                                         EDITOR_ANIMATION_LINEAR,
-                                         1000,
+                                         EDITOR_ANIMATION_EASE_OUT_CUBIC,
+                                         delay,
                                          frame_clock,
                                          hide_callback,
                                          g_object_ref (widget),
@@ -258,6 +259,12 @@ _editor_widget_hide_with_fade (GtkWidget *widget)
                               g_object_ref (anim),
                               g_object_unref);
     }
+}
+
+void
+_editor_widget_hide_with_fade (GtkWidget *widget)
+{
+  _editor_widget_hide_with_fade_delay (widget, 1000);
 }
 
 gboolean
