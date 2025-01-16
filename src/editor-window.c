@@ -283,6 +283,8 @@ editor_window_notify_selected_page_cb (EditorWindow *self,
    *        go away.
    */
   gtk_widget_queue_resize (GTK_WIDGET (self->tab_view));
+
+  editor_fullscreen_box_reveal (self->fullscreen_box);
 }
 
 static void
