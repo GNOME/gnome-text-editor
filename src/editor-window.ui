@@ -115,12 +115,11 @@
                 <property name="halign">end</property>
                 <property name="spacing">6</property>
                 <child>
-                  <object class="GtkMenuButton" id="options_menu">
-                    <property name="tooltip-text" translatable="yes">View Options</property>
-                    <property name="icon-name">document-properties-symbolic</property>
-                    <property name="menu-model">options_menu_model</property>
+                  <object class="GtkToggleButton" id="properties_button">
+                    <property name="tooltip-text" translatable="yes">Document Properties</property>
+                    <property name="icon-name">info-outline-symbolic</property>
                     <accessibility>
-                      <property name="label" translatable="yes">View</property>
+                      <property name="label" translatable="yes">Document Properties</property>
                     </accessibility>
                   </object>
                 </child>
@@ -144,31 +143,62 @@
           </object>
         </child>
         <property name="content">
-          <object class="GtkStack" id="stack">
-            <property name="hexpand">true</property>
+          <object class="GtkBox">
+            <property name="orientation">horizontal</property>
             <child>
-              <object class="AdwTabView" id="tab_view">
+              <object class="GtkStack" id="stack">
                 <property name="hexpand">true</property>
-                <property name="menu-model">tab_menu</property>
-                <signal name="close-page" handler="on_tab_view_close_page_cb" swapped="true"/>
-                <signal name="setup-menu" handler="on_tab_view_setup_menu_cb" swapped="true"/>
-                <signal name="create-window" handler="on_tab_view_create_window_cb" swapped="true"/>
+                <child>
+                  <object class="AdwTabView" id="tab_view">
+                    <property name="hexpand">true</property>
+                    <property name="menu-model">tab_menu</property>
+                    <signal name="close-page" handler="on_tab_view_close_page_cb" swapped="true"/>
+                    <signal name="setup-menu" handler="on_tab_view_setup_menu_cb" swapped="true"/>
+                    <signal name="create-window" handler="on_tab_view_create_window_cb" swapped="true"/>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwStatusPage" id="empty">
+                    <property name="title" translatable="yes">Start or Open a Document</property>
+                    <property name="child">
+                      <object class="GtkBox">
+                        <property name="orientation">vertical</property>
+                        <property name="spacing">32</property>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="label" translatable="yes">• Press the Open button
+• Press the New tab button
+• Press Ctrl+N to start a new document
+• Press Ctrl+O to browse for a document</property>
+                            <property name="wrap">True</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkButton">
+                            <style>
+                              <class name="suggested-action"/>
+                              <class name="large-button"/>
+                              <class name="pill"/>
+                            </style>
+                            <property name="action-name">session.new-draft</property>
+                            <property name="halign">center</property>
+                            <property name="use-underline">true</property>
+                            <property name="label" translatable="yes">_New Empty File</property>
+                          </object>
+                        </child>
+                      </object>
+                    </property>
+                  </object>
+                </child>
               </object>
             </child>
             <child>
-              <object class="AdwStatusPage" id="empty">
-                <property name="title" translatable="yes">Start or Open a Document</property>
-                <property name="child">
-                  <object class="GtkLabel">
-                    <property name="label" translatable="yes">• Press the Open button
-• Press the New tab button
-• Press Ctrl+N to start a new document
-• Press Ctrl+O to browse for a document
-
-Or, press Ctrl+W to close the window.</property>
-                    <property name="wrap">True</property>
-                  </object>
-                </property>
+              <object class="EditorPropertiesPanel">
+                <binding name="document">
+                  <lookup name="document" type="EditorPage">
+                    <lookup name="visible-page">EditorWindow</lookup>
+                  </lookup>
+                </binding>
               </object>
             </child>
           </object>
@@ -267,73 +297,6 @@ Or, press Ctrl+W to close the window.</property>
       <item>
         <attribute name="label" translatable="yes">A_bout Text Editor</attribute>
         <attribute name="action">app.about</attribute>
-      </item>
-    </section>
-  </menu>
-  <menu id="options_menu_model">
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Show _Line Numbers</attribute>
-        <attribute name="action">settings.show-line-numbers</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Show _Right Margin</attribute>
-        <attribute name="action">settings.show-right-margin</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">_Automatic Indentation</attribute>
-        <attribute name="action">settings.auto-indent</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes" comments="Translators: this is a tab character, not a browser tab">_Tabs</attribute>
-        <attribute name="action">settings.indent-style</attribute>
-        <attribute name="target" type="s">'tab'</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">_Spaces</attribute>
-        <attribute name="action">settings.indent-style</attribute>
-        <attribute name="target" type="s">'space'</attribute>
-      </item>
-      <submenu>
-        <attribute name="label" translatable="yes">Spaces _Per Tab</attribute>
-        <section>
-          <item>
-            <attribute name="label" translatable="yes">_2</attribute>
-            <attribute name="action">settings.tab-width</attribute>
-            <attribute name="target" type="u">2</attribute>
-          </item>
-          <item>
-            <attribute name="label" translatable="yes">_4</attribute>
-            <attribute name="action">settings.tab-width</attribute>
-            <attribute name="target" type="u">4</attribute>
-          </item>
-          <item>
-            <attribute name="label" translatable="yes">_6</attribute>
-            <attribute name="action">settings.tab-width</attribute>
-            <attribute name="target" type="u">6</attribute>
-          </item>
-          <item>
-            <attribute name="label" translatable="yes">_8</attribute>
-            <attribute name="action">settings.tab-width</attribute>
-            <attribute name="target" type="u">8</attribute>
-          </item>
-        </section>
-      </submenu>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">T_ext Wrapping</attribute>
-        <attribute name="action">settings.wrap-text</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Chec_k Spelling</attribute>
-        <attribute name="action">settings.spellcheck</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">_Document Type…</attribute>
-        <attribute name="action">page.change-language</attribute>
       </item>
     </section>
   </menu>
