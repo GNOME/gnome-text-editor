@@ -36,6 +36,8 @@
 #include "editor-source-view.h"
 #include "editor-utils-private.h"
 
+#define HIDE_POSITION_DELAY_SECONDS 1
+
 enum {
   PROP_0,
   PROP_BUSY,
@@ -55,6 +57,36 @@ enum {
 G_DEFINE_TYPE (EditorPage, editor_page, GTK_TYPE_WIDGET)
 
 static GParamSpec *properties [N_PROPS];
+static GSettings *app_settings;
+
+static gboolean
+editor_page_hide_position_cb (gpointer data)
+{
+  EditorPage *self = data;
+
+  self->queued_hide_position = 0;
+
+  _editor_widget_hide_with_fade_delay (GTK_WIDGET (self->position_label), 500);
+
+  return G_SOURCE_REMOVE;
+}
+
+static void
+editor_page_queue_hide_position (EditorPage *self)
+{
+  g_assert (EDITOR_IS_PAGE (self));
+
+  if (self->queued_hide_position)
+    g_source_remove (self->queued_hide_position);
+
+  if (!g_settings_get_boolean (app_settings, "show-line-numbers"))
+    return;
+
+  self->queued_hide_position =
+    g_timeout_add_seconds (HIDE_POSITION_DELAY_SECONDS,
+                           editor_page_hide_position_cb,
+                           self);
+}
 
 static gboolean
 get_tab_info (EditorPage  *self,
@@ -251,7 +283,35 @@ editor_page_document_cursor_moved_cb (EditorPage     *self,
   g_assert (EDITOR_IS_DOCUMENT (document));
 
   if (!_editor_document_get_loading (document))
-    g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_POSITION_LABEL]);
+    {
+      GtkTextMark *insert = gtk_text_buffer_get_insert (GTK_TEXT_BUFFER (document));
+      GtkTextIter iter;
+
+      g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_POSITION_LABEL]);
+
+      gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (document), &iter, insert);
+
+      _editor_position_label_set_position (self->position_label,
+                                           gtk_text_iter_get_line (&iter) + 1,
+                                           gtk_text_iter_get_line_offset (&iter) + 1);
+    }
+}
+
+static void
+editor_page_document_cursor_jumped_cb (EditorPage     *self,
+                                       EditorDocument *document)
+{
+  g_assert (EDITOR_IS_PAGE (self));
+  g_assert (EDITOR_IS_DOCUMENT (document));
+
+  if (g_settings_get_boolean (app_settings, "show-line-numbers"))
+    {
+      g_object_set_data (G_OBJECT (self->position_label),
+                         "EDITOR_FADE_ANIMATION",
+                         NULL);
+      gtk_widget_show (GTK_WIDGET (self->position_label));
+      editor_page_queue_hide_position (self);
+    }
 }
 
 static void
@@ -354,6 +414,11 @@ editor_page_set_document (EditorPage     *self,
       g_signal_connect_object (document,
                                "cursor-moved",
                                G_CALLBACK (editor_page_document_cursor_moved_cb),
+                               self,
+                               G_CONNECT_SWAPPED);
+      g_signal_connect_object (document,
+                               "cursor-jumped",
+                               G_CALLBACK (editor_page_document_cursor_jumped_cb),
                                self,
                                G_CONNECT_SWAPPED);
       g_signal_connect_object (document,
@@ -689,6 +754,8 @@ editor_page_dispose (GObject *object)
 {
   EditorPage *self = (EditorPage *)object;
 
+  g_clear_handle_id (&self->queued_hide_position, g_source_remove);
+
   if (self->document != NULL)
     _editor_document_shutdown (self->document);
 
@@ -899,6 +966,7 @@ editor_page_class_init (EditorPageClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorPage, infobar);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, map);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, overlay);
+  gtk_widget_class_bind_template_child (widget_class, EditorPage, position_label);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, progress_bar);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, scroller);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, search_bar);
@@ -912,6 +980,7 @@ editor_page_class_init (EditorPageClass *klass)
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_i, GDK_CONTROL_MASK, "page.show-goto-line", NULL);
 
   g_type_ensure (EDITOR_TYPE_INFO_BAR);
+  g_type_ensure (EDITOR_TYPE_POSITION_LABEL);
   g_type_ensure (EDITOR_TYPE_SEARCH_BAR);
   g_type_ensure (EDITOR_TYPE_SOURCE_MAP);
   g_type_ensure (EDITOR_TYPE_SOURCE_VIEW);
@@ -921,6 +990,9 @@ static void
 editor_page_init (EditorPage *self)
 {
   GtkDropTarget *dest;
+
+  if (app_settings == NULL)
+    app_settings = g_settings_new ("org.gnome.TextEditor");
 
   self->cancellable = g_cancellable_new ();
 

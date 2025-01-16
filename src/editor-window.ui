@@ -107,20 +107,6 @@
                 <property name="halign">end</property>
                 <property name="spacing">6</property>
                 <child>
-                  <object class="GtkBox" id="position_box">
-                    <child>
-                      <object class="EditorPositionLabel" id="position_label">
-                        <property name="hexpand">false</property>
-                        <property name="vexpand">false</property>
-                        <property name="valign">center</property>
-                        <style>
-                          <class name="dim-label"/>
-                        </style>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-                <child>
                   <object class="GtkMenuButton" id="options_menu">
                     <property name="tooltip-text" translatable="yes">View Options</property>
                     <property name="icon-name">document-properties-symbolic</property>

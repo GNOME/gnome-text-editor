@@ -180,8 +180,6 @@ update_subtitle_visibility_cb (EditorWindow *self)
     }
 
   gtk_widget_set_visible (GTK_WIDGET (self->subtitle), visible);
-  gtk_widget_set_visible (GTK_WIDGET (self->position_box),
-                          visible && g_settings_get_boolean (self->settings, "show-line-numbers"));
 }
 
 static void
@@ -209,46 +207,13 @@ update_language_name_cb (EditorWindow *self)
 }
 
 static void
-editor_window_cursor_moved_cb (EditorWindow   *self,
-                               EditorDocument *document)
-{
-  EditorPage *page;
-  guint line;
-  guint column;
-
-  g_assert (EDITOR_IS_WINDOW (self));
-  g_assert (self->position_label != NULL);
-  g_assert (EDITOR_IS_POSITION_LABEL (self->position_label));
-  g_assert (EDITOR_IS_DOCUMENT (document));
-
-  if (!(page = editor_window_get_visible_page (self)))
-    return;
-
-  if (editor_document_get_busy (document))
-    return;
-
-  if (editor_page_get_document (page) != document)
-    return;
-
-  editor_page_get_visual_position (page, &line, &column);
-  _editor_position_label_set_position (self->position_label, line + 1, column + 1);
-}
-
-static void
 editor_window_page_bind_cb (EditorWindow *self,
                             EditorPage   *page,
                             GSignalGroup *group)
 {
-  EditorDocument *document;
-
   g_assert (EDITOR_IS_WINDOW (self));
   g_assert (EDITOR_IS_PAGE (page));
   g_assert (G_IS_SIGNAL_GROUP (group));
-
-  document = editor_page_get_document (page);
-
-  g_signal_group_set_target (self->document_signals, document);
-  editor_window_cursor_moved_cb (self, document);
 
   _editor_window_actions_update (self, page);
 
@@ -298,8 +263,6 @@ editor_window_notify_selected_page_cb (EditorWindow *self,
   gtk_widget_set_sensitive (self->zoom_label, page != NULL);
   gtk_widget_set_visible (GTK_WIDGET (self->is_modified), FALSE);
   gtk_widget_set_visible (GTK_WIDGET (self->subtitle), FALSE);
-  gtk_widget_set_visible (GTK_WIDGET (self->position_box),
-                          page && g_settings_get_boolean (self->settings, "show-line-numbers"));
   gtk_widget_set_visible (GTK_WIDGET (self->indicator), FALSE);
 
   self->visible_page = page;
@@ -846,7 +809,6 @@ editor_window_dispose (GObject *object)
 
   g_binding_group_set_source (self->page_bindings, NULL);
   g_signal_group_set_target (self->page_signals, NULL);
-  g_signal_group_set_target (self->document_signals, NULL);
 
   if (self->inhibit_cookie != 0)
     {
@@ -867,7 +829,6 @@ editor_window_finalize (GObject *object)
 
   g_clear_object (&self->page_bindings);
   g_clear_object (&self->page_signals);
-  g_clear_object (&self->document_signals);
   g_clear_object (&self->cancellable);
   g_clear_pointer (&self->closed_items, g_array_unref);
 
@@ -945,8 +906,6 @@ editor_window_class_init (EditorWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, open_menu_popover);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, options_menu);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, options_menu_model);
-  gtk_widget_class_bind_template_child (widget_class, EditorWindow, position_box);
-  gtk_widget_class_bind_template_child (widget_class, EditorWindow, position_label);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, primary_menu);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, stack);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, subtitle);
@@ -1089,14 +1048,6 @@ editor_window_init (EditorWindow *self)
   g_signal_group_connect_object (self->page_signals,
                                  "notify::language-name",
                                  G_CALLBACK (update_language_name_cb),
-                                 self,
-                                 G_CONNECT_SWAPPED);
-
-  self->document_signals = g_signal_group_new (EDITOR_TYPE_DOCUMENT);
-
-  g_signal_group_connect_object (self->document_signals,
-                                 "cursor-moved",
-                                 G_CALLBACK (editor_window_cursor_moved_cb),
                                  self,
                                  G_CONNECT_SWAPPED);
 

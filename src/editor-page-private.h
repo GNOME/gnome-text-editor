@@ -27,6 +27,7 @@
 #include "editor-page.h"
 #include "editor-page-settings.h"
 #include "editor-path-private.h"
+#include "editor-position-label-private.h"
 #include "editor-print-operation.h"
 #include "editor-search-bar-private.h"
 #include "editor-utils-private.h"
@@ -60,6 +61,9 @@ struct _EditorPage
   GtkInfoBar              *infobar;
   GtkEventController      *vim;
   GMenu                   *indent_menu;
+  EditorPositionLabel     *position_label;
+
+  guint                    queued_hide_position;
 
   guint                    close_requested : 1;
   guint                    moving : 1;

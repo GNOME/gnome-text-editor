@@ -24,7 +24,6 @@
 
 #include "editor-open-popover-private.h"
 #include "editor-page-private.h"
-#include "editor-position-label-private.h"
 #include "editor-statusbar-private.h"
 #include "editor-window.h"
 
@@ -46,8 +45,6 @@ struct _EditorWindow
   GtkLabel             *is_modified;
   GtkImage             *indicator;
   EditorOpenPopover    *open_menu_popover;
-  GtkBox               *position_box;
-  EditorPositionLabel  *position_label;
   GtkStack             *stack;
   GtkMenuButton        *open_menu_button;
   GtkMenuButton        *primary_menu;
@@ -64,7 +61,6 @@ struct _EditorWindow
   /* Owned References */
   GBindingGroup        *page_bindings;
   GSignalGroup         *page_signals;
-  GSignalGroup         *document_signals;
   GSettings            *settings;
   GArray               *closed_items;
 
