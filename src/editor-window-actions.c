@@ -314,7 +314,7 @@ editor_window_actions_open_text_file_cb (GObject      *object,
     {
       const GtkSourceEncoding *translated = NULL;
 
-      if (encoding != NULL)
+      if (encoding != NULL && g_strcmp0 (encoding, "automatic") != 0)
         translated = gtk_source_encoding_get_from_charset (encoding);
 
       editor_session_open (EDITOR_SESSION_DEFAULT, self, file, translated);
