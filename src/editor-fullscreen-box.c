@@ -27,6 +27,7 @@
 #include <adwaita.h>
 
 #define FULLSCREEN_HIDE_DELAY 300
+#define FORCED_REVEAL_DELAY  1500
 #define SHOW_HEADERBAR_DISTANCE_PX 5
 
 struct _EditorFullscreenBox {
@@ -38,6 +39,7 @@ struct _EditorFullscreenBox {
   gboolean autohide;
 
   guint timeout_id;
+  guint forced_reveal_id;
 
   GtkWidget *last_focus;
   gdouble last_y;
@@ -154,6 +156,13 @@ update (EditorFullscreenBox *self,
 {
   if (!self->autohide || !self->fullscreen)
     return;
+
+  if (self->forced_reveal_id) {
+    if (self->last_y <= get_titlebar_area_height (self))
+      g_clear_handle_id (&self->forced_reveal_id, g_source_remove);
+    else
+      return;
+  }
 
   if (!self->is_touch &&
       self->last_y <= get_titlebar_area_height (self)) {
@@ -328,6 +337,8 @@ editor_fullscreen_box_dispose (GObject *object)
   }
 
   g_clear_pointer (&self->headers, g_list_free);
+  g_clear_handle_id (&self->timeout_id, g_source_remove);
+  g_clear_handle_id (&self->forced_reveal_id, g_source_remove);
 
   G_OBJECT_CLASS (editor_fullscreen_box_parent_class)->dispose (object);
 }
@@ -553,4 +564,29 @@ buildable_iface_init (GtkBuildableIface *iface)
 {
   parent_buildable = g_type_interface_peek_parent (iface);
   iface->add_child = editor_fullscreen_box_add_child;
+}
+
+static void
+clear_forced_timeout (gpointer data)
+{
+  EditorFullscreenBox *self = data;
+
+  self->forced_reveal_id = 0;
+
+  update (self, TRUE);
+}
+
+void
+editor_fullscreen_box_reveal (EditorFullscreenBox *self)
+{
+  g_return_if_fail (EDITOR_IS_FULLSCREEN_BOX (self));
+
+  g_clear_handle_id (&self->forced_reveal_id, g_source_remove);
+
+  show_ui (self);
+
+  g_clear_handle_id (&self->timeout_id, g_source_remove);
+  self->forced_reveal_id = g_timeout_add_once (FORCED_REVEAL_DELAY,
+                                               (GSourceOnceFunc)clear_forced_timeout,
+                                               self);
 }

@@ -42,5 +42,6 @@ void                 editor_fullscreen_box_add_top_bar    (EditorFullscreenBox *
                                                            GtkWidget           *child);
 void                 editor_fullscreen_box_add_bottom_bar (EditorFullscreenBox *self,
                                                            GtkWidget           *child);
+void                 editor_fullscreen_box_reveal         (EditorFullscreenBox *self);
 
 G_END_DECLS
