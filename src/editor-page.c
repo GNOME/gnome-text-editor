@@ -669,29 +669,42 @@ get_child_position_cb (GtkOverlay    *overlay,
   g_assert (alloc != NULL);
   g_assert (EDITOR_IS_PAGE (self));
 
-  if (child != GTK_WIDGET (self->search_revealer) ||
-      !gtk_widget_get_visible (GTK_WIDGET (self->map)))
+  if (child != GTK_WIDGET (self->search_revealer) &&
+      child != GTK_WIDGET (self->position_label))
+    return FALSE;
+
+  if (!gtk_widget_get_visible (GTK_WIDGET (self->map)))
     return FALSE;
 
   gtk_widget_get_allocation (GTK_WIDGET (overlay), &ov_alloc);
   gtk_widget_get_preferred_size (child, &min, &nat);
   gtk_widget_get_preferred_size (GTK_WIDGET (self->map), &map_min, NULL);
 
-  if (nat.width + map_min.width <= ov_alloc.width)
+  if (child == GTK_WIDGET (self->search_revealer))
     {
-      alloc->x = ov_alloc.width;
-      alloc->x -= map_min.width;
-      alloc->x -= nat.width;
-      alloc->width = nat.width;
-      alloc->y = 0;
-      alloc->height = min.height;
+      if (nat.width + map_min.width <= ov_alloc.width)
+        {
+          alloc->x = ov_alloc.width;
+          alloc->x -= map_min.width;
+          alloc->x -= nat.width;
+          alloc->width = nat.width;
+          alloc->y = 0;
+          alloc->height = min.height;
+        }
+      else
+        {
+          alloc->x = 0;
+          alloc->width = min.width;
+          alloc->y = 0;
+          alloc->height = min.height;
+        }
     }
-  else
+  else if (child == GTK_WIDGET (self->position_label))
     {
-      alloc->x = 0;
-      alloc->width = min.width;
-      alloc->y = 0;
-      alloc->height = min.height;
+      alloc->x = ov_alloc.width - map_min.width - nat.width;
+      alloc->y = ov_alloc.height - nat.height;
+      alloc->width = nat.width;
+      alloc->height = nat.height;
     }
 
   return TRUE;
