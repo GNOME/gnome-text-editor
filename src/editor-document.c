@@ -66,6 +66,8 @@ struct _EditorDocument
   guint                         suggest_admin : 1;
   guint                         load_failed : 1;
   guint                         did_shutdown : 1;
+  guint                         inserting : 1;
+  guint                         deleting : 1;
 };
 
 typedef struct
@@ -111,6 +113,7 @@ enum {
 };
 
 enum {
+  CURSOR_JUMPED,
   SAVE,
   N_SIGNALS
 };
@@ -418,14 +421,18 @@ editor_document_insert_text (GtkTextBuffer *buffer,
    */
   if (self->loading)
     {
+      self->inserting = TRUE;
       GTK_TEXT_BUFFER_CLASS (editor_document_parent_class)->insert_text (buffer, pos, new_text, new_text_length);
+      self->inserting = FALSE;
       return;
     }
 
   line = gtk_text_iter_get_line (pos);
   offset = gtk_text_iter_get_offset (pos);
 
+  self->inserting = TRUE;
   GTK_TEXT_BUFFER_CLASS (editor_document_parent_class)->insert_text (buffer, pos, new_text, new_text_length);
+  self->inserting = FALSE;
 
   if (offset < TITLE_MAX_LEN && editor_document_get_file (self) == NULL)
     g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_TITLE]);
@@ -453,13 +460,17 @@ editor_document_delete_range (GtkTextBuffer *buffer,
    */
   if (self->loading)
     {
+      self->deleting = TRUE;
       GTK_TEXT_BUFFER_CLASS (editor_document_parent_class)->delete_range (buffer, start, end);
+      self->deleting = FALSE;
       return;
     }
 
   offset = gtk_text_iter_get_offset (start);
 
+  self->deleting = TRUE;
   GTK_TEXT_BUFFER_CLASS (editor_document_parent_class)->delete_range (buffer, start, end);
+  self->deleting = FALSE;
 
   if (offset < TITLE_MAX_LEN && editor_document_get_file (self) == NULL)
     g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_TITLE]);
@@ -549,6 +560,17 @@ apply_spellcheck_mapping (GValue   *value,
     g_value_set_boolean (value, g_variant_get_boolean (variant));
 
   return TRUE;
+}
+
+static void
+editor_document_cursor_moved (EditorDocument *self)
+{
+  g_assert (EDITOR_IS_DOCUMENT (self));
+
+  if (self->inserting || self->deleting)
+    return;
+
+  g_signal_emit (self, signals[CURSOR_JUMPED], 0);
 }
 
 static void
@@ -764,6 +786,14 @@ editor_document_class_init (EditorDocumentClass *klass)
                                  NULL, NULL,
                                  NULL,
                                  G_TYPE_NONE, 0);
+
+  signals [CURSOR_JUMPED] = g_signal_new ("cursor-jumped",
+                                          G_TYPE_FROM_CLASS (klass),
+                                          G_SIGNAL_RUN_LAST,
+                                          0,
+                                          NULL, NULL,
+                                          NULL,
+                                          G_TYPE_NONE, 0);
 }
 
 static void
@@ -774,6 +804,11 @@ editor_document_init (EditorDocument *self)
   self->newline_type = GTK_SOURCE_NEWLINE_TYPE_DEFAULT;
   self->file = gtk_source_file_new ();
   self->draft_id = g_uuid_string_random ();
+
+  g_signal_connect (self,
+                    "cursor-moved",
+                    G_CALLBACK (editor_document_cursor_moved),
+                    self);
 
   /* Default implicit-trailing-newline to on in case there are
    * no automatic settings providers.
