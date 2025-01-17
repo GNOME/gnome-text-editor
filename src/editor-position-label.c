@@ -72,7 +72,7 @@ _editor_position_label_set_position (EditorPositionLabel *self,
                                      guint                line,
                                      guint                column)
 {
-  gchar str[16];
+  gchar str[32];
 
   g_return_if_fail (EDITOR_IS_POSITION_LABEL (self));
 
