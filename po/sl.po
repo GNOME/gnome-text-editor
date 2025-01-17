@@ -3,24 +3,25 @@
 # This file is distributed under the same license as the gnome-text-editor package.
 #
 # Matej Urbančič <mateju@svn.gnome.org>, 2021–2024.
+# Martin Srebotnjak <miles@filmsi.net>, 2024,2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2024-11-06 01:31+0000\n"
-"PO-Revision-Date: 2024-11-06 11:37+0100\n"
+"POT-Creation-Date: 2025-01-16 20:03+0000\n"
+"PO-Revision-Date: 2025-01-17 11:35+0100\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
-"%100==4 ? 3 : 0);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
+"n%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: data/org.gnome.TextEditor.desktop.in.in:4
 msgid "write;notepad;"
@@ -29,7 +30,7 @@ msgstr "besedilo;urejevalnik;tekst;write;gedit;pisanje;zapis:urejanje;"
 #: data/org.gnome.TextEditor.desktop.in.in:10
 #: data/org.gnome.TextEditor.desktop.in.in:11
 #: data/org.gnome.TextEditor.metainfo.xml.in.in:10
-#: src/editor-application-actions.c:199 src/editor-window.c:1323
+#: src/editor-application-actions.c:199 src/editor-window.c:1352
 msgid "Text Editor"
 msgstr "Urejevalnik besedil"
 
@@ -333,12 +334,12 @@ msgstr "Zaženi nov primerek programa (vključuje možnost --ignore-session"
 msgid "Print version information and exit"
 msgstr "Izpiši podatke o različici in končaj"
 
-#: src/editor-document.c:2105
+#: src/editor-document.c:2149
 msgid "[Read-Only]"
 msgstr "[le za branje]"
 
-#: src/editor-document.c:2322 src/editor-page.c:1074
-#: src/editor-sidebar-item.c:511
+#: src/editor-document.c:2366 src/editor-page.c:1157
+#: src/editor-sidebar-item.c:510
 msgid "New Document"
 msgstr "Nov dokument"
 
@@ -371,7 +372,7 @@ msgstr "Datoteka se je spremenila na disku"
 msgid "The file has been changed by another program."
 msgstr "Datoteko je bila spremenjena v drugem programu."
 
-#: src/editor-info-bar.c:89 src/editor-window.ui:217
+#: src/editor-info-bar.c:89 src/editor-window.ui:211
 msgid "Save _As…"
 msgstr "Shrani _kot …"
 
@@ -411,7 +412,7 @@ msgstr "_Poskusi znova"
 msgid "Open As _Administrator"
 msgstr "Odpri kot _skrbnik"
 
-#: src/editor-language-dialog.ui:6 src/editor-window.c:191
+#: src/editor-language-dialog.ui:6 src/editor-window.c:189
 msgid "Document Type"
 msgstr "Vrsta dokumenta"
 
@@ -443,42 +444,26 @@ msgstr "Odpri nov dokument"
 msgid "No Recent Documents"
 msgstr "Ni nedavnih dokumentov"
 
-#: src/editor-page.c:1100 src/editor-properties-dialog.c:104
-#: src/editor-sidebar-item.c:105
+#: src/editor-page.c:1183 src/editor-properties-dialog.c:104
+#: src/editor-sidebar-item.c:104
 msgid "Draft"
 msgstr "Osnutek"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1112
+#: src/editor-page.c:1195
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (skrbniško urejanje)"
 
-#: src/editor-page.c:1122 src/editor-sidebar-item.c:113
-msgid "Document Portal"
-msgstr "Portal dokumentov"
-
-#: src/editor-page.c:1168
+#: src/editor-page.c:1251
 msgid "Failed to save document"
 msgstr "Shranjevanje dokumenta je spodletelo."
 
-#: src/editor-page.c:1169 src/editor-window.ui:358
+#: src/editor-page.c:1252 src/editor-window.ui:366
 msgid "_Close"
 msgstr "_Zapri"
 
-#: src/editor-page.c:1257
-msgid "Save As"
-msgstr "Shrani kot"
-
-#: src/editor-page.c:1260
-msgid "Save"
-msgstr "Shrani"
-
-#: src/editor-page.c:1261 src/editor-window-actions.c:347
-msgid "Cancel"
-msgstr "Prekliči"
-
-#: src/editor-page.c:1422
+#: src/editor-page.c:1525
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Vrstica: %u, Stolpec %u"
@@ -491,48 +476,48 @@ msgstr "Skoči v vrstico"
 msgid "Go"
 msgstr "Skoči na"
 
-#: src/editor-page.ui:150
+#: src/editor-page.ui:157
 msgid "Indentation"
 msgstr "Zamikanje"
 
-#: src/editor-page.ui:153 src/editor-window.ui:278
+#: src/editor-page.ui:160 src/editor-window.ui:286
 msgid "_Automatic Indentation"
 msgstr "_Samodejna dopolnjevanje"
 
 #. Translators: this is a tab character, not a browser tab
-#: src/editor-page.ui:159 src/editor-window.ui:282
+#: src/editor-page.ui:166 src/editor-window.ui:290
 msgid "_Tabs"
 msgstr "_Tabulatorji"
 
-#: src/editor-page.ui:164 src/editor-window.ui:287
+#: src/editor-page.ui:171 src/editor-window.ui:295
 msgid "_Spaces"
 msgstr "_Presledki"
 
-#: src/editor-page.ui:171 src/editor-window.ui:292
+#: src/editor-page.ui:178 src/editor-window.ui:300
 msgid "Spaces _Per Tab"
 msgstr "Presledki _na tabulator"
 
-#: src/editor-page.ui:173 src/editor-page.ui:201
+#: src/editor-page.ui:180 src/editor-page.ui:208
 msgid "2"
 msgstr "2"
 
-#: src/editor-page.ui:178 src/editor-page.ui:206
+#: src/editor-page.ui:185 src/editor-page.ui:213
 msgid "4"
 msgstr "4"
 
-#: src/editor-page.ui:183 src/editor-page.ui:211
+#: src/editor-page.ui:190 src/editor-page.ui:218
 msgid "6"
 msgstr "6"
 
-#: src/editor-page.ui:188 src/editor-page.ui:216
+#: src/editor-page.ui:195 src/editor-page.ui:223
 msgid "8"
 msgstr "8"
 
-#: src/editor-page.ui:194
+#: src/editor-page.ui:201
 msgid "Spaces Per Indent"
 msgstr "Presledki na zamik"
 
-#: src/editor-page.ui:196
+#: src/editor-page.ui:203
 msgid "Use Tab Size"
 msgstr "Uporabi velikost tabulatorja"
 
@@ -542,7 +527,7 @@ msgid "Ln"
 msgstr "Vrstica"
 
 #. translators: Col is short for "Column"
-#: src/editor-position-label.ui:35
+#: src/editor-position-label.ui:32
 msgid "Col"
 msgstr "Stolpec"
 
@@ -555,8 +540,8 @@ msgid "Custom _Font"
 msgstr "Pisava po _meri"
 
 #: src/editor-preferences-dialog.ui:82
-msgid "Display _Grid Pattern"
-msgstr "Pokaži vzorec _mreže"
+msgid "Display _Line Numbers"
+msgstr "Pokaži _številke vrstic"
 
 #: src/editor-preferences-dialog.ui:89
 msgid "_Highlight Current Line"
@@ -566,37 +551,49 @@ msgstr "Poudari _trenutno vrstico"
 msgid "Display _Overview Map"
 msgstr "Pokaži _predogledni zemljevid"
 
-#: src/editor-preferences-dialog.ui:105
-msgid "Right Margin"
-msgstr "Desni rob"
+#: src/editor-preferences-dialog.ui:107
+msgid "Check _Spelling"
+msgstr "Preveri _črkovanje"
 
-#: src/editor-preferences-dialog.ui:108
+#: src/editor-preferences-dialog.ui:116
+msgid "Line Wrap"
+msgstr "Ovijanje vrstic"
+
+#: src/editor-preferences-dialog.ui:119 src/editor-window.ui:280
+msgid "Show _Right Margin"
+msgstr "Pokaži _desni rob"
+
+#: src/editor-preferences-dialog.ui:126
 msgid "_Margin Position"
 msgstr "_Položaj roba"
 
-#: src/editor-preferences-dialog.ui:117
+#: src/editor-preferences-dialog.ui:133
+msgid "Wrap Lines Automatically"
+msgstr "Samodejno ovijanje vrstic"
+
+#: src/editor-preferences-dialog.ui:142
 msgid "Behavior"
 msgstr "Obnašanje"
 
-#: src/editor-preferences-dialog.ui:120
+#: src/editor-preferences-dialog.ui:145
 msgid "_Discover Document Settings"
 msgstr "_Odkrij nastavitve dokumenta"
 
-#: src/editor-preferences-dialog.ui:122
+#: src/editor-preferences-dialog.ui:147
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr ""
 "Uveljavi nastavitve z uporabo vrstic načina, prilagoditev urejevalnika in "
 "smiselnih privzetih vrednosti"
 
-#: src/editor-preferences-dialog.ui:128
+#: src/editor-preferences-dialog.ui:153
 msgid "_Restore Session"
 msgstr "_Obnovi sejo"
 
-#: src/editor-preferences-dialog.ui:130
+#: src/editor-preferences-dialog.ui:155
 msgid "Return to your previous session when Text Editor is started"
 msgstr "Ob zagonu programa obnovi predhodno sejo"
 
-#: src/editor-preferences-dialog.ui:145
+#: src/editor-preferences-dialog.ui:167
 msgid "_Clear History"
 msgstr "_Počisti zgodovino"
 
@@ -633,27 +630,27 @@ msgstr "Ime datoteke"
 msgid "Location"
 msgstr "Trenutno mesto"
 
-#: src/editor-properties-dialog.ui:45
+#: src/editor-properties-dialog.ui:44
 msgid "Open in File Manager"
 msgstr "Odpri v upravljalniku datotek"
 
-#: src/editor-properties-dialog.ui:58
+#: src/editor-properties-dialog.ui:57
 msgid "Statistics"
 msgstr "Statistika"
 
-#: src/editor-properties-dialog.ui:61
+#: src/editor-properties-dialog.ui:60
 msgid "Lines"
 msgstr "Število vrstic"
 
-#: src/editor-properties-dialog.ui:69
+#: src/editor-properties-dialog.ui:68
 msgid "Words"
 msgstr "Število besed"
 
-#: src/editor-properties-dialog.ui:77
+#: src/editor-properties-dialog.ui:76
 msgid "Characters, No Spaces"
 msgstr "Število znakov brez presledkov"
 
-#: src/editor-properties-dialog.ui:85
+#: src/editor-properties-dialog.ui:84
 msgid "All Characters"
 msgstr "Število vseh znakov"
 
@@ -677,22 +674,22 @@ msgstr ""
 "Odprti dokumenti vsebujejo spremembe, ki še niso shranjene. Te spremembe, "
 "bodo trajno izgubljene."
 
-#: src/editor-save-changes-dialog.c:261 src/editor-window-actions.c:115
+#: src/editor-save-changes-dialog.c:260 src/editor-window-actions.c:115
 #: src/editor-window-actions.c:235
 msgid "_Cancel"
 msgstr "_Prekliči"
 
-#: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:116
-#: src/editor-window.ui:211
+#: src/editor-save-changes-dialog.c:262 src/editor-window-actions.c:116
+#: src/editor-window.ui:205
 msgid "_Save"
 msgstr "_Shrani"
 
-#: src/editor-save-changes-dialog.c:295
+#: src/editor-save-changes-dialog.c:294
 msgid "Untitled Document"
 msgstr "Neimenovan dokument"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:298
+#: src/editor-save-changes-dialog.c:297
 #, c-format
 msgid "%s (new)"
 msgstr "%s (novo)"
@@ -779,23 +776,23 @@ msgstr "Temna tema"
 msgid "Dark style"
 msgstr "Temna tema"
 
-#: src/editor-utils.c:348
+#: src/editor-utils.c:355
 msgid "Just now"
 msgstr "Ravnokar"
 
-#: src/editor-utils.c:350
+#: src/editor-utils.c:357
 msgid "An hour ago"
 msgstr "Pred 1 uro"
 
-#: src/editor-utils.c:352
+#: src/editor-utils.c:359
 msgid "Yesterday"
 msgstr "Včeraj"
 
-#: src/editor-utils.c:358
+#: src/editor-utils.c:365
 msgid "About a year ago"
 msgstr "Pred enim letom"
 
-#: src/editor-utils.c:362
+#: src/editor-utils.c:369
 #, c-format
 msgid "About %u year ago"
 msgid_plural "About %u years ago"
@@ -803,30 +800,6 @@ msgstr[0] "Pred približno %u leti."
 msgstr[1] "Pred približno %u letom."
 msgstr[2] "Pred približno %u letoma."
 msgstr[3] "Pred približno %u. leti."
-
-#: src/editor-utils.c:370
-msgid "Unix/Linux (LF)"
-msgstr "Unix/Linux (LF)"
-
-#: src/editor-utils.c:371
-msgid "Mac OS Classic (CR)"
-msgstr "Klasični Mac OS (CR)"
-
-#: src/editor-utils.c:372
-msgid "Windows (CR+LF)"
-msgstr "Windows (CR+LF)"
-
-#: src/editor-utils.c:402
-msgid "Automatically Detected"
-msgstr "Samodejno zaznano"
-
-#: src/editor-utils.c:418
-msgid "Character Encoding:"
-msgstr "Znakovni nabor:"
-
-#: src/editor-utils.c:453
-msgid "Line Ending:"
-msgstr "Konec vrstice:"
 
 #: src/editor-window-actions.c:109
 msgid "Saving changes will replace the previously saved version."
@@ -848,94 +821,86 @@ msgstr "Neshranjene spremembe bodo trajno izgubljene."
 msgid "Discard Changes to “%s”?"
 msgstr "Ali želite zavreči spremembe v »%s«?"
 
-#: src/editor-window-actions.c:343
-msgid "Open File"
-msgstr "Odpri datoteko"
-
-#: src/editor-window-actions.c:346
-msgid "Open"
-msgstr "Odpri"
-
-#: src/editor-window-actions.c:371
+#: src/editor-window-actions.c:367
 msgid "All Files"
 msgstr "Vse datoteke"
 
-#: src/editor-window-actions.c:376
+#: src/editor-window-actions.c:372
 msgid "Text Files"
 msgstr "Besedilne datoteke"
 
-#: src/editor-window.c:203
+#: src/editor-window.c:201
 #, c-format
 msgid "Document Type: %s"
 msgstr "Vrsta dokumenta: %s"
 
-#: src/editor-window.c:504
+#: src/editor-window.c:468
 msgid "Zoom In"
 msgstr "Približaj"
 
-#: src/editor-window.c:507
+#: src/editor-window.c:471
 msgid "Zoom in"
 msgstr "Približaj"
 
-#: src/editor-window.c:517
+#: src/editor-window.c:482
 msgid "Zoom Out"
 msgstr "Oddalji"
 
-#: src/editor-window.c:520
+#: src/editor-window.c:485
 msgid "Zoom out"
 msgstr "Oddalji"
 
-#: src/editor-window.c:525
+#: src/editor-window.c:490
 msgid "Reset Zoom"
 msgstr "Ponastavi približanje"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:763
+#: src/editor-window.c:729
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) – Urejevalnik besedil"
 
-#: src/editor-window.c:1205
+#: src/editor-window.c:1231
 msgid "There are unsaved documents"
 msgstr "Odprti so neshranjeni dokumenti"
 
-#: src/editor-window.ui:83
+#: src/editor-window.ui:91
 msgid "_Open"
 msgstr "_Odpri"
 
-#: src/editor-window.ui:85
+#: src/editor-window.ui:93
 msgid "Recently Used Documents"
 msgstr "Nedavno odprti dokumenti"
 
-#: src/editor-window.ui:97
+#: src/editor-window.ui:105
 msgid "New Tab"
 msgstr "Nov zavihek"
 
-#: src/editor-window.ui:99
+#: src/editor-window.ui:107
 msgid "New tab"
 msgstr "Nov zavihek"
 
-#: src/editor-window.ui:125
+#: src/editor-window.ui:119
 msgid "View Options"
 msgstr "Možnosti pogleda"
 
-#: src/editor-window.ui:129
+#: src/editor-window.ui:123
 msgid "View"
 msgstr "Pogled"
 
-#: src/editor-window.ui:135
+#: src/editor-window.ui:129
 msgid "Main Menu"
 msgstr "Glavni meni"
 
-#: src/editor-window.ui:139
+#: src/editor-window.ui:133
 msgid "Main menu"
 msgstr "Glavni meni"
 
-#: src/editor-window.ui:166
+#: src/editor-window.ui:160
 msgid "Start or Open a Document"
 msgstr "Začni ali odpri dokument"
 
-#: src/editor-window.ui:169
+#: src/editor-window.ui:163
 msgid ""
 "• Press the Open button\n"
 "• Press the New tab button\n"
@@ -951,91 +916,95 @@ msgstr ""
 "\n"
 "Ali pa pritisnite krmilka+W, da zaprete okno."
 
-#: src/editor-window.ui:203
+#: src/editor-window.ui:197
 msgid "_New Window"
 msgstr "_Novo okno"
 
-#: src/editor-window.ui:223
+#: src/editor-window.ui:217
 msgid "_Discard Changes"
 msgstr "_Prezri spremembe"
 
-#: src/editor-window.ui:229
+#: src/editor-window.ui:223
 msgid "_Find/Replace…"
 msgstr "_Najdi in zamenjaj …"
 
-#: src/editor-window.ui:235
+#: src/editor-window.ui:229
 msgid "_Print…"
 msgstr "_Natisni …"
 
-#: src/editor-window.ui:241
+#: src/editor-window.ui:235
 msgid "Documen_t Properties"
 msgstr "_Lastnosti dokumenta"
 
+#: src/editor-window.ui:241
+msgid "Fullscreen"
+msgstr "Celozaslonsko"
+
 #: src/editor-window.ui:247
+msgid "Leave Fullscreen"
+msgstr "Zapusti celozaslonski način"
+
+#: src/editor-window.ui:255
 msgid "P_references"
 msgstr "_Možnosti"
 
-#: src/editor-window.ui:252
+#: src/editor-window.ui:260
 msgid "_Keyboard Shortcuts"
 msgstr "_Tipkovne bližnjice"
 
-#: src/editor-window.ui:256
+#: src/editor-window.ui:264
 msgid "_Help"
 msgstr "Pomo_č"
 
-#: src/editor-window.ui:260
+#: src/editor-window.ui:268
 msgid "A_bout Text Editor"
 msgstr "_O programu"
 
-#: src/editor-window.ui:268
+#: src/editor-window.ui:276
 msgid "Show _Line Numbers"
 msgstr "Pokaži _številke vrstic"
 
-#: src/editor-window.ui:272
-msgid "Show _Right Margin"
-msgstr "Pokaži _desni rob"
-
-#: src/editor-window.ui:295
+#: src/editor-window.ui:303
 msgid "_2"
 msgstr "_2"
 
-#: src/editor-window.ui:300
+#: src/editor-window.ui:308
 msgid "_4"
 msgstr "_4"
 
-#: src/editor-window.ui:305
+#: src/editor-window.ui:313
 msgid "_6"
 msgstr "_6"
 
-#: src/editor-window.ui:310
+#: src/editor-window.ui:318
 msgid "_8"
 msgstr "_8"
 
-#: src/editor-window.ui:319
+#: src/editor-window.ui:327
 msgid "T_ext Wrapping"
 msgstr "Prelom _besedila"
 
-#: src/editor-window.ui:323
+#: src/editor-window.ui:331
 msgid "Chec_k Spelling"
 msgstr "_Preveri črkovanje"
 
-#: src/editor-window.ui:327
+#: src/editor-window.ui:335
 msgid "_Document Type…"
 msgstr "_Vrsta dokumenta …"
 
-#: src/editor-window.ui:335
+#: src/editor-window.ui:343
 msgid "Move _Left"
 msgstr "Premakni _levo"
 
-#: src/editor-window.ui:340
+#: src/editor-window.ui:348
 msgid "Move _Right"
 msgstr "Premakni _desno"
 
-#: src/editor-window.ui:347
+#: src/editor-window.ui:355
 msgid "_Move to New Window"
 msgstr "_Prestavi na novo okno"
 
-#: src/editor-window.ui:354
+#: src/editor-window.ui:362
 msgid "Close _Other Tabs"
 msgstr "Zapri _preostale zavihke"
 
