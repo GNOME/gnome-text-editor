@@ -4,6 +4,7 @@ editor_sources = [
   'editor-application-actions.c',
   'editor-buffer-monitor.c',
   'editor-document.c',
+  'editor-document-statistics.c',
   'editor-encoding-model.c',
   'editor-indent-model.c',
   'editor-info-bar.c',
