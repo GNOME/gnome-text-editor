@@ -25,6 +25,8 @@
 
 #include "line-reader-private.h"
 
+#define QUEUED_RELOAD_DELAY 1000
+
 struct _EditorDocumentStatistics
 {
   GObject       parent_instance;
@@ -35,6 +37,7 @@ struct _EditorDocumentStatistics
   gsize         n_printable;
   gsize         n_spaces;
   gsize         n_words;
+  guint         queued_reload;
 };
 
 enum {
@@ -70,6 +73,7 @@ editor_document_statistics_finalize (GObject *object)
 {
   EditorDocumentStatistics *self = (EditorDocumentStatistics *)object;
 
+  g_clear_handle_id (&self->queued_reload, g_source_remove);
   g_weak_ref_clear (&self->document_wr);
   g_clear_object (&self->cancellable);
 
@@ -317,6 +321,8 @@ editor_document_statistics_reload (EditorDocumentStatistics *self)
 
   g_assert (EDITOR_IS_DOCUMENT_STATISTICS (self));
 
+  g_clear_handle_id (&self->queued_reload, g_source_remove);
+
   editor_document_statistics_cancel (self);
 
   if (!(document = editor_document_statistics_dup_document (self)))
@@ -362,4 +368,31 @@ editor_document_statistics_set_document (EditorDocumentStatistics *self,
 
   if (document != NULL)
     editor_document_statistics_reload (self);
+}
+
+static gboolean
+editor_document_statistics_queue_reload_timeout (gpointer data)
+{
+  EditorDocumentStatistics *self = data;
+
+  g_assert (EDITOR_IS_DOCUMENT_STATISTICS (self));
+
+  self->queued_reload = 0;
+
+  editor_document_statistics_reload (self);
+
+  return G_SOURCE_REMOVE;
+}
+
+void
+editor_document_statistics_queue_reload (EditorDocumentStatistics *self)
+{
+  g_return_if_fail (EDITOR_IS_DOCUMENT_STATISTICS (self));
+
+  if (self->queued_reload)
+    return;
+
+  self->queued_reload = g_timeout_add (QUEUED_RELOAD_DELAY,
+                                       editor_document_statistics_queue_reload_timeout,
+                                       self);
 }

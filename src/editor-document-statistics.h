@@ -36,5 +36,6 @@ EditorDocument           *editor_document_statistics_dup_document (EditorDocumen
 void                      editor_document_statistics_set_document (EditorDocumentStatistics *self,
                                                                    EditorDocument           *document);
 void                      editor_document_statistics_reload       (EditorDocumentStatistics *self);
+void                      editor_document_statistics_queue_reload (EditorDocumentStatistics *self);
 
 G_END_DECLS
