@@ -23,6 +23,7 @@
 
 #include <glib/gi18n.h>
 
+#include "editor-document-statistics.h"
 #include "editor-encoding-model.h"
 #include "editor-file-manager.h"
 #include "editor-indent-model.h"
@@ -33,8 +34,13 @@
 
 struct _EditorPropertiesPanel
 {
-  GtkWidget       parent_instance;
+  GtkWidget parent_instance;
+
+  /* Owned References */
   EditorDocument *document;
+
+  /* Template Objects */
+  EditorDocumentStatistics *statistics;
 };
 
 enum {
@@ -170,11 +176,14 @@ editor_properties_panel_class_init (EditorPropertiesPanelClass *klass)
   gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-properties-panel.ui");
 
+  gtk_widget_class_bind_template_child (widget_class, EditorPropertiesPanel, statistics);
+
   gtk_widget_class_bind_template_callback (widget_class, file_to_location);
   gtk_widget_class_bind_template_callback (widget_class, file_to_name);
 
   gtk_widget_class_install_action (widget_class, "open-folder", NULL, open_folder_action);
 
+  g_type_ensure (EDITOR_TYPE_DOCUMENT_STATISTICS);
   g_type_ensure (EDITOR_TYPE_ENCODING);
   g_type_ensure (EDITOR_TYPE_ENCODING_MODEL);
   g_type_ensure (EDITOR_TYPE_INDENT);
@@ -200,7 +209,10 @@ editor_properties_panel_set_document (EditorPropertiesPanel *self,
                                       EditorDocument        *document)
 {
   if (g_set_object (&self->document, document))
-    g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_DOCUMENT]);
+    {
+      editor_document_statistics_set_document (self->statistics, document);
+      g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_DOCUMENT]);
+    }
 }
 
 EditorDocument *

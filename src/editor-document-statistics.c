@@ -32,6 +32,7 @@ struct _EditorDocumentStatistics
   GCancellable *cancellable;
   gsize         n_chars;
   gsize         n_lines;
+  gsize         n_printable;
   gsize         n_spaces;
   gsize         n_words;
 };
@@ -41,6 +42,7 @@ enum {
   PROP_DOCUMENT,
   PROP_N_CHARS,
   PROP_N_LINES,
+  PROP_N_PRINTABLE,
   PROP_N_SPACES,
   PROP_N_WORDS,
   N_PROPS
@@ -94,6 +96,10 @@ editor_document_statistics_get_property (GObject    *object,
 
     case PROP_N_LINES:
       g_value_set_uint64 (value, self->n_lines);
+      break;
+
+    case PROP_N_PRINTABLE:
+      g_value_set_uint64 (value, self->n_printable);
       break;
 
     case PROP_N_SPACES:
@@ -156,6 +162,12 @@ editor_document_statistics_class_init (EditorDocumentStatisticsClass *klass)
                          (G_PARAM_READABLE |
                           G_PARAM_STATIC_STRINGS));
 
+  properties[PROP_N_PRINTABLE] =
+    g_param_spec_uint64 ("n-printable", NULL, NULL,
+                         0, G_MAXUINT64, 0,
+                         (G_PARAM_READABLE |
+                          G_PARAM_STATIC_STRINGS));
+
   properties[PROP_N_SPACES] =
     g_param_spec_uint64 ("n-spaces", NULL, NULL,
                          0, G_MAXUINT64, 0,
@@ -184,6 +196,7 @@ typedef struct _Worker
   char          *text;
   gsize          n_chars;
   gsize          n_lines;
+  gsize          n_printable;
   gsize          n_spaces;
   gsize          n_words;
 } Worker;
@@ -209,11 +222,13 @@ editor_document_statistics_apply (gpointer data)
     {
       self->n_chars = state->n_chars;
       self->n_lines = state->n_lines;
+      self->n_printable = state->n_printable;
       self->n_spaces = state->n_spaces;
       self->n_words = state->n_words;
 
       g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_N_CHARS]);
       g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_N_LINES]);
+      g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_N_PRINTABLE]);
       g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_N_SPACES]);
       g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_N_WORDS]);
     }
@@ -249,6 +264,9 @@ editor_document_statistics_worker (gpointer data)
     {
       n_lines++;
 
+      if (line[len] == '\n' || line[len] == '\r')
+        n_spaces++;
+
       if (n_lines > 100 && g_cancellable_is_cancelled (state->cancellable))
         break;
 
@@ -279,6 +297,7 @@ editor_document_statistics_worker (gpointer data)
   state->n_lines = n_lines;
   state->n_spaces = n_spaces;
   state->n_words = n_words;
+  state->n_printable = n_chars - n_spaces;
 
   g_idle_add_full (G_PRIORITY_DEFAULT,
                    editor_document_statistics_apply,

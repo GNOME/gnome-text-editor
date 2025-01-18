@@ -131,6 +131,9 @@
                 <style>
                   <class name="property"/>
                 </style>
+                <binding name="subtitle">
+                  <lookup name="n-lines">statistics</lookup>
+                </binding>
               </object>
             </child>
             <child>
@@ -139,6 +142,9 @@
                 <style>
                   <class name="property"/>
                 </style>
+                <binding name="subtitle">
+                  <lookup name="n-words">statistics</lookup>
+                </binding>
               </object>
             </child>
             <child>
@@ -147,6 +153,9 @@
                 <style>
                   <class name="property"/>
                 </style>
+                <binding name="subtitle">
+                  <lookup name="n-printable">statistics</lookup>
+                </binding>
               </object>
             </child>
             <child>
@@ -155,6 +164,9 @@
                 <style>
                   <class name="property"/>
                 </style>
+                <binding name="subtitle">
+                  <lookup name="n-chars">statistics</lookup>
+                </binding>
               </object>
             </child>
           </object>
@@ -167,5 +179,7 @@
   <object class="EditorNewlineModel" id="newline_model">
   </object>
   <object class="EditorIndentModel" id="indent_model">
+  </object>
+  <object class="EditorDocumentStatistics" id="statistics">
   </object>
 </interface>
