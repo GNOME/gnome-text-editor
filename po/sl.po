@@ -10,18 +10,18 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2025-01-16 20:03+0000\n"
-"PO-Revision-Date: 2025-01-17 11:35+0100\n"
+"POT-Creation-Date: 2025-01-19 11:59+0000\n"
+"PO-Revision-Date: 2025-01-19 15:13+0100\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
-"n%100==4 ? 3 : 0);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
+"%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 2.2.1\n"
 
 #: data/org.gnome.TextEditor.desktop.in.in:4
 msgid "write;notepad;"
@@ -30,7 +30,7 @@ msgstr "besedilo;urejevalnik;tekst;write;gedit;pisanje;zapis:urejanje;"
 #: data/org.gnome.TextEditor.desktop.in.in:10
 #: data/org.gnome.TextEditor.desktop.in.in:11
 #: data/org.gnome.TextEditor.metainfo.xml.in.in:10
-#: src/editor-application-actions.c:199 src/editor-window.c:1352
+#: src/editor-application-actions.c:199 src/editor-window.c:1354
 msgid "Text Editor"
 msgstr "Urejevalnik besedil"
 
@@ -521,6 +521,10 @@ msgstr "Presledki na zamik"
 msgid "Use Tab Size"
 msgstr "Uporabi velikost tabulatorja"
 
+#: src/editor-path.c:126
+msgid "Document Portal"
+msgstr "Portal za dokumente"
+
 #. translators: Ln is short for "Line Number"
 #: src/editor-position-label.ui:15
 msgid "Ln"
@@ -821,11 +825,11 @@ msgstr "Neshranjene spremembe bodo trajno izgubljene."
 msgid "Discard Changes to “%s”?"
 msgstr "Ali želite zavreči spremembe v »%s«?"
 
-#: src/editor-window-actions.c:367
+#: src/editor-window-actions.c:372
 msgid "All Files"
 msgstr "Vse datoteke"
 
-#: src/editor-window-actions.c:372
+#: src/editor-window-actions.c:377
 msgid "Text Files"
 msgstr "Besedilne datoteke"
 
@@ -834,33 +838,33 @@ msgstr "Besedilne datoteke"
 msgid "Document Type: %s"
 msgstr "Vrsta dokumenta: %s"
 
-#: src/editor-window.c:468
+#: src/editor-window.c:470
 msgid "Zoom In"
 msgstr "Približaj"
 
-#: src/editor-window.c:471
+#: src/editor-window.c:473
 msgid "Zoom in"
 msgstr "Približaj"
 
-#: src/editor-window.c:482
+#: src/editor-window.c:484
 msgid "Zoom Out"
 msgstr "Oddalji"
 
-#: src/editor-window.c:485
+#: src/editor-window.c:487
 msgid "Zoom out"
 msgstr "Oddalji"
 
-#: src/editor-window.c:490
+#: src/editor-window.c:492
 msgid "Reset Zoom"
 msgstr "Ponastavi približanje"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:729
+#: src/editor-window.c:731
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) – Urejevalnik besedil"
 
-#: src/editor-window.c:1231
+#: src/editor-window.c:1233
 msgid "There are unsaved documents"
 msgstr "Odprti so neshranjeni dokumenti"
 
