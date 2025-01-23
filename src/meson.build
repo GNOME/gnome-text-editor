@@ -14,6 +14,7 @@ editor_sources = [
   'editor-joined-menu.c',
   'editor-language-dialog.c',
   'editor-language-row.c',
+  'editor-newline-model.c',
   'editor-open-popover.c',
   'editor-page.c',
   'editor-page-actions.c',
