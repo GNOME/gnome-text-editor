@@ -87,5 +87,6 @@ void          editor_session_set_auto_save       (EditorSession            *self
 guint         editor_session_get_auto_save_delay (EditorSession            *self);
 void          editor_session_set_auto_save_delay (EditorSession            *self,
                                                   guint                     auto_save_delay);
+GListModel   *editor_session_list_recent_syntaxes(EditorSession            *self);
 
 G_END_DECLS
