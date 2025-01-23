@@ -32,6 +32,7 @@
 #include "editor-buffer-monitor-private.h"
 #include "editor-document-private.h"
 #include "editor-document-statistics.h"
+#include "editor-encoding-model.h"
 #include "editor-session-private.h"
 #include "editor-window-private.h"
 
@@ -104,6 +105,7 @@ enum {
   PROP_0,
   PROP_BUSY,
   PROP_BUSY_PROGRESS,
+  PROP_ENCODING,
   PROP_ERROR,
   PROP_EXTERNALLY_MODIFIED,
   PROP_FILE,
@@ -585,6 +587,31 @@ editor_document_cursor_moved (EditorDocument *self)
   g_signal_emit (self, signals[CURSOR_JUMPED], 0);
 }
 
+EditorEncoding *
+editor_document_dup_encoding (EditorDocument *self)
+{
+  EditorEncoding *encoding;
+
+  if ((encoding = editor_encoding_model_get (NULL, self->encoding)))
+    return g_object_ref (encoding);
+
+  return NULL;
+}
+
+void
+editor_document_set_encoding (EditorDocument *self,
+                              EditorEncoding *encoding)
+{
+  const GtkSourceEncoding *enc;
+
+  if (encoding != NULL)
+    enc = editor_encoding_get_encoding (encoding);
+  else
+    enc = gtk_source_encoding_get_utf8 ();
+
+  _editor_document_set_encoding (self, enc);
+}
+
 static void
 editor_document_constructed (GObject *object)
 {
@@ -650,6 +677,10 @@ editor_document_get_property (GObject    *object,
       g_value_set_double (value, editor_document_get_busy_progress (self));
       break;
 
+    case PROP_ENCODING:
+      g_value_take_object (value, editor_document_dup_encoding (self));
+      break;
+
     case PROP_ERROR:
       g_value_set_boxed (value, self->last_error);
       break;
@@ -693,6 +724,10 @@ editor_document_set_property (GObject      *object,
 
   switch (prop_id)
     {
+    case PROP_ENCODING:
+      editor_document_set_encoding (self, g_value_get_object (value));
+      break;
+
     case PROP_FILE:
       gtk_source_file_set_location (self->file, g_value_get_object (value));
       break;
@@ -760,6 +795,13 @@ editor_document_class_init (EditorDocumentClass *klass)
                          "The progress of the current busy operation",
                          -G_MAXDOUBLE, G_MAXDOUBLE, 0.0,
                          (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
+  properties [PROP_ENCODING] =
+    g_param_spec_object ("encoding", NULL, NULL,
+                         EDITOR_TYPE_ENCODING,
+                         (G_PARAM_READWRITE |
+                          G_PARAM_EXPLICIT_NOTIFY |
+                          G_PARAM_STATIC_STRINGS));
 
   properties [PROP_EXTERNALLY_MODIFIED] =
     g_param_spec_boolean ("externally-modified",
@@ -2253,7 +2295,11 @@ _editor_document_set_encoding (EditorDocument          *self,
 {
   g_return_if_fail (EDITOR_IS_DOCUMENT (self));
 
-  self->encoding = encoding;
+  if (encoding != self->encoding)
+    {
+      self->encoding = encoding;
+      g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_ENCODING]);
+    }
 }
 
 GtkSourceNewlineType
