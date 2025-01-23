@@ -78,6 +78,13 @@
         <child>
           <object class="AdwPreferencesGroup">
             <child>
+              <object class="EditorPreferencesSwitch" id="show_grid">
+                <property name="title" translatable="yes">Show Grid Pattern</property>
+                <property name="schema-key">show-grid</property>
+                <property name="visible">false</property>
+              </object>
+            </child>
+            <child>
               <object class="EditorPreferencesSwitch" id="display_line_numbers">
                 <property name="title" translatable="yes">Display _Line Numbers</property>
                 <property name="use-underline">true</property>
