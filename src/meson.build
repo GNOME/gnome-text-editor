@@ -6,6 +6,7 @@ editor_sources = [
   'editor-document.c',
   'editor-document-statistics.c',
   'editor-encoding-model.c',
+  'editor-indent-model.c',
   'editor-info-bar.c',
   'editor-file-manager.c',
   'editor-focus-chain.c',
