@@ -112,6 +112,7 @@ enum {
   PROP_HAD_ERROR,
   PROP_ERROR_MESSAGE,
   PROP_LOADING,
+  PROP_NEWLINE_TYPE,
   PROP_SPELL_CHECKER,
   PROP_STATISTICS,
   PROP_SUGGEST_ADMIN,
@@ -697,6 +698,10 @@ editor_document_get_property (GObject    *object,
       g_value_set_boolean (value, _editor_document_get_loading (self));
       break;
 
+    case PROP_NEWLINE_TYPE:
+      g_value_set_enum (value, self->newline_type);
+      break;
+
     case PROP_STATISTICS:
       g_value_take_object (value, editor_document_load_statistics (self));
       break;
@@ -843,6 +848,13 @@ editor_document_class_init (EditorDocumentClass *klass)
                          "The title for the document",
                          NULL,
                          (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
+  properties[PROP_NEWLINE_TYPE] =
+    g_param_spec_enum ("newline-type", NULL, NULL,
+                       GTK_SOURCE_TYPE_NEWLINE_TYPE,
+                       GTK_SOURCE_NEWLINE_TYPE_DEFAULT,
+                       (G_PARAM_READABLE |
+                        G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_properties (object_class, N_PROPS, properties);
 
@@ -1653,7 +1665,7 @@ editor_document_load_cb (GObject      *object,
 
       g_assert (!file || G_IS_FILE (file));
 
-      self->newline_type = gtk_source_file_loader_get_newline_type (loader);
+      _editor_document_set_newline_type (self, gtk_source_file_loader_get_newline_type (loader));
 
       /* We want to keep the same encoding when saving that was
        * auto-detected from loading the file.
@@ -2316,7 +2328,11 @@ _editor_document_set_newline_type (EditorDocument       *self,
 {
   g_return_if_fail (EDITOR_IS_DOCUMENT (self));
 
-  self->newline_type = newline_type;
+  if (newline_type != self->newline_type)
+    {
+      self->newline_type = newline_type;
+      g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_NEWLINE_TYPE]);
+    }
 }
 
 /**
