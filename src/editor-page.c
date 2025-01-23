@@ -1314,8 +1314,6 @@ editor_page_save_as_cb (GObject      *object,
   g_assert (G_IS_ASYNC_RESULT (result));
   g_assert (EDITOR_IS_PAGE (self));
 
-  g_print ("save as cb\n");
-
   if (!(dest = gtk_file_dialog_save_text_file_finish (dialog, result, &encoding, &line_endings, &error)))
     {
       g_warning ("%s", error->message);
@@ -1401,8 +1399,6 @@ _editor_page_save_as (EditorPage *self,
 
       gtk_file_dialog_set_initial_name (dialog, suggestion);
     }
-
-  g_print ("Saving text file: window=%p\n", window);
 
   gtk_file_dialog_save_text_file (dialog,
                                   GTK_WINDOW (window),
