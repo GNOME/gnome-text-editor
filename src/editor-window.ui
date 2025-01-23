@@ -15,6 +15,12 @@
             <property name="action">action(win.toggle-fullscreen)</property>
           </object>
         </child>
+        <child>
+          <object class="GtkShortcut">
+            <property name="trigger">&lt;Alt&gt;w</property>
+            <property name="action">action(settings.wrap-text)</property>
+          </object>
+        </child>
       </object>
     </child>
     <child>
