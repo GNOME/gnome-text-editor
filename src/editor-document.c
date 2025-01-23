@@ -104,6 +104,7 @@ enum {
   PROP_0,
   PROP_BUSY,
   PROP_BUSY_PROGRESS,
+  PROP_ERROR,
   PROP_EXTERNALLY_MODIFIED,
   PROP_FILE,
   PROP_HAD_ERROR,
@@ -174,6 +175,7 @@ editor_document_track_error (EditorDocument *self,
   g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_SUGGEST_ADMIN]);
   g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_ERROR_MESSAGE]);
   g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_HAD_ERROR]);
+  g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_ERROR]);
 }
 
 static void
@@ -648,6 +650,10 @@ editor_document_get_property (GObject    *object,
       g_value_set_double (value, editor_document_get_busy_progress (self));
       break;
 
+    case PROP_ERROR:
+      g_value_set_boxed (value, self->last_error);
+      break;
+
     case PROP_EXTERNALLY_MODIFIED:
       g_value_set_boolean (value, editor_document_get_externally_modified (self));
       break;
@@ -735,6 +741,11 @@ editor_document_class_init (EditorDocumentClass *klass)
                           "Error message to be used when Had Error is set",
                           NULL,
                           (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
+  properties [PROP_ERROR] =
+    g_param_spec_boxed ("error", NULL, NULL,
+                        G_TYPE_ERROR,
+                        (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
   properties [PROP_BUSY] =
     g_param_spec_boolean ("busy",
