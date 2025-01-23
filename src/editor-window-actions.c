@@ -26,6 +26,7 @@
 
 #include "editor-application.h"
 #include "editor-document.h"
+#include "editor-encoding-dialog.h"
 #include "editor-language-dialog.h"
 #include "editor-page-private.h"
 #include "editor-preferences-dialog-private.h"
@@ -553,6 +554,26 @@ editor_window_actions_close_other_pages_cb (GtkWidget  *widget,
 }
 
 static void
+editor_window_actions_change_encoding_cb (GtkWidget  *widget,
+                                          const char *action_name,
+                                          GVariant   *param)
+{
+  EditorWindow *self = (EditorWindow *)widget;
+  EditorDocument *document;
+  EditorPage *page;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+
+  if ((page = editor_window_get_visible_page (self)) &&
+      (document = editor_page_get_document (page)))
+    {
+      AdwDialog *dialog = editor_encoding_dialog_new (document);
+
+      adw_dialog_present (dialog, GTK_WIDGET (self));
+    }
+}
+
+static void
 editor_window_actions_page_zoom_in_cb (GtkWidget  *widget,
                                        const char *action_name,
                                        GVariant   *param)
@@ -703,6 +724,10 @@ _editor_window_class_actions_init (EditorWindowClass *klass)
                                    NULL,
                                    editor_window_actions_show_preferences_cb);
   gtk_widget_class_install_action (widget_class,
+                                   "page.change-encoding",
+                                   NULL,
+                                   editor_window_actions_change_encoding_cb);
+  gtk_widget_class_install_action (widget_class,
                                    "page.zoom-in",
                                    NULL,
                                    editor_window_actions_page_zoom_in_cb);
@@ -785,6 +810,7 @@ _editor_window_actions_update (EditorWindow *self,
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.change-language", has_page);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.discard-changes", externally_modified || (modified && !draft));
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.print", has_page);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.change-encoding", has_page);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.properties", has_page);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.save", can_save);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.save-as", has_page);
