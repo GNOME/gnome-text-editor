@@ -60,7 +60,6 @@ struct _EditorPage
   GtkInfoBar              *changed_infobar;
   GtkInfoBar              *infobar;
   GtkEventController      *vim;
-  GMenu                   *indent_menu;
   EditorPositionLabel     *position_label;
 
   guint                    queued_hide_position;

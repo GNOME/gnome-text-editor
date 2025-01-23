@@ -37,14 +37,14 @@ struct _EditorInfoBar
   /* Discard widgetry */
   GtkInfoBar     *discard_infobar;
   GtkButton      *discard;
+  GtkInfoBar     *encoding_infobar;
   GtkButton      *save;
   GtkLabel       *title;
   GtkLabel       *subtitle;
 
   /* Permission denied infobar */
   GtkInfoBar     *access_infobar;
-  GtkButton      *access_subtitle;
-  GtkButton      *access_title;
+  GtkLabel       *access_subtitle;
   GtkButton      *access_try_admin;
 };
 
@@ -61,17 +61,49 @@ static GParamSpec *properties [N_PROPS];
 static void
 editor_info_bar_update (EditorInfoBar *self)
 {
+  g_autoptr(GError) error = NULL;
+
   g_assert (EDITOR_IS_INFO_BAR (self));
   g_assert (EDITOR_IS_DOCUMENT (self->document));
+
+  g_object_get (self->document,
+                "error", &error,
+                NULL);
 
   /* Ignore things if we're busy to avoid flapping */
   if (editor_document_get_busy (self->document))
     {
       gtk_info_bar_set_revealed (self->discard_infobar, FALSE);
+      gtk_info_bar_set_revealed (self->access_infobar, FALSE);
+      gtk_info_bar_set_revealed (self->encoding_infobar, FALSE);
       return;
     }
 
-  if (editor_document_get_externally_modified (self->document))
+  if (error == NULL)
+    {
+      gtk_info_bar_set_revealed (self->access_infobar, FALSE);
+      gtk_info_bar_set_revealed (self->encoding_infobar, FALSE);
+    }
+
+  if (error != NULL)
+    {
+      gtk_info_bar_set_revealed (self->discard_infobar, FALSE);
+
+      if (g_error_matches (error,
+                           GTK_SOURCE_FILE_LOADER_ERROR,
+                           GTK_SOURCE_FILE_LOADER_ERROR_CONVERSION_FALLBACK))
+        {
+          gtk_info_bar_set_revealed (self->access_infobar, FALSE);
+          gtk_info_bar_set_revealed (self->encoding_infobar, TRUE);
+        }
+      else
+        {
+          gtk_label_set_label (self->access_subtitle, error->message);
+          gtk_info_bar_set_revealed (self->access_infobar, TRUE);
+          gtk_info_bar_set_revealed (self->encoding_infobar, FALSE);
+        }
+    }
+  else if (editor_document_get_externally_modified (self->document))
     {
       gtk_button_set_label (self->discard, _("_Discard Changes and Reload"));
       gtk_button_set_use_underline (self->discard, TRUE);
@@ -178,6 +210,17 @@ on_try_again_cb (EditorInfoBar *self,
 }
 
 static void
+editor_info_bar_notify_error (EditorInfoBar  *self,
+                              GParamSpec     *pspec,
+                              EditorDocument *document)
+{
+  g_assert (EDITOR_IS_INFO_BAR (self));
+  g_assert (EDITOR_IS_DOCUMENT (document));
+
+  editor_info_bar_update (self);
+}
+
+static void
 editor_info_bar_dispose (GObject *object)
 {
   EditorInfoBar *self = (EditorInfoBar *)object;
@@ -226,9 +269,11 @@ editor_info_bar_set_property (GObject      *object,
           g_object_bind_property (self->document, "error-message",
                                   self->access_subtitle, "label",
                                   G_BINDING_SYNC_CREATE);
-          g_object_bind_property (self->document, "had-error",
-                                  self->access_infobar, "revealed",
-                                  G_BINDING_SYNC_CREATE);
+          g_signal_connect_object (self->document,
+                                   "notify::error",
+                                   G_CALLBACK (editor_info_bar_notify_error),
+                                   self,
+                                   G_CONNECT_SWAPPED);
           g_signal_connect_object (self->document,
                                    "notify::busy",
                                    G_CALLBACK (on_notify_cb),
@@ -271,10 +316,10 @@ editor_info_bar_class_init (EditorInfoBarClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, access_infobar);
   gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, access_try_admin);
   gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, access_subtitle);
-  gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, access_title);
   gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, box);
   gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, discard);
   gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, discard_infobar);
+  gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, encoding_infobar);
   gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, save);
   gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, subtitle);
   gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, title);

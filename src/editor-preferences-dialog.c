@@ -44,6 +44,7 @@ struct _EditorPreferencesDialog
   GtkCssProvider       *css_provider;
 
   GtkSwitch            *use_custom_font;
+  AdwSwitchRow         *show_grid;
   AdwSwitchRow         *restore_session;
   GtkFlowBox           *scheme_group;
   GtkSourceBuffer      *buffer;
@@ -504,12 +505,17 @@ static void
 editor_preferences_dialog_constructed (GObject *object)
 {
   EditorPreferencesDialog *self = (EditorPreferencesDialog *)object;
+  g_autoptr(GSettings) settings = g_settings_new ("org.gnome.TextEditor");
 
   G_OBJECT_CLASS (editor_preferences_dialog_parent_class)->constructed (object);
 
   update_style_schemes (self);
   guess_preview_language (self);
   update_custom_font_cb (self, NULL, self->settings);
+
+  /* Only show parameter if it is currently enabled */
+  if (g_settings_get_boolean (settings, "show-grid"))
+    gtk_widget_set_visible (GTK_WIDGET (self->show_grid), TRUE);
 }
 
 static void
@@ -590,6 +596,7 @@ editor_preferences_dialog_class_init (EditorPreferencesDialogClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorPreferencesDialog, source_view);
   gtk_widget_class_bind_template_child (widget_class, EditorPreferencesDialog, use_custom_font);
   gtk_widget_class_bind_template_child (widget_class, EditorPreferencesDialog, restore_session);
+  gtk_widget_class_bind_template_child (widget_class, EditorPreferencesDialog, show_grid);
   gtk_widget_class_bind_template_callback (widget_class, style_scheme_activated_cb);
 
   g_type_ensure (EDITOR_TYPE_PREFERENCES_FONT);

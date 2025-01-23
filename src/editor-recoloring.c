@@ -30,6 +30,8 @@
   "@define-color popover_fg_color @window_fg_color;\n" \
   "@define-color dialog_fg_color @window_fg_color;\n" \
   "@define-color dark_fill_bg_color @headerbar_bg_color;\n" \
+  "@define-color sidebar_backdrop_color @window_bg_color;\n" \
+  "@define-color sidebar_fg_color @window_fg_color;\n" \
   "@define-color view_fg_color @window_fg_color;\n"
 #define LIGHT_CSS_SUFFIX \
   "@define-color card_bg_color alpha(white, .8);\n"
@@ -266,6 +268,20 @@ _editor_recoloring_generate_css (GtkSourceStyleScheme *style_scheme)
     define_color_mixed (str, "window_fg_color", &text_bg, alt, .05);
   else
     define_color_mixed (str, "window_fg_color", &text_bg, alt, .025);
+
+  if (get_metadata_color (style_scheme, "sidebar_fg_color", &color))
+    define_color (str, "sidebar_fg_color", &color);
+  else if (get_foreground (style_scheme, "line-numbers", &color))
+    define_color (str, "sidebar_fg_color", &color);
+  else
+    define_color (str, "sidebar_fg_color", &text_fg);
+
+  if (get_metadata_color (style_scheme, "sidebar_bg_color", &color))
+    define_color (str, "sidebar_bg_color", &color);
+  else if (get_background (style_scheme, "line-numbers", &color))
+    define_color (str, "sidebar_bg_color", &color);
+  else
+    define_color (str, "sidebar_bg_color", &text_bg);
 
   if (get_metadata_color (style_scheme, "headerbar_bg_color", &color))
     define_color (str, "headerbar_bg_color", &color);

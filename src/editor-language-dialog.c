@@ -22,15 +22,21 @@
 
 #include "config.h"
 
+#include <glib/gi18n.h>
+
 #include "editor-application.h"
 #include "editor-language-dialog.h"
 #include "editor-language-row-private.h"
+#include "editor-session.h"
 
 struct _EditorLanguageDialog
 {
   AdwDialog          parent_instance;
 
+  GtkWidget         *group;
   GtkListBox        *list_box;
+  GtkWidget         *recent_group;
+  GtkListBox        *recent_list_box;
   GtkSearchEntry    *search_entry;
   GtkStack          *stack;
 
@@ -98,6 +104,7 @@ editor_language_dialog_filter (EditorLanguageDialog *self,
 {
   g_autoptr(GPatternSpec) spec = NULL;
   GtkWidget *child;
+  gboolean had_recent = FALSE;
   gboolean had_match = FALSE;
 
   g_assert (EDITOR_IS_LANGUAGE_DIALOG (self));
@@ -109,6 +116,23 @@ editor_language_dialog_filter (EditorLanguageDialog *self,
 
       spec = g_pattern_spec_new (glob);
     }
+
+  for (child = gtk_widget_get_first_child (GTK_WIDGET (self->recent_list_box));
+       child != NULL;
+       child = gtk_widget_get_next_sibling (child))
+    {
+      if (EDITOR_IS_LANGUAGE_ROW (child))
+        {
+          EditorLanguageRow *row = EDITOR_LANGUAGE_ROW (child);
+          gboolean matches = _editor_language_row_match (row, spec);
+
+          gtk_widget_set_visible (GTK_WIDGET (row), matches);
+
+          had_recent |= matches;
+        }
+    }
+
+  gtk_widget_set_visible (GTK_WIDGET (self->recent_group), had_recent);
 
   for (child = gtk_widget_get_first_child (GTK_WIDGET (self->list_box));
        child != NULL;
@@ -125,7 +149,9 @@ editor_language_dialog_filter (EditorLanguageDialog *self,
         }
     }
 
-  if (!had_match)
+  gtk_widget_set_visible (GTK_WIDGET (self->group), had_match);
+
+  if (!had_match && !had_recent)
     gtk_stack_set_visible_child_name (self->stack, "no-search-results-page");
   else
     gtk_stack_set_visible_child_name (self->stack, "document-languages-page");
@@ -188,8 +214,10 @@ editor_language_dialog_constructed (GObject *object)
 {
   EditorLanguageDialog *self = (EditorLanguageDialog *)object;
   GtkSourceLanguageManager *lm;
-  g_autoptr(GListStore) store = NULL;
+  g_autoptr(GListModel) recent = NULL;
+  g_autoptr(GHashTable) seen = NULL;
   const gchar * const *ids;
+  guint n_items;
 
   g_assert (EDITOR_IS_LANGUAGE_DIALOG (self));
 
@@ -197,7 +225,29 @@ editor_language_dialog_constructed (GObject *object)
 
   lm = gtk_source_language_manager_get_default ();
   ids = gtk_source_language_manager_get_language_ids (lm);
-  store = g_list_store_new (GTK_SOURCE_TYPE_LANGUAGE);
+  recent = editor_session_list_recent_syntaxes (EDITOR_SESSION_DEFAULT);
+  n_items = g_list_model_get_n_items (recent);
+  seen = g_hash_table_new (NULL, NULL);
+
+  for (guint i = 0; i < n_items; i++)
+    {
+      g_autoptr(GtkSourceLanguage) language = g_list_model_get_item (recent, i);
+
+      if (!gtk_source_language_get_hidden (language))
+        {
+          gtk_list_box_append (self->recent_list_box, _editor_language_row_new (language));
+          g_hash_table_add (seen, language);
+        }
+    }
+
+  gtk_widget_set_visible (GTK_WIDGET (self->recent_group),
+                          g_hash_table_size (seen) > 0);
+
+  if (g_hash_table_size (seen) > 0)
+    adw_preferences_group_set_title (ADW_PREFERENCES_GROUP (self->group),
+                                     _("Other Document Types"));
+  else
+    adw_preferences_group_set_title (ADW_PREFERENCES_GROUP (self->group), NULL);
 
   gtk_list_box_append (self->list_box, _editor_language_row_new (NULL));
 
@@ -205,6 +255,9 @@ editor_language_dialog_constructed (GObject *object)
     {
       const gchar *id = ids[i];
       GtkSourceLanguage *language = gtk_source_language_manager_get_language (lm, id);
+
+      if (g_hash_table_lookup (seen, language))
+        continue;
 
       if (!gtk_source_language_get_hidden (language))
         gtk_list_box_append (self->list_box, _editor_language_row_new (language));
@@ -271,7 +324,11 @@ editor_language_dialog_class_init (EditorLanguageDialogClass *klass)
   g_object_class_install_properties (object_class, N_PROPS, properties);
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-language-dialog.ui");
+
+  gtk_widget_class_bind_template_child (widget_class, EditorLanguageDialog, group);
   gtk_widget_class_bind_template_child (widget_class, EditorLanguageDialog, list_box);
+  gtk_widget_class_bind_template_child (widget_class, EditorLanguageDialog, recent_group);
+  gtk_widget_class_bind_template_child (widget_class, EditorLanguageDialog, recent_list_box);
   gtk_widget_class_bind_template_child (widget_class, EditorLanguageDialog, search_entry);
   gtk_widget_class_bind_template_child (widget_class, EditorLanguageDialog, stack);
 }
@@ -288,6 +345,11 @@ editor_language_dialog_init (EditorLanguageDialog *self)
   adw_dialog_set_content_width (ADW_DIALOG (self), 350);
 
   g_signal_connect_object (self->list_box,
+                           "row-activated",
+                           G_CALLBACK (editor_language_dialog_row_activated_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+  g_signal_connect_object (self->recent_list_box,
                            "row-activated",
                            G_CALLBACK (editor_language_dialog_row_activated_cb),
                            self,
@@ -351,6 +413,22 @@ editor_language_dialog_set_language (EditorLanguageDialog *self,
   g_return_if_fail (EDITOR_IS_LANGUAGE_DIALOG (self));
   g_return_if_fail (!language || GTK_SOURCE_IS_LANGUAGE (language));
 
+  for (child = gtk_widget_get_first_child (GTK_WIDGET (self->recent_list_box));
+       child != NULL;
+       child = gtk_widget_get_next_sibling (child))
+    {
+      if (EDITOR_IS_LANGUAGE_ROW (child))
+        {
+          EditorLanguageRow *row = EDITOR_LANGUAGE_ROW (child);
+
+          if (language == _editor_language_row_get_language (row))
+            {
+              editor_language_dialog_select (EDITOR_LANGUAGE_DIALOG (self), row);
+              return;
+            }
+        }
+    }
+
   for (child = gtk_widget_get_first_child (GTK_WIDGET (self->list_box));
        child != NULL;
        child = gtk_widget_get_next_sibling (child))
@@ -362,7 +440,7 @@ editor_language_dialog_set_language (EditorLanguageDialog *self,
           if (language == _editor_language_row_get_language (row))
             {
               editor_language_dialog_select (EDITOR_LANGUAGE_DIALOG (self), row);
-              break;
+              return;
             }
         }
     }

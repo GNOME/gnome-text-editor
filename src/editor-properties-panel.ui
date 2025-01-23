@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="EditorPropertiesPanel" parent="GtkWidget">
+    <property name="width-request">350</property>
+    <child>
+      <object class="AdwPreferencesPage">
+        <child>
+          <object class="AdwPreferencesGroup">
+            <child>
+              <object class="AdwActionRow" id="name">
+                <property name="title" translatable="yes">File Name</property>
+                <binding name="subtitle">
+                  <lookup name="name">properties</lookup>
+                </binding>
+                <binding name="tooltip-text">
+                  <lookup name="name">properties</lookup>
+                </binding>
+                <property name="use-markup">False</property>
+                <style>
+                  <class name="property"/>
+                </style>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow" id="location">
+                <property name="title" translatable="yes">Location</property>
+                <binding name="subtitle">
+                  <lookup name="directory">properties</lookup>
+                </binding>
+                <binding name="tooltip-text">
+                  <lookup name="directory">properties</lookup>
+                </binding>
+                <property name="use-markup">False</property>
+                <property name="subtitle-lines">1</property>
+                <child type="suffix">
+                  <object class="GtkButton">
+                    <style>
+                      <class name="flat"/>
+                    </style>
+                    <property name="action-name">open-folder</property>
+                    <property name="icon-name">document-open-symbolic</property>
+                    <property name="tooltip-text" translatable="yes">Open in File Manager</property>
+                    <property name="valign">center</property>
+                  </object>
+                </child>
+                <style>
+                  <class name="property"/>
+                </style>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">Document Type</property>
+                <binding name="subtitle">
+                  <lookup name="language-name">properties</lookup>
+                </binding>
+                <property name="use-markup">False</property>
+                <child type="suffix">
+                  <object class="GtkButton">
+                    <style>
+                      <class name="flat"/>
+                    </style>
+                    <property name="action-name">page.change-language</property>
+                    <property name="icon-name">external-link-symbolic</property>
+                    <property name="tooltip-text" translatable="yes">Change Document Type</property>
+                    <property name="valign">center</property>
+                  </object>
+                </child>
+                <style>
+                  <class name="property"/>
+                </style>
+              </object>
+            </child>
+            <child>
+              <object class="AdwComboRow" id="encoding_row">
+                <property name="title" translatable="yes">Encoding</property>
+                <property name="use-markup">False</property>
+                <property name="enable-search">True</property>
+                <property name="search-match-mode">substring</property>
+                <property name="model">encoding_model</property>
+                <property name="expression">
+                  <lookup name="name" type="EditorEncoding"/>
+                </property>
+                <property name="selected" bind-source="properties" bind-property="encoding-index" bind-flags="bidirectional|sync-create"/>
+              </object>
+            </child>
+            <child>
+              <object class="AdwComboRow">
+                <property name="title" translatable="yes">Line Feed</property>
+                <property name="use-markup">False</property>
+                <property name="model">newline_model</property>
+                <property name="expression">
+                  <lookup name="name" type="EditorNewline"/>
+                </property>
+                <property name="selected" bind-source="properties" bind-property="newline-index" bind-flags="bidirectional|sync-create"/>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwPreferencesGroup">
+            <child>
+              <object class="AdwSwitchRow" id="auto_indent_row">
+                <property name="title" translatable="yes">Auto Indentation</property>
+                <property name="active" bind-source="properties" bind-property="auto-indent" bind-flags="bidirectional|sync-create"/>
+              </object>
+            </child>
+            <child>
+              <object class="AdwComboRow">
+                <property name="title" translatable="yes">Character</property>
+                <property name="model">indent_model</property>
+                <property name="expression">
+                  <lookup name="name" type="EditorIndent"/>
+                </property>
+                <property name="selected" bind-source="properties" bind-property="indent-style-index" bind-flags="bidirectional|sync-create"/>
+              </object>
+            </child>
+            <child>
+              <object class="AdwSpinRow" id="tab_width">
+                <property name="title" translatable="yes">Spaces per tab</property>
+                <property name="climb-rate">1</property>
+                <property name="digits">0</property>
+                <property name="numeric">true</property>
+                <binding name="adjustment">
+                  <lookup name="tab-width">properties</lookup>
+                </binding>
+              </object>
+            </child>
+            <child>
+              <object class="AdwSpinRow" id="spaces_per_indent_row">
+                <property name="title" translatable="yes">Spaces per indent</property>
+                <property name="climb-rate">1</property>
+                <property name="digits">0</property>
+                <property name="numeric">true</property>
+                <binding name="adjustment">
+                  <lookup name="indent-width">properties</lookup>
+                </binding>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwPreferencesGroup">
+            <property name="title" translatable="yes">Statistics</property>
+            <child>
+              <object class="AdwActionRow" id="lines">
+                <property name="title" translatable="yes">Lines</property>
+                <style>
+                  <class name="property"/>
+                </style>
+                <binding name="subtitle">
+                  <lookup name="n-lines" type="EditorDocumentStatistics">
+                    <lookup name="statistics">properties</lookup>
+                  </lookup>
+                </binding>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow" id="words">
+                <property name="title" translatable="yes">Words</property>
+                <style>
+                  <class name="property"/>
+                </style>
+                <binding name="subtitle">
+                  <lookup name="n-words" type="EditorDocumentStatistics">
+                    <lookup name="statistics">properties</lookup>
+                  </lookup>
+                </binding>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow" id="chars">
+                <property name="title" translatable="yes">Characters, No Spaces</property>
+                <style>
+                  <class name="property"/>
+                </style>
+                <binding name="subtitle">
+                  <lookup name="n-printable" type="EditorDocumentStatistics">
+                    <lookup name="statistics">properties</lookup>
+                  </lookup>
+                </binding>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow" id="all_chars">
+                <property name="title" translatable="yes">All Characters</property>
+                <style>
+                  <class name="property"/>
+                </style>
+                <binding name="subtitle">
+                  <lookup name="n-chars" type="EditorDocumentStatistics">
+                    <lookup name="statistics">properties</lookup>
+                  </lookup>
+                </binding>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+  <object class="EditorProperties" id="properties">
+    <binding name="page">
+      <lookup name="page">EditorPropertiesPanel</lookup>
+    </binding>
+  </object>
+  <object class="EditorEncodingModel" id="encoding_model">
+  </object>
+  <object class="EditorNewlineModel" id="newline_model">
+  </object>
+  <object class="EditorIndentModel" id="indent_model">
+  </object>
+</interface>

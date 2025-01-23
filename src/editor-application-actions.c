@@ -23,9 +23,7 @@
 #include "build-ident.h"
 #include "config.h"
 
-#ifdef HAVE_ENCHANT
-# include <enchant.h>
-#endif
+#include <libspelling.h>
 
 #include <glib/gi18n.h>
 
@@ -70,6 +68,7 @@ get_system_information (void)
   g_autoptr(GSettings) settings = g_settings_new ("org.gnome.TextEditor");
   g_autoptr(GSettingsSchema) schema = NULL;
   g_autofree char *theme_name = NULL;
+  const char *desktop_session;
   g_auto(GStrv) keys = NULL;
 
   g_object_get (gtk_settings, "gtk-theme-name", &theme_name, NULL);
@@ -117,17 +116,17 @@ get_system_information (void)
                           ADW_MINOR_VERSION,
                           ADW_MICRO_VERSION);
   g_string_append_printf (str,
-                          "Enchant2: %s\n",
-#ifdef HAVE_ENCHANT
-                          enchant_get_version ());
-#else
-                          "Unavailable");
-#endif
+                          "Libspelling: (%s)\n",
+                          SPELLING_VERSION_S);
 
   g_string_append (str, "\n");
   g_string_append_printf (str, "gtk-theme-name: %s\n", theme_name);
   g_string_append_printf (str, "GTK_THEME: %s\n", g_getenv ("GTK_THEME") ?: "unset");
   g_string_append_printf (str, "GdkDisplay: %s\n", G_OBJECT_TYPE_NAME (gdk_display_get_default ()));
+
+  if (!(desktop_session = g_getenv ("DESKTOP_SESSION")))
+    desktop_session = "missing";
+  g_string_append_printf (str, "DESKTOP_SESSION: %s\n", desktop_session);
 
   g_string_append (str, "\n");
   g_string_append_printf (str, "Documents Directory: %s\n", g_get_user_special_dir (G_USER_DIRECTORY_DOCUMENTS));

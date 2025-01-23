@@ -6,13 +6,24 @@
     <style>
       <class name="org-gnome-TextEditor"/>
     </style>
-    <property name="width-request">360</property>
+    <child>
+      <object class="AdwBreakpoint">
+        <condition>max-width: 600sp</condition>
+        <setter object="multi_layout" property="layout-name">narrow</setter>
+      </object>
+    </child>
     <child>
       <object class="GtkShortcutController">
         <child>
           <object class="GtkShortcut">
             <property name="trigger">F11</property>
             <property name="action">action(win.toggle-fullscreen)</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkShortcut">
+            <property name="trigger">&lt;Alt&gt;w</property>
+            <property name="action">action(settings.wrap-text)</property>
           </object>
         </child>
       </object>
@@ -115,12 +126,12 @@
                 <property name="halign">end</property>
                 <property name="spacing">6</property>
                 <child>
-                  <object class="GtkMenuButton" id="options_menu">
-                    <property name="tooltip-text" translatable="yes">View Options</property>
-                    <property name="icon-name">document-properties-symbolic</property>
-                    <property name="menu-model">options_menu_model</property>
+                  <object class="GtkToggleButton" id="properties_button">
+                    <property name="tooltip-text" translatable="yes">Document Properties</property>
+                    <property name="icon-name">info-outline-symbolic</property>
+                    <property name="active" bind-source="split_view" bind-property="show-sidebar" bind-flags="bidirectional|sync-create"/>
                     <accessibility>
-                      <property name="label" translatable="yes">View</property>
+                      <property name="label" translatable="yes">Document Properties</property>
                     </accessibility>
                   </object>
                 </child>
@@ -144,29 +155,98 @@
           </object>
         </child>
         <property name="content">
-          <object class="GtkStack" id="stack">
-            <property name="hexpand">true</property>
-            <child>
-              <object class="AdwTabView" id="tab_view">
+          <object class="AdwMultiLayoutView" id="multi_layout">
+            <child type="properties">
+              <object class="EditorPropertiesPanel">
+                <binding name="page">
+                  <lookup name="visible-page">EditorWindow</lookup>
+                </binding>
+              </object>
+            </child>
+            <child type="content">
+              <object class="GtkStack" id="stack">
                 <property name="hexpand">true</property>
-                <property name="menu-model">tab_menu</property>
-                <signal name="close-page" handler="on_tab_view_close_page_cb" swapped="true"/>
-                <signal name="setup-menu" handler="on_tab_view_setup_menu_cb" swapped="true"/>
-                <signal name="create-window" handler="on_tab_view_create_window_cb" swapped="true"/>
+                <child>
+                  <object class="AdwTabView" id="tab_view">
+                    <property name="hexpand">true</property>
+                    <property name="menu-model">tab_menu</property>
+                    <signal name="close-page" handler="on_tab_view_close_page_cb" swapped="true"/>
+                    <signal name="setup-menu" handler="on_tab_view_setup_menu_cb" swapped="true"/>
+                    <signal name="create-window" handler="on_tab_view_create_window_cb" swapped="true"/>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwStatusPage" id="empty">
+                    <property name="title" translatable="yes">Start or Open a Document</property>
+                    <property name="child">
+                      <object class="GtkBox">
+                        <property name="orientation">vertical</property>
+                        <property name="spacing">32</property>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="label" translatable="yes">• Press the Open button
+    • Press the New tab button
+    • Press Ctrl+N to start a new document
+    • Press Ctrl+O to browse for a document</property>
+                            <property name="wrap">True</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkButton">
+                            <style>
+                              <class name="suggested-action"/>
+                              <class name="large-button"/>
+                              <class name="pill"/>
+                            </style>
+                            <property name="action-name">session.new-draft</property>
+                            <property name="halign">center</property>
+                            <property name="use-underline">true</property>
+                            <property name="label" translatable="yes">_New Empty File</property>
+                          </object>
+                        </child>
+                      </object>
+                    </property>
+                  </object>
+                </child>
               </object>
             </child>
             <child>
-              <object class="AdwStatusPage" id="empty">
-                <property name="title" translatable="yes">Start or Open a Document</property>
-                <property name="child">
-                  <object class="GtkLabel">
-                    <property name="label" translatable="yes">• Press the Open button
-• Press the New tab button
-• Press Ctrl+N to start a new document
-• Press Ctrl+O to browse for a document
-
-Or, press Ctrl+W to close the window.</property>
-                    <property name="wrap">True</property>
+              <object class="AdwLayout">
+                <property name="name">wide</property>
+                <property name="content">
+                  <object class="AdwOverlaySplitView" id="split_view">
+                    <property name="sidebar-position">end</property>
+                    <property name="show-sidebar">false</property>
+                    <property name="content">
+                      <object class="AdwLayoutSlot">
+                        <property name="id">content</property>
+                      </object>
+                    </property>
+                    <property name="sidebar">
+                      <object class="AdwLayoutSlot">
+                        <property name="id">properties</property>
+                      </object>
+                    </property>
+                  </object>
+                </property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwLayout">
+                <property name="name">narrow</property>
+                <property name="content">
+                  <object class="AdwBottomSheet">
+                    <property name="open" bind-source="properties_button" bind-property="active" bind-flags="bidirectional|sync-create"/>
+                    <property name="content">
+                      <object class="AdwLayoutSlot">
+                        <property name="id">content</property>
+                      </object>
+                    </property>
+                    <property name="sheet">
+                      <object class="AdwLayoutSlot">
+                        <property name="id">properties</property>
+                      </object>
+                    </property>
                   </object>
                 </property>
               </object>
@@ -230,11 +310,6 @@ Or, press Ctrl+W to close the window.</property>
         <attribute name="action">page.print</attribute>
         <attribute name="accel">&lt;control&gt;p</attribute>
       </item>
-      <item>
-        <attribute name="id">properties</attribute>
-        <attribute name="label" translatable="yes">Documen_t Properties</attribute>
-        <attribute name="action">page.properties</attribute>
-      </item>
     </section>
     <section>
       <item>
@@ -261,79 +336,8 @@ Or, press Ctrl+W to close the window.</property>
         <attribute name="action">win.alternate-help-overlay</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">_Help</attribute>
-        <attribute name="action">app.help</attribute>
-      </item>
-      <item>
         <attribute name="label" translatable="yes">A_bout Text Editor</attribute>
         <attribute name="action">app.about</attribute>
-      </item>
-    </section>
-  </menu>
-  <menu id="options_menu_model">
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Show _Line Numbers</attribute>
-        <attribute name="action">settings.show-line-numbers</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Show _Right Margin</attribute>
-        <attribute name="action">settings.show-right-margin</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">_Automatic Indentation</attribute>
-        <attribute name="action">settings.auto-indent</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes" comments="Translators: this is a tab character, not a browser tab">_Tabs</attribute>
-        <attribute name="action">settings.indent-style</attribute>
-        <attribute name="target" type="s">'tab'</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">_Spaces</attribute>
-        <attribute name="action">settings.indent-style</attribute>
-        <attribute name="target" type="s">'space'</attribute>
-      </item>
-      <submenu>
-        <attribute name="label" translatable="yes">Spaces _Per Tab</attribute>
-        <section>
-          <item>
-            <attribute name="label" translatable="yes">_2</attribute>
-            <attribute name="action">settings.tab-width</attribute>
-            <attribute name="target" type="u">2</attribute>
-          </item>
-          <item>
-            <attribute name="label" translatable="yes">_4</attribute>
-            <attribute name="action">settings.tab-width</attribute>
-            <attribute name="target" type="u">4</attribute>
-          </item>
-          <item>
-            <attribute name="label" translatable="yes">_6</attribute>
-            <attribute name="action">settings.tab-width</attribute>
-            <attribute name="target" type="u">6</attribute>
-          </item>
-          <item>
-            <attribute name="label" translatable="yes">_8</attribute>
-            <attribute name="action">settings.tab-width</attribute>
-            <attribute name="target" type="u">8</attribute>
-          </item>
-        </section>
-      </submenu>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">T_ext Wrapping</attribute>
-        <attribute name="action">settings.wrap-text</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Chec_k Spelling</attribute>
-        <attribute name="action">settings.spellcheck</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">_Document Type…</attribute>
-        <attribute name="action">page.change-language</attribute>
       </item>
     </section>
   </menu>

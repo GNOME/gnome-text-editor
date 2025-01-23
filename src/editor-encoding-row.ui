@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0"/>
+  <requires lib="Adw" version="1.0"/>
+  <template class="EditorEncodingRow" parent="AdwActionRow">
+    <child>
+      <object class="GtkImage" id="image">
+        <property name="halign">start</property>
+        <property name="hexpand">false</property>
+        <property name="icon-name">object-select-symbolic</property>
+        <property name="visible">false</property>
+      </object>
+    </child>
+  </template>
+</interface>
+

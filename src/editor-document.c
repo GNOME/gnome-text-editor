@@ -31,6 +31,8 @@
 #include "editor-application-private.h"
 #include "editor-buffer-monitor-private.h"
 #include "editor-document-private.h"
+#include "editor-document-statistics.h"
+#include "editor-encoding-model.h"
 #include "editor-session-private.h"
 #include "editor-window-private.h"
 
@@ -50,6 +52,8 @@ struct _EditorDocument
   gchar                        *draft_id;
   const GtkSourceEncoding      *encoding;
   GError                       *last_error;
+
+  EditorDocumentStatistics     *statistics;
 
   SpellingChecker              *spell_checker;
   SpellingTextBufferAdapter    *spell_adapter;
@@ -101,12 +105,16 @@ enum {
   PROP_0,
   PROP_BUSY,
   PROP_BUSY_PROGRESS,
+  PROP_ENCODING,
+  PROP_ERROR,
   PROP_EXTERNALLY_MODIFIED,
   PROP_FILE,
   PROP_HAD_ERROR,
   PROP_ERROR_MESSAGE,
   PROP_LOADING,
+  PROP_NEWLINE_TYPE,
   PROP_SPELL_CHECKER,
+  PROP_STATISTICS,
   PROP_SUGGEST_ADMIN,
   PROP_TITLE,
   N_PROPS
@@ -170,6 +178,7 @@ editor_document_track_error (EditorDocument *self,
   g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_SUGGEST_ADMIN]);
   g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_ERROR_MESSAGE]);
   g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_HAD_ERROR]);
+  g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_ERROR]);
 }
 
 static void
@@ -297,6 +306,9 @@ editor_document_load_notify_completed_cb (EditorDocument *self,
 
   self->loading = FALSE;
 
+  if (self->statistics != NULL)
+    editor_document_statistics_reload (self->statistics);
+
   if (self->spell_adapter != NULL)
     spelling_text_buffer_adapter_invalidate_all (self->spell_adapter);
 
@@ -345,6 +357,9 @@ editor_document_changed (GtkTextBuffer *buffer)
     {
       /* Track separately from :modified for drafts */
       self->needs_autosave = TRUE;
+
+      if (self->statistics != NULL)
+        editor_document_statistics_queue_reload (self->statistics);
     }
 
   GTK_TEXT_BUFFER_CLASS (editor_document_parent_class)->changed (buffer);
@@ -573,6 +588,31 @@ editor_document_cursor_moved (EditorDocument *self)
   g_signal_emit (self, signals[CURSOR_JUMPED], 0);
 }
 
+EditorEncoding *
+editor_document_dup_encoding (EditorDocument *self)
+{
+  EditorEncoding *encoding;
+
+  if ((encoding = editor_encoding_model_get (NULL, self->encoding)))
+    return g_object_ref (encoding);
+
+  return NULL;
+}
+
+void
+editor_document_set_encoding (EditorDocument *self,
+                              EditorEncoding *encoding)
+{
+  const GtkSourceEncoding *enc;
+
+  if (encoding != NULL)
+    enc = editor_encoding_get_encoding (encoding);
+  else
+    enc = gtk_source_encoding_get_utf8 ();
+
+  _editor_document_set_encoding (self, enc);
+}
+
 static void
 editor_document_constructed (GObject *object)
 {
@@ -596,6 +636,7 @@ editor_document_finalize (GObject *object)
 {
   EditorDocument *self = (EditorDocument *)object;
 
+  g_clear_object (&self->statistics);
   g_clear_object (&self->monitor);
   g_clear_object (&self->file);
   g_clear_object (&self->spell_checker);
@@ -637,6 +678,14 @@ editor_document_get_property (GObject    *object,
       g_value_set_double (value, editor_document_get_busy_progress (self));
       break;
 
+    case PROP_ENCODING:
+      g_value_take_object (value, editor_document_dup_encoding (self));
+      break;
+
+    case PROP_ERROR:
+      g_value_set_boxed (value, self->last_error);
+      break;
+
     case PROP_EXTERNALLY_MODIFIED:
       g_value_set_boolean (value, editor_document_get_externally_modified (self));
       break;
@@ -647,6 +696,14 @@ editor_document_get_property (GObject    *object,
 
     case PROP_LOADING:
       g_value_set_boolean (value, _editor_document_get_loading (self));
+      break;
+
+    case PROP_NEWLINE_TYPE:
+      g_value_set_enum (value, self->newline_type);
+      break;
+
+    case PROP_STATISTICS:
+      g_value_take_object (value, editor_document_load_statistics (self));
       break;
 
     case PROP_TITLE:
@@ -672,6 +729,10 @@ editor_document_set_property (GObject      *object,
 
   switch (prop_id)
     {
+    case PROP_ENCODING:
+      editor_document_set_encoding (self, g_value_get_object (value));
+      break;
+
     case PROP_FILE:
       gtk_source_file_set_location (self->file, g_value_get_object (value));
       break;
@@ -721,6 +782,11 @@ editor_document_class_init (EditorDocumentClass *klass)
                           NULL,
                           (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
+  properties [PROP_ERROR] =
+    g_param_spec_boxed ("error", NULL, NULL,
+                        G_TYPE_ERROR,
+                        (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
   properties [PROP_BUSY] =
     g_param_spec_boolean ("busy",
                           "Busy",
@@ -734,6 +800,13 @@ editor_document_class_init (EditorDocumentClass *klass)
                          "The progress of the current busy operation",
                          -G_MAXDOUBLE, G_MAXDOUBLE, 0.0,
                          (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
+  properties [PROP_ENCODING] =
+    g_param_spec_object ("encoding", NULL, NULL,
+                         EDITOR_TYPE_ENCODING,
+                         (G_PARAM_READWRITE |
+                          G_PARAM_EXPLICIT_NOTIFY |
+                          G_PARAM_STATIC_STRINGS));
 
   properties [PROP_EXTERNALLY_MODIFIED] =
     g_param_spec_boolean ("externally-modified",
@@ -763,12 +836,25 @@ editor_document_class_init (EditorDocumentClass *klass)
                          SPELLING_TYPE_CHECKER,
                          (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
+  properties [PROP_STATISTICS] =
+    g_param_spec_object ("statistics", NULL, NULL,
+                         EDITOR_TYPE_DOCUMENT_STATISTICS,
+                         (G_PARAM_READABLE |
+                          G_PARAM_STATIC_STRINGS));
+
   properties [PROP_TITLE] =
     g_param_spec_string ("title",
                          "Title",
                          "The title for the document",
                          NULL,
                          (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
+  properties[PROP_NEWLINE_TYPE] =
+    g_param_spec_enum ("newline-type", NULL, NULL,
+                       GTK_SOURCE_TYPE_NEWLINE_TYPE,
+                       GTK_SOURCE_NEWLINE_TYPE_DEFAULT,
+                       (G_PARAM_READABLE |
+                        G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_properties (object_class, N_PROPS, properties);
 
@@ -1579,7 +1665,7 @@ editor_document_load_cb (GObject      *object,
 
       g_assert (!file || G_IS_FILE (file));
 
-      self->newline_type = gtk_source_file_loader_get_newline_type (loader);
+      _editor_document_set_newline_type (self, gtk_source_file_loader_get_newline_type (loader));
 
       /* We want to keep the same encoding when saving that was
        * auto-detected from loading the file.
@@ -2221,7 +2307,11 @@ _editor_document_set_encoding (EditorDocument          *self,
 {
   g_return_if_fail (EDITOR_IS_DOCUMENT (self));
 
-  self->encoding = encoding;
+  if (encoding != self->encoding)
+    {
+      self->encoding = encoding;
+      g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_ENCODING]);
+    }
 }
 
 GtkSourceNewlineType
@@ -2238,7 +2328,11 @@ _editor_document_set_newline_type (EditorDocument       *self,
 {
   g_return_if_fail (EDITOR_IS_DOCUMENT (self));
 
-  self->newline_type = newline_type;
+  if (newline_type != self->newline_type)
+    {
+      self->newline_type = newline_type;
+      g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_NEWLINE_TYPE]);
+    }
 }
 
 /**
@@ -2469,4 +2563,18 @@ _editor_document_attach_actions (EditorDocument *self,
     gtk_widget_insert_action_group (widget,
                                     "spelling",
                                     G_ACTION_GROUP (self->spell_adapter));
+}
+
+EditorDocumentStatistics *
+editor_document_load_statistics (EditorDocument *self)
+{
+  g_return_val_if_fail (EDITOR_IS_DOCUMENT (self), NULL);
+
+  if (self->statistics == NULL)
+    {
+      self->statistics = editor_document_statistics_new (self);
+      editor_document_statistics_queue_reload (self->statistics);
+    }
+
+  return g_object_ref (self->statistics);
 }

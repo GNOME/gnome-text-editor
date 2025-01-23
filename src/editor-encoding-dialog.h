@@ -1,6 +1,7 @@
-/* editor-properties-dialog-private.h
+/*
+ * editor-encoding-dialog.h
  *
- * Copyright 2022 Christian Hergert <chergert@redhat.com>
+ * Copyright 2025 Christian Hergert <chergert@redhat.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,16 +23,14 @@
 
 #include <adwaita.h>
 
-#include "editor-types-private.h"
+#include "editor-document.h"
 
 G_BEGIN_DECLS
 
-#define EDITOR_TYPE_PROPERTIES_DIALOG (editor_properties_dialog_get_type())
+#define EDITOR_TYPE_ENCODING_DIALOG (editor_encoding_dialog_get_type())
 
-G_DECLARE_FINAL_TYPE (EditorPropertiesDialog, editor_properties_dialog, EDITOR, PROPERTIES_DIALOG, AdwWindow)
+G_DECLARE_FINAL_TYPE (EditorEncodingDialog, editor_encoding_dialog, EDITOR, ENCODING_DIALOG, AdwDialog)
 
-GtkWidget      *editor_properties_dialog_new          (EditorWindow           *parent_window,
-                                                       EditorDocument         *document);
-EditorDocument *editor_properties_dialog_get_document (EditorPropertiesDialog *self);
+AdwDialog *editor_encoding_dialog_new (EditorDocument *document);
 
 G_END_DECLS

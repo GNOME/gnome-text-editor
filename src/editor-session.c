@@ -2613,3 +2613,76 @@ editor_session_open_stream (EditorSession *session,
   _editor_page_raise (new_page);
   _editor_session_mark_dirty (session);
 }
+
+static int
+sort_languages (gconstpointer l,
+                gconstpointer r,
+                gpointer      data)
+{
+  GHashTable *ht = data;
+  GtkSourceLanguage *lang1 = *(gpointer *)l;
+  GtkSourceLanguage *lang2 = *(gpointer *)r;
+
+  if (g_hash_table_lookup (ht, lang1) < g_hash_table_lookup (ht, lang2))
+    return -1;
+
+  if (g_hash_table_lookup (ht, lang1) > g_hash_table_lookup (ht, lang2))
+    return 1;
+
+  return 0;
+}
+
+GListModel *
+editor_session_list_recent_syntaxes (EditorSession *self)
+{
+  GtkSourceLanguageManager *lm;
+  g_autoptr(GHashTable) ht = NULL;
+  g_autoptr(GPtrArray) keys = NULL;
+  GListStore *store;
+  guint n_items;
+
+  g_return_val_if_fail (EDITOR_IS_SESSION (self), NULL);
+
+  lm = gtk_source_language_manager_get_default ();
+  ht = g_hash_table_new (NULL, NULL);
+  n_items = g_list_model_get_n_items (G_LIST_MODEL (self->recents));
+
+  for (guint i = 0; i < self->pages->len; i++)
+    {
+      EditorPage *page = g_ptr_array_index (self->pages, i);
+      EditorDocument *document = editor_page_get_document (page);
+      GtkSourceLanguage *l = gtk_source_buffer_get_language (GTK_SOURCE_BUFFER (document));
+
+      if (l != NULL)
+        {
+          gpointer v = g_hash_table_lookup (ht, l);
+          g_hash_table_insert (ht, l, GUINT_TO_POINTER (GPOINTER_TO_UINT (v) + 1));
+        }
+    }
+
+  for (guint i = 0; i < n_items; i++)
+    {
+      g_autoptr(EditorSidebarItem) item = g_list_model_get_item (G_LIST_MODEL (self->recents), i);
+      GFile *file = _editor_sidebar_item_get_file (item);
+
+      if (file != NULL)
+        {
+          g_autofree char *name = g_file_get_basename (file);
+          GtkSourceLanguage *l;
+
+          if ((l = gtk_source_language_manager_guess_language (lm, name, NULL)))
+            {
+              gpointer v = g_hash_table_lookup (ht, l);
+              g_hash_table_insert (ht, l, GUINT_TO_POINTER (GPOINTER_TO_UINT (v) + 1));
+            }
+        }
+    }
+
+  keys = g_hash_table_get_keys_as_ptr_array (ht);
+  g_ptr_array_sort_with_data (keys, sort_languages, ht);
+
+  store = g_list_store_new (GTK_SOURCE_TYPE_LANGUAGE);
+  for (guint i = 0; i < keys->len; i++)
+    g_list_store_append (store, g_ptr_array_index (keys, i));
+  return G_LIST_MODEL (store);
+}

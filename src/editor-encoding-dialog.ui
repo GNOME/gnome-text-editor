@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <requires lib="gtk" version="4.0"/>
-  <requires lib="Adw" version="1.0"/>
-  <template class="EditorLanguageDialog" parent="AdwDialog">
-    <property name="title" translatable="yes">Document Type</property>
-    <style>
-      <class name="org-gnome-TextEditor"/>
-      <class name="language-dialog"/>
-    </style>
+  <template class="EditorEncodingDialog" parent="AdwDialog">
+    <property name="can-close">true</property>
+    <property name="title" translatable="yes">Change Encoding</property>
+    <property name="content-width">360</property>
     <property name="child">
       <object class="AdwToolbarView">
         <child type="top">
-          <object class="AdwHeaderBar"/>
+          <object class="AdwHeaderBar">
+          </object>
         </child>
         <child type="top">
           <object class="GtkSearchBar">
@@ -22,7 +19,7 @@
                 <property name="margin-end">6</property>
                 <child>
                   <object class="GtkSearchEntry" id="search_entry">
-                    <property name="placeholder-text" translatable="yes">Search document types</property>
+                    <property name="placeholder-text" translatable="yes">Search encodings</property>
                   </object>
                 </child>
               </object>
@@ -33,21 +30,9 @@
           <object class="GtkStack" id="stack">
             <child>
               <object class="GtkStackPage">
-                <property name="name">document-languages-page</property>
+                <property name="name">encodings</property>
                 <property name="child">
                   <object class="AdwPreferencesPage">
-                    <child>
-                      <object class="AdwPreferencesGroup" id="recent_group">
-                        <child>
-                          <object class="GtkListBox" id="recent_list_box">
-                            <style>
-                              <class name="content"/>
-                            </style>
-                            <property name="selection-mode">none</property>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
                     <child>
                       <object class="AdwPreferencesGroup" id="group">
                         <child>
@@ -66,7 +51,7 @@
             </child>
             <child>
               <object class="GtkStackPage">
-                <property name="name">no-search-results-page</property>
+                <property name="name">empty</property>
                 <property name="child">
                   <object class="AdwStatusPage">
                     <property name="icon-name">edit-find-symbolic</property>
