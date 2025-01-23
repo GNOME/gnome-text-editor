@@ -30,6 +30,7 @@ G_BEGIN_DECLS
 typedef struct _EditorApplication          EditorApplication;
 typedef struct _EditorDocument             EditorDocument;
 typedef struct _EditorDocumentStatistics   EditorDocumentStatistics;
+typedef struct _EditorEncoding             EditorEncoding;
 typedef struct _EditorLanguageDialog       EditorLanguageDialog;
 typedef struct _EditorPage                 EditorPage;
 typedef struct _EditorPageSettings         EditorPageSettings;
