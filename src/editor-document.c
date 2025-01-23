@@ -31,6 +31,7 @@
 #include "editor-application-private.h"
 #include "editor-buffer-monitor-private.h"
 #include "editor-document-private.h"
+#include "editor-document-statistics.h"
 #include "editor-session-private.h"
 #include "editor-window-private.h"
 
@@ -50,6 +51,8 @@ struct _EditorDocument
   gchar                        *draft_id;
   const GtkSourceEncoding      *encoding;
   GError                       *last_error;
+
+  EditorDocumentStatistics     *statistics;
 
   SpellingChecker              *spell_checker;
   SpellingTextBufferAdapter    *spell_adapter;
@@ -107,6 +110,7 @@ enum {
   PROP_ERROR_MESSAGE,
   PROP_LOADING,
   PROP_SPELL_CHECKER,
+  PROP_STATISTICS,
   PROP_SUGGEST_ADMIN,
   PROP_TITLE,
   N_PROPS
@@ -297,6 +301,9 @@ editor_document_load_notify_completed_cb (EditorDocument *self,
 
   self->loading = FALSE;
 
+  if (self->statistics != NULL)
+    editor_document_statistics_reload (self->statistics);
+
   if (self->spell_adapter != NULL)
     spelling_text_buffer_adapter_invalidate_all (self->spell_adapter);
 
@@ -345,6 +352,9 @@ editor_document_changed (GtkTextBuffer *buffer)
     {
       /* Track separately from :modified for drafts */
       self->needs_autosave = TRUE;
+
+      if (self->statistics != NULL)
+        editor_document_statistics_queue_reload (self->statistics);
     }
 
   GTK_TEXT_BUFFER_CLASS (editor_document_parent_class)->changed (buffer);
@@ -596,6 +606,7 @@ editor_document_finalize (GObject *object)
 {
   EditorDocument *self = (EditorDocument *)object;
 
+  g_clear_object (&self->statistics);
   g_clear_object (&self->monitor);
   g_clear_object (&self->file);
   g_clear_object (&self->spell_checker);
@@ -647,6 +658,10 @@ editor_document_get_property (GObject    *object,
 
     case PROP_LOADING:
       g_value_set_boolean (value, _editor_document_get_loading (self));
+      break;
+
+    case PROP_STATISTICS:
+      g_value_take_object (value, editor_document_load_statistics (self));
       break;
 
     case PROP_TITLE:
@@ -762,6 +777,12 @@ editor_document_class_init (EditorDocumentClass *klass)
                          "Spell Checker",
                          SPELLING_TYPE_CHECKER,
                          (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+
+  properties [PROP_STATISTICS] =
+    g_param_spec_object ("statistics", NULL, NULL,
+                         EDITOR_TYPE_DOCUMENT_STATISTICS,
+                         (G_PARAM_READABLE |
+                          G_PARAM_STATIC_STRINGS));
 
   properties [PROP_TITLE] =
     g_param_spec_string ("title",
@@ -2469,4 +2490,18 @@ _editor_document_attach_actions (EditorDocument *self,
     gtk_widget_insert_action_group (widget,
                                     "spelling",
                                     G_ACTION_GROUP (self->spell_adapter));
+}
+
+EditorDocumentStatistics *
+editor_document_load_statistics (EditorDocument *self)
+{
+  g_return_val_if_fail (EDITOR_IS_DOCUMENT (self), NULL);
+
+  if (self->statistics == NULL)
+    {
+      self->statistics = editor_document_statistics_new (self);
+      editor_document_statistics_queue_reload (self->statistics);
+    }
+
+  return g_object_ref (self->statistics);
 }

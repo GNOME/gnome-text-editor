@@ -42,5 +42,6 @@ void             editor_document_set_spell_checker       (EditorDocument  *self,
                                                           SpellingChecker *spell_checker);
 void             editor_document_update_corrections      (EditorDocument  *self);
 GMenuModel      *editor_document_get_spelling_menu       (EditorDocument  *self);
+EditorDocumentStatistics *editor_document_load_statistics         (EditorDocument  *self);
 
 G_END_DECLS
