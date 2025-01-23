@@ -102,6 +102,44 @@
             </child>
           </object>
         </child>
+        <child>
+          <object class="GtkInfoBar" id="encoding_infobar">
+            <property name="message-type">warning</property>
+            <property name="show-close-button">False</property>
+            <property name="revealed">False</property>
+            <child>
+              <object class="GtkBox">
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="halign">start</property>
+                    <property name="label" translatable="yes">Invalid Characters Detected</property>
+                    <property name="wrap">True</property>
+                    <property name="wrap-mode">word-char</property>
+                    <attributes>
+                      <attribute name="weight" value="bold"/>
+                    </attributes>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="halign">start</property>
+                    <property name="label" translatable="yes">There was an encoding conversion error so a fallback character was used.</property>
+                    <property name="wrap">True</property>
+                    <property name="wrap-mode">word-char</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child type="action">
+              <object class="GtkButton" id="change_encoding">
+                <property name="label" translatable="yes">Change _Encoding…</property>
+                <property name="use-underline">True</property>
+                <property name="action-name">page.change-encoding</property>
+              </object>
+            </child>
+          </object>
+        </child>
       </object>
     </child>
   </template>
