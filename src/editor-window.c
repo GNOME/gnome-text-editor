@@ -28,6 +28,7 @@
 #include "editor-document.h"
 #include "editor-open-popover-private.h"
 #include "editor-page-private.h"
+#include "editor-properties-panel.h"
 #include "editor-save-changes-dialog-private.h"
 #include "editor-session-private.h"
 #include "editor-theme-selector-private.h"
@@ -958,6 +959,7 @@ editor_window_class_init (EditorWindowClass *klass)
   g_type_ensure (EDITOR_TYPE_FULLSCREEN_BOX);
   g_type_ensure (EDITOR_TYPE_OPEN_POPOVER);
   g_type_ensure (EDITOR_TYPE_POSITION_LABEL);
+  g_type_ensure (EDITOR_TYPE_PROPERTIES_PANEL);
   g_type_ensure (EDITOR_TYPE_STATUSBAR);
 }
 
