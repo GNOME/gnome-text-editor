@@ -975,7 +975,6 @@ editor_page_class_init (EditorPageClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorPage, box);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, goto_line_entry);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, goto_line_revealer);
-  gtk_widget_class_bind_template_child (widget_class, EditorPage, indent_menu);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, infobar);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, map);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, overlay);
@@ -1011,8 +1010,6 @@ editor_page_init (EditorPage *self)
 
   gtk_widget_init_template (GTK_WIDGET (self));
 
-  editor_source_view_prepend_extra_menu (EDITOR_SOURCE_VIEW (self->view),
-                                         G_MENU_MODEL (self->indent_menu));
   _editor_revealer_auto_hide (self->search_revealer);
   _editor_revealer_auto_hide (self->goto_line_revealer);
 
