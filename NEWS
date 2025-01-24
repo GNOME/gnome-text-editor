@@ -1,33 +1,23 @@
-# Text Editor 47.0
+# Text Editor 48.alpha
 
- * Fix focus ring around checkmark in save-changes dialog
- * Translation updates
+ * The view menu has been removed in favor of a new properties panel
+   based on feedback from users over the past couple of years.
+ * The indention selection menu has also been removed for the same
+   reason.
+ * More options in preferences have been exposed.
+ * The 'grid' option has been removed from preferences as it has had
+   a number of issues. Though if you've enabled it, it will continue
+   to be visible to allow turning it off.
+ * Opening files with encoding errors will present the option to select
+   an encoding from the infobar.
+ * Text Editor now uses the new "text" GtkFileDialog APIs from GTK.
+   This should allow using portals and thus, Nautilus as a file chooser.
+ * Document statistics can be updated as you type in the new panel.
+ * The language selection dialog shows recent languages above other
+   languages to make common changes quicker.
+ * The position label is now displayed above the editor view when the
+   cursor moves for reasons other than typing such as jumping by arrow
+   movement or mouse/touch press to move the cursor.
+ * Fix alignment/sizing of zoom buttons.
+ * A new fullscreen mode similar to Ptyxis/Epiphany.
 
-# Text Editor 47.rc
-
- * Text Editor now uses libspelling for spellchecking
- * Various CSS fixes for transitioning to AdwDialog
- * implicit-trailing-newline is now turned on by default
-
-# Text Editor 47.beta
-
- * Various recoloring tweaks to better match platform styling.
- * Improvements to use of AdwDialog.
- * Print operations improvements.
- * Spellcheck improvements including support for use with F10/Menu.
- * Prefer wide layout for save-changes-dialog.
-
-# Text Editor 47.alpha
-
- * Various UI elements have been ported to new libadwaita features so
-   this is a good chance to discover bugs early.
- * A number of papercuts in accordance with the GNOME HIG.
- * Text Editor will try harder to break out of potential CPU cyclic
-   issues from GTK forward validation of text buffers. This should
-   help reduce CPU usage if/when large files are closed.
- * Various spellcheck improvements.
- * Ensure encoding is propagated when using Save As.
- * More detailed error messages in the error banner.
- * Many translation updates.
-
-Thanks to everyone who contributed!
