@@ -243,8 +243,12 @@
                       </object>
                     </property>
                     <property name="sheet">
-                      <object class="AdwLayoutSlot">
-                        <property name="id">properties</property>
+                      <object class="AdwToolbarView">
+                        <child>
+                          <object class="AdwLayoutSlot">
+                            <property name="id">properties</property>
+                          </object>
+                        </child>
                       </object>
                     </property>
                   </object>
