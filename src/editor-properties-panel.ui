@@ -50,7 +50,8 @@
             </child>
             <child>
               <object class="AdwActionRow">
-                <property name="title" translatable="yes">Document Type</property>
+                <property name="title" translatable="yes">_Document Type</property>
+                <property name="use-underline">True</property>
                 <binding name="subtitle">
                   <lookup name="language-name">properties</lookup>
                 </binding>
@@ -73,7 +74,8 @@
             </child>
             <child>
               <object class="AdwComboRow" id="encoding_row">
-                <property name="title" translatable="yes">Encoding</property>
+                <property name="title" translatable="yes">_Encoding</property>
+                <property name="use-underline">True</property>
                 <property name="use-markup">False</property>
                 <property name="enable-search">True</property>
                 <property name="search-match-mode">substring</property>
@@ -86,7 +88,8 @@
             </child>
             <child>
               <object class="AdwComboRow">
-                <property name="title" translatable="yes">Line Feed</property>
+                <property name="title" translatable="yes">_Line Feed</property>
+                <property name="use-underline">True</property>
                 <property name="use-markup">False</property>
                 <property name="model">newline_model</property>
                 <property name="expression">
@@ -101,13 +104,15 @@
           <object class="AdwPreferencesGroup">
             <child>
               <object class="AdwSwitchRow" id="auto_indent_row">
-                <property name="title" translatable="yes">Auto Indentation</property>
+                <property name="title" translatable="yes">A_uto Indentation</property>
+                <property name="use-underline">True</property>
                 <property name="active" bind-source="properties" bind-property="auto-indent" bind-flags="bidirectional|sync-create"/>
               </object>
             </child>
             <child>
               <object class="AdwComboRow">
-                <property name="title" translatable="yes">Character</property>
+                <property name="title" translatable="yes">_Character</property>
+                <property name="use-underline">True</property>
                 <property name="model">indent_model</property>
                 <property name="expression">
                   <lookup name="name" type="EditorIndent"/>
@@ -117,7 +122,8 @@
             </child>
             <child>
               <object class="AdwSpinRow" id="tab_width">
-                <property name="title" translatable="yes">Spaces per tab</property>
+                <property name="title" translatable="yes">Spaces per _tab</property>
+                <property name="use-underline">True</property>
                 <property name="climb-rate">1</property>
                 <property name="digits">0</property>
                 <property name="numeric">true</property>
@@ -128,7 +134,8 @@
             </child>
             <child>
               <object class="AdwSpinRow" id="spaces_per_indent_row">
-                <property name="title" translatable="yes">Spaces per indent</property>
+                <property name="title" translatable="yes">Spaces per _indent</property>
+                <property name="use-underline">True</property>
                 <property name="climb-rate">1</property>
                 <property name="digits">0</property>
                 <property name="numeric">true</property>
