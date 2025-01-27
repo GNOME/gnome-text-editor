@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2024-11-25 09:23+0000\n"
-"PO-Revision-Date: 2024-12-02 15:50+0300\n"
+"POT-Creation-Date: 2025-01-25 22:02+0000\n"
+"PO-Revision-Date: 2025-01-26 17:40+0300\n"
 "Last-Translator: Artur So <arturios2005@mail.ru>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
@@ -28,7 +28,7 @@ msgstr "write;notepad;писать;блокнот;"
 #: data/org.gnome.TextEditor.desktop.in.in:10
 #: data/org.gnome.TextEditor.desktop.in.in:11
 #: data/org.gnome.TextEditor.metainfo.xml.in.in:10
-#: src/editor-application-actions.c:199 src/editor-window.c:1327
+#: src/editor-application-actions.c:198 src/editor-window.c:1277
 msgid "Text Editor"
 msgstr "Текстовый редактор"
 
@@ -299,11 +299,11 @@ msgstr "Не удалось найти свойство %s в %s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Не удалось получить значение va_list: %s"
 
-#: src/editor-application-actions.c:201
+#: src/editor-application-actions.c:200
 msgid "The GNOME Project"
 msgstr "Проект GNOME"
 
-#: src/editor-application-actions.c:214
+#: src/editor-application-actions.c:213
 msgid "translator-credits"
 msgstr ""
 "Ser82-png <asvmail.as@gmail.com>, 2022\n"
@@ -344,12 +344,12 @@ msgstr ""
 msgid "Print version information and exit"
 msgstr "Напечатать информацию о версии и выйти"
 
-#: src/editor-document.c:2114
+#: src/editor-document.c:2235
 msgid "[Read-Only]"
 msgstr "[Только чтение]"
 
-#: src/editor-document.c:2331 src/editor-page.c:1074
-#: src/editor-sidebar-item.c:511
+#: src/editor-document.c:2460 src/editor-page.c:1154
+#: src/editor-sidebar-item.c:510
 msgid "New Document"
 msgstr "Новый документ"
 
@@ -370,43 +370,51 @@ msgstr "Ошибка ILCreateFromPath()"
 msgid "Cannot convert “%s” into a valid NSURL."
 msgstr "Не удается преобразовать «%s» в действительный NSURL."
 
-#: src/editor-info-bar.c:76
+#: src/editor-indent-model.c:173
+msgid "Space"
+msgstr "Пробел"
+
+#: src/editor-indent-model.c:178
+msgid "Tab"
+msgstr "Табуляция"
+
+#: src/editor-info-bar.c:108
 msgid "_Discard Changes and Reload"
 msgstr "_Отменить изменения и перезагрузить"
 
-#: src/editor-info-bar.c:79
+#: src/editor-info-bar.c:111
 msgid "File Has Changed on Disk"
 msgstr "Файл на диске был изменен"
 
-#: src/editor-info-bar.c:80
+#: src/editor-info-bar.c:112
 msgid "The file has been changed by another program."
 msgstr "Этот файл был изменен другой программой."
 
-#: src/editor-info-bar.c:89 src/editor-window.ui:217
+#: src/editor-info-bar.c:121 src/editor-window.ui:295
 msgid "Save _As…"
 msgstr "Сохранить _как…"
 
-#: src/editor-info-bar.c:91 src/editor-info-bar.ui:73
+#: src/editor-info-bar.c:123 src/editor-info-bar.ui:73
 msgid "Document Restored"
 msgstr "Документ восстановлен"
 
-#: src/editor-info-bar.c:92 src/editor-info-bar.ui:84
+#: src/editor-info-bar.c:124 src/editor-info-bar.ui:84
 msgid "Unsaved document has been restored."
 msgstr "Несохраненный документ был восстановлен."
 
-#: src/editor-info-bar.c:98 src/editor-info-bar.ui:99
+#: src/editor-info-bar.c:130 src/editor-info-bar.ui:99
 msgid "_Save…"
 msgstr "С_охранить…"
 
-#: src/editor-info-bar.c:100 src/editor-info-bar.ui:93
+#: src/editor-info-bar.c:132 src/editor-info-bar.ui:93
 msgid "_Discard…"
 msgstr "_Сбросить…"
 
-#: src/editor-info-bar.c:102
+#: src/editor-info-bar.c:134
 msgid "Draft Changes Restored"
 msgstr "Черновик изменений восстановлен"
 
-#: src/editor-info-bar.c:103
+#: src/editor-info-bar.c:135
 msgid "Unsaved changes to the document have been restored."
 msgstr "Несохраненные изменения в документе восстановлены."
 
@@ -422,7 +430,21 @@ msgstr "_Повторить"
 msgid "Open As _Administrator"
 msgstr "Открыть как _Администратор"
 
-#: src/editor-language-dialog.ui:6 src/editor-window.c:191
+#: src/editor-info-bar.ui:116
+msgid "Invalid Characters Detected"
+msgstr "Обнаружены недопустимые символы"
+
+#: src/editor-info-bar.ui:127
+msgid ""
+"There was an encoding conversion error so a fallback character was used."
+msgstr ""
+"Произошла ошибка преобразования кодировки, поэтому был использован резервный символ."
+
+#: src/editor-info-bar.ui:136
+msgid "Change _Encoding…"
+msgstr "Изменить _кодировку…"
+
+#: src/editor-language-dialog.ui:6 src/editor-properties-panel.ui:53
 msgid "Document Type"
 msgstr "Тип документа"
 
@@ -430,17 +452,29 @@ msgstr "Тип документа"
 msgid "Search document types"
 msgstr "Поиск типов документов"
 
-#: src/editor-language-dialog.ui:60
+#: src/editor-language-dialog.ui:73
 msgid "No Results Found"
 msgstr "Результатов не найдено"
 
-#: src/editor-language-dialog.ui:61
+#: src/editor-language-dialog.ui:74
 msgid "Try a different search"
 msgstr "Попробуйте другой поисковый запрос"
 
 #: src/editor-language-row.c:61 src/editor-language-row.c:119
 msgid "Plain Text"
 msgstr "Простой текст"
+
+#: src/editor-newline-model.c:180
+msgid "Unix/Linux (LF)"
+msgstr "Unix/Linux (LF)"
+
+#: src/editor-newline-model.c:181
+msgid "Windows (CR+LF)"
+msgstr "Windows (CR+LF)"
+
+#: src/editor-newline-model.c:182
+msgid "Mac OS Classic (CR)"
+msgstr "Mac OS Classic (CR)"
 
 #: src/editor-open-popover.ui:25
 msgid "Search documents"
@@ -454,42 +488,25 @@ msgstr "Открыть новый документ"
 msgid "No Recent Documents"
 msgstr "Отсутствуют недавно открытые документы"
 
-#: src/editor-page.c:1100 src/editor-properties-dialog.c:104
-#: src/editor-sidebar-item.c:105
+#: src/editor-page.c:1180 src/editor-sidebar-item.c:104
 msgid "Draft"
 msgstr "Черновик"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1112
+#: src/editor-page.c:1192
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (Администратор)"
 
-#: src/editor-page.c:1122 src/editor-sidebar-item.c:113
-msgid "Document Portal"
-msgstr "Портал документов"
-
-#: src/editor-page.c:1168
+#: src/editor-page.c:1248
 msgid "Failed to save document"
 msgstr "Ошибка при сохранении документа"
 
-#: src/editor-page.c:1169 src/editor-window.ui:358
+#: src/editor-page.c:1249 src/editor-window.ui:374
 msgid "_Close"
 msgstr "_Закрыть"
 
-#: src/editor-page.c:1257
-msgid "Save As"
-msgstr "Сохранить как"
-
-#: src/editor-page.c:1260
-msgid "Save"
-msgstr "Сохранить"
-
-#: src/editor-page.c:1261 src/editor-window-actions.c:347
-msgid "Cancel"
-msgstr "Отменить"
-
-#: src/editor-page.c:1423
+#: src/editor-page.c:1518
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Стр. %u, Столб. %u"
@@ -502,50 +519,9 @@ msgstr "Перейти к строке"
 msgid "Go"
 msgstr "Перейти"
 
-#: src/editor-page.ui:150
-msgid "Indentation"
-msgstr "Отступ"
-
-#: src/editor-page.ui:153 src/editor-window.ui:278
-msgid "_Automatic Indentation"
-msgstr "_Автоматический отступ"
-
-#. Translators: this is a tab character, not a browser tab
-#: src/editor-page.ui:159 src/editor-window.ui:282
-msgid "_Tabs"
-msgstr "_Табуляция"
-
-#: src/editor-page.ui:164 src/editor-window.ui:287
-msgid "_Spaces"
-msgstr "_Пробелы"
-
-#: src/editor-page.ui:171 src/editor-window.ui:292
-msgid "Spaces _Per Tab"
-msgstr "Пробелов на _табуляцию"
-
-#: src/editor-page.ui:173 src/editor-page.ui:201
-msgid "2"
-msgstr "2"
-
-#: src/editor-page.ui:178 src/editor-page.ui:206
-msgid "4"
-msgstr "4"
-
-#: src/editor-page.ui:183 src/editor-page.ui:211
-msgid "6"
-msgstr "6"
-
-#: src/editor-page.ui:188 src/editor-page.ui:216
-msgid "8"
-msgstr "8"
-
-#: src/editor-page.ui:194
-msgid "Spaces Per Indent"
-msgstr "Пробелов на отступ"
-
-#: src/editor-page.ui:196
-msgid "Use Tab Size"
-msgstr "Использовать размер табуляции"
+#: src/editor-path.c:126
+msgid "Document Portal"
+msgstr "Портал документов"
 
 #. translators: Ln is short for "Line Number"
 #: src/editor-position-label.ui:15
@@ -553,7 +529,7 @@ msgid "Ln"
 msgstr "Стр."
 
 #. translators: Col is short for "Column"
-#: src/editor-position-label.ui:35
+#: src/editor-position-label.ui:32
 msgid "Col"
 msgstr "Столб."
 
@@ -566,48 +542,64 @@ msgid "Custom _Font"
 msgstr "Текущий _шрифт"
 
 #: src/editor-preferences-dialog.ui:82
-msgid "Display _Grid Pattern"
-msgstr "Показывать _сетку"
+msgid "Show Grid Pattern"
+msgstr "Показывать сетку"
 
 #: src/editor-preferences-dialog.ui:89
+msgid "Display _Line Numbers"
+msgstr "Отображать _номера строк"
+
+#: src/editor-preferences-dialog.ui:96
 msgid "_Highlight Current Line"
 msgstr "_Выделять текущую строку"
 
-#: src/editor-preferences-dialog.ui:96
+#: src/editor-preferences-dialog.ui:103
 msgid "Display _Overview Map"
 msgstr "Показывать _обзорную карту"
 
-#: src/editor-preferences-dialog.ui:105
-msgid "Right Margin"
-msgstr "Правый край"
+#: src/editor-preferences-dialog.ui:114
+msgid "Check _Spelling"
+msgstr "Проверять ор_фографию"
 
-#: src/editor-preferences-dialog.ui:108
+#: src/editor-preferences-dialog.ui:123
+msgid "Line Wrap"
+msgstr "Перенос строки"
+
+#: src/editor-preferences-dialog.ui:126
+msgid "Show _Right Margin"
+msgstr "Показывать _правый край"
+
+#: src/editor-preferences-dialog.ui:133
 msgid "_Margin Position"
 msgstr "Положение _края"
 
-#: src/editor-preferences-dialog.ui:117
+#: src/editor-preferences-dialog.ui:140
+msgid "Wrap Lines Automatically (Alt+W)"
+msgstr "Автоматический перенос строк (Alt+W)"
+
+#: src/editor-preferences-dialog.ui:149
 msgid "Behavior"
 msgstr "Поведение"
 
-#: src/editor-preferences-dialog.ui:120
+#: src/editor-preferences-dialog.ui:152
 msgid "_Discover Document Settings"
 msgstr "Авто_матически определять настройки документа"
 
-#: src/editor-preferences-dialog.ui:122
+#: src/editor-preferences-dialog.ui:154
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr ""
 "Применять настройки из modeline, editorconfig или использовать разумные "
 "значения по умолчанию"
 
-#: src/editor-preferences-dialog.ui:128
+#: src/editor-preferences-dialog.ui:160
 msgid "_Restore Session"
 msgstr "Восс_танавливать сеанс"
 
-#: src/editor-preferences-dialog.ui:130
+#: src/editor-preferences-dialog.ui:162
 msgid "Return to your previous session when Text Editor is started"
 msgstr "Возвращаться к предыдущему сеансу при запуске текстового редактора"
 
-#: src/editor-preferences-dialog.ui:142
+#: src/editor-preferences-dialog.ui:174
 msgid "_Clear History"
 msgstr "Очистить _историю"
 
@@ -628,43 +620,63 @@ msgstr "Файл: %s"
 msgid "Page %N of %Q"
 msgstr "Страница %N из %Q"
 
-#: src/editor-properties-dialog.ui:6
-msgid "Properties"
-msgstr "Свойства"
+#: src/editor-properties-panel.ui:11
+msgid "File Name"
+msgstr "Имя файла"
 
-#: src/editor-properties-dialog.ui:22
-msgid "File"
-msgstr "Файл"
-
-#: src/editor-properties-dialog.ui:25
-msgid "Name"
-msgstr "Название"
-
-#: src/editor-properties-dialog.ui:34
+#: src/editor-properties-panel.ui:26
 msgid "Location"
 msgstr "Расположение"
 
-#: src/editor-properties-dialog.ui:44
+#: src/editor-properties-panel.ui:42
 msgid "Open in File Manager"
 msgstr "Открыть в файловом менеджере"
 
-#: src/editor-properties-dialog.ui:57
+#: src/editor-properties-panel.ui:65
+msgid "Change Document Type"
+msgstr "Изменить тип документа"
+
+#: src/editor-properties-panel.ui:76
+msgid "Encoding"
+msgstr "Кодировка"
+
+#: src/editor-properties-panel.ui:89
+msgid "Line Feed"
+msgstr "Перевод строки"
+
+#: src/editor-properties-panel.ui:104
+msgid "Auto Indentation"
+msgstr "Автоматический отступ"
+
+#: src/editor-properties-panel.ui:110
+msgid "Character"
+msgstr "Символ"
+
+#: src/editor-properties-panel.ui:120
+msgid "Spaces per tab"
+msgstr "Пробелов на табуляцию"
+
+#: src/editor-properties-panel.ui:131
+msgid "Spaces per indent"
+msgstr "Пробелов на отступ"
+
+#: src/editor-properties-panel.ui:144
 msgid "Statistics"
 msgstr "Статистика"
 
-#: src/editor-properties-dialog.ui:60
+#: src/editor-properties-panel.ui:147
 msgid "Lines"
 msgstr "Строк"
 
-#: src/editor-properties-dialog.ui:68
+#: src/editor-properties-panel.ui:160
 msgid "Words"
 msgstr "Слов"
 
-#: src/editor-properties-dialog.ui:76
+#: src/editor-properties-panel.ui:173
 msgid "Characters, No Spaces"
 msgstr "Символов без пробелов"
 
-#: src/editor-properties-dialog.ui:84
+#: src/editor-properties-panel.ui:186
 msgid "All Characters"
 msgstr "Всего символов"
 
@@ -688,22 +700,22 @@ msgstr ""
 "В открытых документах есть несохраненные изменения. Изменения, которые не "
 "были сохранены, будут безвозвратно потеряны."
 
-#: src/editor-save-changes-dialog.c:261 src/editor-window-actions.c:115
+#: src/editor-save-changes-dialog.c:260 src/editor-window-actions.c:115
 #: src/editor-window-actions.c:235
 msgid "_Cancel"
 msgstr "_Отменить"
 
-#: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:116
-#: src/editor-window.ui:211
+#: src/editor-save-changes-dialog.c:262 src/editor-window-actions.c:116
+#: src/editor-window.ui:289
 msgid "_Save"
 msgstr "Со_хранить"
 
-#: src/editor-save-changes-dialog.c:295
+#: src/editor-save-changes-dialog.c:294
 msgid "Untitled Document"
 msgstr "Безымянный документ"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:298
+#: src/editor-save-changes-dialog.c:297
 #, c-format
 msgid "%s (new)"
 msgstr "%s (новый)"
@@ -790,53 +802,29 @@ msgstr "Темный стиль"
 msgid "Dark style"
 msgstr "Тёмный стиль"
 
-#: src/editor-utils.c:348
+#: src/editor-utils.c:355
 msgid "Just now"
 msgstr "Прямо сейчас"
 
-#: src/editor-utils.c:350
+#: src/editor-utils.c:357
 msgid "An hour ago"
 msgstr "Час назад"
 
-#: src/editor-utils.c:352
+#: src/editor-utils.c:359
 msgid "Yesterday"
 msgstr "Вчера"
 
-#: src/editor-utils.c:358
+#: src/editor-utils.c:365
 msgid "About a year ago"
 msgstr "Около года назад"
 
-#: src/editor-utils.c:362
+#: src/editor-utils.c:369
 #, c-format
 msgid "About %u year ago"
 msgid_plural "About %u years ago"
 msgstr[0] "Около %u года назад"
 msgstr[1] "Около %u лет назад"
 msgstr[2] "Около %u лет назад"
-
-#: src/editor-utils.c:370
-msgid "Unix/Linux (LF)"
-msgstr "Unix/Linux (LF)"
-
-#: src/editor-utils.c:371
-msgid "Mac OS Classic (CR)"
-msgstr "Mac OS Classic (CR)"
-
-#: src/editor-utils.c:372
-msgid "Windows (CR+LF)"
-msgstr "Windows (CR+LF)"
-
-#: src/editor-utils.c:403
-msgid "Automatically Detected"
-msgstr "Автоопределение"
-
-#: src/editor-utils.c:419
-msgid "Character Encoding:"
-msgstr "Кодировка символов:"
-
-#: src/editor-utils.c:463
-msgid "Line Ending:"
-msgstr "Окончание строки:"
 
 #: src/editor-window-actions.c:109
 msgid "Saving changes will replace the previously saved version."
@@ -858,194 +846,141 @@ msgstr "Несохраненные изменения будут безвозв�
 msgid "Discard Changes to “%s”?"
 msgstr "Отменить изменения в «%s»?"
 
-#: src/editor-window-actions.c:343
-msgid "Open File"
-msgstr "Открыть файл"
-
-#: src/editor-window-actions.c:346
-msgid "Open"
-msgstr "Открыть"
-
-#: src/editor-window-actions.c:371
+#: src/editor-window-actions.c:372
 msgid "All Files"
 msgstr "Все файлы"
 
-#: src/editor-window-actions.c:376
+#: src/editor-window-actions.c:377
 msgid "Text Files"
 msgstr "Текстовые файлы"
 
-#: src/editor-window.c:203
-#, c-format
-msgid "Document Type: %s"
-msgstr "Тип документа: %s"
-
-#: src/editor-window.c:504
+#: src/editor-window.c:399
 msgid "Zoom In"
 msgstr "Увеличить"
 
-#: src/editor-window.c:507
+#: src/editor-window.c:402
 msgid "Zoom in"
 msgstr "Увеличить"
 
-#: src/editor-window.c:517
+#: src/editor-window.c:413
 msgid "Zoom Out"
 msgstr "Уменьшить"
 
-#: src/editor-window.c:520
+#: src/editor-window.c:416
 msgid "Zoom out"
 msgstr "Уменьшить"
 
-#: src/editor-window.c:525
+#: src/editor-window.c:421
 msgid "Reset Zoom"
 msgstr "Сбросить масштаб"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:763
+#: src/editor-window.c:660
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - текстовый редактор"
 
-#: src/editor-window.c:1206
+#: src/editor-window.c:1156
 msgid "There are unsaved documents"
 msgstr "Имеются несохранённые документы"
 
-#: src/editor-window.ui:83
+#: src/editor-window.ui:102
 msgid "_Open"
 msgstr "_Открыть"
 
-#: src/editor-window.ui:85
+#: src/editor-window.ui:104
 msgid "Recently Used Documents"
 msgstr "Недавно использованные документы"
 
-#: src/editor-window.ui:97
+#: src/editor-window.ui:116
 msgid "New Tab"
 msgstr "Новая вкладка"
 
-#: src/editor-window.ui:99
+#: src/editor-window.ui:118
 msgid "New tab"
 msgstr "Новая вкладка"
 
-#: src/editor-window.ui:125
-msgid "View Options"
-msgstr "Параметры отображения"
+#: src/editor-window.ui:130 src/editor-window.ui:134
+msgid "Document Properties"
+msgstr "Свойства документа"
 
-#: src/editor-window.ui:129
-msgid "View"
-msgstr "Вид"
-
-#: src/editor-window.ui:135
+#: src/editor-window.ui:140
 msgid "Main Menu"
 msgstr "Главное меню"
 
-#: src/editor-window.ui:139
+#: src/editor-window.ui:144
 msgid "Main menu"
 msgstr "Главное меню"
 
-#: src/editor-window.ui:166
+#: src/editor-window.ui:180
 msgid "Start or Open a Document"
 msgstr "Создать или открыть документ"
 
-#: src/editor-window.ui:169
+#: src/editor-window.ui:187
 msgid ""
 "• Press the Open button\n"
-"• Press the New tab button\n"
-"• Press Ctrl+N to start a new document\n"
-"• Press Ctrl+O to browse for a document\n"
-"\n"
-"Or, press Ctrl+W to close the window."
+"    • Press the New tab button\n"
+"    • Press Ctrl+N to start a new document\n"
+"    • Press Ctrl+O to browse for a document"
 msgstr ""
-"• Нажмите кнопку «Открыть»\n"
-"• Нажмите кнопку «Новая вкладка»\n"
-"• Нажмите Ctrl+N, чтобы создать новый документ\n"
-"• Нажмите Ctrl+O, чтобы открыть документ\n"
-"\n"
-"Или нажмите Ctrl+W, чтобы закрыть окно."
+"    • Нажмите кнопку «Открыть»\n"
+"    • Нажмите кнопку «Новая вкладка»\n"
+"    • Нажмите Ctrl+N, чтобы создать новый документ\n"
+"    • Нажмите Ctrl+O, чтобы открыть документ"
 
-#: src/editor-window.ui:203
+#: src/editor-window.ui:204
+msgid "_New Empty File"
+msgstr "_Создать пустой файл"
+
+#: src/editor-window.ui:281
 msgid "_New Window"
 msgstr "_Создать окно"
 
-#: src/editor-window.ui:223
+#: src/editor-window.ui:301
 msgid "_Discard Changes"
 msgstr "_Отменить изменения"
 
-#: src/editor-window.ui:229
+#: src/editor-window.ui:307
 msgid "_Find/Replace…"
 msgstr "_Найти/Заменить…"
 
-#: src/editor-window.ui:235
+#: src/editor-window.ui:313
 msgid "_Print…"
 msgstr "_Печать…"
 
-#: src/editor-window.ui:241
-msgid "Documen_t Properties"
-msgstr "Свойства докум_ента"
+#: src/editor-window.ui:320
+msgid "Fullscreen"
+msgstr "Полноэкранный режим"
 
-#: src/editor-window.ui:247
+#: src/editor-window.ui:326
+msgid "Leave Fullscreen"
+msgstr "Выйти из полноэкранного режима"
+
+#: src/editor-window.ui:334
 msgid "P_references"
 msgstr "_Параметры"
 
-#: src/editor-window.ui:252
+#: src/editor-window.ui:339
 msgid "_Keyboard Shortcuts"
 msgstr "_Комбинации клавиш"
 
-#: src/editor-window.ui:256
-msgid "_Help"
-msgstr "_Справка"
-
-#: src/editor-window.ui:260
+#: src/editor-window.ui:343
 msgid "A_bout Text Editor"
 msgstr "_О приложении"
 
-#: src/editor-window.ui:268
-msgid "Show _Line Numbers"
-msgstr "Показывать номера _строк"
-
-#: src/editor-window.ui:272
-msgid "Show _Right Margin"
-msgstr "Показывать _правый край"
-
-#: src/editor-window.ui:295
-msgid "_2"
-msgstr "_2"
-
-#: src/editor-window.ui:300
-msgid "_4"
-msgstr "_4"
-
-#: src/editor-window.ui:305
-msgid "_6"
-msgstr "_6"
-
-#: src/editor-window.ui:310
-msgid "_8"
-msgstr "_8"
-
-#: src/editor-window.ui:319
-msgid "T_ext Wrapping"
-msgstr "Перенос т_екста"
-
-#: src/editor-window.ui:323
-msgid "Chec_k Spelling"
-msgstr "Проверять _орфографию"
-
-#: src/editor-window.ui:327
-msgid "_Document Type…"
-msgstr "Тип _документа…"
-
-#: src/editor-window.ui:335
+#: src/editor-window.ui:351
 msgid "Move _Left"
 msgstr "Переместить в_лево"
 
-#: src/editor-window.ui:340
+#: src/editor-window.ui:356
 msgid "Move _Right"
 msgstr "Переместить в_право"
 
-#: src/editor-window.ui:347
+#: src/editor-window.ui:363
 msgid "_Move to New Window"
 msgstr "Переместить в _новое окно"
 
-#: src/editor-window.ui:354
+#: src/editor-window.ui:370
 msgid "Close _Other Tabs"
 msgstr "Закрыть _остальные вкладки"
 
@@ -1344,6 +1279,93 @@ msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Показать справку"
 
+#: src/help-overlay.ui:355
+msgctxt "shortcut window"
+msgid "Toggle text wrapping"
+msgstr "Переключить перенос текста"
+
+#~ msgid "Indentation"
+#~ msgstr "Отступ"
+
+#~ msgid "2"
+#~ msgstr "2"
+
+#~ msgid "4"
+#~ msgstr "4"
+
+#~ msgid "6"
+#~ msgstr "6"
+
+#~ msgid "8"
+#~ msgstr "8"
+
+#~ msgid "Use Tab Size"
+#~ msgstr "Использовать размер табуляции"
+
+#~ msgid "Properties"
+#~ msgstr "Свойства"
+
+#~ msgid "Name"
+#~ msgstr "Название"
+
+#, c-format
+#~ msgid "Document Type: %s"
+#~ msgstr "Тип документа: %s"
+
+#~ msgid "View Options"
+#~ msgstr "Параметры отображения"
+
+#~ msgid "View"
+#~ msgstr "Вид"
+
+#~ msgid "_Help"
+#~ msgstr "_Справка"
+
+#~ msgid "Show _Line Numbers"
+#~ msgstr "Показывать номера _строк"
+
+#~ msgid "_2"
+#~ msgstr "_2"
+
+#~ msgid "_4"
+#~ msgstr "_4"
+
+#~ msgid "_6"
+#~ msgstr "_6"
+
+#~ msgid "_8"
+#~ msgstr "_8"
+
+#~ msgid "T_ext Wrapping"
+#~ msgstr "Перенос т_екста"
+
+#~ msgid "Chec_k Spelling"
+#~ msgstr "Проверять _орфографию"
+
+#~ msgid "_Document Type…"
+#~ msgstr "Тип _документа…"
+
+#~ msgid "Save As"
+#~ msgstr "Сохранить как"
+
+#~ msgid "Save"
+#~ msgstr "Сохранить"
+
+#~ msgid "Cancel"
+#~ msgstr "Отменить"
+
+#~ msgid "Right Margin"
+#~ msgstr "Правый край"
+
+#~ msgid "Automatically Detected"
+#~ msgstr "Автоопределение"
+
+#~ msgid "Open File"
+#~ msgstr "Открыть файл"
+
+#~ msgid "Open"
+#~ msgstr "Открыть"
+
 #~ msgid "Save changes for this document"
 #~ msgstr "Сохранить изменения для этого документа"
 
@@ -1352,9 +1374,6 @@ msgstr "Показать справку"
 
 #~ msgid "Ignore"
 #~ msgstr "Игнорировать"
-
-#~ msgid "Check Spelling"
-#~ msgstr "Проверять орфографию"
 
 #~ msgid "Languages"
 #~ msgstr "Языки"
@@ -1389,9 +1408,6 @@ msgstr "Показать справку"
 
 #~ msgid "Show"
 #~ msgstr "Показывать"
-
-#~ msgid "_Line Numbers"
-#~ msgstr "_Номера строк"
 
 #~ msgid "_Right Margin"
 #~ msgstr "Правый _край"
