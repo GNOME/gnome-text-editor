@@ -95,6 +95,13 @@ editor_properties_notify_newline_type_cb (EditorProperties *self)
   g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_NEWLINE_TYPE]);
 }
 
+static void
+editor_properties_notify_file_cb (EditorProperties *self)
+{
+  g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_NAME]);
+  g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_DIRECTORY]);
+}
+
 static guint
 editor_properties_get_encoding_index (EditorProperties *self)
 {
@@ -410,6 +417,11 @@ editor_properties_init (EditorProperties *self)
   g_signal_group_connect_object (self->buffer_signals,
                                  "notify::newline-type",
                                  G_CALLBACK (editor_properties_notify_newline_type_cb),
+                                 self,
+                                 G_CONNECT_SWAPPED);
+  g_signal_group_connect_object (self->buffer_signals,
+                                 "notify::file",
+                                 G_CALLBACK (editor_properties_notify_file_cb),
                                  self,
                                  G_CONNECT_SWAPPED);
 
