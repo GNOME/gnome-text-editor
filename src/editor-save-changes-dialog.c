@@ -314,6 +314,7 @@ _editor_save_changes_dialog_new (GtkWindow *parent,
       check = g_object_new (GTK_TYPE_CHECK_BUTTON,
                             "active", TRUE,
                             "valign", GTK_ALIGN_CENTER,
+                            "can-focus", FALSE,
                             NULL);
 
       adw_preferences_row_set_use_markup (ADW_PREFERENCES_ROW (row), FALSE);
