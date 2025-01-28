@@ -388,7 +388,6 @@ editor_window_constructed (GObject *object)
                            NULL);
   zoom_in = g_object_new (GTK_TYPE_BUTTON,
                           "action-name", "page.zoom-in",
-                          "valign", GTK_ALIGN_CENTER,
                           "child", g_object_new (GTK_TYPE_IMAGE,
                                                  "icon-name", "zoom-in-symbolic",
                                                  "pixel-size", 16,
@@ -402,7 +401,6 @@ editor_window_constructed (GObject *object)
                                   _("Zoom in"), -1);
   zoom_out = g_object_new (GTK_TYPE_BUTTON,
                            "action-name", "page.zoom-out",
-                           "valign", GTK_ALIGN_CENTER,
                            "child", g_object_new (GTK_TYPE_IMAGE,
                                                   "icon-name", "zoom-out-symbolic",
                                                   "pixel-size", 16,
@@ -420,7 +418,6 @@ editor_window_constructed (GObject *object)
                                    "hexpand", TRUE,
                                    "tooltip-text", _("Reset Zoom"),
                                    "label", "100%",
-                                   "valign", GTK_ALIGN_CENTER,
                                    NULL);
 
   g_binding_group_bind (self->page_bindings, "zoom-label", self->zoom_label, "label", 0);
