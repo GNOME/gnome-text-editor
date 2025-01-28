@@ -1,3 +1,13 @@
+# Text Editor 47.3
+
+ * Ensure search context is disposed to help avoid background work
+   after a tab has been closed
+ * Use weak refs when searching asynchronously to ensure tabs may
+   be disposed during background work
+ * Close language dialong when Escape is pressed
+ * Fix a potentially NULL tooltip
+ * Translation updates
+
 # Text Editor 47.2
 
  * Unescaping URIs for tooltips to improve legibility
