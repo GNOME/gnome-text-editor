@@ -207,13 +207,6 @@ editor_preferences_font_class_init (EditorPreferencesFontClass *klass)
 static void
 editor_preferences_font_init (EditorPreferencesFont *self)
 {
-  GtkImage *image;
-
-  image = g_object_new (GTK_TYPE_IMAGE,
-                        "icon-name", "document-font-symbolic",
-                        "hexpand", FALSE,
-                        "margin-start", 12,
-                        "halign", GTK_ALIGN_END,
-                        NULL);
-  adw_action_row_add_suffix (ADW_ACTION_ROW (self), GTK_WIDGET (image));
+  adw_action_row_add_suffix (ADW_ACTION_ROW (self),
+                             gtk_image_new_from_icon_name ("open-dialog-symbolic"));
 }
