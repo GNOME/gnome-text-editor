@@ -806,6 +806,11 @@ _editor_window_actions_update (EditorWindow *self,
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.begin-search", has_page);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.zoom-in", has_page);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.zoom-out", has_page);
-  gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.zoom-one", has_page && font_scale != 0);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "win.focus-neighbor", has_page);
+
+  /* HACK: Work around GNOME/gtk#7296 by forcing the action on then possibly
+   *       immediately back off.
+   */
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.zoom-one", TRUE);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.zoom-one", has_page && font_scale != 0);
 }
