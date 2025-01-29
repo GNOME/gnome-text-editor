@@ -59,6 +59,16 @@ G_DEFINE_FINAL_TYPE (EditorPropertiesPanel, editor_properties_panel, GTK_TYPE_WI
 static GParamSpec *properties[N_PROPS];
 
 static void
+editor_properties_panel_notify_can_open_cb (EditorPropertiesPanel *self)
+{
+  g_assert (EDITOR_IS_PROPERTIES_PANEL (self));
+
+  gtk_widget_action_set_enabled (GTK_WIDGET (self),
+                                 "open-folder",
+                                 editor_properties_get_can_open (self->properties));
+}
+
+static void
 open_folder_action (GtkWidget  *widget,
                     const char *action,
                     GVariant   *param)
@@ -150,6 +160,8 @@ editor_properties_panel_class_init (EditorPropertiesPanelClass *klass)
 
   gtk_widget_class_bind_template_child (widget_class, EditorPropertiesPanel, properties);
 
+  gtk_widget_class_bind_template_callback (widget_class, editor_properties_panel_notify_can_open_cb);
+
   gtk_widget_class_install_action (widget_class, "open-folder", NULL, open_folder_action);
 
   g_type_ensure (EDITOR_TYPE_DOCUMENT_STATISTICS);
@@ -184,7 +196,7 @@ editor_properties_panel_set_page (EditorPropertiesPanel *self,
   if (g_set_object (&self->page, page))
     {
       editor_properties_set_page (self->properties, page);
-      gtk_widget_action_set_enabled (GTK_WIDGET (self), "open-folder", !!page);
+      editor_properties_panel_notify_can_open_cb (self);
       g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_PAGE]);
     }
 }

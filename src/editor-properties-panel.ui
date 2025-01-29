@@ -206,6 +206,7 @@
     </child>
   </template>
   <object class="EditorProperties" id="properties">
+    <signal name="notify::can-open" handler="editor_properties_panel_notify_can_open_cb" swapped="true"/>
     <binding name="page">
       <lookup name="page">EditorPropertiesPanel</lookup>
     </binding>

@@ -42,6 +42,7 @@ struct _EditorProperties
 enum {
   PROP_0,
   PROP_AUTO_INDENT,
+  PROP_CAN_OPEN,
   PROP_DIRECTORY,
   PROP_ENCODING,
   PROP_ENCODING_INDEX,
@@ -98,6 +99,7 @@ editor_properties_notify_newline_type_cb (EditorProperties *self)
 static void
 editor_properties_notify_file_cb (EditorProperties *self)
 {
+  g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_CAN_OPEN]);
   g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_NAME]);
   g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_DIRECTORY]);
 }
@@ -192,6 +194,10 @@ editor_properties_get_property (GObject    *object,
     {
     case PROP_AUTO_INDENT:
       g_value_set_boolean (value, editor_properties_get_auto_indent (self));
+      break;
+
+    case PROP_CAN_OPEN:
+      g_value_set_boolean (value, editor_properties_get_can_open (self));
       break;
 
     case PROP_DIRECTORY:
@@ -312,6 +318,12 @@ editor_properties_class_init (EditorPropertiesClass *klass)
                           FALSE,
                           (G_PARAM_READWRITE |
                            G_PARAM_EXPLICIT_NOTIFY |
+                           G_PARAM_STATIC_STRINGS));
+
+  properties[PROP_CAN_OPEN] =
+    g_param_spec_boolean ("can-open", NULL, NULL,
+                          FALSE,
+                          (G_PARAM_READABLE |
                            G_PARAM_STATIC_STRINGS));
 
   properties[PROP_DIRECTORY] =
@@ -808,4 +820,15 @@ editor_properties_dup_indent_width (EditorProperties *self)
     }
 
   return g_object_ref (self->indent_width);
+}
+
+gboolean
+editor_properties_get_can_open (EditorProperties *self)
+{
+  g_return_val_if_fail (EDITOR_IS_PROPERTIES (self), FALSE);
+
+  if (self->page == NULL || self->page->document == NULL)
+    return FALSE;
+
+  return NULL != editor_document_get_file (self->page->document);
 }

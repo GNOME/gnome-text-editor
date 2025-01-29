@@ -32,6 +32,7 @@ G_BEGIN_DECLS
 G_DECLARE_FINAL_TYPE (EditorProperties, editor_properties, EDITOR, PROPERTIES, GObject)
 
 EditorProperties         *editor_properties_new               (void);
+gboolean                  editor_properties_get_can_open      (EditorProperties  *self);
 gboolean                  editor_properties_get_auto_indent   (EditorProperties  *self);
 void                      editor_properties_set_auto_indent   (EditorProperties  *self,
                                                                gboolean           auto_indent);
