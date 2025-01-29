@@ -163,6 +163,7 @@ editor_print_operation_begin_print (GtkPrintOperation *operation,
                                    "highlight-syntax", syntax_hl,
                                    "print-line-numbers", show_line_numbers,
                                    "print-header", TRUE,
+                                   "print-footer", TRUE,
                                    "wrap-mode", GTK_WRAP_WORD_CHAR,
                                    NULL);
 
@@ -184,9 +185,10 @@ editor_print_operation_begin_print (GtkPrintOperation *operation,
   else
     left = _editor_document_dup_uri (document);
 
-  gtk_source_print_compositor_set_header_format (self->compositor,
+  gtk_source_print_compositor_set_header_format (self->compositor, TRUE, left, NULL, NULL);
+  gtk_source_print_compositor_set_footer_format (self->compositor,
                                                  TRUE,
-                                                 left,
+                                                 NULL,
                                                  NULL,
                                                  /* Translators: %N is the current page number, %Q is the total
                                                   * number of pages (ex. Page 2 of 10)
