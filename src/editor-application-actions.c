@@ -339,10 +339,28 @@ editor_application_actions_clear_history (GSimpleAction *action,
                                           gpointer       user_data)
 {
   EditorApplication *self = user_data;
+  EditorWindow *window;
+  AdwDialog *dialog;
 
   g_assert (EDITOR_IS_APPLICATION (self));
 
-  _editor_session_clear_history (self->session);
+  dialog = adw_alert_dialog_new (_("Clear File History?"),
+                                 _("Clearing file history cannot be undone"));
+  adw_alert_dialog_add_responses (ADW_ALERT_DIALOG (dialog),
+                                  "cancel", _("_Cancel"),
+                                  "clear-all", _("_Clear All"),
+                                  NULL);
+  adw_alert_dialog_set_response_appearance (ADW_ALERT_DIALOG (dialog),
+                                            "clear-all", ADW_RESPONSE_DESTRUCTIVE);
+
+  g_signal_connect_object (dialog,
+                           "response::clear-all",
+                           G_CALLBACK (_editor_session_clear_history),
+                           self->session,
+                           G_CONNECT_SWAPPED);
+
+  window = editor_application_get_current_window (self);
+  adw_dialog_present (dialog, GTK_WIDGET (window));
 }
 
 void
