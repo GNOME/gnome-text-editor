@@ -324,6 +324,26 @@ search_activate (GtkWidget  *widget,
     _editor_search_bar_move_next (self, TRUE);
 }
 
+static void
+search_cancel (GtkWidget  *widget,
+               const char *action_name,
+               GVariant   *param)
+{
+  EditorSearchBar *self = EDITOR_SEARCH_BAR (widget);
+  EditorDocument *document;
+  EditorPage *page;
+
+  if (!(page = EDITOR_PAGE (gtk_widget_get_ancestor (widget, EDITOR_TYPE_PAGE))))
+    return;
+
+  document = editor_page_get_document (page);
+  _editor_document_restore_insert_mark (document);
+
+  gtk_widget_activate_action (GTK_WIDGET (self), "search.hide", NULL);
+
+  _editor_page_scroll_to_insert (page);
+}
+
 static gboolean
 text_to_search_text (GBinding     *binding,
                      const GValue *from_value,
@@ -593,9 +613,10 @@ editor_search_bar_class_init (EditorSearchBarClass *klass)
                                 NULL,
                                 G_TYPE_NONE, 1, G_TYPE_BOOLEAN);
 
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Escape, 0, "search.hide", NULL);
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Escape, 0, "search.cancel", NULL);
 
   gtk_widget_class_install_action (widget_class, "search.activate", NULL, search_activate);
+  gtk_widget_class_install_action (widget_class, "search.cancel", NULL, search_cancel);
 
   properties [PROP_MODE] =
     g_param_spec_enum ("mode",
@@ -779,6 +800,8 @@ _editor_search_bar_attach (EditorSearchBar *self,
   GtkTextIter begin, end, insert;
 
   g_return_if_fail (EDITOR_IS_SEARCH_BAR (self));
+
+  _editor_document_save_insert_mark (document);
 
   gtk_text_buffer_get_iter_at_mark (buffer, &insert, gtk_text_buffer_get_insert (buffer));
   self->offset_when_shown = gtk_text_iter_get_offset (&insert);

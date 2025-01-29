@@ -58,6 +58,9 @@ struct _EditorDocument
   SpellingChecker              *spell_checker;
   SpellingTextBufferAdapter    *spell_adapter;
 
+  GtkTextMark                  *saved_insert_mark;
+  GtkTextMark                  *saved_selection_bound_mark;
+
   GtkSourceNewlineType          newline_type;
   guint                         busy_count;
   gdouble                       busy_progress;
@@ -617,11 +620,18 @@ static void
 editor_document_constructed (GObject *object)
 {
   EditorDocument *self = (EditorDocument *)object;
+  GtkTextIter iter;
 
   if (shared_settings == NULL)
     shared_settings = g_settings_new ("org.gnome.TextEditor");
 
   G_OBJECT_CLASS (editor_document_parent_class)->constructed (object);
+
+  gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (self), &iter);
+  self->saved_insert_mark = gtk_text_buffer_create_mark (GTK_TEXT_BUFFER (self),
+                                                         NULL, &iter, TRUE);
+  self->saved_selection_bound_mark = gtk_text_buffer_create_mark (GTK_TEXT_BUFFER (self),
+                                                                  NULL, &iter, FALSE);
 
   self->spell_adapter = spelling_text_buffer_adapter_new (GTK_SOURCE_BUFFER (self),
                                                           self->spell_checker);
@@ -2577,4 +2587,41 @@ editor_document_load_statistics (EditorDocument *self)
     }
 
   return g_object_ref (self->statistics);
+}
+
+void
+_editor_document_save_insert_mark (EditorDocument *self)
+{
+  GtkTextMark *insert;
+  GtkTextMark *selection_bound;
+  GtkTextIter iter;
+
+  g_return_if_fail (EDITOR_IS_DOCUMENT (self));
+
+  insert = gtk_text_buffer_get_insert (GTK_TEXT_BUFFER (self));
+  selection_bound = gtk_text_buffer_get_selection_bound (GTK_TEXT_BUFFER (self));
+
+  gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (self), &iter, insert);
+  gtk_text_buffer_move_mark (GTK_TEXT_BUFFER (self), self->saved_insert_mark, &iter);
+
+  gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (self), &iter, selection_bound);
+  gtk_text_buffer_move_mark (GTK_TEXT_BUFFER (self), self->saved_selection_bound_mark, &iter);
+}
+
+void
+_editor_document_restore_insert_mark (EditorDocument *self)
+{
+  GtkTextIter iter;
+
+  g_return_if_fail (EDITOR_IS_DOCUMENT (self));
+
+  gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (self), &iter, self->saved_insert_mark);
+  gtk_text_buffer_move_mark (GTK_TEXT_BUFFER (self),
+                             gtk_text_buffer_get_insert (GTK_TEXT_BUFFER (self)),
+                             &iter);
+
+  gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (self), &iter, self->saved_selection_bound_mark);
+  gtk_text_buffer_move_mark (GTK_TEXT_BUFFER (self),
+                             gtk_text_buffer_get_selection_bound (GTK_TEXT_BUFFER (self)),
+                             &iter);
 }

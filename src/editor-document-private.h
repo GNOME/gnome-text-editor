@@ -88,5 +88,7 @@ GFile                    *_editor_document_suggest_file            (EditorDocume
                                                                     GFile                    *directory);
 gboolean                  _editor_document_did_shutdown            (EditorDocument           *self);
 void                      _editor_document_shutdown                (EditorDocument           *self);
+void                      _editor_document_save_insert_mark        (EditorDocument           *self);
+void                      _editor_document_restore_insert_mark     (EditorDocument           *self);
 
 G_END_DECLS
