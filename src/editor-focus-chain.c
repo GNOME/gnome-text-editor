@@ -54,10 +54,12 @@ descendant_is_visible (GtkWidget *widget,
   return TRUE;
 }
 
+#define IS_FORWARD(d) \
+  ((d) == GTK_DIR_TAB_FORWARD || (d) == GTK_DIR_RIGHT)
 #define BEGIN(q,dir) \
-  (dir == GTK_DIR_TAB_FORWARD ? (q)->head : (q)->tail)
+  (IS_FORWARD(dir) ? (q)->head : (q)->tail)
 #define MOVE(i,dir) \
-  (dir == GTK_DIR_TAB_FORWARD ? (i)->next : (i)->prev)
+  (IS_FORWARD(dir) ? (i)->next : (i)->prev)
 
 gboolean
 _editor_focus_chain_focus_child (GtkWidget        *widget,
@@ -65,6 +67,12 @@ _editor_focus_chain_focus_child (GtkWidget        *widget,
                                  GtkDirectionType  dir)
 {
   const GList *focus = BEGIN (chain, dir);
+
+  if (!(dir == GTK_DIR_TAB_FORWARD ||
+        dir == GTK_DIR_RIGHT ||
+        dir == GTK_DIR_TAB_BACKWARD ||
+        dir == GTK_DIR_RIGHT))
+    return FALSE;
 
   if (contains_focus (widget))
     {

@@ -474,8 +474,22 @@ editor_search_bar_focus (GtkWidget        *widget,
                          GtkDirectionType  dir)
 {
   EditorSearchBar *self = EDITOR_SEARCH_BAR (widget);
+  GtkWidget *focus;
+  GtkWidget *popover;
 
-  return _editor_focus_chain_focus_child (widget, &self->focus_chain, dir);
+  /* If the focus is in the menu popover then use the default
+   * movements so we don't ness that up.
+   */
+  focus = gtk_root_get_focus (gtk_widget_get_root (widget));
+  if (focus != NULL &&
+      gtk_widget_is_ancestor (focus, widget) &&
+      (popover = gtk_widget_get_ancestor (focus, GTK_TYPE_POPOVER)))
+    return GTK_WIDGET_CLASS (editor_search_bar_parent_class)->focus (widget, dir);
+
+  if (_editor_focus_chain_focus_child (widget, &self->focus_chain, dir))
+    return TRUE;
+
+  return GTK_WIDGET_CLASS (editor_search_bar_parent_class)->focus (widget, dir);
 }
 
 static void
