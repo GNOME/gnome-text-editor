@@ -199,6 +199,14 @@ editor_search_entry_update_position (EditorSearchEntry *self)
     }
 }
 
+int
+editor_search_entry_get_occurrence_position (EditorSearchEntry *self)
+{
+  g_return_val_if_fail (EDITOR_IS_SEARCH_ENTRY (self), -1);
+
+  return self->occurrence_position;
+}
+
 void
 editor_search_entry_set_occurrence_count (EditorSearchEntry *self,
                                           guint              occurrence_count)

@@ -31,6 +31,7 @@ G_DECLARE_FINAL_TYPE (EditorSearchEntry, editor_search_entry, EDITOR, SEARCH_ENT
 GtkWidget *editor_search_entry_new                     (void);
 void       editor_search_entry_set_occurrence_count    (EditorSearchEntry *self,
                                                         guint              occurrence_count);
+int        editor_search_entry_get_occurrence_position (EditorSearchEntry *self);
 void       editor_search_entry_set_occurrence_position (EditorSearchEntry *self,
                                                         int                occurrence_position);
 
