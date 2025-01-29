@@ -126,6 +126,8 @@ set_preview_language (EditorPreferencesDialog *self,
                       GtkSourceLanguage       *lang,
                       const char              *text)
 {
+  GtkTextIter iter;
+
   if (lang == NULL && text == NULL)
     {
       GtkSourceLanguageManager *manager = gtk_source_language_manager_get_default ();
@@ -136,6 +138,9 @@ set_preview_language (EditorPreferencesDialog *self,
   gtk_text_buffer_set_text (GTK_TEXT_BUFFER (self->buffer), text, -1);
   gtk_source_buffer_set_language (self->buffer, lang);
   gtk_source_buffer_set_highlight_syntax (self->buffer, lang != NULL);
+
+  gtk_text_buffer_get_iter_at_line (GTK_TEXT_BUFFER (self->buffer), &iter, 3);
+  gtk_text_buffer_select_range (GTK_TEXT_BUFFER (self->buffer), &iter, &iter);
 }
 
 static void
