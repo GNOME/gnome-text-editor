@@ -51,11 +51,14 @@ struct _EditorSidebarRow
   GBinding          *empty_binding;
   GBinding          *modified_binding;
   GBinding          *age_binding;
+
+  GtkListItem       *list_item;
 };
 
 enum {
   PROP_0,
   PROP_ITEM,
+  PROP_LIST_ITEM,
   N_PROPS
 };
 
@@ -170,6 +173,7 @@ editor_sidebar_row_dispose (GObject *object)
   g_clear_pointer (&self->grid, gtk_widget_unparent);
 
   g_clear_object (&self->item);
+  g_clear_weak_pointer (&self->list_item);
 
   G_OBJECT_CLASS (editor_sidebar_row_parent_class)->dispose (object);
 }
@@ -186,6 +190,10 @@ editor_sidebar_row_get_property (GObject    *object,
     {
     case PROP_ITEM:
       g_value_set_object (value, _editor_sidebar_row_get_item (self));
+      break;
+
+    case PROP_LIST_ITEM:
+      g_value_set_object (value, self->list_item);
       break;
 
     default:
@@ -205,6 +213,10 @@ editor_sidebar_row_set_property (GObject      *object,
     {
     case PROP_ITEM:
       _editor_sidebar_row_set_item (self, g_value_get_object (value));
+      break;
+
+    case PROP_LIST_ITEM:
+      g_set_weak_pointer (&self->list_item, g_value_get_object (value));
       break;
 
     default:
@@ -241,6 +253,13 @@ editor_sidebar_row_class_init (EditorSidebarRowClass *klass)
                          "Item",
                          "The item to be displayed",
                          EDITOR_TYPE_SIDEBAR_ITEM,
+                         (G_PARAM_READWRITE |
+                          G_PARAM_EXPLICIT_NOTIFY |
+                          G_PARAM_STATIC_STRINGS));
+
+  properties [PROP_LIST_ITEM] =
+    g_param_spec_object ("list-item", NULL, NULL,
+                         GTK_TYPE_LIST_ITEM,
                          (G_PARAM_READWRITE |
                           G_PARAM_EXPLICIT_NOTIFY |
                           G_PARAM_STATIC_STRINGS));
@@ -318,4 +337,15 @@ _editor_sidebar_row_set_item (EditorSidebarRow  *self,
                                      age_to_string,
                                      NULL, self, NULL);
     }
+}
+
+guint
+_editor_sidebar_row_get_position (EditorSidebarRow *self)
+{
+  g_return_val_if_fail (EDITOR_IS_SIDEBAR_ROW (self), GTK_INVALID_LIST_POSITION);
+
+  if (self->list_item == NULL)
+    return GTK_INVALID_LIST_POSITION;
+
+  return gtk_list_item_get_position (self->list_item);
 }

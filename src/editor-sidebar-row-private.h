@@ -28,9 +28,10 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (EditorSidebarRow, editor_sidebar_row, EDITOR, SIDEBAR_ROW, GtkWidget)
 
-GtkWidget         *_editor_sidebar_row_new      (void);
-void               _editor_sidebar_row_set_item (EditorSidebarRow  *self,
-                                                 EditorSidebarItem *item);
-EditorSidebarItem *_editor_sidebar_row_get_item (EditorSidebarRow  *self);
+GtkWidget         *_editor_sidebar_row_new          (void);
+void               _editor_sidebar_row_set_item     (EditorSidebarRow  *self,
+                                                     EditorSidebarItem *item);
+EditorSidebarItem *_editor_sidebar_row_get_item     (EditorSidebarRow  *self);
+guint              _editor_sidebar_row_get_position (EditorSidebarRow  *self);
 
 G_END_DECLS

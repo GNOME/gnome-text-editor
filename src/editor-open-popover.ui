@@ -96,6 +96,22 @@
                   <object class="GtkListView" id="list_view">
                     <signal name="activate" handler="on_list_view_activate_cb" swapped="true" object="EditorOpenPopover"/>
                     <property name="single-click-activate">True</property>
+                    <child>
+                      <object class="GtkShortcutController">
+                        <child>
+                          <object class="GtkShortcut">
+                            <property name="trigger">Up</property>
+                            <property name="action">action(move-up)</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkShortcut">
+                            <property name="trigger">KP_Up</property>
+                            <property name="action">action(move-up)</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
                     <property name="model">
                       <object class="GtkNoSelection" id="selection">
                       </object>
@@ -111,6 +127,7 @@
         <binding name="item">
           <lookup name="item">GtkListItem</lookup>
         </binding>
+        <property name="list-item">GtkListItem</property>
       </object>
     </property>
   </template>

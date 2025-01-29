@@ -300,6 +300,64 @@ on_search_key_pressed_cb (EditorOpenPopover     *self,
 }
 
 static void
+editor_open_popover_move_up (GtkWidget  *widget,
+                             const char *action_name,
+                             GVariant   *param)
+{
+  static GType GtkListItemWidget;
+  EditorOpenPopover *self = (EditorOpenPopover *)widget;
+  GtkWidget *focus;
+  GtkRoot *root;
+
+  g_assert (EDITOR_IS_OPEN_POPOVER (self));
+
+  /*
+   * This function just works around the fact we don't get a keynav-failed
+   * when the GtkListView fails to move upwards from row 0.
+   */
+
+  if (GtkListItemWidget == G_TYPE_INVALID)
+    {
+      GtkListItemWidget = g_type_from_name ("GtkListItemWidget");
+      g_assert (GtkListItemWidget != G_TYPE_INVALID);
+    }
+
+  root = gtk_widget_get_root (widget);
+  if (!(focus = gtk_root_get_focus (root)))
+    return;
+
+  if (!G_TYPE_CHECK_INSTANCE_TYPE (focus, GtkListItemWidget))
+    {
+      if (!(focus = gtk_widget_get_ancestor (focus, GtkListItemWidget)))
+        return;
+    }
+
+  for (GtkWidget *child = gtk_widget_get_first_child (focus);
+       child != NULL;
+       child = gtk_widget_get_next_sibling (child))
+    {
+      if (EDITOR_IS_SIDEBAR_ROW (child))
+        {
+          guint position = _editor_sidebar_row_get_position (EDITOR_SIDEBAR_ROW (child));
+
+          if (position == GTK_INVALID_LIST_POSITION)
+            return;
+
+          if (position == 0)
+            gtk_widget_grab_focus (GTK_WIDGET (self->search_entry));
+          else
+            gtk_list_view_scroll_to (self->list_view,
+                                     position - 1,
+                                     GTK_LIST_SCROLL_FOCUS,
+                                     NULL);
+
+          return;
+        }
+    }
+
+}
+
+static void
 editor_open_popover_dispose (GObject *object)
 {
   EditorOpenPopover *self = (EditorOpenPopover *)object;
@@ -382,6 +440,8 @@ editor_open_popover_class_init (EditorOpenPopoverClass *klass)
   gtk_widget_class_bind_template_callback (widget_class, on_search_entry_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_search_entry_changed_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_search_entry_stop_search_cb);
+
+  gtk_widget_class_install_action (widget_class, "move-up", NULL, editor_open_popover_move_up);
 
   g_type_ensure (EDITOR_TYPE_SIDEBAR_MODEL);
   g_type_ensure (EDITOR_TYPE_SIDEBAR_ROW);
