@@ -10,18 +10,18 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2025-01-27 22:22+0000\n"
-"PO-Revision-Date: 2025-01-28 13:45+0100\n"
+"POT-Creation-Date: 2025-01-29 03:15+0000\n"
+"PO-Revision-Date: 2025-01-29 17:54+0100\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
-"%100==4 ? 3 : 0);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
+"n%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: data/org.gnome.TextEditor.desktop.in.in:4
 msgid "write;notepad;"
@@ -30,7 +30,7 @@ msgstr "besedilo;urejevalnik;tekst;write;gedit;pisanje;zapis:urejanje;"
 #: data/org.gnome.TextEditor.desktop.in.in:10
 #: data/org.gnome.TextEditor.desktop.in.in:11
 #: data/org.gnome.TextEditor.metainfo.xml.in.in:10
-#: src/editor-application-actions.c:198 src/editor-window.c:1277
+#: src/editor-application-actions.c:198 src/editor-window.c:1274
 msgid "Text Editor"
 msgstr "Urejevalnik besedil"
 
@@ -299,7 +299,26 @@ msgstr "Projekt GNOME"
 
 #: src/editor-application-actions.c:213
 msgid "translator-credits"
-msgstr "Matej Urbančič <mateju@src.gnome.org>"
+msgstr ""
+"Matej Urbančič <mateju@src.gnome.org>\n"
+"Martin Srebotnjak <miles@filmsi.net>"
+
+#: src/editor-application-actions.c:347
+msgid "Clear File History?"
+msgstr "Ali želite počistiti zgodovino datotek?"
+
+#: src/editor-application-actions.c:348
+msgid "Clearing file history cannot be undone"
+msgstr "Čiščenja zgodovine datotek ni mogoče razveljaviti"
+
+#: src/editor-application-actions.c:350 src/editor-save-changes-dialog.c:260
+#: src/editor-window-actions.c:115 src/editor-window-actions.c:235
+msgid "_Cancel"
+msgstr "_Prekliči"
+
+#: src/editor-application-actions.c:351
+msgid "_Clear All"
+msgstr "_Počisti vse"
 
 #: src/editor-application.c:525
 msgid "Standard input was requested multiple times. Ignoring request."
@@ -380,7 +399,7 @@ msgstr "Datoteka se je spremenila na disku"
 msgid "The file has been changed by another program."
 msgstr "Datoteko je bila spremenjena v drugem programu."
 
-#: src/editor-info-bar.c:121 src/editor-window.ui:296
+#: src/editor-info-bar.c:121 src/editor-window.ui:298
 msgid "Save _As…"
 msgstr "Shrani _kot …"
 
@@ -440,14 +459,14 @@ msgid "Document Type"
 msgstr "Vrsta dokumenta"
 
 #: src/editor-language-dialog.ui:25
-msgid "Search document types"
-msgstr "Poišči vrste dokumentov"
+msgid "Search"
+msgstr "Poišči"
 
-#: src/editor-language-dialog.ui:73
+#: src/editor-language-dialog.ui:75
 msgid "No Results Found"
 msgstr "Ni najdenih zadetkov."
 
-#: src/editor-language-dialog.ui:74
+#: src/editor-language-dialog.ui:76
 msgid "Try a different search"
 msgstr "Poskusi z drugačnim iskanjem"
 
@@ -493,7 +512,7 @@ msgstr "%s (skrbniško urejanje)"
 msgid "Failed to save document"
 msgstr "Shranjevanje dokumenta je spodletelo."
 
-#: src/editor-page.c:1249 src/editor-window.ui:375
+#: src/editor-page.c:1249 src/editor-window.ui:377
 msgid "_Close"
 msgstr "_Zapri"
 
@@ -524,73 +543,73 @@ msgstr "Vrstica"
 msgid "Col"
 msgstr "Stolpec"
 
-#: src/editor-preferences-dialog.ui:19
+#: src/editor-preferences-dialog.ui:16
 msgid "Appearance"
 msgstr "Videz"
 
-#: src/editor-preferences-dialog.ui:59
+#: src/editor-preferences-dialog.ui:56
 msgid "Custom _Font"
 msgstr "Pisava po _meri"
 
-#: src/editor-preferences-dialog.ui:82
+#: src/editor-preferences-dialog.ui:79
 msgid "Show Grid Pattern"
 msgstr "Pokaži vzorec mreže"
 
-#: src/editor-preferences-dialog.ui:89
+#: src/editor-preferences-dialog.ui:86
 msgid "Display _Line Numbers"
 msgstr "Pokaži _številke vrstic"
 
-#: src/editor-preferences-dialog.ui:96
+#: src/editor-preferences-dialog.ui:93
 msgid "_Highlight Current Line"
 msgstr "Poudari _trenutno vrstico"
 
-#: src/editor-preferences-dialog.ui:103
+#: src/editor-preferences-dialog.ui:100
 msgid "Display _Overview Map"
 msgstr "Pokaži _predogledni zemljevid"
 
-#: src/editor-preferences-dialog.ui:114
+#: src/editor-preferences-dialog.ui:111
 msgid "Check _Spelling"
 msgstr "Preveri _črkovanje"
 
-#: src/editor-preferences-dialog.ui:123
+#: src/editor-preferences-dialog.ui:120
 msgid "Line Wrap"
 msgstr "Ovijanje vrstic"
 
-#: src/editor-preferences-dialog.ui:126
+#: src/editor-preferences-dialog.ui:123
 msgid "Show _Right Margin"
 msgstr "Pokaži _desni rob"
 
-#: src/editor-preferences-dialog.ui:133
+#: src/editor-preferences-dialog.ui:130
 msgid "_Margin Position"
 msgstr "_Položaj roba"
 
-#: src/editor-preferences-dialog.ui:140
-msgid "Wrap Lines Automatically (Alt+W)"
-msgstr "Samodejno ovijanje vrstic (izmenjalka+W)"
+#: src/editor-preferences-dialog.ui:137
+msgid "_Wrap Lines Automatically (Alt+W)"
+msgstr "_Samodejno ovijanje vrstic (izmenjalka+W)"
 
-#: src/editor-preferences-dialog.ui:149
+#: src/editor-preferences-dialog.ui:146
 msgid "Behavior"
 msgstr "Obnašanje"
 
-#: src/editor-preferences-dialog.ui:152
+#: src/editor-preferences-dialog.ui:149
 msgid "_Discover Document Settings"
 msgstr "_Odkrij nastavitve dokumenta"
 
-#: src/editor-preferences-dialog.ui:154
+#: src/editor-preferences-dialog.ui:151
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr ""
 "Uveljavi nastavitve z uporabo vrstic načina, prilagoditev urejevalnika in "
 "smiselnih privzetih vrednosti"
 
-#: src/editor-preferences-dialog.ui:160
+#: src/editor-preferences-dialog.ui:157
 msgid "_Restore Session"
 msgstr "_Obnovi sejo"
 
-#: src/editor-preferences-dialog.ui:162
+#: src/editor-preferences-dialog.ui:159
 msgid "Return to your previous session when Text Editor is started"
 msgstr "Ob zagonu programa obnovi predhodno sejo"
 
-#: src/editor-preferences-dialog.ui:174
+#: src/editor-preferences-dialog.ui:171
 msgid "_Clear History"
 msgstr "_Počisti zgodovino"
 
@@ -695,13 +714,8 @@ msgstr ""
 "Odprti dokumenti vsebujejo spremembe, ki še niso shranjene. Te spremembe, "
 "bodo trajno izgubljene."
 
-#: src/editor-save-changes-dialog.c:260 src/editor-window-actions.c:115
-#: src/editor-window-actions.c:235
-msgid "_Cancel"
-msgstr "_Prekliči"
-
 #: src/editor-save-changes-dialog.c:262 src/editor-window-actions.c:116
-#: src/editor-window.ui:290
+#: src/editor-window.ui:292
 msgid "_Save"
 msgstr "_Shrani"
 
@@ -850,33 +864,33 @@ msgstr "Vse datoteke"
 msgid "Text Files"
 msgstr "Besedilne datoteke"
 
-#: src/editor-window.c:399
+#: src/editor-window.c:398
 msgid "Zoom In"
 msgstr "Približaj"
 
-#: src/editor-window.c:402
+#: src/editor-window.c:401
 msgid "Zoom in"
 msgstr "Približaj"
 
-#: src/editor-window.c:413
+#: src/editor-window.c:411
 msgid "Zoom Out"
 msgstr "Oddalji"
 
-#: src/editor-window.c:416
+#: src/editor-window.c:414
 msgid "Zoom out"
 msgstr "Oddalji"
 
-#: src/editor-window.c:421
+#: src/editor-window.c:419
 msgid "Reset Zoom"
 msgstr "Ponastavi približanje"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:660
+#: src/editor-window.c:657
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) – Urejevalnik besedil"
 
-#: src/editor-window.c:1156
+#: src/editor-window.c:1153
 msgid "There are unsaved documents"
 msgstr "Odprti so neshranjeni dokumenti"
 
@@ -892,27 +906,19 @@ msgstr "Nedavno odprti dokumenti"
 msgid "New Tab"
 msgstr "Nov zavihek"
 
-#: src/editor-window.ui:118
-msgid "New tab"
-msgstr "Nov zavihek"
-
-#: src/editor-window.ui:130 src/editor-window.ui:134
+#: src/editor-window.ui:127
 msgid "Document Properties"
 msgstr "Lastnosti dokumenta"
 
-#: src/editor-window.ui:140
+#: src/editor-window.ui:145
 msgid "Main Menu"
 msgstr "Glavni meni"
 
-#: src/editor-window.ui:144
-msgid "Main menu"
-msgstr "Glavni meni"
-
-#: src/editor-window.ui:180
+#: src/editor-window.ui:182
 msgid "Start or Open a Document"
 msgstr "Začni ali odpri dokument"
 
-#: src/editor-window.ui:187
+#: src/editor-window.ui:189
 msgid ""
 "• Press the Open button\n"
 "    • Press the New tab button\n"
@@ -924,59 +930,59 @@ msgstr ""
 "• pritisnite krmilka+N, da odprete nov dokument, ali\n"
 "• pritisnite krmilka+O, da poiščete dokument."
 
-#: src/editor-window.ui:204
+#: src/editor-window.ui:206
 msgid "_New Empty File"
 msgstr "_Nova prazna datoteka"
 
-#: src/editor-window.ui:282
+#: src/editor-window.ui:284
 msgid "_New Window"
 msgstr "_Novo okno"
 
-#: src/editor-window.ui:302
+#: src/editor-window.ui:304
 msgid "_Discard Changes"
 msgstr "_Prezri spremembe"
 
-#: src/editor-window.ui:308
+#: src/editor-window.ui:310
 msgid "_Find/Replace…"
 msgstr "_Najdi in zamenjaj …"
 
-#: src/editor-window.ui:314
+#: src/editor-window.ui:316
 msgid "_Print…"
 msgstr "_Natisni …"
 
-#: src/editor-window.ui:321
+#: src/editor-window.ui:323
 msgid "Fullscreen"
 msgstr "Celozaslonsko"
 
-#: src/editor-window.ui:327
+#: src/editor-window.ui:329
 msgid "Leave Fullscreen"
 msgstr "Zapusti celozaslonski način"
 
-#: src/editor-window.ui:335
+#: src/editor-window.ui:337
 msgid "P_references"
 msgstr "_Možnosti"
 
-#: src/editor-window.ui:340
+#: src/editor-window.ui:342
 msgid "_Keyboard Shortcuts"
 msgstr "_Tipkovne bližnjice"
 
-#: src/editor-window.ui:344
+#: src/editor-window.ui:346
 msgid "A_bout Text Editor"
 msgstr "_O programu"
 
-#: src/editor-window.ui:352
+#: src/editor-window.ui:354
 msgid "Move _Left"
 msgstr "Premakni _levo"
 
-#: src/editor-window.ui:357
+#: src/editor-window.ui:359
 msgid "Move _Right"
 msgstr "Premakni _desno"
 
-#: src/editor-window.ui:364
+#: src/editor-window.ui:366
 msgid "_Move to New Window"
 msgstr "_Prestavi na novo okno"
 
-#: src/editor-window.ui:371
+#: src/editor-window.ui:373
 msgid "Close _Other Tabs"
 msgstr "Zapri _preostale zavihke"
 
@@ -1080,202 +1086,207 @@ msgctxt "shortcut window"
 msgid "Close document"
 msgstr "Zapre dokument"
 
-#: src/help-overlay.ui:129
+#: src/help-overlay.ui:127
+msgctxt "shortcut window"
+msgid "Open document properties"
+msgstr "Odpri lastnosti dokumenta"
+
+#: src/help-overlay.ui:135
 msgctxt "shortcut window"
 msgid "Copy and Paste"
 msgstr "Kopira in prilepi"
 
-#: src/help-overlay.ui:133
+#: src/help-overlay.ui:139
 msgctxt "shortcut window"
 msgid "Copy selected text to clipboard"
 msgstr "Kopira izbrano besedilo v odložišče"
 
-#: src/help-overlay.ui:139
+#: src/help-overlay.ui:145
 msgctxt "shortcut window"
 msgid "Cut selected text to clipboard"
 msgstr "Izreže izbrano besedilo v odložišče"
 
-#: src/help-overlay.ui:145
+#: src/help-overlay.ui:151
 msgctxt "shortcut window"
 msgid "Paste text from clipboard"
 msgstr "Prilepi besedilo iz odložišča"
 
-#: src/help-overlay.ui:150
+#: src/help-overlay.ui:156
 msgctxt "shortcut window"
 msgid "Copy all to clipboard"
 msgstr "Kopira celotno vsebino v odložišče"
 
-#: src/help-overlay.ui:156
+#: src/help-overlay.ui:162
 msgctxt "shortcut window"
 msgid "Copy current line down"
 msgstr "Kopira trenutno vrstico navzdol"
 
-#: src/help-overlay.ui:164
+#: src/help-overlay.ui:170
 msgctxt "shortcut window"
 msgid "Undo and Redo"
 msgstr "Razveljavi in ponovno uveljavi"
 
-#: src/help-overlay.ui:168
+#: src/help-overlay.ui:174
 msgctxt "shortcut window"
 msgid "Undo previous command"
 msgstr "Razveljavi predhodni ukaz"
 
-#: src/help-overlay.ui:174
+#: src/help-overlay.ui:180
 msgctxt "shortcut window"
 msgid "Redo previous command"
 msgstr "Ponovno uveljavi predhodni ukaz"
 
-#: src/help-overlay.ui:181
+#: src/help-overlay.ui:187
 msgctxt "shortcut window"
 msgid "Editing"
 msgstr "Urejanje"
 
-#: src/help-overlay.ui:185
+#: src/help-overlay.ui:191
 msgctxt "shortcut window"
 msgid "Insert emoji into document"
 msgstr "Vstavi izrazno ikono v besedilo"
 
-#: src/help-overlay.ui:191
+#: src/help-overlay.ui:197
 msgctxt "shortcut window"
 msgid "Search within the document"
 msgstr "Omogoči iskanje znotraj dokumenta"
 
-#: src/help-overlay.ui:197
+#: src/help-overlay.ui:203
 msgctxt "shortcut window"
 msgid "Search and replace within the document"
 msgstr "Odpre iskalnik/zamenjevalnik v dokumentu"
 
-#: src/help-overlay.ui:203
+#: src/help-overlay.ui:209
 msgctxt "shortcut window"
 msgid "Increment number at cursor"
 msgstr "Poveča številko ob kazalki"
 
-#: src/help-overlay.ui:209
+#: src/help-overlay.ui:215
 msgctxt "shortcut window"
 msgid "Decrement number at cursor"
 msgstr "Zmanjša številko ob kazalki"
 
-#: src/help-overlay.ui:215
+#: src/help-overlay.ui:221
 msgctxt "shortcut window"
 msgid "Toggle overwrite"
 msgstr "Preklopi prepisovanje med vnosom"
 
-#: src/help-overlay.ui:221
+#: src/help-overlay.ui:227
 msgctxt "shortcut window"
 msgid "Toggle visibility of insertion caret"
 msgstr "Preklopi vidnost kazalke vstavljanja"
 
-#: src/help-overlay.ui:228
+#: src/help-overlay.ui:234
 msgctxt "shortcut window"
 msgid "Selections"
 msgstr "Izbori"
 
-#: src/help-overlay.ui:232
+#: src/help-overlay.ui:238
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Izbere vse predmete"
 
-#: src/help-overlay.ui:238
+#: src/help-overlay.ui:244
 msgctxt "shortcut window"
 msgid "Unselect all"
 msgstr "Odstrani izbor vsega"
 
-#: src/help-overlay.ui:244
+#: src/help-overlay.ui:250
 msgctxt "shortcut window"
 msgid "Select current line"
 msgstr "Izbere trenutno vrstico"
 
-#: src/help-overlay.ui:251
+#: src/help-overlay.ui:257
 msgctxt "shortcut window"
 msgid "Movements"
 msgstr "Premikanje"
 
-#: src/help-overlay.ui:255
+#: src/help-overlay.ui:261
 msgctxt "shortcut window"
 msgid "Move to beginning of document"
 msgstr "Premakne na začetek dokumenta"
 
-#: src/help-overlay.ui:261
+#: src/help-overlay.ui:267
 msgctxt "shortcut window"
 msgid "Move to end of document"
 msgstr "Premakne na konec dokumenta"
 
-#: src/help-overlay.ui:267
+#: src/help-overlay.ui:273
 msgctxt "shortcut window"
 msgid "Move to start of previous paragraph"
 msgstr "Premakne na predhodni odstavek"
 
-#: src/help-overlay.ui:273
+#: src/help-overlay.ui:279
 msgctxt "shortcut window"
 msgid "Move to end of next paragraph"
 msgstr "Premakne na naslednji odstavek"
 
-#: src/help-overlay.ui:279
+#: src/help-overlay.ui:285
 msgctxt "shortcut window"
 msgid "Move current or selected lines up"
 msgstr "Premakne trenutno ali izbrane vrstice navzgor"
 
-#: src/help-overlay.ui:285
+#: src/help-overlay.ui:291
 msgctxt "shortcut window"
 msgid "Move current or selected lines down"
 msgstr "Premakne trenutno ali izbrane vrstice navzdol"
 
-#: src/help-overlay.ui:291
+#: src/help-overlay.ui:297
 msgctxt "shortcut window"
 msgid "Go to line"
 msgstr "Skoči v vrstico"
 
-#: src/help-overlay.ui:298
+#: src/help-overlay.ui:304
 msgctxt "shortcut window"
 msgid "Deletion"
 msgstr "Brisanje"
 
-#: src/help-overlay.ui:302
+#: src/help-overlay.ui:308
 msgctxt "shortcut window"
 msgid "Delete from cursor to word start"
 msgstr "Izbriše od kazalke do začetka besede"
 
-#: src/help-overlay.ui:308
+#: src/help-overlay.ui:314
 msgctxt "shortcut window"
 msgid "Delete from cursor to word end"
 msgstr "Izbriše od kazalke do konca besede"
 
-#: src/help-overlay.ui:314
+#: src/help-overlay.ui:320
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph start"
 msgstr "Izbriše od kazalke do začetka odstavka"
 
-#: src/help-overlay.ui:320
+#: src/help-overlay.ui:326
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph end"
 msgstr "Izbriše od kazalke do konca odstavka"
 
-#: src/help-overlay.ui:326
+#: src/help-overlay.ui:332
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "Izbriše trenutno vrstico"
 
-#: src/help-overlay.ui:333
+#: src/help-overlay.ui:339
 msgctxt "shortcut window"
 msgid "General"
 msgstr "Splošno"
 
-#: src/help-overlay.ui:337
+#: src/help-overlay.ui:343
 msgctxt "shortcut window"
 msgid "Show preferences"
 msgstr "Pokaže okno lastnosti"
 
-#: src/help-overlay.ui:343
+#: src/help-overlay.ui:349
 msgctxt "shortcut window"
 msgid "Show keyboard shortcuts"
 msgstr "Pokaže tipkovne bližnjice‫"
 
-#: src/help-overlay.ui:349
+#: src/help-overlay.ui:355
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Pokaže pomoč"
 
-#: src/help-overlay.ui:355
+#: src/help-overlay.ui:361
 msgctxt "shortcut window"
 msgid "Toggle text wrapping"
 msgstr "Preklopi ovijanje/prelom besedila"
