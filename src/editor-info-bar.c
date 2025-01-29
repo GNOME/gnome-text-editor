@@ -130,7 +130,7 @@ editor_info_bar_update (EditorInfoBar *self)
           gtk_button_set_label (self->save, _("_Save…"));
           gtk_actionable_set_action_name (GTK_ACTIONABLE (self->save), "page.confirm-save");
           gtk_button_set_label (self->discard, _("_Discard…"));
-          gtk_actionable_set_action_name (GTK_ACTIONABLE (self->discard), "page.confirm-discard-changes");
+          gtk_actionable_set_action_name (GTK_ACTIONABLE (self->discard), "page.infobar-discard-changes");
           gtk_label_set_label (self->title, _("Draft Changes Restored"));
           gtk_label_set_label (self->subtitle, _("Unsaved changes to the document have been restored."));
           gtk_widget_set_visible (GTK_WIDGET (self->discard), TRUE);

@@ -197,23 +197,7 @@ editor_window_actions_change_language_cb (GtkWidget  *widget,
 }
 
 static void
-editor_window_actions_discard_changes_cb (GtkWidget  *widget,
-                                          const char *action_name,
-                                          GVariant   *param)
-{
-  EditorWindow *self = (EditorWindow *)widget;
-  EditorPage *page;
-
-  g_assert (EDITOR_IS_WINDOW (self));
-
-  if ((page = editor_window_get_visible_page (self)))
-    _editor_page_discard_changes (page);
-}
-
-static void
-editor_window_actions_confirm_discard_changes_cb (GtkWidget  *widget,
-                                                  const char *action_name,
-                                                  GVariant   *param)
+editor_window_actions_confirm_discard_changes (GtkWidget *widget)
 {
   EditorWindow *self = (EditorWindow *)widget;
   g_autofree gchar *title = NULL;
@@ -245,6 +229,30 @@ editor_window_actions_confirm_discard_changes_cb (GtkWidget  *widget,
                            G_CONNECT_SWAPPED);
 
   adw_dialog_present (dialog, widget);
+}
+
+static void
+editor_window_actions_discard_changes_cb (GtkWidget  *widget,
+                                          const char *action_name,
+                                          GVariant   *param)
+{
+  EditorWindow *self = (EditorWindow *)widget;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+
+  editor_window_actions_confirm_discard_changes (widget);
+}
+
+static void
+editor_window_actions_infobar_discard_changes_cb (GtkWidget  *widget,
+                                                  const char *action_name,
+                                                  GVariant   *param)
+{
+  EditorWindow *self = (EditorWindow *)widget;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+
+  editor_window_actions_confirm_discard_changes (widget);
 }
 
 static void
@@ -666,9 +674,9 @@ _editor_window_class_actions_init (EditorWindowClass *klass)
                                    NULL,
                                    editor_window_actions_discard_changes_cb);
   gtk_widget_class_install_action (widget_class,
-                                   "page.confirm-discard-changes",
+                                   "page.infobar-discard-changes",
                                    NULL,
-                                   editor_window_actions_confirm_discard_changes_cb);
+                                   editor_window_actions_infobar_discard_changes_cb);
   gtk_widget_class_install_action (widget_class,
                                    "page.print",
                                    NULL,
