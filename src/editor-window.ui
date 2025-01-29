@@ -3,6 +3,7 @@
   <requires lib="gtk" version="4.0"/>
   <requires lib="Adw" version="1.0"/>
   <template class="EditorWindow" parent="AdwApplicationWindow">
+    <property name="width-request">360</property>
     <style>
       <class name="org-gnome-TextEditor"/>
     </style>
