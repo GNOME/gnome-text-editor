@@ -59,7 +59,7 @@ on_text_activate_cb (EditorSearchEntry *self,
   g_assert (EDITOR_IS_SEARCH_ENTRY (self));
   g_assert (GTK_IS_TEXT (text));
 
-  gtk_widget_activate_action (GTK_WIDGET (self), "search.move-next", "b", FALSE);
+  gtk_widget_activate_action (GTK_WIDGET (self), "search.activate", NULL);
 }
 
 static void

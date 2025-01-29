@@ -308,6 +308,22 @@ _editor_search_bar_move_previous (EditorSearchBar *self,
                                             weak_hold_new (self));
 }
 
+static void
+search_activate (GtkWidget  *widget,
+                 const char *action_name,
+                 GVariant   *param)
+{
+  EditorSearchBar *self = EDITOR_SEARCH_BAR (widget);
+
+  if (self->context == NULL)
+    return;
+
+  if (editor_search_entry_get_occurrence_position (self->search_entry) > 0)
+    gtk_widget_activate_action (GTK_WIDGET (self), "search.hide", NULL);
+  else
+    _editor_search_bar_move_next (self, TRUE);
+}
+
 static gboolean
 text_to_search_text (GBinding     *binding,
                      const GValue *from_value,
@@ -578,6 +594,8 @@ editor_search_bar_class_init (EditorSearchBarClass *klass)
                                 G_TYPE_NONE, 1, G_TYPE_BOOLEAN);
 
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Escape, 0, "search.hide", NULL);
+
+  gtk_widget_class_install_action (widget_class, "search.activate", NULL, search_activate);
 
   properties [PROP_MODE] =
     g_param_spec_enum ("mode",
