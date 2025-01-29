@@ -22,7 +22,9 @@
                 <property name="margin-end">6</property>
                 <child>
                   <object class="GtkSearchEntry" id="search_entry">
-                    <property name="placeholder-text" translatable="yes">Search document types</property>
+                    <property name="placeholder-text" translatable="yes">Search</property>
+                    <property name="width-chars">20</property>
+                    <property name="halign">center</property>
                   </object>
                 </child>
               </object>
