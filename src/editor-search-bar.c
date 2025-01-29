@@ -734,6 +734,12 @@ editor_search_bar_notify_occurrences_count_cb (EditorSearchBar        *self,
   if (self->scroll_to_first_match && occurrence_count > 0)
     scroll_to_first_match (self, context);
 
+  if (occurrence_count == 0 &&
+      g_strcmp0 (gtk_editable_get_text (GTK_EDITABLE (self->search_entry)), "") != 0)
+    gtk_widget_add_css_class (GTK_WIDGET (self->search_entry), "error");
+  else
+    gtk_widget_remove_css_class (GTK_WIDGET (self->search_entry), "error");
+
   update_properties (self);
 }
 
