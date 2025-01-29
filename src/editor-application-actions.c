@@ -345,7 +345,7 @@ editor_application_actions_clear_history (GSimpleAction *action,
   g_assert (EDITOR_IS_APPLICATION (self));
 
   dialog = adw_alert_dialog_new (_("Clear File History?"),
-                                 _("Clearing file history cannot be undone"));
+                                 _("This action cannot be undone"));
   adw_alert_dialog_add_responses (ADW_ALERT_DIALOG (dialog),
                                   "cancel", _("_Cancel"),
                                   "clear-all", _("_Clear All"),
