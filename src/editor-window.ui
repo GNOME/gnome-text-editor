@@ -114,9 +114,6 @@
                     <property name="icon-name">tab-new-symbolic</property>
                     <property name="has-tooltip">true</property>
                     <property name="tooltip-text" translatable="yes">New Tab</property>
-                    <accessibility>
-                      <property name="label" translatable="yes">New tab</property>
-                    </accessibility>
                   </object>
                 </child>
               </object>
@@ -130,9 +127,6 @@
                     <property name="tooltip-text" translatable="yes">Document Properties</property>
                     <property name="icon-name">info-outline-symbolic</property>
                     <property name="active" bind-source="split_view" bind-property="show-sidebar" bind-flags="bidirectional|sync-create"/>
-                    <accessibility>
-                      <property name="label" translatable="yes">Document Properties</property>
-                    </accessibility>
                     <child>
                       <object class="GtkShortcutController">
                         <property name="scope">managed</property>
@@ -151,9 +145,6 @@
                     <property name="tooltip-text" translatable="yes">Main Menu</property>
                     <property name="icon-name">open-menu-symbolic</property>
                     <property name="menu-model">primary_menu_model</property>
-                    <accessibility>
-                      <property name="label" translatable="yes">Main menu</property>
-                    </accessibility>
                   </object>
                 </child>
               </object>
