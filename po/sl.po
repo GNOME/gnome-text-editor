@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2025-01-29 03:15+0000\n"
-"PO-Revision-Date: 2025-01-29 17:54+0100\n"
+"POT-Creation-Date: 2025-01-29 17:52+0000\n"
+"PO-Revision-Date: 2025-01-29 20:24+0100\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -308,11 +308,11 @@ msgid "Clear File History?"
 msgstr "Ali želite počistiti zgodovino datotek?"
 
 #: src/editor-application-actions.c:348
-msgid "Clearing file history cannot be undone"
-msgstr "Čiščenja zgodovine datotek ni mogoče razveljaviti"
+msgid "This action cannot be undone"
+msgstr "Tega dejanja ni mogoče razveljaviti"
 
 #: src/editor-application-actions.c:350 src/editor-save-changes-dialog.c:260
-#: src/editor-window-actions.c:115 src/editor-window-actions.c:235
+#: src/editor-window-actions.c:115 src/editor-window-actions.c:219
 msgid "_Cancel"
 msgstr "_Prekliči"
 
@@ -638,63 +638,63 @@ msgstr "Ime datoteke"
 msgid "Location"
 msgstr "Trenutno mesto"
 
-#: src/editor-properties-panel.ui:41
+#: src/editor-properties-panel.ui:42
 msgid "Open in File Manager"
 msgstr "Odpri v upravljalniku datotek"
 
-#: src/editor-properties-panel.ui:52
+#: src/editor-properties-panel.ui:53
 msgid "_Document Type"
 msgstr "_Vrsta dokumenta"
 
-#: src/editor-properties-panel.ui:65
+#: src/editor-properties-panel.ui:67
 msgid "Change Document Type"
 msgstr "Spremeni vrsto dokumenta"
 
-#: src/editor-properties-panel.ui:76
+#: src/editor-properties-panel.ui:78
 msgid "_Encoding"
 msgstr "_Nabor znakov"
 
-#: src/editor-properties-panel.ui:90
+#: src/editor-properties-panel.ui:92
 msgid "_Line Feed"
 msgstr "_Pomik v novo vrsto"
 
-#: src/editor-properties-panel.ui:106
+#: src/editor-properties-panel.ui:108
 msgid "A_uto Indentation"
 msgstr "_Samodejni zamik"
 
-#: src/editor-properties-panel.ui:113
+#: src/editor-properties-panel.ui:115
 msgid "_Character"
 msgstr "_Znak"
 
-#: src/editor-properties-panel.ui:124
-msgid "Spaces per _tab"
+#: src/editor-properties-panel.ui:126
+msgid "Spaces Per _Tab"
 msgstr "Presledki na _tabulator"
 
-#: src/editor-properties-panel.ui:136
-msgid "Spaces per _indent"
+#: src/editor-properties-panel.ui:138
+msgid "Spaces Per _Indent"
 msgstr "Presledki na _zamik"
 
-#: src/editor-properties-panel.ui:150
+#: src/editor-properties-panel.ui:152
 msgid "Statistics"
 msgstr "Statistika"
 
-#: src/editor-properties-panel.ui:153
+#: src/editor-properties-panel.ui:155
 msgid "Lines"
 msgstr "Število vrstic"
 
-#: src/editor-properties-panel.ui:166
+#: src/editor-properties-panel.ui:168
 msgid "Words"
 msgstr "Število besed"
 
-#: src/editor-properties-panel.ui:179
+#: src/editor-properties-panel.ui:181
 msgid "Characters, No Spaces"
 msgstr "Število znakov brez presledkov"
 
-#: src/editor-properties-panel.ui:192
+#: src/editor-properties-panel.ui:194
 msgid "All Characters"
 msgstr "Število vseh znakov"
 
-#: src/editor-save-changes-dialog.c:254 src/editor-window-actions.c:236
+#: src/editor-save-changes-dialog.c:254 src/editor-window-actions.c:220
 msgid "_Discard"
 msgstr "_Zavrzi"
 
@@ -846,21 +846,21 @@ msgstr "Shranjevanje sprememb bo nadomestilo predhodno shranjeno različico."
 msgid "Save Changes to “%s”?"
 msgstr "Ali želite shraniti spremembe v »%s«?"
 
-#: src/editor-window-actions.c:229
+#: src/editor-window-actions.c:213
 msgid "Unsaved changes will be permanently lost."
 msgstr "Neshranjene spremembe bodo trajno izgubljene."
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:232
+#: src/editor-window-actions.c:216
 #, c-format
 msgid "Discard Changes to “%s”?"
 msgstr "Ali želite zavreči spremembe v »%s«?"
 
-#: src/editor-window-actions.c:372
+#: src/editor-window-actions.c:380
 msgid "All Files"
 msgstr "Vse datoteke"
 
-#: src/editor-window-actions.c:377
+#: src/editor-window-actions.c:385
 msgid "Text Files"
 msgstr "Besedilne datoteke"
 
@@ -939,8 +939,8 @@ msgid "_New Window"
 msgstr "_Novo okno"
 
 #: src/editor-window.ui:304
-msgid "_Discard Changes"
-msgstr "_Prezri spremembe"
+msgid "_Discard Changes…"
+msgstr "_Zavrzi spremembe …"
 
 #: src/editor-window.ui:310
 msgid "_Find/Replace…"
