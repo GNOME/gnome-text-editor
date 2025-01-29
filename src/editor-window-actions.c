@@ -776,6 +776,7 @@ _editor_window_actions_update (EditorWindow *self,
   gboolean can_save = FALSE;
   gboolean modified = FALSE;
   gboolean draft = FALSE;
+  int font_scale = 0;
 
   g_assert (EDITOR_IS_WINDOW (self));
   g_assert (!page || EDITOR_IS_PAGE (page));
@@ -789,6 +790,7 @@ _editor_window_actions_update (EditorWindow *self,
       modified = editor_page_get_is_modified (page);
       draft = editor_page_is_draft (page);
       externally_modified = editor_document_get_externally_modified (document);
+      g_object_get (page->view, "font-scale", &font_scale, NULL);
     }
 
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "win.close-current-page", has_page);
@@ -804,6 +806,6 @@ _editor_window_actions_update (EditorWindow *self,
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.begin-search", has_page);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.zoom-in", has_page);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.zoom-out", has_page);
-  gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.zoom-one", has_page);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "page.zoom-one", has_page && font_scale != 0);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "win.focus-neighbor", has_page);
 }
