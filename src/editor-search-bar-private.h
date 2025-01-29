@@ -51,12 +51,8 @@ struct _EditorSearchBar
   GtkButton               *move_previous;
   GtkButton               *move_next;
   GtkButton               *close_button;
-  GtkCheckButton          *case_button;
-  GtkCheckButton          *regex_button;
-  GtkCheckButton          *word_button;
-  GtkToggleButton         *options_button;
+  GtkMenuButton           *options_button;
   GtkToggleButton         *replace_mode_button;
-  GtkBox                  *options_box;
 
   GtkTextTag              *current_tag;
 

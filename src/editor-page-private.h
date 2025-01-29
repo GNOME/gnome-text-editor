@@ -53,9 +53,10 @@ struct _EditorPage
   GtkSourceView           *view;
   GtkSourceMap            *map;
   GtkProgressBar          *progress_bar;
-  GtkRevealer             *goto_line_revealer;
+  GtkWidget               *goto_line_bar;
   GtkEntry                *goto_line_entry;
-  GtkRevealer             *search_revealer;
+  AdwToolbarView          *toolbar_view;
+  GtkWidget               *search_clamp;
   EditorSearchBar         *search_bar;
   GtkInfoBar              *changed_infobar;
   GtkInfoBar              *infobar;

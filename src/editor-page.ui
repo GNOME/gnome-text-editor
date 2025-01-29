@@ -10,140 +10,118 @@
           </object>
         </child>
         <child>
-          <object class="GtkOverlay" id="overlay">
+          <object class="AdwToolbarView" id="toolbar_view">
             <property name="vexpand">true</property>
-            <signal name="get-child-position" handler="get_child_position_cb"/>
             <child>
-              <object class="GtkBox">
-                <property name="orientation">horizontal</property>
+              <object class="GtkOverlay" id="overlay">
+                <property name="vexpand">true</property>
+                <signal name="get-child-position" handler="get_child_position_cb"/>
                 <child>
-                  <object class="GtkScrolledWindow" id="scroller">
-                    <property name="hexpand">true</property>
-                    <property name="vexpand">true</property>
+                  <object class="GtkBox">
+                    <property name="orientation">horizontal</property>
                     <child>
-                      <object class="EditorSourceView" id="view">
-                        <style>
-                          <class name="editor"/>
-                        </style>
-                        <signal name="notify::font-scale" handler="font_scale_changed_cb" swapped="true"/>
-                        <property name="auto-indent">true</property>
-                        <property name="top-margin">12</property>
-                        <property name="bottom-margin">12</property>
-                        <property name="left-margin">12</property>
-                        <property name="right-margin">12</property>
-                        <property name="monospace">true</property>
-                        <property name="smart-backspace">true</property>
-                        <property name="smart-home-end">before</property>
-                        <property name="input-hints">word-completion</property>
+                      <object class="GtkScrolledWindow" id="scroller">
+                        <property name="hexpand">true</property>
+                        <property name="vexpand">true</property>
+                        <child>
+                          <object class="EditorSourceView" id="view">
+                            <style>
+                              <class name="editor"/>
+                            </style>
+                            <signal name="notify::font-scale" handler="font_scale_changed_cb" swapped="true"/>
+                            <property name="auto-indent">true</property>
+                            <property name="top-margin">12</property>
+                            <property name="bottom-margin">12</property>
+                            <property name="left-margin">12</property>
+                            <property name="right-margin">12</property>
+                            <property name="monospace">true</property>
+                            <property name="smart-backspace">true</property>
+                            <property name="smart-home-end">before</property>
+                            <property name="input-hints">word-completion</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="EditorSourceMap" id="map">
+                        <property name="hexpand">false</property>
+                        <property name="visible">false</property>
+                        <property name="view">view</property>
                       </object>
                     </child>
                   </object>
                 </child>
-                <child>
-                  <object class="EditorSourceMap" id="map">
-                    <property name="hexpand">false</property>
+                <child type="overlay">
+                  <object class="GtkProgressBar" id="progress_bar">
+                    <style>
+                      <class name="osd"/>
+                    </style>
+                    <property name="can-focus">false</property>
+                    <property name="halign">fill</property>
+                    <property name="hexpand">true</property>
+                    <property name="valign">start</property>
+                    <property name="vexpand">false</property>
+                    <layout>
+                      <property name="measure">true</property>
+                    </layout>
+                  </object>
+                </child>
+                <child type="overlay">
+                  <object class="EditorPositionLabel" id="position_label">
                     <property name="visible">false</property>
-                    <property name="view">view</property>
+                    <property name="halign">end</property>
+                    <property name="valign">end</property>
                   </object>
                 </child>
               </object>
             </child>
-            <child type="overlay">
-              <object class="GtkRevealer" id="search_revealer">
-                <property name="halign">end</property>
-                <property name="margin-end">6</property>
-                <property name="hexpand">false</property>
-                <property name="valign">start</property>
-                <property name="vexpand">false</property>
-                <property name="transition-duration">300</property>
-                <property name="transition-type">slide-down</property>
-                <property name="reveal-child">false</property>
-                <layout>
-                  <property name="measure">true</property>
-                </layout>
+            <child type="bottom">
+              <object class="GtkBox" id="goto_line_bar">
+                <property name="spacing">6</property>
+                <property name="halign">center</property>
+                <style>
+                  <class name="toolbar"/>
+                </style>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="label" translatable="yes">Go to Line</property>
+                    <property name="margin-start">3</property>
+                    <property name="margin-end">3</property>
+                    <property name="halign">start</property>
+                    <attributes>
+                      <attribute name="weight" value="bold"/>
+                    </attributes>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkEntry" id="goto_line_entry">
+                    <property name="width-chars">3</property>
+                    <property name="max-width-chars">7</property>
+                    <signal name="activate" handler="goto_line_entry_activate_cb" swapped="true"/>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="goto_line_button">
+                    <property name="label" translatable="yes">Go</property>
+                    <property name="width-request">50</property>
+                    <property name="action-name">page.goto-line</property>
+                    <style>
+                      <class name="suggested-action"/>
+                    </style>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child type="bottom">
+              <object class="AdwClamp" id="search_clamp">
+                <property name="maximum-size">500</property>
                 <child>
                   <object class="EditorSearchBar" id="search_bar">
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child type="overlay">
-              <object class="GtkRevealer" id="goto_line_revealer">
-                <property name="halign">end</property>
-                <property name="margin-end">6</property>
-                <property name="hexpand">false</property>
-                <property name="valign">start</property>
-                <property name="vexpand">false</property>
-                <property name="transition-duration">300</property>
-                <property name="transition-type">slide-down</property>
-                <property name="reveal-child">false</property>
-                <layout>
-                  <property name="measure">true</property>
-                </layout>
-                <child>
-                  <object class="GtkBox" id="goto_line_bar">
-                    <property name="orientation">vertical</property>
-                    <property name="spacing">6</property>
                     <style>
-                      <class name="searchbar"/>
+                      <class name="toolbar"/>
                     </style>
-                    <child>
-                      <object class="GtkBox">
-                        <property name="spacing">6</property>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="label" translatable="yes">Go to Line</property>
-                            <property name="margin-start">3</property>
-                            <property name="margin-end">3</property>
-                            <property name="halign">start</property>
-                            <attributes>
-                              <attribute name="weight" value="bold"/>
-                            </attributes>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkEntry" id="goto_line_entry">
-                            <property name="width-chars">3</property>
-                            <property name="max-width-chars">7</property>
-                            <signal name="activate" handler="goto_line_entry_activate_cb" swapped="true"/>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkButton" id="goto_line_button">
-                            <property name="label" translatable="yes">Go</property>
-                            <property name="width-request">50</property>
-                            <property name="action-name">page.goto-line</property>
-                            <style>
-                              <class name="suggested-action"/>
-                            </style>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
                   </object>
                 </child>
-              </object>
-            </child>
-            <child type="overlay">
-              <object class="GtkProgressBar" id="progress_bar">
-                <style>
-                  <class name="osd"/>
-                </style>
-                <property name="can-focus">false</property>
-                <property name="halign">fill</property>
-                <property name="hexpand">true</property>
-                <property name="valign">start</property>
-                <property name="vexpand">false</property>
-                <layout>
-                  <property name="measure">true</property>
-                </layout>
-              </object>
-            </child>
-            <child type="overlay">
-              <object class="EditorPositionLabel" id="position_label">
-                <property name="visible">false</property>
-                <property name="halign">end</property>
-                <property name="valign">end</property>
               </object>
             </child>
           </object>

@@ -32,7 +32,7 @@ editor_page_actions_search_hide (GtkWidget  *widget,
 
   g_assert (EDITOR_IS_PAGE (self));
 
-  gtk_revealer_set_reveal_child (self->goto_line_revealer, FALSE);
+  gtk_widget_set_visible (GTK_WIDGET (self->goto_line_bar), FALSE);
   _editor_page_hide_search (self);
   editor_page_grab_focus (self);
 }
@@ -113,8 +113,10 @@ editor_page_actions_show_goto_line (GtkWidget  *widget,
   g_snprintf (str, sizeof str, "%u", line + 1);
   gtk_editable_set_text (GTK_EDITABLE (self->goto_line_entry), str);
 
-  gtk_revealer_set_reveal_child (self->goto_line_revealer, TRUE);
+  gtk_widget_set_visible (GTK_WIDGET (self->goto_line_bar), TRUE);
   gtk_widget_grab_focus (GTK_WIDGET (self->goto_line_entry));
+
+  adw_toolbar_view_set_reveal_bottom_bars (self->toolbar_view, TRUE);
 }
 
 static void
@@ -155,7 +157,7 @@ editor_page_actions_goto_line (GtkWidget  *widget,
                                     0.25, TRUE, 1.0, 0.5);
     }
 
-  gtk_revealer_set_reveal_child (self->goto_line_revealer, FALSE);
+  gtk_widget_set_visible (GTK_WIDGET (self->goto_line_bar), FALSE);
   editor_page_grab_focus (self);
 }
 

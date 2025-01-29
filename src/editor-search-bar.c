@@ -496,13 +496,15 @@ static void
 editor_search_bar_dispose (GObject *object)
 {
   EditorSearchBar *self = (EditorSearchBar *)object;
+  GtkWidget *child;
 
   g_cancellable_cancel (self->cancellable);
   g_clear_object (&self->context);
 
   gtk_widget_dispose_template (GTK_WIDGET (self), EDITOR_TYPE_SEARCH_BAR);
 
-  g_clear_pointer ((GtkWidget **)&self->grid, gtk_widget_unparent);
+  while ((child = gtk_widget_get_first_child (GTK_WIDGET (self))))
+    gtk_widget_unparent (child);
 
   if (self->focus_chain.length > 0)
     g_queue_clear (&self->focus_chain);
@@ -593,20 +595,16 @@ editor_search_bar_class_init (EditorSearchBarClass *klass)
   gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
   gtk_widget_class_set_css_name (widget_class, "searchbar");
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-search-bar.ui");
-  gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, case_button);
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, close_button);
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, grid);
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, move_previous);
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, move_next);
-  gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, options_box);
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, options_button);
-  gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, regex_button);
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, replace_all_button);
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, replace_button);
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, replace_entry);
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, replace_mode_button);
   gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, search_entry);
-  gtk_widget_class_bind_template_child (widget_class, EditorSearchBar, word_button);
   gtk_widget_class_bind_template_callback (widget_class, on_search_key_pressed_cb);
 
   signals [MOVE_NEXT_SEARCH] =
@@ -669,6 +667,11 @@ editor_search_bar_class_init (EditorSearchBarClass *klass)
 static void
 editor_search_bar_init (EditorSearchBar *self)
 {
+  g_autoptr(GSimpleActionGroup) group = NULL;
+  g_autoptr(GPropertyAction) regex_action = NULL;
+  g_autoptr(GPropertyAction) case_action = NULL;
+  g_autoptr(GPropertyAction) word_action = NULL;
+
   self->cancellable = g_cancellable_new ();
 
   gtk_widget_init_template (GTK_WIDGET (self));
@@ -680,12 +683,9 @@ editor_search_bar_init (EditorSearchBar *self)
   g_queue_push_tail (&self->focus_chain, GTK_WIDGET (self->move_next));
   g_queue_push_tail (&self->focus_chain, GTK_WIDGET (self->replace_mode_button));
   g_queue_push_tail (&self->focus_chain, GTK_WIDGET (self->options_button));
+  g_queue_push_tail (&self->focus_chain, GTK_WIDGET (self->close_button));
   g_queue_push_tail (&self->focus_chain, GTK_WIDGET (self->replace_button));
   g_queue_push_tail (&self->focus_chain, GTK_WIDGET (self->replace_all_button));
-  g_queue_push_tail (&self->focus_chain, GTK_WIDGET (self->regex_button));
-  g_queue_push_tail (&self->focus_chain, GTK_WIDGET (self->case_button));
-  g_queue_push_tail (&self->focus_chain, GTK_WIDGET (self->word_button));
-  g_queue_push_tail (&self->focus_chain, GTK_WIDGET (self->close_button));
 
   g_signal_connect_object (self->replace_entry,
                            "notify::text",
@@ -711,19 +711,17 @@ editor_search_bar_init (EditorSearchBar *self)
                                self, "mode",
                                G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL,
                                boolean_to_mode, mode_to_boolean, NULL, NULL);
-  g_object_bind_property (self->settings, "at-word-boundaries",
-                          self->word_button, "active",
-                          G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL);
-  g_object_bind_property (self->settings, "regex-enabled",
-                          self->regex_button, "active",
-                          G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL);
-  g_object_bind_property (self->settings, "case-sensitive",
-                          self->case_button, "active",
-                          G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL);
 
-  g_object_bind_property (self->options_button, "active",
-                          self->options_box, "visible",
-                          G_BINDING_SYNC_CREATE);
+  regex_action = g_property_action_new ("regex", G_OBJECT (self->settings), "regex-enabled");
+  case_action = g_property_action_new ("case-sensitive", G_OBJECT (self->settings), "case-sensitive");
+  word_action = g_property_action_new ("match-whole-word", G_OBJECT (self->settings), "at-word-boundaries");
+
+  group = g_simple_action_group_new ();
+  g_action_map_add_action (G_ACTION_MAP (group), G_ACTION (regex_action));
+  g_action_map_add_action (G_ACTION_MAP (group), G_ACTION (case_action));
+  g_action_map_add_action (G_ACTION_MAP (group), G_ACTION (word_action));
+
+  gtk_widget_insert_action_group (GTK_WIDGET (self), "search-options", G_ACTION_GROUP (group));
 }
 
 void
