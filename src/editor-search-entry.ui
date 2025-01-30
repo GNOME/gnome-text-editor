@@ -13,6 +13,7 @@
         <property name="hexpand">true</property>
         <property name="vexpand">true</property>
         <signal name="notify" handler="on_text_notify_cb" swapped="true"/>
+        <signal name="changed" handler="on_text_changed_cb" swapped="true"/>
         <signal name="activate" handler="on_text_activate_cb" swapped="true"/>
       </object>
     </child>
@@ -22,6 +23,18 @@
         <attributes>
           <attribute name="foreground-alpha" value="33000"/>
         </attributes>
+      </object>
+    </child>
+    <child>
+      <object class="GtkImage" id="clear">
+        <property name="visible">False</property>
+        <property name="tooltip-text" translatable="yes">Clear Entry</property>
+        <property name="icon-name">edit-clear-symbolic</property>
+        <child>
+          <object class="GtkGestureClick">
+            <signal name="pressed" handler="on_text_clear_button_pressed_cb"/>
+          </object>
+        </child>
       </object>
     </child>
   </template>
