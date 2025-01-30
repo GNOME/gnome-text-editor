@@ -28,6 +28,7 @@ struct _EditorSearchEntry
 {
   GtkWidget  parent_instance;
 
+  GtkImage  *clear;
   GtkText   *text;
   GtkLabel  *info;
 
@@ -60,6 +61,30 @@ on_text_activate_cb (EditorSearchEntry *self,
   g_assert (GTK_IS_TEXT (text));
 
   gtk_widget_activate_action (GTK_WIDGET (self), "search.activate", NULL);
+}
+
+static void
+on_text_clear_button_pressed_cb (GtkGestureClick   *press,
+                                 int                n_press,
+                                 double             x,
+                                 double             y,
+                                 EditorSearchEntry *self)
+{
+  gtk_editable_set_text (GTK_EDITABLE (self), "");
+}
+
+static void
+on_text_changed_cb (EditorSearchEntry *self,
+                    GtkEditable       *editable)
+{
+  const char *str;
+
+  str = gtk_editable_get_text (GTK_EDITABLE (self));
+
+  if (str == NULL || *str == '\0')
+    gtk_widget_set_visible (GTK_WIDGET (self->clear), FALSE);
+  else
+    gtk_widget_set_visible (GTK_WIDGET (self->clear), TRUE);
 }
 
 static void
@@ -136,9 +161,12 @@ editor_search_entry_class_init (EditorSearchEntryClass *klass)
   gtk_widget_class_set_css_name (widget_class, "entry");
   gtk_widget_class_set_accessible_role (widget_class, GTK_ACCESSIBLE_ROLE_TEXT_BOX);
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-search-entry.ui");
+  gtk_widget_class_bind_template_child (widget_class, EditorSearchEntry, clear);
   gtk_widget_class_bind_template_child (widget_class, EditorSearchEntry, info);
   gtk_widget_class_bind_template_child (widget_class, EditorSearchEntry, text);
   gtk_widget_class_bind_template_callback (widget_class, on_text_activate_cb);
+  gtk_widget_class_bind_template_callback (widget_class, on_text_clear_button_pressed_cb);
+  gtk_widget_class_bind_template_callback (widget_class, on_text_changed_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_text_notify_cb);
 
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_g, GDK_CONTROL_MASK|GDK_SHIFT_MASK, "search.move-previous", "b", FALSE);
