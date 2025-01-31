@@ -33,7 +33,7 @@
       <object class="EditorFullscreenBox" id="fullscreen_box">
         <child type="top">
           <object class="AdwHeaderBar" id="header_bar">
-            <child type="title">
+            <property name="title-widget">
               <object class="GtkBox">
                 <property name="hexpand">true</property>
                 <property name="valign">center</property>
@@ -58,9 +58,9 @@
                       <object class="GtkLabel" id="title">
                         <property name="ellipsize">end</property>
                         <property name="width-chars">3</property>
-                        <attributes>
-                          <attribute name="weight" value="bold"/>
-                        </attributes>
+                        <style>
+                          <class name="title"/>
+                        </style>
                       </object>
                     </child>
                   </object>
@@ -77,75 +77,60 @@
                         <property name="margin-end">6</property>
                         <property name="pixel-size">12</property>
                         <style>
-                          <class name="dim-label"/>
+                          <class name="subtitle"/>
                         </style>
                       </object>
                     </child>
                     <child type="center">
                       <object class="GtkLabel" id="subtitle">
                         <property name="ellipsize">middle</property>
-                        <attributes>
-                          <attribute name="scale" value="0.8222"/>
-                          <attribute name="foreground-alpha" value="32767"/>
-                        </attributes>
+                        <style>
+                          <class name="subtitle"/>
+                        </style>
                       </object>
                     </child>
                   </object>
                 </child>
+              </object>
+            </property>
+            <child type="start">
+              <object class="GtkMenuButton" id="open_menu_button">
+                <property name="label" translatable="yes">_Open</property>
+                <property name="use-underline">True</property>
+                <property name="tooltip-text" translatable="yes">Recently Used Documents</property>
+                <property name="popover">
+                  <object class="EditorOpenPopover" id="open_menu_popover"/>
+                </property>
               </object>
             </child>
             <child type="start">
-              <object class="GtkBox">
-                <property name="halign">start</property>
-                <property name="spacing">6</property>
-                <child>
-                  <object class="GtkMenuButton" id="open_menu_button">
-                    <property name="label" translatable="yes">_Open</property>
-                    <property name="use-underline">True</property>
-                    <property name="tooltip-text" translatable="yes">Recently Used Documents</property>
-                    <property name="popover">
-                      <object class="EditorOpenPopover" id="open_menu_popover">
-                      </object>
-                    </property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkButton" id="new_button">
-                    <property name="action-name">session.new-draft</property>
-                    <property name="icon-name">tab-new-symbolic</property>
-                    <property name="has-tooltip">true</property>
-                    <property name="tooltip-text" translatable="yes">New Tab</property>
-                  </object>
-                </child>
+              <object class="GtkButton" id="new_button">
+                <property name="action-name">session.new-draft</property>
+                <property name="icon-name">tab-new-symbolic</property>
+                <property name="tooltip-text" translatable="yes">New Tab</property>
               </object>
             </child>
             <child type="end">
-              <object class="GtkBox">
-                <property name="halign">end</property>
-                <property name="spacing">6</property>
+              <object class="GtkMenuButton" id="primary_menu">
+                <property name="tooltip-text" translatable="yes">Main Menu</property>
+                <property name="icon-name">open-menu-symbolic</property>
+                <property name="menu-model">primary_menu_model</property>
+              </object>
+            </child>
+            <child type="end">
+              <object class="GtkToggleButton" id="properties_button">
+                <property name="tooltip-text" translatable="yes">Document Properties</property>
+                <property name="icon-name">info-outline-symbolic</property>
+                <property name="active" bind-source="split_view" bind-property="show-sidebar" bind-flags="bidirectional|sync-create"/>
                 <child>
-                  <object class="GtkToggleButton" id="properties_button">
-                    <property name="tooltip-text" translatable="yes">Document Properties</property>
-                    <property name="icon-name">info-outline-symbolic</property>
-                    <property name="active" bind-source="split_view" bind-property="show-sidebar" bind-flags="bidirectional|sync-create"/>
+                  <object class="GtkShortcutController">
+                    <property name="scope">managed</property>
                     <child>
-                      <object class="GtkShortcutController">
-                        <property name="scope">managed</property>
-                        <child>
-                          <object class="GtkShortcut">
-                            <property name="trigger">F9</property>
-                            <property name="action">activate</property>
-                          </object>
-                        </child>
+                      <object class="GtkShortcut">
+                        <property name="trigger">F9</property>
+                        <property name="action">activate</property>
                       </object>
                     </child>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkMenuButton" id="primary_menu">
-                    <property name="tooltip-text" translatable="yes">Main Menu</property>
-                    <property name="icon-name">open-menu-symbolic</property>
-                    <property name="menu-model">primary_menu_model</property>
                   </object>
                 </child>
               </object>
