@@ -23,7 +23,9 @@
             <child>
               <object class="AdwActionRow" id="location">
                 <property name="title" translatable="yes">Location</property>
-                <property name="activatable-widget">open_button</property>
+                <property name="tooltip-text" translatable="yes">Open in File Manager</property>
+                <property name="activatable">True</property>
+                <property name="action-name">open-folder</property>
                 <binding name="subtitle">
                   <lookup name="directory">properties</lookup>
                 </binding>
@@ -33,14 +35,10 @@
                 <property name="use-markup">False</property>
                 <property name="subtitle-lines">1</property>
                 <child type="suffix">
-                  <object class="GtkButton" id="open_button">
-                    <style>
-                      <class name="flat"/>
-                    </style>
-                    <property name="action-name">open-folder</property>
+                  <object class="GtkImage">
                     <property name="icon-name">document-open-symbolic</property>
-                    <property name="tooltip-text" translatable="yes">Open in File Manager</property>
                     <property name="valign">center</property>
+                    <property name="margin-start">6</property>
                   </object>
                 </child>
                 <style>
@@ -51,21 +49,19 @@
             <child>
               <object class="AdwActionRow">
                 <property name="title" translatable="yes">_Document Type</property>
+                <property name="tooltip-text" translatable="yes">Change Document Type</property>
                 <property name="use-underline">True</property>
-                <property name="activatable-widget">type_button</property>
+                <property name="activatable">True</property>
+                <property name="action-name">page.change-language</property>
                 <binding name="subtitle">
                   <lookup name="language-name">properties</lookup>
                 </binding>
                 <property name="use-markup">False</property>
                 <child type="suffix">
-                  <object class="GtkButton" id="type_button">
-                    <style>
-                      <class name="flat"/>
-                    </style>
-                    <property name="action-name">page.change-language</property>
-                    <property name="icon-name">open-dialog-symbolic</property>
-                    <property name="tooltip-text" translatable="yes">Change Document Type</property>
+                  <object class="GtkImage">
+                    <property name="icon-name">go-next-symbolic</property>
                     <property name="valign">center</property>
+                    <property name="margin-start">6</property>
                   </object>
                 </child>
                 <style>

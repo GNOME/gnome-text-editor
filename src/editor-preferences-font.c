@@ -208,5 +208,5 @@ static void
 editor_preferences_font_init (EditorPreferencesFont *self)
 {
   adw_action_row_add_suffix (ADW_ACTION_ROW (self),
-                             gtk_image_new_from_icon_name ("open-dialog-symbolic"));
+                             gtk_image_new_from_icon_name ("go-next-symbolic"));
 }
