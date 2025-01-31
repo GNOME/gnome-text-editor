@@ -9,8 +9,9 @@
       <object class="AdwBreakpointBin">
         <child>
           <object class="GtkGrid" id="grid">
-            <property name="column-spacing">8</property>
-            <property name="row-spacing">8</property>
+            <style>
+              <class name="toolbar"/>
+            </style>
             <child>
               <object class="EditorSearchEntry" id="search_entry">
                 <property name="hexpand">true</property>
