@@ -8,6 +8,7 @@
             <child>
               <object class="AdwActionRow" id="name">
                 <property name="title" translatable="yes">File Name</property>
+                <property name="subtitle-selectable">True</property>
                 <binding name="subtitle">
                   <lookup name="name">properties</lookup>
                 </binding>
