@@ -950,7 +950,7 @@ editor_page_class_init (EditorPageClass *klass)
   gtk_widget_class_set_css_name (widget_class, "page");
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-page.ui");
   gtk_widget_class_bind_template_child (widget_class, EditorPage, box);
-  gtk_widget_class_bind_template_child (widget_class, EditorPage, goto_line_bar);
+  gtk_widget_class_bind_template_child (widget_class, EditorPage, goto_line_revealer);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, goto_line_entry);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, infobar);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, map);
@@ -959,7 +959,7 @@ editor_page_class_init (EditorPageClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorPage, progress_bar);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, scroller);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, search_bar);
-  gtk_widget_class_bind_template_child (widget_class, EditorPage, search_clamp);
+  gtk_widget_class_bind_template_child (widget_class, EditorPage, search_revealer);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, toolbar_view);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, view);
   gtk_widget_class_bind_template_callback (widget_class, get_child_position_cb);
@@ -987,9 +987,6 @@ editor_page_init (EditorPage *self)
   self->cancellable = g_cancellable_new ();
 
   gtk_widget_init_template (GTK_WIDGET (self));
-
-  gtk_widget_set_visible (GTK_WIDGET (self->goto_line_bar), FALSE);
-  gtk_widget_set_visible (GTK_WIDGET (self->search_clamp), FALSE);
 
   /* Work around https://gitlab.gnome.org/GNOME/gtk/-/issues/4315
    * by connecting to the GtkText to intercept insert-text() emission.
@@ -1572,9 +1569,8 @@ _editor_page_set_search_visible (EditorPage          *self,
       _editor_search_bar_detach (self->search_bar);
     }
 
-  gtk_widget_set_visible (self->goto_line_bar, FALSE);
-  gtk_widget_set_visible (self->search_clamp, search_visible);
-  adw_toolbar_view_set_reveal_bottom_bars (self->toolbar_view, search_visible);
+  gtk_revealer_set_reveal_child (GTK_REVEALER (self->goto_line_revealer), FALSE);
+  gtk_revealer_set_reveal_child (GTK_REVEALER (self->search_revealer), search_visible);
 
   if (search_visible)
     _editor_search_bar_grab_focus (self->search_bar);
@@ -1843,3 +1839,4 @@ editor_page_destroy (EditorPage *self)
 
   g_object_run_dispose (G_OBJECT (self));
 }
+
