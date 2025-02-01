@@ -46,6 +46,7 @@ struct _EditorPropertiesPanel
 
   /* Template References */
   EditorProperties *properties;
+  GtkImage         *open_image;
 };
 
 enum {
@@ -61,11 +62,22 @@ static GParamSpec *properties[N_PROPS];
 static void
 editor_properties_panel_notify_can_open_cb (EditorPropertiesPanel *self)
 {
+  gboolean can_open;
+
   g_assert (EDITOR_IS_PROPERTIES_PANEL (self));
 
-  gtk_widget_action_set_enabled (GTK_WIDGET (self),
-                                 "open-folder",
-                                 editor_properties_get_can_open (self->properties));
+  /*
+   * Work around some weird styling due to actions being disabled and the
+   * subtitle getting grayed out in the properties panel.
+   */
+
+  can_open = editor_properties_get_can_open (self->properties);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "open-folder", can_open);
+
+  if (can_open)
+    gtk_widget_remove_css_class (GTK_WIDGET (self->open_image), "dim-label");
+  else
+    gtk_widget_add_css_class (GTK_WIDGET (self->open_image), "dim-label");
 }
 
 static void
@@ -159,6 +171,7 @@ editor_properties_panel_class_init (EditorPropertiesPanelClass *klass)
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-properties-panel.ui");
 
   gtk_widget_class_bind_template_child (widget_class, EditorPropertiesPanel, properties);
+  gtk_widget_class_bind_template_child (widget_class, EditorPropertiesPanel, open_image);
 
   gtk_widget_class_bind_template_callback (widget_class, editor_properties_panel_notify_can_open_cb);
 

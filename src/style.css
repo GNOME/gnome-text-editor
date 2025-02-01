@@ -154,3 +154,8 @@ page positionlabel {
 page positionlabel:backdrop {
   opacity: 0.7;
 }
+
+/* Always show "Location" row subtitle w/o desenstized visuals */
+row.location.property .subtitle {
+  filter: none;
+}
