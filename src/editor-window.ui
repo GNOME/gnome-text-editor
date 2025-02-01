@@ -175,33 +175,19 @@
                 </child>
                 <child>
                   <object class="AdwStatusPage" id="empty">
-                    <property name="title" translatable="yes">Start or Open a Document</property>
+                    <property name="title" translatable="yes">Open a Document</property>
+                    <property name="description" translatable="yes">Create a new document (Ctrl+N), or open an existing one (Ctrl+O)</property>
                     <property name="child">
-                      <object class="GtkBox">
-                        <property name="orientation">vertical</property>
-                        <property name="spacing">32</property>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="label" translatable="yes">• Press the Open button
-• Press the New tab button
-• Press Ctrl+N to start a new document
-• Press Ctrl+O to browse for a document</property>
-                            <property name="wrap">True</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkButton">
-                            <style>
-                              <class name="suggested-action"/>
-                              <class name="large-button"/>
-                              <class name="pill"/>
-                            </style>
-                            <property name="action-name">session.new-draft</property>
-                            <property name="halign">center</property>
-                            <property name="use-underline">true</property>
-                            <property name="label" translatable="yes">_New Empty File</property>
-                          </object>
-                        </child>
+                      <object class="GtkButton">
+                        <style>
+                          <class name="suggested-action"/>
+                          <class name="large-button"/>
+                          <class name="pill"/>
+                        </style>
+                        <property name="action-name">session.new-draft</property>
+                        <property name="halign">center</property>
+                        <property name="use-underline">true</property>
+                        <property name="label" translatable="yes">_New Empty File</property>
                       </object>
                     </property>
                   </object>
