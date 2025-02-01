@@ -71,6 +71,10 @@ struct _EditorWindow
   guint                 doc_type_index;
 
   guint                 inhibit_cookie;
+
+  guint                 focus_active_tab_source;
+
+  guint                 tab_overview_animating : 1;
 };
 
 
@@ -92,5 +96,6 @@ gboolean      _editor_window_request_close_pages  (EditorWindow      *self,
                                                    GList             *pages,
                                                    gboolean           close_saved);
 GCancellable *_editor_window_get_cancellable      (EditorWindow      *self);
+gboolean      _editor_window_is_animating         (EditorWindow      *self);
 
 G_END_DECLS

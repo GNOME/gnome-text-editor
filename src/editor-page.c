@@ -35,6 +35,7 @@
 #include "editor-source-map.h"
 #include "editor-source-view.h"
 #include "editor-utils-private.h"
+#include "editor-window-private.h"
 
 #define HIDE_POSITION_DELAY_SECONDS 1
 
@@ -740,6 +741,111 @@ editor_page_get_indicator (EditorPage *self)
 }
 
 static void
+get_bg_color (EditorPage *self,
+              GdkRGBA    *bg)
+{
+  GtkSourceStyleScheme *scheme;
+  GtkSourceStyle *style;
+
+  if ((scheme = gtk_source_buffer_get_style_scheme (GTK_SOURCE_BUFFER (self->document))) &&
+      (style = gtk_source_style_scheme_get_style (scheme, "text")))
+    {
+      g_autofree char *background = NULL;
+      gboolean background_set = FALSE;
+
+      g_object_get (style,
+                    "background", &background,
+                    "background-set", &background_set,
+                    NULL);
+
+      if (background_set)
+        gdk_rgba_parse (bg, background);
+    }
+}
+
+static void
+editor_page_snapshot (GtkWidget   *widget,
+                      GtkSnapshot *snapshot)
+{
+  EditorPage *self = (EditorPage *)widget;
+  EditorWindow *window;
+  gboolean animating;
+  GdkRGBA bg = {0};
+  int width;
+  int height;
+
+  g_assert (EDITOR_IS_PAGE (self));
+  g_assert (GTK_IS_SNAPSHOT (snapshot));
+
+  window = EDITOR_WINDOW (gtk_widget_get_root (widget));
+  animating = _editor_window_is_animating (window);
+  width = gtk_widget_get_width (widget);
+  height = gtk_widget_get_height (widget);
+
+  /*
+   * This looks annoyingly complex, just like in Ptyxis, but it's pretty
+   * essential to make animations smooth with lots of text which otherwise
+   * overwhelms the renderers as the text scales in size.
+   */
+
+  if (animating &&
+      editor_window_get_visible_page (window) == self)
+    {
+      if (self->cached_texture == NULL)
+        {
+          GtkSnapshot *sub_snapshot = gtk_snapshot_new ();
+          int scale_factor = gtk_widget_get_scale_factor (widget);
+          g_autoptr(GskRenderNode) node = NULL;
+          graphene_matrix_t matrix;
+          GskRenderer *renderer;
+
+          get_bg_color (self, &bg);
+
+          gtk_snapshot_scale (sub_snapshot, scale_factor, scale_factor);
+          gtk_snapshot_append_color (sub_snapshot,
+                                     &bg,
+                                     &GRAPHENE_RECT_INIT (0, 0, width, height));
+
+          if (gtk_widget_compute_transform (GTK_WIDGET (self->toolbar_view),
+                                            GTK_WIDGET (self),
+                                            &matrix))
+            {
+              gtk_snapshot_transform_matrix (sub_snapshot, &matrix);
+              GTK_WIDGET_GET_CLASS (self->toolbar_view)->snapshot (GTK_WIDGET (self->toolbar_view), sub_snapshot);
+            }
+
+          node = gtk_snapshot_free_to_node (sub_snapshot);
+          renderer = gtk_native_get_renderer (GTK_NATIVE (window));
+
+          self->cached_texture = gsk_renderer_render_texture (renderer,
+                                                              node,
+                                                              &GRAPHENE_RECT_INIT (0,
+                                                                                   0,
+                                                                                   width * scale_factor,
+                                                                                   height * scale_factor));
+        }
+
+      gtk_snapshot_append_texture (snapshot,
+                                   self->cached_texture,
+                                   &GRAPHENE_RECT_INIT (0, 0, width, height));
+    }
+  else
+    {
+      g_clear_object (&self->cached_texture);
+
+      if (animating)
+        {
+          get_bg_color (self, &bg);
+          gtk_snapshot_append_color (snapshot,
+                                     &bg,
+                                     &GRAPHENE_RECT_INIT (0, 0, width, height));
+        }
+
+      GTK_WIDGET_CLASS (editor_page_parent_class)->snapshot (widget, snapshot);
+    }
+}
+
+static void
 editor_page_dispose (GObject *object)
 {
   EditorPage *self = (EditorPage *)object;
@@ -751,6 +857,7 @@ editor_page_dispose (GObject *object)
 
   g_cancellable_cancel (self->cancellable);
   g_clear_object (&self->cancellable);
+  g_clear_object (&self->cached_texture);
 
   gtk_widget_dispose_template (GTK_WIDGET (self), EDITOR_TYPE_PAGE);
 
@@ -864,6 +971,8 @@ editor_page_class_init (EditorPageClass *klass)
   object_class->finalize = editor_page_finalize;
   object_class->get_property = editor_page_get_property;
   object_class->set_property = editor_page_set_property;
+
+  widget_class->snapshot = editor_page_snapshot;
 
   properties [PROP_BUSY] =
     g_param_spec_boolean ("busy",

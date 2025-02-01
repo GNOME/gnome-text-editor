@@ -52,6 +52,85 @@ enum {
 
 static GParamSpec *properties[N_PROPS];
 
+static gboolean
+editor_window_focus_active_tab_cb (gpointer data)
+{
+  EditorWindow *self = data;
+  EditorPage *visible_page;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+
+  self->focus_active_tab_source = 0;
+  self->tab_overview_animating = FALSE;
+
+  if ((visible_page = editor_window_get_visible_page (self)))
+    {
+      gtk_widget_grab_focus (GTK_WIDGET (visible_page));
+      gtk_widget_queue_resize (GTK_WIDGET (visible_page));
+    }
+
+  return G_SOURCE_REMOVE;
+}
+
+static void
+editor_window_tab_overview_notify_open_cb (EditorWindow   *self,
+                                           GParamSpec     *pspec,
+                                           AdwTabOverview *tab_overview)
+{
+  g_assert (EDITOR_IS_WINDOW (self));
+  g_assert (ADW_IS_TAB_OVERVIEW (tab_overview));
+
+  /* For some reason when we get here the selected page is not
+   * getting focused. So work around libadwaita by deferring the
+   * focus to an idle so that we can ensure we're working with
+   * the appropriate focus tab.
+   *
+   * See https://gitlab.gnome.org/GNOME/libadwaita/-/issues/670
+   */
+
+  g_clear_handle_id (&self->focus_active_tab_source, g_source_remove);
+
+  if (!adw_tab_overview_get_open (tab_overview))
+    {
+      EditorPage *visible_page;
+      GtkSettings *settings = gtk_settings_get_default ();
+      gboolean gtk_enable_animations = TRUE;
+      guint delay_msec = 425; /* Sync with libadwaita */
+
+      g_object_get (settings,
+                    "gtk-enable-animations", &gtk_enable_animations,
+                    NULL);
+
+      if (!gtk_enable_animations)
+        delay_msec = 10;
+
+      self->focus_active_tab_source = g_timeout_add_full (G_PRIORITY_LOW,
+                                                          delay_msec,
+                                                          editor_window_focus_active_tab_cb,
+                                                          self, NULL);
+
+      if ((visible_page = editor_window_get_visible_page (self)))
+        gtk_widget_grab_focus (GTK_WIDGET (visible_page));
+    }
+
+  self->tab_overview_animating = TRUE;
+}
+
+static AdwTabPage *
+editor_window_tab_overview_create_tab_cb (EditorWindow   *self,
+                                          AdwTabOverview *tab_overview)
+{
+  EditorSession *session;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+  g_assert (ADW_IS_TAB_OVERVIEW (tab_overview));
+
+  session = editor_application_get_session (EDITOR_APPLICATION_DEFAULT);
+  editor_session_add_draft (session, self);
+
+  return adw_tab_view_get_selected_page (self->tab_view);
+}
+
 static void
 closed_item_clear (gpointer data)
 {
@@ -795,6 +874,8 @@ editor_window_dispose (GObject *object)
 
   g_assert (EDITOR_IS_WINDOW (self));
 
+  g_clear_handle_id (&self->focus_active_tab_source, g_source_remove);
+
   _editor_session_remove_window (EDITOR_SESSION_DEFAULT, self);
 
   g_clear_object (&self->settings);
@@ -911,6 +992,8 @@ editor_window_class_init (EditorWindowClass *klass)
   gtk_widget_class_bind_template_callback (widget_class, on_tab_view_setup_menu_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_tab_view_create_window_cb);
   gtk_widget_class_bind_template_callback (widget_class, title_query_tooltip_cb);
+  gtk_widget_class_bind_template_callback (widget_class, editor_window_tab_overview_notify_open_cb);
+  gtk_widget_class_bind_template_callback (widget_class, editor_window_tab_overview_create_tab_cb);
 
   gtk_widget_class_install_action (widget_class, "win.alternate-help-overlay", NULL, on_show_help_overlay_cb);
   gtk_widget_class_install_action (widget_class, "win.undo-close-page", NULL, on_undo_close_page_cb);
@@ -1370,4 +1453,12 @@ _editor_window_get_cancellable (EditorWindow *self)
   g_return_val_if_fail (EDITOR_IS_WINDOW (self), NULL);
 
   return self->cancellable;
+}
+
+gboolean
+_editor_window_is_animating (EditorWindow *self)
+{
+  g_return_val_if_fail (EDITOR_IS_WINDOW (self), FALSE);
+
+  return self->tab_overview_animating;
 }
