@@ -110,16 +110,18 @@ _editor_get_portal_host_path (GFile *file)
 
       if ((host_path = g_file_info_get_attribute_string (info, FILE_ATTRIBUTE_HOST_PATH)))
         {
-          /* host_path is a "\x00" separated and terminated list */
-          gchar *end = strstr (host_path, "\\x00");   /* delimit first element */
+          g_autofree gchar *fs_path = NULL;
+          g_autofree gchar *disp_path = NULL;
+          gsize len = strlen (host_path);
 
-          if (end)
-            {
-              g_autofree gchar *first_path = g_strndup (host_path, (end - host_path));
-              g_autofree gchar *disp_path = g_filename_display_name (first_path);
+          /* Early portal versions added a "\x00" suffix, trim it if present */
+          if (len > 4 && g_strcmp0 (&host_path[len-4], "\\x00") == 0)
+              fs_path = g_strndup (host_path, len - 4);
+          else
+              fs_path = g_strdup (host_path);
 
-              return _editor_path_collapse (disp_path);
-            }
+          disp_path = g_filename_display_name (fs_path);
+          return _editor_path_collapse (disp_path);
         }
     }
 
