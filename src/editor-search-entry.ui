@@ -9,6 +9,7 @@
     </child>
     <child>
       <object class="GtkText" id="text">
+        <property name="accessible-role">text-box</property>
         <property name="placeholder-text" translatable="yes">Search</property>
         <property name="hexpand">true</property>
         <property name="vexpand">true</property>

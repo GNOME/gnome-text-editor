@@ -159,7 +159,6 @@ editor_search_entry_class_init (EditorSearchEntryClass *klass)
 
   gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BOX_LAYOUT);
   gtk_widget_class_set_css_name (widget_class, "entry");
-  gtk_widget_class_set_accessible_role (widget_class, GTK_ACCESSIBLE_ROLE_TEXT_BOX);
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-search-entry.ui");
   gtk_widget_class_bind_template_child (widget_class, EditorSearchEntry, clear);
   gtk_widget_class_bind_template_child (widget_class, EditorSearchEntry, info);
@@ -196,6 +195,10 @@ editor_search_entry_init (EditorSearchEntry *self)
   cairo_font_options_set_variations (options, "tnum");
   gtk_widget_set_font_options (GTK_WIDGET (self->info), options);
   cairo_font_options_destroy (options);
+
+  gtk_accessible_update_property (GTK_ACCESSIBLE (self->text),
+                                  GTK_ACCESSIBLE_PROPERTY_LABEL,
+                                  _("Search"));
 }
 
 static GtkEditable *
