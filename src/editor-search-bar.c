@@ -253,6 +253,15 @@ editor_search_bar_move_next_forward_cb (GObject      *object,
     gtk_widget_activate_action (GTK_WIDGET (self), "search.hide", NULL);
 }
 
+static void
+reset_cancellable (EditorSearchBar *self)
+{
+  g_assert (EDITOR_IS_SEARCH_BAR (self));
+
+  g_clear_object (&self->cancellable);
+  self->cancellable = g_cancellable_new ();
+}
+
 void
 _editor_search_bar_move_next (EditorSearchBar *self,
                               gboolean         hide_after_move)
@@ -272,6 +281,8 @@ _editor_search_bar_move_next (EditorSearchBar *self,
   buffer = gtk_source_search_context_get_buffer (self->context);
   gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER (buffer), &begin, &end);
   gtk_text_iter_order (&begin, &end);
+
+  reset_cancellable (self);
 
   gtk_source_search_context_forward_async (self->context,
                                            &end,
@@ -299,6 +310,8 @@ _editor_search_bar_move_previous (EditorSearchBar *self,
   buffer = gtk_source_search_context_get_buffer (self->context);
   gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER (buffer), &begin, &end);
   gtk_text_iter_order (&begin, &end);
+
+  reset_cancellable (self);
 
   gtk_source_search_context_backward_async (self->context,
                                             &begin,
