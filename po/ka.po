@@ -1,15 +1,15 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Ekaterine Papava <papava.e@gtu.ge>, 2023-2024.
+# Ekaterine Papava <papava.e@gtu.ge>, 2023-2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2024-08-12 16:58+0000\n"
-"PO-Revision-Date: 2024-08-23 07:34+0200\n"
+"POT-Creation-Date: 2025-02-13 01:02+0000\n"
+"PO-Revision-Date: 2025-02-23 08:28+0100\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: Georgian <(nothing)>\n"
 "Language: ka\n"
@@ -17,44 +17,38 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.5\n"
 
-#. developer_name tag deprecated with Appstream 1.0
-#: data/org.gnome.TextEditor.appdata.xml.in.in:7
-#: src/editor-application-actions.c:201
-msgid "The GNOME Project"
-msgstr "პროექტი \"GNOME\""
+#: data/org.gnome.TextEditor.desktop.in.in:4
+msgid "write;notepad;"
+msgstr "write;notepad;"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:12
 #: data/org.gnome.TextEditor.desktop.in.in:10
 #: data/org.gnome.TextEditor.desktop.in.in:11
-#: src/editor-application-actions.c:199 src/editor-window.c:1317
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:10
+#: src/editor-application-actions.c:198 src/editor-window.c:1279
 msgid "Text Editor"
 msgstr "ტექსტური რედაქტორი"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:14
+#: data/org.gnome.TextEditor.desktop.in.in:12
+msgid "View and edit text files"
+msgstr "დაათვალიერეთ და ჩაასწორეთ ტექსტური ფაილები"
+
+#: data/org.gnome.TextEditor.desktop.in.in:24
+msgid "New Window"
+msgstr "ახალი ფანჯარა"
+
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:12
 msgid "Edit text files"
 msgstr "ტექსტური ფაილების ჩასწორება"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:16
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:14
 msgid ""
 "GNOME Text Editor is a simple text editor focused on a pleasing default "
 "experience."
 msgstr ""
 "GNOME-ის ტექსტური რედაქტორი მარტივი რედაქტორია, რომლის ფოკუსიც სასიამოვნო "
 "სამუშაო გარემოა."
-
-#: data/org.gnome.TextEditor.desktop.in.in:4
-msgid "write;notepad;"
-msgstr "write;notepad;"
-
-#: data/org.gnome.TextEditor.desktop.in.in:12
-msgid "View and edit text files"
-msgstr "დაათვალიერეთ და ჩაასწორეთ ტექსტური ფაილები"
-
-#: data/org.gnome.TextEditor.desktop.in.in:22
-msgid "New Window"
-msgstr "ახალი ფანჯარა"
 
 #: data/org.gnome.TextEditor.gschema.xml:16
 msgid "Auto Save Delay"
@@ -295,9 +289,30 @@ msgstr "%2$s-ში თვისების (%1$s) აღმოჩენა შ
 msgid "Failed to retrieve va_list value: %s"
 msgstr "შეცდომა va_list-ის მნიშვნელობის მიღებისას: %s"
 
-#: src/editor-application-actions.c:214
+#: src/editor-application-actions.c:200
+msgid "The GNOME Project"
+msgstr "პროექტი \"GNOME\""
+
+#: src/editor-application-actions.c:213
 msgid "translator-credits"
 msgstr "temuri doghonadze"
+
+#: src/editor-application-actions.c:347
+msgid "Clear File History?"
+msgstr "გავასუფთავო ფაილის ისტორია?"
+
+#: src/editor-application-actions.c:348
+msgid "This action cannot be undone"
+msgstr "ეს ქმედება შეუქცევადია"
+
+#: src/editor-application-actions.c:350 src/editor-save-changes-dialog.c:260
+#: src/editor-window-actions.c:115 src/editor-window-actions.c:219
+msgid "_Cancel"
+msgstr "გაუქმება"
+
+#: src/editor-application-actions.c:351
+msgid "_Clear All"
+msgstr "_ყველაფრის მოცილება"
 
 #: src/editor-application.c:525
 msgid "Standard input was requested multiple times. Ignoring request."
@@ -334,14 +349,30 @@ msgstr ""
 msgid "Print version information and exit"
 msgstr "ვერსიის ინფორმაციის დაბეჭდვა და გასვლა"
 
-#: src/editor-document.c:2099
+#: src/editor-document.c:2245
 msgid "[Read-Only]"
 msgstr "[მხოლოდ-წაკითხვადი]"
 
-#: src/editor-document.c:2316 src/editor-page.c:1074
-#: src/editor-sidebar-item.c:511
+#: src/editor-document.c:2470 src/editor-page.c:1129
+#: src/editor-sidebar-item.c:510
 msgid "New Document"
 msgstr "ახალი დოკუმენტი"
+
+#: src/editor-encoding-dialog.ui:5
+msgid "Change Encoding"
+msgstr "კოდირების შეცვლა"
+
+#: src/editor-encoding-dialog.ui:22
+msgid "Search encodings"
+msgstr "კოდირების ძებნა"
+
+#: src/editor-encoding-dialog.ui:58 src/editor-language-dialog.ui:75
+msgid "No Results Found"
+msgstr "ძებნამ ვერაფერი იპოვა"
+
+#: src/editor-encoding-dialog.ui:59 src/editor-language-dialog.ui:76
+msgid "Try a different search"
+msgstr "სცადეთ სხვა ძებნა"
 
 #: src/editor-file-manager.c:99
 msgid "File path is NULL"
@@ -360,43 +391,51 @@ msgstr "ILCreateFromPath() -ის შეცდომა"
 msgid "Cannot convert “%s” into a valid NSURL."
 msgstr "'%s'-ის სწორ NSURL-ში გარდაქნის შეცდომა."
 
-#: src/editor-info-bar.c:76
+#: src/editor-indent-model.c:173
+msgid "Space"
+msgstr "ჰარე"
+
+#: src/editor-indent-model.c:178
+msgid "Tab"
+msgstr "ჩანართი"
+
+#: src/editor-info-bar.c:108
 msgid "_Discard Changes and Reload"
 msgstr "_ცვლილებების გაუქმება და თავიდან ჩატვირთვა"
 
-#: src/editor-info-bar.c:79
+#: src/editor-info-bar.c:111
 msgid "File Has Changed on Disk"
 msgstr "დისკზე ფაილი შეიცვალა"
 
-#: src/editor-info-bar.c:80
+#: src/editor-info-bar.c:112
 msgid "The file has been changed by another program."
 msgstr "ფაილი სხვა პროგრამის მიერ შეიცვალა."
 
-#: src/editor-info-bar.c:89 src/editor-window.ui:217
+#: src/editor-info-bar.c:121 src/editor-window.ui:280
 msgid "Save _As…"
 msgstr "_შენახვა, როგორც…"
 
-#: src/editor-info-bar.c:91 src/editor-info-bar.ui:62
+#: src/editor-info-bar.c:123 src/editor-info-bar.ui:73
 msgid "Document Restored"
 msgstr "დოკუმენტი აღდგენილია"
 
-#: src/editor-info-bar.c:92 src/editor-info-bar.ui:72
+#: src/editor-info-bar.c:124 src/editor-info-bar.ui:84
 msgid "Unsaved document has been restored."
 msgstr "შეუნახავი დოკუმენტი აღდგენილია."
 
-#: src/editor-info-bar.c:98 src/editor-info-bar.ui:86
+#: src/editor-info-bar.c:130 src/editor-info-bar.ui:99
 msgid "_Save…"
 msgstr "_შენახვა…"
 
-#: src/editor-info-bar.c:100 src/editor-info-bar.ui:80
+#: src/editor-info-bar.c:132 src/editor-info-bar.ui:93
 msgid "_Discard…"
 msgstr "_მოცილება…"
 
-#: src/editor-info-bar.c:102
+#: src/editor-info-bar.c:134
 msgid "Draft Changes Restored"
 msgstr "მონახაზის ცვლილებები აღდგენილია"
 
-#: src/editor-info-bar.c:103
+#: src/editor-info-bar.c:135
 msgid "Unsaved changes to the document have been restored."
 msgstr "დოკუმენტის შეუნახავი ცვლილებები აღდგენილია."
 
@@ -404,33 +443,58 @@ msgstr "დოკუმენტის შეუნახავი ცვლი�
 msgid "Could Not Open File"
 msgstr "ფაილის გახსნის შეცდომა"
 
-#: src/editor-info-bar.ui:36
+#: src/editor-info-bar.ui:38
 msgid "_Retry"
 msgstr "_თავიდან ცდა"
 
-#: src/editor-info-bar.ui:43
+#: src/editor-info-bar.ui:51
 msgid "Open As _Administrator"
 msgstr "ადმინისტრატორის _უფლებებით გახსნა"
 
-#: src/editor-language-dialog.ui:6 src/editor-window.c:191
+#: src/editor-info-bar.ui:116
+msgid "Invalid Characters Detected"
+msgstr "აღმოჩენილია არასწორი სიმბოლოები"
+
+#: src/editor-info-bar.ui:127
+msgid ""
+"There was an encoding conversion error so a fallback character was used."
+msgstr ""
+"აღმოჩენილია კოდირების გადაყვანის შეცდომა, ასე რომ გამოყენებულია გადართვის "
+"სიმბოლო."
+
+#: src/editor-info-bar.ui:136
+msgid "Change _Encoding…"
+msgstr "კოდირების შ_ეცვლა…"
+
+#: src/editor-language-dialog.c:248
+msgid "Other Document Types"
+msgstr "სხვა დოკუმენტის ტიპები"
+
+#: src/editor-language-dialog.ui:6
 msgid "Document Type"
 msgstr "დოკუმენტს ტიპი"
 
-#: src/editor-language-dialog.ui:25
-msgid "Search document types"
-msgstr "დოკუმენტის ტიპების ძებნა"
-
-#: src/editor-language-dialog.ui:60 src/editor-open-popover.ui:104
-msgid "No Results Found"
-msgstr "ძებნამ ვერაფერი იპოვა"
-
-#: src/editor-language-dialog.ui:61
-msgid "Try a different search"
-msgstr "სცადეთ სხვა ძებნა"
+#: src/editor-language-dialog.ui:25 src/editor-search-entry.c:201
+#: src/editor-search-entry.ui:13
+msgid "Search"
+msgstr "ძებნა"
 
 #: src/editor-language-row.c:61 src/editor-language-row.c:119
+#: src/editor-properties.c:573
 msgid "Plain Text"
 msgstr "უბრალო ტექსტი"
+
+#: src/editor-newline-model.c:180
+msgid "Unix/Linux (LF)"
+msgstr "Unix/Linux (LF)"
+
+#: src/editor-newline-model.c:181
+msgid "Windows (CR+LF)"
+msgstr "Windows (CR+LF)"
+
+#: src/editor-newline-model.c:182
+msgid "Mac OS Classic (CR)"
+msgstr "Mac OS Classic (CR)"
 
 #: src/editor-open-popover.ui:25
 msgid "Search documents"
@@ -444,98 +508,41 @@ msgstr "ახალი დოკუმენტის გახსნა"
 msgid "No Recent Documents"
 msgstr "ახლახანს გასნილი დოკუმენტების გარეშე"
 
-#: src/editor-page.c:1100 src/editor-properties-dialog.c:104
-#: src/editor-sidebar-item.c:105
+#: src/editor-page.c:1155 src/editor-properties.c:606
+#: src/editor-sidebar-item.c:104
 msgid "Draft"
 msgstr "მონახაზი"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1112
+#: src/editor-page.c:1167
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (ადმინისტრატორი)"
 
-#: src/editor-page.c:1122 src/editor-sidebar-item.c:113
-msgid "Document Portal"
-msgstr "დოკუმენტის პორტალი"
-
-#: src/editor-page.c:1168
+#: src/editor-page.c:1223
 msgid "Failed to save document"
 msgstr "დოკუმენტის შენახვის შეცდომა"
 
-#: src/editor-page.c:1169 src/editor-window.ui:358
+#: src/editor-page.c:1224 src/editor-window.ui:359
 msgid "_Close"
 msgstr "_დახურვა"
 
-#: src/editor-page.c:1257
-msgid "Save As"
-msgstr "შენახვა"
-
-#: src/editor-page.c:1260
-msgid "Save"
-msgstr "შენახვა"
-
-#: src/editor-page.c:1261 src/editor-window-actions.c:347
-msgid "Cancel"
-msgstr "გაუქმება"
-
-#: src/editor-page.c:1422
+#: src/editor-page.c:1493
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "ხზ %u, სვტ %u"
 
-#: src/editor-page.ui:95
+#: src/editor-page.ui:94
 msgid "Go to Line"
 msgstr "ხაზზე გადასვლა"
 
-#: src/editor-page.ui:113
+#: src/editor-page.ui:111
 msgid "Go"
 msgstr "გადასვლა"
 
-#: src/editor-page.ui:150
-msgid "Indentation"
-msgstr "სწორება"
-
-#: src/editor-page.ui:153 src/editor-window.ui:278
-msgid "_Automatic Indentation"
-msgstr "_ავტომატური სწორება"
-
-#. Translators: this is a tab character, not a browser tab
-#: src/editor-page.ui:159 src/editor-window.ui:282
-msgid "_Tabs"
-msgstr "_ტაბები"
-
-#: src/editor-page.ui:164 src/editor-window.ui:287
-msgid "_Spaces"
-msgstr "_ჰარეები"
-
-#: src/editor-page.ui:171 src/editor-window.ui:292
-msgid "Spaces _Per Tab"
-msgstr "გამოტოვებების რაოდენობა _ტაბულაციაში"
-
-#: src/editor-page.ui:173 src/editor-page.ui:201
-msgid "2"
-msgstr "2"
-
-#: src/editor-page.ui:178 src/editor-page.ui:206
-msgid "4"
-msgstr "4"
-
-#: src/editor-page.ui:183 src/editor-page.ui:211
-msgid "6"
-msgstr "6"
-
-#: src/editor-page.ui:188 src/editor-page.ui:216
-msgid "8"
-msgstr "8"
-
-#: src/editor-page.ui:194
-msgid "Spaces Per Indent"
-msgstr "ჰარეების რაოდენობა სწორებაში"
-
-#: src/editor-page.ui:196
-msgid "Use Tab Size"
-msgstr "ტაბის ზომის გამოყენება"
+#: src/editor-path.c:128
+msgid "Document Portal"
+msgstr "დოკუმენტის პორტალი"
 
 #. translators: Ln is short for "Line Number"
 #: src/editor-position-label.ui:15
@@ -543,70 +550,86 @@ msgid "Ln"
 msgstr "Ln"
 
 #. translators: Col is short for "Column"
-#: src/editor-position-label.ui:35
+#: src/editor-position-label.ui:32
 msgid "Col"
 msgstr "სვტ"
 
-#: src/editor-preferences-dialog.ui:19
+#: src/editor-preferences-dialog.ui:15
 msgid "Appearance"
 msgstr "გარემოს იერსახე"
 
-#: src/editor-preferences-dialog.ui:59
+#: src/editor-preferences-dialog.ui:55
 msgid "Custom _Font"
 msgstr "მომხმარებლის _ფონტი"
 
-#: src/editor-preferences-dialog.ui:82
-msgid "Display _Grid Pattern"
-msgstr "ბადის _ნიმუშის ჩვენება"
+#: src/editor-preferences-dialog.ui:78
+msgid "Show Grid Pattern"
+msgstr "ბადის ნიმუშის ჩვენება"
 
-#: src/editor-preferences-dialog.ui:89
+#: src/editor-preferences-dialog.ui:85
+msgid "Display _Line Numbers"
+msgstr "_ხაზების ნომრების ჩვენება"
+
+#: src/editor-preferences-dialog.ui:92
 msgid "_Highlight Current Line"
 msgstr "მიმდინარე ხაზის _გამოკვეთა"
 
-#: src/editor-preferences-dialog.ui:96
+#: src/editor-preferences-dialog.ui:99
 msgid "Display _Overview Map"
 msgstr "_მიმოხილვის რუკის ჩვენება"
 
-#: src/editor-preferences-dialog.ui:105
-msgid "Right Margin"
-msgstr "მარჯვენა ზღვარი"
+#: src/editor-preferences-dialog.ui:110
+msgid "Check _Spelling"
+msgstr "მართლწერი_ს შემოწმება"
 
-#: src/editor-preferences-dialog.ui:108
+#: src/editor-preferences-dialog.ui:119
+msgid "Line Wrap"
+msgstr "ხაზის გადატანა"
+
+#: src/editor-preferences-dialog.ui:122
+msgid "Show _Right Margin"
+msgstr "მარჯვენა ზღვრის ჩვენება"
+
+#: src/editor-preferences-dialog.ui:129
 msgid "_Margin Position"
 msgstr "_ზღვრის პოზიცია"
 
-#: src/editor-preferences-dialog.ui:117
+#: src/editor-preferences-dialog.ui:136
+msgid "_Wrap Lines Automatically (Alt+W)"
+msgstr "_ხაზების ავტომატური გადატანა (Alt+W)"
+
+#: src/editor-preferences-dialog.ui:145
 msgid "Behavior"
 msgstr "ქცევა"
 
-#: src/editor-preferences-dialog.ui:120
+#: src/editor-preferences-dialog.ui:148
 msgid "_Discover Document Settings"
 msgstr "დოკუმენტის პარამეტრების _აღმოჩენა"
 
-#: src/editor-preferences-dialog.ui:122
+#: src/editor-preferences-dialog.ui:150
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr ""
 "პარამეტრების modelines, editorconfig ან აზრიანი ნაგულისხმევი მნიშვნელობებით "
 "გადატარება"
 
-#: src/editor-preferences-dialog.ui:128
+#: src/editor-preferences-dialog.ui:156
 msgid "_Restore Session"
 msgstr "_სესიის აღდგენა"
 
-#: src/editor-preferences-dialog.ui:130
+#: src/editor-preferences-dialog.ui:158
 msgid "Return to your previous session when Text Editor is started"
 msgstr "თქვენს წინა სესიაში დაბრუნება ტექსტური რედაქტორის გაშვებისას"
 
-#: src/editor-preferences-dialog.ui:145
+#: src/editor-preferences-dialog.ui:170
 msgid "_Clear History"
 msgstr "დაბრუნების ისტორიის გა_წმენდა"
 
-#: src/editor-print-operation.c:181
+#: src/editor-print-operation.c:182
 #, c-format
 msgid "Draft: %s"
 msgstr "მონახაზი: %s"
 
-#: src/editor-print-operation.c:183
+#: src/editor-print-operation.c:184
 #, c-format
 msgid "File: %s"
 msgstr "ფაილი: %s"
@@ -614,51 +637,75 @@ msgstr "ფაილი: %s"
 #. Translators: %N is the current page number, %Q is the total
 #. * number of pages (ex. Page 2 of 10)
 #.
-#: src/editor-print-operation.c:194
+#: src/editor-print-operation.c:196
 msgid "Page %N of %Q"
 msgstr "გვერდი %N %Q-დან"
 
-#: src/editor-properties-dialog.ui:6
-msgid "Properties"
-msgstr "პარამეტრები"
+#: src/editor-properties-panel.ui:10
+msgid "File Name"
+msgstr "ფაილის სახელი"
 
-#: src/editor-properties-dialog.ui:22
-msgid "File"
-msgstr "ფაილი"
-
-#: src/editor-properties-dialog.ui:25
-msgid "Name"
-msgstr "სახელი"
-
-#: src/editor-properties-dialog.ui:33
+#: src/editor-properties-panel.ui:26
 msgid "Location"
 msgstr "მდებარეობა"
 
-#: src/editor-properties-dialog.ui:42
+#: src/editor-properties-panel.ui:27
 msgid "Open in File Manager"
 msgstr "ფაილთა მმართველში გახსნა"
 
-#: src/editor-properties-dialog.ui:55
+#: src/editor-properties-panel.ui:53
+msgid "_Document Type"
+msgstr "_დოკუმენტის ტიპი"
+
+#: src/editor-properties-panel.ui:54
+msgid "Change Document Type"
+msgstr "დოკუმენტს ტიპის შეცვლა"
+
+#: src/editor-properties-panel.ui:76
+msgid "_Encoding"
+msgstr "_კოდირება"
+
+#: src/editor-properties-panel.ui:90
+msgid "_Line Feed"
+msgstr "_ხაზის ლენტა"
+
+#: src/editor-properties-panel.ui:106
+msgid "A_uto Indentation"
+msgstr "_ავტომატური სწორება"
+
+#: src/editor-properties-panel.ui:113
+msgid "_Character"
+msgstr "_სიმბოლო"
+
+#: src/editor-properties-panel.ui:124
+msgid "Spaces Per _Tab"
+msgstr "გამოტოვებების რაოდენობა _ტაბულაციაში"
+
+#: src/editor-properties-panel.ui:136
+msgid "Spaces Per _Indent"
+msgstr "ჰარეებ_ის რაოდენობა სწორებაში"
+
+#: src/editor-properties-panel.ui:150
 msgid "Statistics"
 msgstr "სტატისტიკა"
 
-#: src/editor-properties-dialog.ui:58
+#: src/editor-properties-panel.ui:153
 msgid "Lines"
 msgstr "ხაზები"
 
-#: src/editor-properties-dialog.ui:66
+#: src/editor-properties-panel.ui:166
 msgid "Words"
 msgstr "სიტყვა"
 
-#: src/editor-properties-dialog.ui:74
+#: src/editor-properties-panel.ui:179
 msgid "Characters, No Spaces"
 msgstr "სიმბოლოები ჰარეების არჩათვლით"
 
-#: src/editor-properties-dialog.ui:82
+#: src/editor-properties-panel.ui:192
 msgid "All Characters"
 msgstr "ყველა სიმბოლო"
 
-#: src/editor-save-changes-dialog.c:254 src/editor-window-actions.c:236
+#: src/editor-save-changes-dialog.c:254 src/editor-window-actions.c:220
 msgid "_Discard"
 msgstr "_მოცილება"
 
@@ -678,83 +725,74 @@ msgstr ""
 "ღია დოკუმენტები შეუნახავ ცვლილებებს შეიცავს. ცვლილებები, რომლებსაც არ "
 "შეინახავთ, სამუდამოდ დაიკარგება."
 
-#: src/editor-save-changes-dialog.c:261 src/editor-window-actions.c:115
-#: src/editor-window-actions.c:235
-msgid "_Cancel"
-msgstr "გაუქმება"
-
-#: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:116
-#: src/editor-window.ui:211
+#: src/editor-save-changes-dialog.c:262 src/editor-window-actions.c:116
+#: src/editor-window.ui:274
 msgid "_Save"
 msgstr "_შენახვა"
 
-#: src/editor-save-changes-dialog.c:295
+#: src/editor-save-changes-dialog.c:294
 msgid "Untitled Document"
 msgstr "უსახელო დოკუმენტი"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:298
+#: src/editor-save-changes-dialog.c:297
 #, c-format
 msgid "%s (new)"
 msgstr "%s (ახალი)"
 
-#: src/editor-save-changes-dialog.c:319
-msgid "Save changes for this document"
-msgstr "ამ დოკუმენტის ცვლილებების შენახვა"
-
-#: src/editor-search-bar.ui:33
+#: src/editor-search-bar.ui:36 src/editor-search-bar.ui:38
 msgid "Replace"
 msgstr "ჩანაცვლება"
 
-#: src/editor-search-bar.ui:51
+#: src/editor-search-bar.ui:57
 msgid "Previous Match"
 msgstr "წინა დამთხვევა"
 
-#: src/editor-search-bar.ui:59
+#: src/editor-search-bar.ui:70
 msgid "Next Match"
 msgstr "შემდეგი დამთხვევა"
 
-#: src/editor-search-bar.ui:71
+#: src/editor-search-bar.ui:86
 msgid "Search & Replace"
 msgstr "ძებნა და ჩანაცვლება"
 
-#: src/editor-search-bar.ui:81
+#: src/editor-search-bar.ui:101
 msgid "Search Options"
 msgstr "პარამეტრების ძებნა"
 
-#: src/editor-search-bar.ui:95
+#: src/editor-search-bar.ui:119
 msgid "Close Search"
 msgstr "ძებნის დახურვა"
 
-#: src/editor-search-bar.ui:112
+#: src/editor-search-bar.ui:137
 msgid "_Replace"
 msgstr "_გამოცვალე"
 
-#: src/editor-search-bar.ui:124
+#: src/editor-search-bar.ui:151
 msgid "Replace _All"
 msgstr "ყველ_აფრის ჩანაცვლება"
 
-#: src/editor-search-bar.ui:140
-msgid "Re_gular expressions"
-msgstr "_რეგულარული გამოსახულება"
+#: src/editor-search-bar.ui:170
+msgid "Re_gular Expressions"
+msgstr "რე_გულარული გამოსახულება"
 
-#: src/editor-search-bar.ui:146
-msgid "_Case sensitive"
-msgstr "_დიდი და პატარა ასოების განსხვავება"
+#: src/editor-search-bar.ui:174
+msgid "_Case Sensitive"
+msgstr "_რეგისტრზე-დამოკიდებული"
 
-#: src/editor-search-bar.ui:152
-msgid "Match whole _word only"
+#: src/editor-search-bar.ui:178
+msgid "Match Whole _Word Only"
 msgstr "_მხოლოდ მთლიანი სიტყვის დამთხვევა"
 
 #. translators: the first %u is replaced with the current position, the second with the number of search results
-#: src/editor-search-entry.c:197
+#: src/editor-search-entry.c:228
 #, c-format
 msgid "%u of %u"
 msgstr "%u %u-დან"
 
-#: src/editor-search-entry.ui:13
-msgid "Find"
-msgstr "მოძებნა"
+#: src/editor-search-entry.ui:32
+msgid "Clear Entry"
+msgstr "ჩანაწერის გასუფთავება"
 
 #: src/editor-sidebar-row.ui:85
 msgid "Remove"
@@ -784,52 +822,28 @@ msgstr "მუქი სტილი"
 msgid "Dark style"
 msgstr "მუქი სტილი"
 
-#: src/editor-utils.c:348
+#: src/editor-utils.c:355
 msgid "Just now"
 msgstr "ახლა"
 
-#: src/editor-utils.c:350
+#: src/editor-utils.c:357
 msgid "An hour ago"
 msgstr "1 საათის წინ"
 
-#: src/editor-utils.c:352
+#: src/editor-utils.c:359
 msgid "Yesterday"
 msgstr "გუშინ"
 
-#: src/editor-utils.c:358
+#: src/editor-utils.c:365
 msgid "About a year ago"
 msgstr "დაახლოებით ერთ წლის წინ"
 
-#: src/editor-utils.c:362
+#: src/editor-utils.c:369
 #, c-format
 msgid "About %u year ago"
 msgid_plural "About %u years ago"
 msgstr[0] "დაახლოებით %u წლის წინ"
 msgstr[1] "დაახლოებით %u წლის წინ"
-
-#: src/editor-utils.c:370
-msgid "Unix/Linux (LF)"
-msgstr "Unix/Linux (LF)"
-
-#: src/editor-utils.c:371
-msgid "Mac OS Classic (CR)"
-msgstr "Mac OS Classic (CR)"
-
-#: src/editor-utils.c:372
-msgid "Windows (CR+LF)"
-msgstr "Windows (CR+LF)"
-
-#: src/editor-utils.c:402
-msgid "Automatically Detected"
-msgstr "ავტომატურად აღმოჩენილი"
-
-#: src/editor-utils.c:418
-msgid "Character Encoding:"
-msgstr "სიმბოლოების კოდირება:"
-
-#: src/editor-utils.c:453
-msgid "Line Ending:"
-msgstr "ხაზის დაბოლოება:"
 
 #: src/editor-window-actions.c:109
 msgid "Saving changes will replace the previously saved version."
@@ -841,200 +855,135 @@ msgstr "ცვლილებების შენახვა წინა ვ
 msgid "Save Changes to “%s”?"
 msgstr "შევინახო \"%s\"-ის ცვლილებები?"
 
-#: src/editor-window-actions.c:229
+#: src/editor-window-actions.c:213
 msgid "Unsaved changes will be permanently lost."
 msgstr "შეუნახავი ცვლილებები სამუდამოდ დაიკარგება."
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:232
+#: src/editor-window-actions.c:216
 #, c-format
 msgid "Discard Changes to “%s”?"
 msgstr "მოვაცილო ცვლილებები \"%s\"-ს?"
 
-#: src/editor-window-actions.c:343
-msgid "Open File"
-msgstr "ფაილის გახსნა"
-
-#: src/editor-window-actions.c:346
-msgid "Open"
-msgstr "გახსნა"
-
-#: src/editor-window-actions.c:371
+#: src/editor-window-actions.c:380
 msgid "All Files"
 msgstr "ყველა ფაილი"
 
-#: src/editor-window-actions.c:376
+#: src/editor-window-actions.c:385
 msgid "Text Files"
 msgstr "ტექსტური ფაილები"
 
-#: src/editor-window.c:203
-#, c-format
-msgid "Document Type: %s"
-msgstr "დოკუმენტს ტიპი: %s"
-
-#: src/editor-window.c:505
+#: src/editor-window.c:398
 msgid "Zoom In"
 msgstr "გადიდება"
 
-#: src/editor-window.c:508
+#: src/editor-window.c:401
 msgid "Zoom in"
 msgstr "გა_დიდება"
 
-#: src/editor-window.c:518
+#: src/editor-window.c:411
 msgid "Zoom Out"
 msgstr "დაპატარავება"
 
-#: src/editor-window.c:521
+#: src/editor-window.c:414
 msgid "Zoom out"
 msgstr "დაპატარავება"
 
+#: src/editor-window.c:419
+msgid "Reset Zoom"
+msgstr "გადიდების ჩამოყრა"
+
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:760
+#: src/editor-window.c:657
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - ტექსტური რედაქტორი"
 
-#: src/editor-window.c:1202
+#: src/editor-window.c:1158
 msgid "There are unsaved documents"
 msgstr "არსებობს არ-შენახული დოკუმენტები"
 
-#: src/editor-window.ui:83
+#: src/editor-window.ui:100
 msgid "_Open"
 msgstr "_გახსნა"
 
-#: src/editor-window.ui:85
+#: src/editor-window.ui:102
 msgid "Recently Used Documents"
 msgstr "ახლახან გახსნილი დოკუმენტები"
 
-#: src/editor-window.ui:97
+#: src/editor-window.ui:112
 msgid "New Tab"
 msgstr "ახალი ჩანართი"
 
-#: src/editor-window.ui:99
-msgid "New tab"
-msgstr "ახალი ჩანართი"
+#: src/editor-window.ui:117 src/editor-window.ui:311
+msgid "Leave Fullscreen"
+msgstr "სრული ეკრანიდან გამოსვლა"
 
 #: src/editor-window.ui:125
-msgid "View Options"
-msgstr "პარამეტრების ნახვა"
-
-#: src/editor-window.ui:129
-msgid "View"
-msgstr "ნახვა"
-
-#: src/editor-window.ui:135
 msgid "Main Menu"
 msgstr "მთავარი მენიუ"
 
-#: src/editor-window.ui:139
-msgid "Main menu"
-msgstr "მთავარი მენიუ"
+#: src/editor-window.ui:132
+msgid "Document Properties"
+msgstr "დოკუმენტის თვისებები"
 
-#: src/editor-window.ui:166
-msgid "Start or Open a Document"
-msgstr "დაიწყეთ ან გახსენით დოკუმენტი"
+#: src/editor-window.ui:178
+msgid "Open a Document"
+msgstr "დოკუმენტის გახსნა"
 
-#: src/editor-window.ui:169
-msgid ""
-"• Press the Open button\n"
-"• Press the New tab button\n"
-"• Press Ctrl+N to start a new document\n"
-"• Press Ctrl+O to browse for a document\n"
-"\n"
-"Or, press Ctrl+W to close the window."
-msgstr ""
-"• დააწექით გახსნის ღილაკს\n"
-"• დააწექით ახალ ჩანართის ღილაკს\n"
-"• ახალი დოკუმენტის დასაწყებად დააწექით Ctrl+N\n"
-"• დოკუმენტის საპოვნელად დააწექით Ctrl+O\n"
-"\n"
-"ან, ფანჯრის დასახურად, დააწექით Ctrl+W."
+#: src/editor-window.ui:179
+msgid "Create a new document (Ctrl+N), or open an existing one (Ctrl+O)"
+msgstr "ახალი დოკუმენტის შექმნა (Ctrl+N), ან არებულის გახსნა (Ctrl+O)"
 
-#: src/editor-window.ui:203
+#: src/editor-window.ui:190
+msgid "_New Empty File"
+msgstr "_ახალი ცარიელი ფაილი"
+
+#: src/editor-window.ui:266
 msgid "_New Window"
 msgstr "_ახალი ფანჯარა"
 
-#: src/editor-window.ui:223
-msgid "_Discard Changes"
-msgstr "_ცვლილებების გაუქმება"
+#: src/editor-window.ui:286
+msgid "_Discard Changes…"
+msgstr "_ცვლილებების გაუქმება…"
 
-#: src/editor-window.ui:229
+#: src/editor-window.ui:292
 msgid "_Find/Replace…"
 msgstr "_პოვნა/ჩანაცვლება…"
 
-#: src/editor-window.ui:235
+#: src/editor-window.ui:298
 msgid "_Print…"
 msgstr "_ბეჭდვა…"
 
-#: src/editor-window.ui:241
-msgid "Documen_t Properties"
-msgstr "_დოკუმენტისთვისებები"
+#: src/editor-window.ui:305
+msgid "Fullscreen"
+msgstr "სრულ ეკრანზე"
 
-#: src/editor-window.ui:247
+#: src/editor-window.ui:319
 msgid "P_references"
 msgstr "_მორგება"
 
-#: src/editor-window.ui:252
+#: src/editor-window.ui:324
 msgid "_Keyboard Shortcuts"
 msgstr "კლავიატურის მალსახმობები"
 
-#: src/editor-window.ui:256
-msgid "_Help"
-msgstr "დახმარება"
-
-#: src/editor-window.ui:260
+#: src/editor-window.ui:328
 msgid "A_bout Text Editor"
 msgstr "ტექსტური რედაქტორის _შესახებ"
 
-#: src/editor-window.ui:268
-msgid "Show _Line Numbers"
-msgstr "ხაზის ნომრების ჩვენება"
-
-#: src/editor-window.ui:272
-msgid "Show _Right Margin"
-msgstr "მარჯვენა ზღვრის ჩვენება"
-
-#: src/editor-window.ui:295
-msgid "_2"
-msgstr "_2"
-
-#: src/editor-window.ui:300
-msgid "_4"
-msgstr "_4"
-
-#: src/editor-window.ui:305
-msgid "_6"
-msgstr "_6"
-
-#: src/editor-window.ui:310
-msgid "_8"
-msgstr "_8"
-
-#: src/editor-window.ui:319
-msgid "T_ext Wrapping"
-msgstr "_ტექსტის გადატანა"
-
-#: src/editor-window.ui:323
-msgid "Chec_k Spelling"
-msgstr "_მართლწერის შემოწმება"
-
-#: src/editor-window.ui:327
-msgid "_Document Type…"
-msgstr "_დოკუმენტის ტიპი…"
-
-#: src/editor-window.ui:335
+#: src/editor-window.ui:336
 msgid "Move _Left"
 msgstr "_მარცხნივ გაწევა"
 
-#: src/editor-window.ui:340
+#: src/editor-window.ui:341
 msgid "Move _Right"
 msgstr "მარჯვნივ _გაწევა"
 
-#: src/editor-window.ui:347
+#: src/editor-window.ui:348
 msgid "_Move to New Window"
 msgstr "_ახალ ფანჯარაში გადატანა"
 
-#: src/editor-window.ui:354
+#: src/editor-window.ui:355
 msgid "Close _Other Tabs"
 msgstr "_სხვა ჩანართების დახურვა"
 
@@ -1138,200 +1087,328 @@ msgctxt "shortcut window"
 msgid "Close document"
 msgstr "დოკუმენტის დახურვა"
 
-#: src/help-overlay.ui:129
+#: src/help-overlay.ui:127
+msgctxt "shortcut window"
+msgid "Open document properties"
+msgstr "დოკუმენტის თვისებების გახსნა"
+
+#: src/help-overlay.ui:135
 msgctxt "shortcut window"
 msgid "Copy and Paste"
 msgstr "კოპირება და ჩასმა"
 
-#: src/help-overlay.ui:133
+#: src/help-overlay.ui:139
 msgctxt "shortcut window"
 msgid "Copy selected text to clipboard"
 msgstr "მონიშნული ტექსტის გაცვლის ბუფერში კოპირება"
 
-#: src/help-overlay.ui:139
+#: src/help-overlay.ui:145
 msgctxt "shortcut window"
 msgid "Cut selected text to clipboard"
 msgstr "მონიშნული ტექსტის გაცვლის ბუფერში ამოჭრა"
 
-#: src/help-overlay.ui:145
+#: src/help-overlay.ui:151
 msgctxt "shortcut window"
 msgid "Paste text from clipboard"
 msgstr "გაცვლის ბუფერიდან ტექსტის ჩასმა"
 
-#: src/help-overlay.ui:150
+#: src/help-overlay.ui:156
 msgctxt "shortcut window"
 msgid "Copy all to clipboard"
 msgstr "ყველაფრის ბუფერში კოპირება"
 
-#: src/help-overlay.ui:156
+#: src/help-overlay.ui:162
 msgctxt "shortcut window"
 msgid "Copy current line down"
 msgstr "მიმდინარე ხაზის ქვემოთ კოპირება"
 
-#: src/help-overlay.ui:164
+#: src/help-overlay.ui:170
 msgctxt "shortcut window"
 msgid "Undo and Redo"
 msgstr "გაუქმება/გამეორება"
 
-#: src/help-overlay.ui:168
+#: src/help-overlay.ui:174
 msgctxt "shortcut window"
 msgid "Undo previous command"
 msgstr "წინა ბრძანების გაუქმება"
 
-#: src/help-overlay.ui:174
+#: src/help-overlay.ui:180
 msgctxt "shortcut window"
 msgid "Redo previous command"
 msgstr "წინა ბრძანების დაბრუნება"
 
-#: src/help-overlay.ui:181
+#: src/help-overlay.ui:187
 msgctxt "shortcut window"
 msgid "Editing"
 msgstr "ჩასწორება"
 
-#: src/help-overlay.ui:185
+#: src/help-overlay.ui:191
 msgctxt "shortcut window"
 msgid "Insert emoji into document"
 msgstr "დოკუმენტში ემოჯის ჩასმა"
 
-#: src/help-overlay.ui:191
+#: src/help-overlay.ui:197
 msgctxt "shortcut window"
 msgid "Search within the document"
 msgstr "დოკუმენტში ძებნა"
 
-#: src/help-overlay.ui:197
+#: src/help-overlay.ui:203
 msgctxt "shortcut window"
 msgid "Search and replace within the document"
 msgstr "დოკუმენტში ძებნა და ჩანაცვლება"
 
-#: src/help-overlay.ui:203
+#: src/help-overlay.ui:209
 msgctxt "shortcut window"
 msgid "Increment number at cursor"
 msgstr "კურსორთან მყოფი რიცხვის გადიდება"
 
-#: src/help-overlay.ui:209
+#: src/help-overlay.ui:215
 msgctxt "shortcut window"
 msgid "Decrement number at cursor"
 msgstr "კურსორთან მყოფი რიცხვის დაპატარავება"
 
-#: src/help-overlay.ui:215
+#: src/help-overlay.ui:221
 msgctxt "shortcut window"
 msgid "Toggle overwrite"
 msgstr "გადაწერის გადართვა"
 
-#: src/help-overlay.ui:221
+#: src/help-overlay.ui:227
 msgctxt "shortcut window"
 msgid "Toggle visibility of insertion caret"
 msgstr "ჩასმის კარეტის ხილვადობის გადართვა"
 
-#: src/help-overlay.ui:228
+#: src/help-overlay.ui:234
 msgctxt "shortcut window"
 msgid "Selections"
 msgstr "მონიშნულები"
 
-#: src/help-overlay.ui:232
+#: src/help-overlay.ui:238
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "ყველას მონიშვნა"
 
-#: src/help-overlay.ui:238
+#: src/help-overlay.ui:244
 msgctxt "shortcut window"
 msgid "Unselect all"
 msgstr "მონიშვნის ყველაფერზე მოხსნა"
 
-#: src/help-overlay.ui:244
+#: src/help-overlay.ui:250
 msgctxt "shortcut window"
 msgid "Select current line"
 msgstr "მიმდინარე ხაზის არჩევა"
 
-#: src/help-overlay.ui:251
+#: src/help-overlay.ui:257
 msgctxt "shortcut window"
 msgid "Movements"
 msgstr "გადატანები"
 
-#: src/help-overlay.ui:255
+#: src/help-overlay.ui:261
 msgctxt "shortcut window"
 msgid "Move to beginning of document"
 msgstr "დოკუმენტის დასაწყისში გადასვლა"
 
-#: src/help-overlay.ui:261
+#: src/help-overlay.ui:267
 msgctxt "shortcut window"
 msgid "Move to end of document"
 msgstr "დოკუმენტის ბოლოში გადასვლა"
 
-#: src/help-overlay.ui:267
+#: src/help-overlay.ui:273
 msgctxt "shortcut window"
 msgid "Move to start of previous paragraph"
 msgstr "წინა პარაგრაფის დასაწყისში გადასვლა"
 
-#: src/help-overlay.ui:273
+#: src/help-overlay.ui:279
 msgctxt "shortcut window"
 msgid "Move to end of next paragraph"
 msgstr "შემდეგ პარაგრაფის ბოლოში გადასვლა"
 
-#: src/help-overlay.ui:279
+#: src/help-overlay.ui:285
 msgctxt "shortcut window"
 msgid "Move current or selected lines up"
 msgstr "მონიშნული ხაზების მაღლა ატანა"
 
-#: src/help-overlay.ui:285
+#: src/help-overlay.ui:291
 msgctxt "shortcut window"
 msgid "Move current or selected lines down"
 msgstr "მონიშნული ხაზების დაბლა ჩამოტანა"
 
-#: src/help-overlay.ui:291
+#: src/help-overlay.ui:297
 msgctxt "shortcut window"
 msgid "Go to line"
 msgstr "ხაზზე გადასვლა"
 
-#: src/help-overlay.ui:298
+#: src/help-overlay.ui:304
 msgctxt "shortcut window"
 msgid "Deletion"
 msgstr "წაშლა"
 
-#: src/help-overlay.ui:302
+#: src/help-overlay.ui:308
 msgctxt "shortcut window"
 msgid "Delete from cursor to word start"
 msgstr "კურსორიდან სიტყვის დასასრულამდე წაშლა"
 
-#: src/help-overlay.ui:308
+#: src/help-overlay.ui:314
 msgctxt "shortcut window"
 msgid "Delete from cursor to word end"
 msgstr "კურსორამდე სიტყვის დასაწყისიდან წაშლა"
 
-#: src/help-overlay.ui:314
+#: src/help-overlay.ui:320
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph start"
 msgstr "კურსორიდან პარაგრაფის დასაწყისამდე წაშლა"
 
-#: src/help-overlay.ui:320
+#: src/help-overlay.ui:326
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph end"
 msgstr "კურსორიდან პარაგრაფის ბოლომდე წაშლა"
 
-#: src/help-overlay.ui:326
+#: src/help-overlay.ui:332
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "მიმდინარე ხაზის წაშლა"
 
-#: src/help-overlay.ui:333
+#: src/help-overlay.ui:339
 msgctxt "shortcut window"
 msgid "General"
 msgstr "ზოგადი"
 
-#: src/help-overlay.ui:337
+#: src/help-overlay.ui:343
 msgctxt "shortcut window"
 msgid "Show preferences"
 msgstr "პარამეტრების ფანჯრის ჩვენება"
 
-#: src/help-overlay.ui:343
+#: src/help-overlay.ui:349
 msgctxt "shortcut window"
 msgid "Show keyboard shortcuts"
 msgstr "კლავიატურის მალსახმობების ჩვენება"
 
-#: src/help-overlay.ui:349
+#: src/help-overlay.ui:355
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "დახმარების ჩვენება"
+
+#: src/help-overlay.ui:361
+msgctxt "shortcut window"
+msgid "Toggle text wrapping"
+msgstr "ტექსტის გადატანის გადართვა"
+
+#~ msgid "Search document types"
+#~ msgstr "დოკუმენტის ტიპების ძებნა"
+
+#~ msgid "Save As"
+#~ msgstr "შენახვა"
+
+#~ msgid "Save"
+#~ msgstr "შენახვა"
+
+#~ msgid "Cancel"
+#~ msgstr "გაუქმება"
+
+#~ msgid "Indentation"
+#~ msgstr "სწორება"
+
+#~ msgid "2"
+#~ msgstr "2"
+
+#~ msgid "4"
+#~ msgstr "4"
+
+#~ msgid "6"
+#~ msgstr "6"
+
+#~ msgid "8"
+#~ msgstr "8"
+
+#~ msgid "Use Tab Size"
+#~ msgstr "ტაბის ზომის გამოყენება"
+
+#~ msgid "Right Margin"
+#~ msgstr "მარჯვენა ზღვარი"
+
+#~ msgid "Properties"
+#~ msgstr "პარამეტრები"
+
+#~ msgid "Name"
+#~ msgstr "სახელი"
+
+#~ msgid "Save changes for this document"
+#~ msgstr "ამ დოკუმენტის ცვლილებების შენახვა"
+
+#~ msgid "Find"
+#~ msgstr "მოძებნა"
+
+#~ msgid "Automatically Detected"
+#~ msgstr "ავტომატურად აღმოჩენილი"
+
+#~ msgid "Line Ending:"
+#~ msgstr "ხაზის დაბოლოება:"
+
+#~ msgid "Open File"
+#~ msgstr "ფაილის გახსნა"
+
+#~ msgid "Open"
+#~ msgstr "გახსნა"
+
+#, c-format
+#~ msgid "Document Type: %s"
+#~ msgstr "დოკუმენტს ტიპი: %s"
+
+#~ msgid "New tab"
+#~ msgstr "ახალი ჩანართი"
+
+#~ msgid "View Options"
+#~ msgstr "პარამეტრების ნახვა"
+
+#~ msgid "View"
+#~ msgstr "ნახვა"
+
+#~ msgid "Main menu"
+#~ msgstr "მთავარი მენიუ"
+
+#~ msgid "Start or Open a Document"
+#~ msgstr "დაიწყეთ ან გახსენით დოკუმენტი"
+
+#~ msgid ""
+#~ "• Press the Open button\n"
+#~ "• Press the New tab button\n"
+#~ "• Press Ctrl+N to start a new document\n"
+#~ "• Press Ctrl+O to browse for a document\n"
+#~ "\n"
+#~ "Or, press Ctrl+W to close the window."
+#~ msgstr ""
+#~ "• დააწექით გახსნის ღილაკს\n"
+#~ "• დააწექით ახალ ჩანართის ღილაკს\n"
+#~ "• ახალი დოკუმენტის დასაწყებად დააწექით Ctrl+N\n"
+#~ "• დოკუმენტის საპოვნელად დააწექით Ctrl+O\n"
+#~ "\n"
+#~ "ან, ფანჯრის დასახურად, დააწექით Ctrl+W."
+
+#~ msgid "_Help"
+#~ msgstr "დახმარება"
+
+#~ msgid "Show _Line Numbers"
+#~ msgstr "ხაზის ნომრების ჩვენება"
+
+#~ msgid "_2"
+#~ msgstr "_2"
+
+#~ msgid "_4"
+#~ msgstr "_4"
+
+#~ msgid "_6"
+#~ msgstr "_6"
+
+#~ msgid "_8"
+#~ msgstr "_8"
+
+#~ msgid "T_ext Wrapping"
+#~ msgstr "_ტექსტის გადატანა"
+
+#~ msgid "Chec_k Spelling"
+#~ msgstr "_მართლწერის შემოწმება"
+
+#~ msgid "_Document Type…"
+#~ msgstr "_დოკუმენტის ტიპი…"
 
 #~ msgid "You do not have permission to open the file."
 #~ msgstr "ფაილის გასახსნელად საკმარისი წვდომა არ გაგაჩნიათ."
@@ -1344,9 +1421,6 @@ msgstr "დახმარების ჩვენება"
 
 #~ msgid "Ignore"
 #~ msgstr "იგნორი"
-
-#~ msgid "Check Spelling"
-#~ msgstr "მართლწერის შემოწმება"
 
 #~ msgid "Languages"
 #~ msgstr "ენები"
@@ -1375,9 +1449,6 @@ msgstr "დახმარების ჩვენება"
 
 #~ msgid "Show"
 #~ msgstr "ჩვენება"
-
-#~ msgid "_Line Numbers"
-#~ msgstr "_ხაზის ნომრები"
 
 #~ msgid "_Right Margin"
 #~ msgstr "_მარჯვენა ზღვარი"
