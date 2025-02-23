@@ -69,7 +69,7 @@ editor_preferences_spin_constructed (GObject *object)
     }
 
   source = g_settings_schema_source_get_default ();
-  schema = g_settings_schema_source_lookup (source, self->schema_id, FALSE);
+  schema = g_settings_schema_source_lookup (source, self->schema_id, TRUE);
 
   if (schema == NULL || !g_settings_schema_has_key (schema, self->schema_key))
     {
