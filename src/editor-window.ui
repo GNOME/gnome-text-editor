@@ -9,8 +9,9 @@
     </style>
     <child>
       <object class="AdwBreakpoint">
-        <condition>max-width: 650sp</condition>
+        <condition>max-width: 500sp</condition>
         <setter object="multi_layout" property="layout-name">narrow</setter>
+        <setter object="open_view" property="narrow">true</setter>
       </object>
     </child>
     <child>
@@ -29,224 +30,447 @@
         </child>
       </object>
     </child>
+    <signal name="reveal-tabs" handler="editor_fullscreen_box_reveal" object="wide_fullscreen_box" swapped="true"/>
+    <signal name="reveal-tabs" handler="editor_fullscreen_box_reveal" object="narrow_fullscreen_box" swapped="true"/>
     <child>
-      <object class="EditorFullscreenBox" id="fullscreen_box">
-        <child type="top">
-          <object class="AdwHeaderBar" id="header_bar">
-            <property name="show-start-title-buttons" bind-source="EditorWindow" bind-property="fullscreened" bind-flags="sync-create|invert-boolean"/>
-            <property name="show-end-title-buttons" bind-source="EditorWindow" bind-property="fullscreened" bind-flags="sync-create|invert-boolean"/>
-            <property name="title-widget">
-              <object class="GtkBox">
+      <object class="AdwMultiLayoutView" id="multi_layout">
+        <child type="title_widget">
+          <object class="GtkBox">
+            <property name="hexpand">true</property>
+            <property name="valign">center</property>
+            <property name="orientation">vertical</property>
+            <property name="margin-start">12</property>
+            <property name="margin-end">12</property>
+            <child>
+              <object class="GtkCenterBox">
                 <property name="hexpand">true</property>
-                <property name="valign">center</property>
-                <property name="orientation">vertical</property>
-                <property name="margin-start">12</property>
-                <property name="margin-end">12</property>
-                <child>
-                  <object class="GtkCenterBox">
+                <property name="has-tooltip">true</property>
+                <signal name="query-tooltip" handler="title_query_tooltip_cb" object="EditorWindow" swapped="true"/>
+                <child type="start">
+                  <object class="GtkLabel" id="is_modified">
+                    <property name="halign">end</property>
                     <property name="hexpand">true</property>
-                    <property name="has-tooltip">true</property>
-                    <signal name="query-tooltip" handler="title_query_tooltip_cb" object="EditorWindow" swapped="true"/>
-                    <child type="start">
-                      <object class="GtkLabel" id="is_modified">
-                        <property name="halign">end</property>
-                        <property name="hexpand">true</property>
-                        <property name="label">•</property>
-                        <property name="margin-end">6</property>
-                        <property name="visible">false</property>
-                      </object>
-                    </child>
-                    <child type="center">
-                      <object class="GtkLabel" id="title">
-                        <property name="ellipsize">end</property>
-                        <property name="width-chars">3</property>
-                        <style>
-                          <class name="title"/>
-                        </style>
-                      </object>
-                    </child>
+                    <property name="label">•</property>
+                    <property name="margin-end">6</property>
+                    <property name="visible">false</property>
                   </object>
                 </child>
-                <child>
-                  <object class="GtkCenterBox">
-                    <property name="has-tooltip">true</property>
-                    <signal name="query-tooltip" handler="title_query_tooltip_cb" object="EditorWindow" swapped="true"/>
-                    <child type="start">
-                      <object class="GtkImage" id="indicator">
-                        <property name="hexpand">true</property>
-                        <property name="halign">end</property>
-                        <property name="visible">false</property>
-                        <property name="margin-end">6</property>
-                        <property name="pixel-size">12</property>
-                        <style>
-                          <class name="subtitle"/>
-                        </style>
-                      </object>
-                    </child>
-                    <child type="center">
-                      <object class="GtkLabel" id="subtitle">
-                        <property name="ellipsize">middle</property>
-                        <style>
-                          <class name="subtitle"/>
-                        </style>
-                      </object>
-                    </child>
+                <child type="center">
+                  <object class="GtkLabel" id="title">
+                    <property name="ellipsize">middle</property>
+                    <property name="width-chars">3</property>
+                    <style>
+                      <class name="title"/>
+                    </style>
                   </object>
                 </child>
               </object>
-            </property>
-            <child type="start">
-              <object class="GtkMenuButton" id="open_menu_button">
-                <property name="label" translatable="yes">_Open</property>
-                <property name="use-underline">True</property>
-                <property name="tooltip-text" translatable="yes">Recently Used Documents</property>
-                <property name="popover">
-                  <object class="EditorOpenPopover" id="open_menu_popover"/>
-                </property>
-              </object>
             </child>
-            <child type="start">
-              <object class="GtkButton" id="new_button">
-                <property name="action-name">session.new-draft</property>
-                <property name="icon-name">tab-new-symbolic</property>
-                <property name="tooltip-text" translatable="yes">New Tab</property>
-              </object>
-            </child>
-            <child type="end">
-              <object class="GtkButton" id="restore_button">
-                <property name="tooltip-text" translatable="yes">Leave Fullscreen</property>
-                <property name="icon-name">view-restore-symbolic</property>
-                <property name="action-name">win.unfullscreen</property>
-                <property name="visible" bind-source="EditorWindow" bind-property="fullscreened" bind-flags="sync-create"/>
-              </object>
-            </child>
-            <child type="end">
-              <object class="GtkMenuButton" id="primary_menu">
-                <property name="tooltip-text" translatable="yes">Main Menu</property>
-                <property name="icon-name">open-menu-symbolic</property>
-                <property name="menu-model">primary_menu_model</property>
-              </object>
-            </child>
-            <child type="end">
-              <object class="GtkToggleButton" id="properties_button">
-                <property name="tooltip-text" translatable="yes">Document Properties</property>
-                <property name="icon-name">info-outline-symbolic</property>
-                <property name="active" bind-source="split_view" bind-property="show-sidebar" bind-flags="bidirectional|sync-create"/>
-                <child>
-                  <object class="GtkShortcutController">
-                    <property name="scope">managed</property>
-                    <child>
-                      <object class="GtkShortcut">
-                        <property name="trigger">F9</property>
-                        <property name="action">activate</property>
-                      </object>
-                    </child>
+            <child>
+              <object class="GtkCenterBox">
+                <property name="has-tooltip">true</property>
+                <signal name="query-tooltip" handler="title_query_tooltip_cb" object="EditorWindow" swapped="true"/>
+                <child type="start">
+                  <object class="GtkImage" id="indicator">
+                    <property name="hexpand">true</property>
+                    <property name="halign">end</property>
+                    <property name="visible">false</property>
+                    <property name="margin-end">6</property>
+                    <property name="pixel-size">12</property>
+                    <style>
+                      <class name="subtitle"/>
+                    </style>
+                  </object>
+                </child>
+                <child type="center">
+                  <object class="GtkLabel" id="subtitle">
+                    <property name="ellipsize">middle</property>
+                    <property name="width-chars">5</property>
+                    <style>
+                      <class name="subtitle"/>
+                    </style>
                   </object>
                 </child>
               </object>
             </child>
           </object>
         </child>
-        <child type="top">
+        <child type="open_view">
+          <object class="EditorOpenView" id="open_view">
+            <signal name="close" handler="open_view_close_cb" swapped="true"/>
+            <property name="vexpand">true</property>
+          </object>
+        </child>
+        <child type="new_button">
+          <object class="GtkButton" id="new_button">
+            <property name="action-name">session.new-draft</property>
+            <property name="icon-name">tab-new-symbolic</property>
+            <property name="tooltip-text" translatable="yes">New Tab</property>
+          </object>
+        </child>
+        <child type="primary_menu_button">
+          <object class="GtkMenuButton" id="primary_menu_button">
+            <property name="tooltip-text" translatable="yes">Main Menu</property>
+            <property name="icon-name">open-menu-symbolic</property>
+            <property name="menu-model">primary_menu_model</property>
+          </object>
+        </child>
+        <child type="properties_button">
+          <object class="GtkToggleButton" id="properties_button">
+            <property name="tooltip-text" translatable="yes">Document Properties</property>
+            <property name="icon-name">info-outline-symbolic</property>
+            <property name="active" bind-source="EditorWindow" bind-property="show-properties" bind-flags="bidirectional|sync-create"/>
+            <property name="sensitive" bind-source="EditorWindow" bind-property="can-show-properties" bind-flags="sync-create"/>
+            <child>
+              <object class="GtkShortcutController">
+                <property name="scope">managed</property>
+                <child>
+                  <object class="GtkShortcut">
+                    <property name="trigger">F9</property>
+                    <property name="action">activate</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child type="properties_panel">
+          <object class="EditorPropertiesPanel">
+            <binding name="page">
+              <lookup name="visible-page">EditorWindow</lookup>
+            </binding>
+          </object>
+        </child>
+        <child type="tab_bar">
           <object class="AdwTabBar" id="tab_bar">
             <property name="view">tab_view</property>
           </object>
         </child>
-        <property name="content">
-          <object class="AdwMultiLayoutView" id="multi_layout">
-            <child type="properties">
-              <object class="EditorPropertiesPanel">
-                <binding name="page">
-                  <lookup name="visible-page">EditorWindow</lookup>
-                </binding>
-              </object>
-            </child>
-            <child type="content">
-              <object class="GtkStack" id="stack">
-                <property name="hexpand">true</property>
-                <child>
-                  <object class="AdwTabView" id="tab_view">
-                    <property name="hexpand">true</property>
-                    <property name="menu-model">tab_menu</property>
-                    <signal name="close-page" handler="on_tab_view_close_page_cb" swapped="true"/>
-                    <signal name="setup-menu" handler="on_tab_view_setup_menu_cb" swapped="true"/>
-                    <signal name="create-window" handler="on_tab_view_create_window_cb" swapped="true"/>
-                  </object>
-                </child>
-                <child>
-                  <object class="AdwStatusPage" id="empty">
-                    <property name="title" translatable="yes">Open a Document</property>
-                    <property name="description" translatable="yes">Create a new document (Ctrl+N), or open an existing one (Ctrl+O)</property>
-                    <property name="child">
-                      <object class="GtkButton">
-                        <style>
-                          <class name="suggested-action"/>
-                          <class name="large-button"/>
-                          <class name="pill"/>
-                        </style>
-                        <property name="action-name">session.new-draft</property>
-                        <property name="halign">center</property>
-                        <property name="use-underline">true</property>
-                        <property name="label" translatable="yes">_New Empty File</property>
-                      </object>
-                    </property>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="AdwLayout">
-                <property name="name">wide</property>
-                <property name="content">
-                  <object class="AdwOverlaySplitView" id="split_view">
-                    <property name="sidebar-position">end</property>
-                    <property name="show-sidebar">false</property>
-                    <property name="min-sidebar-width">350</property>
-                    <property name="content">
-                      <object class="AdwLayoutSlot">
-                        <property name="id">content</property>
-                      </object>
-                    </property>
-                    <property name="sidebar">
-                      <object class="AdwLayoutSlot">
-                        <property name="id">properties</property>
-                      </object>
-                    </property>
-                  </object>
-                </property>
-              </object>
-            </child>
-            <child>
-              <object class="AdwLayout">
-                <property name="name">narrow</property>
-                <property name="content">
-                  <object class="AdwBottomSheet">
-                    <property name="open" bind-source="properties_button" bind-property="active" bind-flags="bidirectional|sync-create"/>
-                    <property name="content">
-                      <object class="AdwLayoutSlot">
-                        <property name="id">content</property>
-                      </object>
-                    </property>
-                    <property name="sheet">
-                      <object class="AdwToolbarView">
-                        <child>
-                          <object class="AdwLayoutSlot">
-                            <property name="id">properties</property>
-                          </object>
-                        </child>
-                      </object>
-                    </property>
-                  </object>
-                </property>
-              </object>
-            </child>
-          </object>
-        </property>
-        <child type="bottom">
+        <child type="statusbar">
           <object class="EditorStatusbar" id="statusbar">
             <property name="visible">false</property>
           </object>
         </child>
+        <child type="stack">
+          <object class="GtkStack" id="stack">
+            <property name="hexpand">true</property>
+            <property name="hhomogeneous">false</property>
+            <property name="vhomogeneous">false</property>
+            <child>
+              <object class="AdwTabView" id="tab_view">
+                <property name="hexpand">true</property>
+                <property name="menu-model">tab_menu</property>
+                <signal name="close-page" handler="on_tab_view_close_page_cb" swapped="true"/>
+                <signal name="setup-menu" handler="on_tab_view_setup_menu_cb" swapped="true"/>
+                <signal name="create-window" handler="on_tab_view_create_window_cb" swapped="true"/>
+              </object>
+            </child>
+            <child>
+              <object class="AdwStatusPage" id="empty">
+                <property name="title" translatable="yes">Open a Document</property>
+                <property name="description" translatable="yes">Create a new document (Ctrl+N), or open an existing one (Ctrl+O)</property>
+                <property name="child">
+                  <object class="GtkButton">
+                    <style>
+                      <class name="suggested-action"/>
+                      <class name="large-button"/>
+                      <class name="pill"/>
+                    </style>
+                    <property name="action-name">session.new-draft</property>
+                    <property name="halign">center</property>
+                    <property name="use-underline">true</property>
+                    <property name="label" translatable="yes">_New Empty File</property>
+                  </object>
+                </property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child type="leave_fullscreen">
+          <object class="GtkButton">
+            <property name="tooltip-text" translatable="yes">Leave Fullscreen</property>
+            <property name="icon-name">view-restore-symbolic</property>
+            <property name="action-name">win.unfullscreen</property>
+            <property name="visible" bind-source="EditorWindow" bind-property="fullscreened" bind-flags="sync-create"/>
+          </object>
+        </child>
+        <child type="search_bar_container">
+          <object class="AdwBin" id="search_bar_container">
+          </object>
+        </child>
+        <child type="info_bar_container">
+          <object class="AdwBin" id="info_bar_container">
+          </object>
+        </child>
+        <child>
+          <object class="AdwLayout">
+            <property name="name">wide</property>
+            <property name="content">
+              <object class="EditorFullscreenBox" id="wide_fullscreen_box">
+                <property name="fullscreen" bind-source="EditorWindow" bind-property="fullscreened" bind-flags="sync-create"/>
+                <child type="top">
+                  <object class="AdwHeaderBar">
+                    <property name="show-start-title-buttons" bind-source="EditorWindow" bind-property="fullscreened" bind-flags="sync-create|invert-boolean"/>
+                    <property name="show-end-title-buttons" bind-source="EditorWindow" bind-property="fullscreened" bind-flags="sync-create|invert-boolean"/>
+                    <property name="title-widget">
+                      <object class="AdwLayoutSlot">
+                        <property name="id">title_widget</property>
+                      </object>
+                    </property>
+                    <child type="start">
+                      <object class="GtkMenuButton" id="open_menu_button">
+                        <property name="label" translatable="yes">_Open</property>
+                        <property name="use-underline">true</property>
+                        <property name="tooltip-text" translatable="yes">Recently Used Documents</property>
+                        <property name="popover">
+                          <object class="GtkPopover">
+                            <style>
+                              <class name="open-popover"/>
+                            </style>
+                            <child>
+                              <object class="AdwLayoutSlot">
+                                <property name="id">open_view</property>
+                              </object>
+                            </child>
+                          </object>
+                        </property>
+                      </object>
+                    </child>
+                    <child type="start">
+                      <object class="AdwLayoutSlot">
+                        <property name="id">new_button</property>
+                      </object>
+                    </child>
+                    <child type="end">
+                      <object class="AdwLayoutSlot">
+                        <property name="id">leave_fullscreen</property>
+                        <property name="visible" bind-source="EditorWindow" bind-property="fullscreened" bind-flags="sync-create"/>
+                      </object>
+                    </child>
+                    <child type="end">
+                      <object class="AdwLayoutSlot">
+                        <property name="id">primary_menu_button</property>
+                      </object>
+                    </child>
+                    <child type="end">
+                      <object class="AdwLayoutSlot">
+                        <property name="id">properties_button</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child type="top">
+                  <object class="AdwLayoutSlot">
+                    <property name="id">tab_bar</property>
+                  </object>
+                </child>
+                <property name="content">
+                  <object class="GtkBox">
+                    <property name="orientation">vertical</property>
+                    <child>
+                      <object class="AdwLayoutSlot">
+                        <!--
+                          A bit weird to put this here instead of as a "top"
+                          bar item but is necessary due to the extra padding
+                          added by revealer.raised.top-bar > windowhandle > box.
+                        -->
+                        <property name="id">info_bar_container</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkBox">
+                        <property name="vexpand">true</property>
+                        <child>
+                          <object class="AdwLayoutSlot">
+                            <property name="id">stack</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkRevealer">
+                            <property name="transition-type">slide-left</property>
+                            <binding name="reveal-child">
+                              <lookup name="show-properties">EditorWindow</lookup>
+                            </binding>
+                            <child>
+                              <object class="AdwLayoutSlot">
+                                <property name="width-request">300</property>
+                                <property name="id">properties_panel</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </property>
+                <child type="bottom">
+                  <object class="AdwLayoutSlot">
+                    <property name="id">search_bar_container</property>
+                  </object>
+                </child>
+                <child type="bottom">
+                  <object class="AdwLayoutSlot">
+                    <property name="id">statusbar</property>
+                    <binding name="visible">
+                      <lookup name="visible">statusbar</lookup>
+                    </binding>
+                  </object>
+                </child>
+              </object>
+            </property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwLayout">
+            <property name="name">narrow</property>
+            <property name="content">
+              <object class="AdwBottomSheet" id="open_bottom_sheet">
+                <property name="open" bind-source="narrow_open_button" bind-property="active" bind-flags="sync-create|bidirectional"/>
+                <property name="show-drag-handle">false</property>
+                <property name="sheet">
+                  <object class="AdwToolbarView">
+                    <child type="top">
+                      <object class="AdwHeaderBar">
+                        <child type="start">
+                          <object class="GtkButton">
+                            <property name="action-name">win.open</property>
+                            <style>
+                              <class name="flat"/>
+                            </style>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="spacing">6</property>
+                                <child>
+                                  <object class="GtkImage">
+                                    <property name="icon-name">folder-open-symbolic</property>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel">
+                                    <property name="label" translatable="yes">Choose…</property>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child type="title">
+                          <object class="AdwWindowTitle">
+                            <property name="title" translatable="yes">Open File</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <property name="content">
+                      <object class="AdwLayoutSlot">
+                        <property name="id">open_view</property>
+                      </object>
+                    </property>
+                  </object>
+                </property>
+                <property name="content">
+                  <object class="AdwBottomSheet">
+                    <property name="content">
+                      <object class="EditorFullscreenBox" id="narrow_fullscreen_box">
+                        <property name="fullscreen" bind-source="EditorWindow" bind-property="fullscreened" bind-flags="sync-create"/>
+                        <child type="top">
+                          <object class="AdwHeaderBar">
+                            <property name="show-start-title-buttons" bind-source="EditorWindow" bind-property="fullscreened" bind-flags="sync-create|invert-boolean"/>
+                            <property name="show-end-title-buttons" bind-source="EditorWindow" bind-property="fullscreened" bind-flags="sync-create|invert-boolean"/>
+                            <property name="title-widget">
+                              <object class="AdwLayoutSlot">
+                                <property name="id">title_widget</property>
+                              </object>
+                            </property>
+                            <child type="end">
+                              <object class="AdwLayoutSlot">
+                                <property name="id">primary_menu_button</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child type="top">
+                          <!--
+                            This would ideally be a AdwTabButton in the bottom bar but
+                            we cannot do that until GtkTextView can work inside an
+                            AdwTabOverview.
+                          -->
+                          <object class="AdwLayoutSlot">
+                            <property name="id">tab_bar</property>
+                          </object>
+                        </child>
+                        <property name="content">
+                          <object class="GtkBox">
+                            <property name="orientation">vertical</property>
+                            <child>
+                              <object class="AdwLayoutSlot">
+                                <property name="id">info_bar_container</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="AdwLayoutSlot">
+                                <property name="id">stack</property>
+                                <property name="vexpand">true</property>
+                              </object>
+                            </child>
+                          </object>
+                        </property>
+                        <child type="bottom">
+                          <object class="AdwLayoutSlot">
+                            <property name="id">statusbar</property>
+                            <binding name="visible">
+                              <lookup name="visible">statusbar</lookup>
+                            </binding>
+                          </object>
+                        </child>
+                        <child type="bottom">
+                          <object class="AdwLayoutSlot">
+                            <property name="id">search_bar_container</property>
+                          </object>
+                        </child>
+                        <child type="bottom">
+                          <object class="GtkBox">
+                            <style>
+                              <class name="toolbar"/>
+                            </style>
+                            <property name="homogeneous">true</property>
+                            <child>
+                              <object class="GtkToggleButton" id="narrow_open_button">
+                                <property name="icon-name">folder-symbolic</property>
+                                <property name="tooltip-text" translatable="yes">Recently Used Documents</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="AdwLayoutSlot">
+                                <property name="id">new_button</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="AdwLayoutSlot">
+                                <property name="id">properties_button</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </property>
+                    <property name="sheet">
+                      <object class="AdwToolbarView">
+                        <property name="content">
+                          <object class="AdwLayoutSlot">
+                            <property name="id">properties_panel</property>
+                          </object>
+                        </property>
+                      </object>
+                    </property>
+                    <property name="open" bind-source="EditorWindow" bind-property="show-properties" bind-flags="sync-create|bidirectional"/>
+                  </object>
+                </property>
+              </object>
+            </property>
+          </object>
+        </child>
+        <property name="layout-name">wide</property>
       </object>
     </child>
   </template>

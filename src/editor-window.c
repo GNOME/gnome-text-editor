@@ -26,7 +26,7 @@
 
 #include "editor-application.h"
 #include "editor-document.h"
-#include "editor-open-popover-private.h"
+#include "editor-open-view.h"
 #include "editor-page-private.h"
 #include "editor-properties-panel.h"
 #include "editor-save-changes-dialog-private.h"
@@ -46,11 +46,19 @@ G_DEFINE_FINAL_TYPE (EditorWindow, editor_window, ADW_TYPE_APPLICATION_WINDOW)
 
 enum {
   PROP_0,
+  PROP_CAN_SHOW_PROPERTIES,
   PROP_VISIBLE_PAGE,
+  PROP_SHOW_PROPERTIES,
   N_PROPS
 };
 
+enum {
+  REVEAL_TABS,
+  N_SIGNALS
+};
+
 static GParamSpec *properties[N_PROPS];
+static guint signals[N_SIGNALS];
 
 static void
 closed_item_clear (gpointer data)
@@ -232,6 +240,9 @@ editor_window_notify_selected_page_cb (EditorWindow *self,
   if (self->visible_page == page)
     return;
 
+  adw_bin_set_child (self->search_bar_container, NULL);
+  adw_bin_set_child (self->info_bar_container, NULL);
+
   g_assert (!page || EDITOR_IS_PAGE (page));
 
   gtk_label_set_label (self->title, _(PACKAGE_NAME));
@@ -250,8 +261,24 @@ editor_window_notify_selected_page_cb (EditorWindow *self,
   _editor_window_actions_update (self, page);
 
   if (page != NULL)
-    editor_page_grab_focus (page);
+    {
+      adw_bin_set_child (self->search_bar_container,
+                         editor_page_get_search_bar (page));
+      adw_bin_set_child (self->info_bar_container,
+                         editor_page_get_info_bar (page));
 
+      editor_page_grab_focus (page);
+    }
+  else
+    {
+      if (self->show_properties)
+        {
+          self->show_properties = FALSE;
+          g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_SHOW_PROPERTIES]);
+        }
+    }
+
+  g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_CAN_SHOW_PROPERTIES]);
   g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_VISIBLE_PAGE]);
 
   /* FIXME: Sometimes we get "empty" contents for a tab page when
@@ -260,7 +287,7 @@ editor_window_notify_selected_page_cb (EditorWindow *self,
    */
   gtk_widget_queue_resize (GTK_WIDGET (self->tab_view));
 
-  editor_fullscreen_box_reveal (self->fullscreen_box);
+  g_signal_emit (self, signals[REVEAL_TABS], 0);
 }
 
 static void
@@ -371,11 +398,11 @@ editor_window_constructed (GObject *object)
 
   /* Set the recents list for the open popover */
   g_object_bind_property (session, "recents",
-                          self->open_menu_popover, "model",
+                          self->open_view, "model",
                           G_BINDING_SYNC_CREATE);
 
   /* The primary menu has some custom widgets added to it */
-  popover = gtk_menu_button_get_popover (self->primary_menu);
+  popover = gtk_menu_button_get_popover (self->primary_menu_button);
   gtk_popover_menu_add_child (GTK_POPOVER_MENU (popover),
                               _editor_theme_selector_new (),
                               "theme");
@@ -714,6 +741,17 @@ title_query_tooltip_cb (EditorWindow *self,
   return TRUE;
 }
 
+static void
+open_view_close_cb (EditorWindow   *self,
+                    EditorOpenView *view)
+{
+  g_assert (EDITOR_IS_WINDOW (self));
+  g_assert (EDITOR_IS_OPEN_VIEW (view));
+
+  adw_bottom_sheet_set_open (self->open_bottom_sheet, FALSE);
+  gtk_menu_button_popdown (self->open_menu_button);
+}
+
 static gboolean
 indicator_to_boolean (GBinding     *binding,
                       const GValue *from_value,
@@ -769,8 +807,6 @@ editor_window_toplevel_state_changed_cb (EditorWindow *self,
 
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "win.fullscreen", !is_fullscreen);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "win.unfullscreen", is_fullscreen);
-
-  editor_fullscreen_box_set_fullscreen (self->fullscreen_box, is_fullscreen);
 }
 
 static void
@@ -837,6 +873,14 @@ editor_window_get_property (GObject    *object,
 
   switch (prop_id)
     {
+    case PROP_CAN_SHOW_PROPERTIES:
+      g_value_set_boolean (value, self->visible_page != NULL);
+      break;
+
+    case PROP_SHOW_PROPERTIES:
+      g_value_set_boolean (value, self->show_properties);
+      break;
+
     case PROP_VISIBLE_PAGE:
       g_value_set_object (value, editor_window_get_visible_page (self));
       break;
@@ -856,6 +900,10 @@ editor_window_set_property (GObject      *object,
 
   switch (prop_id)
     {
+    case PROP_SHOW_PROPERTIES:
+      self->show_properties = g_value_get_boolean (value);
+      break;
+
     case PROP_VISIBLE_PAGE:
       editor_window_set_visible_page (self, g_value_get_object (value));
       break;
@@ -882,6 +930,16 @@ editor_window_class_init (EditorWindowClass *klass)
 
   window_class->close_request = editor_window_close_request;
 
+  properties [PROP_CAN_SHOW_PROPERTIES] =
+    g_param_spec_boolean ("can-show-properties", NULL, NULL,
+                          FALSE,
+                          (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
+  properties [PROP_SHOW_PROPERTIES] =
+    g_param_spec_boolean ("show-properties", NULL, NULL,
+                          FALSE,
+                          (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+
   properties [PROP_VISIBLE_PAGE] =
     g_param_spec_object ("visible-page",
                          "Visible Page",
@@ -891,15 +949,27 @@ editor_window_class_init (EditorWindowClass *klass)
 
   g_object_class_install_properties (object_class, N_PROPS, properties);
 
+  signals[REVEAL_TABS] =
+    g_signal_new ("reveal-tabs",
+                  G_TYPE_FROM_CLASS (klass),
+                  G_SIGNAL_RUN_LAST,
+                  0,
+                  NULL, NULL,
+                  NULL,
+                  G_TYPE_NONE, 0);
+
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-window.ui");
 
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, empty);
-  gtk_widget_class_bind_template_child (widget_class, EditorWindow, fullscreen_box);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, indicator);
+  gtk_widget_class_bind_template_child (widget_class, EditorWindow, info_bar_container);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, is_modified);
+  gtk_widget_class_bind_template_child (widget_class, EditorWindow, multi_layout);
+  gtk_widget_class_bind_template_child (widget_class, EditorWindow, open_bottom_sheet);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, open_menu_button);
-  gtk_widget_class_bind_template_child (widget_class, EditorWindow, open_menu_popover);
-  gtk_widget_class_bind_template_child (widget_class, EditorWindow, primary_menu);
+  gtk_widget_class_bind_template_child (widget_class, EditorWindow, open_view);
+  gtk_widget_class_bind_template_child (widget_class, EditorWindow, primary_menu_button);
+  gtk_widget_class_bind_template_child (widget_class, EditorWindow, search_bar_container);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, stack);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, subtitle);
   gtk_widget_class_bind_template_child (widget_class, EditorWindow, statusbar);
@@ -911,6 +981,8 @@ editor_window_class_init (EditorWindowClass *klass)
   gtk_widget_class_bind_template_callback (widget_class, on_tab_view_setup_menu_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_tab_view_create_window_cb);
   gtk_widget_class_bind_template_callback (widget_class, title_query_tooltip_cb);
+  gtk_widget_class_bind_template_callback (widget_class, editor_fullscreen_box_reveal);
+  gtk_widget_class_bind_template_callback (widget_class, open_view_close_cb);
 
   gtk_widget_class_install_action (widget_class, "win.alternate-help-overlay", NULL, on_show_help_overlay_cb);
   gtk_widget_class_install_action (widget_class, "win.undo-close-page", NULL, on_undo_close_page_cb);
@@ -954,7 +1026,7 @@ editor_window_class_init (EditorWindowClass *klass)
   _editor_window_class_actions_init (klass);
 
   g_type_ensure (EDITOR_TYPE_FULLSCREEN_BOX);
-  g_type_ensure (EDITOR_TYPE_OPEN_POPOVER);
+  g_type_ensure (EDITOR_TYPE_OPEN_VIEW);
   g_type_ensure (EDITOR_TYPE_POSITION_LABEL);
   g_type_ensure (EDITOR_TYPE_PROPERTIES_PANEL);
   g_type_ensure (EDITOR_TYPE_STATUSBAR);
@@ -1361,7 +1433,12 @@ _editor_window_focus_search (EditorWindow *self)
 {
   g_return_if_fail (EDITOR_IS_WINDOW (self));
 
-  gtk_menu_button_popup (self->open_menu_button);
+  if (g_strcmp0 ("narrow", adw_multi_layout_view_get_layout_name (self->multi_layout)) == 0)
+    adw_bottom_sheet_set_open (self->open_bottom_sheet, TRUE);
+  else
+    gtk_menu_button_popup (self->open_menu_button);
+
+  gtk_widget_grab_focus (GTK_WIDGET (self->open_view));
 }
 
 GCancellable *

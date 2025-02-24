@@ -47,7 +47,6 @@ struct _EditorPage
 
   EditorAnimation         *progress_animation;
 
-  GtkWidget               *box;
   GtkOverlay              *overlay;
   GtkScrolledWindow       *scroller;
   GtkSourceView           *view;
@@ -55,13 +54,13 @@ struct _EditorPage
   GtkProgressBar          *progress_bar;
   GtkWidget               *goto_line_revealer;
   GtkEntry                *goto_line_entry;
-  AdwToolbarView          *toolbar_view;
   GtkWidget               *search_revealer;
   EditorSearchBar         *search_bar;
   GtkInfoBar              *changed_infobar;
   GtkInfoBar              *infobar;
   GtkEventController      *vim;
   EditorPositionLabel     *position_label;
+  GtkBox                  *bottom_bars;
 
   guint                    queued_hide_position;
 

@@ -740,9 +740,37 @@ editor_page_get_indicator (EditorPage *self)
 }
 
 static void
+editor_page_measure (GtkWidget      *widget,
+                     GtkOrientation  orientation,
+                     int             for_size,
+                     int            *min,
+                     int            *nat,
+                     int            *min_base,
+                     int            *nat_base)
+{
+  GtkWidget *child = gtk_widget_get_first_child (widget);
+
+  if (child != NULL)
+    gtk_widget_measure (child, orientation, for_size, min, nat, min_base, nat_base);
+}
+
+static void
+editor_page_size_allocate (GtkWidget *widget,
+                           int        width,
+                           int        height,
+                           int        baseline)
+{
+  GtkWidget *child = gtk_widget_get_first_child (widget);
+
+  if (child != NULL)
+    gtk_widget_allocate (child, width, height, baseline, NULL);
+}
+
+static void
 editor_page_dispose (GObject *object)
 {
   EditorPage *self = (EditorPage *)object;
+  GtkWidget *child;
 
   g_clear_handle_id (&self->queued_hide_position, g_source_remove);
 
@@ -752,10 +780,15 @@ editor_page_dispose (GObject *object)
   g_cancellable_cancel (self->cancellable);
   g_clear_object (&self->cancellable);
 
+  g_clear_object (&self->bottom_bars);
+  g_clear_object (&self->infobar);
+
   gtk_widget_dispose_template (GTK_WIDGET (self), EDITOR_TYPE_PAGE);
 
   g_clear_pointer (&self->progress_animation, editor_animation_stop);
-  g_clear_pointer ((GtkWidget **)&self->box, gtk_widget_unparent);
+
+  while ((child = gtk_widget_get_first_child (GTK_WIDGET (self))))
+    gtk_widget_unparent (child);
 
   g_clear_object (&self->document);
 
@@ -865,6 +898,9 @@ editor_page_class_init (EditorPageClass *klass)
   object_class->get_property = editor_page_get_property;
   object_class->set_property = editor_page_set_property;
 
+  widget_class->measure = editor_page_measure;
+  widget_class->size_allocate = editor_page_size_allocate;
+
   properties [PROP_BUSY] =
     g_param_spec_boolean ("busy",
                           "Busy",
@@ -946,10 +982,9 @@ editor_page_class_init (EditorPageClass *klass)
 
   _editor_page_class_actions_init (klass);
 
-  gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
   gtk_widget_class_set_css_name (widget_class, "page");
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-page.ui");
-  gtk_widget_class_bind_template_child (widget_class, EditorPage, box);
+  gtk_widget_class_bind_template_child (widget_class, EditorPage, bottom_bars);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, goto_line_revealer);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, goto_line_entry);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, infobar);
@@ -960,7 +995,6 @@ editor_page_class_init (EditorPageClass *klass)
   gtk_widget_class_bind_template_child (widget_class, EditorPage, scroller);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, search_bar);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, search_revealer);
-  gtk_widget_class_bind_template_child (widget_class, EditorPage, toolbar_view);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, view);
   gtk_widget_class_bind_template_callback (widget_class, get_child_position_cb);
   gtk_widget_class_bind_template_callback (widget_class, goto_line_entry_activate_cb);
@@ -987,6 +1021,9 @@ editor_page_init (EditorPage *self)
   self->cancellable = g_cancellable_new ();
 
   gtk_widget_init_template (GTK_WIDGET (self));
+
+  g_object_ref_sink (self->bottom_bars);
+  g_object_ref_sink (self->infobar);
 
   /* Work around https://gitlab.gnome.org/GNOME/gtk/-/issues/4315
    * by connecting to the GtkText to intercept insert-text() emission.
@@ -1840,3 +1877,18 @@ editor_page_destroy (EditorPage *self)
   g_object_run_dispose (G_OBJECT (self));
 }
 
+GtkWidget *
+editor_page_get_search_bar (EditorPage *self)
+{
+  g_return_val_if_fail (EDITOR_IS_PAGE (self), NULL);
+
+  return GTK_WIDGET (self->bottom_bars);
+}
+
+GtkWidget *
+editor_page_get_info_bar (EditorPage *self)
+{
+  g_return_val_if_fail (EDITOR_IS_PAGE (self), NULL);
+
+  return GTK_WIDGET (self->infobar);
+}

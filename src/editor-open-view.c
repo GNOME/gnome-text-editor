@@ -1,4 +1,4 @@
-/* editor-open-popover.c
+/* editor-open-view.c
  *
  * Copyright 2021 Christian Hergert <chergert@redhat.com>
  *
@@ -18,55 +18,62 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-#define G_LOG_DOMAIN "editor-open-popover"
+#define G_LOG_DOMAIN "editor-open-view"
 
 #include "config.h"
 
 #include "editor-application.h"
-#include "editor-open-popover-private.h"
+#include "editor-open-view.h"
 #include "editor-session-private.h"
 #include "editor-sidebar-item-private.h"
 #include "editor-sidebar-row-private.h"
 #include "editor-window-private.h"
 
-struct _EditorOpenPopover
+struct _EditorOpenView
 {
-  GtkPopover         parent_instance;
+  GtkWidget           parent_instance;
 
-  GListModel        *model;
-  GListModel        *filtered_model;
-  GListModel        *sorted_model;
+  GListModel         *model;
+  GListModel         *filtered_model;
+  GListModel         *sorted_model;
 
-  GtkListView       *list_view;
-  GtkWidget         *box;
-  GtkSearchEntry    *search_entry;
-  GtkStack          *stack;
-  GtkWidget         *empty;
-  GtkScrolledWindow *recent;
+  AdwMultiLayoutView *multi_layout;
+  GtkListView        *list_view;
+  GtkSearchEntry     *search_entry;
+  GtkStack           *stack;
+  GtkWidget          *empty;
+  GtkScrolledWindow  *recent;
 };
 
-G_DEFINE_TYPE (EditorOpenPopover, editor_open_popover, GTK_TYPE_POPOVER)
+G_DEFINE_TYPE (EditorOpenView, editor_open_view, GTK_TYPE_WIDGET)
 
 enum {
   PROP_0,
   PROP_MODEL,
+  PROP_NARROW,
   N_PROPS
 };
 
+enum {
+  CLOSE,
+  N_SIGNALS
+};
+
 static GParamSpec *properties [N_PROPS];
+static guint signals [N_SIGNALS];
 
 GtkWidget *
-_editor_open_popover_new (void)
+_editor_open_view_new (void)
 {
-  return g_object_new (EDITOR_TYPE_OPEN_POPOVER, NULL);
+  return g_object_new (EDITOR_TYPE_OPEN_VIEW, NULL);
 }
 
 static void
-on_items_changed (EditorOpenPopover *self,
-                  guint              position,
-                  guint              removed,
-                  guint              added,
-                  GListModel        *model)
+on_items_changed (EditorOpenView *self,
+                  guint           position,
+                  guint           removed,
+                  guint           added,
+                  GListModel     *model)
 {
   GtkWidget *visible_child;
 
@@ -81,13 +88,13 @@ on_items_changed (EditorOpenPopover *self,
 }
 
 static void
-set_model (EditorOpenPopover *self,
+set_model (EditorOpenView *self,
            GListModel        *model)
 {
   g_autoptr(GtkSelectionModel) selection = NULL;
   GtkSelectionModel *previous;
 
-  g_assert (EDITOR_IS_OPEN_POPOVER (self));
+  g_assert (EDITOR_IS_OPEN_VIEW (self));
   g_assert (G_IS_LIST_MODEL (model));
 
   if ((previous = gtk_list_view_get_model (self->list_view)))
@@ -109,28 +116,15 @@ set_model (EditorOpenPopover *self,
 }
 
 static void
-popover_hide (GtkWidget  *widget,
-              const char *action_name,
-              GVariant   *param)
-{
-  GtkWidget *parent;
-
-  g_assert (GTK_IS_POPOVER (widget));
-
-  parent = gtk_widget_get_parent (widget);
-  gtk_menu_button_popdown (GTK_MENU_BUTTON (parent));
-}
-
-static void
-on_list_view_activate_cb (EditorOpenPopover *self,
-                          guint              position,
-                          GtkListView       *list_view)
+on_list_view_activate_cb (EditorOpenView *self,
+                          guint           position,
+                          GtkListView    *list_view)
 {
   g_autoptr(EditorSidebarItem) item = NULL;
   GtkSelectionModel *model;
   EditorWindow *window;
 
-  g_assert (EDITOR_IS_OPEN_POPOVER (self));
+  g_assert (EDITOR_IS_OPEN_VIEW (self));
   g_assert (GTK_IS_LIST_VIEW (list_view));
 
   window = EDITOR_WINDOW (gtk_widget_get_root (GTK_WIDGET (self)));
@@ -139,7 +133,8 @@ on_list_view_activate_cb (EditorOpenPopover *self,
 
   gtk_editable_set_text (GTK_EDITABLE (self->search_entry), "");
   _editor_sidebar_item_open (item, EDITOR_SESSION_DEFAULT, window);
-  popover_hide (GTK_WIDGET (self), NULL, NULL);
+
+  g_signal_emit (self, signals[CLOSE], 0);
 }
 
 static gboolean
@@ -153,8 +148,8 @@ editor_sidebar_filter_func_cb (gpointer itemptr,
 }
 
 static void
-on_search_entry_changed_cb (EditorOpenPopover *self,
-                            GtkSearchEntry    *search_entry)
+on_search_entry_changed_cb (EditorOpenView *self,
+                            GtkSearchEntry *search_entry)
 {
   g_autoptr(GtkFilterListModel) filter = NULL;
   g_autoptr(GtkSortListModel) sorted = NULL;
@@ -162,8 +157,11 @@ on_search_entry_changed_cb (EditorOpenPopover *self,
   GListModel *model;
   const char *text;
 
-  g_assert (EDITOR_IS_OPEN_POPOVER (self));
+  g_assert (EDITOR_IS_OPEN_VIEW (self));
   g_assert (GTK_IS_SEARCH_ENTRY (search_entry));
+
+  if (self->model == NULL)
+    return;
 
   text = gtk_editable_get_text (GTK_EDITABLE (search_entry));
 
@@ -199,12 +197,12 @@ on_search_entry_changed_cb (EditorOpenPopover *self,
 }
 
 static void
-on_search_entry_activate_cb (EditorOpenPopover *self,
-                             GtkSearchEntry    *search_entry)
+on_search_entry_activate_cb (EditorOpenView *self,
+                             GtkSearchEntry *search_entry)
 {
   GListModel *model;
 
-  g_assert (EDITOR_IS_OPEN_POPOVER (self));
+  g_assert (EDITOR_IS_OPEN_VIEW (self));
   g_assert (GTK_IS_SEARCH_ENTRY (search_entry));
 
   model = G_LIST_MODEL (gtk_list_view_get_model (self->list_view));
@@ -219,22 +217,22 @@ on_search_entry_activate_cb (EditorOpenPopover *self,
       window = EDITOR_WINDOW (gtk_widget_get_root (GTK_WIDGET (self)));
       _editor_sidebar_item_open (item, EDITOR_SESSION_DEFAULT, window);
 
-      popover_hide (GTK_WIDGET (self), NULL, NULL);
+      g_signal_emit (self, signals[CLOSE], 0);
     }
 }
 
 static void
-on_search_entry_stop_search_cb (EditorOpenPopover *self,
-                                GtkSearchEntry    *search_entry)
+on_search_entry_stop_search_cb (EditorOpenView *self,
+                                GtkSearchEntry *search_entry)
 {
   EditorWindow *window;
 
-  g_assert (EDITOR_IS_OPEN_POPOVER (self));
+  g_assert (EDITOR_IS_OPEN_VIEW (self));
   g_assert (GTK_IS_SEARCH_ENTRY (search_entry));
 
   window = EDITOR_WINDOW (gtk_widget_get_root (GTK_WIDGET (self)));
 
-  gtk_popover_popdown (GTK_POPOVER (self));
+  g_signal_emit (self, signals[CLOSE], 0);
 
   if (window != NULL)
     {
@@ -246,50 +244,50 @@ on_search_entry_stop_search_cb (EditorOpenPopover *self,
 }
 
 static gboolean
-editor_open_popover_has_rows (EditorOpenPopover *self)
+editor_open_view_has_rows (EditorOpenView *self)
 {
-  g_assert (EDITOR_IS_OPEN_POPOVER (self));
+  g_assert (EDITOR_IS_OPEN_VIEW (self));
 
   return g_list_model_get_n_items (G_LIST_MODEL (gtk_list_view_get_model (self->list_view))) > 0;
 }
 
 static void
-editor_open_popover_show (GtkWidget *widget)
+editor_open_view_show (GtkWidget *widget)
 {
-  EditorOpenPopover *self = (EditorOpenPopover *)widget;
+  EditorOpenView *self = (EditorOpenView *)widget;
   GtkAdjustment *adj;
 
-  g_assert (EDITOR_IS_OPEN_POPOVER (self));
+  g_assert (EDITOR_IS_OPEN_VIEW (self));
 
   adj = gtk_scrolled_window_get_vadjustment (self->recent);
   gtk_adjustment_set_value (adj, 0);
 
   gtk_editable_set_text (GTK_EDITABLE (self->search_entry), "");
 
-  if (editor_open_popover_has_rows (self))
+  if (editor_open_view_has_rows (self))
     gtk_list_view_scroll_to (self->list_view,
                              0,
                              GTK_LIST_SCROLL_NONE,
                              NULL);
 
-  GTK_WIDGET_CLASS (editor_open_popover_parent_class)->show (widget);
+  GTK_WIDGET_CLASS (editor_open_view_parent_class)->show (widget);
 
   gtk_widget_grab_focus (GTK_WIDGET (self->search_entry));
 }
 
 static gboolean
-on_search_key_pressed_cb (EditorOpenPopover     *self,
+on_search_key_pressed_cb (EditorOpenView        *self,
                           guint                  keyval,
                           guint                  keycode,
                           GdkModifierType        state,
                           GtkEventControllerKey *key)
 {
-  g_assert (EDITOR_IS_OPEN_POPOVER (self));
+  g_assert (EDITOR_IS_OPEN_VIEW (self));
   g_assert (GTK_IS_EVENT_CONTROLLER_KEY (key));
 
   if (keyval == GDK_KEY_Down || keyval == GDK_KEY_KP_Down)
     {
-      if (editor_open_popover_has_rows (self))
+      if (editor_open_view_has_rows (self))
         gtk_list_view_scroll_to (self->list_view,
                                  0,
                                  GTK_LIST_SCROLL_FOCUS | GTK_LIST_SCROLL_SELECT,
@@ -300,16 +298,16 @@ on_search_key_pressed_cb (EditorOpenPopover     *self,
 }
 
 static void
-editor_open_popover_move_up (GtkWidget  *widget,
-                             const char *action_name,
-                             GVariant   *param)
+editor_open_view_move_up (GtkWidget  *widget,
+                          const char *action_name,
+                          GVariant   *param)
 {
   static GType GtkListItemWidget;
-  EditorOpenPopover *self = (EditorOpenPopover *)widget;
+  EditorOpenView *self = (EditorOpenView *)widget;
   GtkWidget *focus;
   GtkRoot *root;
 
-  g_assert (EDITOR_IS_OPEN_POPOVER (self));
+  g_assert (EDITOR_IS_OPEN_VIEW (self));
 
   /*
    * This function just works around the fact we don't get a keynav-failed
@@ -357,31 +355,46 @@ editor_open_popover_move_up (GtkWidget  *widget,
 
 }
 
-static void
-editor_open_popover_dispose (GObject *object)
+static gboolean
+editor_open_view_grab_focus (GtkWidget *widget)
 {
-  EditorOpenPopover *self = (EditorOpenPopover *)object;
+  EditorOpenView *self = EDITOR_OPEN_VIEW (widget);
 
-  g_clear_pointer (&self->box, gtk_widget_unparent);
+  return gtk_widget_grab_focus (GTK_WIDGET (self->search_entry));
+}
+
+static void
+editor_open_view_dispose (GObject *object)
+{
+  EditorOpenView *self = (EditorOpenView *)object;
+  GtkWidget *child;
+
+  while ((child = gtk_widget_get_first_child (GTK_WIDGET (self))))
+    gtk_widget_unparent (child);
+
   g_clear_object (&self->model);
   g_clear_object (&self->sorted_model);
   g_clear_object (&self->filtered_model);
 
-  G_OBJECT_CLASS (editor_open_popover_parent_class)->dispose (object);
+  G_OBJECT_CLASS (editor_open_view_parent_class)->dispose (object);
 }
 
 static void
-editor_open_popover_get_property (GObject    *object,
-                                  guint       prop_id,
-                                  GValue     *value,
-                                  GParamSpec *pspec)
+editor_open_view_get_property (GObject    *object,
+                               guint       prop_id,
+                               GValue     *value,
+                               GParamSpec *pspec)
 {
-  EditorOpenPopover *self = EDITOR_OPEN_POPOVER (object);
+  EditorOpenView *self = EDITOR_OPEN_VIEW (object);
 
   switch (prop_id)
     {
     case PROP_MODEL:
-      g_value_set_object (value, _editor_open_popover_get_model (self));
+      g_value_set_object (value, _editor_open_view_get_model (self));
+      break;
+
+    case PROP_NARROW:
+      g_value_set_boolean (value, _editor_open_view_get_narrow (self));
       break;
 
     default:
@@ -390,17 +403,21 @@ editor_open_popover_get_property (GObject    *object,
 }
 
 static void
-editor_open_popover_set_property (GObject      *object,
-                                  guint         prop_id,
-                                  const GValue *value,
-                                  GParamSpec   *pspec)
+editor_open_view_set_property (GObject      *object,
+                               guint         prop_id,
+                               const GValue *value,
+                               GParamSpec   *pspec)
 {
-  EditorOpenPopover *self = EDITOR_OPEN_POPOVER (object);
+  EditorOpenView *self = EDITOR_OPEN_VIEW (object);
 
   switch (prop_id)
     {
     case PROP_MODEL:
-      _editor_open_popover_set_model (self, g_value_get_object (value));
+      _editor_open_view_set_model (self, g_value_get_object (value));
+      break;
+
+    case PROP_NARROW:
+      _editor_open_view_set_narrow (self, g_value_get_boolean (value));
       break;
 
     default:
@@ -409,16 +426,17 @@ editor_open_popover_set_property (GObject      *object,
 }
 
 static void
-editor_open_popover_class_init (EditorOpenPopoverClass *klass)
+editor_open_view_class_init (EditorOpenViewClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
-  object_class->dispose = editor_open_popover_dispose;
-  object_class->get_property = editor_open_popover_get_property;
-  object_class->set_property = editor_open_popover_set_property;
+  object_class->dispose = editor_open_view_dispose;
+  object_class->get_property = editor_open_view_get_property;
+  object_class->set_property = editor_open_view_set_property;
 
-  widget_class->show = editor_open_popover_show;
+  widget_class->show = editor_open_view_show;
+  widget_class->grab_focus = editor_open_view_grab_focus;
 
   properties [PROP_MODEL] =
     g_param_spec_object ("model",
@@ -427,28 +445,46 @@ editor_open_popover_class_init (EditorOpenPopoverClass *klass)
                          G_TYPE_LIST_MODEL,
                          (G_PARAM_READWRITE | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_STRINGS));
 
+  properties[PROP_NARROW] =
+    g_param_spec_boolean ("narrow", NULL, NULL,
+                          FALSE,
+                          (G_PARAM_READWRITE |
+                           G_PARAM_EXPLICIT_NOTIFY |
+                           G_PARAM_STATIC_STRINGS));
+
   g_object_class_install_properties (object_class, N_PROPS, properties);
 
-  gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-open-popover.ui");
-  gtk_widget_class_bind_template_child (widget_class, EditorOpenPopover, box);
-  gtk_widget_class_bind_template_child (widget_class, EditorOpenPopover, empty);
-  gtk_widget_class_bind_template_child (widget_class, EditorOpenPopover, search_entry);
-  gtk_widget_class_bind_template_child (widget_class, EditorOpenPopover, list_view);
-  gtk_widget_class_bind_template_child (widget_class, EditorOpenPopover, recent);
-  gtk_widget_class_bind_template_child (widget_class, EditorOpenPopover, stack);
+  signals[CLOSE] =
+    g_signal_new ("close",
+                  G_TYPE_FROM_CLASS (klass),
+                  G_SIGNAL_RUN_LAST,
+                  0,
+                  NULL, NULL,
+                  NULL,
+                  G_TYPE_NONE, 0);
+
+  gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-open-view.ui");
+  gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
+  gtk_widget_class_set_css_name (widget_class, "openview");
+  gtk_widget_class_bind_template_child (widget_class, EditorOpenView, empty);
+  gtk_widget_class_bind_template_child (widget_class, EditorOpenView, search_entry);
+  gtk_widget_class_bind_template_child (widget_class, EditorOpenView, list_view);
+  gtk_widget_class_bind_template_child (widget_class, EditorOpenView, multi_layout);
+  gtk_widget_class_bind_template_child (widget_class, EditorOpenView, recent);
+  gtk_widget_class_bind_template_child (widget_class, EditorOpenView, stack);
   gtk_widget_class_bind_template_callback (widget_class, on_list_view_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_search_entry_activate_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_search_entry_changed_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_search_entry_stop_search_cb);
 
-  gtk_widget_class_install_action (widget_class, "move-up", NULL, editor_open_popover_move_up);
+  gtk_widget_class_install_action (widget_class, "move-up", NULL, editor_open_view_move_up);
 
   g_type_ensure (EDITOR_TYPE_SIDEBAR_MODEL);
   g_type_ensure (EDITOR_TYPE_SIDEBAR_ROW);
 }
 
 static void
-editor_open_popover_init (EditorOpenPopover *self)
+editor_open_view_init (EditorOpenView *self)
 {
   GtkEventController *controller;
 
@@ -465,16 +501,16 @@ editor_open_popover_init (EditorOpenPopover *self)
 }
 
 GListModel *
-_editor_open_popover_get_model (EditorOpenPopover *self)
+_editor_open_view_get_model (EditorOpenView *self)
 {
   return self->model;
 }
 
 void
-_editor_open_popover_set_model (EditorOpenPopover *self,
-                                GListModel        *model)
+_editor_open_view_set_model (EditorOpenView *self,
+                             GListModel     *model)
 {
-  g_return_if_fail (EDITOR_IS_OPEN_POPOVER (self));
+  g_return_if_fail (EDITOR_IS_OPEN_VIEW (self));
   g_return_if_fail (!model || G_IS_LIST_MODEL (model));
 
   if (g_set_object (&self->model, model))
@@ -488,4 +524,26 @@ _editor_open_popover_set_model (EditorOpenPopover *self,
 
       g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_MODEL]);
     }
+}
+
+gboolean
+_editor_open_view_get_narrow (EditorOpenView *self)
+{
+  g_return_val_if_fail (EDITOR_IS_OPEN_VIEW (self), FALSE);
+
+  return g_strcmp0 ("narrow", adw_multi_layout_view_get_layout_name (self->multi_layout)) == 0;
+}
+
+void
+_editor_open_view_set_narrow (EditorOpenView *self,
+                              gboolean        narrow)
+{
+  g_return_if_fail (EDITOR_IS_OPEN_VIEW (self));
+
+  if (narrow == _editor_open_view_get_narrow (self))
+    return;
+
+  adw_multi_layout_view_set_layout_name (self->multi_layout,
+                                         narrow ? "narrow" : "wide");
+  g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_NARROW]);
 }

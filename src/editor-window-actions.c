@@ -412,7 +412,7 @@ editor_window_actions_show_primary_menu_cb (GtkWidget  *widget,
 
   g_assert (EDITOR_IS_WINDOW (self));
 
-  gtk_menu_button_popup (self->primary_menu);
+  gtk_menu_button_popup (self->primary_menu_button);
 }
 
 static void

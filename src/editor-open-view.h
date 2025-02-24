@@ -1,4 +1,4 @@
-/* editor-open-popover-private.h
+/* editor-open-view-private.h
  *
  * Copyright 2021 Christian Hergert <chergert@redhat.com>
  *
@@ -24,13 +24,16 @@
 
 G_BEGIN_DECLS
 
-#define EDITOR_TYPE_OPEN_POPOVER (editor_open_popover_get_type())
+#define EDITOR_TYPE_OPEN_VIEW (editor_open_view_get_type())
 
-G_DECLARE_FINAL_TYPE (EditorOpenPopover, editor_open_popover, EDITOR, OPEN_POPOVER, GtkPopover)
+G_DECLARE_FINAL_TYPE (EditorOpenView, editor_open_view, EDITOR, OPEN_VIEW, GtkWidget)
 
-GtkWidget  *_editor_open_popover_new       (void);
-GListModel *_editor_open_popover_get_model (EditorOpenPopover *self);
-void        _editor_open_popover_set_model (EditorOpenPopover *self,
-                                            GListModel        *model);
+GtkWidget  *_editor_open_view_new        (void);
+GListModel *_editor_open_view_get_model  (EditorOpenView *self);
+void        _editor_open_view_set_model  (EditorOpenView *self,
+                                          GListModel     *model);
+gboolean    _editor_open_view_get_narrow (EditorOpenView *self);
+void        _editor_open_view_set_narrow (EditorOpenView *self,
+                                          gboolean        narrow);
 
 G_END_DECLS

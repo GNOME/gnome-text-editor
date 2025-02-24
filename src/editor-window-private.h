@@ -23,7 +23,7 @@
 #include <adwaita.h>
 
 #include "editor-fullscreen-box.h"
-#include "editor-open-popover-private.h"
+#include "editor-open-view.h"
 #include "editor-page-private.h"
 #include "editor-statusbar-private.h"
 #include "editor-window.h"
@@ -45,16 +45,19 @@ struct _EditorWindow
   GtkLabel             *subtitle;
   GtkLabel             *is_modified;
   GtkImage             *indicator;
-  EditorOpenPopover    *open_menu_popover;
   GtkStack             *stack;
   GtkMenuButton        *open_menu_button;
-  GtkMenuButton        *primary_menu;
+  EditorOpenView       *open_view;
   GtkMenuButton        *options_menu;
+  GtkMenuButton        *primary_menu_button;
   GtkMenuButton        *export_menu;
   GtkWidget            *zoom_label;
   GMenu                *options_menu_model;
   EditorStatusbar      *statusbar;
-  EditorFullscreenBox  *fullscreen_box;
+  AdwBin               *info_bar_container;
+  AdwBin               *search_bar_container;
+  AdwBottomSheet       *open_bottom_sheet;
+  AdwMultiLayoutView   *multi_layout;
 
   /* Borrowed References */
   EditorPage           *visible_page;
@@ -71,6 +74,8 @@ struct _EditorWindow
   guint                 doc_type_index;
 
   guint                 inhibit_cookie;
+
+  guint                 show_properties : 1;
 };
 
 

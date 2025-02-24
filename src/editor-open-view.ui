@@ -1,54 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <requires lib="gtk" version="4.0"/>
-  <requires lib="Adw" version="1.0"/>
-  <template class="EditorOpenPopover" parent="GtkPopover">
-    <style>
-      <class name="open-popover"/>
-    </style>
-    <property name="halign">start</property>
-    <property name="valign">end</property>
-    <property name="width-request">350</property>
+  <template class="EditorOpenView" parent="GtkWidget">
     <child>
-      <object class="GtkBox" id="box">
-        <property name="orientation">vertical</property>
-        <child>
-          <object class="GtkBox">
-            <property name="orientation">horizontal</property>
-            <property name="spacing">6</property>
-            <property name="margin-top">6</property>
-            <property name="margin-bottom">6</property>
-            <property name="margin-start">6</property>
-            <property name="margin-end">6</property>
-            <child>
-              <object class="GtkSearchEntry" id="search_entry">
-                <property name="placeholder-text" translatable="yes">Search documents</property>
-                <property name="hexpand">True</property>
-                <binding name="sensitive">
-                  <lookup name="n-items" type="EditorSidebarModel">
-                    <lookup name="model">EditorOpenPopover</lookup>
-                  </lookup>
-                </binding>
-                <signal name="changed" handler="on_search_entry_changed_cb" swapped="true" object="EditorOpenPopover"/>
-                <signal name="activate" handler="on_search_entry_activate_cb" swapped="true" object="EditorOpenPopover"/>
-                <signal name="stop-search" handler="on_search_entry_stop_search_cb" swapped="true" object="EditorOpenPopover"/>
-              </object>
-            </child>
-            <child>
-              <object class="GtkButton">
-                <property name="tooltip-text" translatable="yes">Open New Document</property>
-                <property name="icon-name">document-open-symbolic</property>
-                <property name="action-name">win.open</property>
-              </object>
-            </child>
+      <object class="AdwMultiLayoutView" id="multi_layout">
+        <child type="search_entry">
+          <object class="GtkSearchEntry" id="search_entry">
+            <property name="placeholder-text" translatable="yes">Search documents</property>
+            <property name="hexpand">True</property>
+            <binding name="sensitive">
+              <lookup name="n-items" type="EditorSidebarModel">
+                <lookup name="model">EditorOpenView</lookup>
+              </lookup>
+            </binding>
+            <signal name="changed" handler="on_search_entry_changed_cb" swapped="true" object="EditorOpenView"/>
+            <signal name="activate" handler="on_search_entry_activate_cb" swapped="true" object="EditorOpenView"/>
+            <signal name="stop-search" handler="on_search_entry_stop_search_cb" swapped="true" object="EditorOpenView"/>
           </object>
         </child>
-        <child>
-          <object class="GtkSeparator">
-            <property name="orientation">horizontal</property>
-          </object>
-        </child>
-        <child>
+        <child type="stack">
           <object class="GtkStack" id="stack">
             <property name="vhomogeneous">false</property>
             <property name="hhomogeneous">false</property>
@@ -87,14 +56,11 @@
               <object class="GtkScrolledWindow" id="recent">
                 <property name="hexpand">True</property>
                 <property name="hscrollbar-policy">never</property>
-                <property name="max-content-height">600</property>
-                <property name="max-content-width">250</property>
-                <property name="min-content-width">250</property>
                 <property name="propagate-natural-height">True</property>
                 <property name="vexpand">True</property>
                 <child>
                   <object class="GtkListView" id="list_view">
-                    <signal name="activate" handler="on_list_view_activate_cb" swapped="true" object="EditorOpenPopover"/>
+                    <signal name="activate" handler="on_list_view_activate_cb" swapped="true" object="EditorOpenView"/>
                     <property name="single-click-activate">True</property>
                     <child>
                       <object class="GtkShortcutController">
@@ -142,7 +108,75 @@
             </child>
           </object>
         </child>
+        <child>
+          <object class="AdwLayout">
+            <property name="name">wide</property>
+            <property name="content">
+              <object class="GtkBox">
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkBox">
+                    <property name="orientation">horizontal</property>
+                    <property name="spacing">6</property>
+                    <property name="margin-top">6</property>
+                    <property name="margin-bottom">6</property>
+                    <property name="margin-start">6</property>
+                    <property name="margin-end">6</property>
+                    <child>
+                      <object class="AdwLayoutSlot">
+                        <property name="id">search_entry</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkButton">
+                        <property name="tooltip-text" translatable="yes">Open New Document</property>
+                        <property name="icon-name">document-open-symbolic</property>
+                        <property name="action-name">win.open</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkSeparator">
+                    <property name="orientation">horizontal</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwLayoutSlot">
+                    <property name="id">stack</property>
+                  </object>
+                </child>
+              </object>
+            </property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwLayout">
+            <property name="name">narrow</property>
+            <property name="content">
+              <object class="GtkBox">
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="AdwLayoutSlot">
+                    <property name="id">search_entry</property>
+                    <property name="margin-top">12</property>
+                    <property name="margin-bottom">12</property>
+                    <property name="halign">center</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwLayoutSlot">
+                    <property name="id">stack</property>
+                  </object>
+                </child>
+              </object>
+            </property>
+          </object>
+        </child>
+        <property name="layout-name">wide</property>
       </object>
+    </child>
+    <child>
     </child>
   </template>
 </interface>
