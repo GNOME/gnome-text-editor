@@ -142,6 +142,65 @@
         </child>
         <child>
           <object class="AdwPreferencesGroup">
+            <property name="title" translatable="yes">Indentation</property>
+            <child>
+              <object class="EditorPreferencesSwitch">
+                <property name="title" translatable="yes">A_uto Indentation</property>
+                <property name="use-underline">true</property>
+                <property name="schema-key">auto-indent</property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwComboRow" id="character_row">
+                <property name="title" translatable="yes">_Character</property>
+                <property name="use-underline">True</property>
+                <property name="model">indent_model</property>
+                <property name="expression">
+                  <lookup name="name" type="EditorIndent"/>
+                </property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwSpinRow" id="tab_width">
+                <property name="title" translatable="yes">Spaces Per _Tab</property>
+                <property name="use-underline">True</property>
+                <property name="climb-rate">1</property>
+                <property name="digits">0</property>
+                <property name="numeric">true</property>
+                <property name="adjustment">
+                  <object class="GtkAdjustment" id="tab_width_adjustment">
+                    <property name="lower">1</property>
+                    <property name="upper">32</property>
+                    <property name="value">8</property>
+                    <property name="step-increment">1</property>
+                    <property name="page-increment">4</property>
+                  </object>
+                </property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwSpinRow" id="indent_width">
+                <property name="title" translatable="yes">Spaces Per _Indent</property>
+                <property name="use-underline">True</property>
+                <property name="climb-rate">1</property>
+                <property name="digits">0</property>
+                <property name="numeric">true</property>
+                <property name="adjustment">
+                  <object class="GtkAdjustment" id="indent_width_adjustment">
+                    <signal name="value-changed" handler="on_indent_value_changed_cb" swapped="true"/>
+                    <property name="lower">1</property>
+                    <property name="upper">32</property>
+                    <property name="value">8</property>
+                    <property name="step-increment">1</property>
+                    <property name="page-increment">4</property>
+                  </object>
+                </property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwPreferencesGroup">
             <property name="title" translatable="yes">Behavior</property>
             <child>
               <object class="EditorPreferencesSwitch" id="discover">
@@ -179,4 +238,6 @@
       </object>
     </child>
   </template>
+  <object class="EditorIndentModel" id="indent_model">
+  </object>
 </interface>
