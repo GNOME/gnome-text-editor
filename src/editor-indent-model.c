@@ -45,9 +45,9 @@ static GParamSpec *properties[N_PROPS];
 
 static void
 editor_indent_get_property (GObject    *object,
-                              guint       prop_id,
-                              GValue     *value,
-                              GParamSpec *pspec)
+                            guint       prop_id,
+                            GValue     *value,
+                            GParamSpec *pspec)
 {
   EditorIndent *self = EDITOR_INDENT (object);
 
@@ -125,7 +125,7 @@ editor_indent_model_get_item_type (GListModel *model)
 
 static gpointer
 editor_indent_model_get_item (GListModel *model,
-                                guint       position)
+                              guint       position)
 {
   if (position < EDITOR_INDENT_MODEL (model)->items->len)
     return g_object_ref (g_ptr_array_index (EDITOR_INDENT_MODEL (model)->items, position));
