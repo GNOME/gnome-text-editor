@@ -23,6 +23,7 @@
 #include <adwaita.h>
 #include <gtksourceview/gtksource.h>
 
+#include "editor-indent-model.h"
 #include "editor-page.h"
 #include "editor-preferences-dialog-private.h"
 #include "editor-preferences-font.h"
@@ -49,7 +50,11 @@ struct _EditorPreferencesDialog
   GtkFlowBox           *scheme_group;
   GtkSourceBuffer      *buffer;
   GtkSourceView        *source_view;
+  GtkAdjustment        *indent_width_adjustment;
+  GtkAdjustment        *tab_width_adjustment;
+  AdwComboRow          *character_row;
 
+  guint                 changing_indent_width : 1;
   guint                 disposed : 1;
 };
 
@@ -506,6 +511,77 @@ editor_preferences_dialog_drop_scheme_cb (EditorPreferencesDialog *self,
   return FALSE;
 }
 
+static gboolean
+style_to_selected (GValue   *to_value,
+                   GVariant *from_value,
+                   gpointer  user_data)
+{
+  const char *str = g_variant_get_string (from_value, NULL);
+  gboolean insert_spaces = g_strcmp0 (str, "space") == 0;
+  g_value_set_uint (to_value, editor_indent_get_index_for (insert_spaces));
+  return TRUE;
+}
+
+static GVariant *
+selected_to_style (const GValue       *from_value,
+                   const GVariantType *type,
+                   gpointer            user_data)
+{
+  if (g_value_get_uint (from_value) == 0)
+    return g_variant_new_string ("space");
+  else
+    return g_variant_new_string ("tab");
+}
+
+static void
+on_indent_value_changed_cb (EditorPreferencesDialog *self,
+                            GtkAdjustment           *adjustment)
+{
+  guint tab_width;
+  int indent_width;
+
+  g_assert (EDITOR_IS_PREFERENCES_DIALOG (self));
+  g_assert (GTK_IS_ADJUSTMENT (adjustment));
+
+  if (self->changing_indent_width)
+    return;
+
+  indent_width = gtk_adjustment_get_value (adjustment);
+  tab_width = g_settings_get_uint (self->settings, "tab-width");
+
+  if (indent_width == tab_width)
+    indent_width = -1;
+
+  self->changing_indent_width = TRUE;
+  g_settings_set_int (self->settings, "indent-width", indent_width);
+  self->changing_indent_width = FALSE;
+}
+
+static void
+update_indent_width_cb (EditorPreferencesDialog *self,
+                        const char              *key,
+                        GSettings               *settings)
+{
+  guint tab_width;
+  int indent_width;
+
+  g_assert (EDITOR_IS_PREFERENCES_DIALOG (self));
+  g_assert (G_IS_SETTINGS (settings));
+
+  if (self->changing_indent_width)
+    return;
+
+  tab_width = g_settings_get_uint (settings, "tab-width");
+  indent_width = g_settings_get_int (settings, "indent-width");
+
+  if (indent_width <= 0)
+    indent_width = tab_width;
+
+  self->changing_indent_width = TRUE;
+  gtk_adjustment_set_value (self->indent_width_adjustment, indent_width);
+  self->changing_indent_width = FALSE;
+}
+
 static void
 editor_preferences_dialog_constructed (GObject *object)
 {
@@ -596,14 +672,21 @@ editor_preferences_dialog_class_init (EditorPreferencesDialogClass *klass)
   g_object_class_install_properties (object_class, N_PROPS, properties);
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-preferences-dialog.ui");
-  gtk_widget_class_bind_template_child (widget_class, EditorPreferencesDialog, buffer);
-  gtk_widget_class_bind_template_child (widget_class, EditorPreferencesDialog, scheme_group);
-  gtk_widget_class_bind_template_child (widget_class, EditorPreferencesDialog, source_view);
-  gtk_widget_class_bind_template_child (widget_class, EditorPreferencesDialog, use_custom_font);
-  gtk_widget_class_bind_template_child (widget_class, EditorPreferencesDialog, restore_session);
-  gtk_widget_class_bind_template_child (widget_class, EditorPreferencesDialog, show_grid);
-  gtk_widget_class_bind_template_callback (widget_class, style_scheme_activated_cb);
 
+  gtk_widget_class_bind_template_child (widget_class, EditorPreferencesDialog, buffer);
+  gtk_widget_class_bind_template_child (widget_class, EditorPreferencesDialog, character_row);
+  gtk_widget_class_bind_template_child (widget_class, EditorPreferencesDialog, indent_width_adjustment);
+  gtk_widget_class_bind_template_child (widget_class, EditorPreferencesDialog, restore_session);
+  gtk_widget_class_bind_template_child (widget_class, EditorPreferencesDialog, scheme_group);
+  gtk_widget_class_bind_template_child (widget_class, EditorPreferencesDialog, show_grid);
+  gtk_widget_class_bind_template_child (widget_class, EditorPreferencesDialog, source_view);
+  gtk_widget_class_bind_template_child (widget_class, EditorPreferencesDialog, tab_width_adjustment);
+  gtk_widget_class_bind_template_child (widget_class, EditorPreferencesDialog, use_custom_font);
+
+  gtk_widget_class_bind_template_callback (widget_class, style_scheme_activated_cb);
+  gtk_widget_class_bind_template_callback (widget_class, on_indent_value_changed_cb);
+
+  g_type_ensure (EDITOR_TYPE_INDENT_MODEL);
   g_type_ensure (EDITOR_TYPE_PREFERENCES_FONT);
   g_type_ensure (EDITOR_TYPE_PREFERENCES_SPIN);
   g_type_ensure (EDITOR_TYPE_PREFERENCES_SWITCH);
@@ -659,6 +742,13 @@ editor_preferences_dialog_init (EditorPreferencesDialog *self)
   g_settings_bind (self->settings, "restore-session",
                    self->restore_session, "active",
                    G_SETTINGS_BIND_DEFAULT);
+  g_settings_bind (self->settings, "tab-width",
+                   self->tab_width_adjustment, "value",
+                   G_SETTINGS_BIND_DEFAULT);
+  g_settings_bind_with_mapping (self->settings, "indent-style",
+                                self->character_row, "selected",
+                                G_SETTINGS_BIND_DEFAULT,
+                                style_to_selected, selected_to_style, NULL, NULL);
   g_signal_connect_object (self->settings,
                            "changed::custom-font",
                            G_CALLBACK (update_custom_font_cb),
@@ -674,6 +764,17 @@ editor_preferences_dialog_init (EditorPreferencesDialog *self)
                            G_CALLBACK (update_custom_font_cb),
                            self,
                            G_CONNECT_SWAPPED);
+  g_signal_connect_object (self->settings,
+                           "changed::indent-width",
+                           G_CALLBACK (update_indent_width_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+  g_signal_connect_object (self->settings,
+                           "changed::tab-width",
+                           G_CALLBACK (update_indent_width_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+  update_indent_width_cb (self, NULL, self->settings);
 
   g_signal_connect_object (g_application_get_default (),
                            "notify::style-scheme",
