@@ -274,9 +274,9 @@ editor_window_items_changed_cb (EditorWindow      *self,
   g_assert (GTK_IS_SELECTION_MODEL (model));
 
   if (editor_window_get_n_pages (self) > 0)
-    gtk_stack_set_visible_child (self->stack, GTK_WIDGET (self->tab_view));
+    gtk_stack_set_visible_child_name (self->stack, "tabs");
   else
-    gtk_stack_set_visible_child (self->stack, GTK_WIDGET (self->empty));
+    gtk_stack_set_visible_child_name (self->stack, "empty");
 }
 
 static void
