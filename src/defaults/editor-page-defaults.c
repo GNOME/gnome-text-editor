@@ -76,7 +76,7 @@ static const Defaults defaults[] = {
   { "html", 80, 2, -1, TRUE },
   { "makefile", 80, 8, -1, FALSE },
   { "meson", 80, 2, -1, TRUE },
-  { "markdown", 80, 4, -1, TRUE },
+  { "markdown", 0, 4, -1, TRUE },
   { "vala", 100, 4, -1, FALSE },
   { "xml", 80, 2, -1, TRUE },
 };
