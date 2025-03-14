@@ -124,7 +124,7 @@ editor_page_defaults_get_right_margin_position (EditorPageSettingsProvider *prov
   const Defaults *d = get_defaults (provider);
   if (d)
     *right_margin_position = d->right_margin_position;
-  return d != NULL;
+  return d && d->right_margin_position > 0;
 }
 
 static gboolean
