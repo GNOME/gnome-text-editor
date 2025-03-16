@@ -197,8 +197,8 @@ editor_search_entry_init (EditorSearchEntry *self)
   cairo_font_options_destroy (options);
 
   gtk_accessible_update_property (GTK_ACCESSIBLE (self->text),
-                                  GTK_ACCESSIBLE_PROPERTY_LABEL,
-                                  _("Search"));
+                                  GTK_ACCESSIBLE_PROPERTY_LABEL, _("Search"),
+                                  -1);
 }
 
 static GtkEditable *
