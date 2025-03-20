@@ -1257,7 +1257,8 @@ editor_document_save_cb (GObject      *object,
 
       /* Try again as admin:// */
       if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_PERMISSION_DENIED) &&
-          g_str_has_prefix (uri, "file://"))
+          g_str_has_prefix (uri, "file://") &&
+          !g_object_get_data (G_OBJECT (saver), "IS_ADMIN"))
         {
           g_autofree char *admin_uri = g_strdup_printf ("admin://%s", uri + strlen ("file://"));
           g_autoptr(GFile) admin_file = g_file_new_for_uri (admin_uri);
@@ -1270,6 +1271,8 @@ editor_document_save_cb (GObject      *object,
           gtk_source_file_saver_set_encoding (admin_saver, gtk_source_file_saver_get_encoding (saver));
           gtk_source_file_saver_set_flags (admin_saver, gtk_source_file_saver_get_flags (saver));
           gtk_source_file_saver_set_newline_type (admin_saver, gtk_source_file_saver_get_newline_type (saver));
+
+          g_object_set_data (G_OBJECT (admin_saver), "IS_ADMIN", GINT_TO_POINTER (TRUE));
 
           gtk_source_file_saver_save_async (admin_saver,
                                             G_PRIORITY_DEFAULT,
