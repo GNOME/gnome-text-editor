@@ -75,6 +75,7 @@ struct _EditorDocument
   guint                         did_shutdown : 1;
   guint                         inserting : 1;
   guint                         deleting : 1;
+  guint                         supress_jump : 1;
 };
 
 typedef struct
@@ -585,7 +586,7 @@ editor_document_cursor_moved (EditorDocument *self)
 {
   g_assert (EDITOR_IS_DOCUMENT (self));
 
-  if (self->inserting || self->deleting)
+  if (self->inserting || self->deleting || self->supress_jump)
     return;
 
   g_signal_emit (self, signals[CURSOR_JUMPED], 0);
@@ -1454,7 +1455,9 @@ _editor_document_unmark_busy (EditorDocument *self)
        * wants to watch the cursor position can safely ignore changes while
        * the document is busy.
        */
+      self->supress_jump = TRUE;
       g_signal_emit_by_name (self, "cursor-moved");
+      self->supress_jump = FALSE;
     }
 }
 
