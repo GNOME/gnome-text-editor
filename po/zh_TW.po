@@ -7,11 +7,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-text-editor/"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2023-02-01 03:51+0000\n"
-"PO-Revision-Date: 2023-03-07 05:00+0000\n"
-"Last-Translator: Weblate Admin <pesder@mail.edu.tw>\n"
+"POT-Creation-Date: 2025-03-20 01:50+0000\n"
+"PO-Revision-Date: 2025-03-22 22:42+0800\n"
+"Last-Translator: taijuin <taijuin@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <http://darkbear.mercusysddns.com/"
 "projects/gnome-44/gnome-text-editor-main/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -19,37 +19,36 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.16.1\n"
-
-#: data/org.gnome.TextEditor.appdata.xml.in.in:6
-#: src/editor-application-actions.c:201
-msgid "The GNOME Project"
-msgstr "GNOME 專案"
-
-#: data/org.gnome.TextEditor.appdata.xml.in.in:8
-#: data/org.gnome.TextEditor.desktop.in.in:8
-#: data/org.gnome.TextEditor.desktop.in.in:9
-#: src/editor-application-actions.c:199 src/editor-window.c:1297
-msgid "Text Editor"
-msgstr "文字編輯器"
-
-#: data/org.gnome.TextEditor.appdata.xml.in.in:10
-msgid "Edit text files"
-msgstr "編輯文字檔"
-
-#: data/org.gnome.TextEditor.appdata.xml.in.in:12
-msgid ""
-"GNOME Text Editor is a simple text editor focused on a pleasing default "
-"experience."
-msgstr "《文字編輯器》旨在提供給您舒適的預裝應用程式使用經驗。"
+"X-Generator: Poedit 3.5\n"
 
 #: data/org.gnome.TextEditor.desktop.in.in:4
 msgid "write;notepad;"
-msgstr "write;notepad;書寫;記事本;文字;編輯;寫字;"
+msgstr "write;notepad;書寫;撰寫;記事本;筆記簿;文字;編輯;"
 
 #: data/org.gnome.TextEditor.desktop.in.in:10
+#: data/org.gnome.TextEditor.desktop.in.in:11
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:10
+#: src/editor-application-actions.c:198 src/editor-window.c:1279
+msgid "Text Editor"
+msgstr "文字編輯器"
+
+#: data/org.gnome.TextEditor.desktop.in.in:12
 msgid "View and edit text files"
-msgstr "檢視和編輯文字檔"
+msgstr "檢視與編輯文字檔"
+
+#: data/org.gnome.TextEditor.desktop.in.in:24
+msgid "New Window"
+msgstr "開新視窗"
+
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:12
+msgid "Edit text files"
+msgstr "編輯文字檔"
+
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:14
+msgid ""
+"GNOME Text Editor is a simple text editor focused on a pleasing default "
+"experience."
+msgstr "GNOME《文字編輯器》旨在提供給您舒適的預裝應用程式使用經驗。"
 
 #: data/org.gnome.TextEditor.gschema.xml:16
 msgid "Auto Save Delay"
@@ -67,15 +66,16 @@ msgstr "風格變體"
 msgid ""
 "Use the light or dark variant of the GTK theme and/or GtkSourceView style "
 "scheme."
-msgstr "使用淺色或深色的 GTK 主題，並能套用《GtkSourceView》的配色方案。"
+msgstr "使用亮色或暗色的 GTK 主題，並能套用《GtkSourceView》的配色方案。"
 
 #: data/org.gnome.TextEditor.gschema.xml:35
 msgid "Indentation Style"
 msgstr "縮排樣式"
 
 #: data/org.gnome.TextEditor.gschema.xml:36
-msgid "If the editor should insert multiple spaces characters instead of tabs."
-msgstr "是否使用空格字元取代 Tab 鍵。"
+msgid ""
+"Whether the editor should insert multiple spaces characters instead of tabs."
+msgstr "編輯器是否應插入多個空格字元，而不是 Tab 字符。"
 
 #: data/org.gnome.TextEditor.gschema.xml:40
 msgid "Auto Indent"
@@ -87,11 +87,11 @@ msgstr "新的列自動複製前一列的縮排格式。"
 
 #: data/org.gnome.TextEditor.gschema.xml:46
 msgid "Tab Width"
-msgstr "Tab 鍵寬度"
+msgstr "Tab 寬度"
 
 #: data/org.gnome.TextEditor.gschema.xml:47
 msgid "The number of spaces represented by a tab."
-msgstr "Tab 鍵所代表的空格數。"
+msgstr "Tab 所代表的空格數。"
 
 #: data/org.gnome.TextEditor.gschema.xml:52
 msgid "Indent Width"
@@ -99,23 +99,23 @@ msgstr "縮排寬度"
 
 #: data/org.gnome.TextEditor.gschema.xml:53
 msgid "The number of spaces to indent or -1 to use tab-width."
-msgstr "用於縮排的空格數；-1 表示使用 Tab 鍵寬度。"
+msgstr "用於縮排的空格數；-1 表示使用 Tab 寬度。"
 
 #: data/org.gnome.TextEditor.gschema.xml:57
 msgid "Show Line Numbers"
 msgstr "顯示列號"
 
 #: data/org.gnome.TextEditor.gschema.xml:58
-msgid "If line numbers should be displayed next to each line."
-msgstr "是否於每列開頭處顯示列號。"
+msgid "Whether line numbers should be displayed next to each line."
+msgstr "是否應在每列旁邊顯示列號。"
 
 #: data/org.gnome.TextEditor.gschema.xml:62
 msgid "Show Right Margin"
 msgstr "顯示右側邊界"
 
 #: data/org.gnome.TextEditor.gschema.xml:63
-msgid "If a margin line should be displayed on the right of the editor."
-msgstr "是否在編輯器右側顯示邊界欄。"
+msgid "Whether a margin line should be displayed on the right of the editor."
+msgstr "是否應在編輯器右側顯示邊界線。"
 
 #: data/org.gnome.TextEditor.gschema.xml:68
 msgid "Right Margin Position"
@@ -134,15 +134,15 @@ msgstr "顯示概覽圖"
 msgid ""
 "If enabled, an overview map of the file will be displayed to the side of the "
 "editor."
-msgstr "若設為「True」，編輯器的側邊會顯示文件概覽圖。"
+msgstr "如果啟用，檔案的概覽圖會顯示在編輯器的側邊。"
 
 #: data/org.gnome.TextEditor.gschema.xml:78
 msgid "Show Background Grid"
-msgstr "顯示網底"
+msgstr "顯示背景網格"
 
 #: data/org.gnome.TextEditor.gschema.xml:79
 msgid "If enabled, a blueprint style grid is printed on the editor background."
-msgstr "若設為「True」，編輯器背景會覆蓋藍圖風格的網底。"
+msgstr "如果啟用，編輯器背景中會列印藍圖樣式的網格。"
 
 #: data/org.gnome.TextEditor.gschema.xml:83
 msgid "Highlight current line"
@@ -150,25 +150,25 @@ msgstr "標明目前的列"
 
 #: data/org.gnome.TextEditor.gschema.xml:84
 msgid "If enabled, the current line will be highlighted."
-msgstr "若設為「True」，會標明目前的列。"
+msgstr "如果啟用，則會標明目前的列。"
 
 #: data/org.gnome.TextEditor.gschema.xml:88
 msgid "Text Wrapping"
 msgstr "文字換行"
 
 #: data/org.gnome.TextEditor.gschema.xml:89
-msgid "If text should be wrapped."
-msgstr "必要時文字會自動換行。"
+msgid "Whether text should be wrapped."
+msgstr "文字是否應該換行。"
 
 #: data/org.gnome.TextEditor.gschema.xml:93
 msgid "Use System Font"
 msgstr "使用系統字型"
 
 #: data/org.gnome.TextEditor.gschema.xml:94
-msgid "If the default system monospace font should be used."
-msgstr "使用系統預設的固定寬度字型。"
+msgid "Whether the default system monospace font should be used."
+msgstr "是否應使用預設的系統等寬字型。"
 
-#: data/org.gnome.TextEditor.gschema.xml:98 src/editor-preferences-dialog.ui:57
+#: data/org.gnome.TextEditor.gschema.xml:98
 msgid "Custom Font"
 msgstr "自訂字型"
 
@@ -188,15 +188,15 @@ msgstr "編輯器所使用的配色方案；部分方案能以深色模式呈現
 
 #: data/org.gnome.TextEditor.gschema.xml:108
 msgid "Discover File Settings"
-msgstr "偵測文件設定"
+msgstr "探查檔案設定"
 
 #: data/org.gnome.TextEditor.gschema.xml:109
 msgid ""
-"If enabled then Text Editor will try to discover file settings from "
+"If enabled, then Text Editor will try to discover file settings from "
 "modelines, editorconfig, or per-language defaults."
 msgstr ""
-"若設為「True」，《文字編輯器》會自動從 Modelines 或 EditorConfig 偵測檔案設"
-"定，或使用語言預設值。"
+"如果啟用，《文字編輯器》會嘗試從 Modelines、EditorConfig，或各個語言的預設值"
+"中找出檔案設定。"
 
 #: data/org.gnome.TextEditor.gschema.xml:113
 msgid "Automatically check spelling"
@@ -204,15 +204,15 @@ msgstr "自動檢查拼寫"
 
 #: data/org.gnome.TextEditor.gschema.xml:114
 msgid "If enabled, then Text Editor will check spelling as you type."
-msgstr "若設為「True」，《文字編輯器》會檢查輸入的內容拼寫是否正確。"
+msgstr "如果啟用，《文字編輯器》將在您輸入時檢查拼字。"
 
 #: data/org.gnome.TextEditor.gschema.xml:118
 msgid "Restore session"
-msgstr "還原工作階段"
+msgstr "還原作業階段"
 
 #: data/org.gnome.TextEditor.gschema.xml:119
-msgid "When Text Editor is run, restore the previous session."
-msgstr "《文字編輯器》啟動時自動還原上個工作階段。"
+msgid "When Text Editor is running, restore the previous session."
+msgstr "當《文字編輯器》執行時，還原之前的作業階段。"
 
 #: data/org.gnome.TextEditor.gschema.xml:123
 msgid "Recolor Window"
@@ -254,7 +254,7 @@ msgstr "啟用程式碼片段"
 msgid ""
 "Enable the use of snippets registered with GtkSourceView from within the "
 "editor."
-msgstr "於編輯器中使用《GtkSourceView》中所註冊的程式碼片段。"
+msgstr "啟用編輯器中《 GtkSourceView》 註冊的程式碼片段使用。"
 
 #: data/org.gnome.TextEditor.gschema.xml:153
 msgid "Line Height"
@@ -263,6 +263,14 @@ msgstr "列高"
 #: data/org.gnome.TextEditor.gschema.xml:154
 msgid "The line height to use for the selected font."
 msgstr "所選字型的列高。"
+
+#: data/org.gnome.TextEditor.gschema.xml:158
+msgid "Highlight Matching Brackets"
+msgstr "標明相配的括號"
+
+#: data/org.gnome.TextEditor.gschema.xml:159
+msgid "Highlight matching brackets and braces."
+msgstr "標明相配的括號和大括號。"
 
 #: src/editor-animation.c:1038
 #, c-format
@@ -274,9 +282,33 @@ msgstr "無法於「%2$s」中找到屬性「%1$s」"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "無法取得 Va_list 數值：%s"
 
-#: src/editor-application-actions.c:214
+#: src/editor-application-actions.c:200
+msgid "The GNOME Project"
+msgstr "GNOME 專案"
+
+#: src/editor-application-actions.c:213
 msgid "translator-credits"
-msgstr "Freddy Cheng <freddy4212@gmail.com>, 2022."
+msgstr ""
+"Freddy Cheng <freddy4212@gmail.com>, 2022.\n"
+"Taijuin Lee <taijuin@gmail.com>, 2025.\n"
+"Cheng-Chia Tseng <zerngjia@gmail.com>, 2025."
+
+#: src/editor-application-actions.c:347
+msgid "Clear File History?"
+msgstr "清除檔案歷史紀錄？"
+
+#: src/editor-application-actions.c:348
+msgid "This action cannot be undone"
+msgstr "此動作無法取消"
+
+#: src/editor-application-actions.c:350 src/editor-save-changes-dialog.c:260
+#: src/editor-window-actions.c:115 src/editor-window-actions.c:219
+msgid "_Cancel"
+msgstr "取消(_C)"
+
+#: src/editor-application-actions.c:351
+msgid "_Clear All"
+msgstr "全部清除(_C)"
 
 #: src/editor-application.c:525
 msgid "Standard input was requested multiple times. Ignoring request."
@@ -292,11 +324,11 @@ msgstr "錯誤回報位置："
 
 #: src/editor-application.c:634
 msgid "[FILES…]"
-msgstr "[FILES…]"
+msgstr "[檔案…]"
 
 #: src/editor-application.c:748
 msgid "Do not restore session at startup"
-msgstr "啟動時不要還原工作階段"
+msgstr "啟動時不要還原作業階段"
 
 #: src/editor-application.c:749
 msgid "Open provided files in a new window"
@@ -311,14 +343,30 @@ msgid "Print version information and exit"
 msgstr "輸出版本資訊並離開"
 
 # [與]不適合正體中文使用，是否用「與」來替代？
-#: src/editor-document.c:2066
+#: src/editor-document.c:2248
 msgid "[Read-Only]"
 msgstr "「唯讀」"
 
-#: src/editor-document.c:2364 src/editor-page.c:1035
-#: src/editor-sidebar-item.c:497
+#: src/editor-document.c:2473 src/editor-page.c:1129
+#: src/editor-sidebar-item.c:510
 msgid "New Document"
 msgstr "新文件"
+
+#: src/editor-encoding-dialog.ui:5
+msgid "Change Encoding"
+msgstr "變更編碼"
+
+#: src/editor-encoding-dialog.ui:22
+msgid "Search encodings"
+msgstr "搜尋編碼"
+
+#: src/editor-encoding-dialog.ui:58 src/editor-language-dialog.ui:75
+msgid "No Results Found"
+msgstr "沒有結果"
+
+#: src/editor-encoding-dialog.ui:59 src/editor-language-dialog.ui:76
+msgid "Try a different search"
+msgstr "嘗試不同的搜尋"
 
 #: src/editor-file-manager.c:99
 msgid "File path is NULL"
@@ -337,43 +385,51 @@ msgstr "ILCreateFromPath() 失敗"
 msgid "Cannot convert “%s” into a valid NSURL."
 msgstr "無法將「%s」轉換為有效的 NSURL。"
 
-#: src/editor-info-bar.c:76
+#: src/editor-indent-model.c:173
+msgid "Space"
+msgstr "空格"
+
+#: src/editor-indent-model.c:178
+msgid "Tab"
+msgstr "Tab"
+
+#: src/editor-info-bar.c:108
 msgid "_Discard Changes and Reload"
 msgstr "捨棄更動並重新載入(_D)"
 
-#: src/editor-info-bar.c:79
+#: src/editor-info-bar.c:111
 msgid "File Has Changed on Disk"
 msgstr "硬碟上的檔案已更動"
 
-#: src/editor-info-bar.c:80
+#: src/editor-info-bar.c:112
 msgid "The file has been changed by another program."
 msgstr "檔案已被其他程式更動過。"
 
-#: src/editor-info-bar.c:89 src/editor-window.ui:222
+#: src/editor-info-bar.c:121 src/editor-window.ui:363
 msgid "Save _As…"
 msgstr "另存為(_A)…"
 
-#: src/editor-info-bar.c:91 src/editor-info-bar.ui:63
+#: src/editor-info-bar.c:123 src/editor-info-bar.ui:73
 msgid "Document Restored"
 msgstr "已還原文件"
 
-#: src/editor-info-bar.c:92 src/editor-info-bar.ui:73
+#: src/editor-info-bar.c:124 src/editor-info-bar.ui:84
 msgid "Unsaved document has been restored."
 msgstr "已還原尚未儲存的文件。"
 
-#: src/editor-info-bar.c:98 src/editor-info-bar.ui:87
+#: src/editor-info-bar.c:130 src/editor-info-bar.ui:99
 msgid "_Save…"
 msgstr "儲存(_S)…"
 
-#: src/editor-info-bar.c:100 src/editor-info-bar.ui:81
+#: src/editor-info-bar.c:132 src/editor-info-bar.ui:93
 msgid "_Discard…"
 msgstr "捨棄(_D)…"
 
-#: src/editor-info-bar.c:102
+#: src/editor-info-bar.c:134
 msgid "Draft Changes Restored"
 msgstr "已還原更動的草稿"
 
-#: src/editor-info-bar.c:103
+#: src/editor-info-bar.c:135
 msgid "Unsaved changes to the document have been restored."
 msgstr "已還原更動過但尚未儲存的文件。"
 
@@ -381,203 +437,209 @@ msgstr "已還原更動過但尚未儲存的文件。"
 msgid "Could Not Open File"
 msgstr "無法開啟檔案"
 
-#: src/editor-info-bar.ui:29
-msgid "You do not have permission to open the file."
-msgstr "您沒有開啟檔案的許可。"
-
-#: src/editor-info-bar.ui:37
+#: src/editor-info-bar.ui:38
 msgid "_Retry"
 msgstr "重試(_R)"
 
-#: src/editor-info-bar.ui:44
+#: src/editor-info-bar.ui:51
 msgid "Open As _Administrator"
 msgstr "以管理員身份開啟(_A)"
 
-#: src/editor-language-dialog.ui:6 src/editor-window.c:195
+#: src/editor-info-bar.ui:116
+msgid "Invalid Characters Detected"
+msgstr "偵測到無效字元"
+
+#: src/editor-info-bar.ui:127
+msgid ""
+"There was an encoding conversion error so a fallback character was used."
+msgstr "發生編碼轉換錯誤，改使後備字元。"
+
+#: src/editor-info-bar.ui:136
+msgid "Change _Encoding…"
+msgstr "變更編碼(_E)…"
+
+#: src/editor-language-dialog.c:248
+msgid "Other Document Types"
+msgstr "其他文件類型"
+
+#: src/editor-language-dialog.ui:6
 msgid "Document Type"
 msgstr "文件類型"
 
-#: src/editor-language-dialog.ui:52
-msgid "No Matches"
-msgstr "沒有相符的項目"
+#: src/editor-language-dialog.ui:25 src/editor-search-entry.c:200
+#: src/editor-search-entry.ui:13
+msgid "Search"
+msgstr "搜尋"
+
+#: src/editor-language-row.c:61 src/editor-language-row.c:119
+#: src/editor-properties.c:573
+msgid "Plain Text"
+msgstr "純文字"
+
+#: src/editor-newline-model.c:180
+msgid "Unix/Linux (LF)"
+msgstr "Unix/Linux (LF)"
+
+#: src/editor-newline-model.c:181
+msgid "Windows (CR+LF)"
+msgstr "Windows (CR+LF)"
+
+#: src/editor-newline-model.c:182
+msgid "Mac OS Classic (CR)"
+msgstr "Mac OS Classic (CR)"
 
 #: src/editor-open-popover.ui:25
 msgid "Search documents"
 msgstr "搜尋文件"
 
 #: src/editor-open-popover.ui:39
-msgid "Open New Document (Ctrl+O)"
-msgstr "開啟新文件 (Ctrl+O)"
+msgid "Open New Document"
+msgstr "開啟新文件"
 
 #: src/editor-open-popover.ui:74
 msgid "No Recent Documents"
 msgstr "沒有近期文件"
 
-#: src/editor-open-popover.ui:101
-msgid "No Results Found"
-msgstr "沒有結果"
-
-#: src/editor-page.c:1061 src/editor-properties-dialog.c:74
-#: src/editor-sidebar-item.c:101
+#: src/editor-page.c:1155 src/editor-properties.c:606
+#: src/editor-sidebar-item.c:104
 msgid "Draft"
 msgstr "草稿"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1073
+#: src/editor-page.c:1167
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s（管理員）"
 
-#: src/editor-page.c:1083 src/editor-sidebar-item.c:109
-msgid "Document Portal"
-msgstr "文件入口"
-
-#: src/editor-page.c:1130
+#: src/editor-page.c:1223
 msgid "Failed to save document"
 msgstr "無法儲存文件"
 
-#: src/editor-page.c:1131 src/editor-window.ui:363
+#: src/editor-page.c:1224 src/editor-window.ui:442
 msgid "_Close"
 msgstr "關閉分頁(_C)"
 
-#: src/editor-page.c:1215
-msgid "Save As"
-msgstr "另存新檔"
-
-#: src/editor-page.c:1218
-msgid "Save"
-msgstr "儲存"
-
-#: src/editor-page.c:1219 src/editor-window-actions.c:352
-msgid "Cancel"
-msgstr "取消"
-
-#: src/editor-page.c:1368
+#: src/editor-page.c:1493
 #, c-format
 msgid "Ln %u, Col %u"
-msgstr "行 %u，欄 %u"
+msgstr "列 %u，欄 %u"
 
-#: src/editor-page.ui:97
+#: src/editor-page.ui:94
 msgid "Go to Line"
 msgstr "前往列號"
 
-#: src/editor-page.ui:115
+#: src/editor-page.ui:111
 msgid "Go"
 msgstr "前往"
 
-#: src/editor-page.ui:152
-msgid "Indentation"
-msgstr "縮排"
-
-#: src/editor-page.ui:155 src/editor-window.ui:283
-msgid "_Automatic Indentation"
-msgstr "自動縮排(_A)"
-
-#. Translators: this is a tab character, not a browser tab
-#: src/editor-page.ui:161 src/editor-window.ui:287
-msgid "_Tabs"
-msgstr "Tab 鍵(_T)"
-
-#: src/editor-page.ui:166 src/editor-window.ui:292
-msgid "_Spaces"
-msgstr "空格(_S)"
-
-#: src/editor-page.ui:173 src/editor-window.ui:297
-msgid "Spaces _Per Tab"
-msgstr "Tab 鍵空格數(_P)"
-
-#: src/editor-page.ui:175 src/editor-page.ui:203
-msgid "2"
-msgstr "2"
-
-#: src/editor-page.ui:180 src/editor-page.ui:208
-msgid "4"
-msgstr "4"
-
-#: src/editor-page.ui:185 src/editor-page.ui:213
-msgid "6"
-msgstr "6"
-
-#: src/editor-page.ui:190 src/editor-page.ui:218
-msgid "8"
-msgstr "8"
-
-#: src/editor-page.ui:196
-msgid "Spaces Per Indent"
-msgstr "縮排空格數"
-
-#: src/editor-page.ui:198
-msgid "Use Tab Size"
-msgstr "使用 Tab 鍵寬度"
+#: src/editor-path.c:128
+msgid "Document Portal"
+msgstr "文件入口"
 
 #. translators: Ln is short for "Line Number"
 #: src/editor-position-label.ui:15
 msgid "Ln"
-msgstr "行"
+msgstr "列"
 
 #. translators: Col is short for "Column"
-#: src/editor-position-label.ui:35
+#: src/editor-position-label.ui:32
 msgid "Col"
 msgstr "欄"
 
-#: src/editor-preferences-dialog.ui:17
+#: src/editor-preferences-dialog.ui:15
 msgid "Appearance"
 msgstr "外觀"
 
-#: src/editor-preferences-dialog.ui:79
-msgid "Display Grid Pattern"
-msgstr "顯示網底"
+#: src/editor-preferences-dialog.ui:55
+msgid "Custom _Font"
+msgstr "自訂字型(_F)"
+
+#: src/editor-preferences-dialog.ui:78
+msgid "Show Grid Pattern"
+msgstr "顯示網格圖案"
 
 #: src/editor-preferences-dialog.ui:85
-msgid "Highlight Current Line"
-msgstr "標明目前的列"
+msgid "Display _Line Numbers"
+msgstr "顯示列號(_L)"
 
-#: src/editor-preferences-dialog.ui:91
-msgid "Display Overview Map"
-msgstr "顯示概覽圖"
+#: src/editor-preferences-dialog.ui:92
+msgid "_Highlight Current Line"
+msgstr "標明目前的列(_H)"
 
 #: src/editor-preferences-dialog.ui:99
-msgid "Right Margin"
-msgstr "右側邊界"
-
-#: src/editor-preferences-dialog.ui:102
-msgid "Margin Position"
-msgstr "邊界位置"
+msgid "Display _Overview Map"
+msgstr "顯示概覽圖(_O)"
 
 #: src/editor-preferences-dialog.ui:110
-msgid "Behavior"
-msgstr "特性"
+msgid "Check _Spelling"
+msgstr "檢查拼寫(_S)"
 
-#: src/editor-preferences-dialog.ui:113
-msgid "Discover Document Settings"
-msgstr "偵測文件設定"
+#: src/editor-preferences-dialog.ui:119
+msgid "Line Wrap"
+msgstr "換行"
 
-#: src/editor-preferences-dialog.ui:114
-msgid "Apply settings using modelines, editorconfig, or sensible defaults"
-msgstr "套用 Modelines、EditorConfig 或使用語言預設值"
+#: src/editor-preferences-dialog.ui:122
+msgid "Show _Right Margin"
+msgstr "顯示右側邊界(_R)"
 
-#: src/editor-preferences-dialog.ui:120
-msgid "Restore Session"
-msgstr "還原工作階段"
-
-#: src/editor-preferences-dialog.ui:121
-msgid "Return to your previous session when Text Editor is started"
-msgstr "《文字編輯器》啟動時還原上個工作階段"
+#: src/editor-preferences-dialog.ui:129
+msgid "_Margin Position"
+msgstr "邊界位置(_M)"
 
 #: src/editor-preferences-dialog.ui:136
+msgid "_Wrap Lines Automatically (Alt+W)"
+msgstr "自動換行 (Alt+W)(_W)"
+
+#: src/editor-preferences-dialog.ui:145
+msgid "Indentation"
+msgstr "縮排"
+
+#: src/editor-preferences-dialog.ui:148 src/editor-properties-panel.ui:106
+msgid "A_uto Indentation"
+msgstr "自動縮排(_U)"
+
+#: src/editor-preferences-dialog.ui:155 src/editor-properties-panel.ui:113
+msgid "_Character"
+msgstr "字元(_C)"
+
+#: src/editor-preferences-dialog.ui:165 src/editor-properties-panel.ui:124
+msgid "Spaces Per _Tab"
+msgstr "每一 Tab 空格(_T)"
+
+#: src/editor-preferences-dialog.ui:183 src/editor-properties-panel.ui:136
+msgid "Spaces Per _Indent"
+msgstr "每一縮排空格(_I)"
+
+#: src/editor-preferences-dialog.ui:204
+msgid "Behavior"
+msgstr "行為"
+
+#: src/editor-preferences-dialog.ui:207
+msgid "_Discover Document Settings"
+msgstr "探查文件設定(_D)"
+
+#: src/editor-preferences-dialog.ui:209
+msgid "Apply settings using modelines, editorconfig, or sensible defaults"
+msgstr "套用 Modelines、EditorConfig，或使用語言適合的預設值"
+
+#: src/editor-preferences-dialog.ui:215
+msgid "_Restore Session"
+msgstr "還原作業階段(_R)"
+
+#: src/editor-preferences-dialog.ui:217
+msgid "Return to your previous session when Text Editor is started"
+msgstr "《文字編輯器》啟動時還原上個作業階段"
+
+#: src/editor-preferences-dialog.ui:229
 msgid "_Clear History"
 msgstr "清除紀錄(_C)"
 
-#: src/editor-preferences-font.c:100
-msgid "Select Font"
-msgstr "選擇字型"
-
-#: src/editor-print-operation.c:176
+#: src/editor-print-operation.c:182
 #, c-format
 msgid "Draft: %s"
 msgstr "草稿：%s"
 
-#: src/editor-print-operation.c:178
+#: src/editor-print-operation.c:184
 #, c-format
 msgid "File: %s"
 msgstr "檔案：%s"
@@ -585,438 +647,336 @@ msgstr "檔案：%s"
 #. Translators: %N is the current page number, %Q is the total
 #. * number of pages (ex. Page 2 of 10)
 #.
-#: src/editor-print-operation.c:189
+#: src/editor-print-operation.c:196
 msgid "Page %N of %Q"
 msgstr "頁面 %N/%Q"
 
-#: src/editor-properties-dialog.ui:6
-msgid "Properties"
-msgstr "屬性"
-
-#: src/editor-properties-dialog.ui:27
-msgid "File"
-msgstr "檔案"
-
-#: src/editor-properties-dialog.ui:30
-msgid "Name"
+#: src/editor-properties-panel.ui:10
+msgid "File Name"
 msgstr "檔案名稱"
 
-#: src/editor-properties-dialog.ui:45
+#: src/editor-properties-panel.ui:26
 msgid "Location"
 msgstr "檔案位置"
 
-#: src/editor-properties-dialog.ui:63
+#: src/editor-properties-panel.ui:27
+msgid "Open in File Manager"
+msgstr "在《檔案管理員》中開啟"
+
+#: src/editor-properties-panel.ui:53
+msgid "_Document Type"
+msgstr "文件類型(_D)"
+
+#: src/editor-properties-panel.ui:54
+msgid "Change Document Type"
+msgstr "變更文件類型"
+
+#: src/editor-properties-panel.ui:76
+msgid "_Encoding"
+msgstr "編碼(_E)"
+
+#: src/editor-properties-panel.ui:90
+msgid "_Line Feed"
+msgstr "_LF 換列"
+
+#: src/editor-properties-panel.ui:150
 msgid "Statistics"
 msgstr "字數統計"
 
-#: src/editor-properties-dialog.ui:66
+#: src/editor-properties-panel.ui:153
 msgid "Lines"
 msgstr "列數"
 
-#: src/editor-properties-dialog.ui:81
+#: src/editor-properties-panel.ui:166
 msgid "Words"
-msgstr "單詞數"
+msgstr "單字數"
 
-#: src/editor-properties-dialog.ui:96
+#: src/editor-properties-panel.ui:179
 msgid "Characters, No Spaces"
 msgstr "字元數（不含空格）"
 
-#: src/editor-properties-dialog.ui:111
+#: src/editor-properties-panel.ui:192
 msgid "All Characters"
 msgstr "字元數（包含空格）"
 
-#: src/editor-save-changes-dialog.c:255 src/editor-window-actions.c:242
+#: src/editor-save-changes-dialog.c:254 src/editor-window-actions.c:220
 msgid "_Discard"
 msgstr "捨棄(_D)"
 
-#: src/editor-save-changes-dialog.c:255
+#: src/editor-save-changes-dialog.c:254
 msgid "_Discard All"
 msgstr "捨棄全部(_D)"
 
-#: src/editor-save-changes-dialog.c:258
+#: src/editor-save-changes-dialog.c:256
 msgid "Save Changes?"
 msgstr "要儲存更動嗎？"
 
-#: src/editor-save-changes-dialog.c:259
+#: src/editor-save-changes-dialog.c:257
 msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
 msgstr "下列文件含有尚未儲存的更動，若不儲存將永久遺失。"
 
-#: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:116
-#: src/editor-window-actions.c:241
-msgid "_Cancel"
-msgstr "取消(_C)"
-
-#: src/editor-save-changes-dialog.c:265 src/editor-window-actions.c:117
-#: src/editor-window.ui:216
+#: src/editor-save-changes-dialog.c:262 src/editor-window-actions.c:116
+#: src/editor-window.ui:357
 msgid "_Save"
 msgstr "儲存(_S)"
 
-#: src/editor-save-changes-dialog.c:299
+#: src/editor-save-changes-dialog.c:294
 msgid "Untitled Document"
 msgstr "未命名文件"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:302
+#: src/editor-save-changes-dialog.c:297
 #, c-format
 msgid "%s (new)"
 msgstr "%s（新文件）"
 
-#: src/editor-save-changes-dialog.c:323
-msgid "Save changes for this document"
-msgstr "儲存文件更動"
-
-#: src/editor-search-bar.ui:33
+#: src/editor-search-bar.ui:36 src/editor-search-bar.ui:38
 msgid "Replace"
 msgstr "取代為"
 
-#: src/editor-search-bar.ui:51
-msgid "Move to previous match (Ctrl+Shift+G)"
-msgstr "上個尋找結果 (Ctrl+Shift+G)"
+#: src/editor-search-bar.ui:57
+msgid "Previous Match"
+msgstr "上一個符合項目"
 
-#: src/editor-search-bar.ui:59
-msgid "Move to next match (Ctrl+G)"
-msgstr "下個尋找結果 (Ctrl+G)"
+#: src/editor-search-bar.ui:70
+msgid "Next Match"
+msgstr "下一個相符項目"
 
-#: src/editor-search-bar.ui:71
-msgid "Search & Replace (Ctrl+H)"
-msgstr "尋找與取代 (Ctrl+H)"
+#: src/editor-search-bar.ui:86
+msgid "Search & Replace"
+msgstr "尋找與取代"
 
-#: src/editor-search-bar.ui:81
-msgid "Toggle search options"
-msgstr "尋找選項"
+#: src/editor-search-bar.ui:101
+msgid "Search Options"
+msgstr "搜尋選項"
 
-#: src/editor-search-bar.ui:95
-msgid "Close search"
-msgstr "關閉尋找"
+#: src/editor-search-bar.ui:119
+msgid "Close Search"
+msgstr "關閉搜尋"
 
-#: src/editor-search-bar.ui:112
+#: src/editor-search-bar.ui:137
 msgid "_Replace"
 msgstr "取代(_R)"
 
-#: src/editor-search-bar.ui:124
+#: src/editor-search-bar.ui:151
 msgid "Replace _All"
 msgstr "全部取代(_A)"
 
-#: src/editor-search-bar.ui:140
-msgid "Re_gular expressions"
-msgstr "正規表示式(_G)"
+#: src/editor-search-bar.ui:170
+msgid "Re_gular Expressions"
+msgstr "常規表達式(_G)"
 
-#: src/editor-search-bar.ui:146
-msgid "_Case sensitive"
+#: src/editor-search-bar.ui:174
+msgid "_Case Sensitive"
 msgstr "區分大小寫(_C)"
 
-#: src/editor-search-bar.ui:152
-msgid "Match whole _word only"
+#: src/editor-search-bar.ui:178
+msgid "Match Whole _Word Only"
 msgstr "完全符合(_W)"
 
 #. translators: the first %u is replaced with the current position, the second with the number of search results
-#: src/editor-search-entry.c:197
+#: src/editor-search-entry.c:228
 #, c-format
 msgid "%u of %u"
 msgstr "%u / %u"
+
+#: src/editor-search-entry.ui:32
+msgid "Clear Entry"
+msgstr "清除輸入"
 
 #: src/editor-sidebar-row.ui:85
 msgid "Remove"
 msgstr "移除"
 
-#: src/editor-spell-menu.c:248
-msgid "Add to Dictionary"
-msgstr "新增至字典"
-
-#: src/editor-spell-menu.c:249
-msgid "Ignore"
-msgstr "忽略拼寫錯誤"
-
-#: src/editor-spell-menu.c:250
-msgid "Check Spelling"
-msgstr "檢查拼寫"
-
-#: src/editor-spell-menu.c:259
-msgid "Languages"
-msgstr "語言"
-
-#: src/editor-theme-selector.ui:22
+#: src/editor-theme-selector.ui:23
 msgid "Follow System Style"
 msgstr "跟隨系統樣式"
 
-#: src/editor-theme-selector.ui:24
+#: src/editor-theme-selector.ui:25
 msgid "Follow system style"
 msgstr "跟隨系統"
 
-#: src/editor-theme-selector.ui:39
+#: src/editor-theme-selector.ui:40
 msgid "Light Style"
 msgstr "淺色樣式"
 
-#: src/editor-theme-selector.ui:41
+#: src/editor-theme-selector.ui:42
 msgid "Light style"
 msgstr "淺色"
 
-#: src/editor-theme-selector.ui:57
+#: src/editor-theme-selector.ui:58
 msgid "Dark Style"
 msgstr "深色樣式"
 
-#: src/editor-theme-selector.ui:59
+#: src/editor-theme-selector.ui:60
 msgid "Dark style"
 msgstr "深色"
 
-#: src/editor-utils.c:348
+#: src/editor-utils.c:355
 msgid "Just now"
 msgstr "剛剛"
 
-#: src/editor-utils.c:350
+#: src/editor-utils.c:357
 msgid "An hour ago"
 msgstr "1 小時前"
 
-#: src/editor-utils.c:352
+#: src/editor-utils.c:359
 msgid "Yesterday"
 msgstr "昨天"
 
-#: src/editor-utils.c:358
+#: src/editor-utils.c:365
 msgid "About a year ago"
 msgstr "約 1 年前"
 
-#: src/editor-utils.c:362
+#: src/editor-utils.c:369
 #, c-format
 msgid "About %u year ago"
 msgid_plural "About %u years ago"
 msgstr[0] "約 %u 年前"
 
-#: src/editor-utils.c:370
-msgid "Unix/Linux (LF)"
-msgstr "Unix/Linux (LF)"
-
-#: src/editor-utils.c:371
-msgid "Mac OS Classic (CR)"
-msgstr "Mac OS Classic (CR)"
-
-#: src/editor-utils.c:372
-msgid "Windows (CR+LF)"
-msgstr "Windows (CR+LF)"
-
-#: src/editor-utils.c:402
-msgid "Automatically Detected"
-msgstr "自動偵測"
-
-#: src/editor-utils.c:418
-msgid "Character Encoding:"
-msgstr "字元編碼："
-
-#: src/editor-utils.c:453
-msgid "Line Ending:"
-msgstr "換列字元："
-
-#: src/editor-window-actions.c:110
+#: src/editor-window-actions.c:109
 msgid "Saving changes will replace the previously saved version."
 msgstr "儲存更動將取代之前所儲存的版本。"
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:113
+#: src/editor-window-actions.c:112
 #, c-format
 msgid "Save Changes to “%s”?"
 msgstr "要儲存對「%s」所做的更動嗎？"
 
-#: src/editor-window-actions.c:235
+#: src/editor-window-actions.c:213
 msgid "Unsaved changes will be permanently lost."
 msgstr "尚未儲存的更動將永久遺失。"
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:238
+#: src/editor-window-actions.c:216
 #, c-format
 msgid "Discard Changes to “%s”?"
 msgstr "要捨棄對「%s」所做的更動嗎？"
 
-#: src/editor-window-actions.c:348
-msgid "Open File"
-msgstr "開啟檔案"
-
-#: src/editor-window-actions.c:351
-msgid "Open"
-msgstr "開啟"
-
-#: src/editor-window-actions.c:376
+#: src/editor-window-actions.c:380
 msgid "All Files"
 msgstr "所有檔案"
 
-#: src/editor-window-actions.c:381
+#: src/editor-window-actions.c:385
 msgid "Text Files"
 msgstr "文字檔"
 
-#: src/editor-window.c:207
-#, c-format
-msgid "Document Type: %s"
-msgstr "文件類型：%s"
-
-#: src/editor-window.c:507
+#: src/editor-window.c:398
 msgid "Zoom In"
 msgstr "放大"
 
-#: src/editor-window.c:510
+#: src/editor-window.c:401
 msgid "Zoom in"
 msgstr "放大"
 
-#: src/editor-window.c:520
+#: src/editor-window.c:411
 msgid "Zoom Out"
 msgstr "縮小"
 
-#: src/editor-window.c:523
+#: src/editor-window.c:414
 msgid "Zoom out"
 msgstr "縮小"
 
+#: src/editor-window.c:419
+msgid "Reset Zoom"
+msgstr "重設縮放"
+
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:745
+#: src/editor-window.c:657
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s)―文字編輯器"
 
-#: src/editor-window.c:1185
+#: src/editor-window.c:1158
 msgid "There are unsaved documents"
 msgstr "仍有文件尚未儲存"
 
+#: src/editor-window.ui:81
+msgid "Open a Document"
+msgstr "開啟文件"
+
 #: src/editor-window.ui:82
+msgid "Create a new document (Ctrl+N), or open an existing one (Ctrl+O)"
+msgstr "建立新文件 (Ctrl+N)，或開啟既有文件 (Ctrl+O)"
+
+#: src/editor-window.ui:93
+msgid "_New Empty File"
+msgstr "新建空白檔案(_N)"
+
+#: src/editor-window.ui:166
+msgid "Recently Used Documents"
+msgstr "最近使用的文件"
+
+#: src/editor-window.ui:183
 msgid "_Open"
 msgstr "開啟(_O)"
 
-#: src/editor-window.ui:84
-msgid "Recently Used Documents (Ctrl+K)"
-msgstr "最近使用的文件 (Ctrl+K)"
+#: src/editor-window.ui:216
+msgid "New Tab"
+msgstr "新分頁"
 
-#: src/editor-window.ui:96
-msgid "New Tab (Ctrl+T)"
-msgstr "新分頁 (Ctrl+T)"
+#: src/editor-window.ui:221 src/editor-window.ui:394
+msgid "Leave Fullscreen"
+msgstr "離開全螢幕"
 
-#: src/editor-window.ui:98
-msgid "New tab (Ctrl+T)"
-msgstr "新分頁 (Ctrl+T)"
-
-#: src/editor-window.ui:124
-msgid "View Options"
-msgstr "檢視選項"
-
-#: src/editor-window.ui:128
-msgid "View"
-msgstr "檢視"
-
-#: src/editor-window.ui:134
+#: src/editor-window.ui:229
 msgid "Main Menu"
 msgstr "主選單"
 
-#: src/editor-window.ui:138
-msgid "Main menu"
-msgstr "主選單"
+#: src/editor-window.ui:236
+msgid "Document Properties"
+msgstr "文件屬性"
 
-#: src/editor-window.ui:171
-msgid "Start or Open a Document"
-msgstr "新增或開啟文件"
-
-#: src/editor-window.ui:174
-msgid ""
-"• Press the Open button\n"
-"• Press the New tab button\n"
-"• Press Ctrl+N to start a new document\n"
-"• Press Ctrl+O to browse for a document\n"
-"\n"
-"Or, press Ctrl+W to close the window."
-msgstr ""
-"• 按下開啟按鈕\n"
-"• 按下新分頁按鈕\n"
-"• 按下 Ctrl+N 新增文件\n"
-"• 按下 Ctrl+O 瀏覽文件\n"
-"\n"
-"或按下 Ctrl+W 關閉視窗。"
-
-#: src/editor-window.ui:208
+#: src/editor-window.ui:349
 msgid "_New Window"
 msgstr "新視窗(_N)"
 
-#: src/editor-window.ui:228
-msgid "_Discard Changes"
-msgstr "捨棄更動(_D)"
+#: src/editor-window.ui:369
+msgid "_Discard Changes…"
+msgstr "捨棄變更(_D)…"
 
-#: src/editor-window.ui:234
+#: src/editor-window.ui:375
 msgid "_Find/Replace…"
 msgstr "尋找與取代(_F)…"
 
-#: src/editor-window.ui:240
+#: src/editor-window.ui:381
 msgid "_Print…"
 msgstr "列印(_P)…"
 
-#: src/editor-window.ui:246
-msgid "Documen_t Properties"
-msgstr "文件屬性(_T)"
+#: src/editor-window.ui:388
+msgid "Fullscreen"
+msgstr "全螢幕"
 
-#: src/editor-window.ui:252
+#: src/editor-window.ui:402
 msgid "P_references"
 msgstr "偏好設定(_R)"
 
-#: src/editor-window.ui:257
+#: src/editor-window.ui:407
 msgid "_Keyboard Shortcuts"
 msgstr "鍵盤快捷鍵(_K)"
 
-#: src/editor-window.ui:261
-msgid "_Help"
-msgstr "求助(_H)"
-
-#: src/editor-window.ui:265
+#: src/editor-window.ui:411
 msgid "A_bout Text Editor"
 msgstr "關於文字編輯器(_B)"
 
-#: src/editor-window.ui:273
-msgid "Show _Line Numbers"
-msgstr "顯示列號(_L)"
-
-#: src/editor-window.ui:277
-msgid "Show _Right Margin"
-msgstr "顯示右側邊界(_R)"
-
-#: src/editor-window.ui:300
-msgid "_2"
-msgstr "_2"
-
-#: src/editor-window.ui:305
-msgid "_4"
-msgstr "_4"
-
-#: src/editor-window.ui:310
-msgid "_6"
-msgstr "_6"
-
-#: src/editor-window.ui:315
-msgid "_8"
-msgstr "_8"
-
-#: src/editor-window.ui:324
-msgid "T_ext Wrapping"
-msgstr "文字換行(_E)"
-
-#: src/editor-window.ui:328
-msgid "Chec_k Spelling"
-msgstr "檢查拼寫(_K)"
-
-#: src/editor-window.ui:332
-msgid "_Document Type"
-msgstr "文件類型(_D)"
-
-#: src/editor-window.ui:340
+#: src/editor-window.ui:419
 msgid "Move _Left"
 msgstr "向左移動(_L)"
 
-#: src/editor-window.ui:345
+#: src/editor-window.ui:424
 msgid "Move _Right"
 msgstr "向右移動(_R)"
 
-#: src/editor-window.ui:352
+#: src/editor-window.ui:431
 msgid "_Move to New Window"
 msgstr "移動至新視窗(_M)"
 
-#: src/editor-window.ui:359
+#: src/editor-window.ui:438
 msgid "Close _Other Tabs"
 msgstr "關閉其他分頁(_O)"
-
-#: src/enchant/editor-enchant-spell-provider.c:123
-msgid "Enchant 2"
-msgstr "Enchant 2"
 
 #: src/help-overlay.ui:12
 msgctxt "shortcut window"
@@ -1118,203 +1078,336 @@ msgctxt "shortcut window"
 msgid "Close document"
 msgstr "關閉文件"
 
-#: src/help-overlay.ui:129
+#: src/help-overlay.ui:127
+msgctxt "shortcut window"
+msgid "Open document properties"
+msgstr "開啟文件屬性"
+
+#: src/help-overlay.ui:135
 msgctxt "shortcut window"
 msgid "Copy and Paste"
 msgstr "複製與貼上"
 
-#: src/help-overlay.ui:133
+#: src/help-overlay.ui:139
 msgctxt "shortcut window"
 msgid "Copy selected text to clipboard"
 msgstr "將所選的文字複製至剪貼簿"
 
-#: src/help-overlay.ui:139
+#: src/help-overlay.ui:145
 msgctxt "shortcut window"
 msgid "Cut selected text to clipboard"
 msgstr "將所選的文字剪下至剪貼簿"
 
-#: src/help-overlay.ui:145
+#: src/help-overlay.ui:151
 msgctxt "shortcut window"
 msgid "Paste text from clipboard"
 msgstr "將剪貼簿中的文字貼上"
 
-#: src/help-overlay.ui:150
+#: src/help-overlay.ui:156
 msgctxt "shortcut window"
 msgid "Copy all to clipboard"
 msgstr "將全部文字複製至剪貼簿"
 
-#: src/help-overlay.ui:156
+#: src/help-overlay.ui:162
 msgctxt "shortcut window"
 msgid "Copy current line down"
 msgstr "複製目前的列到下一列"
 
-#: src/help-overlay.ui:164
+#: src/help-overlay.ui:170
 msgctxt "shortcut window"
 msgid "Undo and Redo"
 msgstr "還原與重做"
 
-#: src/help-overlay.ui:168
+#: src/help-overlay.ui:174
 msgctxt "shortcut window"
 msgid "Undo previous command"
 msgstr "還原上個動作"
 
-#: src/help-overlay.ui:174
+#: src/help-overlay.ui:180
 msgctxt "shortcut window"
 msgid "Redo previous command"
 msgstr "重做上個動作"
 
-#: src/help-overlay.ui:181
+#: src/help-overlay.ui:187
 msgctxt "shortcut window"
 msgid "Editing"
 msgstr "編輯"
 
-#: src/help-overlay.ui:185
+#: src/help-overlay.ui:191
 msgctxt "shortcut window"
 msgid "Insert emoji into document"
 msgstr "在文件中插入表情圖示"
 
-#: src/help-overlay.ui:191
+#: src/help-overlay.ui:197
 msgctxt "shortcut window"
 msgid "Search within the document"
 msgstr "在文件中尋找"
 
-#: src/help-overlay.ui:197
+#: src/help-overlay.ui:203
 msgctxt "shortcut window"
 msgid "Search and replace within the document"
 msgstr "在文件中尋找與取代"
 
-#: src/help-overlay.ui:203
+#: src/help-overlay.ui:209
 msgctxt "shortcut window"
 msgid "Increment number at cursor"
 msgstr "上加游標處的數字"
 
-#: src/help-overlay.ui:209
+#: src/help-overlay.ui:215
 msgctxt "shortcut window"
 msgid "Decrement number at cursor"
 msgstr "下減游標處的數字"
 
-#: src/help-overlay.ui:215
+#: src/help-overlay.ui:221
 msgctxt "shortcut window"
 msgid "Toggle overwrite"
 msgstr "切換插入模式或取代模式"
 
-#: src/help-overlay.ui:221
+#: src/help-overlay.ui:227
 msgctxt "shortcut window"
 msgid "Toggle visibility of insertion caret"
 msgstr "顯示或隱藏游標"
 
-#: src/help-overlay.ui:228
+#: src/help-overlay.ui:234
 msgctxt "shortcut window"
 msgid "Selections"
 msgstr "選取"
 
-#: src/help-overlay.ui:232
+#: src/help-overlay.ui:238
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "全選"
 
-#: src/help-overlay.ui:238
+#: src/help-overlay.ui:244
 msgctxt "shortcut window"
 msgid "Unselect all"
 msgstr "全不選"
 
-#: src/help-overlay.ui:244
+#: src/help-overlay.ui:250
 msgctxt "shortcut window"
 msgid "Select current line"
 msgstr "選取目前的列"
 
-#: src/help-overlay.ui:251
+#: src/help-overlay.ui:257
 msgctxt "shortcut window"
 msgid "Movements"
 msgstr "移動"
 
-#: src/help-overlay.ui:255
+#: src/help-overlay.ui:261
 msgctxt "shortcut window"
 msgid "Move to beginning of document"
 msgstr "移動至文件開頭"
 
-#: src/help-overlay.ui:261
+#: src/help-overlay.ui:267
 msgctxt "shortcut window"
 msgid "Move to end of document"
 msgstr "移動至文件結尾"
 
-#: src/help-overlay.ui:267
+#: src/help-overlay.ui:273
 msgctxt "shortcut window"
 msgid "Move to start of previous paragraph"
 msgstr "移動至上個段落的開頭"
 
-#: src/help-overlay.ui:273
+#: src/help-overlay.ui:279
 msgctxt "shortcut window"
 msgid "Move to end of next paragraph"
 msgstr "移動至下個段落的結尾"
 
-#: src/help-overlay.ui:279
+#: src/help-overlay.ui:285
 msgctxt "shortcut window"
 msgid "Move current or selected lines up"
 msgstr "上移目前的列或選取的列"
 
-#: src/help-overlay.ui:285
+#: src/help-overlay.ui:291
 msgctxt "shortcut window"
 msgid "Move current or selected lines down"
 msgstr "下移目前的列或選取的列"
 
-#: src/help-overlay.ui:291
+#: src/help-overlay.ui:297
 msgctxt "shortcut window"
 msgid "Go to line"
 msgstr "前往列號"
 
-#: src/help-overlay.ui:298
+#: src/help-overlay.ui:304
 msgctxt "shortcut window"
 msgid "Deletion"
 msgstr "刪除"
 
-#: src/help-overlay.ui:302
+#: src/help-overlay.ui:308
 msgctxt "shortcut window"
 msgid "Delete from cursor to word start"
 msgstr "刪除（從游標處至單詞首字）"
 
-#: src/help-overlay.ui:308
+#: src/help-overlay.ui:314
 msgctxt "shortcut window"
 msgid "Delete from cursor to word end"
 msgstr "刪除（從游標處至單詞末字）"
 
-#: src/help-overlay.ui:314
+#: src/help-overlay.ui:320
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph start"
 msgstr "刪除（從游標處至段落開頭）"
 
-#: src/help-overlay.ui:320
+#: src/help-overlay.ui:326
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph end"
 msgstr "刪除（從游標處至段落結尾）"
 
-#: src/help-overlay.ui:326
+#: src/help-overlay.ui:332
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "刪除目前的列"
 
-#: src/help-overlay.ui:333
+#: src/help-overlay.ui:339
 msgctxt "shortcut window"
 msgid "General"
 msgstr "一般"
 
-#: src/help-overlay.ui:337
+#: src/help-overlay.ui:343
 msgctxt "shortcut window"
 msgid "Show preferences"
 msgstr "顯示偏好設定"
 
-#: src/help-overlay.ui:343
+#: src/help-overlay.ui:349
 msgctxt "shortcut window"
 msgid "Show keyboard shortcuts"
 msgstr "顯示鍵盤快捷鍵"
 
-#: src/help-overlay.ui:349
+#: src/help-overlay.ui:355
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "顯示求助"
 
-#~ msgid "_Line Numbers"
-#~ msgstr "列號(_L)"
+#: src/help-overlay.ui:361
+msgctxt "shortcut window"
+msgid "Toggle text wrapping"
+msgstr "切換文字換行"
+
+#~ msgid "You do not have permission to open the file."
+#~ msgstr "您沒有開啟檔案的許可。"
+
+#~ msgid "Open New Document (Ctrl+O)"
+#~ msgstr "開啟新文件 (Ctrl+O)"
+
+#~ msgid "Save As"
+#~ msgstr "另存新檔"
+
+#~ msgid "Save"
+#~ msgstr "儲存"
+
+#~ msgid "Cancel"
+#~ msgstr "取消"
+
+#~ msgid "2"
+#~ msgstr "2"
+
+#~ msgid "4"
+#~ msgstr "4"
+
+#~ msgid "6"
+#~ msgstr "6"
+
+#~ msgid "8"
+#~ msgstr "8"
+
+#~ msgid "Use Tab Size"
+#~ msgstr "使用 Tab 鍵寬度"
+
+#~ msgid "Right Margin"
+#~ msgstr "右側邊界"
+
+#~ msgid "Select Font"
+#~ msgstr "選擇字型"
+
+#~ msgid "Properties"
+#~ msgstr "屬性"
+
+#~ msgid "Name"
+#~ msgstr "檔案名稱"
+
+#~ msgid "Save changes for this document"
+#~ msgstr "儲存文件更動"
+
+#~ msgid "Move to previous match (Ctrl+Shift+G)"
+#~ msgstr "上個尋找結果 (Ctrl+Shift+G)"
+
+#~ msgid "Move to next match (Ctrl+G)"
+#~ msgstr "下個尋找結果 (Ctrl+G)"
+
+#~ msgid "Toggle search options"
+#~ msgstr "尋找選項"
+
+#~ msgid "Add to Dictionary"
+#~ msgstr "新增至字典"
+
+#~ msgid "Ignore"
+#~ msgstr "忽略拼寫錯誤"
+
+#~ msgid "Languages"
+#~ msgstr "語言"
+
+#~ msgid "Automatically Detected"
+#~ msgstr "自動偵測"
+
+#~ msgid "Line Ending:"
+#~ msgstr "換列字元："
+
+#~ msgid "Open"
+#~ msgstr "開啟"
+
+#~ msgid "Document Type: %s"
+#~ msgstr "文件類型：%s"
+
+#~ msgid "New tab (Ctrl+T)"
+#~ msgstr "新分頁 (Ctrl+T)"
+
+#~ msgid "View"
+#~ msgstr "檢視"
+
+#~ msgid "Main menu"
+#~ msgstr "主選單"
+
+#~ msgid ""
+#~ "• Press the Open button\n"
+#~ "• Press the New tab button\n"
+#~ "• Press Ctrl+N to start a new document\n"
+#~ "• Press Ctrl+O to browse for a document\n"
+#~ "\n"
+#~ "Or, press Ctrl+W to close the window."
+#~ msgstr ""
+#~ "• 按下開啟按鈕\n"
+#~ "• 按下新分頁按鈕\n"
+#~ "• 按下 Ctrl+N 新增文件\n"
+#~ "• 按下 Ctrl+O 瀏覽文件\n"
+#~ "\n"
+#~ "或按下 Ctrl+W 關閉視窗。"
+
+#~ msgid "_Help"
+#~ msgstr "求助(_H)"
+
+#~ msgid "Show _Line Numbers"
+#~ msgstr "顯示列號(_L)"
+
+#~ msgid "_2"
+#~ msgstr "_2"
+
+#~ msgid "_4"
+#~ msgstr "_4"
+
+#~ msgid "_6"
+#~ msgstr "_6"
+
+#~ msgid "_8"
+#~ msgstr "_8"
+
+#~ msgid "T_ext Wrapping"
+#~ msgstr "文字換行(_E)"
+
+#~ msgid "Chec_k Spelling"
+#~ msgstr "檢查拼寫(_K)"
+
+#~ msgid "Enchant 2"
+#~ msgstr "Enchant 2"
 
 #~ msgid "_Right Margin"
 #~ msgstr "右側邊界(_R)"
