@@ -102,6 +102,8 @@ editor_application_restore_cb (GObject      *object,
   g_assert (restore != NULL);
   g_assert (restore->files != NULL);
 
+  editor_session_set_auto_save (session, TRUE);
+
   if (!editor_session_restore_finish (session, result, &error))
     {
       if (!g_error_matches (error, G_IO_ERROR, G_IO_ERROR_NOT_FOUND))
@@ -769,7 +771,6 @@ editor_application_init (EditorApplication *self)
                            self,
                            G_CONNECT_SWAPPED);
 
-  editor_session_set_auto_save (self->session, TRUE);
   if (!g_settings_get_boolean (self->settings, "restore-session"))
     _editor_session_set_restore_pages (self->session, FALSE);
 

@@ -1,9 +1,7 @@
 [Desktop Entry]
 Categories=GNOME;GTK;Utility;TextEditor;
 Keywords=write;notepad;
-# Not activatable because we want to force ourself through the startup
-# options processing for session-state/etc. See #661.
-DBusActivatable=false
+DBusActivatable=true
 Exec=gnome-text-editor %U
 MimeType=text/plain;application/x-zerosize;
 Name=Text Editor
