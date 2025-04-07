@@ -2066,6 +2066,7 @@ editor_document_dup_title (EditorDocument *self)
 
       do
         {
+          GUnicodeScript script;
           gunichar ch;
 
           if (count >= TITLE_MAX_LEN)
@@ -2083,7 +2084,10 @@ editor_document_dup_title (EditorDocument *self)
                 break;
             }
 
-          if (g_unichar_isspace (ch) || !g_unichar_isalnum (ch))
+          script = g_unichar_get_script (ch);
+
+          if (g_unichar_isspace (ch) ||
+              (((script == G_UNICODE_SCRIPT_COMMON) || (script == G_UNICODE_SCRIPT_LATIN)) && !g_unichar_isalnum (ch)))
             {
               if (count > TITLE_LAST_WORD_POS)
                 break;
