@@ -569,7 +569,7 @@ editor_application_command_line (GApplication            *app,
                         files->len,
                         hint);
   else if (g_strcmp0 (hint, "new-window") == 0)
-    editor_session_create_window (self->session);
+    g_action_group_activate_action (G_ACTION_GROUP (app), "new-window", NULL);
   else
     g_application_activate (app);
 
