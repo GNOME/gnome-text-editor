@@ -34,7 +34,7 @@ glib_req_version = '2.80'
 gtk_req_version = '4.17.3'
 adwaita_req_version = '1.6.0'
 gtksourceview_req_version = '5.15.0'
-spelling_req_version = '0.3.0'
+spelling_req_version = '0.4.0'
 
 glib_req = '>= @0@'.format(glib_req_version)
 gtk_req = '>= @0@'.format(gtk_req_version)

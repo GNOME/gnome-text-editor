@@ -25,9 +25,8 @@ You can come back to your work even if you've never saved it to a file.
  * GTK 4.15 or newer
  * GtkSourceView 5.10 or newer
  * Libadwaita 1.6.0 or newer
+ * Libspelling 0.4.0 or newer
  * libeditorconfig for .editorconfig support
- * enchant-2 for spellcheck support
- * icu (for language code ids)
 
 Refer to the [org.gnome.TextEditor.Devel.json](https://gitlab.gnome.org/GNOME/gnome-text-editor/tree/master/org.gnome.TextEditor.Devel.json) Flatpak manifest for additional details.
 
