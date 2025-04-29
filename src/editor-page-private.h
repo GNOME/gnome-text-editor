@@ -63,6 +63,9 @@ struct _EditorPage
   GtkEventController      *vim;
   EditorPositionLabel     *position_label;
 
+  guint                    cached_line;
+  guint                    cached_visual_column;
+
   guint                    queued_hide_position;
 
   guint                    close_requested : 1;
