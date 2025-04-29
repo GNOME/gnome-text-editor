@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor gnome-41\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2025-02-13 01:02+0000\n"
-"PO-Revision-Date: 2025-02-22 22:18+0100\n"
+"POT-Creation-Date: 2025-04-11 02:36+0000\n"
+"PO-Revision-Date: 2025-04-29 09:25+0200\n"
 "Last-Translator: Davide Ferracin <davide.ferracin@protonmail.com>\n"
 "Language-Team: Italian <gnome-it-list@gnome.org>\n"
 "Language: it\n"
@@ -24,20 +24,20 @@ msgstr ""
 msgid "write;notepad;"
 msgstr "scrivere;appunti;"
 
-#: data/org.gnome.TextEditor.desktop.in.in:10
-#: data/org.gnome.TextEditor.desktop.in.in:11
+#: data/org.gnome.TextEditor.desktop.in.in:8
+#: data/org.gnome.TextEditor.desktop.in.in:9
 #: data/org.gnome.TextEditor.metainfo.xml.in.in:10
-#: src/editor-application-actions.c:198 src/editor-window.c:1279
+#: src/editor-application-actions.c:200 src/editor-window.c:1279
 msgid "Text Editor"
 msgstr "Editor di testo"
 
-#: data/org.gnome.TextEditor.desktop.in.in:12
+#: data/org.gnome.TextEditor.desktop.in.in:10
 msgid "View and edit text files"
 msgstr "Visualizza e modifica file di testo"
 
-#: data/org.gnome.TextEditor.desktop.in.in:24
+#: data/org.gnome.TextEditor.desktop.in.in:22
 msgid "New Window"
-msgstr "_Nuova finestra"
+msgstr "Nuova finestra"
 
 #: data/org.gnome.TextEditor.metainfo.xml.in.in:12
 msgid "Edit text files"
@@ -297,70 +297,70 @@ msgstr "Proprietà %s in %s non trovata"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Recupero del valore va_list non riuscito: %s"
 
-#: src/editor-application-actions.c:200
+#: src/editor-application-actions.c:202
 msgid "The GNOME Project"
 msgstr "Il progetto GNOME"
 
-#: src/editor-application-actions.c:213
+#: src/editor-application-actions.c:215
 msgid "translator-credits"
 msgstr "Davide Ferracin <davide.ferracin@protonmail.com>"
 
-#: src/editor-application-actions.c:347
+#: src/editor-application-actions.c:349
 msgid "Clear File History?"
 msgstr "Cancellare la cronologia file?"
 
-#: src/editor-application-actions.c:348
+#: src/editor-application-actions.c:350
 msgid "This action cannot be undone"
 msgstr "Questa azione non può essere annullata"
 
-#: src/editor-application-actions.c:350 src/editor-save-changes-dialog.c:260
+#: src/editor-application-actions.c:352 src/editor-save-changes-dialog.c:260
 #: src/editor-window-actions.c:115 src/editor-window-actions.c:219
 msgid "_Cancel"
 msgstr "_Annulla"
 
-#: src/editor-application-actions.c:351
+#: src/editor-application-actions.c:353
 msgid "_Clear All"
 msgstr "Pulis_ci tutto"
 
-#: src/editor-application.c:525
+#: src/editor-application.c:527
 msgid "Standard input was requested multiple times. Ignoring request."
 msgstr ""
 "Lo standard input è stato richiesto più di una volta. Richiesta ignorata."
 
-#: src/editor-application.c:529
+#: src/editor-application.c:531
 msgid "Standard input is not supported on this platform. Ignoring request."
 msgstr ""
 "Lo standard input non è supportato su questa piattaforma. Richiesta ignorata."
 
-#: src/editor-application.c:632
+#: src/editor-application.c:634
 msgid "Bugs may be reported at:"
 msgstr "I bug possono essere segnalati presso:"
 
-#: src/editor-application.c:634
+#: src/editor-application.c:636
 msgid "[FILES…]"
 msgstr "[FILE…]"
 
-#: src/editor-application.c:748
+#: src/editor-application.c:750
 msgid "Do not restore session at startup"
 msgstr "Non ripristinare la sessione all'avvio"
 
-#: src/editor-application.c:749
+#: src/editor-application.c:751
 msgid "Open provided files in a new window"
 msgstr "Apre i file forniti in una nuova finestra"
 
-#: src/editor-application.c:750
+#: src/editor-application.c:752
 msgid "Run a new instance of Text Editor (implies --ignore-session)"
 msgstr "Lancia una nuova istanza di Editor di testo (implica --ignore-session)"
 
-#: src/editor-application.c:751
+#: src/editor-application.c:753
 msgid "Print version information and exit"
 msgstr "Stampa le informazioni sulla versione ed esce"
 
-#: src/editor-document.c:2245
+#: src/editor-document.c:2255
 msgid "[Read-Only]"
 msgstr "[Sola lettura]"
 
-#: src/editor-document.c:2470 src/editor-page.c:1129
+#: src/editor-document.c:2480 src/editor-page.c:1130
 #: src/editor-sidebar-item.c:510
 msgid "New Document"
 msgstr "Nuovo documento"
@@ -418,7 +418,7 @@ msgstr "Il file sul disco è cambiato"
 msgid "The file has been changed by another program."
 msgstr "Il file è stato modificato da un altro programma."
 
-#: src/editor-info-bar.c:121 src/editor-window.ui:280
+#: src/editor-info-bar.c:121 src/editor-window.ui:363
 msgid "Save _As…"
 msgstr "Sal_va con nome…"
 
@@ -481,7 +481,7 @@ msgstr "Altri tipi di documento"
 msgid "Document Type"
 msgstr "Tipo di documento"
 
-#: src/editor-language-dialog.ui:25 src/editor-search-entry.c:201
+#: src/editor-language-dialog.ui:25 src/editor-search-entry.c:200
 #: src/editor-search-entry.ui:13
 msgid "Search"
 msgstr "Trova"
@@ -515,26 +515,26 @@ msgstr "Apri nuovo documento"
 msgid "No Recent Documents"
 msgstr "Nessun documento recente"
 
-#: src/editor-page.c:1155 src/editor-properties.c:606
+#: src/editor-page.c:1156 src/editor-properties.c:606
 #: src/editor-sidebar-item.c:104
 msgid "Draft"
 msgstr "Bozza"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1167
+#: src/editor-page.c:1168
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (amministratore)"
 
-#: src/editor-page.c:1223
+#: src/editor-page.c:1224
 msgid "Failed to save document"
 msgstr "Salvataggio del documento fallito"
 
-#: src/editor-page.c:1224 src/editor-window.ui:359
+#: src/editor-page.c:1225 src/editor-window.ui:442
 msgid "_Close"
 msgstr "C_hiudi"
 
-#: src/editor-page.c:1493
+#: src/editor-page.c:1494
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Rig %u, Col %u"
@@ -606,28 +606,48 @@ msgid "_Wrap Lines Automatically (Alt+W)"
 msgstr "_A capo automatico (Alt+W)"
 
 #: src/editor-preferences-dialog.ui:145
+msgid "Indentation"
+msgstr "Indentazione"
+
+#: src/editor-preferences-dialog.ui:148 src/editor-properties-panel.ui:106
+msgid "A_uto Indentation"
+msgstr "Ind_entazione automatica"
+
+#: src/editor-preferences-dialog.ui:155 src/editor-properties-panel.ui:113
+msgid "_Character"
+msgstr "_Caratteri"
+
+#: src/editor-preferences-dialog.ui:165 src/editor-properties-panel.ui:124
+msgid "Spaces Per _Tab"
+msgstr "Spazi per _tabulazione"
+
+#: src/editor-preferences-dialog.ui:183 src/editor-properties-panel.ui:136
+msgid "Spaces Per _Indent"
+msgstr "Spazi di _indentazione"
+
+#: src/editor-preferences-dialog.ui:204
 msgid "Behavior"
 msgstr "Comportamento"
 
-#: src/editor-preferences-dialog.ui:148
+#: src/editor-preferences-dialog.ui:207
 msgid "_Discover Document Settings"
 msgstr "Rileva _impostazioni file"
 
-#: src/editor-preferences-dialog.ui:150
+#: src/editor-preferences-dialog.ui:209
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr ""
 "Applica le impostazioni usando modelines, editorconfig, o altre impostazioni "
 "sensate predefinite"
 
-#: src/editor-preferences-dialog.ui:156
+#: src/editor-preferences-dialog.ui:215
 msgid "_Restore Session"
 msgstr "_Ripristina sessione"
 
-#: src/editor-preferences-dialog.ui:158
+#: src/editor-preferences-dialog.ui:217
 msgid "Return to your previous session when Text Editor is started"
 msgstr "Ritorna alla sessione precedente all'avvio di Editor di testo"
 
-#: src/editor-preferences-dialog.ui:170
+#: src/editor-preferences-dialog.ui:229
 msgid "_Clear History"
 msgstr "_Cancella cronologia"
 
@@ -676,22 +696,6 @@ msgstr "_Codifica"
 msgid "_Line Feed"
 msgstr "_Ritorno a capo"
 
-#: src/editor-properties-panel.ui:106
-msgid "A_uto Indentation"
-msgstr "Ind_entazione automatica"
-
-#: src/editor-properties-panel.ui:113
-msgid "_Character"
-msgstr "_Caratteri"
-
-#: src/editor-properties-panel.ui:124
-msgid "Spaces Per _Tab"
-msgstr "Spazi per _tabulazione"
-
-#: src/editor-properties-panel.ui:136
-msgid "Spaces Per _Indent"
-msgstr "Spazi di _indentazione"
-
 #: src/editor-properties-panel.ui:150
 msgid "Statistics"
 msgstr "Statistiche"
@@ -733,7 +737,7 @@ msgstr ""
 "salvate, saranno perse definitivamente."
 
 #: src/editor-save-changes-dialog.c:262 src/editor-window-actions.c:116
-#: src/editor-window.ui:274
+#: src/editor-window.ui:357
 msgid "_Save"
 msgstr "_Salva"
 
@@ -910,87 +914,87 @@ msgstr "%s (%s) - Editor di testo"
 msgid "There are unsaved documents"
 msgstr "Ci sono documenti non salvati"
 
-#: src/editor-window.ui:100
-msgid "_Open"
-msgstr "_Apri"
-
-#: src/editor-window.ui:102
-msgid "Recently Used Documents"
-msgstr "Documenti recenti"
-
-#: src/editor-window.ui:112
-msgid "New Tab"
-msgstr "Nuova scheda"
-
-#: src/editor-window.ui:117 src/editor-window.ui:311
-msgid "Leave Fullscreen"
-msgstr "Esci da schermo intero"
-
-#: src/editor-window.ui:125
-msgid "Main Menu"
-msgstr "Menù principale"
-
-#: src/editor-window.ui:132
-msgid "Document Properties"
-msgstr "Proprietà del documento"
-
-#: src/editor-window.ui:178
+#: src/editor-window.ui:81
 msgid "Open a Document"
 msgstr "Apri documento"
 
-#: src/editor-window.ui:179
+#: src/editor-window.ui:82
 msgid "Create a new document (Ctrl+N), or open an existing one (Ctrl+O)"
 msgstr "Creare un nuovo documento (Ctrl+N) o aprirne uno esistente (Ctrl+O)"
 
-#: src/editor-window.ui:190
+#: src/editor-window.ui:93
 msgid "_New Empty File"
 msgstr "_Nuovo file vuoto"
 
-#: src/editor-window.ui:266
+#: src/editor-window.ui:166
+msgid "Recently Used Documents"
+msgstr "Documenti recenti"
+
+#: src/editor-window.ui:183
+msgid "_Open"
+msgstr "_Apri"
+
+#: src/editor-window.ui:216
+msgid "New Tab"
+msgstr "Nuova scheda"
+
+#: src/editor-window.ui:221 src/editor-window.ui:394
+msgid "Leave Fullscreen"
+msgstr "Esci da schermo intero"
+
+#: src/editor-window.ui:229
+msgid "Main Menu"
+msgstr "Menù principale"
+
+#: src/editor-window.ui:236
+msgid "Document Properties"
+msgstr "Proprietà del documento"
+
+#: src/editor-window.ui:349
 msgid "_New Window"
 msgstr "_Nuova finestra"
 
-#: src/editor-window.ui:286
+#: src/editor-window.ui:369
 msgid "_Discard Changes…"
 msgstr "Sca_rta modifiche…"
 
-#: src/editor-window.ui:292
+#: src/editor-window.ui:375
 msgid "_Find/Replace…"
 msgstr "_Trova e sostituisci…"
 
-#: src/editor-window.ui:298
+#: src/editor-window.ui:381
 msgid "_Print…"
 msgstr "Sta_mpa…"
 
-#: src/editor-window.ui:305
+#: src/editor-window.ui:388
 msgid "Fullscreen"
 msgstr "Schermo intero"
 
-#: src/editor-window.ui:319
+#: src/editor-window.ui:402
 msgid "P_references"
 msgstr "Pre_ferenze"
 
-#: src/editor-window.ui:324
+#: src/editor-window.ui:407
 msgid "_Keyboard Shortcuts"
 msgstr "Sc_orciatoie da tastiera"
 
-#: src/editor-window.ui:328
+#: src/editor-window.ui:411
 msgid "A_bout Text Editor"
 msgstr "_Informazioni su Editor di testo"
 
-#: src/editor-window.ui:336
+#: src/editor-window.ui:419
 msgid "Move _Left"
 msgstr "Sposta a _sinistra"
 
-#: src/editor-window.ui:341
+#: src/editor-window.ui:424
 msgid "Move _Right"
 msgstr "Sposta a _destra"
 
-#: src/editor-window.ui:348
+#: src/editor-window.ui:431
 msgid "_Move to New Window"
 msgstr "Sposta in una nuova _finestra"
 
-#: src/editor-window.ui:355
+#: src/editor-window.ui:438
 msgid "Close _Other Tabs"
 msgstr "Chiudi le alt_re schede"
 
@@ -1310,9 +1314,6 @@ msgstr "Attiva/disattiva il ritorno a capo automatico"
 
 #~ msgid "Cancel"
 #~ msgstr "Annulla"
-
-msgid "Indentation"
-msgstr "Indentazione"
 
 #~ msgid "2"
 #~ msgstr "2"
