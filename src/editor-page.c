@@ -284,16 +284,11 @@ editor_page_document_cursor_moved_cb (EditorPage     *self,
 
   if (!_editor_document_get_loading (document))
     {
-      GtkTextMark *insert = gtk_text_buffer_get_insert (GTK_TEXT_BUFFER (document));
-      GtkTextIter iter;
-
-      g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_POSITION_LABEL]);
-
-      gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (document), &iter, insert);
-
+      editor_page_get_visual_position (self, &self->cached_line, &self->cached_visual_column);
       _editor_position_label_set_position (self->position_label,
-                                           gtk_text_iter_get_line (&iter) + 1,
-                                           gtk_text_iter_get_line_offset (&iter) + 1);
+                                           self->cached_line + 1,
+                                           self->cached_visual_column + 1);
+      g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_POSITION_LABEL]);
     }
 }
 
@@ -1481,17 +1476,14 @@ editor_page_get_visual_position (EditorPage *self,
 gchar *
 editor_page_dup_position_label (EditorPage *self)
 {
-  guint line = 0;
-  guint column = 0;
-
   g_return_val_if_fail (EDITOR_IS_PAGE (self), NULL);
 
   if (_editor_document_get_loading (self->document))
     return NULL;
 
-  editor_page_get_visual_position (self, &line, &column);
-
-  return g_strdup_printf (_("Ln %u, Col %u"), line + 1, column + 1);
+  return g_strdup_printf (_("Ln %u, Col %u"),
+                          self->cached_line + 1,
+                          self->cached_visual_column + 1);
 }
 
 gboolean
