@@ -102,8 +102,6 @@ editor_application_restore_cb (GObject      *object,
   g_assert (restore != NULL);
   g_assert (restore->files != NULL);
 
-  editor_session_set_auto_save (session, TRUE);
-
   if (!editor_session_restore_finish (session, result, &error))
     {
       if (!g_error_matches (error, G_IO_ERROR, G_IO_ERROR_NOT_FOUND))
@@ -152,6 +150,7 @@ editor_application_activate (GApplication *application)
 
   g_application_hold (application);
 
+  editor_session_set_auto_save (self->session, TRUE);
   editor_session_restore_async (self->session,
                                 NULL,
                                 editor_application_restore_cb,
@@ -176,6 +175,8 @@ editor_application_open (GApplication  *application,
   else
     {
       g_application_hold (application);
+
+      editor_session_set_auto_save (self->session, TRUE);
       editor_session_restore_async (self->session,
                                     NULL,
                                     editor_application_restore_cb,
