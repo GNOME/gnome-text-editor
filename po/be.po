@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor gnome-43\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2025-03-05 19:14+0000\n"
-"PO-Revision-Date: 2025-03-07 17:33+0300\n"
+"POT-Creation-Date: 2025-04-30 13:24+0000\n"
+"PO-Revision-Date: 2025-05-02 00:00+0300\n"
 "Last-Translator: Yuras Shumovich <shumovichy@gmail.com>\n"
 "Language-Team: Belarusian <i18n-bel-gnome@googlegroups.com>\n"
 "Language: be\n"
@@ -18,24 +18,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.6\n"
 
 #: data/org.gnome.TextEditor.desktop.in.in:4
 msgid "write;notepad;"
 msgstr "write;notepad;пісаць;запісы;нататкі;нататнік;"
 
-#: data/org.gnome.TextEditor.desktop.in.in:10
-#: data/org.gnome.TextEditor.desktop.in.in:11
+#: data/org.gnome.TextEditor.desktop.in.in:8
+#: data/org.gnome.TextEditor.desktop.in.in:9
 #: data/org.gnome.TextEditor.metainfo.xml.in.in:10
-#: src/editor-application-actions.c:198 src/editor-window.c:1279
+#: src/editor-application-actions.c:200 src/editor-window.c:1279
 msgid "Text Editor"
 msgstr "Тэкставы рэдактар"
 
-#: data/org.gnome.TextEditor.desktop.in.in:12
+#: data/org.gnome.TextEditor.desktop.in.in:10
 msgid "View and edit text files"
 msgstr "Прагляд і рэдагаванне тэкставых файлаў"
 
-#: data/org.gnome.TextEditor.desktop.in.in:24
+#: data/org.gnome.TextEditor.desktop.in.in:22
 msgid "New Window"
 msgstr "Новае акно"
 
@@ -298,71 +298,71 @@ msgstr "Не ўдалося знайсці ўласцівасць %s у %s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Не ўдалося атрымаць значэнне va_list: %s"
 
-#: src/editor-application-actions.c:200
+#: src/editor-application-actions.c:202
 msgid "The GNOME Project"
 msgstr "Праект GNOME"
 
-#: src/editor-application-actions.c:213
+#: src/editor-application-actions.c:215
 msgid "translator-credits"
 msgstr "Юрась Шумовіч <shumovichy@gmail.com>"
 
-#: src/editor-application-actions.c:347
+#: src/editor-application-actions.c:349
 msgid "Clear File History?"
 msgstr "Ачысціць гісторыю файлаў?"
 
-#: src/editor-application-actions.c:348
+#: src/editor-application-actions.c:350
 msgid "This action cannot be undone"
 msgstr "Гэта дзеянне немагчыма скасаваць"
 
-#: src/editor-application-actions.c:350 src/editor-save-changes-dialog.c:260
+#: src/editor-application-actions.c:352 src/editor-save-changes-dialog.c:260
 #: src/editor-window-actions.c:115 src/editor-window-actions.c:219
 msgid "_Cancel"
 msgstr "_Адмена"
 
-#: src/editor-application-actions.c:351
+#: src/editor-application-actions.c:353
 msgid "_Clear All"
 msgstr "Ачысціць _усе"
 
-#: src/editor-application.c:525
+#: src/editor-application.c:528
 msgid "Standard input was requested multiple times. Ignoring request."
 msgstr "Стандартны ўвод быў запытаны некалькі разоў. Запыт ігнаруецца."
 
-#: src/editor-application.c:529
+#: src/editor-application.c:532
 msgid "Standard input is not supported on this platform. Ignoring request."
 msgstr ""
 "Стандартны ўвод не падтрымліваецца на гэтай платформе. Запыт ігнаруецца."
 
-#: src/editor-application.c:632
+#: src/editor-application.c:635
 msgid "Bugs may be reported at:"
 msgstr "Паведамляйце аб памылках на:"
 
-#: src/editor-application.c:634
+#: src/editor-application.c:637
 msgid "[FILES…]"
 msgstr "[ФАЙЛЫ…]"
 
-#: src/editor-application.c:748
+#: src/editor-application.c:751
 msgid "Do not restore session at startup"
 msgstr "Не аднаўляць сеанс пры запуску"
 
-#: src/editor-application.c:749
+#: src/editor-application.c:752
 msgid "Open provided files in a new window"
 msgstr "Адкрыць указаныя файлы ў новым акне"
 
-#: src/editor-application.c:750
+#: src/editor-application.c:753
 msgid "Run a new instance of Text Editor (implies --ignore-session)"
 msgstr ""
 "Запусціць новы экзэмпляр Тэкставага рэдактара (маецца на ўвазе --ignore-"
 "session)"
 
-#: src/editor-application.c:751
+#: src/editor-application.c:754
 msgid "Print version information and exit"
 msgstr "Вывесці звесткі пра версію і выйсці"
 
-#: src/editor-document.c:2245
+#: src/editor-document.c:2255
 msgid "[Read-Only]"
 msgstr "[Толькі чытанне]"
 
-#: src/editor-document.c:2470 src/editor-page.c:1129
+#: src/editor-document.c:2480 src/editor-page.c:1125
 #: src/editor-sidebar-item.c:510
 msgid "New Document"
 msgstr "Новы дакумент"
@@ -420,7 +420,7 @@ msgstr "Файл на дыску быў зменены"
 msgid "The file has been changed by another program."
 msgstr "Файл быў зменены іншай праграмай."
 
-#: src/editor-info-bar.c:121 src/editor-window.ui:323
+#: src/editor-info-bar.c:121 src/editor-window.ui:363
 msgid "Save _As…"
 msgstr "Захаваць _як…"
 
@@ -483,7 +483,7 @@ msgstr "Іншыя тыпы дакументаў"
 msgid "Document Type"
 msgstr "Тып дакумента"
 
-#: src/editor-language-dialog.ui:25 src/editor-search-entry.c:201
+#: src/editor-language-dialog.ui:25 src/editor-search-entry.c:200
 #: src/editor-search-entry.ui:13
 msgid "Search"
 msgstr "Пошук"
@@ -517,26 +517,26 @@ msgstr "Адкрыць новы дакумент"
 msgid "No Recent Documents"
 msgstr "Няма нядаўніх дакументаў"
 
-#: src/editor-page.c:1155 src/editor-properties.c:606
+#: src/editor-page.c:1151 src/editor-properties.c:606
 #: src/editor-sidebar-item.c:104
 msgid "Draft"
 msgstr "Чарнавік"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1167
+#: src/editor-page.c:1163
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (Адміністратар)"
 
-#: src/editor-page.c:1223
+#: src/editor-page.c:1219
 msgid "Failed to save document"
 msgstr "Не ўдалося захаваць дакумент"
 
-#: src/editor-page.c:1224 src/editor-window.ui:402
+#: src/editor-page.c:1220 src/editor-window.ui:442
 msgid "_Close"
 msgstr "_Закрыць"
 
-#: src/editor-page.c:1493
+#: src/editor-page.c:1484
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Рад %u, Слуп %u"
@@ -608,28 +608,48 @@ msgid "_Wrap Lines Automatically (Alt+W)"
 msgstr "_Аўтаматычны перанос радкоў (Alt+W)"
 
 #: src/editor-preferences-dialog.ui:145
+msgid "Indentation"
+msgstr "Водступы"
+
+#: src/editor-preferences-dialog.ui:148 src/editor-properties-panel.ui:106
+msgid "A_uto Indentation"
+msgstr "_Аўтаматычныя водступы"
+
+#: src/editor-preferences-dialog.ui:155 src/editor-properties-panel.ui:113
+msgid "_Character"
+msgstr "_Сімвал"
+
+#: src/editor-preferences-dialog.ui:165 src/editor-properties-panel.ui:124
+msgid "Spaces Per _Tab"
+msgstr "Колькасць прабелаў на _табуляцыю"
+
+#: src/editor-preferences-dialog.ui:183 src/editor-properties-panel.ui:136
+msgid "Spaces Per _Indent"
+msgstr "Колькасць прабелаў на _водступ"
+
+#: src/editor-preferences-dialog.ui:204
 msgid "Behavior"
 msgstr "Паводзіны"
 
-#: src/editor-preferences-dialog.ui:148
+#: src/editor-preferences-dialog.ui:207
 msgid "_Discover Document Settings"
 msgstr "_Вызначаць налады дакумента"
 
-#: src/editor-preferences-dialog.ui:150
+#: src/editor-preferences-dialog.ui:209
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr ""
 "Ужываць налады з дапамогай modellines, editorconfig або разумных "
 "прадвызначаных значэнняў"
 
-#: src/editor-preferences-dialog.ui:156
+#: src/editor-preferences-dialog.ui:215
 msgid "_Restore Session"
 msgstr "_Аднаўляць сеанс"
 
-#: src/editor-preferences-dialog.ui:158
+#: src/editor-preferences-dialog.ui:217
 msgid "Return to your previous session when Text Editor is started"
 msgstr "Узнаўляць ваш папярэдні сеанс пры запуску Тэкставага рэдактара"
 
-#: src/editor-preferences-dialog.ui:170
+#: src/editor-preferences-dialog.ui:229
 msgid "_Clear History"
 msgstr "_Ачысціць гісторыю"
 
@@ -678,22 +698,6 @@ msgstr "_Кадаванне"
 msgid "_Line Feed"
 msgstr "_Сімвал новага радка"
 
-#: src/editor-properties-panel.ui:106
-msgid "A_uto Indentation"
-msgstr "_Аўтаматычныя водступы"
-
-#: src/editor-properties-panel.ui:113
-msgid "_Character"
-msgstr "_Сімвал"
-
-#: src/editor-properties-panel.ui:124
-msgid "Spaces Per _Tab"
-msgstr "Колькасць прабелаў на _табуляцыю"
-
-#: src/editor-properties-panel.ui:136
-msgid "Spaces Per _Indent"
-msgstr "Колькасць прабелаў на _водступ"
-
 #: src/editor-properties-panel.ui:150
 msgid "Statistics"
 msgstr "Статыстыка"
@@ -735,7 +739,7 @@ msgstr ""
 "будуць незваротна страчаны."
 
 #: src/editor-save-changes-dialog.c:262 src/editor-window-actions.c:116
-#: src/editor-window.ui:317
+#: src/editor-window.ui:357
 msgid "_Save"
 msgstr "_Захаваць"
 
@@ -751,7 +755,7 @@ msgstr "%s (новы)"
 
 #: src/editor-search-bar.ui:36 src/editor-search-bar.ui:38
 msgid "Replace"
-msgstr "Замяніць"
+msgstr "Замена"
 
 #: src/editor-search-bar.ui:57
 msgid "Previous Match"
@@ -791,7 +795,7 @@ msgstr "Улічваць _рэгістр"
 
 #: src/editor-search-bar.ui:178
 msgid "Match Whole _Word Only"
-msgstr "Толькі слова _цалкам"
+msgstr "Толькі словы _цалкам"
 
 #. translators: the first %u is replaced with the current position, the second with the number of search results
 #: src/editor-search-entry.c:228
@@ -913,87 +917,87 @@ msgstr "%s (%s) - тэкставы рэдактар"
 msgid "There are unsaved documents"
 msgstr "Маюцца дакументы з незахаванымі зменамі"
 
-#: src/editor-window.ui:105
-msgid "Recently Used Documents"
-msgstr "Нядаўнія дакументы"
-
-#: src/editor-window.ui:122
-msgid "_Open"
-msgstr "_Адкрыць"
-
-#: src/editor-window.ui:155
-msgid "New Tab"
-msgstr "Новая ўкладка"
-
-#: src/editor-window.ui:160 src/editor-window.ui:354
-msgid "Leave Fullscreen"
-msgstr "Выйсці з поўнаэкраннага рэжыму"
-
-#: src/editor-window.ui:168
-msgid "Main Menu"
-msgstr "Галоўнае меню"
-
-#: src/editor-window.ui:175
-msgid "Document Properties"
-msgstr "Уласцівасці дакумента"
-
-#: src/editor-window.ui:221
+#: src/editor-window.ui:81
 msgid "Open a Document"
 msgstr "Адкрыць дакумент"
 
-#: src/editor-window.ui:222
+#: src/editor-window.ui:82
 msgid "Create a new document (Ctrl+N), or open an existing one (Ctrl+O)"
 msgstr "Стварыце новы дакумент (Ctrl+N) або адкрыйце наяўны (Ctrl+O)"
 
-#: src/editor-window.ui:233
+#: src/editor-window.ui:93
 msgid "_New Empty File"
 msgstr "_Новы файл"
 
-#: src/editor-window.ui:309
+#: src/editor-window.ui:166
+msgid "Recently Used Documents"
+msgstr "Нядаўнія дакументы"
+
+#: src/editor-window.ui:183
+msgid "_Open"
+msgstr "_Адкрыць"
+
+#: src/editor-window.ui:216
+msgid "New Tab"
+msgstr "Новая ўкладка"
+
+#: src/editor-window.ui:221 src/editor-window.ui:394
+msgid "Leave Fullscreen"
+msgstr "Выйсці з поўнаэкраннага рэжыму"
+
+#: src/editor-window.ui:229
+msgid "Main Menu"
+msgstr "Галоўнае меню"
+
+#: src/editor-window.ui:236
+msgid "Document Properties"
+msgstr "Уласцівасці дакумента"
+
+#: src/editor-window.ui:349
 msgid "_New Window"
 msgstr "Новае _акно"
 
-#: src/editor-window.ui:329
+#: src/editor-window.ui:369
 msgid "_Discard Changes…"
 msgstr "_Скасаваць змены…"
 
-#: src/editor-window.ui:335
+#: src/editor-window.ui:375
 msgid "_Find/Replace…"
-msgstr "_Знайсці або замяніць…"
+msgstr "_Пошук і замена…"
 
-#: src/editor-window.ui:341
+#: src/editor-window.ui:381
 msgid "_Print…"
 msgstr "_Друк…"
 
-#: src/editor-window.ui:348
+#: src/editor-window.ui:388
 msgid "Fullscreen"
 msgstr "Поўнаэкранны рэжым"
 
-#: src/editor-window.ui:362
+#: src/editor-window.ui:402
 msgid "P_references"
 msgstr "_Налады"
 
-#: src/editor-window.ui:367
+#: src/editor-window.ui:407
 msgid "_Keyboard Shortcuts"
 msgstr "_Спалучэнні клавіш"
 
-#: src/editor-window.ui:371
+#: src/editor-window.ui:411
 msgid "A_bout Text Editor"
 msgstr "Пр_а Тэкставы рэдактар"
 
-#: src/editor-window.ui:379
+#: src/editor-window.ui:419
 msgid "Move _Left"
 msgstr "Перамясціць у_лева"
 
-#: src/editor-window.ui:384
+#: src/editor-window.ui:424
 msgid "Move _Right"
 msgstr "_Перамясціць управа"
 
-#: src/editor-window.ui:391
+#: src/editor-window.ui:431
 msgid "_Move to New Window"
 msgstr "Перамясціць у новае _акно"
 
-#: src/editor-window.ui:398
+#: src/editor-window.ui:438
 msgid "Close _Other Tabs"
 msgstr "Закрыць _усе іншыя ўкладкі"
 
@@ -1110,12 +1114,12 @@ msgstr "Капіяванне і ўстаўка"
 #: src/help-overlay.ui:139
 msgctxt "shortcut window"
 msgid "Copy selected text to clipboard"
-msgstr "Капіяваць выбраны тэкст у буфер абмену"
+msgstr "Скапіраваць вылучаны тэкст у буфер абмену"
 
 #: src/help-overlay.ui:145
 msgctxt "shortcut window"
 msgid "Cut selected text to clipboard"
-msgstr "Выразаць выбраны тэкст у буфер абмену"
+msgstr "Выразаць вылучаны тэкст у буфер абмену"
 
 #: src/help-overlay.ui:151
 msgctxt "shortcut window"
@@ -1125,7 +1129,7 @@ msgstr "Уставіць тэкст з буфера абмену"
 #: src/help-overlay.ui:156
 msgctxt "shortcut window"
 msgid "Copy all to clipboard"
-msgstr "Скапіяваць усё буфер абмену"
+msgstr "Скапіяваць усё ў буфер абмену"
 
 #: src/help-overlay.ui:162
 msgctxt "shortcut window"
@@ -1245,7 +1249,7 @@ msgstr "Перамясціць бягучы радок або вылучаныя
 #: src/help-overlay.ui:297
 msgctxt "shortcut window"
 msgid "Go to line"
-msgstr "Перайсці на радок"
+msgstr "Перайсці да радка"
 
 #: src/help-overlay.ui:304
 msgctxt "shortcut window"
@@ -1313,9 +1317,6 @@ msgstr "Уключыць або выключыць перанос радкоў"
 
 #~ msgid "Cancel"
 #~ msgstr "Адмена"
-
-msgid "Indentation"
-msgstr "Водступы"
 
 #~ msgid "2"
 #~ msgstr "2"
