@@ -1,20 +1,20 @@
 # Japanese translation for gnome-text-editor.
-# Copyright (C) 2022-2023 gnome-text-editor's COPYRIGHT HOLDER
+# Copyright (C) 2022-2023, 2025 gnome-text-editor's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-text-editor package.
 # sujiniku <sujinikusityuu@gmail.com>, 2022.
 # sicklylife <translation@sicklylife.jp>, 2022.
 # 小山田 純 <oyamadajun@outlook.jp>, 2022-2023.
 # Seiji Iizuka <seiji@iizuka.dev>, 2025.
-# Takayuki Kusano <gnome-l10n@tkusano.jp>, 2025.
+# Kusano Takayuki <https://bsky.app/profile/tkusano.jp>, 2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2025-04-21 12:23+0000\n"
-"PO-Revision-Date: 2025-04-27 02:46+0900\n"
-"Last-Translator: Seiji Iizuka <seiji@iizuka.dev>\n"
+"POT-Creation-Date: 2025-05-10 18:24+0000\n"
+"PO-Revision-Date: 2025-05-11 11:51+0900\n"
+"Last-Translator: Kusano Takayuki <https://bsky.app/profile/tkusano.jp>\n"
 "Language-Team: Japanese <https://l10n.gnome.org/teams/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -60,85 +60,87 @@ msgstr "自動保存する間隔"
 
 #: data/org.gnome.TextEditor.gschema.xml:17
 msgid "The delay in seconds to wait before auto-saving a draft."
-msgstr ""
+msgstr "下書きを自動保存するまでの秒数。"
 
 #: data/org.gnome.TextEditor.gschema.xml:26
 msgid "Style Variant"
-msgstr ""
+msgstr "スタイルのバリエーション"
 
 #: data/org.gnome.TextEditor.gschema.xml:27
 msgid ""
 "Use the light or dark variant of the GTK theme and/or GtkSourceView style "
 "scheme."
 msgstr ""
+"GTKテーマやGtkSourceViewスタイルスキームの明るいバリエーションまたは暗いバリ"
+"エーションを使用します。"
 
 #: data/org.gnome.TextEditor.gschema.xml:35
 msgid "Indentation Style"
-msgstr ""
+msgstr "インデントスタイル"
 
 #: data/org.gnome.TextEditor.gschema.xml:36
 msgid ""
 "Whether the editor should insert multiple spaces characters instead of tabs."
-msgstr ""
+msgstr "タブの代わりに複数のスペース文字を挿入するかどうか。"
 
 #: data/org.gnome.TextEditor.gschema.xml:40
 msgid "Auto Indent"
-msgstr ""
+msgstr "自動インデント"
 
 #: data/org.gnome.TextEditor.gschema.xml:41
 msgid "Automatically indent new lines copying the previous line's indentation."
-msgstr ""
+msgstr "前の行のインデントをコピーして新しい行を自動的にインデントする。"
 
 #: data/org.gnome.TextEditor.gschema.xml:46
 msgid "Tab Width"
-msgstr ""
+msgstr "タブの幅"
 
 #: data/org.gnome.TextEditor.gschema.xml:47
 msgid "The number of spaces represented by a tab."
-msgstr ""
+msgstr "タブが表すスペースの数。"
 
 #: data/org.gnome.TextEditor.gschema.xml:52
 msgid "Indent Width"
-msgstr ""
+msgstr "インデントの幅"
 
 #: data/org.gnome.TextEditor.gschema.xml:53
 msgid "The number of spaces to indent or -1 to use tab-width."
-msgstr ""
+msgstr "インデントするスペースの数。-1 の場合はタブ幅を使用。"
 
 #: data/org.gnome.TextEditor.gschema.xml:57
 msgid "Show Line Numbers"
-msgstr ""
+msgstr "行番号を表示"
 
 #: data/org.gnome.TextEditor.gschema.xml:58
 msgid "Whether line numbers should be displayed next to each line."
-msgstr ""
+msgstr "各行の横に行番号を表示するかどうか。"
 
 #: data/org.gnome.TextEditor.gschema.xml:62
 msgid "Show Right Margin"
-msgstr ""
+msgstr "右マージンを表示"
 
 #: data/org.gnome.TextEditor.gschema.xml:63
 msgid "Whether a margin line should be displayed on the right of the editor."
-msgstr ""
+msgstr "エディターの右側にマージンを表示するかどうか。"
 
 #: data/org.gnome.TextEditor.gschema.xml:68
 msgid "Right Margin Position"
-msgstr ""
+msgstr "右マージンの位置"
 
 #: data/org.gnome.TextEditor.gschema.xml:69
 msgid ""
 "The position in characters at which the right margin should be displayed."
-msgstr ""
+msgstr "右マージンを表示する位置 (文字数)"
 
 #: data/org.gnome.TextEditor.gschema.xml:73
 msgid "Show Overview Map"
-msgstr ""
+msgstr "ミニマップを表示"
 
 #: data/org.gnome.TextEditor.gschema.xml:74
 msgid ""
 "If enabled, an overview map of the file will be displayed to the side of the "
 "editor."
-msgstr ""
+msgstr "有効にすると、エディターの横にファイルのミニマップが表示されます。"
 
 #: data/org.gnome.TextEditor.gschema.xml:78
 msgid "Show Background Grid"
@@ -147,6 +149,7 @@ msgstr "背景にマス目を表示する"
 #: data/org.gnome.TextEditor.gschema.xml:79
 msgid "If enabled, a blueprint style grid is printed on the editor background."
 msgstr ""
+"有効にすると、エディターの背景に青写真スタイルのグリッドが印刷されます。"
 
 #: data/org.gnome.TextEditor.gschema.xml:83
 msgid "Highlight current line"
@@ -154,15 +157,15 @@ msgstr "現在行を強調表示する"
 
 #: data/org.gnome.TextEditor.gschema.xml:84
 msgid "If enabled, the current line will be highlighted."
-msgstr ""
+msgstr "有効にすると、現在行が強調表示されます。"
 
 #: data/org.gnome.TextEditor.gschema.xml:88
 msgid "Text Wrapping"
-msgstr "テキストを折り返す"
+msgstr "テキストの折り返し"
 
 #: data/org.gnome.TextEditor.gschema.xml:89
 msgid "Whether text should be wrapped."
-msgstr ""
+msgstr "テキストを折り返すかどうか。"
 
 #: data/org.gnome.TextEditor.gschema.xml:93
 msgid "Use System Font"
@@ -170,7 +173,7 @@ msgstr "システムフォントを使用する"
 
 #: data/org.gnome.TextEditor.gschema.xml:94
 msgid "Whether the default system monospace font should be used."
-msgstr ""
+msgstr "デフォルトのシステム等幅フォントを使用するかどうか。"
 
 #: data/org.gnome.TextEditor.gschema.xml:98
 msgid "Custom Font"
@@ -178,111 +181,116 @@ msgstr "カスタムフォント"
 
 #: data/org.gnome.TextEditor.gschema.xml:99
 msgid "A custom font to use in the editor."
-msgstr ""
+msgstr "エディターで使用するカスタムフォント。"
 
 #: data/org.gnome.TextEditor.gschema.xml:103
 msgid "Style Scheme"
-msgstr ""
+msgstr "スタイルスキーム"
 
 #: data/org.gnome.TextEditor.gschema.xml:104
 msgid ""
 "The style scheme to use by the editor. It may translate this into a dark "
 "format when available."
 msgstr ""
+"エディターで使用するスタイルスキーム。利用可能な場合は、ダークフォーマットに"
+"変換されることがあります。"
 
 #: data/org.gnome.TextEditor.gschema.xml:108
 msgid "Discover File Settings"
-msgstr ""
+msgstr "ファイルの設定を検出"
 
 #: data/org.gnome.TextEditor.gschema.xml:109
 msgid ""
 "If enabled, then Text Editor will try to discover file settings from "
 "modelines, editorconfig, or per-language defaults."
 msgstr ""
+"有効にすると、テキストエディターは modelines、editorconfig、または言語ごとの"
+"デフォルトからファイル設定を検出します。"
 
 #: data/org.gnome.TextEditor.gschema.xml:113
 msgid "Automatically check spelling"
-msgstr ""
+msgstr "自動的にスペルチェック"
 
 #: data/org.gnome.TextEditor.gschema.xml:114
 msgid "If enabled, then Text Editor will check spelling as you type."
-msgstr ""
+msgstr "有効にすると、テキストエディターは入力中にスペルをチェックします。"
 
 #: data/org.gnome.TextEditor.gschema.xml:118
 msgid "Restore session"
-msgstr ""
+msgstr "セッションを復元"
 
 #: data/org.gnome.TextEditor.gschema.xml:119
 msgid "When Text Editor is running, restore the previous session."
-msgstr ""
+msgstr "テキストエディターが実行中の時、前のセッションを復元します。"
 
 #: data/org.gnome.TextEditor.gschema.xml:123
 msgid "Recolor Window"
-msgstr ""
+msgstr "ウィンドウの色を変更"
 
 #: data/org.gnome.TextEditor.gschema.xml:124
 msgid "Use the style-scheme to recolor the application window."
-msgstr ""
+msgstr "アプリのウィンドウの色をスタイルスキームで変更します。"
 
 #: data/org.gnome.TextEditor.gschema.xml:132
 msgid "Keybindings"
-msgstr ""
+msgstr "キーバインディング"
 
 #: data/org.gnome.TextEditor.gschema.xml:133
 msgid "The keybindings to use within Text Editor."
-msgstr ""
+msgstr "テキストエディターで使用するキーバインディング。"
 
 #: data/org.gnome.TextEditor.gschema.xml:137
 msgid "Last Save Directory"
-msgstr ""
+msgstr "最後に保存したディレクトリ"
 
 #: data/org.gnome.TextEditor.gschema.xml:138
 msgid "The directory last used in a save or save-as dialog."
-msgstr ""
+msgstr "保存または名前を付けて保存ダイアログで最後に使用したディレクトリ。"
 
 #: data/org.gnome.TextEditor.gschema.xml:142
 msgid "Draw Spaces"
-msgstr ""
+msgstr "空白の描画"
 
 #: data/org.gnome.TextEditor.gschema.xml:143
 msgid "The various types of spaces to draw in the editor."
-msgstr ""
+msgstr "エディターで描画する様々な種類の空白。"
 
 #: data/org.gnome.TextEditor.gschema.xml:147
 msgid "Enable Snippets"
-msgstr ""
+msgstr "スニペットを有効にする"
 
 #: data/org.gnome.TextEditor.gschema.xml:148
 msgid ""
 "Enable the use of snippets registered with GtkSourceView from within the "
 "editor."
 msgstr ""
+"エディター内で GtkSourceView に登録されたスニペットを使用できるようにします。"
 
 #: data/org.gnome.TextEditor.gschema.xml:153
 msgid "Line Height"
-msgstr ""
+msgstr "行の高さ"
 
 #: data/org.gnome.TextEditor.gschema.xml:154
 msgid "The line height to use for the selected font."
-msgstr ""
+msgstr "選択したフォントの行の高さ。"
 
 #: data/org.gnome.TextEditor.gschema.xml:158
 msgid "Highlight Matching Brackets"
-msgstr ""
+msgstr "対応する括弧の強調表示"
 
 #: data/org.gnome.TextEditor.gschema.xml:159
 msgid "Highlight matching brackets and braces."
-msgstr ""
+msgstr "対応する括弧と波括弧を強調表示します。"
 
 #: src/editor-animation.c:1038
 #, c-format
 msgid "Failed to find property %s in %s"
-msgstr ""
+msgstr "プロパティ %s が %s に見つかりませんでした"
 
 #: src/editor-animation.c:1047
 #, c-format
 msgid "Failed to retrieve va_list value: %s"
-msgstr ""
+msgstr "va_list 値を取得できませんでした: %s"
 
 #: src/editor-application-actions.c:202
 msgid "The GNOME Project"
@@ -295,7 +303,8 @@ msgstr ""
 "sujiniku <sujinikusityuu@gmail.com>\n"
 "小山田 純 <oyamadajun@outlook.jp>\n"
 "Seiji Iizuka <seiji@iizuka.dev>\n"
-"Takayuki Kusano <gnome-l10n@tkusano.jp>"
+"Takayuki Kusano https://bsky.app/profile/tkusano.jp\n"
+"Japanese Translation Team https://l10n.gnome.org/teams/ja/"
 
 #: src/editor-application-actions.c:349
 msgid "Clear File History?"
@@ -303,7 +312,7 @@ msgstr "履歴を消去"
 
 #: src/editor-application-actions.c:350
 msgid "This action cannot be undone"
-msgstr ""
+msgstr "この操作は元に戻せません"
 
 #: src/editor-application-actions.c:352 src/editor-save-changes-dialog.c:260
 #: src/editor-window-actions.c:115 src/editor-window-actions.c:219
@@ -314,45 +323,45 @@ msgstr "キャンセル(_C)"
 msgid "_Clear All"
 msgstr "すべてクリア(_C)"
 
-#: src/editor-application.c:527
+#: src/editor-application.c:528
 msgid "Standard input was requested multiple times. Ignoring request."
 msgstr "標準入力が複数回、要求されました。要求を無視しています。"
 
-#: src/editor-application.c:531
+#: src/editor-application.c:532
 msgid "Standard input is not supported on this platform. Ignoring request."
 msgstr ""
 "このプラットフォームでは、標準入力がサポートされていません。要求を無視してい"
 "ます。"
 
-#: src/editor-application.c:634
+#: src/editor-application.c:635
 msgid "Bugs may be reported at:"
-msgstr ""
+msgstr "バグは次の場所に報告できます:"
 
-#: src/editor-application.c:636
+#: src/editor-application.c:637
 msgid "[FILES…]"
-msgstr ""
+msgstr "[ファイル…]"
 
-#: src/editor-application.c:750
+#: src/editor-application.c:751
 msgid "Do not restore session at startup"
 msgstr "起動時にセッションを復元しない"
 
-#: src/editor-application.c:751
+#: src/editor-application.c:752
 msgid "Open provided files in a new window"
 msgstr "指定したファイルを新しいウィンドウで開く"
 
-#: src/editor-application.c:752
-msgid "Run a new instance of Text Editor (implies --ignore-session)"
-msgstr ""
-
 #: src/editor-application.c:753
+msgid "Run a new instance of Text Editor (implies --ignore-session)"
+msgstr "テキストエディターの新しいインスタンスを実行 (--ignore-session を含む)"
+
+#: src/editor-application.c:754
 msgid "Print version information and exit"
-msgstr ""
+msgstr "バージョン情報を表示して終了"
 
 #: src/editor-document.c:2255
 msgid "[Read-Only]"
 msgstr "[読み取り専用]"
 
-#: src/editor-document.c:2480 src/editor-page.c:1130
+#: src/editor-document.c:2480 src/editor-page.c:1125
 #: src/editor-sidebar-item.c:510
 msgid "New Document"
 msgstr "新しい文書"
@@ -362,9 +371,8 @@ msgid "Change Encoding"
 msgstr "文字エンコーディング"
 
 #: src/editor-encoding-dialog.ui:22
-#, fuzzy
 msgid "Search encodings"
-msgstr "文字エンコーディング:"
+msgstr "エンコーディングを検索"
 
 #: src/editor-encoding-dialog.ui:58 src/editor-language-dialog.ui:75
 msgid "No Results Found"
@@ -372,7 +380,7 @@ msgstr "見つかりませんでした"
 
 #: src/editor-encoding-dialog.ui:59 src/editor-language-dialog.ui:76
 msgid "Try a different search"
-msgstr ""
+msgstr "他の検索を試す"
 
 #: src/editor-file-manager.c:99
 msgid "File path is NULL"
@@ -453,21 +461,22 @@ msgstr "管理者として開く(_A)"
 
 #: src/editor-info-bar.ui:116
 msgid "Invalid Characters Detected"
-msgstr ""
+msgstr "無効な文字が検出されました"
 
 #: src/editor-info-bar.ui:127
 msgid ""
 "There was an encoding conversion error so a fallback character was used."
 msgstr ""
+"エンコーディング変換エラーが発生したため、フォールバック文字が使用されまし"
+"た。"
 
 #: src/editor-info-bar.ui:136
 msgid "Change _Encoding…"
 msgstr "文字エンコーディング(_E)…"
 
 #: src/editor-language-dialog.c:248
-#, fuzzy
 msgid "Other Document Types"
-msgstr "文書の種類"
+msgstr "他の文書の種類"
 
 #: src/editor-language-dialog.ui:6
 msgid "Document Type"
@@ -507,26 +516,26 @@ msgstr "新しい文書を開く"
 msgid "No Recent Documents"
 msgstr "最近開いた文書はありません"
 
-#: src/editor-page.c:1156 src/editor-properties.c:606
+#: src/editor-page.c:1151 src/editor-properties.c:606
 #: src/editor-sidebar-item.c:104
 msgid "Draft"
 msgstr "下書き"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1168
+#: src/editor-page.c:1163
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (管理者)"
 
-#: src/editor-page.c:1224
+#: src/editor-page.c:1219
 msgid "Failed to save document"
 msgstr "文書の保存に失敗しました"
 
-#: src/editor-page.c:1225 src/editor-window.ui:442
+#: src/editor-page.c:1220 src/editor-window.ui:442
 msgid "_Close"
 msgstr "閉じる(_C)"
 
-#: src/editor-page.c:1494
+#: src/editor-page.c:1484
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "%u 行、%u 列"
@@ -909,11 +918,11 @@ msgstr "文書を開く"
 
 #: src/editor-window.ui:82
 msgid "Create a new document (Ctrl+N), or open an existing one (Ctrl+O)"
-msgstr ""
+msgstr "新規文書を作成 (Ctrl+N) するか、既存の文書を開く (Ctrl+O)"
 
 #: src/editor-window.ui:93
 msgid "_New Empty File"
-msgstr ""
+msgstr "新しい空のファイル(_N)"
 
 #: src/editor-window.ui:166
 msgid "Recently Used Documents"
@@ -1000,32 +1009,32 @@ msgstr "新しいウィンドウ"
 #: src/help-overlay.ui:21
 msgctxt "shortcut window"
 msgid "Move document to new window"
-msgstr "文書を新しいウィンドウへ移動する"
+msgstr "文書を新しいウィンドウへ移動"
 
 #: src/help-overlay.ui:28
 msgctxt "shortcut window"
 msgid "Move to next tab"
-msgstr "次のタブへ移動する"
+msgstr "次のタブへ移動"
 
 #: src/help-overlay.ui:34
 msgctxt "shortcut window"
 msgid "Move to previous tab"
-msgstr "前のタブへ移動する"
+msgstr "前のタブへ移動"
 
 #: src/help-overlay.ui:40
 msgctxt "shortcut window"
 msgid "Reorder after next tab"
-msgstr "次のタブと位置を入れ替える"
+msgstr "次のタブと位置を入れ替え"
 
 #: src/help-overlay.ui:46
 msgctxt "shortcut window"
 msgid "Reorder before previous tab"
-msgstr "前のタブと位置を入れ替える"
+msgstr "前のタブと位置を入れ替え"
 
 #: src/help-overlay.ui:52
 msgctxt "shortcut window"
 msgid "Restore previously closed tab"
-msgstr "以前に閉じたタブを復元する"
+msgstr "以前に閉じたタブを復元"
 
 #: src/help-overlay.ui:59
 msgctxt "shortcut window"
@@ -1035,12 +1044,12 @@ msgstr "ズーム"
 #: src/help-overlay.ui:63
 msgctxt "shortcut window"
 msgid "Zoom In"
-msgstr "拡大する"
+msgstr "拡大"
 
 #: src/help-overlay.ui:69
 msgctxt "shortcut window"
 msgid "Zoom Out"
-msgstr "縮小する"
+msgstr "縮小"
 
 #: src/help-overlay.ui:75
 msgctxt "shortcut window"
@@ -1065,17 +1074,17 @@ msgstr "文書を開く"
 #: src/help-overlay.ui:97
 msgctxt "shortcut window"
 msgid "Find document by name"
-msgstr "文書名を検索する"
+msgstr "文書名を検索"
 
 #: src/help-overlay.ui:103
 msgctxt "shortcut window"
 msgid "Save"
-msgstr "保存する"
+msgstr "保存"
 
 #: src/help-overlay.ui:109
 msgctxt "shortcut window"
 msgid "Save As"
-msgstr "名前を付けて保存する"
+msgstr "名前を付けて保存"
 
 #: src/help-overlay.ui:115
 msgctxt "shortcut window"
@@ -1100,7 +1109,7 @@ msgstr "コピー/貼り付け"
 #: src/help-overlay.ui:139
 msgctxt "shortcut window"
 msgid "Copy selected text to clipboard"
-msgstr "選択文字列をクリップボードにコピーする"
+msgstr "選択文字列をクリップボードにコピー"
 
 #: src/help-overlay.ui:145
 msgctxt "shortcut window"
@@ -1110,17 +1119,17 @@ msgstr "選択文字列をクリップボードに切り取る"
 #: src/help-overlay.ui:151
 msgctxt "shortcut window"
 msgid "Paste text from clipboard"
-msgstr "クリップボードから文字列を貼り付ける"
+msgstr "クリップボードから文字列を貼り付け"
 
 #: src/help-overlay.ui:156
 msgctxt "shortcut window"
 msgid "Copy all to clipboard"
-msgstr "すべてクリップボードにコピーする"
+msgstr "すべてクリップボードにコピー"
 
 #: src/help-overlay.ui:162
 msgctxt "shortcut window"
 msgid "Copy current line down"
-msgstr "現在行を下の行へコピーする"
+msgstr "現在行を下の行へコピー"
 
 #: src/help-overlay.ui:170
 msgctxt "shortcut window"
@@ -1145,37 +1154,37 @@ msgstr "編集"
 #: src/help-overlay.ui:191
 msgctxt "shortcut window"
 msgid "Insert emoji into document"
-msgstr "文書に絵文字を挿入する"
+msgstr "文書に絵文字を挿入"
 
 #: src/help-overlay.ui:197
 msgctxt "shortcut window"
 msgid "Search within the document"
-msgstr "文書内を検索する"
+msgstr "文書内を検索"
 
 #: src/help-overlay.ui:203
 msgctxt "shortcut window"
 msgid "Search and replace within the document"
-msgstr "文書内を検索して置換する"
+msgstr "文書内を検索して置換"
 
 #: src/help-overlay.ui:209
 msgctxt "shortcut window"
 msgid "Increment number at cursor"
-msgstr "カーソル位置の数値をインクリメント (+1) する"
+msgstr "カーソル位置の数値をインクリメント (+1)"
 
 #: src/help-overlay.ui:215
 msgctxt "shortcut window"
 msgid "Decrement number at cursor"
-msgstr "カーソル位置の数値をデクリメント (-1) する"
+msgstr "カーソル位置の数値をデクリメント (-1) "
 
 #: src/help-overlay.ui:221
 msgctxt "shortcut window"
 msgid "Toggle overwrite"
-msgstr "上書きモードを切り替える"
+msgstr "上書きモードを切り替え"
 
 #: src/help-overlay.ui:227
 msgctxt "shortcut window"
 msgid "Toggle visibility of insertion caret"
-msgstr "挿入キャレットの表示/非表示を切り替える"
+msgstr "挿入キャレットの表示/非表示を切り替え"
 
 #: src/help-overlay.ui:234
 msgctxt "shortcut window"
@@ -1185,17 +1194,17 @@ msgstr "選択"
 #: src/help-overlay.ui:238
 msgctxt "shortcut window"
 msgid "Select all"
-msgstr "すべて選択する"
+msgstr "すべて選択"
 
 #: src/help-overlay.ui:244
 msgctxt "shortcut window"
 msgid "Unselect all"
-msgstr "すべて選択解除する"
+msgstr "すべて選択解除"
 
 #: src/help-overlay.ui:250
 msgctxt "shortcut window"
 msgid "Select current line"
-msgstr "現在行を選択する"
+msgstr "現在行を選択"
 
 #: src/help-overlay.ui:257
 msgctxt "shortcut window"
@@ -1205,37 +1214,37 @@ msgstr "移動"
 #: src/help-overlay.ui:261
 msgctxt "shortcut window"
 msgid "Move to beginning of document"
-msgstr "文書の先頭へ移動する"
+msgstr "文書の先頭へ移動"
 
 #: src/help-overlay.ui:267
 msgctxt "shortcut window"
 msgid "Move to end of document"
-msgstr "文書の末尾へ移動する"
+msgstr "文書の末尾へ移動"
 
 #: src/help-overlay.ui:273
 msgctxt "shortcut window"
 msgid "Move to start of previous paragraph"
-msgstr "前の段落の先頭へ移動する"
+msgstr "前の段落の先頭へ移動"
 
 #: src/help-overlay.ui:279
 msgctxt "shortcut window"
 msgid "Move to end of next paragraph"
-msgstr "次の段落の末尾へ移動する"
+msgstr "次の段落の末尾へ移動"
 
 #: src/help-overlay.ui:285
 msgctxt "shortcut window"
 msgid "Move current or selected lines up"
-msgstr "現在行または選択行を上へ移動する"
+msgstr "現在行または選択行を上へ移動"
 
 #: src/help-overlay.ui:291
 msgctxt "shortcut window"
 msgid "Move current or selected lines down"
-msgstr "現在行または選択行を下へ移動する"
+msgstr "現在行または選択行を下へ移動"
 
 #: src/help-overlay.ui:297
 msgctxt "shortcut window"
 msgid "Go to line"
-msgstr "指定行へ移動する"
+msgstr "指定行へ移動"
 
 #: src/help-overlay.ui:304
 msgctxt "shortcut window"
@@ -1245,27 +1254,27 @@ msgstr "削除"
 #: src/help-overlay.ui:308
 msgctxt "shortcut window"
 msgid "Delete from cursor to word start"
-msgstr "カーソル位置から単語の最初の文字まで削除する"
+msgstr "カーソル位置から単語の最初の文字まで削除"
 
 #: src/help-overlay.ui:314
 msgctxt "shortcut window"
 msgid "Delete from cursor to word end"
-msgstr "カーソル位置から単語の最後の文字まで削除する"
+msgstr "カーソル位置から単語の最後の文字まで削除"
 
 #: src/help-overlay.ui:320
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph start"
-msgstr "カーソル位置から段落の先頭まで削除する"
+msgstr "カーソル位置から段落の先頭まで削除"
 
 #: src/help-overlay.ui:326
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph end"
-msgstr "カーソル位置から段落の末尾まで削除する"
+msgstr "カーソル位置から段落の末尾まで削除"
 
 #: src/help-overlay.ui:332
 msgctxt "shortcut window"
 msgid "Delete the current line"
-msgstr "現在行を削除する"
+msgstr "現在行を削除"
 
 #: src/help-overlay.ui:339
 msgctxt "shortcut window"
@@ -1275,22 +1284,22 @@ msgstr "全般"
 #: src/help-overlay.ui:343
 msgctxt "shortcut window"
 msgid "Show preferences"
-msgstr "設定を表示する"
+msgstr "設定を表示"
 
 #: src/help-overlay.ui:349
 msgctxt "shortcut window"
 msgid "Show keyboard shortcuts"
-msgstr "キーボードショートカットを表示する"
+msgstr "キーボードショートカットを表示"
 
 #: src/help-overlay.ui:355
 msgctxt "shortcut window"
 msgid "Show help"
-msgstr "ヘルプを表示する"
+msgstr "ヘルプを表示"
 
 #: src/help-overlay.ui:361
 msgctxt "shortcut window"
 msgid "Toggle text wrapping"
-msgstr "テキストの折り返しを切り替える"
+msgstr "テキストの折り返しを切り替え"
 
 #~ msgid "You do not have permission to open the file."
 #~ msgstr "ファイルを開く権限がありません。"
