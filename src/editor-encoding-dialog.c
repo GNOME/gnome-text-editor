@@ -21,9 +21,11 @@
 
 #include "config.h"
 
+#include "editor-document-private.h"
 #include "editor-encoding-dialog.h"
 #include "editor-encoding-model.h"
 #include "editor-encoding-row-private.h"
+#include "editor-window.h"
 
 struct _EditorEncodingDialog
 {
@@ -174,6 +176,10 @@ editor_encoding_dialog_set_encoding (GtkWidget  *widget,
   g_autoptr(EditorEncoding) encoding = g_list_model_get_item (G_LIST_MODEL (model), position);
 
   editor_document_set_encoding (self->document, encoding);
+
+  _editor_document_load_async (self->document,
+                               EDITOR_WINDOW (gtk_widget_get_root (GTK_WIDGET (self))),
+                               NULL, NULL, NULL);
 }
 
 static void
