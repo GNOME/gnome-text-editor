@@ -107,6 +107,7 @@ editor_info_bar_update (EditorInfoBar *self)
     {
       gtk_button_set_label (self->discard, _("_Discard Changes and Reload"));
       gtk_button_set_use_underline (self->discard, TRUE);
+      gtk_actionable_set_action_target (GTK_ACTIONABLE (self->discard), "b", TRUE);
       gtk_actionable_set_action_name (GTK_ACTIONABLE (self->discard), "page.discard-changes");
       gtk_label_set_label (self->title, _("File Has Changed on Disk"));
       gtk_label_set_label (self->subtitle, _("The file has been changed by another program."));
@@ -130,6 +131,7 @@ editor_info_bar_update (EditorInfoBar *self)
           gtk_button_set_label (self->save, _("_Save…"));
           gtk_actionable_set_action_name (GTK_ACTIONABLE (self->save), "page.confirm-save");
           gtk_button_set_label (self->discard, _("_Discard…"));
+          gtk_actionable_set_action_target_value (GTK_ACTIONABLE (self->discard), NULL);
           gtk_actionable_set_action_name (GTK_ACTIONABLE (self->discard), "page.infobar-discard-changes");
           gtk_label_set_label (self->title, _("Draft Changes Restored"));
           gtk_label_set_label (self->subtitle, _("Unsaved changes to the document have been restored."));

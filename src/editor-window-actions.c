@@ -239,8 +239,12 @@ editor_window_actions_discard_changes_cb (GtkWidget  *widget,
   EditorWindow *self = (EditorWindow *)widget;
 
   g_assert (EDITOR_IS_WINDOW (self));
+  g_assert (g_variant_is_of_type (param, G_VARIANT_TYPE_BOOLEAN));
 
-  editor_window_actions_confirm_discard_changes (widget);
+  if (!g_variant_get_boolean (param))
+    editor_window_actions_confirm_discard_changes (widget);
+  else
+    _editor_page_discard_changes (editor_window_get_visible_page (self));
 }
 
 static void
@@ -671,7 +675,7 @@ _editor_window_class_actions_init (EditorWindowClass *klass)
                                    editor_window_actions_change_language_cb);
   gtk_widget_class_install_action (widget_class,
                                    "page.discard-changes",
-                                   NULL,
+                                   "b",
                                    editor_window_actions_discard_changes_cb);
   gtk_widget_class_install_action (widget_class,
                                    "page.infobar-discard-changes",
