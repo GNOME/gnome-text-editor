@@ -93,9 +93,6 @@ main (int   argc,
 
   check_early_opts (&argc, &argv, &standalone, &exit_after_startup);
 
-  gtk_init ();
-  gtk_source_init ();
-
   app = _editor_application_new (standalone);
 
   if (exit_after_startup)

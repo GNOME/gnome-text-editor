@@ -335,6 +335,8 @@ editor_application_startup (GApplication *application)
 
   G_APPLICATION_CLASS (editor_application_parent_class)->startup (application);
 
+  gtk_source_init ();
+
   display = gdk_display_get_default ();
   self->recoloring = gtk_css_provider_new ();
   gtk_style_context_add_provider_for_display (display,
