@@ -618,6 +618,17 @@ editor_document_set_encoding (EditorDocument *self,
 }
 
 static void
+editor_document_notify_location_cb (EditorDocument *self,
+                                    GParamSpec     *pspec,
+                                    GtkSourceFile  *file)
+{
+  g_assert (EDITOR_IS_DOCUMENT (self));
+  g_assert (GTK_SOURCE_IS_FILE (file));
+
+  g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_FILE]);
+}
+
+static void
 editor_document_constructed (GObject *object)
 {
   EditorDocument *self = (EditorDocument *)object;
@@ -901,6 +912,12 @@ editor_document_init (EditorDocument *self)
   self->newline_type = GTK_SOURCE_NEWLINE_TYPE_DEFAULT;
   self->file = gtk_source_file_new ();
   self->draft_id = g_uuid_string_random ();
+
+  g_signal_connect_object (self->file,
+                           "notify::location",
+                           G_CALLBACK (editor_document_notify_location_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
 
   g_signal_connect (self,
                     "cursor-moved",
