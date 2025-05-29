@@ -1,3 +1,12 @@
+# Text Editor 48.3
+
+ * Fix visual column position in overlay label
+ * Defer gtk/gsv initialization to GtkApplication startup so that
+   GApplication may determine proper app-id for process without
+   relying on systemd/dbus conventions
+ * Fix name in properties panel after save-as
+ * Translation updates
+
 # Text Editor 48.2
 
  * Break out of recursive Policy-Kit authorization requests from
