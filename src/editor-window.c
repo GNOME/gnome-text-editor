@@ -354,6 +354,30 @@ editor_window_close_request (GtkWindow *window)
 }
 
 static void
+notify_decoration_layout_cb (EditorWindow *self,
+                             GParamSpec   *pspec,
+                             GtkSettings  *gtk_settings)
+{
+  g_autofree char *layout = NULL;
+  gboolean inverted = FALSE;
+  const char *colon;
+  const char *close_;
+
+  g_assert (EDITOR_IS_WINDOW (self));
+  g_assert (GTK_IS_SETTINGS (gtk_settings));
+
+  g_object_get (gtk_settings,
+                "gtk-decoration-layout", &layout,
+                NULL);
+
+  if ((colon = strchr (layout, ':')) && (close_ = strstr (layout, "close")))
+    inverted = close_ < colon;
+
+  if (self->tab_bar)
+    adw_tab_bar_set_inverted (self->tab_bar, inverted);
+}
+
+static void
 editor_window_constructed (GObject *object)
 {
   EditorWindow *self = (EditorWindow *)object;
@@ -362,6 +386,7 @@ editor_window_constructed (GObject *object)
   GtkWidget *zoom_box;
   GtkWidget *zoom_out;
   GtkWidget *zoom_in;
+  GtkSettings *gtk_settings;
 
   g_assert (EDITOR_IS_WINDOW (self));
 
@@ -425,6 +450,14 @@ editor_window_constructed (GObject *object)
   gtk_box_append (GTK_BOX (zoom_box), self->zoom_label);
   gtk_box_append (GTK_BOX (zoom_box), zoom_in);
   gtk_popover_menu_add_child (GTK_POPOVER_MENU (popover), zoom_box, "zoom");
+
+  gtk_settings = gtk_settings_get_default ();
+  g_signal_connect_object (gtk_settings,
+                           "notify::gtk-decoration-layout",
+                           G_CALLBACK (notify_decoration_layout_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+  notify_decoration_layout_cb (self, NULL, gtk_settings);
 }
 
 static gboolean
