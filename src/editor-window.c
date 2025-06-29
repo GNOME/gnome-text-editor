@@ -703,7 +703,7 @@ on_show_help_overlay_cb (GtkWidget  *widget,
 
   g_assert (EDITOR_IS_WINDOW (widget));
 
-  builder = gtk_builder_new_from_resource ("/org/gnome/TextEditor/ui/help-overlay.ui");
+  builder = gtk_builder_new_from_resource ("/org/gnome/TextEditor/ui/shortcuts-dialog.ui");
   help_overlay = gtk_builder_get_object (builder, "help_overlay");
 
   if (GTK_IS_SHORTCUTS_WINDOW (help_overlay))
