@@ -693,29 +693,6 @@ transform_window_title (GBinding     *binding,
   return TRUE;
 }
 
-static void
-on_show_help_overlay_cb (GtkWidget  *widget,
-                         const char *action_name,
-                         GVariant   *param)
-{
-  g_autoptr(GtkBuilder) builder = NULL;
-  GObject *help_overlay;
-
-  g_assert (EDITOR_IS_WINDOW (widget));
-
-  builder = gtk_builder_new_from_resource ("/org/gnome/TextEditor/ui/shortcuts-dialog.ui");
-  help_overlay = gtk_builder_get_object (builder, "help_overlay");
-
-  if (GTK_IS_SHORTCUTS_WINDOW (help_overlay))
-    {
-#if DEVELOPMENT_BUILD
-      gtk_widget_add_css_class (GTK_WIDGET (help_overlay), "devel");
-#endif
-      gtk_window_set_transient_for (GTK_WINDOW (help_overlay), GTK_WINDOW (widget));
-      gtk_window_present (GTK_WINDOW (help_overlay));
-    }
-}
-
 static gboolean
 title_query_tooltip_cb (EditorWindow *self,
                         int           x,
@@ -945,7 +922,6 @@ editor_window_class_init (EditorWindowClass *klass)
   gtk_widget_class_bind_template_callback (widget_class, on_tab_view_create_window_cb);
   gtk_widget_class_bind_template_callback (widget_class, title_query_tooltip_cb);
 
-  gtk_widget_class_install_action (widget_class, "win.alternate-help-overlay", NULL, on_show_help_overlay_cb);
   gtk_widget_class_install_action (widget_class, "win.undo-close-page", NULL, on_undo_close_page_cb);
   gtk_widget_class_install_action (widget_class, "win.fullscreen", NULL, editor_window_fullscreen_action);
   gtk_widget_class_install_action (widget_class, "win.unfullscreen", NULL, editor_window_unfullscreen_action);
