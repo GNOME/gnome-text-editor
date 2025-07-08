@@ -336,6 +336,8 @@ editor_sidebar_model_load_recent_cb (GObject      *object,
   g_autoptr(EditorSidebarModel) self = user_data;
   g_autoptr(GPtrArray) files = NULL;
   g_autoptr(GError) error = NULL;
+  guint old_n_items;
+  guint new_n_items;
 
   g_assert (EDITOR_IS_SESSION (session));
   g_assert (G_IS_ASYNC_RESULT (result));
@@ -350,6 +352,8 @@ editor_sidebar_model_load_recent_cb (GObject      *object,
 
   g_ptr_array_set_free_func (files, g_object_unref);
 
+  old_n_items = g_list_model_get_n_items (G_LIST_MODEL (self));
+
   for (guint i = 0; i < files->len; i++)
     {
       GFile *file = g_ptr_array_index (files, i);
@@ -362,8 +366,6 @@ editor_sidebar_model_load_recent_cb (GObject      *object,
         {
           g_autoptr(GDateTime) age = NULL;
           EditorSidebarItem *item;
-          GSequenceIter *iter;
-          guint position;
 
           item = _editor_sidebar_item_new (file, NULL);
           age = _editor_sidebar_item_get_age (item);
@@ -376,15 +378,21 @@ editor_sidebar_model_load_recent_cb (GObject      *object,
                                      self,
                                      G_CONNECT_SWAPPED);
 
-          iter = g_sequence_insert_sorted (self->seq,
-                                           item,
-                                           (GCompareDataFunc)_editor_sidebar_item_compare,
-                                           NULL);
-          position = g_sequence_iter_get_position (iter);
-
-          items_changed (self, position, 0, 1);
+          g_sequence_insert_sorted (self->seq,
+                                    item,
+                                    (GCompareDataFunc)_editor_sidebar_item_compare,
+                                    NULL);
+          self->length++;
         }
     }
+
+  new_n_items = g_list_model_get_n_items (G_LIST_MODEL (self));
+
+  /* Notify of full change so we avoid doing the changes one-by-one
+   * for larger result sets.
+   */
+  if (old_n_items || new_n_items)
+    items_changed (self, 0, old_n_items, new_n_items);
 }
 
 static void
