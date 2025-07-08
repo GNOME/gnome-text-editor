@@ -52,6 +52,7 @@ G_DEFINE_TYPE (EditorApplication, editor_application, ADW_TYPE_APPLICATION)
 
 enum {
   PROP_0,
+  PROP_SESSION,
   PROP_STYLE_SCHEME,
   PROP_SYSTEM_FONT_NAME,
   N_PROPS
@@ -688,6 +689,10 @@ editor_application_get_property (GObject    *object,
       g_value_set_string (value, self->system_font_name);
       break;
 
+    case PROP_SESSION:
+      g_value_set_object (value, self->session);
+      break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
     }
@@ -745,6 +750,12 @@ editor_application_class_init (EditorApplicationClass *klass)
                          "System Font Name",
                          "Monospace 11",
                          (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
+  properties[PROP_SESSION] =
+    g_param_spec_object ("session", NULL, NULL,
+                         EDITOR_TYPE_SESSION,
+                         (G_PARAM_READABLE |
+                          G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_properties (object_class, N_PROPS, properties);
 }
