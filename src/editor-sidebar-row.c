@@ -37,11 +37,11 @@ struct _EditorSidebarRow
   EditorSidebarItem *item;
 
   GtkWidget         *grid;
-  GtkLabel          *title;
-  GtkLabel          *subtitle;
-  GtkLabel          *is_modified;
-  GtkLabel          *empty;
-  GtkLabel          *age;
+  GtkInscription    *title;
+  GtkInscription    *subtitle;
+  GtkInscription    *is_modified;
+  GtkInscription    *empty;
+  GtkInscription    *age;
   GtkStack          *stack;
   GtkButton         *remove;
   GtkLabel          *tooltip;
@@ -314,11 +314,11 @@ _editor_sidebar_row_set_item (EditorSidebarRow  *self,
     {
       self->title_binding =
         g_object_bind_property (self->item, "title",
-                                self->title, "label",
+                                self->title, "text",
                                 G_BINDING_SYNC_CREATE);
       self->subtitle_binding =
         g_object_bind_property (self->item, "subtitle",
-                                self->subtitle, "label",
+                                self->subtitle, "text",
                                 G_BINDING_SYNC_CREATE);
       self->empty_binding =
         g_object_bind_property (self->item, "empty",
@@ -332,7 +332,7 @@ _editor_sidebar_row_set_item (EditorSidebarRow  *self,
                                      NULL, self, NULL);
       self->age_binding =
         g_object_bind_property_full (self->item, "age",
-                                     self->age, "label",
+                                     self->age, "text",
                                      G_BINDING_SYNC_CREATE,
                                      age_to_string,
                                      NULL, self, NULL);

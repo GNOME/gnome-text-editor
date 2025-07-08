@@ -30,9 +30,9 @@
           </object>
         </child>
         <child>
-          <object class="GtkLabel" id="title">
-            <property name="halign">start</property>
-            <property name="ellipsize">start</property>
+          <object class="GtkInscription" id="title">
+            <property name="xalign">0</property>
+            <property name="text-overflow">ellipsize-middle</property>
             <property name="hexpand">true</property>
             <layout>
               <property name="column">1</property>
@@ -41,19 +41,18 @@
           </object>
         </child>
         <child>
-          <object class="GtkLabel" id="subtitle">
-            <property name="ellipsize">end</property>
-            <property name="width-chars">25</property>
-            <property name="max-width-chars">25</property>
+          <object class="GtkInscription" id="subtitle">
+            <property name="text-overflow">ellipsize-end</property>
+            <property name="min-chars">25</property>
+            <property name="nat-chars">25</property>
             <property name="hexpand">true</property>
-            <property name="single-line-mode">True</property>
+            <property name="min-lines">1</property>
+            <property name="nat-lines">1</property>
             <property name="xalign">0</property>
             <style>
+              <class name="caption"/>
               <class name="dim-label"/>
             </style>
-            <attributes>
-              <attribute name="scale" value="0.8333"/>
-            </attributes>
             <layout>
               <property name="row">1</property>
               <property name="column">1</property>
@@ -61,14 +60,12 @@
           </object>
         </child>
         <child>
-          <object class="GtkLabel" id="age">
+          <object class="GtkInscription" id="age">
             <property name="valign">center</property>
             <property name="halign">end</property>
             <property name="visible">false</property>
-            <attributes>
-              <attribute name="scale" value="0.8333"/>
-            </attributes>
             <style>
+              <class name="caption"/>
               <class name="dim-label"/>
             </style>
             <layout>
