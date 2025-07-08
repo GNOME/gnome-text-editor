@@ -168,7 +168,15 @@
                   <class name="flat"/>
                 </style>
                 <property name="popover">
-                  <object class="EditorOpenPopover" id="open_menu_popover"/>
+                  <object class="EditorOpenPopover" id="open_menu_popover">
+                    <binding name="model">
+                      <lookup name="recents" type="EditorSession">
+                        <lookup name="session" type="EditorApplication">
+                          <lookup name="application">EditorWindow</lookup>
+                        </lookup>
+                      </lookup>
+                    </binding>
+                  </object>
                 </property>
                 <child>
                   <object class="GtkStack" id="open_button_stack">

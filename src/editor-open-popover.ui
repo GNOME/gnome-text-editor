@@ -26,7 +26,13 @@
                 <property name="hexpand">True</property>
                 <binding name="sensitive">
                   <lookup name="n-items" type="EditorSidebarModel">
-                    <lookup name="model">EditorOpenPopover</lookup>
+                    <lookup name="recents" type="EditorSession">
+                      <lookup name="session" type="EditorApplication">
+                        <lookup name="application" type="GtkWindow">
+                          <lookup name="root">EditorOpenPopover</lookup>
+                        </lookup>
+                      </lookup>
+                    </lookup>
                   </lookup>
                 </binding>
                 <signal name="changed" handler="on_search_entry_changed_cb" swapped="true" object="EditorOpenPopover"/>
@@ -113,8 +119,7 @@
                       </object>
                     </child>
                     <property name="model">
-                      <object class="GtkNoSelection" id="selection">
-                      </object>
+                      <object class="GtkNoSelection" id="selection"/>
                     </property>
                     <property name="factory">
                       <object class="GtkBuilderListItemFactory">

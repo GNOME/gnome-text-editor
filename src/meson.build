@@ -39,6 +39,7 @@ editor_sources = [
   'editor-save-changes-dialog.c',
   'editor-search-bar.c',
   'editor-search-entry.c',
+  'editor-search-model.c',
   'editor-session.c',
   'editor-sidebar-item.c',
   'editor-sidebar-model.c',

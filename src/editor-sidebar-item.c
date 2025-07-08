@@ -45,8 +45,6 @@ struct _EditorSidebarItem
 
   GPtrArray  *keywords;
 
-  guint       score;
-
   guint       is_modified_set : 1;
   guint       is_modified : 1;
 };
@@ -59,7 +57,6 @@ enum {
   PROP_FILE,
   PROP_IS_MODIFIED,
   PROP_PAGE,
-  PROP_SCORE,
   PROP_SUBTITLE,
   PROP_TITLE,
   N_PROPS
@@ -325,10 +322,6 @@ editor_sidebar_item_get_property (GObject    *object,
       g_value_set_boolean (value, _editor_sidebar_item_get_is_modified (self));
       break;
 
-    case PROP_SCORE:
-      g_value_set_uint (value, self->score);
-      break;
-
     case PROP_TITLE:
       if (self->title != NULL)
         g_value_set_string (value, self->title);
@@ -422,11 +415,6 @@ editor_sidebar_item_class_init (EditorSidebarItemClass *klass)
                           "If the page or draft is modified",
                           FALSE,
                           (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
-
-  properties [PROP_SCORE] =
-    g_param_spec_uint ("score", NULL, NULL,
-                       0, G_MAXUINT, 0,
-                       (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
   properties [PROP_TITLE] =
     g_param_spec_string ("title",
@@ -555,9 +543,11 @@ _editor_sidebar_item_get_empty (EditorSidebarItem *self)
 
 gboolean
 _editor_sidebar_item_matches (EditorSidebarItem *self,
-                              const char        *search)
+                              const char        *search,
+                              guint             *out_score)
 {
   gboolean matches = FALSE;
+  guint best_score = G_MAXINT;
 
   if (search == NULL)
     return TRUE;
@@ -572,29 +562,33 @@ _editor_sidebar_item_matches (EditorSidebarItem *self,
       g_ptr_array_add (self->keywords, g_utf8_casefold (self->subtitle, -1));
     }
 
-  self->score = 0;
-
   for (guint i = 0; i < self->keywords->len; i++)
     {
       const char *keyword = g_ptr_array_index (self->keywords, i);
-      guint score = 0;
+      guint score = G_MAXINT;
 
       if (g_str_has_prefix (keyword, search))
         {
           matches = TRUE;
-          self->score = 0;
+          best_score = 0;
+          break;
+        }
+      else if (strstr (keyword, search) != NULL)
+        {
+          matches = TRUE;
+          best_score = 1;
           break;
         }
       else if (gtk_source_completion_fuzzy_match (keyword, search, &score))
         {
-          if (score > self->score)
-            self->score = score;
+          score += 2;
+          best_score = MIN (score, best_score);
           matches = TRUE;
         }
     }
 
-  if (matches)
-    g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_SCORE]);
+  if (out_score)
+    *out_score = best_score;
 
   return matches;
 }
