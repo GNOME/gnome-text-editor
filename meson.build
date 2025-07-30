@@ -46,7 +46,6 @@ libglib_dep = dependency('gio-2.0', version: glib_req)
 libgtk_dep = dependency('gtk4', version: gtk_req)
 libgtksourceview_dep = dependency('gtksourceview-5', version: gtksourceview_req)
 libadwaita_dep = dependency('libadwaita-1', version: adwaita_req)
-libcairo_dep = dependency('cairo')
 spelling_dep = dependency('libspelling-1', version: spelling_req)
 
 # Specify minimum library versions

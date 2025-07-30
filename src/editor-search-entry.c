@@ -185,16 +185,9 @@ editor_search_entry_class_init (EditorSearchEntryClass *klass)
 static void
 editor_search_entry_init (EditorSearchEntry *self)
 {
-  cairo_font_options_t *options;
-
   self->occurrence_position = -1;
 
   gtk_widget_init_template (GTK_WIDGET (self));
-
-  options = cairo_font_options_create ();
-  cairo_font_options_set_variations (options, "tnum");
-  gtk_widget_set_font_options (GTK_WIDGET (self->info), options);
-  cairo_font_options_destroy (options);
 
   gtk_accessible_update_property (GTK_ACCESSIBLE (self->text),
                                   GTK_ACCESSIBLE_PROPERTY_LABEL, _("Search"),
