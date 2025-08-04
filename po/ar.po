@@ -1,0 +1,1268 @@
+# Arabic translation for gnome-text-editor.
+# Copyright (C) 2025 gnome-text-editor's COPYRIGHT HOLDER
+# This file is distributed under the same license as the gnome-text-editor package.
+# Ali Aljishi <ahj696@hotmail.com>, 2022.
+# mohammadA <mohammadAbdulhadi1@gmail.com>, 2023.
+# Ahmed Najmawi <iramosu@protonmail.com>,  2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-text-editor main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/issues\n"
+"POT-Creation-Date: 2025-07-30 20:42+0000\n"
+"PO-Revision-Date: 2025-08-03 20:01+0300\n"
+"Last-Translator: Ahmed Najmawi <iramosu@protonmail.com>\n"
+"Language-Team: Arabic <Arabic>\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : "
+"n%100>=11 && n%100<=99 ? 4 : 5);\n"
+"X-Generator: Poedit 3.6\n"
+
+#: data/org.gnome.TextEditor.desktop.in.in:3
+msgid "write;notepad;"
+msgstr "الكتابة;الكتابات;اكتب;الدفتر;الملاحظات;الملاحظة;المحرر;المفكرة;المفكرات;write;notepad;"
+
+#: data/org.gnome.TextEditor.desktop.in.in:7 data/org.gnome.TextEditor.desktop.in.in:8
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:10 src/editor-application-actions.c:200
+#: src/editor-window.c:1288
+msgid "Text Editor"
+msgstr "محرر النصوص"
+
+#: data/org.gnome.TextEditor.desktop.in.in:9
+msgid "View and edit text files"
+msgstr "اعرض وحرِّر الملفات النصية"
+
+#: data/org.gnome.TextEditor.desktop.in.in:21
+msgid "New Window"
+msgstr "نافذة جديدة"
+
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:12
+msgid "Edit text files"
+msgstr "حرِّر الملفات النصية"
+
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:14
+msgid "GNOME Text Editor is a simple text editor focused on a pleasing default experience."
+msgstr "محرِّر نصوص جنوم هو محرِّر نصوص بسيط يركز على تقديم تجربة مبدئية مُرضية."
+
+#: data/org.gnome.TextEditor.gschema.xml:16
+msgid "Auto Save Delay"
+msgstr "مهلة الحفظ التلقائي"
+
+#: data/org.gnome.TextEditor.gschema.xml:17
+msgid "The delay in seconds to wait before auto-saving a draft."
+msgstr "المهلة بالثواني قبل حفظ مسودة تلقائيًا."
+
+#: data/org.gnome.TextEditor.gschema.xml:26
+msgid "Style Variant"
+msgstr "النمط"
+
+#: data/org.gnome.TextEditor.gschema.xml:27
+msgid "Use the light or dark variant of the GTK theme and/or GtkSourceView style scheme."
+msgstr "يستخدم النمط الفاتح أو الداكن من سمة جتك مع\\أو مخطَّط نمط GtkSourceView."
+
+#: data/org.gnome.TextEditor.gschema.xml:35
+msgid "Indentation Style"
+msgstr "أسلوب الإزاحة"
+
+#: data/org.gnome.TextEditor.gschema.xml:36
+msgid "Whether the editor should insert multiple spaces characters instead of tabs."
+msgstr "أيدرج المحرِّر مسافات متعدِّدة أم محرف الجدولة."
+
+#: data/org.gnome.TextEditor.gschema.xml:40
+msgid "Auto Indent"
+msgstr "الإزاحة تلقائيًا"
+
+#: data/org.gnome.TextEditor.gschema.xml:41
+msgid "Automatically indent new lines copying the previous line's indentation."
+msgstr "يزيح الأسطر الجديدة تلقائيا بنسخ إزاحة السطر السابق."
+
+#: data/org.gnome.TextEditor.gschema.xml:46
+msgid "Tab Width"
+msgstr "عرض الجدولة"
+
+#: data/org.gnome.TextEditor.gschema.xml:47
+msgid "The number of spaces represented by a tab."
+msgstr "عدد المسافات التي تمثلها الجدولة."
+
+#: data/org.gnome.TextEditor.gschema.xml:52
+msgid "Indent Width"
+msgstr "عرض الإزاحة"
+
+#: data/org.gnome.TextEditor.gschema.xml:53
+msgid "The number of spaces to indent or -1 to use tab-width."
+msgstr "عدد المسافات التي تمثلها الإزاحة. استخدم 1- لاستخدام عرض الجدولة."
+
+#: data/org.gnome.TextEditor.gschema.xml:57
+msgid "Show Line Numbers"
+msgstr "إظهار أرقام الأسطر"
+
+#: data/org.gnome.TextEditor.gschema.xml:58
+msgid "Whether line numbers should be displayed next to each line."
+msgstr "أتعرض أرقام الأسطر بجانب كل خط أم لا."
+
+#: data/org.gnome.TextEditor.gschema.xml:62
+msgid "Show Right Margin"
+msgstr "إظهار الهامش الأيمن"
+
+#: data/org.gnome.TextEditor.gschema.xml:63
+msgid "Whether a margin line should be displayed on the right of the editor."
+msgstr "أيعرض خط الهامش يمين المحرِّر أم لا."
+
+#: data/org.gnome.TextEditor.gschema.xml:68
+msgid "Right Margin Position"
+msgstr "موضع الهامش الأيمن"
+
+#: data/org.gnome.TextEditor.gschema.xml:69
+msgid "The position in characters at which the right margin should be displayed."
+msgstr "الموضع الذي يُعرض فيه الهامش الأيمن. يُحسب بعدد الأحرف."
+
+#: data/org.gnome.TextEditor.gschema.xml:73
+msgid "Show Overview Map"
+msgstr "إظهار خارطة النظرة العامة"
+
+#: data/org.gnome.TextEditor.gschema.xml:74
+msgid "If enabled, an overview map of the file will be displayed to the side of the editor."
+msgstr "إن فعِّل، فستُعرض خريطة النظرة العامة جنب المحرِّر."
+
+#: data/org.gnome.TextEditor.gschema.xml:78
+msgid "Show Background Grid"
+msgstr "إظهار شبكة الخلفية"
+
+#: data/org.gnome.TextEditor.gschema.xml:79
+msgid "If enabled, a blueprint style grid is printed on the editor background."
+msgstr "إن فعِّل، فستُعرض شبكة مخطَّط في خلفية المحرِّر."
+
+#: data/org.gnome.TextEditor.gschema.xml:83
+msgid "Highlight current line"
+msgstr "إبراز السطر الحالي"
+
+#: data/org.gnome.TextEditor.gschema.xml:84
+msgid "If enabled, the current line will be highlighted."
+msgstr "إن فعِّل، فسيُبرز السطر الحالي."
+
+#: data/org.gnome.TextEditor.gschema.xml:88
+msgid "Text Wrapping"
+msgstr "لَف النص"
+
+#: data/org.gnome.TextEditor.gschema.xml:89
+msgid "Whether text should be wrapped."
+msgstr "أيلفّ النص أم لا."
+
+#: data/org.gnome.TextEditor.gschema.xml:93
+msgid "Use System Font"
+msgstr "استخدام خط النظام"
+
+#: data/org.gnome.TextEditor.gschema.xml:94
+msgid "Whether the default system monospace font should be used."
+msgstr "أيستخدم خط النظام ثابت العرض أم لا."
+
+#: data/org.gnome.TextEditor.gschema.xml:98
+msgid "Custom Font"
+msgstr "خط مخصَّص"
+
+#: data/org.gnome.TextEditor.gschema.xml:99
+msgid "A custom font to use in the editor."
+msgstr "خط مخصَّص لاستخدامه في المحرِّر."
+
+#: data/org.gnome.TextEditor.gschema.xml:103
+msgid "Style Scheme"
+msgstr "مخطَّط النمط"
+
+#: data/org.gnome.TextEditor.gschema.xml:104
+msgid ""
+"The style scheme to use by the editor. It may translate this into a dark format when available."
+msgstr "مخطَّط النمط الذي سيستخدمه المحرِّر. قد يُستخدم نسق داكن إن توفَّر."
+
+#: data/org.gnome.TextEditor.gschema.xml:108
+msgid "Discover File Settings"
+msgstr "إعدادات اكتشاف الملف"
+
+#: data/org.gnome.TextEditor.gschema.xml:109
+msgid ""
+"If enabled, then Text Editor will try to discover file settings from modelines, editorconfig, or "
+"per-language defaults."
+msgstr ""
+"إن فعِّل، فسيحاول محرِّر النصوص اكتشاف إعدادات الملف من modelines، أو editorconfig، أو الإعدادات "
+"المبدئية حسب لغة."
+
+#: data/org.gnome.TextEditor.gschema.xml:113
+msgid "Automatically check spelling"
+msgstr "التأكد من الهجاء تلقائيًا"
+
+#: data/org.gnome.TextEditor.gschema.xml:114
+msgid "If enabled, then Text Editor will check spelling as you type."
+msgstr "إن فعِّل، فسيتأكد المحرِّر من الهجاء أثناء الكتابة."
+
+#: data/org.gnome.TextEditor.gschema.xml:118
+msgid "Restore session"
+msgstr "استعادة الجلسة"
+
+#: data/org.gnome.TextEditor.gschema.xml:119
+msgid "When Text Editor is running, restore the previous session."
+msgstr "يستعيد الجلسة السابقة عند تشغيل محرِّر النصوص."
+
+#: data/org.gnome.TextEditor.gschema.xml:123
+msgid "Recolor Window"
+msgstr "إعادة تلوين النافذة"
+
+#: data/org.gnome.TextEditor.gschema.xml:124
+msgid "Use the style-scheme to recolor the application window."
+msgstr "يستخدم تخطيط النمط لإعادة تلوين نافذة التطبيق."
+
+#: data/org.gnome.TextEditor.gschema.xml:132
+msgid "Keybindings"
+msgstr "ارتباطات المفاتيح"
+
+#: data/org.gnome.TextEditor.gschema.xml:133
+msgid "The keybindings to use within Text Editor."
+msgstr "ارتباطات المفاتيح المستخدمة في محرِّر النصوص."
+
+#: data/org.gnome.TextEditor.gschema.xml:137
+msgid "Last Save Directory"
+msgstr "آخر مجلد حفظ"
+
+#: data/org.gnome.TextEditor.gschema.xml:138
+msgid "The directory last used in a save or save-as dialog."
+msgstr "المجلد الذي استخدم أخيرًا في مربع حوار «احفظ» أو «احفظ باسم»."
+
+#: data/org.gnome.TextEditor.gschema.xml:142
+msgid "Draw Spaces"
+msgstr "ارسم المسافات"
+
+#: data/org.gnome.TextEditor.gschema.xml:143
+msgid "The various types of spaces to draw in the editor."
+msgstr "أنواع المسافات التي يمكن رسمها في المحرِّر."
+
+#: data/org.gnome.TextEditor.gschema.xml:147
+msgid "Enable Snippets"
+msgstr "تفعيل القصاصات"
+
+#: data/org.gnome.TextEditor.gschema.xml:148
+msgid "Enable the use of snippets registered with GtkSourceView from within the editor."
+msgstr "يفعِّل القصاصات المسجلة باستخدام GtkSourceView داخل المحرِّر."
+
+#: data/org.gnome.TextEditor.gschema.xml:153
+msgid "Line Height"
+msgstr "ارتفاع السطر"
+
+#: data/org.gnome.TextEditor.gschema.xml:154
+msgid "The line height to use for the selected font."
+msgstr "ارتفاع السطر المستخدم للخط المحدَّد."
+
+#: data/org.gnome.TextEditor.gschema.xml:158
+msgid "Highlight Matching Brackets"
+msgstr "إبراز الأقواس المتطابقة"
+
+#: data/org.gnome.TextEditor.gschema.xml:159
+msgid "Highlight matching brackets and braces."
+msgstr "يبرز الأقواس المعقوفة والمتموجة المتطابقة."
+
+#: src/editor-animation.c:1038
+#, c-format
+msgid "Failed to find property %s in %s"
+msgstr "تعذَّر العثور على الخاصية %s في %s"
+
+#: src/editor-animation.c:1047
+#, c-format
+msgid "Failed to retrieve va_list value: %s"
+msgstr "تعذَّر جلب قيمة va_list: %s"
+
+#: src/editor-application-actions.c:202
+msgid "The GNOME Project"
+msgstr "مشروع جنوم"
+
+#: src/editor-application-actions.c:215
+msgid "translator-credits"
+msgstr ""
+"علي الجشي <ahj696@hotmail.com>\n"
+"أحمد النجماوي <iramosu@protonmail.com>"
+
+#: src/editor-application-actions.c:349
+msgid "Clear File History?"
+msgstr "سَتَمْحُ تأريخ الملف؟"
+
+#: src/editor-application-actions.c:350
+msgid "This action cannot be undone"
+msgstr "لا يمكن التراجع عن هذا الإجراء"
+
+#: src/editor-application-actions.c:352 src/editor-save-changes-dialog.c:260
+#: src/editor-window-actions.c:115 src/editor-window-actions.c:219
+msgid "_Cancel"
+msgstr "أ_لغِ"
+
+#: src/editor-application-actions.c:353
+msgid "_Clear All"
+msgstr "ام_حُ الكل"
+
+#: src/editor-application.c:531
+msgid "Standard input was requested multiple times. Ignoring request."
+msgstr "طُلب الإدخال القياسي عدة مرات. سيُتجاهل الطلب."
+
+#: src/editor-application.c:535
+msgid "Standard input is not supported on this platform. Ignoring request."
+msgstr "الإدخال القياسي غير مدعوم على هذه المنصة. سيُتجاهل الطلب."
+
+#: src/editor-application.c:638
+msgid "Bugs may be reported at:"
+msgstr "يمكن التبليغ عن العلل في:"
+
+#: src/editor-application.c:640
+msgid "[FILES…]"
+msgstr "[ملفات…]"
+
+#: src/editor-application.c:764
+msgid "Do not restore session at startup"
+msgstr "لا تستعد الجلسة عند البدء"
+
+#: src/editor-application.c:765
+msgid "Open provided files in a new window"
+msgstr "افتح الملفات الموفَّرة في نافذة جديدة"
+
+#: src/editor-application.c:766
+msgid "Run a new instance of Text Editor (implies --ignore-session)"
+msgstr "شغِّل مثيلًا جديدًا لمحرِّر النصوص (يضم --ignore-session)"
+
+#: src/editor-application.c:767
+msgid "Print version information and exit"
+msgstr "اطبع معلومات الإصدار واخرج"
+
+#: src/editor-document.c:2272
+msgid "[Read-Only]"
+msgstr "[للقراءة فقط]"
+
+#: src/editor-document.c:2497 src/editor-page.c:1125 src/editor-sidebar-item.c:498
+msgid "New Document"
+msgstr "مستند جديد"
+
+#: src/editor-encoding-dialog.ui:5
+msgid "Change Encoding"
+msgstr "غيِّر الترميز"
+
+#: src/editor-encoding-dialog.ui:22
+msgid "Search encodings"
+msgstr "ابحث عن الترميزات"
+
+#: src/editor-encoding-dialog.ui:58 src/editor-language-dialog.ui:75
+msgid "No Results Found"
+msgstr "لم يُعثر على نتائج"
+
+#: src/editor-encoding-dialog.ui:59 src/editor-language-dialog.ui:76
+msgid "Try a different search"
+msgstr "جرِّب بحثًا مختلفًا"
+
+#: src/editor-file-manager.c:99
+msgid "File path is NULL"
+msgstr "مسار الملف خالٍ"
+
+#: src/editor-file-manager.c:108 src/editor-file-manager.c:119
+msgid "Error converting UTF-8 filename to wide char"
+msgstr "خطأ أثناء التحويل من اسم ملف UTF-8 إلى wide char"
+
+#: src/editor-file-manager.c:127
+msgid "ILCreateFromPath() failed"
+msgstr "أخفق ILCreateFromPath()"
+
+#: src/editor-file-manager.c:164
+#, c-format
+msgid "Cannot convert “%s” into a valid NSURL."
+msgstr "تعذَّر تحويل «%s» إلى NSURL صالح."
+
+#: src/editor-indent-model.c:173
+msgid "Space"
+msgstr "مسافة"
+
+#: src/editor-indent-model.c:178
+msgid "Tab"
+msgstr "جدولة"
+
+#: src/editor-info-bar.c:108
+msgid "_Discard Changes and Reload"
+msgstr "أ_همل التغييرات وأعِد التحميل"
+
+#: src/editor-info-bar.c:112
+msgid "File Has Changed on Disk"
+msgstr "تغيَّر الملف على القرص"
+
+#: src/editor-info-bar.c:113
+msgid "The file has been changed by another program."
+msgstr "غيَّر الملف برنامج آخر."
+
+#: src/editor-info-bar.c:122 src/editor-window.ui:371
+msgid "Save _As…"
+msgstr "احفظ _باسم…"
+
+#: src/editor-info-bar.c:124 src/editor-info-bar.ui:73
+msgid "Document Restored"
+msgstr "استُعيد المستند"
+
+#: src/editor-info-bar.c:125 src/editor-info-bar.ui:84
+msgid "Unsaved document has been restored."
+msgstr "استعيد المستند الغير محفوظ."
+
+#: src/editor-info-bar.c:131 src/editor-info-bar.ui:99
+msgid "_Save…"
+msgstr "ا_حفظ…"
+
+#: src/editor-info-bar.c:133 src/editor-info-bar.ui:93
+msgid "_Discard…"
+msgstr "أ_همل…"
+
+#: src/editor-info-bar.c:136
+msgid "Draft Changes Restored"
+msgstr "استُعيدت تغييرات المسودة"
+
+#: src/editor-info-bar.c:137
+msgid "Unsaved changes to the document have been restored."
+msgstr "استُعيدت تغييرات المستند الغير محفوظة."
+
+#: src/editor-info-bar.ui:19
+msgid "Could Not Open File"
+msgstr "تعذَّر فتح الملف"
+
+#: src/editor-info-bar.ui:38
+msgid "_Retry"
+msgstr "أ_عد المحاولة"
+
+#: src/editor-info-bar.ui:51
+msgid "Open As _Administrator"
+msgstr "افتح كم_دير"
+
+#: src/editor-info-bar.ui:116
+msgid "Invalid Characters Detected"
+msgstr "اكتشفت محارف غير صالحة"
+
+#: src/editor-info-bar.ui:127
+msgid "There was an encoding conversion error so a fallback character was used."
+msgstr "حدث خطأ في تحويل الترميز لذلك استُخدم محرف لجوء."
+
+#: src/editor-info-bar.ui:136
+msgid "Change _Encoding…"
+msgstr "غيِّر الترمي_ز…"
+
+#: src/editor-language-dialog.c:248
+msgid "Other Document Types"
+msgstr "أنواع المستندات الأخرى"
+
+#: src/editor-language-dialog.ui:6
+msgid "Document Type"
+msgstr "نوع المستند"
+
+#: src/editor-language-dialog.ui:25 src/editor-search-entry.c:193 src/editor-search-entry.ui:13
+msgid "Search"
+msgstr "ابحث"
+
+#: src/editor-language-row.c:61 src/editor-language-row.c:119 src/editor-properties.c:573
+msgid "Plain Text"
+msgstr "نص عادي"
+
+#: src/editor-newline-model.c:180
+msgid "Unix/Linux (LF)"
+msgstr "يونكس\\لينكس (LF)"
+
+#: src/editor-newline-model.c:181
+msgid "Windows (CR+LF)"
+msgstr "ويندوز (CR+LF)"
+
+#: src/editor-newline-model.c:182
+msgid "Mac OS Classic (CR)"
+msgstr "ماك أو إس التقليدي (CR)"
+
+#: src/editor-open-popover.ui:25
+msgid "Search documents"
+msgstr "ابحث في المستندات"
+
+#: src/editor-open-popover.ui:45
+msgid "Open New Document"
+msgstr "افتح مستندًا جديدًا"
+
+#: src/editor-open-popover.ui:80
+msgid "No Recent Documents"
+msgstr "لا توجد مستندات حديثة"
+
+#: src/editor-page.c:1151 src/editor-properties.c:606 src/editor-sidebar-item.c:101
+msgid "Draft"
+msgstr "مسودة"
+
+#. translators: %s is replaced with the path on the filesystem
+#: src/editor-page.c:1163
+#, c-format
+msgid "%s (Administrator)"
+msgstr "%s (مدير)"
+
+#: src/editor-page.c:1219
+msgid "Failed to save document"
+msgstr "تعذَّر حفظ المستند"
+
+#: src/editor-page.c:1220 src/editor-window.ui:451
+msgid "_Close"
+msgstr "أ_غلق"
+
+#: src/editor-page.c:1484
+#, c-format
+msgid "Ln %u, Col %u"
+msgstr "س %u، ع %u"
+
+#: src/editor-page.ui:94
+msgid "Go to Line"
+msgstr "اذهب إلى السطر"
+
+#: src/editor-page.ui:111
+msgid "Go"
+msgstr "اذهب"
+
+#: src/editor-path.c:128
+msgid "Document Portal"
+msgstr "بوابة المستندات"
+
+#. translators: Ln is short for "Line Number"
+#: src/editor-position-label.ui:15
+msgid "Ln"
+msgstr "س"
+
+#. translators: Col is short for "Column"
+#: src/editor-position-label.ui:32
+msgid "Col"
+msgstr "ع"
+
+#: src/editor-preferences-dialog.ui:15
+msgid "Appearance"
+msgstr "المظهر"
+
+#: src/editor-preferences-dialog.ui:55
+msgid "Custom _Font"
+msgstr "خط م_خصَّص"
+
+#: src/editor-preferences-dialog.ui:78
+msgid "Show Grid Pattern"
+msgstr "أظهر نمطًا شبكيًا"
+
+#: src/editor-preferences-dialog.ui:85
+msgid "Display _Line Numbers"
+msgstr "إظهار أر_قام الأسطر"
+
+#: src/editor-preferences-dialog.ui:92
+msgid "_Highlight Current Line"
+msgstr "إبراز ال_سطر الحالي"
+
+#: src/editor-preferences-dialog.ui:99
+msgid "Display _Overview Map"
+msgstr "إظهار خارطة الن_ظرة العامة"
+
+#: src/editor-preferences-dialog.ui:110
+msgid "Check _Spelling"
+msgstr "التأكد من اله_جاء"
+
+#: src/editor-preferences-dialog.ui:119
+msgid "Line Wrap"
+msgstr "لف الأسطر"
+
+#: src/editor-preferences-dialog.ui:122
+msgid "Show _Right Margin"
+msgstr "إظهار الهامش الأي_من"
+
+#: src/editor-preferences-dialog.ui:129
+msgid "_Margin Position"
+msgstr "موضع الهام_ش"
+
+#: src/editor-preferences-dialog.ui:136
+msgid "_Wrap Lines Automatically (Alt+W)"
+msgstr "لَ_ف الأسطر تلقائيًا (Alt+W)"
+
+#: src/editor-preferences-dialog.ui:145
+msgid "Indentation"
+msgstr "الإزاحة"
+
+#: src/editor-preferences-dialog.ui:148 src/editor-properties-panel.ui:106
+msgid "A_uto Indentation"
+msgstr "الإزاحة ت_لقائيًا"
+
+#: src/editor-preferences-dialog.ui:155 src/editor-properties-panel.ui:113
+msgid "_Character"
+msgstr "الم_حرف"
+
+#: src/editor-preferences-dialog.ui:165 src/editor-properties-panel.ui:124
+msgid "Spaces Per _Tab"
+msgstr "المسافات لكل جد_ولة"
+
+#: src/editor-preferences-dialog.ui:183 src/editor-properties-panel.ui:136
+msgid "Spaces Per _Indent"
+msgstr "المسافات لكل إ_زاحة"
+
+#: src/editor-preferences-dialog.ui:204
+msgid "Behavior"
+msgstr "السلوك"
+
+#: src/editor-preferences-dialog.ui:207
+msgid "_Discover Document Settings"
+msgstr "إعدادات ا_كتشاف المستند"
+
+#: src/editor-preferences-dialog.ui:209
+msgid "Apply settings using modelines, editorconfig, or sensible defaults"
+msgstr "يطبَّق الإعدادات باستخدام modelines، أو editorconfig، أو إعدادات مبدئية منطقية"
+
+#: src/editor-preferences-dialog.ui:215
+msgid "_Restore Session"
+msgstr "است_عادة الجلسة"
+
+#: src/editor-preferences-dialog.ui:217
+msgid "Return to your previous session when Text Editor is started"
+msgstr "يعيدك إلى جلستك السابقة عند بدء محرِّر النصوص"
+
+#: src/editor-preferences-dialog.ui:229
+msgid "_Clear History"
+msgstr "ا_محُ التأريخ"
+
+#: src/editor-print-operation.c:182
+#, c-format
+msgid "Draft: %s"
+msgstr "المسودة: %s"
+
+#: src/editor-print-operation.c:184
+#, c-format
+msgid "File: %s"
+msgstr "الملف: %s"
+
+#. Translators: %N is the current page number, %Q is the total
+#. * number of pages (ex. Page 2 of 10)
+#.
+#: src/editor-print-operation.c:196
+msgid "Page %N of %Q"
+msgstr "الصفحة %N من %Q"
+
+#: src/editor-properties-panel.ui:10
+msgid "File Name"
+msgstr "اسم الملف"
+
+#: src/editor-properties-panel.ui:26
+msgid "Location"
+msgstr "الموقع"
+
+#: src/editor-properties-panel.ui:27
+msgid "Open in File Manager"
+msgstr "افتح في مدير الملفات"
+
+#: src/editor-properties-panel.ui:53
+msgid "_Document Type"
+msgstr "ن_وع المستند"
+
+#: src/editor-properties-panel.ui:54
+msgid "Change Document Type"
+msgstr "غيِّر نوع المستند"
+
+#: src/editor-properties-panel.ui:76
+msgid "_Encoding"
+msgstr "ال_ترميز"
+
+#: src/editor-properties-panel.ui:90
+msgid "_Line Feed"
+msgstr "تلقيم ال_سطر"
+
+#: src/editor-properties-panel.ui:150
+msgid "Statistics"
+msgstr "الإحصاءات"
+
+#: src/editor-properties-panel.ui:153
+msgid "Lines"
+msgstr "الأسطر"
+
+#: src/editor-properties-panel.ui:166
+msgid "Words"
+msgstr "الكلمات"
+
+#: src/editor-properties-panel.ui:179
+msgid "Characters, No Spaces"
+msgstr "المحارف، بدون مسافات"
+
+#: src/editor-properties-panel.ui:192
+msgid "All Characters"
+msgstr "كل المحارف"
+
+#: src/editor-save-changes-dialog.c:254 src/editor-window-actions.c:220
+msgid "_Discard"
+msgstr "أ_همل"
+
+#: src/editor-save-changes-dialog.c:254
+msgid "_Discard All"
+msgstr "أ_همل الكل"
+
+#: src/editor-save-changes-dialog.c:256
+msgid "Save Changes?"
+msgstr "سَتَحفَظُ التغييرات؟"
+
+#: src/editor-save-changes-dialog.c:257
+msgid ""
+"Open documents contain unsaved changes. Changes which are not saved will be permanently lost."
+msgstr "في المستندات المفتوحة تغييرات لم تحفظ. ستُحذف التغييرات الغير المحفوظة نهائيًا."
+
+#: src/editor-save-changes-dialog.c:262 src/editor-window-actions.c:116 src/editor-window.ui:365
+msgid "_Save"
+msgstr "ا_حفظ"
+
+#: src/editor-save-changes-dialog.c:294
+msgid "Untitled Document"
+msgstr "مستند غير معنون"
+
+#. translators: %s is replaced with the title of the file
+#: src/editor-save-changes-dialog.c:297
+#, c-format
+msgid "%s (new)"
+msgstr "%s (جديد)"
+
+#: src/editor-search-bar.ui:36 src/editor-search-bar.ui:38
+msgid "Replace"
+msgstr "استبدل"
+
+#: src/editor-search-bar.ui:57
+msgid "Previous Match"
+msgstr "المطابقة السابقة"
+
+#: src/editor-search-bar.ui:70
+msgid "Next Match"
+msgstr "المطابقة التالية"
+
+#: src/editor-search-bar.ui:86
+msgid "Search & Replace"
+msgstr "ابحث واستبدل"
+
+#: src/editor-search-bar.ui:101
+msgid "Search Options"
+msgstr "خيارات البحث"
+
+#: src/editor-search-bar.ui:119
+msgid "Close Search"
+msgstr "أغلق البحث"
+
+#: src/editor-search-bar.ui:137
+msgid "_Replace"
+msgstr "ا_ستبدل"
+
+#: src/editor-search-bar.ui:151
+msgid "Replace _All"
+msgstr "استبدل ال_كل"
+
+#: src/editor-search-bar.ui:170
+msgid "Re_gular Expressions"
+msgstr "تعبيرات ن_مطية"
+
+#: src/editor-search-bar.ui:174
+msgid "_Case Sensitive"
+msgstr "حسَّاس لحالة الأحر_ف"
+
+#: src/editor-search-bar.ui:178
+msgid "Match Whole _Word Only"
+msgstr "_طابق كامل الكلمة فقط"
+
+#. translators: the first %u is replaced with the current position, the second with the number of search results
+#: src/editor-search-entry.c:221
+#, c-format
+msgid "%u of %u"
+msgstr "%u من %u"
+
+#: src/editor-search-entry.ui:33
+msgid "Clear Entry"
+msgstr "امحُ المدخلة"
+
+#: src/editor-sidebar-row.ui:82
+msgid "Remove"
+msgstr "أزل"
+
+#: src/editor-theme-selector.ui:23
+msgid "Follow System Style"
+msgstr "اتبع نمط النظام"
+
+#: src/editor-theme-selector.ui:25
+msgid "Follow system style"
+msgstr "اتبع نمط النظام"
+
+#: src/editor-theme-selector.ui:40
+msgid "Light Style"
+msgstr "النمط الفاتح"
+
+#: src/editor-theme-selector.ui:42
+msgid "Light style"
+msgstr "النمط الفاتح"
+
+#: src/editor-theme-selector.ui:58
+msgid "Dark Style"
+msgstr "النمط الداكن"
+
+#: src/editor-theme-selector.ui:60
+msgid "Dark style"
+msgstr "النمط الداكن"
+
+#: src/editor-utils.c:355
+msgid "Just now"
+msgstr "للتو"
+
+#: src/editor-utils.c:357
+msgid "An hour ago"
+msgstr "منذ ساعة"
+
+#: src/editor-utils.c:359
+msgid "Yesterday"
+msgstr "أمس"
+
+#: src/editor-utils.c:365
+msgid "About a year ago"
+msgstr "منذ سنة تقريبًا"
+
+#: src/editor-utils.c:369
+#, c-format
+msgid "About %u year ago"
+msgid_plural "About %u years ago"
+msgstr[0] "منذ أقل من سنة"
+msgstr[1] "منذ سنة"
+msgstr[2] "منذ سنتين"
+msgstr[3] "منذ %u سنوات"
+msgstr[4] "منذ %u سنة"
+msgstr[5] "منذ %u سنة"
+
+#: src/editor-window-actions.c:109
+msgid "Saving changes will replace the previously saved version."
+msgstr "سيستبدل حفظ التغييرات النسخة المحفوظة السابقة."
+
+#. translators: %s is replaced with the document title
+#: src/editor-window-actions.c:112
+#, c-format
+msgid "Save Changes to “%s”?"
+msgstr "سَتَحفَظُ تغييرات «%s»؟"
+
+#: src/editor-window-actions.c:213
+msgid "Unsaved changes will be permanently lost."
+msgstr "ستُفقد التغييرات الغير محفوظة نهائيًا."
+
+#. translators: %s is replaced with the document title
+#: src/editor-window-actions.c:216
+#, c-format
+msgid "Discard Changes to “%s”?"
+msgstr "سَتُهمِل تغييرات «%s»؟"
+
+#: src/editor-window-actions.c:384
+msgid "All Files"
+msgstr "كل الملفات"
+
+#: src/editor-window-actions.c:389
+msgid "Text Files"
+msgstr "الملفات النصية"
+
+#: src/editor-window.c:423
+msgid "Zoom In"
+msgstr "كبِّر"
+
+#: src/editor-window.c:426
+msgid "Zoom in"
+msgstr "كبِّر"
+
+#: src/editor-window.c:436
+msgid "Zoom Out"
+msgstr "صغِّر"
+
+#: src/editor-window.c:439
+msgid "Zoom out"
+msgstr "صغِّر"
+
+#: src/editor-window.c:444
+msgid "Reset Zoom"
+msgstr "صفِّر التحجيم"
+
+#. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
+#: src/editor-window.c:690
+#, c-format
+msgid "%s (%s) - Text Editor"
+msgstr "%s (%s) - محرِّر النصوص"
+
+#: src/editor-window.c:1167
+msgid "There are unsaved documents"
+msgstr "توجد مستندات غير محفوظة"
+
+#: src/editor-window.ui:81
+msgid "Open a Document"
+msgstr "افتح مستندًا"
+
+#: src/editor-window.ui:82
+msgid "Create a new document (Ctrl+N), or open an existing one (Ctrl+O)"
+msgstr "أنشئ مستندًا جديدًا (Ctrl+N)، أو افتح مستندًا موجودًا (Ctrl+O)"
+
+#: src/editor-window.ui:93
+msgid "_New Empty File"
+msgstr "ملف فار_غ جديد"
+
+#: src/editor-window.ui:166
+msgid "Recently Used Documents"
+msgstr "المستندات المستخدمة حديثًا"
+
+#: src/editor-window.ui:191
+msgid "_Open"
+msgstr "ا_فتح"
+
+#: src/editor-window.ui:224
+msgid "New Tab"
+msgstr "لسان جديد"
+
+#: src/editor-window.ui:229 src/editor-window.ui:403
+msgid "Leave Fullscreen"
+msgstr "غادر ملء الشاشة"
+
+#: src/editor-window.ui:237
+msgid "Main Menu"
+msgstr "القائمة الرئيسية"
+
+#: src/editor-window.ui:244
+msgid "Document Properties"
+msgstr "خصائص المستند"
+
+#: src/editor-window.ui:357
+msgid "_New Window"
+msgstr "نافذة _جديدة"
+
+#: src/editor-window.ui:377
+msgid "_Discard Changes…"
+msgstr "أ_همل التغييرات…"
+
+#: src/editor-window.ui:384
+msgid "_Find/Replace…"
+msgstr "ا_بحث\\استبدل…"
+
+#: src/editor-window.ui:390
+msgid "_Print…"
+msgstr "ا_طبع…"
+
+#: src/editor-window.ui:397
+msgid "Fullscreen"
+msgstr "املئ الشاشة"
+
+#: src/editor-window.ui:411
+msgid "P_references"
+msgstr "ال_تفضيلات"
+
+#: src/editor-window.ui:416
+msgid "_Keyboard Shortcuts"
+msgstr "ا_ختصارات لوحة المفاتيح"
+
+#: src/editor-window.ui:420
+msgid "A_bout Text Editor"
+msgstr "_عَنْ محرِّر النصوص"
+
+#: src/editor-window.ui:428
+msgid "Move _Left"
+msgstr "انقل _إلى اليسار"
+
+#: src/editor-window.ui:433
+msgid "Move _Right"
+msgstr "انقل إلى ال_يمين"
+
+#: src/editor-window.ui:440
+msgid "_Move to New Window"
+msgstr "انقل إلى ناف_ذة جديدة"
+
+#: src/editor-window.ui:447
+msgid "Close _Other Tabs"
+msgstr "أغل_ق الألسنة الأخرى"
+
+#: src/shortcuts-dialog.ui:8
+msgctxt "shortcut window"
+msgid "Windows"
+msgstr "النوافذ"
+
+#: src/shortcuts-dialog.ui:11
+msgctxt "shortcut window"
+msgid "New window"
+msgstr "نافذة جديدة"
+
+#: src/shortcuts-dialog.ui:17
+msgctxt "shortcut window"
+msgid "Move document to new window"
+msgstr "انقل المستند إلى نافذة جديدة"
+
+#: src/shortcuts-dialog.ui:24
+msgctxt "shortcut window"
+msgid "Move to next tab"
+msgstr "انتقل إلى اللسان التالي"
+
+#: src/shortcuts-dialog.ui:30
+msgctxt "shortcut window"
+msgid "Move to previous tab"
+msgstr "انتقل إلى اللسان السابق"
+
+#: src/shortcuts-dialog.ui:36
+msgctxt "shortcut window"
+msgid "Reorder after next tab"
+msgstr "أعد الترتيب بعد اللسان التالي"
+
+#: src/shortcuts-dialog.ui:42
+msgctxt "shortcut window"
+msgid "Reorder before previous tab"
+msgstr "أعد الترتيب قبل اللسان السابق"
+
+#: src/shortcuts-dialog.ui:48
+msgctxt "shortcut window"
+msgid "Restore previously closed tab"
+msgstr "استعد لسانًا أُغلق"
+
+#: src/shortcuts-dialog.ui:55
+msgctxt "shortcut window"
+msgid "Zoom"
+msgstr "التحجيم"
+
+#: src/shortcuts-dialog.ui:59
+msgctxt "shortcut window"
+msgid "Zoom In"
+msgstr "كبِّر"
+
+#: src/shortcuts-dialog.ui:65
+msgctxt "shortcut window"
+msgid "Zoom Out"
+msgstr "صغِّر"
+
+#: src/shortcuts-dialog.ui:71
+msgctxt "shortcut window"
+msgid "Reset Zoom"
+msgstr "صفِّر التحجيم"
+
+#: src/shortcuts-dialog.ui:78
+msgctxt "shortcut window"
+msgid "Documents"
+msgstr "المستندات"
+
+#: src/shortcuts-dialog.ui:81
+msgctxt "shortcut window"
+msgid "New document"
+msgstr "مستند جديد"
+
+#: src/shortcuts-dialog.ui:87
+msgctxt "shortcut window"
+msgid "Browse to open document"
+msgstr "تصفَّح لفتح مستند"
+
+#: src/shortcuts-dialog.ui:93
+msgctxt "shortcut window"
+msgid "Find document by name"
+msgstr "جِد مستندًا باسمه"
+
+#: src/shortcuts-dialog.ui:99
+msgctxt "shortcut window"
+msgid "Save"
+msgstr "احفظ"
+
+#: src/shortcuts-dialog.ui:105
+msgctxt "shortcut window"
+msgid "Save As"
+msgstr "احفظ باسم"
+
+#: src/shortcuts-dialog.ui:111
+msgctxt "shortcut window"
+msgid "Find/Replace"
+msgstr "ابحث\\استبدل"
+
+#: src/shortcuts-dialog.ui:117
+msgctxt "shortcut window"
+msgid "Close document"
+msgstr "أغلق مستندًا"
+
+#: src/shortcuts-dialog.ui:123
+msgctxt "shortcut window"
+msgid "Open document properties"
+msgstr "افتح خصائص المستند"
+
+#: src/shortcuts-dialog.ui:131
+msgctxt "shortcut window"
+msgid "Copy and Paste"
+msgstr "النسخ واللصق"
+
+#: src/shortcuts-dialog.ui:135
+msgctxt "shortcut window"
+msgid "Copy selected text to clipboard"
+msgstr "انسخ النص المحدَّد إلى الحافظة"
+
+#: src/shortcuts-dialog.ui:141
+msgctxt "shortcut window"
+msgid "Cut selected text to clipboard"
+msgstr "قص النص المحدَّد إلى الحافظة"
+
+#: src/shortcuts-dialog.ui:147
+msgctxt "shortcut window"
+msgid "Paste text from clipboard"
+msgstr "ألصق نصًا من الحافظة"
+
+#: src/shortcuts-dialog.ui:152
+msgctxt "shortcut window"
+msgid "Copy all to clipboard"
+msgstr "انسخ الكل للحافظة"
+
+#: src/shortcuts-dialog.ui:158
+msgctxt "shortcut window"
+msgid "Copy current line down"
+msgstr "انسخ السطر الحالي للأسفل"
+
+#: src/shortcuts-dialog.ui:166
+msgctxt "shortcut window"
+msgid "Undo and Redo"
+msgstr "التراجع والإعادة"
+
+#: src/shortcuts-dialog.ui:170
+msgctxt "shortcut window"
+msgid "Undo previous command"
+msgstr "تراجع عن الأمر السابق"
+
+#: src/shortcuts-dialog.ui:176
+msgctxt "shortcut window"
+msgid "Redo previous command"
+msgstr "أعِد الأمر السابق"
+
+#: src/shortcuts-dialog.ui:183
+msgctxt "shortcut window"
+msgid "Editing"
+msgstr "التحرير"
+
+#: src/shortcuts-dialog.ui:187
+msgctxt "shortcut window"
+msgid "Insert emoji into document"
+msgstr "أدرج إموجي في المستند"
+
+#: src/shortcuts-dialog.ui:193
+msgctxt "shortcut window"
+msgid "Search within the document"
+msgstr "ابحث في المستند"
+
+#: src/shortcuts-dialog.ui:199
+msgctxt "shortcut window"
+msgid "Search and replace within the document"
+msgstr "ابحث واستبدل في المستند"
+
+#: src/shortcuts-dialog.ui:205
+msgctxt "shortcut window"
+msgid "Increment number at cursor"
+msgstr "زِد الرقم عند المنزلقة"
+
+#: src/shortcuts-dialog.ui:211
+msgctxt "shortcut window"
+msgid "Decrement number at cursor"
+msgstr "أنقص الرقم عند المنزلقة"
+
+#: src/shortcuts-dialog.ui:217
+msgctxt "shortcut window"
+msgid "Toggle overwrite"
+msgstr "بدِّل الكتابة الفوقية"
+
+#: src/shortcuts-dialog.ui:223
+msgctxt "shortcut window"
+msgid "Toggle visibility of insertion caret"
+msgstr "بدِّل رؤية علامة الإقحام"
+
+#: src/shortcuts-dialog.ui:230
+msgctxt "shortcut window"
+msgid "Selections"
+msgstr "التحديدات"
+
+#: src/shortcuts-dialog.ui:234
+msgctxt "shortcut window"
+msgid "Select all"
+msgstr "حدِّد الكل"
+
+#: src/shortcuts-dialog.ui:240
+msgctxt "shortcut window"
+msgid "Unselect all"
+msgstr "ألغِ تحديد الكل"
+
+#: src/shortcuts-dialog.ui:246
+msgctxt "shortcut window"
+msgid "Select current line"
+msgstr "حدِّد السطر الحالي"
+
+#: src/shortcuts-dialog.ui:253
+msgctxt "shortcut window"
+msgid "Movements"
+msgstr "التنقُّل"
+
+#: src/shortcuts-dialog.ui:257
+msgctxt "shortcut window"
+msgid "Move to beginning of document"
+msgstr "انتقل إلى بداية المستند"
+
+#: src/shortcuts-dialog.ui:263
+msgctxt "shortcut window"
+msgid "Move to end of document"
+msgstr "انتقل إلى نهاية المستند"
+
+#: src/shortcuts-dialog.ui:269
+msgctxt "shortcut window"
+msgid "Move to start of previous paragraph"
+msgstr "انتقل إلى بداية الفقرة السابقة"
+
+#: src/shortcuts-dialog.ui:275
+msgctxt "shortcut window"
+msgid "Move to end of next paragraph"
+msgstr "انتقل إلى بداية الفقرة التالية"
+
+#: src/shortcuts-dialog.ui:281
+msgctxt "shortcut window"
+msgid "Move current or selected lines up"
+msgstr "انقل الأسطر الحالية أو المحدَّدة إلى أعلى"
+
+#: src/shortcuts-dialog.ui:287
+msgctxt "shortcut window"
+msgid "Move current or selected lines down"
+msgstr "انقل الأسطر الحالية أو المحدَّدة إلى أسفل"
+
+#: src/shortcuts-dialog.ui:293
+msgctxt "shortcut window"
+msgid "Go to line"
+msgstr "اذهب إلى السطر"
+
+#: src/shortcuts-dialog.ui:300
+msgctxt "shortcut window"
+msgid "Deletion"
+msgstr "الحذف"
+
+#: src/shortcuts-dialog.ui:304
+msgctxt "shortcut window"
+msgid "Delete from cursor to word start"
+msgstr "احذف من المنزلقة إلى بداية الكلمة"
+
+#: src/shortcuts-dialog.ui:310
+msgctxt "shortcut window"
+msgid "Delete from cursor to word end"
+msgstr "احذف من المنزلقة إلى نهاية الكلمة"
+
+#: src/shortcuts-dialog.ui:316
+msgctxt "shortcut window"
+msgid "Delete from cursor to paragraph start"
+msgstr "احذف من المنزلقة إلى بداية الفقرة"
+
+#: src/shortcuts-dialog.ui:322
+msgctxt "shortcut window"
+msgid "Delete from cursor to paragraph end"
+msgstr "احذف من المنزلقة إلى نهاية الفقرة"
+
+#: src/shortcuts-dialog.ui:328
+msgctxt "shortcut window"
+msgid "Delete the current line"
+msgstr "احذف السطر الحالي"
+
+#: src/shortcuts-dialog.ui:335
+msgctxt "shortcut window"
+msgid "General"
+msgstr "عام"
+
+#: src/shortcuts-dialog.ui:339
+msgctxt "shortcut window"
+msgid "Show preferences"
+msgstr "أظهر التفضيلات"
+
+#: src/shortcuts-dialog.ui:345
+msgctxt "shortcut window"
+msgid "Show keyboard shortcuts"
+msgstr "أظهر اختصارات لوحة المفاتيح"
+
+#: src/shortcuts-dialog.ui:351
+msgctxt "shortcut window"
+msgid "Show help"
+msgstr "أظهر المساعدة"
+
+#: src/shortcuts-dialog.ui:357
+msgctxt "shortcut window"
+msgid "Toggle text wrapping"
+msgstr "بدِّل لف النص"
