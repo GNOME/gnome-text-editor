@@ -2,16 +2,16 @@
 # Copyright (C) 2023 gnome-text-editor's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-text-editor package.
 # Florentina Musat <deep.sky.028@gmail.com>, 2023.
+# Antonio Marin <gnmer.6qxyg@slmail.me>, 2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2024-08-12 16:58+0000\n"
-"PO-Revision-Date: 2024-08-23 08:29+0300\n"
-"Last-Translator: Florentina Mușat <florentina [dot] musat [dot] 28 [at] "
-"gmail [dot] com>\n"
+"POT-Creation-Date: 2025-08-10 19:56+0000\n"
+"PO-Revision-Date: 2025-05-26 10:17+0200\n"
+"Last-Translator: Antonio Marin <gnmer.6qxyg@slmail.me>\n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -19,44 +19,38 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Gtranslator 48.0\n"
 
-#. developer_name tag deprecated with Appstream 1.0
-#: data/org.gnome.TextEditor.appdata.xml.in.in:7
-#: src/editor-application-actions.c:201
-msgid "The GNOME Project"
-msgstr "Proiectul GNOME"
+#: data/org.gnome.TextEditor.desktop.in.in:3
+msgid "write;notepad;"
+msgstr "write;notepad;scrie;carnețel;notițe;text;"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:12
-#: data/org.gnome.TextEditor.desktop.in.in:10
-#: data/org.gnome.TextEditor.desktop.in.in:11
-#: src/editor-application-actions.c:199 src/editor-window.c:1317
+#: data/org.gnome.TextEditor.desktop.in.in:7
+#: data/org.gnome.TextEditor.desktop.in.in:8
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:10
+#: src/editor-application-actions.c:200 src/editor-window.c:1288
 msgid "Text Editor"
-msgstr "Editor de text"
+msgstr "Text"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:14
+#: data/org.gnome.TextEditor.desktop.in.in:9
+msgid "View and edit text files"
+msgstr "Vizualizează și modifică fișiere care conțin text"
+
+#: data/org.gnome.TextEditor.desktop.in.in:21
+msgid "New Window"
+msgstr "Fereastră nouă"
+
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:12
 msgid "Edit text files"
-msgstr "Editează fișiere text"
+msgstr "Modifică fișiere text"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:16
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:14
 msgid ""
 "GNOME Text Editor is a simple text editor focused on a pleasing default "
 "experience."
 msgstr ""
-"Editor de text GNOME este un editor de text simplu focusat pe o experiență "
-"implicită plăcută."
-
-#: data/org.gnome.TextEditor.desktop.in.in:4
-msgid "write;notepad;"
-msgstr "write;notepad;scrie;"
-
-#: data/org.gnome.TextEditor.desktop.in.in:12
-msgid "View and edit text files"
-msgstr "Vizualizează și editează fișiere text"
-
-#: data/org.gnome.TextEditor.desktop.in.in:22
-msgid "New Window"
-msgstr "Fereastră nouă"
+"GNOME Text Editor este o aplicație simplă pentru text al cărui obiectiv este "
+"să ofere o experiență de utilizare plăcută."
 
 #: data/org.gnome.TextEditor.gschema.xml:16
 msgid "Auto Save Delay"
@@ -64,8 +58,7 @@ msgstr "Întârziere salvare automată"
 
 #: data/org.gnome.TextEditor.gschema.xml:17
 msgid "The delay in seconds to wait before auto-saving a draft."
-msgstr ""
-"Întârzierea în secunde de așteptat înainte de a salva automat o ciornă."
+msgstr "Timpul în secunde de așteptat înainte de a salva automat o ciornă."
 
 #: data/org.gnome.TextEditor.gschema.xml:26
 msgid "Style Variant"
@@ -76,52 +69,54 @@ msgid ""
 "Use the light or dark variant of the GTK theme and/or GtkSourceView style "
 "scheme."
 msgstr ""
-"Utilizați varianta luminoasă sau întunecată a temei GTK și/sau a schemei de "
+"Folosește varianta luminoasă sau întunecoasă a temei GTK și/sau a schemei de "
 "stil GtkSourceView."
 
 #: data/org.gnome.TextEditor.gschema.xml:35
 msgid "Indentation Style"
-msgstr "Stil de indentare"
+msgstr "Stil de alineat"
 
 #: data/org.gnome.TextEditor.gschema.xml:36
 msgid ""
 "Whether the editor should insert multiple spaces characters instead of tabs."
 msgstr ""
-"Dacă editorul ar trebui să insereze caractere spații multiple în loc de tab-"
-"uri."
+"Dacă aplicația ar trebui să introducă mai multe spații mici în locul unuia "
+"mare."
 
 #: data/org.gnome.TextEditor.gschema.xml:40
 msgid "Auto Indent"
-msgstr "Indentare auto"
+msgstr "Alineat automat"
 
 #: data/org.gnome.TextEditor.gschema.xml:41
 msgid "Automatically indent new lines copying the previous line's indentation."
-msgstr "Indentează automat liniile noi copiind indentarea liniei anterioare."
+msgstr ""
+"Alineat automat pentru noile rânduri copiind alineatul rândului precedent."
 
 #: data/org.gnome.TextEditor.gschema.xml:46
 msgid "Tab Width"
-msgstr "Lățime tab"
+msgstr "Lățime Tab"
 
 #: data/org.gnome.TextEditor.gschema.xml:47
 msgid "The number of spaces represented by a tab."
-msgstr "Numărul de spații reprezentate de un tab."
+msgstr "Numărul de spații mici introduse la apăsarea tastei Tab."
 
 #: data/org.gnome.TextEditor.gschema.xml:52
 msgid "Indent Width"
-msgstr "Lățime de indentare"
+msgstr "Lățime alineat"
 
 #: data/org.gnome.TextEditor.gschema.xml:53
 msgid "The number of spaces to indent or -1 to use tab-width."
 msgstr ""
-"Numărul de spații de indentat sau -1 pentru a utiliza lățimea tab-ului."
+"Numărul de spații pentru alineat sau -1 pentru a folosi numărul de spații "
+"stabilit pentru tasta Tab."
 
 #: data/org.gnome.TextEditor.gschema.xml:57
 msgid "Show Line Numbers"
-msgstr "Arată numerele de linii"
+msgstr "Arată numărul rândului"
 
 #: data/org.gnome.TextEditor.gschema.xml:58
 msgid "Whether line numbers should be displayed next to each line."
-msgstr "Dacă numerele de linie ar trebui afișate lângă fiecare linie."
+msgstr "Dacă să se afișeze numărul rândului în dreptul fiecărui rând."
 
 #: data/org.gnome.TextEditor.gschema.xml:62
 msgid "Show Right Margin"
@@ -129,7 +124,7 @@ msgstr "Arată marginea din dreapta"
 
 #: data/org.gnome.TextEditor.gschema.xml:63
 msgid "Whether a margin line should be displayed on the right of the editor."
-msgstr "Dacă o linie de margine ar trebui afișată în dreapta editorului."
+msgstr "Dacă o linie de margine ar trebui afișată în dreapta paginii."
 
 #: data/org.gnome.TextEditor.gschema.xml:68
 msgid "Right Margin Position"
@@ -142,15 +137,15 @@ msgstr "Poziția în caractere la care marginea din dreapta ar trebui afișată.
 
 #: data/org.gnome.TextEditor.gschema.xml:73
 msgid "Show Overview Map"
-msgstr "Arată harta de ansamblu"
+msgstr "Arată vederea de ansamblu"
 
 #: data/org.gnome.TextEditor.gschema.xml:74
 msgid ""
 "If enabled, an overview map of the file will be displayed to the side of the "
 "editor."
 msgstr ""
-"Dacă este activat, o hartă de ansamblu a fișierului va fi afișată în partea "
-"laterală a editorului."
+"Dacă este activată, o vedere de ansamblu a fișierului va fi afișată în "
+"partea laterală a paginii."
 
 #: data/org.gnome.TextEditor.gschema.xml:78
 msgid "Show Background Grid"
@@ -159,52 +154,52 @@ msgstr "Arată grila fundalului"
 #: data/org.gnome.TextEditor.gschema.xml:79
 msgid "If enabled, a blueprint style grid is printed on the editor background."
 msgstr ""
-"Dacă este activat, pe fundalul editorului este imprimată o grilă în stilul "
-"planului."
+"Dacă este activată, pe fundalul paginii este imprimată o grilă de ghidare."
 
 #: data/org.gnome.TextEditor.gschema.xml:83
 msgid "Highlight current line"
-msgstr "Evidențiază linia curentă"
+msgstr "Evidențiază rândul actual"
 
 #: data/org.gnome.TextEditor.gschema.xml:84
 msgid "If enabled, the current line will be highlighted."
-msgstr "Dacă este activat, linia curentă va fi evidențiată."
+msgstr "Dacă este activată, va fi evidențiat rândul actual."
 
 #: data/org.gnome.TextEditor.gschema.xml:88
 msgid "Text Wrapping"
-msgstr "Încadrare text"
+msgstr "Automat pe un rând nou"
 
 #: data/org.gnome.TextEditor.gschema.xml:89
 msgid "Whether text should be wrapped."
-msgstr "Dacă textul ar trebui să fie încadrat."
+msgstr "Dacă textul să treacă automat pe un rând nou când ajunge la margine."
 
 #: data/org.gnome.TextEditor.gschema.xml:93
 msgid "Use System Font"
-msgstr "Utilizează fontul sistemului"
+msgstr "Folosește caracterele sistemului"
 
 #: data/org.gnome.TextEditor.gschema.xml:94
 msgid "Whether the default system monospace font should be used."
-msgstr "Dacă fontul monospațiat implicit al sistemului ar trebui utilizat."
+msgstr ""
+"Dacă trebuie folosit tipul de caractere monospațiat utilizat de sistem."
 
 #: data/org.gnome.TextEditor.gschema.xml:98
 msgid "Custom Font"
-msgstr "Font personalizat"
+msgstr "Caractere personalizate"
 
 #: data/org.gnome.TextEditor.gschema.xml:99
 msgid "A custom font to use in the editor."
-msgstr "Un font personalizat de utilizat în editor."
+msgstr "Un tip personalizat de caractere de utilizat în aplicație."
 
 #: data/org.gnome.TextEditor.gschema.xml:103
 msgid "Style Scheme"
-msgstr "Schemă de stil"
+msgstr "Combinație de stiluri"
 
 #: data/org.gnome.TextEditor.gschema.xml:104
 msgid ""
 "The style scheme to use by the editor. It may translate this into a dark "
 "format when available."
 msgstr ""
-"Schema de stil de utilizat în editor. Poate traduce aceasta într-un format "
-"întunecat atunci când este disponibil."
+"Combinația de stiluri de utilizat în aplicație. Poate deveni un aspect "
+"întunecos când este disponibil."
 
 #: data/org.gnome.TextEditor.gschema.xml:108
 msgid "Discover File Settings"
@@ -215,8 +210,9 @@ msgid ""
 "If enabled, then Text Editor will try to discover file settings from "
 "modelines, editorconfig, or per-language defaults."
 msgstr ""
-"Dacă este activat, atunci Editor text va încerca să descopere configurările "
-"de fișier din liniile de mod, editorconfig sau valorile implicite per-limbă."
+"Dacă este activată, aplicația va încerca să descopere configurările "
+"fișierului din modelines, editorconfig sau din cele prestabilite petru "
+"fiecare limbaj."
 
 #: data/org.gnome.TextEditor.gschema.xml:113
 msgid "Automatically check spelling"
@@ -225,15 +221,17 @@ msgstr "Verifică ortografia automat"
 #: data/org.gnome.TextEditor.gschema.xml:114
 msgid "If enabled, then Text Editor will check spelling as you type."
 msgstr ""
-"Dacă este activat, Editor text va verifica ortografia în timp ce tastați."
+"Dacă este activată, aplicația va verifica ortografia în timpul scrierii."
 
 #: data/org.gnome.TextEditor.gschema.xml:118
 msgid "Restore session"
-msgstr "Restaurează sesiunea"
+msgstr "Recuperează sesiunea"
 
 #: data/org.gnome.TextEditor.gschema.xml:119
 msgid "When Text Editor is running, restore the previous session."
-msgstr "Când Editor text rulează, restaurează sesiunea anterioară."
+msgstr ""
+"Când utilizatorul va redeschide aplicația, va găsi totul așa cum era înainte "
+"să o închidă."
 
 #: data/org.gnome.TextEditor.gschema.xml:123
 msgid "Recolor Window"
@@ -241,32 +239,32 @@ msgstr "Recolorează fereastra"
 
 #: data/org.gnome.TextEditor.gschema.xml:124
 msgid "Use the style-scheme to recolor the application window."
-msgstr "Utilizează schema de stil pentru a recolora fereastra aplicației."
+msgstr ""
+"Utilizează combinația de stiluri pentru a recolora fereastra aplicației."
 
 #: data/org.gnome.TextEditor.gschema.xml:132
 msgid "Keybindings"
-msgstr "Legături de taste"
+msgstr "Asocieri taste"
 
 #: data/org.gnome.TextEditor.gschema.xml:133
 msgid "The keybindings to use within Text Editor."
-msgstr "Legăturile de taste de utilizat în cadrul Editor text."
+msgstr "Asocierile de taste de utilizat în aplicație."
 
 #: data/org.gnome.TextEditor.gschema.xml:137
 msgid "Last Save Directory"
-msgstr "Ultimul director de salvare"
+msgstr "Ultimul dosar de salvare"
 
 #: data/org.gnome.TextEditor.gschema.xml:138
 msgid "The directory last used in a save or save-as dialog."
-msgstr ""
-"Directorul utilizat ultima dată într-un dialog salvează sau salvează ca."
+msgstr "Ultimul dosar folosit pentru a salva sau pentru salvarea cu nume."
 
 #: data/org.gnome.TextEditor.gschema.xml:142
 msgid "Draw Spaces"
-msgstr "Spații întunecate"
+msgstr "Marchează spațiile"
 
 #: data/org.gnome.TextEditor.gschema.xml:143
 msgid "The various types of spaces to draw in the editor."
-msgstr "Tipurile variate de spații de desenat în editor."
+msgstr "Diferitele tipuri de spații care pot fi marcate în editorul de text."
 
 #: data/org.gnome.TextEditor.gschema.xml:147
 msgid "Enable Snippets"
@@ -277,24 +275,24 @@ msgid ""
 "Enable the use of snippets registered with GtkSourceView from within the "
 "editor."
 msgstr ""
-"Activează utilizarea de fragmente înregistrate cu GtkSourceView din cadrul "
-"editorului."
+"Activează utilizarea fragmentelor înregistrate cu GtkSourceView din "
+"interiorul editorului de text."
 
 #: data/org.gnome.TextEditor.gschema.xml:153
 msgid "Line Height"
-msgstr "Înălțime linie"
+msgstr "Înălțimea rândului"
 
 #: data/org.gnome.TextEditor.gschema.xml:154
 msgid "The line height to use for the selected font."
-msgstr "Înălțimea fontului de utilizat pentru fontul selectat."
+msgstr "Înălțimea rândului de utilizat pentru tipul de litere ales."
 
 #: data/org.gnome.TextEditor.gschema.xml:158
 msgid "Highlight Matching Brackets"
-msgstr "Evidențiază parantezele potrivite"
+msgstr "Evidențiază parantezele pereche"
 
 #: data/org.gnome.TextEditor.gschema.xml:159
 msgid "Highlight matching brackets and braces."
-msgstr "Evidențiază parantezele și acoladele potrivite."
+msgstr "Evidențiază parantezele și acoladele pereche."
 
 #: src/editor-animation.c:1038
 #, c-format
@@ -306,53 +304,91 @@ msgstr "Nu s-a putut găsi proprietatea %s în %s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Nu s-a putut obține valoarea va_list: %s"
 
-#: src/editor-application-actions.c:214
+#: src/editor-application-actions.c:202
+msgid "The GNOME Project"
+msgstr "Proiectul GNOME"
+
+#: src/editor-application-actions.c:215
 msgid "translator-credits"
 msgstr ""
 "Florentina Mușat <florentina [dot] musat [dot] 28 [at] gmail [dot] com>, "
-"2023-2024"
+"2023-2024\n"
+"Antonio Marin <gnmer.6qxyg@slmail.me>, 2025"
 
-#: src/editor-application.c:525
+#: src/editor-application-actions.c:349
+msgid "Clear File History?"
+msgstr "Să șterg cronologia fișierelor?"
+
+#: src/editor-application-actions.c:350
+msgid "This action cannot be undone"
+msgstr "Această acțiune nu poate fi anulată"
+
+#: src/editor-application-actions.c:352 src/editor-save-changes-dialog.c:260
+#: src/editor-window-actions.c:115 src/editor-window-actions.c:219
+msgid "_Cancel"
+msgstr "_Anulează"
+
+#: src/editor-application-actions.c:353
+msgid "_Clear All"
+msgstr "Ște_rge tot"
+
+#: src/editor-application.c:531
 msgid "Standard input was requested multiple times. Ignoring request."
 msgstr "Intrarea standard a fost cerută de mai multe ori. Se ignoră cererea."
 
-#: src/editor-application.c:529
+#: src/editor-application.c:535
 msgid "Standard input is not supported on this platform. Ignoring request."
 msgstr ""
-"Intrarea standard nu este suportată pe această platformă. Se ignoră cererea."
+"Intrarea standard nu este acceptată pe această platformă. Se ignoră cererea."
 
-#: src/editor-application.c:632
+#: src/editor-application.c:638
 msgid "Bugs may be reported at:"
 msgstr "Defecțiunile pot fi raportate la:"
 
-#: src/editor-application.c:634
+#: src/editor-application.c:640
 msgid "[FILES…]"
 msgstr "[FIȘIERE…]"
 
-#: src/editor-application.c:748
+#: src/editor-application.c:764
 msgid "Do not restore session at startup"
-msgstr "Nu restaura sesiunea la pornire"
+msgstr "Nu recupera sesiunea la pornire"
 
-#: src/editor-application.c:749
+#: src/editor-application.c:765
 msgid "Open provided files in a new window"
 msgstr "Deschide fișierele furnizate într-o fereastră nouă"
 
-#: src/editor-application.c:750
+#: src/editor-application.c:766
 msgid "Run a new instance of Text Editor (implies --ignore-session)"
-msgstr "Rulează o instanță nouă a Editor text (implică --ignore-session)"
+msgstr "Pornește o nouă instanță a aplicației (implică --ignore-session)."
 
-#: src/editor-application.c:751
+#: src/editor-application.c:767
 msgid "Print version information and exit"
-msgstr "Tipărește informațiile de versiune și ieși"
+msgstr "Tipărește informațiile versiunii și închide"
 
-#: src/editor-document.c:2099
+#: src/editor-document.c:2272
 msgid "[Read-Only]"
 msgstr "[Doar citire]"
 
-#: src/editor-document.c:2316 src/editor-page.c:1074
-#: src/editor-sidebar-item.c:511
+#: src/editor-document.c:2497 src/editor-page.c:1125
+#: src/editor-sidebar-item.c:498
 msgid "New Document"
 msgstr "Document nou"
+
+#: src/editor-encoding-dialog.ui:5
+msgid "Change Encoding"
+msgstr "Schimbă codarea"
+
+#: src/editor-encoding-dialog.ui:22
+msgid "Search encodings"
+msgstr "Caută codări"
+
+#: src/editor-encoding-dialog.ui:58 src/editor-language-dialog.ui:75
+msgid "No Results Found"
+msgstr "Nu au fost găsite rezultate"
+
+#: src/editor-encoding-dialog.ui:59 src/editor-language-dialog.ui:76
+msgid "Try a different search"
+msgstr "Încearcă o altă căutare"
 
 #: src/editor-file-manager.c:99
 msgid "File path is NULL"
@@ -369,255 +405,267 @@ msgstr "ILCreateFromPath() a eșuat"
 #: src/editor-file-manager.c:164
 #, c-format
 msgid "Cannot convert “%s” into a valid NSURL."
-msgstr "Nu se poate converti „%s” într-un NSURL valid."
+msgstr "Nu se poate converti „%s” într-un NSURL valabil."
 
-#: src/editor-info-bar.c:76
+#: src/editor-indent-model.c:173
+msgid "Space"
+msgstr "Spațiu"
+
+#: src/editor-indent-model.c:178
+msgid "Tab"
+msgstr "Tasta Tab"
+
+#: src/editor-info-bar.c:108
 msgid "_Discard Changes and Reload"
-msgstr "_Ignoră modificările și reîncarcă"
+msgstr "_Nu salva modificările și reîncarcă"
 
-#: src/editor-info-bar.c:79
+#: src/editor-info-bar.c:112
 msgid "File Has Changed on Disk"
 msgstr "Fișierul a fost modificat pe disc"
 
-#: src/editor-info-bar.c:80
+#: src/editor-info-bar.c:113
 msgid "The file has been changed by another program."
 msgstr "Fișierul a fost modificat de către un alt program."
 
-#: src/editor-info-bar.c:89 src/editor-window.ui:217
+#: src/editor-info-bar.c:122 src/editor-window.ui:371
 msgid "Save _As…"
-msgstr "Salvează c_a…"
+msgstr "S_alvează cu nume…"
 
-#: src/editor-info-bar.c:91 src/editor-info-bar.ui:62
+#: src/editor-info-bar.c:124 src/editor-info-bar.ui:73
 msgid "Document Restored"
-msgstr "Document restaurat"
+msgstr "Document recuperat"
 
-#: src/editor-info-bar.c:92 src/editor-info-bar.ui:72
+#: src/editor-info-bar.c:125 src/editor-info-bar.ui:84
 msgid "Unsaved document has been restored."
-msgstr "Documentul nesalvat a fost restaurat."
+msgstr "Documentul nesalvat a fost recuperat."
 
-#: src/editor-info-bar.c:98 src/editor-info-bar.ui:86
+#: src/editor-info-bar.c:131 src/editor-info-bar.ui:99
 msgid "_Save…"
 msgstr "_Salvează…"
 
-#: src/editor-info-bar.c:100 src/editor-info-bar.ui:80
+#: src/editor-info-bar.c:133 src/editor-info-bar.ui:93
 msgid "_Discard…"
-msgstr "_Ignoră…"
+msgstr "_Nu salva…"
 
-#: src/editor-info-bar.c:102
+#: src/editor-info-bar.c:136
 msgid "Draft Changes Restored"
-msgstr "Modificările ciornei restaurate"
+msgstr "Modificări recuperate ale ciornei"
 
-#: src/editor-info-bar.c:103
+#: src/editor-info-bar.c:137
 msgid "Unsaved changes to the document have been restored."
-msgstr "Modificările nesalvate la document au fost restaurate."
+msgstr "Modificările nesalvate ale documentului au fost recuperate."
 
 #: src/editor-info-bar.ui:19
 msgid "Could Not Open File"
 msgstr "Nu s-a putut deschide fișierul"
 
-#: src/editor-info-bar.ui:36
+#: src/editor-info-bar.ui:38
 msgid "_Retry"
 msgstr "_Reîncearcă"
 
-#: src/editor-info-bar.ui:43
+#: src/editor-info-bar.ui:51
 msgid "Open As _Administrator"
 msgstr "Deschide ca _administrator"
 
-#: src/editor-language-dialog.ui:6 src/editor-window.c:191
+#: src/editor-info-bar.ui:116
+msgid "Invalid Characters Detected"
+msgstr "Caractere neacceptate detectate"
+
+#: src/editor-info-bar.ui:127
+msgid ""
+"There was an encoding conversion error so a fallback character was used."
+msgstr ""
+"A apărut o eroare la conversia codării, prin urmare s-a utilizat un caracter "
+"de rezervă."
+
+#: src/editor-info-bar.ui:136
+msgid "Change _Encoding…"
+msgstr "Schimbă codar_ea…"
+
+#: src/editor-language-dialog.c:248
+msgid "Other Document Types"
+msgstr "Alte tipuri de documente"
+
+#: src/editor-language-dialog.ui:6
 msgid "Document Type"
 msgstr "Tip de document"
 
-#: src/editor-language-dialog.ui:25
-msgid "Search document types"
-msgstr "Caută tipuri de documente"
-
-#: src/editor-language-dialog.ui:60 src/editor-open-popover.ui:104
-msgid "No Results Found"
-msgstr "Nu au fost găsite rezultate"
-
-#: src/editor-language-dialog.ui:61
-msgid "Try a different search"
-msgstr "Încearcă o altă căutare"
+#: src/editor-language-dialog.ui:25 src/editor-search-entry.c:193
+#: src/editor-search-entry.ui:13
+msgid "Search"
+msgstr "Caută"
 
 #: src/editor-language-row.c:61 src/editor-language-row.c:119
+#: src/editor-properties.c:573
 msgid "Plain Text"
 msgstr "Text simplu"
 
+#: src/editor-newline-model.c:180
+msgid "Unix/Linux (LF)"
+msgstr "Unix/Linux (LF)"
+
+#: src/editor-newline-model.c:181
+msgid "Windows (CR+LF)"
+msgstr "Windows (CR+LF)"
+
+#: src/editor-newline-model.c:182
+msgid "Mac OS Classic (CR)"
+msgstr "Mac OS Clasic (CR)"
+
 #: src/editor-open-popover.ui:25
 msgid "Search documents"
-msgstr "Caută documentele"
+msgstr "Caută documente"
 
-#: src/editor-open-popover.ui:39
+#: src/editor-open-popover.ui:45
 msgid "Open New Document"
 msgstr "Deschide un document nou"
 
-#: src/editor-open-popover.ui:74
+#: src/editor-open-popover.ui:80
 msgid "No Recent Documents"
-msgstr "Fără documente recente"
+msgstr "Niciun document recent"
 
-#: src/editor-page.c:1100 src/editor-properties-dialog.c:104
-#: src/editor-sidebar-item.c:105
+#: src/editor-page.c:1151 src/editor-properties.c:606
+#: src/editor-sidebar-item.c:101
 msgid "Draft"
 msgstr "Ciornă"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1112
+#: src/editor-page.c:1163
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (Administrator)"
 
-#: src/editor-page.c:1122 src/editor-sidebar-item.c:113
-msgid "Document Portal"
-msgstr "Portal de documente"
-
-#: src/editor-page.c:1168
+#: src/editor-page.c:1219
 msgid "Failed to save document"
 msgstr "Nu s-a putut salva documentul"
 
-#: src/editor-page.c:1169 src/editor-window.ui:358
+#: src/editor-page.c:1220 src/editor-window.ui:451
 msgid "_Close"
 msgstr "În_chide"
 
-#: src/editor-page.c:1257
-msgid "Save As"
-msgstr "Salvează ca"
-
-#: src/editor-page.c:1260
-msgid "Save"
-msgstr "Salvează"
-
-#: src/editor-page.c:1261 src/editor-window-actions.c:347
-msgid "Cancel"
-msgstr "Anulează"
-
-#: src/editor-page.c:1422
+#: src/editor-page.c:1484
 #, c-format
 msgid "Ln %u, Col %u"
-msgstr "Ln %u, Col %u"
+msgstr "Rân %u, Col %u"
 
-#: src/editor-page.ui:95
+#: src/editor-page.ui:94
 msgid "Go to Line"
-msgstr "Mergi la linia"
+msgstr "Du-te la rândul"
 
-#: src/editor-page.ui:113
+#: src/editor-page.ui:111
 msgid "Go"
-msgstr "Mergi"
+msgstr "Du-te"
 
-#: src/editor-page.ui:150
-msgid "Indentation"
-msgstr "Indentare"
-
-#: src/editor-page.ui:153 src/editor-window.ui:278
-msgid "_Automatic Indentation"
-msgstr "Indentare _automată"
-
-#. Translators: this is a tab character, not a browser tab
-#: src/editor-page.ui:159 src/editor-window.ui:282
-msgid "_Tabs"
-msgstr "_Tab-uri"
-
-#: src/editor-page.ui:164 src/editor-window.ui:287
-msgid "_Spaces"
-msgstr "_Spații"
-
-#: src/editor-page.ui:171 src/editor-window.ui:292
-msgid "Spaces _Per Tab"
-msgstr "Spații _per tab"
-
-#: src/editor-page.ui:173 src/editor-page.ui:201
-msgid "2"
-msgstr "2"
-
-#: src/editor-page.ui:178 src/editor-page.ui:206
-msgid "4"
-msgstr "4"
-
-#: src/editor-page.ui:183 src/editor-page.ui:211
-msgid "6"
-msgstr "6"
-
-#: src/editor-page.ui:188 src/editor-page.ui:216
-msgid "8"
-msgstr "8"
-
-#: src/editor-page.ui:194
-msgid "Spaces Per Indent"
-msgstr "Spații per indentare"
-
-#: src/editor-page.ui:196
-msgid "Use Tab Size"
-msgstr "Utilizează dimensiune tab"
+#: src/editor-path.c:128
+msgid "Document Portal"
+msgstr "Portal de documente"
 
 #. translators: Ln is short for "Line Number"
 #: src/editor-position-label.ui:15
 msgid "Ln"
-msgstr "Ln"
+msgstr "Rân"
 
 #. translators: Col is short for "Column"
-#: src/editor-position-label.ui:35
+#: src/editor-position-label.ui:32
 msgid "Col"
 msgstr "Col"
 
-#: src/editor-preferences-dialog.ui:19
+#: src/editor-preferences-dialog.ui:15
 msgid "Appearance"
 msgstr "Aspect"
 
-#: src/editor-preferences-dialog.ui:59
+#: src/editor-preferences-dialog.ui:55
 msgid "Custom _Font"
-msgstr "_Font personalizat"
+msgstr "Caractere _personalizate"
 
-#: src/editor-preferences-dialog.ui:82
-msgid "Display _Grid Pattern"
-msgstr "Afișează modelul de _grilă"
+#: src/editor-preferences-dialog.ui:78
+msgid "Show Grid Pattern"
+msgstr "Arată grila"
 
-#: src/editor-preferences-dialog.ui:89
+#: src/editor-preferences-dialog.ui:85
+msgid "Display _Line Numbers"
+msgstr "Afișează număru_l rândului"
+
+#: src/editor-preferences-dialog.ui:92
 msgid "_Highlight Current Line"
-msgstr "_Evidențiază linia curentă"
+msgstr "_Evidențiază rândul actual"
 
-#: src/editor-preferences-dialog.ui:96
+#: src/editor-preferences-dialog.ui:99
 msgid "Display _Overview Map"
-msgstr "Afișează harta de _ansamblu"
+msgstr "Afișează vederea de _ansamblu"
 
-#: src/editor-preferences-dialog.ui:105
-msgid "Right Margin"
-msgstr "Marginea din dreapta"
+#: src/editor-preferences-dialog.ui:110
+msgid "Check _Spelling"
+msgstr "Verifică _ortografia"
 
-#: src/editor-preferences-dialog.ui:108
+#: src/editor-preferences-dialog.ui:119
+msgid "Line Wrap"
+msgstr "Rând nou"
+
+#: src/editor-preferences-dialog.ui:122
+msgid "Show _Right Margin"
+msgstr "Arată marginea din d_reapta"
+
+#: src/editor-preferences-dialog.ui:129
 msgid "_Margin Position"
 msgstr "Poziția _marginii"
 
-#: src/editor-preferences-dialog.ui:117
+#: src/editor-preferences-dialog.ui:136
+msgid "_Wrap Lines Automatically (Alt+W)"
+msgstr "Automat pe un rând nou (Alt+W)"
+
+#: src/editor-preferences-dialog.ui:145
+msgid "Indentation"
+msgstr "Alineat"
+
+#: src/editor-preferences-dialog.ui:148 src/editor-properties-panel.ui:106
+msgid "A_uto Indentation"
+msgstr "Alineat _automat"
+
+#: src/editor-preferences-dialog.ui:155 src/editor-properties-panel.ui:113
+msgid "_Character"
+msgstr "_Caracter"
+
+#: src/editor-preferences-dialog.ui:165 src/editor-properties-panel.ui:124
+msgid "Spaces Per _Tab"
+msgstr "Spații per _Tab"
+
+#: src/editor-preferences-dialog.ui:183 src/editor-properties-panel.ui:136
+msgid "Spaces Per _Indent"
+msgstr "Spații per al_ineat"
+
+#: src/editor-preferences-dialog.ui:204
 msgid "Behavior"
 msgstr "Comportament"
 
-#: src/editor-preferences-dialog.ui:120
+#: src/editor-preferences-dialog.ui:207
 msgid "_Discover Document Settings"
 msgstr "_Descoperă configurările documentului"
 
-#: src/editor-preferences-dialog.ui:122
+#: src/editor-preferences-dialog.ui:209
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr ""
-"Aplicați setările utilizând liniile de mod, editorconfig sau valori "
-"implicite sensibile"
+"Aplică configurările utilizând modelines, editorconfig sau valori "
+"prestabilite rezonabile"
 
-#: src/editor-preferences-dialog.ui:128
+#: src/editor-preferences-dialog.ui:215
 msgid "_Restore Session"
-msgstr "_Restaurează sesiunea"
+msgstr "_Recuperează sesiunea"
 
-#: src/editor-preferences-dialog.ui:130
+#: src/editor-preferences-dialog.ui:217
 msgid "Return to your previous session when Text Editor is started"
-msgstr "Întoarce-te la sesiunea anterioară când Editor text este pornit"
+msgstr "Aplicația va reveni la sesiunea precedentă când este pornită"
 
-#: src/editor-preferences-dialog.ui:145
+#: src/editor-preferences-dialog.ui:229
 msgid "_Clear History"
-msgstr "_Curăță istoricul"
+msgstr "Șterge _cronologia"
 
-#: src/editor-print-operation.c:181
+#: src/editor-print-operation.c:182
 #, c-format
 msgid "Draft: %s"
 msgstr "Ciornă: %s"
 
-#: src/editor-print-operation.c:183
+#: src/editor-print-operation.c:184
 #, c-format
 msgid "File: %s"
 msgstr "Fișier: %s"
@@ -625,61 +673,69 @@ msgstr "Fișier: %s"
 #. Translators: %N is the current page number, %Q is the total
 #. * number of pages (ex. Page 2 of 10)
 #.
-#: src/editor-print-operation.c:194
+#: src/editor-print-operation.c:196
 msgid "Page %N of %Q"
 msgstr "Pagina %N din %Q"
 
-#: src/editor-properties-dialog.ui:6
-msgid "Properties"
-msgstr "Proprietăți"
+#: src/editor-properties-panel.ui:10
+msgid "File Name"
+msgstr "Numele fișierului"
 
-#: src/editor-properties-dialog.ui:22
-msgid "File"
-msgstr "Fișier"
-
-#: src/editor-properties-dialog.ui:25
-msgid "Name"
-msgstr "Nume"
-
-#: src/editor-properties-dialog.ui:33
+#: src/editor-properties-panel.ui:26
 msgid "Location"
-msgstr "Locație"
+msgstr "Locul"
 
-#: src/editor-properties-dialog.ui:42
+#: src/editor-properties-panel.ui:27
 msgid "Open in File Manager"
-msgstr "Deschide în Managerul de fișiere"
+msgstr "Deschide în administratorul de fișiere"
 
-#: src/editor-properties-dialog.ui:55
+#: src/editor-properties-panel.ui:53
+msgid "_Document Type"
+msgstr "Tipul _documentului"
+
+#: src/editor-properties-panel.ui:54
+msgid "Change Document Type"
+msgstr "Schimbă tipul documentului"
+
+#: src/editor-properties-panel.ui:76
+msgid "_Encoding"
+msgstr "Codar_e"
+
+#: src/editor-properties-panel.ui:90
+msgid "_Line Feed"
+msgstr "Pe un _rând nou"
+
+#: src/editor-properties-panel.ui:150
 msgid "Statistics"
 msgstr "Statistici"
 
-#: src/editor-properties-dialog.ui:58
+#: src/editor-properties-panel.ui:153
 msgid "Lines"
-msgstr "Linii"
+msgstr "Rânduri"
 
-#: src/editor-properties-dialog.ui:66
+#: src/editor-properties-panel.ui:166
 msgid "Words"
 msgstr "Cuvinte"
 
-#: src/editor-properties-dialog.ui:74
+#: src/editor-properties-panel.ui:179
 msgid "Characters, No Spaces"
 msgstr "Caractere, fără spații"
 
-#: src/editor-properties-dialog.ui:82
+#: src/editor-properties-panel.ui:192
 msgid "All Characters"
 msgstr "Toate caracterele"
 
-#: src/editor-save-changes-dialog.c:254 src/editor-window-actions.c:236
+#: src/editor-save-changes-dialog.c:254 src/editor-window-actions.c:220
 msgid "_Discard"
-msgstr "_Ignoră"
+msgstr "_Nu salva"
 
 #: src/editor-save-changes-dialog.c:254
 msgid "_Discard All"
-msgstr "_Ignoră toate"
+msgstr "_Nu salva nimic"
 
 #: src/editor-save-changes-dialog.c:256
 msgid "Save Changes?"
-msgstr "Salvați modificările?"
+msgstr "Să salvez modificările?"
 
 #: src/editor-save-changes-dialog.c:257
 msgid ""
@@ -687,97 +743,88 @@ msgid ""
 "permanently lost."
 msgstr ""
 "Documentele deschise conțin modificări nesalvate. Modificările care nu sunt "
-"salvate vor fi pierdute permanent."
+"salvate vor fi pierdute definitiv."
 
-#: src/editor-save-changes-dialog.c:261 src/editor-window-actions.c:115
-#: src/editor-window-actions.c:235
-msgid "_Cancel"
-msgstr "_Anulează"
-
-#: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:116
-#: src/editor-window.ui:211
+#: src/editor-save-changes-dialog.c:262 src/editor-window-actions.c:116
+#: src/editor-window.ui:365
 msgid "_Save"
 msgstr "_Salvează"
 
-#: src/editor-save-changes-dialog.c:295
+#: src/editor-save-changes-dialog.c:294
 msgid "Untitled Document"
 msgstr "Document fără titlu"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:298
+#: src/editor-save-changes-dialog.c:297
 #, c-format
 msgid "%s (new)"
 msgstr "%s (nou)"
 
-#: src/editor-save-changes-dialog.c:319
-msgid "Save changes for this document"
-msgstr "Salvează modificările pentru acest document"
-
-#: src/editor-search-bar.ui:33
+#: src/editor-search-bar.ui:36 src/editor-search-bar.ui:38
 msgid "Replace"
 msgstr "Înlocuiește"
 
-#: src/editor-search-bar.ui:51
+#: src/editor-search-bar.ui:57
 msgid "Previous Match"
 msgstr "Potrivirea anterioară"
 
-#: src/editor-search-bar.ui:59
+#: src/editor-search-bar.ui:70
 msgid "Next Match"
 msgstr "Potrivirea următoare"
 
-#: src/editor-search-bar.ui:71
+#: src/editor-search-bar.ui:86
 msgid "Search & Replace"
 msgstr "Caută și înlocuiește"
 
-#: src/editor-search-bar.ui:81
+#: src/editor-search-bar.ui:101
 msgid "Search Options"
 msgstr "Opțiuni de căutare"
 
-#: src/editor-search-bar.ui:95
+#: src/editor-search-bar.ui:119
 msgid "Close Search"
 msgstr "Închide căutarea"
 
-#: src/editor-search-bar.ui:112
+#: src/editor-search-bar.ui:137
 msgid "_Replace"
 msgstr "Înlocui_ește"
 
-#: src/editor-search-bar.ui:124
+#: src/editor-search-bar.ui:151
 msgid "Replace _All"
 msgstr "Înlocuiește to_ate"
 
-#: src/editor-search-bar.ui:140
-msgid "Re_gular expressions"
+#: src/editor-search-bar.ui:170
+msgid "Re_gular Expressions"
 msgstr "Expresii re_gulate"
 
-#: src/editor-search-bar.ui:146
-msgid "_Case sensitive"
-msgstr "Majus_cule semnificative"
+#: src/editor-search-bar.ui:174
+msgid "_Case Sensitive"
+msgstr "Distinge majus_cule"
 
-#: src/editor-search-bar.ui:152
-msgid "Match whole _word only"
-msgstr "Potrivește doar întregul _cuvânt"
+#: src/editor-search-bar.ui:178
+msgid "Match Whole _Word Only"
+msgstr "_Doar cuvinte întregi"
 
 #. translators: the first %u is replaced with the current position, the second with the number of search results
-#: src/editor-search-entry.c:197
+#: src/editor-search-entry.c:221
 #, c-format
 msgid "%u of %u"
 msgstr "%u din %u"
 
-#: src/editor-search-entry.ui:13
-msgid "Find"
-msgstr "Caută"
+#: src/editor-search-entry.ui:33
+msgid "Clear Entry"
+msgstr "Șterge conținutul"
 
-#: src/editor-sidebar-row.ui:85
+#: src/editor-sidebar-row.ui:82
 msgid "Remove"
 msgstr "Elimină"
 
 #: src/editor-theme-selector.ui:23
 msgid "Follow System Style"
-msgstr "Urmărește stilul sistemului"
+msgstr "Folosește stilul sistemului"
 
 #: src/editor-theme-selector.ui:25
 msgid "Follow system style"
-msgstr "Urmărește stilul sistemului"
+msgstr "Folosește stilul sistemului"
 
 #: src/editor-theme-selector.ui:40
 msgid "Light Style"
@@ -789,59 +836,35 @@ msgstr "Stil luminos"
 
 #: src/editor-theme-selector.ui:58
 msgid "Dark Style"
-msgstr "Stil întunecat"
+msgstr "Stil întunecos"
 
 #: src/editor-theme-selector.ui:60
 msgid "Dark style"
-msgstr "Stil întunecat"
+msgstr "Stil întunecos"
 
-#: src/editor-utils.c:348
+#: src/editor-utils.c:355
 msgid "Just now"
 msgstr "Acum"
 
-#: src/editor-utils.c:350
+#: src/editor-utils.c:357
 msgid "An hour ago"
 msgstr "Acum o oră"
 
-#: src/editor-utils.c:352
+#: src/editor-utils.c:359
 msgid "Yesterday"
 msgstr "Ieri"
 
-#: src/editor-utils.c:358
+#: src/editor-utils.c:365
 msgid "About a year ago"
 msgstr "Acum un an"
 
-#: src/editor-utils.c:362
+#: src/editor-utils.c:369
 #, c-format
 msgid "About %u year ago"
 msgid_plural "About %u years ago"
 msgstr[0] "Acum %u an"
 msgstr[1] "Acum %u ani"
 msgstr[2] "Acum %u de ani"
-
-#: src/editor-utils.c:370
-msgid "Unix/Linux (LF)"
-msgstr "Unix/Linux (LF)"
-
-#: src/editor-utils.c:371
-msgid "Mac OS Classic (CR)"
-msgstr "Mac OS Clasic (CR)"
-
-#: src/editor-utils.c:372
-msgid "Windows (CR+LF)"
-msgstr "Windows (CR+LF)"
-
-#: src/editor-utils.c:402
-msgid "Automatically Detected"
-msgstr "Detectat automat"
-
-#: src/editor-utils.c:418
-msgid "Character Encoding:"
-msgstr "Codare de caracter:"
-
-#: src/editor-utils.c:453
-msgid "Line Ending:"
-msgstr "Sfârșit de linie:"
 
 #: src/editor-window-actions.c:109
 msgid "Saving changes will replace the previously saved version."
@@ -851,532 +874,441 @@ msgstr "Salvarea modificărilor va înlocui versiunea salvată anterior."
 #: src/editor-window-actions.c:112
 #, c-format
 msgid "Save Changes to “%s”?"
-msgstr "Salvați modificările la „%s”?"
+msgstr "Să salvez modificările la „%s”?"
 
-#: src/editor-window-actions.c:229
+#: src/editor-window-actions.c:213
 msgid "Unsaved changes will be permanently lost."
-msgstr "Modificările nesalvate vor fi pierdute permanent."
+msgstr "Modificările nesalvate vor fi pierdute definitiv."
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:232
+#: src/editor-window-actions.c:216
 #, c-format
 msgid "Discard Changes to “%s”?"
-msgstr "Se ignoră modificările la „%s”?"
+msgstr "Nu se salvează modificările la „%s”?"
 
-#: src/editor-window-actions.c:343
-msgid "Open File"
-msgstr "Deschide fișierul"
-
-#: src/editor-window-actions.c:346
-msgid "Open"
-msgstr "Deschide"
-
-#: src/editor-window-actions.c:371
+#: src/editor-window-actions.c:384
 msgid "All Files"
 msgstr "Toate fișierele"
 
-#: src/editor-window-actions.c:376
+#: src/editor-window-actions.c:389
 msgid "Text Files"
 msgstr "Fișiere text"
 
-#: src/editor-window.c:203
-#, c-format
-msgid "Document Type: %s"
-msgstr "Tip de document: %s"
-
-#: src/editor-window.c:505
+#: src/editor-window.c:423
 msgid "Zoom In"
 msgstr "Mărește"
 
-#: src/editor-window.c:508
+#: src/editor-window.c:426
 msgid "Zoom in"
 msgstr "Mărește"
 
-#: src/editor-window.c:518
+#: src/editor-window.c:436
 msgid "Zoom Out"
 msgstr "Micșorează"
 
-#: src/editor-window.c:521
+#: src/editor-window.c:439
 msgid "Zoom out"
 msgstr "Micșorează"
 
+#: src/editor-window.c:444
+msgid "Reset Zoom"
+msgstr "Zoom inițial"
+
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:760
+#: src/editor-window.c:690
 #, c-format
 msgid "%s (%s) - Text Editor"
-msgstr "%s (%s) - Editor text"
+msgstr "%s (%s) - Editor de text"
 
-#: src/editor-window.c:1202
+#: src/editor-window.c:1167
 msgid "There are unsaved documents"
 msgstr "Există documente nesalvate"
 
-#: src/editor-window.ui:83
-msgid "_Open"
-msgstr "D_eschide"
+#: src/editor-window.ui:81
+msgid "Open a Document"
+msgstr "Deschide un document"
 
-#: src/editor-window.ui:85
+#: src/editor-window.ui:82
+msgid "Create a new document (Ctrl+N), or open an existing one (Ctrl+O)"
+msgstr "Creează un document nou (Ctrl+N) sau deschide unul existent (Ctrl+O)"
+
+#: src/editor-window.ui:93
+msgid "_New Empty File"
+msgstr "Fișier _nou gol"
+
+#: src/editor-window.ui:166
 msgid "Recently Used Documents"
 msgstr "Documente utilizate recent"
 
-#: src/editor-window.ui:97
+#: src/editor-window.ui:191
+msgid "_Open"
+msgstr "D_eschide"
+
+#: src/editor-window.ui:224
 msgid "New Tab"
 msgstr "Filă nouă"
 
-#: src/editor-window.ui:99
-msgid "New tab"
-msgstr "Filă nouă"
+#: src/editor-window.ui:229 src/editor-window.ui:403
+msgid "Leave Fullscreen"
+msgstr "Micșorează fereastra"
 
-#: src/editor-window.ui:125
-msgid "View Options"
-msgstr "Vizualizează opțiunile"
-
-#: src/editor-window.ui:129
-msgid "View"
-msgstr "Vizualizare"
-
-#: src/editor-window.ui:135
+#: src/editor-window.ui:237
 msgid "Main Menu"
-msgstr "Meniu principal"
+msgstr "Opțiuni"
 
-#: src/editor-window.ui:139
-msgid "Main menu"
-msgstr "Meniu principal"
+#: src/editor-window.ui:244
+msgid "Document Properties"
+msgstr "Proprietăți document"
 
-#: src/editor-window.ui:166
-msgid "Start or Open a Document"
-msgstr "Începe sau deschide un document"
-
-#: src/editor-window.ui:169
-msgid ""
-"• Press the Open button\n"
-"• Press the New tab button\n"
-"• Press Ctrl+N to start a new document\n"
-"• Press Ctrl+O to browse for a document\n"
-"\n"
-"Or, press Ctrl+W to close the window."
-msgstr ""
-"• Apăsați butonul Deschide\n"
-"• Apăsați butonul Filă nouă\n"
-"• Apăsați Ctrl+N pentru a începe un document nou\n"
-"• Apăsați Ctrl+O pentru a naviga după un document\n"
-"\n"
-"Sau, apăsați Ctrl+W pentru a închide fereastra."
-
-#: src/editor-window.ui:203
+#: src/editor-window.ui:357
 msgid "_New Window"
-msgstr "Fereastră _nouă"
+msgstr "_Fereastră nouă"
 
-#: src/editor-window.ui:223
-msgid "_Discard Changes"
-msgstr "_Ignoră modificările"
+#: src/editor-window.ui:377
+msgid "_Discard Changes…"
+msgstr "_Nu salva modificările…"
 
-#: src/editor-window.ui:229
+#: src/editor-window.ui:384
 msgid "_Find/Replace…"
-msgstr "_Găsește/Înlocuiește…"
+msgstr "_Caută/Înlocuiește…"
 
-#: src/editor-window.ui:235
+#: src/editor-window.ui:390
 msgid "_Print…"
 msgstr "_Tipărește…"
 
-#: src/editor-window.ui:241
-msgid "Documen_t Properties"
-msgstr "Proprietăți documen_t"
+#: src/editor-window.ui:397
+msgid "Fullscreen"
+msgstr "Pe tot ecranul"
 
-#: src/editor-window.ui:247
+#: src/editor-window.ui:411
 msgid "P_references"
 msgstr "P_referințe"
 
-#: src/editor-window.ui:252
+#: src/editor-window.ui:416
 msgid "_Keyboard Shortcuts"
 msgstr "Scurtături de _tastatură"
 
-#: src/editor-window.ui:256
-msgid "_Help"
-msgstr "_Ajutor"
-
-#: src/editor-window.ui:260
+#: src/editor-window.ui:420
 msgid "A_bout Text Editor"
-msgstr "D_espre Editor text"
+msgstr "D_espre Text"
 
-#: src/editor-window.ui:268
-msgid "Show _Line Numbers"
-msgstr "Arată numerele de _linii"
-
-#: src/editor-window.ui:272
-msgid "Show _Right Margin"
-msgstr "Arată marginea din d_reapta"
-
-#: src/editor-window.ui:295
-msgid "_2"
-msgstr "_2"
-
-#: src/editor-window.ui:300
-msgid "_4"
-msgstr "_4"
-
-#: src/editor-window.ui:305
-msgid "_6"
-msgstr "_6"
-
-#: src/editor-window.ui:310
-msgid "_8"
-msgstr "_8"
-
-#: src/editor-window.ui:319
-msgid "T_ext Wrapping"
-msgstr "Încadrare t_ext"
-
-#: src/editor-window.ui:323
-msgid "Chec_k Spelling"
-msgstr "Verifi_că ortografia"
-
-#: src/editor-window.ui:327
-msgid "_Document Type…"
-msgstr "Tip de _document…"
-
-#: src/editor-window.ui:335
+#: src/editor-window.ui:428
 msgid "Move _Left"
 msgstr "Mută _la stânga"
 
-#: src/editor-window.ui:340
+#: src/editor-window.ui:433
 msgid "Move _Right"
 msgstr "Mută la d_reapta"
 
-#: src/editor-window.ui:347
+#: src/editor-window.ui:440
 msgid "_Move to New Window"
 msgstr "_Mută într-o fereastră nouă"
 
-#: src/editor-window.ui:354
+#: src/editor-window.ui:447
 msgid "Close _Other Tabs"
-msgstr "Închide _alte file"
+msgstr "Închide celel_alte file"
 
-#: src/help-overlay.ui:12
+#: src/shortcuts-dialog.ui:8
 msgctxt "shortcut window"
 msgid "Windows"
 msgstr "Ferestre"
 
-#: src/help-overlay.ui:15
+#: src/shortcuts-dialog.ui:11
 msgctxt "shortcut window"
 msgid "New window"
 msgstr "Fereastră nouă"
 
-#: src/help-overlay.ui:21
+#: src/shortcuts-dialog.ui:17
 msgctxt "shortcut window"
 msgid "Move document to new window"
-msgstr "Mută documentul la fereastra nouă"
+msgstr "Mută documentul în fereastra nouă"
 
-#: src/help-overlay.ui:28
+#: src/shortcuts-dialog.ui:24
 msgctxt "shortcut window"
 msgid "Move to next tab"
-msgstr "Mută la fila următoare"
+msgstr "Mută în fila următoare"
 
-#: src/help-overlay.ui:34
+#: src/shortcuts-dialog.ui:30
 msgctxt "shortcut window"
 msgid "Move to previous tab"
-msgstr "Mută la fila anterioară"
+msgstr "Mută în fila precedentă"
 
-#: src/help-overlay.ui:40
+#: src/shortcuts-dialog.ui:36
 msgctxt "shortcut window"
 msgid "Reorder after next tab"
-msgstr "Reordonează după fila următoare"
+msgstr "Mută după fila următoare"
 
-#: src/help-overlay.ui:46
+#: src/shortcuts-dialog.ui:42
 msgctxt "shortcut window"
 msgid "Reorder before previous tab"
-msgstr "Reordonează după fila anterioară"
+msgstr "Mută după fila precedentă"
 
-#: src/help-overlay.ui:52
+#: src/shortcuts-dialog.ui:48
 msgctxt "shortcut window"
 msgid "Restore previously closed tab"
-msgstr "Restaurează fila închisă anterior"
+msgstr "Deschide fila închisă anterior"
 
-#: src/help-overlay.ui:59
+#: src/shortcuts-dialog.ui:55
 msgctxt "shortcut window"
 msgid "Zoom"
-msgstr "Focalizare"
+msgstr "Zoom"
 
-#: src/help-overlay.ui:63
+#: src/shortcuts-dialog.ui:59
 msgctxt "shortcut window"
 msgid "Zoom In"
 msgstr "Mărește"
 
-#: src/help-overlay.ui:69
+#: src/shortcuts-dialog.ui:65
 msgctxt "shortcut window"
 msgid "Zoom Out"
 msgstr "Micșorează"
 
-#: src/help-overlay.ui:75
+#: src/shortcuts-dialog.ui:71
 msgctxt "shortcut window"
 msgid "Reset Zoom"
-msgstr "Restabilește focalizarea"
+msgstr "Zoom inițial"
 
-#: src/help-overlay.ui:82
+#: src/shortcuts-dialog.ui:78
 msgctxt "shortcut window"
 msgid "Documents"
 msgstr "Documente"
 
-#: src/help-overlay.ui:85
+#: src/shortcuts-dialog.ui:81
 msgctxt "shortcut window"
 msgid "New document"
 msgstr "Document nou"
 
-#: src/help-overlay.ui:91
+#: src/shortcuts-dialog.ui:87
 msgctxt "shortcut window"
 msgid "Browse to open document"
 msgstr "Navighează pentru a deschide un document"
 
-#: src/help-overlay.ui:97
+#: src/shortcuts-dialog.ui:93
 msgctxt "shortcut window"
 msgid "Find document by name"
-msgstr "Găsește document după nume"
+msgstr "Caută documente după nume"
 
-#: src/help-overlay.ui:103
+#: src/shortcuts-dialog.ui:99
 msgctxt "shortcut window"
 msgid "Save"
 msgstr "Salvează"
 
-#: src/help-overlay.ui:109
+#: src/shortcuts-dialog.ui:105
 msgctxt "shortcut window"
 msgid "Save As"
-msgstr "Salvează ca"
+msgstr "Salvează cu nume"
 
-#: src/help-overlay.ui:115
+#: src/shortcuts-dialog.ui:111
 msgctxt "shortcut window"
 msgid "Find/Replace"
-msgstr "Găsește/Înlocuiește"
+msgstr "Caută/Înlocuiește"
 
-#: src/help-overlay.ui:121
+#: src/shortcuts-dialog.ui:117
 msgctxt "shortcut window"
 msgid "Close document"
 msgstr "Închide documentul"
 
-#: src/help-overlay.ui:129
+#: src/shortcuts-dialog.ui:123
+msgctxt "shortcut window"
+msgid "Open document properties"
+msgstr "Deschide proprietățile documentului"
+
+#: src/shortcuts-dialog.ui:131
 msgctxt "shortcut window"
 msgid "Copy and Paste"
 msgstr "Copiază și lipește"
 
-#: src/help-overlay.ui:133
+#: src/shortcuts-dialog.ui:135
 msgctxt "shortcut window"
 msgid "Copy selected text to clipboard"
-msgstr "Copiază textul selectat la clipboard"
+msgstr "Copiază textul selecționat"
 
-#: src/help-overlay.ui:139
+#: src/shortcuts-dialog.ui:141
 msgctxt "shortcut window"
 msgid "Cut selected text to clipboard"
-msgstr "Taie textul selectat la clipboard"
+msgstr "Taie textul selecționat"
 
-#: src/help-overlay.ui:145
+#: src/shortcuts-dialog.ui:147
 msgctxt "shortcut window"
 msgid "Paste text from clipboard"
-msgstr "Lipește textul de la clipboard"
+msgstr "Lipește textul copiat"
 
-#: src/help-overlay.ui:150
+#: src/shortcuts-dialog.ui:152
 msgctxt "shortcut window"
 msgid "Copy all to clipboard"
-msgstr "Copiază tot la clipboard"
+msgstr "Copiază tot"
 
-#: src/help-overlay.ui:156
+#: src/shortcuts-dialog.ui:158
 msgctxt "shortcut window"
 msgid "Copy current line down"
-msgstr "Copiază linia curentă în jos"
+msgstr "Copiază rândul actual dedesubt"
 
-#: src/help-overlay.ui:164
+#: src/shortcuts-dialog.ui:166
 msgctxt "shortcut window"
 msgid "Undo and Redo"
-msgstr "Refă și repetă"
+msgstr "Anulează și Repetă"
 
-#: src/help-overlay.ui:168
+#: src/shortcuts-dialog.ui:170
 msgctxt "shortcut window"
 msgid "Undo previous command"
-msgstr "Refă comanda anterioară"
+msgstr "Anulează comanda precedentă"
 
-#: src/help-overlay.ui:174
+#: src/shortcuts-dialog.ui:176
 msgctxt "shortcut window"
 msgid "Redo previous command"
-msgstr "Repetă comanda anterioară"
+msgstr "Repetă comanda precedentă"
 
-#: src/help-overlay.ui:181
+#: src/shortcuts-dialog.ui:183
 msgctxt "shortcut window"
 msgid "Editing"
-msgstr "Editare"
+msgstr "Modificare"
 
-#: src/help-overlay.ui:185
+#: src/shortcuts-dialog.ui:187
 msgctxt "shortcut window"
 msgid "Insert emoji into document"
-msgstr "Inserează emoji în document"
+msgstr "Introduce emoji în document"
 
-#: src/help-overlay.ui:191
+#: src/shortcuts-dialog.ui:193
 msgctxt "shortcut window"
 msgid "Search within the document"
-msgstr "Caută în cadrul documentului"
+msgstr "Caută în document"
 
-#: src/help-overlay.ui:197
+#: src/shortcuts-dialog.ui:199
 msgctxt "shortcut window"
 msgid "Search and replace within the document"
-msgstr "Caută și înlocuiește în cadrul documentului"
+msgstr "Caută și înlocuiește în document"
 
-#: src/help-overlay.ui:203
+#: src/shortcuts-dialog.ui:205
 msgctxt "shortcut window"
 msgid "Increment number at cursor"
-msgstr "Incrementează numărul la cursor"
+msgstr "Adaugă o unitate la numărul de sub cursor"
 
-#: src/help-overlay.ui:209
+#: src/shortcuts-dialog.ui:211
 msgctxt "shortcut window"
 msgid "Decrement number at cursor"
-msgstr "Decrementează numărul la cursor"
+msgstr "Scade o unitate din numărul de sub cursor"
 
-#: src/help-overlay.ui:215
+#: src/shortcuts-dialog.ui:217
 msgctxt "shortcut window"
 msgid "Toggle overwrite"
-msgstr "Comută suprascrierea"
+msgstr "Activează/Dezactivează suprascrierea"
 
-#: src/help-overlay.ui:221
+#: src/shortcuts-dialog.ui:223
 msgctxt "shortcut window"
 msgid "Toggle visibility of insertion caret"
-msgstr "Comută vizibilitatea cursorului de inserare"
+msgstr "Arată/Ascunde cursorul"
 
-#: src/help-overlay.ui:228
+#: src/shortcuts-dialog.ui:230
 msgctxt "shortcut window"
 msgid "Selections"
 msgstr "Selecții"
 
-#: src/help-overlay.ui:232
+#: src/shortcuts-dialog.ui:234
 msgctxt "shortcut window"
 msgid "Select all"
-msgstr "Selectează toate"
+msgstr "Selecționează tot"
 
-#: src/help-overlay.ui:238
+#: src/shortcuts-dialog.ui:240
 msgctxt "shortcut window"
 msgid "Unselect all"
-msgstr "Deselectează toate"
+msgstr "Deselecționează tot"
 
-#: src/help-overlay.ui:244
+#: src/shortcuts-dialog.ui:246
 msgctxt "shortcut window"
 msgid "Select current line"
-msgstr "Selectează linia curentă"
+msgstr "Selecționează rândul actual"
 
-#: src/help-overlay.ui:251
+#: src/shortcuts-dialog.ui:253
 msgctxt "shortcut window"
 msgid "Movements"
-msgstr "Mișcări"
+msgstr "Mutări"
 
-#: src/help-overlay.ui:255
+#: src/shortcuts-dialog.ui:257
 msgctxt "shortcut window"
 msgid "Move to beginning of document"
 msgstr "Mută la începutul documentului"
 
-#: src/help-overlay.ui:261
+#: src/shortcuts-dialog.ui:263
 msgctxt "shortcut window"
 msgid "Move to end of document"
 msgstr "Mută la sfârșitul documentului"
 
-#: src/help-overlay.ui:267
+#: src/shortcuts-dialog.ui:269
 msgctxt "shortcut window"
 msgid "Move to start of previous paragraph"
 msgstr "Mută la începutul paragrafului anterior"
 
-#: src/help-overlay.ui:273
+#: src/shortcuts-dialog.ui:275
 msgctxt "shortcut window"
 msgid "Move to end of next paragraph"
 msgstr "Mută la sfârșitul paragrafului următor"
 
-#: src/help-overlay.ui:279
+#: src/shortcuts-dialog.ui:281
 msgctxt "shortcut window"
 msgid "Move current or selected lines up"
 msgstr "Mută în sus liniile curente sau selectate"
 
-#: src/help-overlay.ui:285
+#: src/shortcuts-dialog.ui:287
 msgctxt "shortcut window"
 msgid "Move current or selected lines down"
 msgstr "Mută în jos liniile curente sau selectate"
 
-#: src/help-overlay.ui:291
+#: src/shortcuts-dialog.ui:293
 msgctxt "shortcut window"
 msgid "Go to line"
-msgstr "Mergi la linia"
+msgstr "Du-te la rândul"
 
-#: src/help-overlay.ui:298
+#: src/shortcuts-dialog.ui:300
 msgctxt "shortcut window"
 msgid "Deletion"
 msgstr "Ștergere"
 
-#: src/help-overlay.ui:302
+#: src/shortcuts-dialog.ui:304
 msgctxt "shortcut window"
 msgid "Delete from cursor to word start"
 msgstr "Șterge de la cursor până la începutul cuvântului"
 
-#: src/help-overlay.ui:308
+#: src/shortcuts-dialog.ui:310
 msgctxt "shortcut window"
 msgid "Delete from cursor to word end"
 msgstr "Șterge de la cursor până la sfârșitul cuvântului"
 
-#: src/help-overlay.ui:314
+#: src/shortcuts-dialog.ui:316
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph start"
 msgstr "Șterge de la cursor până la începutul paragrafului"
 
-#: src/help-overlay.ui:320
+#: src/shortcuts-dialog.ui:322
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph end"
 msgstr "Șterge de la cursor până la sfârșitul paragrafului"
 
-#: src/help-overlay.ui:326
+#: src/shortcuts-dialog.ui:328
 msgctxt "shortcut window"
 msgid "Delete the current line"
-msgstr "Șterge linia curentă"
+msgstr "Șterge rândul actual"
 
-#: src/help-overlay.ui:333
+#: src/shortcuts-dialog.ui:335
 msgctxt "shortcut window"
 msgid "General"
 msgstr "Generale"
 
-#: src/help-overlay.ui:337
+#: src/shortcuts-dialog.ui:339
 msgctxt "shortcut window"
 msgid "Show preferences"
 msgstr "Arată preferințele"
 
-#: src/help-overlay.ui:343
+#: src/shortcuts-dialog.ui:345
 msgctxt "shortcut window"
 msgid "Show keyboard shortcuts"
-msgstr "Arată scurtăturile de tastatură"
+msgstr "Arată scurtăturile"
 
-#: src/help-overlay.ui:349
+#: src/shortcuts-dialog.ui:351
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Arată ajutorul"
 
-#~ msgid "You do not have permission to open the file."
-#~ msgstr "Nu aveți permisiunea să deschideți fișierul."
-
-#~ msgid "No Matches"
-#~ msgstr "Fără potriviri"
-
-#~ msgid "Add to Dictionary"
-#~ msgstr "Adaugă la dicționar"
-
-#~ msgid "Ignore"
-#~ msgstr "Ignoră"
-
-#~ msgid "Check Spelling"
-#~ msgstr "Verifică ortografia"
-
-#~ msgid "Languages"
-#~ msgstr "Limbi străine"
-
-#~ msgid "Enchant 2"
-#~ msgstr "Fermecare 2"
-
-#~ msgid "Select Font"
-#~ msgstr "Selectează fontul"
-
-#~ msgid "Open New Document (Ctrl+O)"
-#~ msgstr "Deschide document nou (Ctrl+O)"
-
-#~ msgid "Move to previous match (Ctrl+Shift+G)"
-#~ msgstr "Mută la potrivirea anterioară (Ctrl+Shift+G)"
-
-#~ msgid "Move to next match (Ctrl+G)"
-#~ msgstr "Mută la potrivirea următoare (Ctrl+G)"
-
-#~ msgid "Toggle search options"
-#~ msgstr "Comută opțiunile de căutare"
+#: src/shortcuts-dialog.ui:357
+msgctxt "shortcut window"
+msgid "Toggle text wrapping"
+msgstr "Automat pe un rând nou Activ/Inactiv"
