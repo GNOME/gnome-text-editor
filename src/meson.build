@@ -119,5 +119,6 @@ editor = executable('gnome-text-editor', editor_sources + editor_enums + [build_
                         include_directories('editorconfig')],
                c_args: editor_c_args,
          dependencies: editor_deps,
+        win_subsystem: 'windows',
               install: true,
 )
