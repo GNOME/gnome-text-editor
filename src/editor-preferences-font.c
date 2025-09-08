@@ -101,7 +101,7 @@ editor_preferences_font_activated (AdwActionRow *row)
 
   window = gtk_widget_get_ancestor (GTK_WIDGET (row), GTK_TYPE_WINDOW);
   dialog = gtk_font_dialog_new ();
-  gtk_window_set_modal (GTK_WINDOW (window), TRUE);
+  gtk_window_set_modal (GTK_WINDOW (dialog), TRUE);
 
   font = g_settings_get_string (self->settings, self->schema_key);
   font_desc = pango_font_description_from_string (font);
