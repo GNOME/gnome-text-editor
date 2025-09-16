@@ -2,15 +2,15 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# ButterflyOfFire <butterflyoffire@protonmail.com>, 2024.
+# ButterflyOfFire <butterflyoffire@protonmail.com>, 2024-2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2024-08-31 12:34+0000\n"
-"PO-Revision-Date: 2024-10-10 15:06+0100\n"
+"POT-Creation-Date: 2025-09-13 00:33+0000\n"
+"PO-Revision-Date: 2025-09-16 17:42+0100\n"
 "Last-Translator: ButterflyOfFire <butterflyoffire@protonmail.com>\n"
 "Language-Team: Kabyle\n"
 "Language: kab\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n>1;\n"
-"X-Generator: Gtranslator 47.0\n"
+"X-Generator: Gtranslator 48.0\n"
 "X-DL-Team: kab\n"
 "X-DL-Module: gnome-text-editor\n"
 "X-DL-Branch: main\n"
@@ -26,58 +26,54 @@ msgstr ""
 "X-DL-State: Translating\n"
 "X-DL-Lang: kab\n"
 
-#. developer_name tag deprecated with Appstream 1.0
-#: data/org.gnome.TextEditor.appdata.xml.in.in:7
-#: src/editor-application-actions.c:201
-msgid "The GNOME Project"
-msgstr "Asenfar n GNOME"
+#: data/org.gnome.TextEditor.desktop.in.in:3
+msgid "write;notepad;"
+msgstr ""
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:12
-#: data/org.gnome.TextEditor.desktop.in.in:10
-#: data/org.gnome.TextEditor.desktop.in.in:11
-#: src/editor-application-actions.c:199 src/editor-window.c:1317
+#: data/org.gnome.TextEditor.desktop.in.in:7
+#: data/org.gnome.TextEditor.desktop.in.in:8
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:10
+#: src/editor-application-actions.c:200 src/editor-window.c:1288
 msgid "Text Editor"
 msgstr "Amaẓrag n Weḍris"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:14
+#: data/org.gnome.TextEditor.desktop.in.in:9
+msgid "View and edit text files"
+msgstr "Wali rnu ẓreg ifuyla n yiḍrisen"
+
+#: data/org.gnome.TextEditor.desktop.in.in:21
+msgid "New Window"
+msgstr "Asfaylu amaynut"
+
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:12
 msgid "Edit text files"
 msgstr "Ẓreg ifuyla n uḍris"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:16
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:14
 msgid ""
 "GNOME Text Editor is a simple text editor focused on a pleasing default "
 "experience."
 msgstr ""
 
-#: data/org.gnome.TextEditor.desktop.in.in:4
-msgid "write;notepad;"
-msgstr ""
-
-#: data/org.gnome.TextEditor.desktop.in.in:12
-msgid "View and edit text files"
-msgstr ""
-
-#: data/org.gnome.TextEditor.desktop.in.in:22
-msgid "New Window"
-msgstr "Asfaylu amaynut"
-
 #: data/org.gnome.TextEditor.gschema.xml:16
 msgid "Auto Save Delay"
-msgstr ""
+msgstr "Tanzagt n usekles awurman"
 
 #: data/org.gnome.TextEditor.gschema.xml:17
 msgid "The delay in seconds to wait before auto-saving a draft."
-msgstr ""
+msgstr "Tanzagt n uraǧu s tsinin send asekles awurman n urewway."
 
 #: data/org.gnome.TextEditor.gschema.xml:26
 msgid "Style Variant"
-msgstr ""
+msgstr "Talmest n uɣanib"
 
 #: data/org.gnome.TextEditor.gschema.xml:27
 msgid ""
 "Use the light or dark variant of the GTK theme and/or GtkSourceView style "
 "scheme."
 msgstr ""
+"Seqdec talmest taceεlalt neɣ taberkant n usentel GTK akked/neɣ azenziɣ n "
+"uɣanib n GtkSourceView."
 
 #: data/org.gnome.TextEditor.gschema.xml:35
 msgid "Indentation Style"
@@ -114,7 +110,7 @@ msgstr ""
 
 #: data/org.gnome.TextEditor.gschema.xml:57
 msgid "Show Line Numbers"
-msgstr ""
+msgstr "Sken uṭṭunen n yizirigen"
 
 #: data/org.gnome.TextEditor.gschema.xml:58
 msgid "Whether line numbers should be displayed next to each line."
@@ -130,7 +126,7 @@ msgstr ""
 
 #: data/org.gnome.TextEditor.gschema.xml:68
 msgid "Right Margin Position"
-msgstr ""
+msgstr "Ideg n tama tayeffust"
 
 #: data/org.gnome.TextEditor.gschema.xml:69
 msgid ""
@@ -139,7 +135,7 @@ msgstr ""
 
 #: data/org.gnome.TextEditor.gschema.xml:73
 msgid "Show Overview Map"
-msgstr ""
+msgstr "Sken taskant n tkarḍa"
 
 #: data/org.gnome.TextEditor.gschema.xml:74
 msgid ""
@@ -149,7 +145,7 @@ msgstr ""
 
 #: data/org.gnome.TextEditor.gschema.xml:78
 msgid "Show Background Grid"
-msgstr ""
+msgstr "Sken iẓiki n ugilal"
 
 #: data/org.gnome.TextEditor.gschema.xml:79
 msgid "If enabled, a blueprint style grid is printed on the editor background."
@@ -173,7 +169,7 @@ msgstr ""
 
 #: data/org.gnome.TextEditor.gschema.xml:93
 msgid "Use System Font"
-msgstr ""
+msgstr "Seqdec tasefsit n unagraw"
 
 #: data/org.gnome.TextEditor.gschema.xml:94
 msgid "Whether the default system monospace font should be used."
@@ -181,15 +177,15 @@ msgstr ""
 
 #: data/org.gnome.TextEditor.gschema.xml:98
 msgid "Custom Font"
-msgstr ""
+msgstr "Tasefsit tudmawant"
 
 #: data/org.gnome.TextEditor.gschema.xml:99
 msgid "A custom font to use in the editor."
-msgstr ""
+msgstr "Tasefsit tudmawant ara yettusqedcen deg umaẓrag."
 
 #: data/org.gnome.TextEditor.gschema.xml:103
 msgid "Style Scheme"
-msgstr ""
+msgstr "Azenziɣ n uɣanib"
 
 #: data/org.gnome.TextEditor.gschema.xml:104
 msgid ""
@@ -217,7 +213,7 @@ msgstr ""
 
 #: data/org.gnome.TextEditor.gschema.xml:118
 msgid "Restore session"
-msgstr ""
+msgstr "Err-d tiɣimit"
 
 #: data/org.gnome.TextEditor.gschema.xml:119
 msgid "When Text Editor is running, restore the previous session."
@@ -233,7 +229,7 @@ msgstr ""
 
 #: data/org.gnome.TextEditor.gschema.xml:132
 msgid "Keybindings"
-msgstr ""
+msgstr "Inegzumen n unasiw"
 
 #: data/org.gnome.TextEditor.gschema.xml:133
 msgid "The keybindings to use within Text Editor."
@@ -241,15 +237,15 @@ msgstr ""
 
 #: data/org.gnome.TextEditor.gschema.xml:137
 msgid "Last Save Directory"
-msgstr ""
+msgstr "Akaram aneggaru n usekles"
 
 #: data/org.gnome.TextEditor.gschema.xml:138
 msgid "The directory last used in a save or save-as dialog."
-msgstr ""
+msgstr "Akaram i yettusqedcen yakan deg udiwenni n usekles neɣ deg usekles am."
 
 #: data/org.gnome.TextEditor.gschema.xml:142
 msgid "Draw Spaces"
-msgstr ""
+msgstr "Suneɣ tallunin"
 
 #: data/org.gnome.TextEditor.gschema.xml:143
 msgid "The various types of spaces to draw in the editor."
@@ -263,7 +259,7 @@ msgstr ""
 msgid ""
 "Enable the use of snippets registered with GtkSourceView from within the "
 "editor."
-msgstr ""
+msgstr "Rmed aseqdec n yiwzilen yettwaskelsen s GtkSourceView seg umaẓrag."
 
 #: data/org.gnome.TextEditor.gschema.xml:153
 msgid "Line Height"
@@ -284,14 +280,18 @@ msgstr ""
 #: src/editor-animation.c:1038
 #, c-format
 msgid "Failed to find property %s in %s"
-msgstr ""
+msgstr "Tecceḍ tifin n warat %s deg %s"
 
 #: src/editor-animation.c:1047
 #, c-format
 msgid "Failed to retrieve va_list value: %s"
-msgstr ""
+msgstr "Tecceḍ tririt n wazal va_list: %s"
 
-#: src/editor-application-actions.c:214
+#: src/editor-application-actions.c:202
+msgid "The GNOME Project"
+msgstr "Asenfar n GNOME"
+
+#: src/editor-application-actions.c:215
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
@@ -299,54 +299,87 @@ msgstr ""
 "  tasutlelli17 https://launchpad.net/~tafziri13\n"
 "  ButterflyOfFire"
 
-#: src/editor-application.c:525
+#: src/editor-application-actions.c:349
+msgid "Clear File History?"
+msgstr "Sfeḍ amazray n ufaylu?"
+
+#: src/editor-application-actions.c:350
+msgid "This action cannot be undone"
+msgstr ""
+
+#: src/editor-application-actions.c:352 src/editor-save-changes-dialog.c:260
+#: src/editor-window-actions.c:115 src/editor-window-actions.c:219
+msgid "_Cancel"
+msgstr "Sefsex (_C)"
+
+#: src/editor-application-actions.c:353
+msgid "_Clear All"
+msgstr "Sfeḍ-iten akk (_C)"
+
+#: src/editor-application.c:531
 msgid "Standard input was requested multiple times. Ignoring request."
 msgstr ""
 
-#: src/editor-application.c:529
+#: src/editor-application.c:535
 msgid "Standard input is not supported on this platform. Ignoring request."
 msgstr ""
 
-#: src/editor-application.c:632
+#: src/editor-application.c:638
 msgid "Bugs may be reported at:"
-msgstr ""
+msgstr "Ineqqisen zemren ad ttwaznen ɣer:"
 
-#: src/editor-application.c:634
+#: src/editor-application.c:640
 msgid "[FILES…]"
-msgstr ""
+msgstr "[IFUYLA…]"
 
-#: src/editor-application.c:748
+#: src/editor-application.c:764
 msgid "Do not restore session at startup"
-msgstr ""
+msgstr "Ur d-ttarra ara tiɣimit lawan n usekker"
 
-#: src/editor-application.c:749
+#: src/editor-application.c:765
 msgid "Open provided files in a new window"
 msgstr ""
 
-#: src/editor-application.c:750
+#: src/editor-application.c:766
 msgid "Run a new instance of Text Editor (implies --ignore-session)"
-msgstr ""
+msgstr "Selkem tummant tamaynut n umaẓrag n yiḍrisen (selkem --ignore-session)"
 
-#: src/editor-application.c:751
+#: src/editor-application.c:767
 msgid "Print version information and exit"
 msgstr "Siggez lqem aneggaru syen ffeɣ"
 
-#: src/editor-document.c:2099
+#: src/editor-document.c:2272
 msgid "[Read-Only]"
 msgstr "[Taɣuri kan]"
 
-#: src/editor-document.c:2316 src/editor-page.c:1074
-#: src/editor-sidebar-item.c:511
+#: src/editor-document.c:2497 src/editor-page.c:1125
+#: src/editor-sidebar-item.c:498
 msgid "New Document"
 msgstr "Isemli amaynut"
 
+#: src/editor-encoding-dialog.ui:5
+msgid "Change Encoding"
+msgstr ""
+
+#: src/editor-encoding-dialog.ui:22
+msgid "Search encodings"
+msgstr ""
+
+#: src/editor-encoding-dialog.ui:58 src/editor-language-dialog.ui:75
+msgid "No Results Found"
+msgstr "Ulac igmad i yettwafen"
+
+#: src/editor-encoding-dialog.ui:59 src/editor-language-dialog.ui:76
+msgid "Try a different search"
+msgstr "Ɛreḍ anadi-nniḍen"
+
 #: src/editor-file-manager.c:99
 msgid "File path is NULL"
-msgstr ""
+msgstr "Abrid n ufaylu d ilem"
 
 #: src/editor-file-manager.c:108 src/editor-file-manager.c:119
 msgid "Error converting UTF-8 filename to wide char"
-msgstr ""
+msgstr "Tuccḍa deg uselket n yisem n ufaylu UTF-8 ɣer usekkil ameqqran"
 
 #: src/editor-file-manager.c:127
 msgid "ILCreateFromPath() failed"
@@ -355,184 +388,158 @@ msgstr ""
 #: src/editor-file-manager.c:164
 #, c-format
 msgid "Cannot convert “%s” into a valid NSURL."
+msgstr "Yegguma ad iselket \"%s\" deg NSURL ameɣtu."
+
+#: src/editor-indent-model.c:173
+msgid "Space"
+msgstr "Tallunt"
+
+#: src/editor-indent-model.c:178
+msgid "Tab"
 msgstr ""
 
-#: src/editor-info-bar.c:76
+#: src/editor-info-bar.c:108
 msgid "_Discard Changes and Reload"
 msgstr ""
 
-#: src/editor-info-bar.c:79
+#: src/editor-info-bar.c:112
 msgid "File Has Changed on Disk"
-msgstr ""
+msgstr "Afaylu ibeddel ɣef uḍebsi"
 
-#: src/editor-info-bar.c:80
+#: src/editor-info-bar.c:113
 msgid "The file has been changed by another program."
-msgstr ""
+msgstr "Afaylu-a yettubeddel s usnas-nniḍen."
 
-#: src/editor-info-bar.c:89 src/editor-window.ui:217
+#: src/editor-info-bar.c:122 src/editor-window.ui:371
 msgid "Save _As…"
 msgstr "Kles _am…"
 
-#: src/editor-info-bar.c:91 src/editor-info-bar.ui:62
+#: src/editor-info-bar.c:124 src/editor-info-bar.ui:73
 msgid "Document Restored"
-msgstr ""
+msgstr "Isemli yettwarr-d"
 
-#: src/editor-info-bar.c:92 src/editor-info-bar.ui:72
+#: src/editor-info-bar.c:125 src/editor-info-bar.ui:84
 msgid "Unsaved document has been restored."
-msgstr ""
+msgstr "Isemli ur yettwaskelsen ara yettwarr-d."
 
-#: src/editor-info-bar.c:98 src/editor-info-bar.ui:86
+#: src/editor-info-bar.c:131 src/editor-info-bar.ui:99
 msgid "_Save…"
 msgstr "_Sekles…"
 
-#: src/editor-info-bar.c:100 src/editor-info-bar.ui:80
+#: src/editor-info-bar.c:133 src/editor-info-bar.ui:93
 msgid "_Discard…"
-msgstr ""
+msgstr "_Eǧǧ-it …"
 
-#: src/editor-info-bar.c:102
+#: src/editor-info-bar.c:136
 msgid "Draft Changes Restored"
-msgstr ""
+msgstr "Isenfal n urewway ttwarren-d"
 
-#: src/editor-info-bar.c:103
+#: src/editor-info-bar.c:137
 msgid "Unsaved changes to the document have been restored."
-msgstr ""
+msgstr "Isenfal ur yettwaskelsen ara ɣef yisemli ttwarren-d."
 
 #: src/editor-info-bar.ui:19
 msgid "Could Not Open File"
-msgstr ""
+msgstr "Yegguma ad yeldi ufaylu"
 
-#: src/editor-info-bar.ui:36
+#: src/editor-info-bar.ui:38
 msgid "_Retry"
 msgstr "Ɛ_reḍ tikkelt-nniḍen"
 
-#: src/editor-info-bar.ui:43
+#: src/editor-info-bar.ui:51
 msgid "Open As _Administrator"
 msgstr "Ldi _am unedbal"
 
-#: src/editor-language-dialog.ui:6 src/editor-window.c:191
+#: src/editor-info-bar.ui:116
+msgid "Invalid Characters Detected"
+msgstr ""
+
+#: src/editor-info-bar.ui:127
+msgid ""
+"There was an encoding conversion error so a fallback character was used."
+msgstr ""
+
+#: src/editor-info-bar.ui:136
+msgid "Change _Encoding…"
+msgstr ""
+
+#: src/editor-language-dialog.c:248
+msgid "Other Document Types"
+msgstr ""
+
+#: src/editor-language-dialog.ui:6
 msgid "Document Type"
-msgstr ""
+msgstr "Anaw n yisemli"
 
-#: src/editor-language-dialog.ui:25
-msgid "Search document types"
-msgstr ""
-
-#: src/editor-language-dialog.ui:60 src/editor-open-popover.ui:104
-msgid "No Results Found"
-msgstr "Ulac igmad i yettwafen"
-
-#: src/editor-language-dialog.ui:61
-msgid "Try a different search"
-msgstr ""
+#: src/editor-language-dialog.ui:25 src/editor-search-entry.c:193
+#: src/editor-search-entry.ui:13
+msgid "Search"
+msgstr "Anadi"
 
 #: src/editor-language-row.c:61 src/editor-language-row.c:119
+#: src/editor-properties.c:573
 msgid "Plain Text"
-msgstr ""
+msgstr "Aḍris amsari"
+
+#: src/editor-newline-model.c:180
+msgid "Unix/Linux (LF)"
+msgstr "Unix/Linux (LF)"
+
+#: src/editor-newline-model.c:181
+msgid "Windows (CR+LF)"
+msgstr "Windows (CR+LF)"
+
+#: src/editor-newline-model.c:182
+msgid "Mac OS Classic (CR)"
+msgstr "Mac OS Classic (CR)"
 
 #: src/editor-open-popover.ui:25
 msgid "Search documents"
 msgstr "Anadi n isemliyen"
 
-#: src/editor-open-popover.ui:39
+#: src/editor-open-popover.ui:45
 msgid "Open New Document"
-msgstr ""
+msgstr "Ldi isemli amaynut"
 
-#: src/editor-open-popover.ui:74
+#: src/editor-open-popover.ui:80
 msgid "No Recent Documents"
-msgstr ""
+msgstr "Ulac isemliyen imiranen"
 
-#: src/editor-page.c:1100 src/editor-properties-dialog.c:104
-#: src/editor-sidebar-item.c:105
+#: src/editor-page.c:1151 src/editor-properties.c:606
+#: src/editor-sidebar-item.c:101
 msgid "Draft"
 msgstr "Arewway"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1112
+#: src/editor-page.c:1163
 #, c-format
 msgid "%s (Administrator)"
-msgstr ""
+msgstr "%s (Anedbal)"
 
-#: src/editor-page.c:1122 src/editor-sidebar-item.c:113
-msgid "Document Portal"
-msgstr ""
-
-#: src/editor-page.c:1168
+#: src/editor-page.c:1219
 msgid "Failed to save document"
-msgstr ""
+msgstr "Yecceḍ usekles n yisemli"
 
-#: src/editor-page.c:1169 src/editor-window.ui:358
+#: src/editor-page.c:1220 src/editor-window.ui:451
 msgid "_Close"
 msgstr "Mdel (_C)"
 
-#: src/editor-page.c:1257
-msgid "Save As"
-msgstr ""
-
-#: src/editor-page.c:1260
-msgid "Save"
-msgstr "Sekles"
-
-#: src/editor-page.c:1261 src/editor-window-actions.c:347
-msgid "Cancel"
-msgstr ""
-
-#: src/editor-page.c:1422
+#: src/editor-page.c:1484
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr ""
 
-#: src/editor-page.ui:95
+#: src/editor-page.ui:94
 msgid "Go to Line"
 msgstr "Ddu ɣer yizirig"
 
-#: src/editor-page.ui:113
+#: src/editor-page.ui:111
 msgid "Go"
 msgstr "Ddu"
 
-#: src/editor-page.ui:150
-msgid "Indentation"
-msgstr ""
-
-#: src/editor-page.ui:153 src/editor-window.ui:278
-msgid "_Automatic Indentation"
-msgstr ""
-
-#. Translators: this is a tab character, not a browser tab
-#: src/editor-page.ui:159 src/editor-window.ui:282
-msgid "_Tabs"
-msgstr ""
-
-#: src/editor-page.ui:164 src/editor-window.ui:287
-msgid "_Spaces"
-msgstr ""
-
-#: src/editor-page.ui:171 src/editor-window.ui:292
-msgid "Spaces _Per Tab"
-msgstr ""
-
-#: src/editor-page.ui:173 src/editor-page.ui:201
-msgid "2"
-msgstr "2"
-
-#: src/editor-page.ui:178 src/editor-page.ui:206
-msgid "4"
-msgstr "4"
-
-#: src/editor-page.ui:183 src/editor-page.ui:211
-msgid "6"
-msgstr "6"
-
-#: src/editor-page.ui:188 src/editor-page.ui:216
-msgid "8"
-msgstr "8"
-
-#: src/editor-page.ui:194
-msgid "Spaces Per Indent"
-msgstr ""
-
-#: src/editor-page.ui:196
-msgid "Use Tab Size"
-msgstr ""
+#: src/editor-path.c:128
+msgid "Document Portal"
+msgstr "Awwur n yisemliyen"
 
 #. translators: Ln is short for "Line Number"
 #: src/editor-position-label.ui:15
@@ -540,68 +547,104 @@ msgid "Ln"
 msgstr ""
 
 #. translators: Col is short for "Column"
-#: src/editor-position-label.ui:35
+#: src/editor-position-label.ui:32
 msgid "Col"
-msgstr ""
+msgstr "Tig"
 
-#: src/editor-preferences-dialog.ui:19
+#: src/editor-preferences-dialog.ui:15
 msgid "Appearance"
-msgstr ""
+msgstr "Arwes"
 
-#: src/editor-preferences-dialog.ui:59
+#: src/editor-preferences-dialog.ui:55
 msgid "Custom _Font"
+msgstr "Tase_fsit tudmawant"
+
+#: src/editor-preferences-dialog.ui:78
+msgid "Show Grid Pattern"
 msgstr ""
 
-#: src/editor-preferences-dialog.ui:82
-msgid "Display _Grid Pattern"
+#: src/editor-preferences-dialog.ui:85
+msgid "Display _Line Numbers"
 msgstr ""
 
-#: src/editor-preferences-dialog.ui:89
+#: src/editor-preferences-dialog.ui:92
 msgid "_Highlight Current Line"
 msgstr ""
 
-#: src/editor-preferences-dialog.ui:96
+#: src/editor-preferences-dialog.ui:99
 msgid "Display _Overview Map"
 msgstr ""
 
-#: src/editor-preferences-dialog.ui:105
-msgid "Right Margin"
-msgstr ""
+#: src/editor-preferences-dialog.ui:110
+msgid "Check _Spelling"
+msgstr "Selken taɣdirawt"
 
-#: src/editor-preferences-dialog.ui:108
-msgid "_Margin Position"
-msgstr ""
-
-#: src/editor-preferences-dialog.ui:117
-msgid "Behavior"
-msgstr ""
-
-#: src/editor-preferences-dialog.ui:120
-msgid "_Discover Document Settings"
+#: src/editor-preferences-dialog.ui:119
+msgid "Line Wrap"
 msgstr ""
 
 #: src/editor-preferences-dialog.ui:122
-msgid "Apply settings using modelines, editorconfig, or sensible defaults"
+msgid "Show _Right Margin"
 msgstr ""
 
-#: src/editor-preferences-dialog.ui:128
-msgid "_Restore Session"
+#: src/editor-preferences-dialog.ui:129
+msgid "_Margin Position"
 msgstr ""
 
-#: src/editor-preferences-dialog.ui:130
-msgid "Return to your previous session when Text Editor is started"
+#: src/editor-preferences-dialog.ui:136
+msgid "_Wrap Lines Automatically (Alt+W)"
 msgstr ""
 
 #: src/editor-preferences-dialog.ui:145
-msgid "_Clear History"
+msgid "Indentation"
 msgstr ""
 
-#: src/editor-print-operation.c:181
+#: src/editor-preferences-dialog.ui:148 src/editor-properties-panel.ui:106
+msgid "A_uto Indentation"
+msgstr ""
+
+#: src/editor-preferences-dialog.ui:155 src/editor-properties-panel.ui:113
+msgid "_Character"
+msgstr "Asekkil"
+
+#: src/editor-preferences-dialog.ui:165 src/editor-properties-panel.ui:124
+msgid "Spaces Per _Tab"
+msgstr ""
+
+#: src/editor-preferences-dialog.ui:183 src/editor-properties-panel.ui:136
+msgid "Spaces Per _Indent"
+msgstr ""
+
+#: src/editor-preferences-dialog.ui:204
+msgid "Behavior"
+msgstr "Tiddin"
+
+#: src/editor-preferences-dialog.ui:207
+msgid "_Discover Document Settings"
+msgstr ""
+
+#: src/editor-preferences-dialog.ui:209
+msgid "Apply settings using modelines, editorconfig, or sensible defaults"
+msgstr "Snes iɣewwaren s yiskaren, editorconfig neɣ s wazalen s wudem amezwer"
+
+#: src/editor-preferences-dialog.ui:215
+msgid "_Restore Session"
+msgstr "Er_r-d tiɣimit"
+
+#: src/editor-preferences-dialog.ui:217
+msgid "Return to your previous session when Text Editor is started"
+msgstr "Uɣal ɣer tɣimit-ik·im yezrin mi ara yebdu umaẓrag n yiḍrisen"
+
+#: src/editor-preferences-dialog.ui:229
+msgid "_Clear History"
+msgstr "Sfeḍ amazray (_C)"
+
+#: src/editor-print-operation.c:182
 #, c-format
 msgid "Draft: %s"
 msgstr "Arewway: %s"
 
-#: src/editor-print-operation.c:183
+#: src/editor-print-operation.c:184
 #, c-format
 msgid "File: %s"
 msgstr "Afaylu: %s"
@@ -609,53 +652,61 @@ msgstr "Afaylu: %s"
 #. Translators: %N is the current page number, %Q is the total
 #. * number of pages (ex. Page 2 of 10)
 #.
-#: src/editor-print-operation.c:194
+#: src/editor-print-operation.c:196
 msgid "Page %N of %Q"
 msgstr "Asebter wis %N ɣef %Q"
 
-#: src/editor-properties-dialog.ui:6
-msgid "Properties"
-msgstr "Arraten"
+#: src/editor-properties-panel.ui:10
+msgid "File Name"
+msgstr "Isem n ufaylu"
 
-#: src/editor-properties-dialog.ui:22
-msgid "File"
-msgstr "Afaylu"
-
-#: src/editor-properties-dialog.ui:25
-msgid "Name"
-msgstr "Isem"
-
-#: src/editor-properties-dialog.ui:33
+#: src/editor-properties-panel.ui:26
 msgid "Location"
 msgstr "Adig"
 
-#: src/editor-properties-dialog.ui:42
+#: src/editor-properties-panel.ui:27
 msgid "Open in File Manager"
 msgstr "Ldi s umsefrak n ifuyla"
 
-#: src/editor-properties-dialog.ui:55
+#: src/editor-properties-panel.ui:53
+msgid "_Document Type"
+msgstr "Anaw n yisemli"
+
+#: src/editor-properties-panel.ui:54
+msgid "Change Document Type"
+msgstr ""
+
+#: src/editor-properties-panel.ui:76
+msgid "_Encoding"
+msgstr "As_ettengel"
+
+#: src/editor-properties-panel.ui:90
+msgid "_Line Feed"
+msgstr ""
+
+#: src/editor-properties-panel.ui:150
 msgid "Statistics"
 msgstr "Tidaddanin"
 
-#: src/editor-properties-dialog.ui:58
+#: src/editor-properties-panel.ui:153
 msgid "Lines"
 msgstr "Izirigen"
 
-#: src/editor-properties-dialog.ui:66
+#: src/editor-properties-panel.ui:166
 msgid "Words"
 msgstr "Awalen"
 
-#: src/editor-properties-dialog.ui:74
+#: src/editor-properties-panel.ui:179
 msgid "Characters, No Spaces"
-msgstr ""
+msgstr "Isekkilen, War tallunin"
 
-#: src/editor-properties-dialog.ui:82
+#: src/editor-properties-panel.ui:192
 msgid "All Characters"
-msgstr ""
+msgstr "Akk isekkilen"
 
-#: src/editor-save-changes-dialog.c:254 src/editor-window-actions.c:236
+#: src/editor-save-changes-dialog.c:254 src/editor-window-actions.c:220
 msgid "_Discard"
-msgstr ""
+msgstr "Eǧǧ-it (_D)"
 
 #: src/editor-save-changes-dialog.c:254
 msgid "_Discard All"
@@ -663,170 +714,139 @@ msgstr ""
 
 #: src/editor-save-changes-dialog.c:256
 msgid "Save Changes?"
-msgstr ""
+msgstr "Sekles ibeddilen?"
 
 #: src/editor-save-changes-dialog.c:257
 msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
 msgstr ""
+"Ldi isemliyen ideg llan isenfal ur yettwaskelsen ara. Isenfal ur "
+"yettwaskelsen ara ad ruḥen i lebda."
 
-#: src/editor-save-changes-dialog.c:261 src/editor-window-actions.c:115
-#: src/editor-window-actions.c:235
-msgid "_Cancel"
-msgstr "Sefsex (_C)"
-
-#: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:116
-#: src/editor-window.ui:211
+#: src/editor-save-changes-dialog.c:262 src/editor-window-actions.c:116
+#: src/editor-window.ui:365
 msgid "_Save"
 msgstr "_Sekles"
 
-#: src/editor-save-changes-dialog.c:295
+#: src/editor-save-changes-dialog.c:294
 msgid "Untitled Document"
-msgstr ""
+msgstr "Isemli war azwel"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:298
+#: src/editor-save-changes-dialog.c:297
 #, c-format
 msgid "%s (new)"
 msgstr "%s (amaynut)"
 
-#: src/editor-save-changes-dialog.c:319
-msgid "Save changes for this document"
-msgstr ""
-
-#: src/editor-search-bar.ui:33
+#: src/editor-search-bar.ui:36 src/editor-search-bar.ui:38
 msgid "Replace"
 msgstr "Semselsi"
 
-#: src/editor-search-bar.ui:51
+#: src/editor-search-bar.ui:57
 msgid "Previous Match"
-msgstr ""
+msgstr "Amṣada uzwir"
 
-#: src/editor-search-bar.ui:59
+#: src/editor-search-bar.ui:70
 msgid "Next Match"
-msgstr ""
+msgstr "Amsaḍa uḍfir"
 
-#: src/editor-search-bar.ui:71
+#: src/editor-search-bar.ui:86
 msgid "Search & Replace"
-msgstr ""
+msgstr "Nadi & Semselsi"
 
-#: src/editor-search-bar.ui:81
+#: src/editor-search-bar.ui:101
 msgid "Search Options"
 msgstr "Tinefrunin n unadi"
 
-#: src/editor-search-bar.ui:95
+#: src/editor-search-bar.ui:119
 msgid "Close Search"
 msgstr "Mdel anadi"
 
-#: src/editor-search-bar.ui:112
+#: src/editor-search-bar.ui:137
 msgid "_Replace"
 msgstr "Semselsi (_R)"
 
-#: src/editor-search-bar.ui:124
+#: src/editor-search-bar.ui:151
 msgid "Replace _All"
+msgstr "Semselsi-iten _akk"
+
+#: src/editor-search-bar.ui:170
+msgid "Re_gular Expressions"
 msgstr ""
 
-#: src/editor-search-bar.ui:140
-msgid "Re_gular expressions"
+#: src/editor-search-bar.ui:174
+msgid "_Case Sensitive"
 msgstr ""
 
-#: src/editor-search-bar.ui:146
-msgid "_Case sensitive"
-msgstr ""
-
-#: src/editor-search-bar.ui:152
-msgid "Match whole _word only"
+#: src/editor-search-bar.ui:178
+msgid "Match Whole _Word Only"
 msgstr ""
 
 #. translators: the first %u is replaced with the current position, the second with the number of search results
-#: src/editor-search-entry.c:197
+#: src/editor-search-entry.c:221
 #, c-format
 msgid "%u of %u"
-msgstr ""
+msgstr "%u ɣef %u"
 
-#: src/editor-search-entry.ui:13
-msgid "Find"
-msgstr "Af-d"
+#: src/editor-search-entry.ui:33
+msgid "Clear Entry"
+msgstr "Sfeḍ anekcam"
 
-#: src/editor-sidebar-row.ui:85
+#: src/editor-sidebar-row.ui:82
 msgid "Remove"
 msgstr "Kkes"
 
 #: src/editor-theme-selector.ui:23
 msgid "Follow System Style"
-msgstr ""
+msgstr "Ḍfer aɣanib n unagraw"
 
 #: src/editor-theme-selector.ui:25
 msgid "Follow system style"
-msgstr ""
+msgstr "Ḍfer aɣanib n unagraw"
 
 #: src/editor-theme-selector.ui:40
 msgid "Light Style"
-msgstr ""
+msgstr "Aɣanib aceɛlal"
 
 #: src/editor-theme-selector.ui:42
 msgid "Light style"
-msgstr ""
+msgstr "Aɣanib aceεlal"
 
 #: src/editor-theme-selector.ui:58
 msgid "Dark Style"
-msgstr ""
+msgstr "Aɣanib ubrik"
 
 #: src/editor-theme-selector.ui:60
 msgid "Dark style"
-msgstr ""
+msgstr "Aɣanib ubrik"
 
-#: src/editor-utils.c:348
+#: src/editor-utils.c:355
 msgid "Just now"
 msgstr "Tura kan"
 
-#: src/editor-utils.c:350
+#: src/editor-utils.c:357
 msgid "An hour ago"
 msgstr "Yiwen usrag aya"
 
-#: src/editor-utils.c:352
+#: src/editor-utils.c:359
 msgid "Yesterday"
 msgstr "Iḍelli"
 
-#: src/editor-utils.c:358
+#: src/editor-utils.c:365
 msgid "About a year ago"
 msgstr "Azal n useggas aya"
 
-#: src/editor-utils.c:362
+#: src/editor-utils.c:369
 #, c-format
 msgid "About %u year ago"
 msgid_plural "About %u years ago"
-msgstr[0] ""
-msgstr[1] ""
-
-#: src/editor-utils.c:370
-msgid "Unix/Linux (LF)"
-msgstr ""
-
-#: src/editor-utils.c:371
-msgid "Mac OS Classic (CR)"
-msgstr ""
-
-#: src/editor-utils.c:372
-msgid "Windows (CR+LF)"
-msgstr ""
-
-#: src/editor-utils.c:402
-msgid "Automatically Detected"
-msgstr ""
-
-#: src/editor-utils.c:418
-msgid "Character Encoding:"
-msgstr ""
-
-#: src/editor-utils.c:453
-msgid "Line Ending:"
-msgstr ""
+msgstr[0] "Azal n %u useggas aya"
+msgstr[1] "Azal n %u n iseggasen aya"
 
 #: src/editor-window-actions.c:109
 msgid "Saving changes will replace the previously saved version."
-msgstr ""
+msgstr "Asekles isenfal ad ismesli lqem yettwaskelsen yakan."
 
 #. translators: %s is replaced with the document title
 #: src/editor-window-actions.c:112
@@ -834,643 +854,439 @@ msgstr ""
 msgid "Save Changes to “%s”?"
 msgstr "Sekles ibeddilen ɣer “%s”?"
 
-#: src/editor-window-actions.c:229
+#: src/editor-window-actions.c:213
 msgid "Unsaved changes will be permanently lost."
-msgstr ""
+msgstr "Isenfal ur yettuskelsen ara ad ruḥen i lebda."
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:232
+#: src/editor-window-actions.c:216
 #, c-format
 msgid "Discard Changes to “%s”?"
 msgstr ""
 
-#: src/editor-window-actions.c:343
-msgid "Open File"
-msgstr "Ldi afaylu"
-
-#: src/editor-window-actions.c:346
-msgid "Open"
-msgstr "Ldi"
-
-#: src/editor-window-actions.c:371
+#: src/editor-window-actions.c:384
 msgid "All Files"
 msgstr "Akk ifuyla"
 
-#: src/editor-window-actions.c:376
+#: src/editor-window-actions.c:389
 msgid "Text Files"
 msgstr "Ifyla n weḍris"
 
-#: src/editor-window.c:203
-#, c-format
-msgid "Document Type: %s"
-msgstr ""
-
-#: src/editor-window.c:505
+#: src/editor-window.c:423
 msgid "Zoom In"
 msgstr "Semɣer"
 
-#: src/editor-window.c:508
+#: src/editor-window.c:426
 msgid "Zoom in"
 msgstr "Semɣer"
 
-#: src/editor-window.c:518
+#: src/editor-window.c:436
 msgid "Zoom Out"
 msgstr "Semẓi"
 
-#: src/editor-window.c:521
+#: src/editor-window.c:439
 msgid "Zoom out"
 msgstr "Semẓi"
 
+#: src/editor-window.c:444
+msgid "Reset Zoom"
+msgstr "Ales awennez n usimɣeṛ"
+
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:760
+#: src/editor-window.c:690
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - Amaẓrag n Weḍris"
 
-#: src/editor-window.c:1202
+#: src/editor-window.c:1167
 msgid "There are unsaved documents"
 msgstr ""
 
-#: src/editor-window.ui:83
-msgid "_Open"
-msgstr "Ldi (_O)"
+#: src/editor-window.ui:81
+msgid "Open a Document"
+msgstr "Ldi-d isemli"
 
-#: src/editor-window.ui:85
+#: src/editor-window.ui:82
+msgid "Create a new document (Ctrl+N), or open an existing one (Ctrl+O)"
+msgstr ""
+
+#: src/editor-window.ui:93
+msgid "_New Empty File"
+msgstr "Afalu amay_nut ilem"
+
+#: src/editor-window.ui:166
 msgid "Recently Used Documents"
 msgstr ""
 
-#: src/editor-window.ui:97
+#: src/editor-window.ui:191
+msgid "_Open"
+msgstr "Ldi (_O)"
+
+#: src/editor-window.ui:224
 msgid "New Tab"
 msgstr "Iccer amaynut"
 
-#: src/editor-window.ui:99
-msgid "New tab"
-msgstr "Iccer amaynut"
+#: src/editor-window.ui:229 src/editor-window.ui:403
+msgid "Leave Fullscreen"
+msgstr "Ffeɣ seg ugdil aččuran"
 
-#: src/editor-window.ui:125
-msgid "View Options"
-msgstr ""
-
-#: src/editor-window.ui:129
-msgid "View"
-msgstr "Timeẓri"
-
-#: src/editor-window.ui:135
+#: src/editor-window.ui:237
 msgid "Main Menu"
 msgstr "Umuɣ agejdan"
 
-#: src/editor-window.ui:139
-msgid "Main menu"
-msgstr "Umuɣ agejdan"
+#: src/editor-window.ui:244
+msgid "Document Properties"
+msgstr "Iraten n isemli"
 
-#: src/editor-window.ui:166
-msgid "Start or Open a Document"
-msgstr ""
-
-#: src/editor-window.ui:169
-msgid ""
-"• Press the Open button\n"
-"• Press the New tab button\n"
-"• Press Ctrl+N to start a new document\n"
-"• Press Ctrl+O to browse for a document\n"
-"\n"
-"Or, press Ctrl+W to close the window."
-msgstr ""
-
-#: src/editor-window.ui:203
+#: src/editor-window.ui:357
 msgid "_New Window"
 msgstr "Asfaylu amay_nut"
 
-#: src/editor-window.ui:223
-msgid "_Discard Changes"
+#: src/editor-window.ui:377
+msgid "_Discard Changes…"
 msgstr ""
 
-#: src/editor-window.ui:229
+#: src/editor-window.ui:384
 msgid "_Find/Replace…"
-msgstr ""
+msgstr "A_f-d/Semselsi…"
 
-#: src/editor-window.ui:235
+#: src/editor-window.ui:390
 msgid "_Print…"
 msgstr "Siggez (_P)…"
 
-#: src/editor-window.ui:241
-msgid "Documen_t Properties"
-msgstr ""
+#: src/editor-window.ui:397
+msgid "Fullscreen"
+msgstr "Agdil aččuran"
 
-#: src/editor-window.ui:247
+#: src/editor-window.ui:411
 msgid "P_references"
-msgstr ""
+msgstr "Ismenyifen (_R)"
 
-#: src/editor-window.ui:252
+#: src/editor-window.ui:416
 msgid "_Keyboard Shortcuts"
 msgstr "Inegzumen n unasiw (_K)"
 
-#: src/editor-window.ui:256
-msgid "_Help"
-msgstr "Tallalt (_H)"
-
-#: src/editor-window.ui:260
+#: src/editor-window.ui:420
 msgid "A_bout Text Editor"
 msgstr "Ɣef Umaẓrag n Weḍris"
 
-#: src/editor-window.ui:268
-msgid "Show _Line Numbers"
-msgstr ""
-
-#: src/editor-window.ui:272
-msgid "Show _Right Margin"
-msgstr ""
-
-#: src/editor-window.ui:295
-msgid "_2"
-msgstr "_2"
-
-#: src/editor-window.ui:300
-msgid "_4"
-msgstr "_4"
-
-#: src/editor-window.ui:305
-msgid "_6"
-msgstr "_6"
-
-#: src/editor-window.ui:310
-msgid "_8"
-msgstr "_8"
-
-#: src/editor-window.ui:319
-msgid "T_ext Wrapping"
-msgstr ""
-
-#: src/editor-window.ui:323
-msgid "Chec_k Spelling"
-msgstr ""
-
-#: src/editor-window.ui:327
-msgid "_Document Type…"
-msgstr ""
-
-#: src/editor-window.ui:335
+#: src/editor-window.ui:428
 msgid "Move _Left"
 msgstr "Mutti s azelmaḍ (_L)"
 
-#: src/editor-window.ui:340
+#: src/editor-window.ui:433
 msgid "Move _Right"
 msgstr "Mutti s ayeffus (_R)"
 
-#: src/editor-window.ui:347
+#: src/editor-window.ui:440
 msgid "_Move to New Window"
 msgstr ""
 
-#: src/editor-window.ui:354
+#: src/editor-window.ui:447
 msgid "Close _Other Tabs"
 msgstr "Mdel accaren-nniḍen (_O)"
 
-#: src/help-overlay.ui:12
+#: src/shortcuts-dialog.ui:8
 msgctxt "shortcut window"
 msgid "Windows"
 msgstr "Isfuyla"
 
-#: src/help-overlay.ui:15
+#: src/shortcuts-dialog.ui:11
 msgctxt "shortcut window"
 msgid "New window"
 msgstr "Asfaylu amaynut"
 
-#: src/help-overlay.ui:21
+#: src/shortcuts-dialog.ui:17
 msgctxt "shortcut window"
 msgid "Move document to new window"
-msgstr ""
+msgstr "Err isemli ɣer usfaylu amaynut"
 
-#: src/help-overlay.ui:28
+#: src/shortcuts-dialog.ui:24
 msgctxt "shortcut window"
 msgid "Move to next tab"
-msgstr ""
+msgstr "Uɣal ɣer yiccer uzwir"
 
-#: src/help-overlay.ui:34
+#: src/shortcuts-dialog.ui:30
 msgctxt "shortcut window"
 msgid "Move to previous tab"
-msgstr ""
+msgstr "Uɣal ɣer yiccer uḍfir"
 
-#: src/help-overlay.ui:40
+#: src/shortcuts-dialog.ui:36
 msgctxt "shortcut window"
 msgid "Reorder after next tab"
 msgstr ""
 
-#: src/help-overlay.ui:46
+#: src/shortcuts-dialog.ui:42
 msgctxt "shortcut window"
 msgid "Reorder before previous tab"
 msgstr ""
 
-#: src/help-overlay.ui:52
+#: src/shortcuts-dialog.ui:48
 msgctxt "shortcut window"
 msgid "Restore previously closed tab"
 msgstr ""
 
-#: src/help-overlay.ui:59
+#: src/shortcuts-dialog.ui:55
 msgctxt "shortcut window"
 msgid "Zoom"
 msgstr "Asemɣer"
 
-#: src/help-overlay.ui:63
+#: src/shortcuts-dialog.ui:59
 msgctxt "shortcut window"
 msgid "Zoom In"
 msgstr "Semɣer"
 
-#: src/help-overlay.ui:69
+#: src/shortcuts-dialog.ui:65
 msgctxt "shortcut window"
 msgid "Zoom Out"
 msgstr "Semẓi"
 
-#: src/help-overlay.ui:75
+#: src/shortcuts-dialog.ui:71
 msgctxt "shortcut window"
 msgid "Reset Zoom"
 msgstr "Ales awennez n usimɣeṛ"
 
-#: src/help-overlay.ui:82
+#: src/shortcuts-dialog.ui:78
 msgctxt "shortcut window"
 msgid "Documents"
 msgstr "Isemliyen"
 
-#: src/help-overlay.ui:85
+#: src/shortcuts-dialog.ui:81
 msgctxt "shortcut window"
 msgid "New document"
-msgstr ""
+msgstr "Isemli amaynut"
 
-#: src/help-overlay.ui:91
+#: src/shortcuts-dialog.ui:87
 msgctxt "shortcut window"
 msgid "Browse to open document"
-msgstr ""
+msgstr "Inig i ulday n yisemli"
 
-#: src/help-overlay.ui:97
+#: src/shortcuts-dialog.ui:93
 msgctxt "shortcut window"
 msgid "Find document by name"
-msgstr ""
+msgstr "Af-d isemliyen s yisem"
 
-#: src/help-overlay.ui:103
+#: src/shortcuts-dialog.ui:99
 msgctxt "shortcut window"
 msgid "Save"
 msgstr "Sekles"
 
-#: src/help-overlay.ui:109
+#: src/shortcuts-dialog.ui:105
 msgctxt "shortcut window"
 msgid "Save As"
 msgstr "Sekles am"
 
-#: src/help-overlay.ui:115
+#: src/shortcuts-dialog.ui:111
 msgctxt "shortcut window"
 msgid "Find/Replace"
-msgstr ""
+msgstr "Af-d/Semselsi"
 
-#: src/help-overlay.ui:121
+#: src/shortcuts-dialog.ui:117
 msgctxt "shortcut window"
 msgid "Close document"
 msgstr "Mdel isemli"
 
-#: src/help-overlay.ui:129
+#: src/shortcuts-dialog.ui:123
+msgctxt "shortcut window"
+msgid "Open document properties"
+msgstr ""
+
+#: src/shortcuts-dialog.ui:131
 msgctxt "shortcut window"
 msgid "Copy and Paste"
-msgstr ""
+msgstr "Nɣel rnu tsentḍeḍ"
 
-#: src/help-overlay.ui:133
+#: src/shortcuts-dialog.ui:135
 msgctxt "shortcut window"
 msgid "Copy selected text to clipboard"
-msgstr ""
+msgstr "Nɣel aḍris i yettwafernen ɣer tecfawt"
 
-#: src/help-overlay.ui:139
+#: src/shortcuts-dialog.ui:141
 msgctxt "shortcut window"
 msgid "Cut selected text to clipboard"
-msgstr ""
+msgstr "Gzem aḍris i yettwafernen ɣer tecfawt"
 
-#: src/help-overlay.ui:145
+#: src/shortcuts-dialog.ui:147
 msgctxt "shortcut window"
 msgid "Paste text from clipboard"
-msgstr ""
+msgstr "Senteḍ aḍris seg tecfawt"
 
-#: src/help-overlay.ui:150
+#: src/shortcuts-dialog.ui:152
 msgctxt "shortcut window"
 msgid "Copy all to clipboard"
-msgstr ""
+msgstr "Nɣel-ten akk ɣer tecfawt"
 
-#: src/help-overlay.ui:156
+#: src/shortcuts-dialog.ui:158
 msgctxt "shortcut window"
 msgid "Copy current line down"
-msgstr ""
+msgstr "Nɣel izirig amiran d akessar"
 
-#: src/help-overlay.ui:164
+#: src/shortcuts-dialog.ui:166
 msgctxt "shortcut window"
 msgid "Undo and Redo"
-msgstr ""
+msgstr "Asefsex akked tririt"
 
-#: src/help-overlay.ui:168
+#: src/shortcuts-dialog.ui:170
 msgctxt "shortcut window"
 msgid "Undo previous command"
-msgstr ""
+msgstr "Sefsex taladna tudfirt"
 
-#: src/help-overlay.ui:174
+#: src/shortcuts-dialog.ui:176
 msgctxt "shortcut window"
 msgid "Redo previous command"
 msgstr ""
 
-#: src/help-overlay.ui:181
+#: src/shortcuts-dialog.ui:183
 msgctxt "shortcut window"
 msgid "Editing"
 msgstr "Asiẓreg"
 
-#: src/help-overlay.ui:185
+#: src/shortcuts-dialog.ui:187
 msgctxt "shortcut window"
 msgid "Insert emoji into document"
 msgstr ""
 
-#: src/help-overlay.ui:191
+#: src/shortcuts-dialog.ui:193
 msgctxt "shortcut window"
 msgid "Search within the document"
-msgstr ""
+msgstr "Anadi deg yisemli"
 
-#: src/help-overlay.ui:197
+#: src/shortcuts-dialog.ui:199
 msgctxt "shortcut window"
 msgid "Search and replace within the document"
-msgstr ""
+msgstr "Nadi, tesmelsiḍ deg yisemli"
 
-#: src/help-overlay.ui:203
+#: src/shortcuts-dialog.ui:205
 msgctxt "shortcut window"
 msgid "Increment number at cursor"
 msgstr ""
 
-#: src/help-overlay.ui:209
+#: src/shortcuts-dialog.ui:211
 msgctxt "shortcut window"
 msgid "Decrement number at cursor"
 msgstr ""
 
-#: src/help-overlay.ui:215
+#: src/shortcuts-dialog.ui:217
 msgctxt "shortcut window"
 msgid "Toggle overwrite"
 msgstr ""
 
-#: src/help-overlay.ui:221
+#: src/shortcuts-dialog.ui:223
 msgctxt "shortcut window"
 msgid "Toggle visibility of insertion caret"
 msgstr ""
 
-#: src/help-overlay.ui:228
+#: src/shortcuts-dialog.ui:230
 msgctxt "shortcut window"
 msgid "Selections"
 msgstr "Tifrayin"
 
-#: src/help-overlay.ui:232
+#: src/shortcuts-dialog.ui:234
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Fren-iten akk"
 
-#: src/help-overlay.ui:238
+#: src/shortcuts-dialog.ui:240
 msgctxt "shortcut window"
 msgid "Unselect all"
-msgstr ""
+msgstr "Sefsex afran i meṛṛa"
 
-#: src/help-overlay.ui:244
+#: src/shortcuts-dialog.ui:246
 msgctxt "shortcut window"
 msgid "Select current line"
-msgstr ""
+msgstr "Fren izirig amiran"
 
-#: src/help-overlay.ui:251
+#: src/shortcuts-dialog.ui:253
 msgctxt "shortcut window"
 msgid "Movements"
 msgstr ""
 
-#: src/help-overlay.ui:255
+#: src/shortcuts-dialog.ui:257
 msgctxt "shortcut window"
 msgid "Move to beginning of document"
-msgstr ""
+msgstr "Uɣal ɣer tazwara n yisemli"
 
-#: src/help-overlay.ui:261
+#: src/shortcuts-dialog.ui:263
 msgctxt "shortcut window"
 msgid "Move to end of document"
-msgstr ""
+msgstr "Uɣal ɣer taggara n yisemli"
 
-#: src/help-overlay.ui:267
+#: src/shortcuts-dialog.ui:269
 msgctxt "shortcut window"
 msgid "Move to start of previous paragraph"
-msgstr ""
+msgstr "Uɣal ɣer tazwara n tseddart tuzwirt"
 
-#: src/help-overlay.ui:273
+#: src/shortcuts-dialog.ui:275
 msgctxt "shortcut window"
 msgid "Move to end of next paragraph"
-msgstr ""
+msgstr "Uɣal ɣer taggara n tseddart tuḍfirt"
 
-#: src/help-overlay.ui:279
+#: src/shortcuts-dialog.ui:281
 msgctxt "shortcut window"
 msgid "Move current or selected lines up"
-msgstr ""
+msgstr "Senkez izirigen imiranen neɣ i yettwafarnen d asawen"
 
-#: src/help-overlay.ui:285
+#: src/shortcuts-dialog.ui:287
 msgctxt "shortcut window"
 msgid "Move current or selected lines down"
-msgstr ""
+msgstr "Senkez izirigen imiranen neɣ i yettwafarnen d akessar"
 
-#: src/help-overlay.ui:291
+#: src/shortcuts-dialog.ui:293
 msgctxt "shortcut window"
 msgid "Go to line"
-msgstr ""
+msgstr "Ddu ɣer yizirig"
 
-#: src/help-overlay.ui:298
+#: src/shortcuts-dialog.ui:300
 msgctxt "shortcut window"
 msgid "Deletion"
-msgstr ""
+msgstr "Tukksa"
 
-#: src/help-overlay.ui:302
+#: src/shortcuts-dialog.ui:304
 msgctxt "shortcut window"
 msgid "Delete from cursor to word start"
-msgstr ""
+msgstr "Kkes seg teḥnaccaḍt ɣer tazwara n wawal"
 
-#: src/help-overlay.ui:308
+#: src/shortcuts-dialog.ui:310
 msgctxt "shortcut window"
 msgid "Delete from cursor to word end"
-msgstr ""
+msgstr "Kkes seg teḥnaccaḍt ɣer taggara n wawal"
 
-#: src/help-overlay.ui:314
+#: src/shortcuts-dialog.ui:316
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph start"
-msgstr ""
+msgstr "Kkes seg teḥnaccaḍt ɣer tazwara n tseddart"
 
-#: src/help-overlay.ui:320
+#: src/shortcuts-dialog.ui:322
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph end"
-msgstr ""
+msgstr "Kkes seg teḥnaccaḍt ɣer taggara n tseddart"
 
-#: src/help-overlay.ui:326
+#: src/shortcuts-dialog.ui:328
 msgctxt "shortcut window"
 msgid "Delete the current line"
-msgstr ""
+msgstr "Kkes izirig amiran"
 
-#: src/help-overlay.ui:333
+#: src/shortcuts-dialog.ui:335
 msgctxt "shortcut window"
 msgid "General"
-msgstr ""
+msgstr "Amatu"
 
-#: src/help-overlay.ui:337
+#: src/shortcuts-dialog.ui:339
 msgctxt "shortcut window"
 msgid "Show preferences"
 msgstr "Sken-d ismenyifen"
 
-#: src/help-overlay.ui:343
+#: src/shortcuts-dialog.ui:345
 msgctxt "shortcut window"
 msgid "Show keyboard shortcuts"
 msgstr "Sken-d Inegzumen n unasiw"
 
-#: src/help-overlay.ui:349
+#: src/shortcuts-dialog.ui:351
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Sken-d tallalt"
 
-#~ msgid "About"
-#~ msgstr "Ɣef"
-
-#~ msgid "Credits"
-#~ msgstr "Asenmer"
-
-#~ msgid "Creators"
-#~ msgstr "Imesnulfuyen"
-
-#~ msgid "Translators"
-#~ msgstr "Imsuqlen"
-
-#~ msgid "Bookmarks"
-#~ msgstr "Signets"
-
-#~ msgid "Hide bookmarks"
-#~ msgstr "Ffer Ticraḍ"
-
-#~ msgid "Unbookmark"
-#~ msgstr "Kkes seg ticraḍ"
-
-#~ msgid "Bookmark"
-#~ msgstr "Signet"
-
-#~ msgid "Show bookmarks"
-#~ msgstr "Sken-d ticraḍ"
-
-#~ msgid "Use"
-#~ msgstr "Seqdec"
-
-#~ msgid "Reload"
-#~ msgstr "Smiren"
-
-#~ msgid "dconf Editor"
-#~ msgstr "Amaẓrag n dconf"
-
-#~ msgid "Robert Ancell"
-#~ msgstr "Robert Ancell"
-
-#~ msgid "Arnaud Bonatti"
-#~ msgstr "Arnaud Bonatti"
-
-#, c-format
-#~ msgid "Copyright © %u-%u – Arnaud Bonatti"
-#~ msgstr "Copyright © %u-%u – Arnaud Bonatti"
-
-#~ msgid "Page on GNOME wiki"
-#~ msgstr "Asebter deg Gnome wiki"
-
-#~ msgid "Apply"
-#~ msgstr "Snes"
-
-#~ msgid "Dismiss"
-#~ msgstr "Agwi"
-
-#~ msgid "Apply all"
-#~ msgstr "Snes meṛṛa"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Actions"
-#~ msgstr "Tigawin"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Open root folder"
-#~ msgstr "Ldi akaram n wazar"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Search again"
-#~ msgstr "Nadi tikkelt-nniḍen"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Edit path"
-#~ msgstr "Ẓreg abrid"
-
-#~ msgctxt "shortcut window"
-#~ msgid "About"
-#~ msgstr "Ɣef"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Clipboard"
-#~ msgstr "Ɣef afus"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Quit"
-#~ msgstr "Ffeɣ"
-
-#~ msgid "Copy"
-#~ msgstr "Nɣel"
-
-#~ msgid "Customize…"
-#~ msgstr "Sagen…"
-
-#~ msgid "Show details…"
-#~ msgstr "Sken talqayt…"
-
-#~ msgid "Go to this path"
-#~ msgstr "Ddu ɣer webdrid-a"
-
-#~ msgid "Search"
-#~ msgstr "Anadi"
-
-#~ msgid "Boolean"
-#~ msgstr "Abulan"
-
-#~ msgid "boolean"
-#~ msgstr "abulan"
-
-#~ msgid "String"
-#~ msgstr "Azrir"
-
-#~ msgid "string"
-#~ msgstr "azrir"
-
-#~ msgid "Flags"
-#~ msgstr "Anayen"
-
-#~ msgid "Double"
-#~ msgstr "Uslig"
-
-#~ msgid "Integer"
-#~ msgstr "Ummid"
-
-#~ msgid "Schema"
-#~ msgstr "Azenziɣ"
-
-#~ msgid "Summary"
-#~ msgstr "Agzul"
-
-#~ msgid "Type"
-#~ msgstr "Anaw"
-
-#~ msgid "Default"
-#~ msgstr "Amezwer"
-
-#~ msgid "Yes"
-#~ msgstr "Ih"
-
-#~ msgid "No"
-#~ msgstr "Uhu"
-
-#~ msgid "Folders"
-#~ msgstr "Ikaramen"
-
-#~ msgid "Nothing"
-#~ msgstr "Ulac"
-
-#~ msgid "true"
-#~ msgstr "idetti"
-
-#~ msgid "false"
-#~ msgstr "ucciḍ"
-
-#~ msgid "nothing"
-#~ msgstr "ulac"
+#: src/shortcuts-dialog.ui:357
+msgctxt "shortcut window"
+msgid "Toggle text wrapping"
+msgstr ""
