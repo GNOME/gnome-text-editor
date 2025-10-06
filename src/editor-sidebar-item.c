@@ -486,6 +486,8 @@ _editor_sidebar_item_get_is_modified (EditorSidebarItem *self)
 gchar *
 _editor_sidebar_item_dup_title (EditorSidebarItem *self)
 {
+  char *title = NULL;
+
   g_return_val_if_fail (EDITOR_IS_SIDEBAR_ITEM (self), NULL);
 
   if (self->title != NULL)
@@ -499,7 +501,17 @@ _editor_sidebar_item_dup_title (EditorSidebarItem *self)
 
   g_return_val_if_fail (G_IS_FILE (self->file), NULL);
 
-  return g_file_get_basename (self->file);
+  title = g_file_get_basename (self->file);
+
+  if (!g_utf8_validate (title, -1, NULL))
+    {
+      char *tmp = g_utf8_make_valid (title, -1);;
+
+      g_free (title);
+      title = tmp;
+    }
+
+  return title;
 }
 
 gchar *
