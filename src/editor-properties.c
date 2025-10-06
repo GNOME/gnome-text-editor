@@ -581,11 +581,22 @@ editor_properties_dup_name (EditorProperties *self)
   if (self->page != NULL)
     {
       GFile *file = editor_document_get_file (self->page->document);
+      char *base = NULL;
 
       if (file == NULL)
         return g_strdup ("—");
 
-      return g_file_get_basename (file);
+      base = g_file_get_basename (file);
+
+      if (!g_utf8_validate (base, -1, NULL))
+        {
+          char *tmp = g_utf8_make_valid (base, -1);
+
+          g_free (base);
+          base = tmp;
+        }
+
+      return base;
     }
 
   return NULL;

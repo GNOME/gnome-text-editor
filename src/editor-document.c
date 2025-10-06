@@ -2208,6 +2208,15 @@ editor_document_dup_title (EditorDocument *self)
   if (file != NULL)
     {
       g_autofree char *base = g_file_get_basename (file);
+
+      if (!g_utf8_validate (base, -1, NULL))
+        {
+          char *tmp = g_utf8_make_valid (base, -1);
+
+          g_free (base);
+          base = tmp;
+        }
+
       g_string_append (str, base);
       goto handle_suffix;
     }
