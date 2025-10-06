@@ -6,7 +6,7 @@ include:
       dist-job-name: "flatpak"
 
 variables:
-    FEDORA_IMAGE: "registry.fedoraproject.org/fedora:41"
+    FEDORA_IMAGE: "registry.fedoraproject.org/fedora:42"
     MANIFEST_PATH: "org.gnome.TextEditor.Devel.json"
     MESON_ARGS: "-Ddevelopment=true"
     FLATPAK_MODULE: "gnome-text-editor"
