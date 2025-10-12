@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2024-08-12 16:58+0000\n"
+"POT-Creation-Date: 2025-10-11 19:31+0000\n"
 "PO-Revision-Date: 2024-09-01 23:22+0300\n"
 "Last-Translator: Efstathios Iosifidis <eiosifidis@gnome.org>\n"
 "Language-Team: Greek <gnome-el-list@gnome.org>\n"
@@ -19,42 +19,36 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.4.4\n"
 
-#. developer_name tag deprecated with Appstream 1.0
-#: data/org.gnome.TextEditor.appdata.xml.in.in:7
-#: src/editor-application-actions.c:201
-msgid "The GNOME Project"
-msgstr "Το έργο GNOME"
+#: data/org.gnome.TextEditor.desktop.in.in:3
+msgid "write;notepad;"
+msgstr "γράφω;σημειωματάριο;write;notepad;"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:12
-#: data/org.gnome.TextEditor.desktop.in.in:10
-#: data/org.gnome.TextEditor.desktop.in.in:11
-#: src/editor-application-actions.c:199 src/editor-window.c:1317
+#: data/org.gnome.TextEditor.desktop.in.in:7
+#: data/org.gnome.TextEditor.desktop.in.in:8
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:10
+#: src/editor-application-actions.c:200 src/editor-window.c:1288
 msgid "Text Editor"
 msgstr "Επεξεργαστής κειμένου"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:14
+#: data/org.gnome.TextEditor.desktop.in.in:9
+msgid "View and edit text files"
+msgstr "Προβολή και επεξεργασία αρχείων κειμένου"
+
+#: data/org.gnome.TextEditor.desktop.in.in:21
+msgid "New Window"
+msgstr "Νέο παράθυρο"
+
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:12
 msgid "Edit text files"
 msgstr "Επεξεργασία αρχείων κειμένου"
 
-#: data/org.gnome.TextEditor.appdata.xml.in.in:16
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:14
 msgid ""
 "GNOME Text Editor is a simple text editor focused on a pleasing default "
 "experience."
 msgstr ""
 "Ο επεξεργαστής κειμένου του GNOME είναι ένα απλό πρόγραμμα επεξεργασίας "
 "κειμένου που επικεντρώνεται σε μια ευχάριστη προεπιλεγμένη εμπειρία."
-
-#: data/org.gnome.TextEditor.desktop.in.in:4
-msgid "write;notepad;"
-msgstr "γράφω;σημειωματάριο;write;notepad;"
-
-#: data/org.gnome.TextEditor.desktop.in.in:12
-msgid "View and edit text files"
-msgstr "Προβολή και επεξεργασία αρχείων κειμένου"
-
-#: data/org.gnome.TextEditor.desktop.in.in:22
-msgid "New Window"
-msgstr "Νέο παράθυρο"
 
 #: data/org.gnome.TextEditor.gschema.xml:16
 msgid "Auto Save Delay"
@@ -313,7 +307,11 @@ msgstr "Αποτυχία εύρεσης ιδιότητας %s στο %s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Αποτυχία ανάκτησης της τιμής λίστας: %s"
 
-#: src/editor-application-actions.c:214
+#: src/editor-application-actions.c:202
+msgid "The GNOME Project"
+msgstr "Το έργο GNOME"
+
+#: src/editor-application-actions.c:215
 msgid "translator-credits"
 msgstr ""
 "Ελληνική μεταφραστική ομάδα GNOME\n"
@@ -322,50 +320,83 @@ msgstr ""
 "Για περισσότερες πληροφορίες, επισκεφθείτε τη σελίδα\n"
 "http://gnome.gr/"
 
-#: src/editor-application.c:525
+#: src/editor-application-actions.c:349
+msgid "Clear File History?"
+msgstr "Εκκαθάριση ιστορικού αρχείων;"
+
+#: src/editor-application-actions.c:350
+msgid "This action cannot be undone"
+msgstr "Αυτή η ενέργεια δεν μπορεί να αναιρεθεί"
+
+#: src/editor-application-actions.c:352 src/editor-save-changes-dialog.c:260
+#: src/editor-window-actions.c:115 src/editor-window-actions.c:219
+msgid "_Cancel"
+msgstr "_Ακύρωση"
+
+#: src/editor-application-actions.c:353
+msgid "_Clear All"
+msgstr "_Εκκαθάριση όλων"
+
+#: src/editor-application.c:531
 msgid "Standard input was requested multiple times. Ignoring request."
 msgstr "Ζητήθηκε η τυπική εισαγωγή πολλές φορές. Παράβλεψη αιτήματος."
 
-#: src/editor-application.c:529
+#: src/editor-application.c:535
 msgid "Standard input is not supported on this platform. Ignoring request."
 msgstr ""
 "Η τυπική είσοδος δεν υποστηρίζεται σε αυτήν την πλατφόρμα. Παράβλεψη "
 "αιτήματος."
 
-#: src/editor-application.c:632
+#: src/editor-application.c:638
 msgid "Bugs may be reported at:"
 msgstr "Μπορείτε να αναφέρετε σφάλματα στη διεύθυνση:"
 
-#: src/editor-application.c:634
+#: src/editor-application.c:640
 msgid "[FILES…]"
 msgstr "[ΑΡΧΕΙΑ…]"
 
-#: src/editor-application.c:748
+#: src/editor-application.c:764
 msgid "Do not restore session at startup"
 msgstr "Μην επαναφέρετε τη συνεδρία κατά την εκκίνηση"
 
-#: src/editor-application.c:749
+#: src/editor-application.c:765
 msgid "Open provided files in a new window"
 msgstr "Ανοίξτε τα δοθέντα αρχεία σε νέο παράθυρο"
 
-#: src/editor-application.c:750
+#: src/editor-application.c:766
 msgid "Run a new instance of Text Editor (implies --ignore-session)"
 msgstr ""
 "Εκτέλεση ενός νέου στιγμιότυπο του προγράμματος επεξεργασίας κειμένου "
 "(υποδηλώνει --ignore-session)"
 
-#: src/editor-application.c:751
+#: src/editor-application.c:767
 msgid "Print version information and exit"
 msgstr "Προβολή πληροφοριών έκδοσης και έξοδος"
 
-#: src/editor-document.c:2099
+#: src/editor-document.c:2281
 msgid "[Read-Only]"
 msgstr "[Μόνο για ανάγνωση]"
 
-#: src/editor-document.c:2316 src/editor-page.c:1074
-#: src/editor-sidebar-item.c:511
+#: src/editor-document.c:2506 src/editor-page.c:1125
+#: src/editor-sidebar-item.c:500
 msgid "New Document"
 msgstr "Νέο Έγγραφο"
+
+#: src/editor-encoding-dialog.ui:5
+msgid "Change Encoding"
+msgstr "Αλλαγή κωδικοποίησης"
+
+#: src/editor-encoding-dialog.ui:22
+msgid "Search encodings"
+msgstr "Αναζήτηση κωδικοποιήσεων"
+
+#: src/editor-encoding-dialog.ui:58 src/editor-language-dialog.ui:75
+msgid "No Results Found"
+msgstr "Δεν βρέθηκαν αποτελέσματα"
+
+#: src/editor-encoding-dialog.ui:59 src/editor-language-dialog.ui:76
+msgid "Try a different search"
+msgstr "Δοκιμάστε διαφορετική αναζήτηση"
 
 #: src/editor-file-manager.c:99
 msgid "File path is NULL"
@@ -381,46 +412,54 @@ msgstr "Αποτυχία ILCreateFromPath()"
 
 #: src/editor-file-manager.c:164
 #, c-format
-msgid "Cannot convert “%s” into a valid NSURL."
+msgid "Cannot convert \"%s\" into a valid NSURL."
 msgstr "Δεν είναι δυνατή η μετατροπή του \"%s\" σε έγκυρο NSURL."
 
-#: src/editor-info-bar.c:76
+#: src/editor-indent-model.c:173
+msgid "Space"
+msgstr "Διάστημα"
+
+#: src/editor-indent-model.c:178
+msgid "Tab"
+msgstr "Καρτέλα"
+
+#: src/editor-info-bar.c:108
 msgid "_Discard Changes and Reload"
 msgstr "_Απόρριψη τις αλλαγών και επαναφόρτωση"
 
-#: src/editor-info-bar.c:79
+#: src/editor-info-bar.c:112
 msgid "File Has Changed on Disk"
 msgstr "Το αρχείο άλλαξε στον δίσκο"
 
-#: src/editor-info-bar.c:80
+#: src/editor-info-bar.c:113
 msgid "The file has been changed by another program."
 msgstr "Το αρχείο έχει αλλάξει από άλλο πρόγραμμα."
 
-#: src/editor-info-bar.c:89 src/editor-window.ui:217
+#: src/editor-info-bar.c:122 src/editor-window.ui:371
 msgid "Save _As…"
 msgstr "Αποθή_κευση ως…"
 
-#: src/editor-info-bar.c:91 src/editor-info-bar.ui:62
+#: src/editor-info-bar.c:124 src/editor-info-bar.ui:73
 msgid "Document Restored"
 msgstr "Επαναφέρθηκε το έγγραφο"
 
-#: src/editor-info-bar.c:92 src/editor-info-bar.ui:72
+#: src/editor-info-bar.c:125 src/editor-info-bar.ui:84
 msgid "Unsaved document has been restored."
 msgstr "Έγινε επαναφορά του μη αποθηκευμένου εγγράφου."
 
-#: src/editor-info-bar.c:98 src/editor-info-bar.ui:86
+#: src/editor-info-bar.c:131 src/editor-info-bar.ui:99
 msgid "_Save…"
 msgstr "_Αποθήκευση…"
 
-#: src/editor-info-bar.c:100 src/editor-info-bar.ui:80
+#: src/editor-info-bar.c:133 src/editor-info-bar.ui:93
 msgid "_Discard…"
 msgstr "Απόρρι_ψη…"
 
-#: src/editor-info-bar.c:102
+#: src/editor-info-bar.c:136
 msgid "Draft Changes Restored"
 msgstr "Επαναφορά αλλαγών προχείρου"
 
-#: src/editor-info-bar.c:103
+#: src/editor-info-bar.c:137
 msgid "Unsaved changes to the document have been restored."
 msgstr "Οι μη αποθηκευμένες αλλαγές στο έγγραφο έχουν αποκατασταθεί."
 
@@ -428,138 +467,106 @@ msgstr "Οι μη αποθηκευμένες αλλαγές στο έγγραφ�
 msgid "Could Not Open File"
 msgstr "Αδυναμία ανοίγματος αρχείου"
 
-#: src/editor-info-bar.ui:36
+#: src/editor-info-bar.ui:38
 msgid "_Retry"
 msgstr "_Επαναπροσπάθεια"
 
-#: src/editor-info-bar.ui:43
+#: src/editor-info-bar.ui:51
 msgid "Open As _Administrator"
 msgstr "Άνοιγμα ως _διαχειριστής"
 
-#: src/editor-language-dialog.ui:6 src/editor-window.c:191
+#: src/editor-info-bar.ui:116
+msgid "Invalid Characters Detected"
+msgstr "Εντοπίστηκαν μη έγκυροι χαρακτήρες"
+
+#: src/editor-info-bar.ui:127
+msgid ""
+"There was an encoding conversion error so a fallback character was used."
+msgstr ""
+"Παρουσιάστηκε σφάλμα μετατροπής κωδικοποίησης, οπότε χρησιμοποιήθηκε ένας "
+"εφεδρικός χαρακτήρας."
+
+#: src/editor-info-bar.ui:136
+msgid "Change _Encoding…"
+msgstr "Αλλαγή _κωδικοποίησης…"
+
+#: src/editor-language-dialog.c:248
+msgid "Other Document Types"
+msgstr "Άλλοι τύποι εγγράφων"
+
+#: src/editor-language-dialog.ui:6
 msgid "Document Type"
 msgstr "Τύπος εγγράφου"
 
-#: src/editor-language-dialog.ui:25
-msgid "Search document types"
-msgstr "Αναζήτηση τύπων εγγράφων"
-
-#: src/editor-language-dialog.ui:60 src/editor-open-popover.ui:104
-msgid "No Results Found"
-msgstr "Δεν βρέθηκαν αποτελέσματα"
-
-#: src/editor-language-dialog.ui:61
-msgid "Try a different search"
-msgstr "Δοκιμάστε διαφορετική αναζήτηση"
+#: src/editor-language-dialog.ui:25 src/editor-search-entry.c:193
+#: src/editor-search-entry.ui:13
+msgid "Search"
+msgstr "Αναζήτηση"
 
 #: src/editor-language-row.c:61 src/editor-language-row.c:119
+#: src/editor-properties.c:573
 msgid "Plain Text"
 msgstr "Απλό κείμενο"
+
+#: src/editor-newline-model.c:180
+msgid "Unix/Linux (LF)"
+msgstr "Unix/Linux (LF)"
+
+#: src/editor-newline-model.c:181
+msgid "Windows (CR+LF)"
+msgstr "Windows (CR+LF)"
+
+#: src/editor-newline-model.c:182
+msgid "Mac OS Classic (CR)"
+msgstr "Mac OS Classic (CR)"
 
 #: src/editor-open-popover.ui:25
 msgid "Search documents"
 msgstr "Αναζήτηση εγγράφων"
 
-#: src/editor-open-popover.ui:39
+#: src/editor-open-popover.ui:45
 msgid "Open New Document"
 msgstr "Άνοιγμα νέου εγγράφου"
 
-#: src/editor-open-popover.ui:74
+#: src/editor-open-popover.ui:80
 msgid "No Recent Documents"
 msgstr "Κανένα πρόσφατο έγγραφο"
 
-#: src/editor-page.c:1100 src/editor-properties-dialog.c:104
-#: src/editor-sidebar-item.c:105
+#: src/editor-page.c:1151 src/editor-properties.c:617
+#: src/editor-sidebar-item.c:101
 msgid "Draft"
 msgstr "Πρόχειρο"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1112
+#: src/editor-page.c:1163
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (Διαχειριστής)"
 
-#: src/editor-page.c:1122 src/editor-sidebar-item.c:113
-msgid "Document Portal"
-msgstr "Πύλη εγγράφων"
-
-#: src/editor-page.c:1168
+#: src/editor-page.c:1219
 msgid "Failed to save document"
 msgstr "Αποτυχία αποθήκευσης εγγράφου"
 
-#: src/editor-page.c:1169 src/editor-window.ui:358
+#: src/editor-page.c:1220 src/editor-window.ui:451
 msgid "_Close"
 msgstr "_Κλείσιμο"
 
-#: src/editor-page.c:1257
-msgid "Save As"
-msgstr "Αποθήκευση ως"
-
-#: src/editor-page.c:1260
-msgid "Save"
-msgstr "Αποθήκευση"
-
-#: src/editor-page.c:1261 src/editor-window-actions.c:347
-msgid "Cancel"
-msgstr "Aκύρωση"
-
-#: src/editor-page.c:1422
+#: src/editor-page.c:1484
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Γρ %u, Στηλ %u"
 
-#: src/editor-page.ui:95
+#: src/editor-page.ui:94
 msgid "Go to Line"
 msgstr "Μετάβαση στη γραμμή"
 
-#: src/editor-page.ui:113
+#: src/editor-page.ui:111
 msgid "Go"
 msgstr "Μετάβαση"
 
-#: src/editor-page.ui:150
-msgid "Indentation"
-msgstr "Εσοχή"
-
-#: src/editor-page.ui:153 src/editor-window.ui:278
-msgid "_Automatic Indentation"
-msgstr "_Αυτόματη εσοχή"
-
-#. Translators: this is a tab character, not a browser tab
-#: src/editor-page.ui:159 src/editor-window.ui:282
-msgid "_Tabs"
-msgstr "_Καρτέλες"
-
-#: src/editor-page.ui:164 src/editor-window.ui:287
-msgid "_Spaces"
-msgstr "_Διαστήματα"
-
-#: src/editor-page.ui:171 src/editor-window.ui:292
-msgid "Spaces _Per Tab"
-msgstr "Κενά _ανά tab"
-
-#: src/editor-page.ui:173 src/editor-page.ui:201
-msgid "2"
-msgstr "2"
-
-#: src/editor-page.ui:178 src/editor-page.ui:206
-msgid "4"
-msgstr "4"
-
-#: src/editor-page.ui:183 src/editor-page.ui:211
-msgid "6"
-msgstr "6"
-
-#: src/editor-page.ui:188 src/editor-page.ui:216
-msgid "8"
-msgstr "8"
-
-#: src/editor-page.ui:194
-msgid "Spaces Per Indent"
-msgstr "Κενά ανά εσοχή"
-
-#: src/editor-page.ui:196
-msgid "Use Tab Size"
-msgstr "Χρήση μεγέθους στηλοθέτη"
+#: src/editor-path.c:128
+msgid "Document Portal"
+msgstr "Πύλη εγγράφων"
 
 #. translators: Ln is short for "Line Number"
 #: src/editor-position-label.ui:15
@@ -567,72 +574,108 @@ msgid "Ln"
 msgstr "Γρ"
 
 #. translators: Col is short for "Column"
-#: src/editor-position-label.ui:35
+#: src/editor-position-label.ui:32
 msgid "Col"
 msgstr "Στηλ"
 
-#: src/editor-preferences-dialog.ui:19
+#: src/editor-preferences-dialog.ui:15
 msgid "Appearance"
 msgstr "Εμφάνιση"
 
-#: src/editor-preferences-dialog.ui:59
+#: src/editor-preferences-dialog.ui:55
 msgid "Custom _Font"
 msgstr "Προσαρμοσμένη _γραμματοσειρά"
 
-#: src/editor-preferences-dialog.ui:82
-msgid "Display _Grid Pattern"
-msgstr "Εμφάνιση μοτίβου _πλέγματος"
+#: src/editor-preferences-dialog.ui:78
+msgid "Show Grid Pattern"
+msgstr "Εμφάνιση μοτίβου πλέγματος"
 
-#: src/editor-preferences-dialog.ui:89
+#: src/editor-preferences-dialog.ui:85
+msgid "Display _Line Numbers"
+msgstr "Εμφάνιση αριθμών _γραμμής"
+
+#: src/editor-preferences-dialog.ui:92
 msgid "_Highlight Current Line"
 msgstr "_Επισήμανση τρέχουσας γραμμής"
 
-#: src/editor-preferences-dialog.ui:96
+#: src/editor-preferences-dialog.ui:99
 msgid "Display _Overview Map"
 msgstr "Εμφάνιση χάρτη _επισκόπησης"
 
-#: src/editor-preferences-dialog.ui:105
-msgid "Right Margin"
-msgstr "Δεξιό περιθώριο"
+#: src/editor-preferences-dialog.ui:110
+msgid "Check _Spelling"
+msgstr "Έλεγχος _ορθογραφίας"
 
-#: src/editor-preferences-dialog.ui:108
+#: src/editor-preferences-dialog.ui:119
+msgid "Line Wrap"
+msgstr "Αναδίπλωση γραμμής"
+
+#: src/editor-preferences-dialog.ui:122
+msgid "Show _Right Margin"
+msgstr "Εμφάνιση _δεξιού περιθωρίου"
+
+#: src/editor-preferences-dialog.ui:129
 msgid "_Margin Position"
 msgstr "Θέση _περιθωρίου"
 
-#: src/editor-preferences-dialog.ui:117
+#: src/editor-preferences-dialog.ui:136
+msgid "_Wrap Lines Automatically (Alt+W)"
+msgstr "_Αυτόματη αναδίπλωση γραμμών (Alt+W)"
+
+#: src/editor-preferences-dialog.ui:145
+msgid "Indentation"
+msgstr "Εσοχή"
+
+#: src/editor-preferences-dialog.ui:148 src/editor-properties-panel.ui:106
+msgid "A_uto Indentation"
+msgstr "_Αυτόματη εσοχή"
+
+#: src/editor-preferences-dialog.ui:155 src/editor-properties-panel.ui:113
+msgid "_Character"
+msgstr "_Χαρακτήρας"
+
+#: src/editor-preferences-dialog.ui:165 src/editor-properties-panel.ui:124
+msgid "Spaces Per _Tab"
+msgstr "Κενά ανά _καρτέλα"
+
+#: src/editor-preferences-dialog.ui:183 src/editor-properties-panel.ui:136
+msgid "Spaces Per _Indent"
+msgstr "Κενά ανά _εσοχή"
+
+#: src/editor-preferences-dialog.ui:204
 msgid "Behavior"
 msgstr "Συμπεριφορά"
 
-#: src/editor-preferences-dialog.ui:120
+#: src/editor-preferences-dialog.ui:207
 msgid "_Discover Document Settings"
 msgstr "_Εντοπισμός ρυθμίσεων εγγράφων"
 
-#: src/editor-preferences-dialog.ui:122
+#: src/editor-preferences-dialog.ui:209
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr ""
 "Εφαρμογή ρυθμίσεων χρησιμοποιώντας τις γραμμές μοντέλων, το editorconfig ή "
 "τις λογικές προεπιλογές"
 
-#: src/editor-preferences-dialog.ui:128
+#: src/editor-preferences-dialog.ui:215
 msgid "_Restore Session"
 msgstr "_Επαναφορά συνεδρίας"
 
-#: src/editor-preferences-dialog.ui:130
+#: src/editor-preferences-dialog.ui:217
 msgid "Return to your previous session when Text Editor is started"
 msgstr ""
 "Επιστροφή στην προηγούμενη συνεδρία σας όταν ξεκινήσει το πρόγραμμα "
 "επεξεργασίας κειμένου"
 
-#: src/editor-preferences-dialog.ui:145
+#: src/editor-preferences-dialog.ui:229
 msgid "_Clear History"
 msgstr "_Εκκαθάριση ιστορικού"
 
-#: src/editor-print-operation.c:181
+#: src/editor-print-operation.c:182
 #, c-format
 msgid "Draft: %s"
 msgstr "Πρόχειρο: %s"
 
-#: src/editor-print-operation.c:183
+#: src/editor-print-operation.c:184
 #, c-format
 msgid "File: %s"
 msgstr "Αρχείο: %s"
@@ -640,51 +683,59 @@ msgstr "Αρχείο: %s"
 #. Translators: %N is the current page number, %Q is the total
 #. * number of pages (ex. Page 2 of 10)
 #.
-#: src/editor-print-operation.c:194
+#: src/editor-print-operation.c:196
 msgid "Page %N of %Q"
 msgstr "Σελίδα %N από %Q"
 
-#: src/editor-properties-dialog.ui:6
-msgid "Properties"
-msgstr "Ιδιότητες"
+#: src/editor-properties-panel.ui:10
+msgid "File Name"
+msgstr "Όνομα αρχείου"
 
-#: src/editor-properties-dialog.ui:22
-msgid "File"
-msgstr "Αρχείο"
-
-#: src/editor-properties-dialog.ui:25
-msgid "Name"
-msgstr "Όνομα"
-
-#: src/editor-properties-dialog.ui:33
+#: src/editor-properties-panel.ui:26
 msgid "Location"
 msgstr "Τοποθεσία"
 
-#: src/editor-properties-dialog.ui:42
+#: src/editor-properties-panel.ui:27
 msgid "Open in File Manager"
 msgstr "Άνοιγμα με τον διαχειριστή αρχείων"
 
-#: src/editor-properties-dialog.ui:55
+#: src/editor-properties-panel.ui:53
+msgid "_Document Type"
+msgstr "_Τύπος εγγράφου"
+
+#: src/editor-properties-panel.ui:54
+msgid "Change Document Type"
+msgstr "Αλλαγή τύπου εγγράφου"
+
+#: src/editor-properties-panel.ui:76
+msgid "_Encoding"
+msgstr "_Κωδικοποίηση"
+
+#: src/editor-properties-panel.ui:90
+msgid "_Line Feed"
+msgstr "_Αλλαγή γραμμής"
+
+#: src/editor-properties-panel.ui:150
 msgid "Statistics"
 msgstr "Στατιστικά"
 
-#: src/editor-properties-dialog.ui:58
+#: src/editor-properties-panel.ui:153
 msgid "Lines"
 msgstr "Γραμμές"
 
-#: src/editor-properties-dialog.ui:66
+#: src/editor-properties-panel.ui:166
 msgid "Words"
 msgstr "Λέξεις"
 
-#: src/editor-properties-dialog.ui:74
+#: src/editor-properties-panel.ui:179
 msgid "Characters, No Spaces"
-msgstr "Χαρακτήρες, όχι κενά"
+msgstr "Χαρακτήρες, χωρίς κενά"
 
-#: src/editor-properties-dialog.ui:82
+#: src/editor-properties-panel.ui:192
 msgid "All Characters"
 msgstr "Όλοι οι χαρακτήρες"
 
-#: src/editor-save-changes-dialog.c:254 src/editor-window-actions.c:236
+#: src/editor-save-changes-dialog.c:254 src/editor-window-actions.c:220
 msgid "_Discard"
 msgstr "_Απόρριψη"
 
@@ -704,95 +755,86 @@ msgstr ""
 "Τα ανοιχτά έγγραφα περιέχουν μη αποθηκευμένες αλλαγές. Οι αλλαγές που δεν "
 "αποθηκεύονται θα χαθούν οριστικά."
 
-#: src/editor-save-changes-dialog.c:261 src/editor-window-actions.c:115
-#: src/editor-window-actions.c:235
-msgid "_Cancel"
-msgstr "_Aκύρωση"
-
-#: src/editor-save-changes-dialog.c:263 src/editor-window-actions.c:116
-#: src/editor-window.ui:211
+#: src/editor-save-changes-dialog.c:262 src/editor-window-actions.c:116
+#: src/editor-window.ui:365
 msgid "_Save"
 msgstr "_Αποθήκευση"
 
-#: src/editor-save-changes-dialog.c:295
+#: src/editor-save-changes-dialog.c:294
 msgid "Untitled Document"
 msgstr "Ανώνυμο έγγραφο"
 
 #. translators: %s is replaced with the title of the file
-#: src/editor-save-changes-dialog.c:298
+#: src/editor-save-changes-dialog.c:297
 #, c-format
 msgid "%s (new)"
 msgstr "%s (νέο)"
 
-#: src/editor-save-changes-dialog.c:319
-msgid "Save changes for this document"
-msgstr "Αποθήκευση αλλαγών για αυτό το έγγραφο"
-
-#: src/editor-search-bar.ui:33
+#: src/editor-search-bar.ui:36 src/editor-search-bar.ui:38
 msgid "Replace"
 msgstr "Αντικατάσταση"
 
-#: src/editor-search-bar.ui:51
+#: src/editor-search-bar.ui:57
 msgid "Previous Match"
 msgstr "Προηγούμενη αντιστοιχία"
 
-#: src/editor-search-bar.ui:59
+#: src/editor-search-bar.ui:70
 msgid "Next Match"
 msgstr "Επόμενη αντιστοιχία"
 
-#: src/editor-search-bar.ui:71
+#: src/editor-search-bar.ui:86
 msgid "Search & Replace"
 msgstr "Εύρεση και αντικατάσταση"
 
-#: src/editor-search-bar.ui:81
+#: src/editor-search-bar.ui:101
 msgid "Search Options"
 msgstr "Επιλογές αναζήτησης"
 
-#: src/editor-search-bar.ui:95
+#: src/editor-search-bar.ui:119
 msgid "Close Search"
 msgstr "Κλείσιμο αναζήτησης"
 
-#: src/editor-search-bar.ui:112
+#: src/editor-search-bar.ui:137
 msgid "_Replace"
 msgstr "Α_ντικατάσταση"
 
-#: src/editor-search-bar.ui:124
+#: src/editor-search-bar.ui:151
 msgid "Replace _All"
 msgstr "Αντικατάσταση ό_λων"
 
-#: src/editor-search-bar.ui:140
-msgid "Re_gular expressions"
-msgstr "_Kανονικές εκφράσεις"
+#: src/editor-search-bar.ui:170
+msgid "Re_gular Expressions"
+msgstr "_Κανονικές εκφράσεις"
 
-#: src/editor-search-bar.ui:146
-msgid "_Case sensitive"
+#: src/editor-search-bar.ui:174
+msgid "_Case Sensitive"
 msgstr "_Διάκριση πεζών/κεφαλαίων"
 
-#: src/editor-search-bar.ui:152
-msgid "Match whole _word only"
+#: src/editor-search-bar.ui:178
+msgid "Match Whole _Word Only"
 msgstr "Ταίριασμα μόνο με ολόκληρη _λέξη"
 
 #. translators: the first %u is replaced with the current position, the second with the number of search results
-#: src/editor-search-entry.c:197
+#: src/editor-search-entry.c:221
 #, c-format
 msgid "%u of %u"
 msgstr "%u από %u"
 
-#: src/editor-search-entry.ui:13
-msgid "Find"
-msgstr "Εύρεση"
+#: src/editor-search-entry.ui:33
+msgid "Clear Entry"
+msgstr "Εκκαθάριση εισόδου"
 
-#: src/editor-sidebar-row.ui:85
+#: src/editor-sidebar-row.ui:82
 msgid "Remove"
 msgstr "Αφαίρεση"
 
 #: src/editor-theme-selector.ui:23
 msgid "Follow System Style"
-msgstr "Ακολουθία στυλ συστήματος"
+msgstr "Ακολούθηση στυλ συστήματος"
 
 #: src/editor-theme-selector.ui:25
 msgid "Follow system style"
-msgstr "Ακολουθία στυλ συστήματος"
+msgstr "Ακολούθηση στυλ συστήματος"
 
 #: src/editor-theme-selector.ui:40
 msgid "Light Style"
@@ -810,52 +852,28 @@ msgstr "Σκούρο στυλ"
 msgid "Dark style"
 msgstr "Σκούρο στυλ"
 
-#: src/editor-utils.c:348
+#: src/editor-utils.c:355
 msgid "Just now"
 msgstr "Μόλις τώρα"
 
-#: src/editor-utils.c:350
+#: src/editor-utils.c:357
 msgid "An hour ago"
 msgstr "Πριν μια ώρα"
 
-#: src/editor-utils.c:352
+#: src/editor-utils.c:359
 msgid "Yesterday"
 msgstr "Χθες"
 
-#: src/editor-utils.c:358
+#: src/editor-utils.c:365
 msgid "About a year ago"
 msgstr "Περίπου ένα χρόνο πριν"
 
-#: src/editor-utils.c:362
+#: src/editor-utils.c:369
 #, c-format
 msgid "About %u year ago"
 msgid_plural "About %u years ago"
 msgstr[0] "Περίπου %u χρόνο πριν"
 msgstr[1] "Περίπου %u χρόνια πριν"
-
-#: src/editor-utils.c:370
-msgid "Unix/Linux (LF)"
-msgstr "Unix/Linux (LF)"
-
-#: src/editor-utils.c:371
-msgid "Mac OS Classic (CR)"
-msgstr "Mac OS Classic (CR)"
-
-#: src/editor-utils.c:372
-msgid "Windows (CR+LF)"
-msgstr "Windows (CR+LF)"
-
-#: src/editor-utils.c:402
-msgid "Automatically Detected"
-msgstr "Αυτόματος εντοπισμός"
-
-#: src/editor-utils.c:418
-msgid "Character Encoding:"
-msgstr "Κωδικοποίηση χαρακτήρων:"
-
-#: src/editor-utils.c:453
-msgid "Line Ending:"
-msgstr "Τέλος γραμμής:"
 
 #: src/editor-window-actions.c:109
 msgid "Saving changes will replace the previously saved version."
@@ -865,506 +883,567 @@ msgstr ""
 #. translators: %s is replaced with the document title
 #: src/editor-window-actions.c:112
 #, c-format
-msgid "Save Changes to “%s”?"
+msgid "Save Changes to \"%s\"?"
 msgstr "Αποθήκευση αλλαγών στο \"%s\";"
 
-#: src/editor-window-actions.c:229
+#: src/editor-window-actions.c:213
 msgid "Unsaved changes will be permanently lost."
 msgstr "Οι μη αποθηκευμένες αλλαγές θα χαθούν οριστικά."
 
 #. translators: %s is replaced with the document title
-#: src/editor-window-actions.c:232
+#: src/editor-window-actions.c:216
 #, c-format
-msgid "Discard Changes to “%s”?"
+msgid "Discard Changes to \"%s\"?"
 msgstr "Απόρριψη αλλαγών στο \"%s\";"
 
-#: src/editor-window-actions.c:343
-msgid "Open File"
-msgstr "Άνοιγμα αρχείου"
-
-#: src/editor-window-actions.c:346
-msgid "Open"
-msgstr "Άνοιγμα"
-
-#: src/editor-window-actions.c:371
+#: src/editor-window-actions.c:384
 msgid "All Files"
 msgstr "Όλα τα αρχεία"
 
-#: src/editor-window-actions.c:376
+#: src/editor-window-actions.c:389
 msgid "Text Files"
 msgstr "Αρχεία κειμένου"
 
-#: src/editor-window.c:203
-#, c-format
-msgid "Document Type: %s"
-msgstr "Τύπος εγγράφου: %s"
-
-#: src/editor-window.c:505
+#: src/editor-window.c:423
 msgid "Zoom In"
 msgstr "Μεγέθυνση"
 
-#: src/editor-window.c:508
+#: src/editor-window.c:426
 msgid "Zoom in"
 msgstr "Μεγέθυνση"
 
-#: src/editor-window.c:518
+#: src/editor-window.c:436
 msgid "Zoom Out"
 msgstr "Σμίκρυνση"
 
-#: src/editor-window.c:521
+#: src/editor-window.c:439
 msgid "Zoom out"
 msgstr "Σμίκρυνση"
 
+#: src/editor-window.c:444
+msgid "Reset Zoom"
+msgstr "Επαναφορά εστίασης"
+
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:760
+#: src/editor-window.c:690
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - Επεξεργαστής κειμένου"
 
-#: src/editor-window.c:1202
+#: src/editor-window.c:1167
 msgid "There are unsaved documents"
 msgstr "Υπάρχουν μη αποθηκευμένα έγγραφα"
 
-#: src/editor-window.ui:83
-msgid "_Open"
-msgstr "Ά_νοιγμα"
+#: src/editor-window.ui:81
+msgid "Open a Document"
+msgstr "Άνοιγμα εγγράφου"
 
-#: src/editor-window.ui:85
+#: src/editor-window.ui:82
+msgid "Create a new document (Ctrl+N), or open an existing one (Ctrl+O)"
+msgstr ""
+"Δημιουργήστε ένα νέο έγγραφο (Ctrl+N) ή ανοίξτε ένα υπάρχον (Ctrl+O)"
+
+#: src/editor-window.ui:93
+msgid "_New Empty File"
+msgstr "_Νέο κενό αρχείο"
+
+#: src/editor-window.ui:166
 msgid "Recently Used Documents"
 msgstr "Έγγραφα που χρησιμοποιήθηκαν πρόσφατα"
 
-#: src/editor-window.ui:97
+#: src/editor-window.ui:191
+msgid "_Open"
+msgstr "Ά_νοιγμα"
+
+#: src/editor-window.ui:224
 msgid "New Tab"
 msgstr "Νέα καρτέλα"
 
-#: src/editor-window.ui:99
-msgid "New tab"
-msgstr "Νέα καρτέλα"
+#: src/editor-window.ui:229 src/editor-window.ui:403
+msgid "Leave Fullscreen"
+msgstr "Έξοδος από πλήρη οθόνη"
 
-#: src/editor-window.ui:125
-msgid "View Options"
-msgstr "Εμφάνιση επιλογών"
-
-#: src/editor-window.ui:129
-msgid "View"
-msgstr "Προβολή"
-
-#: src/editor-window.ui:135
+#: src/editor-window.ui:237
 msgid "Main Menu"
 msgstr "Κυρίως μενού"
 
-#: src/editor-window.ui:139
-msgid "Main menu"
-msgstr "Κυρίως μενού"
+#: src/editor-window.ui:244
+msgid "Document Properties"
+msgstr "Ιδιότητες εγγράφου"
 
-#: src/editor-window.ui:166
-msgid "Start or Open a Document"
-msgstr "Έναρξη ή άνοιγμα ενός εγγράφου"
-
-#: src/editor-window.ui:169
-msgid ""
-"• Press the Open button\n"
-"• Press the New tab button\n"
-"• Press Ctrl+N to start a new document\n"
-"• Press Ctrl+O to browse for a document\n"
-"\n"
-"Or, press Ctrl+W to close the window."
-msgstr ""
-"• Πατήστε το κουμπί Άνοιγμα\n"
-"• Πατήστε το κουμπί Νέα καρτέλα\n"
-"• Πατήστε Ctrl+N για να ξεκινήσετε ένα νέο έγγραφο\n"
-"• Πατήστε Ctrl+O για να αναζητήσετε ένα έγγραφο\n"
-"\n"
-"Ή, πατήστε Ctrl+W για να κλείσετε το παράθυρο."
-
-#: src/editor-window.ui:203
+#: src/editor-window.ui:357
 msgid "_New Window"
 msgstr "_Νέο παράθυρο"
 
-#: src/editor-window.ui:223
-msgid "_Discard Changes"
-msgstr "Α_πόρριψη αλλαγών"
+#: src/editor-window.ui:377
+msgid "_Discard Changes…"
+msgstr "_Απόρριψη αλλαγών…"
 
-#: src/editor-window.ui:229
+#: src/editor-window.ui:384
 msgid "_Find/Replace…"
 msgstr "_Εύρεση/Αντικατάσταση…"
 
-#: src/editor-window.ui:235
+#: src/editor-window.ui:390
 msgid "_Print…"
 msgstr "_Εκτύπωση…"
 
-#: src/editor-window.ui:241
-msgid "Documen_t Properties"
-msgstr "Ιδιότητες ε_γγράφου"
+#: src/editor-window.ui:397
+msgid "Fullscreen"
+msgstr "Πλήρης οθόνη"
 
-#: src/editor-window.ui:247
+#: src/editor-window.ui:411
 msgid "P_references"
 msgstr "_Προτιμήσεις"
 
-#: src/editor-window.ui:252
+#: src/editor-window.ui:416
 msgid "_Keyboard Shortcuts"
 msgstr "Συντομεύσεις _πληκτρολογίου"
 
-#: src/editor-window.ui:256
-msgid "_Help"
-msgstr "_Βοήθεια"
-
-#: src/editor-window.ui:260
+#: src/editor-window.ui:420
 msgid "A_bout Text Editor"
 msgstr "_Περί Επεξεργαστή Κειμένου"
 
-#: src/editor-window.ui:268
-msgid "Show _Line Numbers"
-msgstr "Εμφάνιση αριθμών _γραμμής"
-
-#: src/editor-window.ui:272
-msgid "Show _Right Margin"
-msgstr "Εμφάνιση _δεξιού περιθωρίου"
-
-#: src/editor-window.ui:295
-msgid "_2"
-msgstr "_2"
-
-#: src/editor-window.ui:300
-msgid "_4"
-msgstr "_4"
-
-#: src/editor-window.ui:305
-msgid "_6"
-msgstr "_6"
-
-#: src/editor-window.ui:310
-msgid "_8"
-msgstr "_8"
-
-#: src/editor-window.ui:319
-msgid "T_ext Wrapping"
-msgstr "Αναδίπλωση _κειμένου"
-
-#: src/editor-window.ui:323
-msgid "Chec_k Spelling"
-msgstr "Ορθογραφικός έ_λεγχος"
-
-#: src/editor-window.ui:327
-msgid "_Document Type…"
-msgstr "Τύπος _εγγράφου…"
-
-#: src/editor-window.ui:335
+#: src/editor-window.ui:428
 msgid "Move _Left"
 msgstr "Μετακίνηση α_ριστερά"
 
-#: src/editor-window.ui:340
+#: src/editor-window.ui:433
 msgid "Move _Right"
 msgstr "Μετακίνηση _δεξιά"
 
-#: src/editor-window.ui:347
+#: src/editor-window.ui:440
 msgid "_Move to New Window"
 msgstr "_Μετακίνηση σε νέο παράθυρο"
 
-#: src/editor-window.ui:354
+#: src/editor-window.ui:447
 msgid "Close _Other Tabs"
 msgstr "Κλείσιμο ά_λλων καρτελών"
 
-#: src/help-overlay.ui:12
+#: src/shortcuts-dialog.ui:8
 msgctxt "shortcut window"
 msgid "Windows"
 msgstr "Παράθυρα"
 
-#: src/help-overlay.ui:15
+#: src/shortcuts-dialog.ui:11
 msgctxt "shortcut window"
 msgid "New window"
 msgstr "Νέο παράθυρο"
 
-#: src/help-overlay.ui:21
+#: src/shortcuts-dialog.ui:17
 msgctxt "shortcut window"
 msgid "Move document to new window"
 msgstr "Μετακίνηση εγγράφου σε νέο παράθυρο"
 
-#: src/help-overlay.ui:28
+#: src/shortcuts-dialog.ui:24
 msgctxt "shortcut window"
 msgid "Move to next tab"
 msgstr "Μετακίνηση στην επόμενη καρτέλα"
 
-#: src/help-overlay.ui:34
+#: src/shortcuts-dialog.ui:30
 msgctxt "shortcut window"
 msgid "Move to previous tab"
 msgstr "Μετακίνηση στην προηγούμενη καρτέλα"
 
-#: src/help-overlay.ui:40
+#: src/shortcuts-dialog.ui:36
 msgctxt "shortcut window"
 msgid "Reorder after next tab"
 msgstr "Αναδιάταξη μετά την επόμενη καρτέλα"
 
-#: src/help-overlay.ui:46
+#: src/shortcuts-dialog.ui:42
 msgctxt "shortcut window"
 msgid "Reorder before previous tab"
 msgstr "Αναδιάταξη πριν την προηγούμενη καρτέλα"
 
-#: src/help-overlay.ui:52
+#: src/shortcuts-dialog.ui:48
 msgctxt "shortcut window"
 msgid "Restore previously closed tab"
 msgstr "Επαναφορά καρτέλας που έκλεισε πρόσφατα"
 
-#: src/help-overlay.ui:59
+#: src/shortcuts-dialog.ui:55
 msgctxt "shortcut window"
 msgid "Zoom"
 msgstr "Εστίαση"
 
-#: src/help-overlay.ui:63
+#: src/shortcuts-dialog.ui:59
 msgctxt "shortcut window"
 msgid "Zoom In"
 msgstr "Μεγέθυνση"
 
-#: src/help-overlay.ui:69
+#: src/shortcuts-dialog.ui:65
 msgctxt "shortcut window"
 msgid "Zoom Out"
 msgstr "Σμίκρυνση"
 
-#: src/help-overlay.ui:75
+#: src/shortcuts-dialog.ui:71
 msgctxt "shortcut window"
 msgid "Reset Zoom"
 msgstr "Επαναφορά εστίασης"
 
-#: src/help-overlay.ui:82
+#: src/shortcuts-dialog.ui:78
 msgctxt "shortcut window"
 msgid "Documents"
 msgstr "Έγγραφα"
 
-#: src/help-overlay.ui:85
+#: src/shortcuts-dialog.ui:81
 msgctxt "shortcut window"
 msgid "New document"
-msgstr "Νέο Έγγραφο"
+msgstr "Νέο έγγραφο"
 
-#: src/help-overlay.ui:91
+#: src/shortcuts-dialog.ui:87
 msgctxt "shortcut window"
 msgid "Browse to open document"
 msgstr "Αναζήτηση για άνοιγμα εγγράφου"
 
-#: src/help-overlay.ui:97
+#: src/shortcuts-dialog.ui:93
 msgctxt "shortcut window"
 msgid "Find document by name"
 msgstr "Εύρεση αρχείων κατά όνομα"
 
-#: src/help-overlay.ui:103
+#: src/shortcuts-dialog.ui:99
 msgctxt "shortcut window"
 msgid "Save"
 msgstr "Αποθήκευση"
 
-#: src/help-overlay.ui:109
+#: src/shortcuts-dialog.ui:105
 msgctxt "shortcut window"
 msgid "Save As"
 msgstr "Αποθήκευση ως"
 
-#: src/help-overlay.ui:115
+#: src/shortcuts-dialog.ui:111
 msgctxt "shortcut window"
 msgid "Find/Replace"
 msgstr "Εύρεση/Αντικατάσταση"
 
-#: src/help-overlay.ui:121
+#: src/shortcuts-dialog.ui:117
 msgctxt "shortcut window"
 msgid "Close document"
 msgstr "Κλείσιμο εγγράφου"
 
-#: src/help-overlay.ui:129
+#: src/shortcuts-dialog.ui:123
+msgctxt "shortcut window"
+msgid "Open document properties"
+msgstr "Άνοιγμα ιδιοτήτων εγγράφου"
+
+#: src/shortcuts-dialog.ui:131
 msgctxt "shortcut window"
 msgid "Copy and Paste"
 msgstr "Αντιγραφή και επικόλληση"
 
-#: src/help-overlay.ui:133
+#: src/shortcuts-dialog.ui:135
 msgctxt "shortcut window"
 msgid "Copy selected text to clipboard"
 msgstr "Αντιγραφή επιλεγμένου κειμένου στο πρόχειρο"
 
-#: src/help-overlay.ui:139
+#: src/shortcuts-dialog.ui:141
 msgctxt "shortcut window"
 msgid "Cut selected text to clipboard"
 msgstr "Αποκοπή επιλεγμένου κειμένου στο πρόχειρο"
 
-#: src/help-overlay.ui:145
+#: src/shortcuts-dialog.ui:147
 msgctxt "shortcut window"
 msgid "Paste text from clipboard"
 msgstr "Επικόλληση κειμένου από το πρόχειρο"
 
-#: src/help-overlay.ui:150
+#: src/shortcuts-dialog.ui:152
 msgctxt "shortcut window"
 msgid "Copy all to clipboard"
 msgstr "Αντιγραφή όλων στο πρόχειρο"
 
-#: src/help-overlay.ui:156
+#: src/shortcuts-dialog.ui:158
 msgctxt "shortcut window"
 msgid "Copy current line down"
-msgstr "Μετακίνηση της τρέχουσας γραμμής κάτω"
+msgstr "Αντιγραφή τρέχουσας γραμμής προς τα κάτω"
 
-#: src/help-overlay.ui:164
+#: src/shortcuts-dialog.ui:166
 msgctxt "shortcut window"
 msgid "Undo and Redo"
 msgstr "Αναίρεση και επαναφορά"
 
-#: src/help-overlay.ui:168
+#: src/shortcuts-dialog.ui:170
 msgctxt "shortcut window"
 msgid "Undo previous command"
 msgstr "Αναίρεση προηγούμενης εντολής"
 
-#: src/help-overlay.ui:174
+#: src/shortcuts-dialog.ui:176
 msgctxt "shortcut window"
 msgid "Redo previous command"
 msgstr "Επανάληψη προηγούμενης εντολής"
 
-#: src/help-overlay.ui:181
+#: src/shortcuts-dialog.ui:183
 msgctxt "shortcut window"
 msgid "Editing"
 msgstr "Επεξεργασία"
 
-#: src/help-overlay.ui:185
+#: src/shortcuts-dialog.ui:187
 msgctxt "shortcut window"
 msgid "Insert emoji into document"
 msgstr "Εισαγωγή emoji στο κείμενο"
 
-#: src/help-overlay.ui:191
+#: src/shortcuts-dialog.ui:193
 msgctxt "shortcut window"
 msgid "Search within the document"
 msgstr "Αναζήτηση μέσα στο έγγραφο"
 
-#: src/help-overlay.ui:197
+#: src/shortcuts-dialog.ui:199
 msgctxt "shortcut window"
 msgid "Search and replace within the document"
 msgstr "Αναζήτηση και αντικατάσταση μέσα στο κείμενο"
 
-#: src/help-overlay.ui:203
+#: src/shortcuts-dialog.ui:205
 msgctxt "shortcut window"
 msgid "Increment number at cursor"
 msgstr "Αύξηση αριθμού στον δρομέα"
 
-#: src/help-overlay.ui:209
+#: src/shortcuts-dialog.ui:211
 msgctxt "shortcut window"
 msgid "Decrement number at cursor"
 msgstr "Μείωση αριθμού στον δρομέα"
 
-#: src/help-overlay.ui:215
+#: src/shortcuts-dialog.ui:217
 msgctxt "shortcut window"
 msgid "Toggle overwrite"
 msgstr "Εναλλαγή αντικατάστασης"
 
-#: src/help-overlay.ui:221
+#: src/shortcuts-dialog.ui:223
 msgctxt "shortcut window"
 msgid "Toggle visibility of insertion caret"
-msgstr "Εναλλαγή ορατότητας του περιβλήματος εισαγωγής"
+msgstr "Εναλλαγή ορατότητας του δρομέα εισαγωγής"
 
-#: src/help-overlay.ui:228
+#: src/shortcuts-dialog.ui:230
 msgctxt "shortcut window"
 msgid "Selections"
 msgstr "Επιλογές"
 
-#: src/help-overlay.ui:232
+#: src/shortcuts-dialog.ui:234
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Επιλογή όλων"
 
-#: src/help-overlay.ui:238
+#: src/shortcuts-dialog.ui:240
 msgctxt "shortcut window"
 msgid "Unselect all"
 msgstr "Αποεπιλογή όλων"
 
-#: src/help-overlay.ui:244
+#: src/shortcuts-dialog.ui:246
 msgctxt "shortcut window"
 msgid "Select current line"
 msgstr "Επιλογή τρέχουσας γραμμής"
 
-#: src/help-overlay.ui:251
+#: src/shortcuts-dialog.ui:253
 msgctxt "shortcut window"
 msgid "Movements"
 msgstr "Μετακινήσεις"
 
-#: src/help-overlay.ui:255
+#: src/shortcuts-dialog.ui:257
 msgctxt "shortcut window"
 msgid "Move to beginning of document"
 msgstr "Μετακίνηση στην αρχή του εγγράφου"
 
-#: src/help-overlay.ui:261
+#: src/shortcuts-dialog.ui:263
 msgctxt "shortcut window"
 msgid "Move to end of document"
 msgstr "Μετακίνηση στο τέλος του εγγράφου"
 
-#: src/help-overlay.ui:267
+#: src/shortcuts-dialog.ui:269
 msgctxt "shortcut window"
 msgid "Move to start of previous paragraph"
 msgstr "Μετακίνηση στην έναρξη της προηγούμενης παραγράφου"
 
-#: src/help-overlay.ui:273
+#: src/shortcuts-dialog.ui:275
 msgctxt "shortcut window"
 msgid "Move to end of next paragraph"
 msgstr "Μετακίνηση στο τέλος της επόμενης παραγράφου"
 
-#: src/help-overlay.ui:279
+#: src/shortcuts-dialog.ui:281
 msgctxt "shortcut window"
 msgid "Move current or selected lines up"
 msgstr "Μετακίνηση προς τα επάνω των τρεχουσών ή επιλεγμένων γραμμών"
 
-#: src/help-overlay.ui:285
+#: src/shortcuts-dialog.ui:287
 msgctxt "shortcut window"
 msgid "Move current or selected lines down"
-msgstr "Μετακινήστε τις τρέχουσες ή επιλεγμένες γραμμές προς τα κάτω"
+msgstr "Μετακίνηση προς τα κάτω των τρεχουσών ή επιλεγμένων γραμμών"
 
-#: src/help-overlay.ui:291
+#: src/shortcuts-dialog.ui:293
 msgctxt "shortcut window"
 msgid "Go to line"
 msgstr "Μετάβαση στη γραμμή"
 
-#: src/help-overlay.ui:298
+#: src/shortcuts-dialog.ui:300
 msgctxt "shortcut window"
 msgid "Deletion"
 msgstr "Διαγραφή"
 
-#: src/help-overlay.ui:302
+#: src/shortcuts-dialog.ui:304
 msgctxt "shortcut window"
 msgid "Delete from cursor to word start"
-msgstr "Διαγραφή από τον κέρσορα μέχρι την αρχή της λέξης"
+msgstr "Διαγραφή από τον δρομέα μέχρι την αρχή της λέξης"
 
-#: src/help-overlay.ui:308
+#: src/shortcuts-dialog.ui:310
 msgctxt "shortcut window"
 msgid "Delete from cursor to word end"
-msgstr "Διαγραφή από τον κέρσορα μέχρι το τέλος της λέξης"
+msgstr "Διαγραφή από τον δρομέα μέχρι το τέλος της λέξης"
 
-#: src/help-overlay.ui:314
+#: src/shortcuts-dialog.ui:316
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph start"
-msgstr "Διαγραφή από τον κέρσορα μέχρι την αρχή της παραγράφου"
+msgstr "Διαγραφή από τον δρομέα μέχρι την αρχή της παραγράφου"
 
-#: src/help-overlay.ui:320
+#: src/shortcuts-dialog.ui:322
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph end"
-msgstr "Διαγραφή από τον κέρσορα μέχρι το τέλος της παραγράφου"
+msgstr "Διαγραφή από τον δρομέα μέχρι το τέλος της παραγράφου"
 
-#: src/help-overlay.ui:326
+#: src/shortcuts-dialog.ui:328
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "Διαγραφή της τρέχουσας γραμμής"
 
-#: src/help-overlay.ui:333
+#: src/shortcuts-dialog.ui:335
 msgctxt "shortcut window"
 msgid "General"
 msgstr "Γενικά"
 
-#: src/help-overlay.ui:337
+#: src/shortcuts-dialog.ui:339
 msgctxt "shortcut window"
 msgid "Show preferences"
 msgstr "Εμφάνιση προτιμήσεων"
 
-#: src/help-overlay.ui:343
+#: src/shortcuts-dialog.ui:345
 msgctxt "shortcut window"
 msgid "Show keyboard shortcuts"
 msgstr "Εμφάνιση συντομεύσεων πληκτρολογίου"
 
-#: src/help-overlay.ui:349
+#: src/shortcuts-dialog.ui:351
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Εμφάνιση βοήθειας"
+
+#: src/shortcuts-dialog.ui:357
+msgctxt "shortcut window"
+msgid "Toggle text wrapping"
+msgstr "Εναλλαγή αναδίπλωσης κειμένου"
+
+#~ msgid "Search document types"
+#~ msgstr "Αναζήτηση τύπων εγγράφων"
+
+#~ msgid "Save As"
+#~ msgstr "Αποθήκευση ως"
+
+#~ msgid "Save"
+#~ msgstr "Αποθήκευση"
+
+#~ msgid "Cancel"
+#~ msgstr "Ακύρωση"
+
+#~ msgid "2"
+#~ msgstr "2"
+
+#~ msgid "4"
+#~ msgstr "4"
+
+#~ msgid "6"
+#~ msgstr "6"
+
+#~ msgid "8"
+#~ msgstr "8"
+
+#~ msgid "Use Tab Size"
+#~ msgstr "Χρήση μεγέθους στηλοθέτη"
+
+#~ msgid "Right Margin"
+#~ msgstr "Δεξιό περιθώριο"
+
+#~ msgid "Properties"
+#~ msgstr "Ιδιότητες"
+
+#~ msgid "Name"
+#~ msgstr "Όνομα"
+
+#~ msgid "Save changes for this document"
+#~ msgstr "Αποθήκευση αλλαγών για αυτό το έγγραφο"
+
+#~ msgid "Find"
+#~ msgstr "Εύρεση"
+
+#~ msgid "Automatically Detected"
+#~ msgstr "Αυτόματος εντοπισμός"
+
+#~ msgid "Line Ending:"
+#~ msgstr "Τέλος γραμμής:"
+
+#~ msgid "Open File"
+#~ msgstr "Άνοιγμα αρχείου"
+
+#~ msgid "Open"
+#~ msgstr "Άνοιγμα"
+
+#, c-format
+#~ msgid "Document Type: %s"
+#~ msgstr "Τύπος εγγράφου: %s"
+
+#~ msgid "New tab"
+#~ msgstr "Νέα καρτέλα"
+
+#~ msgid "View Options"
+#~ msgstr "Εμφάνιση επιλογών"
+
+#~ msgid "View"
+#~ msgstr "Προβολή"
+
+#~ msgid "Main menu"
+#~ msgstr "Κυρίως μενού"
+
+#~ msgid "Start or Open a Document"
+#~ msgstr "Έναρξη ή άνοιγμα ενός εγγράφου"
+
+#~ msgid ""
+#~ "• Press the Open button\n"
+#~ "• Press the New tab button\n"
+#~ "• Press Ctrl+N to start a new document\n"
+#~ "• Press Ctrl+O to browse for a document\n"
+#~ "\n"
+#~ "Or, press Ctrl+W to close the window."
+#~ msgstr ""
+#~ "• Πατήστε το κουμπί Άνοιγμα\n"
+#~ "• Πατήστε το κουμπί Νέα καρτέλα\n"
+#~ "• Πατήστε Ctrl+N για να ξεκινήσετε ένα νέο έγγραφο\n"
+#~ "• Πατήστε Ctrl+O για να αναζητήσετε ένα έγγραφο\n"
+#~ "\n"
+#~ "Ή, πατήστε Ctrl+W για να κλείσετε το παράθυρο."
+
+#~ msgid "_Help"
+#~ msgstr "_Βοήθεια"
+
+#~ msgid "Show _Line Numbers"
+#~ msgstr "Εμφάνιση αριθμών _γραμμής"
+
+#~ msgid "_2"
+#~ msgstr "_2"
+
+#~ msgid "_4"
+#~ msgstr "_4"
+
+#~ msgid "_6"
+#~ msgstr "_6"
+
+#~ msgid "_8"
+#~ msgstr "_8"
+
+#~ msgid "T_ext Wrapping"
+#~ msgstr "Αναδίπλωση _κειμένου"
+
+#~ msgid "Chec_k Spelling"
+#~ msgstr "Ορθογραφικός έ_λεγχος"
+
+#~ msgid "_Document Type…"
+#~ msgstr "Τύπος _εγγράφου…"
 
 #~ msgid "You do not have permission to open the file."
 #~ msgstr "Δεν έχετε δικαιώματα να ανοίξετε το αρχείο."
 
 #~ msgid "No Matches"
-#~ msgstr "Καμιά αντιστοιχία"
+#~ msgstr "Καμία αντιστοιχία"
 
 #~ msgid "Add to Dictionary"
 #~ msgstr "Προσθήκη στο λεξικό"
@@ -1372,14 +1451,11 @@ msgstr "Εμφάνιση βοήθειας"
 #~ msgid "Ignore"
 #~ msgstr "Παράβλεψη"
 
-#~ msgid "Check Spelling"
-#~ msgstr "Έλεγχος ορθογραφίας"
-
 #~ msgid "Languages"
 #~ msgstr "Γλώσσες"
 
 #~ msgid "Enchant 2"
-#~ msgstr "Μαγεία 2"
+#~ msgstr "Enchant 2"
 
 #~ msgid "Open New Document (Ctrl+O)"
 #~ msgstr "Άνοιγμα νέου εγγράφου (Ctrl+O)"
@@ -1388,16 +1464,13 @@ msgstr "Εμφάνιση βοήθειας"
 #~ msgstr "Επιλογή γραμματοσειράς"
 
 #~ msgid "Move to previous match (Ctrl+Shift+G)"
-#~ msgstr "Μετακίνηση στον προηγούμενη αντιστοιχία (Ctrl+Shift+G)"
+#~ msgstr "Μετακίνηση στην προηγούμενη αντιστοιχία (Ctrl+Shift+G)"
 
 #~ msgid "Move to next match (Ctrl+G)"
 #~ msgstr "Μετάβαση στην επόμενη αντιστοιχία (Ctrl+G)"
 
 #~ msgid "Toggle search options"
 #~ msgstr "Εναλλαγή επιλογών αναζήτησης"
-
-#~ msgid "_Line Numbers"
-#~ msgstr "Αριθμοί _γραμμής"
 
 #~ msgid "_Right Margin"
 #~ msgstr "_Δεξιό περιθώριο"
