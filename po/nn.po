@@ -1,0 +1,1278 @@
+# Norwegian Nynorsk translation for gnome-text-editor.
+# Copyright (C) 2025 gnome-text-editor's COPYRIGHT HOLDER
+# This file is distributed under the same license as the gnome-text-editor package.
+# Bjørn Mørkedal <gnome@morkedal.com>,  2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-text-editor main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/"
+"issues\n"
+"POT-Creation-Date: 2025-06-30 19:43+0000\n"
+"PO-Revision-Date: 2025-06-30 19:43+0000\n"
+"Last-Translator: Bjørn Mørkedal <gnome@morkedal.com>\n"
+"Language-Team: Norwegian Nynorsk <nn@li.org>\n"
+"Language: nn\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: data/org.gnome.TextEditor.desktop.in.in:4
+msgid "write;notepad;"
+msgstr "skrive;notisblokk;"
+
+#: data/org.gnome.TextEditor.desktop.in.in:8
+#: data/org.gnome.TextEditor.desktop.in.in:9
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:10
+#: src/editor-application-actions.c:200 src/editor-window.c:1288
+msgid "Text Editor"
+msgstr "Tekstredigering"
+
+#: data/org.gnome.TextEditor.desktop.in.in:10
+msgid "View and edit text files"
+msgstr "Vis og rediger tekstfiler"
+
+#: data/org.gnome.TextEditor.desktop.in.in:22
+msgid "New Window"
+msgstr "Nytt vindauge"
+
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:12
+msgid "Edit text files"
+msgstr "Rediger tekstfiler"
+
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:14
+msgid ""
+"GNOME Text Editor is a simple text editor focused on a pleasing default "
+"experience."
+msgstr "GNOME Text Editor er eit enkelt skriveprogram med eit brukartilpassa standardoppsett."
+
+#: data/org.gnome.TextEditor.gschema.xml:16
+msgid "Auto Save Delay"
+msgstr "Forsinking for automatisk lagring"
+
+#: data/org.gnome.TextEditor.gschema.xml:17
+msgid "The delay in seconds to wait before auto-saving a draft."
+msgstr "Kor mange sekund ein ventar før eit utkast blir lagra automatisk."
+
+#: data/org.gnome.TextEditor.gschema.xml:26
+msgid "Style Variant"
+msgstr "Stilvariant"
+
+#: data/org.gnome.TextEditor.gschema.xml:27
+msgid ""
+"Use the light or dark variant of the GTK theme and/or GtkSourceView style "
+"scheme."
+msgstr "Bruk lys eller mørk variant av GTK-temaet og/eller GtkSourceView-stilskjemaet."
+
+#: data/org.gnome.TextEditor.gschema.xml:35
+msgid "Indentation Style"
+msgstr "Innrykkstil"
+
+#: data/org.gnome.TextEditor.gschema.xml:36
+msgid ""
+"Whether the editor should insert multiple spaces characters instead of tabs."
+msgstr "Om programmet skal bruke fleire mellomrom i staden for tabulatorar."
+
+#: data/org.gnome.TextEditor.gschema.xml:40
+msgid "Auto Indent"
+msgstr "Automatisk innrykk"
+
+#: data/org.gnome.TextEditor.gschema.xml:41
+msgid "Automatically indent new lines copying the previous line's indentation."
+msgstr "Lag automatisk innrykk for nye linjer ved å kopiere innrykket frå førre linje."
+
+#: data/org.gnome.TextEditor.gschema.xml:46
+msgid "Tab Width"
+msgstr "Tabulatorbreidde"
+
+#: data/org.gnome.TextEditor.gschema.xml:47
+msgid "The number of spaces represented by a tab."
+msgstr "Talet på mellomrom som ein tabulator representerer."
+
+#: data/org.gnome.TextEditor.gschema.xml:52
+msgid "Indent Width"
+msgstr "Innrykksbreidd"
+
+#: data/org.gnome.TextEditor.gschema.xml:53
+msgid "The number of spaces to indent or -1 to use tab-width."
+msgstr "Talet på mellomrom for innrykk, eller -1 for å bruke tabulatorbreidd."
+
+#: data/org.gnome.TextEditor.gschema.xml:57
+msgid "Show Line Numbers"
+msgstr "Vis linjenummer"
+
+#: data/org.gnome.TextEditor.gschema.xml:58
+msgid "Whether line numbers should be displayed next to each line."
+msgstr "Om linjenummer skal visast ved sida av kvar linje."
+
+#: data/org.gnome.TextEditor.gschema.xml:62
+msgid "Show Right Margin"
+msgstr "Vis høgremarg"
+
+#: data/org.gnome.TextEditor.gschema.xml:63
+msgid "Whether a margin line should be displayed on the right of the editor."
+msgstr "Om ein marglinje skal visast til høgre i redigeringsvinduet."
+
+#: data/org.gnome.TextEditor.gschema.xml:68
+msgid "Right Margin Position"
+msgstr "Posisjon for høgremarg"
+
+#: data/org.gnome.TextEditor.gschema.xml:69
+msgid ""
+"The position in characters at which the right margin should be displayed."
+msgstr "Kor mange teikn frå venstre marg den høgre marglinja skal stå."
+
+#: data/org.gnome.TextEditor.gschema.xml:73
+msgid "Show Overview Map"
+msgstr "Vis oversiktskart"
+
+#: data/org.gnome.TextEditor.gschema.xml:74
+msgid ""
+"If enabled, an overview map of the file will be displayed to the side of the "
+"editor."
+msgstr "Om det er slått på, visast eit oversiktskart over fila ved sida av redigeringsfeltet."
+
+#: data/org.gnome.TextEditor.gschema.xml:78
+msgid "Show Background Grid"
+msgstr "Vis bakgrunnsrutenett"
+
+#: data/org.gnome.TextEditor.gschema.xml:79
+msgid "If enabled, a blueprint style grid is printed on the editor background."
+msgstr "Om det er slått på, visast eit oversiktskart over fila ved sida av redigeringsfeltet."
+
+#: data/org.gnome.TextEditor.gschema.xml:83
+msgid "Highlight current line"
+msgstr "Uthev gjeldande linje"
+
+#: data/org.gnome.TextEditor.gschema.xml:84
+msgid "If enabled, the current line will be highlighted."
+msgstr "Uthevar linja du står på, om det er aktivert."
+
+#: data/org.gnome.TextEditor.gschema.xml:88
+msgid "Text Wrapping"
+msgstr "Tekstbryting"
+
+#: data/org.gnome.TextEditor.gschema.xml:89
+msgid "Whether text should be wrapped."
+msgstr "Om teksten skal brytast til ny linje automatisk."
+
+#: data/org.gnome.TextEditor.gschema.xml:93
+msgid "Use System Font"
+msgstr "Bruk systemskrifttype"
+
+#: data/org.gnome.TextEditor.gschema.xml:94
+msgid "Whether the default system monospace font should be used."
+msgstr "Om standardskrifta for fast breidde frå systemet skal brukast."
+
+#: data/org.gnome.TextEditor.gschema.xml:98
+msgid "Custom Font"
+msgstr "Eigen skrifttype"
+
+#: data/org.gnome.TextEditor.gschema.xml:99
+msgid "A custom font to use in the editor."
+msgstr "Ein valfri skrifttype som skal brukast i redigeringsvindauget."
+
+#: data/org.gnome.TextEditor.gschema.xml:103
+msgid "Style Scheme"
+msgstr "Stilskjema"
+
+#: data/org.gnome.TextEditor.gschema.xml:104
+msgid ""
+"The style scheme to use by the editor. It may translate this into a dark "
+"format when available."
+msgstr "Stilskjemaet som redigeringsprogrammet skal bruke. Det kan omsetjast til mørk modus om det er tilgjengeleg."
+
+#: data/org.gnome.TextEditor.gschema.xml:108
+msgid "Discover File Settings"
+msgstr "Oppdag filinnstillingar automatisk"
+
+#: data/org.gnome.TextEditor.gschema.xml:109
+msgid ""
+"If enabled, then Text Editor will try to discover file settings from "
+"modelines, editorconfig, or per-language defaults."
+msgstr "Om det er slått på, vil Text Editor forsøke å finne innstillingar frå modellinjer, editorconfig eller språkstandardar."
+
+#: data/org.gnome.TextEditor.gschema.xml:113
+msgid "Automatically check spelling"
+msgstr "Automatisk stavekontroll"
+
+#: data/org.gnome.TextEditor.gschema.xml:114
+msgid "If enabled, then Text Editor will check spelling as you type."
+msgstr "Viss aktivert, vil Text Editor sjekke staving medan du skriv."
+
+#: data/org.gnome.TextEditor.gschema.xml:118
+msgid "Restore session"
+msgstr "Gjenopprett økt"
+
+#: data/org.gnome.TextEditor.gschema.xml:119
+msgid "When Text Editor is running, restore the previous session."
+msgstr "Gjenopprett førre økt når Text Editor startar."
+
+#: data/org.gnome.TextEditor.gschema.xml:123
+msgid "Recolor Window"
+msgstr "Endre farge på vindauget"
+
+#: data/org.gnome.TextEditor.gschema.xml:124
+msgid "Use the style-scheme to recolor the application window."
+msgstr "Bruk stilskjemaet til å fargeleggje programvindauget."
+
+#: data/org.gnome.TextEditor.gschema.xml:132
+msgid "Keybindings"
+msgstr "Tastatursnarvegar"
+
+#: data/org.gnome.TextEditor.gschema.xml:133
+msgid "The keybindings to use within Text Editor."
+msgstr "Tastatursnarvegar som skal brukast i Text Editor."
+
+#: data/org.gnome.TextEditor.gschema.xml:137
+msgid "Last Save Directory"
+msgstr "Siste lagringsmappe"
+
+#: data/org.gnome.TextEditor.gschema.xml:138
+msgid "The directory last used in a save or save-as dialog."
+msgstr "Mappa som sist blei brukt for lagring eller 'Lagra som'."
+
+#: data/org.gnome.TextEditor.gschema.xml:142
+msgid "Draw Spaces"
+msgstr "Vis mellomrom"
+
+#: data/org.gnome.TextEditor.gschema.xml:143
+msgid "The various types of spaces to draw in the editor."
+msgstr "Dei ulike typane mellomrom som skal visast i redigeringsvindauget."
+
+#: data/org.gnome.TextEditor.gschema.xml:147
+msgid "Enable Snippets"
+msgstr "Tillat snuttar"
+
+#: data/org.gnome.TextEditor.gschema.xml:148
+msgid ""
+"Enable the use of snippets registered with GtkSourceView from within the "
+"editor."
+msgstr "Tillat bruk av kode- eller tekstsnuttar registrerte i GtkSourceView i redigeringsvindauget."
+
+#: data/org.gnome.TextEditor.gschema.xml:153
+msgid "Line Height"
+msgstr "Linjehøgd"
+
+#: data/org.gnome.TextEditor.gschema.xml:154
+msgid "The line height to use for the selected font."
+msgstr "Linjehøgda for skrifttypen som er vald."
+
+#: data/org.gnome.TextEditor.gschema.xml:158
+msgid "Highlight Matching Brackets"
+msgstr "Marker tilsvarande parentesar"
+
+#: data/org.gnome.TextEditor.gschema.xml:159
+msgid "Highlight matching brackets and braces."
+msgstr "Marker tilsvarande parentesar og klammeparentesar."
+
+#: src/editor-animation.c:1038
+#, c-format
+msgid "Failed to find property %s in %s"
+msgstr "Klarte ikkje å finne eigenskapen %s i %s"
+
+#: src/editor-animation.c:1047
+#, c-format
+msgid "Failed to retrieve va_list value: %s"
+msgstr "Klarte ikkje å hente verdi frå va_list: %s"
+
+#: src/editor-application-actions.c:202
+msgid "The GNOME Project"
+msgstr "GNOME-prosjektet"
+
+#: src/editor-application-actions.c:215
+msgid "translator-credits"
+msgstr "Oversetting"
+
+#: src/editor-application-actions.c:349
+msgid "Clear File History?"
+msgstr "Tøm filhistorikk?"
+
+#: src/editor-application-actions.c:350
+msgid "This action cannot be undone"
+msgstr "Denne handlinga kan ikkje gjerast om"
+
+#: src/editor-application-actions.c:352 src/editor-save-changes-dialog.c:260
+#: src/editor-window-actions.c:115 src/editor-window-actions.c:219
+msgid "_Cancel"
+msgstr "_Avbryt"
+
+#: src/editor-application-actions.c:353
+msgid "_Clear All"
+msgstr "_Tøm alt"
+
+#: src/editor-application.c:530
+msgid "Standard input was requested multiple times. Ignoring request."
+msgstr "Standardinngang blei førespurd fleire gonger. Ignorerer førespurnad."
+
+#: src/editor-application.c:534
+msgid "Standard input is not supported on this platform. Ignoring request."
+msgstr "Standardinngang er ikkje støtta på denne plattforma. Førespurnad blir ignorert."
+
+#: src/editor-application.c:637
+msgid "Bugs may be reported at:"
+msgstr "Feil kan meldast her:"
+
+#: src/editor-application.c:639
+msgid "[FILES…]"
+msgstr "[FILER …]"
+
+#: src/editor-application.c:753
+msgid "Do not restore session at startup"
+msgstr "Ikkje gjenopprett økta ved oppstart"
+
+#: src/editor-application.c:754
+msgid "Open provided files in a new window"
+msgstr "Opne valde filer i nytt vindauge"
+
+#: src/editor-application.c:755
+msgid "Run a new instance of Text Editor (implies --ignore-session)"
+msgstr "Start eit nytt instance av Text Editor (inneber --ignore-session)"
+
+#: src/editor-application.c:756
+msgid "Print version information and exit"
+msgstr "Skriv ut versjonsinformasjon og avslutt"
+
+#: src/editor-document.c:2272
+msgid "[Read-Only]"
+msgstr "[Skriveverna]"
+
+#: src/editor-document.c:2497 src/editor-page.c:1125
+#: src/editor-sidebar-item.c:510
+msgid "New Document"
+msgstr "Nytt dokument"
+
+#: src/editor-encoding-dialog.ui:5
+msgid "Change Encoding"
+msgstr "Endre teiknkoding"
+
+#: src/editor-encoding-dialog.ui:22
+msgid "Search encodings"
+msgstr "Søk etter kodingar"
+
+#: src/editor-encoding-dialog.ui:58 src/editor-language-dialog.ui:75
+msgid "No Results Found"
+msgstr "Ingen treff funne"
+
+#: src/editor-encoding-dialog.ui:59 src/editor-language-dialog.ui:76
+msgid "Try a different search"
+msgstr "Prøv eit anna søk"
+
+#: src/editor-file-manager.c:99
+msgid "File path is NULL"
+msgstr "Filsti er NULL"
+
+#: src/editor-file-manager.c:108 src/editor-file-manager.c:119
+msgid "Error converting UTF-8 filename to wide char"
+msgstr "Feil ved konvertering av UTF-8-filenamn til breie teikn"
+
+#: src/editor-file-manager.c:127
+msgid "ILCreateFromPath() failed"
+msgstr "ILCreateFromPath() feila"
+
+#: src/editor-file-manager.c:164
+#, c-format
+msgid "Cannot convert “%s” into a valid NSURL."
+msgstr "Kan ikkje konvertere “%s” til ein valid NSURL."
+
+#: src/editor-indent-model.c:173
+msgid "Space"
+msgstr "Mellomrom"
+
+#: src/editor-indent-model.c:178
+msgid "Tab"
+msgstr "Tabulator"
+
+#: src/editor-info-bar.c:108
+msgid "_Discard Changes and Reload"
+msgstr "_Forkast endringar og last på nytt"
+
+#: src/editor-info-bar.c:112
+msgid "File Has Changed on Disk"
+msgstr "Fila er endra på disken"
+
+#: src/editor-info-bar.c:113
+msgid "The file has been changed by another program."
+msgstr "Fila er blitt endra av eit anna program."
+
+#: src/editor-info-bar.c:122 src/editor-window.ui:363
+msgid "Save _As…"
+msgstr "Lagre _som …"
+
+#: src/editor-info-bar.c:124 src/editor-info-bar.ui:73
+msgid "Document Restored"
+msgstr "Dokument gjenoppretta"
+
+#: src/editor-info-bar.c:125 src/editor-info-bar.ui:84
+msgid "Unsaved document has been restored."
+msgstr "Ulagra dokument er blitt gjenoppretta."
+
+#: src/editor-info-bar.c:131 src/editor-info-bar.ui:99
+msgid "_Save…"
+msgstr "_Lagre …"
+
+#: src/editor-info-bar.c:133 src/editor-info-bar.ui:93
+msgid "_Discard…"
+msgstr "_Forkast …"
+
+#: src/editor-info-bar.c:136
+msgid "Draft Changes Restored"
+msgstr "Kladdendringar gjenoppretta"
+
+#: src/editor-info-bar.c:137
+msgid "Unsaved changes to the document have been restored."
+msgstr "Ulagra endringar i dokumentet er blitt gjenoppretta."
+
+#: src/editor-info-bar.ui:19
+msgid "Could Not Open File"
+msgstr "Klarte ikkje opne fila"
+
+#: src/editor-info-bar.ui:38
+msgid "_Retry"
+msgstr "_Prøv igjen"
+
+#: src/editor-info-bar.ui:51
+msgid "Open As _Administrator"
+msgstr "Opne som _administrator"
+
+#: src/editor-info-bar.ui:116
+msgid "Invalid Characters Detected"
+msgstr "Ugyldige teikn oppdaga"
+
+#: src/editor-info-bar.ui:127
+msgid ""
+"There was an encoding conversion error so a fallback character was used."
+msgstr ""
+"Det oppstod ein feil ved konvertering av teiknkoding, så ein reservebokstav vart brukt."
+
+#: src/editor-info-bar.ui:136
+msgid "Change _Encoding…"
+msgstr "Byt _teiknkoding …"
+
+#: src/editor-language-dialog.c:248
+msgid "Other Document Types"
+msgstr "Andre dokumenttypar"
+
+#: src/editor-language-dialog.ui:6
+msgid "Document Type"
+msgstr "Dokumenttype"
+
+#: src/editor-language-dialog.ui:25 src/editor-search-entry.c:200
+#: src/editor-search-entry.ui:13
+msgid "Search"
+msgstr "Søk"
+
+#: src/editor-language-row.c:61 src/editor-language-row.c:119
+#: src/editor-properties.c:573
+msgid "Plain Text"
+msgstr "Rein tekst"
+
+#: src/editor-newline-model.c:180
+msgid "Unix/Linux (LF)"
+msgstr "Unix/Linux (LF)"
+
+#: src/editor-newline-model.c:181
+msgid "Windows (CR+LF)"
+msgstr "Windows (CR+LF)"
+
+#: src/editor-newline-model.c:182
+msgid "Mac OS Classic (CR)"
+msgstr "Mac OS Classic (CR)"
+
+#: src/editor-open-popover.ui:25
+msgid "Search documents"
+msgstr "Søk i dokument"
+
+#: src/editor-open-popover.ui:39
+msgid "Open New Document"
+msgstr "Opne nytt dokument"
+
+#: src/editor-open-popover.ui:74
+msgid "No Recent Documents"
+msgstr "Ingen nyleg brukte dokument"
+
+#: src/editor-page.c:1151 src/editor-properties.c:606
+#: src/editor-sidebar-item.c:104
+msgid "Draft"
+msgstr "Kladd"
+
+#. translators: %s is replaced with the path on the filesystem
+#: src/editor-page.c:1163
+#, c-format
+msgid "%s (Administrator)"
+msgstr "%s (administrator)"
+
+#: src/editor-page.c:1219
+msgid "Failed to save document"
+msgstr "Klarte ikkje lagre dokumentet"
+
+#: src/editor-page.c:1220 src/editor-window.ui:443
+msgid "_Close"
+msgstr "_Lukk"
+
+#: src/editor-page.c:1484
+#, c-format
+msgid "Ln %u, Col %u"
+msgstr "Linje %u, kolonne %u"
+
+#: src/editor-page.ui:94
+msgid "Go to Line"
+msgstr "Gå til linje"
+
+#: src/editor-page.ui:111
+msgid "Go"
+msgstr "Gå"
+
+#: src/editor-path.c:128
+msgid "Document Portal"
+msgstr "Dokumentportalen"
+
+#. translators: Ln is short for "Line Number"
+#: src/editor-position-label.ui:15
+msgid "Ln"
+msgstr "Linje"
+
+#. translators: Col is short for "Column"
+#: src/editor-position-label.ui:32
+msgid "Col"
+msgstr "Kol."
+
+#: src/editor-preferences-dialog.ui:15
+msgid "Appearance"
+msgstr "Utsjånad"
+
+#: src/editor-preferences-dialog.ui:55
+msgid "Custom _Font"
+msgstr "Eige _skrifttypeval"
+
+#: src/editor-preferences-dialog.ui:78
+msgid "Show Grid Pattern"
+msgstr "Vis rutenettmønster"
+
+#: src/editor-preferences-dialog.ui:85
+msgid "Display _Line Numbers"
+msgstr "Vis _linjenummer"
+
+#: src/editor-preferences-dialog.ui:92
+msgid "_Highlight Current Line"
+msgstr "_Marker gjeldande linje"
+
+#: src/editor-preferences-dialog.ui:99
+msgid "Display _Overview Map"
+msgstr "Vis _oversiktskart"
+
+#: src/editor-preferences-dialog.ui:110
+msgid "Check _Spelling"
+msgstr "Sjekk _staving"
+
+#: src/editor-preferences-dialog.ui:119
+msgid "Line Wrap"
+msgstr "Linjebryting"
+
+#: src/editor-preferences-dialog.ui:122
+msgid "Show _Right Margin"
+msgstr "Vis _høgre marg"
+
+#: src/editor-preferences-dialog.ui:129
+msgid "_Margin Position"
+msgstr "_Margplassering"
+
+#: src/editor-preferences-dialog.ui:136
+msgid "_Wrap Lines Automatically (Alt+W)"
+msgstr "_Bryt linjer automatisk (Alt+W)"
+
+#: src/editor-preferences-dialog.ui:145
+msgid "Indentation"
+msgstr "Innrykk"
+
+#: src/editor-preferences-dialog.ui:148 src/editor-properties-panel.ui:106
+msgid "A_uto Indentation"
+msgstr "A_utomatisk innrykk"
+
+#: src/editor-preferences-dialog.ui:155 src/editor-properties-panel.ui:113
+msgid "_Character"
+msgstr "_Teikn"
+
+#: src/editor-preferences-dialog.ui:165 src/editor-properties-panel.ui:124
+msgid "Spaces Per _Tab"
+msgstr "Mellomrom per _tabulator"
+
+#: src/editor-preferences-dialog.ui:183 src/editor-properties-panel.ui:136
+msgid "Spaces Per _Indent"
+msgstr "Mellomrom per _innrykk"
+
+#: src/editor-preferences-dialog.ui:204
+msgid "Behavior"
+msgstr "Åtferd"
+
+#: src/editor-preferences-dialog.ui:207
+msgid "_Discover Document Settings"
+msgstr "_Bruk dokumentinnstillingar"
+
+#: src/editor-preferences-dialog.ui:209
+msgid "Apply settings using modelines, editorconfig, or sensible defaults"
+msgstr "Bruk innstillingar frå modelines, .editorconfig eller fornuftige standardar"
+
+#: src/editor-preferences-dialog.ui:215
+msgid "_Restore Session"
+msgstr "_Gjenopprett førre økt"
+
+#: src/editor-preferences-dialog.ui:217
+msgid "Return to your previous session when Text Editor is started"
+msgstr "Opna sist brukte dokument når du startar Tekstredigerar"
+
+#: src/editor-preferences-dialog.ui:229
+msgid "_Clear History"
+msgstr "_Tøm historikk"
+
+#: src/editor-print-operation.c:182
+#, c-format
+msgid "Draft: %s"
+msgstr "Kladd: %s"
+
+#: src/editor-print-operation.c:184
+#, c-format
+msgid "File: %s"
+msgstr "Fil: %s"
+
+#. Translators: %N is the current page number, %Q is the total
+#. * number of pages (ex. Page 2 of 10)
+#.
+#: src/editor-print-operation.c:196
+msgid "Page %N of %Q"
+msgstr "Side %N av %Q"
+
+#: src/editor-properties-panel.ui:10
+msgid "File Name"
+msgstr "Filnamn"
+
+#: src/editor-properties-panel.ui:26
+msgid "Location"
+msgstr "Plassering"
+
+#: src/editor-properties-panel.ui:27
+msgid "Open in File Manager"
+msgstr "Opne i filhandsamar"
+
+#: src/editor-properties-panel.ui:53
+msgid "_Document Type"
+msgstr "_Dokumenttype"
+
+#: src/editor-properties-panel.ui:54
+msgid "Change Document Type"
+msgstr "Byt dokumenttype"
+
+#: src/editor-properties-panel.ui:76
+msgid "_Encoding"
+msgstr "_Teiknkoding"
+
+#: src/editor-properties-panel.ui:90
+msgid "_Line Feed"
+msgstr "_Linjeskift"
+
+#: src/editor-properties-panel.ui:150
+msgid "Statistics"
+msgstr "Statistikk"
+
+#: src/editor-properties-panel.ui:153
+msgid "Lines"
+msgstr "Linjer"
+
+#: src/editor-properties-panel.ui:166
+msgid "Words"
+msgstr "Ord"
+
+#: src/editor-properties-panel.ui:179
+msgid "Characters, No Spaces"
+msgstr "Teikn, utan mellomrom"
+
+#: src/editor-properties-panel.ui:192
+msgid "All Characters"
+msgstr "Alle teikn"
+
+#: src/editor-save-changes-dialog.c:254 src/editor-window-actions.c:220
+msgid "_Discard"
+msgstr "_Forkast"
+
+#: src/editor-save-changes-dialog.c:254
+msgid "_Discard All"
+msgstr "_Forkast alle"
+
+#: src/editor-save-changes-dialog.c:256
+msgid "Save Changes?"
+msgstr "Lagre endringar?"
+
+#: src/editor-save-changes-dialog.c:257
+msgid ""
+"Open documents contain unsaved changes. Changes which are not saved will be "
+"permanently lost."
+msgstr ""
+"Opne dokument inneheld ulagra endringar. Endringar som ikkje blir lagra, vil gå tapt."
+
+#: src/editor-save-changes-dialog.c:262 src/editor-window-actions.c:116
+#: src/editor-window.ui:357
+msgid "_Save"
+msgstr "_Lagre"
+
+#: src/editor-save-changes-dialog.c:294
+msgid "Untitled Document"
+msgstr "Namnlaust dokument"
+
+#. translators: %s is replaced with the title of the file
+#: src/editor-save-changes-dialog.c:297
+#, c-format
+msgid "%s (new)"
+msgstr "%s (nytt)"
+
+#: src/editor-search-bar.ui:36 src/editor-search-bar.ui:38
+msgid "Replace"
+msgstr "Erstatt"
+
+#: src/editor-search-bar.ui:57
+msgid "Previous Match"
+msgstr "Førre treff"
+
+#: src/editor-search-bar.ui:70
+msgid "Next Match"
+msgstr "Neste treff"
+
+#: src/editor-search-bar.ui:86
+msgid "Search & Replace"
+msgstr "Søk og erstatt"
+
+#: src/editor-search-bar.ui:101
+msgid "Search Options"
+msgstr "Søkjeval"
+
+#: src/editor-search-bar.ui:119
+msgid "Close Search"
+msgstr "Lukk søk"
+
+#: src/editor-search-bar.ui:137
+msgid "_Replace"
+msgstr "_Erstatt"
+
+#: src/editor-search-bar.ui:151
+msgid "Replace _All"
+msgstr "Erstatt _alle"
+
+#: src/editor-search-bar.ui:170
+msgid "Re_gular Expressions"
+msgstr "_Regulære uttrykk"
+
+#: src/editor-search-bar.ui:174
+msgid "_Case Sensitive"
+msgstr "S_kil mellom store og små bokstavar"
+
+#: src/editor-search-bar.ui:178
+msgid "Match Whole _Word Only"
+msgstr "Treff berre _heilord"
+
+#. translators: the first %u is replaced with the current position, the second with the number of search results
+#: src/editor-search-entry.c:228
+#, c-format
+msgid "%u of %u"
+msgstr "%u av %u"
+
+#: src/editor-search-entry.ui:32
+msgid "Clear Entry"
+msgstr "Tøm feltet"
+
+#: src/editor-sidebar-row.ui:85
+msgid "Remove"
+msgstr "Fjern"
+
+#: src/editor-theme-selector.ui:23
+msgid "Follow System Style"
+msgstr "Følg systemtema"
+
+#: src/editor-theme-selector.ui:25
+msgid "Follow system style"
+msgstr "Følg systemtema"
+
+#: src/editor-theme-selector.ui:40
+msgid "Light Style"
+msgstr "Lyst tema"
+
+#: src/editor-theme-selector.ui:42
+msgid "Light style"
+msgstr "Lyst tema"
+
+#: src/editor-theme-selector.ui:58
+msgid "Dark Style"
+msgstr "Mørkt tema"
+
+#: src/editor-theme-selector.ui:60
+msgid "Dark style"
+msgstr "Mørkt tema"
+
+#: src/editor-utils.c:355
+msgid "Just now"
+msgstr "Nett no"
+
+#: src/editor-utils.c:357
+msgid "An hour ago"
+msgstr "For ein time sidan"
+
+#: src/editor-utils.c:359
+msgid "Yesterday"
+msgstr "I går"
+
+#: src/editor-utils.c:365
+msgid "About a year ago"
+msgstr "Om lag eitt år sidan"
+
+#: src/editor-utils.c:369
+#, c-format
+msgid "About %u year ago"
+msgid_plural "About %u years ago"
+msgstr[0] "Om lag %u år sidan"
+msgstr[1] "Om lag %u år sidan"
+
+#: src/editor-window-actions.c:109
+msgid "Saving changes will replace the previously saved version."
+msgstr "Lagring vil erstatte den førre lagra versjonen."
+
+#. translators: %s is replaced with the document title
+#: src/editor-window-actions.c:112
+#, c-format
+msgid "Save Changes to “%s”?"
+msgstr "Vil du lagre endringar i «%s»?"
+
+#: src/editor-window-actions.c:213
+msgid "Unsaved changes will be permanently lost."
+msgstr "Ulagra endringar vil gå tapt."
+
+#. translators: %s is replaced with the document title
+#: src/editor-window-actions.c:216
+#, c-format
+msgid "Discard Changes to “%s”?"
+msgstr "Vil du forkaste endringane i «%s»?"
+
+#: src/editor-window-actions.c:384
+msgid "All Files"
+msgstr "Alle filer"
+
+#: src/editor-window-actions.c:389
+msgid "Text Files"
+msgstr "Tekstfiler"
+
+#: src/editor-window.c:423
+msgid "Zoom In"
+msgstr "Forstørr"
+
+#: src/editor-window.c:426
+msgid "Zoom in"
+msgstr "Forstørr"
+
+#: src/editor-window.c:436
+msgid "Zoom Out"
+msgstr "Forminsk"
+
+#: src/editor-window.c:439
+msgid "Zoom out"
+msgstr "Forminsk"
+
+#: src/editor-window.c:444
+msgid "Reset Zoom"
+msgstr "Tilbakestill forstørring"
+
+#. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
+#: src/editor-window.c:690
+#, c-format
+msgid "%s (%s) - Text Editor"
+msgstr "%s (%s) – Tekstredigerar"
+
+#: src/editor-window.c:1167
+msgid "There are unsaved documents"
+msgstr "Det finst dokument som ikkje er lagra"
+
+#: src/editor-window.ui:81
+msgid "Open a Document"
+msgstr "Opne eit dokument"
+
+#: src/editor-window.ui:82
+msgid "Create a new document (Ctrl+N), or open an existing one (Ctrl+O)"
+msgstr "Lag eit nytt dokument (Ctrl+N), eller opne eit eksisterande (Ctrl+O)"
+
+#: src/editor-window.ui:93
+msgid "_New Empty File"
+msgstr "_Ny tom fil"
+
+#: src/editor-window.ui:166
+msgid "Recently Used Documents"
+msgstr "Nyleg brukte dokument"
+
+#: src/editor-window.ui:183
+msgid "_Open"
+msgstr "_Opne"
+
+#: src/editor-window.ui:216
+msgid "New Tab"
+msgstr "Ny fane"
+
+#: src/editor-window.ui:221 src/editor-window.ui:395
+msgid "Leave Fullscreen"
+msgstr "Avslutt fullskjerm"
+
+#: src/editor-window.ui:229
+msgid "Main Menu"
+msgstr "Hovudmeny"
+
+#: src/editor-window.ui:236
+msgid "Document Properties"
+msgstr "Dokumenteigenskapar"
+
+#: src/editor-window.ui:349
+msgid "_New Window"
+msgstr "_Nytt vindauge"
+
+#: src/editor-window.ui:369
+msgid "_Discard Changes…"
+msgstr "_Forkast endringar …"
+
+#: src/editor-window.ui:376
+msgid "_Find/Replace…"
+msgstr "_Finn/Erstatt …"
+
+#: src/editor-window.ui:382
+msgid "_Print…"
+msgstr "_Skriv ut …"
+
+#: src/editor-window.ui:389
+msgid "Fullscreen"
+msgstr "Fullskjerm"
+
+#: src/editor-window.ui:403
+msgid "P_references"
+msgstr "_Innstillingar"
+
+#: src/editor-window.ui:408
+msgid "_Keyboard Shortcuts"
+msgstr "_Tastatursnarvegar"
+
+#: src/editor-window.ui:412
+msgid "A_bout Text Editor"
+msgstr "_Om Tekstredigerar"
+
+#: src/editor-window.ui:420
+msgid "Move _Left"
+msgstr "Flytt til _venstre"
+
+#: src/editor-window.ui:425
+msgid "Move _Right"
+msgstr "Flytt til _høgre"
+
+#: src/editor-window.ui:432
+msgid "_Move to New Window"
+msgstr "_Flytt til nytt vindauge"
+
+#: src/editor-window.ui:439
+msgid "Close _Other Tabs"
+msgstr "Lukk _andre faner"
+
+#: src/shortcuts-dialog.ui:8
+msgctxt "shortcut window"
+msgid "Windows"
+msgstr "Vindauge"
+
+#: src/shortcuts-dialog.ui:11
+msgctxt "shortcut window"
+msgid "New window"
+msgstr "Nytt vindauge"
+
+#: src/shortcuts-dialog.ui:17
+msgctxt "shortcut window"
+msgid "Move document to new window"
+msgstr "Flytt dokument til nytt vindauge"
+
+#: src/shortcuts-dialog.ui:24
+msgctxt "shortcut window"
+msgid "Move to next tab"
+msgstr "Gå til neste fane"
+
+#: src/shortcuts-dialog.ui:30
+msgctxt "shortcut window"
+msgid "Move to previous tab"
+msgstr "Gå til førre fane"
+
+#: src/shortcuts-dialog.ui:36
+msgctxt "shortcut window"
+msgid "Reorder after next tab"
+msgstr "Flytt etter neste fane"
+
+#: src/shortcuts-dialog.ui:42
+msgctxt "shortcut window"
+msgid "Reorder before previous tab"
+msgstr "Flytt før førre fane"
+
+#: src/shortcuts-dialog.ui:48
+msgctxt "shortcut window"
+msgid "Restore previously closed tab"
+msgstr "Gjenopprett førre lukka fane"
+
+#: src/shortcuts-dialog.ui:55
+msgctxt "shortcut window"
+msgid "Zoom"
+msgstr "Forstørring"
+
+#: src/shortcuts-dialog.ui:59
+msgctxt "shortcut window"
+msgid "Zoom In"
+msgstr "Forstørr"
+
+#: src/shortcuts-dialog.ui:65
+msgctxt "shortcut window"
+msgid "Zoom Out"
+msgstr "Forminsk"
+
+#: src/shortcuts-dialog.ui:71
+msgctxt "shortcut window"
+msgid "Reset Zoom"
+msgstr "Tilbakestill forstørring"
+
+#: src/shortcuts-dialog.ui:78
+msgctxt "shortcut window"
+msgid "Documents"
+msgstr "Dokument"
+
+#: src/shortcuts-dialog.ui:81
+msgctxt "shortcut window"
+msgid "New document"
+msgstr "Nytt dokument"
+
+#: src/shortcuts-dialog.ui:87
+msgctxt "shortcut window"
+msgid "Browse to open document"
+msgstr "Bla etter dokument"
+
+#: src/shortcuts-dialog.ui:93
+msgctxt "shortcut window"
+msgid "Find document by name"
+msgstr "Finn dokument etter namn"
+
+#: src/shortcuts-dialog.ui:99
+msgctxt "shortcut window"
+msgid "Save"
+msgstr "Lagre"
+
+#: src/shortcuts-dialog.ui:105
+msgctxt "shortcut window"
+msgid "Save As"
+msgstr "Lagre som"
+
+#: src/shortcuts-dialog.ui:111
+msgctxt "shortcut window"
+msgid "Find/Replace"
+msgstr "Finn/Erstatt"
+
+#: src/shortcuts-dialog.ui:117
+msgctxt "shortcut window"
+msgid "Close document"
+msgstr "Lukk dokument"
+
+#: src/shortcuts-dialog.ui:123
+msgctxt "shortcut window"
+msgid "Open document properties"
+msgstr "Opne dokumenteigenskapar"
+
+#: src/shortcuts-dialog.ui:131
+msgctxt "shortcut window"
+msgid "Copy and Paste"
+msgstr "Kopier og lim inn"
+
+#: src/shortcuts-dialog.ui:135
+msgctxt "shortcut window"
+msgid "Copy selected text to clipboard"
+msgstr "Kopier valt tekst til utklippstavla"
+
+#: src/shortcuts-dialog.ui:141
+msgctxt "shortcut window"
+msgid "Cut selected text to clipboard"
+msgstr "Klipp ut valt tekst til utklippstavla"
+
+#: src/shortcuts-dialog.ui:147
+msgctxt "shortcut window"
+msgid "Paste text from clipboard"
+msgstr "Lim inn tekst frå utklippstavla"
+
+#: src/shortcuts-dialog.ui:152
+msgctxt "shortcut window"
+msgid "Copy all to clipboard"
+msgstr "Kopier alt til utklippstavla"
+
+#: src/shortcuts-dialog.ui:158
+msgctxt "shortcut window"
+msgid "Copy current line down"
+msgstr "Kopier gjeldande linje nedover"
+
+#: src/shortcuts-dialog.ui:166
+msgctxt "shortcut window"
+msgid "Undo and Redo"
+msgstr "Angre og gjer om"
+
+#: src/shortcuts-dialog.ui:170
+msgctxt "shortcut window"
+msgid "Undo previous command"
+msgstr "Angre førre handling"
+
+#: src/shortcuts-dialog.ui:176
+msgctxt "shortcut window"
+msgid "Redo previous command"
+msgstr "Gjer om førre handling"
+
+#: src/shortcuts-dialog.ui:183
+msgctxt "shortcut window"
+msgid "Editing"
+msgstr "Redigering"
+
+#: src/shortcuts-dialog.ui:187
+msgctxt "shortcut window"
+msgid "Insert emoji into document"
+msgstr "Set inn emoji i dokumentet"
+
+#: src/shortcuts-dialog.ui:193
+msgctxt "shortcut window"
+msgid "Search within the document"
+msgstr "Søk i dokumentet"
+
+#: src/shortcuts-dialog.ui:199
+msgctxt "shortcut window"
+msgid "Search and replace within the document"
+msgstr "Søk og erstatt i dokumentet"
+
+#: src/shortcuts-dialog.ui:205
+msgctxt "shortcut window"
+msgid "Increment number at cursor"
+msgstr "Auk tal ved markøren"
+
+#: src/shortcuts-dialog.ui:211
+msgctxt "shortcut window"
+msgid "Decrement number at cursor"
+msgstr "Reduser tal ved markøren"
+
+#: src/shortcuts-dialog.ui:217
+msgctxt "shortcut window"
+msgid "Toggle overwrite"
+msgstr "Byt mellom overskriving og innsetting"
+
+#: src/shortcuts-dialog.ui:223
+msgctxt "shortcut window"
+msgid "Toggle visibility of insertion caret"
+msgstr "Vis/Skjul innsetjingsmarkør"
+
+#: src/shortcuts-dialog.ui:230
+msgctxt "shortcut window"
+msgid "Selections"
+msgstr "Utval"
+
+#: src/shortcuts-dialog.ui:234
+msgctxt "shortcut window"
+msgid "Select all"
+msgstr "Vel alt"
+
+#: src/shortcuts-dialog.ui:240
+msgctxt "shortcut window"
+msgid "Unselect all"
+msgstr "Fjern alt utval"
+
+#: src/shortcuts-dialog.ui:246
+msgctxt "shortcut window"
+msgid "Select current line"
+msgstr "Vel gjeldande linje"
+
+#: src/shortcuts-dialog.ui:253
+msgctxt "shortcut window"
+msgid "Movements"
+msgstr "Navigasjon"
+
+#: src/shortcuts-dialog.ui:257
+msgctxt "shortcut window"
+msgid "Move to beginning of document"
+msgstr "Gå til starten av dokumentet"
+
+#: src/shortcuts-dialog.ui:263
+msgctxt "shortcut window"
+msgid "Move to end of document"
+msgstr "Gå til slutten av dokumentet"
+
+#: src/shortcuts-dialog.ui:269
+msgctxt "shortcut window"
+msgid "Move to start of previous paragraph"
+msgstr "Gå til starten av førre avsnitt"
+
+#: src/shortcuts-dialog.ui:275
+msgctxt "shortcut window"
+msgid "Move to end of next paragraph"
+msgstr "Gå til slutten av neste avsnitt"
+
+#: src/shortcuts-dialog.ui:281
+msgctxt "shortcut window"
+msgid "Move current or selected lines up"
+msgstr "Flytt linja eller utvalet oppover"
+
+#: src/shortcuts-dialog.ui:287
+msgctxt "shortcut window"
+msgid "Move current or selected lines down"
+msgstr "Flytt linja eller utvalet nedover"
+
+#: src/shortcuts-dialog.ui:293
+msgctxt "shortcut window"
+msgid "Go to line"
+msgstr "Gå til linje"
+
+#: src/shortcuts-dialog.ui:300
+msgctxt "shortcut window"
+msgid "Deletion"
+msgstr "Sletting"
+
+#: src/shortcuts-dialog.ui:304
+msgctxt "shortcut window"
+msgid "Delete from cursor to word start"
+msgstr "Slett frå markøren til starten av ordet"
+
+#: src/shortcuts-dialog.ui:310
+msgctxt "shortcut window"
+msgid "Delete from cursor to word end"
+msgstr "Slett frå markøren til slutten av ordet"
+
+#: src/shortcuts-dialog.ui:316
+msgctxt "shortcut window"
+msgid "Delete from cursor to paragraph start"
+msgstr "Slett frå markøren til starten av avsnittet"
+
+#: src/shortcuts-dialog.ui:322
+msgctxt "shortcut window"
+msgid "Delete from cursor to paragraph end"
+msgstr "Slett frå markøren til slutten av avsnittet"
+
+#: src/shortcuts-dialog.ui:328
+msgctxt "shortcut window"
+msgid "Delete the current line"
+msgstr "Slett gjeldande linje"
+
+#: src/shortcuts-dialog.ui:335
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Generelt"
+
+#: src/shortcuts-dialog.ui:339
+msgctxt "shortcut window"
+msgid "Show preferences"
+msgstr "Vis innstillingar"
+
+#: src/shortcuts-dialog.ui:345
+msgctxt "shortcut window"
+msgid "Show keyboard shortcuts"
+msgstr "Vis tastatursnarvegar"
+
+#: src/shortcuts-dialog.ui:351
+msgctxt "shortcut window"
+msgid "Show help"
+msgstr "Vis hjelp"
+
+#: src/shortcuts-dialog.ui:357
+msgctxt "shortcut window"
+msgid "Toggle text wrapping"
+msgstr "Byt mellom linjebryting og rullefelt"
