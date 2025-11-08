@@ -298,56 +298,18 @@ editor_window_do_close (EditorWindow *self)
   self->visible_page = NULL;
 }
 
-static void
-editor_window_confirm_cb (GObject      *object,
-                          GAsyncResult *result,
-                          gpointer      user_data)
-{
-  g_autoptr(EditorWindow) self = user_data;
-  g_autoptr(GError) error = NULL;
-
-  g_assert (EDITOR_IS_WINDOW (self));
-  g_assert (G_IS_ASYNC_RESULT (result));
-
-  if (_editor_save_changes_dialog_run_finish (result, &error))
-    {
-      editor_window_do_close (self);
-      gtk_window_destroy (GTK_WINDOW (self));
-    }
-}
-
 static gboolean
 editor_window_close_request (GtkWindow *window)
 {
   EditorWindow *self = (EditorWindow *)window;
-  g_autoptr(GPtrArray) unsaved = NULL;
-  guint n_pages;
 
   g_assert (EDITOR_IS_WINDOW (self));
 
-  /* If there are documents open that need to be saved, first
-   * ask the user what they'd like us to do with them.
+  /* Close window without prompting for unsaved changes.
+   * This mimics Windows 11 Notepad behavior where unsaved changes
+   * are automatically saved as drafts. The session manager will
+   * handle saving all drafts when the last window is closed.
    */
-  unsaved = g_ptr_array_new_with_free_func (g_object_unref);
-  n_pages = adw_tab_view_get_n_pages (self->tab_view);
-  for (guint i = 0; i < n_pages; i++)
-    {
-      EditorPage *page = editor_window_get_nth_page (self, i);
-
-      if (editor_page_get_is_modified (page))
-        g_ptr_array_add (unsaved, g_object_ref (page));
-    }
-
-  if (unsaved->len > 0)
-    {
-      _editor_save_changes_dialog_run_async (GTK_WINDOW (self),
-                                             unsaved,
-                                             NULL,
-                                             editor_window_confirm_cb,
-                                             g_object_ref (self));
-      return TRUE;
-    }
-
   editor_window_do_close (self);
 
   return GTK_WINDOW_CLASS (editor_window_parent_class)->close_request (window);

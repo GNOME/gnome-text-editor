@@ -256,55 +256,19 @@ editor_application_actions_quit_cb (GObject      *object,
 }
 
 static void
-editor_application_actions_confirm_cb (GObject      *object,
-                                       GAsyncResult *result,
-                                       gpointer      user_data)
-{
-  g_autoptr(EditorApplication) self = user_data;
-  g_autoptr(GError) error = NULL;
-
-  g_assert (EDITOR_IS_APPLICATION (self));
-
-  if (!_editor_save_changes_dialog_run_finish (result, &error))
-    return;
-
-  editor_session_save_async (self->session,
-                             TRUE,
-                             NULL,
-                             editor_application_actions_quit_cb,
-                             g_object_ref (self));
-}
-
-static void
 editor_application_actions_quit (GSimpleAction *action,
                                  GVariant      *param,
                                  gpointer       user_data)
 {
   EditorApplication *self = user_data;
-  g_autoptr(GPtrArray) unsaved = NULL;
 
   g_assert (G_IS_SIMPLE_ACTION (action));
   g_assert (EDITOR_IS_APPLICATION (self));
 
-  unsaved = g_ptr_array_new_with_free_func (g_object_unref);
-  for (guint i = 0; i < self->session->pages->len; i++)
-    {
-      EditorPage *page = g_ptr_array_index (self->session->pages, i);
-
-      if (editor_page_get_is_modified (page))
-        g_ptr_array_add (unsaved, g_object_ref (page));
-    }
-
-  if (unsaved->len > 0)
-    {
-      _editor_save_changes_dialog_run_async (gtk_application_get_active_window (GTK_APPLICATION (self)),
-                                             unsaved,
-                                             NULL,
-                                             editor_application_actions_confirm_cb,
-                                             g_object_ref (self));
-      return;
-    }
-
+  /* Save session and all drafts without prompting.
+   * This mimics Windows 11 Notepad behavior where unsaved changes
+   * are automatically saved as drafts and restored on next launch.
+   */
   editor_session_save_async (self->session,
                              TRUE,
                              NULL,
