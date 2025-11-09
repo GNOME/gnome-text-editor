@@ -44,8 +44,14 @@ typedef struct
   /* The check button in the dialog */
   GtkCheckButton *check;
 
+  /* The row displaying this item */
+  AdwActionRow *row;
+
   /* Duplicated backpointer because lazy */
   AdwAlertDialog *dialog;
+
+  /* Whether this is a new unsaved file */
+  gboolean is_new_file;
 } SaveRequest;
 
 static void
@@ -56,6 +62,7 @@ save_request_clear (gpointer data)
   g_clear_object (&sr->file);
   g_clear_object (&sr->document);
   g_clear_object (&sr->page);
+  g_clear_object (&sr->row);
   g_clear_object (&sr->dialog);
 }
 
@@ -209,6 +216,123 @@ editor_save_changes_dialog_save (AdwAlertDialog *dialog,
 }
 
 static void
+editor_save_changes_dialog_location_selected_cb (GObject      *object,
+                                                 GAsyncResult *result,
+                                                 gpointer      user_data)
+{
+  GtkFileDialog *file_dialog = (GtkFileDialog *)object;
+  g_autoptr(GFile) folder = NULL;
+  g_autoptr(GError) error = NULL;
+  GArray *requests = user_data;
+  AdwActionRow *location_row;
+
+  g_assert (GTK_IS_FILE_DIALOG (file_dialog));
+  g_assert (G_IS_ASYNC_RESULT (result));
+  g_assert (requests != NULL);
+
+  folder = gtk_file_dialog_select_folder_finish (file_dialog, result, &error);
+  if (folder == NULL)
+    {
+      g_array_unref (requests);
+      return;
+    }
+
+  /* Save to settings */
+  {
+    g_autoptr(GSettings) settings = g_settings_new ("org.gnome.TextEditor");
+    g_autofree char *uri = g_file_get_uri (folder);
+    g_settings_set_string (settings, "last-save-directory", uri);
+  }
+
+  /* Get location row from dialog */
+  if (requests->len > 0)
+    {
+      SaveRequest *first_sr = &g_array_index (requests, SaveRequest, 0);
+      location_row = g_object_get_data (G_OBJECT (first_sr->dialog), "LOCATION_ROW");
+    }
+  else
+    {
+      g_array_unref (requests);
+      return;
+    }
+
+  /* Update location row subtitle */
+  {
+    g_autofree char *subtitle = NULL;
+    
+    if (!g_file_is_native (folder))
+      subtitle = g_file_get_uri (folder);
+    else
+      subtitle = _editor_path_collapse (g_file_peek_path (folder));
+    
+    adw_action_row_set_subtitle (location_row, subtitle);
+  }
+
+  /* Update all new file paths and subtitles */
+  for (guint i = 0; i < requests->len; i++)
+    {
+      SaveRequest *sr = &g_array_index (requests, SaveRequest, i);
+      
+      if (sr->is_new_file)
+        {
+          g_autofree char *subtitle = NULL;
+          
+          g_clear_object (&sr->file);
+          sr->file = _editor_document_suggest_file (sr->document, folder);
+          
+          if (!g_file_is_native (folder))
+            subtitle = g_file_get_uri (folder);
+          else
+            subtitle = _editor_path_collapse (g_file_peek_path (folder));
+          
+          adw_action_row_set_subtitle (sr->row, subtitle);
+        }
+    }
+
+  g_array_unref (requests);
+}
+
+static void
+editor_save_changes_dialog_change_location_cb (GtkButton *button,
+                                               gpointer   user_data)
+{
+  g_autoptr(GtkFileDialog) file_dialog = NULL;
+  GArray *requests = user_data;
+  AdwAlertDialog *dialog;
+  g_autoptr(GFile) current_folder = NULL;
+
+  g_assert (GTK_IS_BUTTON (button));
+  g_assert (requests != NULL);
+  g_assert (requests->len > 0);
+
+  dialog = g_array_index (requests, SaveRequest, 0).dialog;
+
+  /* Get current location from first new file */
+  for (guint i = 0; i < requests->len; i++)
+    {
+      SaveRequest *sr = &g_array_index (requests, SaveRequest, i);
+      if (sr->is_new_file && sr->file != NULL)
+        {
+          current_folder = g_file_get_parent (sr->file);
+          break;
+        }
+    }
+
+  file_dialog = gtk_file_dialog_new ();
+  gtk_file_dialog_set_title (file_dialog, _("Select Default Save Location"));
+  gtk_file_dialog_set_modal (file_dialog, TRUE);
+  
+  if (current_folder != NULL)
+    gtk_file_dialog_set_initial_folder (file_dialog, current_folder);
+
+  gtk_file_dialog_select_folder (file_dialog,
+                                 GTK_WINDOW (gtk_widget_get_root (GTK_WIDGET (button))),
+                                 NULL,
+                                 editor_save_changes_dialog_location_selected_cb,
+                                 g_array_ref (requests));
+}
+
+static void
 editor_save_changes_dialog_response (AdwAlertDialog *dialog,
                                      const char     *response,
                                      GArray         *requests)
@@ -326,7 +450,9 @@ _editor_save_changes_dialog_new (GtkWindow *parent,
       sr.document = g_object_ref (document);
       sr.check = GTK_CHECK_BUTTON (check);
       sr.page = g_object_ref (page);
+      sr.row = g_object_ref (ADW_ACTION_ROW (row));
       sr.dialog = g_object_ref (ADW_ALERT_DIALOG (dialog));
+      sr.is_new_file = (file == NULL);
 
       /* Use NULL for the default file, otherwise set a file
        * so that we write to it instead of the draft.
@@ -338,6 +464,57 @@ _editor_save_changes_dialog_new (GtkWindow *parent,
 
       g_array_append_val (requests, sr);
     }
+
+  /* Add location selector row for new files */
+  {
+    gboolean has_new_files = FALSE;
+    g_autoptr(GFile) default_location = NULL;
+    g_autofree char *location_subtitle = NULL;
+    GtkWidget *location_row;
+    GtkWidget *change_button;
+
+    /* Check if we have any new files */
+    for (guint i = 0; i < requests->len; i++)
+      {
+        SaveRequest *sr = &g_array_index (requests, SaveRequest, i);
+        if (sr->is_new_file)
+          {
+            has_new_files = TRUE;
+            if (sr->file != NULL && default_location == NULL)
+              default_location = g_file_get_parent (sr->file);
+            break;
+          }
+      }
+
+    if (has_new_files && default_location != NULL)
+      {
+        if (!g_file_is_native (default_location))
+          location_subtitle = g_file_get_uri (default_location);
+        else
+          location_subtitle = _editor_path_collapse (g_file_peek_path (default_location));
+
+        location_row = adw_action_row_new ();
+        adw_preferences_row_set_title (ADW_PREFERENCES_ROW (location_row), _("Default save location"));
+        adw_action_row_set_subtitle (ADW_ACTION_ROW (location_row), location_subtitle);
+
+        change_button = gtk_button_new_with_label (_("Change…"));
+        gtk_widget_add_css_class (change_button, "flat");
+        gtk_widget_set_valign (change_button, GTK_ALIGN_CENTER);
+        adw_action_row_add_suffix (ADW_ACTION_ROW (location_row), change_button);
+
+        g_signal_connect_data (change_button,
+                               "clicked",
+                               G_CALLBACK (editor_save_changes_dialog_change_location_cb),
+                               g_array_ref (requests),
+                               (GClosureNotify) g_array_unref,
+                               0);
+
+        adw_preferences_group_add (ADW_PREFERENCES_GROUP (group), location_row);
+
+        /* Store location row reference in dialog for updates */
+        g_object_set_data (G_OBJECT (dialog), "LOCATION_ROW", location_row);
+      }
+  }
 
   pango_attr_list_unref (smaller);
 
