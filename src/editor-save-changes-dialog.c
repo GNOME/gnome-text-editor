@@ -237,12 +237,9 @@ editor_save_changes_dialog_location_selected_cb (GObject      *object,
       return;
     }
 
-  /* Save to settings */
-  {
-    g_autoptr(GSettings) settings = g_settings_new ("org.gnome.TextEditor");
-    g_autofree char *uri = g_file_get_uri (folder);
-    g_settings_set_string (settings, "last-save-directory", uri);
-  }
+  /* NOTE: We don't save to settings - this is a one-time change.
+   * Next time the dialog opens, it will use the default location again.
+   */
 
   /* Get location row from dialog */
   if (requests->len > 0)
