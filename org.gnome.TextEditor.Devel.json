@@ -1,7 +1,7 @@
 {
     "app-id" : "org.gnome.TextEditor.Devel",
     "runtime" : "org.gnome.Platform",
-    "runtime-version" : "master",
+    "runtime-version" : "49",
     "sdk" : "org.gnome.Sdk",
     "command" : "gnome-text-editor",
     "finish-args" : [
@@ -86,10 +86,8 @@
             "config-opts" : [ "-Ddevelopment=true" ],
             "sources" : [
                 {
-                    "disable-shallow-clone" : true,
-                    "type" : "git",
-                    "url" : "https://gitlab.gnome.org/GNOME/gnome-text-editor.git",
-                    "branch" : "main"
+                    "type" : "dir",
+                    "path" : "."
                 }
             ]
         }

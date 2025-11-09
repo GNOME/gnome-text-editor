@@ -115,32 +115,9 @@ editor_info_bar_update (EditorInfoBar *self)
       gtk_widget_set_visible (GTK_WIDGET (self->save), FALSE);
       gtk_info_bar_set_revealed (self->discard_infobar, TRUE);
     }
-  else if (_editor_document_get_was_restored (self->document))
-    {
-      if (editor_document_get_file (self->document) == NULL)
-        {
-          gtk_button_set_label (self->save, _("Save _As…"));
-          gtk_actionable_set_action_name (GTK_ACTIONABLE (self->save), "page.save-as");
-          gtk_label_set_label (self->title, _("Document Restored"));
-          gtk_label_set_label (self->subtitle, _("Unsaved document has been restored."));
-          gtk_widget_set_visible (GTK_WIDGET (self->discard), FALSE);
-          gtk_widget_set_visible (GTK_WIDGET (self->save), TRUE);
-        }
-      else
-        {
-          gtk_button_set_label (self->save, _("_Save…"));
-          gtk_actionable_set_action_name (GTK_ACTIONABLE (self->save), "page.confirm-save");
-          gtk_button_set_label (self->discard, _("_Discard…"));
-          gtk_actionable_set_action_target_value (GTK_ACTIONABLE (self->discard), NULL);
-          gtk_actionable_set_action_name (GTK_ACTIONABLE (self->discard), "page.infobar-discard-changes");
-          gtk_label_set_label (self->title, _("Draft Changes Restored"));
-          gtk_label_set_label (self->subtitle, _("Unsaved changes to the document have been restored."));
-          gtk_widget_set_visible (GTK_WIDGET (self->discard), TRUE);
-          gtk_widget_set_visible (GTK_WIDGET (self->save), TRUE);
-        }
-
-      gtk_info_bar_set_revealed (self->discard_infobar, TRUE);
-    }
+  /* Removed "Document Restored" info bar for Windows 11 Notepad-like behavior.
+   * Drafts are restored silently without notifying the user.
+   */
   else
     {
       gtk_info_bar_set_revealed (self->discard_infobar, FALSE);
