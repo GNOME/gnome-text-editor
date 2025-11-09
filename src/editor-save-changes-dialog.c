@@ -491,7 +491,7 @@ _editor_save_changes_dialog_new (GtkWindow *parent,
           location_subtitle = _editor_path_collapse (g_file_peek_path (default_location));
 
         location_row = adw_action_row_new ();
-        adw_preferences_row_set_title (ADW_PREFERENCES_ROW (location_row), _("Default save location"));
+        adw_preferences_row_set_title (ADW_PREFERENCES_ROW (location_row), _("Save location"));
         adw_action_row_set_subtitle (ADW_ACTION_ROW (location_row), location_subtitle);
 
         change_button = gtk_button_new_with_label (_("Change…"));
