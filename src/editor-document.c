@@ -228,6 +228,10 @@ on_spelling_language_changed_cb (EditorDocument  *self,
   g_assert (EDITOR_IS_DOCUMENT (self));
   g_assert (SPELLING_IS_CHECKER (spell_checker));
 
+  /* Invalidate the adapter so it re-checks all words with the new language */
+  if (self->spell_adapter != NULL)
+    spelling_text_buffer_adapter_invalidate_all (self->spell_adapter);
+
   /* Only persist the metadata if we have a backing file */
   if (!(file = editor_document_get_file (self)) || !g_file_is_native (file))
     return;
