@@ -6,7 +6,6 @@ include:
       dist-job-name: "flatpak"
 
 variables:
-    FEDORA_IMAGE: "registry.fedoraproject.org/fedora:42"
     MANIFEST_PATH: "org.gnome.TextEditor.Devel.json"
     MESON_ARGS: "-Ddevelopment=true"
     FLATPAK_MODULE: "gnome-text-editor"
@@ -35,85 +34,6 @@ nightly-aarch64:
     extends: '.publish_nightly'
     needs: ['flatpak-aarch64']
     dependencies: ['flatpak-aarch64']
-
-fedora:
-    extends: .only-default
-    only:
-        - branches@GNOME/gnome-text-editor
-    image: $FEDORA_IMAGE
-    needs: []
-    script:
-        - sudo dnf -y install
-                ccache
-                desktop-file-utils
-                editorconfig-devel
-                enchant2-devel
-                expat-devel
-                gcc
-                gcc-c++
-                gettext
-                git
-                glib2-devel
-                gobject-introspection-devel
-                gtk4-devel
-                itstool
-                libadwaita-devel
-                libicu-devel
-                libjpeg-turbo-devel
-                libpng-devel
-                libxkbcommon-devel
-                libXrandr-devel
-                libXi-devel
-                libXcursor-devel
-                libXdamage-devel
-                libXinerama-devel
-                libdrm-devel
-                libglvnd-devel
-                glslc
-                meson
-                ninja-build
-                redhat-rpm-config
-                shared-mime-info
-                xorg-x11-server-Xvfb
-        - mkdir -p pfx/
-        - meson --prefix=${PWD}/pfx
-                -Dwerror=false
-                -Dglib:werror=false
-                -Dgtk:broadway-backend=false
-                -Dgtk:build-examples=false
-                -Dgtk:build-tests=false
-                -Dgtk:build-testsuite=false
-                -Dgtk:build-demos=false
-                -Dgtk:media-gstreamer=disabled
-                -Dgtk:werror=false
-                -Dgtksourceview:documentation=false
-                -Dgtksourceview:introspection=disabled
-                -Dgtksourceview:vapi=false
-                -Dgtksourceview:werror=false
-                -Dicu:werror=false
-                -Dlibadwaita:examples=false
-                -Dlibadwaita:gtk_doc=false
-                -Dlibadwaita:introspection=disabled
-                -Dlibadwaita:tests=false
-                -Dlibadwaita:vapi=false
-                -Dlibadwaita:werror=false
-                -Dlibsass:werror=false
-                -Dlibspelling:docs=false
-                -Dlibspelling:introspection=disabled
-                -Dlibspelling:vapi=false
-                -Dpango:gtk_doc=false
-                -Dpango:introspection=disabled
-                -Dpango:werror=false
-                -Dsassc:werror=false
-                -Dwayland-protocols:tests=false
-                -Dwayland:documentation=false
-                -Dwayland:dtd_validation=false
-                -Dwayland:tests=false
-                _build
-        - cd _build
-        - ninja
-        - meson test --suite gnome-text-editor
-        - ninja install
 
 .msys2-common:
     tags:
