@@ -2,15 +2,15 @@
 # Copyright (C) 2021 gnome-text-editor's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-text-editor package.
 # D <afecr@foxmail.com>, 2021.
-# lumingzh <lumingzh@qq.com>, 2021-2025.
+# lumingzh <lumingzh@qq.com>, 2021-2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2025-02-25 00:25+0000\n"
-"PO-Revision-Date: 2025-03-02 12:47+0800\n"
+"POT-Creation-Date: 2026-01-19 08:46+0000\n"
+"PO-Revision-Date: 2026-01-23 10:30+0800\n"
 "Last-Translator: lumingzh <lumingzh@qq.com>\n"
 "Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
@@ -18,24 +18,24 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Gtranslator 47.1\n"
+"X-Generator: Gtranslator 49.0\n"
 
-#: data/org.gnome.TextEditor.desktop.in.in:4
+#: data/org.gnome.TextEditor.desktop.in.in:3
 msgid "write;notepad;"
 msgstr "write;notepad;text;txt;plain;写作;编写;笔记本;记事本;"
 
-#: data/org.gnome.TextEditor.desktop.in.in:10
-#: data/org.gnome.TextEditor.desktop.in.in:11
+#: data/org.gnome.TextEditor.desktop.in.in:7
+#: data/org.gnome.TextEditor.desktop.in.in:8
 #: data/org.gnome.TextEditor.metainfo.xml.in.in:10
-#: src/editor-application-actions.c:198 src/editor-window.c:1279
+#: src/editor-application-actions.c:200 src/editor-window.c:1288
 msgid "Text Editor"
 msgstr "文本编辑器"
 
-#: data/org.gnome.TextEditor.desktop.in.in:12
+#: data/org.gnome.TextEditor.desktop.in.in:9
 msgid "View and edit text files"
 msgstr "查看和编辑文本文件"
 
-#: data/org.gnome.TextEditor.desktop.in.in:24
+#: data/org.gnome.TextEditor.desktop.in.in:21
 msgid "New Window"
 msgstr "新建窗口"
 
@@ -48,6 +48,14 @@ msgid ""
 "GNOME Text Editor is a simple text editor focused on a pleasing default "
 "experience."
 msgstr "GNOME 文本编辑器是一个简单的文本编辑器，专注于令人满意的默认体验。"
+
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:27
+msgid "Text Editor's main window"
+msgstr "文本编辑器的主窗口"
+
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:31
+msgid "Syntax highlighting"
+msgstr "语法高亮"
 
 #: data/org.gnome.TextEditor.gschema.xml:16
 msgid "Auto Save Delay"
@@ -281,71 +289,71 @@ msgstr "在 %2$s 中查找属性 %1$s 失败"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "检索 va_list 值失败：%s"
 
-#: src/editor-application-actions.c:200
+#: src/editor-application-actions.c:202
 msgid "The GNOME Project"
 msgstr "GNOME 项目"
 
-#: src/editor-application-actions.c:213
+#: src/editor-application-actions.c:215
 msgid "translator-credits"
 msgstr ""
-"lumingzh <lumingzh@qq.com>, 2021-2025\n"
+"lumingzh <lumingzh@qq.com>, 2021-2026\n"
 "Victor_Trista <ljlzjzm@hotmail.com>, 2023"
 
-#: src/editor-application-actions.c:347
+#: src/editor-application-actions.c:349
 msgid "Clear File History?"
 msgstr "清理文件历史？"
 
-#: src/editor-application-actions.c:348
+#: src/editor-application-actions.c:350
 msgid "This action cannot be undone"
 msgstr "此操作无法撤消"
 
-#: src/editor-application-actions.c:350 src/editor-save-changes-dialog.c:260
+#: src/editor-application-actions.c:352 src/editor-save-changes-dialog.c:260
 #: src/editor-window-actions.c:115 src/editor-window-actions.c:219
 msgid "_Cancel"
 msgstr "取消(_C)"
 
-#: src/editor-application-actions.c:351
+#: src/editor-application-actions.c:353
 msgid "_Clear All"
 msgstr "全部清除(_C)"
 
-#: src/editor-application.c:525
+#: src/editor-application.c:531
 msgid "Standard input was requested multiple times. Ignoring request."
 msgstr "标准输入被请求了多次。正在忽略请求。"
 
-#: src/editor-application.c:529
+#: src/editor-application.c:535
 msgid "Standard input is not supported on this platform. Ignoring request."
 msgstr "在该平台上不支持标准输入。正在忽略请求。"
 
-#: src/editor-application.c:632
+#: src/editor-application.c:638
 msgid "Bugs may be reported at:"
 msgstr "缺陷可以报告至："
 
-#: src/editor-application.c:634
+#: src/editor-application.c:640
 msgid "[FILES…]"
 msgstr "[文件…]"
 
-#: src/editor-application.c:748
+#: src/editor-application.c:764
 msgid "Do not restore session at startup"
 msgstr "不要在启动时恢复会话"
 
-#: src/editor-application.c:749
+#: src/editor-application.c:765
 msgid "Open provided files in a new window"
 msgstr "在新窗口打开提供的文件"
 
-#: src/editor-application.c:750
+#: src/editor-application.c:766
 msgid "Run a new instance of Text Editor (implies --ignore-session)"
 msgstr "运行文本编辑器的新实例（暗示 --ignore-session）"
 
-#: src/editor-application.c:751
+#: src/editor-application.c:767
 msgid "Print version information and exit"
 msgstr "显示版本信息并退出"
 
-#: src/editor-document.c:2245
+#: src/editor-document.c:2285
 msgid "[Read-Only]"
 msgstr "[只读]"
 
-#: src/editor-document.c:2470 src/editor-page.c:1129
-#: src/editor-sidebar-item.c:510
+#: src/editor-document.c:2510 src/editor-page.c:1125
+#: src/editor-sidebar-item.c:500
 msgid "New Document"
 msgstr "新建文档"
 
@@ -394,39 +402,39 @@ msgstr "制表符"
 msgid "_Discard Changes and Reload"
 msgstr "丢弃更改并重新载入(_D)"
 
-#: src/editor-info-bar.c:111
+#: src/editor-info-bar.c:112
 msgid "File Has Changed on Disk"
 msgstr "磁盘上的文件已更改"
 
-#: src/editor-info-bar.c:112
+#: src/editor-info-bar.c:113
 msgid "The file has been changed by another program."
 msgstr "文件已被另一个程序更改。"
 
-#: src/editor-info-bar.c:121 src/editor-window.ui:323
+#: src/editor-info-bar.c:122 src/editor-window.ui:371
 msgid "Save _As…"
 msgstr "另存为(_A)…"
 
-#: src/editor-info-bar.c:123 src/editor-info-bar.ui:73
+#: src/editor-info-bar.c:124 src/editor-info-bar.ui:73
 msgid "Document Restored"
 msgstr "文档已恢复"
 
-#: src/editor-info-bar.c:124 src/editor-info-bar.ui:84
+#: src/editor-info-bar.c:125 src/editor-info-bar.ui:84
 msgid "Unsaved document has been restored."
 msgstr "未保存的文档已被恢复。"
 
-#: src/editor-info-bar.c:130 src/editor-info-bar.ui:99
+#: src/editor-info-bar.c:131 src/editor-info-bar.ui:99
 msgid "_Save…"
 msgstr "保存(_S)…"
 
-#: src/editor-info-bar.c:132 src/editor-info-bar.ui:93
+#: src/editor-info-bar.c:133 src/editor-info-bar.ui:93
 msgid "_Discard…"
 msgstr "丢弃(_D)…"
 
-#: src/editor-info-bar.c:134
+#: src/editor-info-bar.c:136
 msgid "Draft Changes Restored"
 msgstr "草稿更改已恢复"
 
-#: src/editor-info-bar.c:135
+#: src/editor-info-bar.c:137
 msgid "Unsaved changes to the document have been restored."
 msgstr "文档未保存的更改已被恢复。"
 
@@ -463,7 +471,7 @@ msgstr "其它文档类型"
 msgid "Document Type"
 msgstr "文档类型"
 
-#: src/editor-language-dialog.ui:25 src/editor-search-entry.c:201
+#: src/editor-language-dialog.ui:25 src/editor-search-entry.c:193
 #: src/editor-search-entry.ui:13
 msgid "Search"
 msgstr "搜索"
@@ -489,34 +497,34 @@ msgstr "Mac OS 经典 (CR)"
 msgid "Search documents"
 msgstr "搜索文档"
 
-#: src/editor-open-popover.ui:39
+#: src/editor-open-popover.ui:45
 msgid "Open New Document"
 msgstr "打开新文档"
 
-#: src/editor-open-popover.ui:74
+#: src/editor-open-popover.ui:80
 msgid "No Recent Documents"
 msgstr "无最近文档"
 
-#: src/editor-page.c:1155 src/editor-properties.c:606
-#: src/editor-sidebar-item.c:104
+#: src/editor-page.c:1151 src/editor-properties.c:617
+#: src/editor-sidebar-item.c:101
 msgid "Draft"
 msgstr "草稿"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1167
+#: src/editor-page.c:1163
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s（管理员）"
 
-#: src/editor-page.c:1223
+#: src/editor-page.c:1219
 msgid "Failed to save document"
 msgstr "保存文档失败"
 
-#: src/editor-page.c:1224 src/editor-window.ui:402
+#: src/editor-page.c:1220 src/editor-window.ui:451
 msgid "_Close"
 msgstr "关闭(_C)"
 
-#: src/editor-page.c:1493
+#: src/editor-page.c:1484
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "%u 行，%u 列"
@@ -588,26 +596,46 @@ msgid "_Wrap Lines Automatically (Alt+W)"
 msgstr "自动折行（Alt+W）(_W)"
 
 #: src/editor-preferences-dialog.ui:145
+msgid "Indentation"
+msgstr "缩进"
+
+#: src/editor-preferences-dialog.ui:148 src/editor-properties-panel.ui:106
+msgid "A_uto Indentation"
+msgstr "自动缩进(_U)"
+
+#: src/editor-preferences-dialog.ui:155 src/editor-properties-panel.ui:113
+msgid "_Character"
+msgstr "字符(_C)"
+
+#: src/editor-preferences-dialog.ui:165 src/editor-properties-panel.ui:124
+msgid "Spaces Per _Tab"
+msgstr "每个制表符的空格数(_T)"
+
+#: src/editor-preferences-dialog.ui:183 src/editor-properties-panel.ui:136
+msgid "Spaces Per _Indent"
+msgstr "每次缩进的空格数(_I)"
+
+#: src/editor-preferences-dialog.ui:204
 msgid "Behavior"
 msgstr "行为"
 
-#: src/editor-preferences-dialog.ui:148
+#: src/editor-preferences-dialog.ui:207
 msgid "_Discover Document Settings"
 msgstr "发现文档设置(_D)"
 
-#: src/editor-preferences-dialog.ui:150
+#: src/editor-preferences-dialog.ui:209
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr "使用模式行、编辑器配置或合理的默认值应用设置"
 
-#: src/editor-preferences-dialog.ui:156
+#: src/editor-preferences-dialog.ui:215
 msgid "_Restore Session"
 msgstr "恢复会话(_R)"
 
-#: src/editor-preferences-dialog.ui:158
+#: src/editor-preferences-dialog.ui:217
 msgid "Return to your previous session when Text Editor is started"
 msgstr "文本编辑器启动时返回您的上次会话"
 
-#: src/editor-preferences-dialog.ui:170
+#: src/editor-preferences-dialog.ui:229
 msgid "_Clear History"
 msgstr "清除历史(_C)"
 
@@ -656,22 +684,6 @@ msgstr "编码(_E)"
 msgid "_Line Feed"
 msgstr "换行符(_L)"
 
-#: src/editor-properties-panel.ui:106
-msgid "A_uto Indentation"
-msgstr "自动缩进(_U)"
-
-#: src/editor-properties-panel.ui:113
-msgid "_Character"
-msgstr "字符(_C)"
-
-#: src/editor-properties-panel.ui:124
-msgid "Spaces Per _Tab"
-msgstr "每个制表符的空格数(_T)"
-
-#: src/editor-properties-panel.ui:136
-msgid "Spaces Per _Indent"
-msgstr "每次缩进的空格数(_I)"
-
 #: src/editor-properties-panel.ui:150
 msgid "Statistics"
 msgstr "统计"
@@ -711,7 +723,7 @@ msgid ""
 msgstr "打开的文档包含未保存的更改。未保存的更改将永久丢失。"
 
 #: src/editor-save-changes-dialog.c:262 src/editor-window-actions.c:116
-#: src/editor-window.ui:317
+#: src/editor-window.ui:365
 msgid "_Save"
 msgstr "保存(_S)"
 
@@ -770,16 +782,16 @@ msgid "Match Whole _Word Only"
 msgstr "只匹配整个单词(_W)"
 
 #. translators: the first %u is replaced with the current position, the second with the number of search results
-#: src/editor-search-entry.c:228
+#: src/editor-search-entry.c:221
 #, c-format
 msgid "%u of %u"
 msgstr "%u 共 %u"
 
-#: src/editor-search-entry.ui:32
+#: src/editor-search-entry.ui:33
 msgid "Clear Entry"
 msgstr "清除条目"
 
-#: src/editor-sidebar-row.ui:85
+#: src/editor-sidebar-row.ui:82
 msgid "Remove"
 msgstr "移除"
 
@@ -849,429 +861,429 @@ msgstr "未保存的更改将永久丢失。"
 msgid "Discard Changes to “%s”?"
 msgstr "丢弃对“%s”的更改？"
 
-#: src/editor-window-actions.c:380
+#: src/editor-window-actions.c:384
 msgid "All Files"
 msgstr "所有文件"
 
-#: src/editor-window-actions.c:385
+#: src/editor-window-actions.c:389
 msgid "Text Files"
 msgstr "文本文件"
 
-#: src/editor-window.c:398
+#: src/editor-window.c:423
 msgid "Zoom In"
 msgstr "放大"
 
-#: src/editor-window.c:401
+#: src/editor-window.c:426
 msgid "Zoom in"
 msgstr "放大"
 
-#: src/editor-window.c:411
+#: src/editor-window.c:436
 msgid "Zoom Out"
 msgstr "缩小"
 
-#: src/editor-window.c:414
+#: src/editor-window.c:439
 msgid "Zoom out"
 msgstr "缩小"
 
-#: src/editor-window.c:419
+#: src/editor-window.c:444
 msgid "Reset Zoom"
 msgstr "重置缩放"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:657
+#: src/editor-window.c:690
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - 文本编辑器"
 
-#: src/editor-window.c:1158
+#: src/editor-window.c:1167
 msgid "There are unsaved documents"
 msgstr "存在未保存的文档"
 
-#: src/editor-window.ui:105
-msgid "Recently Used Documents"
-msgstr "最近使用的文档"
-
-#: src/editor-window.ui:122
-msgid "_Open"
-msgstr "打开(_O)"
-
-#: src/editor-window.ui:155
-msgid "New Tab"
-msgstr "新建标签页"
-
-#: src/editor-window.ui:160 src/editor-window.ui:354
-msgid "Leave Fullscreen"
-msgstr "退出全屏"
-
-#: src/editor-window.ui:168
-msgid "Main Menu"
-msgstr "主菜单"
-
-#: src/editor-window.ui:175
-msgid "Document Properties"
-msgstr "文档属性"
-
-#: src/editor-window.ui:221
+#: src/editor-window.ui:81
 msgid "Open a Document"
 msgstr "打开文档"
 
-#: src/editor-window.ui:222
+#: src/editor-window.ui:82
 msgid "Create a new document (Ctrl+N), or open an existing one (Ctrl+O)"
 msgstr "创建新文档（Ctrl+N），或打开现有文档（Ctrl+O）"
 
-#: src/editor-window.ui:233
+#: src/editor-window.ui:93
 msgid "_New Empty File"
 msgstr "新建空白文件(_N)"
 
-#: src/editor-window.ui:309
+#: src/editor-window.ui:166
+msgid "Recently Used Documents"
+msgstr "最近使用的文档"
+
+#: src/editor-window.ui:191
+msgid "_Open"
+msgstr "打开(_O)"
+
+#: src/editor-window.ui:224
+msgid "New Tab"
+msgstr "新建标签页"
+
+#: src/editor-window.ui:229 src/editor-window.ui:403
+msgid "Leave Fullscreen"
+msgstr "退出全屏"
+
+#: src/editor-window.ui:237
+msgid "Main Menu"
+msgstr "主菜单"
+
+#: src/editor-window.ui:244
+msgid "Document Properties"
+msgstr "文档属性"
+
+#: src/editor-window.ui:357
 msgid "_New Window"
 msgstr "新建窗口(_N)"
 
-#: src/editor-window.ui:329
+#: src/editor-window.ui:377
 msgid "_Discard Changes…"
 msgstr "丢弃更改(_D)…"
 
-#: src/editor-window.ui:335
+#: src/editor-window.ui:384
 msgid "_Find/Replace…"
 msgstr "查找/替换(_F)…"
 
-#: src/editor-window.ui:341
+#: src/editor-window.ui:390
 msgid "_Print…"
 msgstr "打印(_P)…"
 
-#: src/editor-window.ui:348
+#: src/editor-window.ui:397
 msgid "Fullscreen"
 msgstr "全屏"
 
-#: src/editor-window.ui:362
+#: src/editor-window.ui:411
 msgid "P_references"
 msgstr "首选项(_R)"
 
-#: src/editor-window.ui:367
+#: src/editor-window.ui:416
 msgid "_Keyboard Shortcuts"
 msgstr "键盘快捷键(_K)"
 
-#: src/editor-window.ui:371
+#: src/editor-window.ui:420
 msgid "A_bout Text Editor"
 msgstr "关于文本编辑器(_B)"
 
-#: src/editor-window.ui:379
+#: src/editor-window.ui:428
 msgid "Move _Left"
 msgstr "左移(_L)"
 
-#: src/editor-window.ui:384
+#: src/editor-window.ui:433
 msgid "Move _Right"
 msgstr "右移(_R)"
 
-#: src/editor-window.ui:391
+#: src/editor-window.ui:440
 msgid "_Move to New Window"
 msgstr "移动到新窗口(_M)"
 
-#: src/editor-window.ui:398
+#: src/editor-window.ui:447
 msgid "Close _Other Tabs"
 msgstr "关闭其他标签页(_O)"
 
-#: src/help-overlay.ui:12
+#: src/shortcuts-dialog.ui:8
 msgctxt "shortcut window"
 msgid "Windows"
 msgstr "窗口"
 
-#: src/help-overlay.ui:15
+#: src/shortcuts-dialog.ui:11
 msgctxt "shortcut window"
 msgid "New window"
 msgstr "新建窗口"
 
-#: src/help-overlay.ui:21
+#: src/shortcuts-dialog.ui:17
 msgctxt "shortcut window"
 msgid "Move document to new window"
 msgstr "将文档移动到新窗口"
 
-#: src/help-overlay.ui:28
+#: src/shortcuts-dialog.ui:24
 msgctxt "shortcut window"
 msgid "Move to next tab"
 msgstr "移动到下一个标签页"
 
-#: src/help-overlay.ui:34
+#: src/shortcuts-dialog.ui:30
 msgctxt "shortcut window"
 msgid "Move to previous tab"
 msgstr "移动到上一个标签页"
 
-#: src/help-overlay.ui:40
+#: src/shortcuts-dialog.ui:36
 msgctxt "shortcut window"
 msgid "Reorder after next tab"
 msgstr "重新排序到下一个标签页之后"
 
-#: src/help-overlay.ui:46
+#: src/shortcuts-dialog.ui:42
 msgctxt "shortcut window"
 msgid "Reorder before previous tab"
 msgstr "重新排序到上一个标签页之前"
 
-#: src/help-overlay.ui:52
+#: src/shortcuts-dialog.ui:48
 msgctxt "shortcut window"
 msgid "Restore previously closed tab"
 msgstr "恢复上次关闭的标签页"
 
-#: src/help-overlay.ui:59
+#: src/shortcuts-dialog.ui:55
 msgctxt "shortcut window"
 msgid "Zoom"
 msgstr "缩放"
 
-#: src/help-overlay.ui:63
+#: src/shortcuts-dialog.ui:59
 msgctxt "shortcut window"
 msgid "Zoom In"
 msgstr "放大"
 
-#: src/help-overlay.ui:69
+#: src/shortcuts-dialog.ui:65
 msgctxt "shortcut window"
 msgid "Zoom Out"
 msgstr "缩小"
 
-#: src/help-overlay.ui:75
+#: src/shortcuts-dialog.ui:71
 msgctxt "shortcut window"
 msgid "Reset Zoom"
 msgstr "重置缩放"
 
-#: src/help-overlay.ui:82
+#: src/shortcuts-dialog.ui:78
 msgctxt "shortcut window"
 msgid "Documents"
 msgstr "文档"
 
-#: src/help-overlay.ui:85
+#: src/shortcuts-dialog.ui:81
 msgctxt "shortcut window"
 msgid "New document"
 msgstr "新建文档"
 
-#: src/help-overlay.ui:91
+#: src/shortcuts-dialog.ui:87
 msgctxt "shortcut window"
 msgid "Browse to open document"
 msgstr "浏览以打开文档"
 
-#: src/help-overlay.ui:97
+#: src/shortcuts-dialog.ui:93
 msgctxt "shortcut window"
 msgid "Find document by name"
 msgstr "按名称查找文档"
 
-#: src/help-overlay.ui:103
+#: src/shortcuts-dialog.ui:99
 msgctxt "shortcut window"
 msgid "Save"
 msgstr "保存"
 
-#: src/help-overlay.ui:109
+#: src/shortcuts-dialog.ui:105
 msgctxt "shortcut window"
 msgid "Save As"
 msgstr "另存为"
 
-#: src/help-overlay.ui:115
+#: src/shortcuts-dialog.ui:111
 msgctxt "shortcut window"
 msgid "Find/Replace"
 msgstr "查找/替换"
 
-#: src/help-overlay.ui:121
+#: src/shortcuts-dialog.ui:117
 msgctxt "shortcut window"
 msgid "Close document"
 msgstr "关闭文档"
 
-#: src/help-overlay.ui:127
+#: src/shortcuts-dialog.ui:123
 msgctxt "shortcut window"
 msgid "Open document properties"
 msgstr "打开文档属性"
 
-#: src/help-overlay.ui:135
+#: src/shortcuts-dialog.ui:131
 msgctxt "shortcut window"
 msgid "Copy and Paste"
 msgstr "复制和粘贴"
 
-#: src/help-overlay.ui:139
+#: src/shortcuts-dialog.ui:135
 msgctxt "shortcut window"
 msgid "Copy selected text to clipboard"
 msgstr "将选中的文本复制到剪贴板"
 
-#: src/help-overlay.ui:145
+#: src/shortcuts-dialog.ui:141
 msgctxt "shortcut window"
 msgid "Cut selected text to clipboard"
 msgstr "将选中的文本剪切到剪贴板"
 
-#: src/help-overlay.ui:151
+#: src/shortcuts-dialog.ui:147
 msgctxt "shortcut window"
 msgid "Paste text from clipboard"
 msgstr "从剪贴板粘贴文本"
 
-#: src/help-overlay.ui:156
+#: src/shortcuts-dialog.ui:152
 msgctxt "shortcut window"
 msgid "Copy all to clipboard"
 msgstr "全部复制到剪贴板"
 
-#: src/help-overlay.ui:162
+#: src/shortcuts-dialog.ui:158
 msgctxt "shortcut window"
 msgid "Copy current line down"
 msgstr "向下复制当前行"
 
-#: src/help-overlay.ui:170
+#: src/shortcuts-dialog.ui:166
 msgctxt "shortcut window"
 msgid "Undo and Redo"
 msgstr "撤消和重做"
 
-#: src/help-overlay.ui:174
+#: src/shortcuts-dialog.ui:170
 msgctxt "shortcut window"
 msgid "Undo previous command"
 msgstr "撤消上一个命令"
 
-#: src/help-overlay.ui:180
+#: src/shortcuts-dialog.ui:176
 msgctxt "shortcut window"
 msgid "Redo previous command"
 msgstr "重做上一个命令"
 
-#: src/help-overlay.ui:187
+#: src/shortcuts-dialog.ui:183
 msgctxt "shortcut window"
 msgid "Editing"
 msgstr "编辑"
 
-#: src/help-overlay.ui:191
+#: src/shortcuts-dialog.ui:187
 msgctxt "shortcut window"
 msgid "Insert emoji into document"
 msgstr "在文档中插入表情符号"
 
-#: src/help-overlay.ui:197
+#: src/shortcuts-dialog.ui:193
 msgctxt "shortcut window"
 msgid "Search within the document"
 msgstr "在文档中搜索"
 
-#: src/help-overlay.ui:203
+#: src/shortcuts-dialog.ui:199
 msgctxt "shortcut window"
 msgid "Search and replace within the document"
 msgstr "在文档中搜索和替换"
 
-#: src/help-overlay.ui:209
+#: src/shortcuts-dialog.ui:205
 msgctxt "shortcut window"
 msgid "Increment number at cursor"
 msgstr "递增光标处的数字"
 
-#: src/help-overlay.ui:215
+#: src/shortcuts-dialog.ui:211
 msgctxt "shortcut window"
 msgid "Decrement number at cursor"
 msgstr "递减光标处的数字"
 
-#: src/help-overlay.ui:221
+#: src/shortcuts-dialog.ui:217
 msgctxt "shortcut window"
 msgid "Toggle overwrite"
 msgstr "切换覆盖"
 
-#: src/help-overlay.ui:227
+#: src/shortcuts-dialog.ui:223
 msgctxt "shortcut window"
 msgid "Toggle visibility of insertion caret"
 msgstr "切换插入光标的可见性"
 
-#: src/help-overlay.ui:234
+#: src/shortcuts-dialog.ui:230
 msgctxt "shortcut window"
 msgid "Selections"
 msgstr "选择"
 
-#: src/help-overlay.ui:238
+#: src/shortcuts-dialog.ui:234
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "全选"
 
-#: src/help-overlay.ui:244
+#: src/shortcuts-dialog.ui:240
 msgctxt "shortcut window"
 msgid "Unselect all"
 msgstr "全部不选"
 
-#: src/help-overlay.ui:250
+#: src/shortcuts-dialog.ui:246
 msgctxt "shortcut window"
 msgid "Select current line"
 msgstr "选择当前行"
 
-#: src/help-overlay.ui:257
+#: src/shortcuts-dialog.ui:253
 msgctxt "shortcut window"
 msgid "Movements"
 msgstr "移动"
 
-#: src/help-overlay.ui:261
+#: src/shortcuts-dialog.ui:257
 msgctxt "shortcut window"
 msgid "Move to beginning of document"
 msgstr "移动到文档开头"
 
-#: src/help-overlay.ui:267
+#: src/shortcuts-dialog.ui:263
 msgctxt "shortcut window"
 msgid "Move to end of document"
 msgstr "移动到文档结尾"
 
-#: src/help-overlay.ui:273
+#: src/shortcuts-dialog.ui:269
 msgctxt "shortcut window"
 msgid "Move to start of previous paragraph"
 msgstr "移动到上一个段落的开头"
 
-#: src/help-overlay.ui:279
+#: src/shortcuts-dialog.ui:275
 msgctxt "shortcut window"
 msgid "Move to end of next paragraph"
 msgstr "移动到下一个段落的结尾"
 
-#: src/help-overlay.ui:285
+#: src/shortcuts-dialog.ui:281
 msgctxt "shortcut window"
 msgid "Move current or selected lines up"
 msgstr "上移当前或选中的行"
 
-#: src/help-overlay.ui:291
+#: src/shortcuts-dialog.ui:287
 msgctxt "shortcut window"
 msgid "Move current or selected lines down"
 msgstr "下移当前或选中的行"
 
-#: src/help-overlay.ui:297
+#: src/shortcuts-dialog.ui:293
 msgctxt "shortcut window"
 msgid "Go to line"
 msgstr "跳转至行"
 
-#: src/help-overlay.ui:304
+#: src/shortcuts-dialog.ui:300
 msgctxt "shortcut window"
 msgid "Deletion"
 msgstr "删除"
 
-#: src/help-overlay.ui:308
+#: src/shortcuts-dialog.ui:304
 msgctxt "shortcut window"
 msgid "Delete from cursor to word start"
 msgstr "从光标处删除到单词开头"
 
-#: src/help-overlay.ui:314
+#: src/shortcuts-dialog.ui:310
 msgctxt "shortcut window"
 msgid "Delete from cursor to word end"
 msgstr "从光标处删除到单词结尾"
 
-#: src/help-overlay.ui:320
+#: src/shortcuts-dialog.ui:316
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph start"
 msgstr "从光标处删除到段落开头"
 
-#: src/help-overlay.ui:326
+#: src/shortcuts-dialog.ui:322
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph end"
 msgstr "从光标处删除到段落结尾"
 
-#: src/help-overlay.ui:332
+#: src/shortcuts-dialog.ui:328
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "删除当前行"
 
-#: src/help-overlay.ui:339
+#: src/shortcuts-dialog.ui:335
 msgctxt "shortcut window"
 msgid "General"
 msgstr "通用"
 
-#: src/help-overlay.ui:343
+#: src/shortcuts-dialog.ui:339
 msgctxt "shortcut window"
 msgid "Show preferences"
 msgstr "显示首选项(_R)"
 
-#: src/help-overlay.ui:349
+#: src/shortcuts-dialog.ui:345
 msgctxt "shortcut window"
 msgid "Show keyboard shortcuts"
 msgstr "显示键盘快捷键(_K)"
 
-#: src/help-overlay.ui:355
+#: src/shortcuts-dialog.ui:351
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "显示帮助"
 
-#: src/help-overlay.ui:361
+#: src/shortcuts-dialog.ui:357
 msgctxt "shortcut window"
 msgid "Toggle text wrapping"
 msgstr "开关文本折行"
@@ -1287,9 +1299,6 @@ msgstr "开关文本折行"
 
 #~ msgid "Cancel"
 #~ msgstr "取消"
-
-msgid "Indentation"
-msgstr "缩进"
 
 #~ msgid "2"
 #~ msgstr "2"
