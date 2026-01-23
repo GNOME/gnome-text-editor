@@ -2,7 +2,7 @@
 # Copyright (C) 2025 gnome-text-editor's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-text-editor package.
 # Juliano de Souza Camargo <julianosc@protonmail.com>, 2022.
-# Hugo Carvalho <hugokarvalho@hotmail.com>, 2022, 2023, 2024, 2025.
+# Hugo Carvalho <hugokarvalho@hotmail.com>, 2022, 2023, 2024, 2025, 2026.
 # João Carvalhinho <joao.carvalhinho@gmail.com>, 2025.
 #
 msgid ""
@@ -10,9 +10,9 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor gnome-41\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2025-08-06 19:23+0000\n"
-"PO-Revision-Date: 2025-08-08 17:41+0100\n"
-"Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
+"POT-Creation-Date: 2026-01-19 08:46+0000\n"
+"PO-Revision-Date: 2026-01-23 00:54+0000\n"
+"Last-Translator: hugokarvalho@hotmail.com <Hugo Carvalho>\n"
 "Language-Team: Portuguese < https://l10n.gnome.org/teams/pt/>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgstr ""
 "X-DL-Branch: main\n"
 "X-DL-Domain: po\n"
 "X-DL-State: Translating\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.8\n"
 
 #: data/org.gnome.TextEditor.desktop.in.in:3
 msgid "write;notepad;"
@@ -56,6 +56,14 @@ msgid ""
 msgstr ""
 "O Editor de texto para GNOME é um editor simples focado numa experiência "
 "agradável por omissão."
+
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:27
+msgid "Text Editor's main window"
+msgstr "Janela principal do editor de texto"
+
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:31
+msgid "Syntax highlighting"
+msgstr "Realce de sintaxe"
 
 #: data/org.gnome.TextEditor.gschema.xml:16
 msgid "Auto Save Delay"
@@ -364,12 +372,12 @@ msgstr ""
 msgid "Print version information and exit"
 msgstr "Mostrar informação da versão e sair"
 
-#: src/editor-document.c:2272
+#: src/editor-document.c:2285
 msgid "[Read-Only]"
 msgstr "[Apenas-Leitura]"
 
-#: src/editor-document.c:2497 src/editor-page.c:1125
-#: src/editor-sidebar-item.c:498
+#: src/editor-document.c:2510 src/editor-page.c:1125
+#: src/editor-sidebar-item.c:500
 msgid "New Document"
 msgstr "Novo documento"
 
@@ -522,7 +530,7 @@ msgstr "Abrir novo documento"
 msgid "No Recent Documents"
 msgstr "Sem documentos recentes"
 
-#: src/editor-page.c:1151 src/editor-properties.c:606
+#: src/editor-page.c:1151 src/editor-properties.c:617
 #: src/editor-sidebar-item.c:101
 msgid "Draft"
 msgstr "Rascunho"
