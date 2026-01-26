@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2025-02-01 02:12+0000\n"
-"PO-Revision-Date: 2025-02-02 15:34+0300\n"
+"POT-Creation-Date: 2026-01-19 08:46+0000\n"
+"PO-Revision-Date: 2026-01-23 15:18+0300\n"
 "Last-Translator: Artur So <arturios2005@mail.ru>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
@@ -19,24 +19,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.8\n"
 
-#: data/org.gnome.TextEditor.desktop.in.in:4
+#: data/org.gnome.TextEditor.desktop.in.in:3
 msgid "write;notepad;"
 msgstr "write;notepad;писать;блокнот;"
 
-#: data/org.gnome.TextEditor.desktop.in.in:10
-#: data/org.gnome.TextEditor.desktop.in.in:11
+#: data/org.gnome.TextEditor.desktop.in.in:7
+#: data/org.gnome.TextEditor.desktop.in.in:8
 #: data/org.gnome.TextEditor.metainfo.xml.in.in:10
-#: src/editor-application-actions.c:198 src/editor-window.c:1279
+#: src/editor-application-actions.c:200 src/editor-window.c:1288
 msgid "Text Editor"
 msgstr "Текстовый редактор"
 
-#: data/org.gnome.TextEditor.desktop.in.in:12
+#: data/org.gnome.TextEditor.desktop.in.in:9
 msgid "View and edit text files"
 msgstr "Просмотр и редактирование текстовых файлов"
 
-#: data/org.gnome.TextEditor.desktop.in.in:24
+#: data/org.gnome.TextEditor.desktop.in.in:21
 msgid "New Window"
 msgstr "Создать окно"
 
@@ -51,6 +51,14 @@ msgid ""
 msgstr ""
 "GNOME Text Editor - это простой текстовый редактор, нацеленный на "
 "положительный опыт использования."
+
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:27
+msgid "Text Editor's main window"
+msgstr "Главное окно текстового редактора"
+
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:31
+msgid "Syntax highlighting"
+msgstr "Подсветка синтаксиса"
 
 #: data/org.gnome.TextEditor.gschema.xml:16
 msgid "Auto Save Delay"
@@ -299,74 +307,74 @@ msgstr "Не удалось найти свойство %s в %s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Не удалось получить значение va_list: %s"
 
-#: src/editor-application-actions.c:200
+#: src/editor-application-actions.c:202
 msgid "The GNOME Project"
 msgstr "Проект GNOME"
 
-#: src/editor-application-actions.c:213
+#: src/editor-application-actions.c:215
 msgid "translator-credits"
 msgstr ""
 "Ser82-png <asvmail.as@gmail.com>, 2022\n"
 "Aleksandr Melman, 2023"
 
-#: src/editor-application-actions.c:347
+#: src/editor-application-actions.c:349
 msgid "Clear File History?"
 msgstr "Очистить историю файлов?"
 
-#: src/editor-application-actions.c:348
+#: src/editor-application-actions.c:350
 msgid "This action cannot be undone"
 msgstr "Это действие не может быть отменено"
 
-#: src/editor-application-actions.c:350 src/editor-save-changes-dialog.c:260
+#: src/editor-application-actions.c:352 src/editor-save-changes-dialog.c:260
 #: src/editor-window-actions.c:115 src/editor-window-actions.c:219
 msgid "_Cancel"
 msgstr "_Отменить"
 
-#: src/editor-application-actions.c:351
+#: src/editor-application-actions.c:353
 msgid "_Clear All"
 msgstr "_Очистить все"
 
-#: src/editor-application.c:525
+#: src/editor-application.c:531
 msgid "Standard input was requested multiple times. Ignoring request."
 msgstr "Стандартный ввод был запрошен несколько раз. Запрос проигнорирован."
 
-#: src/editor-application.c:529
+#: src/editor-application.c:535
 msgid "Standard input is not supported on this platform. Ignoring request."
 msgstr ""
 "Стандартный ввод не поддерживается на этой платформе. Запрос проигнорирован."
 
-#: src/editor-application.c:632
+#: src/editor-application.c:638
 msgid "Bugs may be reported at:"
 msgstr "Об ошибках можно сообщать по адресу:"
 
-#: src/editor-application.c:634
+#: src/editor-application.c:640
 msgid "[FILES…]"
 msgstr "[ФАЙЛЫ…]"
 
-#: src/editor-application.c:748
+#: src/editor-application.c:764
 msgid "Do not restore session at startup"
 msgstr "Не восстанавливать сеанс при запуске"
 
-#: src/editor-application.c:749
+#: src/editor-application.c:765
 msgid "Open provided files in a new window"
 msgstr "Открыть предоставленные файлы в новом окне"
 
-#: src/editor-application.c:750
+#: src/editor-application.c:766
 msgid "Run a new instance of Text Editor (implies --ignore-session)"
 msgstr ""
 "Запустить новый экземпляр текстового редактора (подразумевается --ignore-"
 "session)"
 
-#: src/editor-application.c:751
+#: src/editor-application.c:767
 msgid "Print version information and exit"
 msgstr "Напечатать информацию о версии и выйти"
 
-#: src/editor-document.c:2245
+#: src/editor-document.c:2285
 msgid "[Read-Only]"
 msgstr "[Только чтение]"
 
-#: src/editor-document.c:2470 src/editor-page.c:1129
-#: src/editor-sidebar-item.c:510
+#: src/editor-document.c:2510 src/editor-page.c:1125
+#: src/editor-sidebar-item.c:500
 msgid "New Document"
 msgstr "Новый документ"
 
@@ -415,39 +423,39 @@ msgstr "Табуляция"
 msgid "_Discard Changes and Reload"
 msgstr "_Отменить изменения и перезагрузить"
 
-#: src/editor-info-bar.c:111
+#: src/editor-info-bar.c:112
 msgid "File Has Changed on Disk"
 msgstr "Файл на диске был изменен"
 
-#: src/editor-info-bar.c:112
+#: src/editor-info-bar.c:113
 msgid "The file has been changed by another program."
 msgstr "Этот файл был изменен другой программой."
 
-#: src/editor-info-bar.c:121 src/editor-window.ui:280
+#: src/editor-info-bar.c:122 src/editor-window.ui:371
 msgid "Save _As…"
 msgstr "Сохранить _как…"
 
-#: src/editor-info-bar.c:123 src/editor-info-bar.ui:73
+#: src/editor-info-bar.c:124 src/editor-info-bar.ui:73
 msgid "Document Restored"
 msgstr "Документ восстановлен"
 
-#: src/editor-info-bar.c:124 src/editor-info-bar.ui:84
+#: src/editor-info-bar.c:125 src/editor-info-bar.ui:84
 msgid "Unsaved document has been restored."
 msgstr "Несохраненный документ был восстановлен."
 
-#: src/editor-info-bar.c:130 src/editor-info-bar.ui:99
+#: src/editor-info-bar.c:131 src/editor-info-bar.ui:99
 msgid "_Save…"
 msgstr "С_охранить…"
 
-#: src/editor-info-bar.c:132 src/editor-info-bar.ui:93
+#: src/editor-info-bar.c:133 src/editor-info-bar.ui:93
 msgid "_Discard…"
 msgstr "_Сбросить…"
 
-#: src/editor-info-bar.c:134
+#: src/editor-info-bar.c:136
 msgid "Draft Changes Restored"
 msgstr "Черновик изменений восстановлен"
 
-#: src/editor-info-bar.c:135
+#: src/editor-info-bar.c:137
 msgid "Unsaved changes to the document have been restored."
 msgstr "Несохраненные изменения в документе восстановлены."
 
@@ -486,7 +494,8 @@ msgstr "Другие типы документов"
 msgid "Document Type"
 msgstr "Тип документа"
 
-#: src/editor-language-dialog.ui:25 src/editor-search-entry.ui:12
+#: src/editor-language-dialog.ui:25 src/editor-search-entry.c:193
+#: src/editor-search-entry.ui:13
 msgid "Search"
 msgstr "Поиск"
 
@@ -511,34 +520,34 @@ msgstr "Mac OS Classic (CR)"
 msgid "Search documents"
 msgstr "Поиск документов"
 
-#: src/editor-open-popover.ui:39
+#: src/editor-open-popover.ui:45
 msgid "Open New Document"
 msgstr "Открыть новый документ"
 
-#: src/editor-open-popover.ui:74
+#: src/editor-open-popover.ui:80
 msgid "No Recent Documents"
 msgstr "Отсутствуют недавно открытые документы"
 
-#: src/editor-page.c:1155 src/editor-properties.c:606
-#: src/editor-sidebar-item.c:104
+#: src/editor-page.c:1151 src/editor-properties.c:617
+#: src/editor-sidebar-item.c:101
 msgid "Draft"
 msgstr "Черновик"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1167
+#: src/editor-page.c:1163
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (Администратор)"
 
-#: src/editor-page.c:1223
+#: src/editor-page.c:1219
 msgid "Failed to save document"
 msgstr "Ошибка при сохранении документа"
 
-#: src/editor-page.c:1224 src/editor-window.ui:359
+#: src/editor-page.c:1220 src/editor-window.ui:451
 msgid "_Close"
 msgstr "_Закрыть"
 
-#: src/editor-page.c:1493
+#: src/editor-page.c:1484
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Стр. %u, Столб. %u"
@@ -551,7 +560,7 @@ msgstr "Перейти к строке"
 msgid "Go"
 msgstr "Перейти"
 
-#: src/editor-path.c:126
+#: src/editor-path.c:128
 msgid "Document Portal"
 msgstr "Портал документов"
 
@@ -610,28 +619,48 @@ msgid "_Wrap Lines Automatically (Alt+W)"
 msgstr "Автоматический п_еренос строк (Alt+W)"
 
 #: src/editor-preferences-dialog.ui:145
+msgid "Indentation"
+msgstr "Отступ"
+
+#: src/editor-preferences-dialog.ui:148 src/editor-properties-panel.ui:106
+msgid "A_uto Indentation"
+msgstr "_Автоматический отступ"
+
+#: src/editor-preferences-dialog.ui:155 src/editor-properties-panel.ui:113
+msgid "_Character"
+msgstr "С_имвол"
+
+#: src/editor-preferences-dialog.ui:165 src/editor-properties-panel.ui:124
+msgid "Spaces Per _Tab"
+msgstr "Пробелов на _табуляцию"
+
+#: src/editor-preferences-dialog.ui:183 src/editor-properties-panel.ui:136
+msgid "Spaces Per _Indent"
+msgstr "Пробелов на _отступ"
+
+#: src/editor-preferences-dialog.ui:204
 msgid "Behavior"
 msgstr "Поведение"
 
-#: src/editor-preferences-dialog.ui:148
+#: src/editor-preferences-dialog.ui:207
 msgid "_Discover Document Settings"
 msgstr "Авто_матически определять настройки документа"
 
-#: src/editor-preferences-dialog.ui:150
+#: src/editor-preferences-dialog.ui:209
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr ""
 "Применять настройки из modeline, editorconfig или использовать разумные "
 "значения по умолчанию"
 
-#: src/editor-preferences-dialog.ui:156
+#: src/editor-preferences-dialog.ui:215
 msgid "_Restore Session"
 msgstr "Восс_танавливать сеанс"
 
-#: src/editor-preferences-dialog.ui:158
+#: src/editor-preferences-dialog.ui:217
 msgid "Return to your previous session when Text Editor is started"
 msgstr "Возвращаться к предыдущему сеансу при запуске текстового редактора"
 
-#: src/editor-preferences-dialog.ui:170
+#: src/editor-preferences-dialog.ui:229
 msgid "_Clear History"
 msgstr "Очистить _историю"
 
@@ -680,22 +709,6 @@ msgstr "_Кодировка"
 msgid "_Line Feed"
 msgstr "Перевод _строки"
 
-#: src/editor-properties-panel.ui:106
-msgid "A_uto Indentation"
-msgstr "_Автоматический отступ"
-
-#: src/editor-properties-panel.ui:113
-msgid "_Character"
-msgstr "С_имвол"
-
-#: src/editor-properties-panel.ui:124
-msgid "Spaces Per _Tab"
-msgstr "Пробелов на _табуляцию"
-
-#: src/editor-properties-panel.ui:136
-msgid "Spaces Per _Indent"
-msgstr "Пробелов на _отступ"
-
 #: src/editor-properties-panel.ui:150
 msgid "Statistics"
 msgstr "Статистика"
@@ -737,7 +750,7 @@ msgstr ""
 "были сохранены, будут безвозвратно потеряны."
 
 #: src/editor-save-changes-dialog.c:262 src/editor-window-actions.c:116
-#: src/editor-window.ui:274
+#: src/editor-window.ui:365
 msgid "_Save"
 msgstr "Со_хранить"
 
@@ -751,61 +764,61 @@ msgstr "Безымянный документ"
 msgid "%s (new)"
 msgstr "%s (новый)"
 
-#: src/editor-search-bar.ui:36
+#: src/editor-search-bar.ui:36 src/editor-search-bar.ui:38
 msgid "Replace"
 msgstr "Заменить"
 
-#: src/editor-search-bar.ui:54
+#: src/editor-search-bar.ui:57
 msgid "Previous Match"
 msgstr "Предыдущее совпадение"
 
-#: src/editor-search-bar.ui:67
+#: src/editor-search-bar.ui:70
 msgid "Next Match"
 msgstr "Следующее совпадение"
 
-#: src/editor-search-bar.ui:83
+#: src/editor-search-bar.ui:86
 msgid "Search & Replace"
 msgstr "Найти и заменить"
 
-#: src/editor-search-bar.ui:98
+#: src/editor-search-bar.ui:101
 msgid "Search Options"
 msgstr "Параметры поиска"
 
-#: src/editor-search-bar.ui:116
+#: src/editor-search-bar.ui:119
 msgid "Close Search"
 msgstr "Закрыть поиск"
 
-#: src/editor-search-bar.ui:134
+#: src/editor-search-bar.ui:137
 msgid "_Replace"
 msgstr "_Заменить"
 
-#: src/editor-search-bar.ui:148
+#: src/editor-search-bar.ui:151
 msgid "Replace _All"
 msgstr "Заменить _все"
 
-#: src/editor-search-bar.ui:167
+#: src/editor-search-bar.ui:170
 msgid "Re_gular Expressions"
 msgstr "_Регулярные выражения"
 
-#: src/editor-search-bar.ui:171
+#: src/editor-search-bar.ui:174
 msgid "_Case Sensitive"
 msgstr "_Учитывать регистр"
 
-#: src/editor-search-bar.ui:175
+#: src/editor-search-bar.ui:178
 msgid "Match Whole _Word Only"
 msgstr "Искать только слово _целиком"
 
 #. translators: the first %u is replaced with the current position, the second with the number of search results
-#: src/editor-search-entry.c:225
+#: src/editor-search-entry.c:221
 #, c-format
 msgid "%u of %u"
 msgstr "%u из %u"
 
-#: src/editor-search-entry.ui:31
+#: src/editor-search-entry.ui:33
 msgid "Clear Entry"
 msgstr "Очистить запись"
 
-#: src/editor-sidebar-row.ui:85
+#: src/editor-sidebar-row.ui:82
 msgid "Remove"
 msgstr "Удалить"
 
@@ -877,429 +890,429 @@ msgstr "Несохраненные изменения будут безвозв�
 msgid "Discard Changes to “%s”?"
 msgstr "Отменить изменения в «%s»?"
 
-#: src/editor-window-actions.c:380
+#: src/editor-window-actions.c:384
 msgid "All Files"
 msgstr "Все файлы"
 
-#: src/editor-window-actions.c:385
+#: src/editor-window-actions.c:389
 msgid "Text Files"
 msgstr "Текстовые файлы"
 
-#: src/editor-window.c:398
+#: src/editor-window.c:423
 msgid "Zoom In"
 msgstr "Увеличить"
 
-#: src/editor-window.c:401
+#: src/editor-window.c:426
 msgid "Zoom in"
 msgstr "Увеличить"
 
-#: src/editor-window.c:411
+#: src/editor-window.c:436
 msgid "Zoom Out"
 msgstr "Уменьшить"
 
-#: src/editor-window.c:414
+#: src/editor-window.c:439
 msgid "Zoom out"
 msgstr "Уменьшить"
 
-#: src/editor-window.c:419
+#: src/editor-window.c:444
 msgid "Reset Zoom"
 msgstr "Сбросить масштаб"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:657
+#: src/editor-window.c:690
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - текстовый редактор"
 
-#: src/editor-window.c:1158
+#: src/editor-window.c:1167
 msgid "There are unsaved documents"
 msgstr "Имеются несохранённые документы"
 
-#: src/editor-window.ui:100
-msgid "_Open"
-msgstr "_Открыть"
-
-#: src/editor-window.ui:102
-msgid "Recently Used Documents"
-msgstr "Недавно использованные документы"
-
-#: src/editor-window.ui:112
-msgid "New Tab"
-msgstr "Новая вкладка"
-
-#: src/editor-window.ui:117 src/editor-window.ui:311
-msgid "Leave Fullscreen"
-msgstr "Выйти из полноэкранного режима"
-
-#: src/editor-window.ui:125
-msgid "Main Menu"
-msgstr "Главное меню"
-
-#: src/editor-window.ui:132
-msgid "Document Properties"
-msgstr "Свойства документа"
-
-#: src/editor-window.ui:178
+#: src/editor-window.ui:81
 msgid "Open a Document"
 msgstr "Открыть документ"
 
-#: src/editor-window.ui:179
+#: src/editor-window.ui:82
 msgid "Create a new document (Ctrl+N), or open an existing one (Ctrl+O)"
 msgstr "Создайте новый документ (Ctrl+N) или откройте существующий (Ctrl+O)"
 
-#: src/editor-window.ui:190
+#: src/editor-window.ui:93
 msgid "_New Empty File"
 msgstr "_Создать пустой файл"
 
-#: src/editor-window.ui:266
+#: src/editor-window.ui:166
+msgid "Recently Used Documents"
+msgstr "Недавно использованные документы"
+
+#: src/editor-window.ui:191
+msgid "_Open"
+msgstr "_Открыть"
+
+#: src/editor-window.ui:224
+msgid "New Tab"
+msgstr "Новая вкладка"
+
+#: src/editor-window.ui:229 src/editor-window.ui:403
+msgid "Leave Fullscreen"
+msgstr "Выйти из полноэкранного режима"
+
+#: src/editor-window.ui:237
+msgid "Main Menu"
+msgstr "Главное меню"
+
+#: src/editor-window.ui:244
+msgid "Document Properties"
+msgstr "Свойства документа"
+
+#: src/editor-window.ui:357
 msgid "_New Window"
 msgstr "_Создать окно"
 
-#: src/editor-window.ui:286
+#: src/editor-window.ui:377
 msgid "_Discard Changes…"
 msgstr "_Отменить изменения…"
 
-#: src/editor-window.ui:292
+#: src/editor-window.ui:384
 msgid "_Find/Replace…"
 msgstr "_Найти/Заменить…"
 
-#: src/editor-window.ui:298
+#: src/editor-window.ui:390
 msgid "_Print…"
 msgstr "_Печать…"
 
-#: src/editor-window.ui:305
+#: src/editor-window.ui:397
 msgid "Fullscreen"
 msgstr "Полноэкранный режим"
 
-#: src/editor-window.ui:319
+#: src/editor-window.ui:411
 msgid "P_references"
 msgstr "_Параметры"
 
-#: src/editor-window.ui:324
+#: src/editor-window.ui:416
 msgid "_Keyboard Shortcuts"
 msgstr "_Комбинации клавиш"
 
-#: src/editor-window.ui:328
+#: src/editor-window.ui:420
 msgid "A_bout Text Editor"
 msgstr "_О приложении"
 
-#: src/editor-window.ui:336
+#: src/editor-window.ui:428
 msgid "Move _Left"
 msgstr "Переместить в_лево"
 
-#: src/editor-window.ui:341
+#: src/editor-window.ui:433
 msgid "Move _Right"
 msgstr "Переместить в_право"
 
-#: src/editor-window.ui:348
+#: src/editor-window.ui:440
 msgid "_Move to New Window"
 msgstr "Переместить в _новое окно"
 
-#: src/editor-window.ui:355
+#: src/editor-window.ui:447
 msgid "Close _Other Tabs"
 msgstr "Закрыть _остальные вкладки"
 
-#: src/help-overlay.ui:12
+#: src/shortcuts-dialog.ui:8
 msgctxt "shortcut window"
 msgid "Windows"
 msgstr "Окна"
 
-#: src/help-overlay.ui:15
+#: src/shortcuts-dialog.ui:11
 msgctxt "shortcut window"
 msgid "New window"
 msgstr "Создать окно"
 
-#: src/help-overlay.ui:21
+#: src/shortcuts-dialog.ui:17
 msgctxt "shortcut window"
 msgid "Move document to new window"
 msgstr "Переместить документ в новое окно"
 
-#: src/help-overlay.ui:28
+#: src/shortcuts-dialog.ui:24
 msgctxt "shortcut window"
 msgid "Move to next tab"
 msgstr "Перейти к следующей вкладке"
 
-#: src/help-overlay.ui:34
+#: src/shortcuts-dialog.ui:30
 msgctxt "shortcut window"
 msgid "Move to previous tab"
 msgstr "Перейти к предыдущей вкладке"
 
-#: src/help-overlay.ui:40
+#: src/shortcuts-dialog.ui:36
 msgctxt "shortcut window"
 msgid "Reorder after next tab"
 msgstr "Перегруппировать после следующей вкладки"
 
-#: src/help-overlay.ui:46
+#: src/shortcuts-dialog.ui:42
 msgctxt "shortcut window"
 msgid "Reorder before previous tab"
 msgstr "Перегруппировать перед предыдущей вкладкой"
 
-#: src/help-overlay.ui:52
+#: src/shortcuts-dialog.ui:48
 msgctxt "shortcut window"
 msgid "Restore previously closed tab"
 msgstr "Восстановить ранее закрытую вкладку"
 
-#: src/help-overlay.ui:59
+#: src/shortcuts-dialog.ui:55
 msgctxt "shortcut window"
 msgid "Zoom"
 msgstr "Масштаб"
 
-#: src/help-overlay.ui:63
+#: src/shortcuts-dialog.ui:59
 msgctxt "shortcut window"
 msgid "Zoom In"
 msgstr "Увеличить"
 
-#: src/help-overlay.ui:69
+#: src/shortcuts-dialog.ui:65
 msgctxt "shortcut window"
 msgid "Zoom Out"
 msgstr "Уменьшить"
 
-#: src/help-overlay.ui:75
+#: src/shortcuts-dialog.ui:71
 msgctxt "shortcut window"
 msgid "Reset Zoom"
 msgstr "Сбросить масштаб"
 
-#: src/help-overlay.ui:82
+#: src/shortcuts-dialog.ui:78
 msgctxt "shortcut window"
 msgid "Documents"
 msgstr "Документы"
 
-#: src/help-overlay.ui:85
+#: src/shortcuts-dialog.ui:81
 msgctxt "shortcut window"
 msgid "New document"
 msgstr "Создать документ"
 
-#: src/help-overlay.ui:91
+#: src/shortcuts-dialog.ui:87
 msgctxt "shortcut window"
 msgid "Browse to open document"
 msgstr "Обзор для открытия документа"
 
-#: src/help-overlay.ui:97
+#: src/shortcuts-dialog.ui:93
 msgctxt "shortcut window"
 msgid "Find document by name"
 msgstr "Искать документ по названию"
 
-#: src/help-overlay.ui:103
+#: src/shortcuts-dialog.ui:99
 msgctxt "shortcut window"
 msgid "Save"
 msgstr "Сохранить"
 
-#: src/help-overlay.ui:109
+#: src/shortcuts-dialog.ui:105
 msgctxt "shortcut window"
 msgid "Save As"
 msgstr "Сохранить как"
 
-#: src/help-overlay.ui:115
+#: src/shortcuts-dialog.ui:111
 msgctxt "shortcut window"
 msgid "Find/Replace"
 msgstr "Найти/Заменить"
 
-#: src/help-overlay.ui:121
+#: src/shortcuts-dialog.ui:117
 msgctxt "shortcut window"
 msgid "Close document"
 msgstr "Закрыть документ"
 
-#: src/help-overlay.ui:127
+#: src/shortcuts-dialog.ui:123
 msgctxt "shortcut window"
 msgid "Open document properties"
 msgstr "Открыть свойства документа"
 
-#: src/help-overlay.ui:135
+#: src/shortcuts-dialog.ui:131
 msgctxt "shortcut window"
 msgid "Copy and Paste"
 msgstr "Копировать и вставить"
 
-#: src/help-overlay.ui:139
+#: src/shortcuts-dialog.ui:135
 msgctxt "shortcut window"
 msgid "Copy selected text to clipboard"
 msgstr "Копировать выделенный текст в буфер обмена"
 
-#: src/help-overlay.ui:145
+#: src/shortcuts-dialog.ui:141
 msgctxt "shortcut window"
 msgid "Cut selected text to clipboard"
 msgstr "Вырезать выделенный текст в буфер обмена"
 
-#: src/help-overlay.ui:151
+#: src/shortcuts-dialog.ui:147
 msgctxt "shortcut window"
 msgid "Paste text from clipboard"
 msgstr "Вставить текст из буфера обмена"
 
-#: src/help-overlay.ui:156
+#: src/shortcuts-dialog.ui:152
 msgctxt "shortcut window"
 msgid "Copy all to clipboard"
 msgstr "Копировать все в буфер обмена"
 
-#: src/help-overlay.ui:162
+#: src/shortcuts-dialog.ui:158
 msgctxt "shortcut window"
 msgid "Copy current line down"
 msgstr "Копировать текущую строку вниз"
 
-#: src/help-overlay.ui:170
+#: src/shortcuts-dialog.ui:166
 msgctxt "shortcut window"
 msgid "Undo and Redo"
 msgstr "Отменить и повторить"
 
-#: src/help-overlay.ui:174
+#: src/shortcuts-dialog.ui:170
 msgctxt "shortcut window"
 msgid "Undo previous command"
 msgstr "Отменить предыдущую команду"
 
-#: src/help-overlay.ui:180
+#: src/shortcuts-dialog.ui:176
 msgctxt "shortcut window"
 msgid "Redo previous command"
 msgstr "Повторить предыдущую команду"
 
-#: src/help-overlay.ui:187
+#: src/shortcuts-dialog.ui:183
 msgctxt "shortcut window"
 msgid "Editing"
 msgstr "Редактирование"
 
-#: src/help-overlay.ui:191
+#: src/shortcuts-dialog.ui:187
 msgctxt "shortcut window"
 msgid "Insert emoji into document"
 msgstr "Вставить эмодзи в документ"
 
-#: src/help-overlay.ui:197
+#: src/shortcuts-dialog.ui:193
 msgctxt "shortcut window"
 msgid "Search within the document"
 msgstr "Поиск в документе"
 
-#: src/help-overlay.ui:203
+#: src/shortcuts-dialog.ui:199
 msgctxt "shortcut window"
 msgid "Search and replace within the document"
 msgstr "Поиск и замена в документе"
 
-#: src/help-overlay.ui:209
+#: src/shortcuts-dialog.ui:205
 msgctxt "shortcut window"
 msgid "Increment number at cursor"
 msgstr "Увеличить число под курсором"
 
-#: src/help-overlay.ui:215
+#: src/shortcuts-dialog.ui:211
 msgctxt "shortcut window"
 msgid "Decrement number at cursor"
 msgstr "Уменьшить число под курсором"
 
-#: src/help-overlay.ui:221
+#: src/shortcuts-dialog.ui:217
 msgctxt "shortcut window"
 msgid "Toggle overwrite"
 msgstr "Переключить перезапись"
 
-#: src/help-overlay.ui:227
+#: src/shortcuts-dialog.ui:223
 msgctxt "shortcut window"
 msgid "Toggle visibility of insertion caret"
 msgstr "Переключить видимость символа вставки"
 
-#: src/help-overlay.ui:234
+#: src/shortcuts-dialog.ui:230
 msgctxt "shortcut window"
 msgid "Selections"
 msgstr "Выделение"
 
-#: src/help-overlay.ui:238
+#: src/shortcuts-dialog.ui:234
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Выделить все"
 
-#: src/help-overlay.ui:244
+#: src/shortcuts-dialog.ui:240
 msgctxt "shortcut window"
 msgid "Unselect all"
 msgstr "Снять выделение со всего"
 
-#: src/help-overlay.ui:250
+#: src/shortcuts-dialog.ui:246
 msgctxt "shortcut window"
 msgid "Select current line"
 msgstr "Выделить текущую строку"
 
-#: src/help-overlay.ui:257
+#: src/shortcuts-dialog.ui:253
 msgctxt "shortcut window"
 msgid "Movements"
 msgstr "Перемещения"
 
-#: src/help-overlay.ui:261
+#: src/shortcuts-dialog.ui:257
 msgctxt "shortcut window"
 msgid "Move to beginning of document"
 msgstr "Перейти к началу документа"
 
-#: src/help-overlay.ui:267
+#: src/shortcuts-dialog.ui:263
 msgctxt "shortcut window"
 msgid "Move to end of document"
 msgstr "Перейти к концу документа"
 
-#: src/help-overlay.ui:273
+#: src/shortcuts-dialog.ui:269
 msgctxt "shortcut window"
 msgid "Move to start of previous paragraph"
 msgstr "Перейти к началу предыдущего абзаца"
 
-#: src/help-overlay.ui:279
+#: src/shortcuts-dialog.ui:275
 msgctxt "shortcut window"
 msgid "Move to end of next paragraph"
 msgstr "Перейти к концу следующего абзаца"
 
-#: src/help-overlay.ui:285
+#: src/shortcuts-dialog.ui:281
 msgctxt "shortcut window"
 msgid "Move current or selected lines up"
 msgstr "Переместить текущую или выбранную строку вверх"
 
-#: src/help-overlay.ui:291
+#: src/shortcuts-dialog.ui:287
 msgctxt "shortcut window"
 msgid "Move current or selected lines down"
 msgstr "Переместить текущую или выбранную строку вниз"
 
-#: src/help-overlay.ui:297
+#: src/shortcuts-dialog.ui:293
 msgctxt "shortcut window"
 msgid "Go to line"
 msgstr "Перейти к строке"
 
-#: src/help-overlay.ui:304
+#: src/shortcuts-dialog.ui:300
 msgctxt "shortcut window"
 msgid "Deletion"
 msgstr "Удаление"
 
-#: src/help-overlay.ui:308
+#: src/shortcuts-dialog.ui:304
 msgctxt "shortcut window"
 msgid "Delete from cursor to word start"
 msgstr "Удалить от курсора до начала слова"
 
-#: src/help-overlay.ui:314
+#: src/shortcuts-dialog.ui:310
 msgctxt "shortcut window"
 msgid "Delete from cursor to word end"
 msgstr "Удалить от курсора до конца слова"
 
-#: src/help-overlay.ui:320
+#: src/shortcuts-dialog.ui:316
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph start"
 msgstr "Удалить от курсора до начала абзаца"
 
-#: src/help-overlay.ui:326
+#: src/shortcuts-dialog.ui:322
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph end"
 msgstr "Удалить от курсора до конца абзаца"
 
-#: src/help-overlay.ui:332
+#: src/shortcuts-dialog.ui:328
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "Удалить текущую строку"
 
-#: src/help-overlay.ui:339
+#: src/shortcuts-dialog.ui:335
 msgctxt "shortcut window"
 msgid "General"
 msgstr "Общие"
 
-#: src/help-overlay.ui:343
+#: src/shortcuts-dialog.ui:339
 msgctxt "shortcut window"
 msgid "Show preferences"
 msgstr "Показать параметры"
 
-#: src/help-overlay.ui:349
+#: src/shortcuts-dialog.ui:345
 msgctxt "shortcut window"
 msgid "Show keyboard shortcuts"
 msgstr "Показать комбинации клавиш"
 
-#: src/help-overlay.ui:355
+#: src/shortcuts-dialog.ui:351
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Показать справку"
 
-#: src/help-overlay.ui:361
+#: src/shortcuts-dialog.ui:357
 msgctxt "shortcut window"
 msgid "Toggle text wrapping"
 msgstr "Переключить перенос текста"
@@ -1329,9 +1342,6 @@ msgstr "Переключить перенос текста"
 
 #~ msgid "Main menu"
 #~ msgstr "Главное меню"
-
-msgid "Indentation"
-msgstr "Отступ"
 
 #~ msgid "2"
 #~ msgstr "2"
