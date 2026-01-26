@@ -6,9 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/issues\n"
-"POT-Creation-Date: 2025-09-10 19:21+0000\n"
-"PO-Revision-Date: 2025-09-29 13:03-0400\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/"
+"issues\n"
+"POT-Creation-Date: 2026-01-19 08:46+0000\n"
+"PO-Revision-Date: 2026-01-26 10:02-0500\n"
 "Last-Translator: Abduqadir Abliz <sahranbay@gmail.com>\n"
 "Language-Team: \n"
 "Language: ug\n"
@@ -16,13 +17,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.7\n"
+"X-Generator: Poedit 3.8\n"
 
 #: data/org.gnome.TextEditor.desktop.in.in:3
 msgid "write;notepad;"
 msgstr "write;notepad;يازغۇچ;خاتىرە دەپتەر;"
 
-#: data/org.gnome.TextEditor.desktop.in.in:7 data/org.gnome.TextEditor.desktop.in.in:8 data/org.gnome.TextEditor.metainfo.xml.in.in:10
+#: data/org.gnome.TextEditor.desktop.in.in:7
+#: data/org.gnome.TextEditor.desktop.in.in:8
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:10
 #: src/editor-application-actions.c:200 src/editor-window.c:1288
 msgid "Text Editor"
 msgstr "تېكىست تەھرىرلىگۈچ"
@@ -40,8 +43,20 @@ msgid "Edit text files"
 msgstr "تېكىست ھۆججىتىنى تەھرىرلەيدۇ"
 
 #: data/org.gnome.TextEditor.metainfo.xml.in.in:14
-msgid "GNOME Text Editor is a simple text editor focused on a pleasing default experience."
-msgstr "GNOME تېكىست تەھرىرلىگۈچ كۆڭۈلدىكى رازىمەنلىك تۇيغۇسىغا مەركەزلەشكەن ئاددىي تېكىست تەھرىرلىگۈچ."
+msgid ""
+"GNOME Text Editor is a simple text editor focused on a pleasing default "
+"experience."
+msgstr ""
+"GNOME تېكىست تەھرىرلىگۈچ كۆڭۈلدىكى رازىمەنلىك تۇيغۇسىغا مەركەزلەشكەن ئاددىي "
+"تېكىست تەھرىرلىگۈچ."
+
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:27
+msgid "Text Editor's main window"
+msgstr "تېكىست تەھرىرلىگۈچنىڭ ئاساسىي كۆزنىكى"
+
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:31
+msgid "Syntax highlighting"
+msgstr "تىلقۇرما يورۇتۇش"
 
 #: data/org.gnome.TextEditor.gschema.xml:16
 msgid "Auto Save Delay"
@@ -56,16 +71,22 @@ msgid "Style Variant"
 msgstr "ئۇسلۇب شالغۇتى"
 
 #: data/org.gnome.TextEditor.gschema.xml:27
-msgid "Use the light or dark variant of the GTK theme and/or GtkSourceView style scheme."
-msgstr "GTK ئۆرنەك ۋە ياكى GtkSourceView ئۇسلۇب لايىھەسىنىڭ يورۇق ياكى قاراڭغۇ شالغۇتىنى ئىشلىتىدۇ."
+msgid ""
+"Use the light or dark variant of the GTK theme and/or GtkSourceView style "
+"scheme."
+msgstr ""
+"GTK ئۆرنەك ۋە ياكى GtkSourceView ئۇسلۇب لايىھەسىنىڭ يورۇق ياكى قاراڭغۇ "
+"شالغۇتىنى ئىشلىتىدۇ."
 
 #: data/org.gnome.TextEditor.gschema.xml:35
 msgid "Indentation Style"
 msgstr "تارايتىش ئۇسلۇبى"
 
 #: data/org.gnome.TextEditor.gschema.xml:36
-msgid "Whether the editor should insert multiple spaces characters instead of tabs."
-msgstr "تەھرىرلىگۈچ جەدۋەل بەلگىسىنىڭ ئورنىغا بوشلۇق بەلگىسىنى كىرگۈزۈشى كېرەكمۇ يوق."
+msgid ""
+"Whether the editor should insert multiple spaces characters instead of tabs."
+msgstr ""
+"تەھرىرلىگۈچ جەدۋەل بەلگىسىنىڭ ئورنىغا بوشلۇق بەلگىسىنى كىرگۈزۈشى كېرەكمۇ يوق."
 
 #: data/org.gnome.TextEditor.gschema.xml:40
 msgid "Auto Indent"
@@ -89,7 +110,8 @@ msgstr "تارايتىش كەڭلىكى"
 
 #: data/org.gnome.TextEditor.gschema.xml:53
 msgid "The number of spaces to indent or -1 to use tab-width."
-msgstr "تارايتىشنىڭ بوشلۇق سانى ياكى 1- بولسا جەدۋەل بەلگىسى كەڭلىكىنى ئىشلىتىدۇ."
+msgstr ""
+"تارايتىشنىڭ بوشلۇق سانى ياكى 1- بولسا جەدۋەل بەلگىسى كەڭلىكىنى ئىشلىتىدۇ."
 
 #: data/org.gnome.TextEditor.gschema.xml:57
 msgid "Show Line Numbers"
@@ -112,7 +134,8 @@ msgid "Right Margin Position"
 msgstr "ئوڭ بوشلۇق ئورنى"
 
 #: data/org.gnome.TextEditor.gschema.xml:69
-msgid "The position in characters at which the right margin should be displayed."
+msgid ""
+"The position in characters at which the right margin should be displayed."
 msgstr "ئوڭ گىرۋەك كۆرسىتىدىغان ئورۇن (ھەرپ سانى)."
 
 #: data/org.gnome.TextEditor.gschema.xml:73
@@ -120,8 +143,12 @@ msgid "Show Overview Map"
 msgstr "ئىخچام كۆرۈنۈش خەرىتىسىنى كۆرسەت"
 
 #: data/org.gnome.TextEditor.gschema.xml:74
-msgid "If enabled, an overview map of the file will be displayed to the side of the editor."
-msgstr "ئەگەر قوزغىتىلسا، ھۆججەتنىڭ ئىخچام كۆرۈنۈش خەرىتىسى تەھرىرلىگۈچنىڭ يېنىدا كۆرۈنىدۇ."
+msgid ""
+"If enabled, an overview map of the file will be displayed to the side of the "
+"editor."
+msgstr ""
+"ئەگەر قوزغىتىلسا، ھۆججەتنىڭ ئىخچام كۆرۈنۈش خەرىتىسى تەھرىرلىگۈچنىڭ يېنىدا "
+"كۆرۈنىدۇ."
 
 #: data/org.gnome.TextEditor.gschema.xml:78
 msgid "Show Background Grid"
@@ -129,7 +156,8 @@ msgstr "تەگلىك شادىسىنى كۆرسەت"
 
 #: data/org.gnome.TextEditor.gschema.xml:79
 msgid "If enabled, a blueprint style grid is printed on the editor background."
-msgstr "ئەگەر قوزغىتىلسا، تەھرىرلىگۈچ تەگلىكىدە لايىھە ئۇسلۇبىدىكى شادا باسىدۇ."
+msgstr ""
+"ئەگەر قوزغىتىلسا، تەھرىرلىگۈچ تەگلىكىدە لايىھە ئۇسلۇبىدىكى شادا باسىدۇ."
 
 #: data/org.gnome.TextEditor.gschema.xml:83
 msgid "Highlight current line"
@@ -168,16 +196,24 @@ msgid "Style Scheme"
 msgstr "ئۇسلۇب لايىھەسى"
 
 #: data/org.gnome.TextEditor.gschema.xml:104
-msgid "The style scheme to use by the editor. It may translate this into a dark format when available."
-msgstr "تەھرىرلىگۈچ ئىشلىتىدىغان ئۇسلۇب لايىھەسى. ئەگەر ئىشلەتكىلى بولسا ئۇ ئۇنى قاراڭغۇ پىچىمغا  ئايلاندۇرىدۇ."
+msgid ""
+"The style scheme to use by the editor. It may translate this into a dark "
+"format when available."
+msgstr ""
+"تەھرىرلىگۈچ ئىشلىتىدىغان ئۇسلۇب لايىھەسى. ئەگەر ئىشلەتكىلى بولسا ئۇ ئۇنى "
+"قاراڭغۇ پىچىمغا  ئايلاندۇرىدۇ."
 
 #: data/org.gnome.TextEditor.gschema.xml:108
 msgid "Discover File Settings"
 msgstr "ھۆججەت تەڭشىكىنى بايقا"
 
 #: data/org.gnome.TextEditor.gschema.xml:109
-msgid "If enabled, then Text Editor will try to discover file settings from modelines, editorconfig, or per-language defaults."
-msgstr "ئەگەر قوزغىتىلسا، تېكىست تەھرىرلىگۈچ  ھالەت قۇرى، تەھرىرلىگۈچ سەپلىمىسى ياكى ھەر بىر تىلنىڭ كۆڭۈلدىكى قىممىتىدىن ھۆججەت تەڭشىكىنى بايقايدۇ."
+msgid ""
+"If enabled, then Text Editor will try to discover file settings from "
+"modelines, editorconfig, or per-language defaults."
+msgstr ""
+"ئەگەر قوزغىتىلسا، تېكىست تەھرىرلىگۈچ  ھالەت قۇرى، تەھرىرلىگۈچ سەپلىمىسى ياكى "
+"ھەر بىر تىلنىڭ كۆڭۈلدىكى قىممىتىدىن ھۆججەت تەڭشىكىنى بايقايدۇ."
 
 #: data/org.gnome.TextEditor.gschema.xml:113
 msgid "Automatically check spelling"
@@ -185,7 +221,9 @@ msgstr "ئىملانى ئاپتوماتىك تەكشۈرىدۇ"
 
 #: data/org.gnome.TextEditor.gschema.xml:114
 msgid "If enabled, then Text Editor will check spelling as you type."
-msgstr "ئەگەر قوزغىتىلسا، تېكىست تەھرىرلىگۈچ تېكىست كىرگۈزۈلۈۋاتقاندا ئىملاسىنى تەكشۈرىدۇ."
+msgstr ""
+"ئەگەر قوزغىتىلسا، تېكىست تەھرىرلىگۈچ تېكىست كىرگۈزۈلۈۋاتقاندا ئىملاسىنى "
+"تەكشۈرىدۇ."
 
 #: data/org.gnome.TextEditor.gschema.xml:118
 msgid "Restore session"
@@ -193,7 +231,9 @@ msgstr "ئەڭگىمەنى ئەسلىگە كەلتۈر"
 
 #: data/org.gnome.TextEditor.gschema.xml:119
 msgid "When Text Editor is running, restore the previous session."
-msgstr "تېكىست تەھرىرلىگۈچ ئىجرا قىلىنىۋاتقاندا، ئالدىنقى ئەڭگىمەنى ئەسلىگە كەلتۈرىدۇ."
+msgstr ""
+"تېكىست تەھرىرلىگۈچ ئىجرا قىلىنىۋاتقاندا، ئالدىنقى ئەڭگىمەنى ئەسلىگە "
+"كەلتۈرىدۇ."
 
 #: data/org.gnome.TextEditor.gschema.xml:123
 msgid "Recolor Window"
@@ -232,7 +272,9 @@ msgid "Enable Snippets"
 msgstr "پۇرۇچ قوزغىتىدۇ"
 
 #: data/org.gnome.TextEditor.gschema.xml:148
-msgid "Enable the use of snippets registered with GtkSourceView from within the editor."
+msgid ""
+"Enable the use of snippets registered with GtkSourceView from within the "
+"editor."
 msgstr "تەھرىرلىگۈچتە ئىشلىتىدىغان GtkSourceView غا خەتلەتكەن پۇرۇچ."
 
 #: data/org.gnome.TextEditor.gschema.xml:153
@@ -280,7 +322,8 @@ msgstr "ھۆججەت تارىخىنى تازىلامدۇ؟"
 msgid "This action cannot be undone"
 msgstr "بۇ مەشغۇلاتتىن يېنىۋالغىلى بولمايدۇ"
 
-#: src/editor-application-actions.c:352 src/editor-save-changes-dialog.c:260 src/editor-window-actions.c:115 src/editor-window-actions.c:219
+#: src/editor-application-actions.c:352 src/editor-save-changes-dialog.c:260
+#: src/editor-window-actions.c:115 src/editor-window-actions.c:219
 msgid "_Cancel"
 msgstr "ۋاز كەچ(_C)"
 
@@ -290,11 +333,14 @@ msgstr "ھەممىنى تازىلا(_C)"
 
 #: src/editor-application.c:531
 msgid "Standard input was requested multiple times. Ignoring request."
-msgstr "ئۆلچەملىك كىرگۈزۈش كۆپ قېتىم ئىلتىماس قىلىنغان. ئىلتىماسقا پەرۋا قىلمايۋاتىدۇ."
+msgstr ""
+"ئۆلچەملىك كىرگۈزۈش كۆپ قېتىم ئىلتىماس قىلىنغان. ئىلتىماسقا پەرۋا "
+"قىلمايۋاتىدۇ."
 
 #: src/editor-application.c:535
 msgid "Standard input is not supported on this platform. Ignoring request."
-msgstr "بۇ سۇپىدا ئۆلچەملىك كىرگۈزۈشنى قوللىمايدۇ. ئىلتىماسقا پەرۋا قىلمايۋاتىدۇ."
+msgstr ""
+"بۇ سۇپىدا ئۆلچەملىك كىرگۈزۈشنى قوللىمايدۇ. ئىلتىماسقا پەرۋا قىلمايۋاتىدۇ."
 
 #: src/editor-application.c:638
 msgid "Bugs may be reported at:"
@@ -314,17 +360,20 @@ msgstr "يېڭى كۆزنەكتە تەمىنلىگەن ھۆججەتنى ئاچى
 
 #: src/editor-application.c:766
 msgid "Run a new instance of Text Editor (implies --ignore-session)"
-msgstr "تېكىست تەھرىرلىگۈچتە يېڭى ئەمەلىي مىسالنى ئىجرا قىلىدۇ (ئىشارەت --ignore-session)"
+msgstr ""
+"تېكىست تەھرىرلىگۈچتە يېڭى ئەمەلىي مىسالنى ئىجرا قىلىدۇ (ئىشارەت --ignore-"
+"session)"
 
 #: src/editor-application.c:767
 msgid "Print version information and exit"
 msgstr "نەشر ئۇچۇرىنى بېسىپ چېكىنىدۇ"
 
-#: src/editor-document.c:2272
+#: src/editor-document.c:2285
 msgid "[Read-Only]"
 msgstr "[ئوقۇشقىلا]"
 
-#: src/editor-document.c:2497 src/editor-page.c:1125 src/editor-sidebar-item.c:498
+#: src/editor-document.c:2510 src/editor-page.c:1125
+#: src/editor-sidebar-item.c:500
 msgid "New Document"
 msgstr "يېڭى پۈتۈك"
 
@@ -426,7 +475,8 @@ msgid "Invalid Characters Detected"
 msgstr "ئىناۋەتسىز ھەرپ بايقالدى"
 
 #: src/editor-info-bar.ui:127
-msgid "There was an encoding conversion error so a fallback character was used."
+msgid ""
+"There was an encoding conversion error so a fallback character was used."
 msgstr "كود ئايلاندۇرۇش خاتالىقى كۆرۈلگەن شۇڭا زاپاس ھەرپ ئىشلىتىلگەن."
 
 #: src/editor-info-bar.ui:136
@@ -441,11 +491,13 @@ msgstr "باشقا پۈتۈك تۈرى"
 msgid "Document Type"
 msgstr "پۈتۈك تۈرى"
 
-#: src/editor-language-dialog.ui:25 src/editor-search-entry.c:193 src/editor-search-entry.ui:13
+#: src/editor-language-dialog.ui:25 src/editor-search-entry.c:193
+#: src/editor-search-entry.ui:13
 msgid "Search"
 msgstr "ئىزدە"
 
-#: src/editor-language-row.c:61 src/editor-language-row.c:119 src/editor-properties.c:573
+#: src/editor-language-row.c:61 src/editor-language-row.c:119
+#: src/editor-properties.c:573
 msgid "Plain Text"
 msgstr "ساپ تېكىست"
 
@@ -473,7 +525,8 @@ msgstr "يېڭى پۈتۈك ئاچ"
 msgid "No Recent Documents"
 msgstr "يېقىنقى پۈتۈك يوق"
 
-#: src/editor-page.c:1151 src/editor-properties.c:606 src/editor-sidebar-item.c:101
+#: src/editor-page.c:1151 src/editor-properties.c:617
+#: src/editor-sidebar-item.c:101
 msgid "Draft"
 msgstr "دەسلەپكى نۇسخا"
 
@@ -592,7 +645,9 @@ msgstr "پۈتۈك تەڭشەكنى بايقا(_D)"
 
 #: src/editor-preferences-dialog.ui:209
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
-msgstr "ھالەت قۇرى، تەھرىرلىگۈچ سەپلىمىسى ياكى مۇۋاپىق كۆڭۈلدىكى قىممەت ئارقىلىق تەڭشەكنى قوللىنىدۇ"
+msgstr ""
+"ھالەت قۇرى، تەھرىرلىگۈچ سەپلىمىسى ياكى مۇۋاپىق كۆڭۈلدىكى قىممەت ئارقىلىق "
+"تەڭشەكنى قوللىنىدۇ"
 
 #: src/editor-preferences-dialog.ui:215
 msgid "_Restore Session"
@@ -684,10 +739,15 @@ msgid "Save Changes?"
 msgstr "ئۆزگىرىشنى ساقلامدۇ؟"
 
 #: src/editor-save-changes-dialog.c:257
-msgid "Open documents contain unsaved changes. Changes which are not saved will be permanently lost."
-msgstr "ئېچىلغان پۈتۈكتە ساقلانمىغان ئۆزگىرىش بار. ساقلانمىغان ئۆزگىرىش مەڭگۈلۈك يوقىلىدۇ."
+msgid ""
+"Open documents contain unsaved changes. Changes which are not saved will be "
+"permanently lost."
+msgstr ""
+"ئېچىلغان پۈتۈكتە ساقلانمىغان ئۆزگىرىش بار. ساقلانمىغان ئۆزگىرىش مەڭگۈلۈك "
+"يوقىلىدۇ."
 
-#: src/editor-save-changes-dialog.c:262 src/editor-window-actions.c:116 src/editor-window.ui:365
+#: src/editor-save-changes-dialog.c:262 src/editor-window-actions.c:116
+#: src/editor-window.ui:365
 msgid "_Save"
 msgstr "ساقلا(_S)"
 
