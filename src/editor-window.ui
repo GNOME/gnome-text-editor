@@ -222,7 +222,11 @@
                 <property name="action-name">session.new-draft</property>
                 <property name="icon-name">tab-new-symbolic</property>
                 <property name="tooltip-text" translatable="yes">New Tab</property>
+                <property name="margin-start">6</property>
+<property name="margin-end">6</property>
+
               </object>
+
             </child>
             <child type="end">
               <object class="GtkButton" id="restore_button">
@@ -230,6 +234,9 @@
                 <property name="icon-name">view-restore-symbolic</property>
                 <property name="action-name">win.unfullscreen</property>
                 <property name="visible" bind-source="EditorWindow" bind-property="fullscreened" bind-flags="sync-create"/>
+                <property name="margin-start">6</property>
+<property name="margin-end">6</property>
+
               </object>
             </child>
             <child type="end">
@@ -237,6 +244,9 @@
                 <property name="tooltip-text" translatable="yes">Main Menu</property>
                 <property name="icon-name">open-menu-symbolic</property>
                 <property name="menu-model">primary_menu_model</property>
+                <property name="margin-start">6</property>
+<property name="margin-end">6</property>
+
               </object>
             </child>
             <child type="end">
@@ -244,6 +254,9 @@
                 <property name="tooltip-text" translatable="yes">Document Properties</property>
                 <property name="icon-name">info-outline-symbolic</property>
                 <property name="active" bind-source="split_view" bind-property="show-sidebar" bind-flags="bidirectional|sync-create"/>
+                <property name="margin-start">6</property>
+<property name="margin-end">6</property>
+
                 <child>
                   <object class="GtkShortcutController">
                     <property name="scope">managed</property>
