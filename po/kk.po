@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2026-01-06 20:38+0000\n"
-"PO-Revision-Date: 2026-01-08 23:23+0500\n"
+"POT-Creation-Date: 2026-01-29 17:33+0000\n"
+"PO-Revision-Date: 2026-01-30 07:10+0500\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <kk_KZ@googlegroups.com>\n"
 "Language: kk\n"
@@ -50,6 +50,14 @@ msgstr ""
 "GNOME мәтін түзеткіші - тамаша әдепкі қолдануға арналған қарапайым мәтін "
 "түзеткіші."
 
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:27
+msgid "Text Editor's main window"
+msgstr "Мәтін түзеткішінің басты терезесі"
+
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:31
+msgid "Syntax highlighting"
+msgstr "Синтаксисті түспен ерекшелеу"
+
 #: data/org.gnome.TextEditor.gschema.xml:16
 msgid "Auto Save Delay"
 msgstr "Автосақтау кідірісі"
@@ -67,8 +75,8 @@ msgid ""
 "Use the light or dark variant of the GTK theme and/or GtkSourceView style "
 "scheme."
 msgstr ""
-"GTK темасы және/немесе GtkSourceView стильдер схемасының ашық немесе "
-"күңгірт түсті нұсқаларын қолданыңыз."
+"GTK темасы және/немесе GtkSourceView стильдер схемасының ашық немесе күңгірт "
+"түсті нұсқаларын қолданыңыз."
 
 #: data/org.gnome.TextEditor.gschema.xml:35
 msgid "Indentation Style"
@@ -84,8 +92,7 @@ msgid "Auto Indent"
 msgstr "Автошегініс"
 
 #: data/org.gnome.TextEditor.gschema.xml:41
-msgid ""
-"Automatically indent new lines copying the previous line's indentation."
+msgid "Automatically indent new lines copying the previous line's indentation."
 msgstr ""
 "Алдыңғы жол шегінісін қолданып, жаңа жолдарға автоматты түрде шегініс жасау."
 
@@ -137,8 +144,8 @@ msgstr "Көрініс картасын көрсету"
 
 #: data/org.gnome.TextEditor.gschema.xml:74
 msgid ""
-"If enabled, an overview map of the file will be displayed to the side of "
-"the editor."
+"If enabled, an overview map of the file will be displayed to the side of the "
+"editor."
 msgstr ""
 "Іске қосылған болса, файлдың шолу картасы редактор бір жағында көрсетіледі."
 
@@ -147,8 +154,7 @@ msgid "Show Background Grid"
 msgstr "Фон торын көрсету"
 
 #: data/org.gnome.TextEditor.gschema.xml:79
-msgid ""
-"If enabled, a blueprint style grid is printed on the editor background."
+msgid "If enabled, a blueprint style grid is printed on the editor background."
 msgstr "Іске қосылған болса, түзеткіш фонында тор көрсетіледі."
 
 #: data/org.gnome.TextEditor.gschema.xml:83
@@ -661,6 +667,7 @@ msgstr "Файл: %s"
 
 #. Translators: %N is the current page number, %Q is the total
 #. * number of pages (ex. Page 2 of 10)
+#.
 #: src/editor-print-operation.c:196
 msgid "Page %N of %Q"
 msgstr "Бет %N, барлығы %Q"
@@ -792,8 +799,7 @@ msgstr "_Регистрді ескеру"
 msgid "Match Whole _Word Only"
 msgstr "Тек толық _сөзді сәйкестеу"
 
-#. translators: the first %u is replaced with the current position, the second
-#. with the number of search results
+#. translators: the first %u is replaced with the current position, the second with the number of search results
 #: src/editor-search-entry.c:221
 #, c-format
 msgid "%u of %u"
@@ -901,8 +907,7 @@ msgstr "Кішірейту"
 msgid "Reset Zoom"
 msgstr "Масштабты тастау"
 
-#. translators: the first %s is replaced with the title, the second %s is
-#. replaced with the subtitle
+#. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
 #: src/editor-window.c:690
 #, c-format
 msgid "%s (%s) - Text Editor"
