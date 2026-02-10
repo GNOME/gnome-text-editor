@@ -50,29 +50,8 @@
         </child>
       </object>
     </child>
-    <child>
-      <object class="AdwShortcutsSection">
-        <property name="title" translatable="yes" context="shortcut window">Zoom</property>
-        <child>
-          <object class="AdwShortcutsItem">
-            <property name="accelerator">&lt;ctrl&gt;plus</property>
-            <property name="title" translatable="yes" context="shortcut window">Zoom In</property>
-          </object>
-        </child>
-        <child>
-          <object class="AdwShortcutsItem">
-            <property name="accelerator">&lt;ctrl&gt;minus</property>
-            <property name="title" translatable="yes" context="shortcut window">Zoom Out</property>
-          </object>
-        </child>
-        <child>
-          <object class="AdwShortcutsItem">
-            <property name="accelerator">&lt;ctrl&gt;0</property>
-            <property name="title" translatable="yes" context="shortcut window">Reset Zoom</property>
-          </object>
-        </child>
-      </object>
-    </child>
+    
+  
     <child>
       <object class="AdwShortcutsSection">
         <property name="title" translatable="yes" context="shortcut window">Documents</property>
@@ -330,34 +309,59 @@
         </child>
       </object>
     </child>
+   <child>
+  <object class="AdwShortcutsSection">
+    <property name="title" translatable="yes" context="shortcut window">General</property>
+
     <child>
-      <object class="AdwShortcutsSection">
-        <property name="title" translatable="yes" context="shortcut window">General</property>
-        <child>
-          <object class="AdwShortcutsItem">
-            <property name="accelerator">&lt;ctrl&gt;comma</property>
-            <property name="title" translatable="yes" context="shortcut window">Show preferences</property>
-          </object>
-        </child>
-        <child>
-          <object class="AdwShortcutsItem">
-            <property name="accelerator">&lt;ctrl&gt;question</property>
-            <property name="title" translatable="yes" context="shortcut window">Show keyboard shortcuts</property>
-          </object>
-        </child>
-        <child>
-          <object class="AdwShortcutsItem">
-            <property name="accelerator">F1</property>
-            <property name="title" translatable="yes" context="shortcut window">Show help</property>
-          </object>
-        </child>
-        <child>
-          <object class="AdwShortcutsItem">
-            <property name="accelerator">&lt;Alt&gt;w</property>
-            <property name="title" translatable="yes" context="shortcut window">Toggle text wrapping</property>
-          </object>
-        </child>
+      <object class="AdwShortcutsItem">
+        <property name="accelerator">&lt;ctrl&gt;comma</property>
+        <property name="title" translatable="yes" context="shortcut window">Show preferences</property>
       </object>
     </child>
+
+    <child>
+      <object class="AdwShortcutsItem">
+        <property name="accelerator">&lt;ctrl&gt;question</property>
+        <property name="title" translatable="yes" context="shortcut window">Show keyboard shortcuts</property>
+      </object>
+    </child>
+
+    <child>
+      <object class="AdwShortcutsItem">
+        <property name="accelerator">F1</property>
+        <property name="title" translatable="yes" context="shortcut window">Show help</property>
+      </object>
+    </child>
+
+    <child>
+      <object class="AdwShortcutsItem">
+        <property name="accelerator">&lt;Alt&gt;w</property>
+        <property name="title" translatable="yes" context="shortcut window">Toggle text wrapping</property>
+      </object>
+    </child>
+
+    <!-- Zoom items moved here -->
+    <child>
+      <object class="AdwShortcutsItem">
+        <property name="accelerator">&lt;ctrl&gt;plus</property>
+        <property name="title" translatable="yes" context="shortcut window">Zoom In</property>
+      </object>
+    </child>
+
+    <child>
+      <object class="AdwShortcutsItem">
+        <property name="accelerator">&lt;ctrl&gt;minus</property>
+        <property name="title" translatable="yes" context="shortcut window">Zoom Out</property>
+      </object>
+    </child>
+
+    <child>
+      <object class="AdwShortcutsItem">
+        <property name="accelerator">&lt;ctrl&gt;0</property>
+        <property name="title" translatable="yes" context="shortcut window">Reset Zoom</property>
+      </object>
+    </child>
+
   </object>
-</interface>
+</child>
