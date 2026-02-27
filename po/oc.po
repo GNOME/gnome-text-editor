@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/"
 "issues\n"
 "POT-Creation-Date: 2026-01-29 17:33+0000\n"
-"PO-Revision-Date: 2026-02-27 13:54+0100\n"
+"PO-Revision-Date: 2026-02-27 18:25+0100\n"
 "Last-Translator: Quentin PAGÈS\n"
 "Language-Team: Occitan <totenoc@gmail.com>\n"
 "Language: oc\n"
@@ -65,7 +65,7 @@ msgstr "Relambi de salvagarda auto"
 
 #: data/org.gnome.TextEditor.gschema.xml:17
 msgid "The delay in seconds to wait before auto-saving a draft."
-msgstr "Lo nombre de segondas abans l’enregistrament automatic d’un borrolhon"
+msgstr "Lo nombre de segondas abans l’enregistrament automatic d’un borrolhon."
 
 #: data/org.gnome.TextEditor.gschema.xml:26
 msgid "Style Variant"
@@ -115,6 +115,7 @@ msgstr "Largor de l’indentacion"
 #: data/org.gnome.TextEditor.gschema.xml:53
 msgid "The number of spaces to indent or -1 to use tab-width."
 msgstr ""
+"Lo nombre d’espacis d’indentar o -1 per utilizar la largor de tabulacion."
 
 #: data/org.gnome.TextEditor.gschema.xml:57
 msgid "Show Line Numbers"
@@ -122,7 +123,7 @@ msgstr "Afichar los numèros de linha"
 
 #: data/org.gnome.TextEditor.gschema.xml:58
 msgid "Whether line numbers should be displayed next to each line."
-msgstr ""
+msgstr "Se cal afichar los numèros de linha a costat de cada linha."
 
 #: data/org.gnome.TextEditor.gschema.xml:62
 msgid "Show Right Margin"
@@ -130,7 +131,7 @@ msgstr "Afichar lo marge de drecha"
 
 #: data/org.gnome.TextEditor.gschema.xml:63
 msgid "Whether a margin line should be displayed on the right of the editor."
-msgstr ""
+msgstr "Se una linha de marge se deu afichar a drecha de l'editor."
 
 #: data/org.gnome.TextEditor.gschema.xml:68
 msgid "Right Margin Position"
@@ -139,7 +140,7 @@ msgstr "Posicion del marge de drecha"
 #: data/org.gnome.TextEditor.gschema.xml:69
 msgid ""
 "The position in characters at which the right margin should be displayed."
-msgstr ""
+msgstr "La posicion en caractèrs a la quala lo marge drech se deu afichar."
 
 #: data/org.gnome.TextEditor.gschema.xml:73
 msgid "Show Overview Map"
@@ -150,6 +151,7 @@ msgid ""
 "If enabled, an overview map of the file will be displayed to the side of the "
 "editor."
 msgstr ""
+"S'es activat, una mapa generala del fichièr s'aficharà a costat de l'editor."
 
 #: data/org.gnome.TextEditor.gschema.xml:78
 msgid "Show Background Grid"
@@ -158,6 +160,8 @@ msgstr "Afichar la grasilha de fons"
 #: data/org.gnome.TextEditor.gschema.xml:79
 msgid "If enabled, a blueprint style grid is printed on the editor background."
 msgstr ""
+"S'es activat, una grasilha estile plan director es afichada en rèireplan de "
+"l'editor."
 
 #: data/org.gnome.TextEditor.gschema.xml:83
 msgid "Highlight current line"
@@ -200,18 +204,21 @@ msgid ""
 "The style scheme to use by the editor. It may translate this into a dark "
 "format when available."
 msgstr ""
+"L'esquèma d'estil d'utilizar per l'editor. Aquò se pòt traduire en un format "
+"escur quand es disponible."
 
 #: data/org.gnome.TextEditor.gschema.xml:108
-#, fuzzy
-#| msgid "_Discover Document Settings"
 msgid "Discover File Settings"
-msgstr "_Descobrir los paramètres del document"
+msgstr "Descobrir los paramètres del document"
 
 #: data/org.gnome.TextEditor.gschema.xml:109
 msgid ""
 "If enabled, then Text Editor will try to discover file settings from "
 "modelines, editorconfig, or per-language defaults."
 msgstr ""
+"S'es activat, l'editor de tèxt ensajarà de descobrir los paramètres del "
+"fichièr a partir de las modelines, d'editorconfig, o de las valors per "
+"defaut per cada lengatge."
 
 #: data/org.gnome.TextEditor.gschema.xml:113
 msgid "Automatically check spelling"
@@ -220,6 +227,7 @@ msgstr "Verificar automaticament l'ortografia"
 #: data/org.gnome.TextEditor.gschema.xml:114
 msgid "If enabled, then Text Editor will check spelling as you type."
 msgstr ""
+"S'es activat, l'Editor de tèxt verificarà l'ortografia a mesura que picatz."
 
 #: data/org.gnome.TextEditor.gschema.xml:118
 msgid "Restore session"
@@ -228,6 +236,8 @@ msgstr "Restablir la session"
 #: data/org.gnome.TextEditor.gschema.xml:119
 msgid "When Text Editor is running, restore the previous session."
 msgstr ""
+"Quand l'Editor de tèxte es en cors d'execucion, restaurar la session "
+"precedenta."
 
 #: data/org.gnome.TextEditor.gschema.xml:123
 msgid "Recolor Window"
@@ -236,6 +246,7 @@ msgstr "Recolorar la fenèstra"
 #: data/org.gnome.TextEditor.gschema.xml:124
 msgid "Use the style-scheme to recolor the application window."
 msgstr ""
+"Utilizatz l'esquèma d'estil per tornar colorar la fenèstra de l'aplicacion."
 
 #: data/org.gnome.TextEditor.gschema.xml:132
 msgid "Keybindings"
@@ -243,7 +254,7 @@ msgstr "Acorchis de clavièr"
 
 #: data/org.gnome.TextEditor.gschema.xml:133
 msgid "The keybindings to use within Text Editor."
-msgstr ""
+msgstr "Los acorchis de clavièr a utilizar dins l’Editor de tèxte."
 
 #: data/org.gnome.TextEditor.gschema.xml:137
 msgid "Last Save Directory"
@@ -252,26 +263,28 @@ msgstr "Darrièr repertòri d'enregistrament"
 #: data/org.gnome.TextEditor.gschema.xml:138
 msgid "The directory last used in a save or save-as dialog."
 msgstr ""
+"Lo repertòri utilizat en darrièr dins una fenèstra de dialòg "
+"d'enregistrament o d'enregistrament-jos."
 
 #: data/org.gnome.TextEditor.gschema.xml:142
-#, fuzzy
-#| msgid "_Spaces"
 msgid "Draw Spaces"
-msgstr "_Espacis"
+msgstr "Dessenhar los espacis"
 
 #: data/org.gnome.TextEditor.gschema.xml:143
 msgid "The various types of spaces to draw in the editor."
-msgstr ""
+msgstr "Los diferents tipes d'espacis de dessenhar dins l'editor."
 
 #: data/org.gnome.TextEditor.gschema.xml:147
 msgid "Enable Snippets"
-msgstr ""
+msgstr "Activar los extraches"
 
 #: data/org.gnome.TextEditor.gschema.xml:148
 msgid ""
 "Enable the use of snippets registered with GtkSourceView from within the "
 "editor."
 msgstr ""
+"Activar l'utilizacion dels extraches enregistrats amb GtkSourceView dempuèi "
+"l'editor."
 
 #: data/org.gnome.TextEditor.gschema.xml:153
 msgid "Line Height"
@@ -279,27 +292,25 @@ msgstr "Nautor de linha"
 
 #: data/org.gnome.TextEditor.gschema.xml:154
 msgid "The line height to use for the selected font."
-msgstr ""
+msgstr "La nautor de linha d'utilizar per la polissa seleccionada."
 
 #: data/org.gnome.TextEditor.gschema.xml:158
 msgid "Highlight Matching Brackets"
 msgstr "Suslinhar las parentèsis correspondentas"
 
 #: data/org.gnome.TextEditor.gschema.xml:159
-#, fuzzy
-#| msgid "Highlight Matching Brackets"
 msgid "Highlight matching brackets and braces."
-msgstr "Suslinhar las parentèsis correspondentas"
+msgstr "Suslinhar las parentèsis e acoladas correspondentas"
 
 #: src/editor-animation.c:1038
 #, c-format
 msgid "Failed to find property %s in %s"
-msgstr ""
+msgstr "Proprietat %s introbabla dins %s"
 
 #: src/editor-animation.c:1047
 #, c-format
 msgid "Failed to retrieve va_list value: %s"
-msgstr ""
+msgstr "Impossible d'obténer la valor va_list : %s"
 
 #: src/editor-application-actions.c:202
 msgid "The GNOME Project"
@@ -310,10 +321,8 @@ msgid "translator-credits"
 msgstr "Desplaçar amont la linha actuala o seleccionadaQuentin PAGÈS"
 
 #: src/editor-application-actions.c:349
-#, fuzzy
-#| msgid "_Clear History"
 msgid "Clear File History?"
-msgstr "_Escafar l’istoric"
+msgstr "Escafar lo fichièr d’istoric ?"
 
 #: src/editor-application-actions.c:350
 msgid "This action cannot be undone"
@@ -331,10 +340,13 @@ msgstr "_Tot escafar"
 #: src/editor-application.c:531
 msgid "Standard input was requested multiple times. Ignoring request."
 msgstr ""
+"L'entrada estandarda es estada demandada mantun còp. Requèsta ignorada."
 
 #: src/editor-application.c:535
 msgid "Standard input is not supported on this platform. Ignoring request."
 msgstr ""
+"L'entrada estandarda es pas presa en carga sus aquesta platafòrma. Requèsta "
+"ignorada."
 
 #: src/editor-application.c:638
 msgid "Bugs may be reported at:"
@@ -355,6 +367,7 @@ msgstr "Dobrir los fichièrs fornits dins una fenèstra novèla"
 #: src/editor-application.c:766
 msgid "Run a new instance of Text Editor (implies --ignore-session)"
 msgstr ""
+"Aviar una instància novèla de l'Editor de tèxte (implica --ignore-session)"
 
 #: src/editor-application.c:767
 msgid "Print version information and exit"
@@ -391,16 +404,16 @@ msgstr "L’emplaçament del fichièr es NULL"
 
 #: src/editor-file-manager.c:108 src/editor-file-manager.c:119
 msgid "Error converting UTF-8 filename to wide char"
-msgstr ""
+msgstr "Error de conversion del nom de fichièr UTF-8 en caractèr larg"
 
 #: src/editor-file-manager.c:127
 msgid "ILCreateFromPath() failed"
-msgstr ""
+msgstr "Fracàs de ILCreateFromPath()"
 
 #: src/editor-file-manager.c:164
 #, c-format
 msgid "Cannot convert “%s” into a valid NSURL."
-msgstr ""
+msgstr "Impossible de convertir « %s » en NSURL valida."
 
 #: src/editor-indent-model.c:173
 msgid "Space"
@@ -449,6 +462,7 @@ msgstr "Modificacions del borrolhon restauradas"
 #: src/editor-info-bar.c:137
 msgid "Unsaved changes to the document have been restored."
 msgstr ""
+"Las modificacions del document non enregistradas son estadas restauradas."
 
 #: src/editor-info-bar.ui:19
 msgid "Could Not Open File"
@@ -470,6 +484,8 @@ msgstr "Caractèr invalid detectat"
 msgid ""
 "There was an encoding conversion error so a fallback character was used."
 msgstr ""
+"I aguèt una error de conversion de l'encodatge, doncas un caractèr de "
+"remplaçament es estat utilizat."
 
 #: src/editor-info-bar.ui:136
 msgid "Change _Encoding…"
@@ -550,10 +566,8 @@ msgid "Go"
 msgstr "Zo"
 
 #: src/editor-path.c:128
-#, fuzzy
-#| msgid "Document Restored"
 msgid "Document Portal"
-msgstr "Document restaurat"
+msgstr "Portal de documents"
 
 #. translators: Ln is short for "Line Number"
 #: src/editor-position-label.ui:15
@@ -575,7 +589,7 @@ msgstr "Polissa _personalizada"
 
 #: src/editor-preferences-dialog.ui:78
 msgid "Show Grid Pattern"
-msgstr ""
+msgstr "Afichar lo motiu de grasilha"
 
 #: src/editor-preferences-dialog.ui:85
 msgid "Display _Line Numbers"
@@ -595,7 +609,7 @@ msgstr "_Verificar l'ortografia"
 
 #: src/editor-preferences-dialog.ui:119
 msgid "Line Wrap"
-msgstr ""
+msgstr "Retorn a la linha"
 
 #: src/editor-preferences-dialog.ui:122
 msgid "Show _Right Margin"
@@ -607,7 +621,7 @@ msgstr "Posicion del _marge"
 
 #: src/editor-preferences-dialog.ui:136
 msgid "_Wrap Lines Automatically (Alt+W)"
-msgstr ""
+msgstr "_Copar las linhas automaticament (Alt+W)"
 
 #: src/editor-preferences-dialog.ui:145
 msgid "Indentation"
@@ -640,6 +654,8 @@ msgstr "_Descobrir los paramètres del document"
 #: src/editor-preferences-dialog.ui:209
 msgid "Apply settings using modelines, editorconfig, or sensible defaults"
 msgstr ""
+"Aplicar los paramètres en utilizant de modelines, editorconfig, o de valors "
+"per defaut"
 
 #: src/editor-preferences-dialog.ui:215
 msgid "_Restore Session"
@@ -695,10 +711,8 @@ msgid "_Encoding"
 msgstr "_Encodatge"
 
 #: src/editor-properties-panel.ui:90
-#, fuzzy
-#| msgid "_Line Numbers"
 msgid "_Line Feed"
-msgstr "Numèros de _linha"
+msgstr "Saut de _linha"
 
 #: src/editor-properties-panel.ui:150
 msgid "Statistics"
@@ -714,7 +728,7 @@ msgstr "Mots"
 
 #: src/editor-properties-panel.ui:179
 msgid "Characters, No Spaces"
-msgstr ""
+msgstr "Caractèrs, sens espaci"
 
 #: src/editor-properties-panel.ui:192
 msgid "All Characters"
@@ -737,6 +751,8 @@ msgid ""
 "Open documents contain unsaved changes. Changes which are not saved will be "
 "permanently lost."
 msgstr ""
+"Lo document dobèrt conten de modificacions non enregistradas. Las "
+"modificacions que son pas salvadas seràn perdudas per totjorn."
 
 #: src/editor-save-changes-dialog.c:262 src/editor-window-actions.c:116
 #: src/editor-window.ui:365
@@ -795,7 +811,7 @@ msgstr "_Sensible a la cassa"
 
 #: src/editor-search-bar.ui:178
 msgid "Match Whole _Word Only"
-msgstr ""
+msgstr "Correspondéncia unicament amb l’ensemble del mot"
 
 #. translators: the first %u is replaced with the current position, the second with the number of search results
 #: src/editor-search-entry.c:221
@@ -928,7 +944,7 @@ msgstr "Crear un document novèl (Ctrl+N), o ne dobrir un existissent (Ctrl+O)"
 
 #: src/editor-window.ui:93
 msgid "_New Empty File"
-msgstr ""
+msgstr "_Fichièr void novèl"
 
 #: src/editor-window.ui:166
 msgid "Recently Used Documents"
@@ -1133,12 +1149,9 @@ msgid "Copy all to clipboard"
 msgstr "Tot copiar al quichapapièrs"
 
 #: src/shortcuts-dialog.ui:158
-#, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "Select current line"
 msgctxt "shortcut window"
 msgid "Copy current line down"
-msgstr "Metre en susbrilhança la linha actuala"
+msgstr "Desplaçar la linha actuala enbàs"
 
 #: src/shortcuts-dialog.ui:166
 msgctxt "shortcut window"
