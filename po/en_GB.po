@@ -1,41 +1,41 @@
 # British English translation for gnome-text-editor.
 # Copyright (C) 2022 gnome-text-editor's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-text-editor package.
-# Bruce Cowan <bruce@bcowan.me.uk>, 2022-2024.
 # Andi Chandler <andi@gowling.com>, 2024-2025.
+# Bruce Cowan <bruce@bcowan.me.uk>, 2022-2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2025-03-13 01:11+0000\n"
-"PO-Revision-Date: 2025-02-24 14:07+0000\n"
-"Last-Translator: Andi Chandler <andi@gowling.com>\n"
-"Language-Team: English - United Kingdom <en@li.org>\n"
+"POT-Creation-Date: 2026-03-04 19:01+0000\n"
+"PO-Revision-Date: 2026-03-09 11:37+0000\n"
+"Last-Translator: Bruce Cowan <bruce@bcowan.me.uk>\n"
+"Language-Team: British English <en@li.org>\n"
 "Language: en_GB\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Gtranslator 49.0\n"
 
-#: data/org.gnome.TextEditor.desktop.in.in:4
+#: data/org.gnome.TextEditor.desktop.in.in:3
 msgid "write;notepad;"
 msgstr "write;notepad;"
 
-#: data/org.gnome.TextEditor.desktop.in.in:10
-#: data/org.gnome.TextEditor.desktop.in.in:11
+#: data/org.gnome.TextEditor.desktop.in.in:7
+#: data/org.gnome.TextEditor.desktop.in.in:8
 #: data/org.gnome.TextEditor.metainfo.xml.in.in:10
-#: src/editor-application-actions.c:198 src/editor-window.c:1279
+#: src/editor-application-actions.c:200 src/editor-window.c:1288
 msgid "Text Editor"
 msgstr "Text Editor"
 
-#: data/org.gnome.TextEditor.desktop.in.in:12
+#: data/org.gnome.TextEditor.desktop.in.in:9
 msgid "View and edit text files"
 msgstr "View and edit text files"
 
-#: data/org.gnome.TextEditor.desktop.in.in:24
+#: data/org.gnome.TextEditor.desktop.in.in:21
 msgid "New Window"
 msgstr "New Window"
 
@@ -50,6 +50,14 @@ msgid ""
 msgstr ""
 "GNOME Text Editor is a simple text editor focused on a pleasing default "
 "experience."
+
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:27
+msgid "Text Editor's main window"
+msgstr "Text Editor's main window"
+
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:31
+msgid "Syntax highlighting"
+msgstr "Syntax highlighting"
 
 #: data/org.gnome.TextEditor.gschema.xml:16
 msgid "Auto Save Delay"
@@ -295,71 +303,71 @@ msgstr "Failed to find property %s in %s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Failed to retrieve va_list value: %s"
 
-#: src/editor-application-actions.c:200
+#: src/editor-application-actions.c:202
 msgid "The GNOME Project"
 msgstr "The GNOME Project"
 
-#: src/editor-application-actions.c:213
+#: src/editor-application-actions.c:215
 msgid "translator-credits"
 msgstr ""
 "Bruce Cowan <bruce@bcowan.me.uk>\n"
 "Andi Chandler <andi@gowling.com>"
 
-#: src/editor-application-actions.c:347
+#: src/editor-application-actions.c:349
 msgid "Clear File History?"
 msgstr "Clear File History?"
 
-#: src/editor-application-actions.c:348
+#: src/editor-application-actions.c:350
 msgid "This action cannot be undone"
 msgstr "This action cannot be undone"
 
-#: src/editor-application-actions.c:350 src/editor-save-changes-dialog.c:260
+#: src/editor-application-actions.c:352 src/editor-save-changes-dialog.c:260
 #: src/editor-window-actions.c:115 src/editor-window-actions.c:219
 msgid "_Cancel"
 msgstr "_Cancel"
 
-#: src/editor-application-actions.c:351
+#: src/editor-application-actions.c:353
 msgid "_Clear All"
 msgstr "_Clear All"
 
-#: src/editor-application.c:525
+#: src/editor-application.c:531
 msgid "Standard input was requested multiple times. Ignoring request."
 msgstr "Standard input was requested multiple times. Ignoring request."
 
-#: src/editor-application.c:529
+#: src/editor-application.c:535
 msgid "Standard input is not supported on this platform. Ignoring request."
 msgstr "Standard input is not supported on this platform. Ignoring request."
 
-#: src/editor-application.c:632
+#: src/editor-application.c:638
 msgid "Bugs may be reported at:"
 msgstr "Bugs may be reported at:"
 
-#: src/editor-application.c:634
+#: src/editor-application.c:640
 msgid "[FILES…]"
 msgstr "[FILES…]"
 
-#: src/editor-application.c:748
+#: src/editor-application.c:764
 msgid "Do not restore session at startup"
 msgstr "Do not restore session at startup"
 
-#: src/editor-application.c:749
+#: src/editor-application.c:765
 msgid "Open provided files in a new window"
 msgstr "Open provided files in a new window"
 
-#: src/editor-application.c:750
+#: src/editor-application.c:766
 msgid "Run a new instance of Text Editor (implies --ignore-session)"
 msgstr "Run a new instance of Text Editor (implies --ignore-session)"
 
-#: src/editor-application.c:751
+#: src/editor-application.c:767
 msgid "Print version information and exit"
 msgstr "Print version information and exit"
 
-#: src/editor-document.c:2245
+#: src/editor-document.c:2285
 msgid "[Read-Only]"
 msgstr "[Read-Only]"
 
-#: src/editor-document.c:2470 src/editor-page.c:1129
-#: src/editor-sidebar-item.c:510
+#: src/editor-document.c:2510 src/editor-page.c:1125
+#: src/editor-sidebar-item.c:500
 msgid "New Document"
 msgstr "New Document"
 
@@ -408,39 +416,39 @@ msgstr "Tab"
 msgid "_Discard Changes and Reload"
 msgstr "_Discard Changes and Reload"
 
-#: src/editor-info-bar.c:111
+#: src/editor-info-bar.c:112
 msgid "File Has Changed on Disk"
 msgstr "File Has Changed on Disk"
 
-#: src/editor-info-bar.c:112
+#: src/editor-info-bar.c:113
 msgid "The file has been changed by another program."
 msgstr "The file has been changed by another program."
 
-#: src/editor-info-bar.c:121 src/editor-window.ui:363
+#: src/editor-info-bar.c:122 src/editor-window.ui:371
 msgid "Save _As…"
 msgstr "Save _As…"
 
-#: src/editor-info-bar.c:123 src/editor-info-bar.ui:73
+#: src/editor-info-bar.c:124 src/editor-info-bar.ui:73
 msgid "Document Restored"
 msgstr "Document Restored"
 
-#: src/editor-info-bar.c:124 src/editor-info-bar.ui:84
+#: src/editor-info-bar.c:125 src/editor-info-bar.ui:84
 msgid "Unsaved document has been restored."
 msgstr "Unsaved document has been restored."
 
-#: src/editor-info-bar.c:130 src/editor-info-bar.ui:99
+#: src/editor-info-bar.c:131 src/editor-info-bar.ui:99
 msgid "_Save…"
 msgstr "_Save…"
 
-#: src/editor-info-bar.c:132 src/editor-info-bar.ui:93
+#: src/editor-info-bar.c:133 src/editor-info-bar.ui:93
 msgid "_Discard…"
 msgstr "_Discard…"
 
-#: src/editor-info-bar.c:134
+#: src/editor-info-bar.c:136
 msgid "Draft Changes Restored"
 msgstr "Draft Changes Restored"
 
-#: src/editor-info-bar.c:135
+#: src/editor-info-bar.c:137
 msgid "Unsaved changes to the document have been restored."
 msgstr "Unsaved changes to the document have been restored."
 
@@ -478,7 +486,7 @@ msgstr "Other Document Types"
 msgid "Document Type"
 msgstr "Document Type"
 
-#: src/editor-language-dialog.ui:25 src/editor-search-entry.c:201
+#: src/editor-language-dialog.ui:25 src/editor-search-entry.c:193
 #: src/editor-search-entry.ui:13
 msgid "Search"
 msgstr "Search"
@@ -504,34 +512,34 @@ msgstr "Mac OS Classic (CR)"
 msgid "Search documents"
 msgstr "Search documents"
 
-#: src/editor-open-popover.ui:39
+#: src/editor-open-popover.ui:45
 msgid "Open New Document"
 msgstr "Open New Document"
 
-#: src/editor-open-popover.ui:74
+#: src/editor-open-popover.ui:80
 msgid "No Recent Documents"
 msgstr "No Recent Documents"
 
-#: src/editor-page.c:1155 src/editor-properties.c:606
-#: src/editor-sidebar-item.c:104
+#: src/editor-page.c:1151 src/editor-properties.c:617
+#: src/editor-sidebar-item.c:101
 msgid "Draft"
 msgstr "Draft"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1167
+#: src/editor-page.c:1163
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (Administrator)"
 
-#: src/editor-page.c:1223
+#: src/editor-page.c:1219
 msgid "Failed to save document"
 msgstr "Failed to save document"
 
-#: src/editor-page.c:1224 src/editor-window.ui:442
+#: src/editor-page.c:1220 src/editor-window.ui:451
 msgid "_Close"
 msgstr "_Close"
 
-#: src/editor-page.c:1493
+#: src/editor-page.c:1484
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Ln %u, Col %u"
@@ -732,7 +740,7 @@ msgstr ""
 "permanently lost."
 
 #: src/editor-save-changes-dialog.c:262 src/editor-window-actions.c:116
-#: src/editor-window.ui:357
+#: src/editor-window.ui:365
 msgid "_Save"
 msgstr "_Save"
 
@@ -791,16 +799,16 @@ msgid "Match Whole _Word Only"
 msgstr "Match Whole _Word Only"
 
 #. translators: the first %u is replaced with the current position, the second with the number of search results
-#: src/editor-search-entry.c:228
+#: src/editor-search-entry.c:221
 #, c-format
 msgid "%u of %u"
 msgstr "%u of %u"
 
-#: src/editor-search-entry.ui:32
+#: src/editor-search-entry.ui:33
 msgid "Clear Entry"
 msgstr "Clear Entry"
 
-#: src/editor-sidebar-row.ui:85
+#: src/editor-sidebar-row.ui:82
 msgid "Remove"
 msgstr "Remove"
 
@@ -871,41 +879,41 @@ msgstr "Unsaved changes will be permanently lost."
 msgid "Discard Changes to “%s”?"
 msgstr "Discard Changes to “%s”?"
 
-#: src/editor-window-actions.c:380
+#: src/editor-window-actions.c:384
 msgid "All Files"
 msgstr "All Files"
 
-#: src/editor-window-actions.c:385
+#: src/editor-window-actions.c:389
 msgid "Text Files"
 msgstr "Text Files"
 
-#: src/editor-window.c:398
+#: src/editor-window.c:423
 msgid "Zoom In"
 msgstr "Zoom In"
 
-#: src/editor-window.c:401
+#: src/editor-window.c:426
 msgid "Zoom in"
 msgstr "Zoom in"
 
-#: src/editor-window.c:411
+#: src/editor-window.c:436
 msgid "Zoom Out"
 msgstr "Zoom Out"
 
-#: src/editor-window.c:414
+#: src/editor-window.c:439
 msgid "Zoom out"
 msgstr "Zoom out"
 
-#: src/editor-window.c:419
+#: src/editor-window.c:444
 msgid "Reset Zoom"
 msgstr "Reset Zoom"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:657
+#: src/editor-window.c:690
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) - Text Editor"
 
-#: src/editor-window.c:1158
+#: src/editor-window.c:1167
 msgid "There are unsaved documents"
 msgstr "There are unsaved documents"
 
@@ -925,542 +933,375 @@ msgstr "_New Empty File"
 msgid "Recently Used Documents"
 msgstr "Recently Used Documents"
 
-#: src/editor-window.ui:183
+#: src/editor-window.ui:191
 msgid "_Open"
 msgstr "_Open"
 
-#: src/editor-window.ui:216
+#: src/editor-window.ui:224
 msgid "New Tab"
 msgstr "New Tab"
 
-#: src/editor-window.ui:221 src/editor-window.ui:394
+#: src/editor-window.ui:229 src/editor-window.ui:403
 msgid "Leave Fullscreen"
 msgstr "Leave Fullscreen"
 
-#: src/editor-window.ui:229
+#: src/editor-window.ui:237
 msgid "Main Menu"
 msgstr "Main Menu"
 
-#: src/editor-window.ui:236
+#: src/editor-window.ui:244
 msgid "Document Properties"
 msgstr "Document Properties"
 
-#: src/editor-window.ui:349
+#: src/editor-window.ui:357
 msgid "_New Window"
 msgstr "_New Window"
 
-#: src/editor-window.ui:369
+#: src/editor-window.ui:377
 msgid "_Discard Changes…"
 msgstr "_Discard Changes…"
 
-#: src/editor-window.ui:375
+#: src/editor-window.ui:384
 msgid "_Find/Replace…"
 msgstr "_Find/Replace…"
 
-#: src/editor-window.ui:381
+#: src/editor-window.ui:390
 msgid "_Print…"
 msgstr "_Print…"
 
-#: src/editor-window.ui:388
+#: src/editor-window.ui:397
 msgid "Fullscreen"
 msgstr "Fullscreen"
 
-#: src/editor-window.ui:402
+#: src/editor-window.ui:411
 msgid "P_references"
 msgstr "P_references"
 
-#: src/editor-window.ui:407
+#: src/editor-window.ui:416
 msgid "_Keyboard Shortcuts"
 msgstr "_Keyboard Shortcuts"
 
-#: src/editor-window.ui:411
+#: src/editor-window.ui:420
 msgid "A_bout Text Editor"
 msgstr "A_bout Text Editor"
 
-#: src/editor-window.ui:419
+#: src/editor-window.ui:428
 msgid "Move _Left"
 msgstr "Move _Left"
 
-#: src/editor-window.ui:424
+#: src/editor-window.ui:433
 msgid "Move _Right"
 msgstr "Move _Right"
 
-#: src/editor-window.ui:431
+#: src/editor-window.ui:440
 msgid "_Move to New Window"
 msgstr "_Move to New Window"
 
-#: src/editor-window.ui:438
+#: src/editor-window.ui:447
 msgid "Close _Other Tabs"
 msgstr "Close _Other Tabs"
 
-#: src/help-overlay.ui:12
+#: src/shortcuts-dialog.ui:8
 msgctxt "shortcut window"
 msgid "Windows"
 msgstr "Windows"
 
-#: src/help-overlay.ui:15
+#: src/shortcuts-dialog.ui:11
 msgctxt "shortcut window"
 msgid "New window"
 msgstr "New window"
 
-#: src/help-overlay.ui:21
+#: src/shortcuts-dialog.ui:17
 msgctxt "shortcut window"
 msgid "Move document to new window"
 msgstr "Move document to new window"
 
-#: src/help-overlay.ui:28
+#: src/shortcuts-dialog.ui:24
 msgctxt "shortcut window"
 msgid "Move to next tab"
 msgstr "Move to next tab"
 
-#: src/help-overlay.ui:34
+#: src/shortcuts-dialog.ui:30
 msgctxt "shortcut window"
 msgid "Move to previous tab"
 msgstr "Move to previous tab"
 
-#: src/help-overlay.ui:40
+#: src/shortcuts-dialog.ui:36
 msgctxt "shortcut window"
 msgid "Reorder after next tab"
 msgstr "Reorder after next tab"
 
-#: src/help-overlay.ui:46
+#: src/shortcuts-dialog.ui:42
 msgctxt "shortcut window"
 msgid "Reorder before previous tab"
 msgstr "Reorder before previous tab"
 
-#: src/help-overlay.ui:52
+#: src/shortcuts-dialog.ui:48
 msgctxt "shortcut window"
 msgid "Restore previously closed tab"
 msgstr "Restore previously closed tab"
 
-#: src/help-overlay.ui:59
+#: src/shortcuts-dialog.ui:55
 msgctxt "shortcut window"
 msgid "Zoom"
 msgstr "Zoom"
 
-#: src/help-overlay.ui:63
+#: src/shortcuts-dialog.ui:59
 msgctxt "shortcut window"
 msgid "Zoom In"
 msgstr "Zoom In"
 
-#: src/help-overlay.ui:69
+#: src/shortcuts-dialog.ui:65
 msgctxt "shortcut window"
 msgid "Zoom Out"
 msgstr "Zoom Out"
 
-#: src/help-overlay.ui:75
+#: src/shortcuts-dialog.ui:71
 msgctxt "shortcut window"
 msgid "Reset Zoom"
 msgstr "Reset Zoom"
 
-#: src/help-overlay.ui:82
+#: src/shortcuts-dialog.ui:78
 msgctxt "shortcut window"
 msgid "Documents"
 msgstr "Documents"
 
-#: src/help-overlay.ui:85
+#: src/shortcuts-dialog.ui:81
 msgctxt "shortcut window"
 msgid "New document"
 msgstr "New document"
 
-#: src/help-overlay.ui:91
+#: src/shortcuts-dialog.ui:87
 msgctxt "shortcut window"
 msgid "Browse to open document"
 msgstr "Browse to open document"
 
-#: src/help-overlay.ui:97
+#: src/shortcuts-dialog.ui:93
 msgctxt "shortcut window"
 msgid "Find document by name"
 msgstr "Find document by name"
 
-#: src/help-overlay.ui:103
+#: src/shortcuts-dialog.ui:99
 msgctxt "shortcut window"
 msgid "Save"
 msgstr "Save"
 
-#: src/help-overlay.ui:109
+#: src/shortcuts-dialog.ui:105
 msgctxt "shortcut window"
 msgid "Save As"
 msgstr "Save As"
 
-#: src/help-overlay.ui:115
+#: src/shortcuts-dialog.ui:111
 msgctxt "shortcut window"
 msgid "Find/Replace"
 msgstr "Find/Replace"
 
-#: src/help-overlay.ui:121
+#: src/shortcuts-dialog.ui:117
 msgctxt "shortcut window"
 msgid "Close document"
 msgstr "Close document"
 
-#: src/help-overlay.ui:127
+#: src/shortcuts-dialog.ui:123
 msgctxt "shortcut window"
 msgid "Open document properties"
 msgstr "Open document properties"
 
-#: src/help-overlay.ui:135
+#: src/shortcuts-dialog.ui:131
 msgctxt "shortcut window"
 msgid "Copy and Paste"
 msgstr "Copy and Paste"
 
-#: src/help-overlay.ui:139
+#: src/shortcuts-dialog.ui:135
 msgctxt "shortcut window"
 msgid "Copy selected text to clipboard"
 msgstr "Copy selected text to clipboard"
 
-#: src/help-overlay.ui:145
+#: src/shortcuts-dialog.ui:141
 msgctxt "shortcut window"
 msgid "Cut selected text to clipboard"
 msgstr "Cut selected text to clipboard"
 
-#: src/help-overlay.ui:151
+#: src/shortcuts-dialog.ui:147
 msgctxt "shortcut window"
 msgid "Paste text from clipboard"
 msgstr "Paste text from clipboard"
 
-#: src/help-overlay.ui:156
+#: src/shortcuts-dialog.ui:152
 msgctxt "shortcut window"
 msgid "Copy all to clipboard"
 msgstr "Copy all to clipboard"
 
-#: src/help-overlay.ui:162
+#: src/shortcuts-dialog.ui:158
 msgctxt "shortcut window"
 msgid "Copy current line down"
 msgstr "Copy current line down"
 
-#: src/help-overlay.ui:170
+#: src/shortcuts-dialog.ui:166
 msgctxt "shortcut window"
 msgid "Undo and Redo"
 msgstr "Undo and Redo"
 
-#: src/help-overlay.ui:174
+#: src/shortcuts-dialog.ui:170
 msgctxt "shortcut window"
 msgid "Undo previous command"
 msgstr "Undo previous command"
 
-#: src/help-overlay.ui:180
+#: src/shortcuts-dialog.ui:176
 msgctxt "shortcut window"
 msgid "Redo previous command"
 msgstr "Redo previous command"
 
-#: src/help-overlay.ui:187
+#: src/shortcuts-dialog.ui:183
 msgctxt "shortcut window"
 msgid "Editing"
 msgstr "Editing"
 
-#: src/help-overlay.ui:191
+#: src/shortcuts-dialog.ui:187
 msgctxt "shortcut window"
 msgid "Insert emoji into document"
 msgstr "Insert emoji into document"
 
-#: src/help-overlay.ui:197
+#: src/shortcuts-dialog.ui:193
 msgctxt "shortcut window"
 msgid "Search within the document"
 msgstr "Search within the document"
 
-#: src/help-overlay.ui:203
+#: src/shortcuts-dialog.ui:199
 msgctxt "shortcut window"
 msgid "Search and replace within the document"
 msgstr "Search and replace within the document"
 
-#: src/help-overlay.ui:209
+#: src/shortcuts-dialog.ui:205
 msgctxt "shortcut window"
 msgid "Increment number at cursor"
 msgstr "Increment number at cursor"
 
-#: src/help-overlay.ui:215
+#: src/shortcuts-dialog.ui:211
 msgctxt "shortcut window"
 msgid "Decrement number at cursor"
 msgstr "Decrement number at cursor"
 
-#: src/help-overlay.ui:221
+#: src/shortcuts-dialog.ui:217
 msgctxt "shortcut window"
 msgid "Toggle overwrite"
 msgstr "Toggle overwrite"
 
-#: src/help-overlay.ui:227
+#: src/shortcuts-dialog.ui:223
 msgctxt "shortcut window"
 msgid "Toggle visibility of insertion caret"
 msgstr "Toggle visibility of insertion caret"
 
-#: src/help-overlay.ui:234
+#: src/shortcuts-dialog.ui:230
 msgctxt "shortcut window"
 msgid "Selections"
 msgstr "Selections"
 
-#: src/help-overlay.ui:238
+#: src/shortcuts-dialog.ui:234
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Select all"
 
-#: src/help-overlay.ui:244
+#: src/shortcuts-dialog.ui:240
 msgctxt "shortcut window"
 msgid "Unselect all"
 msgstr "Unselect all"
 
-#: src/help-overlay.ui:250
+#: src/shortcuts-dialog.ui:246
 msgctxt "shortcut window"
 msgid "Select current line"
 msgstr "Select current line"
 
-#: src/help-overlay.ui:257
+#: src/shortcuts-dialog.ui:253
 msgctxt "shortcut window"
 msgid "Movements"
 msgstr "Movements"
 
-#: src/help-overlay.ui:261
+#: src/shortcuts-dialog.ui:257
 msgctxt "shortcut window"
 msgid "Move to beginning of document"
 msgstr "Move to beginning of document"
 
-#: src/help-overlay.ui:267
+#: src/shortcuts-dialog.ui:263
 msgctxt "shortcut window"
 msgid "Move to end of document"
 msgstr "Move to end of document"
 
-#: src/help-overlay.ui:273
+#: src/shortcuts-dialog.ui:269
 msgctxt "shortcut window"
 msgid "Move to start of previous paragraph"
 msgstr "Move to start of previous paragraph"
 
-#: src/help-overlay.ui:279
+#: src/shortcuts-dialog.ui:275
 msgctxt "shortcut window"
 msgid "Move to end of next paragraph"
 msgstr "Move to end of next paragraph"
 
-#: src/help-overlay.ui:285
+#: src/shortcuts-dialog.ui:281
 msgctxt "shortcut window"
 msgid "Move current or selected lines up"
 msgstr "Move current or selected lines up"
 
-#: src/help-overlay.ui:291
+#: src/shortcuts-dialog.ui:287
 msgctxt "shortcut window"
 msgid "Move current or selected lines down"
 msgstr "Move current or selected lines down"
 
-#: src/help-overlay.ui:297
+#: src/shortcuts-dialog.ui:293
 msgctxt "shortcut window"
 msgid "Go to line"
 msgstr "Go to line"
 
-#: src/help-overlay.ui:304
+#: src/shortcuts-dialog.ui:300
 msgctxt "shortcut window"
 msgid "Deletion"
 msgstr "Deletion"
 
-#: src/help-overlay.ui:308
+#: src/shortcuts-dialog.ui:304
 msgctxt "shortcut window"
 msgid "Delete from cursor to word start"
 msgstr "Delete from cursor to word start"
 
-#: src/help-overlay.ui:314
+#: src/shortcuts-dialog.ui:310
 msgctxt "shortcut window"
 msgid "Delete from cursor to word end"
 msgstr "Delete from cursor to word end"
 
-#: src/help-overlay.ui:320
+#: src/shortcuts-dialog.ui:316
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph start"
 msgstr "Delete from cursor to paragraph start"
 
-#: src/help-overlay.ui:326
+#: src/shortcuts-dialog.ui:322
 msgctxt "shortcut window"
 msgid "Delete from cursor to paragraph end"
 msgstr "Delete from cursor to paragraph end"
 
-#: src/help-overlay.ui:332
+#: src/shortcuts-dialog.ui:328
 msgctxt "shortcut window"
 msgid "Delete the current line"
 msgstr "Delete the current line"
 
-#: src/help-overlay.ui:339
+#: src/shortcuts-dialog.ui:335
 msgctxt "shortcut window"
 msgid "General"
 msgstr "General"
 
-#: src/help-overlay.ui:343
+#: src/shortcuts-dialog.ui:339
 msgctxt "shortcut window"
 msgid "Show preferences"
 msgstr "Show preferences"
 
-#: src/help-overlay.ui:349
+#: src/shortcuts-dialog.ui:345
 msgctxt "shortcut window"
 msgid "Show keyboard shortcuts"
 msgstr "Show keyboard shortcuts"
 
-#: src/help-overlay.ui:355
+#: src/shortcuts-dialog.ui:351
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Show help"
 
-#: src/help-overlay.ui:361
+#: src/shortcuts-dialog.ui:357
 msgctxt "shortcut window"
 msgid "Toggle text wrapping"
 msgstr "Toggle text wrapping"
-
-#~ msgid "Search document types"
-#~ msgstr "Search document types"
-
-#~ msgid "Save As"
-#~ msgstr "Save As"
-
-#~ msgid "Save"
-#~ msgstr "Save"
-
-#~ msgid "Cancel"
-#~ msgstr "Cancel"
-
-#~ msgid "2"
-#~ msgstr "2"
-
-#~ msgid "4"
-#~ msgstr "4"
-
-#~ msgid "6"
-#~ msgstr "6"
-
-#~ msgid "8"
-#~ msgstr "8"
-
-#~ msgid "Use Tab Size"
-#~ msgstr "Use Tab Size"
-
-#~ msgid "Right Margin"
-#~ msgstr "Right Margin"
-
-#~ msgid "Properties"
-#~ msgstr "Properties"
-
-#~ msgid "Name"
-#~ msgstr "Name"
-
-#~ msgid "Save changes for this document"
-#~ msgstr "Save changes for this document"
-
-#~ msgid "Find"
-#~ msgstr "Find"
-
-#~ msgid "Automatically Detected"
-#~ msgstr "Automatically Detected"
-
-#~ msgid "Line Ending:"
-#~ msgstr "Line Ending:"
-
-#~ msgid "Open File"
-#~ msgstr "Open File"
-
-#~ msgid "Open"
-#~ msgstr "Open"
-
-#, c-format
-#~ msgid "Document Type: %s"
-#~ msgstr "Document Type: %s"
-
-#~ msgid "New tab"
-#~ msgstr "New tab"
-
-#~ msgid "View Options"
-#~ msgstr "View Options"
-
-#~ msgid "View"
-#~ msgstr "View"
-
-#~ msgid "Main menu"
-#~ msgstr "Main menu"
-
-#~ msgid "Start or Open a Document"
-#~ msgstr "Start or Open a Document"
-
-#~ msgid ""
-#~ "• Press the Open button\n"
-#~ "• Press the New tab button\n"
-#~ "• Press Ctrl+N to start a new document\n"
-#~ "• Press Ctrl+O to browse for a document\n"
-#~ "\n"
-#~ "Or, press Ctrl+W to close the window."
-#~ msgstr ""
-#~ "• Press the Open button\n"
-#~ "• Press the New tab button\n"
-#~ "• Press Ctrl+N to start a new document\n"
-#~ "• Press Ctrl+O to browse for a document\n"
-#~ "\n"
-#~ "Or, press Ctrl+W to close the window."
-
-#~ msgid "_Help"
-#~ msgstr "_Help"
-
-#~ msgid "Show _Line Numbers"
-#~ msgstr "Show _Line Numbers"
-
-#~ msgid "_2"
-#~ msgstr "_2"
-
-#~ msgid "_4"
-#~ msgstr "_4"
-
-#~ msgid "_6"
-#~ msgstr "_6"
-
-#~ msgid "_8"
-#~ msgstr "_8"
-
-#~ msgid "T_ext Wrapping"
-#~ msgstr "T_ext Wrapping"
-
-#~ msgid "Chec_k Spelling"
-#~ msgstr "Chec_k Spelling"
-
-#~ msgid "_Document Type…"
-#~ msgstr "_Document Type…"
-
-#~ msgid "You do not have permission to open the file."
-#~ msgstr "You do not have permission to open the file."
-
-#~ msgid "No Matches"
-#~ msgstr "No Matches"
-
-#~ msgid "Add to Dictionary"
-#~ msgstr "Add to Dictionary"
-
-#~ msgid "Ignore"
-#~ msgstr "Ignore"
-
-#~ msgid "Languages"
-#~ msgstr "Languages"
-
-#~ msgid "Enchant 2"
-#~ msgstr "Enchant 2"
-
-#~ msgid "Open New Document (Ctrl+O)"
-#~ msgstr "Open New Document (Ctrl+O)"
-
-#~ msgid "Select Font"
-#~ msgstr "Select Font"
-
-#~ msgid "Move to previous match (Ctrl+Shift+G)"
-#~ msgstr "Move to previous match (Ctrl+Shift+G)"
-
-#~ msgid "Move to next match (Ctrl+G)"
-#~ msgstr "Move to next match (Ctrl+G)"
-
-#~ msgid "Toggle search options"
-#~ msgstr "Toggle search options"
-
-#~ msgid "_Right Margin"
-#~ msgstr "_Right Margin"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Editor Shortcuts"
-#~ msgstr "Editor Shortcuts"
-
-#~ msgid "Christian Hergert, et al."
-#~ msgstr "Christian Hergert, et al."
-
-#~ msgid "A Text Editor for GNOME"
-#~ msgstr "A Text Editor for GNOME"
-
-#~ msgid "Text Editor Website"
-#~ msgstr "Text Editor Website"
-
-#~ msgid "Discard"
-#~ msgstr "Discard"
