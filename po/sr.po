@@ -10,17 +10,17 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2025-11-04 03:13+0000\n"
-"PO-Revision-Date: 2025-11-05 22:32+0100\n"
-"Last-Translator: Милош Поповић <gpopac@gmail.com>\n"
+"POT-Creation-Date: 2026-03-16 20:19+0000\n"
+"PO-Revision-Date: 2026-03-17 23:38+0100\n"
+"Last-Translator: Марко М. Костић <marko.m.kostic@gmail.com>\n"
 "Language-Team: Serbian <Serbian <gnome-sr@googlegroups.com>>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : "
-"n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2\n"
-"X-Generator: Gtranslator 48.0\n"
+"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Poedit 3.9\n"
 
 #: data/org.gnome.TextEditor.desktop.in.in:3
 msgid "write;notepad;"
@@ -50,8 +50,16 @@ msgid ""
 "GNOME Text Editor is a simple text editor focused on a pleasing default "
 "experience."
 msgstr ""
-"Гномов уређивач текста је једноставни уређивач текста, усредсређен на "
-"пријатно подразумевано искуство."
+"Гномов уређивач текста је једноставни уређивач текста, усредсређен на пријатно "
+"подразумевано искуство."
+
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:27
+msgid "Text Editor's main window"
+msgstr "Главни прозор Уређивача текста"
+
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:31
+msgid "Syntax highlighting"
+msgstr "Истицање синтаксе"
 
 #: data/org.gnome.TextEditor.gschema.xml:16
 msgid "Auto Save Delay"
@@ -67,11 +75,9 @@ msgstr "Варијанта стила"
 
 #: data/org.gnome.TextEditor.gschema.xml:27
 msgid ""
-"Use the light or dark variant of the GTK theme and/or GtkSourceView style "
-"scheme."
+"Use the light or dark variant of the GTK theme and/or GtkSourceView style scheme."
 msgstr ""
-"Користи светлу или тамну варијацију ГТК теме и/или GtkSourceView стилске "
-"шеме."
+"Користи светлу или тамну варијацију ГТК теме и/или GtkSourceView стилске шеме."
 
 #: data/org.gnome.TextEditor.gschema.xml:35
 msgid "Indentation Style"
@@ -127,8 +133,7 @@ msgid "Right Margin Position"
 msgstr "Положај десне маргине"
 
 #: data/org.gnome.TextEditor.gschema.xml:69
-msgid ""
-"The position in characters at which the right margin should be displayed."
+msgid "The position in characters at which the right margin should be displayed."
 msgstr "Даљина у знаковима на којој ће десна маргина бити приказана."
 
 #: data/org.gnome.TextEditor.gschema.xml:73
@@ -188,8 +193,8 @@ msgstr "Шема стила"
 
 #: data/org.gnome.TextEditor.gschema.xml:104
 msgid ""
-"The style scheme to use by the editor. It may translate this into a dark "
-"format when available."
+"The style scheme to use by the editor. It may translate this into a dark format "
+"when available."
 msgstr ""
 "Шема стила коју користи уређивач. Може се превести у тамни формат када је он "
 "доступан."
@@ -200,12 +205,11 @@ msgstr "Откриј подешавања датотеке"
 
 #: data/org.gnome.TextEditor.gschema.xml:109
 msgid ""
-"If enabled, then Text Editor will try to discover file settings from "
-"modelines, editorconfig, or per-language defaults."
+"If enabled, then Text Editor will try to discover file settings from modelines, "
+"editorconfig, or per-language defaults."
 msgstr ""
-"Ако је омогућено онда ће уређивач текста покушати да пронађе подешавање "
-"датотеке из modelines, editorconfig или подразумеваних подешавања сваког "
-"језика понаособ."
+"Ако је омогућено онда ће уређивач текста покушати да пронађе подешавање датотеке "
+"из modelines, editorconfig или подразумеваних подешавања сваког језика понаособ."
 
 #: data/org.gnome.TextEditor.gschema.xml:113
 msgid "Automatically check spelling"
@@ -261,11 +265,9 @@ msgstr "Омогући исечке"
 
 #: data/org.gnome.TextEditor.gschema.xml:148
 msgid ""
-"Enable the use of snippets registered with GtkSourceView from within the "
-"editor."
+"Enable the use of snippets registered with GtkSourceView from within the editor."
 msgstr ""
-"Омогућавање коришћења исечака регистрованих унутар GtkSourceView дела "
-"уређивача."
+"Омогућавање коришћења исечака регистрованих унутар GtkSourceView дела уређивача."
 
 #: data/org.gnome.TextEditor.gschema.xml:153
 msgid "Line Height"
@@ -353,12 +355,11 @@ msgstr "Покрени нови примерак Уређивача текста
 msgid "Print version information and exit"
 msgstr "Прикажи податке о издању и изађи"
 
-#: src/editor-document.c:2281
+#: src/editor-document.c:2285
 msgid "[Read-Only]"
 msgstr "[само за читање]"
 
-#: src/editor-document.c:2506 src/editor-page.c:1125
-#: src/editor-sidebar-item.c:500
+#: src/editor-document.c:2510 src/editor-page.c:1125 src/editor-sidebar-item.c:500
 msgid "New Document"
 msgstr "Нови документ"
 
@@ -460,10 +461,8 @@ msgid "Invalid Characters Detected"
 msgstr "Пронађен је неисправан знак"
 
 #: src/editor-info-bar.ui:127
-msgid ""
-"There was an encoding conversion error so a fallback character was used."
-msgstr ""
-"Грешка приликом претварања кодирања, програм ће уметнути заменски знак."
+msgid "There was an encoding conversion error so a fallback character was used."
+msgstr "Грешка приликом претварања кодирања, програм ће уметнути заменски знак."
 
 #: src/editor-info-bar.ui:136
 msgid "Change _Encoding…"
@@ -511,8 +510,7 @@ msgstr "Отвори нови документ"
 msgid "No Recent Documents"
 msgstr "Нема скорашњих докумената"
 
-#: src/editor-page.c:1151 src/editor-properties.c:617
-#: src/editor-sidebar-item.c:101
+#: src/editor-page.c:1151 src/editor-properties.c:617 src/editor-sidebar-item.c:101
 msgid "Draft"
 msgstr "Нацрт"
 
@@ -1300,167 +1298,3 @@ msgstr "Прикажи помоћ"
 msgctxt "shortcut window"
 msgid "Toggle text wrapping"
 msgstr "Омогући прелом текста"
-
-#~ msgid "Search document types"
-#~ msgstr "Претражи типиве докумената"
-
-#~ msgid "Save As"
-#~ msgstr "Сачувај као"
-
-#~ msgid "Save"
-#~ msgstr "Сачувај"
-
-#~ msgid "Cancel"
-#~ msgstr "Откажи"
-
-#~ msgid "2"
-#~ msgstr "2"
-
-#~ msgid "4"
-#~ msgstr "4"
-
-#~ msgid "6"
-#~ msgstr "6"
-
-#~ msgid "8"
-#~ msgstr "8"
-
-#~ msgid "Use Tab Size"
-#~ msgstr "Користи величину табулатора"
-
-#~ msgid "Right Margin"
-#~ msgstr "Десна маргина"
-
-#~ msgid "Properties"
-#~ msgstr "Особине"
-
-#~ msgid "Name"
-#~ msgstr "Назив"
-
-#~ msgid "Save changes for this document"
-#~ msgstr "Сачувај измене у овом документу"
-
-#~ msgid "Find"
-#~ msgstr "Пронађи"
-
-#~ msgid "Automatically Detected"
-#~ msgstr "Самостално препознат"
-
-#~ msgid "Line Ending:"
-#~ msgstr "Завршетак реда:"
-
-#~ msgid "Open File"
-#~ msgstr "Отвори датотеку"
-
-#~ msgid "Open"
-#~ msgstr "Отвори"
-
-#, c-format
-#~ msgid "Document Type: %s"
-#~ msgstr "Врста документа: %s"
-
-#~ msgid "New tab"
-#~ msgstr "Нови језичак"
-
-#~ msgid "View Options"
-#~ msgstr "Опција прегледа"
-
-#~ msgid "View"
-#~ msgstr "Преглед"
-
-#~ msgid "Main menu"
-#~ msgstr "Главни мени"
-
-#~ msgid "Start or Open a Document"
-#~ msgstr "Започни или отвори документ"
-
-#~ msgid ""
-#~ "• Press the Open button\n"
-#~ "• Press the New tab button\n"
-#~ "• Press Ctrl+N to start a new document\n"
-#~ "• Press Ctrl+O to browse for a document\n"
-#~ "\n"
-#~ "Or, press Ctrl+W to close the window."
-#~ msgstr ""
-#~ "• Притисни дугме за отварање\n"
-#~ "• Притисни дугме за нови језичак\n"
-#~ "• Притисни Ctrl+N за нови документ\n"
-#~ "• Притисни Ctrl+O за прегледање докумената\n"
-#~ "\n"
-#~ "Или, притисните Ctrl+W да бисте затворили прозор."
-
-#~ msgid "_Help"
-#~ msgstr "По_моћ"
-
-#~ msgid "Show _Line Numbers"
-#~ msgstr "Прикажи _бројеве редова"
-
-#~ msgid "_2"
-#~ msgstr "_2"
-
-#~ msgid "_4"
-#~ msgstr "_4"
-
-#~ msgid "_6"
-#~ msgstr "_6"
-
-#~ msgid "_8"
-#~ msgstr "_8"
-
-#~ msgid "T_ext Wrapping"
-#~ msgstr "Пр_еламање текста"
-
-#~ msgid "Chec_k Spelling"
-#~ msgstr "Про_вери правопис"
-
-#~ msgid "_Document Type…"
-#~ msgstr "Врста _документа…"
-
-#~ msgid "You do not have permission to open the file."
-#~ msgstr "Немате потребне дозволе да отворите датотеку."
-
-#~ msgid "No Matches"
-#~ msgstr "Нема подударања"
-
-#~ msgid "Add to Dictionary"
-#~ msgstr "Додај у речник"
-
-#~ msgid "Ignore"
-#~ msgstr "Занемари"
-
-#~ msgid "Languages"
-#~ msgstr "Језици"
-
-#~ msgid "Enchant 2"
-#~ msgstr "Енчант 2"
-
-#~ msgid "Select Font"
-#~ msgstr "Изабери фонт"
-
-#~ msgid "Move to previous match (Ctrl+Shift+G)"
-#~ msgstr "Претходни резултат претраге (Ctrl+Shift+G)"
-
-#~ msgid "Move to next match (Ctrl+G)"
-#~ msgstr "Следећи резултат претраге (Ctrl+G)"
-
-#~ msgid "Open recent document (Ctrl+K)"
-#~ msgstr "Отвори скорашњи документ (Ctrl+K)"
-
-#~ msgid "_Right Margin"
-#~ msgstr "Десна ма_ргина"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Editor Shortcuts"
-#~ msgstr "Пречице уређивача"
-
-#~ msgid "Christian Hergert, et al."
-#~ msgstr "Кристијан Хергерт (Christian Hergert) и други"
-
-#~ msgid "A Text Editor for GNOME"
-#~ msgstr "Гномов уређивач текста"
-
-#~ msgid "Text Editor Website"
-#~ msgstr "Страница Уређивача текста"
-
-#~ msgid "Discard"
-#~ msgstr "Одбаци"
