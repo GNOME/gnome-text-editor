@@ -13,6 +13,13 @@ dialog.preferences preferencesgroup flowboxchild GtkSourceStyleSchemePreview:not
               0 1px 3px 1px alpha(black, .07),
               0 2px 6px 2px alpha(black, .03);
 }
+@media (prefers-contrast: more) {
+  dialog.org-gnome-TextEditor.preferences preferencesgroup flowboxchild GtkSourceStyleSchemePreview:not(.selected) {
+    box-shadow: 0 0 0 1px @borders,
+                0 1px 3px 1px alpha(black, .07),
+                0 2px 6px 2px alpha(black, .03);
+  }
+}
 
 popover button.pill.flat {
   padding: 0;
