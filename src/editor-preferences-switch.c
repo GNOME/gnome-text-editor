@@ -57,6 +57,10 @@ editor_preferences_switch_notify_active_cb (EditorPreferencesSwitch *self,
   g_assert (EDITOR_IS_PREFERENCES_SWITCH (self));
   g_assert (GTK_IS_SWITCH (toggle));
 
+  gtk_accessible_update_state (GTK_ACCESSIBLE (self), GTK_ACCESSIBLE_STATE_CHECKED,
+                               gtk_switch_get_active (toggle),
+                               -1);
+
   g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_ACTIVE]);
 }
 
@@ -200,6 +204,8 @@ editor_preferences_switch_class_init (EditorPreferencesSwitchClass *klass)
                          (G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_properties (object_class, N_PROPS, properties);
+
+  gtk_widget_class_set_accessible_role (GTK_WIDGET_CLASS (klass), GTK_ACCESSIBLE_ROLE_SWITCH);
 }
 
 static void
