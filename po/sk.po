@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2025-10-12 19:55+0000\n"
-"PO-Revision-Date: 2025-10-14 11:25+0200\n"
+"POT-Creation-Date: 2026-03-16 20:19+0000\n"
+"PO-Revision-Date: 2026-04-16 08:19+0200\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.9\n"
 
 #: data/org.gnome.TextEditor.desktop.in.in:3
 msgid "write;notepad;"
@@ -50,6 +50,14 @@ msgid ""
 msgstr ""
 "Textový editor GNOME je jednoduchý editor pre úpravy textu, ktorý má za cieľ "
 "byť použiteľným už po prvom spustení."
+
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:27
+msgid "Text Editor's main window"
+msgstr "Hlavné okno Textového editora"
+
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:31
+msgid "Syntax highlighting"
+msgstr "Zvýrazňovanie syntaxe"
 
 #: data/org.gnome.TextEditor.gschema.xml:16
 msgid "Auto Save Delay"
@@ -357,11 +365,11 @@ msgstr ""
 msgid "Print version information and exit"
 msgstr "Vypísať informácie o verzii a skončiť"
 
-#: src/editor-document.c:2281
+#: src/editor-document.c:2285
 msgid "[Read-Only]"
 msgstr "[Len na čítanie]"
 
-#: src/editor-document.c:2506 src/editor-page.c:1125
+#: src/editor-document.c:2510 src/editor-page.c:1125
 #: src/editor-sidebar-item.c:500
 msgid "New Document"
 msgstr "Nový dokument"
@@ -472,7 +480,6 @@ msgstr ""
 "Vyskytla sa chyba počas konverzie kódovania. Preto bol použitý záložný znak."
 
 #: src/editor-info-bar.ui:136
-#| msgid "Character Encoding:"
 msgid "Change _Encoding…"
 msgstr "Zmeniť _kódovanie…"
 
