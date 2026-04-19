@@ -2,7 +2,7 @@
 # Copyright (C) 2021 gnome-text-editor's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-text-editor package.
 #
-# Nathan Follens <nfollens@gnome.org>, 2021-2025.
+# Nathan Follens <nfollens@gnome.org>, 2021-2026.
 # Hannie Dumoleyn <hannie@ubuntu-nl.org>, 2022.
 # Philip Goto <philip.goto@gmail.com>, 2022.
 # Dick Groskamp <dikgro@yahoo.co.uk>, 2025.
@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/issues\n"
-"POT-Creation-Date: 2025-07-30 20:42+0000\n"
-"PO-Revision-Date: 2025-08-19 23:11+0200\n"
+"POT-Creation-Date: 2026-03-16 20:19+0000\n"
+"PO-Revision-Date: 2026-04-20 00:44+0200\n"
 "Last-Translator: Nathan Follens <nfollens@gnome.org>\n"
 "Language-Team: GNOME-NL https://matrix.to/#/#nl:gnome.org\n"
 "Language: nl\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.9\n"
 
 #: data/org.gnome.TextEditor.desktop.in.in:3
 msgid "write;notepad;"
@@ -51,6 +51,16 @@ msgid ""
 msgstr ""
 "GNOME Tekstbewerker is een eenvoudige tekstbewerker gericht op een aangename "
 "gebruikservaring."
+
+# Wat is de reden dat dit is vertaald als Teksteditor? Tekstbewerker klinkt naar mijn mening een stuk beter. - Philip
+# Als ik met niet vergis is dat nog een van die oudere beslissingen, zoals GNOME zonder hoofdletters schrijven. Ik ben zeker voorstander van Tekstbewerker en pas het bij deze aan! - Nathan
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:27
+msgid "Text Editor's main window"
+msgstr "Het hoofdvenster van Tekstbewerker"
+
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:31
+msgid "Syntax highlighting"
+msgstr "Syntaxismarkering"
 
 #: data/org.gnome.TextEditor.gschema.xml:16
 msgid "Auto Save Delay"
@@ -354,11 +364,11 @@ msgstr "Opent een nieuwe instantie van Tekstbewerker (veronderstelt --ignore-ses
 msgid "Print version information and exit"
 msgstr "Versieinformatie tonen en afsluiten"
 
-#: src/editor-document.c:2272
+#: src/editor-document.c:2285
 msgid "[Read-Only]"
 msgstr "[alleen-lezen]"
 
-#: src/editor-document.c:2497 src/editor-page.c:1125 src/editor-sidebar-item.c:498
+#: src/editor-document.c:2510 src/editor-page.c:1125 src/editor-sidebar-item.c:500
 msgid "New Document"
 msgstr "Nieuw document"
 
@@ -511,7 +521,7 @@ msgstr "Nieuw document openen"
 msgid "No Recent Documents"
 msgstr "Geen recente documenten"
 
-#: src/editor-page.c:1151 src/editor-properties.c:606 src/editor-sidebar-item.c:101
+#: src/editor-page.c:1151 src/editor-properties.c:617 src/editor-sidebar-item.c:101
 msgid "Draft"
 msgstr "Concept"
 
