@@ -32,7 +32,7 @@ endif
 # Check dependencies
 glib_req_version = '2.80'
 gtk_req_version = '4.19.4'
-adwaita_req_version = '1.8.alpha'
+adwaita_req_version = '1.8.rc'
 gtksourceview_req_version = '5.15.0'
 spelling_req_version = '0.4.0'
 
