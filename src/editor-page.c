@@ -1545,12 +1545,23 @@ editor_page_get_busy (EditorPage *self)
   return editor_document_get_busy (self->document);
 }
 
+static gboolean
+_editor_page_get_search_visible (EditorPage *self)
+{
+  g_return_val_if_fail (EDITOR_IS_PAGE (self), FALSE);
+
+  return gtk_revealer_get_child_revealed (GTK_REVEALER (self->search_revealer));
+}
+
 static void
 _editor_page_set_search_visible (EditorPage          *self,
                                  gboolean             search_visible,
                                  EditorSearchBarMode  mode)
 {
   g_return_if_fail (EDITOR_IS_PAGE (self));
+
+  if (search_visible == _editor_page_get_search_visible (self))
+    return;
 
   if (search_visible)
     {
@@ -1610,6 +1621,8 @@ _editor_page_move_next_search (EditorPage *self,
 {
   g_return_if_fail (EDITOR_IS_PAGE (self));
 
+  _editor_page_set_search_visible (self, TRUE, EDITOR_SEARCH_BAR_MODE_SEARCH);
+
   _editor_search_bar_move_next (self->search_bar, hide_after_move);
 }
 
@@ -1618,6 +1631,8 @@ _editor_page_move_previous_search (EditorPage *self,
                                    gboolean    hide_after_move)
 {
   g_return_if_fail (EDITOR_IS_PAGE (self));
+
+  _editor_page_set_search_visible (self, TRUE, EDITOR_SEARCH_BAR_MODE_SEARCH);
 
   _editor_search_bar_move_previous (self->search_bar, hide_after_move);
 }
