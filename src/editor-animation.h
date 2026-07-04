@@ -39,7 +39,7 @@ typedef enum _EditorAnimationMode
   EDITOR_ANIMATION_LAST
 } EditorAnimationMode;
 
-GType            editor_animation_mode_get_type      (void) G_GNUC_CONST;
+GType            editor_animation_mode_get_type      (void);
 void             editor_animation_start              (EditorAnimation     *animation);
 void             editor_animation_stop               (EditorAnimation     *animation);
 void             editor_animation_add_property       (EditorAnimation     *animation,
