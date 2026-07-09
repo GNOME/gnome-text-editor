@@ -4,23 +4,24 @@
 # Piotr Drąg <piotrdrag@gmail.com>, 2022-2025.
 # Aviary.pl <community-poland@mozilla.org>, 2022-2025.
 # Daniel <wbcwknvstb@proton.me>, 2026.
+# Victoria Niedzielska <victorian@gnome.org>, 2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-text-editor\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2026-01-29 17:33+0000\n"
-"PO-Revision-Date: 2026-03-06 21:46+0100\n"
-"Last-Translator: Daniel <wbcwknvstb@proton.me>\n"
-"Language-Team: Polish\n"
+"POT-Creation-Date: 2026-05-18 15:18+0000\n"
+"PO-Revision-Date: 2026-07-08 12:10+0200\n"
+"Last-Translator: Victoria Niedzielska <victorian@gnome.org>\n"
+"Language-Team: Polish <https://l10n.gnome.org/teams/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Gtranslator 49.0\n"
+"X-Generator: Gtranslator 50.0\n"
 
 #: data/org.gnome.TextEditor.desktop.in.in:3
 msgid "write;notepad;"
@@ -212,7 +213,7 @@ msgid ""
 "If enabled, then Text Editor will try to discover file settings from "
 "modelines, editorconfig, or per-language defaults."
 msgstr ""
-"Czy program ma próbować wykryć ustawienia plików z wierszy trybu, plików "
+"Czy aplikacja ma próbować wykryć ustawienia plików z wierszy trybu, plików "
 "editorconfig lub domyślnych ustawień dla języka."
 
 #: data/org.gnome.TextEditor.gschema.xml:113
@@ -221,7 +222,7 @@ msgstr "Automatyczne sprawdzanie pisowni"
 
 #: data/org.gnome.TextEditor.gschema.xml:114
 msgid "If enabled, then Text Editor will check spelling as you type."
-msgstr "Czy program ma sprawdzać pisownię podczas pisania."
+msgstr "Czy aplikacja ma sprawdzać pisownię podczas pisania."
 
 #: data/org.gnome.TextEditor.gschema.xml:118
 msgid "Restore session"
@@ -229,7 +230,7 @@ msgstr "Przywracanie sesji"
 
 #: data/org.gnome.TextEditor.gschema.xml:119
 msgid "When Text Editor is running, restore the previous session."
-msgstr "Przywracanie poprzedniej sesji podczas włączania programu."
+msgstr "Przywracanie poprzedniej sesji podczas włączania aplikacji."
 
 #: data/org.gnome.TextEditor.gschema.xml:123
 msgid "Recolor Window"
@@ -237,7 +238,7 @@ msgstr "Kolorowanie okna"
 
 #: data/org.gnome.TextEditor.gschema.xml:124
 msgid "Use the style-scheme to recolor the application window."
-msgstr "Używanie stylu systemu do kolorowania okna programu."
+msgstr "Używanie stylu systemu do kolorowania okna aplikacji."
 
 #: data/org.gnome.TextEditor.gschema.xml:132
 msgid "Keybindings"
@@ -245,7 +246,7 @@ msgstr "Skróty klawiszowe"
 
 #: data/org.gnome.TextEditor.gschema.xml:133
 msgid "The keybindings to use within Text Editor."
-msgstr "Skróty klawiszowe używane w programie."
+msgstr "Skróty klawiszowe używane w aplikacji."
 
 #: data/org.gnome.TextEditor.gschema.xml:137
 msgid "Last Save Directory"
@@ -309,7 +310,8 @@ msgid "translator-credits"
 msgstr ""
 "Piotr Drąg <piotrdrag@gmail.com>, 2022-2025\n"
 "Aviary.pl <community-poland@mozilla.org>, 2022-2025\n"
-"Daniel <wbcwknvstb@proton.me>, 2026"
+"Daniel <wbcwknvstb@proton.me>, 2026\n"
+"Victoria Niedzielska <victorian@gnome.org>, 2026"
 
 #: src/editor-application-actions.c:349
 msgid "Clear File History?"
@@ -355,7 +357,7 @@ msgstr "Otwiera podane pliki w nowym oknie"
 
 #: src/editor-application.c:766
 msgid "Run a new instance of Text Editor (implies --ignore-session)"
-msgstr "Uruchamia nowe wystąpienie programu (wymusza --ignore-session)"
+msgstr "Uruchamia nowe wystąpienie aplikacji (wymusza --ignore-session)"
 
 #: src/editor-application.c:767
 msgid "Print version information and exit"
@@ -372,11 +374,11 @@ msgstr "Nowy dokument"
 
 #: src/editor-encoding-dialog.ui:5
 msgid "Change Encoding"
-msgstr "Zmiana kodowania"
+msgstr "Zmień kodowanie"
 
 #: src/editor-encoding-dialog.ui:22
 msgid "Search encodings"
-msgstr "Wyszukiwanie kodowań"
+msgstr "Wyszukaj kodowania"
 
 #: src/editor-encoding-dialog.ui:58 src/editor-language-dialog.ui:75
 msgid "No Results Found"
@@ -487,7 +489,7 @@ msgstr "Typ dokumentu"
 #: src/editor-language-dialog.ui:25 src/editor-search-entry.c:193
 #: src/editor-search-entry.ui:13
 msgid "Search"
-msgstr "Wyszukiwanie"
+msgstr "Wyszukaj"
 
 #: src/editor-language-row.c:61 src/editor-language-row.c:119
 #: src/editor-properties.c:573
@@ -508,11 +510,11 @@ msgstr "Klasyczny system Mac OS (CR)"
 
 #: src/editor-open-popover.ui:25
 msgid "Search documents"
-msgstr "Wyszukiwanie dokumentów"
+msgstr "Wyszukaj dokumenty"
 
 #: src/editor-open-popover.ui:45
 msgid "Open New Document"
-msgstr "Otwiera nowy dokument"
+msgstr "Otwórz nowy dokument"
 
 #: src/editor-open-popover.ui:80
 msgid "No Recent Documents"
@@ -544,7 +546,7 @@ msgstr "Wrsz %u, kol %u"
 
 #: src/editor-page.ui:94
 msgid "Go to Line"
-msgstr "Przejście do wiersza"
+msgstr "Przejdź do wiersza"
 
 #: src/editor-page.ui:111
 msgid "Go"
@@ -648,7 +650,7 @@ msgstr "P_rzywracanie sesji"
 
 #: src/editor-preferences-dialog.ui:217
 msgid "Return to your previous session when Text Editor is started"
-msgstr "Powrót do poprzedniej sesji po uruchomieniu programu"
+msgstr "Powrót do poprzedniej sesji po uruchomieniu aplikacji"
 
 #: src/editor-preferences-dialog.ui:229
 msgid "_Clear History"
@@ -681,7 +683,7 @@ msgstr "Położenie"
 
 #: src/editor-properties-panel.ui:27
 msgid "Open in File Manager"
-msgstr "Otwiera w menedżerze plików"
+msgstr "Otwórz w menedżerze plików"
 
 #: src/editor-properties-panel.ui:53
 msgid "_Document Type"
@@ -689,7 +691,7 @@ msgstr "_Typ dokumentu"
 
 #: src/editor-properties-panel.ui:54
 msgid "Change Document Type"
-msgstr "Zmienia typ dokumentu"
+msgstr "Zmień typ dokumentu"
 
 #: src/editor-properties-panel.ui:76
 msgid "_Encoding"
@@ -756,7 +758,7 @@ msgstr "%s (nowy)"
 
 #: src/editor-search-bar.ui:36 src/editor-search-bar.ui:38
 msgid "Replace"
-msgstr "Zastępowanie"
+msgstr "Zastąp"
 
 #: src/editor-search-bar.ui:57
 msgid "Previous Match"
@@ -768,7 +770,7 @@ msgstr "Następny wynik"
 
 #: src/editor-search-bar.ui:86
 msgid "Search & Replace"
-msgstr "Wyszukiwanie i zastępowanie"
+msgstr "Wyszukaj i zastąp"
 
 #: src/editor-search-bar.ui:101
 msgid "Search Options"
@@ -776,7 +778,7 @@ msgstr "Opcje wyszukiwania"
 
 #: src/editor-search-bar.ui:119
 msgid "Close Search"
-msgstr "Zamyka wyszukiwanie"
+msgstr "Zamknij wyszukiwanie"
 
 #: src/editor-search-bar.ui:137
 msgid "_Replace"
@@ -806,19 +808,19 @@ msgstr "%u z %u"
 
 #: src/editor-search-entry.ui:33
 msgid "Clear Entry"
-msgstr "Czyści wpis"
+msgstr "Wyczyść wpis"
 
 #: src/editor-sidebar-row.ui:82
 msgid "Remove"
-msgstr "Usuwa"
+msgstr "Usuń"
 
 #: src/editor-theme-selector.ui:23
 msgid "Follow System Style"
-msgstr "Styl systemu"
+msgstr "Styl systemowy"
 
 #: src/editor-theme-selector.ui:25
 msgid "Follow system style"
-msgstr "Styl systemu"
+msgstr "Styl systemowy"
 
 #: src/editor-theme-selector.ui:40
 msgid "Light Style"
@@ -890,7 +892,7 @@ msgstr "Pliki tekstowe"
 
 #: src/editor-window.c:423
 msgid "Zoom In"
-msgstr "Powiększa"
+msgstr "Powiększ"
 
 #: src/editor-window.c:426
 msgid "Zoom in"
@@ -898,7 +900,7 @@ msgstr "Powiększ"
 
 #: src/editor-window.c:436
 msgid "Zoom Out"
-msgstr "Pomniejsza"
+msgstr "Pomniejsz"
 
 #: src/editor-window.c:439
 msgid "Zoom out"
@@ -906,7 +908,7 @@ msgstr "Pomniejsz"
 
 #: src/editor-window.c:444
 msgid "Reset Zoom"
-msgstr "Przywraca powiększenie"
+msgstr "Przywróć domyślne powiększenie"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
 #: src/editor-window.c:690
@@ -920,7 +922,7 @@ msgstr "Są niezapisane dokumenty"
 
 #: src/editor-window.ui:81
 msgid "Open a Document"
-msgstr "Otwieranie dokumentu"
+msgstr "Otwórz dokument"
 
 #: src/editor-window.ui:82
 msgid "Create a new document (Ctrl+N), or open an existing one (Ctrl+O)"
@@ -944,7 +946,7 @@ msgstr "Nowa karta"
 
 #: src/editor-window.ui:229 src/editor-window.ui:403
 msgid "Leave Fullscreen"
-msgstr "Wyłącz pełny ekran"
+msgstr "Opuść tryb pełnoekranowy"
 
 #: src/editor-window.ui:237
 msgid "Main Menu"
@@ -984,7 +986,7 @@ msgstr "_Skróty klawiszowe"
 
 #: src/editor-window.ui:420
 msgid "A_bout Text Editor"
-msgstr "_O programie"
+msgstr "_O aplikacji"
 
 #: src/editor-window.ui:428
 msgid "Move _Left"
