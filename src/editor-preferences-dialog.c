@@ -240,7 +240,6 @@ update_style_schemes (EditorPreferencesDialog *self)
   g_autoptr(GArray) schemes = NULL;
   const char *current_scheme;
   gboolean is_dark;
-  guint j = 0;
   GtkWidget *child;
 
   g_assert (EDITOR_IS_PREFERENCES_DIALOG (self));
@@ -316,8 +315,6 @@ update_style_schemes (EditorPreferencesDialog *self)
       gtk_actionable_set_action_name (GTK_ACTIONABLE (preview), "app.style-scheme");
       gtk_actionable_set_action_target (GTK_ACTIONABLE (preview), "s", info->id);
       gtk_flow_box_insert (self->scheme_group, preview, -1);
-
-      j++;
     }
 
   update_style_scheme_selection (self);
