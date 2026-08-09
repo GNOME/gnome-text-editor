@@ -700,6 +700,9 @@ title_query_tooltip_cb (EditorWindow *self,
                         gboolean      keyboard,
                         GtkTooltip   *tooltip)
 {
+#ifdef G_OS_UNIX
+  static char *docportal = NULL;
+#endif
   g_autofree char *text = NULL;
   g_autofree char *temp = NULL;
   EditorDocument *document;
@@ -714,8 +717,20 @@ title_query_tooltip_cb (EditorWindow *self,
       !(file = editor_document_get_file (document)))
     return FALSE;
 
+#ifdef G_OS_UNIX
+  if (docportal == NULL)
+    docportal = g_strdup_printf ("%s/doc/", g_get_user_runtime_dir ());
+#endif
+
   if (g_file_is_native (file))
-    text = g_file_get_path (file);
+    {
+#ifdef G_OS_UNIX
+      if (g_str_has_prefix (g_file_peek_path (file), docportal))
+        text = _editor_get_portal_host_path (file);
+      else
+#endif
+        text = g_file_get_path (file);
+    }
   else
     text = g_uri_unescape_string ((temp = g_file_get_uri (file)), NULL);
 
