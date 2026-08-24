@@ -1560,7 +1560,8 @@ _editor_page_set_search_visible (EditorPage          *self,
 {
   g_return_if_fail (EDITOR_IS_PAGE (self));
 
-  if (search_visible == _editor_page_get_search_visible (self))
+  if (search_visible == _editor_page_get_search_visible (self) &&
+      mode == _editor_search_bar_get_mode (self->search_bar))
     return;
 
   if (search_visible)
@@ -1586,6 +1587,7 @@ _editor_page_begin_search (EditorPage *self)
   g_return_if_fail (EDITOR_IS_PAGE (self));
 
   _editor_page_set_search_visible (self, TRUE, EDITOR_SEARCH_BAR_MODE_SEARCH);
+  _editor_search_bar_grab_focus (self->search_bar);
 }
 
 void
@@ -1594,6 +1596,7 @@ _editor_page_begin_replace (EditorPage *self)
   g_return_if_fail (EDITOR_IS_PAGE (self));
 
   _editor_page_set_search_visible (self, TRUE, EDITOR_SEARCH_BAR_MODE_REPLACE);
+  _editor_search_bar_grab_focus (self->search_bar);
 }
 
 void
@@ -1621,7 +1624,7 @@ _editor_page_move_next_search (EditorPage *self,
 {
   g_return_if_fail (EDITOR_IS_PAGE (self));
 
-  _editor_page_set_search_visible (self, TRUE, EDITOR_SEARCH_BAR_MODE_SEARCH);
+  _editor_page_set_search_visible (self, TRUE, _editor_search_bar_get_mode (self->search_bar));
 
   _editor_search_bar_move_next (self->search_bar, hide_after_move);
 }
@@ -1632,7 +1635,7 @@ _editor_page_move_previous_search (EditorPage *self,
 {
   g_return_if_fail (EDITOR_IS_PAGE (self));
 
-  _editor_page_set_search_visible (self, TRUE, EDITOR_SEARCH_BAR_MODE_SEARCH);
+  _editor_page_set_search_visible (self, TRUE, _editor_search_bar_get_mode (self->search_bar));
 
   _editor_search_bar_move_previous (self->search_bar, hide_after_move);
 }

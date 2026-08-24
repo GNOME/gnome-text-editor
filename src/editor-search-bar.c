@@ -548,10 +548,7 @@ editor_search_bar_get_property (GObject    *object,
   switch (prop_id)
     {
     case PROP_MODE:
-      g_value_set_enum (value,
-                        gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (self->replace_mode_button)) ?
-                        EDITOR_SEARCH_BAR_MODE_REPLACE :
-                        EDITOR_SEARCH_BAR_MODE_SEARCH);
+      g_value_set_enum (value, _editor_search_bar_get_mode (self));
       break;
 
     case PROP_CAN_MOVE:
@@ -735,6 +732,16 @@ editor_search_bar_init (EditorSearchBar *self)
   g_action_map_add_action (G_ACTION_MAP (group), G_ACTION (word_action));
 
   gtk_widget_insert_action_group (GTK_WIDGET (self), "search-options", G_ACTION_GROUP (group));
+}
+
+EditorSearchBarMode
+_editor_search_bar_get_mode (EditorSearchBar *self)
+{
+  g_return_val_if_fail (EDITOR_IS_SEARCH_BAR (self), EDITOR_SEARCH_BAR_MODE_SEARCH);
+
+  return gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (self->replace_mode_button)) ?
+    EDITOR_SEARCH_BAR_MODE_REPLACE :
+    EDITOR_SEARCH_BAR_MODE_SEARCH;
 }
 
 void
