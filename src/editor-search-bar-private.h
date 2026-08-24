@@ -69,6 +69,8 @@ struct _EditorSearchBar
 void     _editor_search_bar_attach              (EditorSearchBar     *self,
                                                  EditorDocument      *document);
 void     _editor_search_bar_detach              (EditorSearchBar     *self);
+EditorSearchBarMode
+         _editor_search_bar_get_mode            (EditorSearchBar     *self);
 void     _editor_search_bar_set_mode            (EditorSearchBar     *self,
                                                  EditorSearchBarMode  mode);
 void     _editor_search_bar_move_next           (EditorSearchBar     *self,
