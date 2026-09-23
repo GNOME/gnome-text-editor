@@ -1009,8 +1009,6 @@ editor_window_init (EditorWindow *self)
                                  ADW_TAB_VIEW_SHORTCUT_CONTROL_SHIFT_END |
                                  ADW_TAB_VIEW_SHORTCUT_CONTROL_SHIFT_HOME);
 
-  adw_status_page_set_icon_name (ADW_STATUS_PAGE (self->empty), APP_ID"-symbolic");
-
   self->settings = g_settings_new ("org.gnome.TextEditor");
   g_signal_connect_object (self->settings,
                            "changed::show-line-numbers",
