@@ -243,7 +243,7 @@
             <child type="end">
               <object class="GtkToggleButton" id="properties_button">
                 <property name="tooltip-text" translatable="yes">Document Properties</property>
-                <property name="icon-name">info-outline-symbolic</property>
+                <property name="icon-name">info-outline</property>
                 <property name="active" bind-source="split_view" bind-property="show-sidebar" bind-flags="bidirectional|sync-create"/>
                 <child>
                   <object class="GtkShortcutController">

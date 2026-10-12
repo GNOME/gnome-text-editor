@@ -730,7 +730,7 @@ editor_page_get_indicator (EditorPage *self)
     return NULL;
 
   if (icon == NULL)
-    icon = g_themed_icon_new ("document-admin-symbolic");
+    icon = g_themed_icon_new ("document-admin");
 
   return icon;
 }
