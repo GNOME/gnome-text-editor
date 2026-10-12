@@ -135,7 +135,7 @@
             <child type="properties_button">
               <object class="GtkToggleButton" id="properties_button">
                 <property name="tooltip-text" translatable="yes">Document Properties</property>
-                <property name="icon-name">info-outline-symbolic</property>
+                <property name="icon-name">info-outline</property>
                 <property name="active" bind-source="EditorWindow" bind-property="show-properties" bind-flags="bidirectional|sync-create"/>
                 <property name="sensitive" bind-source="EditorWindow" bind-property="can-show-properties" bind-flags="sync-create"/>
                 <child>
