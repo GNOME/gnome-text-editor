@@ -29,8 +29,8 @@ MSYS2_ARG_CONV_EXCL="--prefix=" meson setup builddir --prefix="${MINGW_PREFIX}" 
         -Dgtk:media-gstreamer=disabled -Dgtk:build-testsuite=false -Dgtk:build-tests=false -Dgtk:werror=false \
         -Dlibadwaita:vapi=false -Dlibadwaita:examples=false -Dlibadwaita:tests=false -Dlibadwaita:werror=false \
         -Dgtksourceview:vapi=false \
-        -Dlibdex:docs=false -Dlibdex:examples=false -Dlibdex:tests=false -Dlibdex:vapi=false \
-        -Dlibspelling:docs=false -Dlibspelling:sysprof=false -Dlibspelling:vapi=false
+        -Dlibdex:docs=false -Dlibdex:examples=false -Dlibdex:introspection=disabled -Dlibdex:tests=false -Dlibdex:vapi=false \
+        -Dlibspelling:docs=false -Dlibspelling:introspection=disabled -Dlibspelling:sysprof=false -Dlibspelling:vapi=false
 meson compile -C builddir
 meson test -C builddir --suite gnome-text-editor
 
