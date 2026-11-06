@@ -22,10 +22,10 @@ You can come back to your work even if you've never saved it to a file.
 
 ## Dependencies
 
- * GTK 4.15 or newer
- * GtkSourceView 5.10 or newer
- * Libadwaita 1.6.0 or newer
- * Libspelling 0.4.0 or newer
+ * GTK 4.25 or newer
+ * GtkSourceView 5.23 or newer
+ * Libadwaita 1.10 or newer
+ * Libspelling 1.0.alpha or newer
  * libeditorconfig for .editorconfig support
 
 Refer to the [org.gnome.TextEditor.Devel.json](https://gitlab.gnome.org/GNOME/gnome-text-editor/tree/master/org.gnome.TextEditor.Devel.json) Flatpak manifest for additional details.
