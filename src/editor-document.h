@@ -40,8 +40,6 @@ gboolean                  editor_document_get_externally_modified (EditorDocumen
 SpellingChecker          *editor_document_get_spell_checker       (EditorDocument  *self);
 void                      editor_document_set_spell_checker       (EditorDocument  *self,
                                                                    SpellingChecker *spell_checker);
-void                      editor_document_update_corrections      (EditorDocument  *self);
-GMenuModel               *editor_document_get_spelling_menu       (EditorDocument  *self);
 EditorDocumentStatistics *editor_document_load_statistics         (EditorDocument  *self);
 EditorEncoding           *editor_document_dup_encoding            (EditorDocument  *self);
 void                      editor_document_set_encoding            (EditorDocument  *self,

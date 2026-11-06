@@ -40,7 +40,7 @@ struct _EditorSourceView
   GtkCssProvider *css_provider;
   PangoFontDescription *font_desc;
   GMenuModel *spelling_menu;
-  char *spelling_word;
+  SpellingTextViewAdapter *spelling_adapter;
   int font_scale;
   double line_height;
   guint overscroll_source;
@@ -58,17 +58,6 @@ enum {
 };
 
 static GParamSpec *properties [N_PROPS];
-
-static void
-editor_source_view_update_corrections (EditorSourceView *self)
-{
-  EditorDocument *document;
-
-  g_assert (EDITOR_IS_SOURCE_VIEW (self));
-
-  if ((document = EDITOR_DOCUMENT (gtk_text_view_get_buffer (GTK_TEXT_VIEW (self)))))
-    editor_document_update_corrections (document);
-}
 
 static gboolean
 editor_source_view_update_overscroll (gpointer user_data)
@@ -152,26 +141,15 @@ editor_source_view_update_css (EditorSourceView *self)
 }
 
 static gboolean
-on_key_pressed_cb (GtkEventControllerKey *key,
+on_key_pressed_cb (EditorSourceView      *self,
                    guint                  keyval,
                    guint                  keycode,
                    GdkModifierType        state,
-                   GtkWidget             *widget)
+                   GtkEventControllerKey *key)
 {
-  g_assert (EDITOR_IS_SOURCE_VIEW (widget));
+  GtkWidget *widget = GTK_WIDGET (self);
 
-  /* We don't get a callback from GtkTextView when the menu is to be shown
-   * via the `menu.popup` action. This tries to discover that before it does
-   * and ensure our menu is updated to contain the spelling corrections.
-   *
-   * See https://gitlab.gnome.org/GNOME/gnome-text-editor/-/issues/693
-   */
-  if (((state & GDK_SHIFT_MASK) == GDK_SHIFT_MASK && keyval == GDK_KEY_F10) ||
-      keyval == GDK_KEY_Menu)
-    {
-      editor_source_view_update_corrections (EDITOR_SOURCE_VIEW (widget));
-      return FALSE;
-    }
+  g_assert (EDITOR_IS_SOURCE_VIEW (self));
 
   /* This seems to be the easiest way to reliably override the keybindings
    * from GtkTextView into something we want (which is to use them for moving
@@ -233,50 +211,6 @@ tweak_gutter_spacing (GtkSourceView *view)
 }
 
 static void
-on_click_pressed_cb (GtkGestureClick  *click,
-                     int               n_press,
-                     double            x,
-                     double            y,
-                     EditorSourceView *self)
-{
-  GdkEventSequence *sequence;
-  GtkTextBuffer *buffer;
-  GtkTextIter iter, begin, end;
-  GdkEvent *event;
-  int buf_x, buf_y;
-
-  g_assert (EDITOR_IS_SOURCE_VIEW (self));
-  g_assert (GTK_IS_GESTURE_CLICK (click));
-
-  sequence = gtk_gesture_single_get_current_sequence (GTK_GESTURE_SINGLE (click));
-  event = gtk_gesture_get_last_event (GTK_GESTURE (click), sequence);
-
-  if (n_press != 1 || !gdk_event_triggers_context_menu (event))
-    {
-      editor_source_view_update_corrections (self);
-      return;
-    }
-
-  /* Move the cursor position to where the click occurred so that
-   * the context menu will be useful for the click location.
-   */
-  buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (self));
-  if (gtk_text_buffer_get_selection_bounds (buffer, &begin, &end))
-    {
-      editor_source_view_update_corrections (self);
-      return;
-    }
-
-  gtk_text_view_window_to_buffer_coords (GTK_TEXT_VIEW (self),
-                                         GTK_TEXT_WINDOW_WIDGET,
-                                         x, y, &buf_x, &buf_y);
-  gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (self), &iter, buf_x, buf_y);
-  gtk_text_buffer_select_range (buffer, &iter, &iter);
-
-  editor_source_view_update_corrections (self);
-}
-
-static void
 editor_source_view_zoom (EditorSourceView *self,
                          int               amount)
 {
@@ -294,10 +228,10 @@ editor_source_view_zoom (EditorSourceView *self,
 }
 
 static gboolean
-on_scroll_scrolled_cb (GtkEventControllerScroll *scroll,
+on_scroll_scrolled_cb (EditorSourceView         *self,
                        double                    dx,
                        double                    dy,
-                       EditorSourceView         *self)
+                       GtkEventControllerScroll *scroll)
 {
   GdkModifierType mods;
 
@@ -316,8 +250,8 @@ on_scroll_scrolled_cb (GtkEventControllerScroll *scroll,
 }
 
 static void
-on_scroll_begin_cb (GtkEventControllerScroll *scroll,
-                    EditorSourceView         *self)
+on_scroll_begin_cb (EditorSourceView         *self,
+                    GtkEventControllerScroll *scroll)
 {
   GdkModifierType state;
 
@@ -333,8 +267,8 @@ on_scroll_begin_cb (GtkEventControllerScroll *scroll,
 }
 
 static void
-on_scroll_end_cb (GtkEventControllerScroll *scroll,
-                  EditorSourceView         *self)
+on_scroll_end_cb (EditorSourceView         *self,
+                  GtkEventControllerScroll *scroll)
 {
   g_assert (GTK_IS_EVENT_CONTROLLER_SCROLL (scroll));
   g_assert (EDITOR_IS_SOURCE_VIEW (self));
@@ -353,6 +287,12 @@ on_notify_buffer_cb (EditorSourceView *self,
 
   g_assert (EDITOR_IS_SOURCE_VIEW (self));
 
+  extra_menu = gtk_text_view_get_extra_menu (GTK_TEXT_VIEW (self));
+  if (self->spelling_menu != NULL)
+    editor_joined_menu_remove_menu (EDITOR_JOINED_MENU (extra_menu), self->spelling_menu);
+  g_clear_object (&self->spelling_menu);
+  g_clear_object (&self->spelling_adapter);
+
   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (self));
   if (!EDITOR_IS_DOCUMENT (buffer))
     return;
@@ -366,14 +306,11 @@ on_notify_buffer_cb (EditorSourceView *self,
   g_object_bind_property (buffer, "loading", self, "editable",
                           G_BINDING_SYNC_CREATE | G_BINDING_INVERT_BOOLEAN);
 
-  _editor_document_attach_actions (EDITOR_DOCUMENT (buffer), GTK_WIDGET (self));
-
-  model = editor_document_get_spelling_menu (EDITOR_DOCUMENT (buffer));
-  extra_menu = gtk_text_view_get_extra_menu (GTK_TEXT_VIEW (self));
-
-  g_assert (model != NULL);
-  g_assert (EDITOR_IS_JOINED_MENU (extra_menu));
-
+  self->spelling_adapter =
+    spelling_text_view_adapter_new (GTK_TEXT_VIEW (self),
+                                    _editor_document_get_spelling_adapter (EDITOR_DOCUMENT (buffer)));
+  model = spelling_text_view_adapter_get_menu_model (self->spelling_adapter);
+  self->spelling_menu = g_object_ref (model);
   editor_joined_menu_append_menu (EDITOR_JOINED_MENU (extra_menu), model);
 }
 
@@ -648,11 +585,10 @@ editor_source_view_dispose (GObject *object)
   g_clear_handle_id (&self->overscroll_source, g_source_remove);
 
   gtk_text_view_set_extra_menu (GTK_TEXT_VIEW (self), NULL);
-  gtk_widget_insert_action_group (GTK_WIDGET (self), "spelling", NULL);
 
   g_clear_object (&self->css_provider);
   g_clear_object (&self->spelling_menu);
-  g_clear_pointer (&self->spelling_word, g_free);
+  g_clear_object (&self->spelling_adapter);
 
   G_OBJECT_CLASS (editor_source_view_parent_class)->dispose (object);
 }
@@ -810,40 +746,37 @@ editor_source_view_init (EditorSourceView *self)
     }
   G_GNUC_END_IGNORE_DEPRECATIONS
 
-  g_signal_connect (self,
-                    "notify::buffer",
-                    G_CALLBACK (on_notify_buffer_cb),
-                    NULL);
+  g_signal_connect_object (self,
+                           "notify::buffer",
+                           G_CALLBACK (on_notify_buffer_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
 
   controller = gtk_event_controller_key_new ();
-  g_signal_connect (controller,
-                    "key-pressed",
-                    G_CALLBACK (on_key_pressed_cb),
-                    self);
-  gtk_widget_add_controller (GTK_WIDGET (self), controller);
-
-  controller = GTK_EVENT_CONTROLLER (gtk_gesture_click_new ());
-  gtk_gesture_single_set_button (GTK_GESTURE_SINGLE (controller), 0);
-  g_signal_connect (controller,
-                    "pressed",
-                    G_CALLBACK (on_click_pressed_cb),
-                    self);
+  g_signal_connect_object (controller,
+                           "key-pressed",
+                           G_CALLBACK (on_key_pressed_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
   gtk_widget_add_controller (GTK_WIDGET (self), controller);
 
   controller = gtk_event_controller_scroll_new (GTK_EVENT_CONTROLLER_SCROLL_VERTICAL);
   gtk_event_controller_set_propagation_phase (controller, GTK_PHASE_CAPTURE);
-  g_signal_connect (controller,
-                    "scroll",
-                    G_CALLBACK (on_scroll_scrolled_cb),
-                    self);
-  g_signal_connect (controller,
-                    "scroll-begin",
-                    G_CALLBACK (on_scroll_begin_cb),
-                    self);
-  g_signal_connect (controller,
-                    "scroll-end",
-                    G_CALLBACK (on_scroll_end_cb),
-                    self);
+  g_signal_connect_object (controller,
+                           "scroll",
+                           G_CALLBACK (on_scroll_scrolled_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+  g_signal_connect_object (controller,
+                           "scroll-begin",
+                           G_CALLBACK (on_scroll_begin_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+  g_signal_connect_object (controller,
+                           "scroll-end",
+                           G_CALLBACK (on_scroll_end_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
   gtk_widget_add_controller (GTK_WIDGET (self), controller);
 
   tweak_gutter_spacing (GTK_SOURCE_VIEW (self));

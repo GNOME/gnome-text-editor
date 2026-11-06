@@ -75,8 +75,7 @@ void                      _editor_document_guess_language_async    (EditorDocume
 gboolean                  _editor_document_guess_language_finish   (EditorDocument           *self,
                                                                     GAsyncResult             *result,
                                                                     GError                  **error);
-void                      _editor_document_attach_actions          (EditorDocument           *self,
-                                                                    GtkWidget                *widget);
+SpellingTextBufferAdapter *_editor_document_get_spelling_adapter   (EditorDocument           *self);
 GtkTextTag               *_editor_document_get_spelling_tag        (EditorDocument           *self);
 void                      _editor_document_use_admin               (EditorDocument           *self,
                                                                     EditorWindow             *window);

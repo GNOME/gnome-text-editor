@@ -2572,24 +2572,12 @@ _editor_document_shutdown (EditorDocument *self)
   g_clear_object (&self->file);
 }
 
-void
-editor_document_update_corrections (EditorDocument *self)
-{
-  g_return_if_fail (EDITOR_IS_DOCUMENT (self));
-
-  if (self->spell_adapter != NULL)
-    spelling_text_buffer_adapter_update_corrections (self->spell_adapter);
-}
-
-GMenuModel *
-editor_document_get_spelling_menu (EditorDocument *self)
+SpellingTextBufferAdapter *
+_editor_document_get_spelling_adapter (EditorDocument *self)
 {
   g_return_val_if_fail (EDITOR_IS_DOCUMENT (self), NULL);
 
-  if (self->spell_adapter != NULL)
-    return spelling_text_buffer_adapter_get_menu_model (self->spell_adapter);
-
-  return NULL;
+  return self->spell_adapter;
 }
 
 GtkTextTag *
@@ -2601,18 +2589,6 @@ _editor_document_get_spelling_tag (EditorDocument *self)
     return spelling_text_buffer_adapter_get_tag (self->spell_adapter);
 
   return NULL;
-}
-
-void
-_editor_document_attach_actions (EditorDocument *self,
-                                 GtkWidget      *widget)
-{
-  g_return_if_fail (EDITOR_IS_DOCUMENT (self));
-
-  if (self->spell_adapter != NULL)
-    gtk_widget_insert_action_group (widget,
-                                    "spelling",
-                                    G_ACTION_GROUP (self->spell_adapter));
 }
 
 EditorDocumentStatistics *
