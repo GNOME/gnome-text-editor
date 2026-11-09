@@ -256,10 +256,8 @@ editor_page_document_notify_busy_cb (EditorPage     *self,
 
   busy = editor_document_get_busy (document);
 
-  if (!busy)
+  if (!busy && editor_document_get_busy_progress (document) > 0.0)
     _editor_widget_hide_with_fade (GTK_WIDGET (self->progress_bar));
-  else
-    gtk_widget_set_visible (GTK_WIDGET (self->progress_bar), TRUE);
 
   g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_BUSY]);
   g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_CAN_SAVE]);
@@ -353,17 +351,29 @@ editor_page_notify_busy_progress_cb (EditorPage     *self,
   g_clear_pointer (&self->progress_animation, editor_animation_stop);
 
   if (busy_progress == 0.0)
-    gtk_progress_bar_set_fraction (self->progress_bar, 0.0);
+    {
+      gtk_progress_bar_set_fraction (self->progress_bar, 0.0);
+    }
   else
-    self->progress_animation =
-      editor_object_animate_full (self->progress_bar,
-                                  EDITOR_ANIMATION_EASE_OUT_CUBIC,
-                                  300,
-                                  NULL,
-                                  (GDestroyNotify) g_nullify_pointer,
-                                  &self->progress_animation,
-                                  "fraction", busy_progress,
-                                  NULL);
+    {
+      EditorAnimation *fade;
+
+      fade = g_object_get_data (G_OBJECT (self->progress_bar), "EDITOR_FADE_ANIMATION");
+      if (fade != NULL)
+        editor_animation_stop (fade);
+
+      gtk_widget_set_visible (GTK_WIDGET (self->progress_bar), TRUE);
+
+      self->progress_animation =
+        editor_object_animate_full (self->progress_bar,
+                                    EDITOR_ANIMATION_EASE_OUT_CUBIC,
+                                    300,
+                                    NULL,
+                                    (GDestroyNotify) g_nullify_pointer,
+                                    &self->progress_animation,
+                                    "fraction", busy_progress,
+                                    NULL);
+    }
 }
 
 static void
