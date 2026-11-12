@@ -25,6 +25,25 @@ popover button.pill.flat {
   padding: 0;
 }
 
+editormenuview button.pill.flat {
+  padding: 0;
+}
+
+checkbutton.editor-menu-check check {
+  min-width: 16px;
+  min-height: 16px;
+  padding: 0;
+  border: none;
+  background: none;
+  box-shadow: none;
+  -gtk-icon-source: none;
+}
+
+checkbutton.editor-menu-check:checked check,
+checkbutton.editor-menu-check check:checked {
+  -gtk-icon-source: -gtk-icontheme("object-select-symbolic");
+}
+
 /* EditorThemeSelector */
 window.org-gnome-TextEditor themeselector {
   margin: 9px;
