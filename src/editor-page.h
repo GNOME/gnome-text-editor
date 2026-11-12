@@ -45,5 +45,7 @@ void            editor_page_get_visual_position (EditorPage     *self,
                                                  guint          *column);
 const char     *editor_page_get_language_name   (EditorPage     *self);
 void            editor_page_destroy             (EditorPage     *self);
+GtkWidget      *editor_page_get_info_bar        (EditorPage     *self);
+GtkWidget      *editor_page_get_search_bar      (EditorPage     *self);
 
 G_END_DECLS

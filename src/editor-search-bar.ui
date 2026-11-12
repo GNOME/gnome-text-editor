@@ -7,18 +7,19 @@
     </style>
     <child>
       <object class="AdwBreakpointBin">
+        <property name="width-request">250</property>
+        <property name="height-request">40</property>
         <child>
-          <object class="GtkGrid" id="grid">
-            <style>
-              <class name="toolbar"/>
-            </style>
-            <child>
+          <object class="AdwBreakpoint">
+            <condition>max-width: 500sp</condition>
+            <setter object="layouts" property="layout-name">narrow</setter>
+          </object>
+        </child>
+        <child>
+          <object class="AdwMultiLayoutView" id="layouts">
+            <child type="search_entry">
               <object class="EditorSearchEntry" id="search_entry">
                 <property name="hexpand">true</property>
-                <layout>
-                  <property name="row">0</property>
-                  <property name="column">0</property>
-                </layout>
                 <child>
                   <object class="GtkEventControllerKey">
                     <property name="propagation-phase">capture</property>
@@ -27,7 +28,7 @@
                 </child>
               </object>
             </child>
-            <child>
+            <child type="replace_entry">
               <object class="GtkEntry" id="replace_entry">
                 <property name="primary-icon-name">edit-find-replace-symbolic</property>
                 <property name="max-width-chars">20</property>
@@ -37,13 +38,9 @@
                 <accessibility>
                   <property name="label" translatable="yes">Replace</property>
                 </accessibility>
-                <layout>
-                  <property name="row">1</property>
-                  <property name="column">0</property>
-                </layout>
               </object>
             </child>
-            <child>
+            <child type="navigation">
               <object class="GtkBox">
                 <property name="homogeneous">true</property>
                 <property name="orientation">horizontal</property>
@@ -75,42 +72,30 @@
                     </style>
                   </object>
                 </child>
-                <layout>
-                  <property name="row">0</property>
-                  <property name="column">1</property>
-                </layout>
               </object>
             </child>
-            <child>
+            <child type="replace_mode_button">
               <object class="GtkToggleButton" id="replace_mode_button">
                 <property name="tooltip-text" translatable="yes">Search &amp; Replace</property>
                 <property name="icon-name">edit-find-replace-symbolic</property>
                 <property name="focus-on-click">false</property>
-                <layout>
-                  <property name="row">0</property>
-                  <property name="column">2</property>
-                </layout>
                 <style>
                   <class name="flat"/>
                 </style>
               </object>
             </child>
-            <child>
+            <child type="options_button">
               <object class="GtkMenuButton" id="options_button">
                 <property name="direction">up</property>
                 <property name="tooltip-text" translatable="yes">Search Options</property>
                 <property name="icon-name">emblem-system-symbolic</property>
                 <property name="menu-model">options_menu</property>
-                <layout>
-                  <property name="row">0</property>
-                  <property name="column">3</property>
-                </layout>
                 <style>
                   <class name="flat"/>
                 </style>
               </object>
             </child>
-            <child>
+            <child type="close_button">
               <object class="GtkButton" id="close_button">
                 <property name="margin-end">3</property>
                 <property name="action-name">search.hide</property>
@@ -124,13 +109,9 @@
                   <class name="small-button"/>
                   <class name="circular"/>
                 </style>
-                <layout>
-                  <property name="row">0</property>
-                  <property name="column">4</property>
-                </layout>
               </object>
             </child>
-            <child>
+            <child type="replace_button">
               <object class="GtkButton" id="replace_button">
                 <property name="action-name">search.replace-one</property>
                 <property name="use-underline">true</property>
@@ -138,13 +119,9 @@
                 <property name="visible">false</property>
                 <property name="focus-on-click">false</property>
                 <property name="can-shrink">True</property>
-                <layout>
-                  <property name="row">1</property>
-                  <property name="column">1</property>
-                </layout>
               </object>
             </child>
-            <child>
+            <child type="replace_all_button">
               <object class="GtkButton" id="replace_all_button">
                 <property name="action-name">search.replace-all</property>
                 <property name="use-underline">true</property>
@@ -152,11 +129,178 @@
                 <property name="visible">false</property>
                 <property name="focus-on-click">false</property>
                 <property name="can-shrink">True</property>
-                <layout>
-                  <property name="row">1</property>
-                  <property name="column">2</property>
-                  <property name="column-span">3</property>
-                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="AdwLayout">
+                <property name="name">wide</property>
+                <property name="content">
+                  <object class="GtkGrid" id="grid">
+                    <style>
+                      <class name="toolbar"/>
+                    </style>
+                    <child>
+                      <object class="AdwLayoutSlot">
+                        <property name="id">search_entry</property>
+                        <layout>
+                          <property name="row">0</property>
+                          <property name="column">0</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwLayoutSlot">
+                        <property name="id">replace_entry</property>
+                        <layout>
+                          <property name="row">1</property>
+                          <property name="column">0</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwLayoutSlot">
+                        <property name="id">navigation</property>
+                        <layout>
+                          <property name="row">0</property>
+                          <property name="column">1</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwLayoutSlot">
+                        <property name="id">replace_mode_button</property>
+                        <layout>
+                          <property name="row">0</property>
+                          <property name="column">2</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwLayoutSlot">
+                        <property name="id">options_button</property>
+                        <layout>
+                          <property name="row">0</property>
+                          <property name="column">3</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwLayoutSlot">
+                        <property name="id">close_button</property>
+                        <layout>
+                          <property name="row">0</property>
+                          <property name="column">4</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwLayoutSlot">
+                        <property name="id">replace_button</property>
+                        <layout>
+                          <property name="row">1</property>
+                          <property name="column">1</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwLayoutSlot">
+                        <property name="id">replace_all_button</property>
+                        <layout>
+                          <property name="row">1</property>
+                          <property name="column">2</property>
+                          <property name="column-span">3</property>
+                        </layout>
+                      </object>
+                    </child>
+                  </object>
+                </property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwLayout">
+                <property name="name">narrow</property>
+                <property name="content">
+                  <object class="GtkGrid">
+                    <style>
+                      <class name="toolbar"/>
+                    </style>
+                    <child>
+                      <object class="AdwLayoutSlot">
+                        <property name="id">search_entry</property>
+                        <layout>
+                          <property name="row">0</property>
+                          <property name="column">0</property>
+                          <property name="column-span">4</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwLayoutSlot">
+                        <property name="id">replace_entry</property>
+                        <layout>
+                          <property name="row">1</property>
+                          <property name="column">0</property>
+                          <property name="column-span">4</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwLayoutSlot">
+                        <property name="id">navigation</property>
+                        <layout>
+                          <property name="row">2</property>
+                          <property name="column">0</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwLayoutSlot">
+                        <property name="id">replace_mode_button</property>
+                        <layout>
+                          <property name="row">2</property>
+                          <property name="column">1</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwLayoutSlot">
+                        <property name="id">options_button</property>
+                        <layout>
+                          <property name="row">2</property>
+                          <property name="column">2</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwLayoutSlot">
+                        <property name="id">close_button</property>
+                        <layout>
+                          <property name="row">2</property>
+                          <property name="column">3</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwLayoutSlot">
+                        <property name="id">replace_button</property>
+                        <layout>
+                          <property name="row">3</property>
+                          <property name="column">0</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwLayoutSlot">
+                        <property name="id">replace_all_button</property>
+                        <layout>
+                          <property name="row">3</property>
+                          <property name="column">1</property>
+                          <property name="column-span">3</property>
+                        </layout>
+                      </object>
+                    </child>
+                  </object>
+                </property>
               </object>
             </child>
           </object>

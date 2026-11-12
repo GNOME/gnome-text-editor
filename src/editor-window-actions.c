@@ -325,6 +325,7 @@ editor_window_actions_open_text_file_cb (GObject      *object,
   if ((files = gtk_file_dialog_open_multiple_text_files_finish (dialog, result, &encoding, &error)))
     {
       const GtkSourceEncoding *translated = NULL;
+      EditorPage *opened_page = NULL;
       guint n_items = g_list_model_get_n_items (files);
 
       if (encoding != NULL && g_strcmp0 (encoding, "automatic") != 0)
@@ -333,7 +334,13 @@ editor_window_actions_open_text_file_cb (GObject      *object,
       for (guint i = 0; i < n_items; i++)
         {
           g_autoptr(GFile) file = g_list_model_get_item (files, i);
-          editor_session_open (EDITOR_SESSION_DEFAULT, self, file, translated);
+          opened_page = editor_session_open (EDITOR_SESSION_DEFAULT, self, file, translated);
+        }
+
+      if (opened_page != NULL)
+        {
+          adw_bottom_sheet_set_open (self->open_bottom_sheet, FALSE);
+          editor_page_grab_focus (opened_page);
         }
     }
 }
@@ -416,7 +423,10 @@ editor_window_actions_show_primary_menu_cb (GtkWidget  *widget,
 
   g_assert (EDITOR_IS_WINDOW (self));
 
-  gtk_menu_button_popup (self->primary_menu);
+  if (g_strcmp0 ("narrow", adw_multi_layout_view_get_layout_name (self->multi_layout)) == 0)
+    adw_bottom_sheet_set_open (self->primary_menu_bottom_sheet, TRUE);
+  else
+    gtk_menu_button_popup (self->primary_menu_button);
 }
 
 static void
@@ -620,11 +630,24 @@ editor_window_actions_page_zoom_one_cb (GtkWidget  *widget,
   _editor_page_zoom_one (editor_window_get_visible_page (self));
 }
 
+static void
+editor_window_actions_page_action_cb (GtkWidget  *widget,
+                                      const char *action_name,
+                                      GVariant   *parameter)
+{
+  EditorWindow *self = EDITOR_WINDOW (widget);
+
+  if (self->visible_page != NULL)
+    gtk_widget_activate_action_variant (GTK_WIDGET (self->visible_page), action_name, parameter);
+}
+
 void
 _editor_window_class_actions_init (EditorWindowClass *klass)
 {
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
+  gtk_widget_class_install_action (widget_class, "page.goto-line", NULL,
+                                   editor_window_actions_page_action_cb);
   gtk_widget_class_install_action (widget_class,
                                    "session.new-draft",
                                    NULL,

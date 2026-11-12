@@ -23,7 +23,8 @@
 #include <adwaita.h>
 
 #include "editor-fullscreen-box.h"
-#include "editor-open-popover-private.h"
+#include "editor-menu-view.h"
+#include "editor-open-view.h"
 #include "editor-page-private.h"
 #include "editor-statusbar-private.h"
 #include "editor-window.h"
@@ -45,16 +46,21 @@ struct _EditorWindow
   GtkLabel             *subtitle;
   GtkLabel             *is_modified;
   GtkImage             *indicator;
-  EditorOpenPopover    *open_menu_popover;
   GtkStack             *stack;
   GtkMenuButton        *open_menu_button;
-  GtkMenuButton        *primary_menu;
+  EditorOpenView       *open_view;
   GtkMenuButton        *options_menu;
+  GtkMenuButton        *primary_menu_button;
+  EditorMenuView       *primary_menu_view;
+  AdwBottomSheet       *primary_menu_bottom_sheet;
   GtkMenuButton        *export_menu;
-  GtkWidget            *zoom_label;
   GMenu                *options_menu_model;
   EditorStatusbar      *statusbar;
-  EditorFullscreenBox  *fullscreen_box;
+  AdwBin               *info_bar_container;
+  AdwBin               *search_bar_container;
+  AdwBottomSheet       *open_bottom_sheet;
+  AdwMultiLayoutView   *multi_layout;
+  GtkToggleButton      *narrow_map_button;
 
   /* Borrowed References */
   EditorPage           *visible_page;
@@ -71,6 +77,11 @@ struct _EditorWindow
   guint                 doc_type_index;
 
   guint                 inhibit_cookie;
+  guint                 focus_active_tab_source;
+  int                   allocated_height;
+
+  guint show_properties : 1;
+  guint tab_overview_animating : 1;
 };
 
 
@@ -92,5 +103,6 @@ gboolean      _editor_window_request_close_pages  (EditorWindow      *self,
                                                    GList             *pages,
                                                    gboolean           close_saved);
 GCancellable *_editor_window_get_cancellable      (EditorWindow      *self);
+gboolean      _editor_window_is_animating         (EditorWindow      *self);
 
 G_END_DECLS

@@ -35,6 +35,7 @@
 #include "editor-source-map.h"
 #include "editor-source-view.h"
 #include "editor-utils-private.h"
+#include "editor-window-private.h"
 
 #define HIDE_POSITION_DELAY_SECONDS 1
 
@@ -46,6 +47,7 @@ enum {
   PROP_INDICATOR,
   PROP_IS_MODIFIED,
   PROP_LANGUAGE_NAME,
+  PROP_MAP_OPEN,
   PROP_POSITION_LABEL,
   PROP_SETTINGS,
   PROP_SUBTITLE,
@@ -58,6 +60,60 @@ G_DEFINE_TYPE (EditorPage, editor_page, GTK_TYPE_WIDGET)
 
 static GParamSpec *properties [N_PROPS];
 static GSettings *app_settings;
+
+static void
+editor_page_update_map (EditorPage *self)
+{
+  gboolean beside_editor;
+
+  g_assert (EDITOR_IS_PAGE (self));
+
+  beside_editor = !adw_overlay_split_view_get_collapsed (self->map_split_view) &&
+                  self->settings != NULL &&
+                  editor_page_settings_get_show_map (self->settings);
+
+  if (!adw_overlay_split_view_get_collapsed (self->map_split_view))
+    adw_overlay_split_view_set_show_sidebar (self->map_split_view, beside_editor);
+
+  gtk_scrolled_window_set_policy (self->scroller,
+                                  GTK_POLICY_AUTOMATIC,
+                                  beside_editor ? GTK_POLICY_EXTERNAL : GTK_POLICY_AUTOMATIC);
+}
+
+static void
+editor_page_map_setting_changed_cb (EditorPage         *self,
+                                    GParamSpec         *pspec,
+                                    EditorPageSettings *settings)
+{
+  g_assert (EDITOR_IS_PAGE (self));
+  g_assert (EDITOR_IS_PAGE_SETTINGS (settings));
+
+  if (settings == self->settings)
+    editor_page_update_map (self);
+}
+
+static void
+editor_page_map_visibility_changed_cb (EditorPage          *self,
+                                       GParamSpec          *pspec,
+                                       AdwOverlaySplitView *split_view)
+{
+  g_assert (EDITOR_IS_PAGE (self));
+  g_assert (ADW_IS_OVERLAY_SPLIT_VIEW (split_view));
+
+  g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_MAP_OPEN]);
+  gtk_widget_queue_allocate (GTK_WIDGET (self->overlay));
+}
+
+void
+_editor_page_set_map_layout (EditorPage *self,
+                             gboolean    narrow)
+{
+  g_return_if_fail (EDITOR_IS_PAGE (self));
+
+  adw_overlay_split_view_set_show_sidebar (self->map_split_view, FALSE);
+  adw_overlay_split_view_set_collapsed (self->map_split_view, narrow);
+  editor_page_update_map (self);
+}
 
 static gboolean
 editor_page_hide_position_cb (gpointer data)
@@ -106,6 +162,24 @@ get_tab_info (EditorPage  *self,
   *tab_page = adw_tab_view_get_page (*tab_view, GTK_WIDGET (self));
 
   return *tab_view != NULL && *tab_page != NULL;
+}
+
+static void
+editor_page_document_notify_style_scheme_cb (EditorPage     *self,
+                                             GParamSpec     *pspec,
+                                             EditorDocument *document)
+{
+  AdwTabView *tab_view;
+  AdwTabPage *tab_page;
+
+  g_assert (EDITOR_IS_PAGE (self));
+  g_assert (EDITOR_IS_DOCUMENT (document));
+
+  g_clear_object (&self->cached_texture);
+  gtk_widget_queue_draw (GTK_WIDGET (self));
+
+  if (get_tab_info (self, &tab_view, &tab_page))
+    adw_tab_page_invalidate_thumbnail (tab_page);
 }
 
 static void
@@ -175,7 +249,15 @@ editor_page_set_settings (EditorPage         *self,
   g_assert (EDITOR_IS_PAGE_SETTINGS (settings));
 
   if (g_set_object (&self->settings, settings))
-    g_binding_group_set_source (self->settings_bindings, settings);
+    {
+      g_binding_group_set_source (self->settings_bindings, settings);
+      g_signal_connect_object (settings,
+                               "notify::show-map",
+                               G_CALLBACK (editor_page_map_setting_changed_cb),
+                               self,
+                               G_CONNECT_SWAPPED);
+      editor_page_update_map (self);
+    }
 }
 
 static void
@@ -437,6 +519,11 @@ editor_page_set_document (EditorPage     *self,
                                self,
                                G_CONNECT_SWAPPED);
       g_signal_connect_object (document,
+                               "notify::style-scheme",
+                               G_CALLBACK (editor_page_document_notify_style_scheme_cb),
+                               self,
+                               G_CONNECT_SWAPPED);
+      g_signal_connect_object (document,
                                "notify::busy-progress",
                                G_CALLBACK (editor_page_notify_busy_progress_cb),
                                self,
@@ -535,14 +622,6 @@ editor_page_constructed (GObject *object)
                              self->view, "background-pattern",
                              G_BINDING_SYNC_CREATE,
                              _editor_gboolean_to_background_pattern,
-                             NULL, NULL, NULL);
-  g_binding_group_bind (self->settings_bindings, "show-map",
-                        self->map, "visible",
-                        G_BINDING_SYNC_CREATE);
-  g_binding_group_bind_full (self->settings_bindings, "show-map",
-                             self->scroller, "vscrollbar-policy",
-                             G_BINDING_SYNC_CREATE,
-                             _editor_gboolean_to_scroll_policy,
                              NULL, NULL, NULL);
   g_binding_group_bind (self->settings_bindings, "tab-width",
                         self->view, "tab-width",
@@ -667,8 +746,9 @@ get_child_position_cb (GtkOverlay    *overlay,
                        GtkAllocation *alloc,
                        EditorPage    *self)
 {
-  GtkRequisition min, nat, map_min;
+  GtkRequisition min, nat;
   GtkAllocation ov_alloc;
+  int map_width;
 
   g_assert (GTK_IS_OVERLAY (overlay));
   g_assert (GTK_IS_WIDGET (child));
@@ -678,14 +758,18 @@ get_child_position_cb (GtkOverlay    *overlay,
   if (child != GTK_WIDGET (self->position_label))
     return FALSE;
 
-  if (!gtk_widget_get_visible (GTK_WIDGET (self->map)))
+  if (adw_overlay_split_view_get_collapsed (self->map_split_view) ||
+      !adw_overlay_split_view_get_show_sidebar (self->map_split_view))
     return FALSE;
 
   gtk_widget_get_allocation (GTK_WIDGET (overlay), &ov_alloc);
   gtk_widget_get_preferred_size (child, &min, &nat);
-  gtk_widget_get_preferred_size (GTK_WIDGET (self->map), &map_min, NULL);
+  map_width = gtk_widget_get_width (GTK_WIDGET (self->map));
 
-  alloc->x = ov_alloc.width - map_min.width - nat.width;
+  if (gtk_widget_get_direction (GTK_WIDGET (self)) == GTK_TEXT_DIR_RTL)
+    alloc->x = map_width;
+  else
+    alloc->x = ov_alloc.width - map_width - nat.width;
   alloc->y = ov_alloc.height - nat.height;
   alloc->width = nat.width;
   alloc->height = nat.height;
@@ -746,9 +830,131 @@ editor_page_get_indicator (EditorPage *self)
 }
 
 static void
+editor_page_measure (GtkWidget      *widget,
+                     GtkOrientation  orientation,
+                     int             for_size,
+                     int            *min,
+                     int            *nat,
+                     int            *min_base,
+                     int            *nat_base)
+{
+  GtkWidget *child = gtk_widget_get_first_child (widget);
+
+  if (child != NULL)
+    gtk_widget_measure (child, orientation, for_size, min, nat, min_base, nat_base);
+}
+
+static void
+editor_page_size_allocate (GtkWidget *widget,
+                           int        width,
+                           int        height,
+                           int        baseline)
+{
+  GtkWidget *child = gtk_widget_get_first_child (widget);
+
+  if (child != NULL)
+    gtk_widget_allocate (child, width, height, baseline, NULL);
+}
+
+static void
+get_bg_color (EditorPage *self,
+              GdkRGBA    *bg)
+{
+  GtkSourceStyleScheme *scheme;
+  GtkSourceStyle *style;
+
+  if ((scheme = gtk_source_buffer_get_style_scheme (GTK_SOURCE_BUFFER (self->document))) &&
+      (style = gtk_source_style_scheme_get_style (scheme, "text")))
+    {
+      g_autofree char *background = NULL;
+      gboolean background_set = FALSE;
+
+      g_object_get (style,
+                    "background", &background,
+                    "background-set", &background_set,
+                    NULL);
+
+      if (background_set)
+        gdk_rgba_parse (bg, background);
+    }
+}
+
+static void
+editor_page_snapshot (GtkWidget   *widget,
+                      GtkSnapshot *snapshot)
+{
+  EditorPage *self = (EditorPage *)widget;
+  EditorWindow *window;
+  gboolean animating;
+  GdkRGBA bg = {0};
+  int width;
+  int height;
+
+  g_assert (EDITOR_IS_PAGE (self));
+  g_assert (GTK_IS_SNAPSHOT (snapshot));
+
+  window = EDITOR_WINDOW (gtk_widget_get_root (widget));
+  animating = _editor_window_is_animating (window);
+  width = gtk_widget_get_width (widget);
+  height = gtk_widget_get_height (widget);
+
+  if (animating &&
+      editor_window_get_visible_page (window) == self)
+    {
+      if (self->cached_texture == NULL)
+        {
+          GtkSnapshot *sub_snapshot = gtk_snapshot_new ();
+          GtkWidget *child = gtk_widget_get_first_child (widget);
+          int scale_factor = gtk_widget_get_scale_factor (widget);
+          g_autoptr(GskRenderNode) node = NULL;
+          GskRenderer *renderer;
+
+          get_bg_color (self, &bg);
+
+          gtk_snapshot_scale (sub_snapshot, scale_factor, scale_factor);
+          gtk_snapshot_append_color (sub_snapshot,
+                                     &bg,
+                                     &GRAPHENE_RECT_INIT (0, 0, width, height));
+
+          if (child != NULL)
+            gtk_widget_snapshot_child (widget, child, sub_snapshot);
+
+          node = gtk_snapshot_free_to_node (sub_snapshot);
+          renderer = gtk_native_get_renderer (GTK_NATIVE (window));
+
+          self->cached_texture = gsk_renderer_render_texture (renderer,
+                                                              node,
+                                                              &GRAPHENE_RECT_INIT (0,
+                                                                                   0,
+                                                                                   width * scale_factor,
+                                                                                   height * scale_factor));
+        }
+
+      gtk_snapshot_append_texture (snapshot,
+                                   self->cached_texture,
+                                   &GRAPHENE_RECT_INIT (0, 0, width, height));
+    }
+  else
+    {
+      g_clear_object (&self->cached_texture);
+
+      if (animating)
+        {
+          get_bg_color (self, &bg);
+          gtk_snapshot_append_color (snapshot,
+                                     &bg,
+                                     &GRAPHENE_RECT_INIT (0, 0, width, height));
+        }
+
+      GTK_WIDGET_CLASS (editor_page_parent_class)->snapshot (widget, snapshot);
+    }
+}
+
+static void
 editor_page_dispose (GObject *object)
 {
   EditorPage *self = (EditorPage *)object;
+  GtkWidget *child;
 
   g_clear_handle_id (&self->queued_hide_position, g_source_remove);
 
@@ -757,11 +963,20 @@ editor_page_dispose (GObject *object)
 
   g_cancellable_cancel (self->cancellable);
   g_clear_object (&self->cancellable);
+  g_clear_object (&self->cached_texture);
+
+  if (self->search_bar != NULL)
+    self->search_bar->page = NULL;
+
+  g_clear_object (&self->bottom_bars);
+  g_clear_object (&self->infobar);
 
   gtk_widget_dispose_template (GTK_WIDGET (self), EDITOR_TYPE_PAGE);
 
   g_clear_pointer (&self->progress_animation, editor_animation_stop);
-  g_clear_pointer ((GtkWidget **)&self->box, gtk_widget_unparent);
+
+  while ((child = gtk_widget_get_first_child (GTK_WIDGET (self))))
+    gtk_widget_unparent (child);
 
   g_clear_object (&self->document);
 
@@ -815,6 +1030,11 @@ editor_page_get_property (GObject    *object,
       g_value_set_string (value, editor_page_get_language_name (self));
       break;
 
+    case PROP_MAP_OPEN:
+      g_value_set_boolean (value,
+                           adw_overlay_split_view_get_show_sidebar (self->map_split_view));
+      break;
+
     case PROP_TITLE:
       g_value_take_string (value, editor_page_dup_title (self));
       break;
@@ -854,6 +1074,11 @@ editor_page_set_property (GObject      *object,
       editor_page_set_document (self, g_value_get_object (value));
       break;
 
+    case PROP_MAP_OPEN:
+      adw_overlay_split_view_set_show_sidebar (self->map_split_view,
+                                               g_value_get_boolean (value));
+      break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
     }
@@ -870,6 +1095,10 @@ editor_page_class_init (EditorPageClass *klass)
   object_class->finalize = editor_page_finalize;
   object_class->get_property = editor_page_get_property;
   object_class->set_property = editor_page_set_property;
+
+  widget_class->measure = editor_page_measure;
+  widget_class->size_allocate = editor_page_size_allocate;
+  widget_class->snapshot = editor_page_snapshot;
 
   properties [PROP_BUSY] =
     g_param_spec_boolean ("busy",
@@ -905,6 +1134,13 @@ editor_page_class_init (EditorPageClass *klass)
                          "Language Name",
                          NULL,
                          (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
+  properties [PROP_MAP_OPEN] =
+    g_param_spec_boolean ("map-open",
+                          "Map Open",
+                          "Whether the overview map is shown",
+                          FALSE,
+                          (G_PARAM_READWRITE | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_STRINGS));
 
   properties [PROP_TITLE] =
     g_param_spec_string ("title",
@@ -952,21 +1188,20 @@ editor_page_class_init (EditorPageClass *klass)
 
   _editor_page_class_actions_init (klass);
 
-  gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
   gtk_widget_class_set_css_name (widget_class, "page");
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-page.ui");
-  gtk_widget_class_bind_template_child (widget_class, EditorPage, box);
+  gtk_widget_class_bind_template_child (widget_class, EditorPage, bottom_bars);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, goto_line_revealer);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, goto_line_entry);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, infobar);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, map);
+  gtk_widget_class_bind_template_child (widget_class, EditorPage, map_split_view);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, overlay);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, position_label);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, progress_bar);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, scroller);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, search_bar);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, search_revealer);
-  gtk_widget_class_bind_template_child (widget_class, EditorPage, toolbar_view);
   gtk_widget_class_bind_template_child (widget_class, EditorPage, view);
   gtk_widget_class_bind_template_callback (widget_class, get_child_position_cb);
   gtk_widget_class_bind_template_callback (widget_class, goto_line_entry_activate_cb);
@@ -993,6 +1228,17 @@ editor_page_init (EditorPage *self)
   self->cancellable = g_cancellable_new ();
 
   gtk_widget_init_template (GTK_WIDGET (self));
+
+  g_signal_connect_object (self->map_split_view,
+                           "notify::show-sidebar",
+                           G_CALLBACK (editor_page_map_visibility_changed_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+
+  self->search_bar->page = self;
+
+  g_object_ref_sink (self->bottom_bars);
+  g_object_ref_sink (self->infobar);
 
   /* Work around https://gitlab.gnome.org/GNOME/gtk/-/issues/4315
    * by connecting to the GtkText to intercept insert-text() emission.
@@ -1858,3 +2104,18 @@ editor_page_destroy (EditorPage *self)
   g_object_run_dispose (G_OBJECT (self));
 }
 
+GtkWidget *
+editor_page_get_search_bar (EditorPage *self)
+{
+  g_return_val_if_fail (EDITOR_IS_PAGE (self), NULL);
+
+  return GTK_WIDGET (self->bottom_bars);
+}
+
+GtkWidget *
+editor_page_get_info_bar (EditorPage *self)
+{
+  g_return_val_if_fail (EDITOR_IS_PAGE (self), NULL);
+
+  return GTK_WIDGET (self->infobar);
+}

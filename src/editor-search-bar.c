@@ -130,7 +130,7 @@ editor_search_bar_root (GtkWidget *widget)
 
   GTK_WIDGET_CLASS (editor_search_bar_parent_class)->root (widget);
 
-  if (!(page = EDITOR_PAGE (gtk_widget_get_ancestor (widget, EDITOR_TYPE_PAGE))))
+  if (!(page = self->page))
     return;
 
   g_signal_connect_object (page->document,
@@ -149,7 +149,10 @@ editor_search_bar_unroot (GtkWidget *widget)
 
   g_assert (EDITOR_IS_SEARCH_BAR (self));
 
-  self->current_tag = NULL;
+  if (self->page != NULL)
+    g_signal_handlers_disconnect_by_func (self->page->document,
+                                          G_CALLBACK (notify_style_scheme_cb),
+                                          self);
 
   GTK_WIDGET_CLASS (editor_search_bar_parent_class)->unroot (widget);
 }
@@ -161,6 +164,11 @@ update_properties (EditorSearchBar *self)
   gboolean can_replace = _editor_search_bar_get_can_replace (self);
   gboolean can_replace_all = _editor_search_bar_get_can_replace_all (self);
   int occurrence_position = -1;
+
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "search.move-next", can_move);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "search.move-previous", can_move);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "search.replace-one", can_replace);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "search.replace-all", can_replace_all);
 
   if (can_move != self->can_move)
     {
@@ -211,7 +219,7 @@ editor_search_bar_scroll_to_insert (EditorSearchBar *self)
 
   g_assert (EDITOR_IS_SEARCH_BAR (self));
 
-  if ((page = gtk_widget_get_ancestor (GTK_WIDGET (self), EDITOR_TYPE_PAGE)))
+  if ((page = GTK_WIDGET (self->page)))
     _editor_page_scroll_to_insert (EDITOR_PAGE (page));
 }
 
@@ -346,7 +354,7 @@ search_cancel (GtkWidget  *widget,
   EditorDocument *document;
   EditorPage *page;
 
-  if (!(page = EDITOR_PAGE (gtk_widget_get_ancestor (widget, EDITOR_TYPE_PAGE))))
+  if (!(page = self->page))
     return;
 
   document = editor_page_get_document (page);
@@ -591,6 +599,17 @@ editor_search_bar_set_property (GObject      *object,
 }
 
 static void
+editor_search_bar_page_action (GtkWidget  *widget,
+                               const char *action_name,
+                               GVariant   *parameter)
+{
+  EditorSearchBar *self = EDITOR_SEARCH_BAR (widget);
+
+  if (self->page != NULL)
+    gtk_widget_activate_action_variant (GTK_WIDGET (self->page), action_name, parameter);
+}
+
+static void
 editor_search_bar_class_init (EditorSearchBarClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
@@ -640,6 +659,16 @@ editor_search_bar_class_init (EditorSearchBarClass *klass)
 
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Escape, 0, "search.cancel", NULL);
 
+  gtk_widget_class_install_action (widget_class, "search.hide", NULL,
+                                   editor_search_bar_page_action);
+  gtk_widget_class_install_action (widget_class, "search.move-next", "b",
+                                   editor_search_bar_page_action);
+  gtk_widget_class_install_action (widget_class, "search.move-previous", "b",
+                                   editor_search_bar_page_action);
+  gtk_widget_class_install_action (widget_class, "search.replace-one", NULL,
+                                   editor_search_bar_page_action);
+  gtk_widget_class_install_action (widget_class, "search.replace-all", NULL,
+                                   editor_search_bar_page_action);
   gtk_widget_class_install_action (widget_class, "search.activate", NULL, search_activate);
   gtk_widget_class_install_action (widget_class, "search.cancel", NULL, search_cancel);
 
@@ -767,7 +796,7 @@ scroll_to_first_match (EditorSearchBar        *self,
   g_assert (EDITOR_IS_SEARCH_BAR (self));
   g_assert (GTK_SOURCE_IS_SEARCH_CONTEXT (context));
 
-  if (!(page = gtk_widget_get_ancestor (GTK_WIDGET (self), EDITOR_TYPE_PAGE)))
+  if (!(page = GTK_WIDGET (self->page)))
     return;
 
   buffer = GTK_TEXT_BUFFER (gtk_source_search_context_get_buffer (context));
@@ -863,10 +892,10 @@ _editor_search_bar_detach (EditorSearchBar *self)
   if (self->context != NULL)
     {
       EditorDocument *document = EDITOR_DOCUMENT (gtk_source_search_context_get_buffer (self->context));
-      GtkWidget *page = gtk_widget_get_ancestor (GTK_WIDGET (self), EDITOR_TYPE_PAGE);
+      GtkWidget *page = GTK_WIDGET (self->page);
       GtkTextIter begin, end;
 
-      if (self->jump_back_on_hide)
+      if (self->jump_back_on_hide && page != NULL)
         _editor_page_scroll_to_insert (EDITOR_PAGE (page));
 
       gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (document), &begin, &end);

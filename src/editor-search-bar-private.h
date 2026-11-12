@@ -38,6 +38,7 @@ struct _EditorSearchBar
 {
   GtkWidget                parent_instance;
 
+  EditorPage              *page;
   GCancellable            *cancellable;
   GtkSourceSearchContext  *context;
   GtkSourceSearchSettings *settings;

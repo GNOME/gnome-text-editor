@@ -37,39 +37,41 @@ G_BEGIN_DECLS
 
 struct _EditorPage
 {
-  GtkWidget                parent_instance;
+  GtkWidget            parent_instance;
 
-  GCancellable            *cancellable;
+  GCancellable        *cancellable;
 
-  EditorDocument          *document;
-  EditorPageSettings      *settings;
-  GBindingGroup           *settings_bindings;
+  EditorDocument      *document;
+  EditorPageSettings  *settings;
+  GBindingGroup       *settings_bindings;
 
-  EditorAnimation         *progress_animation;
+  EditorAnimation     *progress_animation;
 
-  GtkWidget               *box;
-  GtkOverlay              *overlay;
-  GtkScrolledWindow       *scroller;
-  GtkSourceView           *view;
-  GtkSourceMap            *map;
-  GtkProgressBar          *progress_bar;
-  GtkWidget               *goto_line_revealer;
-  GtkEntry                *goto_line_entry;
-  AdwToolbarView          *toolbar_view;
-  GtkWidget               *search_revealer;
-  EditorSearchBar         *search_bar;
-  GtkInfoBar              *changed_infobar;
-  GtkInfoBar              *infobar;
-  GtkEventController      *vim;
-  EditorPositionLabel     *position_label;
+  GtkOverlay          *overlay;
+  AdwOverlaySplitView *map_split_view;
+  GtkScrolledWindow   *scroller;
+  GtkSourceView       *view;
+  GtkWidget           *map;
+  GtkProgressBar      *progress_bar;
+  GtkWidget           *goto_line_revealer;
+  GtkEntry            *goto_line_entry;
+  GtkWidget           *search_revealer;
+  EditorSearchBar     *search_bar;
+  GtkInfoBar          *changed_infobar;
+  GtkInfoBar          *infobar;
+  GtkEventController  *vim;
+  EditorPositionLabel *position_label;
+  GtkBox              *bottom_bars;
 
-  guint                    cached_line;
-  guint                    cached_visual_column;
+  guint                cached_line;
+  guint                cached_visual_column;
 
-  guint                    queued_hide_position;
+  GdkTexture          *cached_texture;
 
-  guint                    close_requested : 1;
-  guint                    moving : 1;
+  guint                queued_hide_position;
+
+  guint                close_requested : 1;
+  guint                moving : 1;
 };
 
 void          _editor_page_class_actions_init     (EditorPageClass      *klass);
@@ -111,5 +113,7 @@ void          _editor_page_zoom_out               (EditorPage           *self);
 void          _editor_page_zoom_one               (EditorPage           *self);
 char         *_editor_page_get_zoom_label         (EditorPage           *self);
 GCancellable *_editor_page_get_cancellable        (EditorPage           *self);
+void          _editor_page_set_map_layout         (EditorPage           *self,
+                                                   gboolean              narrow);
 
 G_END_DECLS
