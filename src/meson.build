@@ -19,7 +19,6 @@ editor_sources = [
   'editor-language-row.c',
   'editor-menu-view.c',
   'editor-newline-model.c',
-  'editor-open-popover.c',
   'editor-open-view.c',
   'editor-page.c',
   'editor-page-actions.c',
