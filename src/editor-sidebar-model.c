@@ -382,11 +382,10 @@ editor_sidebar_model_load_recent_cb (GObject      *object,
                                     item,
                                     (GCompareDataFunc)_editor_sidebar_item_compare,
                                     NULL);
-          self->length++;
         }
     }
 
-  new_n_items = g_list_model_get_n_items (G_LIST_MODEL (self));
+  new_n_items = g_sequence_get_length (self->seq);
 
   /* Notify of full change so we avoid doing the changes one-by-one
    * for larger result sets.
