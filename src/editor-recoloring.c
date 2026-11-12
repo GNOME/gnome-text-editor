@@ -32,7 +32,13 @@
   "@define-color dark_fill_bg_color @headerbar_bg_color;\n" \
   "@define-color sidebar_backdrop_color @window_bg_color;\n" \
   "@define-color sidebar_fg_color @window_fg_color;\n" \
-  "@define-color view_fg_color @window_fg_color;\n"
+  "@define-color view_fg_color @window_fg_color;\n" \
+  "window.org-gnome-TextEditor taboverview toolbarview.overview { " \
+    "background-color: @headerbar_bg_color; color: @headerbar_fg_color; }\n" \
+  "window.org-gnome-TextEditor taboverview toolbarview.overview tabthumbnail overlay.card { " \
+    "background-color: @view_bg_color; color: @view_fg_color; }\n" \
+  "window.org-gnome-TextEditor taboverview toolbarview.overview tabthumbnail .icon-title-box { " \
+    "color: @view_fg_color; }\n"
 #define LIGHT_CSS_SUFFIX \
   "@define-color card_bg_color alpha(white, .8);\n"
 #define DARK_CSS_SUFFIX \
