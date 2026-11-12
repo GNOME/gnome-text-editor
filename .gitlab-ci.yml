@@ -4,6 +4,10 @@ include:
   - component: gitlab.gnome.org/GNOME/citemplates/release-service@master
     inputs:
       dist-job-name: "flatpak"
+  - component: gitlab.gnome.org/GNOME/citemplates/gnomeos-basic-ci@master
+    inputs:
+      job-stage: "test"
+      meson-options: "-Ddevelopment=true"
 
 variables:
     MANIFEST_PATH: "org.gnome.TextEditor.Devel.json"
