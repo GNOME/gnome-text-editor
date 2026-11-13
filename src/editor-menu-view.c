@@ -91,6 +91,7 @@ static GtkWidget      *editor_menu_button_row_new        (const char            
                                                           const char                     *action_name,
                                                           GVariant                       *action_target,
                                                           GMenuModel                     *submenu,
+                                                          const char                     *accel,
                                                           gboolean                        use_check_suffix,
                                                           AdwNavigationView              *navigation_view);
 static void            editor_menu_page_items_changed_cb (GMenuModel                     *menu_model,
@@ -377,6 +378,35 @@ add_check_suffix (AdwActionRow *row,
 }
 
 static void
+add_accel_suffix (AdwActionRow *row,
+                  const char   *accel)
+{
+  g_autofree char *label_text = NULL;
+  g_autofree char *accessible_text = NULL;
+  GdkModifierType modifiers;
+  GtkWidget *label;
+  guint key;
+
+  g_assert (ADW_IS_ACTION_ROW (row));
+  g_assert (accel != NULL);
+
+  if (!gtk_accelerator_parse (accel, &key, &modifiers))
+    return;
+
+  label_text = gtk_accelerator_get_label (key, modifiers);
+  accessible_text = gtk_accelerator_get_accessible_label (key, modifiers);
+  label = g_object_new (GTK_TYPE_LABEL,
+                        "label", label_text,
+                        "accessible-role", GTK_ACCESSIBLE_ROLE_PRESENTATION,
+                        NULL);
+  gtk_widget_add_css_class (label, "dimmed");
+  gtk_accessible_update_property (GTK_ACCESSIBLE (row),
+                                  GTK_ACCESSIBLE_PROPERTY_KEY_SHORTCUTS, accessible_text,
+                                  -1);
+  adw_action_row_add_suffix (row, label);
+}
+
+static void
 add_section_from_model (EditorMenuPage *self,
                         GMenuModel     *model,
                         const char     *title,
@@ -427,6 +457,7 @@ add_section_from_model (EditorMenuPage *self,
     {
       g_autofree char *label = NULL;
       g_autofree char *action_name = NULL;
+      g_autofree char *accel = NULL;
       g_autofree char *hidden_when = NULL;
       g_autoptr(GIcon) icon = NULL;
       g_autoptr(GVariant) action_target = NULL;
@@ -470,6 +501,7 @@ add_section_from_model (EditorMenuPage *self,
 
       label = get_item_string (model, i, G_MENU_ATTRIBUTE_LABEL);
       action_name = get_item_string (model, i, G_MENU_ATTRIBUTE_ACTION);
+      accel = get_item_string (model, i, "accel");
       hidden_when = get_item_string (model, i, "hidden-when");
       icon = get_item_icon (model, i, "icon");
       action_target = get_item_target (model, i);
@@ -491,6 +523,7 @@ add_section_from_model (EditorMenuPage *self,
                                           action_name,
                                           action_target,
                                           submenu,
+                                          accel,
                                           use_check_suffix,
                                           self->navigation_view);
       if (row == NULL)
@@ -618,6 +651,7 @@ editor_menu_button_row_new (const char        *label,
                             const char        *action_name,
                             GVariant          *action_target,
                             GMenuModel        *submenu,
+                            const char        *accel,
                             gboolean           use_check_suffix,
                             AdwNavigationView *navigation_view)
 {
@@ -639,6 +673,8 @@ editor_menu_button_row_new (const char        *label,
 
   add_icon_prefix (ADW_ACTION_ROW (self), icon);
   editor_menu_button_row_set_submenu (self, submenu);
+  if (accel != NULL)
+    add_accel_suffix (ADW_ACTION_ROW (self), accel);
   if (use_check_suffix && action_name != NULL)
     add_check_suffix (ADW_ACTION_ROW (self), action_name, action_target);
 
