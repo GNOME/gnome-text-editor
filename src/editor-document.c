@@ -121,6 +121,7 @@ enum {
   PROP_STATISTICS,
   PROP_SUGGEST_ADMIN,
   PROP_TITLE,
+  PROP_WAS_RESTORED,
   N_PROPS
 };
 
@@ -132,26 +133,7 @@ enum {
 
 static GParamSpec *properties [N_PROPS];
 static GSettings *shared_settings;
-static guint signals [N_SIGNALS];
-
-static gboolean
-is_admin (EditorDocument *self)
-{
-  g_autofree char *uri = NULL;
-  GFile *file;
-
-  g_assert (EDITOR_IS_DOCUMENT (self));
-
-  if (!(file = editor_document_get_file (self)))
-    return FALSE;
-
-  if (g_file_is_native (file))
-    return FALSE;
-
-  uri = g_file_get_uri (file);
-
-  return g_str_has_prefix (uri, "admin:///");
-}
+static guint signals[N_SIGNALS];
 
 static void
 editor_document_track_error (EditorDocument *self,
@@ -166,17 +148,13 @@ editor_document_track_error (EditorDocument *self,
 
   editor_buffer_monitor_set_failed (self->monitor, self->load_failed);
 
-  if (error == NULL)
-    {
-      self->suggest_admin = FALSE;
-    }
+  self->suggest_admin = FALSE;
 
   if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_PERMISSION_DENIED))
     {
-      if (!is_admin (self))
-        {
-          self->suggest_admin = TRUE;
-        }
+      GFile *file = editor_document_get_file (self);
+
+      self->suggest_admin = file != NULL && g_file_is_native (file);
     }
 
   g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_SUGGEST_ADMIN]);
@@ -322,6 +300,8 @@ editor_document_load_notify_completed_cb (EditorDocument *self,
 
   if (!g_task_had_error (task))
     editor_document_track_error (self, NULL);
+
+  _editor_document_unmark_busy (self);
 
   _editor_session_document_seen (EDITOR_SESSION_DEFAULT, self);
 
@@ -712,6 +692,10 @@ editor_document_get_property (GObject    *object,
       g_value_set_boxed (value, self->last_error);
       break;
 
+    case PROP_WAS_RESTORED:
+      g_value_set_boolean (value, self->was_restored);
+      break;
+
     case PROP_EXTERNALLY_MODIFIED:
       g_value_set_boolean (value, editor_document_get_externally_modified (self));
       break;
@@ -833,6 +817,11 @@ editor_document_class_init (EditorDocumentClass *klass)
                          (G_PARAM_READWRITE |
                           G_PARAM_EXPLICIT_NOTIFY |
                           G_PARAM_STATIC_STRINGS));
+
+  properties[PROP_WAS_RESTORED] =
+    g_param_spec_boolean ("was-restored", NULL, NULL,
+                          FALSE,
+                          (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
   properties [PROP_EXTERNALLY_MODIFIED] =
     g_param_spec_boolean ("externally-modified",
@@ -1068,7 +1057,6 @@ editor_document_save_draft_cb (GObject      *object,
     }
   else
     {
-      self->was_restored = FALSE;
       g_task_return_boolean (task, TRUE);
     }
 
@@ -1186,7 +1174,7 @@ editor_document_query_etag_cb (GObject      *object,
   g_assert (G_IS_TASK (task));
 
   self = g_task_get_source_object (task);
-  self->was_restored = FALSE;
+  _editor_document_set_was_restored (self, FALSE);
 
   if ((info = g_file_query_info_finish (file, result, &error)))
     {
@@ -1544,7 +1532,7 @@ editor_document_query_info_cb (GObject      *object,
 
   if (!(info = g_file_query_info_finish (file, result, &error)))
     {
-      _editor_document_unmark_busy (self);
+      editor_document_track_error (self, error);
       g_task_return_error (task, g_steal_pointer (&error));
       return;
     }
@@ -1663,8 +1651,6 @@ editor_document_query_info_cb (GObject      *object,
       spelling_text_buffer_adapter_set_enabled (self->spell_adapter, load->check_spelling);
     }
 
-  _editor_document_unmark_busy (self);
-
   g_task_return_boolean (task, TRUE);
 }
 
@@ -1690,7 +1676,6 @@ editor_document_load_cb (GObject      *object,
       g_warning ("Failed to load file: %s", error->message);
       editor_document_track_error (self, error);
       g_task_return_error (task, g_steal_pointer (&error));
-      _editor_document_unmark_busy (self);
       return;
     }
   else
@@ -1710,7 +1695,7 @@ editor_document_load_cb (GObject      *object,
        * See #743
        */
       if ((encoding = gtk_source_file_loader_get_encoding (loader)))
-        self->encoding = encoding;
+        _editor_document_set_encoding (self, encoding);
 
       _editor_document_set_externally_modified (self, FALSE);
 
@@ -1746,11 +1731,17 @@ editor_document_do_load (EditorDocument *self,
   g_assert (EDITOR_IS_DOCUMENT (self));
   g_assert (G_IS_TASK (task));
 
+  if (self->last_error != NULL)
+    {
+      g_task_return_error (task, g_error_copy (self->last_error));
+      return;
+    }
+
   if (load->has_draft == FALSE && load->has_file == FALSE)
     {
       /* We are creating a new file. */
       editor_document_set_busy_progress (self, 1, 2, 1.0);
-      _editor_document_unmark_busy (self);
+
       gtk_source_buffer_set_highlight_matching_brackets (GTK_SOURCE_BUFFER (self), load->highlight_matching_brackets);
       gtk_source_buffer_set_highlight_syntax (GTK_SOURCE_BUFFER (self), load->highlight_syntax);
       spelling_text_buffer_adapter_set_enabled (self->spell_adapter, load->check_spelling);
@@ -1777,7 +1768,7 @@ editor_document_do_load (EditorDocument *self,
    * so that we can show it to the user when displaying
    * the document.
    */
-  self->was_restored = load->has_draft;
+  _editor_document_set_was_restored (self, load->has_draft);
 
   loader = gtk_source_file_loader_new (GTK_SOURCE_BUFFER (self), file);
 
@@ -1925,6 +1916,7 @@ editor_document_load_file_mount_cb (GObject      *object,
           /* Don't decrement n_active, since we don't want to
            * race for completion of the task.
            */
+          editor_document_track_error (g_task_get_source_object (task), error);
           g_warning ("Failed to mount enclosing volume: %s", error->message);
           g_task_return_error (task, g_steal_pointer (&error));
           return;
@@ -2006,6 +1998,7 @@ _editor_document_load_async (EditorDocument      *self,
                            G_CONNECT_SWAPPED);
 
   _editor_document_mark_busy (self);
+  editor_document_track_error (self, NULL);
 
   /* Disable features while the file is loading to speed things up
    * and reduce the chances that syntax highlights can hit scenarios
@@ -2332,7 +2325,13 @@ _editor_document_set_was_restored (EditorDocument *self,
 {
   g_return_if_fail (EDITOR_IS_DOCUMENT (self));
 
-  self->was_restored = !!was_restored;
+  was_restored = !!was_restored;
+
+  if (self->was_restored != was_restored)
+    {
+      self->was_restored = was_restored;
+      g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_WAS_RESTORED]);
+    }
 }
 
 gboolean
