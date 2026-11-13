@@ -1942,6 +1942,8 @@ editor_page_delete_draft_cb (GObject      *object,
    */
   if (editor_document_get_file (self->document) == NULL)
     {
+      _editor_document_unmark_busy (self->document);
+
       /* Remove page first so that we can purge the sidebar item
        * when the draft is removed afterwards.
        */
@@ -1953,6 +1955,7 @@ editor_page_delete_draft_cb (GObject      *object,
     }
   else if (!reload)
     {
+      _editor_document_unmark_busy (self->document);
       editor_session_remove_page (session, self);
       g_task_return_boolean (task, TRUE);
     }
@@ -1963,6 +1966,7 @@ editor_page_delete_draft_cb (GObject      *object,
                                    g_task_get_cancellable (task),
                                    editor_page_discard_reload_cb,
                                    g_object_ref (task));
+      _editor_document_unmark_busy (self->document);
     }
 }
 
@@ -1988,6 +1992,8 @@ _editor_page_discard_changes_async (EditorPage          *self,
   draft_id = _editor_document_get_draft_id (self->document);
 
   _editor_session_remove_draft (EDITOR_SESSION_DEFAULT, draft_id);
+
+  _editor_document_mark_busy (self->document);
 
   g_file_delete_async (draft_file,
                        G_PRIORITY_DEFAULT,

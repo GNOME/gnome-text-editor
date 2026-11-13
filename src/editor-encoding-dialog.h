@@ -23,7 +23,7 @@
 
 #include <adwaita.h>
 
-#include "editor-document.h"
+#include "editor-page.h"
 
 G_BEGIN_DECLS
 
@@ -31,6 +31,6 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (EditorEncodingDialog, editor_encoding_dialog, EDITOR, ENCODING_DIALOG, AdwDialog)
 
-AdwDialog *editor_encoding_dialog_new (EditorDocument *document);
+AdwDialog *editor_encoding_dialog_new (EditorPage *page);
 
 G_END_DECLS

@@ -21,10 +21,13 @@
 
 #include "config.h"
 
+#include <glib/gi18n.h>
+
 #include "editor-document-private.h"
 #include "editor-encoding-dialog.h"
 #include "editor-encoding-model.h"
 #include "editor-encoding-row-private.h"
+#include "editor-page-private.h"
 #include "editor-window.h"
 
 struct _EditorEncodingDialog
@@ -32,6 +35,7 @@ struct _EditorEncodingDialog
   AdwDialog            parent_instance;
 
   EditorDocument      *document;
+  EditorPage          *page;
   GPtrArray           *rows;
 
   AdwPreferencesGroup *group;
@@ -42,7 +46,7 @@ struct _EditorEncodingDialog
 
 enum {
   PROP_0,
-  PROP_DOCUMENT,
+  PROP_PAGE,
   N_PROPS
 };
 
@@ -165,21 +169,92 @@ notify_encoding_cb (EditorEncodingDialog *self,
 }
 
 static void
+editor_encoding_dialog_reload (EditorEncodingDialog *self,
+                               EditorEncoding       *encoding)
+{
+  g_assert (EDITOR_IS_ENCODING_DIALOG (self));
+  g_assert (EDITOR_IS_ENCODING (encoding));
+
+  if (_editor_page_get_window (self->page) == NULL ||
+      editor_document_get_busy (self->document))
+    return;
+
+  editor_document_set_encoding (self->document, encoding);
+
+  if (editor_document_get_file (self->document) != NULL)
+    _editor_page_discard_changes (self->page);
+
+  adw_dialog_close (ADW_DIALOG (self));
+}
+
+static void
+editor_encoding_dialog_reload_response_cb (EditorEncodingDialog *self,
+                                           const char           *response,
+                                           AdwAlertDialog       *dialog)
+{
+  g_assert (EDITOR_IS_ENCODING_DIALOG (self));
+  g_assert (ADW_IS_ALERT_DIALOG (dialog));
+
+  if (g_str_equal (response, "reload"))
+    editor_encoding_dialog_reload (self, g_object_get_data (G_OBJECT (dialog), "encoding"));
+}
+
+static void
 editor_encoding_dialog_set_encoding (GtkWidget  *widget,
                                      const char *action,
                                      GVariant   *param)
 {
   EditorEncodingDialog *self = EDITOR_ENCODING_DIALOG (widget);
-  const char *charset = g_variant_get_string (param, NULL);
-  g_autoptr(EditorEncodingModel) model = editor_encoding_model_new ();
-  guint position = editor_encoding_model_lookup_charset (NULL, charset);
-  g_autoptr(EditorEncoding) encoding = g_list_model_get_item (G_LIST_MODEL (model), position);
+  g_autoptr(EditorEncodingModel) model = NULL;
+  g_autoptr(EditorEncoding) encoding = NULL;
+  const char *charset;
+  guint position;
 
-  editor_document_set_encoding (self->document, encoding);
+  g_assert (EDITOR_IS_ENCODING_DIALOG (self));
+  g_assert (g_variant_is_of_type (param, G_VARIANT_TYPE_STRING));
 
-  _editor_document_load_async (self->document,
-                               EDITOR_WINDOW (gtk_widget_get_root (GTK_WIDGET (self))),
-                               NULL, NULL, NULL);
+  if (editor_document_get_busy (self->document))
+    return;
+
+  charset = g_variant_get_string (param, NULL);
+  model = editor_encoding_model_new ();
+  position = editor_encoding_model_lookup_charset (NULL, charset);
+  encoding = g_list_model_get_item (G_LIST_MODEL (model), position);
+
+  if (encoding == NULL)
+    return;
+
+  if (editor_document_get_file (self->document) != NULL &&
+      gtk_text_buffer_get_modified (GTK_TEXT_BUFFER (self->document)))
+    {
+      AdwDialog *dialog;
+
+      dialog = adw_alert_dialog_new (_("Reload with a Different Encoding?"),
+                                     _("Unsaved changes will be permanently lost."));
+      adw_alert_dialog_add_responses (ADW_ALERT_DIALOG (dialog),
+                                      "cancel", _("_Cancel"),
+                                      "reload", _("_Discard Changes and Reload"),
+                                      NULL);
+      adw_alert_dialog_set_close_response (ADW_ALERT_DIALOG (dialog), "cancel");
+      adw_alert_dialog_set_default_response (ADW_ALERT_DIALOG (dialog), "cancel");
+      adw_alert_dialog_set_response_appearance (ADW_ALERT_DIALOG (dialog),
+                                                "reload",
+                                                ADW_RESPONSE_DESTRUCTIVE);
+      g_object_set_data_full (G_OBJECT (dialog),
+                              "encoding",
+                              g_object_ref (encoding),
+                              g_object_unref);
+      g_signal_connect_object (dialog,
+                               "response",
+                               G_CALLBACK (editor_encoding_dialog_reload_response_cb),
+                               self,
+                               G_CONNECT_SWAPPED);
+      adw_dialog_present (dialog, GTK_WIDGET (_editor_page_get_window (self->page)));
+    }
+  else
+    {
+      editor_encoding_dialog_reload (self, encoding);
+    }
 }
 
 static void
@@ -188,11 +263,18 @@ editor_encoding_dialog_constructed (GObject *object)
   EditorEncodingDialog *self = (EditorEncodingDialog *)object;
   g_autoptr(EditorEncodingModel) model = editor_encoding_model_new ();
   g_autoptr(EditorEncoding) current = NULL;
+  g_autoptr(GError) error = NULL;
   guint n_items = g_list_model_get_n_items (G_LIST_MODEL (model));
 
   G_OBJECT_CLASS (editor_encoding_dialog_parent_class)->constructed (object);
 
   current = editor_document_dup_encoding (self->document);
+  g_object_get (self->document,
+                "error", &error,
+                NULL);
+
+  if (error != NULL)
+    adw_preferences_group_set_description (self->group, error->message);
 
   for (guint i = 0; i < n_items; i++)
     {
@@ -229,6 +311,7 @@ editor_encoding_dialog_dispose (GObject *object)
   gtk_widget_dispose_template (GTK_WIDGET (self), EDITOR_TYPE_ENCODING_DIALOG);
 
   g_clear_object (&self->document);
+  g_clear_object (&self->page);
   g_clear_pointer (&self->rows, g_ptr_array_unref);
 
   G_OBJECT_CLASS (editor_encoding_dialog_parent_class)->dispose (object);
@@ -244,8 +327,8 @@ editor_encoding_dialog_get_property (GObject    *object,
 
   switch (prop_id)
     {
-    case PROP_DOCUMENT:
-      g_value_set_object (value, self->document);
+    case PROP_PAGE:
+      g_value_set_object (value, self->page);
       break;
 
     default:
@@ -263,8 +346,9 @@ editor_encoding_dialog_set_property (GObject      *object,
 
   switch (prop_id)
     {
-    case PROP_DOCUMENT:
-      self->document = g_value_dup_object (value);
+    case PROP_PAGE:
+      self->page = g_value_dup_object (value);
+      self->document = g_object_ref (editor_page_get_document (self->page));
       break;
 
     default:
@@ -283,9 +367,9 @@ editor_encoding_dialog_class_init (EditorEncodingDialogClass *klass)
   object_class->get_property = editor_encoding_dialog_get_property;
   object_class->set_property = editor_encoding_dialog_set_property;
 
-  properties[PROP_DOCUMENT] =
-    g_param_spec_object ("document", NULL, NULL,
-                         EDITOR_TYPE_DOCUMENT,
+  properties[PROP_PAGE] =
+    g_param_spec_object ("page", NULL, NULL,
+                         EDITOR_TYPE_PAGE,
                          (G_PARAM_READWRITE |
                           G_PARAM_CONSTRUCT_ONLY |
                           G_PARAM_STATIC_STRINGS));
@@ -328,11 +412,11 @@ editor_encoding_dialog_init (EditorEncodingDialog *self)
 }
 
 AdwDialog *
-editor_encoding_dialog_new (EditorDocument *document)
+editor_encoding_dialog_new (EditorPage *page)
 {
-  g_return_val_if_fail (EDITOR_IS_DOCUMENT (document), NULL);
+  g_return_val_if_fail (EDITOR_IS_PAGE (page), NULL);
 
   return g_object_new (EDITOR_TYPE_ENCODING_DIALOG,
-                       "document", document,
+                       "page", page,
                        NULL);
 }
