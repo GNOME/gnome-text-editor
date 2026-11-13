@@ -414,6 +414,7 @@
                                       <object class="AdwTabButton">
                                         <property name="view">tab_view</property>
                                         <property name="action-name">overview.open</property>
+                                        <property name="sensitive" bind-source="tab_view" bind-property="n-pages" bind-flags="sync-create"/>
                                       </object>
                                     </child>
                                     <child>
