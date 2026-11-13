@@ -18,37 +18,38 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-#define G_LOG_DOMAIN "editor-info-bar"
+#include "config.h"
 
 #include <glib/gi18n.h>
 
 #include "editor-document-private.h"
+#include "editor-encoding-dialog.h"
 #include "editor-info-bar-private.h"
+#include "editor-page-private.h"
 #include "editor-window.h"
+
+typedef enum
+{
+  EDITOR_BANNER_NONE,
+  EDITOR_BANNER_ERROR,
+  EDITOR_BANNER_ENCODING,
+  EDITOR_BANNER_CHANGED,
+  EDITOR_BANNER_RESTORED,
+  EDITOR_BANNER_DRAFT_RESTORED,
+} EditorBannerState;
 
 struct _EditorInfoBar
 {
-  GtkWidget       parent_instance;
+  GtkWidget          parent_instance;
 
-  EditorDocument *document;
-
-  GtkBox         *box;
-
-  /* Discard widgetry */
-  GtkInfoBar     *discard_infobar;
-  GtkButton      *discard;
-  GtkInfoBar     *encoding_infobar;
-  GtkButton      *save;
-  GtkLabel       *title;
-  GtkLabel       *subtitle;
-
-  /* Permission denied infobar */
-  GtkInfoBar     *access_infobar;
-  GtkLabel       *access_subtitle;
-  GtkButton      *access_try_admin;
+  EditorDocument    *document;
+  GSignalGroup      *signals;
+  AdwBanner         *banner;
+  EditorBannerState  state;
 };
 
-enum {
+enum
+{
   PROP_0,
   PROP_DOCUMENT,
   N_PROPS
@@ -56,115 +57,79 @@ enum {
 
 G_DEFINE_TYPE (EditorInfoBar, editor_info_bar, GTK_TYPE_WIDGET)
 
-static GParamSpec *properties [N_PROPS];
+static GParamSpec *properties[N_PROPS];
 
 static void
 editor_info_bar_update (EditorInfoBar *self)
 {
   g_autoptr(GError) error = NULL;
+  EditorBannerState state = EDITOR_BANNER_NONE;
+  const char *title = "";
+  const char *button = NULL;
 
   g_assert (EDITOR_IS_INFO_BAR (self));
-  g_assert (EDITOR_IS_DOCUMENT (self->document));
 
-  g_object_get (self->document,
-                "error", &error,
-                NULL);
-
-  /* Ignore things if we're busy to avoid flapping */
-  if (editor_document_get_busy (self->document))
+  if (self->document != NULL && !editor_document_get_busy (self->document))
     {
-      gtk_info_bar_set_revealed (self->discard_infobar, FALSE);
-      gtk_info_bar_set_revealed (self->access_infobar, FALSE);
-      gtk_info_bar_set_revealed (self->encoding_infobar, FALSE);
-      return;
-    }
-
-  if (error == NULL)
-    {
-      gtk_info_bar_set_revealed (self->access_infobar, FALSE);
-      gtk_info_bar_set_revealed (self->encoding_infobar, FALSE);
-    }
-
-  if (error != NULL)
-    {
-      gtk_info_bar_set_revealed (self->discard_infobar, FALSE);
+      g_object_get (self->document,
+                    "error", &error,
+                    NULL);
 
       if (g_error_matches (error,
                            GTK_SOURCE_FILE_LOADER_ERROR,
                            GTK_SOURCE_FILE_LOADER_ERROR_CONVERSION_FALLBACK))
         {
-          gtk_info_bar_set_revealed (self->access_infobar, FALSE);
-          gtk_info_bar_set_revealed (self->encoding_infobar, TRUE);
+          state = EDITOR_BANNER_ENCODING;
+          title = _("Some Characters Could Not Be Read");
+          button = _("Change _Encoding…");
         }
-      else
+      else if (error != NULL)
         {
-          gtk_label_set_label (self->access_subtitle, error->message);
-          gtk_info_bar_set_revealed (self->access_infobar, TRUE);
-          gtk_info_bar_set_revealed (self->encoding_infobar, FALSE);
+          state = EDITOR_BANNER_ERROR;
+          title = _("Could Not Open File");
+          button = _("_Review…");
         }
-    }
-  else if (editor_document_get_externally_modified (self->document))
-    {
-      gtk_button_set_label (self->discard, _("_Discard Changes and Reload"));
-      gtk_button_set_use_underline (self->discard, TRUE);
-      gtk_actionable_set_action_target (GTK_ACTIONABLE (self->discard), "b", TRUE);
-      gtk_actionable_set_action_name (GTK_ACTIONABLE (self->discard), "page.discard-changes");
-      gtk_label_set_label (self->title, _("File Has Changed on Disk"));
-      gtk_label_set_label (self->subtitle, _("The file has been changed by another program."));
-      gtk_widget_set_visible (GTK_WIDGET (self->discard), TRUE);
-      gtk_widget_set_visible (GTK_WIDGET (self->save), FALSE);
-      gtk_info_bar_set_revealed (self->discard_infobar, TRUE);
-    }
-  else if (_editor_document_get_was_restored (self->document))
-    {
-      if (editor_document_get_file (self->document) == NULL)
+      else if (editor_document_get_externally_modified (self->document))
         {
-          gtk_button_set_label (self->save, _("Save _As…"));
-          gtk_actionable_set_action_name (GTK_ACTIONABLE (self->save), "page.save-as");
-          gtk_label_set_label (self->title, _("Document Restored"));
-          gtk_label_set_label (self->subtitle, _("Unsaved document has been restored."));
-          gtk_widget_set_visible (GTK_WIDGET (self->discard), FALSE);
-          gtk_widget_set_visible (GTK_WIDGET (self->save), TRUE);
+          state = EDITOR_BANNER_CHANGED;
+          title = _("File Has Changed on Disk");
+          button = _("_Discard and Reload");
         }
-      else
+      else if (_editor_document_get_was_restored (self->document))
         {
-          gtk_button_set_label (self->save, _("_Save…"));
-          gtk_actionable_set_action_name (GTK_ACTIONABLE (self->save), "page.confirm-save");
-          gtk_button_set_label (self->discard, _("_Discard…"));
-          gtk_actionable_set_action_target_value (GTK_ACTIONABLE (self->discard), NULL);
-          gtk_actionable_set_action_name (GTK_ACTIONABLE (self->discard), "page.infobar-discard-changes");
-          gtk_label_set_label (self->title, _("Draft Changes Restored"));
-          gtk_label_set_label (self->subtitle, _("Unsaved changes to the document have been restored."));
-          gtk_widget_set_visible (GTK_WIDGET (self->discard), TRUE);
-          gtk_widget_set_visible (GTK_WIDGET (self->save), TRUE);
-        }
+          if (editor_document_get_file (self->document) == NULL)
+            {
+              state = EDITOR_BANNER_RESTORED;
+              title = _("Document Restored");
+            }
+          else
+            {
+              state = EDITOR_BANNER_DRAFT_RESTORED;
+              title = _("Draft Changes Restored");
+            }
 
-      gtk_info_bar_set_revealed (self->discard_infobar, TRUE);
+          button = _("_Review…");
+        }
     }
-  else
-    {
-      gtk_info_bar_set_revealed (self->discard_infobar, FALSE);
-    }
+
+  adw_banner_set_title (self->banner, title);
+  adw_banner_set_button_label (self->banner, button);
+  adw_banner_set_revealed (self->banner, state != EDITOR_BANNER_NONE);
+
+  if (state != self->state &&
+      state != EDITOR_BANNER_NONE &&
+      gtk_widget_get_mapped (GTK_WIDGET (self)))
+    gtk_accessible_announce (GTK_ACCESSIBLE (self),
+                             title,
+                             GTK_ACCESSIBLE_ANNOUNCEMENT_PRIORITY_MEDIUM);
+
+  self->state = state;
 }
 
 static void
-editor_info_bar_wrap_button_label (GtkButton *button)
-{
-  GtkWidget *label;
-
-  g_assert (GTK_IS_BUTTON (button));
-
-  label = gtk_button_get_child (button);
-  g_assert (GTK_IS_LABEL (label));
-
-  gtk_label_set_wrap (GTK_LABEL (label), TRUE);
-  gtk_label_set_justify (GTK_LABEL (label), GTK_JUSTIFY_CENTER);
-}
-
-static void
-on_notify_cb (EditorInfoBar  *self,
-              GParamSpec     *pspec,
-              EditorDocument *document)
+editor_info_bar_notify_cb (EditorInfoBar  *self,
+                           GParamSpec     *pspec,
+                           EditorDocument *document)
 {
   g_assert (EDITOR_IS_INFO_BAR (self));
   g_assert (EDITOR_IS_DOCUMENT (document));
@@ -173,53 +138,158 @@ on_notify_cb (EditorInfoBar  *self,
 }
 
 static void
-on_response_cb (EditorInfoBar *self,
-                int            response,
-                GtkInfoBar    *infobar)
+editor_info_bar_error_response_cb (EditorPage     *page,
+                                   const char     *response,
+                                   AdwAlertDialog *dialog)
 {
-  g_assert (EDITOR_IS_INFO_BAR (self));
-  g_assert (GTK_IS_INFO_BAR (infobar));
+  EditorDocument *document;
+  EditorWindow *window;
+  gboolean suggest_admin = FALSE;
 
-  gtk_info_bar_set_revealed (infobar, FALSE);
+  g_assert (EDITOR_IS_PAGE (page));
+  g_assert (ADW_IS_ALERT_DIALOG (dialog));
+
+  document = editor_page_get_document (page);
+  window = _editor_page_get_window (page);
+
+  if (window == NULL || editor_document_get_busy (document))
+    return;
+
+  if (g_str_equal (response, "retry"))
+    {
+      _editor_document_load_async (document, window, NULL, NULL, NULL);
+    }
+  else if (g_str_equal (response, "admin"))
+    {
+      g_object_get (document,
+                    "suggest-admin", &suggest_admin,
+                    NULL);
+
+      if (suggest_admin)
+        _editor_document_use_admin (document, window);
+    }
 }
 
 static void
-on_try_admin_cb (EditorInfoBar *self,
-                 GtkButton     *button)
+editor_info_bar_restored_response_cb (EditorPage     *page,
+                                      const char     *response,
+                                      AdwAlertDialog *dialog)
 {
-  GtkRoot *root;
+  EditorDocument *document;
 
-  g_assert (EDITOR_IS_INFO_BAR (self));
-  g_assert (GTK_IS_BUTTON (button));
+  g_assert (EDITOR_IS_PAGE (page));
+  g_assert (ADW_IS_ALERT_DIALOG (dialog));
 
-  root = gtk_widget_get_root (GTK_WIDGET (self));
+  document = editor_page_get_document (page);
 
-  _editor_document_use_admin (self->document, EDITOR_WINDOW (root));
+  if (g_str_equal (response, "keep"))
+    {
+      _editor_document_set_was_restored (document, FALSE);
+      editor_page_grab_focus (page);
+      return;
+    }
+
+  if (_editor_page_get_window (page) == NULL || editor_document_get_busy (document))
+    return;
+
+  _editor_page_raise (page);
+
+  if (g_str_equal (response, "save-as"))
+    _editor_page_save_as (page, NULL);
+  else if (g_str_equal (response, "save"))
+    gtk_widget_activate_action (GTK_WIDGET (page), "page.confirm-save", NULL);
+  else if (g_str_equal (response, "discard"))
+    gtk_widget_activate_action (GTK_WIDGET (page), "page.discard-changes", "b", FALSE);
 }
 
 static void
-on_try_again_cb (EditorInfoBar *self,
-                 GtkButton     *button)
+editor_info_bar_button_clicked_cb (EditorInfoBar *self)
 {
   EditorWindow *window;
+  EditorPage *page;
+  AdwDialog *dialog;
 
   g_assert (EDITOR_IS_INFO_BAR (self));
-  g_assert (GTK_IS_BUTTON (button));
 
   window = EDITOR_WINDOW (gtk_widget_get_ancestor (GTK_WIDGET (self), EDITOR_TYPE_WINDOW));
 
-  _editor_document_load_async (self->document, window, NULL, NULL, NULL);
-}
+  if (window == NULL ||
+      !(page = editor_window_get_visible_page (window)) ||
+      editor_page_get_document (page) != self->document ||
+      editor_document_get_busy (self->document))
+    return;
 
-static void
-editor_info_bar_notify_error (EditorInfoBar  *self,
-                              GParamSpec     *pspec,
-                              EditorDocument *document)
-{
-  g_assert (EDITOR_IS_INFO_BAR (self));
-  g_assert (EDITOR_IS_DOCUMENT (document));
+  switch (self->state)
+    {
+    case EDITOR_BANNER_ERROR:
+      {
+        g_autoptr(GError) error = NULL;
+        gboolean suggest_admin = FALSE;
 
-  editor_info_bar_update (self);
+        g_object_get (self->document,
+                      "error", &error,
+                      "suggest-admin", &suggest_admin,
+                      NULL);
+
+        if (error == NULL)
+          return;
+
+        dialog = adw_alert_dialog_new (_("Could Not Open File"), error->message);
+        adw_alert_dialog_add_responses (ADW_ALERT_DIALOG (dialog),
+                                        "close", _("_Close"),
+                                        "retry", _("_Retry"),
+                                        NULL);
+        if (suggest_admin)
+          adw_alert_dialog_add_response (ADW_ALERT_DIALOG (dialog),
+                                         "admin",
+                                         _("Open As _Administrator"));
+        adw_alert_dialog_set_close_response (ADW_ALERT_DIALOG (dialog), "close");
+        adw_alert_dialog_set_default_response (ADW_ALERT_DIALOG (dialog), "retry");
+        g_signal_connect_object (dialog,
+                                 "response",
+                                 G_CALLBACK (editor_info_bar_error_response_cb),
+                                 page,
+                                 G_CONNECT_SWAPPED);
+        break;
+      }
+
+    case EDITOR_BANNER_RESTORED:
+    case EDITOR_BANNER_DRAFT_RESTORED:
+      dialog = adw_alert_dialog_new (adw_banner_get_title (self->banner),
+                                     self->state == EDITOR_BANNER_RESTORED
+                                       ? _("An unsaved document has been restored. You can save it or keep editing.")
+                                       : _("Unsaved changes have been restored. You can save or discard them, or keep editing."));
+      adw_alert_dialog_add_response (ADW_ALERT_DIALOG (dialog), "keep", _("_Keep Editing"));
+      if (self->state == EDITOR_BANNER_RESTORED)
+        adw_alert_dialog_add_response (ADW_ALERT_DIALOG (dialog), "save-as", _("Save _As…"));
+      else
+        adw_alert_dialog_add_responses (ADW_ALERT_DIALOG (dialog),
+                                        "discard", _("_Discard…"),
+                                        "save", _("_Save…"),
+                                        NULL);
+      adw_alert_dialog_set_close_response (ADW_ALERT_DIALOG (dialog), "keep");
+      adw_alert_dialog_set_default_response (ADW_ALERT_DIALOG (dialog), "keep");
+      g_signal_connect_object (dialog,
+                               "response",
+                               G_CALLBACK (editor_info_bar_restored_response_cb),
+                               page,
+                               G_CONNECT_SWAPPED);
+      break;
+
+    case EDITOR_BANNER_ENCODING:
+      dialog = editor_encoding_dialog_new (page);
+      break;
+
+    case EDITOR_BANNER_CHANGED:
+      _editor_page_discard_changes (page);
+      return;
+
+    case EDITOR_BANNER_NONE:
+    default:
+      return;
+    }
+
+  adw_dialog_present (dialog, GTK_WIDGET (window));
 }
 
 static void
@@ -227,8 +297,10 @@ editor_info_bar_dispose (GObject *object)
 {
   EditorInfoBar *self = (EditorInfoBar *)object;
 
+  g_clear_object (&self->signals);
   g_clear_object (&self->document);
-  g_clear_pointer ((GtkWidget **)&self->box, gtk_widget_unparent);
+  g_clear_pointer ((GtkWidget **)&self->banner, gtk_widget_unparent);
+  gtk_widget_dispose_template (GTK_WIDGET (self), EDITOR_TYPE_INFO_BAR);
 
   G_OBJECT_CLASS (editor_info_bar_parent_class)->dispose (object);
 }
@@ -265,27 +337,8 @@ editor_info_bar_set_property (GObject      *object,
     case PROP_DOCUMENT:
       if (g_set_object (&self->document, g_value_get_object (value)))
         {
-          g_object_bind_property (self->document, "suggest-admin",
-                                  self->access_try_admin, "visible",
-                                  G_BINDING_SYNC_CREATE);
-          g_object_bind_property (self->document, "error-message",
-                                  self->access_subtitle, "label",
-                                  G_BINDING_SYNC_CREATE);
-          g_signal_connect_object (self->document,
-                                   "notify::error",
-                                   G_CALLBACK (editor_info_bar_notify_error),
-                                   self,
-                                   G_CONNECT_SWAPPED);
-          g_signal_connect_object (self->document,
-                                   "notify::busy",
-                                   G_CALLBACK (on_notify_cb),
-                                   self,
-                                   G_CONNECT_SWAPPED);
-          g_signal_connect_object (self->document,
-                                   "notify::externally-modified",
-                                   G_CALLBACK (on_notify_cb),
-                                   self,
-                                   G_CONNECT_SWAPPED);
+          g_signal_group_set_target (self->signals, self->document);
+          editor_info_bar_update (self);
         }
       break;
 
@@ -304,49 +357,40 @@ editor_info_bar_class_init (EditorInfoBarClass *klass)
   object_class->get_property = editor_info_bar_get_property;
   object_class->set_property = editor_info_bar_set_property;
 
-  properties [PROP_DOCUMENT] =
-    g_param_spec_object ("document",
-                         "Document",
-                         "The document to monitor",
+  properties[PROP_DOCUMENT] =
+    g_param_spec_object ("document", NULL, NULL,
                          EDITOR_TYPE_DOCUMENT,
-                         (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+                         (G_PARAM_READWRITE |
+                          G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_properties (object_class, N_PROPS, properties);
 
   gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/TextEditor/ui/editor-info-bar.ui");
-  gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, access_infobar);
-  gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, access_try_admin);
-  gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, access_subtitle);
-  gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, box);
-  gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, discard);
-  gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, discard_infobar);
-  gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, encoding_infobar);
-  gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, save);
-  gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, subtitle);
-  gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, title);
-  gtk_widget_class_bind_template_callback (widget_class, on_try_admin_cb);
-  gtk_widget_class_bind_template_callback (widget_class, on_try_again_cb);
+  gtk_widget_class_bind_template_child (widget_class, EditorInfoBar, banner);
+  gtk_widget_class_bind_template_callback (widget_class, editor_info_bar_button_clicked_cb);
 }
 
 static void
 editor_info_bar_init (EditorInfoBar *self)
 {
+  static const char *signals[] = {
+    "notify::error",
+    "notify::busy",
+    "notify::externally-modified",
+    "notify::was-restored",
+    "notify::file",
+  };
+
   gtk_widget_init_template (GTK_WIDGET (self));
 
-  /*
-   * Ensure buttons with long labels can wrap text and are
-   * center-justified, so the infobar can fit narrow screens.
-   */
-  editor_info_bar_wrap_button_label (self->access_try_admin);
-  editor_info_bar_wrap_button_label (self->discard);
-  editor_info_bar_wrap_button_label (self->save);
+  self->signals = g_signal_group_new (EDITOR_TYPE_DOCUMENT);
 
-  g_signal_connect_object (self->discard_infobar,
-                           "response",
-                           G_CALLBACK (on_response_cb),
-                           self,
-                           G_CONNECT_SWAPPED);
+  for (guint i = 0; i < G_N_ELEMENTS (signals); i++)
+    g_signal_group_connect_swapped (self->signals,
+                                    signals[i],
+                                    G_CALLBACK (editor_info_bar_notify_cb),
+                                    self);
 }
 
 GtkWidget *

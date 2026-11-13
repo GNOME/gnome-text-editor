@@ -248,18 +248,6 @@ editor_window_actions_discard_changes_cb (GtkWidget  *widget,
 }
 
 static void
-editor_window_actions_infobar_discard_changes_cb (GtkWidget  *widget,
-                                                  const char *action_name,
-                                                  GVariant   *param)
-{
-  EditorWindow *self = (EditorWindow *)widget;
-
-  g_assert (EDITOR_IS_WINDOW (self));
-
-  editor_window_actions_confirm_discard_changes (widget);
-}
-
-static void
 editor_window_actions_print_cb (GtkWidget  *widget,
                                 const char *action_name,
                                 GVariant   *param)
@@ -588,7 +576,7 @@ editor_window_actions_change_encoding_cb (GtkWidget  *widget,
   if ((page = editor_window_get_visible_page (self)) &&
       (document = editor_page_get_document (page)))
     {
-      AdwDialog *dialog = editor_encoding_dialog_new (document);
+      AdwDialog *dialog = editor_encoding_dialog_new (page);
 
       adw_dialog_present (dialog, GTK_WIDGET (self));
     }
@@ -700,10 +688,6 @@ _editor_window_class_actions_init (EditorWindowClass *klass)
                                    "page.discard-changes",
                                    "b",
                                    editor_window_actions_discard_changes_cb);
-  gtk_widget_class_install_action (widget_class,
-                                   "page.infobar-discard-changes",
-                                   NULL,
-                                   editor_window_actions_infobar_discard_changes_cb);
   gtk_widget_class_install_action (widget_class,
                                    "page.print",
                                    NULL,

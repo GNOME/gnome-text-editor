@@ -24,6 +24,7 @@
 
 #include "editor-animation.h"
 #include "editor-document-private.h"
+#include "editor-info-bar-private.h"
 #include "editor-page.h"
 #include "editor-page-settings.h"
 #include "editor-path-private.h"
@@ -57,8 +58,7 @@ struct _EditorPage
   GtkEntry            *goto_line_entry;
   GtkWidget           *search_revealer;
   EditorSearchBar     *search_bar;
-  GtkInfoBar          *changed_infobar;
-  GtkInfoBar          *infobar;
+  EditorInfoBar       *infobar;
   GtkEventController  *vim;
   EditorPositionLabel *position_label;
   GtkBox              *bottom_bars;
