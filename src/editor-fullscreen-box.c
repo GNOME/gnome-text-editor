@@ -397,7 +397,7 @@ editor_fullscreen_box_init (EditorFullscreenBox *self)
 
   toolbar_view = ADW_TOOLBAR_VIEW (adw_toolbar_view_new ());
   adw_toolbar_view_set_top_bar_style (toolbar_view, ADW_TOOLBAR_RAISED);
-  adw_toolbar_view_set_bottom_bar_style (toolbar_view, ADW_TOOLBAR_RAISED);
+  adw_toolbar_view_set_bottom_bar_style (toolbar_view, ADW_TOOLBAR_FLAT);
 
   g_signal_connect_object (toolbar_view, "notify::reveal-top-bars",
                            G_CALLBACK (notify_reveal_cb), self, G_CONNECT_SWAPPED);
