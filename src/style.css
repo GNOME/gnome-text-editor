@@ -88,24 +88,24 @@ window.org-gnome-TextEditor checkbutton.theme-selector radio:checked {
 }
 
 
-/* EditorOpenPopover */
+/* EditorOpenView */
 
 window.org-gnome-TextEditor .open-popover contents {
   padding: 0;
 }
-window.org-gnome-TextEditor .open-popover listview {
+window.org-gnome-TextEditor openview listview {
   margin-bottom: 3px;
   background: none;
   color: inherit;
 }
-window.org-gnome-TextEditor .open-popover listview row {
-  border-radius: 6px;
+window.org-gnome-TextEditor openview listview row {
+  border-radius: 9px;
   margin: 3px 6px;
 }
-window.org-gnome-TextEditor .open-popover listview row:first-child {
+window.org-gnome-TextEditor openview listview row:first-child {
   margin-top: 6px;
 }
-window.org-gnome-TextEditor .open-popover listview row button {
+window.org-gnome-TextEditor openview listview row button {
   padding: 3px;
   margin: 0;
   min-height: 24px;
