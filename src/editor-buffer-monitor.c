@@ -26,15 +26,24 @@
 
 struct _EditorBufferMonitor
 {
-  GObject parent_instance;
-  GFile *file;
+  GObject       parent_instance;
+
+  GFile        *file;
   GFileMonitor *monitor;
-  char *etag;
-  int pause_count;
-  guint changed_source;
-  guint changed : 1;
-  guint failed : 1;
+  char         *etag;
+  int           pause_count;
+  guint         changed_source;
+  guint         query_generation;
+
+  guint         changed : 1;
+  guint         failed : 1;
 };
+
+typedef struct
+{
+  EditorBufferMonitor *monitor;
+  guint                generation;
+} MonitorQuery;
 
 G_DEFINE_TYPE (EditorBufferMonitor, editor_buffer_monitor, G_TYPE_OBJECT)
 
@@ -71,6 +80,7 @@ editor_buffer_monitor_dispose (GObject *object)
     g_file_monitor_cancel (self->monitor);
   g_clear_object (&self->monitor);
   g_clear_object (&self->file);
+  g_clear_pointer (&self->etag, g_free);
 
   G_OBJECT_CLASS (editor_buffer_monitor_parent_class)->dispose (object);
 }
@@ -169,7 +179,8 @@ editor_buffer_monitor_query_info_cb (GObject      *object,
                                      gpointer      user_data)
 {
   GFile *file = (GFile *)object;
-  g_autoptr(EditorBufferMonitor) self = user_data;
+  g_autofree MonitorQuery *query = user_data;
+  g_autoptr(EditorBufferMonitor) self = query->monitor;
   g_autoptr(GFileInfo) info = NULL;
   g_autoptr(GError) error = NULL;
 
@@ -177,20 +188,42 @@ editor_buffer_monitor_query_info_cb (GObject      *object,
   g_assert (G_IS_ASYNC_RESULT (result));
   g_assert (EDITOR_IS_BUFFER_MONITOR (self));
 
-  if (self->pause_count > 0)
+  info = g_file_query_info_finish (file, result, &error);
+
+  if (self->pause_count > 0 ||
+      query->generation != self->query_generation ||
+      file != self->file)
     return;
 
-  if ((info = g_file_query_info_finish (file, result, &error)))
+  if (error != NULL)
+    {
+      if (!self->changed)
+        {
+          self->changed = TRUE;
+          g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_CHANGED]);
+        }
+
+      return;
+    }
+
+  if (info != NULL &&
+      g_file_info_get_file_type (info) != G_FILE_TYPE_DIRECTORY)
     {
       const char *etag = g_file_info_get_etag (info);
 
-      /* Ignore if contents have not changed */
-      if (self->etag && g_strcmp0 (etag, self->etag) == 0)
-        return;
+      if (self->etag == NULL || g_strcmp0 (etag, self->etag) != 0)
+        {
+          self->changed = TRUE;
+          g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_CHANGED]);
+          return;
+        }
     }
 
-  self->changed = TRUE;
-  g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_CHANGED]);
+  if (self->changed)
+    {
+      self->changed = FALSE;
+      g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_CHANGED]);
+    }
 }
 
 static gboolean
@@ -202,14 +235,24 @@ notify_timeout_cb (gpointer user_data)
 
   self->changed_source = 0;
 
-  if (!self->changed && !self->failed)
-    g_file_query_info_async (self->file,
-                             G_FILE_ATTRIBUTE_ETAG_VALUE,
-                             G_FILE_QUERY_INFO_NONE,
-                             G_PRIORITY_DEFAULT,
-                             NULL,
-                             editor_buffer_monitor_query_info_cb,
-                             g_object_ref (self));
+  if (self->file != NULL &&
+      self->pause_count == 0 &&
+      !self->failed)
+    {
+      MonitorQuery *query = g_new0 (MonitorQuery, 1);
+
+      query->monitor = g_object_ref (self);
+      query->generation = ++self->query_generation;
+
+      g_file_query_info_async (self->file,
+                               G_FILE_ATTRIBUTE_ETAG_VALUE ","
+                               G_FILE_ATTRIBUTE_STANDARD_TYPE,
+                               G_FILE_QUERY_INFO_NONE,
+                               G_PRIORITY_DEFAULT,
+                               NULL,
+                               editor_buffer_monitor_query_info_cb,
+                               query);
+    }
 
   return G_SOURCE_REMOVE;
 }
@@ -234,8 +277,14 @@ editor_buffer_monitor_changed_cb (EditorBufferMonitor *self,
 
   if (event == G_FILE_MONITOR_EVENT_CHANGED ||
       event == G_FILE_MONITOR_EVENT_DELETED ||
-      event == G_FILE_MONITOR_EVENT_RENAMED)
+      event == G_FILE_MONITOR_EVENT_RENAMED ||
+      event == G_FILE_MONITOR_EVENT_MOVED_OUT ||
+      event == G_FILE_MONITOR_EVENT_MOVED_IN ||
+      event == G_FILE_MONITOR_EVENT_CREATED ||
+      event == G_FILE_MONITOR_EVENT_UNMOUNTED)
     {
+      self->query_generation++;
+
       if (self->changed_source == 0)
         self->changed_source = g_timeout_add_full (G_PRIORITY_DEFAULT,
                                                    100,
@@ -279,6 +328,8 @@ editor_buffer_monitor_reset (EditorBufferMonitor *self)
 {
   g_return_if_fail (EDITOR_IS_BUFFER_MONITOR (self));
 
+  self->query_generation++;
+
   if (self->changed)
     {
       self->changed = FALSE;
@@ -313,6 +364,7 @@ editor_buffer_monitor_pause (EditorBufferMonitor *self)
   g_return_if_fail (EDITOR_IS_BUFFER_MONITOR (self));
 
   self->pause_count++;
+  self->query_generation++;
 
   if (self->changed)
     {
