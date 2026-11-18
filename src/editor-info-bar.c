@@ -69,6 +69,13 @@ editor_info_bar_update (EditorInfoBar *self)
 
   g_assert (EDITOR_IS_INFO_BAR (self));
 
+  if (self->document != NULL &&
+      editor_document_get_busy (self->document) &&
+      _editor_document_get_was_restored (self->document) &&
+      (self->state == EDITOR_BANNER_RESTORED ||
+       self->state == EDITOR_BANNER_DRAFT_RESTORED))
+    return;
+
   if (self->document != NULL && !editor_document_get_busy (self->document))
     {
       g_object_get (self->document,
