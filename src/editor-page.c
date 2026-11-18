@@ -1842,6 +1842,7 @@ _editor_page_begin_search (EditorPage *self)
   g_return_if_fail (EDITOR_IS_PAGE (self));
 
   _editor_page_set_search_visible (self, TRUE, EDITOR_SEARCH_BAR_MODE_SEARCH);
+  _editor_search_bar_grab_focus (self->search_bar);
 }
 
 void
