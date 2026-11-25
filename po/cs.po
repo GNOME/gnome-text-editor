@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: gnome-text-editor\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/chergert/gnome-text-editor/"
 "issues\n"
-"POT-Creation-Date: 2026-01-29 17:33+0000\n"
-"PO-Revision-Date: 2026-02-04 15:44+0100\n"
+"POT-Creation-Date: 2026-11-18 19:08+0000\n"
+"PO-Revision-Date: 2026-11-25 23:22+0100\n"
 "Last-Translator: Daniel Rusek <mail@asciiwolf.com>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.10\n"
 
 #: data/org.gnome.TextEditor.desktop.in.in:3
 msgid "write;notepad;"
@@ -27,7 +27,7 @@ msgstr "psát;zapisovat;zápisník;"
 #: data/org.gnome.TextEditor.desktop.in.in:7
 #: data/org.gnome.TextEditor.desktop.in.in:8
 #: data/org.gnome.TextEditor.metainfo.xml.in.in:10
-#: src/editor-application-actions.c:200 src/editor-window.c:1288
+#: src/editor-application-actions.c:200 src/editor-window.c:1594
 msgid "Text Editor"
 msgstr "Textový editor"
 
@@ -38,6 +38,11 @@ msgstr "Prohlížet a upravovat textové soubory"
 #: data/org.gnome.TextEditor.desktop.in.in:21
 msgid "New Window"
 msgstr "Nové okno"
+
+#: data/org.gnome.TextEditor.metainfo.xml.in.in:7
+#: src/editor-application-actions.c:202
+msgid "The GNOME Project"
+msgstr "Projekt GNOME"
 
 #: data/org.gnome.TextEditor.metainfo.xml.in.in:12
 msgid "Edit text files"
@@ -147,11 +152,8 @@ msgid "Show Overview Map"
 msgstr "Zobrazovat přehledovou mapu"
 
 #: data/org.gnome.TextEditor.gschema.xml:74
-msgid ""
-"If enabled, an overview map of the file will be displayed to the side of the "
-"editor."
-msgstr ""
-"Když je zapnuto, bude po straně editoru zobrazená přehledová mapa souboru."
+msgid "Whether to show an overview map of the document."
+msgstr "Zda zobrazit přehledovou mapu dokumentu."
 
 #: data/org.gnome.TextEditor.gschema.xml:78
 msgid "Show Background Grid"
@@ -239,7 +241,7 @@ msgstr "Přebarvit okno"
 
 #: data/org.gnome.TextEditor.gschema.xml:124
 msgid "Use the style-scheme to recolor the application window."
-msgstr "Použít schéma stylu k přebarvení okna aplikace"
+msgstr "Použít schéma stylu k přebarvení okna aplikace."
 
 #: data/org.gnome.TextEditor.gschema.xml:132
 msgid "Keybindings"
@@ -247,7 +249,7 @@ msgstr "Klávesové zkratky"
 
 #: data/org.gnome.TextEditor.gschema.xml:133
 msgid "The keybindings to use within Text Editor."
-msgstr "Klávesové zkratky pro použití v Textovém editoru"
+msgstr "Klávesové zkratky pro použití v Textovém editoru."
 
 #: data/org.gnome.TextEditor.gschema.xml:137
 msgid "Last Save Directory"
@@ -303,10 +305,6 @@ msgstr "Selhalo vyhledání vlastnosti %s v objektu %s"
 msgid "Failed to retrieve va_list value: %s"
 msgstr "Selhalo získání hodnoty va_list: %s"
 
-#: src/editor-application-actions.c:202
-msgid "The GNOME Project"
-msgstr "Projekt GNOME"
-
 #: src/editor-application-actions.c:215
 msgid "translator-credits"
 msgstr "Marek Černocký"
@@ -319,8 +317,9 @@ msgstr "Vymazat historii souborů?"
 msgid "This action cannot be undone"
 msgstr "Tuto akci nelze vrátit zpět"
 
-#: src/editor-application-actions.c:352 src/editor-save-changes-dialog.c:260
-#: src/editor-window-actions.c:115 src/editor-window-actions.c:219
+#: src/editor-application-actions.c:352 src/editor-encoding-dialog.c:235
+#: src/editor-save-changes-dialog.c:260 src/editor-window-actions.c:115
+#: src/editor-window-actions.c:219
 msgid "_Cancel"
 msgstr "_Zrušit"
 
@@ -362,14 +361,26 @@ msgstr ""
 msgid "Print version information and exit"
 msgstr "Vypsat informace o verzi a skončit"
 
-#: src/editor-document.c:2285
+#: src/editor-document.c:2278
 msgid "[Read-Only]"
 msgstr "[jen ke čtení]"
 
-#: src/editor-document.c:2510 src/editor-page.c:1125
+#: src/editor-document.c:2509 src/editor-page.c:1381
 #: src/editor-sidebar-item.c:500
 msgid "New Document"
 msgstr "Nový dokument"
+
+#: src/editor-encoding-dialog.c:232
+msgid "Reload with a Different Encoding?"
+msgstr "Znovu načíst s jiným kódováním?"
+
+#: src/editor-encoding-dialog.c:233 src/editor-window-actions.c:213
+msgid "Unsaved changes will be permanently lost."
+msgstr "Neuložené změny budou nenávratně ztraceny."
+
+#: src/editor-encoding-dialog.c:236
+msgid "_Discard Changes and Reload"
+msgstr "Zaho_dit změny a znovu načíst"
 
 #: src/editor-encoding-dialog.ui:5
 msgid "Change Encoding"
@@ -377,7 +388,7 @@ msgstr "Změnit kódování"
 
 #: src/editor-encoding-dialog.ui:22
 msgid "Search encodings"
-msgstr "Hledat kódování"
+msgstr "hledat kódování"
 
 #: src/editor-encoding-dialog.ui:58 src/editor-language-dialog.ui:75
 msgid "No Results Found"
@@ -412,70 +423,78 @@ msgstr "Mezera"
 msgid "Tab"
 msgstr "Tabulátor"
 
-#: src/editor-info-bar.c:108
-msgid "_Discard Changes and Reload"
-msgstr "Zaho_dit změny a znovu načíst"
+#: src/editor-info-bar.c:90
+msgid "Some Characters Could Not Be Read"
+msgstr "Některé znaky nebylo možné přečíst"
 
-#: src/editor-info-bar.c:112
-msgid "File Has Changed on Disk"
-msgstr "Soubor byl změněn na disku"
+#: src/editor-info-bar.c:91
+msgid "Change _Encoding…"
+msgstr "Změnit _kódování…"
 
-#: src/editor-info-bar.c:113
-msgid "The file has been changed by another program."
-msgstr "Soubor byl změněn jiným programem."
-
-#: src/editor-info-bar.c:122 src/editor-window.ui:371
-msgid "Save _As…"
-msgstr "Uložit j_ako…"
-
-#: src/editor-info-bar.c:124 src/editor-info-bar.ui:73
-msgid "Document Restored"
-msgstr "Obnovený dokument"
-
-#: src/editor-info-bar.c:125 src/editor-info-bar.ui:84
-msgid "Unsaved document has been restored."
-msgstr "Neuložený dokument byl obnoven."
-
-#: src/editor-info-bar.c:131 src/editor-info-bar.ui:99
-msgid "_Save…"
-msgstr "_Uložit…"
-
-#: src/editor-info-bar.c:133 src/editor-info-bar.ui:93
-msgid "_Discard…"
-msgstr "Zaho_dit…"
-
-#: src/editor-info-bar.c:136
-msgid "Draft Changes Restored"
-msgstr "Obnovený koncept"
-
-#: src/editor-info-bar.c:137
-msgid "Unsaved changes to the document have been restored."
-msgstr "Neuložené změny v dokumentu byly obnoveny."
-
-#: src/editor-info-bar.ui:19
+#: src/editor-info-bar.c:96 src/editor-info-bar.c:244
 msgid "Could Not Open File"
 msgstr "Nezdařilo se otevřít soubor"
 
-#: src/editor-info-bar.ui:38
+#: src/editor-info-bar.c:97 src/editor-info-bar.c:118
+msgid "_Review…"
+msgstr "Zkont_rolovat…"
+
+#: src/editor-info-bar.c:102
+msgid "File Has Changed on Disk"
+msgstr "Soubor byl změněn na disku"
+
+#: src/editor-info-bar.c:103
+msgid "_Discard and Reload"
+msgstr "Zaho_dit a znovu načíst"
+
+#: src/editor-info-bar.c:110
+msgid "Document Restored"
+msgstr "Obnovený dokument"
+
+#: src/editor-info-bar.c:115
+msgid "Draft Changes Restored"
+msgstr "Obnovený koncept"
+
+#: src/editor-info-bar.c:246 src/editor-page.c:1476 src/editor-window.ui:586
+msgid "_Close"
+msgstr "_Zavřít"
+
+#: src/editor-info-bar.c:247
 msgid "_Retry"
 msgstr "Zk_usit znovu"
 
-#: src/editor-info-bar.ui:51
+#: src/editor-info-bar.c:252
 msgid "Open As _Administrator"
 msgstr "Otevřít j_ako správce"
 
-#: src/editor-info-bar.ui:116
-msgid "Invalid Characters Detected"
-msgstr "Byly zjištěny neplatné znaky"
+#: src/editor-info-bar.c:267
+msgid "An unsaved document has been restored. You can save it or keep editing."
+msgstr ""
+"Neuložený dokument byl obnoven. Můžete jej uložit nebo pokračovat v úpravách."
 
-#: src/editor-info-bar.ui:127
+#: src/editor-info-bar.c:268
 msgid ""
-"There was an encoding conversion error so a fallback character was used."
-msgstr "Došlo k chybě převodu kódování, takže byl použit záložní znak."
+"Unsaved changes have been restored. You can save or discard them, or keep "
+"editing."
+msgstr ""
+"Neuložené změny byly obnoveny. Můžete je uložit, zahodit, nebo pokračovat v "
+"úpravách."
 
-#: src/editor-info-bar.ui:136
-msgid "Change _Encoding…"
-msgstr "Změnit _kódování…"
+#: src/editor-info-bar.c:269
+msgid "_Keep Editing"
+msgstr "Po_kračovat v úpravách"
+
+#: src/editor-info-bar.c:271 src/editor-window.ui:505
+msgid "Save _As…"
+msgstr "Uložit j_ako…"
+
+#: src/editor-info-bar.c:274
+msgid "_Discard…"
+msgstr "Zaho_dit…"
+
+#: src/editor-info-bar.c:275
+msgid "_Save…"
+msgstr "_Uložit…"
 
 #: src/editor-language-dialog.c:248
 msgid "Other Document Types"
@@ -507,47 +526,43 @@ msgstr "Windows (CR+LF)"
 msgid "Mac OS Classic (CR)"
 msgstr "Klasický Mac OS (CR)"
 
-#: src/editor-open-popover.ui:25
+#: src/editor-open-view.ui:8
 msgid "Search documents"
 msgstr "hledat dokumenty"
 
-#: src/editor-open-popover.ui:45
-msgid "Open New Document"
-msgstr "Otevřít nový dokument"
-
-#: src/editor-open-popover.ui:80
+#: src/editor-open-view.ui:49
 msgid "No Recent Documents"
 msgstr "Žádné nedávné dokumenty"
 
-#: src/editor-page.c:1151 src/editor-properties.c:617
+#: src/editor-open-view.ui:139 src/editor-open-view.ui:180
+msgid "Open New Document"
+msgstr "Otevřít nový dokument"
+
+#: src/editor-page.c:1407 src/editor-properties.c:617
 #: src/editor-sidebar-item.c:101
 msgid "Draft"
 msgstr "Koncept"
 
 #. translators: %s is replaced with the path on the filesystem
-#: src/editor-page.c:1163
+#: src/editor-page.c:1419
 #, c-format
 msgid "%s (Administrator)"
 msgstr "%s (správce)"
 
-#: src/editor-page.c:1219
+#: src/editor-page.c:1475
 msgid "Failed to save document"
 msgstr "Selhalo uložení dokumentu"
 
-#: src/editor-page.c:1220 src/editor-window.ui:451
-msgid "_Close"
-msgstr "_Zavřít"
-
-#: src/editor-page.c:1484
+#: src/editor-page.c:1740
 #, c-format
 msgid "Ln %u, Col %u"
 msgstr "Ř. %u, Sl. %u"
 
-#: src/editor-page.ui:94
+#: src/editor-page.ui:100
 msgid "Go to Line"
 msgstr "Přechod na řádek"
 
-#: src/editor-page.ui:111
+#: src/editor-page.ui:117
 msgid "Go"
 msgstr "Přejít"
 
@@ -741,7 +756,7 @@ msgstr ""
 "nenávratně ztraceny."
 
 #: src/editor-save-changes-dialog.c:262 src/editor-window-actions.c:116
-#: src/editor-window.ui:365
+#: src/editor-window.ui:499
 msgid "_Save"
 msgstr "_Uložit"
 
@@ -755,47 +770,47 @@ msgstr "Dokument bez názvu"
 msgid "%s (new)"
 msgstr "%s (nový)"
 
-#: src/editor-search-bar.ui:36 src/editor-search-bar.ui:38
+#: src/editor-search-bar.ui:37 src/editor-search-bar.ui:39
 msgid "Replace"
 msgstr "nahradit"
 
-#: src/editor-search-bar.ui:57
+#: src/editor-search-bar.ui:54
 msgid "Previous Match"
 msgstr "Předchozí výskyt"
 
-#: src/editor-search-bar.ui:70
+#: src/editor-search-bar.ui:67
 msgid "Next Match"
 msgstr "Následující výskyt"
 
-#: src/editor-search-bar.ui:86
+#: src/editor-search-bar.ui:79
 msgid "Search & Replace"
 msgstr "Hledat a nahrazovat"
 
-#: src/editor-search-bar.ui:101
+#: src/editor-search-bar.ui:90
 msgid "Search Options"
 msgstr "Volby vyhledávání"
 
-#: src/editor-search-bar.ui:119
+#: src/editor-search-bar.ui:104
 msgid "Close Search"
 msgstr "Zavřít hledání"
 
-#: src/editor-search-bar.ui:137
+#: src/editor-search-bar.ui:118
 msgid "_Replace"
 msgstr "Nah_radit"
 
-#: src/editor-search-bar.ui:151
+#: src/editor-search-bar.ui:128
 msgid "Replace _All"
 msgstr "Nahradit _vše"
 
-#: src/editor-search-bar.ui:170
+#: src/editor-search-bar.ui:314
 msgid "Re_gular Expressions"
 msgstr "Re_gulární výrazy"
 
-#: src/editor-search-bar.ui:174
+#: src/editor-search-bar.ui:318
 msgid "_Case Sensitive"
 msgstr "Rozlišovat veli_kost písmen"
 
-#: src/editor-search-bar.ui:178
+#: src/editor-search-bar.ui:322
 msgid "Match Whole _Word Only"
 msgstr "Pouze celá slo_va"
 
@@ -837,23 +852,23 @@ msgstr "Tmavý styl"
 msgid "Dark style"
 msgstr "Tmavý styl"
 
-#: src/editor-utils.c:355
+#: src/editor-utils.c:342
 msgid "Just now"
 msgstr "Právě teď"
 
-#: src/editor-utils.c:357
+#: src/editor-utils.c:344
 msgid "An hour ago"
 msgstr "Před hodinou"
 
-#: src/editor-utils.c:359
+#: src/editor-utils.c:346
 msgid "Yesterday"
 msgstr "Včera"
 
-#: src/editor-utils.c:365
+#: src/editor-utils.c:352
 msgid "About a year ago"
 msgstr "Zhruba před rokem"
 
-#: src/editor-utils.c:369
+#: src/editor-utils.c:356
 #, c-format
 msgid "About %u year ago"
 msgid_plural "About %u years ago"
@@ -871,135 +886,139 @@ msgstr "Při ukládání se přepíše předchozí uložená verze."
 msgid "Save Changes to “%s”?"
 msgstr "Uložit změny do „%s“?"
 
-#: src/editor-window-actions.c:213
-msgid "Unsaved changes will be permanently lost."
-msgstr "Neuložené změny budou nenávratně ztraceny."
-
 #. translators: %s is replaced with the document title
 #: src/editor-window-actions.c:216
 #, c-format
 msgid "Discard Changes to “%s”?"
 msgstr "Zahodit změny v „%s“?"
 
-#: src/editor-window-actions.c:384
+#: src/editor-window-actions.c:379
 msgid "All Files"
 msgstr "Všechny soubory"
 
-#: src/editor-window-actions.c:389
+#: src/editor-window-actions.c:384
 msgid "Text Files"
 msgstr "Textové soubory"
 
-#: src/editor-window.c:423
+#: src/editor-window.c:534
 msgid "Zoom In"
 msgstr "Přiblížit"
 
-#: src/editor-window.c:426
+#: src/editor-window.c:537
 msgid "Zoom in"
 msgstr "Přiblížit"
 
-#: src/editor-window.c:436
+#: src/editor-window.c:547
 msgid "Zoom Out"
 msgstr "Oddálit"
 
-#: src/editor-window.c:439
+#: src/editor-window.c:550
 msgid "Zoom out"
 msgstr "Oddálit"
 
-#: src/editor-window.c:444
+#: src/editor-window.c:555
 msgid "Reset Zoom"
 msgstr "Výchozí přiblížení"
 
 #. translators: the first %s is replaced with the title, the second %s is replaced with the subtitle
-#: src/editor-window.c:690
+#: src/editor-window.c:850
 #, c-format
 msgid "%s (%s) - Text Editor"
 msgstr "%s (%s) – Textový editor"
 
-#: src/editor-window.c:1167
+#: src/editor-window.c:1473
 msgid "There are unsaved documents"
 msgstr "Jsou zde neuložené dokumenty"
 
-#: src/editor-window.ui:81
-msgid "Open a Document"
-msgstr "Otevřít dokument"
-
-#: src/editor-window.ui:82
-msgid "Create a new document (Ctrl+N), or open an existing one (Ctrl+O)"
-msgstr "Vytvořte nový dokument (Ctrl+N) nebo otevřete existující (Ctrl+O)"
-
-#: src/editor-window.ui:93
-msgid "_New Empty File"
-msgstr "_Nový prázdný soubor"
-
-#: src/editor-window.ui:166
-msgid "Recently Used Documents"
-msgstr "Nedávno použité dokumenty"
-
-#: src/editor-window.ui:191
-msgid "_Open"
-msgstr "_Otevřít"
-
-#: src/editor-window.ui:224
+#: src/editor-window.ui:125
 msgid "New Tab"
 msgstr "Nová karta"
 
-#: src/editor-window.ui:229 src/editor-window.ui:403
-msgid "Leave Fullscreen"
-msgstr "Opustit celou obrazovku"
-
-#: src/editor-window.ui:237
+#: src/editor-window.ui:130 src/editor-window.ui:352 src/editor-window.ui:438
 msgid "Main Menu"
 msgstr "Hlavní nabídka"
 
-#: src/editor-window.ui:244
+#: src/editor-window.ui:137
 msgid "Document Properties"
 msgstr "Vlastnosti dokumentu"
 
-#: src/editor-window.ui:357
+#: src/editor-window.ui:187
+msgid "Open a Document"
+msgstr "Otevřít dokument"
+
+#: src/editor-window.ui:188
+msgid "Create a new document (Ctrl+N), or open an existing one (Ctrl+O)"
+msgstr "Vytvořte nový dokument (Ctrl+N) nebo otevřete existující (Ctrl+O)"
+
+#: src/editor-window.ui:200
+msgid "_New Empty File"
+msgstr "_Nový prázdný soubor"
+
+#: src/editor-window.ui:209 src/editor-window.ui:537
+msgid "Leave Fullscreen"
+msgstr "Opustit celou obrazovku"
+
+#: src/editor-window.ui:240
+msgid "_Open"
+msgstr "_Otevřít"
+
+#: src/editor-window.ui:242 src/editor-window.ui:410
+msgid "Recently Used Documents"
+msgstr "Nedávno použité dokumenty"
+
+#: src/editor-window.ui:423 src/editor-window.ui:426
+msgid "Overview Map"
+msgstr "Přehledová mapa"
+
+#: src/editor-window.ui:482
 msgid "_New Window"
 msgstr "_Nové okno"
 
-#: src/editor-window.ui:377
+#: src/editor-window.ui:490
+msgid "Show Open Tabs"
+msgstr "Zobrazit otevřené karty"
+
+#: src/editor-window.ui:511
 msgid "_Discard Changes…"
 msgstr "Zaho_dit změny…"
 
-#: src/editor-window.ui:384
+#: src/editor-window.ui:518
 msgid "_Find/Replace…"
 msgstr "_Hledat/nahrazovat…"
 
-#: src/editor-window.ui:390
+#: src/editor-window.ui:524
 msgid "_Print…"
 msgstr "_Tisk…"
 
-#: src/editor-window.ui:397
+#: src/editor-window.ui:531
 msgid "Fullscreen"
 msgstr "Celá obrazovka"
 
-#: src/editor-window.ui:411
+#: src/editor-window.ui:545
 msgid "P_references"
 msgstr "_Předvolby"
 
-#: src/editor-window.ui:416
+#: src/editor-window.ui:550
 msgid "_Keyboard Shortcuts"
 msgstr "_Klávesové zkratky"
 
-#: src/editor-window.ui:420
+#: src/editor-window.ui:555
 msgid "A_bout Text Editor"
 msgstr "O _aplikaci Textový editor"
 
-#: src/editor-window.ui:428
+#: src/editor-window.ui:563
 msgid "Move _Left"
 msgstr "Posunout do_leva"
 
-#: src/editor-window.ui:433
+#: src/editor-window.ui:568
 msgid "Move _Right"
 msgstr "Posunout dop_rava"
 
-#: src/editor-window.ui:440
+#: src/editor-window.ui:575
 msgid "_Move to New Window"
 msgstr "_Přesunout do nového okna"
 
-#: src/editor-window.ui:447
+#: src/editor-window.ui:582
 msgid "Close _Other Tabs"
 msgstr "Zavřít _ostatní karty"
 
@@ -1307,6 +1326,25 @@ msgstr "Zobrazit nápovědu"
 msgctxt "shortcut window"
 msgid "Toggle text wrapping"
 msgstr "Přepnout zalamování textu"
+
+#~ msgid ""
+#~ "If enabled, an overview map of the file will be displayed to the side of "
+#~ "the editor."
+#~ msgstr ""
+#~ "Když je zapnuto, bude po straně editoru zobrazená přehledová mapa souboru."
+
+#~ msgid "The file has been changed by another program."
+#~ msgstr "Soubor byl změněn jiným programem."
+
+#~ msgid "Unsaved changes to the document have been restored."
+#~ msgstr "Neuložené změny v dokumentu byly obnoveny."
+
+#~ msgid "Invalid Characters Detected"
+#~ msgstr "Byly zjištěny neplatné znaky"
+
+#~ msgid ""
+#~ "There was an encoding conversion error so a fallback character was used."
+#~ msgstr "Došlo k chybě převodu kódování, takže byl použit záložní znak."
 
 #~ msgid "Search document types"
 #~ msgstr "hledat typy dokumentů"
